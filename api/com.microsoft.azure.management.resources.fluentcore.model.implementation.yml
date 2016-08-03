@@ -5,9 +5,9 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.model.implementati8a7bec9bdead80d909ddab56ada5d533
   - com.microsoft.azure.management.resources.fluentcore.model.implementatibf78e21cd3329b1b4ecec32d4a7438aa
   - com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_impl
-  - com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_group
-  - com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_item
   - com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_updatable_impl
+  - com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_group
+  - com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_item
   - com.microsoft.azure.management.resources.fluentcore.model.implementation._indexable_impl
   - com.microsoft.azure.management.resources.fluentcore.model.implementation._indexable_wrapper_impl
   - com.microsoft.azure.management.resources.fluentcore.model.implementation._wrapper_impl
@@ -34,15 +34,15 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_impl
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
   href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_impl.yml
-  name: CreatableImpl<FluentModelT,InnerModelT,FluentModelImplT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableImpl<FluentModelT,InnerModelT,FluentModelImplT>
+  name: CreatableImpl<FluentModelT,InnerModelT,FluentModelImplT,ResourceT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableImpl<FluentModelT,InnerModelT,FluentModelImplT,ResourceT>
   type: Class
   summary: >-
     <p>The base class for all creatable resource.</p>
 
     <p></p>
   syntax:
-    content: public class CreatableImpl<FluentModelT,InnerModelT,FluentModelImplT> extends IndexableRefreshableWrapperImpl< FluentModelT, InnerModelT >
+    content: public class CreatableImpl<FluentModelT extends ResourceT,InnerModelT,FluentModelImplT,ResourceT> extends IndexableRefreshableWrapperImpl< FluentModelT, InnerModelT >
     typeParameters:
     - type: 2f67777b
       description: <p>the fluent model type representing the creatable resource </p>
@@ -50,36 +50,20 @@ references:
       description: <p>the model inner type that the fluent model type wraps </p>
     - type: 664a96a9
       description: <p>the fluent model implementation type </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_group
-  parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
-  href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_group.yml
-  name: CreatableTaskGroup
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableTaskGroup
-  type: Class
-  summary: <p>Type representing a group of creatable tasks and the dependency between them. </p>
-  syntax:
-    content: public class CreatableTaskGroup extends TaskGroupBase< Resource >
-- uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_item
-  parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
-  href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_task_item.yml
-  name: CreatableTaskItem
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableTaskItem
-  type: Class
-  summary: <p>Represents a task that creates a resource when executed. </p>
-  syntax:
-    content: public class CreatableTaskItem implements TaskItem< Resource >
+    - type: ab77b02a
+      description: <p>the fluent model or one of the base interface of fluent model </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_updatable_impl
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
   href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creatable_updatable_impl.yml
-  name: CreatableUpdatableImpl<FluentModelT,InnerModelT,FluentModelImplT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableUpdatableImpl<FluentModelT,InnerModelT,FluentModelImplT>
+  name: CreatableUpdatableImpl<FluentModelT,InnerModelT,FluentModelImplT,ResourceT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatableUpdatableImpl<FluentModelT,InnerModelT,FluentModelImplT,ResourceT>
   type: Class
   summary: >-
     <p>The base class for all updatable resource.</p>
 
     <p></p>
   syntax:
-    content: public class CreatableUpdatableImpl<FluentModelT,InnerModelT,FluentModelImplT> extends CreatableImpl< FluentModelT, InnerModelT, FluentModelImplT >
+    content: public class CreatableUpdatableImpl<FluentModelT extends ResourceT,InnerModelT,FluentModelImplT,ResourceT> extends CreatableImpl< FluentModelT, InnerModelT, FluentModelImplT, ResourceT >
     typeParameters:
     - type: 2f67777b
       description: <p>the fluent model type representing the resource </p>
@@ -87,6 +71,38 @@ references:
       description: <p>the model inner type that the fluent model type wraps </p>
     - type: 664a96a9
       description: <p>the implementation type of the fluent model </p>
+    - type: ab77b02a
+      description: <p>the fluent model or one of the base interface of fluent model </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_group
+  parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
+  href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_group.yml
+  name: CreatorTaskGroup<ResourceT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatorTaskGroup<ResourceT>
+  type: Class
+  summary: >-
+    <p>Type representing a group of tasks that can create resources that are dependents on each other.</p>
+
+    <p></p>
+  syntax:
+    content: public class CreatorTaskGroup<ResourceT> extends TaskGroupBase< ResourceT, CreatorTaskItem< ResourceT > >
+    typeParameters:
+    - type: ab77b02a
+      description: <p>the type of the resource this group creates </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_item
+  parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
+  href: com.microsoft.azure.management.resources.fluentcore.model.implementation._creator_task_item.yml
+  name: CreatorTaskItem<ResourceT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.CreatorTaskItem<ResourceT>
+  type: Class
+  summary: >-
+    <p>Represents a task that creates a resource when executed.</p>
+
+    <p></p>
+  syntax:
+    content: public class CreatorTaskItem<ResourceT> implements TaskItem< ResourceT >
+    typeParameters:
+    - type: ab77b02a
+      description: <p>the type of the resource that this task creates </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._indexable_impl
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
   href: com.microsoft.azure.management.resources.fluentcore.model.implementation._indexable_impl.yml

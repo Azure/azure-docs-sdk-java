@@ -82,6 +82,10 @@ items:
   - com.microsoft.azure.batch.protocol.models._disable_job_option
   - com.microsoft.azure.batch.protocol.models._environment_setting
   - com.microsoft.azure.batch.protocol.models._error_message
+  - com.microsoft.azure.batch.protocol.models._exit_code_mapping
+  - com.microsoft.azure.batch.protocol.models._exit_code_range_mapping
+  - com.microsoft.azure.batch.protocol.models._exit_conditions
+  - com.microsoft.azure.batch.protocol.models._exit_options
   - com.microsoft.azure.batch.protocol.models._file_delete_from_compute_node_headers
   - com.microsoft.azure.batch.protocol.models._file_delete_from_compute_node_options
   - com.microsoft.azure.batch.protocol.models._file_delete_from_task_headers
@@ -102,6 +106,7 @@ items:
   - com.microsoft.azure.batch.protocol.models._file_list_from_task_options
   - com.microsoft.azure.batch.protocol.models._file_properties
   - com.microsoft.azure.batch.protocol.models._image_reference
+  - com.microsoft.azure.batch.protocol.models._job_action
   - com.microsoft.azure.batch.protocol.models._job_add_headers
   - com.microsoft.azure.batch.protocol.models._job_add_options
   - com.microsoft.azure.batch.protocol.models._job_add_parameter
@@ -178,6 +183,7 @@ items:
   - com.microsoft.azure.batch.protocol.models._metadata_item
   - com.microsoft.azure.batch.protocol.models._multi_instance_settings
   - com.microsoft.azure.batch.protocol.models._name_value_pair
+  - com.microsoft.azure.batch.protocol.models._network_configuration
   - com.microsoft.azure.batch.protocol.models._node_agent_sku
   - com.microsoft.azure.batch.protocol.models._node_disable_scheduling_parameter
   - com.microsoft.azure.batch.protocol.models._node_file
@@ -186,6 +192,8 @@ items:
   - com.microsoft.azure.batch.protocol.models._node_remove_parameter
   - com.microsoft.azure.batch.protocol.models._node_update_user_parameter
   - com.microsoft.azure.batch.protocol.models._o_s_type
+  - com.microsoft.azure.batch.protocol.models._on_all_tasks_complete
+  - com.microsoft.azure.batch.protocol.models._on_task_failure
   - com.microsoft.azure.batch.protocol.models._page_impl
   - com.microsoft.azure.batch.protocol.models._pool_add_headers
   - com.microsoft.azure.batch.protocol.models._pool_add_options
@@ -416,7 +424,7 @@ references:
   name: ApplicationPackageReference
   fullName: com.microsoft.azure.batch.protocol.models.ApplicationPackageReference
   type: Class
-  summary: <p>A reference to an application package to be installed on compute nodes in a pool. </p>
+  summary: <p>A reference to an application package to be deployed to compute nodes. </p>
   syntax:
     content: public class ApplicationPackageReference
 - uid: com.microsoft.azure.batch.protocol.models._application_summary
@@ -434,7 +442,7 @@ references:
   name: AutoPoolSpecification
   fullName: com.microsoft.azure.batch.protocol.models.AutoPoolSpecification
   type: Class
-  summary: <p>Specifies characteristics for a temporary 'auto pool'. The Batch service will create this auto pool, run all the tasks for the job on it, and will delete the pool once the job has completed. </p>
+  summary: <p>Specifies characteristics for a temporary 'auto pool'. The Batch service will create this auto pool when the job is submitted. </p>
   syntax:
     content: public class AutoPoolSpecification
 - uid: com.microsoft.azure.batch.protocol.models._auto_scale_run
@@ -1040,6 +1048,42 @@ references:
   summary: <p>An error message received in an <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> Batch error response. </p>
   syntax:
     content: public class ErrorMessage
+- uid: com.microsoft.azure.batch.protocol.models._exit_code_mapping
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._exit_code_mapping.yml
+  name: ExitCodeMapping
+  fullName: com.microsoft.azure.batch.protocol.models.ExitCodeMapping
+  type: Class
+  summary: <p>How the Batch service should respond if a task exits with a particular exit code. </p>
+  syntax:
+    content: public class ExitCodeMapping
+- uid: com.microsoft.azure.batch.protocol.models._exit_code_range_mapping
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._exit_code_range_mapping.yml
+  name: ExitCodeRangeMapping
+  fullName: com.microsoft.azure.batch.protocol.models.ExitCodeRangeMapping
+  type: Class
+  summary: <p>A range of exit codes and how the Batch service should respond to exit codes within that range. </p>
+  syntax:
+    content: public class ExitCodeRangeMapping
+- uid: com.microsoft.azure.batch.protocol.models._exit_conditions
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._exit_conditions.yml
+  name: ExitConditions
+  fullName: com.microsoft.azure.batch.protocol.models.ExitConditions
+  type: Class
+  summary: <p>Specifies how the Batch service should respond when the task completes. </p>
+  syntax:
+    content: public class ExitConditions
+- uid: com.microsoft.azure.batch.protocol.models._exit_options
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._exit_options.yml
+  name: ExitOptions
+  fullName: com.microsoft.azure.batch.protocol.models.ExitOptions
+  type: Class
+  summary: <p>How the Batch service should respond to a particular exit condition. </p>
+  syntax:
+    content: public class ExitOptions
 - uid: com.microsoft.azure.batch.protocol.models._file_delete_from_compute_node_headers
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._file_delete_from_compute_node_headers.yml
@@ -1220,6 +1264,15 @@ references:
   summary: <p>A reference to an <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> Virtual Machines Marketplace image. </p>
   syntax:
     content: public class ImageReference
+- uid: com.microsoft.azure.batch.protocol.models._job_action
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._job_action.yml
+  name: JobAction
+  fullName: com.microsoft.azure.batch.protocol.models.JobAction
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._job_action" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum JobAction
 - uid: com.microsoft.azure.batch.protocol.models._job_add_headers
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._job_add_headers.yml
@@ -1910,6 +1963,15 @@ references:
   summary: <p>Represents a name-value pair. </p>
   syntax:
     content: public class NameValuePair
+- uid: com.microsoft.azure.batch.protocol.models._network_configuration
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._network_configuration.yml
+  name: NetworkConfiguration
+  fullName: com.microsoft.azure.batch.protocol.models.NetworkConfiguration
+  type: Class
+  summary: <p>The network configuration for a pool. </p>
+  syntax:
+    content: public class NetworkConfiguration
 - uid: com.microsoft.azure.batch.protocol.models._node_agent_sku
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._node_agent_sku.yml
@@ -1973,6 +2035,24 @@ references:
   summary: <p>Parameters for a ComputeNodeOperations.UpdateUser request. </p>
   syntax:
     content: public class NodeUpdateUserParameter
+- uid: com.microsoft.azure.batch.protocol.models._on_all_tasks_complete
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._on_all_tasks_complete.yml
+  name: OnAllTasksComplete
+  fullName: com.microsoft.azure.batch.protocol.models.OnAllTasksComplete
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._on_all_tasks_complete" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum OnAllTasksComplete
+- uid: com.microsoft.azure.batch.protocol.models._on_task_failure
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._on_task_failure.yml
+  name: OnTaskFailure
+  fullName: com.microsoft.azure.batch.protocol.models.OnTaskFailure
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._on_task_failure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum OnTaskFailure
 - uid: com.microsoft.azure.batch.protocol.models._o_s_type
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._o_s_type.yml
