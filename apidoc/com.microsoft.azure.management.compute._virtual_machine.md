@@ -5,7 +5,7 @@ uid: com.microsoft.azure.management.compute._virtual_machine
 This is a virtual machine interface.
 
 ---
-uid: com.microsoft.azure.management.compute._virtual_machine_1ad9c0943ab6fee90860f15a478c647215
+uid: com.microsoft.azure.management.compute._virtual_machine.availabilitySetId()
 example: [*content]
 ---
 
