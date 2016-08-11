@@ -63,7 +63,7 @@ $config.output_path = "_javadocs"
 $config | ConvertTo-Json | Out-File "code2yaml.json" -Force
 
 # run code2yaml to generate metadata yaml files
-& $code2yaml\Microsoft.Content.Build.Code2Yaml code2yaml.json
+& $code2yaml\code2yaml code2yaml.json
 
 if ($lastexitcode -ne 0)
 {
