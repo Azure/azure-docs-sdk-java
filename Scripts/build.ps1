@@ -26,7 +26,7 @@ function CloneOrPull
       }
       else
       {
-          & git clone $gitRepo $folderName
+          & git clone -q --branch=master $gitRepo $folderName
       }
 }
 
