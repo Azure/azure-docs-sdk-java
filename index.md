@@ -1,16 +1,287 @@
 ---
-layout: HubPage
+title: Azure Java API Reference 
+description: Azure Java API Reference 
+keywords: Azure Java, Azure Java API Reference, Azure Java class library
+author: allclark
+manager: douge
+ms.date: 08/26/2016
+ms.topic: managed-reference
+ms.prod: azure
+ms.technology: azure
+ms.devlang: java
+ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 ---
 
-<article id="main">
-    <section id="hero-content" class="graph">
-        <h1>Azure</h1>
-        <h2>Welcome to Azure Java SDK Documentation!</h2>
-    </section>
+# Azure Java API reference
 
-    <aside class="alert section-border">
-        <ol class="action-list">
-            <li><a href="api/index" class="button-bordered button-translucent">API reference</a></li>
-        </ol>
-    </aside>
-</article>
+## Namespaces in the Azure Java class library
+
+The following is a list of namespaces in the Azure Java class library. Each namespace contains a set of functionally-related types.
+
+<table class="table table-bordered table-striped table-condensed">
+<thead>
+   <tr>
+      <th>Namespace</th>
+      <th>Description</th>
+   </tr>
+</thead>
+<tr>
+   <td>@com.microsoft.azure</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch.auth</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch.interceptor</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch.protocol</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch.protocol.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.batch.protocol.models</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.credentials</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.authentication</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.core</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.cryptography</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.cryptography.algorithms</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.cryptography.test</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.extensions</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.extensions.test</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.models</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.requests</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.test</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.keyvault.webkey</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.compute</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.compute.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.analytics</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.analytics.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.analytics.models</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.store</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.store.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.store.models</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.datalake.store.uploader</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.network</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.network.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm.collection</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm.collection.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm.models</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.arm.models.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.collection</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.model</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.model.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.fluentcore.utils</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.resources.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.storage</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.storage.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.website</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.management.website.implementation</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.azure.serializer</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.rest</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.rest.credentials</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.rest.retry</td>
+   <td>
+    </td>
+</tr>
+<tr>
+   <td>@com.microsoft.rest.serializer</td>
+   <td>
+    </td>
+</tr>
