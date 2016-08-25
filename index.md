@@ -14,7 +14,7 @@ ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 
 # Azure Java API reference
 
-## Namespaces in the Azure Java class library 
+## Namespaces in the Azure Java class library
 
 The following is a list of namespaces in the Azure Java class library. Each namespace contains a set of functionally-related types.
 
