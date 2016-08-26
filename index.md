@@ -1,6 +1,6 @@
 ---
-title: Azure Java API Reference 
-description: Azure Java API Reference 
+title: Azure Java API Reference
+description: Azure Java API Reference
 keywords: Azure Java, Azure Java API Reference, Azure Java class library
 author: allclark
 manager: douge
