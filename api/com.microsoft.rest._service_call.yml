@@ -4,11 +4,13 @@ items:
   parent: com.microsoft.rest
   children:
   - com.microsoft.rest._service_call.cancel(boolean)
-  - com.microsoft.rest._service_call.failure(Throwable)
-  - com.microsoft.rest._service_call.getCall()
+  - com.microsoft.rest._service_call.create(final Observable< ServiceResponse< T >>)
+  - com.microsoft.rest._service_call.create(final Observable< ServiceResponse< T >>,final ServiceCallback< T >)
+  - com.microsoft.rest._service_call.createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >>,final ServiceCallback< T >)
+  - com.microsoft.rest._service_call.getSubscription()
   - com.microsoft.rest._service_call.isCancelled()
-  - com.microsoft.rest._service_call.newCall(Call<?>)
-  - com.microsoft.rest._service_call.ServiceCall(Call<?>)
+  - com.microsoft.rest._service_call.ServiceCall()
+  - com.microsoft.rest._service_call.setSubscription(Subscription)
   - com.microsoft.rest._service_call.success(ServiceResponse< T >)
   href: com.microsoft.rest._service_call.yml
   langs:
@@ -22,7 +24,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 20
+    startLine: 21
   package: com.microsoft.rest
   summary: >-
     <p>An instance of this class provides access to the underlying REST call invocation. This class wraps around the Retrofit Call object and allows updates to it in the progress of a long running operation or a paging operation.</p>
@@ -48,70 +50,121 @@ items:
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 60
+    startLine: 143
   package: com.microsoft.rest
-  summary: >-
-    <p>Cancel the Retrofit call if possible. Parameter 'mayInterruptIfRunning is ignored.</p>
-
-    <p></p>
   syntax:
     content: public boolean cancel(boolean mayInterruptIfRunning)
     parameters:
     - id: mayInterruptIfRunning
       type: 4fc6e284
-      description: <p>ignored </p>
     return:
       type: 4fc6e284
-- uid: com.microsoft.rest._service_call.failure(Throwable)
-  id: failure(Throwable)
+- uid: com.microsoft.rest._service_call.create(final Observable< ServiceResponse< T >>)
+  id: create(final Observable< ServiceResponse< T >>)
   parent: com.microsoft.rest._service_call
   href: com.microsoft.rest._service_call.yml
   langs:
   - java
-  name: failure(Throwable t)
-  fullName: boolean com.microsoft.rest.ServiceCall< T >.failure(Throwable t)
+  name: create(final Observable< ServiceResponse< T >> observable)
+  fullName: static <T> ServiceCall<T> com.microsoft.rest.ServiceCall< T >.create(final Observable< ServiceResponse< T >> observable)
   type: Method
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 92
+    startLine: 37
   package: com.microsoft.rest
   summary: >-
-    <p>Invoke this method to report a failure, allowing <ref refid="" kindref="compound">AbstractFuture#get()</ref> to throw the exception.</p>
+    <p>Creates a <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref> from an observable object.</p>
 
     <p></p>
   syntax:
-    content: public boolean failure(Throwable t)
+    content: public static static< T > ServiceCall< T > create(final Observable< ServiceResponse< T >> observable)
     parameters:
-    - id: t
-      type: a04fafd7
-      description: <p>the exception thrown. </p>
+    - id: observable
+      type: 38502d46com.microsoft.rest._service_responsee9c5ed17
+      description: <p>the observable to create from </p>
     return:
-      type: 4fc6e284
-      description: <p>true if successfully reported; false otherwise. </p>
-- uid: com.microsoft.rest._service_call.getCall()
-  id: getCall()
+      type: f09ed7bdcom.microsoft.rest._service_call34132889
+      description: <p>the created <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.rest._service_call.create(final Observable< ServiceResponse< T >>,final ServiceCallback< T >)
+  id: create(final Observable< ServiceResponse< T >>,final ServiceCallback< T >)
   parent: com.microsoft.rest._service_call
   href: com.microsoft.rest._service_call.yml
   langs:
   - java
-  name: getCall()
-  fullName: Call<?> com.microsoft.rest.ServiceCall< T >.getCall()
+  name: create(final Observable< ServiceResponse< T >> observable, final ServiceCallback< T > callback)
+  fullName: static <T> ServiceCall<T> com.microsoft.rest.ServiceCall< T >.create(final Observable< ServiceResponse< T >> observable, final ServiceCallback< T > callback)
   type: Method
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 49
+    startLine: 63
   package: com.microsoft.rest
   summary: >-
-    <p>Gets the current Retrofit call object.</p>
+    <p>Creates a <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref> from an observable object and a callback.</p>
 
     <p></p>
   syntax:
-    content: public Call<?> getCall()
+    content: public static static< T > ServiceCall< T > create(final Observable< ServiceResponse< T >> observable, final ServiceCallback< T > callback)
+    parameters:
+    - id: observable
+      type: 38502d46com.microsoft.rest._service_responsee9c5ed17
+      description: <p>the observable to create from </p>
+    - id: callback
+      type: 93de0ef9com.microsoft.rest._service_callback34132889
+      description: <p>the callback to call when events happen </p>
     return:
-      type: de54f7b2
-      description: <p>the current call object. </p>
+      type: f09ed7bdcom.microsoft.rest._service_call34132889
+      description: <p>the created <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.rest._service_call.createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >>,final ServiceCallback< T >)
+  id: createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >>,final ServiceCallback< T >)
+  parent: com.microsoft.rest._service_call
+  href: com.microsoft.rest._service_call.yml
+  langs:
+  - java
+  name: createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >> observable, final ServiceCallback< T > callback)
+  fullName: static <T, V> ServiceCall<T> com.microsoft.rest.ServiceCall< T >.createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >> observable, final ServiceCallback< T > callback)
+  type: Method
+  source:
+    remote: *o0
+    path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
+    startLine: 96
+  package: com.microsoft.rest
+  summary: >-
+    <p>Creates a <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref> from an observable and a callback for a header response.</p>
+
+    <p></p>
+  syntax:
+    content: public static static< T, V > ServiceCall< T > createWithHeaders(final Observable< ServiceResponseWithHeaders< T, V >> observable, final ServiceCallback< T > callback)
+    parameters:
+    - id: observable
+      type: 38502d46com.microsoft.rest._service_response_with_headersa536ddf9
+      description: <p>the observable of a REST call that returns JSON in a header </p>
+    - id: callback
+      type: 93de0ef9com.microsoft.rest._service_callback34132889
+      description: <p>the callback to call when events happen </p>
+    return:
+      type: 85e74ce4com.microsoft.rest._service_call34132889
+      description: <p>the created <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.rest._service_call.getSubscription()
+  id: getSubscription()
+  parent: com.microsoft.rest._service_call
+  href: com.microsoft.rest._service_call.yml
+  langs:
+  - java
+  name: getSubscription()
+  fullName: Subscription com.microsoft.rest.ServiceCall< T >.getSubscription()
+  type: Method
+  source:
+    remote: *o0
+    path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
+    startLine: 123
+  package: com.microsoft.rest
+  syntax:
+    content: public Subscription getSubscription()
+    return:
+      type: b7d07a78
+      description: <p>the current Rx subscription associated with the <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref>. </p>
 - uid: com.microsoft.rest._service_call.isCancelled()
   id: isCancelled()
   parent: com.microsoft.rest._service_call
@@ -124,60 +177,47 @@ items:
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 70
+    startLine: 149
   package: com.microsoft.rest
   syntax:
     content: public boolean isCancelled()
     return:
       type: 4fc6e284
-- uid: com.microsoft.rest._service_call.newCall(Call<?>)
-  id: newCall(Call<?>)
+- uid: com.microsoft.rest._service_call.ServiceCall()
+  id: ServiceCall()
   parent: com.microsoft.rest._service_call
   href: com.microsoft.rest._service_call.yml
   langs:
   - java
-  name: newCall(Call<?> call)
-  fullName: void com.microsoft.rest.ServiceCall< T >.newCall(Call<?> call)
-  type: Method
-  source:
-    remote: *o0
-    path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 40
-  package: com.microsoft.rest
-  summary: >-
-    <p>Updates the current Retrofit call object.</p>
-
-    <p></p>
-  syntax:
-    content: public void newCall(Call<?> call)
-    parameters:
-    - id: call
-      type: de54f7b2
-      description: <p>the new call object. </p>
-- uid: com.microsoft.rest._service_call.ServiceCall(Call<?>)
-  id: ServiceCall(Call<?>)
-  parent: com.microsoft.rest._service_call
-  href: com.microsoft.rest._service_call.yml
-  langs:
-  - java
-  name: ServiceCall(Call<?> call)
-  fullName: com.microsoft.rest.ServiceCall< T >.ServiceCall(Call<?> call)
+  name: ServiceCall()
+  fullName: com.microsoft.rest.ServiceCall< T >.ServiceCall()
   type: Constructor
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 31
+    startLine: 27
   package: com.microsoft.rest
-  summary: >-
-    <p>Creates an instance of <xref href="com.microsoft.rest._service_call" data-throw-if-not-resolved="false"></xref>.</p>
-
-    <p></p>
   syntax:
-    content: public ServiceCall(Call<?> call)
+    content: protected ServiceCall()
+- uid: com.microsoft.rest._service_call.setSubscription(Subscription)
+  id: setSubscription(Subscription)
+  parent: com.microsoft.rest._service_call
+  href: com.microsoft.rest._service_call.yml
+  langs:
+  - java
+  name: setSubscription(Subscription subscription)
+  fullName: void com.microsoft.rest.ServiceCall< T >.setSubscription(Subscription subscription)
+  type: Method
+  source:
+    remote: *o0
+    path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
+    startLine: 127
+  package: com.microsoft.rest
+  syntax:
+    content: protected void setSubscription(Subscription subscription)
     parameters:
-    - id: call
-      type: de54f7b2
-      description: <p>the Retrofit call to wrap around. </p>
+    - id: subscription
+      type: b7d07a78
 - uid: com.microsoft.rest._service_call.success(ServiceResponse< T >)
   id: success(ServiceResponse< T >)
   parent: com.microsoft.rest._service_call
@@ -190,7 +230,7 @@ items:
   source:
     remote: *o0
     path: runtimes/client-runtime/src/main/java/com/microsoft/rest/ServiceCall.java
-    startLine: 81
+    startLine: 138
   package: com.microsoft.rest
   summary: >-
     <p>Invoke this method to report completed, allowing <ref refid="" kindref="compound">AbstractFuture#get()</ref> to be unblocked.</p>
@@ -210,14 +250,60 @@ references:
   spec.java:
   - name: T
     fullName: T
-- uid: de54f7b2
+- uid: b7d07a78
   spec.java:
-  - name: Call<?>
-    fullName: Call<?>
-- uid: 4fc6e284
+  - name: Subscription
+    fullName: Subscription
+- uid: 38502d46com.microsoft.rest._service_responsee9c5ed17
   spec.java:
-  - name: boolean
-    fullName: boolean
+  - name: 'final Observable< '
+    fullName: 'final Observable< '
+  - uid: com.microsoft.rest._service_response
+    name: ServiceResponse
+    fullName: com.microsoft.rest.ServiceResponse
+    href: com.microsoft.rest._service_response.yml
+  - name: < T >>
+    fullName: < T >>
+- uid: f09ed7bdcom.microsoft.rest._service_call34132889
+  spec.java:
+  - name: 'static< T > '
+    fullName: 'static< T > '
+  - uid: com.microsoft.rest._service_call
+    name: ServiceCall
+    fullName: com.microsoft.rest.ServiceCall
+    href: com.microsoft.rest._service_call.yml
+  - name: < T >
+    fullName: < T >
+- uid: 93de0ef9com.microsoft.rest._service_callback34132889
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.rest._service_callback
+    name: ServiceCallback
+    fullName: com.microsoft.rest.ServiceCallback
+    href: com.microsoft.rest._service_callback.yml
+  - name: < T >
+    fullName: < T >
+- uid: 38502d46com.microsoft.rest._service_response_with_headersa536ddf9
+  spec.java:
+  - name: 'final Observable< '
+    fullName: 'final Observable< '
+  - uid: com.microsoft.rest._service_response_with_headers
+    name: ServiceResponseWithHeaders
+    fullName: com.microsoft.rest.ServiceResponseWithHeaders
+    href: com.microsoft.rest._service_response_with_headers.yml
+  - name: < T, V >>
+    fullName: < T, V >>
+- uid: 85e74ce4com.microsoft.rest._service_call34132889
+  spec.java:
+  - name: 'static< T, V > '
+    fullName: 'static< T, V > '
+  - uid: com.microsoft.rest._service_call
+    name: ServiceCall
+    fullName: com.microsoft.rest.ServiceCall
+    href: com.microsoft.rest._service_call.yml
+  - name: < T >
+    fullName: < T >
 - uid: com.microsoft.rest._service_response34132889
   spec.java:
   - uid: com.microsoft.rest._service_response
@@ -226,30 +312,25 @@ references:
     href: com.microsoft.rest._service_response.yml
   - name: < T >
     fullName: < T >
-- uid: a04fafd7
+- uid: 4fc6e284
   spec.java:
-  - name: Throwable
-    fullName: Throwable
-- uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._resource_service_call
-  parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
-  href: com.microsoft.azure.management.resources.fluentcore.model.implementation._resource_service_call.yml
-  name: ResourceServiceCall<FluentModelT,InnerModelT,FluentModelImplT,InnerModelT,FluentModelImplT,Resource,&>
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.implementation.ResourceServiceCall<FluentModelT,InnerModelT,FluentModelImplT,InnerModelT,FluentModelImplT,Resource,&>
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure._azure_service_call
+  parent: com.microsoft.azure
+  href: com.microsoft.azure._azure_service_call.yml
+  name: AzureServiceCall<T>
+  fullName: com.microsoft.azure.AzureServiceCall<T>
   type: Class
   summary: >-
-    <p>Type representing a service-call that returns <xref href="com.microsoft.azure._resource" data-throw-if-not-resolved="false"></xref><xref href="com.microsoft.azure._resource" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>An instance of this class provides access to the underlying REST call invocation. This class wraps around the Retrofit Call object and allows updates to it in the progress of a long running operation or a paging operation.</p>
 
     <p></p>
   syntax:
-    content: public class ResourceServiceCall<FluentModelT extends Resource,InnerModelT,FluentModelImplT extends CreatableUpdatableImpl< FluentModelT,InnerModelT,FluentModelImplT,Resource,&>> extends ServiceCall< Resource >
+    content: public class AzureServiceCall<T> extends ServiceCall< T >
     typeParameters:
-    - type: 2f67777b
-    - type: 23ab9e11
-    - type: 664a96a9
-    - type: 23ab9e11
-    - type: 664a96a9
-    - type: com.microsoft.azure.management.resources.fluentcore.arm.models._resource
-    - type: 7804ff6c
+    - type: 8ce1ecb9
+      description: <p>the type of the returning object </p>
 - uid: com.microsoft.rest._service_call
   parent: com.microsoft.rest
   href: com.microsoft.rest._service_call.yml
@@ -276,3 +357,35 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the type of the response </p>
+- uid: com.microsoft.rest._service_callback
+  parent: com.microsoft.rest
+  href: com.microsoft.rest._service_callback.yml
+  name: ServiceCallback<T>
+  fullName: com.microsoft.rest.ServiceCallback<T>
+  type: Class
+  summary: >-
+    <p>The callback used for client side asynchronous operations.</p>
+
+    <p></p>
+  syntax:
+    content: public class ServiceCallback<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>the type of the response </p>
+- uid: com.microsoft.rest._service_response_with_headers
+  parent: com.microsoft.rest
+  href: com.microsoft.rest._service_response_with_headers.yml
+  name: ServiceResponseWithHeaders<TBody,THeader>
+  fullName: com.microsoft.rest.ServiceResponseWithHeaders<TBody,THeader>
+  type: Class
+  summary: >-
+    <p>An instance of this class holds a response object and a raw REST response.</p>
+
+    <p></p>
+  syntax:
+    content: public class ServiceResponseWithHeaders<TBody,THeader>
+    typeParameters:
+    - type: 0063fec6
+      description: <p>the type of the response </p>
+    - type: "77199363"
+      description: <p>the type of the response header object </p>

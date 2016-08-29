@@ -5,14 +5,14 @@ items:
   children:
   - com.microsoft.azure._azure_client.AzureClient(AzureServiceClient)
   - com.microsoft.azure._azure_client.getLongRunningOperationRetryTimeout()
-  - com.microsoft.azure._azure_client.getPostOrDeleteResult(Response< ResponseBody >,Type)
-  - com.microsoft.azure._azure_client.getPostOrDeleteResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
-  - com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.getPutOrPatchResult(Response< ResponseBody >,Type)
-  - com.microsoft.azure._azure_client.getPutOrPatchResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.getPutOrPatchResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
-  - com.microsoft.azure._azure_client.getPutOrPatchResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
+  - com.microsoft.azure._azure_client.getPostOrDeleteResult(Observable< Response< ResponseBody >>,Type)
+  - com.microsoft.azure._azure_client.getPostOrDeleteResultAsync(Observable< Response< ResponseBody >>,final Type)
+  - com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
+  - com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
+  - com.microsoft.azure._azure_client.getPutOrPatchResult(Observable< Response< ResponseBody >>,Type)
+  - com.microsoft.azure._azure_client.getPutOrPatchResultAsync(Observable< Response< ResponseBody >>,final Type)
+  - com.microsoft.azure._azure_client.getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
+  - com.microsoft.azure._azure_client.getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
   - com.microsoft.azure._azure_client.withLongRunningOperationRetryTimeout(Integer)
   href: com.microsoft.azure._azure_client.yml
   langs:
@@ -26,7 +26,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 34
+    startLine: 33
   package: com.microsoft.azure
   summary: <p>An instance of this class defines a ServiceClient that handles polling and retrying for long running operations when accessing <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> resources. </p>
   syntax:
@@ -39,16 +39,14 @@ items:
   - com.microsoft.azure._azure_service_client.AzureServiceClient(RestClient)
   - com.microsoft.azure._azure_service_client.httpClient()
   - com.microsoft.azure._azure_service_client.mapperAdapter()
+  - com.microsoft.azure._azure_client.postOrDeletePollingDispatcher(PollingState< T >)
+  - com.microsoft.azure._azure_client.putOrPatchPollingDispatcher(PollingState< T >,String)
   - com.microsoft.azure._azure_service_client.restClient()
   - com.microsoft.azure._azure_service_client.retrofit()
-  - com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeader(PollingState< T >)
-  - com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeaderAsync(final PollingState< T >,final ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.updateStateFromGetResourceOperation(PollingState< T >,String)
-  - com.microsoft.azure._azure_client.updateStateFromGetResourceOperationAsync(final PollingState< T >,String,final ServiceCall< T >,final ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDelete(PollingState< T >)
-  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDeleteAsync(final PollingState< T >,final ServiceCallback< T >)
-  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPut(PollingState< T >)
-  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPutAsync(final PollingState< T >,final ServiceCallback< T >)
+  - com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeaderAsync(final PollingState< T >)
+  - com.microsoft.azure._azure_client.updateStateFromGetResourceOperationAsync(final PollingState< T >,String)
+  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDeleteAsync(final PollingState< T >)
+  - com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPutAsync(final PollingState< T >)
   - com.microsoft.azure._azure_service_client.userAgent()
 - uid: com.microsoft.azure._azure_client.AzureClient(AzureServiceClient)
   id: AzureClient(AzureServiceClient)
@@ -62,7 +60,7 @@ items:
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 55
+    startLine: 54
   package: com.microsoft.azure
   summary: >-
     <p>Initializes an instance of this class with customized client metadata.</p>
@@ -86,7 +84,7 @@ items:
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 769
+    startLine: 64
   package: com.microsoft.azure
   summary: >-
     <p>Gets the interval time between two long running operation polls.</p>
@@ -97,30 +95,30 @@ items:
     return:
       type: 08effaa0
       description: <p>the time in milliseconds. </p>
-- uid: com.microsoft.azure._azure_client.getPostOrDeleteResult(Response< ResponseBody >,Type)
-  id: getPostOrDeleteResult(Response< ResponseBody >,Type)
+- uid: com.microsoft.azure._azure_client.getPostOrDeleteResult(Observable< Response< ResponseBody >>,Type)
+  id: getPostOrDeleteResult(Observable< Response< ResponseBody >>,Type)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPostOrDeleteResult(Response< ResponseBody > response, Type resourceType)
-  fullName: public<T> ServiceResponse<T> com.microsoft.azure.AzureClient.getPostOrDeleteResult(Response< ResponseBody > response, Type resourceType)
+  name: getPostOrDeleteResult(Observable< Response< ResponseBody >> observable, Type resourceType)
+  fullName: public<T> ServiceResponse<T> com.microsoft.azure.AzureClient.getPostOrDeleteResult(Observable< Response< ResponseBody >> observable, Type resourceType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 264
+    startLine: 237
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a POST or DELETE operation response by polling the status of the operation until the long running operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T > ServiceResponse< T > getPostOrDeleteResult(Response< ResponseBody > response, Type resourceType)
+    content: public < T > ServiceResponse< T > getPostOrDeleteResult(Observable< Response< ResponseBody >> observable, Type resourceType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the POST or DELETE operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the POST or DELETE operation. </p>
     - id: resourceType
       type: 7727faa1
       description: <p>the type of the resource </p>
@@ -134,66 +132,60 @@ items:
     description: <p>interrupted exception </p>
   - type: cbf33bbe
     description: <p>thrown by deserialization </p>
-- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
-  id: getPostOrDeleteResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
+- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultAsync(Observable< Response< ResponseBody >>,final Type)
+  id: getPostOrDeleteResultAsync(Observable< Response< ResponseBody >>,final Type)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPostOrDeleteResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
-  fullName: public<T> AsyncPollingTask<T> com.microsoft.azure.AzureClient.getPostOrDeleteResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
+  name: getPostOrDeleteResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
+  fullName: public<T> Observable<ServiceResponse<T> > com.microsoft.azure.AzureClient.getPostOrDeleteResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 348
+    startLine: 275
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a POST or DELETE operation response by polling the status of the operation asynchronously, calling the user provided callback when the operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T > AsyncPollingTask< T > getPostOrDeleteResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
+    content: public < T > Observable< ServiceResponse< T > > getPostOrDeleteResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
     parameters:
-    - id: response
-      type: "1755e818"
+    - id: observable
+      type: 3b426a7d
       description: <p>the initial response from the POST or DELETE operation. </p>
     - id: resourceType
-      type: 7727faa1
+      type: 1ac5c823
       description: <p>the type of the resource. </p>
-    - id: serviceCall
-      type: com.microsoft.rest._service_call34132889
-      description: <p>the ServiceCall object tracking Retrofit calls. </p>
-    - id: callback
-      type: com.microsoft.rest._service_callback34132889
-      description: <p>the user callback to call when operation terminates. </p>
     return:
-      type: 1e0a35de
+      type: c39f0fd9com.microsoft.rest._service_response5868a1fa
       description: <p>the task describing the asynchronous polling. </p>
-- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
-  id: getPostOrDeleteResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
+- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
+  id: getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPostOrDeleteResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
-  fullName: public<T, THeader> ServiceResponseWithHeaders<T, THeader> com.microsoft.azure.AzureClient.getPostOrDeleteResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
+  name: getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
+  fullName: public<T, THeader> ServiceResponseWithHeaders<T, THeader> com.microsoft.azure.AzureClient.getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 327
+    startLine: 256
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a POST or DELETE operation response by polling the status of the operation until the long running operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T, THeader > ServiceResponseWithHeaders< T, THeader > getPostOrDeleteResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
+    content: public < T, THeader > ServiceResponseWithHeaders< T, THeader > getPostOrDeleteResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the POST or DELETE operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the POST or DELETE operation. </p>
     - id: resourceType
       type: 7727faa1
       description: <p>the type of the resource </p>
@@ -210,69 +202,63 @@ items:
     description: <p>interrupted exception </p>
   - type: cbf33bbe
     description: <p>thrown by deserialization </p>
-- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
-  id: getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
+- uid: com.microsoft.azure._azure_client.getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
+  id: getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
-  fullName: public<T, THeader> AsyncPollingTask<T> com.microsoft.azure.AzureClient.getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
+  name: getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
+  fullName: public<T, THeader> Observable<ServiceResponseWithHeaders<T, THeader> > com.microsoft.azure.AzureClient.getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 412
+    startLine: 342
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a POST or DELETE operation response by polling the status of the operation asynchronously, calling the user provided callback when the operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T, THeader > AsyncPollingTask< T > getPostOrDeleteResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
+    content: public < T, THeader > Observable< ServiceResponseWithHeaders< T, THeader > > getPostOrDeleteResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the POST or DELETE operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the POST or DELETE operation. </p>
     - id: resourceType
       type: 7727faa1
       description: <p>the type of the resource. </p>
     - id: headerType
       type: 8cfd9acf
       description: <p>the type of the response header </p>
-    - id: serviceCall
-      type: 93de0ef9com.microsoft.rest._service_call34132889
-      description: <p>the ServiceCall object tracking Retrofit calls. </p>
-    - id: callback
-      type: 93de0ef9com.microsoft.rest._service_callback34132889
-      description: <p>the user callback to call when operation terminates. </p>
     return:
-      type: 8367667f
+      type: bdd53205com.microsoft.rest._service_response_with_headersb88f8191
       description: <p>the task describing the asynchronous polling. </p>
-- uid: com.microsoft.azure._azure_client.getPutOrPatchResult(Response< ResponseBody >,Type)
-  id: getPutOrPatchResult(Response< ResponseBody >,Type)
+- uid: com.microsoft.azure._azure_client.getPutOrPatchResult(Observable< Response< ResponseBody >>,Type)
+  id: getPutOrPatchResult(Observable< Response< ResponseBody >>,Type)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPutOrPatchResult(Response< ResponseBody > response, Type resourceType)
-  fullName: public<T> ServiceResponse<T> com.microsoft.azure.AzureClient.getPutOrPatchResult(Response< ResponseBody > response, Type resourceType)
+  name: getPutOrPatchResult(Observable< Response< ResponseBody >> observable, Type resourceType)
+  fullName: public<T> ServiceResponse<T> com.microsoft.azure.AzureClient.getPutOrPatchResult(Observable< Response< ResponseBody >> observable, Type resourceType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 72
+    startLine: 89
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a PUT or PATCH operation response by polling the status of the operation until the long running operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T > ServiceResponse< T > getPutOrPatchResult(Response< ResponseBody > response, Type resourceType)
+    content: public < T > ServiceResponse< T > getPutOrPatchResult(Observable< Response< ResponseBody >> observable, Type resourceType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the PUT or PATCH operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the PUT or PATCH operation. </p>
     - id: resourceType
       type: 7727faa1
       description: <p>the type of the resource </p>
@@ -286,66 +272,60 @@ items:
     description: <p>interrupted exception </p>
   - type: cbf33bbe
     description: <p>thrown by deserialization </p>
-- uid: com.microsoft.azure._azure_client.getPutOrPatchResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
-  id: getPutOrPatchResultAsync(Response< ResponseBody >,Type,ServiceCall< T >,ServiceCallback< T >)
+- uid: com.microsoft.azure._azure_client.getPutOrPatchResultAsync(Observable< Response< ResponseBody >>,final Type)
+  id: getPutOrPatchResultAsync(Observable< Response< ResponseBody >>,final Type)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPutOrPatchResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
-  fullName: public<T> AsyncPollingTask<T> com.microsoft.azure.AzureClient.getPutOrPatchResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
+  name: getPutOrPatchResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
+  fullName: public<T> Observable<ServiceResponse<T> > com.microsoft.azure.AzureClient.getPutOrPatchResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 158
+    startLine: 127
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a PUT or PATCH operation response by polling the status of the operation asynchronously, calling the user provided callback when the operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T > AsyncPollingTask< T > getPutOrPatchResultAsync(Response< ResponseBody > response, Type resourceType, ServiceCall< T > serviceCall, ServiceCallback< T > callback)
+    content: public < T > Observable< ServiceResponse< T > > getPutOrPatchResultAsync(Observable< Response< ResponseBody >> observable, final Type resourceType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the PUT or PATCH operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the PUT or PATCH operation. </p>
     - id: resourceType
-      type: 7727faa1
+      type: 1ac5c823
       description: <p>the type of the resource. </p>
-    - id: serviceCall
-      type: com.microsoft.rest._service_call34132889
-      description: <p>the ServiceCall object tracking Retrofit calls. </p>
-    - id: callback
-      type: com.microsoft.rest._service_callback34132889
-      description: <p>the user callback to call when operation terminates. </p>
     return:
-      type: 1e0a35de
-      description: <p>the task describing the asynchronous polling. </p>
-- uid: com.microsoft.azure._azure_client.getPutOrPatchResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
-  id: getPutOrPatchResultWithHeaders(Response< ResponseBody >,Type,Class< THeader >)
+      type: c39f0fd9com.microsoft.rest._service_response5868a1fa
+      description: <p>the observable of which a subscription will lead to a final response. </p>
+- uid: com.microsoft.azure._azure_client.getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
+  id: getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >>,Type,Class< THeader >)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPutOrPatchResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
-  fullName: public<T, THeader> ServiceResponseWithHeaders<T, THeader> com.microsoft.azure.AzureClient.getPutOrPatchResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
+  name: getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
+  fullName: public<T, THeader> ServiceResponseWithHeaders<T, THeader> com.microsoft.azure.AzureClient.getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 137
+    startLine: 108
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a PUT or PATCH operation response by polling the status of the operation until the long running operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T, THeader > ServiceResponseWithHeaders< T, THeader > getPutOrPatchResultWithHeaders(Response< ResponseBody > response, Type resourceType, Class< THeader > headerType)
+    content: public < T, THeader > ServiceResponseWithHeaders< T, THeader > getPutOrPatchResultWithHeaders(Observable< Response< ResponseBody >> observable, Type resourceType, Class< THeader > headerType)
     parameters:
-    - id: response
-      type: "1755e818"
-      description: <p>the initial response from the PUT or PATCH operation. </p>
+    - id: observable
+      type: 3b426a7d
+      description: <p>the initial observable from the PUT or PATCH operation. </p>
     - id: resourceType
       type: 7727faa1
       description: <p>the type of the resource </p>
@@ -362,29 +342,29 @@ items:
     description: <p>interrupted exception </p>
   - type: cbf33bbe
     description: <p>thrown by deserialization </p>
-- uid: com.microsoft.azure._azure_client.getPutOrPatchResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
-  id: getPutOrPatchResultWithHeadersAsync(Response< ResponseBody >,Type,final Class< THeader >,final ServiceCall< T >,final ServiceCallback< T >)
+- uid: com.microsoft.azure._azure_client.getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
+  id: getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >>,Type,final Class< THeader >)
   parent: com.microsoft.azure._azure_client
   href: com.microsoft.azure._azure_client.yml
   langs:
   - java
-  name: getPutOrPatchResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
-  fullName: public<T, THeader> AsyncPollingTask<T> com.microsoft.azure.AzureClient.getPutOrPatchResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
+  name: getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
+  fullName: public<T, THeader> Observable<ServiceResponseWithHeaders<T, THeader> > com.microsoft.azure.AzureClient.getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
   type: Method
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 223
+    startLine: 207
   package: com.microsoft.azure
   summary: >-
     <p>Handles an initial response from a PUT or PATCH operation response by polling the status of the operation asynchronously, calling the user provided callback when the operation terminates.</p>
 
     <p></p>
   syntax:
-    content: public < T, THeader > AsyncPollingTask< T > getPutOrPatchResultWithHeadersAsync(Response< ResponseBody > response, Type resourceType, final Class< THeader > headerType, final ServiceCall< T > serviceCall, final ServiceCallback< T > callback)
+    content: public < T, THeader > Observable< ServiceResponseWithHeaders< T, THeader > > getPutOrPatchResultWithHeadersAsync(Observable< Response< ResponseBody >> observable, Type resourceType, final Class< THeader > headerType)
     parameters:
-    - id: response
-      type: "1755e818"
+    - id: observable
+      type: 3b426a7d
       description: <p>the initial response from the PUT or PATCH operation. </p>
     - id: resourceType
       type: 7727faa1
@@ -392,14 +372,8 @@ items:
     - id: headerType
       type: 8cfd9acf
       description: <p>the type of the response header </p>
-    - id: serviceCall
-      type: 93de0ef9com.microsoft.rest._service_call34132889
-      description: <p>the ServiceCall object tracking Retrofit calls. </p>
-    - id: callback
-      type: 93de0ef9com.microsoft.rest._service_callback34132889
-      description: <p>the user callback to call when operation terminates. </p>
     return:
-      type: 8367667f
+      type: bdd53205com.microsoft.rest._service_response_with_headersb88f8191
       description: <p>the task describing the asynchronous polling. </p>
 - uid: com.microsoft.azure._azure_client.withLongRunningOperationRetryTimeout(Integer)
   id: withLongRunningOperationRetryTimeout(Integer)
@@ -413,7 +387,7 @@ items:
   source:
     remote: *o0
     path: runtimes/azure-client-runtime/src/main/java/com/microsoft/azure/AzureClient.java
-    startLine: 778
+    startLine: 73
   package: com.microsoft.azure
   summary: >-
     <p>Sets the interval time between two long running operation polls.</p>
@@ -438,10 +412,10 @@ references:
   spec.java:
   - name: IOException
     fullName: IOException
-- uid: "1755e818"
+- uid: 3b426a7d
   spec.java:
-  - name: Response< ResponseBody >
-    fullName: Response< ResponseBody >
+  - name: Observable< Response< ResponseBody >>
+    fullName: Observable< Response< ResponseBody >>
 - uid: 7727faa1
   spec.java:
   - name: Type
@@ -470,54 +444,34 @@ references:
     href: com.microsoft.rest._service_response_with_headers.yml
   - name: < T, THeader >
     fullName: < T, THeader >
-- uid: com.microsoft.rest._service_call34132889
+- uid: 1ac5c823
   spec.java:
-  - uid: com.microsoft.rest._service_call
-    name: ServiceCall
-    fullName: com.microsoft.rest.ServiceCall
-    href: com.microsoft.rest._service_call.yml
-  - name: < T >
-    fullName: < T >
-- uid: com.microsoft.rest._service_callback34132889
+  - name: final Type
+    fullName: final Type
+- uid: c39f0fd9com.microsoft.rest._service_response5868a1fa
   spec.java:
-  - uid: com.microsoft.rest._service_callback
-    name: ServiceCallback
-    fullName: com.microsoft.rest.ServiceCallback
-    href: com.microsoft.rest._service_callback.yml
-  - name: < T >
-    fullName: < T >
-- uid: 1e0a35de
-  spec.java:
-  - name: < T > AsyncPollingTask< T >
-    fullName: < T > AsyncPollingTask< T >
+  - name: '< T > Observable< '
+    fullName: '< T > Observable< '
+  - uid: com.microsoft.rest._service_response
+    name: ServiceResponse
+    fullName: com.microsoft.rest.ServiceResponse
+    href: com.microsoft.rest._service_response.yml
+  - name: < T > >
+    fullName: < T > >
 - uid: 8cfd9acf
   spec.java:
   - name: final Class< THeader >
     fullName: final Class< THeader >
-- uid: 93de0ef9com.microsoft.rest._service_call34132889
+- uid: bdd53205com.microsoft.rest._service_response_with_headersb88f8191
   spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.rest._service_call
-    name: ServiceCall
-    fullName: com.microsoft.rest.ServiceCall
-    href: com.microsoft.rest._service_call.yml
-  - name: < T >
-    fullName: < T >
-- uid: 93de0ef9com.microsoft.rest._service_callback34132889
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.rest._service_callback
-    name: ServiceCallback
-    fullName: com.microsoft.rest.ServiceCallback
-    href: com.microsoft.rest._service_callback.yml
-  - name: < T >
-    fullName: < T >
-- uid: 8367667f
-  spec.java:
-  - name: < T, THeader > AsyncPollingTask< T >
-    fullName: < T, THeader > AsyncPollingTask< T >
+  - name: '< T, THeader > Observable< '
+    fullName: '< T, THeader > Observable< '
+  - uid: com.microsoft.rest._service_response_with_headers
+    name: ServiceResponseWithHeaders
+    fullName: com.microsoft.rest.ServiceResponseWithHeaders
+    href: com.microsoft.rest._service_response_with_headers.yml
+  - name: < T, THeader > >
+    fullName: < T, THeader > >
 - uid: com.microsoft.azure._azure_service_client.AzureServiceClient(String)
   parent: com.microsoft.azure._azure_service_client
   href: com.microsoft.azure._azure_service_client.yml
@@ -567,6 +521,8 @@ references:
     return:
       type: com.microsoft.rest.serializer._jackson_mapper_adapter
       description: <p>the adapter to a Jackson <ref refid="" kindref="compound">com.fasterxml.jackson.databind.ObjectMapper</ref>. </p>
+- uid: com.microsoft.azure._azure_client.postOrDeletePollingDispatcher(PollingState< T >)
+- uid: com.microsoft.azure._azure_client.putOrPatchPollingDispatcher(PollingState< T >,String)
 - uid: com.microsoft.azure._azure_service_client.restClient()
   parent: com.microsoft.azure._azure_service_client
   href: com.microsoft.azure._azure_service_client.yml
@@ -589,14 +545,10 @@ references:
     return:
       type: 964879b9
       description: <p>the Retrofit instance. </p>
-- uid: com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeader(PollingState< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeaderAsync(final PollingState< T >,final ServiceCallback< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromGetResourceOperation(PollingState< T >,String)
-- uid: com.microsoft.azure._azure_client.updateStateFromGetResourceOperationAsync(final PollingState< T >,String,final ServiceCall< T >,final ServiceCallback< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDelete(PollingState< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDeleteAsync(final PollingState< T >,final ServiceCallback< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPut(PollingState< T >)
-- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPutAsync(final PollingState< T >,final ServiceCallback< T >)
+- uid: com.microsoft.azure._azure_client.updateStateFromAzureAsyncOperationHeaderAsync(final PollingState< T >)
+- uid: com.microsoft.azure._azure_client.updateStateFromGetResourceOperationAsync(final PollingState< T >,String)
+- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPostOrDeleteAsync(final PollingState< T >)
+- uid: com.microsoft.azure._azure_client.updateStateFromLocationHeaderOnPutAsync(final PollingState< T >)
 - uid: com.microsoft.azure._azure_service_client.userAgent()
   parent: com.microsoft.azure._azure_service_client
   href: com.microsoft.azure._azure_service_client.yml
@@ -671,36 +623,6 @@ references:
       description: <p>the type of the response </p>
     - type: "77199363"
       description: <p>the type of the response header object </p>
-- uid: com.microsoft.rest._service_call
-  parent: com.microsoft.rest
-  href: com.microsoft.rest._service_call.yml
-  name: ServiceCall<T>
-  fullName: com.microsoft.rest.ServiceCall<T>
-  type: Class
-  summary: >-
-    <p>An instance of this class provides access to the underlying REST call invocation. This class wraps around the Retrofit Call object and allows updates to it in the progress of a long running operation or a paging operation.</p>
-
-    <p></p>
-  syntax:
-    content: public class ServiceCall<T>
-    typeParameters:
-    - type: 8ce1ecb9
-      description: <p>the type of the returning object </p>
-- uid: com.microsoft.rest._service_callback
-  parent: com.microsoft.rest
-  href: com.microsoft.rest._service_callback.yml
-  name: ServiceCallback<T>
-  fullName: com.microsoft.rest.ServiceCallback<T>
-  type: Class
-  summary: >-
-    <p>The callback used for client side asynchronous operations.</p>
-
-    <p></p>
-  syntax:
-    content: public class ServiceCallback<T>
-    typeParameters:
-    - type: 8ce1ecb9
-      description: <p>the type of the response </p>
 - uid: com.microsoft.azure._polling_state
   parent: com.microsoft.azure
   href: com.microsoft.azure._polling_state.yml
