@@ -14,9 +14,6 @@ ms.assetid: 3bd7f19c-165d-4106-acfd-6fac806329ad
 
 # Azure Java API reference
 
-> This page was hand-authored by selecting summaries out of the individual namespace suorce files.
-> It will be automatically generated in the future.
-
 ## Namespaces in the Azure Java class library
 
 The following is a list of namespaces in the Azure Java class library. Each namespace contains a set of functionally-related types.
@@ -29,7 +26,7 @@ The following is a list of namespaces in the Azure Java class library. Each name
    </tr>
 </thead>
 <tr>
-   <td>com.microsoft.azure</td>
+   <td>@com.microsoft.azure</td>
    <td>This package contains the `com.microsoft.azure._azure` rollup client.
    </td>
 </tr>
