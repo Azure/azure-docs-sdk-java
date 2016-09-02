@@ -26,7 +26,7 @@ The following is a list of namespaces in the Azure Java class library. Each name
    </tr>
 </thead>
 <tr>
-   <td>@com.microsoft.azure</td>
+   <td>com.microsoft.azure</td>
    <td>This package contains the `com.microsoft.azure._azure` rollup client.
    </td>
 </tr>
