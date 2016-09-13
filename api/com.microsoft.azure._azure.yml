@@ -3,9 +3,10 @@ items:
   id: _azure
   parent: com.microsoft.azure
   children:
+  - com.microsoft.azure._azure.authenticate(AzureTokenCredentials)
   - com.microsoft.azure._azure.authenticate(File)
-  - com.microsoft.azure._azure.authenticate(RestClient)
-  - com.microsoft.azure._azure.authenticate(ServiceClientCredentials)
+  - com.microsoft.azure._azure.authenticate(RestClient,String)
+  - com.microsoft.azure._azure.authenticate(ServiceClientCredentials,String)
   - com.microsoft.azure._azure.availabilitySets()
   - com.microsoft.azure._azure.configure()
   - com.microsoft.azure._azure.deployments()
@@ -21,6 +22,7 @@ items:
   - com.microsoft.azure._azure.storageAccounts()
   - com.microsoft.azure._azure.storageUsages()
   - com.microsoft.azure._azure.subscriptionId()
+  - com.microsoft.azure._azure.vaults()
   - com.microsoft.azure._azure.virtualMachineImages()
   - com.microsoft.azure._azure.virtualMachines()
   href: com.microsoft.azure._azure.yml
@@ -35,13 +37,40 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 42
+    startLine: 45
   package: com.microsoft.azure
   summary: <p>The entry point for accessing resource management APIs in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: &o1
     content: public class Azure
   inheritance:
   - java.lang.Object
+- uid: com.microsoft.azure._azure.authenticate(AzureTokenCredentials)
+  id: authenticate(AzureTokenCredentials)
+  parent: com.microsoft.azure._azure
+  href: com.microsoft.azure._azure.yml
+  langs:
+  - java
+  name: authenticate(AzureTokenCredentials credentials)
+  fullName: static Authenticated com.microsoft.azure.Azure.authenticate(AzureTokenCredentials credentials)
+  type: Method
+  source:
+    remote: *o0
+    path: azure/src/main/java/com/microsoft/azure/Azure.java
+    startLine: 73
+  package: com.microsoft.azure
+  summary: >-
+    <p>Authenticate to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> using an <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> credentials object.</p>
+
+    <p></p>
+  syntax:
+    content: public static Authenticated authenticate(AzureTokenCredentials credentials)
+    parameters:
+    - id: credentials
+      type: com.microsoft.azure.credentials._azure_token_credentials
+      description: <p>the credentials object </p>
+    return:
+      type: com.microsoft.azure._azure._authenticated
+      description: <p>the authenticated <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> client </p>
 - uid: com.microsoft.azure._azure.authenticate(File)
   id: authenticate(File)
   parent: com.microsoft.azure._azure
@@ -54,7 +83,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 78
+    startLine: 96
   package: com.microsoft.azure
   summary: <p>Authenticates API access using a properties file containing the required credentials. </p>
   syntax:
@@ -69,54 +98,60 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>exception thrown from file access </p>
-- uid: com.microsoft.azure._azure.authenticate(RestClient)
-  id: authenticate(RestClient)
+- uid: com.microsoft.azure._azure.authenticate(RestClient,String)
+  id: authenticate(RestClient,String)
   parent: com.microsoft.azure._azure
   href: com.microsoft.azure._azure.yml
   langs:
   - java
-  name: authenticate(RestClient restClient)
-  fullName: static Authenticated com.microsoft.azure.Azure.authenticate(RestClient restClient)
+  name: authenticate(RestClient restClient, String tenantId)
+  fullName: static Authenticated com.microsoft.azure.Azure.authenticate(RestClient restClient, String tenantId)
   type: Method
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 90
+    startLine: 109
   package: com.microsoft.azure
   summary: <p>Authenticates API access using a <xref href="com.microsoft.azure._rest_client" data-throw-if-not-resolved="false"></xref> instance. </p>
   syntax:
-    content: public static Authenticated authenticate(RestClient restClient)
+    content: public static Authenticated authenticate(RestClient restClient, String tenantId)
     parameters:
     - id: restClient
       type: com.microsoft.azure._rest_client
       description: <p>the <xref href="com.microsoft.azure._rest_client" data-throw-if-not-resolved="false"></xref> configured with <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> authentication credentials </p>
+    - id: tenantId
+      type: "26831127"
+      description: <p>the tenantId in Active Directory </p>
     return:
       type: com.microsoft.azure._azure._authenticated
       description: <p>authenticated <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> client </p>
-- uid: com.microsoft.azure._azure.authenticate(ServiceClientCredentials)
-  id: authenticate(ServiceClientCredentials)
+- uid: com.microsoft.azure._azure.authenticate(ServiceClientCredentials,String)
+  id: authenticate(ServiceClientCredentials,String)
   parent: com.microsoft.azure._azure
   href: com.microsoft.azure._azure.yml
   langs:
   - java
-  name: authenticate(ServiceClientCredentials credentials)
-  fullName: static Authenticated com.microsoft.azure.Azure.authenticate(ServiceClientCredentials credentials)
+  name: authenticate(ServiceClientCredentials credentials, String tenantId)
+  fullName: static Authenticated com.microsoft.azure.Azure.authenticate(ServiceClientCredentials credentials, String tenantId)
   type: Method
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 55
+    startLine: 60
   package: com.microsoft.azure
   summary: >-
     <p>Authenticate to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> using a credentials object.</p>
 
     <p></p>
   syntax:
-    content: public static Authenticated authenticate(ServiceClientCredentials credentials)
+    content: public static Authenticated authenticate(ServiceClientCredentials credentials, String tenantId)
     parameters:
     - id: credentials
       type: com.microsoft.rest.credentials._service_client_credentials
       description: <p>the credentials object </p>
+    - id: tenantId
+      type: "26831127"
+      description: <p>the tenantId in Active Directory </p>
     return:
       type: com.microsoft.azure._azure._authenticated
       description: <p>the authenticated <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> client </p>
@@ -132,7 +167,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 306
+    startLine: 342
   package: com.microsoft.azure
   syntax:
     content: public AvailabilitySets availabilitySets()
@@ -151,7 +186,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 101
+    startLine: 120
   package: com.microsoft.azure
   syntax:
     content: public static Configurable configure()
@@ -170,7 +205,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 264
+    startLine: 300
   package: com.microsoft.azure
   syntax:
     content: public Deployments deployments()
@@ -189,7 +224,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 278
+    startLine: 314
   package: com.microsoft.azure
   syntax:
     content: public Features features()
@@ -208,7 +243,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 271
+    startLine: 307
   package: com.microsoft.azure
   syntax:
     content: public GenericResources genericResources()
@@ -227,7 +262,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 320
+    startLine: 356
   package: com.microsoft.azure
   syntax:
     content: public LoadBalancers loadBalancers()
@@ -246,7 +281,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 355
+    startLine: 391
   package: com.microsoft.azure
   syntax:
     content: public NetworkInterfaces networkInterfaces()
@@ -265,7 +300,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 313
+    startLine: 349
   package: com.microsoft.azure
   syntax:
     content: public Networks networks()
@@ -284,7 +319,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 327
+    startLine: 363
   package: com.microsoft.azure
   syntax:
     content: public NetworkSecurityGroups networkSecurityGroups()
@@ -303,7 +338,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 285
+    startLine: 321
   package: com.microsoft.azure
   syntax:
     content: public Providers providers()
@@ -322,7 +357,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 348
+    startLine: 384
   package: com.microsoft.azure
   syntax:
     content: public PublicIpAddresses publicIpAddresses()
@@ -341,7 +376,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 257
+    startLine: 293
   package: com.microsoft.azure
   syntax:
     content: public ResourceGroups resourceGroups()
@@ -360,7 +395,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 292
+    startLine: 328
   package: com.microsoft.azure
   syntax:
     content: public StorageAccounts storageAccounts()
@@ -379,7 +414,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 299
+    startLine: 335
   package: com.microsoft.azure
   syntax:
     content: public Usages storageUsages()
@@ -398,13 +433,32 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 250
+    startLine: 286
   package: com.microsoft.azure
   syntax:
     content: public String subscriptionId()
     return:
       type: "26831127"
       description: <p>the currently selected subscription ID this client is configured to work with </p>
+- uid: com.microsoft.azure._azure.vaults()
+  id: vaults()
+  parent: com.microsoft.azure._azure
+  href: com.microsoft.azure._azure.yml
+  langs:
+  - java
+  name: vaults()
+  fullName: Vaults com.microsoft.azure.Azure.vaults()
+  type: Method
+  source:
+    remote: *o0
+    path: azure/src/main/java/com/microsoft/azure/Azure.java
+    startLine: 398
+  package: com.microsoft.azure
+  syntax:
+    content: public Vaults vaults()
+    return:
+      type: com.microsoft.azure.management.keyvault._vaults
+      description: <p>entry point to managing key vaults </p>
 - uid: com.microsoft.azure._azure.virtualMachineImages()
   id: virtualMachineImages()
   parent: com.microsoft.azure._azure
@@ -417,7 +471,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 341
+    startLine: 377
   package: com.microsoft.azure
   syntax:
     content: public VirtualMachineImages virtualMachineImages()
@@ -436,7 +490,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 334
+    startLine: 370
   package: com.microsoft.azure
   syntax:
     content: public VirtualMachines virtualMachines()
@@ -444,6 +498,10 @@ items:
       type: com.microsoft.azure.management.compute._virtual_machines
       description: <p>entry point to managing virtual machines </p>
 references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: cbf33bbe
   spec.java:
   - name: IOException
@@ -452,10 +510,6 @@ references:
   spec.java:
   - name: File
     fullName: File
-- uid: "26831127"
-  spec.java:
-  - name: String
-    fullName: String
 - uid: com.microsoft.azure.management.resources.implementation._resource_manager
   parent: com.microsoft.azure.management.resources.implementation
   href: com.microsoft.azure.management.resources.implementation._resource_manager.yml
@@ -492,6 +546,15 @@ references:
   summary: <p>Entry point to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> network management. </p>
   syntax:
     content: public class NetworkManager
+- uid: com.microsoft.azure.management.keyvault.implementation._key_vault_manager
+  parent: com.microsoft.azure.management.keyvault.implementation
+  href: com.microsoft.azure.management.keyvault.implementation._key_vault_manager.yml
+  name: KeyVaultManager
+  fullName: com.microsoft.azure.management.keyvault.implementation.KeyVaultManager
+  type: Class
+  summary: <p>Entry point to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> storage resource management. </p>
+  syntax:
+    content: public class KeyVaultManager
 - uid: com.microsoft.azure._azure._authenticated
   parent: com.microsoft.azure
   href: com.microsoft.azure._azure._authenticated.yml
@@ -524,6 +587,18 @@ references:
   type: Class
   summary: <p>The entry point for accessing resource management APIs in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: *o1
+- uid: com.microsoft.azure.credentials._azure_token_credentials
+  parent: com.microsoft.azure.credentials
+  href: com.microsoft.azure.credentials._azure_token_credentials.yml
+  name: AzureTokenCredentials
+  fullName: com.microsoft.azure.credentials.AzureTokenCredentials
+  type: Interface
+  summary: >-
+    <p>
+
+      <xref href="com.microsoft.azure.credentials._azure_token_credentials" data-throw-if-not-resolved="false"></xref> represents a credentials object with access to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref><xref href="com.microsoft.azure._resource" data-throw-if-not-resolved="false"></xref> management. </p>
+  syntax:
+    content: public interface AzureTokenCredentials
 - uid: com.microsoft.azure._rest_client
   parent: com.microsoft.azure
   href: com.microsoft.azure._rest_client.yml
@@ -677,3 +752,12 @@ references:
   summary: <p>Entry point to network interface management. </p>
   syntax:
     content: public interface NetworkInterfaces
+- uid: com.microsoft.azure.management.keyvault._vaults
+  parent: com.microsoft.azure.management.keyvault
+  href: com.microsoft.azure.management.keyvault._vaults.yml
+  name: Vaults
+  fullName: com.microsoft.azure.management.keyvault.Vaults
+  type: Interface
+  summary: <p>Entry point for key vaults management API. </p>
+  syntax:
+    content: public interface Vaults

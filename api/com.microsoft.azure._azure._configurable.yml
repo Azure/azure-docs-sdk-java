@@ -3,8 +3,9 @@ items:
   id: _configurable
   parent: com.microsoft.azure
   children:
+  - com.microsoft.azure._azure._configurable.authenticate(AzureTokenCredentials)
   - com.microsoft.azure._azure._configurable.authenticate(File)
-  - com.microsoft.azure._azure._configurable.authenticate(ServiceClientCredentials)
+  - com.microsoft.azure._azure._configurable.authenticate(ServiceClientCredentials,String)
   href: com.microsoft.azure._azure._configurable.yml
   langs:
   - java
@@ -17,7 +18,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 108
+    startLine: 127
   package: com.microsoft.azure
   summary: <p>The interface allowing configurations to be made on the client. </p>
   syntax:
@@ -31,6 +32,33 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm._azure_configurable.withProxy(Proxy)
   - com.microsoft.azure.management.resources.fluentcore.arm._azure_configurable.withReadTimeout(long,TimeUnit)
   - com.microsoft.azure.management.resources.fluentcore.arm._azure_configurable.withUserAgent(String)
+- uid: com.microsoft.azure._azure._configurable.authenticate(AzureTokenCredentials)
+  id: authenticate(AzureTokenCredentials)
+  parent: com.microsoft.azure._azure._configurable
+  href: com.microsoft.azure._azure._configurable.yml
+  langs:
+  - java
+  name: authenticate(AzureTokenCredentials credentials)
+  fullName: Authenticated com.microsoft.azure.Azure.Configurable.authenticate(AzureTokenCredentials credentials)
+  type: Method
+  source:
+    remote: *o0
+    path: azure/src/main/java/com/microsoft/azure/Azure.java
+    startLine: 143
+  package: com.microsoft.azure
+  summary: >-
+    <p>Authenticates API access based on the provided credentials.</p>
+
+    <p></p>
+  syntax:
+    content: public Authenticated authenticate(AzureTokenCredentials credentials)
+    parameters:
+    - id: credentials
+      type: com.microsoft.azure.credentials._azure_token_credentials
+      description: <p>The credentials to authenticate API access with </p>
+    return:
+      type: com.microsoft.azure._azure._authenticated
+      description: <p>the authenticated <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> client </p>
 - uid: com.microsoft.azure._azure._configurable.authenticate(File)
   id: authenticate(File)
   parent: com.microsoft.azure._azure._configurable
@@ -43,7 +71,7 @@ items:
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 125
+    startLine: 153
   package: com.microsoft.azure
   summary: >-
     <p>Authenticates API access using a properties file containing the required credentials.</p>
@@ -66,34 +94,41 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>exceptions thrown from file access </p>
-- uid: com.microsoft.azure._azure._configurable.authenticate(ServiceClientCredentials)
-  id: authenticate(ServiceClientCredentials)
+- uid: com.microsoft.azure._azure._configurable.authenticate(ServiceClientCredentials,String)
+  id: authenticate(ServiceClientCredentials,String)
   parent: com.microsoft.azure._azure._configurable
   href: com.microsoft.azure._azure._configurable.yml
   langs:
   - java
-  name: authenticate(ServiceClientCredentials credentials)
-  fullName: Authenticated com.microsoft.azure.Azure.Configurable.authenticate(ServiceClientCredentials credentials)
+  name: authenticate(ServiceClientCredentials credentials, String tenantId)
+  fullName: Authenticated com.microsoft.azure.Azure.Configurable.authenticate(ServiceClientCredentials credentials, String tenantId)
   type: Method
   source:
     remote: *o0
     path: azure/src/main/java/com/microsoft/azure/Azure.java
-    startLine: 115
+    startLine: 135
   package: com.microsoft.azure
   summary: >-
     <p>Authenticates API access based on the provided credentials.</p>
 
     <p></p>
   syntax:
-    content: public Authenticated authenticate(ServiceClientCredentials credentials)
+    content: public Authenticated authenticate(ServiceClientCredentials credentials, String tenantId)
     parameters:
     - id: credentials
       type: com.microsoft.rest.credentials._service_client_credentials
       description: <p>The credentials to authenticate API access with </p>
+    - id: tenantId
+      type: "26831127"
+      description: <p>the tenantId in Active Directory </p>
     return:
       type: com.microsoft.azure._azure._authenticated
       description: <p>the authenticated <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> client </p>
 references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: cbf33bbe
   spec.java:
   - name: IOException
@@ -308,6 +343,18 @@ references:
   summary: <p>The entry point for accessing resource management APIs in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class Azure
+- uid: com.microsoft.azure.credentials._azure_token_credentials
+  parent: com.microsoft.azure.credentials
+  href: com.microsoft.azure.credentials._azure_token_credentials.yml
+  name: AzureTokenCredentials
+  fullName: com.microsoft.azure.credentials.AzureTokenCredentials
+  type: Interface
+  summary: >-
+    <p>
+
+      <xref href="com.microsoft.azure.credentials._azure_token_credentials" data-throw-if-not-resolved="false"></xref> represents a credentials object with access to <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref><xref href="com.microsoft.azure._resource" data-throw-if-not-resolved="false"></xref> management. </p>
+  syntax:
+    content: public interface AzureTokenCredentials extends ServiceClientCredentials
 - uid: com.microsoft.azure._azure.authenticate(File)
   parent: com.microsoft.azure._azure
   href: com.microsoft.azure._azure.yml

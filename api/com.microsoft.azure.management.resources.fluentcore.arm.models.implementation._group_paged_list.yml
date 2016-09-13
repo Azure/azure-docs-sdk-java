@@ -4,7 +4,6 @@ items:
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation
   children:
   - com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.GroupPagedList(PagedList< ResourceGroup >)
-  - com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.hasNextPage()
   - com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.listNextGroup(String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.nextPage(String)
   href: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.yml
@@ -44,6 +43,7 @@ items:
   - com.microsoft.azure._paged_list.containsAll(Collection<?>)
   - com.microsoft.azure._paged_list.currentPage()
   - com.microsoft.azure._paged_list.get(int)
+  - com.microsoft.azure._paged_list.hasNextPage()
   - com.microsoft.azure._paged_list.indexOf(Object)
   - com.microsoft.azure._paged_list.isEmpty()
   - com.microsoft.azure._paged_list.iterator()
@@ -52,7 +52,6 @@ items:
   - com.microsoft.azure._paged_list.listIterator(int)
   - com.microsoft.azure._paged_list.loadAll()
   - com.microsoft.azure._paged_list.loadNextPage()
-  - com.microsoft.azure._paged_list.nextPageLink()
   - com.microsoft.azure._paged_list.PagedList()
   - com.microsoft.azure._paged_list.PagedList(Page< E >)
   - com.microsoft.azure._paged_list.remove(Object)
@@ -60,6 +59,7 @@ items:
   - com.microsoft.azure._paged_list.removeAll(Collection<?>)
   - com.microsoft.azure._paged_list.retainAll(Collection<?>)
   - com.microsoft.azure._paged_list.set(int,E)
+  - com.microsoft.azure._paged_list.setCurrentPage(Page< E >)
   - com.microsoft.azure._paged_list.size()
   - com.microsoft.azure._paged_list.subList(int,int)
   - com.microsoft.azure._paged_list.toArray()
@@ -76,7 +76,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/implementation/GroupPagedList.java
-    startLine: 34
+    startLine: 32
   package: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation
   summary: >-
     <p>Creates an instance from a list of resource groups.</p>
@@ -88,24 +88,6 @@ items:
     - id: resourceGroupList
       type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.resources._resource_group9ec3e006
       description: <p>the list of resource groups </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.hasNextPage()
-  id: hasNextPage()
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.yml
-  langs:
-  - java
-  name: hasNextPage()
-  fullName: boolean com.microsoft.azure.management.resources.fluentcore.arm.models.implementation.GroupPagedList< E >.hasNextPage()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/implementation/GroupPagedList.java
-    startLine: 41
-  package: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation
-  syntax:
-    content: public boolean hasNextPage()
-    return:
-      type: 4fc6e284
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list.listNextGroup(String)
   id: listNextGroup(String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation._group_paged_list
@@ -118,7 +100,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/implementation/GroupPagedList.java
-    startLine: 66
+    startLine: 65
   package: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation
   summary: >-
     <p>Override this method to implement how to list resources in a resource group.</p>
@@ -150,7 +132,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/implementation/GroupPagedList.java
-    startLine: 46
+    startLine: 42
   package: com.microsoft.azure.management.resources.fluentcore.arm.models.implementation
   syntax:
     content: public Page< E > nextPage(String s)
@@ -178,10 +160,6 @@ references:
     href: com.microsoft.azure.management.resources._resource_group.yml
   - name: " >"
     fullName: " >"
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
 - uid: "26831127"
   spec.java:
   - name: String
@@ -322,6 +300,21 @@ references:
       type: f75371fa
     return:
       type: 0ca03e3a
+- uid: com.microsoft.azure._paged_list.hasNextPage()
+  parent: com.microsoft.azure._paged_list
+  href: com.microsoft.azure._paged_list.yml
+  name: hasNextPage()
+  fullName: boolean com.microsoft.azure.PagedList< E >.hasNextPage()
+  type: Method
+  summary: >-
+    <p>If there are more pages available.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean hasNextPage()
+    return:
+      type: 4fc6e284
+      description: <p>true if there are more pages to load. False otherwise. </p>
 - uid: com.microsoft.azure._paged_list.indexOf(Object)
   parent: com.microsoft.azure._paged_list
   href: com.microsoft.azure._paged_list.yml
@@ -409,21 +402,6 @@ references:
   summary: <p>Loads a page from next page link. The exceptions are wrapped into Java Runtime exceptions. </p>
   syntax:
     content: public void loadNextPage()
-- uid: com.microsoft.azure._paged_list.nextPageLink()
-  parent: com.microsoft.azure._paged_list
-  href: com.microsoft.azure._paged_list.yml
-  name: nextPageLink()
-  fullName: String com.microsoft.azure.PagedList< E >.nextPageLink()
-  type: Method
-  summary: >-
-    <p>Gets the next page's link.</p>
-
-    <p></p>
-  syntax:
-    content: public String nextPageLink()
-    return:
-      type: "26831127"
-      description: <p>the next page link. </p>
 - uid: com.microsoft.azure._paged_list.PagedList()
   parent: com.microsoft.azure._paged_list
   href: com.microsoft.azure._paged_list.yml
@@ -516,6 +494,22 @@ references:
       type: 0ca03e3a
     return:
       type: 0ca03e3a
+- uid: com.microsoft.azure._paged_list.setCurrentPage(Page< E >)
+  parent: com.microsoft.azure._paged_list
+  href: com.microsoft.azure._paged_list.yml
+  name: setCurrentPage(Page< E > currentPage)
+  fullName: void com.microsoft.azure.PagedList< E >.setCurrentPage(Page< E > currentPage)
+  type: Method
+  summary: >-
+    <p>Sets the current page.</p>
+
+    <p></p>
+  syntax:
+    content: protected void setCurrentPage(Page< E > currentPage)
+    parameters:
+    - id: currentPage
+      type: com.microsoft.azure._pageffc72ba0
+      description: <p>the current page. </p>
 - uid: com.microsoft.azure._paged_list.size()
   parent: com.microsoft.azure._paged_list
   href: com.microsoft.azure._paged_list.yml
