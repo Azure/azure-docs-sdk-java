@@ -14,7 +14,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 652
+    startLine: 717
   package: com.microsoft.azure.management.network
   summary: >-
     <p>The template for a load balancer update operation, containing all the settings that can be modified. </p>
@@ -43,10 +43,14 @@ items:
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.updateInternetFrontend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.updateLoadBalancingRule(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.updateTcpProbe(String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withExistingPublicIpAddress(PublicIpAddress)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_network_subnet.withExistingSubnet(Network,String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.withHttpProbe(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol,int)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress()
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress(String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress(Creatable< PublicIpAddress >)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.withoutBackend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.withoutFrontend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_inbound_nat_pool.withoutInboundNatPool(String)
@@ -389,6 +393,25 @@ references:
     return:
       type: c2b5e12c
       description: <p>the first stage of the probe update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withExistingPublicIpAddress(PublicIpAddress)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.yml
+  name: withExistingPublicIpAddress(PublicIpAddress publicIpAddress)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithPublicIpAddress.withExistingPublicIpAddress(PublicIpAddress publicIpAddress)
+  type: Method
+  summary: >-
+    <p>Assigns the provided public IP address to the default public frontend to the load balancer. </p>
+
+    <p>This will create a new default frontend for the load balancer under the name "default", if one does not already exist. </p>
+  syntax:
+    content: public Update withExistingPublicIpAddress(PublicIpAddress publicIpAddress)
+    parameters:
+    - id: publicIpAddress
+      type: com.microsoft.azure.management.network._public_ip_address
+      description: <p>an existing public IP address </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_network_subnet.withExistingSubnet(Network,String)
   parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_network_subnet
   href: com.microsoft.azure.management.network._load_balancer._update_stages._with_network_subnet.yml
@@ -474,6 +497,53 @@ references:
     return:
       type: com.microsoft.azure.management.network._load_balancer._update
       description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress()
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.yml
+  name: withNewPublicIpAddress()
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithPublicIpAddress.withNewPublicIpAddress()
+  type: Method
+  summary: >-
+    <p>Creates a new public IP address as the default public frontend of the load balancer, using an automatically generated name and leaf DNS label derived from the load balancer's name, in the same resource group and region. </p>
+
+    <p>This will create a new default frontend for the load balancer under the name "default", if one does not already exist. </p>
+  syntax:
+    content: public Update withNewPublicIpAddress()
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress(String)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.yml
+  name: withNewPublicIpAddress(String dnsLeafLabel)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithPublicIpAddress.withNewPublicIpAddress(String dnsLeafLabel)
+  type: Method
+  summary: <p>Adds a new public IP address as the default public frontend of the load balancer, using the specified DNS leaf label, an automatically generated frontend name derived from the DNS label, in the same resource group and region as the load balancer. </p>
+  syntax:
+    content: public Update withNewPublicIpAddress(String dnsLeafLabel)
+    parameters:
+    - id: dnsLeafLabel
+      type: "26831127"
+      description: <p>a DNS leaf label </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.withNewPublicIpAddress(Creatable< PublicIpAddress >)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_public_ip_address.yml
+  name: withNewPublicIpAddress(Creatable< PublicIpAddress > creatablePublicIpAddress)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithPublicIpAddress.withNewPublicIpAddress(Creatable< PublicIpAddress > creatablePublicIpAddress)
+  type: Method
+  summary: <p>Adds a new public IP address to the default front end of the load balancer. </p>
+  syntax:
+    content: public Update withNewPublicIpAddress(Creatable< PublicIpAddress > creatablePublicIpAddress)
+    parameters:
+    - id: creatablePublicIpAddress
+      type: com.microsoft.azure.management.resources.fluentcore.model._creatable151dc42ccom.microsoft.azure.management.network._public_ip_address9ec3e006
+      description: <p>the creatable stage of a public IP address definition </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.withoutBackend(String)
   parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend
   href: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.yml
