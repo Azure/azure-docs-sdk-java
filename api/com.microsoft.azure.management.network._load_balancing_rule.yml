@@ -24,7 +24,7 @@ items:
   package: com.microsoft.azure.management.network
   summary: <p>An immutable client-side representation of an HTTP load balancing rule. </p>
   syntax:
-    content: public interface LoadBalancingRule extends Wrapper< LoadBalancingRuleInner >,ChildResource,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol< TransportProtocol >
+    content: public interface LoadBalancingRule extends Wrapper< LoadBalancingRuleInner >,ChildResource< LoadBalancer >,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol< TransportProtocol >
   inheritedMembers:
   - com.microsoft.azure.management.network.model._has_backend_port.backendPort()
   - com.microsoft.azure.management.network.model._has_floating_ip.floatingIpEnabled()
@@ -32,6 +32,7 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.name()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
   - com.microsoft.azure.management.network.model._has_protocol.protocol()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.setInner(T)
 - uid: com.microsoft.azure.management.network._load_balancing_rule.backend()
@@ -193,13 +194,24 @@ references:
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
   name: name()
-  fullName: String com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource.name()
+  fullName: String com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource< ParentT >.name()
   type: Method
   syntax:
     content: public String name()
     return:
       type: "26831127"
-      description: <p>the name of the child resource </p>
+      description: <p>the name of this child object </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
+  name: parent()
+  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource< ParentT >.parent()
+  type: Method
+  syntax:
+    content: public ParentT parent()
+    return:
+      type: 18a275b1
+      description: <p>the parent of this child object </p>
 - uid: com.microsoft.azure.management.network.model._has_protocol.protocol()
   parent: com.microsoft.azure.management.network.model._has_protocol
   href: com.microsoft.azure.management.network.model._has_protocol.yml
@@ -245,12 +257,15 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
-  name: ChildResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource
+  name: ChildResource<ParentT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource<ParentT>
   type: Interface
   summary: <p>Base interface used by child resources. </p>
   syntax:
-    content: public interface ChildResource extends Indexable
+    content: public interface ChildResource<ParentT> extends Indexable
+    typeParameters:
+    - type: 18a275b1
+      description: <p>parent interface </p>
 - uid: com.microsoft.azure.management.network.model._has_backend_port
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_backend_port.yml
@@ -308,7 +323,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an load balancer's backend address pool. </p>
   syntax:
-    content: public interface Backend extends Wrapper< BackendAddressPoolInner >,ChildResource,HasLoadBalancingRules
+    content: public interface Backend extends Wrapper< BackendAddressPoolInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
 - uid: com.microsoft.azure.management.network._probe
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._probe.yml
