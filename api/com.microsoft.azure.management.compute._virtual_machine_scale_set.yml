@@ -3,24 +3,24 @@ items:
   id: _virtual_machine_scale_set
   parent: com.microsoft.azure.management.compute
   children:
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.availableSkus()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.capacity()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.computerNamePrefix()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.deallocate()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.extensions()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternalLoadBalancer()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternetFacingLoadBalancer()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryNetwork()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.listAvailableSkus()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerBackends()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerInboundNatPools()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerBackends()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.networkProfile()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.osDiskCachingType()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.osDiskName()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.osType()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.overProvisionEnabled()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.powerOff()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancer()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerBackends()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerInboundNatPools()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancer()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerBackends()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerInboundNatPools()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryNetwork()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryPublicIpAddressIds()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.reimage()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set.restart()
@@ -41,7 +41,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 28
+    startLine: 27
   package: com.microsoft.azure.management.compute
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> virtual machine scale set. </p>
   syntax:
@@ -59,30 +59,6 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.tags()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.type()
   - com.microsoft.azure.management.resources.fluentcore.model._updatable.update()
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.availableSkus()
-  id: availableSkus()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: availableSkus()
-  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.VirtualMachineScaleSet.availableSkus()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 41
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public PagedList< VirtualMachineScaleSetSku > availableSkus()
-    return:
-      type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
-      description: <p>available skus for the virtual machine scale set including the minimum and maximum vm instances allowed for a particular sku </p>
-  exceptions:
-  - type: com.microsoft.azure._cloud_exception
-    description: <p>thrown for an invalid response from the service </p>
-  - type: cbf33bbe
-    description: <p>exception thrown from serialization/deserialization </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.capacity()
   id: capacity()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
@@ -95,7 +71,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 133
+    startLine: 128
   package: com.microsoft.azure.management.compute
   syntax:
     content: public int capacity()
@@ -114,7 +90,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 98
+    startLine: 93
   package: com.microsoft.azure.management.compute
   syntax:
     content: public String computerNamePrefix()
@@ -133,12 +109,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 52
+    startLine: 49
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Shuts down the Virtual Machine in the scale set and releases the compute resources. </p>
-
-    <p>You are not billed for the compute resources that the Virtual Machines uses.</p>
+    <p>Shuts down the virtual machines in the scale set and releases its compute resources.</p>
 
     <p></p>
   syntax:
@@ -162,13 +136,197 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 219
+    startLine: 214
   package: com.microsoft.azure.management.compute
   syntax:
     content: public Map< String, VirtualMachineScaleSetExtension > extensions()
     return:
       type: c90817d4com.microsoft.azure.management.compute._virtual_machine_scale_set_extension9ec3e006
       description: <p>the extensions attached to the virtual machines in the scale set </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternalLoadBalancer()
+  id: getPrimaryInternalLoadBalancer()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: getPrimaryInternalLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryInternalLoadBalancer()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 171
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public LoadBalancer getPrimaryInternalLoadBalancer()
+    return:
+      type: com.microsoft.azure.management.network._load_balancer
+      description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternetFacingLoadBalancer()
+  id: getPrimaryInternetFacingLoadBalancer()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: getPrimaryInternetFacingLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryInternetFacingLoadBalancer()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 147
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public LoadBalancer getPrimaryInternetFacingLoadBalancer()
+    return:
+      type: com.microsoft.azure.management.network._load_balancer
+      description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryNetwork()
+  id: getPrimaryNetwork()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: getPrimaryNetwork()
+  fullName: Network com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryNetwork()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 139
+  package: com.microsoft.azure.management.compute
+  summary: >-
+    <p>
+
+    A primary internal load balancer associated with the primary network interfaces of the scale set virtual machine will be also belong to this network </p>
+
+    <p></p>
+  syntax:
+    content: public Network getPrimaryNetwork()
+    return:
+      type: com.microsoft.azure.management.network._network
+      description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listAvailableSkus()
+  id: listAvailableSkus()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: listAvailableSkus()
+  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listAvailableSkus()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 40
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public PagedList< VirtualMachineScaleSetSku > listAvailableSkus()
+    return:
+      type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
+      description: <p>available SKUs for the virtual machine scale set, including the minimum and maximum virtual machine instances allowed for a particular SKU </p>
+  exceptions:
+  - type: com.microsoft.azure._cloud_exception
+    description: <p>thrown for an invalid response from the service </p>
+  - type: cbf33bbe
+    description: <p>exception thrown from serialization/deserialization </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerBackends()
+  id: listPrimaryInternalLoadBalancerBackends()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: listPrimaryInternalLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternalLoadBalancerBackends()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 179
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public Map< String, Backend > listPrimaryInternalLoadBalancerBackends()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
+      description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerInboundNatPools()
+  id: listPrimaryInternalLoadBalancerInboundNatPools()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: listPrimaryInternalLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternalLoadBalancerInboundNatPools()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 187
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public Map< String, InboundNatPool > listPrimaryInternalLoadBalancerInboundNatPools()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
+      description: <p>the inbound NAT pools of the internal load balancer associated with the primary network interface of the virtual machines in the scale set, if any.</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerBackends()
+  id: listPrimaryInternetFacingLoadBalancerBackends()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: listPrimaryInternetFacingLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternetFacingLoadBalancerBackends()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 155
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public Map< String, Backend > listPrimaryInternetFacingLoadBalancerBackends()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
+      description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  id: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
+  langs:
+  - java
+  name: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
+    startLine: 163
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public Map< String, InboundNatPool > listPrimaryInternetFacingLoadBalancerInboundNatPools()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
+      description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.networkProfile()
   id: networkProfile()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
@@ -181,7 +339,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 214
+    startLine: 209
   package: com.microsoft.azure.management.compute
   syntax:
     content: public VirtualMachineScaleSetNetworkProfile networkProfile()
@@ -200,13 +358,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 108
+    startLine: 103
   package: com.microsoft.azure.management.compute
   syntax:
     content: public CachingTypes osDiskCachingType()
     return:
       type: com.microsoft.azure.management.compute._caching_types
-      description: <p>the operating system disk caching type, valid values are 'None', 'ReadOnly', 'ReadWrite' </p>
+      description: <p>the operating system disk caching type </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.osDiskName()
   id: osDiskName()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
@@ -219,7 +377,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 113
+    startLine: 108
   package: com.microsoft.azure.management.compute
   syntax:
     content: public String osDiskName()
@@ -238,7 +396,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 103
+    startLine: 98
   package: com.microsoft.azure.management.compute
   syntax:
     content: public OperatingSystemTypes osType()
@@ -257,7 +415,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 123
+    startLine: 118
   package: com.microsoft.azure.management.compute
   syntax:
     content: public boolean overProvisionEnabled()
@@ -276,12 +434,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 63
+    startLine: 58
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Power off (stop) the virtual machines in the scale set. </p>
-
-    <p>You will be billed for the compute resources that the Virtual Machines uses</p>
+    <p>Powers off (stops) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -293,166 +449,6 @@ items:
     description: <p>exception thrown from serialization/deserialization </p>
   - type: 8256ba40
     description: <p>exception thrown when the operation is interrupted </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancer()
-  id: primaryInternalLoadBalancer()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancer()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 176
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public LoadBalancer primaryInternalLoadBalancer()
-    return:
-      type: com.microsoft.azure.management.network._load_balancer
-      description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerBackends()
-  id: primaryInternalLoadBalancerBackends()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancerBackends()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 184
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public Map< String, Backend > primaryInternalLoadBalancerBackends()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
-      description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerInboundNatPools()
-  id: primaryInternalLoadBalancerInboundNatPools()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancerInboundNatPools()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 192
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public Map< String, InboundNatPool > primaryInternalLoadBalancerInboundNatPools()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internal load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancer()
-  id: primaryInternetFacingLoadBalancer()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancer()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 152
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public LoadBalancer primaryInternetFacingLoadBalancer()
-    return:
-      type: com.microsoft.azure.management.network._load_balancer
-      description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerBackends()
-  id: primaryInternetFacingLoadBalancerBackends()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancerBackends()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 160
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public Map< String, Backend > primaryInternetFacingLoadBalancerBackends()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
-      description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerInboundNatPools()
-  id: primaryInternetFacingLoadBalancerInboundNatPools()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancerInboundNatPools()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 168
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public Map< String, InboundNatPool > primaryInternetFacingLoadBalancerInboundNatPools()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryNetwork()
-  id: primaryNetwork()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  langs:
-  - java
-  name: primaryNetwork()
-  fullName: Network com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryNetwork()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 144
-  package: com.microsoft.azure.management.compute
-  summary: >-
-    <p>
-
-    A primary internal load balancer associated with the primary network interfaces of the scale set virtual machine will be also belong to this network </p>
-
-    <p></p>
-  syntax:
-    content: public Network primaryNetwork()
-    return:
-      type: com.microsoft.azure.management.network._network
-      description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryPublicIpAddressIds()
   id: primaryPublicIpAddressIds()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
@@ -465,13 +461,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 199
+    startLine: 194
   package: com.microsoft.azure.management.compute
   syntax:
     content: public List< String > primaryPublicIpAddressIds()
     return:
       type: f35af49b
-      description: <p>the list of IDs of public Ip addresses associated with the primary internet-facing load balancer of the scale set </p>
+      description: <p>the list of IDs of the public IP addresses associated with the primary Internet-facing load balancer of the scale set </p>
   exceptions:
   - type: cbf33bbe
     description: <p>the IO exception </p>
@@ -487,10 +483,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 90
+    startLine: 85
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Re-image (update the version of the installed operating system) the virtual machines in the scale set.</p>
+    <p>Re-images (updates the version of the installed operating system) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -514,10 +510,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 72
+    startLine: 67
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Restart the virtual machines in the scale set.</p>
+    <p>Restarts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -541,7 +537,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 128
+    startLine: 123
   package: com.microsoft.azure.management.compute
   syntax:
     content: public VirtualMachineScaleSetSkuTypes sku()
@@ -560,10 +556,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 81
+    startLine: 76
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Start the virtual machines in the scale set.</p>
+    <p>Starts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -587,7 +583,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 209
+    startLine: 204
   package: com.microsoft.azure.management.compute
   syntax:
     content: public VirtualMachineScaleSetStorageProfile storageProfile()
@@ -606,7 +602,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 118
+    startLine: 113
   package: com.microsoft.azure.management.compute
   syntax:
     content: public UpgradeMode upgradeModel()
@@ -625,13 +621,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 204
+    startLine: 199
   package: com.microsoft.azure.management.compute
   syntax:
     content: public List< String > vhdContainers()
     return:
       type: f35af49b
-      description: <p>the URL to storage containers that store vhds of virtual machines in the scale set </p>
+      description: <p>the URL to storage containers that store the VHDs of the virtual machines in the scale set </p>
 references:
 - uid: cbf33bbe
   spec.java:
@@ -932,20 +928,20 @@ references:
   name: VirtualMachineScaleSetSku
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetSku
   type: Interface
-  summary: <p>A type representing sku available for virtual machines in a scale set. </p>
+  summary: <p>A type representing a SKU available for virtual machines in a scale set. </p>
   syntax:
     content: public interface VirtualMachineScaleSetSku
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.availableSkus()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listAvailableSkus()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: availableSkus()
-  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.availableSkus()
+  name: listAvailableSkus()
+  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listAvailableSkus()
   type: Method
   syntax:
-    content: public PagedList< VirtualMachineScaleSetSku > availableSkus()
+    content: public PagedList< VirtualMachineScaleSetSku > listAvailableSkus()
     return:
       type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
-      description: <p>available skus for the virtual machine scale set including the minimum and maximum vm instances allowed for a particular sku </p>
+      description: <p>available SKUs for the virtual machine scale set, including the minimum and maximum virtual machine instances allowed for a particular SKU </p>
 - uid: com.microsoft.azure._cloud_exception
   parent: com.microsoft.azure
   href: com.microsoft.azure._cloud_exception.yml
@@ -962,9 +958,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.deallocate()
   type: Method
   summary: >-
-    <p>Shuts down the Virtual Machine in the scale set and releases the compute resources. </p>
-
-    <p>You are not billed for the compute resources that the Virtual Machines uses.</p>
+    <p>Shuts down the virtual machines in the scale set and releases its compute resources.</p>
 
     <p></p>
   syntax:
@@ -976,9 +970,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.powerOff()
   type: Method
   summary: >-
-    <p>Power off (stop) the virtual machines in the scale set. </p>
-
-    <p>You will be billed for the compute resources that the Virtual Machines uses</p>
+    <p>Powers off (stops) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -990,7 +982,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.restart()
   type: Method
   summary: >-
-    <p>Restart the virtual machines in the scale set.</p>
+    <p>Restarts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1002,7 +994,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.start()
   type: Method
   summary: >-
-    <p>Start the virtual machines in the scale set.</p>
+    <p>Starts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1014,7 +1006,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.reimage()
   type: Method
   summary: >-
-    <p>Re-image (update the version of the installed operating system) the virtual machines in the scale set.</p>
+    <p>Re-images (updates the version of the installed operating system) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1069,7 +1061,7 @@ references:
     content: public CachingTypes osDiskCachingType()
     return:
       type: com.microsoft.azure.management.compute._caching_types
-      description: <p>the operating system disk caching type, valid values are 'None', 'ReadOnly', 'ReadWrite' </p>
+      description: <p>the operating system disk caching type </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.osDiskName()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
@@ -1152,11 +1144,11 @@ references:
   summary: <p>Entry point for Virtual <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> management API in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface Network extends GroupableResource,Refreshable< Network >,Wrapper< VirtualNetworkInner >,Updatable< Network.Update >
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryNetwork()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryNetwork()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryNetwork()
-  fullName: Network com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryNetwork()
+  name: getPrimaryNetwork()
+  fullName: Network com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryNetwork()
   type: Method
   summary: >-
     <p>
@@ -1165,7 +1157,7 @@ references:
 
     <p></p>
   syntax:
-    content: public Network primaryNetwork()
+    content: public Network getPrimaryNetwork()
     return:
       type: com.microsoft.azure.management.network._network
       description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
@@ -1178,14 +1170,14 @@ references:
   summary: <p>Entry point for load balancer management API in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface LoadBalancer extends GroupableResource,Refreshable< LoadBalancer >,Wrapper< LoadBalancerInner >,Updatable< LoadBalancer.Update >,HasLoadBalancingRules
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancer()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternetFacingLoadBalancer()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternetFacingLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancer()
+  name: getPrimaryInternetFacingLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryInternetFacingLoadBalancer()
   type: Method
   syntax:
-    content: public LoadBalancer primaryInternetFacingLoadBalancer()
+    content: public LoadBalancer getPrimaryInternetFacingLoadBalancer()
     return:
       type: com.microsoft.azure.management.network._load_balancer
       description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
@@ -1198,14 +1190,14 @@ references:
   summary: <p>An immutable client-side representation of an load balancer's backend address pool. </p>
   syntax:
     content: public interface Backend extends Wrapper< BackendAddressPoolInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerBackends()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerBackends()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternetFacingLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancerBackends()
+  name: listPrimaryInternetFacingLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternetFacingLoadBalancerBackends()
   type: Method
   syntax:
-    content: public Map< String, Backend > primaryInternetFacingLoadBalancerBackends()
+    content: public Map< String, Backend > listPrimaryInternetFacingLoadBalancerBackends()
     return:
       type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
       description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
@@ -1218,50 +1210,50 @@ references:
   summary: <p>An immutable client-side representation of an inbound NAT rule. </p>
   syntax:
     content: public interface InboundNatPool extends HasFrontend,HasBackendPort,HasProtocol< TransportProtocol >,Wrapper< InboundNatPoolInner >,ChildResource< LoadBalancer >
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerInboundNatPools()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternetFacingLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancerInboundNatPools()
+  name: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   type: Method
   syntax:
-    content: public Map< String, InboundNatPool > primaryInternetFacingLoadBalancerInboundNatPools()
+    content: public Map< String, InboundNatPool > listPrimaryInternetFacingLoadBalancerInboundNatPools()
     return:
       type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
       description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancer()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternalLoadBalancer()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternalLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancer()
+  name: getPrimaryInternalLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryInternalLoadBalancer()
   type: Method
   syntax:
-    content: public LoadBalancer primaryInternalLoadBalancer()
+    content: public LoadBalancer getPrimaryInternalLoadBalancer()
     return:
       type: com.microsoft.azure.management.network._load_balancer
       description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerBackends()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerBackends()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternalLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancerBackends()
+  name: listPrimaryInternalLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternalLoadBalancerBackends()
   type: Method
   syntax:
-    content: public Map< String, Backend > primaryInternalLoadBalancerBackends()
+    content: public Map< String, Backend > listPrimaryInternalLoadBalancerBackends()
     return:
       type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
       description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerInboundNatPools()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerInboundNatPools()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  name: primaryInternalLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancerInboundNatPools()
+  name: listPrimaryInternalLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternalLoadBalancerInboundNatPools()
   type: Method
   syntax:
-    content: public Map< String, InboundNatPool > primaryInternalLoadBalancerInboundNatPools()
+    content: public Map< String, InboundNatPool > listPrimaryInternalLoadBalancerInboundNatPools()
     return:
       type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internal load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
+      description: <p>the inbound NAT pools of the internal load balancer associated with the primary network interface of the virtual machines in the scale set, if any.</p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryPublicIpAddressIds()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
@@ -1272,7 +1264,7 @@ references:
     content: public List< String > primaryPublicIpAddressIds()
     return:
       type: f35af49b
-      description: <p>the list of IDs of public Ip addresses associated with the primary internet-facing load balancer of the scale set </p>
+      description: <p>the list of IDs of the public IP addresses associated with the primary Internet-facing load balancer of the scale set </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.vhdContainers()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
@@ -1283,7 +1275,7 @@ references:
     content: public List< String > vhdContainers()
     return:
       type: f35af49b
-      description: <p>the URL to storage containers that store vhds of virtual machines in the scale set </p>
+      description: <p>the URL to storage containers that store the VHDs of the virtual machines in the scale set </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_storage_profile
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_storage_profile.yml

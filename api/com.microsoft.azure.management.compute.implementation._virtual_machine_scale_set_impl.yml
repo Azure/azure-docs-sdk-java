@@ -4,7 +4,6 @@ items:
   parent: com.microsoft.azure.management.compute.implementation
   children:
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.afterCreating()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.availableSkus()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.beforeCreating()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.capacity()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.computerNamePrefix()
@@ -12,20 +11,21 @@ items:
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.deallocate()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.defineNewExtension(String)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.extensions()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternalLoadBalancer()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternetFacingLoadBalancer()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryNetwork()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.initializeChildrenFromInner()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listAvailableSkus()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerBackends()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerInboundNatPools()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerBackends()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.networkProfile()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.osDiskCachingType()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.osDiskName()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.osType()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.overProvisionEnabled()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.powerOff()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancer()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerBackends()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerInboundNatPools()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancer()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerBackends()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerInboundNatPools()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryNetwork()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryPublicIpAddressIds()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.refresh()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.reimage()
@@ -51,6 +51,7 @@ items:
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOsDiskName(String)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutAutoUpdate()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutExtension(String)
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutOverProvisioning()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancer()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancerBackends(String...)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancerNatPools(String...)
@@ -59,8 +60,7 @@ items:
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternetFacingLoadBalancerNatPools(String...)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutVmAgent()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvision(boolean)
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisionDisabled()
-  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisionEnabled()
+  - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisioning()
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPassword(String)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPopularLinuxImage(KnownLinuxVirtualMachineImage)
   - com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPopularWindowsImage(KnownWindowsVirtualMachineImage)
@@ -152,35 +152,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 834
+    startLine: 829
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: protected void afterCreating()
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.availableSkus()
-  id: availableSkus()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: availableSkus()
-  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.availableSkus()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 140
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public PagedList< VirtualMachineScaleSetSku > availableSkus()
-    return:
-      type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
-      description: <p>available skus for the virtual machine scale set including the minimum and maximum vm instances allowed for a particular sku </p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.availableSkus()
-  exceptions:
-  - type: com.microsoft.azure._cloud_exception
-    description: <p>thrown for an invalid response from the service </p>
-  - type: cbf33bbe
-    description: <p>exception thrown from serialization/deserialization </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.beforeCreating()
   id: beforeCreating()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -193,7 +168,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 809
+    startLine: 804
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: protected void beforeCreating()
@@ -209,7 +184,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 206
+    startLine: 204
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public int capacity()
@@ -229,7 +204,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 170
+    startLine: 168
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public String computerNamePrefix()
@@ -249,7 +224,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 820
+    startLine: 815
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: protected Observable< VirtualMachineScaleSetInner > createInner()
@@ -267,12 +242,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 145
+    startLine: 143
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Shuts down the Virtual Machine in the scale set and releases the compute resources. </p>
-
-    <p>You are not billed for the compute resources that the Virtual Machines uses.</p>
+    <p>Shuts down the virtual machines in the scale set and releases its compute resources.</p>
 
     <p></p>
   syntax:
@@ -297,10 +270,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 784
+    startLine: 779
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies definition of an extension to be attached to the virtual machines in the scale set.</p>
+    <p>Begins the definition of an extension reference to be attached to the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -311,7 +284,7 @@ items:
       description: <p>the reference name for the extension </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_extension_impl
-      description: <p>the stage representing configuration for the extension </p>
+      description: <p>the first stage of the extension reference definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121.defineNewExtension(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.extensions()
   id: extensions()
@@ -325,7 +298,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 304
+    startLine: 299
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public Map< String, VirtualMachineScaleSetExtension > extensions()
@@ -333,6 +306,81 @@ items:
       type: c90817d4com.microsoft.azure.management.compute._virtual_machine_scale_set_extension9ec3e006
       description: <p>the extensions attached to the virtual machines in the scale set </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.extensions()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternalLoadBalancer()
+  id: getPrimaryInternalLoadBalancer()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: getPrimaryInternalLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryInternalLoadBalancer()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 244
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public LoadBalancer getPrimaryInternalLoadBalancer()
+    return:
+      type: com.microsoft.azure.management.network._load_balancer
+      description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternalLoadBalancer()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryInternetFacingLoadBalancer()
+  id: getPrimaryInternetFacingLoadBalancer()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: getPrimaryInternetFacingLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryInternetFacingLoadBalancer()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 218
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public LoadBalancer getPrimaryInternetFacingLoadBalancer()
+    return:
+      type: com.microsoft.azure.management.network._load_balancer
+      description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternetFacingLoadBalancer()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.getPrimaryNetwork()
+  id: getPrimaryNetwork()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: getPrimaryNetwork()
+  fullName: Network com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.getPrimaryNetwork()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 209
+  package: com.microsoft.azure.management.compute.implementation
+  summary: >-
+    <p>
+
+    A primary internal load balancer associated with the primary network interfaces of the scale set virtual machine will be also belong to this network </p>
+
+    <p></p>
+  syntax:
+    content: public Network getPrimaryNetwork()
+    return:
+      type: com.microsoft.azure.management.network._network
+      description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryNetwork()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.initializeChildrenFromInner()
   id: initializeChildrenFromInner()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -345,10 +393,127 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 128
+    startLine: 126
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: protected void initializeChildrenFromInner()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listAvailableSkus()
+  id: listAvailableSkus()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: listAvailableSkus()
+  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listAvailableSkus()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 138
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public PagedList< VirtualMachineScaleSetSku > listAvailableSkus()
+    return:
+      type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
+      description: <p>available SKUs for the virtual machine scale set, including the minimum and maximum virtual machine instances allowed for a particular SKU </p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.listAvailableSkus()
+  exceptions:
+  - type: com.microsoft.azure._cloud_exception
+    description: <p>thrown for an invalid response from the service </p>
+  - type: cbf33bbe
+    description: <p>exception thrown from serialization/deserialization </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerBackends()
+  id: listPrimaryInternalLoadBalancerBackends()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: listPrimaryInternalLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternalLoadBalancerBackends()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 252
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public Map< String, Backend > listPrimaryInternalLoadBalancerBackends()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
+      description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerBackends()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternalLoadBalancerInboundNatPools()
+  id: listPrimaryInternalLoadBalancerInboundNatPools()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: listPrimaryInternalLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternalLoadBalancerInboundNatPools()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 261
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public Map< String, InboundNatPool > listPrimaryInternalLoadBalancerInboundNatPools()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
+      description: <p>the inbound NAT pools of the internal load balancer associated with the primary network interface of the virtual machines in the scale set, if any.</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerInboundNatPools()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerBackends()
+  id: listPrimaryInternetFacingLoadBalancerBackends()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: listPrimaryInternetFacingLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternetFacingLoadBalancerBackends()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 226
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public Map< String, Backend > listPrimaryInternetFacingLoadBalancerBackends()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
+      description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerBackends()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  id: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 235
+  package: com.microsoft.azure.management.compute.implementation
+  syntax:
+    content: public Map< String, InboundNatPool > listPrimaryInternetFacingLoadBalancerInboundNatPools()
+    return:
+      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
+      description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>the IO exception </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.networkProfile()
   id: networkProfile()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -361,7 +526,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 299
+    startLine: 294
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public VirtualMachineScaleSetNetworkProfile networkProfile()
@@ -381,13 +546,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 180
+    startLine: 178
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public CachingTypes osDiskCachingType()
     return:
       type: com.microsoft.azure.management.compute._caching_types
-      description: <p>the operating system disk caching type, valid values are 'None', 'ReadOnly', 'ReadWrite' </p>
+      description: <p>the operating system disk caching type </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.osDiskCachingType()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.osDiskName()
   id: osDiskName()
@@ -401,7 +566,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 185
+    startLine: 183
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public String osDiskName()
@@ -421,7 +586,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 175
+    startLine: 173
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public OperatingSystemTypes osType()
@@ -441,7 +606,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 196
+    startLine: 194
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public boolean overProvisionEnabled()
@@ -461,12 +626,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 150
+    startLine: 148
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Power off (stop) the virtual machines in the scale set. </p>
-
-    <p>You will be billed for the compute resources that the Virtual Machines uses</p>
+    <p>Powers off (stops) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -479,173 +642,6 @@ items:
     description: <p>exception thrown from serialization/deserialization </p>
   - type: 8256ba40
     description: <p>exception thrown when the operation is interrupted </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancer()
-  id: primaryInternalLoadBalancer()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancer()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 249
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public LoadBalancer primaryInternalLoadBalancer()
-    return:
-      type: com.microsoft.azure.management.network._load_balancer
-      description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancer()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerBackends()
-  id: primaryInternalLoadBalancerBackends()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancerBackends()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 257
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public Map< String, Backend > primaryInternalLoadBalancerBackends()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
-      description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerBackends()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternalLoadBalancerInboundNatPools()
-  id: primaryInternalLoadBalancerInboundNatPools()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternalLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternalLoadBalancerInboundNatPools()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 266
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public Map< String, InboundNatPool > primaryInternalLoadBalancerInboundNatPools()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internal load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerInboundNatPools()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancer()
-  id: primaryInternetFacingLoadBalancer()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancer()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 223
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public LoadBalancer primaryInternetFacingLoadBalancer()
-    return:
-      type: com.microsoft.azure.management.network._load_balancer
-      description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancer()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerBackends()
-  id: primaryInternetFacingLoadBalancerBackends()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancerBackends()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 231
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public Map< String, Backend > primaryInternetFacingLoadBalancerBackends()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
-      description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerBackends()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryInternetFacingLoadBalancerInboundNatPools()
-  id: primaryInternetFacingLoadBalancerInboundNatPools()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryInternetFacingLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryInternetFacingLoadBalancerInboundNatPools()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 240
-  package: com.microsoft.azure.management.compute.implementation
-  syntax:
-    content: public Map< String, InboundNatPool > primaryInternetFacingLoadBalancerInboundNatPools()
-    return:
-      type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerInboundNatPools()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryNetwork()
-  id: primaryNetwork()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: primaryNetwork()
-  fullName: Network com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.primaryNetwork()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 211
-  package: com.microsoft.azure.management.compute.implementation
-  summary: >-
-    <p>
-
-    A primary internal load balancer associated with the primary network interfaces of the scale set virtual machine will be also belong to this network </p>
-
-    <p></p>
-  syntax:
-    content: public Network primaryNetwork()
-    return:
-      type: com.microsoft.azure.management.network._network
-      description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryNetwork()
-  exceptions:
-  - type: cbf33bbe
-    description: <p>the IO exception </p>
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.primaryPublicIpAddressIds()
   id: primaryPublicIpAddressIds()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -658,13 +654,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 275
+    startLine: 270
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public List< String > primaryPublicIpAddressIds()
     return:
       type: f35af49b
-      description: <p>the list of IDs of public Ip addresses associated with the primary internet-facing load balancer of the scale set </p>
+      description: <p>the list of IDs of the public IP addresses associated with the primary Internet-facing load balancer of the scale set </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryPublicIpAddressIds()
   exceptions:
   - type: cbf33bbe
@@ -681,7 +677,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 840
+    startLine: 835
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Refreshes the resource to sync with <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>.</p>
@@ -705,10 +701,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 165
+    startLine: 163
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Re-image (update the version of the installed operating system) the virtual machines in the scale set.</p>
+    <p>Re-images (updates the version of the installed operating system) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -733,10 +729,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 155
+    startLine: 153
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Restart the virtual machines in the scale set.</p>
+    <p>Restarts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -761,7 +757,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 201
+    startLine: 199
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public VirtualMachineScaleSetSkuTypes sku()
@@ -781,10 +777,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 160
+    startLine: 158
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Start the virtual machines in the scale set.</p>
+    <p>Starts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -809,7 +805,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 294
+    startLine: 289
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public VirtualMachineScaleSetStorageProfile storageProfile()
@@ -829,7 +825,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 794
+    startLine: 789
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Begins the description of an update of an existing extension assigned to the virtual machines in the scale set.</p>
@@ -843,7 +839,7 @@ items:
       description: <p>the reference name for the extension </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_extension_impl
-      description: <p>the stage representing updatable extension definition </p>
+      description: <p>the first stage of the extension reference update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.updateExtension(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.upgradeModel()
   id: upgradeModel()
@@ -857,7 +853,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 190
+    startLine: 188
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public UpgradeMode upgradeModel()
@@ -877,13 +873,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 284
+    startLine: 279
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: public List< String > vhdContainers()
     return:
       type: f35af49b
-      description: <p>the URL to storage containers that store vhds of virtual machines in the scale set </p>
+      description: <p>the URL to storage containers that store the VHDs of the virtual machines in the scale set </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set.vhdContainers()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withAdminUserName(String)
   id: withAdminUserName(String)
@@ -897,7 +893,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 601
+    startLine: 596
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the administrator user name for the Windows virtual machines in the scale set.</p>
@@ -908,10 +904,10 @@ items:
     parameters:
     - id: adminUserName
       type: "26831127"
-      description: <p>the Windows administrator user name. This must follow the required naming convention for Windows user name </p>
+      description: <p>a Windows administrator user name, following the required naming convention for Windows user names </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec27f0f7e0997136997cce79c4265d329.withAdminUserName(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withAutoUpdate()
   id: withAutoUpdate()
@@ -925,17 +921,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 657
+    startLine: 652
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that automatic updates should be enabled.</p>
+    <p>Enables automatic updates.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withAutoUpdate()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withAutoUpdate()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withCapacity(int)
   id: withCapacity(int)
@@ -949,10 +945,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 749
+    startLine: 744
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the number of virtual machines in the scale set.</p>
+    <p>Specifies the maximum number of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -963,7 +959,7 @@ items:
       description: <p>the virtual machine capacity </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de675c578279d7412d1ab4058711619e75.withCapacity(int)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withComputerNamePrefix(String)
   id: withComputerNamePrefix(String)
@@ -977,10 +973,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 715
+    startLine: 710
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the bane prefix for the virtual machines in the scale set.</p>
+    <p>Specifies the name prefix to use for auto-generating the names for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -988,10 +984,10 @@ items:
     parameters:
     - id: namePrefix
       type: "26831127"
-      description: <p>the prefix for the name of virtual machines in the scale set </p>
+      description: <p>the prefix for the auto-generated names of the virtual machines in the scale set </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464.withComputerNamePrefix(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withExistingPrimaryNetworkSubnet(Network,String)
   id: withExistingPrimaryNetworkSubnet(Network,String)
@@ -1005,7 +1001,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 323
+    startLine: 318
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Associate an existing virtual network subnet with the primary network interface of the virtual machines in the scale set.</p>
@@ -1022,7 +1018,7 @@ items:
       description: <p>the subnet name </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647.withExistingPrimaryNetworkSubnet(Network,String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withExistingStorageAccount(StorageAccount)
   id: withExistingStorageAccount(StorageAccount)
@@ -1036,10 +1032,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 778
+    startLine: 773
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> storage account to put the OS and data disk VHD of virtual machines in the scale set.</p>
+    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1050,7 +1046,7 @@ items:
       description: <p>an existing storage account </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withExistingStorageAccount(StorageAccount)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withExtension(VirtualMachineScaleSetExtensionImpl)
   id: withExtension(VirtualMachineScaleSetExtensionImpl)
@@ -1064,7 +1060,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 788
+    startLine: 783
   package: com.microsoft.azure.management.compute.implementation
   syntax:
     content: protected VirtualMachineScaleSetImpl withExtension(VirtualMachineScaleSetExtensionImpl extension)
@@ -1085,10 +1081,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 556
+    startLine: 551
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that the latest version of a marketplace Linux image needs to be used.</p>
+    <p>Specifies that the latest version of a marketplace Linux image should be used.</p>
 
     <p></p>
   syntax:
@@ -1096,16 +1092,16 @@ items:
     parameters:
     - id: publisher
       type: "26831127"
-      description: <p>specifies the publisher of the image </p>
+      description: <p>the publisher of the image </p>
     - id: offer
       type: "26831127"
-      description: <p>specifies the offer of the image </p>
+      description: <p>the offer of the image </p>
     - id: sku
       type: "26831127"
-      description: <p>specifies the SKU of the image </p>
+      description: <p>the SKU of the image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withLatestLinuxImage(String,String,String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withLatestWindowsImage(String,String,String)
   id: withLatestWindowsImage(String,String,String)
@@ -1119,10 +1115,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 493
+    startLine: 488
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that the latest version of a marketplace Windows image needs to be used.</p>
+    <p>Specifies that the latest version of the specified marketplace Windows image should be used.</p>
 
     <p></p>
   syntax:
@@ -1139,7 +1135,7 @@ items:
       description: <p>specifies the SKU of the image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withLatestWindowsImage(String,String,String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withNewStorageAccount(Creatable< StorageAccount >)
   id: withNewStorageAccount(Creatable< StorageAccount >)
@@ -1153,10 +1149,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 771
+    startLine: 766
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies definition of a not-yet-created storage account definition to put OS and data disk VHDs of virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1164,10 +1160,10 @@ items:
     parameters:
     - id: creatable
       type: com.microsoft.azure.management.resources.fluentcore.model._creatable151dc42ccom.microsoft.azure.management.storage._storage_account9ec3e006
-      description: <p>the storage account in creatable stage </p>
+      description: <p>the storage account definition in a creatable stage </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(Creatable< StorageAccount >)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withNewStorageAccount(String)
   id: withNewStorageAccount(String)
@@ -1181,10 +1177,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 756
+    startLine: 751
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the name of a new storage account to put the OS and data disk VHD of the virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1195,7 +1191,7 @@ items:
       description: <p>the name of the storage account </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOsDiskCaching(CachingTypes)
   id: withOsDiskCaching(CachingTypes)
@@ -1209,10 +1205,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 699
+    startLine: 694
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the caching type for the Operating System disk.</p>
+    <p>Specifies the caching type for the operating system disk.</p>
 
     <p></p>
   syntax:
@@ -1223,7 +1219,7 @@ items:
       description: <p>the caching type </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskCaching(CachingTypes)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOsDiskName(String)
   id: withOsDiskName(String)
@@ -1237,10 +1233,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 707
+    startLine: 702
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the name for the OS Disk.</p>
+    <p>Specifies the name for the OS disk.</p>
 
     <p></p>
   syntax:
@@ -1248,10 +1244,10 @@ items:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the OS Disk name </p>
+      description: <p>the OS disk name </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskName(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutAutoUpdate()
   id: withoutAutoUpdate()
@@ -1265,17 +1261,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 665
+    startLine: 660
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that automatic updates should be disabled.</p>
+    <p>Disables automatic updates.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withoutAutoUpdate()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withoutAutoUpdate()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutExtension(String)
   id: withoutExtension(String)
@@ -1289,10 +1285,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 799
+    startLine: 794
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Detaches an extension with the given name from the virtual machines in the scale set.</p>
+    <p>Removes the extension with the specified name from the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1300,11 +1296,35 @@ items:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the reference name for the extension to be removed/uninstalled </p>
+      description: <p>the reference name of the extension to be removed/uninstalled </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing updatable VM scale set definition </p>
+      description: <p>the next stage of the update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.withoutExtension(String)
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutOverProvisioning()
+  id: withoutOverProvisioning()
+  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
+  langs:
+  - java
+  name: withoutOverProvisioning()
+  fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withoutOverProvisioning()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
+    startLine: 739
+  package: com.microsoft.azure.management.compute.implementation
+  summary: >-
+    <p>Disables over-provisioning of virtual machines.</p>
+
+    <p></p>
+  syntax:
+    content: public VirtualMachineScaleSetImpl withoutOverProvisioning()
+    return:
+      type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
+      description: <p>the next stage of the definition </p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withoutOverProvisioning()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancer()
   id: withoutPrimaryInternalLoadBalancer()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -1317,17 +1337,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 448
+    startLine: 443
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that no internal load balancer needs to be associated with primary network interface of the virtual machines in the scale set.</p>
+    <p>Specifies that no internal load balancer should be associated with the primary network interfaces of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withoutPrimaryInternalLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205.withoutPrimaryInternalLoadBalancer()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancerBackends(String...)
   id: )
@@ -1341,10 +1361,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 470
+    startLine: 465
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified backends of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -1352,10 +1372,10 @@ items:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternalLoadBalancerBackends(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternalLoadBalancerNatPools(String...)
   id: )
@@ -1369,10 +1389,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 482
+    startLine: 477
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -1380,10 +1400,10 @@ items:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternalLoadBalancerNatPools(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternetFacingLoadBalancer()
   id: withoutPrimaryInternetFacingLoadBalancer()
@@ -1397,17 +1417,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 456
+    startLine: 451
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that no public load balancer needs to be associated with the virtual machine scale set.</p>
+    <p>Specifies that no public load balancer should be associated with the virtual machine scale set.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withoutPrimaryInternetFacingLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887.withoutPrimaryInternetFacingLoadBalancer()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternetFacingLoadBalancerBackends(String...)
   id: )
@@ -1421,10 +1441,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 464
+    startLine: 459
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specfied backends of the Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -1432,10 +1452,10 @@ items:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternetFacingLoadBalancerBackends(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutPrimaryInternetFacingLoadBalancerNatPools(String...)
   id: )
@@ -1449,10 +1469,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 476
+    startLine: 471
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of an Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -1460,10 +1480,10 @@ items:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternetFacingLoadBalancerNatPools(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withoutVmAgent()
   id: withoutVmAgent()
@@ -1477,17 +1497,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 649
+    startLine: 644
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that VM Agent should not be provisioned.</p>
+    <p>Disables the VM agent.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withoutVmAgent()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withoutVmAgent()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvision(boolean)
   id: withOverProvision(boolean)
@@ -1501,10 +1521,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 732
+    startLine: 727
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Enable or disable over provisioning of virtual machines in the scale set.</p>
+    <p>Enables or disables over-provisioning of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1512,59 +1532,35 @@ items:
     parameters:
     - id: enabled
       type: 4fc6e284
-      description: <p>true to enable over provisioning of virtual machines in the scale set </p>
+      description: <p>true if enabling over-0provisioning of virtual machines in the scale set, otherwise false </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>Enable over provision of virtual machines </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvision(boolean)
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisionDisabled()
-  id: withOverProvisionDisabled()
+- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisioning()
+  id: withOverProvisioning()
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
   href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
   langs:
   - java
-  name: withOverProvisionDisabled()
-  fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withOverProvisionDisabled()
+  name: withOverProvisioning()
+  fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withOverProvisioning()
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 744
+    startLine: 734
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Disable over provision of virtual machines.</p>
+    <p>Enables over-provisioning of virtual machines.</p>
 
     <p></p>
   syntax:
-    content: public VirtualMachineScaleSetImpl withOverProvisionDisabled()
+    content: public VirtualMachineScaleSetImpl withOverProvisioning()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionDisabled()
-- uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withOverProvisionEnabled()
-  id: withOverProvisionEnabled()
-  parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-  href: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.yml
-  langs:
-  - java
-  name: withOverProvisionEnabled()
-  fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withOverProvisionEnabled()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 739
-  package: com.microsoft.azure.management.compute.implementation
-  summary: >-
-    <p>Enable over provision of virtual machines.</p>
-
-    <p></p>
-  syntax:
-    content: public VirtualMachineScaleSetImpl withOverProvisionEnabled()
-    return:
-      type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
-  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionEnabled()
+      description: <p>the next stage of the definition </p>
+  overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisioning()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPassword(String)
   id: withPassword(String)
   parent: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
@@ -1577,7 +1573,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 615
+    startLine: 610
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the password for the virtual machines in the scale set.</p>
@@ -1588,10 +1584,10 @@ items:
     parameters:
     - id: password
       type: "26831127"
-      description: <p>the password, this must follow the criteria for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> VM password </p>
+      description: <p>a password following the requirements for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> virtual machine passwords </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.withPassword(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPopularLinuxImage(KnownLinuxVirtualMachineImage)
   id: withPopularLinuxImage(KnownLinuxVirtualMachineImage)
@@ -1605,10 +1601,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 551
+    startLine: 546
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the known marketplace Linux image used for the virtual machine's OS.</p>
+    <p>Specifies a known marketplace Linux image used as the virtual machine's operating system.</p>
 
     <p></p>
   syntax:
@@ -1616,10 +1612,10 @@ items:
     parameters:
     - id: knownImage
       type: com.microsoft.azure.management.compute._known_linux_virtual_machine_image
-      description: <p>enum value indicating known market-place image </p>
+      description: <p>a known market-place image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withPopularLinuxImage(KnownLinuxVirtualMachineImage)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPopularWindowsImage(KnownWindowsVirtualMachineImage)
   id: withPopularWindowsImage(KnownWindowsVirtualMachineImage)
@@ -1633,10 +1629,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 488
+    startLine: 483
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the known marketplace Windows image used as OS for virtual machines in the scale set.</p>
+    <p>Specifies a known marketplace Windows image used as the operating system for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1644,10 +1640,10 @@ items:
     parameters:
     - id: knownImage
       type: com.microsoft.azure.management.compute._known_windows_virtual_machine_image
-      description: <p>enum value indicating known market-place image </p>
+      description: <p>a known market-place image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withPopularWindowsImage(KnownWindowsVirtualMachineImage)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPrimaryInternalLoadBalancer(LoadBalancer)
   id: withPrimaryInternalLoadBalancer(LoadBalancer)
@@ -1661,12 +1657,12 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 374
+    startLine: 369
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specify the internal load balancer where it's backends and/or NAT pools can be assigned to the primary network interface of the scale set virtual machines. </p>
+    <p>Specifies the internal load balancer whose backends and/or NAT pools can be assigned to the primary network interface of the virtual machines in the scale set. </p>
 
-    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines unless subset of them is selected in the next stages <ref refid="" kindref="compound">WithInternalLoadBalancerBackendOrNatPool</ref>. </p>
+    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the virtual machines in the scale set, unless subset of them is selected in the next stages. </p>
 
     <p></p>
   syntax:
@@ -1691,10 +1687,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 418
+    startLine: 413
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Associate internal load balancer backends with the primary network interface of the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1702,7 +1698,7 @@ items:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
       description: <p>the next stage of the virtual machine scale set definition </p>
@@ -1719,7 +1715,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 433
+    startLine: 428
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Associate internal load balancer inbound NAT pools with the the primary network interface of the scale set virtual machine.</p>
@@ -1747,12 +1743,12 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 329
+    startLine: 324
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specify the Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
+    <p>Specifies an Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
 
-    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines unless subset of them is selected in the next stages <ref refid="" kindref="compound">WithPrimaryInternetFacingLoadBalancerBackendOrNatPool</ref>. </p>
+    <p>By default, all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines. </p>
 
     <p></p>
   syntax:
@@ -1760,7 +1756,7 @@ items:
     parameters:
     - id: loadBalancer
       type: com.microsoft.azure.management.network._load_balancer
-      description: <p>an existing public load balancer </p>
+      description: <p>an existing Internet-facing load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
       description: <p>the next stage of the definition </p>
@@ -1777,10 +1773,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 345
+    startLine: 340
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Associate internet-facing load balancer backends with the primary network interface of the the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1788,10 +1784,10 @@ items:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>the names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0af4c2712bffb2711b49c94cf4c8dd33.withPrimaryInternetFacingLoadBalancerBackends(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...)
   id: )
@@ -1805,10 +1801,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 359
+    startLine: 354
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Associate internet-facing load balancer inbound NAT pools with the the primary network interface of the scale set virtual machines.</p>
+    <p>Associates the specified inbound NAT pools of the selected internal load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -1816,10 +1812,10 @@ items:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the inbound NAT pool names </p>
+      description: <p>inbound NAT pools names existing on the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withRootUserName(String)
   id: withRootUserName(String)
@@ -1833,7 +1829,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 610
+    startLine: 605
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the root user name for the Linux virtual machines in the scale set.</p>
@@ -1844,10 +1840,10 @@ items:
     parameters:
     - id: rootUserName
       type: "26831127"
-      description: <p>the Linux root user name. This must follow the required naming convention for Linux user name </p>
+      description: <p>a Linux root user name, following the required naming convention for Linux user names </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the Linux virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3.withRootUserName(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withSku(VirtualMachineScaleSetSku)
   id: withSku(VirtualMachineScaleSetSku)
@@ -1861,7 +1857,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 318
+    startLine: 313
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the SKU for the virtual machines in the scale set.</p>
@@ -1875,7 +1871,7 @@ items:
       description: <p>a SKU from the list of available sizes for the virtual machines in this scale set </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.withSku(VirtualMachineScaleSetSku)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withSku(VirtualMachineScaleSetSkuTypes)
   id: withSku(VirtualMachineScaleSetSkuTypes)
@@ -1889,7 +1885,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 311
+    startLine: 306
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the SKU for the virtual machines in the scale set.</p>
@@ -1903,7 +1899,7 @@ items:
       description: <p>the SKU type </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.withSku(VirtualMachineScaleSetSkuTypes)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withSpecificLinuxImageVersion(ImageReference)
   id: withSpecificLinuxImageVersion(ImageReference)
@@ -1917,10 +1913,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 566
+    startLine: 561
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the version of a market-place Linux image needs to be used.</p>
+    <p>Specifies the specific version of a market-place Linux image that should be used.</p>
 
     <p></p>
   syntax:
@@ -1928,10 +1924,10 @@ items:
     parameters:
     - id: imageReference
       type: com.microsoft.azure.management.compute._image_reference
-      description: <p>describes publisher, offer, SKU and version of the market-place image </p>
+      description: <p>describes the publisher, offer, SKU and version of the market-place image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withSpecificLinuxImageVersion(ImageReference)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withSpecificWindowsImageVersion(ImageReference)
   id: withSpecificWindowsImageVersion(ImageReference)
@@ -1945,10 +1941,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 503
+    startLine: 498
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the version of a marketplace Windows image needs to be used.</p>
+    <p>Specifies the specific version of a marketplace Windows image needs to be used.</p>
 
     <p></p>
   syntax:
@@ -1956,10 +1952,10 @@ items:
     parameters:
     - id: imageReference
       type: com.microsoft.azure.management.compute._image_reference
-      description: <p>describes publisher, offer, SKU and version of the market-place image </p>
+      description: <p>describes publisher, offer, SKU and version of the marketplace image </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withSpecificWindowsImageVersion(ImageReference)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withSsh(String)
   id: withSsh(String)
@@ -1973,7 +1969,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 624
+    startLine: 619
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
     <p>Specifies the SSH public key. </p>
@@ -1986,10 +1982,10 @@ items:
     parameters:
     - id: publicKey
       type: "26831127"
-      description: <p>the SSH public key in PEM format. </p>
+      description: <p>an SSH public key in the PEM format. </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Linux VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._deb1a83bb995434c799dc1ee50df0ee0c0.withSsh(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withStoredLinuxImage(String)
   id: withStoredLinuxImage(String)
@@ -2003,12 +1999,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 581
+    startLine: 576
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the user (custom) Linux image used for the virtual machine's OS. </p>
-
-    <p>Custom images are currently limited to single storage account and the number of virtual machines in the scale set that can be created using custom image is limited to 40 when over provision is disabled <ref refid="" kindref="compound">WithOverProvision</ref> and up to 20 when enabled. </p>
+    <p>Specifies the user (custom) Linux image used as the virtual machine's operating system.</p>
 
     <p></p>
   syntax:
@@ -2033,12 +2027,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 524
+    startLine: 519
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the user (custom) Windows image used for as the OS for virtual machines in the scale set. </p>
-
-    <p>Custom images are currently limited to single storage account and the number of virtual machines in the scale set that can be created using custom image is limited to 40 when over provision is disabled <ref refid="" kindref="compound">WithOverProvision</ref> and up to 20 when enabled. </p>
+    <p>Specifies the user (custom) Windows image to be used as the operating system for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -2046,7 +2038,7 @@ items:
     parameters:
     - id: imageUrl
       type: "26831127"
-      description: <p>the url the the VHD </p>
+      description: <p>the URL of the VHD </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
       description: <p>the next stage of the virtual machine scale set definition </p>
@@ -2063,10 +2055,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 673
+    startLine: 668
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the time-zone.</p>
+    <p>Specifies the time zone for the virtual machines to use.</p>
 
     <p></p>
   syntax:
@@ -2074,10 +2066,10 @@ items:
     parameters:
     - id: timeZone
       type: "26831127"
-      description: <p>the timezone </p>
+      description: <p>a time zone </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withTimeZone(String)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withUpgradeMode(UpgradeMode)
   id: withUpgradeMode(UpgradeMode)
@@ -2091,10 +2083,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 724
+    startLine: 719
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies virtual machine scale set upgrade policy mode.</p>
+    <p>Specifies the virtual machine scale set upgrade policy mode.</p>
 
     <p></p>
   syntax:
@@ -2102,10 +2094,10 @@ items:
     parameters:
     - id: upgradeMode
       type: com.microsoft.azure.management.compute._upgrade_mode
-      description: <p>upgrade policy mode </p>
+      description: <p>an upgrade policy mode </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de219ede7fa620e55a6bca3dc2b9656df4.withUpgradeMode(UpgradeMode)
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withVmAgent()
   id: withVmAgent()
@@ -2119,17 +2111,17 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 641
+    startLine: 636
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies that VM Agent should be provisioned.</p>
+    <p>Enables the VM agent.</p>
 
     <p></p>
   syntax:
     content: public VirtualMachineScaleSetImpl withVmAgent()
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withVmAgent()
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withWinRm(WinRMListener)
   id: withWinRm(WinRMListener)
@@ -2143,10 +2135,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/implementation/VirtualMachineScaleSetImpl.java
-    startLine: 681
+    startLine: 676
   package: com.microsoft.azure.management.compute.implementation
   summary: >-
-    <p>Specifies the WINRM listener. </p>
+    <p>Specifies the WinRM listener. </p>
 
     <p>Each call to this method adds the given listener to the list of VM's WinRM listeners.</p>
 
@@ -2156,10 +2148,10 @@ items:
     parameters:
     - id: listener
       type: com.microsoft.azure.management.compute._win_r_m_listener
-      description: <p>the WinRmListener </p>
+      description: <p>a WinRm listener </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withWinRm(WinRMListener)
 references:
 - uid: ad7e70e3com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_inner9ec3e006
@@ -2872,15 +2864,6 @@ references:
   summary: <p>Entry point for load balancer management API in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface LoadBalancer extends GroupableResource,Refreshable< LoadBalancer >,Wrapper< LoadBalancerInner >,Updatable< LoadBalancer.Update >,HasLoadBalancingRules
-- uid: com.microsoft.azure.management.network._network
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._network.yml
-  name: Network
-  fullName: com.microsoft.azure.management.network.Network
-  type: Interface
-  summary: <p>Entry point for Virtual <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> management API in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface Network extends GroupableResource,Refreshable< Network >,Wrapper< VirtualNetworkInner >,Updatable< Network.Update >
 - uid: com.microsoft.azure.management.resources.fluentcore.utils._paged_list_converter
   parent: com.microsoft.azure.management.resources.fluentcore.utils
   href: com.microsoft.azure.management.resources.fluentcore.utils._paged_list_converter.yml
@@ -2913,7 +2896,7 @@ references:
   name: VirtualMachineScaleSetSku
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetSku
   type: Interface
-  summary: <p>A type representing sku available for virtual machines in a scale set. </p>
+  summary: <p>A type representing a SKU available for virtual machines in a scale set. </p>
   syntax:
     content: public interface VirtualMachineScaleSetSku
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_inner
@@ -2966,17 +2949,17 @@ references:
     typeParameters:
     - type: 0ca03e3a
       description: <p>the element type. </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.availableSkus()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listAvailableSkus()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: availableSkus()
-  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.VirtualMachineScaleSet.availableSkus()
+  name: listAvailableSkus()
+  fullName: PagedList<VirtualMachineScaleSetSku> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listAvailableSkus()
   type: Method
   syntax:
-    content: public PagedList< VirtualMachineScaleSetSku > availableSkus()
+    content: public PagedList< VirtualMachineScaleSetSku > listAvailableSkus()
     return:
       type: com.microsoft.azure._paged_list151dc42ccom.microsoft.azure.management.compute._virtual_machine_scale_set_sku9ec3e006
-      description: <p>available skus for the virtual machine scale set including the minimum and maximum vm instances allowed for a particular sku </p>
+      description: <p>available SKUs for the virtual machine scale set, including the minimum and maximum virtual machine instances allowed for a particular SKU </p>
 - uid: com.microsoft.azure._cloud_exception
   parent: com.microsoft.azure
   href: com.microsoft.azure._cloud_exception.yml
@@ -2993,9 +2976,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.VirtualMachineScaleSet.deallocate()
   type: Method
   summary: >-
-    <p>Shuts down the Virtual Machine in the scale set and releases the compute resources. </p>
-
-    <p>You are not billed for the compute resources that the Virtual Machines uses.</p>
+    <p>Shuts down the virtual machines in the scale set and releases its compute resources.</p>
 
     <p></p>
   syntax:
@@ -3007,9 +2988,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.VirtualMachineScaleSet.powerOff()
   type: Method
   summary: >-
-    <p>Power off (stop) the virtual machines in the scale set. </p>
-
-    <p>You will be billed for the compute resources that the Virtual Machines uses</p>
+    <p>Powers off (stops) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3021,7 +3000,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.VirtualMachineScaleSet.restart()
   type: Method
   summary: >-
-    <p>Restart the virtual machines in the scale set.</p>
+    <p>Restarts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3033,7 +3012,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.VirtualMachineScaleSet.start()
   type: Method
   summary: >-
-    <p>Start the virtual machines in the scale set.</p>
+    <p>Starts the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3045,7 +3024,7 @@ references:
   fullName: void com.microsoft.azure.management.compute.VirtualMachineScaleSet.reimage()
   type: Method
   summary: >-
-    <p>Re-image (update the version of the installed operating system) the virtual machines in the scale set.</p>
+    <p>Re-images (updates the version of the installed operating system) the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3100,7 +3079,7 @@ references:
     content: public CachingTypes osDiskCachingType()
     return:
       type: com.microsoft.azure.management.compute._caching_types
-      description: <p>the operating system disk caching type, valid values are 'None', 'ReadOnly', 'ReadWrite' </p>
+      description: <p>the operating system disk caching type </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.osDiskName()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
@@ -3174,11 +3153,20 @@ references:
     return:
       type: f75371fa
       description: <p>the number of virtual machine instances in the scale set </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryNetwork()
+- uid: com.microsoft.azure.management.network._network
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._network.yml
+  name: Network
+  fullName: com.microsoft.azure.management.network.Network
+  type: Interface
+  summary: <p>Entry point for Virtual <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> management API in <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface Network extends GroupableResource,Refreshable< Network >,Wrapper< VirtualNetworkInner >,Updatable< Network.Update >
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryNetwork()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryNetwork()
-  fullName: Network com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryNetwork()
+  name: getPrimaryNetwork()
+  fullName: Network com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryNetwork()
   type: Method
   summary: >-
     <p>
@@ -3187,18 +3175,18 @@ references:
 
     <p></p>
   syntax:
-    content: public Network primaryNetwork()
+    content: public Network getPrimaryNetwork()
     return:
       type: com.microsoft.azure.management.network._network
       description: <p>the virtual network associated with the primary network interfaces of the virtual machines in the scale set. </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancer()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternetFacingLoadBalancer()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternetFacingLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancer()
+  name: getPrimaryInternetFacingLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryInternetFacingLoadBalancer()
   type: Method
   syntax:
-    content: public LoadBalancer primaryInternetFacingLoadBalancer()
+    content: public LoadBalancer getPrimaryInternetFacingLoadBalancer()
     return:
       type: com.microsoft.azure.management.network._load_balancer
       description: <p>the internet-facing load balancer associated with the primary network interface of the virtual machines in the scale set.</p>
@@ -3211,14 +3199,14 @@ references:
   summary: <p>An immutable client-side representation of an load balancer's backend address pool. </p>
   syntax:
     content: public interface Backend extends Wrapper< BackendAddressPoolInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerBackends()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerBackends()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternetFacingLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancerBackends()
+  name: listPrimaryInternetFacingLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternetFacingLoadBalancerBackends()
   type: Method
   syntax:
-    content: public Map< String, Backend > primaryInternetFacingLoadBalancerBackends()
+    content: public Map< String, Backend > listPrimaryInternetFacingLoadBalancerBackends()
     return:
       type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
       description: <p>the internet-facing load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
@@ -3231,50 +3219,50 @@ references:
   summary: <p>An immutable client-side representation of an inbound NAT rule. </p>
   syntax:
     content: public interface InboundNatPool extends HasFrontend,HasBackendPort,HasProtocol< TransportProtocol >,Wrapper< InboundNatPoolInner >,ChildResource< LoadBalancer >
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternetFacingLoadBalancerInboundNatPools()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternetFacingLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternetFacingLoadBalancerInboundNatPools()
+  name: listPrimaryInternetFacingLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternetFacingLoadBalancerInboundNatPools()
   type: Method
   syntax:
-    content: public Map< String, InboundNatPool > primaryInternetFacingLoadBalancerInboundNatPools()
+    content: public Map< String, InboundNatPool > listPrimaryInternetFacingLoadBalancerInboundNatPools()
     return:
       type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
       description: <p>the internet-facing load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancer()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.getPrimaryInternalLoadBalancer()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternalLoadBalancer()
-  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancer()
+  name: getPrimaryInternalLoadBalancer()
+  fullName: LoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.getPrimaryInternalLoadBalancer()
   type: Method
   syntax:
-    content: public LoadBalancer primaryInternalLoadBalancer()
+    content: public LoadBalancer getPrimaryInternalLoadBalancer()
     return:
       type: com.microsoft.azure.management.network._load_balancer
       description: <p>the internal load balancer associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerBackends()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerBackends()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternalLoadBalancerBackends()
-  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancerBackends()
+  name: listPrimaryInternalLoadBalancerBackends()
+  fullName: Map<String, Backend> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternalLoadBalancerBackends()
   type: Method
   syntax:
-    content: public Map< String, Backend > primaryInternalLoadBalancerBackends()
+    content: public Map< String, Backend > listPrimaryInternalLoadBalancerBackends()
     return:
       type: c90817d4com.microsoft.azure.management.network._backend9ec3e006
       description: <p>the internal load balancer's backends associated with the primary network interface of the virtual machines in the scale set</p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryInternalLoadBalancerInboundNatPools()
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.listPrimaryInternalLoadBalancerInboundNatPools()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
-  name: primaryInternalLoadBalancerInboundNatPools()
-  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.primaryInternalLoadBalancerInboundNatPools()
+  name: listPrimaryInternalLoadBalancerInboundNatPools()
+  fullName: Map<String, InboundNatPool> com.microsoft.azure.management.compute.VirtualMachineScaleSet.listPrimaryInternalLoadBalancerInboundNatPools()
   type: Method
   syntax:
-    content: public Map< String, InboundNatPool > primaryInternalLoadBalancerInboundNatPools()
+    content: public Map< String, InboundNatPool > listPrimaryInternalLoadBalancerInboundNatPools()
     return:
       type: c90817d4com.microsoft.azure.management.network._inbound_nat_pool9ec3e006
-      description: <p>the internal load balancer's inbound NAT pool associated with the primary network interface of the virtual machines in the scale set</p>
+      description: <p>the inbound NAT pools of the internal load balancer associated with the primary network interface of the virtual machines in the scale set, if any.</p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.primaryPublicIpAddressIds()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
@@ -3285,7 +3273,7 @@ references:
     content: public List< String > primaryPublicIpAddressIds()
     return:
       type: f35af49b
-      description: <p>the list of IDs of public Ip addresses associated with the primary internet-facing load balancer of the scale set </p>
+      description: <p>the list of IDs of the public IP addresses associated with the primary Internet-facing load balancer of the scale set </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set.vhdContainers()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set.yml
@@ -3296,7 +3284,7 @@ references:
     content: public List< String > vhdContainers()
     return:
       type: f35af49b
-      description: <p>the URL to storage containers that store vhds of virtual machines in the scale set </p>
+      description: <p>the URL to storage containers that store the VHDs of the virtual machines in the scale set </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_storage_profile
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_storage_profile.yml
@@ -3366,7 +3354,7 @@ references:
       description: <p>the SKU type </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.withSku(VirtualMachineScaleSetSku)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.yml
@@ -3385,7 +3373,7 @@ references:
       description: <p>a SKU from the list of available sizes for the virtual machines in this scale set </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647.withExistingPrimaryNetworkSubnet(Network,String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7f1b6dbece8404a2e76d6e6581f08647.yml
@@ -3407,7 +3395,7 @@ references:
       description: <p>the subnet name </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887.withPrimaryInternetFacingLoadBalancer(LoadBalancer)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887.yml
@@ -3415,9 +3403,9 @@ references:
   fullName: WithPrimaryInternetFacingLoadBalancerBackendOrNatPool com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancer.withPrimaryInternetFacingLoadBalancer(LoadBalancer loadBalancer)
   type: Method
   summary: >-
-    <p>Specify the Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
+    <p>Specifies an Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
 
-    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines unless subset of them is selected in the next stages <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._de0af4c2712bffb2711b49c94cf4c8dd33" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>By default, all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines. </p>
 
     <p></p>
   syntax:
@@ -3425,7 +3413,7 @@ references:
     parameters:
     - id: loadBalancer
       type: com.microsoft.azure.management.network._load_balancer
-      description: <p>an existing public load balancer </p>
+      description: <p>an existing Internet-facing load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0af4c2712bffb2711b49c94cf4c8dd33
       description: <p>the next stage of the definition </p>
@@ -3436,7 +3424,7 @@ references:
   fullName: WithPrimaryInternetFacingLoadBalancerNatPool com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerBackendOrNatPool.withPrimaryInternetFacingLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Associate internet-facing load balancer backends with the primary network interface of the the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3444,10 +3432,10 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>the names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7.yml
@@ -3455,7 +3443,7 @@ references:
   fullName: WithPrimaryInternalLoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerNatPool.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Associate internet-facing load balancer inbound NAT pools with the the primary network interface of the scale set virtual machines.</p>
+    <p>Associates the specified inbound NAT pools of the selected internal load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3463,10 +3451,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the inbound NAT pool names </p>
+      description: <p>inbound NAT pools names existing on the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205.withPrimaryInternalLoadBalancer(LoadBalancer)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205.yml
@@ -3474,9 +3462,9 @@ references:
   fullName: WithInternalLoadBalancerBackendOrNatPool com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer.withPrimaryInternalLoadBalancer(LoadBalancer loadBalancer)
   type: Method
   summary: >-
-    <p>Specify the internal load balancer where it's backends and/or NAT pools can be assigned to the primary network interface of the scale set virtual machines. </p>
+    <p>Specifies the internal load balancer whose backends and/or NAT pools can be assigned to the primary network interface of the virtual machines in the scale set. </p>
 
-    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines unless subset of them is selected in the next stages <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._deb0e975ae3338d8c9784273f0c02966c7" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the virtual machines in the scale set, unless subset of them is selected in the next stages. </p>
 
     <p></p>
   syntax:
@@ -3495,7 +3483,7 @@ references:
   fullName: WithInternalInternalLoadBalancerNatPool com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithInternalLoadBalancerBackendOrNatPool.withPrimaryInternalLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Associate internal load balancer backends with the primary network interface of the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3503,7 +3491,7 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de10089fde870e049cca9179a0ca619bab
       description: <p>the next stage of the virtual machine scale set definition </p>
@@ -3533,14 +3521,14 @@ references:
   fullName: WithOS com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer.withoutPrimaryInternalLoadBalancer()
   type: Method
   summary: >-
-    <p>Specifies that no internal load balancer needs to be associated with primary network interface of the virtual machines in the scale set.</p>
+    <p>Specifies that no internal load balancer should be associated with the primary network interfaces of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
     content: public WithOS withoutPrimaryInternalLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887.withoutPrimaryInternetFacingLoadBalancer()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0913692d0e783f34c061f44ecc3a7887.yml
@@ -3548,14 +3536,14 @@ references:
   fullName: WithPrimaryInternalLoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancer.withoutPrimaryInternetFacingLoadBalancer()
   type: Method
   summary: >-
-    <p>Specifies that no public load balancer needs to be associated with the virtual machine scale set.</p>
+    <p>Specifies that no public load balancer should be associated with the virtual machine scale set.</p>
 
     <p></p>
   syntax:
     content: public WithPrimaryInternalLoadBalancer withoutPrimaryInternetFacingLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternetFacingLoadBalancerBackends(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.yml
@@ -3563,7 +3551,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerBackend.withoutPrimaryInternetFacingLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specfied backends of the Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -3571,10 +3559,10 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternalLoadBalancerBackends(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.yml
@@ -3582,7 +3570,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerBackend.withoutPrimaryInternalLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified backends of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -3590,10 +3578,10 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternetFacingLoadBalancerNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.yml
@@ -3601,7 +3589,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerNatPool.withoutPrimaryInternetFacingLoadBalancerNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of an Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -3609,10 +3597,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternalLoadBalancerNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.yml
@@ -3620,7 +3608,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerNatPool.withoutPrimaryInternalLoadBalancerNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -3628,10 +3616,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withPopularWindowsImage(KnownWindowsVirtualMachineImage)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.yml
@@ -3639,7 +3627,7 @@ references:
   fullName: WithAdminUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withPopularWindowsImage(KnownWindowsVirtualMachineImage knownImage)
   type: Method
   summary: >-
-    <p>Specifies the known marketplace Windows image used as OS for virtual machines in the scale set.</p>
+    <p>Specifies a known marketplace Windows image used as the operating system for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3647,10 +3635,10 @@ references:
     parameters:
     - id: knownImage
       type: com.microsoft.azure.management.compute._known_windows_virtual_machine_image
-      description: <p>enum value indicating known market-place image </p>
+      description: <p>a known market-place image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec27f0f7e0997136997cce79c4265d329
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._known_windows_virtual_machine_image
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._known_windows_virtual_machine_image.yml
@@ -3667,7 +3655,7 @@ references:
   fullName: WithAdminUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withLatestWindowsImage(String publisher, String offer, String sku)
   type: Method
   summary: >-
-    <p>Specifies that the latest version of a marketplace Windows image needs to be used.</p>
+    <p>Specifies that the latest version of the specified marketplace Windows image should be used.</p>
 
     <p></p>
   syntax:
@@ -3684,7 +3672,7 @@ references:
       description: <p>specifies the SKU of the image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec27f0f7e0997136997cce79c4265d329
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withSpecificWindowsImageVersion(ImageReference)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.yml
@@ -3692,7 +3680,7 @@ references:
   fullName: WithAdminUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withSpecificWindowsImageVersion(ImageReference imageReference)
   type: Method
   summary: >-
-    <p>Specifies the version of a marketplace Windows image needs to be used.</p>
+    <p>Specifies the specific version of a marketplace Windows image needs to be used.</p>
 
     <p></p>
   syntax:
@@ -3700,10 +3688,10 @@ references:
     parameters:
     - id: imageReference
       type: com.microsoft.azure.management.compute._image_reference
-      description: <p>describes publisher, offer, SKU and version of the market-place image </p>
+      description: <p>describes publisher, offer, SKU and version of the marketplace image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec27f0f7e0997136997cce79c4265d329
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._image_reference
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._image_reference.yml
@@ -3720,9 +3708,7 @@ references:
   fullName: WithAdminUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withStoredWindowsImage(String imageUrl)
   type: Method
   summary: >-
-    <p>Specifies the user (custom) Windows image used for as the OS for virtual machines in the scale set. </p>
-
-    <p>Custom images are currently limited to single storage account and the number of virtual machines in the scale set that can be created using custom image is limited to 40 when over provision is disabled <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c" data-throw-if-not-resolved="false"></xref> and up to 20 when enabled. </p>
+    <p>Specifies the user (custom) Windows image to be used as the operating system for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -3730,7 +3716,7 @@ references:
     parameters:
     - id: imageUrl
       type: "26831127"
-      description: <p>the url the the VHD </p>
+      description: <p>the URL of the VHD </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec27f0f7e0997136997cce79c4265d329
       description: <p>the next stage of the virtual machine scale set definition </p>
@@ -3741,7 +3727,7 @@ references:
   fullName: WithRootUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withPopularLinuxImage(KnownLinuxVirtualMachineImage knownImage)
   type: Method
   summary: >-
-    <p>Specifies the known marketplace Linux image used for the virtual machine's OS.</p>
+    <p>Specifies a known marketplace Linux image used as the virtual machine's operating system.</p>
 
     <p></p>
   syntax:
@@ -3749,10 +3735,10 @@ references:
     parameters:
     - id: knownImage
       type: com.microsoft.azure.management.compute._known_linux_virtual_machine_image
-      description: <p>enum value indicating known market-place image </p>
+      description: <p>a known market-place image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._known_linux_virtual_machine_image
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._known_linux_virtual_machine_image.yml
@@ -3769,7 +3755,7 @@ references:
   fullName: WithRootUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withLatestLinuxImage(String publisher, String offer, String sku)
   type: Method
   summary: >-
-    <p>Specifies that the latest version of a marketplace Linux image needs to be used.</p>
+    <p>Specifies that the latest version of a marketplace Linux image should be used.</p>
 
     <p></p>
   syntax:
@@ -3777,16 +3763,16 @@ references:
     parameters:
     - id: publisher
       type: "26831127"
-      description: <p>specifies the publisher of the image </p>
+      description: <p>the publisher of the image </p>
     - id: offer
       type: "26831127"
-      description: <p>specifies the offer of the image </p>
+      description: <p>the offer of the image </p>
     - id: sku
       type: "26831127"
-      description: <p>specifies the SKU of the image </p>
+      description: <p>the SKU of the image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withSpecificLinuxImageVersion(ImageReference)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.yml
@@ -3794,7 +3780,7 @@ references:
   fullName: WithRootUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withSpecificLinuxImageVersion(ImageReference imageReference)
   type: Method
   summary: >-
-    <p>Specifies the version of a market-place Linux image needs to be used.</p>
+    <p>Specifies the specific version of a market-place Linux image that should be used.</p>
 
     <p></p>
   syntax:
@@ -3802,10 +3788,10 @@ references:
     parameters:
     - id: imageReference
       type: com.microsoft.azure.management.compute._image_reference
-      description: <p>describes publisher, offer, SKU and version of the market-place image </p>
+      description: <p>describes the publisher, offer, SKU and version of the market-place image </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3
-      description: <p>the next stage of the virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.withStoredLinuxImage(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_o_s.yml
@@ -3813,9 +3799,7 @@ references:
   fullName: WithRootUserName com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOS.withStoredLinuxImage(String imageUrl)
   type: Method
   summary: >-
-    <p>Specifies the user (custom) Linux image used for the virtual machine's OS. </p>
-
-    <p>Custom images are currently limited to single storage account and the number of virtual machines in the scale set that can be created using custom image is limited to 40 when over provision is disabled <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c" data-throw-if-not-resolved="false"></xref> and up to 20 when enabled. </p>
+    <p>Specifies the user (custom) Linux image used as the virtual machine's operating system.</p>
 
     <p></p>
   syntax:
@@ -3842,10 +3826,10 @@ references:
     parameters:
     - id: adminUserName
       type: "26831127"
-      description: <p>the Windows administrator user name. This must follow the required naming convention for Windows user name </p>
+      description: <p>a Windows administrator user name, following the required naming convention for Windows user names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3.withRootUserName(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dec2851f004cda25ebc1f9691c38f348f3.yml
@@ -3861,10 +3845,10 @@ references:
     parameters:
     - id: rootUserName
       type: "26831127"
-      description: <p>the Linux root user name. This must follow the required naming convention for Linux user name </p>
+      description: <p>a Linux root user name, following the required naming convention for Linux user names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._deb1a83bb995434c799dc1ee50df0ee0c0
-      description: <p>the next stage of the Linux virtual machine scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.withPassword(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.yml
@@ -3880,10 +3864,10 @@ references:
     parameters:
     - id: password
       type: "26831127"
-      description: <p>the password, this must follow the criteria for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> VM password </p>
+      description: <p>a password following the requirements for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> virtual machine passwords </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure._azure
   parent: com.microsoft.azure
   href: com.microsoft.azure._azure.yml
@@ -3910,10 +3894,10 @@ references:
     parameters:
     - id: publicKey
       type: "26831127"
-      description: <p>the SSH public key in PEM format. </p>
+      description: <p>an SSH public key in the PEM format. </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._deb1a83bb995434c799dc1ee50df0ee0c0
-      description: <p>the stage representing creatable Linux VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withVmAgent()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -3921,14 +3905,14 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withVmAgent()
   type: Method
   summary: >-
-    <p>Specifies that VM Agent should be provisioned.</p>
+    <p>Enables the VM agent.</p>
 
     <p></p>
   syntax:
     content: public WithWindowsCreate withVmAgent()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withoutVmAgent()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -3936,14 +3920,14 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withoutVmAgent()
   type: Method
   summary: >-
-    <p>Specifies that VM Agent should not be provisioned.</p>
+    <p>Disables the VM agent.</p>
 
     <p></p>
   syntax:
     content: public WithWindowsCreate withoutVmAgent()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withAutoUpdate()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -3951,14 +3935,14 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withAutoUpdate()
   type: Method
   summary: >-
-    <p>Specifies that automatic updates should be enabled.</p>
+    <p>Enables automatic updates.</p>
 
     <p></p>
   syntax:
     content: public WithWindowsCreate withAutoUpdate()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withoutAutoUpdate()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -3966,14 +3950,14 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withoutAutoUpdate()
   type: Method
   summary: >-
-    <p>Specifies that automatic updates should be disabled.</p>
+    <p>Disables automatic updates.</p>
 
     <p></p>
   syntax:
     content: public WithWindowsCreate withoutAutoUpdate()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withTimeZone(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -3981,7 +3965,7 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withTimeZone(String timeZone)
   type: Method
   summary: >-
-    <p>Specifies the time-zone.</p>
+    <p>Specifies the time zone for the virtual machines to use.</p>
 
     <p></p>
   syntax:
@@ -3989,10 +3973,10 @@ references:
     parameters:
     - id: timeZone
       type: "26831127"
-      description: <p>the timezone </p>
+      description: <p>a time zone </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.withWinRm(WinRMListener)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c.yml
@@ -4000,7 +3984,7 @@ references:
   fullName: WithWindowsCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate.withWinRm(WinRMListener listener)
   type: Method
   summary: >-
-    <p>Specifies the WINRM listener. </p>
+    <p>Specifies the WinRM listener. </p>
 
     <p>Each call to this method adds the given listener to the list of VM's WinRM listeners.</p>
 
@@ -4010,10 +3994,10 @@ references:
     parameters:
     - id: listener
       type: com.microsoft.azure.management.compute._win_r_m_listener
-      description: <p>the WinRmListener </p>
+      description: <p>a WinRm listener </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de30367a685ba444fdecc82b91400e159c
-      description: <p>the stage representing creatable Windows VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._win_r_m_listener
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._win_r_m_listener.yml
@@ -4030,7 +4014,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings.withOsDiskCaching(CachingTypes cachingType)
   type: Method
   summary: >-
-    <p>Specifies the caching type for the Operating System disk.</p>
+    <p>Specifies the caching type for the operating system disk.</p>
 
     <p></p>
   syntax:
@@ -4041,7 +4025,7 @@ references:
       description: <p>the caching type </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskName(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.yml
@@ -4049,7 +4033,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings.withOsDiskName(String name)
   type: Method
   summary: >-
-    <p>Specifies the name for the OS Disk.</p>
+    <p>Specifies the name for the OS disk.</p>
 
     <p></p>
   syntax:
@@ -4057,10 +4041,10 @@ references:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the OS Disk name </p>
+      description: <p>the OS disk name </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464.withComputerNamePrefix(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464.yml
@@ -4068,7 +4052,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithComputerNamePrefix.withComputerNamePrefix(String namePrefix)
   type: Method
   summary: >-
-    <p>Specifies the bane prefix for the virtual machines in the scale set.</p>
+    <p>Specifies the name prefix to use for auto-generating the names for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4076,10 +4060,10 @@ references:
     parameters:
     - id: namePrefix
       type: "26831127"
-      description: <p>the prefix for the name of virtual machines in the scale set </p>
+      description: <p>the prefix for the auto-generated names of the virtual machines in the scale set </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de219ede7fa620e55a6bca3dc2b9656df4.withUpgradeMode(UpgradeMode)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de219ede7fa620e55a6bca3dc2b9656df4
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de219ede7fa620e55a6bca3dc2b9656df4.yml
@@ -4087,7 +4071,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithUpgradePolicy.withUpgradeMode(UpgradeMode upgradeMode)
   type: Method
   summary: >-
-    <p>Specifies virtual machine scale set upgrade policy mode.</p>
+    <p>Specifies the virtual machine scale set upgrade policy mode.</p>
 
     <p></p>
   syntax:
@@ -4095,10 +4079,10 @@ references:
     parameters:
     - id: upgradeMode
       type: com.microsoft.azure.management.compute._upgrade_mode
-      description: <p>upgrade policy mode </p>
+      description: <p>an upgrade policy mode </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvision(boolean)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
@@ -4106,7 +4090,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvision(boolean enabled)
   type: Method
   summary: >-
-    <p>Enable or disable over provisioning of virtual machines in the scale set.</p>
+    <p>Enables or disables over-provisioning of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4114,40 +4098,40 @@ references:
     parameters:
     - id: enabled
       type: 4fc6e284
-      description: <p>true to enable over provisioning of virtual machines in the scale set </p>
+      description: <p>true if enabling over-0provisioning of virtual machines in the scale set, otherwise false </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>Enable over provision of virtual machines </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionEnabled()
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisioning()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
-  name: withOverProvisionEnabled()
-  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisionEnabled()
+  name: withOverProvisioning()
+  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisioning()
   type: Method
   summary: >-
-    <p>Enable over provision of virtual machines.</p>
+    <p>Enables over-provisioning of virtual machines.</p>
 
     <p></p>
   syntax:
-    content: public WithCreate withOverProvisionEnabled()
+    content: public WithCreate withOverProvisioning()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionDisabled()
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withoutOverProvisioning()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
-  name: withOverProvisionDisabled()
-  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisionDisabled()
+  name: withoutOverProvisioning()
+  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withoutOverProvisioning()
   type: Method
   summary: >-
-    <p>Disable over provision of virtual machines.</p>
+    <p>Disables over-provisioning of virtual machines.</p>
 
     <p></p>
   syntax:
-    content: public WithCreate withOverProvisionDisabled()
+    content: public WithCreate withoutOverProvisioning()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de675c578279d7412d1ab4058711619e75.withCapacity(int)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de675c578279d7412d1ab4058711619e75
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de675c578279d7412d1ab4058711619e75.yml
@@ -4155,7 +4139,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithCapacity.withCapacity(int capacity)
   type: Method
   summary: >-
-    <p>Specifies the number of virtual machines in the scale set.</p>
+    <p>Specifies the maximum number of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4166,7 +4150,7 @@ references:
       description: <p>the virtual machine capacity </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
@@ -4174,7 +4158,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withNewStorageAccount(String name)
   type: Method
   summary: >-
-    <p>Specifies the name of a new storage account to put the OS and data disk VHD of the virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4185,7 +4169,7 @@ references:
       description: <p>the name of the storage account </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(Creatable< StorageAccount >)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
@@ -4193,7 +4177,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withNewStorageAccount(Creatable< StorageAccount > creatable)
   type: Method
   summary: >-
-    <p>Specifies definition of a not-yet-created storage account definition to put OS and data disk VHDs of virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4201,10 +4185,10 @@ references:
     parameters:
     - id: creatable
       type: com.microsoft.azure.management.resources.fluentcore.model._creatable151dc42ccom.microsoft.azure.management.storage._storage_account9ec3e006
-      description: <p>the storage account in creatable stage </p>
+      description: <p>the storage account definition in a creatable stage </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._creatable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._creatable.yml
@@ -4227,7 +4211,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withExistingStorageAccount(StorageAccount storageAccount)
   type: Method
   summary: >-
-    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> storage account to put the OS and data disk VHD of virtual machines in the scale set.</p>
+    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4238,7 +4222,7 @@ references:
       description: <p>an existing storage account </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121.defineNewExtension(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121.yml
@@ -4246,7 +4230,7 @@ references:
   fullName: VirtualMachineScaleSetExtension.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithExtension.defineNewExtension(String name)
   type: Method
   summary: >-
-    <p>Specifies definition of an extension to be attached to the virtual machines in the scale set.</p>
+    <p>Begins the definition of an extension reference to be attached to the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4257,7 +4241,7 @@ references:
       description: <p>the reference name for the extension </p>
     return:
       type: 54a96bcbcom.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create9ec3e006
-      description: <p>the stage representing configuration for the extension </p>
+      description: <p>the first stage of the extension reference definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.updateExtension(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.yml
@@ -4276,7 +4260,7 @@ references:
       description: <p>the reference name for the extension </p>
     return:
       type: 2759409c
-      description: <p>the stage representing updatable extension definition </p>
+      description: <p>the first stage of the extension reference update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.withoutExtension(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.yml
@@ -4284,7 +4268,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithExtension.withoutExtension(String name)
   type: Method
   summary: >-
-    <p>Detaches an extension with the given name from the virtual machines in the scale set.</p>
+    <p>Removes the extension with the specified name from the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -4292,10 +4276,10 @@ references:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the reference name for the extension to be removed/uninstalled </p>
+      description: <p>the reference name of the extension to be removed/uninstalled </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the stage representing updatable VM scale set definition </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
   parent: com.microsoft.azure.management.resources.fluentcore.model._refreshable
   href: com.microsoft.azure.management.resources.fluentcore.model._refreshable.yml

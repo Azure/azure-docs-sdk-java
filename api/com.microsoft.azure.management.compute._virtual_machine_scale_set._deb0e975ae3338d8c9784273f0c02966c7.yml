@@ -16,9 +16,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 389
+    startLine: 378
   package: com.microsoft.azure.management.compute
-  summary: <p>The stage of the virtual machine scale set definition allowing to associate backend pool and/or inbound NAT pool of the internal load balancer selected in the previous state <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205" data-throw-if-not-resolved="false"></xref> with the primary network interface of the scale set virtual machines. </p>
+  summary: <p>The stage of a virtual machine scale set definition allowing to associate backend pools and/or inbound NAT pools of the selected internal load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithInternalLoadBalancerBackendOrNatPool extends VirtualMachineScaleSet.DefinitionStages.WithCreate
   inheritedMembers:
@@ -35,9 +35,9 @@ items:
   - com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(Creatable< StorageAccount >)
   - com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskCaching(CachingTypes)
   - com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskName(String)
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withoutOverProvisioning()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvision(boolean)
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionDisabled()
-  - com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionEnabled()
+  - com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisioning()
   - com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.withPassword(String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTags(Map< String, String >)
@@ -54,10 +54,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 396
+    startLine: 386
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Associate internal load balancer backends with the primary network interface of the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -65,7 +65,7 @@ items:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de10089fde870e049cca9179a0ca619bab
       description: <p>the next stage of the virtual machine scale set definition </p>
@@ -130,7 +130,7 @@ references:
   fullName: VirtualMachineScaleSetExtension.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithExtension.defineNewExtension(String name)
   type: Method
   summary: >-
-    <p>Specifies definition of an extension to be attached to the virtual machines in the scale set.</p>
+    <p>Begins the definition of an extension reference to be attached to the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -141,7 +141,7 @@ references:
       description: <p>the reference name for the extension </p>
     return:
       type: 54a96bcbcom.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create9ec3e006
-      description: <p>the stage representing configuration for the extension </p>
+      description: <p>the first stage of the extension reference definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   parent: com.microsoft.azure.management.resources.fluentcore.model._indexable
   href: com.microsoft.azure.management.resources.fluentcore.model._indexable.yml
@@ -171,7 +171,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithCapacity.withCapacity(int capacity)
   type: Method
   summary: >-
-    <p>Specifies the number of virtual machines in the scale set.</p>
+    <p>Specifies the maximum number of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -182,7 +182,7 @@ references:
       description: <p>the virtual machine capacity </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464.withComputerNamePrefix(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de027ae021b04b91db48b0f2ab85810464.yml
@@ -190,7 +190,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithComputerNamePrefix.withComputerNamePrefix(String namePrefix)
   type: Method
   summary: >-
-    <p>Specifies the bane prefix for the virtual machines in the scale set.</p>
+    <p>Specifies the name prefix to use for auto-generating the names for the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -198,10 +198,10 @@ references:
     parameters:
     - id: namePrefix
       type: "26831127"
-      description: <p>the prefix for the name of virtual machines in the scale set </p>
+      description: <p>the prefix for the auto-generated names of the virtual machines in the scale set </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withExistingStorageAccount(StorageAccount)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
@@ -209,7 +209,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withExistingStorageAccount(StorageAccount storageAccount)
   type: Method
   summary: >-
-    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> storage account to put the OS and data disk VHD of virtual machines in the scale set.</p>
+    <p>Specifies an existing <ref refid="" kindref="compound">StorageAccount</ref> for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -220,7 +220,7 @@ references:
       description: <p>an existing storage account </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
@@ -228,7 +228,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withNewStorageAccount(String name)
   type: Method
   summary: >-
-    <p>Specifies the name of a new storage account to put the OS and data disk VHD of the virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -239,7 +239,7 @@ references:
       description: <p>the name of the storage account </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.withNewStorageAccount(Creatable< StorageAccount >)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
@@ -247,7 +247,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount.withNewStorageAccount(Creatable< StorageAccount > creatable)
   type: Method
   summary: >-
-    <p>Specifies definition of a not-yet-created storage account definition to put OS and data disk VHDs of virtual machines in the scale set.</p>
+    <p>Specifies a new storage account for the OS and data disk VHDs of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -255,10 +255,10 @@ references:
     parameters:
     - id: creatable
       type: com.microsoft.azure.management.resources.fluentcore.model._creatable151dc42ccom.microsoft.azure.management.storage._storage_account9ec3e006
-      description: <p>the storage account in creatable stage </p>
+      description: <p>the storage account definition in a creatable stage </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage in the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskCaching(CachingTypes)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.yml
@@ -266,7 +266,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings.withOsDiskCaching(CachingTypes cachingType)
   type: Method
   summary: >-
-    <p>Specifies the caching type for the Operating System disk.</p>
+    <p>Specifies the caching type for the operating system disk.</p>
 
     <p></p>
   syntax:
@@ -277,7 +277,7 @@ references:
       description: <p>the caching type </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.withOsDiskName(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.yml
@@ -285,7 +285,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings.withOsDiskName(String name)
   type: Method
   summary: >-
-    <p>Specifies the name for the OS Disk.</p>
+    <p>Specifies the name for the OS disk.</p>
 
     <p></p>
   syntax:
@@ -293,10 +293,25 @@ references:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the OS Disk name </p>
+      description: <p>the OS disk name </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withoutOverProvisioning()
+  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
+  name: withoutOverProvisioning()
+  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withoutOverProvisioning()
+  type: Method
+  summary: >-
+    <p>Disables over-provisioning of virtual machines.</p>
+
+    <p></p>
+  syntax:
+    content: public WithCreate withoutOverProvisioning()
+    return:
+      type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvision(boolean)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
@@ -304,7 +319,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvision(boolean enabled)
   type: Method
   summary: >-
-    <p>Enable or disable over provisioning of virtual machines in the scale set.</p>
+    <p>Enables or disables over-provisioning of virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -312,40 +327,25 @@ references:
     parameters:
     - id: enabled
       type: 4fc6e284
-      description: <p>true to enable over provisioning of virtual machines in the scale set </p>
+      description: <p>true if enabling over-0provisioning of virtual machines in the scale set, otherwise false </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>Enable over provision of virtual machines </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionDisabled()
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisioning()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
-  name: withOverProvisionDisabled()
-  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisionDisabled()
+  name: withOverProvisioning()
+  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisioning()
   type: Method
   summary: >-
-    <p>Disable over provision of virtual machines.</p>
+    <p>Enables over-provisioning of virtual machines.</p>
 
     <p></p>
   syntax:
-    content: public WithCreate withOverProvisionDisabled()
+    content: public WithCreate withOverProvisioning()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.withOverProvisionEnabled()
-  parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea43000d3ad3d6856d65a6d2fef41f96c.yml
-  name: withOverProvisionEnabled()
-  fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithOverProvision.withOverProvisionEnabled()
-  type: Method
-  summary: >-
-    <p>Enable over provision of virtual machines.</p>
-
-    <p></p>
-  syntax:
-    content: public WithCreate withOverProvisionEnabled()
-    return:
-      type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.withPassword(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._def2d5ab495afae2a5d35017c8171d0c18.yml
@@ -361,10 +361,10 @@ references:
     parameters:
     - id: password
       type: "26831127"
-      description: <p>the password, this must follow the criteria for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> VM password </p>
+      description: <p>a password following the requirements for <xref href="com.microsoft.azure._azure" data-throw-if-not-resolved="false"></xref> virtual machine passwords </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09
   href: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.yml
@@ -407,7 +407,7 @@ references:
   fullName: WithCreate com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithUpgradePolicy.withUpgradeMode(UpgradeMode upgradeMode)
   type: Method
   summary: >-
-    <p>Specifies virtual machine scale set upgrade policy mode.</p>
+    <p>Specifies the virtual machine scale set upgrade policy mode.</p>
 
     <p></p>
   syntax:
@@ -415,10 +415,10 @@ references:
     parameters:
     - id: upgradeMode
       type: com.microsoft.azure.management.compute._upgrade_mode
-      description: <p>upgrade policy mode </p>
+      description: <p>an upgrade policy mode </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-      description: <p>the stage representing creatable VM scale set definition </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create.yml
@@ -443,7 +443,7 @@ references:
   name: VirtualMachineScaleSet.DefinitionStages.WithInternalInternalLoadBalancerNatPool
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithInternalInternalLoadBalancerNatPool
   type: Interface
-  summary: <p>The stage of the virtual machine scale set definition allowing to associate inbound NAT pool of the internal load balancer selected in the previous state <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205" data-throw-if-not-resolved="false"></xref> with the primary network interface of the scale set virtual machines. </p>
+  summary: <p>The stage of the virtual machine scale set definition allowing to associate inbound NAT pools of the selected internal load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithInternalInternalLoadBalancerNatPool extends VirtualMachineScaleSet.DefinitionStages.WithOS
 - uid: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl.withPrimaryInternalLoadBalancerBackends(String...)
@@ -453,7 +453,7 @@ references:
   fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withPrimaryInternalLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Associate internal load balancer backends with the primary network interface of the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -461,16 +461,7 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
       description: <p>the next stage of the virtual machine scale set definition </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer
-  type: Interface
-  summary: <p>The stage of the virtual machine scale set definition allowing to specify an internal load balancer for the primary network interface of the virtual machines in the scale set. </p>
-  syntax:
-    content: public interface WithPrimaryInternalLoadBalancer

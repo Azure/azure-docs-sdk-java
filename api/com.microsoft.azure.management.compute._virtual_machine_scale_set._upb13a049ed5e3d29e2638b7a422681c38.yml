@@ -16,9 +16,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java.git
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 795
+    startLine: 772
   package: com.microsoft.azure.management.compute
-  summary: <p>The stage of the virtual machine scale set update allowing to associate backend pool and/or inbound NAT pool of the internet-facing load balancer selected in the previous state <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f" data-throw-if-not-resolved="false"></xref> with the primary network interface of the scale set virtual machines. </p>
+  summary: <p>The stage of a virtual machine scale set update allowing to associate a backend pool and/or inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithPrimaryInternetFacingLoadBalancerBackendOrNatPool extends VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
   inheritedMembers:
@@ -55,10 +55,10 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 803
+    startLine: 780
   package: com.microsoft.azure.management.compute
   summary: >-
-    <p>Associate internet-facing load balancer backends with the primary network interface of the scale set virtual machines.</p>
+    <p>Associates the specified Internet-facing load balancer backends with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -69,7 +69,7 @@ items:
       description: <p>the backend names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7
-      description: <p>the next stage of the virtual machine scale set update allowing to choose inbound nat pool from the load balancer </p>
+      description: <p>the next stage of the update </p>
 references:
 - uid: 04d2b762
   spec.java:
@@ -131,7 +131,7 @@ references:
   fullName: VirtualMachineScaleSetExtension.UpdateDefinitionStages.Blank<WithApply> com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithExtension.defineNewExtension(String name)
   type: Method
   summary: >-
-    <p>Specifies definition of an extension to be attached to the virtual machines in the scale set.</p>
+    <p>Begins the definition of an extension reference to be attached to the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -139,10 +139,10 @@ references:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the reference name for the extension </p>
+      description: <p>the reference name for an extension </p>
     return:
       type: c9d8629acom.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply9ec3e006
-      description: <p>the stage representing configuration for the extension </p>
+      description: <p>the first stage of the extension reference definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   parent: com.microsoft.azure.management.resources.fluentcore.model._indexable
   href: com.microsoft.azure.management.resources.fluentcore.model._indexable.yml
@@ -172,7 +172,7 @@ references:
       description: <p>the reference name for the extension </p>
     return:
       type: 2759409c
-      description: <p>the stage representing updatable extension definition </p>
+      description: <p>the first stage of the extension reference update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_capacity.withCapacity(int)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_capacity
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_capacity.yml
@@ -188,10 +188,10 @@ references:
     parameters:
     - id: capacity
       type: f75371fa
-      description: <p>the virtual machine capacity </p>
+      description: <p>the virtual machine capacity of the scale set </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.withoutExtension(String)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.yml
@@ -199,7 +199,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithExtension.withoutExtension(String name)
   type: Method
   summary: >-
-    <p>Detaches an extension with the given name from the virtual machines in the scale set.</p>
+    <p>Removes the extension with the specified name from the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -207,10 +207,10 @@ references:
     parameters:
     - id: name
       type: "26831127"
-      description: <p>the reference name for the extension to be removed/uninstalled </p>
+      description: <p>the reference name of the extension to be removed/uninstalled </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the stage representing updatable VM scale set definition </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b.withoutPrimaryInternalLoadBalancer()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b.yml
@@ -218,16 +218,16 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancer.withoutPrimaryInternalLoadBalancer()
   type: Method
   summary: >-
-    <p>Remove the internal load balancer associated to the primary network interface configuration. </p>
+    <p>Removes the association between the internal load balancer and the primary network interface configuration. </p>
 
-    <p>This removes the association between primary network interface configuration and all backend and inbound NAT pools in the load balancer. </p>
+    <p>This removes the association between primary network interface configuration and all the backends and inbound NAT pools in the load balancer.</p>
 
     <p></p>
   syntax:
     content: public WithApply withoutPrimaryInternalLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternalLoadBalancerBackends(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.yml
@@ -235,7 +235,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerBackend.withoutPrimaryInternalLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified backends of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -243,10 +243,10 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternalLoadBalancerNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.yml
@@ -254,7 +254,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerNatPool.withoutPrimaryInternalLoadBalancerNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internal load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of the internal load balancer.</p>
 
     <p></p>
   syntax:
@@ -262,10 +262,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b.withoutPrimaryInternetFacingLoadBalancer()
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up28c5403db9095790b324b068cdc3008b.yml
@@ -273,16 +273,16 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancer.withoutPrimaryInternetFacingLoadBalancer()
   type: Method
   summary: >-
-    <p>Remove the internet-facing load balancer associated to the primary network interface configuration. </p>
+    <p>Removes the association between the Internet-facing load balancer and the primary network interface configuration. </p>
 
-    <p>This removes the association between primary network interface configuration and all backend and inbound NAT pools in the load balancer. </p>
+    <p>This removes the association between primary network interface configuration and all the backends and inbound NAT pools in the load balancer.</p>
 
     <p></p>
   syntax:
     content: public WithApply withoutPrimaryInternetFacingLoadBalancer()
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.withoutPrimaryInternetFacingLoadBalancerBackends(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb84cfc1a8788df2cf2ce09460dbf40dd.yml
@@ -290,7 +290,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerBackend.withoutPrimaryInternetFacingLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and backend of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specfied backends of the Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -298,10 +298,10 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the existing backend names to remove </p>
+      description: <p>existing backend names </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.withoutPrimaryInternetFacingLoadBalancerNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6238dcf62188b005ba0c10cf9aeed092.yml
@@ -309,7 +309,7 @@ references:
   fullName: WithApply com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerNatPool.withoutPrimaryInternetFacingLoadBalancerNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Removes association between the primary network interface configuration and inbound NAT pool of the internet-facing load balancer.</p>
+    <p>Removes the associations between the primary network interface configuration and the specified inbound NAT pools of an Internet-facing load balancer.</p>
 
     <p></p>
   syntax:
@@ -317,10 +317,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the name of an existing inbound NAT pools to remove </p>
+      description: <p>the names of existing inbound NAT pools </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withoutTag(String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.yml
@@ -344,9 +344,9 @@ references:
   fullName: WithPrimaryInternalLoadBalancerBackendOrNatPool com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryInternalLoadBalancer.withPrimaryInternalLoadBalancer(LoadBalancer loadBalancer)
   type: Method
   summary: >-
-    <p>Specifies load balancer to tbe used as the internal load balancer for the virtual machines in the scale set. </p>
+    <p>Specifies the load balancer to be used as the internal load balancer for the virtual machines in the scale set. </p>
 
-    <p>This will replace the current internal load balancer associated with the virtual machines in the scale set (if any). By default all the backend and inbound NAT pool of the load balancer will be associated with the primary network interface of the scale set virtual machines unless subset of them is selected in the next stages <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._up34bb44bbbf06a9732958755e084e2fd6" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>This will replace the current internal load balancer associated with the virtual machines in the scale set (if any). By default all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the virtual machines in the scale set unless subset of them is selected in the next stages. </p>
 
     <p></p>
   syntax:
@@ -354,10 +354,10 @@ references:
     parameters:
     - id: loadBalancer
       type: com.microsoft.azure.management.network._load_balancer
-      description: <p>the primary internet-facing load balancer </p>
+      description: <p>the primary Internet-facing load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._up34bb44bbbf06a9732958755e084e2fd6
-      description: <p>the next stage of the virtual machine scale set update allowing to choose backends or inbound nat pool from the load balancer </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7.yml
@@ -365,7 +365,7 @@ references:
   fullName: WithPrimaryInternalLoadBalancer com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool.withPrimaryInternetFacingLoadBalancerInboundNatPools(String...natPoolNames)
   type: Method
   summary: >-
-    <p>Associate internet-facing load balancer inbound NAT pools with the the primary network interface of the scale set virtual machines.</p>
+    <p>Associates inbound NAT pools of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -373,10 +373,10 @@ references:
     parameters:
     - id: natPoolNames
       type: 04d2b762
-      description: <p>the inbound NAT pool names </p>
+      description: <p>the names of existing inbound NAT pools on the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._up6c1f30e8721c3c4ea6a3e6ecdb4701ef
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.withSku(VirtualMachineScaleSetSkuTypes)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.yml
@@ -395,7 +395,7 @@ references:
       description: <p>the SKU type </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.withSku(VirtualMachineScaleSetSku)
   parent: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.yml
@@ -414,7 +414,7 @@ references:
       description: <p>a SKU from the list of available sizes for the virtual machines in this scale set </p>
     return:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
-      description: <p>the next stage of the virtual machine scale set update </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withTag(String,String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.yml
@@ -456,7 +456,7 @@ references:
   name: VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
   type: Interface
-  summary: <p>The stage of the virtual machine scale set update allowing to associate inbound NAT pool of the internet facing load balancer selected in the previous state <xref href="com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f" data-throw-if-not-resolved="false"></xref> with the primary network interface of the scale set virtual machines. </p>
+  summary: <p>The stage of a virtual machine scale set update allowing to associate an inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithPrimaryInternetFacingLoadBalancerNatPool
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update
@@ -475,7 +475,7 @@ references:
   fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withPrimaryInternetFacingLoadBalancerBackends(String...backendNames)
   type: Method
   summary: >-
-    <p>Associate internet-facing load balancer backends with the primary network interface of the the virtual machines in the scale set.</p>
+    <p>Associates the specified backends of the selected load balancer with the primary network interface of the virtual machines in the scale set.</p>
 
     <p></p>
   syntax:
@@ -483,16 +483,7 @@ references:
     parameters:
     - id: backendNames
       type: 04d2b762
-      description: <p>the backend names </p>
+      description: <p>the names of existing backends in the selected load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the virtual machine scale set definition </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f.yml
-  name: VirtualMachineScaleSet.UpdateStages.WithPrimaryLoadBalancer
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryLoadBalancer
-  type: Interface
-  summary: <p>The stage of the virtual machine scale set update allowing to specify load balancers for the primary network interface of the scale set virtual machines. </p>
-  syntax:
-    content: public interface WithPrimaryLoadBalancer
+      description: <p>the next stage of the definition </p>
