@@ -3,7 +3,7 @@ uid: com.microsoft.azure.management.compute._virtual_machine
 summary: *content
 ---
 
-The code below demonstrates how to use the Java SDK's fluent syntax to create a new D3 size Linux Virtual Machine running Ubuntu 16.04 server in the Eastern US data center.
+The code below demonstrates how to use the Java SDK's fluent syntax to create a new [Standard D3](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-windows-sizes/#d-series) Linux Virtual Machine running Ubuntu 16.04 server in the Eastern US data center.
 
 ```java
 Azure azure = Azure.authenticate(propertiesFile).withDefaultSubscription();
