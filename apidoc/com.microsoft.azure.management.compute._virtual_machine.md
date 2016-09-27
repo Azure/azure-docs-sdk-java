@@ -1,6 +1,5 @@
 ---
 uid: com.microsoft.azure.management.compute._virtual_machine
-summary: [*content]
 ---
 
 The code below demonstrates how to use the Java SDK's fluent syntax to create a new Linux Virtual Machine. 
