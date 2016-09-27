@@ -5,7 +5,7 @@ remarks: [*content]
 
 The code below demonstrates how to use the Java SDK's fluent syntax to create a new Linux Virtual Machine. 
 
-```Java
+```java
 Azure azure = Azure.authenticate(propertiesFile).withDefaultSubscription();
 System.out.println("Creating a Linux VM");
 
