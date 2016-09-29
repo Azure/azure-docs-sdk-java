@@ -13,6 +13,7 @@ items:
   - com.microsoft.azure.management.compute._virtual_machine.extensions()
   - com.microsoft.azure.management.compute._virtual_machine.generalize()
   - com.microsoft.azure.management.compute._virtual_machine.getPrimaryPublicIpAddress()
+  - com.microsoft.azure.management.compute._virtual_machine.getPrimaryPublicIpAddressId()
   - com.microsoft.azure.management.compute._virtual_machine.instanceView()
   - com.microsoft.azure.management.compute._virtual_machine.licenseType()
   - com.microsoft.azure.management.compute._virtual_machine.osDiskCachingType()
@@ -23,7 +24,6 @@ items:
   - com.microsoft.azure.management.compute._virtual_machine.plan()
   - com.microsoft.azure.management.compute._virtual_machine.powerOff()
   - com.microsoft.azure.management.compute._virtual_machine.powerState()
-  - com.microsoft.azure.management.compute._virtual_machine.primaryPublicIpAddressId()
   - com.microsoft.azure.management.compute._virtual_machine.provisioningState()
   - com.microsoft.azure.management.compute._virtual_machine.redeploy()
   - com.microsoft.azure.management.compute._virtual_machine.refreshInstanceView()
@@ -50,12 +50,12 @@ items:
   syntax:
     content: public interface VirtualMachine extends GroupableResource,Refreshable< VirtualMachine >,Wrapper< VirtualMachineInner >,Updatable< VirtualMachine.Update >,HasNetworkInterfaces
   inheritedMembers:
+  - com.microsoft.azure.management.network.model._has_network_interfaces.getPrimaryNetworkInterface()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.id()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.name()
   - com.microsoft.azure.management.network.model._has_network_interfaces.networkInterfaceIds()
-  - com.microsoft.azure.management.network.model._has_network_interfaces.primaryNetworkInterface()
   - com.microsoft.azure.management.network.model._has_network_interfaces.primaryNetworkInterfaceId()
   - com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.region()
@@ -287,6 +287,25 @@ items:
     return:
       type: com.microsoft.azure.management.network._public_ip_address
       description: <p>the public IP of the primary network interface </p>
+- uid: com.microsoft.azure.management.compute._virtual_machine.getPrimaryPublicIpAddressId()
+  id: getPrimaryPublicIpAddressId()
+  parent: com.microsoft.azure.management.compute._virtual_machine
+  href: com.microsoft.azure.management.compute._virtual_machine.yml
+  langs:
+  - java
+  name: getPrimaryPublicIpAddressId()
+  fullName: String com.microsoft.azure.management.compute.VirtualMachine.getPrimaryPublicIpAddressId()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachine.java
+    startLine: 146
+  package: com.microsoft.azure.management.compute
+  syntax:
+    content: public String getPrimaryPublicIpAddressId()
+    return:
+      type: "26831127"
+      description: <p>the resource ID of the public IP address associated with this virtual machine's primary network interface </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine.instanceView()
   id: instanceView()
   parent: com.microsoft.azure.management.compute._virtual_machine
@@ -488,25 +507,6 @@ items:
     return:
       type: com.microsoft.azure.management.compute._power_state
       description: <p>the power state of the virtual machine </p>
-- uid: com.microsoft.azure.management.compute._virtual_machine.primaryPublicIpAddressId()
-  id: primaryPublicIpAddressId()
-  parent: com.microsoft.azure.management.compute._virtual_machine
-  href: com.microsoft.azure.management.compute._virtual_machine.yml
-  langs:
-  - java
-  name: primaryPublicIpAddressId()
-  fullName: String com.microsoft.azure.management.compute.VirtualMachine.primaryPublicIpAddressId()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachine.java
-    startLine: 146
-  package: com.microsoft.azure.management.compute
-  syntax:
-    content: public String primaryPublicIpAddressId()
-    return:
-      type: "26831127"
-      description: <p>the resource ID of the public IP address associated with this virtual machine's primary network interface </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine.provisioningState()
   id: provisioningState()
   parent: com.microsoft.azure.management.compute._virtual_machine
@@ -708,6 +708,23 @@ references:
     href: com.microsoft.azure.management.compute._virtual_machine_extension.yml
   - name: " >"
     fullName: " >"
+- uid: com.microsoft.azure.management.network.model._has_network_interfaces.getPrimaryNetworkInterface()
+  parent: com.microsoft.azure.management.network.model._has_network_interfaces
+  href: com.microsoft.azure.management.network.model._has_network_interfaces.yml
+  name: getPrimaryNetworkInterface()
+  fullName: NetworkInterface com.microsoft.azure.management.network.model.HasNetworkInterfaces.getPrimaryNetworkInterface()
+  type: Method
+  summary: >-
+    <p>Gets the primary network interface. </p>
+
+    <p>Note that this method can result in a call to the cloud to fetch the network interface information.</p>
+
+    <p></p>
+  syntax:
+    content: public NetworkInterface getPrimaryNetworkInterface()
+    return:
+      type: com.microsoft.azure.management.network._network_interface
+      description: <p>the primary network interface associated with this resource </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._resource.id()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._resource
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._resource.yml
@@ -763,23 +780,6 @@ references:
     return:
       type: f35af49b
       description: <p>the list of resource IDs of the network interfaces associated with this resource </p>
-- uid: com.microsoft.azure.management.network.model._has_network_interfaces.primaryNetworkInterface()
-  parent: com.microsoft.azure.management.network.model._has_network_interfaces
-  href: com.microsoft.azure.management.network.model._has_network_interfaces.yml
-  name: primaryNetworkInterface()
-  fullName: NetworkInterface com.microsoft.azure.management.network.model.HasNetworkInterfaces.primaryNetworkInterface()
-  type: Method
-  summary: >-
-    <p>Gets the primary network interface. </p>
-
-    <p>Note that this method can result in a call to the cloud to fetch the network interface information.</p>
-
-    <p></p>
-  syntax:
-    content: public NetworkInterface primaryNetworkInterface()
-    return:
-      type: com.microsoft.azure.management.network._network_interface
-      description: <p>the primary network interface associated with this resource </p>
 - uid: com.microsoft.azure.management.network.model._has_network_interfaces.primaryNetworkInterfaceId()
   parent: com.microsoft.azure.management.network.model._has_network_interfaces
   href: com.microsoft.azure.management.network.model._has_network_interfaces.yml
