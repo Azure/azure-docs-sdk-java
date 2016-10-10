@@ -56,7 +56,6 @@ $config | ConvertTo-Json | Out-File $scriptParent\code2yaml_updated.json -Force
 # run code2yaml to generate metadata yaml files
 & $code2yaml\code2yaml code2yaml_updated.json
 Remove-Item code2yaml_updated.json
-Remove-Item $code2yaml -recurse
 
 if ($lastexitcode -ne 0)
 {
