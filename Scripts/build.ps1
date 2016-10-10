@@ -39,22 +39,24 @@ $apiref = "api-ref"
 $code2yamlZip = "code2yaml.zip"
 $code2yaml = "code2yaml"
 $src = "src"
-Push-Location $scriptParent\$src
+Push-Location $scriptParent
 
 # unzip code2yaml.zip to src folder
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 if (Test-Path $code2yaml){
     Remove-Item $code2yaml\* -recurse -Force
 }
-Unzip $scriptHome\$code2yamlZip $scriptParent\$src\$code2yaml
+Unzip $scriptHome\$code2yamlZip $scriptParent\$code2yaml
 
 # update config
 $config = Get-Content $scriptParent\code2yaml.json -Raw | ConvertFrom-Json
-$config.output_path = "_javadocs"
-$config | ConvertTo-Json | Out-File "code2yaml.json" -Force
+$config | add-member -Name "output_path" -value "_javadocs" -MemberType NoteProperty
+$config | ConvertTo-Json | Out-File $scriptParent\code2yaml_updated.json -Force
 
 # run code2yaml to generate metadata yaml files
-& $code2yaml\code2yaml code2yaml.json
+& $code2yaml\code2yaml code2yaml_updated.json
+Remove-Item code2yaml_updated.json
+Remove-Item $code2yaml -recurse
 
 if ($lastexitcode -ne 0)
 {
