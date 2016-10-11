@@ -25,13 +25,13 @@ items:
 
     <p></p>
   syntax: &o1
-    content: public class CreateUpdateTask<ResourceT>
+    content: public class CreateUpdateTask<ResourceT> implements TaskItem< ResourceT >
     typeParameters:
     - type: ab77b02a
       description: <p>the type of the resource that this task creates or update </p>
   inheritance:
   - java.lang.Object
-  - com.microsoft.azure.TaskItem< ResourceT >
+  - com.microsoft.azure.management.resources.fluentcore.dag._task_item
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task.CreateUpdateTask(CreateUpdateTaskGroup.ResourceCreatorUpdator< ResourceT >)
   id: ResourceCreatorUpdator< ResourceT >)
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task
@@ -70,10 +70,18 @@ items:
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/model/implementation/CreateUpdateTask.java
     startLine: 31
   package: com.microsoft.azure.management.resources.fluentcore.model.implementation
+  summary: >-
+    <p>Executes the task asynchronously. </p>
+
+    <p>once executed the result will be available through result getter</p>
+
+    <p></p>
   syntax:
     content: public Observable< ResourceT > executeAsync()
     return:
       type: 712fce69
+      description: <p>the handle of the REST call </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.dag._task_item.executeAsync()
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task.result()
   id: result()
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task
@@ -92,6 +100,8 @@ items:
     content: public ResourceT result()
     return:
       type: ab77b02a
+      description: <p>the result of the task execution </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.dag._task_item.result()
 references:
 - uid: ab77b02a
   spec.java:
@@ -105,6 +115,21 @@ references:
   spec.java:
   - name: Observable< ResourceT >
     fullName: Observable< ResourceT >
+- uid: com.microsoft.azure.management.resources.fluentcore.dag._task_item
+  parent: com.microsoft.azure.management.resources.fluentcore.dag
+  href: com.microsoft.azure.management.resources.fluentcore.dag._task_item.yml
+  name: TaskItem<U>
+  fullName: com.microsoft.azure.management.resources.fluentcore.dag.TaskItem<U>
+  type: Interface
+  summary: >-
+    <p>Type representing a task in a task group <xref href="com.microsoft.azure.management.resources.fluentcore.dag._task_group" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public interface TaskItem<U>
+    typeParameters:
+    - type: 6043614c
+      description: <p>the task result type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
   href: com.microsoft.azure.management.resources.fluentcore.model.implementation._create_update_task.yml
@@ -116,3 +141,31 @@ references:
 
     <p></p>
   syntax: *o1
+- uid: com.microsoft.azure.management.resources.fluentcore.dag._task_item.result()
+  parent: com.microsoft.azure.management.resources.fluentcore.dag._task_item
+  href: com.microsoft.azure.management.resources.fluentcore.dag._task_item.yml
+  name: result()
+  fullName: U com.microsoft.azure.management.resources.fluentcore.dag.TaskItem< U >.result()
+  type: Method
+  syntax:
+    content: public U result()
+    return:
+      type: 6043614c
+      description: <p>the result of the task execution </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.dag._task_item.executeAsync()
+  parent: com.microsoft.azure.management.resources.fluentcore.dag._task_item
+  href: com.microsoft.azure.management.resources.fluentcore.dag._task_item.yml
+  name: executeAsync()
+  fullName: Observable<U> com.microsoft.azure.management.resources.fluentcore.dag.TaskItem< U >.executeAsync()
+  type: Method
+  summary: >-
+    <p>Executes the task asynchronously. </p>
+
+    <p>once executed the result will be available through result getter</p>
+
+    <p></p>
+  syntax:
+    content: public Observable< U > executeAsync()
+    return:
+      type: 455111cb
+      description: <p>the handle of the REST call </p>
