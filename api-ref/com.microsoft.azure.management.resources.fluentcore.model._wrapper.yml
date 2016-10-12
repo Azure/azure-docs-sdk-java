@@ -159,7 +159,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> virtual machine extension image type. </p>
   syntax:
-    content: public interface VirtualMachineExtensionImageType extends Wrapper< VirtualMachineExtensionImageInner >
+    content: public interface VirtualMachineExtensionImageType extends Wrapper< VirtualMachineExtensionImageInner >,HasName
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension_image_version
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension_image_version.yml
@@ -168,7 +168,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> virtual machine extension image version. </p>
   syntax:
-    content: public interface VirtualMachineExtensionImageVersion extends Wrapper< VirtualMachineExtensionImageInner >
+    content: public interface VirtualMachineExtensionImageVersion extends Wrapper< VirtualMachineExtensionImageInner >,HasName
 - uid: com.microsoft.azure.management.compute._virtual_machine_image
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_image.yml
@@ -241,24 +241,6 @@ references:
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Key <xref href="com.microsoft.azure.management.keyvault._vault" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface Vault extends GroupableResource,Refreshable< Vault >,Updatable< Vault.Update >,Wrapper< VaultInner >
-- uid: com.microsoft.azure.management.network._backend
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._backend.yml
-  name: Backend
-  fullName: com.microsoft.azure.management.network.Backend
-  type: Interface
-  summary: <p>An immutable client-side representation of an load balancer's backend address pool. </p>
-  syntax:
-    content: public interface Backend extends Wrapper< BackendAddressPoolInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
-- uid: com.microsoft.azure.management.network._frontend
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._frontend.yml
-  name: Frontend
-  fullName: com.microsoft.azure.management.network.Frontend
-  type: Interface
-  summary: <p>An immutable client-side representation of a load balancer frontend. </p>
-  syntax:
-    content: public interface Frontend extends Wrapper< FrontendIPConfigurationInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
 - uid: com.microsoft.azure.management.network._inbound_nat_pool
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._inbound_nat_pool.yml
@@ -286,6 +268,33 @@ references:
   summary: <p>Entry point for load balancer management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface LoadBalancer extends GroupableResource,Refreshable< LoadBalancer >,Wrapper< LoadBalancerInner >,Updatable< LoadBalancer.Update >,HasLoadBalancingRules
+- uid: com.microsoft.azure.management.network._load_balancer_backend
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer_backend.yml
+  name: LoadBalancerBackend
+  fullName: com.microsoft.azure.management.network.LoadBalancerBackend
+  type: Interface
+  summary: <p>An immutable client-side representation of an load balancer's backend address pool. </p>
+  syntax:
+    content: public interface LoadBalancerBackend extends Wrapper< BackendAddressPoolInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
+- uid: com.microsoft.azure.management.network._load_balancer_frontend
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer_frontend.yml
+  name: LoadBalancerFrontend
+  fullName: com.microsoft.azure.management.network.LoadBalancerFrontend
+  type: Interface
+  summary: <p>An immutable client-side representation of a load balancer frontend. </p>
+  syntax:
+    content: public interface LoadBalancerFrontend extends Wrapper< FrontendIPConfigurationInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules
+- uid: com.microsoft.azure.management.network._load_balancer_probe
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer_probe.yml
+  name: LoadBalancerProbe
+  fullName: com.microsoft.azure.management.network.LoadBalancerProbe
+  type: Interface
+  summary: <p>An immutable client-side representation of a load balancing probe. </p>
+  syntax:
+    content: public interface LoadBalancerProbe extends Wrapper< ProbeInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules,HasProtocol< ProbeProtocol >
 - uid: com.microsoft.azure.management.network._load_balancing_rule
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancing_rule.yml
@@ -346,15 +355,6 @@ references:
   summary: <p>An IP configuration in a network interface. </p>
   syntax:
     content: public interface NicIpConfiguration extends Wrapper< NetworkInterfaceIPConfigurationInner >,ChildResource< NetworkInterface >,HasPrivateIpAddress,HasPublicIpAddress,HasSubnet
-- uid: com.microsoft.azure.management.network._probe
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._probe.yml
-  name: Probe
-  fullName: com.microsoft.azure.management.network.Probe
-  type: Interface
-  summary: <p>An immutable client-side representation of a load balancing probe. </p>
-  syntax:
-    content: public interface Probe extends Wrapper< ProbeInner >,ChildResource< LoadBalancer >,HasLoadBalancingRules,HasProtocol< ProbeProtocol >
 - uid: com.microsoft.azure.management.network._public_ip_address
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._public_ip_address.yml
@@ -390,7 +390,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> deployment. </p>
   syntax:
-    content: public interface Deployment extends Refreshable< Deployment >,Updatable< Deployment.Update >,Wrapper< DeploymentExtendedInner >
+    content: public interface Deployment extends Refreshable< Deployment >,Updatable< Deployment.Update >,Wrapper< DeploymentExtendedInner >,HasName
 - uid: com.microsoft.azure.management.resources._deployment_export_result
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment_export_result.yml
@@ -417,7 +417,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> feature. </p>
   syntax:
-    content: public interface Feature extends Indexable,Wrapper< FeatureResultInner >
+    content: public interface Feature extends Indexable,Wrapper< FeatureResultInner >,HasName
 - uid: com.microsoft.azure.management.resources.fluentcore.model.implementatibf78e21cd3329b1b4ecec32d4a7438aa
   parent: com.microsoft.azure.management.resources.fluentcore.model.implementation
   href: com.microsoft.azure.management.resources.fluentcore.model.implementatibf78e21cd3329b1b4ecec32d4a7438aa.yml
@@ -485,7 +485,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> location. </p>
   syntax:
-    content: public interface Location extends Indexable,Wrapper< LocationInner >
+    content: public interface Location extends Indexable,Wrapper< LocationInner >,HasName
 - uid: com.microsoft.azure.management.resources._provider
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._provider.yml
@@ -503,7 +503,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource group. </p>
   syntax:
-    content: public interface ResourceGroup extends Indexable,Resource,Refreshable< ResourceGroup >,Wrapper< ResourceGroupInner >,Updatable< ResourceGroup.Update >
+    content: public interface ResourceGroup extends Indexable,Resource,Refreshable< ResourceGroup >,Wrapper< ResourceGroupInner >,Updatable< ResourceGroup.Update >,HasName
 - uid: com.microsoft.azure.management.resources._resource_group_export_result
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._resource_group_export_result.yml
