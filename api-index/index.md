@@ -1,10 +1,10 @@
 ---
-title: Azure Java API Reference
-description: Azure Java API Reference
+title: Azure Java SDK
+description: Java SDK and API Reference for Azure
 keywords: Azure Java, Azure Java API Reference, Azure Java class library
 author: allclark
 manager: douge
-ms.date: 09/26/2016
+ms.date: 10/13/2016
 ms.topic: managed-reference
 ms.prod: azure
 ms.technology: azure
@@ -12,283 +12,248 @@ ms.devlang: java
 ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 ---
 
-# Azure Java API reference
+#Azure Java SDK
 
-> This page was hand-authored by selecting summaries out of the individual namespace suorce files.
-> It will be automatically generated in the future.
+This article is based on the latest released preview version (1.0.0-beta3).
+If you are looking for other releases, see [Versions](#versions)
 
-## Namespaces in the Azure Java class library
+> **1.0.0-beta3** is a developer preview that supports major parts of Azure Virtual Machines,
+> Virtual Machine Scale Sets, Storage, Networking, Resource Manager, Key Vault and Batch.
+> The next preview version of the Azure Management Libraries for Java is a work in-progress.
+> We will be adding support for more Azure services and tweaking the API over the next few months.
 
-The following is a list of namespaces in the Azure Java class library. Each namespace contains a set of functionally-related types.
+**Azure Authentication**
 
-<table class="table table-bordered table-striped table-condensed">
-<thead>
-   <tr>
-      <th>Namespace</th>
-      <th>Description</th>
-   </tr>
-</thead>
-<tr>
-   <td><a href="com.microsoft.azure">com.microsoft.azure</a></td>
-   <td>This package contains the `com.microsoft.azure._azure` rollup client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch">com.microsoft.azure.batch</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.batch._batch_client`.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch.auth">com.microsoft.azure.batch.auth</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch.interceptor">com.microsoft.azure.batch.interceptor</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch.protocol">com.microsoft.azure.batch.protocol</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.batch.protocol._batch_service_client`.
-   A client for issuing REST requests to the `com.microsoft.azure._azure` Batch service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch.protocol.implementation">com.microsoft.azure.batch.protocol.implementation</a></td>
-   <td>This package contains the implementation classes for `com.microsoft.azure.batch.protocol._batch_service_client`.
-   A client for issuing REST requests to the `com.microsoft.azure._azure`
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.batch.protocol.models">com.microsoft.azure.batch.protocol.models</a></td>
-   <td>This package contains the models classes for `com.microsoft.azure.batch.protocol._batch_service_client`.
-   A client for issuing REST requests to the `com.microsoft.azure._azure` Batch service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.credentials">com.microsoft.azure.credentials</a></td>
-   <td>The package provides 2 credential classes that work with AutoRest generated `com.microsoft.azure._azure` clients for authentication purposes through `com.microsoft.azure._azure`.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault">com.microsoft.azure.keyvault</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.keyvault._key_vault_client`. Performs cryptographic key operations and vault operations against the Key Vault service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.authentication">com.microsoft.azure.keyvault.authentication</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.keyvault._key_vault_client`. Performs cryptographic key operations and vault operations against the Key Vault service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.core">com.microsoft.azure.keyvault.core</a></td>
-   <td>This package contains the interface for `com.microsoft.azure.keyvault.core._i_key` and `com.microsoft.azure.keyvault.core._i_key_resolver`.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.cryptography">com.microsoft.azure.keyvault.cryptography</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.cryptography.algorithms">com.microsoft.azure.keyvault.cryptography.algorithms</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.cryptography.test">com.microsoft.azure.keyvault.cryptography.test</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.extensions">com.microsoft.azure.keyvault.extensions</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.extensions.test">com.microsoft.azure.keyvault.extensions.test</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.models">com.microsoft.azure.keyvault.models</a></td>
-   <td>This package contains the models classes for `com.microsoft.azure.keyvault._key_vault_client`. Performs cryptographic key operations and vault operations against the Key Vault service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.requests">com.microsoft.azure.keyvault.requests</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.keyvault._key_vault_client`. Performs cryptographic key operations and vault operations against the Key Vault service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.test">com.microsoft.azure.keyvault.test</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.keyvault.webkey">com.microsoft.azure.keyvault.webkey</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.keyvault._key_vault_client`. Performs cryptographic key operations and vault operations against the Key Vault service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.compute">com.microsoft.azure.management.compute</a></td>
-   <td>This package contains the classes for ComputeManagementClient. The Compute Management Client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.compute.implementation">com.microsoft.azure.management.compute.implementation</a></td>
-   <td>This package contains the implementation classes for ComputeManagementClient. The Compute Management Client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.analytics">com.microsoft.azure.management.datalake.analytics</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.management.datalake.analytics._data_lake_analytics_catalog_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Analytics catalog client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.analytics.implementation">com.microsoft.azure.management.datalake.analytics.implementation</a></td>
-   <td>This package contains the implementation classes for `com.microsoft.azure.management.datalake.analytics._data_lake_analytics_catalog_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Analytics catalog client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.analytics.models">com.microsoft.azure.management.datalake.analytics.models</a></td>
-   <td>This package contains the models classes for `com.microsoft.azure.management.datalake.analytics._data_lake_analytics_catalog_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Analytics catalog client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.store">com.microsoft.azure.management.datalake.store</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.management.datalake.store._data_lake_store_file_system_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Store filesystem client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.store.implementation">com.microsoft.azure.management.datalake.store.implementation</a></td>
-   <td>This package contains the implementation classes for `com.microsoft.azure.management.datalake.store._data_lake_store_file_system_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Store filesystem client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.store.models">com.microsoft.azure.management.datalake.store.models</a></td>
-   <td>This package contains the models classes for `com.microsoft.azure.management.datalake.store._data_lake_store_file_system_management_client`. Creates an `com.microsoft.azure._azure` Data Lake Store filesystem client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.datalake.store.uploader">com.microsoft.azure.management.datalake.store.uploader</a></td>
-   <td>This package contains the classes for `com.microsoft.azure.management.datalake.store.uploader._data_lake_store_uploader`. The client used to efficiently and rapidly upload files into an `com.microsoft.azure._azure` Data Lake Store account.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.network">com.microsoft.azure.management.network</a></td>
-   <td>This package contains the classes for NetworkManagementClient. The Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._network` management API provides a RESTful set of web services that interact with Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._networks` service to manage your network resrources. The API has entities that capture the relationship between an end user and the Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._networks` service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.network.implementation">com.microsoft.azure.management.network.implementation</a></td>
-   <td>This package contains the implementation classes for NetworkManagementClient. The Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._network` management API provides a RESTful set of web services that interact with Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._networks` service to manage your network resrources. The API has entities that capture the relationship between an end user and the Microsoft `com.microsoft.azure._azure``com.microsoft.azure.management.network._networks` service.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources">com.microsoft.azure.management.resources</a></td>
-   <td>This package contains the classes for ResourceManagementClient.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm">com.microsoft.azure.management.resources.fluentcore.arm</a></td>
-   <td>This package contains the base class for resource collections.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm.collection">com.microsoft.azure.management.resources.fluentcore.arm.collection</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm.collection.implementation">com.microsoft.azure.management.resources.fluentcore.arm.collection.implementation</a></td>
-   <td>
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm.implementation">com.microsoft.azure.management.resources.fluentcore.arm.implementation</a></td>
-   <td>This package contains the implementations for ARM base classes.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm.models">com.microsoft.azure.management.resources.fluentcore.arm.models</a></td>
-   <td>This package contains the base classes for resource models.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.arm.models.implementation">com.microsoft.azure.management.resources.fluentcore.arm.models.implementation</a></td>
-   <td>This package contains the classes for ARM fluent core models implementation.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.collection">com.microsoft.azure.management.resources.fluentcore.collection</a></td>
-   <td>This package contains the classes for ARM fluent core models implementation.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.model">com.microsoft.azure.management.resources.fluentcore.model</a></td>
-   <td>This package contains the base implementation classes for resource models, and their variants for creating and updating scenarios.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.model.implementation">com.microsoft.azure.management.resources.fluentcore.model.implementation</a></td>
-   <td>This package contains the base implementation classes for resource models, and their variants for creating and updating scenarios.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.fluentcore.utils">com.microsoft.azure.management.resources.fluentcore.utils</a></td>
-   <td>This package contains a few utility classes for working with `com.microsoft.azure._azure` resources.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.resources.implementation">com.microsoft.azure.management.resources.implementation</a></td>
-   <td>This package contains the implementation classes for ResourceManagementClient.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.storage">com.microsoft.azure.management.storage</a></td>
-   <td>This package contains the classes for StorageManagementClient. The Storage Management Client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.storage.implementation">com.microsoft.azure.management.storage.implementation</a></td>
-   <td>This package contains the implementation classes for StorageManagementClient. The Storage Management Client.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.website">com.microsoft.azure.management.website</a></td>
-   <td>This package contains the classes for WebSiteManagementClient. Use these APIs to manage `com.microsoft.azure._azure` Websites resources through the `com.microsoft.azure._azure``com.microsoft.azure._resource` Manager. All task operations conform to the HTTP/1.1 protocol specification and each operation returns an x-ms-request-id header that can be used to obtain information about the request. You must make sure that requests made to these resources are secure. For more information, see <ulink url="https://msdn.microsoft.com/en-us/library/azure/dn790557.aspx">Authenticating Azure Resource Manager requests.</ulink>.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.management.website.implementation">com.microsoft.azure.management.website.implementation</a></td>
-   <td>This package contains the implementation classes for WebSiteManagementClient. Use these APIs to manage `com.microsoft.azure._azure` Websites resources through the `com.microsoft.azure._azure``com.microsoft.azure._resource` Manager. All task operations conform to the HTTP/1.1 protocol specification and each operation returns an x-ms-request-id header that can be used to obtain information about the request. You must make sure that requests made to these resources are secure. For more information, see <ulink url="https://msdn.microsoft.com/en-us/library/azure/dn790557.aspx">Authenticating Azure Resource Manager requests.</ulink>.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.azure.serializer">com.microsoft.azure.serializer</a></td>
-   <td>The package contains classes that handle serialization and deserialization for the REST call payloads in `com.microsoft.azure._azure`.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.rest">com.microsoft.rest</a></td>
-   <td>The package contains the runtime classes required for AutoRest generated clients to compile and function. To learn more about AutoRest generator, see <ulink url="https://github.com/azure/autorest">https://github.com/azure/autorest</ulink>.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.rest.credentials">com.microsoft.rest.credentials</a></td>
-   <td>The package provides 2 basic credential classes that work with AutoRest generated clients for authentication purposes.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.rest.retry">com.microsoft.rest.retry</a></td>
-   <td>The package contains classes that define the retry behaviors when an error occurs during a REST call.
-   </td>
-</tr>
-<tr>
-   <td><a href="com.microsoft.rest.serializer">com.microsoft.rest.serializer</a></td>
-   <td>The package contains classes that handle serialization and deserialization for the REST call payloads.
-   </td>
-</tr>
+The `Azure` class is the simplest entry point for creating and interacting with Azure resources.
+
+`Azure azure = Azure.authenticate(credFile).withDefaultSubscription();` 
+
+**Create a Virtual Machine**
+
+You can create a virtual machine instance by using a `define() … create()` method chain.
+
+```java
+System.out.println("Creating a Linux VM");
+
+VirtualMachine linuxVM = azure.virtualMachines().define("myLinuxVM")
+	.withRegion(Region.US_EAST)
+	.withNewResourceGroup(rgName)
+	.withNewPrimaryNetwork("10.0.0.0/28")
+	.withPrimaryPrivateIpAddressDynamic()
+	.withNewPrimaryPublicIpAddress("mylinuxvmdns")
+	.withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+	.withRootUserName("tirekicker")
+	.withSsh(sshKey)
+	.withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
+	.create();
+	
+System.out.println("Created a Linux VM: " + linuxVM.id());
+```
+
+**Update a Virtual Machine**
+
+You can update a virtual machine instance by using an `update() … apply()` method chain.
+
+```java
+linuxVM.update()
+    .defineNewDataDisk(dataDiskName)
+    .withSizeInGB(20)
+    .withCaching(CachingTypes.READ_WRITE)
+    .attach()
+    .apply();
+```
+**Create a Virtual Machine Scale Set**
+
+You can create a virtual machine scale set instance by using another `define() … create()` method chain.
+
+```java
+ VirtualMachineScaleSet virtualMachineScaleSet = azure.virtualMachineScaleSets()
+     .define(vmssName)
+     .withRegion(Region.US_EAST)
+     .withExistingResourceGroup(rgName)
+     .withSku(VirtualMachineScaleSetSkuTypes.STANDARD_D3_V2)
+     .withExistingPrimaryNetworkSubnet(network, "Front-end")
+     .withPrimaryInternetFacingLoadBalancer(loadBalancer1)
+     .withPrimaryInternetFacingLoadBalancerBackends(backendPoolName1, backendPoolName2)
+     .withPrimaryInternetFacingLoadBalancerInboundNatPools(natPool50XXto22, natPool60XXto23)
+     .withoutPrimaryInternalLoadBalancer()
+     .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+     .withRootUserName(userName)
+     .withSsh(sshKey)
+     .withNewStorageAccount(storageAccountName1)
+     .withNewStorageAccount(storageAccountName2)
+     .withCapacity(3)
+     .create();
+```
+
+**Create a Network Security Group**
+
+You can create a network security group instance by using another `define() … create()` method chain.
+
+```java
+NetworkSecurityGroup frontEndNSG = azure.networkSecurityGroups().define(frontEndNSGName)
+    .withRegion(Region.US_EAST)
+    .withNewResourceGroup(rgName)
+    .defineRule("ALLOW-SSH")
+        .allowInbound()
+        .fromAnyAddress()
+        .fromAnyPort()
+        .toAnyAddress()
+        .toPort(22)
+        .withProtocol(NetworkSecurityRule.Protocol.TCP)
+        .withPriority(100)
+        .withDescription("Allow SSH")
+        .attach()
+    .defineRule("ALLOW-HTTP")
+        .allowInbound()
+        .fromAnyAddress()
+        .fromAnyPort()
+        .toAnyAddress()
+        .toPort(80)
+        .withProtocol(NetworkSecurityRule.Protocol.TCP)
+        .withPriority(101)
+        .withDescription("Allow HTTP")
+        .attach()
+    .create();
+```
+
+
+#Sample Code
+
+You can find plenty of sample code that illustrates management scenarios in Azure Virtual Machines,
+Virtual Machine Scale Sets, Storage, Networking, Resource Manager, Key Vault and Batch … 
+
+<table>
+  <tr>
+    <th>Service</th>
+    <th>Management Scenario</th>
+  </tr>
+  <tr>
+    <td>Virtual Machines</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/compute-java-manage-vm">Manage virtual machine</a></li>
+<li><a href="https://github.com/Azure-Samples/compute-java-manage-availability-sets"> Manage availability set</li>
+<li><a href="https://github.com/Azure-Samples/compute-java-list-vm-images">List virtual machine images</li>
+<li><a href="https://github.com/Azure-Samples/compute-java-manage-virtual-machine-using-vm-extensions">Manage virtual machines using VM extensions</li>
+<li><a href="https://github.com/Azure-Samples/compute-java-list-vm-extension-images">List virtual machine extension images</li>
+</ul>
+</td>
+  </tr>
+  <tr>
+    <td>Virtual Machines - parallel execution</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="http://github.com/azure-samples/compute-java-manage-virtual-machines-in-parallel">Create multiple virtual machines in parallel</li>
+<li><a href="http://github.com/azure-samples/compute-java-manage-virtual-machines-with-network-in-parallel">Create multiple virtual machines with network in parallel</li>
+</ul></td>
+  </tr>
+  <tr>
+    <td>Virtual Machine Scale Sets</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/compute-java-manage-virtual-machine-scale-sets">Manage virtual machine scale sets (behind an Internet facing load balancer)</a></li>
+</ul></td>
+  </tr>
+  <tr>
+    <td>Storage</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/storage-java-manage-storage-accounts">Manage storage accounts</a></li>
+</ul></td>
+  </tr>
+  <tr>
+    <td>Network</td>
+    <td><ul style="list-style-type:circle">
+
+<li><a href="https://github.com/Azure-Samples/network-java-manage-virtual-network">Manage virtual network</a></li>
+<li><a href="https://github.com/Azure-Samples/network-java-manage-network-interface">Manage network interface</a></li>
+<li><a href="https://github.com/Azure-Samples/network-java-manage-network-security-group">Manage network security group</a></li>
+<li><a href="https://github.com/Azure-Samples/network-java-manage-ip-address">Manage IP address</a></li>
+<li><a href="https://github.com/Azure-Samples/network-java-manage-internet-facing-load-balancers">Manage Internet facing load balancers</a></li>
+<li><a href="https://github.com/Azure-Samples/network-java-manage-internal-load-balancers">Manage internal load balancers</a></li>
+</ul>
+</td>
+  </tr>
+  <tr>
+    <td>Resource Groups</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/resources-java-manage-resource-group">Manage resource groups</a></li>
+<li><a href="https://github.com/Azure-Samples/resources-java-manage-resource">Manage resources</a></li>
+<li><a href="https://github.com/Azure-Samples/resources-java-deploy-using-arm-template">Deploy resources with ARM templates</a></li>
+<li><a href="https://github.com/Azure-Samples/resources-java-deploy-using-arm-template-with-progress">Deploy resources with ARM templates (with progress)</a></li>
+</ul></td>
+  </tr>
+  <tr>
+    <td>Key Vault</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/key-vault-java-manage-key-vaults">Manage key vaults</a></li>
+</ul></td>
+  </tr>
+  <tr>
+    <td>Batch</td>
+    <td><ul style="list-style-type:circle">
+<li><a href="https://github.com/Azure-Samples/batch-java-manage-batch-accounts">Manage batch accounts</a></li>
+</ul></td>
+  </tr>
 </table>
+
+# Download
+
+
+**1.0.0-beta3**
+
+If you are using released builds from 1.0.0-beta3, add the following to your POM file:
+
+```xml
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure</artifactId>
+    <version>1.0.0-beta3</version>
+</dependency>
+```
+
+#Pre-requisites
+
+- A Java Developer Kit (JDK), v 1.7 or later
+- Maven
+- Azure Service Principal - see [how to create authentication info](./AUTH.md).
+
+
+## Help
+
+If you are migrating your code to 1.0.0-beta3, you can use these notes for
+[preparing your code for 1.0.0-beta3 from 1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java//notes/prepare-for-1.0.0-beta3.md).
+
+If you encounter any bugs with these libraries, please file issues using
+[Issues](https://github.com/Azure/azure-sdk-for-java/issues)
+or checkout [StackOverflow for Azure Java SDK](http://stackoverflow.com/questions/tagged/azure-java-sdk).
+
+#Contribute Code
+
+If you would like to become an active contributor to this project,
+follow the instructions provided in [Microsoft Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
+
+#More Information
+* [Javadoc](http://azure.github.io/azure-sdk-for-java)
+* [http://azure.com/java](http://azure.com/java)
+* If you don't have a Microsoft Azure subscription,
+  you can get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212)
+
+#Versions
+
+| Version           | SHA1                                                                                      | Remarks                                               |
+|-------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------|
+| 1.0.0-beta2       | [1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java/tree/1.0.0-beta2)               | Tagged release for 1.0.0-beta2 version of Azure management libraries |
+| 1.0.0-beta1       | [1.0.0-beta1](https://github.com/Azure/azure-sdk-for-java/tree/1.0.0-beta1)               | Maintenance branch for AutoRest generated raw clients |
+| 1.0.0-beta1+fixes | [v1.0.0-beta1+fixes](https://github.com/Azure/azure-sdk-for-java/tree/v1.0.0-beta1+fixes) | Stable build for AutoRest generated raw clients       |
+| 0.9.x-SNAPSHOTS   | [0.9](https://github.com/Azure/azure-sdk-for-java/tree/0.9)                               | Maintenance branch for service management libraries   |
+| 0.9.3             | [v0.9.3](https://github.com/Azure/azure-sdk-for-java/tree/v0.9.3)                         | Latest release for service management libraries       |
+
+---
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/)
+or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
