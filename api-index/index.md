@@ -1,7 +1,7 @@
 ---
-title: Azure Java SDK
+title: Azure SDK for Java
 description: Java SDK and API Reference for Azure
-keywords: Azure Java, Azure Java API Reference, Azure Java class library
+keywords: Azure Java, Azure Java API Reference, Azure Java class library, Azure SDK
 author: allclark
 manager: douge
 ms.date: 10/13/2016
@@ -19,14 +19,16 @@ If you are looking for other releases, see [Versions](#versions)
 
 > **1.0.0-beta3** is a developer preview that supports major parts of Azure Virtual Machines,
 > Virtual Machine Scale Sets, Storage, Networking, Resource Manager, Key Vault and Batch.
-> The next preview version of the Azure Management Libraries for Java is a work in-progress.
+> The next preview version of the Azure SDK for Java is a work in-progress.
 > We will be adding support for more Azure services and tweaking the API over the next few months.
 
 ## Authentication
 
-The `Azure` class is the simplest entry point for creating and interacting with Azure resources.
+Use the `Azure` class authenticate and connect to Azure resources.
 
 `Azure azure = Azure.authenticate(credFile).withDefaultSubscription();` 
+
+> See [how to create authentication info](https://github.com/Azure/azure-sdk-for-java/blob/master/AUTH.md).
 
 ## Sample Code
 
@@ -106,7 +108,7 @@ The `Azure` class is the simplest entry point for creating and interacting with 
 
 **1.0.0-beta3**
 
-If you are using released builds from 1.0.0-beta3, add the following to your POM file:
+If you're using released builds from 1.0.0-beta3, add the following to your POM file:
 
 ```xml
 <dependency>
@@ -120,13 +122,13 @@ If you are using released builds from 1.0.0-beta3, add the following to your POM
 
 - A Java Developer Kit (JDK), v 1.7 or later
 - Maven
-- Azure Service Principal - see [how to create authentication info](./AUTH.md).
+- Azure Service Principal - see [how to create authentication info](https://github.com/Azure/azure-sdk-for-java/blob/master/AUTH.md).
 
 
 ## Help
 
 If you are migrating your code to 1.0.0-beta3, you can use these notes for
-[preparing your code for 1.0.0-beta3 from 1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java//notes/prepare-for-1.0.0-beta3.md).
+[preparing your code for 1.0.0-beta3 from 1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java/notes/prepare-for-1.0.0-beta3.md).
 
 If you encounter any bugs with these libraries, please file issues using
 [Issues](https://github.com/Azure/azure-sdk-for-java/issues)
@@ -147,7 +149,7 @@ follow the instructions provided in [Microsoft Azure Projects Contribution Guide
 * [Javadoc](http://azure.github.io/azure-sdk-for-java)
 * [http://azure.com/java](http://azure.com/java)
 * If you don't have a Microsoft Azure subscription,
-  you can get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212)
+  you can get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212).
 
 ##Versions
 
