@@ -22,106 +22,13 @@ If you are looking for other releases, see [Versions](#versions)
 > The next preview version of the Azure Management Libraries for Java is a work in-progress.
 > We will be adding support for more Azure services and tweaking the API over the next few months.
 
-**Azure Authentication**
+## Authentication
 
 The `Azure` class is the simplest entry point for creating and interacting with Azure resources.
 
 `Azure azure = Azure.authenticate(credFile).withDefaultSubscription();` 
 
-**Create a Virtual Machine**
-
-You can create a virtual machine instance by using a `define() … create()` method chain.
-
-```java
-System.out.println("Creating a Linux VM");
-
-VirtualMachine linuxVM = azure.virtualMachines().define("myLinuxVM")
-	.withRegion(Region.US_EAST)
-	.withNewResourceGroup(rgName)
-	.withNewPrimaryNetwork("10.0.0.0/28")
-	.withPrimaryPrivateIpAddressDynamic()
-	.withNewPrimaryPublicIpAddress("mylinuxvmdns")
-	.withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-	.withRootUserName("tirekicker")
-	.withSsh(sshKey)
-	.withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
-	.create();
-	
-System.out.println("Created a Linux VM: " + linuxVM.id());
-```
-
-**Update a Virtual Machine**
-
-You can update a virtual machine instance by using an `update() … apply()` method chain.
-
-```java
-linuxVM.update()
-    .defineNewDataDisk(dataDiskName)
-    .withSizeInGB(20)
-    .withCaching(CachingTypes.READ_WRITE)
-    .attach()
-    .apply();
-```
-**Create a Virtual Machine Scale Set**
-
-You can create a virtual machine scale set instance by using another `define() … create()` method chain.
-
-```java
- VirtualMachineScaleSet virtualMachineScaleSet = azure.virtualMachineScaleSets()
-     .define(vmssName)
-     .withRegion(Region.US_EAST)
-     .withExistingResourceGroup(rgName)
-     .withSku(VirtualMachineScaleSetSkuTypes.STANDARD_D3_V2)
-     .withExistingPrimaryNetworkSubnet(network, "Front-end")
-     .withPrimaryInternetFacingLoadBalancer(loadBalancer1)
-     .withPrimaryInternetFacingLoadBalancerBackends(backendPoolName1, backendPoolName2)
-     .withPrimaryInternetFacingLoadBalancerInboundNatPools(natPool50XXto22, natPool60XXto23)
-     .withoutPrimaryInternalLoadBalancer()
-     .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-     .withRootUserName(userName)
-     .withSsh(sshKey)
-     .withNewStorageAccount(storageAccountName1)
-     .withNewStorageAccount(storageAccountName2)
-     .withCapacity(3)
-     .create();
-```
-
-**Create a Network Security Group**
-
-You can create a network security group instance by using another `define() … create()` method chain.
-
-```java
-NetworkSecurityGroup frontEndNSG = azure.networkSecurityGroups().define(frontEndNSGName)
-    .withRegion(Region.US_EAST)
-    .withNewResourceGroup(rgName)
-    .defineRule("ALLOW-SSH")
-        .allowInbound()
-        .fromAnyAddress()
-        .fromAnyPort()
-        .toAnyAddress()
-        .toPort(22)
-        .withProtocol(NetworkSecurityRule.Protocol.TCP)
-        .withPriority(100)
-        .withDescription("Allow SSH")
-        .attach()
-    .defineRule("ALLOW-HTTP")
-        .allowInbound()
-        .fromAnyAddress()
-        .fromAnyPort()
-        .toAnyAddress()
-        .toPort(80)
-        .withProtocol(NetworkSecurityRule.Protocol.TCP)
-        .withPriority(101)
-        .withDescription("Allow HTTP")
-        .attach()
-    .create();
-```
-
-
-#Sample Code
-
-You can find plenty of sample code that illustrates management scenarios in Azure Virtual Machines,
-Virtual Machine Scale Sets, Storage, Networking, Resource Manager, Key Vault and Batch … 
+## Sample Code
 
 <table>
   <tr>
@@ -194,7 +101,7 @@ Virtual Machine Scale Sets, Storage, Networking, Resource Manager, Key Vault and
   </tr>
 </table>
 
-# Download
+## Download
 
 
 **1.0.0-beta3**
@@ -209,7 +116,7 @@ If you are using released builds from 1.0.0-beta3, add the following to your POM
 </dependency>
 ```
 
-#Pre-requisites
+##Pre-requisites
 
 - A Java Developer Kit (JDK), v 1.7 or later
 - Maven
@@ -225,7 +132,7 @@ If you encounter any bugs with these libraries, please file issues using
 [Issues](https://github.com/Azure/azure-sdk-for-java/issues)
 or checkout [StackOverflow for Azure Java SDK](http://stackoverflow.com/questions/tagged/azure-java-sdk).
 
-#Contribute Code
+##Contribute Code
 
 If you would like to become an active contributor to this project,
 follow the instructions provided in [Microsoft Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
@@ -242,7 +149,7 @@ follow the instructions provided in [Microsoft Azure Projects Contribution Guide
 * If you don't have a Microsoft Azure subscription,
   you can get a FREE trial account [here](http://go.microsoft.com/fwlink/?LinkId=330212)
 
-#Versions
+##Versions
 
 | Version           | SHA1                                                                                      | Remarks                                               |
 |-------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------|
