@@ -20,15 +20,17 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 19
+    startLine: 21
   package: com.microsoft.azure.management.resources
   summary: <p>Entry point to generic resources management API. </p>
   syntax:
-    content: public interface GenericResources extends SupportsListingByGroup< GenericResource >,SupportsGettingById< GenericResource >,SupportsCreating< GenericResource.DefinitionStages.Blank >
+    content: public interface GenericResources extends SupportsListing< GenericResource >,SupportsListingByGroup< GenericResource >,SupportsListingByTag< GenericResource >,SupportsGettingById< GenericResource >,SupportsCreating< GenericResource.DefinitionStages.Blank >
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.collection._supports_creating.define(String)
   - com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_getting_by_id.getById(String)
+  - com.microsoft.azure.management.resources.fluentcore.collection._supports_listing.list()
   - com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group.listByGroup(String)
+  - com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag.listByTag(String,String,String)
 - uid: com.microsoft.azure.management.resources._generic_resources.checkExistence(String,String,String,String,String,String)
   id: checkExistence(String,String,String,String,String,String)
   parent: com.microsoft.azure.management.resources._generic_resources
@@ -41,7 +43,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 34
+    startLine: 38
   package: com.microsoft.azure.management.resources
   summary: >-
     <p>Checks if a resource exists in a resource group.</p>
@@ -83,7 +85,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 94
+    startLine: 98
   package: com.microsoft.azure.management.resources
   summary: >-
     <p>Delete resource and all of its child resources.</p>
@@ -122,7 +124,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 69
+    startLine: 73
   package: com.microsoft.azure.management.resources
   summary: <p>Returns a resource belonging to a resource group. </p>
   syntax:
@@ -155,7 +157,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 53
+    startLine: 57
   package: com.microsoft.azure.management.resources
   summary: >-
     <p>Returns a resource belonging to a resource group.</p>
@@ -197,7 +199,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/GenericResources.java
-    startLine: 82
+    startLine: 86
   package: com.microsoft.azure.management.resources
   summary: >-
     <p>Move resources from one resource group to another.</p>
@@ -268,6 +270,21 @@ references:
     return:
       type: 8ce1ecb9
       description: <p>an immutable representation of the resource </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._supports_listing.list()
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._supports_listing.yml
+  name: list()
+  fullName: PagedList<T> com.microsoft.azure.management.resources.fluentcore.collection.SupportsListing< T >.list()
+  type: Method
+  summary: >-
+    <p>Lists all the resources of the specified type in the currently selected subscription.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList< T > list()
+    return:
+      type: "52714982"
+      description: <p>list of resources </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group.listByGroup(String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group
   href: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group.yml
@@ -287,6 +304,48 @@ references:
     return:
       type: "52714982"
       description: <p>the list of resources </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag.listByTag(String,String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag
+  href: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag.yml
+  name: listByTag(String resourceGroupName, String tagName, String tagValue)
+  fullName: PagedList<T> com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsListingByTag< T >.listByTag(String resourceGroupName, String tagName, String tagValue)
+  type: Method
+  summary: >-
+    <p>Lists all the resources with the specified tag.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList< T > listByTag(String resourceGroupName, String tagName, String tagValue)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>the name of the resource group </p>
+    - id: tagName
+      type: "26831127"
+      description: <p>tag's name as the key </p>
+    - id: tagValue
+      type: "26831127"
+      description: <p>tag's value </p>
+    return:
+      type: "52714982"
+      description: <p>list of resources </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._supports_listing
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._supports_listing.yml
+  name: SupportsListing<T>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.SupportsListing<T>
+  type: Interface
+  summary: >-
+    <p>Provides access to listing <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface SupportsListing<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>the fluent type of the resource </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group
   parent: com.microsoft.azure.management.resources.fluentcore.arm.collection
   href: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_group.yml
@@ -304,6 +363,23 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the type of the resources listed. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.collection
+  href: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_listing_by_tag.yml
+  name: SupportsListingByTag<T>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsListingByTag<T>
+  type: Interface
+  summary: >-
+    <p>Provides access to listing <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type based on their tag. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface SupportsListingByTag<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>the fluent type of the resource </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_getting_by_id
   parent: com.microsoft.azure.management.resources.fluentcore.arm.collection
   href: com.microsoft.azure.management.resources.fluentcore.arm.collection._supports_getting_by_id.yml
@@ -343,7 +419,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> generic resource. </p>
   syntax:
-    content: public interface GenericResource extends GroupableResource,Refreshable< GenericResource >,Updatable< GenericResource.UpdateStages.WithApiVersion >,Wrapper< GenericResourceInner >
+    content: public interface GenericResource extends GroupableResource,Refreshable< GenericResource >,Updatable< GenericResource.Update >,Wrapper< GenericResourceInner >
 - uid: com.microsoft.azure.management.resources._resource_group
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._resource_group.yml

@@ -4,7 +4,6 @@ items:
   parent: com.microsoft.azure.management.network
   children:
   - com.microsoft.azure.management.network._network_security_group.defaultSecurityRules()
-  - com.microsoft.azure.management.network._network_security_group.listAssociatedSubnets()
   - com.microsoft.azure.management.network._network_security_group.networkInterfaceIds()
   - com.microsoft.azure.management.network._network_security_group.securityRules()
   href: com.microsoft.azure.management.network._network_security_group.yml
@@ -19,18 +18,19 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkSecurityGroup.java
-    startLine: 25
+    startLine: 26
   package: com.microsoft.azure.management.network
   summary: >-
     <p>
 
       <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> security group. </p>
   syntax:
-    content: public interface NetworkSecurityGroup extends GroupableResource,Refreshable< NetworkSecurityGroup >,Wrapper< NetworkSecurityGroupInner >,Updatable< NetworkSecurityGroup.Update >
+    content: public interface NetworkSecurityGroup extends GroupableResource,Refreshable< NetworkSecurityGroup >,Wrapper< NetworkSecurityGroupInner >,Updatable< NetworkSecurityGroup.Update >,HasAssociatedSubnets
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.id()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
+  - com.microsoft.azure.management.network.model._has_associated_subnets.listAssociatedSubnets()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.region()
@@ -52,32 +52,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkSecurityGroup.java
-    startLine: 42
+    startLine: 43
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map< String, NetworkSecurityRule > defaultSecurityRules()
     return:
       type: c90817d4com.microsoft.azure.management.network._network_security_rule9ec3e006
       description: <p>default security rules associated with this network security group, indexed by their name </p>
-- uid: com.microsoft.azure.management.network._network_security_group.listAssociatedSubnets()
-  id: listAssociatedSubnets()
-  parent: com.microsoft.azure.management.network._network_security_group
-  href: com.microsoft.azure.management.network._network_security_group.yml
-  langs:
-  - java
-  name: listAssociatedSubnets()
-  fullName: List<Subnet> com.microsoft.azure.management.network.NetworkSecurityGroup.listAssociatedSubnets()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkSecurityGroup.java
-    startLine: 53
-  package: com.microsoft.azure.management.network
-  syntax:
-    content: public List< Subnet > listAssociatedSubnets()
-    return:
-      type: f6a6204dcom.microsoft.azure.management.network._subnet9ec3e006
-      description: <p>virtual networks associated with this security group, indexed by the names of the specific subnets referencing this security group </p>
 - uid: com.microsoft.azure.management.network._network_security_group.networkInterfaceIds()
   id: networkInterfaceIds()
   parent: com.microsoft.azure.management.network._network_security_group
@@ -90,7 +71,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkSecurityGroup.java
-    startLine: 47
+    startLine: 48
   package: com.microsoft.azure.management.network
   syntax:
     content: public List< String > networkInterfaceIds()
@@ -109,7 +90,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkSecurityGroup.java
-    startLine: 37
+    startLine: 38
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map< String, NetworkSecurityRule > securityRules()
@@ -131,16 +112,6 @@ references:
   spec.java:
   - name: List< String >
     fullName: List< String >
-- uid: f6a6204dcom.microsoft.azure.management.network._subnet9ec3e006
-  spec.java:
-  - name: 'List< '
-    fullName: 'List< '
-  - uid: com.microsoft.azure.management.network._subnet
-    name: Subnet
-    fullName: com.microsoft.azure.management.network.Subnet
-    href: com.microsoft.azure.management.network._subnet.yml
-  - name: " >"
-    fullName: " >"
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._resource.id()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._resource
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._resource.yml
@@ -174,6 +145,17 @@ references:
     return:
       type: "26831127"
       description: <p>the index key. </p>
+- uid: com.microsoft.azure.management.network.model._has_associated_subnets.listAssociatedSubnets()
+  parent: com.microsoft.azure.management.network.model._has_associated_subnets
+  href: com.microsoft.azure.management.network.model._has_associated_subnets.yml
+  name: listAssociatedSubnets()
+  fullName: List<Subnet> com.microsoft.azure.management.network.model.HasAssociatedSubnets.listAssociatedSubnets()
+  type: Method
+  syntax:
+    content: public List< Subnet > listAssociatedSubnets()
+    return:
+      type: f6a6204dcom.microsoft.azure.management.network._subnet9ec3e006
+      description: <p>list of subnets associated with this resource </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -342,6 +324,15 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the fluent type of the resource </p>
+- uid: com.microsoft.azure.management.network.model._has_associated_subnets
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_associated_subnets.yml
+  name: HasAssociatedSubnets
+  fullName: com.microsoft.azure.management.network.model.HasAssociatedSubnets
+  type: Interface
+  summary: <p>An interface representing a model's ability to reference a list of associated subnets. </p>
+  syntax:
+    content: public interface HasAssociatedSubnets
 - uid: com.microsoft.azure.management.network.implementation._network_security_group_impl
 - uid: com.microsoft.azure.management.network._network_security_rule
   parent: com.microsoft.azure.management.network
@@ -352,15 +343,6 @@ references:
   summary: <p>A network security rule in a network security group. </p>
   syntax:
     content: public interface NetworkSecurityRule
-- uid: com.microsoft.azure.management.network._subnet
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._subnet.yml
-  name: Subnet
-  fullName: com.microsoft.azure.management.network.Subnet
-  type: Interface
-  summary: <p>An immutable client-side representation of a subnet of a virtual network. </p>
-  syntax:
-    content: public interface Subnet
 - uid: com.microsoft.azure.management.network._network
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._network.yml

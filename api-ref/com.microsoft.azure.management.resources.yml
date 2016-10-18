@@ -84,8 +84,10 @@ items:
   - com.microsoft.azure.management.resources._resource_provider_operation_display_properties
   - com.microsoft.azure.management.resources._resource_utils_tests
   - com.microsoft.azure.management.resources._sku
+  - com.microsoft.azure.management.resources._spending_limit
   - com.microsoft.azure.management.resources._subscription
   - com.microsoft.azure.management.resources._subscription_policies
+  - com.microsoft.azure.management.resources._subscription_state
   - com.microsoft.azure.management.resources._subscriptions
   - com.microsoft.azure.management.resources._subscriptions_tests
   - com.microsoft.azure.management.resources._tag_count
@@ -147,7 +149,7 @@ references:
   name: AliasPathType
   fullName: com.microsoft.azure.management.resources.AliasPathType
   type: Class
-  summary: <p>The <xref href="com.microsoft.azure.management.resources._alias_path_type" data-throw-if-not-resolved="false"></xref> model. </p>
+  summary: <p>The type of the paths for alias. </p>
   syntax:
     content: public class AliasPathType
 - uid: com.microsoft.azure.management.resources._alias_type
@@ -156,7 +158,7 @@ references:
   name: AliasType
   fullName: com.microsoft.azure.management.resources.AliasType
   type: Class
-  summary: <p>The <xref href="com.microsoft.azure.management.resources._alias_type" data-throw-if-not-resolved="false"></xref> model. </p>
+  summary: <p>The alias type. </p>
   syntax:
     content: public class AliasType
 - uid: com.microsoft.azure.management.resources._basic_dependency
@@ -337,7 +339,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> generic resource. </p>
   syntax:
-    content: public interface GenericResource extends GroupableResource,Refreshable< GenericResource >,Updatable< GenericResource.UpdateStages.WithApiVersion >,Wrapper< GenericResourceInner >
+    content: public interface GenericResource extends GroupableResource,Refreshable< GenericResource >,Updatable< GenericResource.Update >,Wrapper< GenericResourceInner >
 - uid: com.microsoft.azure.management.resources._generic_resource_filter
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._generic_resource_filter.yml
@@ -355,7 +357,7 @@ references:
   type: Interface
   summary: <p>Entry point to generic resources management API. </p>
   syntax:
-    content: public interface GenericResources extends SupportsListingByGroup< GenericResource >,SupportsGettingById< GenericResource >,SupportsCreating< GenericResource.DefinitionStages.Blank >
+    content: public interface GenericResources extends SupportsListing< GenericResource >,SupportsListingByGroup< GenericResource >,SupportsListingByTag< GenericResource >,SupportsGettingById< GenericResource >,SupportsCreating< GenericResource.DefinitionStages.Blank >
 - uid: com.microsoft.azure.management.resources._generic_resources_tests
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._generic_resources_tests.yml
@@ -576,6 +578,15 @@ references:
       <xref href="com.microsoft.azure.management.resources._sku" data-throw-if-not-resolved="false"></xref> for the resource. </p>
   syntax:
     content: public class Sku
+- uid: com.microsoft.azure.management.resources._spending_limit
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._spending_limit.yml
+  name: SpendingLimit
+  fullName: com.microsoft.azure.management.resources.SpendingLimit
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.resources._spending_limit" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum SpendingLimit
 - uid: com.microsoft.azure.management.resources._subscription
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._subscription.yml
@@ -606,6 +617,15 @@ references:
   summary: <p>Entry point to subscription management API. </p>
   syntax:
     content: public interface Subscriptions extends SupportsListing< Subscription >,SupportsGettingByName< Subscription >
+- uid: com.microsoft.azure.management.resources._subscription_state
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._subscription_state.yml
+  name: SubscriptionState
+  fullName: com.microsoft.azure.management.resources.SubscriptionState
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.resources._subscription_state" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum SubscriptionState
 - uid: com.microsoft.azure.management.resources._subscriptions_tests
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._subscriptions_tests.yml
@@ -667,6 +687,15 @@ references:
   type: Class
   syntax:
     content: public class TenantsTests
+- uid: com.microsoft.azure.management.resources._resource_group._definition_stages._blank
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._resource_group._definition_stages._blank.yml
+  name: ResourceGroup.DefinitionStages.Blank
+  fullName: com.microsoft.azure.management.resources.ResourceGroup.DefinitionStages.Blank
+  type: Interface
+  summary: <p>A resource group definition allowing location to be set. </p>
+  syntax:
+    content: public interface Blank extends Resource.DefinitionWithRegion< WithCreate >
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages._blank
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition_stages._blank.yml
@@ -685,15 +714,6 @@ references:
   summary: <p>A generic resource definition allowing region to be specified. </p>
   syntax:
     content: public interface Blank extends Resource.DefinitionWithRegion< WithGroup >
-- uid: com.microsoft.azure.management.resources._resource_group._definition_stages._blank
-  parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._resource_group._definition_stages._blank.yml
-  name: ResourceGroup.DefinitionStages.Blank
-  fullName: com.microsoft.azure.management.resources.ResourceGroup.DefinitionStages.Blank
-  type: Interface
-  summary: <p>A resource group definition allowing location to be set. </p>
-  syntax:
-    content: public interface Blank extends Resource.DefinitionWithRegion< WithCreate >
 - uid: com.microsoft.azure.management.resources._resource_connector._builder
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._resource_connector._builder.yml
@@ -709,6 +729,15 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the type of the connector to create. </p>
+- uid: com.microsoft.azure.management.resources._resource_group._definition
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._resource_group._definition.yml
+  name: ResourceGroup.Definition
+  fullName: com.microsoft.azure.management.resources.ResourceGroup.Definition
+  type: Interface
+  summary: <p>Container interface for all the definitions that need to be implemented. </p>
+  syntax:
+    content: public interface Definition extends ResourceGroup.DefinitionStages.Blank,ResourceGroup.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.resources._deployment._definition
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition.yml
@@ -727,15 +756,15 @@ references:
   summary: <p>The entirety of the generic resource definition. </p>
   syntax:
     content: public interface Definition extends GenericResource.DefinitionStages.Blank,GenericResource.DefinitionStages.WithGroup,GenericResource.DefinitionStages.WithResourceType,GenericResource.DefinitionStages.WithProviderNamespace,GenericResource.DefinitionStages.WithParentResource,GenericResource.DefinitionStages.WithPlan,GenericResource.DefinitionStages.WithApiVersion,GenericResource.DefinitionStages.WithCreate
-- uid: com.microsoft.azure.management.resources._resource_group._definition
+- uid: com.microsoft.azure.management.resources._resource_group._definition_stages
   parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._resource_group._definition.yml
-  name: ResourceGroup.Definition
-  fullName: com.microsoft.azure.management.resources.ResourceGroup.Definition
+  href: com.microsoft.azure.management.resources._resource_group._definition_stages.yml
+  name: ResourceGroup.DefinitionStages
+  fullName: com.microsoft.azure.management.resources.ResourceGroup.DefinitionStages
   type: Interface
-  summary: <p>Container interface for all the definitions that need to be implemented. </p>
+  summary: <p>Grouping of all the resource group definition stages. </p>
   syntax:
-    content: public interface Definition extends ResourceGroup.DefinitionStages.Blank,ResourceGroup.DefinitionStages.WithCreate
+    content: public interface DefinitionStages
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition_stages.yml
@@ -754,15 +783,18 @@ references:
   summary: <p>Grouping of generic resource definition stages. </p>
   syntax:
     content: public interface DefinitionStages
-- uid: com.microsoft.azure.management.resources._resource_group._definition_stages
+- uid: com.microsoft.azure.management.resources._resource_group._update
   parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._resource_group._definition_stages.yml
-  name: ResourceGroup.DefinitionStages
-  fullName: com.microsoft.azure.management.resources.ResourceGroup.DefinitionStages
+  href: com.microsoft.azure.management.resources._resource_group._update.yml
+  name: ResourceGroup.Update
+  fullName: com.microsoft.azure.management.resources.ResourceGroup.Update
   type: Interface
-  summary: <p>Grouping of all the resource group definition stages. </p>
+  summary: >-
+    <p>The template for a resource group update operation, containing all the settings that can be modified. </p>
+
+    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource group in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface DefinitionStages
+    content: public interface Update extends Appliable< ResourceGroup >,Resource.UpdateWithTags< Update >
 - uid: com.microsoft.azure.management.resources._deployment._update
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._update.yml
@@ -783,19 +815,7 @@ references:
   type: Interface
   summary: <p>The template for a generic resource update operation, containing all the settings that can be modified. </p>
   syntax:
-    content: public interface Update extends Appliable< GenericResource >,GenericResource.UpdateStages.WithPlan,GenericResource.UpdateStages.WithParentResource,GenericResource.UpdateStages.WithProperties,Resource.UpdateWithTags< Update >
-- uid: com.microsoft.azure.management.resources._resource_group._update
-  parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._resource_group._update.yml
-  name: ResourceGroup.Update
-  fullName: com.microsoft.azure.management.resources.ResourceGroup.Update
-  type: Interface
-  summary: >-
-    <p>The template for a resource group update operation, containing all the settings that can be modified. </p>
-
-    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource group in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface Update extends Appliable< ResourceGroup >,Resource.UpdateWithTags< Update >
+    content: public interface Update extends Appliable< GenericResource >,GenericResource.UpdateStages.WithApiVersion,GenericResource.UpdateStages.WithPlan,GenericResource.UpdateStages.WithParentResource,GenericResource.UpdateStages.WithProperties,Resource.UpdateWithTags< Update >
 - uid: com.microsoft.azure.management.resources._deployment._update_stages
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._update_stages.yml
@@ -803,15 +823,6 @@ references:
   fullName: com.microsoft.azure.management.resources.Deployment.UpdateStages
   type: Interface
   summary: <p>Grouping of all the deployment updates stages. </p>
-  syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.resources._generic_resource._update_stages
-  parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._generic_resource._update_stages.yml
-  name: GenericResource.UpdateStages
-  fullName: com.microsoft.azure.management.resources.GenericResource.UpdateStages
-  type: Interface
-  summary: <p>Grouping of generic resource update stages. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.resources._resource_group._update_stages
@@ -823,15 +834,15 @@ references:
   summary: <p>Grouping of all the resource group update stages. </p>
   syntax:
     content: public interface UpdateStages
-- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_api_version
+- uid: com.microsoft.azure.management.resources._generic_resource._update_stages
   parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_api_version.yml
-  name: GenericResource.DefinitionStages.WithApiVersion
-  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithApiVersion
+  href: com.microsoft.azure.management.resources._generic_resource._update_stages.yml
+  name: GenericResource.UpdateStages
+  fullName: com.microsoft.azure.management.resources.GenericResource.UpdateStages
   type: Interface
-  summary: <p>A generic resource definition allowing api version to be specified. </p>
+  summary: <p>Grouping of generic resource update stages. </p>
   syntax:
-    content: public interface WithApiVersion
+    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.resources._generic_resource._update_stages._with_api_version
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._generic_resource._update_stages._with_api_version.yml
@@ -839,6 +850,15 @@ references:
   fullName: com.microsoft.azure.management.resources.GenericResource.UpdateStages.WithApiVersion
   type: Interface
   summary: <p>The template for a generic resource update operation for specifying the resource provider API version. </p>
+  syntax:
+    content: public interface WithApiVersion
+- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_api_version
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_api_version.yml
+  name: GenericResource.DefinitionStages.WithApiVersion
+  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithApiVersion
+  type: Interface
+  summary: <p>A generic resource definition allowing api version to be specified. </p>
   syntax:
     content: public interface WithApiVersion
 - uid: com.microsoft.azure.management.resources._resource_group._definition_stages._with_create
@@ -850,15 +870,6 @@ references:
   summary: <p>A resource group definition with sufficient inputs to create a new resource group in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
     content: public interface WithCreate extends Creatable< ResourceGroup >,Resource.DefinitionWithTags< WithCreate >
-- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_create
-  parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_create.yml
-  name: GenericResource.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>A deployment definition with sufficient inputs to create a new resource in the cloud, but exposing additional optional inputs to specify. </p>
-  syntax:
-    content: public interface WithCreate extends GenericResource.DefinitionStages.WithParentResource,Creatable< GenericResource >,Resource.DefinitionWithTags< WithCreate >
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages._with_create
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition_stages._with_create.yml
@@ -868,15 +879,15 @@ references:
   summary: <p>A deployment definition with sufficient inputs to create a new deployment in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
     content: public interface WithCreate extends Creatable< Deployment >
-- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_group
+- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_create
   parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_group.yml
-  name: GenericResource.DefinitionStages.WithGroup
-  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithGroup
+  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_create.yml
+  name: GenericResource.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithCreate
   type: Interface
-  summary: <p>A generic resource definition allowing resource group to be specified. </p>
+  summary: <p>A deployment definition with sufficient inputs to create a new resource in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
-    content: public interface WithGroup extends GroupableResource.DefinitionStages.WithGroup< WithResourceType >
+    content: public interface WithCreate extends GenericResource.DefinitionStages.WithParentResource,Creatable< GenericResource >,Resource.DefinitionWithTags< WithCreate >
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages._with_group
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition_stages._with_group.yml
@@ -886,15 +897,15 @@ references:
   summary: <p>A deployment definition allowing resource group to be specified. </p>
   syntax:
     content: public interface WithGroup extends GroupableResource.DefinitionStages.WithExistingResourceGroup< WithTemplate >
-- uid: com.microsoft.azure.management.resources._deployment._update_stages._with_mode
+- uid: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_group
   parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._deployment._update_stages._with_mode.yml
-  name: Deployment.UpdateStages.WithMode
-  fullName: com.microsoft.azure.management.resources.Deployment.UpdateStages.WithMode
+  href: com.microsoft.azure.management.resources._generic_resource._definition_stages._with_group.yml
+  name: GenericResource.DefinitionStages.WithGroup
+  fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithGroup
   type: Interface
-  summary: <p>A deployment update allowing to change the deployment mode. </p>
+  summary: <p>A generic resource definition allowing resource group to be specified. </p>
   syntax:
-    content: public interface WithMode
+    content: public interface WithGroup extends GroupableResource.DefinitionStages.WithGroup< WithResourceType >
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages._with_mode
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._deployment._definition_stages._with_mode.yml
@@ -902,6 +913,15 @@ references:
   fullName: com.microsoft.azure.management.resources.Deployment.DefinitionStages.WithMode
   type: Interface
   summary: <p>A deployment definition allowing the deployment mode to be specified. </p>
+  syntax:
+    content: public interface WithMode
+- uid: com.microsoft.azure.management.resources._deployment._update_stages._with_mode
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._deployment._update_stages._with_mode.yml
+  name: Deployment.UpdateStages.WithMode
+  fullName: com.microsoft.azure.management.resources.Deployment.UpdateStages.WithMode
+  type: Interface
+  summary: <p>A deployment update allowing to change the deployment mode. </p>
   syntax:
     content: public interface WithMode
 - uid: com.microsoft.azure.management.resources._deployment._definition_stages._with_parameters
@@ -922,15 +942,6 @@ references:
   summary: <p>A deployment update allowing to change the parameters. </p>
   syntax:
     content: public interface WithParameters
-- uid: com.microsoft.azure.management.resources._generic_resource._update_stages._with_parent_resource
-  parent: com.microsoft.azure.management.resources
-  href: com.microsoft.azure.management.resources._generic_resource._update_stages._with_parent_resource.yml
-  name: GenericResource.UpdateStages.WithParentResource
-  fullName: com.microsoft.azure.management.resources.GenericResource.UpdateStages.WithParentResource
-  type: Interface
-  summary: <p>A generic resource update allowing to change the parent resource. </p>
-  syntax:
-    content: public interface WithParentResource
 - uid: com.microsoft.azure.management.resources._generic_resource._definitio4d69ae035372aa8dcb42ed1867c2ca77
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._generic_resource._definitio4d69ae035372aa8dcb42ed1867c2ca77.yml
@@ -938,6 +949,15 @@ references:
   fullName: com.microsoft.azure.management.resources.GenericResource.DefinitionStages.WithParentResource
   type: Interface
   summary: <p>A generic resource definition allowing parent resource to be specified. </p>
+  syntax:
+    content: public interface WithParentResource
+- uid: com.microsoft.azure.management.resources._generic_resource._update_stages._with_parent_resource
+  parent: com.microsoft.azure.management.resources
+  href: com.microsoft.azure.management.resources._generic_resource._update_stages._with_parent_resource.yml
+  name: GenericResource.UpdateStages.WithParentResource
+  fullName: com.microsoft.azure.management.resources.GenericResource.UpdateStages.WithParentResource
+  type: Interface
+  summary: <p>A generic resource update allowing to change the parent resource. </p>
   syntax:
     content: public interface WithParentResource
 - uid: com.microsoft.azure.management.resources._generic_resource._update_stages._with_plan
