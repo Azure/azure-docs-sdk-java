@@ -5,9 +5,12 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
   - com.microsoft.azure.management.resources.fluentcore.arm.models._external_child_resource
   - com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet._update_stages
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child
   - com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource
   - com.microsoft.azure.management.resources.fluentcore.arm.models._parentless_child_resource
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource
@@ -20,10 +23,10 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09
   - com.microsoft.azure.management.resources.fluentcore.arm.models.79156392b6c7de52796e84f59ad1464d
   - com.microsoft.azure.management.resources.fluentcore.arm.models.8840de0f1834fe83a2ad6c366b5a0555
-  - com.microsoft.azure.management.resources.fluentcore.arm.models.88a7a9660aab29c2698ab1faab5a3db7
   - com.microsoft.azure.management.resources.fluentcore.arm.models.9c014e99091be50528513a9a81da5b2c
-  - com.microsoft.azure.management.resources.fluentcore.arm.models.b83273630e2c45216fcde5653b531e74
+  - com.microsoft.azure.management.resources.fluentcore.arm.models.c0ce448e975bd57a0efd2ca8181a8369
   - com.microsoft.azure.management.resources.fluentcore.arm.models.c2f0776979e0cb50d2b104de3287f808
+  - com.microsoft.azure.management.resources.fluentcore.arm.models.c5f4d1d61f4fb1b92fb0d51bd3b63be8
   - com.microsoft.azure.management.resources.fluentcore.arm.models.cc886a44baad4eb853a2f81dc3f52e65
   - com.microsoft.azure.management.resources.fluentcore.arm.models.dbfbbdbee7995a15c28ff28c0e9f840f
   - com.microsoft.azure.management.resources.fluentcore.arm.models.f2161385b1a9b0a59b0e528834b2f06f
@@ -90,7 +93,16 @@ references:
   type: Interface
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource extends Resource
+    content: public interface GroupableResource extends Resource,HasResourceGroup
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.yml
+  name: HasId
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasId
+  type: Interface
+  summary: <p>An interface representing a model that has a resource group name. </p>
+  syntax:
+    content: public interface HasId
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -100,6 +112,15 @@ references:
   summary: <p>An interface representing a model that has a name. </p>
   syntax:
     content: public interface HasName
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group.yml
+  name: HasResourceGroup
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasResourceGroup
+  type: Interface
+  summary: <p>An interface representing a model that has a resource group name. </p>
+  syntax:
+    content: public interface HasResourceGroup
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet.yml
@@ -109,6 +130,15 @@ references:
   summary: <p>An interface representing a model's ability to reference a subnet by its name and network's ID. </p>
   syntax:
     content: public interface HasSubnet
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child.yml
+  name: IndependentChild
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChild
+  type: Interface
+  summary: <p>Interface for the child resource which can be CRUDed independently from the parent resource. </p>
+  syntax:
+    content: public interface IndependentChild extends HasName,HasId,HasResourceGroup
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource.yml
@@ -117,7 +147,7 @@ references:
   type: Interface
   summary: <p>Interface for the child resource which can be CRUDed independently from the parent resource. </p>
   syntax:
-    content: public interface IndependentChildResource extends GroupableResource
+    content: public interface IndependentChildResource extends GroupableResource,IndependentChild
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._parentless_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._parentless_child_resource.yml
@@ -138,7 +168,7 @@ references:
   type: Interface
   summary: <p>Base interfaces for fluent resources. </p>
   syntax:
-    content: public interface Resource extends Indexable,HasName
+    content: public interface Resource extends Indexable,HasId,HasName
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.22f0e5e09fc55a866285a82898a1199b
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models.22f0e5e09fc55a866285a82898a1199b.yml
@@ -157,11 +187,11 @@ references:
   summary: <p>Grouping of definition stages involving associating an existing subnet with a resource. </p>
   syntax:
     content: public interface DefinitionStages
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.b83273630e2c45216fcde5653b531e74
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.c5f4d1d61f4fb1b92fb0d51bd3b63be8
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models.b83273630e2c45216fcde5653b531e74.yml
-  name: IndependentChildResource.DefinitionStages
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource.DefinitionStages
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models.c5f4d1d61f4fb1b92fb0d51bd3b63be8.yml
+  name: IndependentChild.DefinitionStages
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChild.DefinitionStages
   type: Interface
   summary: <p>Grouping of all the definition stages. </p>
   syntax:
@@ -327,11 +357,11 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the next stage of the resource definition </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.88a7a9660aab29c2698ab1faab5a3db7
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.c0ce448e975bd57a0efd2ca8181a8369
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models.88a7a9660aab29c2698ab1faab5a3db7.yml
-  name: IndependentChildResource.DefinitionStages.WithParentResource<T,ParentT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource.DefinitionStages.WithParentResource<T,ParentT>
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models.c0ce448e975bd57a0efd2ca8181a8369.yml
+  name: IndependentChild.DefinitionStages.WithParentResource<T,ParentT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChild.DefinitionStages.WithParentResource<T,ParentT>
   type: Interface
   summary: >-
     <p>A resource definition allowing a new resource group to be created.</p>
@@ -344,6 +374,18 @@ references:
       description: <p>the resource type. </p>
     - type: 18a275b1
       description: <p>parent resource type. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.c2f0776979e0cb50d2b104de3287f808
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models.c2f0776979e0cb50d2b104de3287f808.yml
+  name: HasSubnet.UpdateStages.WithSubnet<ReturnT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasSubnet.UpdateStages.WithSubnet<ReturnT>
+  type: Interface
+  summary: <p>The stage of an update allowing to associate a subnet with a resource. </p>
+  syntax:
+    content: public interface WithSubnet<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.feec00187b44006d1134916f89c070c7
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models.feec00187b44006d1134916f89c070c7.yml
@@ -368,15 +410,3 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.c2f0776979e0cb50d2b104de3287f808
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models.c2f0776979e0cb50d2b104de3287f808.yml
-  name: HasSubnet.UpdateStages.WithSubnet<ReturnT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasSubnet.UpdateStages.WithSubnet<ReturnT>
-  type: Interface
-  summary: <p>The stage of an update allowing to associate a subnet with a resource. </p>
-  syntax:
-    content: public interface WithSubnet<ReturnT>
-    typeParameters:
-    - type: c1a5ebc4
-      description: <p>the next stage of the update </p>
