@@ -22,14 +22,14 @@ items:
   - com.microsoft.azure.storage.table._cloud_table.execute(final TableBatchOperation,TableRequestOptions,OperationContext)
   - com.microsoft.azure.storage.table._cloud_table.execute(final TableOperation)
   - com.microsoft.azure.storage.table._cloud_table.execute(final TableOperation,final TableRequestOptions,final OperationContext)
-  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery< T >)
-  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery< T >,final TableRequestOptions,final OperationContext)
-  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver< R >)
-  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver< R >,final TableRequestOptions,final OperationContext)
-  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery< T >,final ResultContinuation)
-  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery< T >,final ResultContinuation,final TableRequestOptions,final OperationContext)
-  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation)
-  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation,final TableRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver<R>)
+  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver<R>,final TableRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<T>)
+  - com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<T>,final TableRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation)
+  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation,final TableRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<T>,final ResultContinuation)
+  - com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<T>,final ResultContinuation,final TableRequestOptions,final OperationContext)
   - com.microsoft.azure.storage.table._cloud_table.exists()
   - com.microsoft.azure.storage.table._cloud_table.exists(TableRequestOptions,OperationContext)
   - com.microsoft.azure.storage.table._cloud_table.generateSharedAccessSignature(final SharedAccessTablePolicy,final String,final String,final String,final String,final String)
@@ -524,13 +524,13 @@ items:
 
     <p></p>
   syntax:
-    content: public ArrayList< TableResult > execute(final TableBatchOperation batch)
+    content: public ArrayList<TableResult> execute(final TableBatchOperation batch)
     parameters:
     - id: batch
       type: 93de0ef9com.microsoft.azure.storage.table._table_batch_operation
       description: <p>The <xref href="com.microsoft.azure.storage.table._table_batch_operation" data-throw-if-not-resolved="false"></xref> object representing the operations to execute on the table.</p>
     return:
-      type: dd5a36b5com.microsoft.azure.storage.table._table_result9ec3e006
+      type: 573b1e0bcom.microsoft.azure.storage.table._table_resulta08ddfce
       description: <p>A <code>java.util.ArrayList</code> of <xref href="com.microsoft.azure.storage.table._table_result" data-throw-if-not-resolved="false"></xref> that contains the results, in order, of each <xref href="com.microsoft.azure.storage.table._table_operation" data-throw-if-not-resolved="false"></xref> in the <xref href="com.microsoft.azure.storage.table._table_batch_operation" data-throw-if-not-resolved="false"></xref> on the named table.</p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
@@ -558,7 +558,7 @@ items:
 
     <p></p>
   syntax:
-    content: public ArrayList< TableResult > execute(final TableBatchOperation batch, TableRequestOptions options, OperationContext opContext)
+    content: public ArrayList<TableResult> execute(final TableBatchOperation batch, TableRequestOptions options, OperationContext opContext)
     parameters:
     - id: batch
       type: 93de0ef9com.microsoft.azure.storage.table._table_batch_operation
@@ -570,7 +570,7 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
     return:
-      type: dd5a36b5com.microsoft.azure.storage.table._table_result9ec3e006
+      type: 573b1e0bcom.microsoft.azure.storage.table._table_resulta08ddfce
       description: <p>A <code>java.util.ArrayList</code> of <xref href="com.microsoft.azure.storage.table._table_result" data-throw-if-not-resolved="false"></xref> that contains the results, in order, of each <xref href="com.microsoft.azure.storage.table._table_operation" data-throw-if-not-resolved="false"></xref> in the <xref href="com.microsoft.azure.storage.table._table_batch_operation" data-throw-if-not-resolved="false"></xref> on the named table.</p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
@@ -647,80 +647,14 @@ items:
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>if an error occurs accessing the storage service, or the operation fails. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery< T >)
-  id: execute(final TableQuery< T >)
+- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver<R>)
+  id: execute(final TableQuery<?>,final EntityResolver<R>)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: execute(final TableQuery< T > query)
-  fullName: public<T extends TableEntity> Iterable<T> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery< T > query)
-  type: Method
-  source:
-    remote: *o0
-    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
-    startLine: 611
-  package: com.microsoft.azure.storage.table
-  summary: >-
-    <p>Executes a query. </p>
-
-    <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
-
-    <p></p>
-  syntax:
-    content: public < T extends TableEntity > Iterable< T > execute(final TableQuery< T > query)
-    parameters:
-    - id: query
-      type: 93de0ef9com.microsoft.azure.storage.table._table_query34132889
-      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>.</p>
-    return:
-      type: dbd9c9f7com.microsoft.azure.storage.table._table_entity35e61cbd
-      description: <p>A collection implementing the <code>Iterable</code> interface specialized for type T of the results of executing the query. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery< T >,final TableRequestOptions,final OperationContext)
-  id: execute(final TableQuery< T >,final TableRequestOptions,final OperationContext)
-  parent: com.microsoft.azure.storage.table._cloud_table
-  href: com.microsoft.azure.storage.table._cloud_table.yml
-  langs:
-  - java
-  name: execute(final TableQuery< T > query, final TableRequestOptions options, final OperationContext opContext)
-  fullName: public<T extends TableEntity> Iterable<T> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery< T > query, final TableRequestOptions options, final OperationContext opContext)
-  type: Method
-  source:
-    remote: *o0
-    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
-    startLine: 643
-  package: com.microsoft.azure.storage.table
-  summary: >-
-    <p>Executes a query, using the specified <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref>. </p>
-
-    <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
-
-    <p>Use the <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> to override execution options such as the timeout or retry policy for the operation.</p>
-
-    <p></p>
-  syntax:
-    content: public < T extends TableEntity > Iterable< T > execute(final TableQuery< T > query, final TableRequestOptions options, final OperationContext opContext)
-    parameters:
-    - id: query
-      type: 93de0ef9com.microsoft.azure.storage.table._table_query34132889
-      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>. </p>
-    - id: options
-      type: 93de0ef9com.microsoft.azure.storage.table._table_request_options
-      description: <p>A <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> object that specifies execution options such as retry policy and timeout settings for the operation. Specify <code>null</code> to use the request options specified on the <xref href="com.microsoft.azure.storage.table._cloud_table_client" data-throw-if-not-resolved="false"></xref>. </p>
-    - id: opContext
-      type: 93de0ef9com.microsoft.azure.storage._operation_context
-      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
-    return:
-      type: dbd9c9f7com.microsoft.azure.storage.table._table_entity35e61cbd
-      description: <p>A collection implementing the <code>Iterable</code> interface specialized for type T of the results of executing the query. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver< R >)
-  id: execute(final TableQuery<?>,final EntityResolver< R >)
-  parent: com.microsoft.azure.storage.table._cloud_table
-  href: com.microsoft.azure.storage.table._cloud_table.yml
-  langs:
-  - java
-  name: execute(final TableQuery<?> query, final EntityResolver< R > resolver)
-  fullName: public<R> Iterable<R> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<?> query, final EntityResolver< R > resolver)
+  name: execute(final TableQuery<?> query, final EntityResolver<R> resolver)
+  fullName: public<R> Iterable<R> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<?> query, final EntityResolver<R> resolver)
   type: Method
   source:
     remote: *o0
@@ -734,25 +668,25 @@ items:
 
     <p></p>
   syntax:
-    content: public < R > Iterable< R > execute(final TableQuery<?> query, final EntityResolver< R > resolver)
+    content: public <R> Iterable<R> execute(final TableQuery<?> query, final EntityResolver<R> resolver)
     parameters:
     - id: query
       type: 93de0ef9com.microsoft.azure.storage.table._table_query7e6ad1eb
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use. </p>
     - id: resolver
-      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolvercaef3478
+      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolverfd3666e9
       description: <p>An <xref href="com.microsoft.azure.storage.table._entity_resolver" data-throw-if-not-resolved="false"></xref> instance which creates a projection of the table query result entities into the specified type <code>R</code>.</p>
     return:
-      type: e4a2f423
+      type: 7fd78b9f
       description: <p>A collection implementing the <code>Iterable</code> interface containing the projection into type <code>R</code> of the results of executing the query. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver< R >,final TableRequestOptions,final OperationContext)
-  id: execute(final TableQuery<?>,final EntityResolver< R >,final TableRequestOptions,final OperationContext)
+- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<?>,final EntityResolver<R>,final TableRequestOptions,final OperationContext)
+  id: execute(final TableQuery<?>,final EntityResolver<R>,final TableRequestOptions,final OperationContext)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: execute(final TableQuery<?> query, final EntityResolver< R > resolver, final TableRequestOptions options, final OperationContext opContext)
-  fullName: public<R> Iterable<R> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<?> query, final EntityResolver< R > resolver, final TableRequestOptions options, final OperationContext opContext)
+  name: execute(final TableQuery<?> query, final EntityResolver<R> resolver, final TableRequestOptions options, final OperationContext opContext)
+  fullName: public<R> Iterable<R> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<?> query, final EntityResolver<R> resolver, final TableRequestOptions options, final OperationContext opContext)
   type: Method
   source:
     remote: *o0
@@ -768,13 +702,13 @@ items:
 
     <p></p>
   syntax:
-    content: public < R > Iterable< R > execute(final TableQuery<?> query, final EntityResolver< R > resolver, final TableRequestOptions options, final OperationContext opContext)
+    content: public <R> Iterable<R> execute(final TableQuery<?> query, final EntityResolver<R> resolver, final TableRequestOptions options, final OperationContext opContext)
     parameters:
     - id: query
       type: 93de0ef9com.microsoft.azure.storage.table._table_query7e6ad1eb
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use. </p>
     - id: resolver
-      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolvercaef3478
+      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolverfd3666e9
       description: <p>An <xref href="com.microsoft.azure.storage.table._entity_resolver" data-throw-if-not-resolved="false"></xref> instance which creates a projection of the table query result entities into the specified type <code>R</code>. </p>
     - id: options
       type: 93de0ef9com.microsoft.azure.storage.table._table_request_options
@@ -783,59 +717,53 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._operation_context
       description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
     return:
-      type: e4a2f423
+      type: 7fd78b9f
       description: <p>A collection implementing the <code>Iterable</code> interface containing the projection into type <code>R</code> of the results of executing the query. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery< T >,final ResultContinuation)
-  id: executeSegmented(final TableQuery< T >,final ResultContinuation)
+- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<T>)
+  id: execute(final TableQuery<T>)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken)
-  fullName: public<T extends TableEntity> ResultSegment<T> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken)
+  name: execute(final TableQuery<T> query)
+  fullName: public<T extends TableEntity> Iterable<T> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<T> query)
   type: Method
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
-    startLine: 764
+    startLine: 611
   package: com.microsoft.azure.storage.table
   summary: >-
-    <p>Executes a query in segmented mode with a <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> continuation token. Executing a query with  allows the query to be resumed after returning partial results, using information returned by the server in the <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> object. </p>
+    <p>Executes a query. </p>
 
     <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
 
     <p></p>
   syntax:
-    content: public < T extends TableEntity > ResultSegment< T > executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken)
+    content: public <T extends TableEntity> Iterable<T> execute(final TableQuery<T> query)
     parameters:
     - id: query
-      type: 93de0ef9com.microsoft.azure.storage.table._table_query34132889
-      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>. </p>
-    - id: continuationToken
-      type: 93de0ef9com.microsoft.azure.storage._result_continuation
-      description: <p>A <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object representing a continuation token from the server when the operation returns a partial result. Specify <code>null</code> on the initial call. Call the <xref href="com.microsoft.azure.storage._result_segment.getContinuationToken()" data-throw-if-not-resolved="false"></xref> method on the result to obtain the <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object to use in the next call to resume the query.</p>
+      type: 93de0ef9com.microsoft.azure.storage.table._table_query669339f7
+      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>.</p>
     return:
-      type: dbd9c9f7com.microsoft.azure.storage.table._table_entityc08707c3com.microsoft.azure.storage._result_segment34132889
-      description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> specialized for type T of the results of executing the query.</p>
-  exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
-    description: <p>if a storage service error occurred during the operation. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery< T >,final ResultContinuation,final TableRequestOptions,final OperationContext)
-  id: executeSegmented(final TableQuery< T >,final ResultContinuation,final TableRequestOptions,final OperationContext)
+      type: 36136266com.microsoft.azure.storage.table._table_entityc8ac5ead
+      description: <p>A collection implementing the <code>Iterable</code> interface specialized for type T of the results of executing the query. </p>
+- uid: com.microsoft.azure.storage.table._cloud_table.execute(final TableQuery<T>,final TableRequestOptions,final OperationContext)
+  id: execute(final TableQuery<T>,final TableRequestOptions,final OperationContext)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
-  fullName: public<T extends TableEntity> ResultSegment<T> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+  name: execute(final TableQuery<T> query, final TableRequestOptions options, final OperationContext opContext)
+  fullName: public<T extends TableEntity> Iterable<T> com.microsoft.azure.storage.table.CloudTable.execute(final TableQuery<T> query, final TableRequestOptions options, final OperationContext opContext)
   type: Method
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
-    startLine: 807
+    startLine: 643
   package: com.microsoft.azure.storage.table
   summary: >-
-    <p>Executes a query in segmented mode with a <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> continuation token, using the specified <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref>. Executing a query with  allows the query to be resumed after returning partial results, using information returned by the server in the <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> object. </p>
+    <p>Executes a query, using the specified <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref>. </p>
 
     <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
 
@@ -843,14 +771,11 @@ items:
 
     <p></p>
   syntax:
-    content: public < T extends TableEntity > ResultSegment< T > executeSegmented(final TableQuery< T > query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+    content: public <T extends TableEntity> Iterable<T> execute(final TableQuery<T> query, final TableRequestOptions options, final OperationContext opContext)
     parameters:
     - id: query
-      type: 93de0ef9com.microsoft.azure.storage.table._table_query34132889
+      type: 93de0ef9com.microsoft.azure.storage.table._table_query669339f7
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>. </p>
-    - id: continuationToken
-      type: 93de0ef9com.microsoft.azure.storage._result_continuation
-      description: <p>A <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object representing a continuation token from the server when the operation returns a partial result. Specify <code>null</code> on the initial call. Call the <xref href="com.microsoft.azure.storage._result_segment.getContinuationToken()" data-throw-if-not-resolved="false"></xref> method on the result to obtain the <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object to use in the next call to resume the query. </p>
     - id: options
       type: 93de0ef9com.microsoft.azure.storage.table._table_request_options
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> object that specifies execution options such as retry policy and timeout settings for the operation. Specify <code>null</code> to use the request options specified on the <xref href="com.microsoft.azure.storage.table._cloud_table_client" data-throw-if-not-resolved="false"></xref>. </p>
@@ -858,19 +783,16 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._operation_context
       description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
     return:
-      type: dbd9c9f7com.microsoft.azure.storage.table._table_entityc08707c3com.microsoft.azure.storage._result_segment34132889
-      description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> specialized for type T of the results of executing the query.</p>
-  exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
-    description: <p>if a storage service error occurred during the operation. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation)
-  id: executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation)
+      type: 36136266com.microsoft.azure.storage.table._table_entityc8ac5ead
+      description: <p>A collection implementing the <code>Iterable</code> interface specialized for type T of the results of executing the query. </p>
+- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation)
+  id: executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken)
-  fullName: public<R> ResultSegment<R> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken)
+  name: executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken)
+  fullName: public<R> ResultSegment<R> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken)
   type: Method
   source:
     remote: *o0
@@ -884,31 +806,31 @@ items:
 
     <p></p>
   syntax:
-    content: public < R > ResultSegment< R > executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken)
+    content: public <R> ResultSegment<R> executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken)
     parameters:
     - id: query
       type: 93de0ef9com.microsoft.azure.storage.table._table_query7e6ad1eb
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use. </p>
     - id: resolver
-      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolvercaef3478
+      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolverfd3666e9
       description: <p>An <xref href="com.microsoft.azure.storage.table._entity_resolver" data-throw-if-not-resolved="false"></xref> instance which creates a projection of the table query result entities into the specified type <code>R</code>. </p>
     - id: continuationToken
       type: 93de0ef9com.microsoft.azure.storage._result_continuation
       description: <p>A <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object representing a continuation token from the server when the operation returns a partial result. Specify <code>null</code> on the initial call. Call the <xref href="com.microsoft.azure.storage._result_segment.getContinuationToken()" data-throw-if-not-resolved="false"></xref> method on the result to obtain the <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object to use in the next call to resume the query.</p>
     return:
-      type: 2fd36f42com.microsoft.azure.storage._result_segmentcaef3478
+      type: e3976708com.microsoft.azure.storage._result_segmentfd3666e9
       description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> containing the projection into type <code>R</code> of the results of executing the query.</p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>if a storage service error occurred during the operation. </p>
-- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation,final TableRequestOptions,final OperationContext)
-  id: executeSegmented(final TableQuery<?>,final EntityResolver< R >,final ResultContinuation,final TableRequestOptions,final OperationContext)
+- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation,final TableRequestOptions,final OperationContext)
+  id: executeSegmented(final TableQuery<?>,final EntityResolver<R>,final ResultContinuation,final TableRequestOptions,final OperationContext)
   parent: com.microsoft.azure.storage.table._cloud_table
   href: com.microsoft.azure.storage.table._cloud_table.yml
   langs:
   - java
-  name: executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
-  fullName: public<R> ResultSegment<R> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+  name: executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+  fullName: public<R> ResultSegment<R> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
   type: Method
   source:
     remote: *o0
@@ -924,13 +846,13 @@ items:
 
     <p></p>
   syntax:
-    content: public < R > ResultSegment< R > executeSegmented(final TableQuery<?> query, final EntityResolver< R > resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+    content: public <R> ResultSegment<R> executeSegmented(final TableQuery<?> query, final EntityResolver<R> resolver, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
     parameters:
     - id: query
       type: 93de0ef9com.microsoft.azure.storage.table._table_query7e6ad1eb
       description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use. </p>
     - id: resolver
-      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolvercaef3478
+      type: 93de0ef9com.microsoft.azure.storage.table._entity_resolverfd3666e9
       description: <p>An <xref href="com.microsoft.azure.storage.table._entity_resolver" data-throw-if-not-resolved="false"></xref> instance which creates a projection of the table query result entities into the specified type <code>R</code>. </p>
     - id: continuationToken
       type: 93de0ef9com.microsoft.azure.storage._result_continuation
@@ -942,8 +864,86 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._operation_context
       description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
     return:
-      type: 2fd36f42com.microsoft.azure.storage._result_segmentcaef3478
+      type: e3976708com.microsoft.azure.storage._result_segmentfd3666e9
       description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> containing the projection into type <code>R</code> of the results of executing the query.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>if a storage service error occurred during the operation. </p>
+- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<T>,final ResultContinuation)
+  id: executeSegmented(final TableQuery<T>,final ResultContinuation)
+  parent: com.microsoft.azure.storage.table._cloud_table
+  href: com.microsoft.azure.storage.table._cloud_table.yml
+  langs:
+  - java
+  name: executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken)
+  fullName: public<T extends TableEntity> ResultSegment<T> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
+    startLine: 764
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Executes a query in segmented mode with a <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> continuation token. Executing a query with  allows the query to be resumed after returning partial results, using information returned by the server in the <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> object. </p>
+
+    <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
+
+    <p></p>
+  syntax:
+    content: public <T extends TableEntity> ResultSegment<T> executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken)
+    parameters:
+    - id: query
+      type: 93de0ef9com.microsoft.azure.storage.table._table_query669339f7
+      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>. </p>
+    - id: continuationToken
+      type: 93de0ef9com.microsoft.azure.storage._result_continuation
+      description: <p>A <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object representing a continuation token from the server when the operation returns a partial result. Specify <code>null</code> on the initial call. Call the <xref href="com.microsoft.azure.storage._result_segment.getContinuationToken()" data-throw-if-not-resolved="false"></xref> method on the result to obtain the <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object to use in the next call to resume the query.</p>
+    return:
+      type: 36136266com.microsoft.azure.storage.table._table_entity410a1f1ccom.microsoft.azure.storage._result_segment669339f7
+      description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> specialized for type T of the results of executing the query.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>if a storage service error occurred during the operation. </p>
+- uid: com.microsoft.azure.storage.table._cloud_table.executeSegmented(final TableQuery<T>,final ResultContinuation,final TableRequestOptions,final OperationContext)
+  id: executeSegmented(final TableQuery<T>,final ResultContinuation,final TableRequestOptions,final OperationContext)
+  parent: com.microsoft.azure.storage.table._cloud_table
+  href: com.microsoft.azure.storage.table._cloud_table.yml
+  langs:
+  - java
+  name: executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+  fullName: public<T extends TableEntity> ResultSegment<T> com.microsoft.azure.storage.table.CloudTable.executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/CloudTable.java
+    startLine: 807
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Executes a query in segmented mode with a <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> continuation token, using the specified <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref>. Executing a query with  allows the query to be resumed after returning partial results, using information returned by the server in the <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> object. </p>
+
+    <p>This method will invoke a <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179421.aspx">Query Entities</ulink> operation on the <ulink url="http://msdn.microsoft.com/en-us/library/azure/dd179423.aspx">Table Service REST API</ulink> to query the table, using the Table service endpoint and storage account credentials of this instance.</p>
+
+    <p>Use the <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> to override execution options such as the timeout or retry policy for the operation.</p>
+
+    <p></p>
+  syntax:
+    content: public <T extends TableEntity> ResultSegment<T> executeSegmented(final TableQuery<T> query, final ResultContinuation continuationToken, final TableRequestOptions options, final OperationContext opContext)
+    parameters:
+    - id: query
+      type: 93de0ef9com.microsoft.azure.storage.table._table_query669339f7
+      description: <p>A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance specifying the table to query and the query parameters to use, specialized for a type T implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref>. </p>
+    - id: continuationToken
+      type: 93de0ef9com.microsoft.azure.storage._result_continuation
+      description: <p>A <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object representing a continuation token from the server when the operation returns a partial result. Specify <code>null</code> on the initial call. Call the <xref href="com.microsoft.azure.storage._result_segment.getContinuationToken()" data-throw-if-not-resolved="false"></xref> method on the result to obtain the <xref href="com.microsoft.azure.storage._result_continuation" data-throw-if-not-resolved="false"></xref> object to use in the next call to resume the query. </p>
+    - id: options
+      type: 93de0ef9com.microsoft.azure.storage.table._table_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.table._table_request_options" data-throw-if-not-resolved="false"></xref> object that specifies execution options such as retry policy and timeout settings for the operation. Specify <code>null</code> to use the request options specified on the <xref href="com.microsoft.azure.storage.table._cloud_table_client" data-throw-if-not-resolved="false"></xref>. </p>
+    - id: opContext
+      type: 93de0ef9com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object for tracking the current operation. Specify <code>null</code> to safely ignore operation context.</p>
+    return:
+      type: 36136266com.microsoft.azure.storage.table._table_entity410a1f1ccom.microsoft.azure.storage._result_segment669339f7
+      description: <p>A <xref href="com.microsoft.azure.storage._result_segment" data-throw-if-not-resolved="false"></xref> specialized for type T of the results of executing the query.</p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>if a storage service error occurred during the operation. </p>
@@ -1309,16 +1309,16 @@ references:
     name: TableBatchOperation
     fullName: com.microsoft.azure.storage.table.TableBatchOperation
     href: com.microsoft.azure.storage.table._table_batch_operation.yml
-- uid: dd5a36b5com.microsoft.azure.storage.table._table_result9ec3e006
+- uid: 573b1e0bcom.microsoft.azure.storage.table._table_resulta08ddfce
   spec.java:
-  - name: 'ArrayList< '
-    fullName: 'ArrayList< '
+  - name: ArrayList<
+    fullName: ArrayList<
   - uid: com.microsoft.azure.storage.table._table_result
     name: TableResult
     fullName: com.microsoft.azure.storage.table.TableResult
     href: com.microsoft.azure.storage.table._table_result.yml
-  - name: " >"
-    fullName: " >"
+  - name: '>'
+    fullName: '>'
 - uid: 93de0ef9com.microsoft.azure.storage.table._table_operation
   spec.java:
   - name: 'final '
@@ -1397,7 +1397,7 @@ references:
     href: com.microsoft.azure.storage.table._table_query.yml
   - name: <?>
     fullName: <?>
-- uid: 93de0ef9com.microsoft.azure.storage.table._entity_resolvercaef3478
+- uid: 93de0ef9com.microsoft.azure.storage.table._entity_resolverfd3666e9
   spec.java:
   - name: 'final '
     fullName: 'final '
@@ -1405,13 +1405,13 @@ references:
     name: EntityResolver
     fullName: com.microsoft.azure.storage.table.EntityResolver
     href: com.microsoft.azure.storage.table._entity_resolver.yml
-  - name: < R >
-    fullName: < R >
-- uid: e4a2f423
+  - name: <R>
+    fullName: <R>
+- uid: 7fd78b9f
   spec.java:
-  - name: < R > Iterable< R >
-    fullName: < R > Iterable< R >
-- uid: 93de0ef9com.microsoft.azure.storage.table._table_query34132889
+  - name: <R> Iterable<R>
+    fullName: <R> Iterable<R>
+- uid: 93de0ef9com.microsoft.azure.storage.table._table_query669339f7
   spec.java:
   - name: 'final '
     fullName: 'final '
@@ -1419,18 +1419,18 @@ references:
     name: TableQuery
     fullName: com.microsoft.azure.storage.table.TableQuery
     href: com.microsoft.azure.storage.table._table_query.yml
-  - name: < T >
-    fullName: < T >
-- uid: dbd9c9f7com.microsoft.azure.storage.table._table_entity35e61cbd
+  - name: <T>
+    fullName: <T>
+- uid: 36136266com.microsoft.azure.storage.table._table_entityc8ac5ead
   spec.java:
-  - name: '< T extends '
-    fullName: '< T extends '
+  - name: '<T extends '
+    fullName: '<T extends '
   - uid: com.microsoft.azure.storage.table._table_entity
     name: TableEntity
     fullName: com.microsoft.azure.storage.table.TableEntity
     href: com.microsoft.azure.storage.table._table_entity.yml
-  - name: " > Iterable< T >"
-    fullName: " > Iterable< T >"
+  - name: '> Iterable<T>'
+    fullName: '> Iterable<T>'
 - uid: 93de0ef9com.microsoft.azure.storage._result_continuation
   spec.java:
   - name: 'final '
@@ -1439,32 +1439,32 @@ references:
     name: ResultContinuation
     fullName: com.microsoft.azure.storage.ResultContinuation
     href: com.microsoft.azure.storage._result_continuation.yml
-- uid: 2fd36f42com.microsoft.azure.storage._result_segmentcaef3478
+- uid: e3976708com.microsoft.azure.storage._result_segmentfd3666e9
   spec.java:
-  - name: '< R > '
-    fullName: '< R > '
+  - name: '<R> '
+    fullName: '<R> '
   - uid: com.microsoft.azure.storage._result_segment
     name: ResultSegment
     fullName: com.microsoft.azure.storage.ResultSegment
     href: com.microsoft.azure.storage._result_segment.yml
-  - name: < R >
-    fullName: < R >
-- uid: dbd9c9f7com.microsoft.azure.storage.table._table_entityc08707c3com.microsoft.azure.storage._result_segment34132889
+  - name: <R>
+    fullName: <R>
+- uid: 36136266com.microsoft.azure.storage.table._table_entity410a1f1ccom.microsoft.azure.storage._result_segment669339f7
   spec.java:
-  - name: '< T extends '
-    fullName: '< T extends '
+  - name: '<T extends '
+    fullName: '<T extends '
   - uid: com.microsoft.azure.storage.table._table_entity
     name: TableEntity
     fullName: com.microsoft.azure.storage.table.TableEntity
     href: com.microsoft.azure.storage.table._table_entity.yml
-  - name: " > "
-    fullName: " > "
+  - name: '> '
+    fullName: '> '
   - uid: com.microsoft.azure.storage._result_segment
     name: ResultSegment
     fullName: com.microsoft.azure.storage.ResultSegment
     href: com.microsoft.azure.storage._result_segment.yml
-  - name: < T >
-    fullName: < T >
+  - name: <T>
+    fullName: <T>
 - uid: "44102508"
   spec.java:
   - name: URISyntaxException
@@ -1626,7 +1626,7 @@ references:
   summary: >-
     <p>A class which represents a query against a specified table. A <xref href="com.microsoft.azure.storage.table._table_query" data-throw-if-not-resolved="false"></xref> instance aggregates the query parameters to use when the query is executed. One of the  or  methods of <xref href="com.microsoft.azure.storage.table._cloud_table_client" data-throw-if-not-resolved="false"></xref> must be called to execute the query. The parameters are encoded and passed to the server when the table query is executed. </p>
 
-    <p>To create a table query with fluent syntax, the <xref href="com.microsoft.azure.storage.table._table_query.from(final Class&lt; T &gt;)" data-throw-if-not-resolved="false"></xref> static factory method and the <xref href="com.microsoft.azure.storage.table._table_query.where(final String)" data-throw-if-not-resolved="false"></xref>, <xref href="com.microsoft.azure.storage.table._table_query.select(final String[])" data-throw-if-not-resolved="false"></xref>, and <xref href="com.microsoft.azure.storage.table._table_query.take(final Integer)" data-throw-if-not-resolved="false"></xref> mutator methods each return a reference to the object which can be chained into a single expression. Use the <ref refid="" kindref="compound">from(Class)</ref> static class factory method to create a  instance that executes on the named table with entities of the specified <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> implementing type. Use the <xref href="com.microsoft.azure.storage.table._table_query.where(final String)" data-throw-if-not-resolved="false"></xref> method to specify a filter expression for the entities returned. Use the <xref href="com.microsoft.azure.storage.table._table_query.select(final String[])" data-throw-if-not-resolved="false"></xref> method to specify the table entity properties to return. Use the <xref href="com.microsoft.azure.storage.table._table_query.take(final Integer)" data-throw-if-not-resolved="false"></xref> method to limit the number of entities returned by the query. Note that nothing prevents calling these methods more than once on a , so the values saved in the  will be the last encountered in order of execution. </p>
+    <p>To create a table query with fluent syntax, the <xref href="com.microsoft.azure.storage.table._table_query.from(final Class&lt;T&gt;)" data-throw-if-not-resolved="false"></xref> static factory method and the <xref href="com.microsoft.azure.storage.table._table_query.where(final String)" data-throw-if-not-resolved="false"></xref>, <xref href="com.microsoft.azure.storage.table._table_query.select(final String[])" data-throw-if-not-resolved="false"></xref>, and <xref href="com.microsoft.azure.storage.table._table_query.take(final Integer)" data-throw-if-not-resolved="false"></xref> mutator methods each return a reference to the object which can be chained into a single expression. Use the <ref refid="" kindref="compound">from(Class)</ref> static class factory method to create a  instance that executes on the named table with entities of the specified <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> implementing type. Use the <xref href="com.microsoft.azure.storage.table._table_query.where(final String)" data-throw-if-not-resolved="false"></xref> method to specify a filter expression for the entities returned. Use the <xref href="com.microsoft.azure.storage.table._table_query.select(final String[])" data-throw-if-not-resolved="false"></xref> method to specify the table entity properties to return. Use the <xref href="com.microsoft.azure.storage.table._table_query.take(final Integer)" data-throw-if-not-resolved="false"></xref> method to limit the number of entities returned by the query. Note that nothing prevents calling these methods more than once on a , so the values saved in the  will be the last encountered in order of execution. </p>
 
     <p>As an example, you could construct a table query using fluent syntax: </p>
 
@@ -1723,7 +1723,7 @@ references:
   parent: com.microsoft.azure.storage._result_segment
   href: com.microsoft.azure.storage._result_segment.yml
   name: getContinuationToken()
-  fullName: ResultContinuation com.microsoft.azure.storage.ResultSegment< T >.getContinuationToken()
+  fullName: ResultContinuation com.microsoft.azure.storage.ResultSegment<T>.getContinuationToken()
   type: Method
   summary: >-
     <p>Returns the continuation token for the result segment.</p>
