@@ -12,6 +12,7 @@ items:
   - com.microsoft.azure.management.sql._database_secure_connection_access
   - com.microsoft.azure.management.sql._edition_capability
   - com.microsoft.azure.management.sql._elastic_pool_editions
+  - com.microsoft.azure.management.sql._elastic_pool_state
   - com.microsoft.azure.management.sql._engine_audit_records_filter_parameters
   - com.microsoft.azure.management.sql._error_info
   - com.microsoft.azure.management.sql._impact_record
@@ -30,7 +31,6 @@ items:
   - com.microsoft.azure.management.sql._recoverable_database_editions
   - com.microsoft.azure.management.sql._replication_role
   - com.microsoft.azure.management.sql._replication_state
-  - com.microsoft.azure.management.sql._resource_move_definition
   - com.microsoft.azure.management.sql._restore_point_types
   - com.microsoft.azure.management.sql._server_connection_types
   - com.microsoft.azure.management.sql._server_disaster_recovery_auto_failover
@@ -40,6 +40,7 @@ items:
   - com.microsoft.azure.management.sql._server_version
   - com.microsoft.azure.management.sql._server_version_capability
   - com.microsoft.azure.management.sql._service_objective_capability
+  - com.microsoft.azure.management.sql._service_objective_name
   - com.microsoft.azure.management.sql._sql_database
   - com.microsoft.azure.management.sql._sql_database._definition
   - com.microsoft.azure.management.sql._sql_database._definition_stages
@@ -229,6 +230,15 @@ references:
   summary: <p>Defines values for <xref href="com.microsoft.azure.management.sql._elastic_pool_editions" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class ElasticPoolEditions
+- uid: com.microsoft.azure.management.sql._elastic_pool_state
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._elastic_pool_state.yml
+  name: ElasticPoolState
+  fullName: com.microsoft.azure.management.sql.ElasticPoolState
+  type: Class
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.sql._elastic_pool_state" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public class ElasticPoolState
 - uid: com.microsoft.azure.management.sql._engine_audit_records_filter_parameters
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._engine_audit_records_filter_parameters.yml
@@ -391,15 +401,6 @@ references:
   summary: <p>Defines values for <xref href="com.microsoft.azure.management.sql._replication_state" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class ReplicationState
-- uid: com.microsoft.azure.management.sql._resource_move_definition
-  parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._resource_move_definition.yml
-  name: ResourceMoveDefinition
-  fullName: com.microsoft.azure.management.sql.ResourceMoveDefinition
-  type: Class
-  summary: <p>Contains the information necessary to perform a resource move (rename). </p>
-  syntax:
-    content: public class ResourceMoveDefinition
 - uid: com.microsoft.azure.management.sql._restore_point_types
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._restore_point_types.yml
@@ -481,6 +482,15 @@ references:
   summary: '<p>Represents the Service Objectives capabilities. The service objective represents the performance level assigned to the database (eg: S0, P2, Basic, ...). See <ulink url="https://azure.microsoft.com/en-us/documentation/articles/sql-database-service-tiers/">https://azure.microsoft.com/en-us/documentation/articles/sql-database-service-tiers/</ulink> for more info. </p>'
   syntax:
     content: public class ServiceObjectiveCapability
+- uid: com.microsoft.azure.management.sql._service_objective_name
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._service_objective_name.yml
+  name: ServiceObjectiveName
+  fullName: com.microsoft.azure.management.sql.ServiceObjectiveName
+  type: Class
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.sql._service_objective_name" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public class ServiceObjectiveName
 - uid: com.microsoft.azure.management.sql._sql_database
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_database.yml
@@ -525,7 +535,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> SQL Server FirewallRule. </p>
   syntax:
-    content: public interface SqlFirewallRule extends IndependentChild,Refreshable<SqlFirewallRule>,Updatable<SqlFirewallRule.Update>,Wrapper<FirewallRuleInner>
+    content: public interface SqlFirewallRule extends IndependentChild,Refreshable<SqlFirewallRule>,Updatable<SqlFirewallRule.Update>,Wrapper<ServerFirewallRuleInner>
 - uid: com.microsoft.azure.management.sql._sql_firewall_rules
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_firewall_rules.yml
@@ -802,15 +812,6 @@ references:
   summary: <p>The template for a <xref href="com.microsoft.azure.management.sql._sql_firewall_rule" data-throw-if-not-resolved="false"></xref> update operation, containing all the settings that can be modified. </p>
   syntax:
     content: public interface Update extends Appliable<SqlFirewallRule>
-- uid: com.microsoft.azure.management.sql._sql_server._update
-  parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_server._update.yml
-  name: SqlServer.Update
-  fullName: com.microsoft.azure.management.sql.SqlServer.Update
-  type: Interface
-  summary: <p>The template for a SQLServer update operation, containing all the settings that can be modified. </p>
-  syntax:
-    content: public interface Update extends Appliable<SqlServer>,SqlServer.UpdateStages.WithAdminPassword
 - uid: com.microsoft.azure.management.sql._sql_elastic_pool._update
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_elastic_pool._update.yml
@@ -820,15 +821,15 @@ references:
   summary: <p>The template for a SQLElasticPool update operation, containing all the settings that can be modified. </p>
   syntax:
     content: public interface Update extends Appliable<SqlElasticPool>
-- uid: com.microsoft.azure.management.sql._sql_database._update_stages
+- uid: com.microsoft.azure.management.sql._sql_server._update
   parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_database._update_stages.yml
-  name: SqlDatabase.UpdateStages
-  fullName: com.microsoft.azure.management.sql.SqlDatabase.UpdateStages
+  href: com.microsoft.azure.management.sql._sql_server._update.yml
+  name: SqlServer.Update
+  fullName: com.microsoft.azure.management.sql.SqlServer.Update
   type: Interface
-  summary: <p>Grouping of all the SQLDatabase update stages. </p>
+  summary: <p>The template for a SQLServer update operation, containing all the settings that can be modified. </p>
   syntax:
-    content: public interface UpdateStages
+    content: public interface Update extends Appliable<SqlServer>,SqlServer.UpdateStages.WithAdminPassword
 - uid: com.microsoft.azure.management.sql._sql_server._update_stages
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_server._update_stages.yml
@@ -836,6 +837,15 @@ references:
   fullName: com.microsoft.azure.management.sql.SqlServer.UpdateStages
   type: Interface
   summary: <p>Grouping of all the SQLServer update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.sql._sql_database._update_stages
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_database._update_stages.yml
+  name: SqlDatabase.UpdateStages
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.UpdateStages
+  type: Interface
+  summary: <p>Grouping of all the SQLDatabase update stages. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.sql._sql_elastic_pool._update_stages
@@ -883,15 +893,6 @@ references:
   summary: <p>The SQL Database definition to set the collation for database. </p>
   syntax:
     content: public interface WithCollation
-- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
-  parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create.yml
-  name: SqlDatabase.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>A SQL Database definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
-  syntax:
-    content: public interface WithCreate extends SqlDatabase.DefinitionStages.WithSqlServer,Resource.DefinitionWithTags<WithCreate>,SqlDatabase.DefinitionStages.WithElasticPoolName
 - uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create.yml
@@ -901,15 +902,6 @@ references:
   summary: <p>A SQL Server definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
     content: public interface WithCreate extends Creatable<SqlFirewallRule>
-- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_create
-  parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_create.yml
-  name: SqlElasticPool.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>A SQL Server definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
-  syntax:
-    content: public interface WithCreate extends SqlElasticPool.DefinitionStages.WithSqlServer
 - uid: com.microsoft.azure.management.sql._sql_server._definition_stages._with_create
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_server._definition_stages._with_create.yml
@@ -919,15 +911,24 @@ references:
   summary: <p>A SQL Server definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
     content: public interface WithCreate extends Creatable<SqlServer>,Resource.DefinitionWithTags<WithCreate>,SqlServer.DefinitionStages.WithVersion
-- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_edition
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
   parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_edition.yml
-  name: SqlElasticPool.DefinitionStages.WithEdition
-  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithEdition
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create.yml
+  name: SqlDatabase.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCreate
   type: Interface
-  summary: <p>The SQL Elastic Pool definition to set the edition for database. </p>
+  summary: <p>A SQL Database definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
-    content: public interface WithEdition
+    content: public interface WithCreate extends SqlDatabase.DefinitionStages.WithSqlServer,Resource.DefinitionWithTags<WithCreate>,SqlDatabase.DefinitionStages.WithElasticPoolName
+- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_create
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_create.yml
+  name: SqlElasticPool.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>A SQL Server definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
+  syntax:
+    content: public interface WithCreate extends SqlElasticPool.DefinitionStages.WithSqlServer
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition.yml
@@ -935,6 +936,15 @@ references:
   fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithEdition
   type: Interface
   summary: <p>The SQL Database definition to set the edition for database. </p>
+  syntax:
+    content: public interface WithEdition
+- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_edition
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_edition.yml
+  name: SqlElasticPool.DefinitionStages.WithEdition
+  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithEdition
+  type: Interface
+  summary: <p>The SQL Elastic Pool definition to set the edition for database. </p>
   syntax:
     content: public interface WithEdition
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name
@@ -976,6 +986,15 @@ references:
   summary: <p>A SQL Server definition setting admin user password. </p>
   syntax:
     content: public interface WithPassword
+- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_sql_server
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_sql_server.yml
+  name: SqlElasticPool.DefinitionStages.WithSqlServer
+  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithSqlServer
+  type: Interface
+  summary: <p>A resource definition allowing SQLServer to be attached with SQLDatabase. </p>
+  syntax:
+    content: public interface WithSqlServer
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_sql_server
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_sql_server.yml
@@ -992,15 +1011,6 @@ references:
   fullName: com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithSqlServer
   type: Interface
   summary: <p>A resource definition allowing SQLServer to be attached with SQLFirewallRule. </p>
-  syntax:
-    content: public interface WithSqlServer
-- uid: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_sql_server
-  parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_elastic_pool._definition_stages._with_sql_server.yml
-  name: SqlElasticPool.DefinitionStages.WithSqlServer
-  fullName: com.microsoft.azure.management.sql.SqlElasticPool.DefinitionStages.WithSqlServer
-  type: Interface
-  summary: <p>A resource definition allowing SQLServer to be attached with SQLDatabase. </p>
   syntax:
     content: public interface WithSqlServer
 - uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address
