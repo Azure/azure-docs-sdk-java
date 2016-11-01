@@ -1,0 +1,285 @@
+items:
+- uid: com.microsoft.azure.documentdb.internal._retry_utility
+  id: _retry_utility
+  parent: com.microsoft.azure.documentdb.internal
+  children:
+  - com.microsoft.azure.documentdb.internal._retry_utility.executeCreateDocument(RetryCreateDocumentDelegate,ClientCollectionCache,String)
+  - com.microsoft.azure.documentdb.internal._retry_utility.executeDocumentClientRequest(RetryRequestDelegate,DocumentClient,EndpointManager,DocumentServiceRequest)
+  - com.microsoft.azure.documentdb.internal._retry_utility.executeStoreClientRequest(RetryRequestDelegate,DocumentServiceRequest)
+  href: com.microsoft.azure.documentdb.internal._retry_utility.yml
+  langs:
+  - java
+  name: RetryUtility
+  fullName: com.microsoft.azure.documentdb.internal.RetryUtility
+  type: Class
+  source:
+    remote: &o0
+      path: src/main/java/com/microsoft/azure/documentdb/internal/RetryUtility.java
+      branch: master
+      repo: https://github.com/Azure/azure-documentdb-java
+    path: src/main/java/com/microsoft/azure/documentdb/internal/RetryUtility.java
+    startLine: 18
+  package: com.microsoft.azure.documentdb.internal
+  summary: <p>A utility class to manage retries for various retryable service errors. It invokes a delegate function to execute the target operation. Upon error, it waits a period of time as defined by the <xref href="com.microsoft.azure.documentdb.internal._retry_policy" data-throw-if-not-resolved="false"></xref> instance before re-issuing the same request. Different <xref href="com.microsoft.azure.documentdb.internal._retry_policy" data-throw-if-not-resolved="false"></xref> implementations decides the wait period based on its own logic. </p>
+  syntax:
+    content: public class RetryUtility
+  inheritance:
+  - java.lang.Object
+- uid: com.microsoft.azure.documentdb.internal._retry_utility.executeCreateDocument(RetryCreateDocumentDelegate,ClientCollectionCache,String)
+  id: executeCreateDocument(RetryCreateDocumentDelegate,ClientCollectionCache,String)
+  parent: com.microsoft.azure.documentdb.internal._retry_utility
+  href: com.microsoft.azure.documentdb.internal._retry_utility.yml
+  langs:
+  - java
+  name: executeCreateDocument(RetryCreateDocumentDelegate delegate, ClientCollectionCache clientCollectionCache, String resourcePath)
+  fullName: static ResourceResponse<Document> com.microsoft.azure.documentdb.internal.RetryUtility.executeCreateDocument(RetryCreateDocumentDelegate delegate, ClientCollectionCache clientCollectionCache, String resourcePath)
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/internal/RetryUtility.java
+    startLine: 137
+  package: com.microsoft.azure.documentdb.internal
+  summary: >-
+    <p>Executes the code block in the delegate and retry if needed. </p>
+
+    <p>This method is used to retry a document create operation for partitioned collection in the case where the request failed because the collection has changed.</p>
+
+    <p></p>
+  syntax:
+    content: public static ResourceResponse<Document> executeCreateDocument(RetryCreateDocumentDelegate delegate, ClientCollectionCache clientCollectionCache, String resourcePath)
+    parameters:
+    - id: delegate
+      type: com.microsoft.azure.documentdb.internal._retry_create_document_delegate
+      description: <p>the delegate to execute. </p>
+    - id: clientCollectionCache
+      type: com.microsoft.azure.documentdb.internal.routing._client_collection_cache
+      description: <p>the cache the maps collection <xref href="com.microsoft.azure.documentdb.internal._resource_id" data-throw-if-not-resolved="false"></xref> or resource name to collection </p>
+    - id: resourcePath
+      type: "26831127"
+      description: <p>the path to the collection resource. </p>
+    return:
+      type: com.microsoft.azure.documentdb._resource_response78504a52com.microsoft.azure.documentdb._documenta08ddfce
+      description: <p>the response resource. </p>
+  exceptions:
+  - type: com.microsoft.azure.documentdb._document_client_exception
+    description: <p>the original exception if retry is not applicable. </p>
+- uid: com.microsoft.azure.documentdb.internal._retry_utility.executeDocumentClientRequest(RetryRequestDelegate,DocumentClient,EndpointManager,DocumentServiceRequest)
+  id: executeDocumentClientRequest(RetryRequestDelegate,DocumentClient,EndpointManager,DocumentServiceRequest)
+  parent: com.microsoft.azure.documentdb.internal._retry_utility
+  href: com.microsoft.azure.documentdb.internal._retry_utility.yml
+  langs:
+  - java
+  name: executeDocumentClientRequest(RetryRequestDelegate delegate, DocumentClient documentClient, EndpointManager globalEndpointManager, DocumentServiceRequest request)
+  fullName: static DocumentServiceResponse com.microsoft.azure.documentdb.internal.RetryUtility.executeDocumentClientRequest(RetryRequestDelegate delegate, DocumentClient documentClient, EndpointManager globalEndpointManager, DocumentServiceRequest request)
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/internal/RetryUtility.java
+    startLine: 32
+  package: com.microsoft.azure.documentdb.internal
+  summary: >-
+    <p>Executes the code block in the delegate and retry if needed. </p>
+
+    <p>This method is used to retry an existing <xref href="com.microsoft.azure.documentdb.internal._document_service_request" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public static DocumentServiceResponse executeDocumentClientRequest(RetryRequestDelegate delegate, DocumentClient documentClient, EndpointManager globalEndpointManager, DocumentServiceRequest request)
+    parameters:
+    - id: delegate
+      type: com.microsoft.azure.documentdb.internal._retry_request_delegate
+      description: <p>the delegate to execute. </p>
+    - id: documentClient
+      type: com.microsoft.azure.documentdb._document_client
+      description: <p>the <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref> instance. </p>
+    - id: globalEndpointManager
+      type: com.microsoft.azure.documentdb.internal._endpoint_manager
+      description: <p>the <xref href="com.microsoft.azure.documentdb.internal._endpoint_manager" data-throw-if-not-resolved="false"></xref> instance. </p>
+    - id: request
+      type: com.microsoft.azure.documentdb.internal._document_service_request
+      description: <p>the request parameter for the execution. </p>
+    return:
+      type: com.microsoft.azure.documentdb.internal._document_service_response
+      description: <p>the <xref href="com.microsoft.azure.documentdb.internal._document_service_response" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: com.microsoft.azure.documentdb._document_client_exception
+    description: <p>the original exception if retry is not applicable. </p>
+- uid: com.microsoft.azure.documentdb.internal._retry_utility.executeStoreClientRequest(RetryRequestDelegate,DocumentServiceRequest)
+  id: executeStoreClientRequest(RetryRequestDelegate,DocumentServiceRequest)
+  parent: com.microsoft.azure.documentdb.internal._retry_utility
+  href: com.microsoft.azure.documentdb.internal._retry_utility.yml
+  langs:
+  - java
+  name: executeStoreClientRequest(RetryRequestDelegate delegate, DocumentServiceRequest request)
+  fullName: static DocumentServiceResponse com.microsoft.azure.documentdb.internal.RetryUtility.executeStoreClientRequest(RetryRequestDelegate delegate, DocumentServiceRequest request)
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/internal/RetryUtility.java
+    startLine: 96
+  package: com.microsoft.azure.documentdb.internal
+  summary: >-
+    <p>Executes the code block in the delegate and retry if needed. </p>
+
+    <p>This method is used to retry an existing <xref href="com.microsoft.azure.documentdb.internal._document_service_request" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public static DocumentServiceResponse executeStoreClientRequest(RetryRequestDelegate delegate, DocumentServiceRequest request)
+    parameters:
+    - id: delegate
+      type: com.microsoft.azure.documentdb.internal._retry_request_delegate
+      description: <p>the delegate to execute. </p>
+    - id: request
+      type: com.microsoft.azure.documentdb.internal._document_service_request
+      description: <p>the request parameter for the execution. </p>
+    return:
+      type: com.microsoft.azure.documentdb.internal._document_service_response
+      description: <p>the <xref href="com.microsoft.azure.documentdb.internal._document_service_response" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: com.microsoft.azure.documentdb._document_client_exception
+    description: <p>the original exception if retry is not applicable. </p>
+references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.documentdb._resource_response78504a52com.microsoft.azure.documentdb._documenta08ddfce
+  spec.java:
+  - uid: com.microsoft.azure.documentdb._resource_response
+    name: ResourceResponse
+    fullName: com.microsoft.azure.documentdb.ResourceResponse
+    href: com.microsoft.azure.documentdb._resource_response.yml
+  - name: <
+    fullName: <
+  - uid: com.microsoft.azure.documentdb._document
+    name: Document
+    fullName: com.microsoft.azure.documentdb.Document
+    href: com.microsoft.azure.documentdb._document.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.documentdb.internal._document_service_response
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._document_service_response.yml
+  name: DocumentServiceResponse
+  fullName: com.microsoft.azure.documentdb.internal.DocumentServiceResponse
+  type: Class
+  summary: <p>This is core Transport/Connection agnostic response for DocumentService. It is marked internal today. If needs arises for client to do no-serialized processing we can open this up to public. </p>
+  syntax:
+    content: public class DocumentServiceResponse
+- uid: com.microsoft.azure.documentdb.internal._retry_request_delegate
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._retry_request_delegate.yml
+  name: RetryRequestDelegate
+  fullName: com.microsoft.azure.documentdb.internal.RetryRequestDelegate
+  type: Interface
+  summary: <p>Define a delegate used by the <xref href="com.microsoft.azure.documentdb.internal._retry_utility" data-throw-if-not-resolved="false"></xref> to retry a <xref href="com.microsoft.azure.documentdb.internal._document_service_request" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface RetryRequestDelegate
+- uid: com.microsoft.azure.documentdb._document_client
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document_client.yml
+  name: DocumentClient
+  fullName: com.microsoft.azure.documentdb.DocumentClient
+  type: Class
+  summary: >-
+    <p>Provides a client-side logical representation of the Azure DocumentDB service. This client is used to configure and execute requests against the service. </p>
+
+    <p>The service client encapsulates the endpoint and credentials used to access the DocumentDB service. </p>
+  syntax:
+    content: public class DocumentClient
+- uid: com.microsoft.azure.documentdb.internal._endpoint_manager
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._endpoint_manager.yml
+  name: EndpointManager
+  fullName: com.microsoft.azure.documentdb.internal.EndpointManager
+  type: Interface
+  summary: <p>Defines an interface used to manage endpoint selection for geo-distributed database accounts. </p>
+  syntax:
+    content: public interface EndpointManager
+- uid: com.microsoft.azure.documentdb.internal._document_service_request
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._document_service_request.yml
+  name: DocumentServiceRequest
+  fullName: com.microsoft.azure.documentdb.internal.DocumentServiceRequest
+  type: Class
+  summary: <p>This is core Transport/Connection agnostic request to DocumentService. It is marked internal today. If needs arises for client to do no-serialized processing we can open this up to public. </p>
+  syntax:
+    content: public class DocumentServiceRequest
+- uid: com.microsoft.azure.documentdb._document_client_exception
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document_client_exception.yml
+  name: DocumentClientException
+  fullName: com.microsoft.azure.documentdb.DocumentClientException
+  type: Class
+  summary: >-
+    <p>This class defines a custom exception type for all operations on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. Applications are expected to catch <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref> and handle errors as appropriate when calling methods on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>Errors coming from the service during normal execution are converted to <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref> before returning to the application with the following exception: </p>
+
+    <p>When a BE error is encountered during a <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref>&lt;T&gt; iteration, an IllegalStateException is thrown instead of <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>When a transport level error happens that request is not able to reach the service, an IllegalStateException is thrown instead of <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public class DocumentClientException
+- uid: com.microsoft.azure.documentdb._resource_response
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._resource_response.yml
+  name: ResourceResponse<T>
+  fullName: com.microsoft.azure.documentdb.ResourceResponse<T>
+  type: Class
+  summary: >-
+    <p>Represents the service response to a request made from <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. Contains both the resource and the response headers.</p>
+
+    <p></p>
+  syntax:
+    content: public class ResourceResponse<T extends Resource>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>the resource type of the resource response. </p>
+- uid: com.microsoft.azure.documentdb._document
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document.yml
+  name: Document
+  fullName: com.microsoft.azure.documentdb.Document
+  type: Class
+  summary: >-
+    <p>Represents a document. </p>
+
+    <p>A document is a structured JSON document. There is no set schema for the JSON documents, and a document may contain any number of custom properties as well as an optional list of attachments. <xref href="com.microsoft.azure.documentdb._document" data-throw-if-not-resolved="false"></xref> is an application resource and can be authorized using the master key or resource keys. </p>
+  syntax:
+    content: public class Document extends Resource
+- uid: com.microsoft.azure.documentdb.internal._retry_create_document_delegate
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._retry_create_document_delegate.yml
+  name: RetryCreateDocumentDelegate
+  fullName: com.microsoft.azure.documentdb.internal.RetryCreateDocumentDelegate
+  type: Interface
+  summary: <p>Define a delegate used by the <xref href="com.microsoft.azure.documentdb.internal._retry_utility" data-throw-if-not-resolved="false"></xref> to retry an document create operation. </p>
+  syntax:
+    content: public interface RetryCreateDocumentDelegate
+- uid: com.microsoft.azure.documentdb.internal.routing._client_collection_cache
+  parent: com.microsoft.azure.documentdb.internal.routing
+  href: com.microsoft.azure.documentdb.internal.routing._client_collection_cache.yml
+  name: ClientCollectionCache
+  fullName: com.microsoft.azure.documentdb.internal.routing.ClientCollectionCache
+  type: Class
+  summary: <p>Caches collection information </p>
+  syntax:
+    content: public class ClientCollectionCache extends CollectionCache
+- uid: com.microsoft.azure.documentdb.internal._resource_id
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._resource_id.yml
+  name: ResourceId
+  fullName: com.microsoft.azure.documentdb.internal.ResourceId
+  type: Class
+  syntax:
+    content: public class ResourceId
+- uid: com.microsoft.azure.documentdb.internal._retry_policy
+  parent: com.microsoft.azure.documentdb.internal
+  href: com.microsoft.azure.documentdb.internal._retry_policy.yml
+  name: RetryPolicy
+  fullName: com.microsoft.azure.documentdb.internal.RetryPolicy
+  type: Interface
+  syntax:
+    content: public interface RetryPolicy
