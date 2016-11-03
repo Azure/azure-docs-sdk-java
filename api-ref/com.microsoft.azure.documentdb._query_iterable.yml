@@ -4,12 +4,9 @@ items:
   parent: com.microsoft.azure.documentdb
   children:
   - com.microsoft.azure.documentdb._query_iterable.fetchNextBlock()
-  - com.microsoft.azure.documentdb._query_iterable.getResponseHeaders()
   - com.microsoft.azure.documentdb._query_iterable.iterator()
-  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions)
-  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions,Object)
-  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions)
-  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions,Object)
+  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,DocumentServiceRequest,ReadType,Class<T>)
+  - com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,String,SqlQuerySpec,FeedOptions,Object,ReadType,Class<T>)
   - com.microsoft.azure.documentdb._query_iterable.reset()
   - com.microsoft.azure.documentdb._query_iterable.toList()
   href: com.microsoft.azure.documentdb._query_iterable.yml
@@ -20,17 +17,17 @@ items:
   type: Class
   source:
     remote: &o0
-      path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
+      path: src/com/microsoft/azure/documentdb/QueryIterable.java
       branch: master
       repo: https://github.com/Azure/azure-documentdb-java
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 16
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 15
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>The template class for iterable resources.</p>
 
     <p></p>
-  syntax:
+  syntax: &o1
     content: public class QueryIterable<T extends Resource>
     typeParameters:
     - type: 8ce1ecb9
@@ -38,6 +35,9 @@ items:
   inheritance:
   - java.lang.Object
   - Iterable<T>
+  inheritedMembers:
+  - com.microsoft.azure.documentdb._query_iterable.getContinuation()
+  - com.microsoft.azure.documentdb._query_iterable.getResponseHeaders()
 - uid: com.microsoft.azure.documentdb._query_iterable.fetchNextBlock()
   id: fetchNextBlock()
   parent: com.microsoft.azure.documentdb._query_iterable
@@ -49,8 +49,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 123
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 249
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Fetch the next block of query results.</p>
@@ -64,29 +64,6 @@ items:
   exceptions:
   - type: com.microsoft.azure.documentdb._document_client_exception
     description: <p>the document client exception. </p>
-- uid: com.microsoft.azure.documentdb._query_iterable.getResponseHeaders()
-  id: getResponseHeaders()
-  parent: com.microsoft.azure.documentdb._query_iterable
-  href: com.microsoft.azure.documentdb._query_iterable.yml
-  langs:
-  - java
-  name: getResponseHeaders()
-  fullName: Map<String, String> com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.getResponseHeaders()
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 76
-  package: com.microsoft.azure.documentdb
-  summary: >-
-    <p>Gets the response headers.</p>
-
-    <p></p>
-  syntax:
-    content: public Map<String, String> getResponseHeaders()
-    return:
-      type: 689c8cb5
-      description: <p>the response headers. </p>
 - uid: com.microsoft.azure.documentdb._query_iterable.iterator()
   id: iterator()
   parent: com.microsoft.azure.documentdb._query_iterable
@@ -98,8 +75,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 86
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 165
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the iterator of the iterable.</p>
@@ -110,122 +87,89 @@ items:
     return:
       type: 17e95d76
       description: <p>the iterator. </p>
-- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions)
-  id: QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions)
+- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,DocumentServiceRequest,ReadType,Class<T>)
+  id: QueryIterable(DocumentClient,DocumentServiceRequest,ReadType,Class<T>)
   parent: com.microsoft.azure.documentdb._query_iterable
   href: com.microsoft.azure.documentdb._query_iterable.yml
   langs:
   - java
-  name: QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options)
-  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options)
+  name: QueryIterable(DocumentClient client, DocumentServiceRequest request, ReadType readType, Class<T> classT)
+  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, DocumentServiceRequest request, ReadType readType, Class<T> classT)
   type: Constructor
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 26
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 43
   package: com.microsoft.azure.documentdb
+  summary: >-
+    <p>Creates a new instance of the <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref> class. </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref> constructor taking in the DocumentServiceRequest(for non-partitioning scenarios)</p>
+
+    <p></p>
   syntax:
-    content: protected QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options)
+    content: protected QueryIterable(DocumentClient client, DocumentServiceRequest request, ReadType readType, Class<T> classT)
     parameters:
     - id: client
       type: com.microsoft.azure.documentdb._document_client
-    - id: resourceType
-      type: com.microsoft.azure.documentdb.internal._resource_type
+      description: <p>the document client </p>
+    - id: request
+      type: c4f8723c
+      description: <p>the document service request </p>
+    - id: readType
+      type: e43d0832
+      description: <p>the read type </p>
     - id: classT
       type: ffb09d2d
-    - id: resourceLink
-      type: "26831127"
-    - id: options
-      type: com.microsoft.azure.documentdb._feed_options
-- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions,Object)
-  id: QueryIterable(DocumentClient,ResourceType,Class<T>,String,FeedOptions,Object)
+      description: <p>the class type </p>
+- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,String,SqlQuerySpec,FeedOptions,Object,ReadType,Class<T>)
+  id: QueryIterable(DocumentClient,String,SqlQuerySpec,FeedOptions,Object,ReadType,Class<T>)
   parent: com.microsoft.azure.documentdb._query_iterable
   href: com.microsoft.azure.documentdb._query_iterable.yml
   langs:
   - java
-  name: QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options, Object partitionKey)
-  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options, Object partitionKey)
+  name: QueryIterable(DocumentClient client, String databaseOrDocumentCollectionLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey, ReadType readType, Class<T> classT)
+  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, String databaseOrDocumentCollectionLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey, ReadType readType, Class<T> classT)
   type: Constructor
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 36
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 68
   package: com.microsoft.azure.documentdb
+  summary: >-
+    <p>Creates a new instance of the <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref> class. </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref> constructor taking in the individual parameters for creating a DocumentServiceRequest This constructor is used for partitioning scenarios when multiple DocumentServiceRequests need to be created</p>
+
+    <p></p>
   syntax:
-    content: protected QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, FeedOptions options, Object partitionKey)
+    content: protected QueryIterable(DocumentClient client, String databaseOrDocumentCollectionLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey, ReadType readType, Class<T> classT)
     parameters:
     - id: client
       type: com.microsoft.azure.documentdb._document_client
-    - id: resourceType
-      type: com.microsoft.azure.documentdb.internal._resource_type
-    - id: classT
-      type: ffb09d2d
-    - id: resourceLink
+      description: <p>the document client </p>
+    - id: databaseOrDocumentCollectionLink
       type: "26831127"
-    - id: options
-      type: com.microsoft.azure.documentdb._feed_options
-    - id: partitionKey
-      type: "79317049"
-- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions)
-  id: QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions)
-  parent: com.microsoft.azure.documentdb._query_iterable
-  href: com.microsoft.azure.documentdb._query_iterable.yml
-  langs:
-  - java
-  name: QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options)
-  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options)
-  type: Constructor
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 31
-  package: com.microsoft.azure.documentdb
-  syntax:
-    content: protected QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options)
-    parameters:
-    - id: client
-      type: com.microsoft.azure.documentdb._document_client
-    - id: resourceType
-      type: com.microsoft.azure.documentdb.internal._resource_type
-    - id: classT
-      type: ffb09d2d
-    - id: resourceLink
-      type: "26831127"
+      description: <p>the database or document collection link </p>
     - id: querySpec
       type: com.microsoft.azure.documentdb._sql_query_spec
+      description: <p>the query spec </p>
     - id: options
       type: com.microsoft.azure.documentdb._feed_options
-- uid: com.microsoft.azure.documentdb._query_iterable.QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions,Object)
-  id: QueryIterable(DocumentClient,ResourceType,Class<T>,String,SqlQuerySpec,FeedOptions,Object)
-  parent: com.microsoft.azure.documentdb._query_iterable
-  href: com.microsoft.azure.documentdb._query_iterable.yml
-  langs:
-  - java
-  name: QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey)
-  fullName: com.microsoft.azure.documentdb.QueryIterable<T extends Resource>.QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey)
-  type: Constructor
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 41
-  package: com.microsoft.azure.documentdb
-  syntax:
-    content: protected QueryIterable(DocumentClient client, ResourceType resourceType, Class<T> classT, String resourceLink, SqlQuerySpec querySpec, FeedOptions options, Object partitionKey)
-    parameters:
-    - id: client
-      type: com.microsoft.azure.documentdb._document_client
-    - id: resourceType
-      type: com.microsoft.azure.documentdb.internal._resource_type
-    - id: classT
-      type: ffb09d2d
-    - id: resourceLink
-      type: "26831127"
-    - id: querySpec
-      type: com.microsoft.azure.documentdb._sql_query_spec
-    - id: options
-      type: com.microsoft.azure.documentdb._feed_options
+      description: <p>the feed options </p>
     - id: partitionKey
       type: "79317049"
+      description: <p>the partition key </p>
+    - id: readType
+      type: e43d0832
+      description: <p>the read type </p>
+    - id: classT
+      type: ffb09d2d
+      description: <p>the class type </p>
 - uid: com.microsoft.azure.documentdb._query_iterable.reset()
   id: reset()
   parent: com.microsoft.azure.documentdb._query_iterable
@@ -237,8 +181,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 111
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 235
   package: com.microsoft.azure.documentdb
   summary: <p>Resets the iterable. </p>
   syntax:
@@ -254,8 +198,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/main/java/com/microsoft/azure/documentdb/QueryIterable.java
-    startLine: 95
+    path: src/com/microsoft/azure/documentdb/QueryIterable.java
+    startLine: 224
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Get the list of the iterable resources.</p>
@@ -271,6 +215,14 @@ references:
   spec.java:
   - name: T
     fullName: T
+- uid: c4f8723c
+  spec.java:
+  - name: DocumentServiceRequest
+    fullName: DocumentServiceRequest
+- uid: e43d0832
+  spec.java:
+  - name: ReadType
+    fullName: ReadType
 - uid: ffb09d2d
   spec.java:
   - name: Class<T>
@@ -283,10 +235,6 @@ references:
   spec.java:
   - name: Object
     fullName: Object
-- uid: 689c8cb5
-  spec.java:
-  - name: Map<String, String>
-    fullName: Map<String, String>
 - uid: 17e95d76
   spec.java:
   - name: Iterator<T>
@@ -295,6 +243,8 @@ references:
   spec.java:
   - name: List<T>
     fullName: List<T>
+- uid: com.microsoft.azure.documentdb._query_iterable.getContinuation()
+- uid: com.microsoft.azure.documentdb._query_iterable.getResponseHeaders()
 - uid: com.microsoft.azure.documentdb._resource
   parent: com.microsoft.azure.documentdb
   href: com.microsoft.azure.documentdb._resource.yml
@@ -319,14 +269,6 @@ references:
     <p>The service client encapsulates the endpoint and credentials used to access the DocumentDB service. </p>
   syntax:
     content: public class DocumentClient
-- uid: com.microsoft.azure.documentdb.internal._resource_type
-  parent: com.microsoft.azure.documentdb.internal
-  href: com.microsoft.azure.documentdb.internal._resource_type.yml
-  name: ResourceType
-  fullName: com.microsoft.azure.documentdb.internal.ResourceType
-  type: Enum
-  syntax:
-    content: public enum ResourceType
 - uid: com.microsoft.azure.documentdb._sql_query_spec
   parent: com.microsoft.azure.documentdb
   href: com.microsoft.azure.documentdb._sql_query_spec.yml
@@ -335,6 +277,17 @@ references:
   type: Class
   syntax:
     content: public class SqlQuerySpec
+- uid: com.microsoft.azure.documentdb._query_iterable
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._query_iterable.yml
+  name: QueryIterable<T>
+  fullName: com.microsoft.azure.documentdb.QueryIterable<T>
+  type: Class
+  summary: >-
+    <p>The template class for iterable resources.</p>
+
+    <p></p>
+  syntax: *o1
 - uid: com.microsoft.azure.documentdb._feed_options
   parent: com.microsoft.azure.documentdb
   href: com.microsoft.azure.documentdb._feed_options.yml
@@ -344,16 +297,6 @@ references:
   summary: <p>Specifies the options associated with feed methods (enumeration operations). </p>
   syntax:
     content: public class FeedOptions
-- uid: com.microsoft.azure.documentdb.internal.query._query_execution_context
-  parent: com.microsoft.azure.documentdb.internal.query
-  href: com.microsoft.azure.documentdb.internal.query._query_execution_context.yml
-  name: QueryExecutionContext<T>
-  fullName: com.microsoft.azure.documentdb.internal.query.QueryExecutionContext<T>
-  type: Interface
-  syntax:
-    content: public interface QueryExecutionContext<T extends Resource>
-    typeParameters:
-    - type: 8ce1ecb9
 - uid: com.microsoft.azure.documentdb._document_client_exception
   parent: com.microsoft.azure.documentdb
   href: com.microsoft.azure.documentdb._document_client_exception.yml
@@ -361,11 +304,11 @@ references:
   fullName: com.microsoft.azure.documentdb.DocumentClientException
   type: Class
   summary: >-
-    <p>This class defines a custom exception type for all operations on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. Applications are expected to catch <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref> and handle errors as appropriate when calling methods on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>This class defines a custom exception type for all operations on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>. Applications are expected to catch <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref> and handle errors as appropriate when calling methods on <xref href="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false"></xref>.</p>
 
     <p>Errors coming from the service during normal execution are converted to <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref> before returning to the application with the following exception: </p>
 
-    <p>When a BE error is encountered during a <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref>&lt;T&gt; iteration, an IllegalStateException is thrown instead of <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>When a BE error is encountered during a <xref href="com.microsoft.azure.documentdb._query_iterable" data-throw-if-not-resolved="false"></xref> iteration, an IllegalStateException is thrown instead of <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref>. </p>
 
     <p>When a transport level error happens that request is not able to reach the service, an IllegalStateException is thrown instead of <xref href="com.microsoft.azure.documentdb._document_client_exception" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
