@@ -128,7 +128,7 @@ If you're using released builds from 1.0.0-beta3, add the following to your POM 
 ## Help
 
 If you are migrating your code to 1.0.0-beta3, you can use these notes for
-[preparing your code for 1.0.0-beta3 from 1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java/notes/prepare-for-1.0.0-beta3.md).
+[preparing your code for 1.0.0-beta3 from 1.0.0-beta2](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.0.0-beta3.md).
 
 If you encounter any bugs with these libraries, please file issues using
 [Issues](https://github.com/Azure/azure-sdk-for-java/issues)
