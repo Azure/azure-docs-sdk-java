@@ -18,7 +18,7 @@ items:
   package: com.microsoft.azure.management.sql
   summary: <p>Container interface for all the definitions that need to be implemented. </p>
   syntax:
-    content: public interface Definition extends SqlDatabase.DefinitionStages.Blank,SqlDatabase.DefinitionStages.WithCreate,SqlDatabase.DefinitionStages.WithCollation,SqlDatabase.DefinitionStages.WithEdition,SqlDatabase.DefinitionStages.WithElasticPoolName
+    content: public interface Definition extends SqlDatabase.DefinitionStages.Blank,SqlDatabase.DefinitionStages.WithCreate,SqlDatabase.DefinitionStages.WithCollation,SqlDatabase.DefinitionStages.WithEdition,SqlDatabase.DefinitionStages.WithElasticPoolName,SqlDatabase.DefinitionStages.WithSourceDatabaseId,SqlDatabase.DefinitionStages.WithCreateMode,SqlDatabase.DefinitionStages.WithCreateWithLessOptions,SqlDatabase.DefinitionStages.WithExistingDatabase
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.create()
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync(final ServiceCallback<T>)
@@ -26,12 +26,16 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_collation.withCollation(String)
+  - com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode.withCreateMode(CreateMode)
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition.withEdition(DatabaseEditions)
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withExistingElasticPool(String)
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withExistingElasticPool(SqlElasticPool)
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_max_size_bytes.withMaxSizeBytes(long)
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withNewElasticPool(Creatable<SqlElasticPool>)
+  - com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withoutExistingElasticPool()
+  - com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database.withoutSourceDatabaseId()
   - com.microsoft.azure.management.sql._sql_database._definition_stages._with_service_objective.withServiceObjective(ServiceObjectiveName)
+  - com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id.withSourceDatabaseId(String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTags(Map<String, String>)
 references:
@@ -112,60 +116,94 @@ references:
   name: withCollation(String collation)
   fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCollation.withCollation(String collation)
   type: Method
+  summary: >-
+    <p>Sets the collation for the SQL Database.</p>
+
+    <p></p>
   syntax:
     content: public WithCreate withCollation(String collation)
     parameters:
     - id: collation
       type: "26831127"
+      description: <p>collation to be set for database </p>
     return:
       type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
+      description: <p>The next stage of definition </p>
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode.withCreateMode(CreateMode)
+  parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode.yml
+  name: withCreateMode(CreateMode createMode)
+  fullName: WithCreateWithLessOptions com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCreateMode.withCreateMode(CreateMode createMode)
+  type: Method
+  summary: >-
+    <p>Sets the create mode for the SQL Database.</p>
+
+    <p></p>
+  syntax:
+    content: public WithCreateWithLessOptions withCreateMode(CreateMode createMode)
+    parameters:
+    - id: createMode
+      type: com.microsoft.azure.management.sql._create_mode
+      description: <p>create mode for the database, should not be default in this flow </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages_131890809035967b3c6d529a332134cfe
+      description: <p>The next stage of definition. </p>
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition.withEdition(DatabaseEditions)
   parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_edition.yml
   name: withEdition(DatabaseEditions edition)
   fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithEdition.withEdition(DatabaseEditions edition)
   type: Method
-  summary: <p>Sets the edition for the SQL Database. </p>
+  summary: >-
+    <p>Sets the edition for the SQL Database.</p>
+
+    <p></p>
   syntax:
     content: public WithCreate withEdition(DatabaseEditions edition)
     parameters:
     - id: edition
       type: com.microsoft.azure.management.sql._database_editions
-      description: <p>edition to be set for database. </p>
+      description: <p>edition to be set for database </p>
     return:
       type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
-      description: <p>The next stage of definition. </p>
+      description: <p>The next stage of definition </p>
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withExistingElasticPool(String)
   parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.yml
   name: withExistingElasticPool(String elasticPoolName)
-  fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withExistingElasticPool(String elasticPoolName)
+  fullName: WithExistingDatabase com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withExistingElasticPool(String elasticPoolName)
   type: Method
-  summary: <p>Sets the existing elastic pool for the SQLDatabase. </p>
+  summary: >-
+    <p>Sets the existing elastic pool for the SQLDatabase.</p>
+
+    <p></p>
   syntax:
-    content: public WithCreate withExistingElasticPool(String elasticPoolName)
+    content: public WithExistingDatabase withExistingElasticPool(String elasticPoolName)
     parameters:
     - id: elasticPoolName
       type: "26831127"
-      description: <p>for the SQL Database. </p>
+      description: <p>for the SQL Database </p>
     return:
-      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
       description: <p>The next stage of definition. </p>
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withExistingElasticPool(SqlElasticPool)
   parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.yml
   name: withExistingElasticPool(SqlElasticPool sqlElasticPool)
-  fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withExistingElasticPool(SqlElasticPool sqlElasticPool)
+  fullName: WithExistingDatabase com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withExistingElasticPool(SqlElasticPool sqlElasticPool)
   type: Method
-  summary: <p>Sets the existing elastic pool for the SQLDatabase. </p>
+  summary: >-
+    <p>Sets the existing elastic pool for the SQLDatabase.</p>
+
+    <p></p>
   syntax:
-    content: public WithCreate withExistingElasticPool(SqlElasticPool sqlElasticPool)
+    content: public WithExistingDatabase withExistingElasticPool(SqlElasticPool sqlElasticPool)
     parameters:
     - id: sqlElasticPool
       type: com.microsoft.azure.management.sql._sql_elastic_pool
-      description: <p>for the SQL Database. </p>
+      description: <p>for the SQL Database </p>
     return:
-      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
       description: <p>The next stage of definition. </p>
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_max_size_bytes.withMaxSizeBytes(long)
   parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_max_size_bytes
@@ -173,7 +211,10 @@ references:
   name: withMaxSizeBytes(long maxSizeBytes)
   fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithMaxSizeBytes.withMaxSizeBytes(long maxSizeBytes)
   type: Method
-  summary: <p>Sets the max size in bytes for SQL Database. </p>
+  summary: >-
+    <p>Sets the max size in bytes for SQL Database.</p>
+
+    <p></p>
   syntax:
     content: public WithCreate withMaxSizeBytes(long maxSizeBytes)
     parameters:
@@ -187,15 +228,48 @@ references:
   parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.yml
   name: withNewElasticPool(Creatable<SqlElasticPool> sqlElasticPool)
-  fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withNewElasticPool(Creatable<SqlElasticPool> sqlElasticPool)
+  fullName: WithExistingDatabase com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withNewElasticPool(Creatable<SqlElasticPool> sqlElasticPool)
   type: Method
-  summary: <p>Sets the new elastic pool for the SQLDatabase, this will create a new elastic pool while creating database. </p>
+  summary: >-
+    <p>Sets the new elastic pool for the SQLDatabase, this will create a new elastic pool while creating database.</p>
+
+    <p></p>
   syntax:
-    content: public WithCreate withNewElasticPool(Creatable<SqlElasticPool> sqlElasticPool)
+    content: public WithExistingDatabase withNewElasticPool(Creatable<SqlElasticPool> sqlElasticPool)
     parameters:
     - id: sqlElasticPool
       type: com.microsoft.azure.management.resources.fluentcore.model._creatable78504a52com.microsoft.azure.management.sql._sql_elastic_poola08ddfce
-      description: <p>creatable definition for new elastic pool to be created for the SQL Database. </p>
+      description: <p>creatable definition for new elastic pool to be created for the SQL Database </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
+      description: <p>The next stage of definition. </p>
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.withoutExistingElasticPool()
+  parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_elastic_pool_name.yml
+  name: withoutExistingElasticPool()
+  fullName: WithExistingDatabase com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithElasticPoolName.withoutExistingElasticPool()
+  type: Method
+  summary: >-
+    <p>Specifies database to be created without elastic pool.</p>
+
+    <p></p>
+  syntax:
+    content: public WithExistingDatabase withoutExistingElasticPool()
+    return:
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
+      description: <p>The next stage of definition. </p>
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database.withoutSourceDatabaseId()
+  parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database.yml
+  name: withoutSourceDatabaseId()
+  fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithExistingDatabase.withoutSourceDatabaseId()
+  type: Method
+  summary: >-
+    <p>Sets the creation flow to ask relevant question when source database is not specified.</p>
+
+    <p></p>
+  syntax:
+    content: public WithCreate withoutSourceDatabaseId()
     return:
       type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
       description: <p>The next stage of definition. </p>
@@ -205,7 +279,10 @@ references:
   name: withServiceObjective(ServiceObjectiveName serviceLevelObjective)
   fullName: WithCreate com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithServiceObjective.withServiceObjective(ServiceObjectiveName serviceLevelObjective)
   type: Method
-  summary: <p>Sets the service level objective for the SQL Database. </p>
+  summary: >-
+    <p>Sets the service level objective for the SQL Database.</p>
+
+    <p></p>
   syntax:
     content: public WithCreate withServiceObjective(ServiceObjectiveName serviceLevelObjective)
     parameters:
@@ -215,6 +292,25 @@ references:
     return:
       type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
       description: <p>The next stage of the definition. </p>
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id.withSourceDatabaseId(String)
+  parent: com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id.yml
+  name: withSourceDatabaseId(String sourceDatabaseId)
+  fullName: WithCreateMode com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithSourceDatabaseId.withSourceDatabaseId(String sourceDatabaseId)
+  type: Method
+  summary: >-
+    <p>Sets the resource if of source database for the SQL Database. Collation, Edition, and MaxSizeBytes must remain the same while the link is active. Values specified for these parameters will be ignored.</p>
+
+    <p></p>
+  syntax:
+    content: public WithCreateMode withSourceDatabaseId(String sourceDatabaseId)
+    parameters:
+    - id: sourceDatabaseId
+      type: "26831127"
+      description: <p>id of the source database </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode
+      description: <p>The next stage of definition. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09
   href: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.yml
@@ -258,7 +354,7 @@ references:
   type: Interface
   summary: <p>The first stage of the SQL Server definition. </p>
   syntax:
-    content: public interface Blank extends SqlDatabase.DefinitionStages.WithCreate
+    content: public interface Blank extends SqlDatabase.DefinitionStages.WithElasticPoolName
 - uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create.yml
@@ -295,4 +391,40 @@ references:
   summary: <p>The SQL Database definition to set the elastic pool for database. </p>
   syntax:
     content: public interface WithElasticPoolName
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_source_database_id.yml
+  name: SqlDatabase.DefinitionStages.WithSourceDatabaseId
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithSourceDatabaseId
+  type: Interface
+  summary: <p>The SQL Database definition to set the source database id for database. </p>
+  syntax:
+    content: public interface WithSourceDatabaseId
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_create_mode.yml
+  name: SqlDatabase.DefinitionStages.WithCreateMode
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCreateMode
+  type: Interface
+  summary: <p>The SQL Database definition to set the create mode for database. </p>
+  syntax:
+    content: public interface WithCreateMode
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages_131890809035967b3c6d529a332134cfe
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages_131890809035967b3c6d529a332134cfe.yml
+  name: SqlDatabase.DefinitionStages.WithCreateWithLessOptions
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithCreateWithLessOptions
+  type: Interface
+  summary: <p>A SQL Database definition with sufficient inputs to create a new SQL Server in the cloud, but exposing additional optional inputs to specify. </p>
+  syntax:
+    content: public interface WithCreateWithLessOptions
+- uid: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_database._definition_stages._with_existing_database.yml
+  name: SqlDatabase.DefinitionStages.WithExistingDatabase
+  fullName: com.microsoft.azure.management.sql.SqlDatabase.DefinitionStages.WithExistingDatabase
+  type: Interface
+  summary: <p>The stage to decide whether using existing database or not. </p>
+  syntax:
+    content: public interface WithExistingDatabase
 - uid: com.microsoft.azure.management.sql.implementation._sql_database_impl

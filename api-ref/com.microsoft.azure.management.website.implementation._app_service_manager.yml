@@ -4,12 +4,13 @@ items:
   parent: com.microsoft.azure.management.website.implementation
   children:
   - com.microsoft.azure.management.website.implementation._app_service_manager.appServicePlans()
-  - com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(RestClient,String)
-  - com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(ServiceClientCredentials,String)
+  - com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(AzureTokenCredentials,String)
+  - com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(RestClient,String,String)
   - com.microsoft.azure.management.website.implementation._app_service_manager.certificateOrders()
   - com.microsoft.azure.management.website.implementation._app_service_manager.certificates()
   - com.microsoft.azure.management.website.implementation._app_service_manager.configure()
-  - com.microsoft.azure.management.website.implementation._app_service_manager.sites()
+  - com.microsoft.azure.management.website.implementation._app_service_manager.domains()
+  - com.microsoft.azure.management.website.implementation._app_service_manager.webApps()
   href: com.microsoft.azure.management.website.implementation._app_service_manager.yml
   langs:
   - java
@@ -22,7 +23,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 23
+    startLine: 24
   package: com.microsoft.azure.management.website.implementation
   summary: <p>Entry point to <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> storage resource management. </p>
   syntax: &o1
@@ -33,6 +34,7 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager.innerManagementClient()
+  - com.microsoft.azure.management.website.implementation._app_service_manager.keyVaultManager()
   - com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager.Manager(RestClient,String,InnerT)
   - com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager_base.ManagerBase(RestClient,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager_base.resourceManager()
@@ -50,67 +52,70 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 106
+    startLine: 119
   package: com.microsoft.azure.management.website.implementation
   syntax:
     content: public AppServicePlans appServicePlans()
     return:
       type: com.microsoft.azure.management.website._app_service_plans
       description: <p>the app service plan management API entry point </p>
-- uid: com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(RestClient,String)
-  id: authenticate(RestClient,String)
+- uid: com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(AzureTokenCredentials,String)
+  id: authenticate(AzureTokenCredentials,String)
   parent: com.microsoft.azure.management.website.implementation._app_service_manager
   href: com.microsoft.azure.management.website.implementation._app_service_manager.yml
   langs:
   - java
-  name: authenticate(RestClient restClient, String subscriptionId)
-  fullName: static AppServiceManager com.microsoft.azure.management.website.implementation.AppServiceManager.authenticate(RestClient restClient, String subscriptionId)
+  name: authenticate(AzureTokenCredentials credentials, String subscriptionId)
+  fullName: static AppServiceManager com.microsoft.azure.management.website.implementation.AppServiceManager.authenticate(AzureTokenCredentials credentials, String subscriptionId)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 59
+    startLine: 50
   package: com.microsoft.azure.management.website.implementation
   summary: >-
     <p>Creates an instance of StorageManager that exposes storage resource management API entry points.</p>
 
     <p></p>
   syntax:
-    content: public static AppServiceManager authenticate(RestClient restClient, String subscriptionId)
+    content: public static AppServiceManager authenticate(AzureTokenCredentials credentials, String subscriptionId)
     parameters:
-    - id: restClient
-      type: 9545a295
-      description: <p>the RestClient to be used for API calls. </p>
+    - id: credentials
+      type: f380981c
+      description: <p>the credentials to use </p>
     - id: subscriptionId
       type: "26831127"
       description: <p>the subscription UUID </p>
     return:
       type: com.microsoft.azure.management.website.implementation._app_service_manager
       description: <p>the StorageManager </p>
-- uid: com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(ServiceClientCredentials,String)
-  id: authenticate(ServiceClientCredentials,String)
+- uid: com.microsoft.azure.management.website.implementation._app_service_manager.authenticate(RestClient,String,String)
+  id: authenticate(RestClient,String,String)
   parent: com.microsoft.azure.management.website.implementation._app_service_manager
   href: com.microsoft.azure.management.website.implementation._app_service_manager.yml
   langs:
   - java
-  name: authenticate(ServiceClientCredentials credentials, String subscriptionId)
-  fullName: static AppServiceManager com.microsoft.azure.management.website.implementation.AppServiceManager.authenticate(ServiceClientCredentials credentials, String subscriptionId)
+  name: authenticate(RestClient restClient, String tenantId, String subscriptionId)
+  fullName: static AppServiceManager com.microsoft.azure.management.website.implementation.AppServiceManager.authenticate(RestClient restClient, String tenantId, String subscriptionId)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 46
+    startLine: 64
   package: com.microsoft.azure.management.website.implementation
   summary: >-
     <p>Creates an instance of StorageManager that exposes storage resource management API entry points.</p>
 
     <p></p>
   syntax:
-    content: public static AppServiceManager authenticate(ServiceClientCredentials credentials, String subscriptionId)
+    content: public static AppServiceManager authenticate(RestClient restClient, String tenantId, String subscriptionId)
     parameters:
-    - id: credentials
-      type: d7990412
-      description: <p>the credentials to use </p>
+    - id: restClient
+      type: 9545a295
+      description: <p>the RestClient to be used for API calls. </p>
+    - id: tenantId
+      type: "26831127"
+      description: <p>the tenant UUID </p>
     - id: subscriptionId
       type: "26831127"
       description: <p>the subscription UUID </p>
@@ -129,7 +134,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 116
+    startLine: 129
   package: com.microsoft.azure.management.website.implementation
   syntax:
     content: public CertificateOrders certificateOrders()
@@ -148,7 +153,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 126
+    startLine: 139
   package: com.microsoft.azure.management.website.implementation
   syntax:
     content: public Certificates certificates()
@@ -167,7 +172,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 35
+    startLine: 39
   package: com.microsoft.azure.management.website.implementation
   summary: >-
     <p>Get a <xref href="com.microsoft.azure.management.website.implementation._app_service_manager._configurable" data-throw-if-not-resolved="false"></xref> instance that can be used to create StorageManager with optional configuration.</p>
@@ -178,30 +183,49 @@ items:
     return:
       type: com.microsoft.azure.management.website.implementation._app_service_manager._configurable
       description: <p>the instance allowing configurations </p>
-- uid: com.microsoft.azure.management.website.implementation._app_service_manager.sites()
-  id: sites()
+- uid: com.microsoft.azure.management.website.implementation._app_service_manager.domains()
+  id: domains()
   parent: com.microsoft.azure.management.website.implementation._app_service_manager
   href: com.microsoft.azure.management.website.implementation._app_service_manager.yml
   langs:
   - java
-  name: sites()
-  fullName: WebApps com.microsoft.azure.management.website.implementation.AppServiceManager.sites()
+  name: domains()
+  fullName: Domains com.microsoft.azure.management.website.implementation.AppServiceManager.domains()
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
-    startLine: 96
+    startLine: 149
   package: com.microsoft.azure.management.website.implementation
   syntax:
-    content: public WebApps sites()
+    content: public Domains domains()
+    return:
+      type: com.microsoft.azure.management.website._domains
+      description: <p>the app service plan management API entry point </p>
+- uid: com.microsoft.azure.management.website.implementation._app_service_manager.webApps()
+  id: webApps()
+  parent: com.microsoft.azure.management.website.implementation._app_service_manager
+  href: com.microsoft.azure.management.website.implementation._app_service_manager.yml
+  langs:
+  - java
+  name: webApps()
+  fullName: WebApps com.microsoft.azure.management.website.implementation.AppServiceManager.webApps()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/implementation/AppServiceManager.java
+    startLine: 109
+  package: com.microsoft.azure.management.website.implementation
+  syntax:
+    content: public WebApps webApps()
     return:
       type: com.microsoft.azure.management.website._web_apps
       description: <p>the web app management API entry point </p>
 references:
-- uid: d7990412
+- uid: f380981c
   spec.java:
-  - name: ServiceClientCredentials
-    fullName: ServiceClientCredentials
+  - name: AzureTokenCredentials
+    fullName: AzureTokenCredentials
 - uid: "26831127"
   spec.java:
   - name: String
@@ -220,6 +244,7 @@ references:
     content: protected final InnerT innerManagementClient
     return:
       type: b3452c4f
+- uid: com.microsoft.azure.management.website.implementation._app_service_manager.keyVaultManager()
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager.Manager(RestClient,String,InnerT)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager
   href: com.microsoft.azure.management.resources.fluentcore.arm.implementation._manager.yml
@@ -297,6 +322,15 @@ references:
       description: <p>specific manager type </p>
     - type: 52cf8095
       description: <p>inner management client implementation type </p>
+- uid: com.microsoft.azure.management.keyvault.implementation._key_vault_manager
+  parent: com.microsoft.azure.management.keyvault.implementation
+  href: com.microsoft.azure.management.keyvault.implementation._key_vault_manager.yml
+  name: KeyVaultManager
+  fullName: com.microsoft.azure.management.keyvault.implementation.KeyVaultManager
+  type: Class
+  summary: <p>Entry point to <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> storage resource management. </p>
+  syntax:
+    content: public class KeyVaultManager
 - uid: com.microsoft.azure.management.website._web_apps
   parent: com.microsoft.azure.management.website
   href: com.microsoft.azure.management.website._web_apps.yml
@@ -333,6 +367,15 @@ references:
   summary: <p>Entry point for storage accounts management API. </p>
   syntax:
     content: public interface Certificates
+- uid: com.microsoft.azure.management.website._domains
+  parent: com.microsoft.azure.management.website
+  href: com.microsoft.azure.management.website._domains.yml
+  name: Domains
+  fullName: com.microsoft.azure.management.website.Domains
+  type: Interface
+  summary: <p>Entry point for domain management API. </p>
+  syntax:
+    content: public interface Domains
 - uid: com.microsoft.azure.management.website.implementation._app_service_manager._configurable
   parent: com.microsoft.azure.management.website.implementation
   href: com.microsoft.azure.management.website.implementation._app_service_manager._configurable.yml
