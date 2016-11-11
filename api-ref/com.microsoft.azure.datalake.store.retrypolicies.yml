@@ -1,0 +1,84 @@
+items:
+- uid: com.microsoft.azure.datalake.store.retrypolicies
+  id: retrypolicies
+  children:
+  - com.microsoft.azure.datalake.store.retrypolicies._exponential_backoff_policy
+  - com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy
+  - com.microsoft.azure.datalake.store.retrypolicies._retry_policy
+  href: com.microsoft.azure.datalake.store.retrypolicies.yml
+  langs:
+  - java
+  name: com.microsoft.azure.datalake.store.retrypolicies
+  fullName: com.microsoft.azure.datalake.store.retrypolicies
+  type: Namespace
+  source:
+    remote:
+      path: src/main/java/com/microsoft/azure/datalake/store/retrypolicies/ExponentialBackoffPolicy.java
+      branch: master
+      repo: https://github.com/azure/azure-data-lake-store-java
+    path: src/main/java/com/microsoft/azure/datalake/store/retrypolicies/ExponentialBackoffPolicy.java
+    startLine: 6
+  summary: <p>All the retry policies. </p>
+  syntax:
+    content: namespace retrypolicies
+references:
+- uid: com.microsoft.azure.datalake.store.retrypolicies._exponential_backoff_policy
+  parent: com.microsoft.azure.datalake.store.retrypolicies
+  href: com.microsoft.azure.datalake.store.retrypolicies._exponential_backoff_policy.yml
+  name: ExponentialBackoffPolicy
+  fullName: com.microsoft.azure.datalake.store.retrypolicies.ExponentialBackoffPolicy
+  type: Class
+  summary: >-
+    <p>implements different retry decisions based on the error.</p>
+
+    <p>
+
+      <itemizedlist>
+
+        <listitem>
+
+          <p>For nonretryable errors (3xx, most 4xx, and some 5xx return codes), do no retry. </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p>For throttling error, do a retry with exponential backoff </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p>for all other errors, do a retry with linear backoff </p>
+
+        </listitem>
+
+      </itemizedlist>
+
+    </p>
+  syntax:
+    content: public class ExponentialBackoffPolicy implements RetryPolicy
+- uid: com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy
+  parent: com.microsoft.azure.datalake.store.retrypolicies
+  href: com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy.yml
+  name: NoRetryPolicy
+  fullName: com.microsoft.azure.datalake.store.retrypolicies.NoRetryPolicy
+  type: Class
+  summary: >-
+    <p>No retry ever. Always returns false, indicating that erequest should not be retried.</p>
+
+    <p>This should be used when retrying is not safe, and user wants at-most-once semantics with the call. This is useful for non-idempotent methods, where the error returned by the last call does not conclusively indicate success or failure of the call. For example, if an append times out but succeeds on the back-end , then retrying it may append the data twice to the file. </p>
+  syntax:
+    content: public class NoRetryPolicy implements RetryPolicy
+- uid: com.microsoft.azure.datalake.store.retrypolicies._retry_policy
+  parent: com.microsoft.azure.datalake.store.retrypolicies
+  href: com.microsoft.azure.datalake.store.retrypolicies._retry_policy.yml
+  name: RetryPolicy
+  fullName: com.microsoft.azure.datalake.store.retrypolicies.RetryPolicy
+  type: Interface
+  summary: >-
+    <p>the <xref href="com.microsoft.azure.datalake.store.retrypolicies._retry_policy" data-throw-if-not-resolved="false"></xref> controls whether a failed request should be retried, and how long to wait before retrying. </p>
+
+    <p>Implementations of this interface implement different retry policies. </p>
+  syntax:
+    content: public interface RetryPolicy

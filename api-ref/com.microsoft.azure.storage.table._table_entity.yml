@@ -1,0 +1,574 @@
+items:
+- uid: com.microsoft.azure.storage.table._table_entity
+  id: _table_entity
+  parent: com.microsoft.azure.storage.table
+  children:
+  - com.microsoft.azure.storage.table._table_entity.getEtag()
+  - com.microsoft.azure.storage.table._table_entity.getPartitionKey()
+  - com.microsoft.azure.storage.table._table_entity.getRowKey()
+  - com.microsoft.azure.storage.table._table_entity.getTimestamp()
+  - com.microsoft.azure.storage.table._table_entity.readEntity(HashMap<String, EntityProperty>,OperationContext)
+  - com.microsoft.azure.storage.table._table_entity.setEtag(String)
+  - com.microsoft.azure.storage.table._table_entity.setPartitionKey(String)
+  - com.microsoft.azure.storage.table._table_entity.setRowKey(String)
+  - com.microsoft.azure.storage.table._table_entity.setTimestamp(Date)
+  - com.microsoft.azure.storage.table._table_entity.writeEntity(OperationContext)
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: TableEntity
+  fullName: com.microsoft.azure.storage.table.TableEntity
+  type: Interface
+  source:
+    remote: &o0
+      path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+      branch: master
+      repo: https://github.com/Azure/azure-storage-java
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 73
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>An interface required for table entity types. The <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> interface declares getter and setter methods for the common entity properties, and  and  methods for serialization and deserialization of all entity properties using a property map. Create classes implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> to customize property storage, retrieval, serialization and deserialization, and to provide additional custom logic for a table entity. </p>
+
+    <p>The Storage client library includes two implementations of <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> that provide for simple property access and serialization: </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.storage.table._dynamic_table_entity" data-throw-if-not-resolved="false"></xref> implements <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> and provides a simple property map to store and retrieve properties. Use a <xref href="com.microsoft.azure.storage.table._dynamic_table_entity" data-throw-if-not-resolved="false"></xref> for simple access to entity properties when only a subset of properties are returned (for example, by a select clause in a query), or for when your query can return multiple entity types with different properties. You can also use this type to perform bulk table updates of heterogeneous entities without losing property information. </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> is an implementation of <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> that uses reflection-based serialization and deserialization behavior in its  and  methods. <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref>-derived classes with methods that follow a convention for types and naming are serialized and deserialized automatically. </p>
+
+    <p>Any class that implements <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> can take advantage of the automatic reflection-based serialization and deserialization behavior in <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> by invoking the static methods  in  and  in . The class must provide methods that follow the type and naming convention to be serialized and deserialized automatically. When both a getter method and setter method are found for a given property name and data type, then the appropriate method is invoked automatically to serialize or deserialize the data. The reflection code looks for getter and setter methods in pairs of the form </p>
+
+    <p></p>
+
+    <p>and </p>
+
+    <p></p>
+
+    <p>where <emphasis>PropertyName</emphasis> is a property name for the table entity, and <emphasis>type</emphasis> is a Java type compatible with the EDM data type of the property. See the table in the class description for <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> for a map of property types to their Java equivalents. The <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation may be applied with a  attribute to specify a property name for reflection on getter and setter methods that do not follow the property name convention. Method names and the  attribute of <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotations are case sensitive for matching property names with reflection. Use the <xref href="com.microsoft.azure.storage.table._ignore" data-throw-if-not-resolved="false"></xref> annotation to prevent methods from being used by reflection for automatic serialization and deserialization. Note that the names "PartitionKey", "RowKey", "Timestamp", and "Etag" are reserved and will be ignored if set with the <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation in a subclass that uses the reflection methods. </p>
+
+    <p></p>
+  syntax: &o1
+    content: public interface TableEntity
+  see:
+  - type: com.microsoft.azure.storage.table._table_service_entity
+    description: 
+  - type: com.microsoft.azure.storage.table._dynamic_table_entity
+    description: 
+- uid: com.microsoft.azure.storage.table._table_entity.getEtag()
+  id: getEtag()
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: getEtag()
+  fullName: String com.microsoft.azure.storage.table.TableEntity.getEtag()
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 82
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Gets the ETag value to verify for the entity. This value is used to determine if the table entity has changed since it was last read from Microsoft Azure storage. The client cannot update this value on the service.</p>
+
+    <p></p>
+  syntax:
+    content: public String getEtag()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> which represents the ETag for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.getPartitionKey()
+  id: getPartitionKey()
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: getPartitionKey()
+  fullName: String com.microsoft.azure.storage.table.TableEntity.getPartitionKey()
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 90
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Gets the PartitionKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public String getPartitionKey()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> which represents the PartitionKey value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.getRowKey()
+  id: getRowKey()
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: getRowKey()
+  fullName: String com.microsoft.azure.storage.table.TableEntity.getRowKey()
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 98
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Gets the RowKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public String getRowKey()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> which represents the RowKey value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.getTimestamp()
+  id: getTimestamp()
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: getTimestamp()
+  fullName: Date com.microsoft.azure.storage.table.TableEntity.getTimestamp()
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 106
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Gets the Timestamp for the entity. The server manages the value of Timestamp, which cannot be modified.</p>
+
+    <p></p>
+  syntax:
+    content: public Date getTimestamp()
+    return:
+      type: "12977444"
+      description: <p>A <code>java.util.Date</code> object which represents the Timestamp value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.readEntity(HashMap<String, EntityProperty>,OperationContext)
+  id: readEntity(HashMap<String, EntityProperty>,OperationContext)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: readEntity(HashMap<String, EntityProperty> properties, OperationContext opContext)
+  fullName: void com.microsoft.azure.storage.table.TableEntity.readEntity(HashMap<String, EntityProperty> properties, OperationContext opContext)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 121
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Populates an instance of the object implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> using the specified properties parameter, which represents a map of  property names to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> data typed values.</p>
+
+    <p></p>
+  syntax:
+    content: public void readEntity(HashMap<String, EntityProperty> properties, OperationContext opContext)
+    parameters:
+    - id: properties
+      type: 292b5718com.microsoft.azure.storage.table._entity_propertya08ddfce
+      description: <p>The <code>java.util.HashMap</code> of <code>String</code> to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> data typed values to use to populate the table entity instance. </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object used to track the execution of the operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If an error occurs during the operation. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.setEtag(String)
+  id: setEtag(String)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: setEtag(String etag)
+  fullName: void com.microsoft.azure.storage.table.TableEntity.setEtag(String etag)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 131
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Sets the ETag value to verify for the entity. This value is used to determine if the table entity has changed since it was last read from Microsoft Azure storage. The client cannot update this value on the service.</p>
+
+    <p></p>
+  syntax:
+    content: public void setEtag(String etag)
+    parameters:
+    - id: etag
+      type: "26831127"
+      description: <p>A <code>String</code> which specifies the ETag to set for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.setPartitionKey(String)
+  id: setPartitionKey(String)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: setPartitionKey(String partitionKey)
+  fullName: void com.microsoft.azure.storage.table.TableEntity.setPartitionKey(String partitionKey)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 139
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Sets the PartitionKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public void setPartitionKey(String partitionKey)
+    parameters:
+    - id: partitionKey
+      type: "26831127"
+      description: <p>A <code>String</code> which specifies the PartitionKey value to set for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.setRowKey(String)
+  id: setRowKey(String)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: setRowKey(String rowKey)
+  fullName: void com.microsoft.azure.storage.table.TableEntity.setRowKey(String rowKey)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 147
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Sets the RowKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public void setRowKey(String rowKey)
+    parameters:
+    - id: rowKey
+      type: "26831127"
+      description: <p>A <code>String</code> which specifies the RowKey value to set for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.setTimestamp(Date)
+  id: setTimestamp(Date)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: setTimestamp(Date timeStamp)
+  fullName: void com.microsoft.azure.storage.table.TableEntity.setTimestamp(Date timeStamp)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 156
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Sets the Timestamp value for the entity. Note that timestamp is a read-only property on the service and should not be set by the user.</p>
+
+    <p></p>
+  syntax:
+    content: public void setTimestamp(Date timeStamp)
+    parameters:
+    - id: timeStamp
+      type: "12977444"
+      description: <p>A <code>java.util.Date</code> which specifies the Timestamp value to set for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_entity.writeEntity(OperationContext)
+  id: writeEntity(OperationContext)
+  parent: com.microsoft.azure.storage.table._table_entity
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  langs:
+  - java
+  name: writeEntity(OperationContext opContext)
+  fullName: HashMap<String, EntityProperty> com.microsoft.azure.storage.table.TableEntity.writeEntity(OperationContext opContext)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/table/TableEntity.java
+    startLine: 172
+  package: com.microsoft.azure.storage.table
+  summary: >-
+    <p>Returns a map of  property names to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> data typed values that represents the serialized content of the table entity instance.</p>
+
+    <p></p>
+  syntax:
+    content: public HashMap<String, EntityProperty> writeEntity(OperationContext opContext)
+    parameters:
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object used to track the execution of the operation.</p>
+    return:
+      type: 292b5718com.microsoft.azure.storage.table._entity_propertya08ddfce
+      description: <p>A <code>java.util.HashMap</code> of <code>String</code> property names to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> data typed values representing the properties of the table entity.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If an error occurs during the operation. </p>
+references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: "12977444"
+  spec.java:
+  - name: Date
+    fullName: Date
+- uid: 292b5718com.microsoft.azure.storage.table._entity_propertya08ddfce
+  spec.java:
+  - name: 'HashMap<String, '
+    fullName: 'HashMap<String, '
+  - uid: com.microsoft.azure.storage.table._entity_property
+    name: EntityProperty
+    fullName: com.microsoft.azure.storage.table.EntityProperty
+    href: com.microsoft.azure.storage.table._entity_property.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.storage.table._table_service_entity
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: TableServiceEntity
+  fullName: com.microsoft.azure.storage.table.TableServiceEntity
+  type: Class
+  summary: >-
+    <p>The <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> class represents the base object type for a table entity in the Storage service. <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> provides a base implementation for the <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> interface that provides  and  methods that by default serialize and deserialize all properties via reflection. A table entity class may extend this class and override the  and  methods to provide customized or more performant serialization logic. </p>
+
+    <p>The use of reflection allows subclasses of <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> to be serialized and deserialized without having to implement the serialization code themselves. When both a getter method and setter method are found for a given property name and data type, then the appropriate method is invoked automatically to serialize or deserialize the data. To take advantage of the automatic serialization code, your table entity classes should provide getter and setter methods for each property in the corresponding table entity in Microsoft Azure table storage. The reflection code looks for getter and setter methods in pairs of the form </p>
+
+    <p></p>
+
+    <p>and </p>
+
+    <p></p>
+
+    <p>where <emphasis>PropertyName</emphasis> is a property name for the table entity, and <emphasis>type</emphasis> is a Java type compatible with the EDM data type of the property. See the table below for a map of property types to their Java equivalents. The <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation may be applied with a  attribute to specify a property name for reflection on getter and setter methods that do not follow the property name convention. Method names and the  attribute of <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotations are case sensitive for matching property names with reflection. Use the <xref href="com.microsoft.azure.storage.table._ignore" data-throw-if-not-resolved="false"></xref> annotation to prevent methods from being used by reflection for automatic serialization and deserialization. Note that the names "PartitionKey", "RowKey", "Timestamp", and "Etag" are reserved and will be ignored if set with the <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation in a subclass. </p>
+
+    <p>The following table shows the supported property data types in Microsoft Azure storage and the corresponding Java types when deserialized. <table rows="9" cols="4"><row><entry thead="yes"><p>Storage Type </p></entry><entry thead="yes"><p><xref href="com.microsoft.azure.storage.table._edm_type" data-throw-if-not-resolved="false"></xref> Value </p></entry><entry thead="yes"><p>Java Type </p></entry><entry thead="yes"><p>Description  </p></entry></row><row><entry thead="no"><p><bold>Edm.Binary</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.BINARY()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>An array of bytes up to 64 KB in size.  </p></entry></row><row><entry thead="no"><p><bold>Edm.Boolean</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.BOOLEAN()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A Boolean value.  </p></entry></row><row><entry thead="no"><p><bold>Edm.DateTime</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.DATE_TIME()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A 64-bit value expressed as Coordinated Universal Time (UTC). The supported range begins from 12:00 midnight, January 1, 1601 A.D. (C.E.), UTC. The range ends at December 31, 9999.  </p></entry></row><row><entry thead="no"><p><bold>Edm.Double</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.DOUBLE()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A 64-bit double-precision floating point value.  </p></entry></row><row><entry thead="no"><p><bold>Edm.Guid</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.GUID()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A 128-bit globally unique identifier.  </p></entry></row><row><entry thead="no"><p><bold>Edm.Int32</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.INT32()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A 32-bit integer value.  </p></entry></row><row><entry thead="no"><p><bold>Edm.Int64</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.INT64()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A 64-bit integer value.  </p></entry></row><row><entry thead="no"><p><bold>Edm.String</bold></p></entry><entry thead="no"><p><xref href="com.microsoft.azure.storage.table._edm_type.STRING()" data-throw-if-not-resolved="false"></xref></p></entry><entry thead="no"><p></p></entry><entry thead="no"><p>A UTF-16-encoded value. String values may be up to 64 KB in size.  </p></entry></row></table></p>
+
+    <p>See the MSDN topic <ulink url="http://msdn.microsoft.com//library/azure/dd179338.aspx">Understanding the Table Service Data Model</ulink> for an overview of tables, entities, and properties as used in the Microsoft Azure Storage service. </p>
+
+    <p>For an overview of the available EDM primitive data types and names, see the</p>
+
+    <p>
+
+      <ulink url="http://www.odata.org/developers/protocols/overview#AbstractTypeSystem">Primitive Data Types</ulink> section of the <ulink url="http://www.odata.org/developers/protocols/overview">OData Protocol Overview</ulink>. </p>
+
+    <p></p>
+  syntax:
+    content: public class TableServiceEntity
+- uid: com.microsoft.azure.storage.table._table_service_entity.getEtag()
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: getEtag()
+  fullName: String com.microsoft.azure.storage.table.TableServiceEntity.getEtag()
+  type: Method
+  summary: >-
+    <p>Gets the ETag value to verify for the entity. This value is used to determine if the table entity has changed since it was last read from Microsoft Azure storage. The client cannot update this value on the service.</p>
+
+    <p></p>
+  syntax:
+    content: public String getEtag()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> containing the ETag for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_service_entity.getPartitionKey()
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: getPartitionKey()
+  fullName: String com.microsoft.azure.storage.table.TableServiceEntity.getPartitionKey()
+  type: Method
+  summary: >-
+    <p>Gets the PartitionKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public String getPartitionKey()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> containing the PartitionKey value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_service_entity.getRowKey()
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: getRowKey()
+  fullName: String com.microsoft.azure.storage.table.TableServiceEntity.getRowKey()
+  type: Method
+  summary: >-
+    <p>Gets the RowKey value for the entity.</p>
+
+    <p></p>
+  syntax:
+    content: public String getRowKey()
+    return:
+      type: "26831127"
+      description: <p>A <code>String</code> containing the RowKey value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._table_service_entity.getTimestamp()
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: getTimestamp()
+  fullName: Date com.microsoft.azure.storage.table.TableServiceEntity.getTimestamp()
+  type: Method
+  summary: >-
+    <p>Gets the Timestamp for the entity. The server manages the value of Timestamp, which cannot be modified.</p>
+
+    <p></p>
+  syntax:
+    content: public Date getTimestamp()
+    return:
+      type: "12977444"
+      description: <p>A <code>java.util.Date</code> object which represents the Timestamp value for the entity. </p>
+- uid: com.microsoft.azure.storage.table._entity_property
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._entity_property.yml
+  name: EntityProperty
+  fullName: com.microsoft.azure.storage.table.EntityProperty
+  type: Class
+  summary: >-
+    <p>A class which represents a single typed property value in a table entity. An <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> stores the data type as an <xref href="com.microsoft.azure.storage.table._edm_type" data-throw-if-not-resolved="false"></xref>. The value, which may be  for object types, but not for primitive types, is serialized and stored as a . </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> provides overloaded constructors and overloads of the  method for supported value types. Each overloaded constructor or  method sets the <xref href="com.microsoft.azure.storage.table._edm_type" data-throw-if-not-resolved="false"></xref> and serializes the value appropriately based on the parameter type. </p>
+
+    <p>Use one of the <emphasis>Type</emphasis> methods to deserialize an <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> as the appropriate Java type. The method will throw a <ref refid="" kindref="compound">ParseException</ref> or <ref refid="" kindref="compound">IllegalArgumentException</ref> if the <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> cannot be deserialized as the Java type. </p>
+  syntax:
+    content: public class EntityProperty
+- uid: com.microsoft.azure.storage._operation_context
+  parent: com.microsoft.azure.storage
+  href: com.microsoft.azure.storage._operation_context.yml
+  name: OperationContext
+  fullName: com.microsoft.azure.storage.OperationContext
+  type: Class
+  summary: <p>Represents the current logical operation. A logical operation may have a one-to-many relationship with multiple individual physical requests. </p>
+  syntax:
+    content: public class OperationContext
+- uid: com.microsoft.azure.storage._storage_exception
+  parent: com.microsoft.azure.storage
+  href: com.microsoft.azure.storage._storage_exception.yml
+  name: StorageException
+  fullName: com.microsoft.azure.storage.StorageException
+  type: Class
+  summary: <p>Represents an exception for the Microsoft Azure storage service. </p>
+  syntax:
+    content: public class StorageException
+- uid: com.microsoft.azure.storage.table._table_entity
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._table_entity.yml
+  name: TableEntity
+  fullName: com.microsoft.azure.storage.table.TableEntity
+  type: Interface
+  summary: >-
+    <p>An interface required for table entity types. The <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> interface declares getter and setter methods for the common entity properties, and  and  methods for serialization and deserialization of all entity properties using a property map. Create classes implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> to customize property storage, retrieval, serialization and deserialization, and to provide additional custom logic for a table entity. </p>
+
+    <p>The Storage client library includes two implementations of <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> that provide for simple property access and serialization: </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.storage.table._dynamic_table_entity" data-throw-if-not-resolved="false"></xref> implements <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> and provides a simple property map to store and retrieve properties. Use a <xref href="com.microsoft.azure.storage.table._dynamic_table_entity" data-throw-if-not-resolved="false"></xref> for simple access to entity properties when only a subset of properties are returned (for example, by a select clause in a query), or for when your query can return multiple entity types with different properties. You can also use this type to perform bulk table updates of heterogeneous entities without losing property information. </p>
+
+    <p>
+
+      <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> is an implementation of <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> that uses reflection-based serialization and deserialization behavior in its  and  methods. <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref>-derived classes with methods that follow a convention for types and naming are serialized and deserialized automatically. </p>
+
+    <p>Any class that implements <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> can take advantage of the automatic reflection-based serialization and deserialization behavior in <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> by invoking the static methods  in  and  in . The class must provide methods that follow the type and naming convention to be serialized and deserialized automatically. When both a getter method and setter method are found for a given property name and data type, then the appropriate method is invoked automatically to serialize or deserialize the data. The reflection code looks for getter and setter methods in pairs of the form </p>
+
+    <p></p>
+
+    <p>and </p>
+
+    <p></p>
+
+    <p>where <emphasis>PropertyName</emphasis> is a property name for the table entity, and <emphasis>type</emphasis> is a Java type compatible with the EDM data type of the property. See the table in the class description for <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> for a map of property types to their Java equivalents. The <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation may be applied with a  attribute to specify a property name for reflection on getter and setter methods that do not follow the property name convention. Method names and the  attribute of <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotations are case sensitive for matching property names with reflection. Use the <xref href="com.microsoft.azure.storage.table._ignore" data-throw-if-not-resolved="false"></xref> annotation to prevent methods from being used by reflection for automatic serialization and deserialization. Note that the names "PartitionKey", "RowKey", "Timestamp", and "Etag" are reserved and will be ignored if set with the <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation in a subclass that uses the reflection methods. </p>
+
+    <p></p>
+  syntax: *o1
+- uid: com.microsoft.azure.storage.table._dynamic_table_entity
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._dynamic_table_entity.yml
+  name: DynamicTableEntity
+  fullName: com.microsoft.azure.storage.table.DynamicTableEntity
+  type: Class
+  summary: <p>A <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> type which allows callers direct access to the property map of the entity. This class extends <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> to eliminate the use of reflection for serialization and deserialization. </p>
+  syntax:
+    content: public class DynamicTableEntity extends TableServiceEntity
+- uid: com.microsoft.azure.storage.table._table_service_entity.readEntityWithReflection(final Object,final HashMap<String, EntityProperty>,final OperationContext)
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: readEntityWithReflection(final Object instance, final HashMap<String, EntityProperty> properties, final OperationContext opContext)
+  fullName: static void com.microsoft.azure.storage.table.TableServiceEntity.readEntityWithReflection(final Object instance, final HashMap<String, EntityProperty> properties, final OperationContext opContext)
+  type: Method
+  summary: >-
+    <p>Deserializes the table entity property map into the specified object instance using reflection. </p>
+
+    <p>This static method takes an object instance that represents a table entity type and uses reflection on its class type to find methods to deserialize the data from the property map into the instance. </p>
+
+    <p>Each property name and data type in the properties map is compared with the methods in the class type for a pair of getter and setter methods to use for serialization and deserialization. The class is scanned for methods with names that match the property name with "get" and "set" prepended, or with the <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation set with the property name. The methods must have return types or parameter data types that match the data type of the corresponding <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> value. If such a pair is found, the data is copied into the instance object by invoking the setter method on the instance. Properties that do not match a method pair by name and data type are not copied.</p>
+
+    <p></p>
+  syntax:
+    content: public static void readEntityWithReflection(final Object instance, final HashMap<String, EntityProperty> properties, final OperationContext opContext)
+    parameters:
+    - id: instance
+      type: 1b60ba29
+      description: <p>An <code>Object</code> reference to an instance of a class implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> to deserialize the table entity data into. </p>
+    - id: properties
+      type: 2e8e1cc0com.microsoft.azure.storage.table._entity_propertya08ddfce
+      description: <p>A <code>java.util.HashMap</code> object which maps <code>String</code> property names to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> objects containing typed data values to deserialize into the instance parameter object. </p>
+    - id: opContext
+      type: 93de0ef9com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation.</p>
+- uid: com.microsoft.azure.storage.table._table_service_entity.writeEntityWithReflection(final Object)
+  parent: com.microsoft.azure.storage.table._table_service_entity
+  href: com.microsoft.azure.storage.table._table_service_entity.yml
+  name: writeEntityWithReflection(final Object instance)
+  fullName: static HashMap<String, EntityProperty> com.microsoft.azure.storage.table.TableServiceEntity.writeEntityWithReflection(final Object instance)
+  type: Method
+  summary: >-
+    <p>Serializes the property data from a table entity instance into a property map using reflection. </p>
+
+    <p>This static method takes an object instance that represents a table entity type and uses reflection on its class type to find methods to serialize the data from the instance into the property map. </p>
+
+    <p>Each property name and data type in the properties map is compared with the methods in the class type for a pair of getter and setter methods to use for serialization and deserialization. The class is scanned for methods with names that match the property name with "get" and "set" prepended, or with the <xref href="com.microsoft.azure.storage.table._store_as" data-throw-if-not-resolved="false"></xref> annotation set with the property name. The methods must have return types or parameter data types that match the data type of the corresponding <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> value. If such a pair is found, the data is copied from the instance object by invoking the getter method on the instance. Properties that do not have a method pair with matching name and data type are not copied.</p>
+
+    <p></p>
+  syntax:
+    content: public static HashMap<String, EntityProperty> writeEntityWithReflection(final Object instance)
+    parameters:
+    - id: instance
+      type: 1b60ba29
+      description: <p>An <code>Object</code> reference to an instance of a class implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> to serialize the table entity data from. </p>
+    return:
+      type: 292b5718com.microsoft.azure.storage.table._entity_propertya08ddfce
+      description: <p>A <code>java.util.HashMap</code> object which maps <code>String</code> property names to <xref href="com.microsoft.azure.storage.table._entity_property" data-throw-if-not-resolved="false"></xref> objects containing typed data values serialized from the instance parameter object.</p>
+- uid: com.microsoft.azure.storage.table._store_as
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._store_as.yml
+  name: StoreAs
+  fullName: com.microsoft.azure.storage.table.StoreAs
+  type: Interface
+  summary: >-
+    <p>An annotation used to override the name a property is serialized and deserialized with using reflection. Use this annotation to specify the property name to associate with the data stored by a setter method or retrieved by a getter method in a class implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> that uses reflection-based serialization and deserialization. Note that the names "PartitionKey", "RowKey", "Timestamp", and "Etag" are reserved and will be ignored if set with the  annotation. </p>
+
+    <p>Example: </p>
+
+    <p></p>
+
+    <p></p>
+
+    <p>This example shows how the methods that would get and set an entity property named <emphasis>ObjectPropertyName</emphasis> in the default case can be annotated to get and set an entity property named <emphasis>EntityPropertyName</emphasis>. See the documentation for <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> for more information on using reflection-based serialization and deserialization.</p>
+
+    <p></p>
+  syntax:
+    content: public interface StoreAs
+- uid: com.microsoft.azure.storage.table._ignore
+  parent: com.microsoft.azure.storage.table
+  href: com.microsoft.azure.storage.table._ignore.yml
+  name: Ignore
+  fullName: com.microsoft.azure.storage.table.Ignore
+  type: Interface
+  summary: >-
+    <p>An annotation set on a method to prevent its use in serializing or deserializing a property by reflection. Apply the  annotation to methods in a class implementing <xref href="com.microsoft.azure.storage.table._table_entity" data-throw-if-not-resolved="false"></xref> to force them to be ignored during reflection-based serialization and deserialization. See the documentation for <xref href="com.microsoft.azure.storage.table._table_service_entity" data-throw-if-not-resolved="false"></xref> for more information on using reflection-based serialization and deserialization.</p>
+
+    <p></p>
+  syntax:
+    content: public interface Ignore

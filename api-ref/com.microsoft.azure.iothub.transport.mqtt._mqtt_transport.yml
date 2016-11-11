@@ -1,0 +1,613 @@
+items:
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  id: _mqtt_transport
+  parent: com.microsoft.azure.iothub.transport.mqtt
+  children:
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.addMessage(Message,IotHubEventCallback,Object)
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.callbackList()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.close()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.config()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.handleMessage()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.handleMessageLock()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.invokeCallbacks()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.isEmpty()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.mqttIotHubConnection()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.MqttTransport(DeviceClientConfig)
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.open()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.sendMessages()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.sendMessagesLock()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.state()
+  - com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.waitingList()
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: MqttTransport
+  fullName: com.microsoft.azure.iothub.transport.mqtt.MqttTransport
+  type: Class
+  source:
+    remote: &o0
+      path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+      branch: master
+      repo: https://github.com/Azure/azure-iot-sdks
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 29
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>An MQTT transport. Contains functionality for adding messages and sending batched messages to an IoT Hub. Buffers unsent messages until they are received by an IoT Hub. A transport is bound at construction to the following parameters: IoT Hub name, device ID, device key, and message valid seconds. </p>
+
+    <p>The transport can also poll an IoT Hub for messages and invoke a user-defined message callback if a message and callback is found. </p>
+  syntax:
+    content: public class MqttTransport implements IotHubTransport
+  inheritance:
+  - java.lang.Object
+  - Closeable
+  - com.microsoft.azure.iothub.transport._iot_hub_transport
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.addMessage(Message,IotHubEventCallback,Object)
+  id: addMessage(Message,IotHubEventCallback,Object)
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 118
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Adds a message to the transport queue.</p>
+
+    <p></p>
+  syntax:
+    content: public void addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.iothub._message
+      description: <p>the message to be sent. </p>
+    - id: callback
+      type: com.microsoft.azure.iothub._iot_hub_event_callback
+      description: <p>the callback to be invoked when a response for the message is received. </p>
+    - id: callbackContext
+      type: "79317049"
+      description: <p>the context to be passed in when the callback is invoked.</p>
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.addMessage(Message,IotHubEventCallback,Object)
+  exceptions:
+  - type: 12fe80de
+    description: <p>if the transport has not been opened or is closed </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.callbackList()
+  id: callbackList()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: callbackList
+  fullName: final Queue<IotHubCallbackPacket> com.microsoft.azure.iothub.transport.mqtt.MqttTransport.callbackList
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 44
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: <p>Messages whose callbacks that are waiting to be invoked. </p>
+  syntax:
+    content: protected final Queue<IotHubCallbackPacket> callbackList
+    return:
+      type: 7f48919ccom.microsoft.azure.iothub.transport._iot_hub_callback_packeta08ddfce
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.close()
+  id: close()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: close()
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.close()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 93
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: <p>Closes all resources used to communicate with an IoT Hub. Once<programlisting><codeline><highlight class="normal">close()<sp></sp></highlight></codeline></programlisting> is called, the transport is no longer usable. If the transport is already closed, the function shall do nothing. </p>
+  syntax:
+    content: public void close()
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.close()
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.config()
+  id: config()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: config
+  fullName: final DeviceClientConfig com.microsoft.azure.iothub.transport.mqtt.MqttTransport.config
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 46
+  package: com.microsoft.azure.iothub.transport.mqtt
+  syntax:
+    content: protected final DeviceClientConfig config
+    return:
+      type: 93de0ef9com.microsoft.azure.iothub._device_client_config
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.handleMessage()
+  id: handleMessage()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: handleMessage()
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.handleMessage()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 234
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Invokes the message callback every time a message arrives from the server. responds to the IoT Hub on how the processed message should be handled by the IoT Hub. </p>
+
+    <p>If no message callback is set, the function will do nothing.</p>
+
+    <p></p>
+  syntax:
+    content: public void handleMessage()
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.handleMessage()
+  exceptions:
+  - type: 12fe80de
+    description: <p>if the transport has not been opened or is closed. </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.handleMessageLock()
+  id: handleMessageLock()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: handleMessageLock
+  fullName: final Object com.microsoft.azure.iothub.transport.mqtt.MqttTransport.handleMessageLock
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 33
+  package: com.microsoft.azure.iothub.transport.mqtt
+  syntax:
+    content: protected final Object handleMessageLock= new Object()
+    return:
+      type: 1b60ba29
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.invokeCallbacks()
+  id: invokeCallbacks()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: invokeCallbacks()
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.invokeCallbacks()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 197
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Invokes the callbacks for all completed requests.</p>
+
+    <p></p>
+  syntax:
+    content: public void invokeCallbacks()
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.invokeCallbacks()
+  exceptions:
+  - type: 12fe80de
+    description: <p>if the transport has not been opened or is closed. </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.isEmpty()
+  id: isEmpty()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: isEmpty()
+  fullName: boolean com.microsoft.azure.iothub.transport.mqtt.MqttTransport.isEmpty()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 277
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Returns<programlisting><codeline><highlight class="normal">true<sp></sp></highlight></codeline></programlisting> if the transport has no more messages to handle, and<programlisting><codeline><highlight class="normal">false<sp></sp></highlight></codeline></programlisting> otherwise.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean isEmpty()
+    return:
+      type: 4fc6e284
+      description: >-
+        <p>
+
+          <programlisting>
+
+            <codeline>
+
+              <highlight class="normal">true<sp></sp></highlight>
+
+            </codeline>
+
+          </programlisting> if the transport has no more messages to handle, and<programlisting><codeline><highlight class="normal">false<sp></sp></highlight></codeline></programlisting> otherwise. </p>
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.isEmpty()
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.mqttIotHubConnection()
+  id: mqttIotHubConnection()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: mqttIotHubConnection
+  fullName: MqttIotHubConnection com.microsoft.azure.iothub.transport.mqtt.MqttTransport.mqttIotHubConnection
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 38
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: <p>The MQTT connection. </p>
+  syntax:
+    content: protected MqttIotHubConnection mqttIotHubConnection
+    return:
+      type: com.microsoft.azure.iothub.transport.mqtt._mqtt_iot_hub_connection
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.MqttTransport(DeviceClientConfig)
+  id: MqttTransport(DeviceClientConfig)
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: MqttTransport(DeviceClientConfig config)
+  fullName: com.microsoft.azure.iothub.transport.mqtt.MqttTransport.MqttTransport(DeviceClientConfig config)
+  type: Constructor
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 54
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Constructs an instance from the given <xref href="com.microsoft.azure.iothub._device_client_config" data-throw-if-not-resolved="false"></xref> object.</p>
+
+    <p></p>
+  syntax:
+    content: public MqttTransport(DeviceClientConfig config)
+    parameters:
+    - id: config
+      type: com.microsoft.azure.iothub._device_client_config
+      description: <p>configuration parameters for the connection. </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.open()
+  id: open()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: open()
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.open()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 72
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Establishes a communication channel with an IoT Hub. If a channel is already open, the function shall do nothing.</p>
+
+    <p></p>
+  syntax:
+    content: public void open()
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.open()
+  exceptions:
+  - type: cbf33bbe
+    description: <p>if a communication channel cannot be established. </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.sendMessages()
+  id: sendMessages()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: sendMessages()
+  fullName: void com.microsoft.azure.iothub.transport.mqtt.MqttTransport.sendMessages()
+  type: Method
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 150
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: >-
+    <p>Sends all messages on the transport queue, one at a time. If a previous send attempt had failed, the function will attempt to resend the messages in the previous attempt. </p>
+
+    <p>If one has not already been created, the function will initialize an MQTT connection with the IoT Hub specified in the configuration.</p>
+
+    <p></p>
+  syntax:
+    content: public void sendMessages()
+  overridden: com.microsoft.azure.iothub.transport._iot_hub_transport.sendMessages()
+  exceptions:
+  - type: 12fe80de
+    description: <p>if the transport has not been opened or is closed. </p>
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.sendMessagesLock()
+  id: sendMessagesLock()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: sendMessagesLock
+  fullName: final Object com.microsoft.azure.iothub.transport.mqtt.MqttTransport.sendMessagesLock
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 32
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: <p>The MQTT connection lock. </p>
+  syntax:
+    content: protected final Object sendMessagesLock= new Object()
+    return:
+      type: 1b60ba29
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.state()
+  id: state()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: state
+  fullName: State com.microsoft.azure.iothub.transport.mqtt.MqttTransport.state
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 35
+  package: com.microsoft.azure.iothub.transport.mqtt
+  syntax:
+    content: protected State state
+    return:
+      type: com.microsoft.azure.iothub.transport._state
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.waitingList()
+  id: waitingList()
+  parent: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_transport.yml
+  langs:
+  - java
+  name: waitingList
+  fullName: final Queue<IotHubOutboundPacket> com.microsoft.azure.iothub.transport.mqtt.MqttTransport.waitingList
+  type: Field
+  source:
+    remote: *o0
+    path: java/device/iothub-java-client/src/main/java/com/microsoft/azure/iothub/transport/mqtt/MqttTransport.java
+    startLine: 41
+  package: com.microsoft.azure.iothub.transport.mqtt
+  summary: <p>Messages waiting to be sent. </p>
+  syntax:
+    content: protected final Queue<IotHubOutboundPacket> waitingList
+    return:
+      type: 7f48919ccom.microsoft.azure.iothub.transport._iot_hub_outbound_packeta08ddfce
+references:
+- uid: 1b60ba29
+  spec.java:
+  - name: final Object
+    fullName: final Object
+- uid: 7f48919ccom.microsoft.azure.iothub.transport._iot_hub_outbound_packeta08ddfce
+  spec.java:
+  - name: final Queue<
+    fullName: final Queue<
+  - uid: com.microsoft.azure.iothub.transport._iot_hub_outbound_packet
+    name: IotHubOutboundPacket
+    fullName: com.microsoft.azure.iothub.transport.IotHubOutboundPacket
+    href: com.microsoft.azure.iothub.transport._iot_hub_outbound_packet.yml
+  - name: '>'
+    fullName: '>'
+- uid: 7f48919ccom.microsoft.azure.iothub.transport._iot_hub_callback_packeta08ddfce
+  spec.java:
+  - name: final Queue<
+    fullName: final Queue<
+  - uid: com.microsoft.azure.iothub.transport._iot_hub_callback_packet
+    name: IotHubCallbackPacket
+    fullName: com.microsoft.azure.iothub.transport.IotHubCallbackPacket
+    href: com.microsoft.azure.iothub.transport._iot_hub_callback_packet.yml
+  - name: '>'
+    fullName: '>'
+- uid: 93de0ef9com.microsoft.azure.iothub._device_client_config
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.iothub._device_client_config
+    name: DeviceClientConfig
+    fullName: com.microsoft.azure.iothub.DeviceClientConfig
+    href: com.microsoft.azure.iothub._device_client_config.yml
+- uid: cbf33bbe
+  spec.java:
+  - name: IOException
+    fullName: IOException
+- uid: 12fe80de
+  spec.java:
+  - name: IllegalStateException
+    fullName: IllegalStateException
+- uid: "79317049"
+  spec.java:
+  - name: Object
+    fullName: Object
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport
+  parent: com.microsoft.azure.iothub.transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: IotHubTransport
+  fullName: com.microsoft.azure.iothub.transport.IotHubTransport
+  type: Interface
+  summary: <p>An interface for an IoT Hub transport. </p>
+  syntax:
+    content: public interface IotHubTransport
+- uid: com.microsoft.azure.iothub.transport._state
+  parent: com.microsoft.azure.iothub.transport
+  href: com.microsoft.azure.iothub.transport._state.yml
+  name: State
+  fullName: com.microsoft.azure.iothub.transport.State
+  type: Enum
+  syntax:
+    content: public enum State
+- uid: com.microsoft.azure.iothub.transport.mqtt._mqtt_iot_hub_connection
+  parent: com.microsoft.azure.iothub.transport.mqtt
+  href: com.microsoft.azure.iothub.transport.mqtt._mqtt_iot_hub_connection.yml
+  name: MqttIotHubConnection
+  fullName: com.microsoft.azure.iothub.transport.mqtt.MqttIotHubConnection
+  type: Class
+  syntax:
+    content: public class MqttIotHubConnection
+- uid: com.microsoft.azure.iothub.transport._iot_hub_outbound_packet
+  parent: com.microsoft.azure.iothub.transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_outbound_packet.yml
+  name: IotHubOutboundPacket
+  fullName: com.microsoft.azure.iothub.transport.IotHubOutboundPacket
+  type: Class
+  summary: <p>A packet containing the data needed for an IoT Hub transport to send a message. </p>
+  syntax:
+    content: public class IotHubOutboundPacket
+- uid: com.microsoft.azure.iothub.transport._iot_hub_callback_packet
+  parent: com.microsoft.azure.iothub.transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_callback_packet.yml
+  name: IotHubCallbackPacket
+  fullName: com.microsoft.azure.iothub.transport.IotHubCallbackPacket
+  type: Class
+  summary: <p>A packet containing the data needed for an IoT Hub transport to invoke a callback. </p>
+  syntax:
+    content: public class IotHubCallbackPacket
+- uid: com.microsoft.azure.iothub._device_client_config
+  parent: com.microsoft.azure.iothub
+  href: com.microsoft.azure.iothub._device_client_config.yml
+  name: DeviceClientConfig
+  fullName: com.microsoft.azure.iothub.DeviceClientConfig
+  type: Class
+  summary: <p>Configuration settings for an IoT Hub client. Validates all user-defined settings. </p>
+  syntax:
+    content: public class DeviceClientConfig
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.open()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: open()
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.open()
+  type: Method
+  summary: >-
+    <p>Establishes a communication channel with an IoT Hub. If a channel is already open, the function shall do nothing.</p>
+
+    <p></p>
+  syntax:
+    content: public void open()
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.close()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: close()
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.close()
+  type: Method
+  summary: >-
+    <p>Closes all resources used to communicate with an IoT Hub. Once<programlisting><codeline><highlight class="normal">close()<sp></sp></highlight></codeline></programlisting> is called, the transport is no longer usable. If the transport is already closed, the function shall do nothing.</p>
+
+    <p></p>
+  syntax:
+    content: public void close()
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.addMessage(Message,IotHubEventCallback,Object)
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+  type: Method
+  summary: >-
+    <p>Adds a message to the transport queue.</p>
+
+    <p></p>
+  syntax:
+    content: public void addMessage(Message message, IotHubEventCallback callback, Object callbackContext)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.iothub._message
+      description: <p>the message to be sent. </p>
+    - id: callback
+      type: com.microsoft.azure.iothub._iot_hub_event_callback
+      description: <p>the callback to be invoked when a response for the message is received. </p>
+    - id: callbackContext
+      type: "79317049"
+      description: <p>the context to be passed in when the callback is invoked. </p>
+- uid: com.microsoft.azure.iothub._message
+  parent: com.microsoft.azure.iothub
+  href: com.microsoft.azure.iothub._message.yml
+  name: Message
+  fullName: com.microsoft.azure.iothub.Message
+  type: Class
+  syntax:
+    content: public class Message
+- uid: com.microsoft.azure.iothub._iot_hub_event_callback
+  parent: com.microsoft.azure.iothub
+  href: com.microsoft.azure.iothub._iot_hub_event_callback.yml
+  name: IotHubEventCallback
+  fullName: com.microsoft.azure.iothub.IotHubEventCallback
+  type: Interface
+  summary: >-
+    <p>An interface for an IoT Hub event callback.</p>
+
+    <p>Developers are expected to create an implementation of this interface, and the transport will call <xref href="com.microsoft.azure.iothub._iot_hub_event_callback.execute(IotHubStatusCode,Object)" data-throw-if-not-resolved="false"></xref> upon receiving a response from an IoT Hub. </p>
+  syntax:
+    content: public interface IotHubEventCallback
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.sendMessages()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: sendMessages()
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.sendMessages()
+  type: Method
+  summary: >-
+    <p>Sends all messages on the transport queue. If a previous send attempt had failed, the function will attempt to resend the messages in the previous attempt.</p>
+
+    <p></p>
+  syntax:
+    content: public void sendMessages()
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.invokeCallbacks()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: invokeCallbacks()
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.invokeCallbacks()
+  type: Method
+  summary: <p>Invokes the callbacks for all completed requests. </p>
+  syntax:
+    content: public void invokeCallbacks()
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.handleMessage()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: handleMessage()
+  fullName: void com.microsoft.azure.iothub.transport.IotHubTransport.handleMessage()
+  type: Method
+  summary: >-
+    <p>Invokes the message callback if a message is found and responds to the IoT Hub on how the processed message should be handled by the IoT Hub. </p>
+
+    <p>If no message callback is set, the function will do nothing.</p>
+
+    <p></p>
+  syntax:
+    content: public void handleMessage()
+- uid: com.microsoft.azure.iothub.transport._iot_hub_transport.isEmpty()
+  parent: com.microsoft.azure.iothub.transport._iot_hub_transport
+  href: com.microsoft.azure.iothub.transport._iot_hub_transport.yml
+  name: isEmpty()
+  fullName: boolean com.microsoft.azure.iothub.transport.IotHubTransport.isEmpty()
+  type: Method
+  summary: >-
+    <p>Returns<programlisting><codeline><highlight class="normal">true<sp></sp></highlight></codeline></programlisting> if the transport has no more messages to handle, and<programlisting><codeline><highlight class="normal">false<sp></sp></highlight></codeline></programlisting> otherwise.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean isEmpty()
+    return:
+      type: 4fc6e284
+      description: >-
+        <p>
+
+          <programlisting>
+
+            <codeline>
+
+              <highlight class="normal">true<sp></sp></highlight>
+
+            </codeline>
+
+          </programlisting> if the transport has no more messages to handle, and<programlisting><codeline><highlight class="normal">false<sp></sp></highlight></codeline></programlisting> otherwise. </p>

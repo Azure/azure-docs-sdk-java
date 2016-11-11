@@ -1,0 +1,127 @@
+items:
+- uid: system.fabric._stateful_service_factory
+  id: _stateful_service_factory
+  parent: system.fabric
+  children:
+  - system.fabric._stateful_service_factory.createReplica(String,URI,byte[],UUID,long)
+  href: system.fabric._stateful_service_factory.yml
+  langs:
+  - java
+  name: StatefulServiceFactory
+  fullName: system.fabric.StatefulServiceFactory
+  type: Interface
+  source:
+    remote: &o0
+      path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceFactory.java
+      branch: release_linux_5.3
+      repo: https://msazure.visualstudio.com/One/_git/sf-java
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceFactory.java
+    startLine: 11
+  package: system.fabric
+  summary: <p>Represents a stateful service factory that is responsible for creating replicas of a specific type of stateful service. Stateful service factories are registered with the <xref href="system.fabric._fabric_runtime" data-throw-if-not-resolved="false"></xref> by service hosts via <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactory(java.lang.String,system.fabric.StatefulServiceFactory)</ref> or <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactoryAsync(java.lang.String,system.fabric.StatefulServiceFactory,java.time.Duration)</ref>. </p>
+  syntax:
+    content: public interface StatefulServiceFactory
+- uid: system.fabric._stateful_service_factory.createReplica(String,URI,byte[],UUID,long)
+  id: createReplica(String,URI,byte[],UUID,long)
+  parent: system.fabric._stateful_service_factory
+  href: system.fabric._stateful_service_factory.yml
+  langs:
+  - java
+  name: createReplica(String serviceTypeName, URI serviceName, byte[] initializationData, UUID partitionId, long replicaId)
+  fullName: StatefulServiceReplica system.fabric.StatefulServiceFactory.createReplica(String serviceTypeName, URI serviceName, byte[] initializationData, UUID partitionId, long replicaId)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceFactory.java
+    startLine: 29
+  package: system.fabric
+  summary: <p>Called by Service Fabric to create a stateful service replica for a particular service. </p>
+  syntax:
+    content: public StatefulServiceReplica createReplica(String serviceTypeName, URI serviceName, byte[] initializationData, UUID partitionId, long replicaId)
+    parameters:
+    - id: serviceTypeName
+      type: "26831127"
+      description: <p>The service type that Service Fabric requests to be created. </p>
+    - id: serviceName
+      type: "62304784"
+      description: <p>The fabric:/ name (Uri) of the service with which this replica is associated. </p>
+    - id: initializationData
+      type: bc819c2f
+      description: <p>A byte array that contains the initialization data which was originally passed as a part of this services <xref href="system.fabric._service_description" data-throw-if-not-resolved="false"></xref>. </p>
+    - id: partitionId
+      type: add9545a
+      description: <p>The partition ID of type, a GUID, with which this replica is associated. </p>
+    - id: replicaId
+      type: 0364520f
+      description: <p>The replica ID of type long for this replica. </p>
+    return:
+      type: system.fabric._stateful_service_replica
+      description: <p>Returns <xref href="system.fabric._stateful_service_replica" data-throw-if-not-resolved="false"></xref>. </p>
+  exceptions:
+  - type: 84fa3863
+    description: <p>On failure of instance creation </p>
+  - type: "81e09942"
+    description: <p>On Access voilation </p>
+references:
+- uid: 84fa3863
+  spec.java:
+  - name: InstantiationException
+    fullName: InstantiationException
+- uid: "81e09942"
+  spec.java:
+  - name: IllegalAccessException
+    fullName: IllegalAccessException
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: "62304784"
+  spec.java:
+  - name: URI
+    fullName: URI
+- uid: bc819c2f
+  spec.java:
+  - name: byte[]
+    fullName: byte[]
+- uid: add9545a
+  spec.java:
+  - name: UUID
+    fullName: UUID
+- uid: 0364520f
+  spec.java:
+  - name: long
+    fullName: long
+- uid: microsoft.servicefabric.services.runtime._stateful_service_replica_factory
+- uid: system.fabric._default_service_factory
+- uid: system.fabric._stateful_service_replica
+  parent: system.fabric
+  href: system.fabric._stateful_service_replica.yml
+  name: StatefulServiceReplica
+  fullName: system.fabric.StatefulServiceReplica
+  type: Interface
+  summary: >-
+    <p>Defines behavior that governs the lifecycle of a replica, such as startup, initialization, role changes, and shutdown. </p>
+
+    <p>
+
+      <bold>Remarks:</bold>Stateful service types must implement this interface. The logic of a stateful service type includes behavior that is invoked on Primary replicas and behavior that is invoked on Secondary replicas. If the service author wants to make use of the provided <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref>, then the service must also implement <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> to use the implementation of <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> that is provided by <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref></p>
+  syntax:
+    content: public interface StatefulServiceReplica
+- uid: system.fabric._service_description
+  parent: system.fabric
+  href: system.fabric._service_description.yml
+  name: ServiceDescription
+  fullName: system.fabric.ServiceDescription
+  type: Class
+  summary: <p>A <xref href="system.fabric._service_description" data-throw-if-not-resolved="false"></xref> contains all of the information necessary to create a service. </p>
+  syntax:
+    content: public class ServiceDescription
+- uid: system.fabric._fabric_runtime
+  parent: system.fabric
+  href: system.fabric._fabric_runtime.yml
+  name: FabricRuntime
+  fullName: system.fabric.FabricRuntime
+  type: Class
+  summary: <p>Allows user created hosts to obtain their <xref href="system.fabric._code_package_activation_context" data-throw-if-not-resolved="false"></xref>, well as to register the necessary service factories [ <xref href="system.fabric._stateless_service_factory" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._stateful_service_factory" data-throw-if-not-resolved="false"></xref> ] or service types directly. </p>
+  syntax:
+    content: public class FabricRuntime

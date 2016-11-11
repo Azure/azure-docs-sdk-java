@@ -1,0 +1,351 @@
+items:
+- uid: system.fabric.health._health_event
+  id: _health_event
+  parent: system.fabric.health
+  children:
+  - system.fabric.health._health_event.getHealthInformation()
+  - system.fabric.health._health_event.getLastErrorTransitionAt()
+  - system.fabric.health._health_event.getLastModifiedUtcTimestamp()
+  - system.fabric.health._health_event.getLastOkTransitionAt()
+  - system.fabric.health._health_event.getLastWarningTransitionAt()
+  - system.fabric.health._health_event.getSourceUtcTimestamp()
+  - system.fabric.health._health_event.isExpired()
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: HealthEvent
+  fullName: system.fabric.health.HealthEvent
+  type: Class
+  source:
+    remote: &o0
+      path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+      branch: release_linux_5.3
+      repo: https://msazure.visualstudio.com/One/_git/sf-java
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 10
+  package: system.fabric.health
+  summary: <p>A <xref href="system.fabric.health._health_event" data-throw-if-not-resolved="false"></xref> object is a structure which contains the health information that is used while reporting health on an entity via ReportHealth API </p>
+  syntax: &o1
+    content: public class HealthEvent
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - system.fabric.health._health_event.HealthEvent(long,long,long,long,boolean,long,long,long,long,long,long,HealthInformation)
+- uid: system.fabric.health._health_event.getHealthInformation()
+  id: getHealthInformation()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getHealthInformation()
+  fullName: HealthInformation system.fabric.health.HealthEvent.getHealthInformation()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 138
+  package: system.fabric.health
+  summary: >-
+    <p>Reported health information.</p>
+
+    <p></p>
+  syntax:
+    content: public HealthInformation getHealthInformation()
+    return:
+      type: system.fabric.health._health_information
+      description: >-
+        <p>
+
+          <xref href="system.fabric.health._health_information" data-throw-if-not-resolved="false"></xref>
+
+        </p>
+- uid: system.fabric.health._health_event.getLastErrorTransitionAt()
+  id: getLastErrorTransitionAt()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getLastErrorTransitionAt()
+  fullName: Calendar system.fabric.health.HealthEvent.getLastErrorTransitionAt()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 185
+  package: system.fabric.health
+  summary: >-
+    <p>If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref>, returns the time at which the health report was first reported with <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref>. For periodic reporting, many reports with the same state may have been generated. If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref> or <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>, returns the time at which the health state was last in <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref>, before transitioning to a different state.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>The transition fields, LastOkTransitionAt, LastWarningTransitionAt, LastErrorTransitionAt give the history of the health state transitions for the event. They can be used for smarter alerts or "historical" health event information. They enable scenarios such as: </p>
+
+    <p>
+
+      <itemizedlist>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert when a property has been at warning/error for more than X minutes. </p>
+
+          <p>This avoids alerts on temporary conditions. For example, an alert if the health state has been warning for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> == Warning and Now - LastWarningTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert only on conditions that have changed in the last X minutes. </p>
+
+          <p>If a report was already at error before the specified time, it can be ignored because it was already signaled previously. </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>If a property is toggling between warning and error, determine how long it has been unhealthy (i.e. not OK). </p>
+
+          <p>For example, an alert if the property hasn't been healthy for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> != Ok and Now - LastOkTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+      </itemizedlist>
+
+    </p>
+  syntax:
+    content: public Calendar getLastErrorTransitionAt()
+    return:
+      type: bb22f98f
+      description: <p>Returns <ref refid="" kindref="compound">java.util.Calendar</ref> representing the last transition time (UTC) involving <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref>. </p>
+- uid: system.fabric.health._health_event.getLastModifiedUtcTimestamp()
+  id: getLastModifiedUtcTimestamp()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getLastModifiedUtcTimestamp()
+  fullName: Calendar system.fabric.health.HealthEvent.getLastModifiedUtcTimestamp()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 66
+  package: system.fabric.health
+  summary: >-
+    <p>Gets the date and time when the health report was last modified by the health store.</p>
+
+    <p></p>
+  syntax:
+    content: public Calendar getLastModifiedUtcTimestamp()
+    return:
+      type: bb22f98f
+      description: <p>The date and time when the health report was last modified by the health store. </p>
+- uid: system.fabric.health._health_event.getLastOkTransitionAt()
+  id: getLastOkTransitionAt()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getLastOkTransitionAt()
+  fullName: Calendar system.fabric.health.HealthEvent.getLastOkTransitionAt()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 129
+  package: system.fabric.health
+  summary: >-
+    <p>If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref>, returns the time at which the health report was first reported with <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref>. For periodic reporting, many reports with the same state may have been generated. If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref> or <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>, returns the time at which the health state was last in <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref>, before transitioning to a different state. If the <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> has never been <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref>, the value will be System.DateTime.FromFileTimeUtc(0).</p>
+
+    <p>
+
+      <bold>Remarks:</bold>The transition fields, LastOkTransitionAt, LastWarningTransitionAt, LastErrorTransitionAt give the history of the health state transitions for the event. They can be used for smarter alerts or "historical" health event information. They enable scenarios such as: </p>
+
+    <p>
+
+      <itemizedlist>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert when a property has been at warning/error for more than X minutes. </p>
+
+          <p>This avoids alerts on temporary conditions. For example, an alert if the health state has been warning for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> == Warning and Now - LastWarningTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert only on conditions that have changed in the last X minutes. </p>
+
+          <p>If a report was already at error before the specified time, it can be ignored because it was already signaled previously. </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>If a property is toggling between warning and error, determine how long it has been unhealthy (i.e. not OK). </p>
+
+          <p>For example, an alert if the property hasn't been healthy for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> != Ok and Now - LastOkTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+      </itemizedlist>
+
+    </p>
+  syntax:
+    content: public Calendar getLastOkTransitionAt()
+    return:
+      type: bb22f98f
+      description: <p>Returns <ref refid="" kindref="compound">java.util.Calendar</ref> representing the last transition time (UTC) involving <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref>. </p>
+- uid: system.fabric.health._health_event.getLastWarningTransitionAt()
+  id: getLastWarningTransitionAt()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getLastWarningTransitionAt()
+  fullName: Calendar system.fabric.health.HealthEvent.getLastWarningTransitionAt()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 231
+  package: system.fabric.health
+  summary: >-
+    <p>If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>, returns the time at which the health report was first reported with <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>. For periodic reporting, many reports with the same state may have been generated. If the current <ref refid="" kindref="compound">system.fabric.health.HealthInformation#healthState</ref> is <ref refid="" kindref="compound">system.fabric.health.HealthState#Ok</ref> or <ref refid="" kindref="compound">system.fabric.health.HealthState#Error</ref> , returns the time at which the health state was last in <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>, before transitioning to a different state.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>The transition fields, LastOkTransitionAt, LastWarningTransitionAt, LastErrorTransitionAt give the history of the health state transitions for the event. They can be used for smarter alerts or "historical" health event information. They enable scenarios such as: </p>
+
+    <p>
+
+      <itemizedlist>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert when a property has been at warning/error for more than X minutes. </p>
+
+          <p>This avoids alerts on temporary conditions. For example, an alert if the health state has been warning for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> == Warning and Now - LastWarningTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>Alert only on conditions that have changed in the last X minutes. </p>
+
+          <p>If a report was already at error before the specified time, it can be ignored because it was already signaled previously. </p>
+
+        </listitem>
+
+        <listitem>
+
+          <p></p>
+
+          <p>If a property is toggling between warning and error, determine how long it has been unhealthy (i.e. not OK). </p>
+
+          <p>For example, an alert if the property hasn't been healthy for more than five minutes can be translated into (<xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref> != Ok and Now - LastOkTransitionTime&gt; 5 minutes). </p>
+
+        </listitem>
+
+      </itemizedlist>
+
+    </p>
+  syntax:
+    content: public Calendar getLastWarningTransitionAt()
+    return:
+      type: bb22f98f
+      description: <p>Returns <ref refid="" kindref="compound">java.util.Calendar</ref> representing the last transition time (UTC) involving <ref refid="" kindref="compound">system.fabric.health.HealthState#Warning</ref>. </p>
+- uid: system.fabric.health._health_event.getSourceUtcTimestamp()
+  id: getSourceUtcTimestamp()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: getSourceUtcTimestamp()
+  fullName: Calendar system.fabric.health.HealthEvent.getSourceUtcTimestamp()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 57
+  package: system.fabric.health
+  summary: >-
+    <p>The time when the health report was sent by the source.</p>
+
+    <p></p>
+  syntax:
+    content: public Calendar getSourceUtcTimestamp()
+    return:
+      type: bb22f98f
+      description: <p>return Source UtcTimestamp </p>
+- uid: system.fabric.health._health_event.isExpired()
+  id: isExpired()
+  parent: system.fabric.health._health_event
+  href: system.fabric.health._health_event.yml
+  langs:
+  - java
+  name: isExpired()
+  fullName: boolean system.fabric.health.HealthEvent.isExpired()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthEvent.java
+    startLine: 80
+  package: system.fabric.health
+  summary: "<p>Gets a value that indicates whetherÂ the health event has expired.</p>\r\n<p>\r\n  <bold>Remarks:</bold>An event can be expired only if RemoveWhenExpired is false. Otherwise, the event is not returned by query and is removed from the store. </p>"
+  syntax:
+    content: public boolean isExpired()
+    return:
+      type: 4fc6e284
+      description: <p>true if the health event has expired; false if the health event was not expired at the time the health store evaluated the query. </p>
+references:
+- uid: bb22f98f
+  spec.java:
+  - name: Calendar
+    fullName: Calendar
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: system.fabric.health._health_event.HealthEvent(long,long,long,long,boolean,long,long,long,long,long,long,HealthInformation)
+- uid: system.fabric.health._health_information
+  parent: system.fabric.health
+  href: system.fabric.health._health_information.yml
+  name: HealthInformation
+  fullName: system.fabric.health.HealthInformation
+  type: Class
+  summary: <p>Contains the health information about the entity. This information is included in the health report. It is also provided as part of the health event. </p>
+  syntax:
+    content: public class HealthInformation
+- uid: system.fabric.health._health_state
+  parent: system.fabric.health
+  href: system.fabric.health._health_state.yml
+  name: HealthState
+  fullName: system.fabric.health.HealthState
+  type: Enum
+  syntax:
+    content: public enum HealthState
+- uid: system.fabric.health._health_event
+  parent: system.fabric.health
+  href: system.fabric.health._health_event.yml
+  name: HealthEvent
+  fullName: system.fabric.health.HealthEvent
+  type: Class
+  summary: <p>A <xref href="system.fabric.health._health_event" data-throw-if-not-resolved="false"></xref> object is a structure which contains the health information that is used while reporting health on an entity via ReportHealth API </p>
+  syntax: *o1
