@@ -23,3 +23,73 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myLinuxVM")
 
 System.out.println("Created a Linux VM: " + linuxVM.id());
 ```
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.computerName()
+summary: Gets the name of the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.dataDisks()
+summary: Gets the list of data disks that are attached to the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.extensions()
+summary: Gets the extensions that are installed on the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.getPrimaryPublicIpAddressId()
+summary: Gets the identifier of the public IP address associated with this virtual machine's primary network interface.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.licenseType()
+summary: Gets the license type of the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.osDiskCachingType()
+summary: Gets the caching type of the operating system disk.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.osDiskSize()
+summary: Gets the size of the operating system disk.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.osDiskVhdUri()
+summary: Gets the URI of the virtual hard disk that contains the operating system.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.osType()
+summary: Gets the type of the operating system.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.plan()
+summary: Gets the plan for the virtual machine image.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.powerState()
+summary: Gets the power state of the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.provisioningState()
+summary: Gets the prrovisioning state of the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.size()
+summary: Gets the size of the virtual machine.
+---
+
+---
+uid: com.microsoft.azure.management.compute._virtual_machine.vmId()
+summary: Gets the identifier of the virtual machine.
+---
