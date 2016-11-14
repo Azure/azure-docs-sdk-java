@@ -24,7 +24,7 @@ If you are looking for other releases, see [Versions](#versions)
 
 ## Authentication
 
-Use the `Azure` class authenticate and connect to Azure resources.
+Use the `Azure` class to authenticate and connect to Azure resources.
 
 `Azure azure = Azure.authenticate(credFile).withDefaultSubscription();` 
 
