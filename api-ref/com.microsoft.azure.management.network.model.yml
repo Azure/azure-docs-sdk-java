@@ -3,6 +3,7 @@ items:
   id: model
   children:
   - com.microsoft.azure.management.network.model._has_associated_subnets
+  - com.microsoft.azure.management.network.model._has_backend_nics
   - com.microsoft.azure.management.network.model._has_backend_port
   - com.microsoft.azure.management.network.model._has_backend_port._de29afd590c13dce4696970c3e7cabfd77
   - com.microsoft.azure.management.network.model._has_backend_port._definition_stages
@@ -26,6 +27,13 @@ items:
   - com.microsoft.azure.management.network.model._has_frontend._update0882ac942ef8d9b2f9bd7459e3445c27
   - com.microsoft.azure.management.network.model._has_load_balancing_rules
   - com.microsoft.azure.management.network.model._has_network_interfaces
+  - com.microsoft.azure.management.network.model._has_port
+  - com.microsoft.azure.management.network.model._has_port._definition_stages
+  - com.microsoft.azure.management.network.model._has_port._definition_stages._with_port
+  - com.microsoft.azure.management.network.model._has_port._update_definition_stages
+  - com.microsoft.azure.management.network.model._has_port._update_definition_stages._with_port
+  - com.microsoft.azure.management.network.model._has_port._update_stages
+  - com.microsoft.azure.management.network.model._has_port._update_stages._with_port
   - com.microsoft.azure.management.network.model._has_private_ip_address
   - com.microsoft.azure.management.network.model._has_private_ip_address._definition_stages
   - com.microsoft.azure.management.network.model._has_private_ip_address._update_definition_stages
@@ -79,13 +87,22 @@ references:
   summary: <p>An interface representing a model's ability to reference a list of associated subnets. </p>
   syntax:
     content: public interface HasAssociatedSubnets
+- uid: com.microsoft.azure.management.network.model._has_backend_nics
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_backend_nics.yml
+  name: HasBackendNics
+  fullName: com.microsoft.azure.management.network.model.HasBackendNics
+  type: Interface
+  summary: <p>An interface representing a backend's ability to reference a list of associated network interfaces. </p>
+  syntax:
+    content: public interface HasBackendNics
 - uid: com.microsoft.azure.management.network.model._has_backend_port
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_backend_port.yml
   name: HasBackendPort
   fullName: com.microsoft.azure.management.network.model.HasBackendPort
   type: Interface
-  summary: <p>An interface representing a model's ability to reference a load balancer backend port. </p>
+  summary: <p>An interface representing a model's ability to reference a backend port. </p>
   syntax:
     content: public interface HasBackendPort
 - uid: com.microsoft.azure.management.network.model._has_floating_ip
@@ -124,6 +141,15 @@ references:
   summary: <p>Interface exposing a list of network interfaces. </p>
   syntax:
     content: public interface HasNetworkInterfaces
+- uid: com.microsoft.azure.management.network.model._has_port
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_port.yml
+  name: HasPort
+  fullName: com.microsoft.azure.management.network.model.HasPort
+  type: Interface
+  summary: <p>An interface representing a model's ability to have a port number. </p>
+  syntax:
+    content: public interface HasPort
 - uid: com.microsoft.azure.management.network.model._has_private_ip_address
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_private_ip_address.yml
@@ -181,6 +207,15 @@ references:
   summary: <p>Grouping of definition stages involving specifying the frontend. </p>
   syntax:
     content: public interface DefinitionStages
+- uid: com.microsoft.azure.management.network.model._has_port._definition_stages
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_port._definition_stages.yml
+  name: HasPort.DefinitionStages
+  fullName: com.microsoft.azure.management.network.model.HasPort.DefinitionStages
+  type: Interface
+  summary: <p>Grouping of definition stages involving specifying a port number. </p>
+  syntax:
+    content: public interface DefinitionStages
 - uid: com.microsoft.azure.management.network.model._has_private_ip_address._definition_stages
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_private_ip_address._definition_stages.yml
@@ -208,22 +243,13 @@ references:
   summary: <p>Grouping of definition stages involving specifying the public IP address. </p>
   syntax:
     content: public interface DefinitionStages
-- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_definition_stages
+- uid: com.microsoft.azure.management.network.model._has_protocol._update_definition_stages
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_floating_ip._update_definition_stages.yml
-  name: HasFloatingIp.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateDefinitionStages
+  href: com.microsoft.azure.management.network.model._has_protocol._update_definition_stages.yml
+  name: HasProtocol.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.network.model.HasProtocol.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of definition stages applicable as part of a load balancer update, involving enabling or disabling floating IP support. </p>
-  syntax:
-    content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.network.model._has_private_ip_address._update_definition_stages
-  parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_private_ip_address._update_definition_stages.yml
-  name: HasPrivateIpAddress.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateDefinitionStages
-  type: Interface
-  summary: <p>Grouping of definition stages applicable as part of a parent resource update, involving specifying the private IP address. </p>
+  summary: <p>Grouping of definition stages applicable as part of a load balancer update, involving specifying the protocol. </p>
   syntax:
     content: public interface UpdateDefinitionStages
 - uid: com.microsoft.azure.management.network.model._has_public_ip_address._update_definition_stages
@@ -253,33 +279,33 @@ references:
   summary: <p>Grouping of definition stages applicable as part of a load balancer update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.network.model._has_protocol._update_definition_stages
+- uid: com.microsoft.azure.management.network.model._has_private_ip_address._update_definition_stages
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_protocol._update_definition_stages.yml
-  name: HasProtocol.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.network.model.HasProtocol.UpdateDefinitionStages
+  href: com.microsoft.azure.management.network.model._has_private_ip_address._update_definition_stages.yml
+  name: HasPrivateIpAddress.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of definition stages applicable as part of a load balancer update, involving specifying the protocol. </p>
+  summary: <p>Grouping of definition stages applicable as part of a parent resource update, involving specifying the private IP address. </p>
   syntax:
     content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.network.model._has_protocol._update_stages
+- uid: com.microsoft.azure.management.network.model._has_port._update_definition_stages
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_protocol._update_stages.yml
-  name: HasProtocol.UpdateStages
-  fullName: com.microsoft.azure.management.network.model.HasProtocol.UpdateStages
+  href: com.microsoft.azure.management.network.model._has_port._update_definition_stages.yml
+  name: HasPort.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.network.model.HasPort.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of update stages involving modifying the protocol. </p>
+  summary: <p>Grouping of definition stages of a parent resource update involving specifying a port number. </p>
   syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.network.model._has_private_ip_address._update_stages
+    content: public interface UpdateDefinitionStages
+- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_definition_stages
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_private_ip_address._update_stages.yml
-  name: HasPrivateIpAddress.UpdateStages
-  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateStages
+  href: com.microsoft.azure.management.network.model._has_floating_ip._update_definition_stages.yml
+  name: HasFloatingIp.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of update stages involving modifying the private IP address. </p>
+  summary: <p>Grouping of definition stages applicable as part of a load balancer update, involving enabling or disabling floating IP support. </p>
   syntax:
-    content: public interface UpdateStages
+    content: public interface UpdateDefinitionStages
 - uid: com.microsoft.azure.management.network.model._has_public_ip_address._update_stages
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_public_ip_address._update_stages.yml
@@ -287,6 +313,15 @@ references:
   fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.UpdateStages
   type: Interface
   summary: <p>Grouping of update stages involving modifying an existing reference to a public IP address. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.network.model._has_protocol._update_stages
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_protocol._update_stages.yml
+  name: HasProtocol.UpdateStages
+  fullName: com.microsoft.azure.management.network.model.HasProtocol.UpdateStages
+  type: Interface
+  summary: <p>Grouping of update stages involving modifying the protocol. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.network.model._has_backend_port._update_stages
@@ -298,15 +333,6 @@ references:
   summary: <p>Grouping of update stages involving modifying a backend port. </p>
   syntax:
     content: public interface UpdateStages
-- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_stages
-  parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_floating_ip._update_stages.yml
-  name: HasFloatingIp.UpdateStages
-  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateStages
-  type: Interface
-  summary: <p>Grouping of update stages involving enabling or disabling floating IP support. </p>
-  syntax:
-    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.network.model._has_frontend._update_stages
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_frontend._update_stages.yml
@@ -316,18 +342,33 @@ references:
   summary: <p>Grouping of update stages involving specifying the frontend. </p>
   syntax:
     content: public interface UpdateStages
-- uid: com.microsoft.azure.management.network.model._has_backend_port._upb54ed05b6c06f79208cd8550bd6da4ee
+- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_stages
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_backend_port._upb54ed05b6c06f79208cd8550bd6da4ee.yml
-  name: HasBackendPort.UpdateDefinitionStages.WithBackendPort<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasBackendPort.UpdateDefinitionStages.WithBackendPort<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_floating_ip._update_stages.yml
+  name: HasFloatingIp.UpdateStages
+  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateStages
   type: Interface
-  summary: <p>The stage of a definition allowing to specify the backend port. </p>
+  summary: <p>Grouping of update stages involving enabling or disabling floating IP support. </p>
   syntax:
-    content: public interface WithBackendPort<ReturnT>
-    typeParameters:
-    - type: c1a5ebc4
-      description: <p>the next stage of the definition </p>
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.network.model._has_port._update_stages
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_port._update_stages.yml
+  name: HasPort.UpdateStages
+  fullName: com.microsoft.azure.management.network.model.HasPort.UpdateStages
+  type: Interface
+  summary: <p>Grouping of update stages involving specifying the port number. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.network.model._has_private_ip_address._update_stages
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_private_ip_address._update_stages.yml
+  name: HasPrivateIpAddress.UpdateStages
+  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateStages
+  type: Interface
+  summary: <p>Grouping of update stages involving modifying the private IP address. </p>
+  syntax:
+    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.network.model._has_backend_port._de29afd590c13dce4696970c3e7cabfd77
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_backend_port._de29afd590c13dce4696970c3e7cabfd77.yml
@@ -352,18 +393,15 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network.model._has_public_ip_address_197c6dfc0e1770c66b8269e7e79ac560b
+- uid: com.microsoft.azure.management.network.model._has_backend_port._upb54ed05b6c06f79208cd8550bd6da4ee
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_public_ip_address_197c6dfc0e1770c66b8269e7e79ac560b.yml
-  name: HasPublicIpAddress.DefinitionStages.WithExistingPublicIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.DefinitionStages.WithExistingPublicIpAddress<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_backend_port._upb54ed05b6c06f79208cd8550bd6da4ee.yml
+  name: HasBackendPort.UpdateDefinitionStages.WithBackendPort<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasBackendPort.UpdateDefinitionStages.WithBackendPort<ReturnT>
   type: Interface
-  summary: >-
-    <p>The stage of the definition allowing to associate the resource with an existing public IP address.</p>
-
-    <p></p>
+  summary: <p>The stage of a definition allowing to specify the backend port. </p>
   syntax:
-    content: public interface WithExistingPublicIpAddress<ReturnT>
+    content: public interface WithBackendPort<ReturnT>
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
@@ -397,6 +435,21 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network.model._has_public_ip_address_197c6dfc0e1770c66b8269e7e79ac560b
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_public_ip_address_197c6dfc0e1770c66b8269e7e79ac560b.yml
+  name: HasPublicIpAddress.DefinitionStages.WithExistingPublicIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.DefinitionStages.WithExistingPublicIpAddress<ReturnT>
+  type: Interface
+  summary: >-
+    <p>The stage of the definition allowing to associate the resource with an existing public IP address.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithExistingPublicIpAddress<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network.model._has_floating_ip._upd8fe7a4555ff3388f2de32877803dd99f
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_floating_ip._upd8fe7a4555ff3388f2de32877803dd99f.yml
@@ -404,6 +457,18 @@ references:
   fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateDefinitionStages.WithFloatingIp<ReturnT>
   type: Interface
   summary: <p>The stage of a definition allowing to control floating IP support. </p>
+  syntax:
+    content: public interface WithFloatingIp<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_stages._with_floating_ip
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_floating_ip._update_stages._with_floating_ip.yml
+  name: HasFloatingIp.UpdateStages.WithFloatingIp<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateStages.WithFloatingIp<ReturnT>
+  type: Interface
+  summary: <p>The stage of an update allowing to control floating IP support. </p>
   syntax:
     content: public interface WithFloatingIp<ReturnT>
     typeParameters:
@@ -421,15 +486,15 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network.model._has_floating_ip._update_stages._with_floating_ip
+- uid: com.microsoft.azure.management.network.model._has_frontend._definition_stages._with_frontend
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_floating_ip._update_stages._with_floating_ip.yml
-  name: HasFloatingIp.UpdateStages.WithFloatingIp<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasFloatingIp.UpdateStages.WithFloatingIp<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_frontend._definition_stages._with_frontend.yml
+  name: HasFrontend.DefinitionStages.WithFrontend<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasFrontend.DefinitionStages.WithFrontend<ReturnT>
   type: Interface
-  summary: <p>The stage of a definition allowing to control floating IP support. </p>
+  summary: <p>The stage of a definition allowing to specify a load balancer frontend. </p>
   syntax:
-    content: public interface WithFloatingIp<ReturnT>
+    content: public interface WithFrontend<ReturnT>
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
@@ -445,18 +510,6 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network.model._has_frontend._definition_stages._with_frontend
-  parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_frontend._definition_stages._with_frontend.yml
-  name: HasFrontend.DefinitionStages.WithFrontend<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasFrontend.DefinitionStages.WithFrontend<ReturnT>
-  type: Interface
-  summary: <p>The stage of a definition allowing to specify a load balancer frontend. </p>
-  syntax:
-    content: public interface WithFrontend<ReturnT>
-    typeParameters:
-    - type: c1a5ebc4
-      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network.model._has_frontend._update0882ac942ef8d9b2f9bd7459e3445c27
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_frontend._update0882ac942ef8d9b2f9bd7459e3445c27.yml
@@ -469,11 +522,11 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network.model._has_public_ip_address_1a549384ea504ceef1bd6215cb583c48d
+- uid: com.microsoft.azure.management.network.model._has_public_ip_address_18c2156c47a4f74a060c531ba2e06da8f
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_public_ip_address_1a549384ea504ceef1bd6215cb583c48d.yml
-  name: HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_public_ip_address_18c2156c47a4f74a060c531ba2e06da8f.yml
+  name: HasPublicIpAddress.DefinitionStages.WithNewPublicIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.DefinitionStages.WithNewPublicIpAddress<ReturnT>
   type: Interface
   summary: >-
     <p>The stage of the definition allowing to associate the resource with a new public IP address.</p>
@@ -499,11 +552,11 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network.model._has_public_ip_address_18c2156c47a4f74a060c531ba2e06da8f
+- uid: com.microsoft.azure.management.network.model._has_public_ip_address_1a549384ea504ceef1bd6215cb583c48d
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_public_ip_address_18c2156c47a4f74a060c531ba2e06da8f.yml
-  name: HasPublicIpAddress.DefinitionStages.WithNewPublicIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.DefinitionStages.WithNewPublicIpAddress<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_public_ip_address_1a549384ea504ceef1bd6215cb583c48d.yml
+  name: HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
   type: Interface
   summary: >-
     <p>The stage of the definition allowing to associate the resource with a new public IP address.</p>
@@ -514,11 +567,47 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network.model._has_private_ip_address_c8d4ab2effc310704b02970a92fdd2e9
+- uid: com.microsoft.azure.management.network.model._has_port._update_definition_stages._with_port
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_private_ip_address_c8d4ab2effc310704b02970a92fdd2e9.yml
-  name: HasPrivateIpAddress.UpdateDefinitionStages.WithPrivateIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateDefinitionStages.WithPrivateIpAddress<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_port._update_definition_stages._with_port.yml
+  name: HasPort.UpdateDefinitionStages.WithPort<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPort.UpdateDefinitionStages.WithPort<ReturnT>
+  type: Interface
+  summary: <p>The stage of a definition allowing to specify the port number. </p>
+  syntax:
+    content: public interface WithPort<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network.model._has_port._definition_stages._with_port
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_port._definition_stages._with_port.yml
+  name: HasPort.DefinitionStages.WithPort<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPort.DefinitionStages.WithPort<ReturnT>
+  type: Interface
+  summary: <p>The stage of a definition allowing to specify the port number. </p>
+  syntax:
+    content: public interface WithPort<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network.model._has_port._update_stages._with_port
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_port._update_stages._with_port.yml
+  name: HasPort.UpdateStages.WithPort<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPort.UpdateStages.WithPort<ReturnT>
+  type: Interface
+  summary: <p>The stage of a definition allowing to specify a port number. </p>
+  syntax:
+    content: public interface WithPort<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.network.model._has_private_ip_address_740949466219797cb7bd140907274882
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_private_ip_address_740949466219797cb7bd140907274882.yml
+  name: HasPrivateIpAddress.DefinitionStages.WithPrivateIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.DefinitionStages.WithPrivateIpAddress<ReturnT>
   type: Interface
   summary: <p>The stage of a definition allowing to specify the private IP address. </p>
   syntax:
@@ -538,11 +627,11 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network.model._has_private_ip_address_740949466219797cb7bd140907274882
+- uid: com.microsoft.azure.management.network.model._has_private_ip_address_c8d4ab2effc310704b02970a92fdd2e9
   parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_private_ip_address_740949466219797cb7bd140907274882.yml
-  name: HasPrivateIpAddress.DefinitionStages.WithPrivateIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.DefinitionStages.WithPrivateIpAddress<ReturnT>
+  href: com.microsoft.azure.management.network.model._has_private_ip_address_c8d4ab2effc310704b02970a92fdd2e9.yml
+  name: HasPrivateIpAddress.UpdateDefinitionStages.WithPrivateIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPrivateIpAddress.UpdateDefinitionStages.WithPrivateIpAddress<ReturnT>
   type: Interface
   summary: <p>The stage of a definition allowing to specify the private IP address. </p>
   syntax:
@@ -550,20 +639,6 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network.model._has_protocol._definition_stages._with_protocol
-  parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_protocol._definition_stages._with_protocol.yml
-  name: HasProtocol.DefinitionStages.WithProtocol<ReturnT,ProtocolT>
-  fullName: com.microsoft.azure.management.network.model.HasProtocol.DefinitionStages.WithProtocol<ReturnT,ProtocolT>
-  type: Interface
-  summary: <p>The stage of a definition allowing to specify the protocol. </p>
-  syntax:
-    content: public interface WithProtocol<ReturnT,ProtocolT>
-    typeParameters:
-    - type: c1a5ebc4
-      description: <p>the next stage of the definition </p>
-    - type: b528dcf3
-      description: <p>the type of the protocol value </p>
 - uid: com.microsoft.azure.management.network.model._has_protocol._update2d594d02f2d64b37d0cbf2d4701281ef
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_protocol._update2d594d02f2d64b37d0cbf2d4701281ef.yml
@@ -578,6 +653,20 @@ references:
       description: <p>the next stage of the definition </p>
     - type: b528dcf3
       description: <p>the protocol type of the value </p>
+- uid: com.microsoft.azure.management.network.model._has_protocol._definition_stages._with_protocol
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_protocol._definition_stages._with_protocol.yml
+  name: HasProtocol.DefinitionStages.WithProtocol<ReturnT,ProtocolT>
+  fullName: com.microsoft.azure.management.network.model.HasProtocol.DefinitionStages.WithProtocol<ReturnT,ProtocolT>
+  type: Interface
+  summary: <p>The stage of a definition allowing to specify the protocol. </p>
+  syntax:
+    content: public interface WithProtocol<ReturnT,ProtocolT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
+    - type: b528dcf3
+      description: <p>the type of the protocol value </p>
 - uid: com.microsoft.azure.management.network.model._has_protocol._update_stages._with_protocol
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_protocol._update_stages._with_protocol.yml
@@ -607,21 +696,6 @@ references:
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network.model._has_public_ip_address_144c3b9c1a4e1cdd103151b6a35d39f49
-  parent: com.microsoft.azure.management.network.model
-  href: com.microsoft.azure.management.network.model._has_public_ip_address_144c3b9c1a4e1cdd103151b6a35d39f49.yml
-  name: HasPublicIpAddress.UpdateDefinitionStages.WithPublicIpAddress<ReturnT>
-  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.UpdateDefinitionStages.WithPublicIpAddress<ReturnT>
-  type: Interface
-  summary: >-
-    <p>The stage of the definition allowing to associate the resource with a public IP address.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithPublicIpAddress<ReturnT> extends HasPublicIpAddress.UpdateDefinitionStages.WithExistingPublicIpAddress<ReturnT>,HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
-    typeParameters:
-    - type: c1a5ebc4
-      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network.model._has_public_ip_address_18a4714f60cb1a5ae5c278c5e987b8ff9
   parent: com.microsoft.azure.management.network.model
   href: com.microsoft.azure.management.network.model._has_public_ip_address_18a4714f60cb1a5ae5c278c5e987b8ff9.yml
@@ -634,6 +708,21 @@ references:
     <p></p>
   syntax:
     content: public interface WithPublicIpAddress<ReturnT> extends HasPublicIpAddress.DefinitionStages.WithExistingPublicIpAddress<ReturnT>,HasPublicIpAddress.DefinitionStages.WithNewPublicIpAddress<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network.model._has_public_ip_address_144c3b9c1a4e1cdd103151b6a35d39f49
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_public_ip_address_144c3b9c1a4e1cdd103151b6a35d39f49.yml
+  name: HasPublicIpAddress.UpdateDefinitionStages.WithPublicIpAddress<ReturnT>
+  fullName: com.microsoft.azure.management.network.model.HasPublicIpAddress.UpdateDefinitionStages.WithPublicIpAddress<ReturnT>
+  type: Interface
+  summary: >-
+    <p>The stage of the definition allowing to associate the resource with a public IP address.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithPublicIpAddress<ReturnT> extends HasPublicIpAddress.UpdateDefinitionStages.WithExistingPublicIpAddress<ReturnT>,HasPublicIpAddress.UpdateDefinitionStages.WithNewPublicIpAddress<ReturnT>
     typeParameters:
     - type: c1a5ebc4
       description: <p>the next stage of the definition </p>
