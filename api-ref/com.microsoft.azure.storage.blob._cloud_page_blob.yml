@@ -85,11 +85,11 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.downloadAttributes(final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadRange(final long,final Long,final OutputStream)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadRange(final long,final Long,final OutputStream,final AccessCondition,BlobRequestOptions,OperationContext)
-  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeInternal(final long,final Long,final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
-  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte[],final int)
-  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
-  - com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte[],final int)
-  - com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeInternal(final long,final Long,final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte [],final int)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte [],final int)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadToFile(final String)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadToFile(final String,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.exists()
@@ -131,7 +131,6 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.setSnapshotID(final String)
   - com.microsoft.azure.storage.blob._cloud_blob.setStorageUri(final StorageUri)
   - com.microsoft.azure.storage.blob._cloud_blob.setStreamMinimumReadSizeInBytes(final int)
-  - com.microsoft.azure.storage.blob._cloud_blob.setStreamWriteSizeInBytes(int)
   - com.microsoft.azure.storage.blob._cloud_blob.snapshotID()
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI)
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -139,10 +138,8 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.streamWriteSizeInBytes()
   - com.microsoft.azure.storage.blob._cloud_blob.updateEtagAndLastModifiedFromResponse(HttpURLConnection)
   - com.microsoft.azure.storage.blob._cloud_blob.updateLengthFromResponse(HttpURLConnection)
-  - com.microsoft.azure.storage.blob._cloud_blob.upload(InputStream,long)
-  - com.microsoft.azure.storage.blob._cloud_blob.upload(InputStream,long,final AccessCondition,BlobRequestOptions,OperationContext)
-  - com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte[],final int,final int)
-  - com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte[],final int,final int,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte [],final int,final int)
+  - com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte [],final int,final int,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.uploadFromFile(final String)
   - com.microsoft.azure.storage.blob._cloud_blob.uploadFromFile(final String,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.uploadMetadata()
@@ -473,7 +470,7 @@ items:
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
     startLine: 305
   package: com.microsoft.azure.storage.blob
-  summary: <p>Creates a page blob. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use the <ref refid="" kindref="compound">create(long, AccessCondition, BlobRequestOptions, OperationContext)</ref> overload with <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Creates a page blob. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use the <xref href="com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final AccessCondition,BlobRequestOptions,OperationContext)" data-throw-if-not-resolved="false"></xref> overload with <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public void create(final long length)
     parameters:
@@ -503,7 +500,7 @@ items:
     <p>Creates a page blob using the specified request options and operation context. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>.</p>
 
     <p></p>
-  syntax:
+  syntax: &o2
     content: public void create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
     parameters:
     - id: length
@@ -816,7 +813,7 @@ items:
   summary: >-
     <p>Opens an output stream object to write data to the page blob. The page blob does not need to yet exist and will be created with the length specified. If the blob already exists on the service, it will be overwritten. </p>
 
-    <p>To avoid overwriting and instead throw an error, please use the <ref refid="" kindref="compound">openWriteNew(long, AccessCondition, BlobRequestOptions, OperationContext)</ref> overload with the appropriate <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>To avoid overwriting and instead throw an error, please use the <xref href="com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew(final long,AccessCondition,BlobRequestOptions,OperationContext)" data-throw-if-not-resolved="false"></xref> overload with the appropriate <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref>.</p>
 
     <p></p>
   syntax:
@@ -851,7 +848,7 @@ items:
     <p>To avoid overwriting and instead throw an error, please pass in an <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> generated using <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>.</p>
 
     <p></p>
-  syntax:
+  syntax: &o3
     content: public BlobOutputStream openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
     parameters:
     - id: length
@@ -1940,7 +1937,7 @@ references:
       description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation. </p>
     return:
       type: 3f6357ce
-- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeInternal(final long,final Long,final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeInternal(final long,final Long,final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeInternal(final long blobOffset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
@@ -1960,7 +1957,7 @@ references:
       type: 6c34dcee
       description: <p>A <code>Long</code> which represents the number of bytes to read. </p>
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the buffer to write to. </p>
     - id: bufferOffset
       type: cd225469
@@ -1977,7 +1974,7 @@ references:
     return:
       type: cd225469
       description: <p>The total number of bytes read into the buffer.</p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte[],final int)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte [],final int)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset)
@@ -1997,7 +1994,7 @@ references:
       type: 6c34dcee
       description: <p>A <code>Long</code> which represents the number of bytes to read or null. </p>
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the buffer to which the blob bytes are downloaded. </p>
     - id: bufferOffset
       type: cd225469
@@ -2005,7 +2002,7 @@ references:
     return:
       type: cd225469
       description: <p>The total number of bytes read into the buffer.</p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadRangeToByteArray(final long,final Long,final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
@@ -2025,7 +2022,7 @@ references:
       type: 6c34dcee
       description: <p>A <code>Long</code> which represents the number of bytes to read or <code>null</code>. </p>
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the buffer to which the blob bytes are downloaded. </p>
     - id: bufferOffset
       type: cd225469
@@ -2042,7 +2039,7 @@ references:
     return:
       type: cd225469
       description: <p>The total number of bytes read into the buffer.</p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte[],final int)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte [],final int)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToByteArray(final byte[] buffer, final int bufferOffset)
@@ -2056,14 +2053,14 @@ references:
     content: public final int downloadToByteArray(final byte[] buffer, final int bufferOffset)
     parameters:
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the buffer to which the blob bytes are downloaded. </p>
     - id: bufferOffset
       type: cd225469
       description: <p>An <code>int</code> which represents the byte offset to use as the starting point for the target.</p>
     return:
       type: cd225469
-- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte[],final int,final AccessCondition,BlobRequestOptions,OperationContext)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadToByteArray(final byte [],final int,final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
@@ -2077,7 +2074,7 @@ references:
     content: public final int downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
     parameters:
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the buffer to which the blob bytes are downloaded. </p>
     - id: bufferOffset
       type: cd225469
@@ -2553,7 +2550,7 @@ references:
   summary: >-
     <p>Opens a blob input stream to download the blob. </p>
 
-    <p>Use <ref refid="" kindref="compound">setStreamMinimumReadSizeInBytes(int)</ref> to configure the read size.</p>
+    <p>Use <xref href="com.microsoft.azure.storage.blob._cloud_blob.setStreamMinimumReadSizeInBytes(final int)" data-throw-if-not-resolved="false"></xref> to configure the read size.</p>
 
     <p></p>
   syntax:
@@ -2570,7 +2567,7 @@ references:
   summary: >-
     <p>Opens a blob input stream to download the blob using the specified request options and operation context. </p>
 
-    <p>Use <ref refid="" kindref="compound">setStreamMinimumReadSizeInBytes(int)</ref> to configure the read size.</p>
+    <p>Use <xref href="com.microsoft.azure.storage.blob._cloud_blob.setStreamMinimumReadSizeInBytes(final int)" data-throw-if-not-resolved="false"></xref> to configure the read size.</p>
 
     <p></p>
   syntax:
@@ -2788,24 +2785,6 @@ references:
     - id: minimumReadSize
       type: cd225469
       description: <p>An <code>int</code> that represents the minimum block size, in bytes, for reading from a blob while using a <xref href="com.microsoft.azure.storage.blob._blob_input_stream" data-throw-if-not-resolved="false"></xref> object. Must be greater than or equal to 16 KB. </p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.setStreamWriteSizeInBytes(int)
-  parent: com.microsoft.azure.storage.blob._cloud_blob
-  href: com.microsoft.azure.storage.blob._cloud_blob.yml
-  name: setStreamWriteSizeInBytes(int streamWriteSizeInBytes)
-  fullName: abstract void com.microsoft.azure.storage.blob.CloudBlob.setStreamWriteSizeInBytes(int streamWriteSizeInBytes)
-  type: Method
-  summary: >-
-    <p>Sets the number of bytes to buffer when writing to a <xref href="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false"></xref> (block and page blobs).</p>
-
-    <p></p>
-  syntax:
-    content: public abstract void setStreamWriteSizeInBytes(int streamWriteSizeInBytes)
-    parameters:
-    - id: streamWriteSizeInBytes
-      type: f75371fa
-      description: <p>An <code>int</code> that represents the number of bytes to buffer or the size of a block, in bytes. </p>
-    return:
-      type: 5beb11ad
 - uid: com.microsoft.azure.storage.blob._cloud_blob.snapshotID()
 - uid: com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI)
   parent: com.microsoft.azure.storage.blob._cloud_blob
@@ -2901,58 +2880,7 @@ references:
     parameters:
     - id: request
       type: a7895dc2
-- uid: com.microsoft.azure.storage.blob._cloud_blob.upload(InputStream,long)
-  parent: com.microsoft.azure.storage.blob._cloud_blob
-  href: com.microsoft.azure.storage.blob._cloud_blob.yml
-  name: upload(InputStream sourceStream, long length)
-  fullName: abstract void com.microsoft.azure.storage.blob.CloudBlob.upload(InputStream sourceStream, long length)
-  type: Method
-  summary: >-
-    <p>Uploads the source stream data to the blob. If the blob already exists on the service, it will be overwritten.</p>
-
-    <p></p>
-  syntax:
-    content: public abstract void upload(InputStream sourceStream, long length)
-    parameters:
-    - id: sourceStream
-      type: 76fcb9b7
-      description: <p>An <code>InputStream</code> object that represents the source stream to upload.</p>
-    - id: length
-      type: 0364520f
-      description: <p>An <code>long</code> that represents the length of the stream data in bytes, or -1 if unknown. The length must be greater than zero and a multiple of 512 for page blobs.</p>
-    return:
-      type: 5beb11ad
-- uid: com.microsoft.azure.storage.blob._cloud_blob.upload(InputStream,long,final AccessCondition,BlobRequestOptions,OperationContext)
-  parent: com.microsoft.azure.storage.blob._cloud_blob
-  href: com.microsoft.azure.storage.blob._cloud_blob.yml
-  name: upload(InputStream sourceStream, long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: abstract void com.microsoft.azure.storage.blob.CloudBlob.upload(InputStream sourceStream, long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  type: Method
-  summary: >-
-    <p>Uploads the source stream data to the blob using the specified lease ID, request options, and operation context. If the blob already exists on the service, it will be overwritten.</p>
-
-    <p></p>
-  syntax:
-    content: public abstract void upload(InputStream sourceStream, long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-    parameters:
-    - id: sourceStream
-      type: 76fcb9b7
-      description: <p>An <code>InputStream</code> object that represents the source stream to upload. </p>
-    - id: length
-      type: 0364520f
-      description: <p>The length of the stream data in bytes, or -1 if unknown. The length must be greater than zero and a multiple of 512 for page blobs. </p>
-    - id: accessCondition
-      type: 93de0ef9com.microsoft.azure.storage._access_condition
-      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the blob. </p>
-    - id: options
-      type: com.microsoft.azure.storage.blob._blob_request_options
-      description: <p>A <xref href="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false"></xref>). </p>
-    - id: opContext
-      type: com.microsoft.azure.storage._operation_context
-      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
-    return:
-      type: 5beb11ad
-- uid: com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte[],final int,final int)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte [],final int,final int)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromByteArray(final byte[] buffer, final int offset, final int length)
@@ -2966,7 +2894,7 @@ references:
     content: public void uploadFromByteArray(final byte[] buffer, final int offset, final int length)
     parameters:
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the data to write to the blob. </p>
     - id: offset
       type: cd225469
@@ -2974,7 +2902,7 @@ references:
     - id: length
       type: cd225469
       description: <p>An <code>int</code> which represents the number of bytes to upload from the input buffer.</p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte[],final int,final int,final AccessCondition,BlobRequestOptions,OperationContext)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.uploadFromByteArray(final byte [],final int,final int,final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
@@ -2988,7 +2916,7 @@ references:
     content: public void uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
     parameters:
     - id: buffer
-      type: 0368897f
+      type: f549433f
       description: <p>A <code>byte</code> array which represents the data to write to the blob. </p>
     - id: offset
       type: cd225469
@@ -3213,6 +3141,17 @@ references:
     <p>This class provides a point of access to the Blob service. The service client encapsulates the base URI for the Blob service. If the service client will be used for authenticated access, it also encapsulates the credentials for accessing the storage account. </p>
   syntax:
     content: public class CloudBlobClient extends ServiceClient
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final AccessCondition,BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  name: create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  summary: >-
+    <p>Creates a page blob using the specified request options and operation context. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax: *o2
 - uid: com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()
   parent: com.microsoft.azure.storage._access_condition
   href: com.microsoft.azure.storage._access_condition.yml
@@ -3258,6 +3197,19 @@ references:
   type: Class
   syntax:
     content: public class BlobOutputStream
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew(final long,AccessCondition,BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  name: openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  summary: >-
+    <p>Opens an output stream object to write data to the page blob, using the specified lease ID, request options and operation context. The page blob does not need to yet exist and will be created with the length specified.If the blob already exists on the service, it will be overwritten. </p>
+
+    <p>To avoid overwriting and instead throw an error, please pass in an <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> generated using <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax: *o3
 - uid: com.microsoft.azure.storage.blob._cloud_blob_container
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._cloud_blob_container.yml
