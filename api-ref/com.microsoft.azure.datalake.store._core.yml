@@ -3,11 +3,11 @@ items:
   id: _core
   parent: com.microsoft.azure.datalake.store
   children:
-  - com.microsoft.azure.datalake.store._core.append(String,long,byte [],int,int,String,String,boolean,ADLStoreClient,RequestOptions,OperationResponse)
+  - com.microsoft.azure.datalake.store._core.append(String,long,byte [],int,int,String,String,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.checkAccess(String,String,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.concat(String,List<String>,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.concurrentAppend(String,byte [],int,int,boolean,ADLStoreClient,RequestOptions,OperationResponse)
-  - com.microsoft.azure.datalake.store._core.create(String,boolean,String,byte [],int,int,String,String,boolean,boolean,ADLStoreClient,RequestOptions,OperationResponse)
+  - com.microsoft.azure.datalake.store._core.create(String,boolean,String,byte [],int,int,String,String,boolean,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.delete(String,boolean,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.getAclStatus(String,ADLStoreClient,RequestOptions,OperationResponse)
   - com.microsoft.azure.datalake.store._core.getContentSummary(String,ADLStoreClient,RequestOptions,OperationResponse)
@@ -52,30 +52,38 @@ items:
     <p>
 
       <bold>Thread Safety: </bold> all static methods in this class are thread-safe</p>
-  syntax: &o1
+  syntax: &o3
     content: public class Core
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.datalake.store._core.append(String,long,byte [],int,int,String,String,boolean,ADLStoreClient,RequestOptions,OperationResponse)
-  id: append(String,long,byte [],int,int,String,String,boolean,ADLStoreClient,RequestOptions,OperationResponse)
+- uid: com.microsoft.azure.datalake.store._core.append(String,long,byte [],int,int,String,String,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
+  id: append(String,long,byte [],int,int,String,String,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
   parent: com.microsoft.azure.datalake.store._core
   href: com.microsoft.azure.datalake.store._core.yml
   langs:
   - java
-  name: append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean forceUpdateMetadata, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
-  fullName: static void com.microsoft.azure.datalake.store.Core.append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean forceUpdateMetadata, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  name: append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  fullName: static void com.microsoft.azure.datalake.store.Core.append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 129
+    startLine: 155
   package: com.microsoft.azure.datalake.store
   summary: >-
-    <p>append bytes to an existing file created with <ref refid="" kindref="compound">create</ref>.</p>
+    <p>append bytes to an existing file created with</p>
 
-    <p></p>
+    <p>
+
+      <ref refid="" kindref="compound">create(String, boolean, String, byte[], int, int, String, String, boolean, SyncFlag, ADLStoreClient, RequestOptions, OperationResponse)</ref> (String, boolean, String, byte[], int, int, String, String, boolean, boolean, <xref href="com.microsoft.azure.datalake.store._a_d_l_store_client" data-throw-if-not-resolved="false"></xref>, <xref href="com.microsoft.azure.datalake.store._request_options" data-throw-if-not-resolved="false"></xref>, <xref href="com.microsoft.azure.datalake.store._operation_response" data-throw-if-not-resolved="false"></xref>) create}.</p>
+
+    <p>
+
+    Use <xref href="com.microsoft.azure.datalake.store._sync_flag.METADATA()" data-throw-if-not-resolved="false"></xref> when metadata for the file also needs to be updated especially file length retrieved from <xref href="com.microsoft.azure.datalake.store._core.getFileStatus(String,ADLStoreClient,RequestOptions,OperationResponse)" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.datalake.store._core.listStatus(String,String,String,int,ADLStoreClient,RequestOptions,OperationResponse)" data-throw-if-not-resolved="false"></xref> API call. Has an overhead of updating metadata operation.</p>
+
+    <p>Use <xref href="com.microsoft.azure.datalake.store._sync_flag.CLOSE()" data-throw-if-not-resolved="false"></xref> when no more data is expected to be written in this path. Adl backend would update metadata, close the stream handle and release the lease on the path if valid leaseId is passed. Expensive operation and should be used only when last bytes are written. </p>
   syntax:
-    content: public static void append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean forceUpdateMetadata, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+    content: public static void append(String path, long offsetToAppendTo, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
     parameters:
     - id: path
       type: "26831127"
@@ -98,9 +106,9 @@ items:
     - id: sessionId
       type: "26831127"
       description: <p>a String containing the session ID (generated by client). Can be null. </p>
-    - id: forceUpdateMetadata
-      type: 4fc6e284
-      description: <p>boolean indicating whether this is the last call for the file. In that case, the server will release it's cached handle and update server metadata. If you anticipate to write more bytes then pass false, otherwise pass true. If unsure, pass true to be safe. This is a performance optimization.* </p>
+    - id: syncFlag
+      type: com.microsoft.azure.datalake.store._sync_flag
+      description: <p>Use <xref href="com.microsoft.azure.datalake.store._sync_flag.DATA()" data-throw-if-not-resolved="false"></xref> when writing more bytes to same file path. Most performant operation.</p>
     - id: client
       type: com.microsoft.azure.datalake.store._a_d_l_store_client
       description: <p>the <xref href="com.microsoft.azure.datalake.store._a_d_l_store_client" data-throw-if-not-resolved="false"></xref></p>
@@ -122,7 +130,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 846
+    startLine: 872
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>checks whether the calling user has the required permissions for the file. the permissions to check should be specified in the rwx parameter, as a unix permission string.</p>
@@ -158,7 +166,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 463
+    startLine: 489
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Concatenate the specified list of files into the target filename. The target should not exist. the source files will be deleted if the concatenate succeeds.</p>
@@ -197,7 +205,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 171
+    startLine: 197
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>append bytes to a file. The offset is determined by the server. This enables multiple writers to append concurrently to the same file. A file created with<programlisting><codeline><highlight class="normal">concurrentAppend<sp></sp></highlight></codeline></programlisting> can only be appended with<programlisting><codeline><highlight class="normal">concurrentAppend<sp></sp></highlight></codeline></programlisting> .</p>
@@ -230,26 +238,30 @@ items:
     - id: resp
       type: com.microsoft.azure.datalake.store._operation_response
       description: <p>response from the call, and any error info generated by the call </p>
-- uid: com.microsoft.azure.datalake.store._core.create(String,boolean,String,byte [],int,int,String,String,boolean,boolean,ADLStoreClient,RequestOptions,OperationResponse)
-  id: create(String,boolean,String,byte [],int,int,String,String,boolean,boolean,ADLStoreClient,RequestOptions,OperationResponse)
+- uid: com.microsoft.azure.datalake.store._core.create(String,boolean,String,byte [],int,int,String,String,boolean,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
+  id: create(String,boolean,String,byte [],int,int,String,String,boolean,SyncFlag,ADLStoreClient,RequestOptions,OperationResponse)
   parent: com.microsoft.azure.datalake.store._core
   href: com.microsoft.azure.datalake.store._core.yml
   langs:
   - java
-  name: create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, boolean releaseServeHandle, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
-  fullName: static void com.microsoft.azure.datalake.store.Core.create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, boolean releaseServeHandle, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  name: create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  fullName: static void com.microsoft.azure.datalake.store.Core.create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 69
+    startLine: 82
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>create a file and write to it.</p>
 
-    <p></p>
+    <p>
+
+    Use <xref href="com.microsoft.azure.datalake.store._sync_flag.METADATA()" data-throw-if-not-resolved="false"></xref> when metadata for the file also needs to be updated especially file length retrieved from <xref href="com.microsoft.azure.datalake.store._core.getFileStatus(String,ADLStoreClient,RequestOptions,OperationResponse)" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.datalake.store._core.listStatus(String,String,String,int,ADLStoreClient,RequestOptions,OperationResponse)" data-throw-if-not-resolved="false"></xref> API call. Has an overhead of updating metadata operation.</p>
+
+    <p>Use <xref href="com.microsoft.azure.datalake.store._sync_flag.CLOSE()" data-throw-if-not-resolved="false"></xref> when no more data is expected to be written in this path. Adl backend would update metadata, close the stream handle and release the lease on the path if valid leaseId is passed. Expensive operation and should be used only when last bytes are written. </p>
   syntax:
-    content: public static void create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, boolean releaseServeHandle, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+    content: public static void create(String path, boolean overwrite, String octalPermission, byte[] contents, int offsetWithinContentsArray, int length, String leaseId, String sessionId, boolean createParent, SyncFlag syncFlag, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
     parameters:
     - id: path
       type: "26831127"
@@ -278,9 +290,9 @@ items:
     - id: createParent
       type: 4fc6e284
       description: <p>if true, then parent directories of the file are created if they are missing. </p>
-    - id: releaseServeHandle
-      type: 4fc6e284
-      description: <p>boolean indicating whether this is the last call for the file. In that case, the server will release it's cached handle and update server metadata. If you anticipate to write more bytes then pass false, otherwise pass true. If unsure, pass true to be safe. This is a performance optimization. </p>
+    - id: syncFlag
+      type: com.microsoft.azure.datalake.store._sync_flag
+      description: <p>Use <xref href="com.microsoft.azure.datalake.store._sync_flag.DATA()" data-throw-if-not-resolved="false"></xref> when writing more bytes to same file path. Most performant operation.</p>
     - id: client
       type: com.microsoft.azure.datalake.store._a_d_l_store_client
       description: <p>the <xref href="com.microsoft.azure.datalake.store._a_d_l_store_client" data-throw-if-not-resolved="false"></xref></p>
@@ -302,7 +314,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 247
+    startLine: 273
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>delete a file or directory from Azure Data Lake.</p>
@@ -341,7 +353,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 1083
+    startLine: 1109
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Gets the current ACLs and permissions associated with a file or directory. Also returns the current owning user and group for the file or directory.</p>
@@ -380,7 +392,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 407
+    startLine: 433
   package: com.microsoft.azure.datalake.store
   summary: <p>Gets the content summary of a file or directory. </p>
   syntax:
@@ -416,13 +428,13 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 528
+    startLine: 554
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Gets the directory metadata associated with a file or directory.</p>
 
     <p></p>
-  syntax:
+  syntax: &o1
     content: public static DirectoryEntry getFileStatus(String path, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
     parameters:
     - id: path
@@ -455,7 +467,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 830
+    startLine: 856
   package: com.microsoft.azure.datalake.store
   syntax:
     content: public static boolean isValidOctal(String input)
@@ -476,7 +488,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 616
+    startLine: 642
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>enumerates the contents of a direcotry, returning a <ref refid="" kindref="compound">List</ref> of <xref href="com.microsoft.azure.datalake.store._directory_entry" data-throw-if-not-resolved="false"></xref> objects, one per file or directory in the specified directory. </p>
@@ -484,7 +496,7 @@ items:
     <p>To avoid overwhelming the client or the server, the call may return a partial list, in which case the caller should make the call again with the last entry from the returned list specified as the <programlisting><codeline><highlight class="normal">listAfter<sp></sp></highlight></codeline></programlisting> parameter of the next call. </p>
 
     <p></p>
-  syntax:
+  syntax: &o2
     content: public static List<DirectoryEntry> listStatus(String path, String listAfter, String listBefore, int listSize, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
     parameters:
     - id: path
@@ -526,7 +538,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 356
+    startLine: 382
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>creates a directory, and all it's parent directories if they dont exist.</p>
@@ -565,7 +577,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 916
+    startLine: 942
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Modify the acl entries for a file or directory. This call merges the supplied list with existing ACLs. If an entry with the same scope, type and user already exists, then the permissions are replaced. If not, than an new ACL entry if added.</p>
@@ -604,7 +616,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 887
+    startLine: 913
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Modify the acl entries for a file or directory. This call merges the supplied list with existing ACLs. If an entry with the same scope, type and user already exists, then the permissions are replaced. If not, than an new ACL entry if added.</p>
@@ -640,7 +652,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 200
+    startLine: 226
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>read from a file. This is the stateless read method, that reads bytes from an offset in a file.</p>
@@ -685,7 +697,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 1011
+    startLine: 1037
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>removes all acl entries from a file or directory.</p>
@@ -718,7 +730,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 969
+    startLine: 995
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Removes the specified ACL entries from a file or directory.</p>
@@ -757,7 +769,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 942
+    startLine: 968
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Removes the specified ACL entries from a file or directory.</p>
@@ -793,7 +805,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 995
+    startLine: 1021
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>removes all default acl entries from a directory. The access ACLs for the directory itself are not modified.</p>
@@ -826,7 +838,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 294
+    startLine: 320
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>rename a file.</p>
@@ -868,7 +880,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 1058
+    startLine: 1084
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Sets the ACLs for a file or directory. If the file or directory already has any ACLs associated with it, then all the existing ACLs are removed before adding the specified ACLs.</p>
@@ -907,7 +919,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 1030
+    startLine: 1056
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Sets the ACLs for a file or directory. If the file or directory already has any ACLs associated with it, then all the existing ACLs are removed before adding the specified ACLs.</p>
@@ -943,7 +955,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 773
+    startLine: 799
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>sets the owning user and group of the file. If the user or group are<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> , then they are not changed. It is illegal to pass both user and owner as<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> .</p>
@@ -982,7 +994,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 812
+    startLine: 838
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>Sets the permissions of the specified file ro directory. This sets the traditional unix read/write/execute permissions for the file/directory. To set Acl's use the <ref refid="" kindref="compound">setAcl</ref> call.</p>
@@ -1018,7 +1030,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/Core.java
-    startLine: 733
+    startLine: 759
   package: com.microsoft.azure.datalake.store
   summary: >-
     <p>sets one or both of the times (Modified and Access time) of the file or directory</p>
@@ -1094,6 +1106,15 @@ references:
     href: com.microsoft.azure.datalake.store.acl._acl_entry.yml
   - name: '>'
     fullName: '>'
+- uid: com.microsoft.azure.datalake.store._sync_flag
+  parent: com.microsoft.azure.datalake.store
+  href: com.microsoft.azure.datalake.store._sync_flag.yml
+  name: SyncFlag
+  fullName: com.microsoft.azure.datalake.store.SyncFlag
+  type: Enum
+  summary: <p>Indicator flags to backend during append. </p>
+  syntax:
+    content: public enum SyncFlag
 - uid: com.microsoft.azure.datalake.store._a_d_l_store_client
   parent: com.microsoft.azure.datalake.store
   href: com.microsoft.azure.datalake.store._a_d_l_store_client.yml
@@ -1135,6 +1156,57 @@ references:
     <p>This class is a container for all the information from making a server call. </p>
   syntax:
     content: public class OperationResponse
+- uid: com.microsoft.azure.datalake.store._sync_flag.DATA()
+  parent: com.microsoft.azure.datalake.store._sync_flag
+  href: com.microsoft.azure.datalake.store._sync_flag.yml
+  name: DATA
+  fullName: com.microsoft.azure.datalake.store.SyncFlag.DATA
+  type: Constructor
+  summary: <p>No update is required, and hold lease. - Performant operation. </p>
+  syntax:
+    content: public DATA
+- uid: com.microsoft.azure.datalake.store._sync_flag.METADATA()
+  parent: com.microsoft.azure.datalake.store._sync_flag
+  href: com.microsoft.azure.datalake.store._sync_flag.yml
+  name: METADATA
+  fullName: com.microsoft.azure.datalake.store.SyncFlag.METADATA
+  type: Constructor
+  summary: <p>Update metdata of the file after the given data is appended to file. </p>
+  syntax:
+    content: public METADATA
+- uid: com.microsoft.azure.datalake.store._core.getFileStatus(String,ADLStoreClient,RequestOptions,OperationResponse)
+  parent: com.microsoft.azure.datalake.store._core
+  href: com.microsoft.azure.datalake.store._core.yml
+  name: getFileStatus(String path, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  fullName: static DirectoryEntry com.microsoft.azure.datalake.store.Core.getFileStatus(String path, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  type: Method
+  summary: >-
+    <p>Gets the directory metadata associated with a file or directory.</p>
+
+    <p></p>
+  syntax: *o1
+- uid: com.microsoft.azure.datalake.store._core.listStatus(String,String,String,int,ADLStoreClient,RequestOptions,OperationResponse)
+  parent: com.microsoft.azure.datalake.store._core
+  href: com.microsoft.azure.datalake.store._core.yml
+  name: listStatus(String path, String listAfter, String listBefore, int listSize, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  fullName: static List<DirectoryEntry> com.microsoft.azure.datalake.store.Core.listStatus(String path, String listAfter, String listBefore, int listSize, ADLStoreClient client, RequestOptions opts, OperationResponse resp)
+  type: Method
+  summary: >-
+    <p>enumerates the contents of a direcotry, returning a <ref refid="" kindref="compound">List</ref> of <xref href="com.microsoft.azure.datalake.store._directory_entry" data-throw-if-not-resolved="false"></xref> objects, one per file or directory in the specified directory. </p>
+
+    <p>To avoid overwhelming the client or the server, the call may return a partial list, in which case the caller should make the call again with the last entry from the returned list specified as the <programlisting><codeline><highlight class="normal">listAfter<sp></sp></highlight></codeline></programlisting> parameter of the next call. </p>
+
+    <p></p>
+  syntax: *o2
+- uid: com.microsoft.azure.datalake.store._sync_flag.CLOSE()
+  parent: com.microsoft.azure.datalake.store._sync_flag
+  href: com.microsoft.azure.datalake.store._sync_flag.yml
+  name: CLOSE
+  fullName: com.microsoft.azure.datalake.store.SyncFlag.CLOSE
+  type: Constructor
+  summary: <p>Update metdata of the file after the given data is appended to file. And close file handle. Once the file handle is closed, lease on the file is released if the stream is opened with leaseid. </p>
+  syntax:
+    content: public CLOSE
 - uid: com.microsoft.azure.datalake.store._a_d_l_file_input_stream
   parent: com.microsoft.azure.datalake.store
   href: com.microsoft.azure.datalake.store._a_d_l_file_input_stream.yml
@@ -1208,4 +1280,4 @@ references:
     <p>
 
       <bold>Thread Safety: </bold> all static methods in this class are thread-safe</p>
-  syntax: *o1
+  syntax: *o3
