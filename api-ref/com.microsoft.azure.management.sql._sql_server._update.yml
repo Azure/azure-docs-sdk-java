@@ -14,17 +14,23 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-sql/src/main/java/com/microsoft/azure/management/sql/SqlServer.java
-    startLine: 307
+    startLine: 350
   package: com.microsoft.azure.management.sql
   summary: <p>The template for a SQLServer update operation, containing all the settings that can be modified. </p>
   syntax:
-    content: public interface Update extends Appliable<SqlServer>,SqlServer.UpdateStages.WithAdministratorPassword
+    content: public interface Update extends Appliable<SqlServer>,SqlServer.UpdateStages.WithAdministratorPassword,SqlServer.UpdateStages.WithElasticPool,SqlServer.UpdateStages.WithDatabase,SqlServer.UpdateStages.WithFirewallRule
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()
   - com.microsoft.azure.management.resources.fluentcore.model._appliable.applyAsync()
   - com.microsoft.azure.management.resources.fluentcore.model._appliable.applyAsync(final ServiceCallback<T>)
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.sql._sql_server._update_stages._with_administrator_password.withAdministratorPassword(String)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_database.withNewDatabase(String)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.withNewElasticPool(String,ElasticPoolEditions,String...)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.withNewElasticPool(String,ElasticPoolEditions)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String,String)
+  - com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String,String,String)
 references:
 - uid: com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()
   parent: com.microsoft.azure.management.resources.fluentcore.model._appliable
@@ -104,7 +110,130 @@ references:
       description: <p>password for administrator login </p>
     return:
       type: com.microsoft.azure.management.sql._sql_server._update
-      description: <p>Next stage of the SQL Server creation. </p>
+      description: <p>Next stage of the update. </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_database.withNewDatabase(String)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_database
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_database.yml
+  name: withNewDatabase(String databaseName)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithDatabase.withNewDatabase(String databaseName)
+  type: Method
+  summary: <p>Create new database in the SQL Server. </p>
+  syntax:
+    content: public Update withNewDatabase(String databaseName)
+    parameters:
+    - id: databaseName
+      type: "26831127"
+      description: <p>name of the database to be created </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.withNewElasticPool(String,ElasticPoolEditions,String...)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.yml
+  name: withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition, String... databaseNames)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithElasticPool.withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition, String... databaseNames)
+  type: Method
+  summary: <p>Create new elastic pool in the SQL Server. </p>
+  syntax:
+    content: public Update withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition, String... databaseNames)
+    parameters:
+    - id: elasticPoolName
+      type: "26831127"
+      description: <p>name of the elastic pool to be created </p>
+    - id: elasticPoolEdition
+      type: com.microsoft.azure.management.sql._elastic_pool_editions
+      description: <p>edition of the elastic pool </p>
+    - id: databaseNames
+      type: 04d2b762
+      description: <p>names of the database to be included in the elastic pool </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.withNewElasticPool(String,ElasticPoolEditions)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.yml
+  name: withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithElasticPool.withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition)
+  type: Method
+  summary: <p>Create new elastic pool in the SQL Server. </p>
+  syntax:
+    content: public Update withNewElasticPool(String elasticPoolName, ElasticPoolEditions elasticPoolEdition)
+    parameters:
+    - id: elasticPoolName
+      type: "26831127"
+      description: <p>name of the elastic pool to be created </p>
+    - id: elasticPoolEdition
+      type: com.microsoft.azure.management.sql._elastic_pool_editions
+      description: <p>edition of the elastic pool </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.yml
+  name: withNewFirewallRule(String ipAddress)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithFirewallRule.withNewFirewallRule(String ipAddress)
+  type: Method
+  summary: >-
+    <p>Create new firewall rule in the SQL Server.</p>
+
+    <p></p>
+  syntax:
+    content: public Update withNewFirewallRule(String ipAddress)
+    parameters:
+    - id: ipAddress
+      type: "26831127"
+      description: <p>ipAddress for the firewall rule </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String,String)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.yml
+  name: withNewFirewallRule(String startIpAddress, String endIpAddress)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithFirewallRule.withNewFirewallRule(String startIpAddress, String endIpAddress)
+  type: Method
+  summary: >-
+    <p>Create new firewall rule in the SQL Server.</p>
+
+    <p></p>
+  syntax:
+    content: public Update withNewFirewallRule(String startIpAddress, String endIpAddress)
+    parameters:
+    - id: startIpAddress
+      type: "26831127"
+      description: <p>Start ipAddress for the firewall rule </p>
+    - id: endIpAddress
+      type: "26831127"
+      description: <p>ipAddress for the firewall rule </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.withNewFirewallRule(String,String,String)
+  parent: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.yml
+  name: withNewFirewallRule(String startIpAddress, String endIpAddress, String firewallRuleName)
+  fullName: Update com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithFirewallRule.withNewFirewallRule(String startIpAddress, String endIpAddress, String firewallRuleName)
+  type: Method
+  summary: >-
+    <p>Creates new firewall rule in the SQL Server.</p>
+
+    <p></p>
+  syntax:
+    content: public Update withNewFirewallRule(String startIpAddress, String endIpAddress, String firewallRuleName)
+    parameters:
+    - id: startIpAddress
+      type: "26831127"
+      description: <p>start ipAddress for the firewall rule </p>
+    - id: endIpAddress
+      type: "26831127"
+      description: <p>end ipAddress for the firewall rule </p>
+    - id: firewallRuleName
+      type: "26831127"
+      description: <p>name for the firewall rule </p>
+    return:
+      type: com.microsoft.azure.management.sql._sql_server._update
+      description: <p>Next stage of the SQL Server update </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._appliable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._appliable.yml
@@ -129,6 +258,33 @@ references:
   summary: <p>A SQL Server definition setting admin user password. </p>
   syntax:
     content: public interface WithAdministratorPassword
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_elastic_pool.yml
+  name: SqlServer.UpdateStages.WithElasticPool
+  fullName: com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithElasticPool
+  type: Interface
+  summary: <p>A SQL Server definition for specifying elastic pool. </p>
+  syntax:
+    content: public interface WithElasticPool
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_database
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_database.yml
+  name: SqlServer.UpdateStages.WithDatabase
+  fullName: com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithDatabase
+  type: Interface
+  summary: <p>A SQL Server definition for specifying the databases. </p>
+  syntax:
+    content: public interface WithDatabase
+- uid: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule
+  parent: com.microsoft.azure.management.sql
+  href: com.microsoft.azure.management.sql._sql_server._update_stages._with_firewall_rule.yml
+  name: SqlServer.UpdateStages.WithFirewallRule
+  fullName: com.microsoft.azure.management.sql.SqlServer.UpdateStages.WithFirewallRule
+  type: Interface
+  summary: <p>A SQL Server definition for specifying the firewall rule. </p>
+  syntax:
+    content: public interface WithFirewallRule
 - uid: com.microsoft.azure.management.sql.implementation._sql_server_impl
   parent: com.microsoft.azure.management.sql.implementation
   href: com.microsoft.azure.management.sql.implementation._sql_server_impl.yml
