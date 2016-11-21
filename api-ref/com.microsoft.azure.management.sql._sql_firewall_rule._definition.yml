@@ -14,19 +14,19 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-sql/src/main/java/com/microsoft/azure/management/sql/SqlFirewallRule.java
-    startLine: 55
+    startLine: 60
   package: com.microsoft.azure.management.sql
   summary: <p>Container interface for all the definitions that need to be implemented. </p>
   syntax:
-    content: public interface Definition extends SqlFirewallRule.DefinitionStages.Blank,SqlFirewallRule.DefinitionStages.WithStartIpAddress,SqlFirewallRule.DefinitionStages.WithEndIpAddress,SqlFirewallRule.DefinitionStages.WithCreate
+    content: public interface Definition extends SqlFirewallRule.DefinitionStages.Blank,SqlFirewallRule.DefinitionStages.WithIpAddress,SqlFirewallRule.DefinitionStages.WithIpAddressRange,SqlFirewallRule.DefinitionStages.WithCreate
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.create()
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync(final ServiceCallback<T>)
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
-  - com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address.withEndIpAddress(String)
-  - com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address.withStartIpAddress(String)
+  - com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address.withIpAddress(String)
+  - com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range.withIpAddressRange(String,String)
 references:
 - uid: com.microsoft.azure.management.resources.fluentcore.model._creatable.create()
   parent: com.microsoft.azure.management.resources.fluentcore.model._creatable
@@ -99,44 +99,47 @@ references:
     return:
       type: "26831127"
       description: <p>the name of the resource </p>
-- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address.withEndIpAddress(String)
-  parent: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address
-  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address.yml
-  name: withEndIpAddress(String endIpAddress)
-  fullName: WithCreate com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithEndIpAddress.withEndIpAddress(String endIpAddress)
+- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address.withIpAddress(String)
+  parent: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address
+  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address.yml
+  name: withIpAddress(String ipAddress)
+  fullName: WithCreate com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithIpAddress.withIpAddress(String ipAddress)
   type: Method
   summary: >-
     <p>Sets the ending IP address of SQL server's firewall rule.</p>
 
     <p></p>
   syntax:
-    content: public WithCreate withEndIpAddress(String endIpAddress)
+    content: public WithCreate withIpAddress(String ipAddress)
     parameters:
-    - id: endIpAddress
+    - id: ipAddress
       type: "26831127"
-      description: <p>end IP address in IPv4 format. </p>
+      description: <p>IP address in IPv4 format. </p>
     return:
       type: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create
-      description: <p>The next stage of definition. </p>
-- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address.withStartIpAddress(String)
-  parent: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address
-  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address.yml
-  name: withStartIpAddress(String startIpAddress)
-  fullName: SqlFirewallRule.DefinitionStages.WithEndIpAddress com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithStartIpAddress.withStartIpAddress(String startIpAddress)
+      description: <p>The next stage of the definition. </p>
+- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range.withIpAddressRange(String,String)
+  parent: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range
+  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range.yml
+  name: withIpAddressRange(String startIpAddress, String endIpAddress)
+  fullName: WithCreate com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithIpAddressRange.withIpAddressRange(String startIpAddress, String endIpAddress)
   type: Method
   summary: >-
     <p>Sets the starting IP address of SQL server's firewall rule.</p>
 
     <p></p>
   syntax:
-    content: public SqlFirewallRule.DefinitionStages.WithEndIpAddress withStartIpAddress(String startIpAddress)
+    content: public WithCreate withIpAddressRange(String startIpAddress, String endIpAddress)
     parameters:
     - id: startIpAddress
       type: "26831127"
-      description: <p>start IP address in IPv4 format. </p>
+      description: <p>starting IP address in IPv4 format. </p>
+    - id: endIpAddress
+      type: "26831127"
+      description: <p>starting IP address in IPv4 format. </p>
     return:
-      type: 5cca17e8
-      description: <p>The next stage of definition. </p>
+      type: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create
+      description: <p>The next stage of the definition. </p>
 - uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._blank
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._blank.yml
@@ -145,25 +148,25 @@ references:
   type: Interface
   summary: <p>The first stage of the SQL Server definition. </p>
   syntax:
-    content: public interface Blank extends SqlFirewallRule.DefinitionStages.WithStartIpAddress
-- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address
+    content: public interface Blank extends SqlFirewallRule.DefinitionStages.WithIpAddressRange,SqlFirewallRule.DefinitionStages.WithIpAddress
+- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address
   parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_start_ip_address.yml
-  name: SqlFirewallRule.DefinitionStages.WithStartIpAddress
-  fullName: com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithStartIpAddress
+  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address.yml
+  name: SqlFirewallRule.DefinitionStages.WithIpAddress
+  fullName: com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithIpAddress
   type: Interface
   summary: <p>The SQL Firewall Rule definition to set the starting IP Address for the server. </p>
   syntax:
-    content: public interface WithStartIpAddress
-- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address
+    content: public interface WithIpAddress
+- uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range
   parent: com.microsoft.azure.management.sql
-  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_end_ip_address.yml
-  name: SqlFirewallRule.DefinitionStages.WithEndIpAddress
-  fullName: com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithEndIpAddress
+  href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_ip_address_range.yml
+  name: SqlFirewallRule.DefinitionStages.WithIpAddressRange
+  fullName: com.microsoft.azure.management.sql.SqlFirewallRule.DefinitionStages.WithIpAddressRange
   type: Interface
   summary: <p>The SQL Firewall Rule definition to set the starting IP Address for the server. </p>
   syntax:
-    content: public interface WithEndIpAddress
+    content: public interface WithIpAddressRange
 - uid: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_firewall_rule._definition_stages._with_create.yml
