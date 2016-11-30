@@ -13,10 +13,13 @@ items:
   - system.fabric._fabric_error_code.ApplicationTypeInUse()
   - system.fabric._fabric_error_code.ApplicationTypeNotFound()
   - system.fabric._fabric_error_code.ApplicationTypeProvisionInProgress()
+  - system.fabric._fabric_error_code.ApplicationUpdateInProgress()
   - system.fabric._fabric_error_code.ApplicationUpgradeInProgress()
   - system.fabric._fabric_error_code.ApplicationUpgradeValidationError()
   - system.fabric._fabric_error_code.BackupDirectoryNotEmpty()
   - system.fabric._fabric_error_code.BackupInProgress()
+  - system.fabric._fabric_error_code.ChaosAlreadyRunning()
+  - system.fabric._fabric_error_code.CMOperationFailed()
   - system.fabric._fabric_error_code.CodePackageNotFound()
   - system.fabric._fabric_error_code.CommunicationError()
   - system.fabric._fabric_error_code.ConfigurationPackageNotFound()
@@ -39,6 +42,7 @@ items:
   - system.fabric._fabric_error_code.FabricAlreadyInTargetVersion()
   - system.fabric._fabric_error_code.FabricCannotConnect()
   - system.fabric._fabric_error_code.FabricConnectionClosedByRemoteEnd()
+  - system.fabric._fabric_error_code.FabricDataRootNotFound()
   - system.fabric._fabric_error_code.FabricEndpointNotFound()
   - system.fabric._fabric_error_code.FabricHealthEntityNotFound()
   - system.fabric._fabric_error_code.FabricHealthMaxReportsReached()
@@ -52,8 +56,11 @@ items:
   - system.fabric._fabric_error_code.FabricVersionNotFound()
   - system.fabric._fabric_error_code.FileNotFound()
   - system.fabric._fabric_error_code.ForceNotSupportedForReplicaControlOperation()
+  - system.fabric._fabric_error_code.GatewayNotReachable()
+  - system.fabric._fabric_error_code.getValue()
   - system.fabric._fabric_error_code.ImageBuilderAccessDeniedError()
   - system.fabric._fabric_error_code.ImageBuilderInvalidMsiFile()
+  - system.fabric._fabric_error_code.ImageBuilderReservedDirectoryError()
   - system.fabric._fabric_error_code.ImageBuilderTimeoutError()
   - system.fabric._fabric_error_code.ImageBuilderUnexpectedError()
   - system.fabric._fabric_error_code.ImageBuilderValidationError()
@@ -77,6 +84,7 @@ items:
   - system.fabric._fabric_error_code.InvalidReplicaStateForReplicaOperation()
   - system.fabric._fabric_error_code.InvalidServiceType()
   - system.fabric._fabric_error_code.InvalidSubjectName()
+  - system.fabric._fabric_error_code.InvalidTestCommandState()
   - system.fabric._fabric_error_code.InvalidX509FindType()
   - system.fabric._fabric_error_code.InvalidX509Store()
   - system.fabric._fabric_error_code.InvalidX509StoreLocation()
@@ -96,6 +104,7 @@ items:
   - system.fabric._fabric_error_code.NotReady()
   - system.fabric._fabric_error_code.NoWriteQuorum()
   - system.fabric._fabric_error_code.ObjectClosed()
+  - system.fabric._fabric_error_code.OperationCanceled()
   - system.fabric._fabric_error_code.OperationNotComplete()
   - system.fabric._fabric_error_code.OperationTimedOut()
   - system.fabric._fabric_error_code.PartitionNotFound()
@@ -142,6 +151,7 @@ items:
   - system.fabric._fabric_error_code.ServiceTypeMismatch()
   - system.fabric._fabric_error_code.ServiceTypeNotFound()
   - system.fabric._fabric_error_code.ServiceTypeNotRegistered()
+  - system.fabric._fabric_error_code.TestCommandOperationIdAlreadyExists()
   - system.fabric._fabric_error_code.TransactionAborted()
   - system.fabric._fabric_error_code.TransactionNotActive()
   - system.fabric._fabric_error_code.TransactionTooLarge()
@@ -159,10 +169,10 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 2
+    startLine: 4
   package: system.fabric
   syntax:
     content: public enum FabricErrorCode
@@ -181,10 +191,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 137
+    startLine: 152
   package: system.fabric
   syntax:
-    content: public AlreadyPrimaryReplica
+    content: public AlreadyPrimaryReplica=(InternalFabricErrorCode.FABRIC_E_PRIMARY_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.AlreadySecondaryReplica()
   id: AlreadySecondaryReplica()
   parent: system.fabric._fabric_error_code
@@ -197,10 +207,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 138
+    startLine: 153
   package: system.fabric
   syntax:
-    content: public AlreadySecondaryReplica
+    content: public AlreadySecondaryReplica=(InternalFabricErrorCode.FABRIC_E_SECONDARY_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationAlreadyExists()
   id: ApplicationAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -213,10 +223,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 11
+    startLine: 15
   package: system.fabric
   syntax:
-    content: public ApplicationAlreadyExists
+    content: public ApplicationAlreadyExists=(InternalFabricErrorCode.FABRIC_E_APPLICATION_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationAlreadyInTargetVersion()
   id: ApplicationAlreadyInTargetVersion()
   parent: system.fabric._fabric_error_code
@@ -229,10 +239,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 100
+    startLine: 108
   package: system.fabric
   syntax:
-    content: public ApplicationAlreadyInTargetVersion
+    content: >-
+      public ApplicationAlreadyInTargetVersion=(
+                  InternalFabricErrorCode.FABRIC_E_APPLICATION_ALREADY_IN_TARGET_VERSION.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationNotFound()
   id: ApplicationNotFound()
   parent: system.fabric._fabric_error_code
@@ -245,10 +257,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 20
+    startLine: 24
   package: system.fabric
   syntax:
-    content: public ApplicationNotFound
+    content: public ApplicationNotFound=(InternalFabricErrorCode.FABRIC_E_APPLICATION_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationNotUpgrading()
   id: ApplicationNotUpgrading()
   parent: system.fabric._fabric_error_code
@@ -261,10 +273,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 99
+    startLine: 107
   package: system.fabric
   syntax:
-    content: public ApplicationNotUpgrading
+    content: public ApplicationNotUpgrading=(InternalFabricErrorCode.FABRIC_E_APPLICATION_NOT_UPGRADING.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationTypeAlreadyExists()
   id: ApplicationTypeAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -277,10 +289,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 10
+    startLine: 14
   package: system.fabric
   syntax:
-    content: public ApplicationTypeAlreadyExists
+    content: public ApplicationTypeAlreadyExists=(InternalFabricErrorCode.FABRIC_E_APPLICATION_TYPE_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationTypeInUse()
   id: ApplicationTypeInUse()
   parent: system.fabric._fabric_error_code
@@ -293,10 +305,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 19
+    startLine: 23
   package: system.fabric
   syntax:
-    content: public ApplicationTypeInUse
+    content: public ApplicationTypeInUse=(InternalFabricErrorCode.FABRIC_E_APPLICATION_TYPE_IN_USE.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationTypeNotFound()
   id: ApplicationTypeNotFound()
   parent: system.fabric._fabric_error_code
@@ -309,10 +321,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 18
+    startLine: 22
   package: system.fabric
   syntax:
-    content: public ApplicationTypeNotFound
+    content: public ApplicationTypeNotFound=(InternalFabricErrorCode.FABRIC_E_APPLICATION_TYPE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationTypeProvisionInProgress()
   id: ApplicationTypeProvisionInProgress()
   parent: system.fabric._fabric_error_code
@@ -325,10 +337,28 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 9
+    startLine: 12
   package: system.fabric
   syntax:
-    content: public ApplicationTypeProvisionInProgress
+    content: >-
+      public ApplicationTypeProvisionInProgress=(
+                  InternalFabricErrorCode.FABRIC_E_APPLICATION_TYPE_PROVISION_IN_PROGRESS.getValue())
+- uid: system.fabric._fabric_error_code.ApplicationUpdateInProgress()
+  id: ApplicationUpdateInProgress()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: ApplicationUpdateInProgress
+  fullName: system.fabric.FabricErrorCode.ApplicationUpdateInProgress
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 47
+  package: system.fabric
+  syntax:
+    content: public ApplicationUpdateInProgress=(InternalFabricErrorCode.FABRIC_E_APPLICATION_UPDATE_IN_PROGRESS.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationUpgradeInProgress()
   id: ApplicationUpgradeInProgress()
   parent: system.fabric._fabric_error_code
@@ -341,10 +371,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 42
+    startLine: 46
   package: system.fabric
   syntax:
-    content: public ApplicationUpgradeInProgress
+    content: public ApplicationUpgradeInProgress=(InternalFabricErrorCode.FABRIC_E_APPLICATION_UPGRADE_IN_PROGRESS.getValue())
 - uid: system.fabric._fabric_error_code.ApplicationUpgradeValidationError()
   id: ApplicationUpgradeValidationError()
   parent: system.fabric._fabric_error_code
@@ -357,10 +387,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 37
+    startLine: 41
   package: system.fabric
   syntax:
-    content: public ApplicationUpgradeValidationError
+    content: public ApplicationUpgradeValidationError=(InternalFabricErrorCode.FABRIC_E_APPLICATION_UPGRADE_VALIDATION_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.BackupDirectoryNotEmpty()
   id: BackupDirectoryNotEmpty()
   parent: system.fabric._fabric_error_code
@@ -373,10 +403,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 139
+    startLine: 154
   package: system.fabric
   syntax:
-    content: public BackupDirectoryNotEmpty
+    content: public BackupDirectoryNotEmpty=(InternalFabricErrorCode.FABRIC_E_BACKUP_DIRECTORY_NOT_EMPTY.getValue())
 - uid: system.fabric._fabric_error_code.BackupInProgress()
   id: BackupInProgress()
   parent: system.fabric._fabric_error_code
@@ -389,10 +419,42 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 133
+    startLine: 147
   package: system.fabric
   syntax:
-    content: public BackupInProgress
+    content: public BackupInProgress=(InternalFabricErrorCode.FABRIC_E_BACKUP_IN_PROGRESS.getValue())
+- uid: system.fabric._fabric_error_code.ChaosAlreadyRunning()
+  id: ChaosAlreadyRunning()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: ChaosAlreadyRunning
+  fullName: system.fabric.FabricErrorCode.ChaosAlreadyRunning
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 171
+  package: system.fabric
+  syntax:
+    content: public ChaosAlreadyRunning=(InternalFabricErrorCode.FABRIC_E_CHAOS_ALREADY_RUNNING.getValue())
+- uid: system.fabric._fabric_error_code.CMOperationFailed()
+  id: CMOperationFailed()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: CMOperationFailed
+  fullName: system.fabric.FabricErrorCode.CMOperationFailed
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 172
+  package: system.fabric
+  syntax:
+    content: public CMOperationFailed=(InternalFabricErrorCode.FABRIC_E_CM_OPERATION_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.CodePackageNotFound()
   id: CodePackageNotFound()
   parent: system.fabric._fabric_error_code
@@ -405,10 +467,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 75
+    startLine: 83
   package: system.fabric
   syntax:
-    content: public CodePackageNotFound
+    content: public CodePackageNotFound=(InternalFabricErrorCode.FABRIC_E_CODE_PACKAGE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.CommunicationError()
   id: CommunicationError()
   parent: system.fabric._fabric_error_code
@@ -421,10 +483,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 55
+    startLine: 60
   package: system.fabric
   syntax:
-    content: public CommunicationError
+    content: public CommunicationError=(InternalFabricErrorCode.FABRIC_E_COMMUNICATION_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.ConfigurationPackageNotFound()
   id: ConfigurationPackageNotFound()
   parent: system.fabric._fabric_error_code
@@ -437,10 +499,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 76
+    startLine: 84
   package: system.fabric
   syntax:
-    content: public ConfigurationPackageNotFound
+    content: public ConfigurationPackageNotFound=(InternalFabricErrorCode.FABRIC_E_CONFIGURATION_PACKAGE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ConfigurationParameterNotFound()
   id: ConfigurationParameterNotFound()
   parent: system.fabric._fabric_error_code
@@ -453,10 +515,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 60
+    startLine: 66
   package: system.fabric
   syntax:
-    content: public ConfigurationParameterNotFound
+    content: public ConfigurationParameterNotFound=(InternalFabricErrorCode.FABRIC_E_CONFIGURATION_PARAMETER_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ConfigurationSectionNotFound()
   id: ConfigurationSectionNotFound()
   parent: system.fabric._fabric_error_code
@@ -469,10 +531,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 59
+    startLine: 65
   package: system.fabric
   syntax:
-    content: public ConfigurationSectionNotFound
+    content: public ConfigurationSectionNotFound=(InternalFabricErrorCode.FABRIC_E_CONFIGURATION_SECTION_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ConnectionDenied()
   id: ConnectionDenied()
   parent: system.fabric._fabric_error_code
@@ -485,10 +547,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 141
+    startLine: 157
   package: system.fabric
   syntax:
-    content: public ConnectionDenied
+    content: public ConnectionDenied=(InternalFabricErrorCode.FABRIC_E_CONNECTION_DENIED.getValue())
 - uid: system.fabric._fabric_error_code.ConstraintKeyUndefined()
   id: ConstraintKeyUndefined()
   parent: system.fabric._fabric_error_code
@@ -501,10 +563,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 126
+    startLine: 140
   package: system.fabric
   syntax:
-    content: public ConstraintKeyUndefined
+    content: public ConstraintKeyUndefined=(InternalFabricErrorCode.FABRIC_E_CONSTRAINT_KEY_UNDEFINED.getValue())
 - uid: system.fabric._fabric_error_code.ConstraintNotSatisfied()
   id: ConstraintNotSatisfied()
   parent: system.fabric._fabric_error_code
@@ -517,10 +579,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 145
+    startLine: 162
   package: system.fabric
   syntax:
-    content: public ConstraintNotSatisfied
+    content: public ConstraintNotSatisfied=(InternalFabricErrorCode.FABRIC_E_CONSTRAINT_NOT_SATISFIED.getValue())
 - uid: system.fabric._fabric_error_code.CorruptedImageStoreObjectFound()
   id: CorruptedImageStoreObjectFound()
   parent: system.fabric._fabric_error_code
@@ -533,10 +595,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 91
+    startLine: 99
   package: system.fabric
   syntax:
-    content: public CorruptedImageStoreObjectFound
+    content: public CorruptedImageStoreObjectFound=(InternalFabricErrorCode.FABRIC_E_CORRUPTED_IMAGE_STORE_OBJECT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.DataPackageNotFound()
   id: DataPackageNotFound()
   parent: system.fabric._fabric_error_code
@@ -549,10 +611,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 77
+    startLine: 85
   package: system.fabric
   syntax:
-    content: public DataPackageNotFound
+    content: public DataPackageNotFound=(InternalFabricErrorCode.FABRIC_E_DATA_PACKAGE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.DecryptionFailed()
   id: DecryptionFailed()
   parent: system.fabric._fabric_error_code
@@ -565,10 +627,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 89
+    startLine: 97
   package: system.fabric
   syntax:
-    content: public DecryptionFailed
+    content: public DecryptionFailed=(InternalFabricErrorCode.FABRIC_E_DECRYPTION_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.DeleteBackupFileFailed()
   id: DeleteBackupFileFailed()
   parent: system.fabric._fabric_error_code
@@ -581,10 +643,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 149
+    startLine: 166
   package: system.fabric
   syntax:
-    content: public DeleteBackupFileFailed
+    content: public DeleteBackupFileFailed=(InternalFabricErrorCode.FABRIC_E_DELETE_BACKUP_FILE_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.DirectoryNotFound()
   id: DirectoryNotFound()
   parent: system.fabric._fabric_error_code
@@ -597,10 +659,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 69
+    startLine: 77
   package: system.fabric
   syntax:
-    content: public DirectoryNotFound
+    content: public DirectoryNotFound=(InternalFabricErrorCode.FABRIC_E_DIRECTORY_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.DuplicateServiceNotificationFilterName()
   id: DuplicateServiceNotificationFilterName()
   parent: system.fabric._fabric_error_code
@@ -613,10 +675,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 135
+    startLine: 149
   package: system.fabric
   syntax:
-    content: public DuplicateServiceNotificationFilterName
+    content: >-
+      public DuplicateServiceNotificationFilterName=(
+                  InternalFabricErrorCode.FABRIC_E_DUPLICATE_SERVICE_NOTIFICATION_FILTER_NAME.getValue())
 - uid: system.fabric._fabric_error_code.DuplicateWaitObject()
   id: DuplicateWaitObject()
   parent: system.fabric._fabric_error_code
@@ -629,10 +693,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 147
+    startLine: 164
   package: system.fabric
   syntax:
-    content: public DuplicateWaitObject
+    content: public DuplicateWaitObject=(InternalFabricErrorCode.COR_E_DUPLICATEWAITOBJECT.getValue())
 - uid: system.fabric._fabric_error_code.EncryptionFailed()
   id: EncryptionFailed()
   parent: system.fabric._fabric_error_code
@@ -645,10 +709,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 90
+    startLine: 98
   package: system.fabric
   syntax:
-    content: public EncryptionFailed
+    content: public EncryptionFailed=(InternalFabricErrorCode.FABRIC_E_ENCRYPTION_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.EndpointResourceNotFound()
   id: EndpointResourceNotFound()
   parent: system.fabric._fabric_error_code
@@ -661,10 +725,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 78
+    startLine: 86
   package: system.fabric
   syntax:
-    content: public EndpointResourceNotFound
+    content: public EndpointResourceNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_ENDPOINT_RESOURCE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.EntryPointNotFound()
   id: EntryPointNotFound()
   parent: system.fabric._fabric_error_code
@@ -677,10 +741,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 148
+    startLine: 165
   package: system.fabric
   syntax:
-    content: public EntryPointNotFound
+    content: public EntryPointNotFound=(InternalFabricErrorCode.COR_E_TYPELOAD.getValue())
 - uid: system.fabric._fabric_error_code.EnumerationCompleted()
   id: EnumerationCompleted()
   parent: system.fabric._fabric_error_code
@@ -693,10 +757,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 58
+    startLine: 64
   package: system.fabric
   syntax:
-    content: public EnumerationCompleted
+    content: public EnumerationCompleted=(InternalFabricErrorCode.FABRIC_E_PROPERTY_CHECK_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.FabricAlreadyInTargetVersion()
   id: FabricAlreadyInTargetVersion()
   parent: system.fabric._fabric_error_code
@@ -709,10 +773,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 47
+    startLine: 52
   package: system.fabric
   syntax:
-    content: public FabricAlreadyInTargetVersion
+    content: public FabricAlreadyInTargetVersion=(InternalFabricErrorCode.FABRIC_E_FABRIC_ALREADY_IN_TARGET_VERSION.getValue())
 - uid: system.fabric._fabric_error_code.FabricCannotConnect()
   id: FabricCannotConnect()
   parent: system.fabric._fabric_error_code
@@ -725,10 +789,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 143
+    startLine: 159
   package: system.fabric
   syntax:
-    content: public FabricCannotConnect
+    content: public FabricCannotConnect=(InternalFabricErrorCode.FABRIC_E_CANNOT_CONNECT.getValue())
 - uid: system.fabric._fabric_error_code.FabricConnectionClosedByRemoteEnd()
   id: FabricConnectionClosedByRemoteEnd()
   parent: system.fabric._fabric_error_code
@@ -741,10 +805,26 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 150
+    startLine: 160
   package: system.fabric
   syntax:
-    content: public FabricConnectionClosedByRemoteEnd
+    content: public FabricConnectionClosedByRemoteEnd=(InternalFabricErrorCode.FABRIC_E_CONNECTION_CLOSED_BY_REMOTE_END.getValue())
+- uid: system.fabric._fabric_error_code.FabricDataRootNotFound()
+  id: FabricDataRootNotFound()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: FabricDataRootNotFound
+  fullName: system.fabric.FabricErrorCode.FabricDataRootNotFound
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 173
+  package: system.fabric
+  syntax:
+    content: public FabricDataRootNotFound=(InternalFabricErrorCode.FABRIC_E_FABRIC_DATA_ROOT_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.FabricEndpointNotFound()
   id: FabricEndpointNotFound()
   parent: system.fabric._fabric_error_code
@@ -757,10 +837,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 146
+    startLine: 163
   package: system.fabric
   syntax:
-    content: public FabricEndpointNotFound
+    content: public FabricEndpointNotFound=(InternalFabricErrorCode.FABRIC_E_ENDPOINT_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.FabricHealthEntityNotFound()
   id: FabricHealthEntityNotFound()
   parent: system.fabric._fabric_error_code
@@ -773,10 +853,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 53
+    startLine: 58
   package: system.fabric
   syntax:
-    content: public FabricHealthEntityNotFound
+    content: public FabricHealthEntityNotFound=(InternalFabricErrorCode.FABRIC_E_HEALTH_ENTITY_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.FabricHealthMaxReportsReached()
   id: FabricHealthMaxReportsReached()
   parent: system.fabric._fabric_error_code
@@ -789,10 +869,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 51
+    startLine: 56
   package: system.fabric
   syntax:
-    content: public FabricHealthMaxReportsReached
+    content: public FabricHealthMaxReportsReached=(InternalFabricErrorCode.FABRIC_E_HEALTH_MAX_REPORTS_REACHED.getValue())
 - uid: system.fabric._fabric_error_code.FabricHealthStaleReport()
   id: FabricHealthStaleReport()
   parent: system.fabric._fabric_error_code
@@ -805,10 +885,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 52
+    startLine: 57
   package: system.fabric
   syntax:
-    content: public FabricHealthStaleReport
+    content: public FabricHealthStaleReport=(InternalFabricErrorCode.FABRIC_E_HEALTH_STALE_REPORT.getValue())
 - uid: system.fabric._fabric_error_code.FabricMessageTooLarge()
   id: FabricMessageTooLarge()
   parent: system.fabric._fabric_error_code
@@ -821,10 +901,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 144
+    startLine: 161
   package: system.fabric
   syntax:
-    content: public FabricMessageTooLarge
+    content: public FabricMessageTooLarge=(InternalFabricErrorCode.FABRIC_E_MESSAGE_TOO_LARGE.getValue())
 - uid: system.fabric._fabric_error_code.FabricNotUpgrading()
   id: FabricNotUpgrading()
   parent: system.fabric._fabric_error_code
@@ -837,10 +917,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 48
+    startLine: 53
   package: system.fabric
   syntax:
-    content: public FabricNotUpgrading
+    content: public FabricNotUpgrading=(InternalFabricErrorCode.FABRIC_E_FABRIC_NOT_UPGRADING.getValue())
 - uid: system.fabric._fabric_error_code.FabricUpgradeInProgress()
   id: FabricUpgradeInProgress()
   parent: system.fabric._fabric_error_code
@@ -853,10 +933,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 49
+    startLine: 54
   package: system.fabric
   syntax:
-    content: public FabricUpgradeInProgress
+    content: public FabricUpgradeInProgress=(InternalFabricErrorCode.FABRIC_E_FABRIC_UPGRADE_IN_PROGRESS.getValue())
 - uid: system.fabric._fabric_error_code.FabricUpgradeValidationError()
   id: FabricUpgradeValidationError()
   parent: system.fabric._fabric_error_code
@@ -869,10 +949,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 50
+    startLine: 55
   package: system.fabric
   syntax:
-    content: public FabricUpgradeValidationError
+    content: public FabricUpgradeValidationError=(InternalFabricErrorCode.FABRIC_E_FABRIC_UPGRADE_VALIDATION_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.FabricVersionAlreadyExists()
   id: FabricVersionAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -885,10 +965,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 46
+    startLine: 51
   package: system.fabric
   syntax:
-    content: public FabricVersionAlreadyExists
+    content: public FabricVersionAlreadyExists=(InternalFabricErrorCode.FABRIC_E_FABRIC_VERSION_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.FabricVersionInUse()
   id: FabricVersionInUse()
   parent: system.fabric._fabric_error_code
@@ -901,10 +981,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 45
+    startLine: 50
   package: system.fabric
   syntax:
-    content: public FabricVersionInUse
+    content: public FabricVersionInUse=(InternalFabricErrorCode.FABRIC_E_FABRIC_VERSION_IN_USE.getValue())
 - uid: system.fabric._fabric_error_code.FabricVersionNotFound()
   id: FabricVersionNotFound()
   parent: system.fabric._fabric_error_code
@@ -917,10 +997,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 44
+    startLine: 49
   package: system.fabric
   syntax:
-    content: public FabricVersionNotFound
+    content: public FabricVersionNotFound=(InternalFabricErrorCode.FABRIC_E_FABRIC_VERSION_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.FileNotFound()
   id: FileNotFound()
   parent: system.fabric._fabric_error_code
@@ -933,10 +1013,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 71
+    startLine: 79
   package: system.fabric
   syntax:
-    content: public FileNotFound
+    content: public FileNotFound=(InternalFabricErrorCode.FABRIC_E_FILE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ForceNotSupportedForReplicaControlOperation()
   id: ForceNotSupportedForReplicaControlOperation()
   parent: system.fabric._fabric_error_code
@@ -949,10 +1029,46 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 140
+    startLine: 155
   package: system.fabric
   syntax:
-    content: public ForceNotSupportedForReplicaControlOperation
+    content: >-
+      public ForceNotSupportedForReplicaControlOperation=(
+                  InternalFabricErrorCode.FABRIC_E_FORCE_NOT_SUPPORTED_FOR_REPLICA_OPERATION.getValue())
+- uid: system.fabric._fabric_error_code.GatewayNotReachable()
+  id: GatewayNotReachable()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: GatewayNotReachable
+  fullName: system.fabric.FabricErrorCode.GatewayNotReachable
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 61
+  package: system.fabric
+  syntax:
+    content: public GatewayNotReachable=(InternalFabricErrorCode.FABRIC_E_GATEWAY_NOT_REACHABLE.getValue())
+- uid: system.fabric._fabric_error_code.getValue()
+  id: getValue()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: getValue()
+  fullName: long system.fabric.FabricErrorCode.getValue()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 181
+  package: system.fabric
+  syntax:
+    content: public long getValue()
+    return:
+      type: 0364520f
 - uid: system.fabric._fabric_error_code.ImageBuilderAccessDeniedError()
   id: ImageBuilderAccessDeniedError()
   parent: system.fabric._fabric_error_code
@@ -965,10 +1081,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 94
+    startLine: 102
   package: system.fabric
   syntax:
-    content: public ImageBuilderAccessDeniedError
+    content: public ImageBuilderAccessDeniedError=(InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_ACCESS_DENIED.getValue())
 - uid: system.fabric._fabric_error_code.ImageBuilderInvalidMsiFile()
   id: ImageBuilderInvalidMsiFile()
   parent: system.fabric._fabric_error_code
@@ -981,10 +1097,28 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 95
+    startLine: 103
   package: system.fabric
   syntax:
-    content: public ImageBuilderInvalidMsiFile
+    content: public ImageBuilderInvalidMsiFile=(InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_INVALID_MSI_FILE.getValue())
+- uid: system.fabric._fabric_error_code.ImageBuilderReservedDirectoryError()
+  id: ImageBuilderReservedDirectoryError()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: ImageBuilderReservedDirectoryError
+  fullName: system.fabric.FabricErrorCode.ImageBuilderReservedDirectoryError
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 69
+  package: system.fabric
+  syntax:
+    content: >-
+      public ImageBuilderReservedDirectoryError=(
+                  InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_RESERVED_DIRECTORY_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.ImageBuilderTimeoutError()
   id: ImageBuilderTimeoutError()
   parent: system.fabric._fabric_error_code
@@ -997,10 +1131,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 93
+    startLine: 101
   package: system.fabric
   syntax:
-    content: public ImageBuilderTimeoutError
+    content: public ImageBuilderTimeoutError=(InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_TIMEOUT.getValue())
 - uid: system.fabric._fabric_error_code.ImageBuilderUnexpectedError()
   id: ImageBuilderUnexpectedError()
   parent: system.fabric._fabric_error_code
@@ -1013,10 +1147,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 92
+    startLine: 100
   package: system.fabric
   syntax:
-    content: public ImageBuilderUnexpectedError
+    content: public ImageBuilderUnexpectedError=(InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_UNEXPECTED_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.ImageBuilderValidationError()
   id: ImageBuilderValidationError()
   parent: system.fabric._fabric_error_code
@@ -1029,10 +1163,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 62
+    startLine: 68
   package: system.fabric
   syntax:
-    content: public ImageBuilderValidationError
+    content: public ImageBuilderValidationError=(InternalFabricErrorCode.FABRIC_E_IMAGEBUILDER_VALIDATION_ERROR.getValue())
 - uid: system.fabric._fabric_error_code.ImageStoreAcquireFileLockFailed()
   id: ImageStoreAcquireFileLockFailed()
   parent: system.fabric._fabric_error_code
@@ -1045,10 +1179,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 97
+    startLine: 105
   package: system.fabric
   syntax:
-    content: public ImageStoreAcquireFileLockFailed
+    content: public ImageStoreAcquireFileLockFailed=(InternalFabricErrorCode.FABRIC_E_ACQUIRE_FILE_LOCK_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.ImageStoreIOException()
   id: ImageStoreIOException()
   parent: system.fabric._fabric_error_code
@@ -1061,10 +1195,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 96
+    startLine: 104
   package: system.fabric
   syntax:
-    content: public ImageStoreIOException
+    content: public ImageStoreIOException=(InternalFabricErrorCode.FABRIC_E_IMAGESTORE_IOERROR.getValue())
 - uid: system.fabric._fabric_error_code.InstanceIdMismatch()
   id: InstanceIdMismatch()
   parent: system.fabric._fabric_error_code
@@ -1077,10 +1211,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 123
+    startLine: 137
   package: system.fabric
   syntax:
-    content: public InstanceIdMismatch
+    content: public InstanceIdMismatch=(InternalFabricErrorCode.FABRIC_E_INSTANCE_ID_MISMATCH.getValue())
 - uid: system.fabric._fabric_error_code.InsufficientClusterCapacity()
   id: InsufficientClusterCapacity()
   parent: system.fabric._fabric_error_code
@@ -1093,10 +1227,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 125
+    startLine: 139
   package: system.fabric
   syntax:
-    content: public InsufficientClusterCapacity
+    content: public InsufficientClusterCapacity=(InternalFabricErrorCode.FABRIC_E_INSUFFICIENT_CLUSTER_CAPACITY.getValue())
 - uid: system.fabric._fabric_error_code.InvalidAddress()
   id: InvalidAddress()
   parent: system.fabric._fabric_error_code
@@ -1109,10 +1243,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 66
+    startLine: 74
   package: system.fabric
   syntax:
-    content: public InvalidAddress
+    content: public InvalidAddress=(InternalFabricErrorCode.FABRIC_E_INVALID_ADDRESS.getValue())
 - uid: system.fabric._fabric_error_code.InvalidAllowedCommonNameList()
   id: InvalidAllowedCommonNameList()
   parent: system.fabric._fabric_error_code
@@ -1125,10 +1259,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 87
+    startLine: 95
   package: system.fabric
   syntax:
-    content: public InvalidAllowedCommonNameList
+    content: public InvalidAllowedCommonNameList=(InternalFabricErrorCode.FABRIC_E_INVALID_ALLOWED_COMMON_NAME_LIST.getValue())
 - uid: system.fabric._fabric_error_code.InvalidAtomicGroup()
   id: InvalidAtomicGroup()
   parent: system.fabric._fabric_error_code
@@ -1141,10 +1275,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 31
+    startLine: 35
   package: system.fabric
   syntax:
-    content: public InvalidAtomicGroup
+    content: public InvalidAtomicGroup=(InternalFabricErrorCode.FABRIC_E_INVALID_ATOMIC_GROUP.getValue())
 - uid: system.fabric._fabric_error_code.InvalidBackupSetting()
   id: InvalidBackupSetting()
   parent: system.fabric._fabric_error_code
@@ -1157,10 +1291,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 129
+    startLine: 143
   package: system.fabric
   syntax:
-    content: public InvalidBackupSetting
+    content: public InvalidBackupSetting=(InternalFabricErrorCode.FABRIC_E_INVALID_BACKUP_SETTING.getValue())
 - uid: system.fabric._fabric_error_code.InvalidConfiguration()
   id: InvalidConfiguration()
   parent: system.fabric._fabric_error_code
@@ -1173,10 +1307,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 61
+    startLine: 67
   package: system.fabric
   syntax:
-    content: public InvalidConfiguration
+    content: public InvalidConfiguration=(InternalFabricErrorCode.FABRIC_E_INVALID_CONFIGURATION.getValue())
 - uid: system.fabric._fabric_error_code.InvalidCredentials()
   id: InvalidCredentials()
   parent: system.fabric._fabric_error_code
@@ -1189,10 +1323,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 88
+    startLine: 96
   package: system.fabric
   syntax:
-    content: public InvalidCredentials
+    content: public InvalidCredentials=(InternalFabricErrorCode.FABRIC_E_INVALID_CREDENTIALS.getValue())
 - uid: system.fabric._fabric_error_code.InvalidCredentialType()
   id: InvalidCredentialType()
   parent: system.fabric._fabric_error_code
@@ -1205,10 +1339,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 79
+    startLine: 87
   package: system.fabric
   syntax:
-    content: public InvalidCredentialType
+    content: public InvalidCredentialType=(InternalFabricErrorCode.FABRIC_E_INVALID_CREDENTIAL_TYPE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidNameUri()
   id: InvalidNameUri()
   parent: system.fabric._fabric_error_code
@@ -1221,10 +1355,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 67
+    startLine: 75
   package: system.fabric
   syntax:
-    content: public InvalidNameUri
+    content: public InvalidNameUri=(InternalFabricErrorCode.FABRIC_E_INVALID_NAME_URI.getValue())
 - uid: system.fabric._fabric_error_code.InvalidPackageSharingPolicy()
   id: InvalidPackageSharingPolicy()
   parent: system.fabric._fabric_error_code
@@ -1237,10 +1371,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 127
+    startLine: 141
   package: system.fabric
   syntax:
-    content: public InvalidPackageSharingPolicy
+    content: public InvalidPackageSharingPolicy=(InternalFabricErrorCode.FABRIC_E_INVALID_PACKAGE_SHARING_POLICY.getValue())
 - uid: system.fabric._fabric_error_code.InvalidPartitionKey()
   id: InvalidPartitionKey()
   parent: system.fabric._fabric_error_code
@@ -1253,10 +1387,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 4
+    startLine: 6
   package: system.fabric
   syntax:
-    content: public InvalidPartitionKey
+    content: public InvalidPartitionKey=(InternalFabricErrorCode.FABRIC_E_INVALID_PARTITION_KEY.getValue())
 - uid: system.fabric._fabric_error_code.InvalidPartitionOperation()
   id: InvalidPartitionOperation()
   parent: system.fabric._fabric_error_code
@@ -1269,10 +1403,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 136
+    startLine: 151
   package: system.fabric
   syntax:
-    content: public InvalidPartitionOperation
+    content: public InvalidPartitionOperation=(InternalFabricErrorCode.FABRIC_E_INVALID_PARTITION_OPERATION.getValue())
 - uid: system.fabric._fabric_error_code.InvalidProtectionLevel()
   id: InvalidProtectionLevel()
   parent: system.fabric._fabric_error_code
@@ -1285,10 +1419,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 84
+    startLine: 92
   package: system.fabric
   syntax:
-    content: public InvalidProtectionLevel
+    content: public InvalidProtectionLevel=(InternalFabricErrorCode.FABRIC_E_INVALID_PROTECTION_LEVEL.getValue())
 - uid: system.fabric._fabric_error_code.InvalidReplicaOperation()
   id: InvalidReplicaOperation()
   parent: system.fabric._fabric_error_code
@@ -1301,10 +1435,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 130
+    startLine: 144
   package: system.fabric
   syntax:
-    content: public InvalidReplicaOperation
+    content: public InvalidReplicaOperation=(InternalFabricErrorCode.FABRIC_E_INVALID_REPLICA_OPERATION.getValue())
 - uid: system.fabric._fabric_error_code.InvalidReplicaStateForReplicaOperation()
   id: InvalidReplicaStateForReplicaOperation()
   parent: system.fabric._fabric_error_code
@@ -1317,10 +1451,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 131
+    startLine: 145
   package: system.fabric
   syntax:
-    content: public InvalidReplicaStateForReplicaOperation
+    content: public InvalidReplicaStateForReplicaOperation=(InternalFabricErrorCode.FABRIC_E_INVALID_REPLICA_STATE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidServiceType()
   id: InvalidServiceType()
   parent: system.fabric._fabric_error_code
@@ -1333,10 +1467,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 98
+    startLine: 106
   package: system.fabric
   syntax:
-    content: public InvalidServiceType
+    content: public InvalidServiceType=(InternalFabricErrorCode.FABRIC_E_INVALID_SERVICE_TYPE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidSubjectName()
   id: InvalidSubjectName()
   parent: system.fabric._fabric_error_code
@@ -1349,10 +1483,26 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 86
+    startLine: 94
   package: system.fabric
   syntax:
-    content: public InvalidSubjectName
+    content: public InvalidSubjectName=(InternalFabricErrorCode.FABRIC_E_INVALID_SUBJECT_NAME.getValue())
+- uid: system.fabric._fabric_error_code.InvalidTestCommandState()
+  id: InvalidTestCommandState()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: InvalidTestCommandState
+  fullName: system.fabric.FabricErrorCode.InvalidTestCommandState
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 168
+  package: system.fabric
+  syntax:
+    content: public InvalidTestCommandState=(InternalFabricErrorCode.FABRIC_E_INVALID_TEST_COMMAND_STATE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidX509FindType()
   id: InvalidX509FindType()
   parent: system.fabric._fabric_error_code
@@ -1365,10 +1515,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 80
+    startLine: 88
   package: system.fabric
   syntax:
-    content: public InvalidX509FindType
+    content: public InvalidX509FindType=(InternalFabricErrorCode.FABRIC_E_INVALID_X509_FIND_TYPE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidX509Store()
   id: InvalidX509Store()
   parent: system.fabric._fabric_error_code
@@ -1381,10 +1531,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 85
+    startLine: 93
   package: system.fabric
   syntax:
-    content: public InvalidX509Store
+    content: public InvalidX509Store=(InternalFabricErrorCode.FABRIC_E_INVALID_X509_STORE.getValue())
 - uid: system.fabric._fabric_error_code.InvalidX509StoreLocation()
   id: InvalidX509StoreLocation()
   parent: system.fabric._fabric_error_code
@@ -1397,10 +1547,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 81
+    startLine: 89
   package: system.fabric
   syntax:
-    content: public InvalidX509StoreLocation
+    content: public InvalidX509StoreLocation=(InternalFabricErrorCode.FABRIC_E_INVALID_X509_STORE_LOCATION.getValue())
 - uid: system.fabric._fabric_error_code.InvalidX509StoreName()
   id: InvalidX509StoreName()
   parent: system.fabric._fabric_error_code
@@ -1413,10 +1563,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 82
+    startLine: 90
   package: system.fabric
   syntax:
-    content: public InvalidX509StoreName
+    content: public InvalidX509StoreName=(InternalFabricErrorCode.FABRIC_E_INVALID_X509_STORE_NAME.getValue())
 - uid: system.fabric._fabric_error_code.InvalidX509Thumbprint()
   id: InvalidX509Thumbprint()
   parent: system.fabric._fabric_error_code
@@ -1429,10 +1579,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 83
+    startLine: 91
   package: system.fabric
   syntax:
-    content: public InvalidX509Thumbprint
+    content: public InvalidX509Thumbprint=(InternalFabricErrorCode.FABRIC_E_INVALID_X509_THUMBPRINT.getValue())
 - uid: system.fabric._fabric_error_code.KeyNotFound()
   id: KeyNotFound()
   parent: system.fabric._fabric_error_code
@@ -1445,10 +1595,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 102
+    startLine: 111
   package: system.fabric
   syntax:
-    content: public KeyNotFound
+    content: public KeyNotFound=(InternalFabricErrorCode.FABRIC_E_KEY_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.KeyTooLarge()
   id: KeyTooLarge()
   parent: system.fabric._fabric_error_code
@@ -1461,10 +1611,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 101
+    startLine: 110
   package: system.fabric
   syntax:
-    content: public KeyTooLarge
+    content: public KeyTooLarge=(InternalFabricErrorCode.FABRIC_E_KEY_TOO_LARGE.getValue())
 - uid: system.fabric._fabric_error_code.MissingFullBackup()
   id: MissingFullBackup()
   parent: system.fabric._fabric_error_code
@@ -1477,10 +1627,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 132
+    startLine: 146
   package: system.fabric
   syntax:
-    content: public MissingFullBackup
+    content: public MissingFullBackup=(InternalFabricErrorCode.FABRIC_E_MISSING_FULL_BACKUP.getValue())
 - uid: system.fabric._fabric_error_code.MultithreadedTransactionsNotAllowed()
   id: MultithreadedTransactionsNotAllowed()
   parent: system.fabric._fabric_error_code
@@ -1493,10 +1643,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 106
+    startLine: 115
   package: system.fabric
   syntax:
-    content: public MultithreadedTransactionsNotAllowed
+    content: >-
+      public MultithreadedTransactionsNotAllowed=(
+                  InternalFabricErrorCode.FABRIC_E_MULTITHREADED_TRANSACTIONS_NOT_ALLOWED.getValue())
 - uid: system.fabric._fabric_error_code.NameAlreadyExists()
   id: NameAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -1509,10 +1661,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 6
+    startLine: 9
   package: system.fabric
   syntax:
-    content: public NameAlreadyExists
+    content: public NameAlreadyExists=(InternalFabricErrorCode.FABRIC_E_NAME_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.NameNotEmpty()
   id: NameNotEmpty()
   parent: system.fabric._fabric_error_code
@@ -1525,10 +1677,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 23
+    startLine: 27
   package: system.fabric
   syntax:
-    content: public NameNotEmpty
+    content: public NameNotEmpty=(InternalFabricErrorCode.FABRIC_E_NAME_NOT_EMPTY.getValue())
 - uid: system.fabric._fabric_error_code.NameNotFound()
   id: NameNotFound()
   parent: system.fabric._fabric_error_code
@@ -1541,10 +1693,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 13
+    startLine: 17
   package: system.fabric
   syntax:
-    content: public NameNotFound
+    content: public NameNotFound=(InternalFabricErrorCode.FABRIC_E_NAME_DOES_NOT_EXIST.getValue())
 - uid: system.fabric._fabric_error_code.NodeHasNotStoppedYet()
   id: NodeHasNotStoppedYet()
   parent: system.fabric._fabric_error_code
@@ -1557,10 +1709,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 124
+    startLine: 138
   package: system.fabric
   syntax:
-    content: public NodeHasNotStoppedYet
+    content: public NodeHasNotStoppedYet=(InternalFabricErrorCode.FABRIC_E_NODE_HAS_NOT_STOPPED_YET.getValue())
 - uid: system.fabric._fabric_error_code.NodeIsUp()
   id: NodeIsUp()
   parent: system.fabric._fabric_error_code
@@ -1573,10 +1725,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 25
+    startLine: 29
   package: system.fabric
   syntax:
-    content: public NodeIsUp
+    content: public NodeIsUp=(InternalFabricErrorCode.FABRIC_E_NODE_IS_UP.getValue())
 - uid: system.fabric._fabric_error_code.NodeNotFound()
   id: NodeNotFound()
   parent: system.fabric._fabric_error_code
@@ -1589,10 +1741,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 24
+    startLine: 28
   package: system.fabric
   syntax:
-    content: public NodeNotFound
+    content: public NodeNotFound=(InternalFabricErrorCode.FABRIC_E_NODE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.NotPrimary()
   id: NotPrimary()
   parent: system.fabric._fabric_error_code
@@ -1605,10 +1757,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 26
+    startLine: 30
   package: system.fabric
   syntax:
-    content: public NotPrimary
+    content: public NotPrimary=(InternalFabricErrorCode.FABRIC_E_NOT_PRIMARY.getValue())
 - uid: system.fabric._fabric_error_code.NotReady()
   id: NotReady()
   parent: system.fabric._fabric_error_code
@@ -1621,10 +1773,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 72
+    startLine: 80
   package: system.fabric
   syntax:
-    content: public NotReady
+    content: public NotReady=(InternalFabricErrorCode.FABRIC_E_NOT_READY.getValue())
 - uid: system.fabric._fabric_error_code.NoWriteQuorum()
   id: NoWriteQuorum()
   parent: system.fabric._fabric_error_code
@@ -1637,10 +1789,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 27
+    startLine: 31
   package: system.fabric
   syntax:
-    content: public NoWriteQuorum
+    content: public NoWriteQuorum=(InternalFabricErrorCode.FABRIC_E_NO_WRITE_QUORUM.getValue())
 - uid: system.fabric._fabric_error_code.ObjectClosed()
   id: ObjectClosed()
   parent: system.fabric._fabric_error_code
@@ -1653,10 +1805,26 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 56
+    startLine: 62
   package: system.fabric
   syntax:
-    content: public ObjectClosed
+    content: public ObjectClosed=(InternalFabricErrorCode.FABRIC_E_OBJECT_CLOSED.getValue())
+- uid: system.fabric._fabric_error_code.OperationCanceled()
+  id: OperationCanceled()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: OperationCanceled
+  fullName: system.fabric.FabricErrorCode.OperationCanceled
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 167
+  package: system.fabric
+  syntax:
+    content: public OperationCanceled=(InternalFabricErrorCode.E_ABORT.getValue())
 - uid: system.fabric._fabric_error_code.OperationNotComplete()
   id: OperationNotComplete()
   parent: system.fabric._fabric_error_code
@@ -1669,10 +1837,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 74
+    startLine: 82
   package: system.fabric
   syntax:
-    content: public OperationNotComplete
+    content: public OperationNotComplete=(InternalFabricErrorCode.FABRIC_E_OPERATION_NOT_COMPLETE.getValue())
 - uid: system.fabric._fabric_error_code.OperationTimedOut()
   id: OperationTimedOut()
   parent: system.fabric._fabric_error_code
@@ -1685,10 +1853,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 73
+    startLine: 81
   package: system.fabric
   syntax:
-    content: public OperationTimedOut
+    content: public OperationTimedOut=(InternalFabricErrorCode.FABRIC_E_TIMEOUT.getValue())
 - uid: system.fabric._fabric_error_code.PartitionNotFound()
   id: PartitionNotFound()
   parent: system.fabric._fabric_error_code
@@ -1701,10 +1869,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 33
+    startLine: 37
   package: system.fabric
   syntax:
-    content: public PartitionNotFound
+    content: public PartitionNotFound=(InternalFabricErrorCode.FABRIC_E_PARTITION_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.PathTooLong()
   id: PathTooLong()
   parent: system.fabric._fabric_error_code
@@ -1717,10 +1885,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 70
+    startLine: 78
   package: system.fabric
   syntax:
-    content: public PathTooLong
+    content: public PathTooLong=(InternalFabricErrorCode.FABRIC_E_PATH_TOO_LONG.getValue())
 - uid: system.fabric._fabric_error_code.PLBNotReady()
   id: PLBNotReady()
   parent: system.fabric._fabric_error_code
@@ -1733,10 +1901,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 134
+    startLine: 148
   package: system.fabric
   syntax:
-    content: public PLBNotReady
+    content: public PLBNotReady=(InternalFabricErrorCode.FABRIC_E_LOADBALANCER_NOT_READY.getValue())
 - uid: system.fabric._fabric_error_code.PreDeploymentNotAllowed()
   id: PreDeploymentNotAllowed()
   parent: system.fabric._fabric_error_code
@@ -1749,10 +1917,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 128
+    startLine: 142
   package: system.fabric
   syntax:
-    content: public PreDeploymentNotAllowed
+    content: public PreDeploymentNotAllowed=(InternalFabricErrorCode.FABRIC_E_PREDEPLOYMENT_NOT_ALLOWED.getValue())
 - uid: system.fabric._fabric_error_code.ProcessAborted()
   id: ProcessAborted()
   parent: system.fabric._fabric_error_code
@@ -1765,10 +1933,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 65
+    startLine: 73
   package: system.fabric
   syntax:
-    content: public ProcessAborted
+    content: public ProcessAborted=(InternalFabricErrorCode.FABRIC_E_PROCESS_ABORTED.getValue())
 - uid: system.fabric._fabric_error_code.ProcessDeactivated()
   id: ProcessDeactivated()
   parent: system.fabric._fabric_error_code
@@ -1781,10 +1949,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 64
+    startLine: 72
   package: system.fabric
   syntax:
-    content: public ProcessDeactivated
+    content: public ProcessDeactivated=(InternalFabricErrorCode.FABRIC_E_PROCESS_DEACTIVATED.getValue())
 - uid: system.fabric._fabric_error_code.PropertyCheckFailed()
   id: PropertyCheckFailed()
   parent: system.fabric._fabric_error_code
@@ -1797,10 +1965,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 57
+    startLine: 63
   package: system.fabric
   syntax:
-    content: public PropertyCheckFailed
+    content: public PropertyCheckFailed=(InternalFabricErrorCode.FABRIC_E_PROPERTY_CHECK_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.PropertyNotFound()
   id: PropertyNotFound()
   parent: system.fabric._fabric_error_code
@@ -1813,10 +1981,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 14
+    startLine: 18
   package: system.fabric
   syntax:
-    content: public PropertyNotFound
+    content: public PropertyNotFound=(InternalFabricErrorCode.FABRIC_E_PROPERTY_DOES_NOT_EXIST.getValue())
 - uid: system.fabric._fabric_error_code.PropertyValueEmpty()
   id: PropertyValueEmpty()
   parent: system.fabric._fabric_error_code
@@ -1829,10 +1997,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 15
+    startLine: 19
   package: system.fabric
   syntax:
-    content: public PropertyValueEmpty
+    content: public PropertyValueEmpty=(InternalFabricErrorCode.FABRIC_E_VALUE_EMPTY.getValue())
 - uid: system.fabric._fabric_error_code.ReconfigurationPending()
   id: ReconfigurationPending()
   parent: system.fabric._fabric_error_code
@@ -1845,10 +2013,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 28
+    startLine: 32
   package: system.fabric
   syntax:
-    content: public ReconfigurationPending
+    content: public ReconfigurationPending=(InternalFabricErrorCode.FABRIC_E_RECONFIGURATION_PENDING.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionAlreadyExists()
   id: ReliableSessionAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -1861,10 +2029,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 109
+    startLine: 120
   package: system.fabric
   syntax:
-    content: public ReliableSessionAlreadyExists
+    content: public ReliableSessionAlreadyExists=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionCannotConnect()
   id: ReliableSessionCannotConnect()
   parent: system.fabric._fabric_error_code
@@ -1877,10 +2045,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 110
+    startLine: 121
   package: system.fabric
   syntax:
-    content: public ReliableSessionCannotConnect
+    content: public ReliableSessionCannotConnect=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_CANNOT_CONNECT.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionInvalidTargetPartition()
   id: ReliableSessionInvalidTargetPartition()
   parent: system.fabric._fabric_error_code
@@ -1893,10 +2061,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 120
+    startLine: 133
   package: system.fabric
   syntax:
-    content: public ReliableSessionInvalidTargetPartition
+    content: >-
+      public ReliableSessionInvalidTargetPartition=(
+                  InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_INVALID_TARGET_PARTITION.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionManagerAlreadyListening()
   id: ReliableSessionManagerAlreadyListening()
   parent: system.fabric._fabric_error_code
@@ -1909,10 +2079,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 117
+    startLine: 128
   package: system.fabric
   syntax:
-    content: public ReliableSessionManagerAlreadyListening
+    content: >-
+      public ReliableSessionManagerAlreadyListening=(
+                  InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_MANAGER_ALREADY_LISTENING.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionManagerExists()
   id: ReliableSessionManagerExists()
   parent: system.fabric._fabric_error_code
@@ -1925,10 +2097,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 111
+    startLine: 122
   package: system.fabric
   syntax:
-    content: public ReliableSessionManagerExists
+    content: public ReliableSessionManagerExists=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_MANAGER_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionManagerNotFound()
   id: ReliableSessionManagerNotFound()
   parent: system.fabric._fabric_error_code
@@ -1941,10 +2113,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 118
+    startLine: 130
   package: system.fabric
   syntax:
-    content: public ReliableSessionManagerNotFound
+    content: public ReliableSessionManagerNotFound=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_MANAGER_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionManagerNotListening()
   id: ReliableSessionManagerNotListening()
   parent: system.fabric._fabric_error_code
@@ -1957,10 +2129,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 119
+    startLine: 131
   package: system.fabric
   syntax:
-    content: public ReliableSessionManagerNotListening
+    content: >-
+      public ReliableSessionManagerNotListening=(
+                  InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_MANAGER_NOT_LISTENING.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionNotFound()
   id: ReliableSessionNotFound()
   parent: system.fabric._fabric_error_code
@@ -1973,10 +2147,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 113
+    startLine: 124
   package: system.fabric
   syntax:
-    content: public ReliableSessionNotFound
+    content: public ReliableSessionNotFound=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionQueueEmpty()
   id: ReliableSessionQueueEmpty()
   parent: system.fabric._fabric_error_code
@@ -1989,10 +2163,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 114
+    startLine: 125
   package: system.fabric
   syntax:
-    content: public ReliableSessionQueueEmpty
+    content: public ReliableSessionQueueEmpty=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_QUEUE_EMPTY.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionQuotaExceeded()
   id: ReliableSessionQuotaExceeded()
   parent: system.fabric._fabric_error_code
@@ -2005,10 +2179,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 115
+    startLine: 126
   package: system.fabric
   syntax:
-    content: public ReliableSessionQuotaExceeded
+    content: public ReliableSessionQuotaExceeded=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_QUOTA_EXCEEDED.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionRejected()
   id: ReliableSessionRejected()
   parent: system.fabric._fabric_error_code
@@ -2021,10 +2195,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 112
+    startLine: 123
   package: system.fabric
   syntax:
-    content: public ReliableSessionRejected
+    content: public ReliableSessionRejected=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_REJECTED.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionServiceFaulted()
   id: ReliableSessionServiceFaulted()
   parent: system.fabric._fabric_error_code
@@ -2037,10 +2211,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 116
+    startLine: 127
   package: system.fabric
   syntax:
-    content: public ReliableSessionServiceFaulted
+    content: public ReliableSessionServiceFaulted=(InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_SERVICE_FAULTED.getValue())
 - uid: system.fabric._fabric_error_code.ReliableSessionTransportStartupFailure()
   id: ReliableSessionTransportStartupFailure()
   parent: system.fabric._fabric_error_code
@@ -2053,10 +2227,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 108
+    startLine: 118
   package: system.fabric
   syntax:
-    content: public ReliableSessionTransportStartupFailure
+    content: >-
+      public ReliableSessionTransportStartupFailure=(
+                  InternalFabricErrorCode.FABRIC_E_RELIABLE_SESSION_TRANSPORT_STARTUP_FAILURE.getValue())
 - uid: system.fabric._fabric_error_code.RepairTaskAlreadyExists()
   id: RepairTaskAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -2069,10 +2245,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 121
+    startLine: 135
   package: system.fabric
   syntax:
-    content: public RepairTaskAlreadyExists
+    content: public RepairTaskAlreadyExists=(InternalFabricErrorCode.FABRIC_E_REPAIR_TASK_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.RepairTaskNotFound()
   id: RepairTaskNotFound()
   parent: system.fabric._fabric_error_code
@@ -2085,10 +2261,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 122
+    startLine: 136
   package: system.fabric
   syntax:
-    content: public RepairTaskNotFound
+    content: public RepairTaskNotFound=(InternalFabricErrorCode.FABRIC_E_REPAIR_TASK_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ReplicaDoesNotExist()
   id: ReplicaDoesNotExist()
   parent: system.fabric._fabric_error_code
@@ -2101,10 +2277,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 63
+    startLine: 71
   package: system.fabric
   syntax:
-    content: public ReplicaDoesNotExist
+    content: public ReplicaDoesNotExist=(InternalFabricErrorCode.FABRIC_E_REPLICA_DOES_NOT_EXIST.getValue())
 - uid: system.fabric._fabric_error_code.ReplicationOperationTooLarge()
   id: ReplicationOperationTooLarge()
   parent: system.fabric._fabric_error_code
@@ -2117,10 +2293,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 30
+    startLine: 34
   package: system.fabric
   syntax:
-    content: public ReplicationOperationTooLarge
+    content: public ReplicationOperationTooLarge=(InternalFabricErrorCode.FABRIC_E_REPLICATION_OPERATION_TOO_LARGE.getValue())
 - uid: system.fabric._fabric_error_code.ReplicationQueueFull()
   id: ReplicationQueueFull()
   parent: system.fabric._fabric_error_code
@@ -2133,10 +2309,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 29
+    startLine: 33
   package: system.fabric
   syntax:
-    content: public ReplicationQueueFull
+    content: public ReplicationQueueFull=(InternalFabricErrorCode.FABRIC_E_REPLICATION_QUEUE_FULL.getValue())
 - uid: system.fabric._fabric_error_code.SequenceNumberCheckFailed()
   id: SequenceNumberCheckFailed()
   parent: system.fabric._fabric_error_code
@@ -2149,10 +2325,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 103
+    startLine: 112
   package: system.fabric
   syntax:
-    content: public SequenceNumberCheckFailed
+    content: public SequenceNumberCheckFailed=(InternalFabricErrorCode.FABRIC_E_SEQUENCE_NUMBER_CHECK_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.ServerAuthenticationFailed()
   id: ServerAuthenticationFailed()
   parent: system.fabric._fabric_error_code
@@ -2165,10 +2341,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 142
+    startLine: 158
   package: system.fabric
   syntax:
-    content: public ServerAuthenticationFailed
+    content: public ServerAuthenticationFailed=(InternalFabricErrorCode.FABRIC_E_SERVER_AUTHENTICATION_FAILED.getValue())
 - uid: system.fabric._fabric_error_code.ServiceAffinityChainNotSupported()
   id: ServiceAffinityChainNotSupported()
   parent: system.fabric._fabric_error_code
@@ -2181,10 +2357,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 35
+    startLine: 39
   package: system.fabric
   syntax:
-    content: public ServiceAffinityChainNotSupported
+    content: public ServiceAffinityChainNotSupported=(InternalFabricErrorCode.FABRIC_E_SERVICE_AFFINITY_CHAIN_NOT_SUPPORTED.getValue())
 - uid: system.fabric._fabric_error_code.ServiceAlreadyExists()
   id: ServiceAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -2197,10 +2373,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 7
+    startLine: 10
   package: system.fabric
   syntax:
-    content: public ServiceAlreadyExists
+    content: public ServiceAlreadyExists=(InternalFabricErrorCode.FABRIC_E_SERVICE_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ServiceGroupAlreadyExists()
   id: ServiceGroupAlreadyExists()
   parent: system.fabric._fabric_error_code
@@ -2213,10 +2389,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 8
+    startLine: 11
   package: system.fabric
   syntax:
-    content: public ServiceGroupAlreadyExists
+    content: public ServiceGroupAlreadyExists=(InternalFabricErrorCode.FABRIC_E_SERVICE_GROUP_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.ServiceGroupNotFound()
   id: ServiceGroupNotFound()
   parent: system.fabric._fabric_error_code
@@ -2229,10 +2405,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 17
+    startLine: 21
   package: system.fabric
   syntax:
-    content: public ServiceGroupNotFound
+    content: public ServiceGroupNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_GROUP_DOES_NOT_EXIST.getValue())
 - uid: system.fabric._fabric_error_code.ServiceManifestNotFound()
   id: ServiceManifestNotFound()
   parent: system.fabric._fabric_error_code
@@ -2245,10 +2421,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 22
+    startLine: 26
   package: system.fabric
   syntax:
-    content: public ServiceManifestNotFound
+    content: public ServiceManifestNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_MANIFEST_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ServiceMetadataMismatch()
   id: ServiceMetadataMismatch()
   parent: system.fabric._fabric_error_code
@@ -2261,10 +2437,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 34
+    startLine: 38
   package: system.fabric
   syntax:
-    content: public ServiceMetadataMismatch
+    content: public ServiceMetadataMismatch=(InternalFabricErrorCode.FABRIC_E_SERVICE_METADATA_MISMATCH.getValue())
 - uid: system.fabric._fabric_error_code.ServiceNotFound()
   id: ServiceNotFound()
   parent: system.fabric._fabric_error_code
@@ -2277,10 +2453,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 16
+    startLine: 20
   package: system.fabric
   syntax:
-    content: public ServiceNotFound
+    content: public ServiceNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_DOES_NOT_EXIST.getValue())
 - uid: system.fabric._fabric_error_code.ServiceOffline()
   id: ServiceOffline()
   parent: system.fabric._fabric_error_code
@@ -2293,10 +2469,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 32
+    startLine: 36
   package: system.fabric
   syntax:
-    content: public ServiceOffline
+    content: public ServiceOffline=(InternalFabricErrorCode.FABRIC_E_SERVICE_OFFLINE.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTemplateNotFound()
   id: ServiceTemplateNotFound()
   parent: system.fabric._fabric_error_code
@@ -2309,10 +2485,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 39
+    startLine: 43
   package: system.fabric
   syntax:
-    content: public ServiceTemplateNotFound
+    content: public ServiceTemplateNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_TYPE_TEMPLATE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTooBusy()
   id: ServiceTooBusy()
   parent: system.fabric._fabric_error_code
@@ -2325,10 +2501,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 54
+    startLine: 59
   package: system.fabric
   syntax:
-    content: public ServiceTooBusy
+    content: public ServiceTooBusy=(InternalFabricErrorCode.FABRIC_E_SERVICE_TOO_BUSY.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTypeAlreadyRegistered()
   id: ServiceTypeAlreadyRegistered()
   parent: system.fabric._fabric_error_code
@@ -2341,10 +2517,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 40
+    startLine: 44
   package: system.fabric
   syntax:
-    content: public ServiceTypeAlreadyRegistered
+    content: public ServiceTypeAlreadyRegistered=(InternalFabricErrorCode.FABRIC_E_SERVICE_TYPE_ALREADY_REGISTERED.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTypeMismatch()
   id: ServiceTypeMismatch()
   parent: system.fabric._fabric_error_code
@@ -2357,10 +2533,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 38
+    startLine: 42
   package: system.fabric
   syntax:
-    content: public ServiceTypeMismatch
+    content: public ServiceTypeMismatch=(InternalFabricErrorCode.FABRIC_E_SERVICE_TYPE_MISMATCH.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTypeNotFound()
   id: ServiceTypeNotFound()
   parent: system.fabric._fabric_error_code
@@ -2373,10 +2549,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 21
+    startLine: 25
   package: system.fabric
   syntax:
-    content: public ServiceTypeNotFound
+    content: public ServiceTypeNotFound=(InternalFabricErrorCode.FABRIC_E_SERVICE_TYPE_NOT_FOUND.getValue())
 - uid: system.fabric._fabric_error_code.ServiceTypeNotRegistered()
   id: ServiceTypeNotRegistered()
   parent: system.fabric._fabric_error_code
@@ -2389,10 +2565,28 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 41
+    startLine: 45
   package: system.fabric
   syntax:
-    content: public ServiceTypeNotRegistered
+    content: public ServiceTypeNotRegistered=(InternalFabricErrorCode.FABRIC_E_SERVICE_TYPE_NOT_REGISTERED.getValue())
+- uid: system.fabric._fabric_error_code.TestCommandOperationIdAlreadyExists()
+  id: TestCommandOperationIdAlreadyExists()
+  parent: system.fabric._fabric_error_code
+  href: system.fabric._fabric_error_code.yml
+  langs:
+  - java
+  name: TestCommandOperationIdAlreadyExists
+  fullName: system.fabric.FabricErrorCode.TestCommandOperationIdAlreadyExists
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
+    startLine: 169
+  package: system.fabric
+  syntax:
+    content: >-
+      public TestCommandOperationIdAlreadyExists=(
+                  InternalFabricErrorCode.FABRIC_E_TEST_COMMAND_OPERATION_ID_ALREADY_EXISTS.getValue())
 - uid: system.fabric._fabric_error_code.TransactionAborted()
   id: TransactionAborted()
   parent: system.fabric._fabric_error_code
@@ -2405,10 +2599,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 107
+    startLine: 117
   package: system.fabric
   syntax:
-    content: public TransactionAborted
+    content: public TransactionAborted=(InternalFabricErrorCode.FABRIC_E_TRANSACTION_ABORTED.getValue())
 - uid: system.fabric._fabric_error_code.TransactionNotActive()
   id: TransactionNotActive()
   parent: system.fabric._fabric_error_code
@@ -2421,10 +2615,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 104
+    startLine: 113
   package: system.fabric
   syntax:
-    content: public TransactionNotActive
+    content: public TransactionNotActive=(InternalFabricErrorCode.FABRIC_E_TRANSACTION_NOT_ACTIVE.getValue())
 - uid: system.fabric._fabric_error_code.TransactionTooLarge()
   id: TransactionTooLarge()
   parent: system.fabric._fabric_error_code
@@ -2437,10 +2631,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 105
+    startLine: 114
   package: system.fabric
   syntax:
-    content: public TransactionTooLarge
+    content: public TransactionTooLarge=(InternalFabricErrorCode.FABRIC_E_TRANSACTION_TOO_LARGE.getValue())
 - uid: system.fabric._fabric_error_code.Unknown()
   id: Unknown()
   parent: system.fabric._fabric_error_code
@@ -2453,10 +2647,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 3
+    startLine: 5
   package: system.fabric
   syntax:
-    content: public Unknown
+    content: public Unknown=(0L)
 - uid: system.fabric._fabric_error_code.UpgradeDomainAlreadyCompleted()
   id: UpgradeDomainAlreadyCompleted()
   parent: system.fabric._fabric_error_code
@@ -2469,10 +2663,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 43
+    startLine: 48
   package: system.fabric
   syntax:
-    content: public UpgradeDomainAlreadyCompleted
+    content: public UpgradeDomainAlreadyCompleted=(InternalFabricErrorCode.FABRIC_E_UPGRADE_DOMAIN_ALREADY_COMPLETED.getValue())
 - uid: system.fabric._fabric_error_code.UserRoleClientCertificateNotConfigured()
   id: UserRoleClientCertificateNotConfigured()
   parent: system.fabric._fabric_error_code
@@ -2485,10 +2679,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 5
+    startLine: 7
   package: system.fabric
   syntax:
-    content: public UserRoleClientCertificateNotConfigured
+    content: >-
+      public UserRoleClientCertificateNotConfigured=(
+                  InternalFabricErrorCode.FABRIC_E_USER_ROLE_CLIENT_CERTIFICATE_NOT_CONFIGURED.getValue())
 - uid: system.fabric._fabric_error_code.ValueTooLarge()
   id: ValueTooLarge()
   parent: system.fabric._fabric_error_code
@@ -2501,10 +2697,10 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 68
+    startLine: 76
   package: system.fabric
   syntax:
-    content: public ValueTooLarge
+    content: public ValueTooLarge=(InternalFabricErrorCode.FABRIC_E_VALUE_TOO_LARGE.getValue())
 - uid: system.fabric._fabric_error_code.WriteConflict()
   id: WriteConflict()
   parent: system.fabric._fabric_error_code
@@ -2517,8 +2713,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricErrorCode.java
-    startLine: 36
+    startLine: 40
   package: system.fabric
   syntax:
-    content: public WriteConflict
-references: []
+    content: public WriteConflict=(InternalFabricErrorCode.FABRIC_E_WRITE_CONFLICT.getValue())
+references:
+- uid: 0364520f
+  spec.java:
+  - name: long
+    fullName: long

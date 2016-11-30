@@ -3,12 +3,23 @@ items:
   id: _fabric_transport_settings
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime
   children:
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultSectionName()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.FabricTransportSettings()
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getConfigSection()
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault()
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault(String)
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getMaxConcurrentCalls()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getMaxMessageSize()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getMaxQueueSize()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getSecurityCredentials()
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeConfigFile(String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeConfigFileFromConfigPackage(String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeSettingsFromConfig(String)
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.keepAliveTimeoutInSeconds()
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String,String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String,String,String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.onInitialize()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.operationTimeoutInSeconds()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.setKeepAliveTimeoutInSeconds(Duration)
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.setMaxConcurrentCalls(Long)
@@ -17,6 +28,9 @@ items:
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.setOperationTimeoutInSeconds(Duration)
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.setSecurityCredentials(SecurityCredentials)
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.toNative(long,long,long,long,long,long,long)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String,String)
+  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String,String,String)
   href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
   langs:
   - java
@@ -26,10 +40,10 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 9
+    startLine: 21
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: <p>Settings that configures the FabricTransport communication. </p>
   syntax: &o1
@@ -39,8 +53,25 @@ items:
   inheritedMembers:
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultKeepAliveTimeout()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultOperationTimeout()
-  - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault()
   - microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.toNative(PinCollection)
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultSectionName()
+  id: defaultSectionName()
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: defaultSectionName
+  fullName: String microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.defaultSectionName
+  type: Field
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 28
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected static String defaultSectionName= "TransportSettings"
+    return:
+      type: "26831127"
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.FabricTransportSettings()
   id: FabricTransportSettings()
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
@@ -53,10 +84,88 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 201
+    startLine: 220
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   syntax:
     content: public FabricTransportSettings()
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getConfigSection()
+  id: getConfigSection()
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: getConfigSection()
+  fullName: FabricServiceConfigSection microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.getConfigSection()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 418
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected FabricServiceConfigSection getConfigSection()
+    return:
+      type: de349bef
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault()
+  id: getDefault()
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: getDefault()
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.getDefault()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 380
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: >-
+    <p>
+
+      <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref> returns the default Settings .Loads the configuration file from default Config Package"Config" , if not found then try to load from default config file "ClientExeName.Settings.xml" from Client Exe directory. </p>
+  syntax:
+    content: public static FabricTransportSettings getDefault()
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: >-
+        <p>
+
+          <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref>
+
+        </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault(String)
+  id: getDefault(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: getDefault(String sectionName)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.getDefault(String sectionName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 388
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: >-
+    <p>
+
+      <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref> returns the default Settings .Loads the configuration file from default Config Package"Config" , if not found then try to load from default config file "ClientExeName.Settings.xml" from Client Exe directory. </p>
+  syntax:
+    content: public static FabricTransportSettings getDefault(String sectionName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it will return the default Settings </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: >-
+        <p>
+
+          <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref>
+
+        </p>
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getMaxConcurrentCalls()
   id: getMaxConcurrentCalls()
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
@@ -69,14 +178,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 156
+    startLine: 176
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>MaxConcurrentCalls represents maximum number of messages actively service processes at one time.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Defaults value for the MaxConcurrentCalls is to the Number of processors.</p>
+      <bold>Remarks:</bold>Defaults value for the MaxConcurrentCalls is to the Number of processors. </p>
   syntax:
     content: public Long getMaxConcurrentCalls()
     return:
@@ -94,14 +203,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 105
+    startLine: 121
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>MaxMessageSize represents the maximum size for a message that can be received on a channel configured with this setting.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default Value for MaxMessageSize used is 4194304 bytes</p>
+      <bold>Remarks:</bold>Default Value for MaxMessageSize used is 4194304 bytes </p>
   syntax:
     content: public Long getMaxMessageSize()
     return:
@@ -119,14 +228,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 129
+    startLine: 148
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>The maximum size, of a queue that stores messages while they are processed for an endpoint configured with this setting.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default value is 10,000 messages</p>
+      <bold>Remarks:</bold>Default value is 10,000 messages </p>
   syntax:
     content: public Long getMaxQueueSize()
     return:
@@ -144,7 +253,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 183
+    startLine: 203
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>Security credentials for securing the communication</p>
@@ -157,6 +266,69 @@ items:
     return:
       type: system.fabric._security_credentials
       description: <p>SecurityCredentials as <xref href="system.fabric._security_credentials" data-throw-if-not-resolved="false"></xref></p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeConfigFile(String)
+  id: initializeConfigFile(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: initializeConfigFile(String filePath)
+  fullName: boolean microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.initializeConfigFile(String filePath)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 415
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected boolean initializeConfigFile(String filePath)
+    parameters:
+    - id: filePath
+      type: "26831127"
+    return:
+      type: 4fc6e284
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeConfigFileFromConfigPackage(String)
+  id: initializeConfigFileFromConfigPackage(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: initializeConfigFileFromConfigPackage(String configPackageName)
+  fullName: boolean microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.initializeConfigFileFromConfigPackage(String configPackageName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 405
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected boolean initializeConfigFileFromConfigPackage(String configPackageName)
+    parameters:
+    - id: configPackageName
+      type: "26831127"
+    return:
+      type: 4fc6e284
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.initializeSettingsFromConfig(String)
+  id: initializeSettingsFromConfig(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: initializeSettingsFromConfig(String sectionName)
+  fullName: boolean microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.initializeSettingsFromConfig(String sectionName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 409
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected boolean initializeSettingsFromConfig(String sectionName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+    return:
+      type: 4fc6e284
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.keepAliveTimeoutInSeconds()
   id: keepAliveTimeoutInSeconds()
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
@@ -169,7 +341,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 78
+    startLine: 92
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>KeepAliveTimeout is provides a way to configure Tcp keep-alive option.</p>
@@ -182,6 +354,118 @@ items:
     return:
       type: e02a2de0
       description: <p>KeepAliveTimeout as <ref refid="" kindref="compound">java.time.Duration</ref></p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String)
+  id: loadFrom(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: loadFrom(String sectionName)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.loadFrom(String sectionName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 245
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Loads the FabricTransport settings from a sectionName specified in the configuration file Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold> The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds. </p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings loadFrom(String sectionName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it will throw ArgumentException </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: >-
+        <p>
+
+          <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref>
+
+        </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String,String)
+  id: loadFrom(String,String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: loadFrom(String sectionName, String filePath)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.loadFrom(String sectionName, String filePath)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 267
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Loads the FabricTransport settings from a sectionName specified in the configuration file Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold> The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds. </p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings loadFrom(String sectionName, String filePath)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it will throw ArgumentException </p>
+    - id: filePath
+      type: "26831127"
+      description: <p>Full path of the file where the settings will be loaded from. If not specified , it will first try to load from default Config Package"Config" , if not found then load from Settings "ClientExeName.Settings.xml" present in Client Exe directory. </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: >-
+        <p>
+
+          <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref>
+
+        </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.loadFrom(String,String,String)
+  id: loadFrom(String,String,String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: loadFrom(String sectionName, String filePath, String configPackageName)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.loadFrom(String sectionName, String filePath, String configPackageName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 289
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Loads the FabricTransport settings from a sectionName specified in the configuration file Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold> The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds. </p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings loadFrom(String sectionName, String filePath, String configPackageName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it will throw ArgumentException </p>
+    - id: filePath
+      type: "26831127"
+      description: <p>Full path of the file where the settings will be loaded from. If not specified , it will first try to load from default Config Package"Config" , if not found then load from Settings "ClientExeName.Settings.xml" present in Client Exe directory. </p>
+    - id: configPackageName
+      type: "26831127"
+      description: <p>Name of the configuration package.If its null or empty,it will check for file in filePath </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: >-
+        <p>
+
+          <xref href="microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings" data-throw-if-not-resolved="false"></xref>
+
+        </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.onInitialize()
+  id: onInitialize()
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: onInitialize()
+  fullName: void microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.onInitialize()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 422
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  syntax:
+    content: protected void onInitialize()
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.operationTimeoutInSeconds()
   id: operationTimeoutInSeconds()
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
@@ -194,14 +478,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 48
+    startLine: 62
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>Operation Timeout which governs the whole process of sending a message, including receiving a reply message for a request/reply service operation. This timeout also applies when sending reply messages from a callback contract method.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default Value for Operation Timeout is set as TimeSpan.MaxValue</p>
+      <bold>Remarks:</bold>Default Value for Operation Timeout is set as TimeSpan.MaxValue </p>
   syntax:
     content: public Duration operationTimeoutInSeconds()
     return:
@@ -219,7 +503,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 93
+    startLine: 108
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>KeepAliveTimeout is provides a way to configure Tcp keep-alive option.</p>
@@ -245,14 +529,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 170
+    startLine: 191
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>MaxConcurrentCalls represents maximum number of messages actively service processes at one time.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Defaults value for the MaxConcurrentCalls is to the Number of processors.</p>
+      <bold>Remarks:</bold>Defaults value for the MaxConcurrentCalls is to the Number of processors. </p>
   syntax:
     content: public void setMaxConcurrentCalls(Long maxConcurrentCalls)
     parameters:
@@ -271,14 +555,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 117
+    startLine: 135
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>MaxMessageSize represents the maximum size for a message that can be received on a channel configured with this setting.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default Value for MaxMessageSize used is 4194304 bytes</p>
+      <bold>Remarks:</bold>Default Value for MaxMessageSize used is 4194304 bytes </p>
   syntax:
     content: public void setMaxMessageSize(Long maxMessageSize)
     parameters:
@@ -297,14 +581,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 142
+    startLine: 162
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>The maximum size, of a queue that stores messages while they are processed for an endpoint configured with this setting.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default value is 10,000 messages</p>
+      <bold>Remarks:</bold>Default value is 10,000 messages </p>
   syntax:
     content: public void setMaxQueueSize(Long maxQueueSize)
     parameters:
@@ -323,14 +607,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 64
+    startLine: 77
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>Operation Timeout which governs the whole process of sending a message, including receiving a reply message for a request/reply service operation. This timeout also applies when sending reply messages from a callback contract method.</p>
 
     <p>
 
-      <bold>Remarks:</bold>Default Value for Operation Timeout is set as TimeSpan.MaxValue</p>
+      <bold>Remarks:</bold>Default Value for Operation Timeout is set as TimeSpan.MaxValue </p>
   syntax:
     content: public void setOperationTimeoutInSeconds(Duration operationTimeoutInSeconds)
     parameters:
@@ -349,7 +633,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 197
+    startLine: 216
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   summary: >-
     <p>Security credentials for securing the communication</p>
@@ -375,7 +659,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
-    startLine: 28
+    startLine: 43
   package: microsoft.servicefabric.services.communication.fabrictransport.runtime
   syntax:
     content: public native long toNative(long operationTimeoutInSeconds, long keepAliveTimeoutInSeconds, long maxMessageSize, long maxConcurrentCalls, long maxQueueSize, long securityCredentialsPtr, long reservedPtr)
@@ -396,7 +680,92 @@ items:
       type: 0364520f
     return:
       type: 862ee9ba
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String)
+  id: tryLoadFrom(String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: tryLoadFrom(String sectionName)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.tryLoadFrom(String sectionName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 325
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Try to load the FabricTransport settings from a sectionName specified in the configuration file. Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold>The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds.</p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings tryLoadFrom(String sectionName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it return false </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: <p>Boolean specifies whether the settings get loaded successfully from Config. It returns true when load from Config succeeded, else return false. </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String,String)
+  id: tryLoadFrom(String,String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: tryLoadFrom(String sectionName, String filePath)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.tryLoadFrom(String sectionName, String filePath)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 346
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Try to load the FabricTransport settings from a sectionName specified in the configuration file. Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold>The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds.</p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings tryLoadFrom(String sectionName, String filePath)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it return false </p>
+    - id: filePath
+      type: "26831127"
+      description: <p>Full path of the file where the settings will be loaded from. If not specified , it will first try to load from default Config Package"Config" , if not found then load from Settings "ClientExeName.Settings.xml" present in Client Exe directory.</p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: <p>Boolean specifies whether the settings get loaded successfully from Config. It returns true when load from Config succeeded, else return false. </p>
+- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.tryLoadFrom(String,String,String)
+  id: tryLoadFrom(String,String,String)
+  parent: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+  href: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.yml
+  langs:
+  - java
+  name: tryLoadFrom(String sectionName, String filePath, String configPackageName)
+  fullName: static FabricTransportSettings microsoft.servicefabric.services.communication.fabrictransport.runtime.FabricTransportSettings.tryLoadFrom(String sectionName, String filePath, String configPackageName)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/fabrictransport/runtime/FabricTransportSettings.java
+    startLine: 367
+  package: microsoft.servicefabric.services.communication.fabrictransport.runtime
+  summary: <p>Try to load the FabricTransport settings from a sectionName specified in the configuration file. Configuration File can be specified using the filePath or using the name of the configuration package specified in the service manifest . It will first try to load config using configPackageName . if configPackageName is not specified then try to load from filePath. <bold>Remarks:</bold>The following are the parameter names that should be provided in the configuration file,to be recognizable by service fabric to load the transport settings.<orderedlist><listitem><p>MaxQueueSize - value in long.</p></listitem><listitem><p>MaxMessageSize - value in bytes.</p></listitem><listitem><p>MaxConcurrentCalls - value in long.</p></listitem><listitem><p>SecurityCredentials - SecurityCredentials value.</p></listitem><listitem><p>OperationTimeoutInSeconds - value in seconds.</p></listitem><listitem><p>KeepAliveTimeoutInSeconds - value in seconds.</p></listitem></orderedlist></p>
+  syntax:
+    content: public static FabricTransportSettings tryLoadFrom(String sectionName, String filePath, String configPackageName)
+    parameters:
+    - id: sectionName
+      type: "26831127"
+      description: <p>Name of the section within the configuration file. If not found section in configuration file, it return false </p>
+    - id: filePath
+      type: "26831127"
+      description: <p>Full path of the file where the settings will be loaded from. If not specified , it will first try to load from default Config Package"Config" , if not found then load from Settings "ClientExeName.Settings.xml" present in Client Exe directory. </p>
+    - id: configPackageName
+      type: "26831127"
+      description: <p>Name of the configuration package. If its null or empty,it will check for file in filePath </p>
+    return:
+      type: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings
+      description: <p>Boolean specifies whether the settings get loaded successfully from Config. It returns true when load from Config succeeded, else return false. </p>
 references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: 0364520f
   spec.java:
   - name: long
@@ -413,9 +782,16 @@ references:
   spec.java:
   - name: Long
     fullName: Long
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: de349bef
+  spec.java:
+  - name: FabricServiceConfigSection
+    fullName: FabricServiceConfigSection
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultKeepAliveTimeout()
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.defaultOperationTimeout()
-- uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.getDefault()
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._fabric_transport_settings.toNative(PinCollection)
 - uid: microsoft.servicefabric.services.communication.fabrictransport.runtime._f28458304036c8649c27f6055a29b131c
   parent: microsoft.servicefabric.services.communication.fabrictransport.runtime

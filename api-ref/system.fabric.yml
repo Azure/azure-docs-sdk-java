@@ -21,6 +21,8 @@ items:
   - system.fabric._application_upgrade_state
   - system.fabric._application_upgrade_update_description
   - system.fabric._atomic_group_state_provider
+  - system.fabric._cancellation_token
+  - system.fabric._cancellation_token_source
   - system.fabric._check_exists_property_operation
   - system.fabric._check_sequence_property_operation
   - system.fabric._check_value_property_operation
@@ -193,6 +195,7 @@ items:
   - system.fabric._safety_check_kind
   - system.fabric._search_option
   - system.fabric._secondary_notification_mode
+  - system.fabric._security_credential_extension
   - system.fabric._security_credentials
   - system.fabric._seed_node_safety_check
   - system.fabric._seed_node_upgrade_safety_check
@@ -260,6 +263,7 @@ items:
   - system.fabric._upgrade_safety_check
   - system.fabric._upgrade_safety_check_kind
   - system.fabric._upgrade_update_description_base
+  - system.fabric._utility
   - system.fabric._windows_credentials
   - system.fabric._x509_credentials
   - system.fabric._x509_find_type
@@ -274,7 +278,7 @@ items:
   source:
     remote:
       path: src/prod/src/java/system.fabric/src/system/fabric/ApplicationDescription.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/ApplicationDescription.java
   syntax:
@@ -329,7 +333,7 @@ references:
   name: ApplicationDescription
   fullName: system.fabric.ApplicationDescription
   type: Class
-  summary: <p>Describes an application to be created by using <xref href="system.fabric._application_management_client.createApplicationAsync(ApplicationDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Describes an application to be created by using <xref href="system.fabric._application_management_client.createApplicationAsync(ApplicationDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class ApplicationDescription
 - uid: system.fabric._application_health_policy
@@ -361,7 +365,7 @@ references:
   name: ApplicationHealthQueryDescription
   fullName: system.fabric.ApplicationHealthQueryDescription
   type: Class
-  summary: <p>Represents the query input for getting application health. Used by <xref href="system.fabric._health_client.getApplicationHealthAsync(ApplicationHealthQueryDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Represents the query input for getting application health. Used by <xref href="system.fabric._health_client.getApplicationHealthAsync(ApplicationHealthQueryDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class ApplicationHealthQueryDescription
 - uid: system.fabric._application_health_state_filter
@@ -504,6 +508,24 @@ references:
   type: Interface
   syntax:
     content: public interface AtomicGroupStateProvider extends StateProvider
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
+- uid: system.fabric._cancellation_token_source
+  parent: system.fabric
+  href: system.fabric._cancellation_token_source.yml
+  name: CancellationTokenSource
+  fullName: system.fabric.CancellationTokenSource
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> is used to create <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object and manage it. </p>
+  syntax:
+    content: public class CancellationTokenSource
 - uid: system.fabric._check_exists_property_operation
   parent: system.fabric
   href: system.fabric._check_exists_property_operation.yml
@@ -752,7 +774,7 @@ references:
   name: DeployedApplicationHealthQueryDescription
   fullName: system.fabric.DeployedApplicationHealthQueryDescription
   type: Class
-  summary: <p>Describes query input for getting <xref href="system.fabric.health._deployed_application_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getDeployedApplicationHealthAsync(DeployedApplicationHealthQueryDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Describes query input for getting <xref href="system.fabric.health._deployed_application_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getDeployedApplicationHealthAsync(DeployedApplicationHealthQueryDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class DeployedApplicationHealthQueryDescription
 - uid: system.fabric._deployed_application_health_state_filter
@@ -897,7 +919,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>An <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> is a configuration number for the partition as a whole. When the configuration of the replica set changes, for example when the Primary replica changes, the operations that are replicated from the new Primary replica are said to be a new <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> from the ones which were sent by the old Primary replica. The fact that the Primary has changed is not directly visible to Secondary replicas, which are usually unaffected by the failure that affected the original Primary replica. To track that the Primary replica has changed has to be communicated to the Secondary replica. This communication occurs via the <xref href="system.fabric._state_provider.updateEpochAsync(Epoch,SequenceNumber)" data-throw-if-not-resolved="false"></xref> method. Most services can ignore the details of the inner fields of the <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> as it is usually sufficient to know that the <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> has changed and to compare Epochs to determine relative ordering of operations and events in the system. Comparison operations are provided for this purpose.</p>
+      <bold>Remarks:</bold>An <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> is a configuration number for the partition as a whole. When the configuration of the replica set changes, for example when the Primary replica changes, the operations that are replicated from the new Primary replica are said to be a new <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> from the ones which were sent by the old Primary replica. The fact that the Primary has changed is not directly visible to Secondary replicas, which are usually unaffected by the failure that affected the original Primary replica. To track that the Primary replica has changed has to be communicated to the Secondary replica. This communication occurs via the <xref href="system.fabric._state_provider.updateEpochAsync(Epoch,SequenceNumber,CancellationToken)" data-throw-if-not-resolved="false"></xref> method. Most services can ignore the details of the inner fields of the <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> as it is usually sufficient to know that the <xref href="system.fabric._epoch" data-throw-if-not-resolved="false"></xref> has changed and to compare Epochs to determine relative ordering of operations and events in the system. Comparison operations are provided for this purpose. </p>
   syntax:
     content: public class Epoch
 - uid: system.fabric._exe_host_entry_point_description
@@ -974,7 +996,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Provides the default implementation of the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>, and <xref href="system.fabric._primary_replicator" data-throw-if-not-resolved="false"></xref> interfaces, which user services can use, along with their implementation of the <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> interface. An instance of the <ref refid="" kindref="compound">system.fabric.FabricReplicator</ref> class is obtained via the <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref> method, which can be cast to <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for use.</p>
+      <bold>Remarks:</bold>Provides the default implementation of the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>, and <xref href="system.fabric._primary_replicator" data-throw-if-not-resolved="false"></xref> interfaces, which user services can use, along with their implementation of the <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> interface. An instance of the <ref refid="" kindref="compound">system.fabric.FabricReplicator</ref> class is obtained via the <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref> method, which can be cast to <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for use. </p>
   syntax:
     content: public class FabricReplicator implements Replicator
 - uid: system.fabric._fabric_replicator_settings
@@ -1034,7 +1056,7 @@ references:
   name: FabricUpgradeUpdateDescription
   fullName: system.fabric.FabricUpgradeUpdateDescription
   type: Class
-  summary: <p>Used to modify the upgrade parameters describing the behavior cluster upgrades. See <xref href="system.fabric._cluster_management_client.updateFabricUpgradeAsync(FabricUpgradeUpdateDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Used to modify the upgrade parameters describing the behavior cluster upgrades. See <xref href="system.fabric._cluster_management_client.updateFabricUpgradeAsync(FabricUpgradeUpdateDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class FabricUpgradeUpdateDescription extends UpgradeUpdateDescriptionBase
 - uid: system.fabric._fault_management_client
@@ -1229,7 +1251,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>See <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica#onReplicationOperation(java.util.Enumeration)</ref>.</p>
+      <bold>Remarks:</bold>See <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica#onReplicationOperation(java.util.Enumeration)</ref>. </p>
   syntax:
     content: public class KeyValueStoreNotification
 - uid: system.fabric._key_value_store_replica
@@ -1342,7 +1364,7 @@ references:
   name: NamedProperty
   fullName: system.fabric.NamedProperty
   type: Class
-  summary: <p>Represents a property that is managed by using the <xref href="system.fabric._property_management_client" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Represents a property that is managed by using the <xref href="system.fabric._property_management_client" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class NamedProperty
 - uid: system.fabric._named_property_metadata
@@ -1528,7 +1550,7 @@ references:
 
       <bold>Remarks:</bold>
 
-      <ref refid="" kindref="compound">system.fabric.Operation</ref> is the base interface that describes state changes that are delivered to a Secondary replica. They contain the <ref refid="" kindref="compound">system.fabric.StateReplicator#replicateAsync(OperationData, SequenceNumber)</ref> and the sequence number and other identifying information. </p>
+      <ref refid="" kindref="compound">system.fabric.Operation</ref> is the base interface that describes state changes that are delivered to a Secondary replica. They contain the <ref refid="" kindref="compound">system.fabric.StateReplicator#replicateAsync(OperationData, SequenceNumber, system.fabric.CancellationToken)</ref> and the sequence number and other identifying information. </p>
   syntax:
     content: public interface Operation
 - uid: system.fabric._operation_data
@@ -1653,7 +1675,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>The health state chunk queries can specify a list of partition filters to fine-grain select the partitions that should be included in the query result. Note that all the partitions are used to evaluate parents' aggregated health state, regardless of the filter passed in.</p>
+      <bold>Remarks:</bold>The health state chunk queries can specify a list of partition filters to fine-grain select the partitions that should be included in the query result. Note that all the partitions are used to evaluate parents' aggregated health state, regardless of the filter passed in. </p>
   syntax:
     content: public class PartitionHealthStateFilter
 - uid: system.fabric._partition_health_states_filter
@@ -1718,7 +1740,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Note that if one <ref refid="" kindref="compound">system.fabric.PropertyBatchOperation</ref> object fails, the entire batch fails and cannot be committed.</p>
+      <bold>Remarks:</bold>Note that if one <ref refid="" kindref="compound">system.fabric.PropertyBatchOperation</ref> object fails, the entire batch fails and cannot be committed. </p>
   syntax:
     content: public class PropertyBatchOperation
 - uid: system.fabric._property_batch_operation_kind
@@ -1848,7 +1870,7 @@ references:
   name: ReplicaHealthQueryDescription
   fullName: system.fabric.ReplicaHealthQueryDescription
   type: Class
-  summary: <p>Describes the query input for getting <xref href="system.fabric.health._replica_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getReplicaHealthAsync(ReplicaHealthQueryDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Describes the query input for getting <xref href="system.fabric.health._replica_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getReplicaHealthAsync(ReplicaHealthQueryDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class ReplicaHealthQueryDescription
 - uid: system.fabric._replica_health_state_filter
@@ -1862,7 +1884,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>The entity health state chunk queries can specify a list of replica filters to fine-grain select the replicas that should be included in the query result. Note that all the replicas are used to evaluate parents aggregated health state, regardless of the filter passed in.</p>
+      <bold>Remarks:</bold>The entity health state chunk queries can specify a list of replica filters to fine-grain select the replicas that should be included in the query result. Note that all the replicas are used to evaluate parents aggregated health state, regardless of the filter passed in. </p>
   syntax:
     content: public class ReplicaHealthStateFilter
 - uid: system.fabric._replica_health_states_filter
@@ -2060,6 +2082,14 @@ references:
   summary: <p>Specifies the secondary notifications on the <xref href="system.fabric._key_value_store_replica" data-throw-if-not-resolved="false"></xref> and describes the desired behavior of <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica#onReplicationOperation(java.util.Enumeration)</ref> if enabled. </p>
   syntax:
     content: public enum SecondaryNotificationMode
+- uid: system.fabric._security_credential_extension
+  parent: system.fabric
+  href: system.fabric._security_credential_extension.yml
+  name: SecurityCredentialExtension
+  fullName: system.fabric.SecurityCredentialExtension
+  type: Class
+  syntax:
+    content: public class SecurityCredentialExtension
 - uid: system.fabric._security_credentials
   parent: system.fabric
   href: system.fabric._security_credentials.yml
@@ -2156,7 +2186,7 @@ references:
   name: ServiceHealthQueryDescription
   fullName: system.fabric.ServiceHealthQueryDescription
   type: Class
-  summary: <p>Provides query input for getting <xref href="system.fabric.health._service_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getServiceHealthAsync(ServiceHealthQueryDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Provides query input for getting <xref href="system.fabric.health._service_health" data-throw-if-not-resolved="false"></xref>. Used by <xref href="system.fabric._health_client.getServiceHealthAsync(ServiceHealthQueryDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class ServiceHealthQueryDescription
 - uid: system.fabric._service_health_state_filter
@@ -2184,7 +2214,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>The filter can be used in <xref href="system.fabric._application_health_query_description" data-throw-if-not-resolved="false"></xref> to specify which service children should be returned as part of <xref href="system.fabric.health._application_health" data-throw-if-not-resolved="false"></xref>.</p>
+      <bold>Remarks:</bold>The filter can be used in <xref href="system.fabric._application_health_query_description" data-throw-if-not-resolved="false"></xref> to specify which service children should be returned as part of <xref href="system.fabric.health._application_health" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class ServiceHealthStatesFilter
 - uid: system.fabric._service_initialization_parameters
@@ -2196,7 +2226,7 @@ references:
   summary: >-
     <p>
 
-      <bold>Remarks:</bold>Derived types define initialization data that are specific to stateless and stateful services.</p>
+      <bold>Remarks:</bold>Derived types define initialization data that are specific to stateless and stateful services. </p>
   syntax:
     content: public class ServiceInitializationParameters
 - uid: system.fabric._service_load_metric_description
@@ -2208,7 +2238,7 @@ references:
   summary: >-
     <p>
 
-      <bold>Remarks:</bold>Note that to provide metrics for services is optional, because Service Fabric uses default metrics. Provide metrics only if the service requires advanced load balancing features, such as balancing that is based on specific node characteristics and resources.</p>
+      <bold>Remarks:</bold>Note that to provide metrics for services is optional, because Service Fabric uses default metrics. Provide metrics only if the service requires advanced load balancing features, such as balancing that is based on specific node characteristics and resources. </p>
   syntax:
     content: public class ServiceLoadMetricDescription
 - uid: system.fabric._service_management_client
@@ -2256,7 +2286,7 @@ references:
 
       <bold>Remarks:</bold>
 
-      <ref refid="" kindref="compound">system.fabric.ServicePartitionKind</ref> defines the value of the kind property of the <xref href="system.fabric._service_partition_information" data-throw-if-not-resolved="false"></xref> class.</p>
+      <ref refid="" kindref="compound">system.fabric.ServicePartitionKind</ref> defines the value of the kind property of the <xref href="system.fabric._service_partition_information" data-throw-if-not-resolved="false"></xref> class. </p>
   syntax:
     content: public enum ServicePartitionKind
 - uid: system.fabric._service_partition_resolution_change_handler
@@ -2342,7 +2372,7 @@ references:
   name: ServiceStatus
   fullName: system.fabric.ServiceStatus
   type: Enum
-  summary: <p>Represents the status of a service retrieved by calling <ref refid="" kindref="compound">system.fabric.QueryClient#getServiceListAsync(java.net.URI, java.net.URI, String, java.time.Duration)</ref>. </p>
+  summary: <p>Represents the status of a service retrieved by calling <ref refid="" kindref="compound">system.fabric.QueryClient#getServiceListAsync(java.net.URI, java.net.URI, String, java.time.Duration)</ref></p>
   syntax:
     content: public enum ServiceStatus
 - uid: system.fabric._service_type_health_policy
@@ -2393,7 +2423,7 @@ references:
   name: StatefulServiceFactory
   fullName: system.fabric.StatefulServiceFactory
   type: Interface
-  summary: <p>Represents a stateful service factory that is responsible for creating replicas of a specific type of stateful service. Stateful service factories are registered with the <xref href="system.fabric._fabric_runtime" data-throw-if-not-resolved="false"></xref> by service hosts via <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactory(java.lang.String,system.fabric.StatefulServiceFactory)</ref> or <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactoryAsync(java.lang.String,system.fabric.StatefulServiceFactory,java.time.Duration)</ref>. </p>
+  summary: <p>Represents a stateful service factory that is responsible for creating replicas of a specific type of stateful service. Stateful service factories are registered with the <xref href="system.fabric._fabric_runtime" data-throw-if-not-resolved="false"></xref> by service hosts via <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactory(java.lang.String,system.fabric.StatefulServiceFactory)</ref> or <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatefulServiceFactoryAsync(java.lang.String,system.fabric.StatefulServiceFactory,java.time.Duration)</ref></p>
   syntax:
     content: public interface StatefulServiceFactory
 - uid: system.fabric._stateful_service_failover_settings
@@ -2462,7 +2492,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Stateless service factories are registered with the <xref href="system.fabric._fabric_runtime" data-throw-if-not-resolved="false"></xref> by service hosts via <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatelessServiceFactory(java.lang.String,system.fabric.StatelessServiceFactory)</ref> or <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatelessServiceFactoryAsync(java.lang.String,system.fabric.StatelessServiceFactory,java.time.Duration)</ref>.</p>
+      <bold>Remarks:</bold>Stateless service factories are registered with the <xref href="system.fabric._fabric_runtime" data-throw-if-not-resolved="false"></xref> by service hosts via <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatelessServiceFactory(java.lang.String,system.fabric.StatelessServiceFactory)</ref> or <ref refid="" kindref="compound">system.fabric.FabricRuntime#registerStatelessServiceFactoryAsync(java.lang.String,system.fabric.StatelessServiceFactory,java.time.Duration)</ref></p>
   syntax:
     content: public interface StatelessServiceFactory
 - uid: system.fabric._stateless_service_initialization_parameters
@@ -2494,7 +2524,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>.</p>
+      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface StatelessServicePartition extends ServicePartition
 - uid: system.fabric._stateless_service_update_description
@@ -2503,7 +2533,7 @@ references:
   name: StatelessServiceUpdateDescription
   fullName: system.fabric.StatelessServiceUpdateDescription
   type: Class
-  summary: <p>Represents the <xref href="system.fabric._stateless_service_description" data-throw-if-not-resolved="false"></xref> of a running service via <ref refid="" kindref="compound">system.fabric.ServiceManagementClient#updateService(java.net.URI, system.fabric.ServiceUpdateDescription)</ref>. </p>
+  summary: <p>Represents the <xref href="system.fabric._stateless_service_description" data-throw-if-not-resolved="false"></xref> of a running service via <ref refid="" kindref="compound">system.fabric.ServiceManagementClient#updateService(java.net.URI, system.fabric.ServiceUpdateDescription)</ref></p>
   syntax:
     content: public class StatelessServiceUpdateDescription extends ServiceUpdateDescription
 - uid: system.fabric._state_provider
@@ -2684,9 +2714,17 @@ references:
   name: UpgradeUpdateDescriptionBase
   fullName: system.fabric.UpgradeUpdateDescriptionBase
   type: Class
-  summary: <p>Represents the base class for <xref href="system.fabric._application_upgrade_update_description" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._fabric_upgrade_update_description" data-throw-if-not-resolved="false"></xref>. Used to modify the upgrade parameters describing the behavior of application or cluster upgrades. See <ref refid="" kindref="compound">system.fabric.ApplicationManagementClient#updateApplicationUpgradeAsync(system.fabric.ApplicationUpgradeUpdateDescription)</ref> and <xref href="system.fabric._cluster_management_client.updateFabricUpgradeAsync(FabricUpgradeUpdateDescription)" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Represents the base class for <xref href="system.fabric._application_upgrade_update_description" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._fabric_upgrade_update_description" data-throw-if-not-resolved="false"></xref>. Used to modify the upgrade parameters describing the behavior of application or cluster upgrades. See <ref refid="" kindref="compound">system.fabric.ApplicationManagementClient#updateApplicationUpgradeAsync(system.fabric.ApplicationUpgradeUpdateDescription)</ref> and <xref href="system.fabric._cluster_management_client.updateFabricUpgradeAsync(FabricUpgradeUpdateDescription)" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public class UpgradeUpdateDescriptionBase
+- uid: system.fabric._utility
+  parent: system.fabric
+  href: system.fabric._utility.yml
+  name: Utility
+  fullName: system.fabric.Utility
+  type: Class
+  syntax:
+    content: public class Utility
 - uid: system.fabric._windows_credentials
   parent: system.fabric
   href: system.fabric._windows_credentials.yml

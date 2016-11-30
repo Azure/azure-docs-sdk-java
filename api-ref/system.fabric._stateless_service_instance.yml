@@ -4,9 +4,9 @@ items:
   parent: system.fabric
   children:
   - system.fabric._stateless_service_instance.abort()
-  - system.fabric._stateless_service_instance.closeAsync()
+  - system.fabric._stateless_service_instance.closeAsync(CancellationToken)
   - system.fabric._stateless_service_instance.initialize(StatelessServiceInitializationParameters)
-  - system.fabric._stateless_service_instance.openAsync(StatelessServicePartition)
+  - system.fabric._stateless_service_instance.openAsync(StatelessServicePartition,CancellationToken)
   href: system.fabric._stateless_service_instance.yml
   langs:
   - java
@@ -16,7 +16,7 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/system.fabric/src/system/fabric/StatelessServiceInstance.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/StatelessServiceInstance.java
     startLine: 12
@@ -36,7 +36,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StatelessServiceInstance.java
-    startLine: 55
+    startLine: 61
   package: system.fabric
   summary: >-
     <p>Terminates this instance ungracefully with this synchronous method call. </p>
@@ -46,26 +46,33 @@ items:
       <bold>Remarks:</bold>Examples of ungraceful termination are lease loss and, in response to the service, the use of <xref href="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false"></xref> to report a <ref refid="" kindref="compound">system.fabric.FaultType#Permanent</ref> fault. When the service instance receives this method, it should immediately release and clean up all references and return. </p>
   syntax:
     content: public void abort()
-- uid: system.fabric._stateless_service_instance.closeAsync()
-  id: closeAsync()
+- uid: system.fabric._stateless_service_instance.closeAsync(CancellationToken)
+  id: closeAsync(CancellationToken)
   parent: system.fabric._stateless_service_instance
   href: system.fabric._stateless_service_instance.yml
   langs:
   - java
-  name: closeAsync()
-  fullName: CompletableFuture<?> system.fabric.StatelessServiceInstance.closeAsync()
+  name: closeAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> system.fabric.StatelessServiceInstance.closeAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StatelessServiceInstance.java
-    startLine: 44
+    startLine: 50
   package: system.fabric
   summary: >-
     <p>Closes this service instance gracefully when the service instance is being shut down.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<?> closeAsync()
+    content: public CompletableFuture<?> closeAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>Returns <ref refid="" kindref="compound">CompletableFuture</ref>. </p>
@@ -93,19 +100,19 @@ items:
     - id: initializationParameters
       type: system.fabric._stateless_service_initialization_parameters
       description: <p>The <xref href="system.fabric._stateless_service_initialization_parameters" data-throw-if-not-resolved="false"></xref> for this service. </p>
-- uid: system.fabric._stateless_service_instance.openAsync(StatelessServicePartition)
-  id: openAsync(StatelessServicePartition)
+- uid: system.fabric._stateless_service_instance.openAsync(StatelessServicePartition,CancellationToken)
+  id: openAsync(StatelessServicePartition,CancellationToken)
   parent: system.fabric._stateless_service_instance
   href: system.fabric._stateless_service_instance.yml
   langs:
   - java
-  name: openAsync(StatelessServicePartition partition)
-  fullName: CompletableFuture<String> system.fabric.StatelessServiceInstance.openAsync(StatelessServicePartition partition)
+  name: openAsync(StatelessServicePartition partition, CancellationToken cancellationToken)
+  fullName: CompletableFuture<String> system.fabric.StatelessServiceInstance.openAsync(StatelessServicePartition partition, CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StatelessServiceInstance.java
-    startLine: 37
+    startLine: 40
   package: system.fabric
   summary: >-
     <p>Opens an initialized service instance so that it can be contacted by clients.</p>
@@ -114,11 +121,17 @@ items:
 
       <bold>Remarks:</bold>Opening an instance stateless service indicates that the service is now resolvable and discoverable by service clients. The string that is returned is the address of this service instance. The address is associated with the service name via Service Fabric naming and returned to clients that resolve the service via <ref refid="" kindref="compound">system.fabric.ServiceManagementClient#resolveServicePartitionAsync(java.net.URI)</ref></p>
   syntax:
-    content: public CompletableFuture<String> openAsync(StatelessServicePartition partition)
+    content: public CompletableFuture<String> openAsync(StatelessServicePartition partition, CancellationToken cancellationToken)
     parameters:
     - id: partition
       type: system.fabric._stateless_service_partition
       description: <p>The <xref href="system.fabric._stateless_service_partition" data-throw-if-not-resolved="false"></xref> that this instance is associated with </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 06be942d
       description: <p>Returns <ref refid="" kindref="compound">CompletableFuture</ref> of type <ref refid="" kindref="compound">java.lang.String</ref>. </p>
@@ -152,9 +165,18 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>.</p>
+      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface StatelessServicePartition
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
 - uid: system.fabric._service_partition.reportFault(FaultType)
   parent: system.fabric._service_partition
   href: system.fabric._service_partition.yml

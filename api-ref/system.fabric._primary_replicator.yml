@@ -3,12 +3,12 @@ items:
   id: _primary_replicator
   parent: system.fabric
   children:
-  - system.fabric._primary_replicator.buildReplicaAsync(ReplicaInformation)
-  - system.fabric._primary_replicator.onDataLossAsync()
+  - system.fabric._primary_replicator.buildReplicaAsync(ReplicaInformation,CancellationToken)
+  - system.fabric._primary_replicator.onDataLossAsync(CancellationToken)
   - system.fabric._primary_replicator.removeReplica(long)
   - system.fabric._primary_replicator.updateCatchUpReplicaSetConfiguration(ReplicaSetConfiguration,ReplicaSetConfiguration)
   - system.fabric._primary_replicator.updateCurrentReplicaSetConfiguration(ReplicaSetConfiguration)
-  - system.fabric._primary_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode)
+  - system.fabric._primary_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode,CancellationToken)
   href: system.fabric._primary_replicator.yml
   langs:
   - java
@@ -18,7 +18,7 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
     startLine: 10
@@ -26,53 +26,66 @@ items:
   summary: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code. </p>
   syntax:
     content: public interface PrimaryReplicator
-- uid: system.fabric._primary_replicator.buildReplicaAsync(ReplicaInformation)
-  id: buildReplicaAsync(ReplicaInformation)
+- uid: system.fabric._primary_replicator.buildReplicaAsync(ReplicaInformation,CancellationToken)
+  id: buildReplicaAsync(ReplicaInformation,CancellationToken)
   parent: system.fabric._primary_replicator
   href: system.fabric._primary_replicator.yml
   langs:
   - java
-  name: buildReplicaAsync(ReplicaInformation replicaInfo)
-  fullName: CompletableFuture system.fabric.PrimaryReplicator.buildReplicaAsync(ReplicaInformation replicaInfo)
+  name: buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
+  fullName: CompletableFuture system.fabric.PrimaryReplicator.buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 67
+    startLine: 77
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture buildReplicaAsync(ReplicaInformation replicaInfo)
+    content: public CompletableFuture buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
     parameters:
     - id: replicaInfo
       type: system.fabric._replica_information
       description: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 5f2aaa64
       description: <p>A task that represents the asynchronous operation. </p>
-- uid: system.fabric._primary_replicator.onDataLossAsync()
-  id: onDataLossAsync()
+- uid: system.fabric._primary_replicator.onDataLossAsync(CancellationToken)
+  id: onDataLossAsync(CancellationToken)
   parent: system.fabric._primary_replicator
   href: system.fabric._primary_replicator.yml
   langs:
   - java
-  name: onDataLossAsync()
-  fullName: CompletableFuture<Boolean> system.fabric.PrimaryReplicator.onDataLossAsync()
+  name: onDataLossAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<Boolean> system.fabric.PrimaryReplicator.onDataLossAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 17
+    startLine: 20
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> onDataLossAsync()
+    content: public CompletableFuture<Boolean> onDataLossAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 7e53ac82
       description: <p>A CompletableFuture that represents the asynchronous operation. </p>
@@ -88,7 +101,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 82
+    startLine: 93
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
@@ -116,7 +129,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 29
+    startLine: 32
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
@@ -143,7 +156,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 56
+    startLine: 63
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
@@ -159,30 +172,36 @@ items:
     - id: currentConfiguration
       type: system.fabric._replica_set_configuration
       description: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
-- uid: system.fabric._primary_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode)
-  id: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode)
+- uid: system.fabric._primary_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode,CancellationToken)
+  id: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode,CancellationToken)
   parent: system.fabric._primary_replicator
   href: system.fabric._primary_replicator.yml
   langs:
   - java
-  name: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
-  fullName: CompletableFuture system.fabric.PrimaryReplicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
+  name: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
+  fullName: CompletableFuture system.fabric.PrimaryReplicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/PrimaryReplicator.java
-    startLine: 41
+    startLine: 47
   package: system.fabric
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
+    content: public CompletableFuture waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
     parameters:
     - id: quorumMode
       type: system.fabric._replica_set_quorum_mode
       description: <p>For Internal Use Only. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 5f2aaa64
       description: <p>For Internal Use Only. </p>
@@ -207,21 +226,37 @@ references:
   type: Interface
   syntax:
     content: public interface Replicator
-- uid: system.fabric._fabric_replicator.onDataLossAsync()
+- uid: system.fabric._fabric_replicator.onDataLossAsync(CancellationToken)
   parent: system.fabric._fabric_replicator
   href: system.fabric._fabric_replicator.yml
-  name: onDataLossAsync()
-  fullName: CompletableFuture<Boolean> system.fabric.FabricReplicator.onDataLossAsync()
+  name: onDataLossAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<Boolean> system.fabric.FabricReplicator.onDataLossAsync(CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> onDataLossAsync()
+    content: public CompletableFuture<Boolean> onDataLossAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 7e53ac82
       description: <p>A CompletableFuture that represents the asynchronous operation. </p>
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
 - uid: system.fabric.exception._fabric_exception
   parent: system.fabric.exception
   href: system.fabric.exception._fabric_exception.yml
@@ -258,22 +293,28 @@ references:
   summary: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code. </p>
   syntax:
     content: public class ReplicaSetConfiguration
-- uid: system.fabric._fabric_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode)
+- uid: system.fabric._fabric_replicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode,CancellationToken)
   parent: system.fabric._fabric_replicator
   href: system.fabric._fabric_replicator.yml
-  name: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
-  fullName: CompletableFuture system.fabric.FabricReplicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
+  name: waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
+  fullName: CompletableFuture system.fabric.FabricReplicator.waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode)
+    content: public CompletableFuture waitForCatchUpQuorumAsync(ReplicaSetQuorumMode quorumMode, CancellationToken cancellationToken)
     parameters:
     - id: quorumMode
       type: system.fabric._replica_set_quorum_mode
       description: <p>For Internal Use Only. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 5f2aaa64
       description: <p>For Internal Use Only. </p>
@@ -305,22 +346,28 @@ references:
     - id: currentConfiguration
       type: system.fabric._replica_set_configuration
       description: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
-- uid: system.fabric._fabric_replicator.buildReplicaAsync(ReplicaInformation)
+- uid: system.fabric._fabric_replicator.buildReplicaAsync(ReplicaInformation,CancellationToken)
   parent: system.fabric._fabric_replicator
   href: system.fabric._fabric_replicator.yml
-  name: buildReplicaAsync(ReplicaInformation replicaInfo)
-  fullName: CompletableFuture system.fabric.FabricReplicator.buildReplicaAsync(ReplicaInformation replicaInfo)
+  name: buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
+  fullName: CompletableFuture system.fabric.FabricReplicator.buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture buildReplicaAsync(ReplicaInformation replicaInfo)
+    content: public CompletableFuture buildReplicaAsync(ReplicaInformation replicaInfo, CancellationToken cancellationToken)
     parameters:
     - id: replicaInfo
       type: system.fabric._replica_information
       description: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 5f2aaa64
       description: <p>A task that represents the asynchronous operation. </p>

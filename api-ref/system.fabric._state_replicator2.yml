@@ -13,10 +13,10 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator2.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator2.java
-    startLine: 5
+    startLine: 6
   package: system.fabric
   summary: <p>Exposes replication-related functions of the <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> class that are used by <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> to replicate state to ensure high availability. </p>
   syntax:
@@ -24,7 +24,7 @@ items:
   inheritedMembers:
   - system.fabric._state_replicator.getCopyStream()
   - system.fabric._state_replicator.getReplicationStream()
-  - system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber)
+  - system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)
   - system.fabric._state_replicator.updateReplicatorSettings(ReplicatorSettings)
 - uid: system.fabric._state_replicator2.getReplicatorSettings()
   id: getReplicatorSettings()
@@ -38,9 +38,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator2.java
-    startLine: 11
+    startLine: 13
   package: system.fabric
-  summary: <p>Retrieves the replicator settings during runtime. </p>
+  summary: >-
+    <p>Retrieves the replicator settings during runtime.</p>
+
+    <p></p>
   syntax:
     content: public ReplicatorSettings getReplicatorSettings()
     return:
@@ -67,19 +70,21 @@ references:
     content: public OperationStream getReplicationStream()
     return:
       type: system.fabric._operation_stream
-- uid: system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber)
+- uid: system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)
   parent: system.fabric._state_replicator
   href: system.fabric._state_replicator.yml
-  name: replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
-  fullName: CompletableFuture<SequenceNumber> system.fabric.StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
+  name: replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
+  fullName: CompletableFuture<SequenceNumber> system.fabric.StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
   type: Method
   syntax:
-    content: public CompletableFuture<SequenceNumber> replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
+    content: public CompletableFuture<SequenceNumber> replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
     parameters:
     - id: operationData
       type: system.fabric._operation_data
     - id: sequenceNumber
       type: system.fabric._sequence_number
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
     return:
       type: 9cdf14d0system.fabric._sequence_numbera08ddfce
 - uid: system.fabric._state_replicator.updateReplicatorSettings(ReplicatorSettings)
@@ -121,7 +126,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Provides the default implementation of the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>, and <xref href="system.fabric._primary_replicator" data-throw-if-not-resolved="false"></xref> interfaces, which user services can use, along with their implementation of the <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> interface. An instance of the <ref refid="" kindref="compound">system.fabric.FabricReplicator</ref> class is obtained via the <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref> method, which can be cast to <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for use.</p>
+      <bold>Remarks:</bold>Provides the default implementation of the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>, and <xref href="system.fabric._primary_replicator" data-throw-if-not-resolved="false"></xref> interfaces, which user services can use, along with their implementation of the <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> interface. An instance of the <ref refid="" kindref="compound">system.fabric.FabricReplicator</ref> class is obtained via the <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref> method, which can be cast to <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for use. </p>
   syntax:
     content: public class FabricReplicator implements Replicator
 - uid: system.fabric._state_provider
