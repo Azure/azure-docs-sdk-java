@@ -5,7 +5,7 @@ items:
   children:
   - system.fabric._state_replicator.getCopyStream()
   - system.fabric._state_replicator.getReplicationStream()
-  - system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber)
+  - system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)
   - system.fabric._state_replicator.updateReplicatorSettings(ReplicatorSettings)
   href: system.fabric._state_replicator.yml
   langs:
@@ -16,7 +16,7 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator.java
     startLine: 11
@@ -35,7 +35,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator.java
-    startLine: 16
+    startLine: 18
   package: system.fabric
   syntax:
     content: public OperationStream getCopyStream()
@@ -53,20 +53,20 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator.java
-    startLine: 18
+    startLine: 20
   package: system.fabric
   syntax:
     content: public OperationStream getReplicationStream()
     return:
       type: system.fabric._operation_stream
-- uid: system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber)
-  id: replicateAsync(OperationData,SequenceNumber)
+- uid: system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)
+  id: replicateAsync(OperationData,SequenceNumber,CancellationToken)
   parent: system.fabric._state_replicator
   href: system.fabric._state_replicator.yml
   langs:
   - java
-  name: replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
-  fullName: CompletableFuture<SequenceNumber> system.fabric.StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
+  name: replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
+  fullName: CompletableFuture<SequenceNumber> system.fabric.StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
@@ -74,12 +74,14 @@ items:
     startLine: 13
   package: system.fabric
   syntax:
-    content: public CompletableFuture<SequenceNumber> replicateAsync(OperationData operationData, SequenceNumber sequenceNumber)
+    content: public CompletableFuture<SequenceNumber> replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
     parameters:
     - id: operationData
       type: system.fabric._operation_data
     - id: sequenceNumber
       type: system.fabric._sequence_number
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
     return:
       type: 9cdf14d0system.fabric._sequence_numbera08ddfce
 - uid: system.fabric._state_replicator.updateReplicatorSettings(ReplicatorSettings)
@@ -94,7 +96,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/StateReplicator.java
-    startLine: 20
+    startLine: 22
   package: system.fabric
   syntax:
     content: public void updateReplicatorSettings(ReplicatorSettings settings)
@@ -137,6 +139,15 @@ references:
   type: Class
   syntax:
     content: public class OperationData
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
 - uid: system.fabric.exception._fabric_exception
   parent: system.fabric.exception
   href: system.fabric.exception._fabric_exception.yml

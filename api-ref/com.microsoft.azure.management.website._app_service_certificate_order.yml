@@ -4,18 +4,18 @@ items:
   parent: com.microsoft.azure.management.website
   children:
   - com.microsoft.azure.management.website._app_service_certificate_order.autoRenew()
-  - com.microsoft.azure.management.website._app_service_certificate_order.certificates()
-  - com.microsoft.azure.management.website._app_service_certificate_order.createCertificate(String,Vault)
-  - com.microsoft.azure.management.website._app_service_certificate_order.createCertificateAsync(String,Vault)
-  - com.microsoft.azure.management.website._app_service_certificate_order.csr()
+  - com.microsoft.azure.management.website._app_service_certificate_order.certificateSigningRequest()
+  - com.microsoft.azure.management.website._app_service_certificate_order.createKeyVaultBinding(String,Vault)
+  - com.microsoft.azure.management.website._app_service_certificate_order.createKeyVaultBindingAsync(String,Vault)
   - com.microsoft.azure.management.website._app_service_certificate_order.distinguishedName()
   - com.microsoft.azure.management.website._app_service_certificate_order.domainVerificationToken()
   - com.microsoft.azure.management.website._app_service_certificate_order.expirationTime()
+  - com.microsoft.azure.management.website._app_service_certificate_order.getKeyVaultBinding()
+  - com.microsoft.azure.management.website._app_service_certificate_order.getKeyVaultBindingAsync()
   - com.microsoft.azure.management.website._app_service_certificate_order.intermediate()
   - com.microsoft.azure.management.website._app_service_certificate_order.keySize()
   - com.microsoft.azure.management.website._app_service_certificate_order.lastCertificateIssuanceTime()
   - com.microsoft.azure.management.website._app_service_certificate_order.productType()
-  - com.microsoft.azure.management.website._app_service_certificate_order.provisioningState()
   - com.microsoft.azure.management.website._app_service_certificate_order.root()
   - com.microsoft.azure.management.website._app_service_certificate_order.serialNumber()
   - com.microsoft.azure.management.website._app_service_certificate_order.signedCertificate()
@@ -33,9 +33,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 24
+    startLine: 22
   package: com.microsoft.azure.management.website
-  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Web App. </p>
+  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service Certificate Order. </p>
   syntax:
     content: public interface AppServiceCertificateOrder extends GroupableResource,Refreshable<AppServiceCertificateOrder>,Updatable<AppServiceCertificateOrder.Update>,Wrapper<AppServiceCertificateOrderInner>
   inheritedMembers:
@@ -63,97 +63,86 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 64
+    startLine: 56
   package: com.microsoft.azure.management.website
   syntax:
     content: public boolean autoRenew()
     return:
       type: 4fc6e284
-      description: <p>Auto renew. </p>
-- uid: com.microsoft.azure.management.website._app_service_certificate_order.certificates()
-  id: certificates()
+      description: <p>if the certificate should be automatically renewed upon expiration </p>
+- uid: com.microsoft.azure.management.website._app_service_certificate_order.certificateSigningRequest()
+  id: certificateSigningRequest()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
   href: com.microsoft.azure.management.website._app_service_certificate_order.yml
   langs:
   - java
-  name: certificates()
-  fullName: Map<String, AppServiceCertificateInner> com.microsoft.azure.management.website.AppServiceCertificateOrder.certificates()
+  name: certificateSigningRequest()
+  fullName: String com.microsoft.azure.management.website.AppServiceCertificateOrder.certificateSigningRequest()
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 33
+    startLine: 71
   package: com.microsoft.azure.management.website
   syntax:
-    content: public Map<String, AppServiceCertificateInner> certificates()
+    content: public String certificateSigningRequest()
     return:
-      type: 2108f1f4com.microsoft.azure.management.website.implementation._app_service_certificate_innera08ddfce
-      description: <p>State of the Key Vault secret. </p>
-- uid: com.microsoft.azure.management.website._app_service_certificate_order.createCertificate(String,Vault)
-  id: createCertificate(String,Vault)
+      type: "26831127"
+      description: <p>last certificate signing request that was created for this order </p>
+- uid: com.microsoft.azure.management.website._app_service_certificate_order.createKeyVaultBinding(String,Vault)
+  id: createKeyVaultBinding(String,Vault)
   parent: com.microsoft.azure.management.website._app_service_certificate_order
   href: com.microsoft.azure.management.website._app_service_certificate_order.yml
   langs:
   - java
-  name: createCertificate(String certificateName, Vault vault)
-  fullName: AppServiceCertificate com.microsoft.azure.management.website.AppServiceCertificateOrder.createCertificate(String certificateName, Vault vault)
+  name: createKeyVaultBinding(String certificateName, Vault vault)
+  fullName: AppServiceCertificateKeyVaultBinding com.microsoft.azure.management.website.AppServiceCertificateOrder.createKeyVaultBinding(String certificateName, Vault vault)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 114
+    startLine: 104
   package: com.microsoft.azure.management.website
+  summary: <p>Bind a Key Vault secret to a certificate store that will be used for storing the certificate once it's ready. </p>
   syntax:
-    content: public AppServiceCertificate createCertificate(String certificateName, Vault vault)
+    content: public AppServiceCertificateKeyVaultBinding createKeyVaultBinding(String certificateName, Vault vault)
     parameters:
     - id: certificateName
       type: "26831127"
+      description: <p>the name of the Key Vault Secret </p>
     - id: vault
       type: com.microsoft.azure.management.keyvault._vault
+      description: <p>the key vault to store the certificate </p>
     return:
-      type: com.microsoft.azure.management.website._app_service_certificate
-- uid: com.microsoft.azure.management.website._app_service_certificate_order.createCertificateAsync(String,Vault)
-  id: createCertificateAsync(String,Vault)
+      type: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding
+      description: <p>a binding containing the key vault information </p>
+- uid: com.microsoft.azure.management.website._app_service_certificate_order.createKeyVaultBindingAsync(String,Vault)
+  id: createKeyVaultBindingAsync(String,Vault)
   parent: com.microsoft.azure.management.website._app_service_certificate_order
   href: com.microsoft.azure.management.website._app_service_certificate_order.yml
   langs:
   - java
-  name: createCertificateAsync(String certificateName, Vault vault)
-  fullName: Observable<AppServiceCertificate> com.microsoft.azure.management.website.AppServiceCertificateOrder.createCertificateAsync(String certificateName, Vault vault)
+  name: createKeyVaultBindingAsync(String certificateName, Vault vault)
+  fullName: Observable<AppServiceCertificateKeyVaultBinding> com.microsoft.azure.management.website.AppServiceCertificateOrder.createKeyVaultBindingAsync(String certificateName, Vault vault)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 116
+    startLine: 112
   package: com.microsoft.azure.management.website
+  summary: <p>Bind a Key Vault secret to a certificate store that will be used for storing the certificate once it's ready. </p>
   syntax:
-    content: public Observable<AppServiceCertificate> createCertificateAsync(String certificateName, Vault vault)
+    content: public Observable<AppServiceCertificateKeyVaultBinding> createKeyVaultBindingAsync(String certificateName, Vault vault)
     parameters:
     - id: certificateName
       type: "26831127"
+      description: <p>the name of the Key Vault Secret </p>
     - id: vault
       type: com.microsoft.azure.management.keyvault._vault
+      description: <p>the key vault to store the certificate </p>
     return:
-      type: c2d0e8c6com.microsoft.azure.management.website._app_service_certificatea08ddfce
-- uid: com.microsoft.azure.management.website._app_service_certificate_order.csr()
-  id: csr()
-  parent: com.microsoft.azure.management.website._app_service_certificate_order
-  href: com.microsoft.azure.management.website._app_service_certificate_order.yml
-  langs:
-  - java
-  name: csr()
-  fullName: String com.microsoft.azure.management.website.AppServiceCertificateOrder.csr()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 87
-  package: com.microsoft.azure.management.website
-  syntax:
-    content: public String csr()
-    return:
-      type: "26831127"
-      description: <p>Last CSR that was created for this order. </p>
+      type: c2d0e8c6com.microsoft.azure.management.website._app_service_certificate_key_vault_bindinga08ddfce
+      description: <p>a binding containing the key vault information </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.distinguishedName()
   id: distinguishedName()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -166,16 +155,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 38
+    startLine: 31
   package: com.microsoft.azure.management.website
   syntax:
     content: public String distinguishedName()
     return:
       type: "26831127"
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref> distinguished name. </p>
+      description: <p>certificate's distinguished name </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.domainVerificationToken()
   id: domainVerificationToken()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -188,16 +174,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 43
+    startLine: 36
   package: com.microsoft.azure.management.website
   syntax:
     content: public String domainVerificationToken()
     return:
       type: "26831127"
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._domain" data-throw-if-not-resolved="false"></xref> Verification Token. </p>
+      description: <p>the domain verification token </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.expirationTime()
   id: expirationTime()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -210,16 +193,51 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 112
+    startLine: 96
   package: com.microsoft.azure.management.website
   syntax:
     content: public DateTime expirationTime()
     return:
       type: 230df18c
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref> expiration time. </p>
+      description: <p>expiration time </p>
+- uid: com.microsoft.azure.management.website._app_service_certificate_order.getKeyVaultBinding()
+  id: getKeyVaultBinding()
+  parent: com.microsoft.azure.management.website._app_service_certificate_order
+  href: com.microsoft.azure.management.website._app_service_certificate_order.yml
+  langs:
+  - java
+  name: getKeyVaultBinding()
+  fullName: AppServiceCertificateKeyVaultBinding com.microsoft.azure.management.website.AppServiceCertificateOrder.getKeyVaultBinding()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
+    startLine: 117
+  package: com.microsoft.azure.management.website
+  syntax:
+    content: public AppServiceCertificateKeyVaultBinding getKeyVaultBinding()
+    return:
+      type: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding
+      description: <p>the state of the Key Vault secret </p>
+- uid: com.microsoft.azure.management.website._app_service_certificate_order.getKeyVaultBindingAsync()
+  id: getKeyVaultBindingAsync()
+  parent: com.microsoft.azure.management.website._app_service_certificate_order
+  href: com.microsoft.azure.management.website._app_service_certificate_order.yml
+  langs:
+  - java
+  name: getKeyVaultBindingAsync()
+  fullName: Observable<AppServiceCertificateKeyVaultBinding> com.microsoft.azure.management.website.AppServiceCertificateOrder.getKeyVaultBindingAsync()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
+    startLine: 122
+  package: com.microsoft.azure.management.website
+  syntax:
+    content: public Observable<AppServiceCertificateKeyVaultBinding> getKeyVaultBindingAsync()
+    return:
+      type: c2d0e8c6com.microsoft.azure.management.website._app_service_certificate_key_vault_bindinga08ddfce
+      description: <p>the state of the Key Vault secret </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.intermediate()
   id: intermediate()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -232,13 +250,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 92
+    startLine: 76
   package: com.microsoft.azure.management.website
   syntax:
     content: public CertificateDetails intermediate()
     return:
       type: com.microsoft.azure.management.website._certificate_details
-      description: <p>Intermediate certificate. </p>
+      description: <p>the intermediate certificate </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.keySize()
   id: keySize()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -251,16 +269,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 53
+    startLine: 46
   package: com.microsoft.azure.management.website
   syntax:
     content: public int keySize()
     return:
       type: f75371fa
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref> Key Size. </p>
+      description: <p>the certificate key size </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.lastCertificateIssuanceTime()
   id: lastCertificateIssuanceTime()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -273,16 +288,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 107
+    startLine: 91
   package: com.microsoft.azure.management.website
   syntax:
     content: public DateTime lastCertificateIssuanceTime()
     return:
       type: 230df18c
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref> last issuance time. </p>
+      description: <p>last issuance time </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.productType()
   id: productType()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -295,35 +307,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 59
+    startLine: 51
   package: com.microsoft.azure.management.website
   syntax:
     content: public CertificateProductType productType()
     return:
       type: com.microsoft.azure.management.website._certificate_product_type
-      description: >-
-        <p>
-
-          <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref> product type. Possible values include: 'StandardDomainValidatedSsl', 'StandardDomainValidatedWildCardSsl'. </p>
-- uid: com.microsoft.azure.management.website._app_service_certificate_order.provisioningState()
-  id: provisioningState()
-  parent: com.microsoft.azure.management.website._app_service_certificate_order
-  href: com.microsoft.azure.management.website._app_service_certificate_order.yml
-  langs:
-  - java
-  name: provisioningState()
-  fullName: ProvisioningState com.microsoft.azure.management.website.AppServiceCertificateOrder.provisioningState()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 70
-  package: com.microsoft.azure.management.website
-  syntax:
-    content: public ProvisioningState provisioningState()
-    return:
-      type: com.microsoft.azure.management.website._provisioning_state
-      description: '<p>Status of certificate order. Possible values include: ''Succeeded'', ''Failed'', ''Canceled'', ''InProgress'', ''Deleting''. </p>'
+      description: <p>the certificate product type </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.root()
   id: root()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -336,13 +326,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 97
+    startLine: 81
   package: com.microsoft.azure.management.website
   syntax:
     content: public CertificateDetails root()
     return:
       type: com.microsoft.azure.management.website._certificate_details
-      description: <p>Root certificate. </p>
+      description: <p>the root certificate </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.serialNumber()
   id: serialNumber()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -355,13 +345,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 102
+    startLine: 86
   package: com.microsoft.azure.management.website
   syntax:
     content: public String serialNumber()
     return:
       type: "26831127"
-      description: <p>Current serial number of the certificate. </p>
+      description: <p>current serial number of the certificate </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.signedCertificate()
   id: signedCertificate()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -374,13 +364,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 82
+    startLine: 66
   package: com.microsoft.azure.management.website
   syntax:
     content: public CertificateDetails signedCertificate()
     return:
       type: com.microsoft.azure.management.website._certificate_details
-      description: <p>Signed certificate. </p>
+      description: <p>the signed certificate </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.status()
   id: status()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -393,13 +383,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 77
+    startLine: 61
   package: com.microsoft.azure.management.website
   syntax:
     content: public CertificateOrderStatus status()
     return:
       type: com.microsoft.azure.management.website._certificate_order_status
-      description: '<p>Current order status. Possible values include: ''Pendingissuance'', ''Issued'', ''Revoked'', ''Canceled'', ''Denied'', ''Pendingrevocation'', ''PendingRekey'', ''Unused'', ''Expired'', ''NotSubmitted''. </p>'
+      description: <p>current order status </p>
 - uid: com.microsoft.azure.management.website._app_service_certificate_order.validityInYears()
   id: validityInYears()
   parent: com.microsoft.azure.management.website._app_service_certificate_order
@@ -412,24 +402,14 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/AppServiceCertificateOrder.java
-    startLine: 48
+    startLine: 41
   package: com.microsoft.azure.management.website
   syntax:
     content: public int validityInYears()
     return:
       type: f75371fa
-      description: <p>Duration in years (must be between 1 and 3). </p>
+      description: <p>duration in years (must be between 1 and 3) </p>
 references:
-- uid: 2108f1f4com.microsoft.azure.management.website.implementation._app_service_certificate_innera08ddfce
-  spec.java:
-  - name: 'Map<String, '
-    fullName: 'Map<String, '
-  - uid: com.microsoft.azure.management.website.implementation._app_service_certificate_inner
-    name: AppServiceCertificateInner
-    fullName: com.microsoft.azure.management.website.implementation.AppServiceCertificateInner
-    href: com.microsoft.azure.management.website.implementation._app_service_certificate_inner.yml
-  - name: '>'
-    fullName: '>'
 - uid: "26831127"
   spec.java:
   - name: String
@@ -446,14 +426,14 @@ references:
   spec.java:
   - name: DateTime
     fullName: DateTime
-- uid: c2d0e8c6com.microsoft.azure.management.website._app_service_certificatea08ddfce
+- uid: c2d0e8c6com.microsoft.azure.management.website._app_service_certificate_key_vault_bindinga08ddfce
   spec.java:
   - name: Observable<
     fullName: Observable<
-  - uid: com.microsoft.azure.management.website._app_service_certificate
-    name: AppServiceCertificate
-    fullName: com.microsoft.azure.management.website.AppServiceCertificate
-    href: com.microsoft.azure.management.website._app_service_certificate.yml
+  - uid: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding
+    name: AppServiceCertificateKeyVaultBinding
+    fullName: com.microsoft.azure.management.website.AppServiceCertificateKeyVaultBinding
+    href: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding.yml
   - name: '>'
     fullName: '>'
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
@@ -658,38 +638,6 @@ references:
     - type: 8ce1ecb9
       description: <p>the type of the inner object. </p>
 - uid: com.microsoft.azure.management.website.implementation._app_service_certificate_order_impl
-- uid: com.microsoft.azure.management.website.implementation._app_service_certificate_inner
-  parent: com.microsoft.azure.management.website.implementation
-  href: com.microsoft.azure.management.website.implementation._app_service_certificate_inner.yml
-  name: AppServiceCertificateInner
-  fullName: com.microsoft.azure.management.website.implementation.AppServiceCertificateInner
-  type: Class
-  summary: <p>Class representing the Key Vault container for certificate purchased through <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public class AppServiceCertificateInner
-- uid: com.microsoft.azure.management.website._certificate
-  parent: com.microsoft.azure.management.website
-  href: com.microsoft.azure.management.website._certificate.yml
-  name: Certificate
-  fullName: com.microsoft.azure.management.website.Certificate
-  type: Interface
-  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Web App. </p>
-  syntax:
-    content: public interface Certificate
-- uid: com.microsoft.azure.management.website._domain
-  parent: com.microsoft.azure.management.website
-  href: com.microsoft.azure.management.website._domain.yml
-  name: Domain
-  fullName: com.microsoft.azure.management.website.Domain
-  type: Interface
-  summary: >-
-    <p>An immutable client-side representation of a domain.</p>
-
-    <p>
-
-      <xref href="com.microsoft.azure.management.website._domains" data-throw-if-not-resolved="false"></xref> in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> are purchased from 3rd party domain providers. By calling <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync()" data-throw-if-not-resolved="false"></xref> you agree to the agreements listed in <xref href="com.microsoft.azure.management.website._domains.listAgreements(String)" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface Domain
 - uid: com.microsoft.azure.management.website._certificate_product_type
   parent: com.microsoft.azure.management.website
   href: com.microsoft.azure.management.website._certificate_product_type.yml
@@ -699,15 +647,6 @@ references:
   summary: <p>Defines values for <xref href="com.microsoft.azure.management.website._certificate_product_type" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public enum CertificateProductType
-- uid: com.microsoft.azure.management.website._provisioning_state
-  parent: com.microsoft.azure.management.website
-  href: com.microsoft.azure.management.website._provisioning_state.yml
-  name: ProvisioningState
-  fullName: com.microsoft.azure.management.website.ProvisioningState
-  type: Enum
-  summary: <p>Defines values for <xref href="com.microsoft.azure.management.website._provisioning_state" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public enum ProvisioningState
 - uid: com.microsoft.azure.management.website._certificate_order_status
   parent: com.microsoft.azure.management.website
   href: com.microsoft.azure.management.website._certificate_order_status.yml
@@ -726,15 +665,15 @@ references:
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Web App. </p>
   syntax:
     content: public interface CertificateDetails
-- uid: com.microsoft.azure.management.website._app_service_certificate
+- uid: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding
   parent: com.microsoft.azure.management.website
-  href: com.microsoft.azure.management.website._app_service_certificate.yml
-  name: AppServiceCertificate
-  fullName: com.microsoft.azure.management.website.AppServiceCertificate
+  href: com.microsoft.azure.management.website._app_service_certificate_key_vault_binding.yml
+  name: AppServiceCertificateKeyVaultBinding
+  fullName: com.microsoft.azure.management.website.AppServiceCertificateKeyVaultBinding
   type: Interface
-  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service <xref href="com.microsoft.azure.management.website._certificate" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service Certificate. </p>
   syntax:
-    content: public interface AppServiceCertificate extends IndependentChildResource,Wrapper<AppServiceCertificateInner>
+    content: public interface AppServiceCertificateKeyVaultBinding extends IndependentChildResource,Wrapper<AppServiceCertificateInner>
 - uid: com.microsoft.azure.management.keyvault._vault
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._vault.yml

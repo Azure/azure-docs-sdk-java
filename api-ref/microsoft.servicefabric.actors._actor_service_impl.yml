@@ -14,8 +14,8 @@ items:
   - microsoft.servicefabric.actors._actor_service_impl.getActorsAsync(ContinuationToken)
   - microsoft.servicefabric.actors._actor_service_impl.initialize(ActorMethodDispatcherMap,ActorMethodFriendlyNameBuilder)
   - microsoft.servicefabric.actors._actor_service_impl.invokeAsync(ActorId,int,int,String,byte [])
-  - microsoft.servicefabric.actors._actor_service_impl.onChangeRoleAsync(ReplicaRole)
-  - microsoft.servicefabric.actors._actor_service_impl.runAsync()
+  - microsoft.servicefabric.actors._actor_service_impl.onChangeRoleAsync(ReplicaRole,CancellationToken)
+  - microsoft.servicefabric.actors._actor_service_impl.runAsync(CancellationToken)
   - microsoft.servicefabric.actors._actor_service_impl.stateProvider()
   - microsoft.servicefabric.actors._actor_service_impl.subscribeAsync(ActorId,int,ActorEventSubscriberProxy)
   - microsoft.servicefabric.actors._actor_service_impl.unsubscribeAsync(ActorId,int,UUID)
@@ -28,17 +28,17 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 26
+    startLine: 27
   package: microsoft.servicefabric.actors
   summary: >-
     <p>Represents the base class for Microsoft Service Fabric based reliable actors service. </p>
 
     <p>
 
-      <bold>Remarks:</bold>Derive from this class to implement your own custom actor service if you want to override any service level behavior for your actors.</p>
+      <bold>Remarks:</bold>Derive from this class to implement your own custom actor service if you want to override any service level behavior for your actors. </p>
   syntax:
     content: public class ActorServiceImpl extends StatefulServiceBase
   inheritance:
@@ -52,16 +52,15 @@ items:
   - microsoft.servicefabric.services.runtime._stateful_service_base.createStateProviderReplica()
   - microsoft.servicefabric.actors._actor_service_impl.logger()
   - microsoft.servicefabric.services.runtime._stateful_service_base.onAbort()
-  - microsoft.servicefabric.services.runtime._stateful_service_base.onClose()
-  - microsoft.servicefabric.services.runtime._stateful_service_base.onDataLossAsync(RestoreContext)
-  - microsoft.servicefabric.services.runtime._stateful_service_base.onOpenAsync(ReplicaOpenMode)
+  - microsoft.servicefabric.services.runtime._stateful_service_base.onCloseAsync(CancellationToken)
+  - microsoft.servicefabric.services.runtime._stateful_service_base.onDataLossAsync(RestoreContext,CancellationToken)
+  - microsoft.servicefabric.services.runtime._stateful_service_base.onOpenAsync(ReplicaOpenMode,CancellationToken)
   - microsoft.servicefabric.services.runtime._stateful_service_base.partition()
   - microsoft.servicefabric.services.runtime._stateful_service_base.setAddresses(Map<String, String>)
   - microsoft.servicefabric.services.runtime._stateful_service_base.setPartition(StatefulServicePartition)
   - microsoft.servicefabric.actors._actor_service_impl.settings()
   - microsoft.servicefabric.services.runtime._stateful_service_base.StatefulServiceBase(StatefulServiceContext,StateProviderReplica)
   - microsoft.servicefabric.services.runtime._stateful_service_base.stateProviderReplica()
-  - microsoft.servicefabric.services.runtime._stateful_service_base.traceType()
 - uid: microsoft.servicefabric.actors._actor_service_impl.ActorServiceImpl(StatefulServiceContext,ActorTypeInformation)
   id: ActorServiceImpl(StatefulServiceContext,ActorTypeInformation)
   parent: microsoft.servicefabric.actors._actor_service_impl
@@ -74,9 +73,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 50
+    startLine: 54
   package: microsoft.servicefabric.actors
-  summary: <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class. </p>
+  summary: >-
+    <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class.</p>
+
+    <p></p>
   syntax:
     content: public ActorServiceImpl(StatefulServiceContext context, ActorTypeInformation actorTypeInfo)
     parameters:
@@ -98,9 +100,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 60
+    startLine: 68
   package: microsoft.servicefabric.actors
-  summary: <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class. </p>
+  summary: >-
+    <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class.</p>
+
+    <p></p>
   syntax:
     content: public ActorServiceImpl(StatefulServiceContext context, ActorTypeInformation actorTypeInfo, Supplier<ActorBase> actorFactory)
     parameters:
@@ -125,9 +130,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 71
+    startLine: 87
   package: microsoft.servicefabric.actors
-  summary: <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class. </p>
+  summary: >-
+    <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class.</p>
+
+    <p></p>
   syntax:
     content: public ActorServiceImpl(StatefulServiceContext context, ActorTypeInformation actorTypeInfo, Supplier<ActorBase> actorFactory, ActorStateProvider stateProvider)
     parameters:
@@ -155,9 +163,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 83
+    startLine: 109
   package: microsoft.servicefabric.actors
-  summary: <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class. </p>
+  summary: >-
+    <p>Initializes a new instance of the <ref refid="" kindref="compound">ActorService</ref> class.</p>
+
+    <p></p>
   syntax:
     content: public ActorServiceImpl(StatefulServiceContext context, ActorTypeInformation actorTypeInfo, Supplier<ActorBase> actorFactory, ActorStateProvider stateProvider, ActorServiceSettings settings)
     parameters:
@@ -188,9 +199,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 113
+    startLine: 147
   package: microsoft.servicefabric.actors
-  summary: <p>Gets <xref href="microsoft.servicefabric.actors._actor_type_information" data-throw-if-not-resolved="false"></xref> for actor service. </p>
+  summary: >-
+    <p>Gets <xref href="microsoft.servicefabric.actors._actor_type_information" data-throw-if-not-resolved="false"></xref> for actor service.</p>
+
+    <p></p>
   syntax:
     content: public ActorTypeInformation actorTypeInformation()
     return:
@@ -211,9 +225,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 194
+    startLine: 234
   package: microsoft.servicefabric.actors
-  summary: <p>Creates Service Replica Listeners. </p>
+  summary: >-
+    <p>Creates Service Replica Listeners.</p>
+
+    <p></p>
   syntax:
     content: protected List<ServiceReplicaListener> createServiceReplicaListeners()
     return:
@@ -231,9 +248,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 148
+    startLine: 187
   package: microsoft.servicefabric.actors
-  summary: "<p>Deletes an <xref href=\"microsoft.servicefabric.actors._actor\" data-throw-if-not-resolved=\"false\"></xref> from the <xref href=\"microsoft.servicefabric.actors._actor\" data-throw-if-not-resolved=\"false\"></xref> service. \r\nAn active actor, will be deactivated and its state will also be deleted from state provider. An in-active actor's state will be deleted from state provider. If this method is called for a non-existent actor id in the system, it will be a no-op. </p>"
+  summary: >-
+    <p>Deletes an <xref href="microsoft.servicefabric.actors._actor" data-throw-if-not-resolved="false"></xref> from the <xref href="microsoft.servicefabric.actors._actor" data-throw-if-not-resolved="false"></xref> service.</p>
+
+    <p>
+
+    An active actor, will be deactivated and its state will also be deleted from state provider. An in-active actor's state will be deleted from state provider. If this method is called for a non-existent actor id in the system, it will be a no-op. </p>
   syntax:
     content: public CompletableFuture<?> deleteActorAsync(ActorId actorId)
     parameters:
@@ -258,7 +280,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 184
+    startLine: 223
   package: microsoft.servicefabric.actors
   syntax:
     content: public DiagnosticsManager diagnosticsManager()
@@ -276,9 +298,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 133
+    startLine: 170
   package: microsoft.servicefabric.actors
-  summary: <p>Gets the list of Actors by querying the actor service. </p>
+  summary: >-
+    <p>Gets the list of Actors by querying the actor service.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<PagedResult<ActorInformation>> getActorsAsync(ContinuationToken continuationToken)
     parameters:
@@ -300,7 +325,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 176
+    startLine: 215
   package: microsoft.servicefabric.actors
   syntax:
     content: public void initialize(ActorMethodDispatcherMap methodDispatcherMap, ActorMethodFriendlyNameBuilder methodFriendlyNameBuilder)
@@ -321,7 +346,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 153
+    startLine: 192
   package: microsoft.servicefabric.actors
   syntax:
     content: public CompletableFuture<byte[]> invokeAsync(ActorId actorId, int interfaceId, int methodId, String callContext, byte[] requestMsgBody)
@@ -338,45 +363,58 @@ items:
       type: ccd9418d
     return:
       type: 5fe2dfa4
-- uid: microsoft.servicefabric.actors._actor_service_impl.onChangeRoleAsync(ReplicaRole)
-  id: onChangeRoleAsync(ReplicaRole)
+- uid: microsoft.servicefabric.actors._actor_service_impl.onChangeRoleAsync(ReplicaRole,CancellationToken)
+  id: onChangeRoleAsync(ReplicaRole,CancellationToken)
   parent: microsoft.servicefabric.actors._actor_service_impl
   href: microsoft.servicefabric.actors._actor_service_impl.yml
   langs:
   - java
-  name: onChangeRoleAsync(ReplicaRole newRole)
-  fullName: CompletableFuture<?> microsoft.servicefabric.actors.ActorServiceImpl.onChangeRoleAsync(ReplicaRole newRole)
+  name: onChangeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.actors.ActorServiceImpl.onChangeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 214
+    startLine: 263
   package: microsoft.servicefabric.actors
   syntax:
-    content: protected CompletableFuture<?> onChangeRoleAsync(ReplicaRole newRole)
+    content: protected CompletableFuture<?> onChangeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
     parameters:
     - id: newRole
       type: system.fabric._replica_role
       description: <p>New role for the replica. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A task that represents the asynchronous operation performed when the replica becomes primary. </p>
-- uid: microsoft.servicefabric.actors._actor_service_impl.runAsync()
-  id: runAsync()
+- uid: microsoft.servicefabric.actors._actor_service_impl.runAsync(CancellationToken)
+  id: runAsync(CancellationToken)
   parent: microsoft.servicefabric.actors._actor_service_impl
   href: microsoft.servicefabric.actors._actor_service_impl.yml
   langs:
   - java
-  name: runAsync()
-  fullName: CompletableFuture<?> microsoft.servicefabric.actors.ActorServiceImpl.runAsync()
+  name: runAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.actors.ActorServiceImpl.runAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 205
+    startLine: 249
   package: microsoft.servicefabric.actors
   syntax:
-    content: protected CompletableFuture<?> runAsync()
+    content: protected CompletableFuture<?> runAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A task that represents the asynchronous operation of loading reminders when the replica becomes primary. </p>
@@ -392,9 +430,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 122
+    startLine: 156
   package: microsoft.servicefabric.actors
-  summary: <p>Gets a <xref href="microsoft.servicefabric.actors._actor_state_provider" data-throw-if-not-resolved="false"></xref> that represents the state provider for the actor service. </p>
+  summary: >-
+    <p>Gets a <xref href="microsoft.servicefabric.actors._actor_state_provider" data-throw-if-not-resolved="false"></xref> that represents the state provider for the actor service.</p>
+
+    <p></p>
   syntax:
     content: public ActorStateProvider stateProvider()
     return:
@@ -415,7 +456,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 163
+    startLine: 202
   package: microsoft.servicefabric.actors
   syntax:
     content: public CompletableFuture<?> subscribeAsync(ActorId actorId, int eventInterfaceId, ActorEventSubscriberProxy subscriber)
@@ -440,7 +481,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorServiceImpl.java
-    startLine: 171
+    startLine: 210
   package: microsoft.servicefabric.actors
   syntax:
     content: public CompletableFuture<?> unsubscribeAsync(ActorId actorId, int eventInterfaceId, UUID subscriberId)
@@ -573,15 +614,13 @@ references:
   summary: >-
     <p>Performs a backup of all reliable state managed by this <xref href="microsoft.servicefabric.services.runtime._stateful_service_base" data-throw-if-not-resolved="false"></xref>.</p>
 
-    <p>
-
-      <bold>Remarks:</bold> Boolean returned by the backupCallback indicate whether the service was able to successfully move the backup folder to an external location. If false is returned, BackupAsync throws InvalidOperationException with the relevant message indicating backupCallback returned false. Also, backup will be marked as unsuccessful. </p>
+    <p></p>
   syntax:
     content: public CompletableFuture<?> backupAsync(BackupDescription backupDescription, Duration timeout)
     parameters:
     - id: backupDescription
       type: microsoft.servicefabric.data._backup_description
-      description: <p>describing the backup request. </p>
+      description: <p>A <ref refid="" kindref="compound">BackupDescription</ref> describing the backup request. </p>
     - id: timeout
       type: e02a2de0
       description: <p>The timeout for this operation. </p>
@@ -614,56 +653,75 @@ references:
   summary: <p>Notification that the service is being aborted. RunAsync MAY be running concurrently with the execution of this method, as cancellation is not awaited on the abort path. </p>
   syntax:
     content: protected void onAbort()
-- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onClose()
+- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onCloseAsync(CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateful_service_base
   href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
-  name: onClose()
-  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatefulServiceBase.onClose()
+  name: onCloseAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatefulServiceBase.onCloseAsync(CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This method is called as the final step of closing the service. Override this method to be notified that Close has completed for this replica's internal components.</p>
 
     <p></p>
   syntax:
-    content: protected CompletableFuture<?> onClose()
+    content: protected CompletableFuture<?> onCloseAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. </p>
-- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onDataLossAsync(RestoreContext)
+- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onDataLossAsync(RestoreContext,CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateful_service_base
   href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
-  name: onDataLossAsync(RestoreContext context)
-  fullName: CompletableFuture<Boolean> microsoft.servicefabric.services.runtime.StatefulServiceBase.onDataLossAsync(RestoreContext context)
+  name: onDataLossAsync(RestoreContext context, CancellationToken cancellationToken)
+  fullName: CompletableFuture<Boolean> microsoft.servicefabric.services.runtime.StatefulServiceBase.onDataLossAsync(RestoreContext context, CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This method is called during suspected data loss. You can override this method to restore the service in case of data loss.</p>
 
     <p></p>
   syntax:
-    content: protected CompletableFuture<Boolean> onDataLossAsync(RestoreContext context)
+    content: protected CompletableFuture<Boolean> onDataLossAsync(RestoreContext context, CancellationToken cancellationToken)
     parameters:
     - id: context
       type: microsoft.servicefabric.data._restore_context
       description: <p>A <ref refid="" kindref="compound">RestoreContext</ref> to be used to restore the service. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 7e53ac82
       description: <p>A Task that represents the asynchronous restore operation. True indicates that the state has been restored. False indicates that the replica's state has not been modified. </p>
-- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onOpenAsync(ReplicaOpenMode)
+- uid: microsoft.servicefabric.services.runtime._stateful_service_base.onOpenAsync(ReplicaOpenMode,CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateful_service_base
   href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
-  name: onOpenAsync(ReplicaOpenMode openMode)
-  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatefulServiceBase.onOpenAsync(ReplicaOpenMode openMode)
+  name: onOpenAsync(ReplicaOpenMode openMode, CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatefulServiceBase.onOpenAsync(ReplicaOpenMode openMode, CancellationToken cancellationToken)
   type: Method
   summary: >-
     <p>This method is called as the final step of opening the service. Override this method to be notified that Open has completed for this replica's internal components.</p>
 
     <p></p>
   syntax:
-    content: protected CompletableFuture<?> onOpenAsync(ReplicaOpenMode openMode)
+    content: protected CompletableFuture<?> onOpenAsync(ReplicaOpenMode openMode, CancellationToken cancellationToken)
     parameters:
     - id: openMode
       type: system.fabric._replica_open_mode
       description: <p>for this service replica. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. </p>
@@ -699,6 +757,21 @@ references:
       type: 689c8cb5
       description: <p>An <ref refid="" kindref="compound">Map</ref> containing list of addresses as (ListenerName, Endpoint) key-value pair. </p>
 - uid: microsoft.servicefabric.services.runtime._stateful_service_base.setPartition(StatefulServicePartition)
+  parent: microsoft.servicefabric.services.runtime._stateful_service_base
+  href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
+  name: setPartition(StatefulServicePartition partition)
+  fullName: void microsoft.servicefabric.services.runtime.StatefulServiceBase.setPartition(StatefulServicePartition partition)
+  type: Method
+  summary: >-
+    <p>Service partition to which current service replica belongs.</p>
+
+    <p></p>
+  syntax:
+    content: protected void setPartition(StatefulServicePartition partition)
+    parameters:
+    - id: partition
+      type: system.fabric._stateful_service_partition
+      description: <p>An <ref refid="" kindref="compound">StatefulServicePartition</ref> that represents the partition to which this service replica belongs. </p>
 - uid: microsoft.servicefabric.actors._actor_service_impl.settings()
 - uid: microsoft.servicefabric.services.runtime._stateful_service_base.StatefulServiceBase(StatefulServiceContext,StateProviderReplica)
   parent: microsoft.servicefabric.services.runtime._stateful_service_base
@@ -729,16 +802,6 @@ references:
     content: protected StateProviderReplica stateProviderReplica()
     return:
       type: microsoft.servicefabric.data._state_provider_replica
-- uid: microsoft.servicefabric.services.runtime._stateful_service_base.traceType()
-  parent: microsoft.servicefabric.services.runtime._stateful_service_base
-  href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
-  name: traceType
-  fullName: final String microsoft.servicefabric.services.runtime.StatefulServiceBase.traceType
-  type: Field
-  syntax:
-    content: protected final String traceType= "StatefulServiceBase"
-    return:
-      type: 3d93591e
 - uid: microsoft.servicefabric.services.runtime._stateful_service_base
   parent: microsoft.servicefabric.services.runtime
   href: microsoft.servicefabric.services.runtime._stateful_service_base.yml
@@ -820,7 +883,10 @@ references:
   name: PagedResult<T>
   fullName: microsoft.servicefabric.actors.PagedResult<T>
   type: Class
-  summary: <p>Represents the result of actor query calls. </p>
+  summary: >-
+    <p>Represents the result of actor query calls.</p>
+
+    <p></p>
   syntax:
     content: public class PagedResult<T>
     typeParameters:
@@ -846,7 +912,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>A method that may return a partial set of results via a <xref href="microsoft.servicefabric.actors._paged_result" data-throw-if-not-resolved="false"></xref> object also returns a continuation token in the object, which can be used in a subsequent call to return the next set of available results.</p>
+      <bold>Remarks:</bold>A method that may return a partial set of results via a <xref href="microsoft.servicefabric.actors._paged_result" data-throw-if-not-resolved="false"></xref> object also returns a continuation token in the object, which can be used in a subsequent call to return the next set of available results. </p>
   syntax:
     content: public class ContinuationToken
 - uid: microsoft.servicefabric.actors._actor_id
@@ -870,6 +936,15 @@ references:
   summary: <p>Represents the communication listener and its properties for a Stateful Service Replica. Endpoints given out by the communication listener are associated with name of the communication listener. </p>
   syntax:
     content: public class ServiceReplicaListener
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
 - uid: microsoft.servicefabric.services.communication.runtime._communication_listener
   parent: microsoft.servicefabric.services.communication.runtime
   href: microsoft.servicefabric.services.communication.runtime._communication_listener.yml

@@ -5,7 +5,8 @@ items:
   - com.microsoft.azure.servicebus.amqp._amqp_constants
   - com.microsoft.azure.servicebus.amqp._amqp_error_code
   - com.microsoft.azure.servicebus.amqp._amqp_exception
-  - com.microsoft.azure.servicebus.amqp._amqp_management_response_code
+  - com.microsoft.azure.servicebus.amqp._amqp_response_code
+  - com.microsoft.azure.servicebus.amqp._amqp_util
   - com.microsoft.azure.servicebus.amqp._base_link_handler
   - com.microsoft.azure.servicebus.amqp._connection_handler
   - com.microsoft.azure.servicebus.amqp._custom_i_o_handler
@@ -14,10 +15,15 @@ items:
   - com.microsoft.azure.servicebus.amqp._i_amqp_link
   - com.microsoft.azure.servicebus.amqp._i_amqp_receiver
   - com.microsoft.azure.servicebus.amqp._i_amqp_sender
+  - com.microsoft.azure.servicebus.amqp._i_i_o_object
+  - com.microsoft.azure.servicebus.amqp._i_i_o_object._i_o_object_state
+  - com.microsoft.azure.servicebus.amqp._i_operation
+  - com.microsoft.azure.servicebus.amqp._i_operation_result
   - com.microsoft.azure.servicebus.amqp._proton_util
   - com.microsoft.azure.servicebus.amqp._reactor_dispatcher
   - com.microsoft.azure.servicebus.amqp._reactor_handler
   - com.microsoft.azure.servicebus.amqp._receive_link_handler
+  - com.microsoft.azure.servicebus.amqp._request_response_channel
   - com.microsoft.azure.servicebus.amqp._send_link_handler
   - com.microsoft.azure.servicebus.amqp._session_handler
   href: com.microsoft.azure.servicebus.amqp.yml
@@ -61,14 +67,22 @@ references:
   summary: <p>All AmqpExceptions - which EventHub client handles internally. </p>
   syntax:
     content: public class AmqpException
-- uid: com.microsoft.azure.servicebus.amqp._amqp_management_response_code
+- uid: com.microsoft.azure.servicebus.amqp._amqp_response_code
   parent: com.microsoft.azure.servicebus.amqp
-  href: com.microsoft.azure.servicebus.amqp._amqp_management_response_code.yml
-  name: AmqpManagementResponseCode
-  fullName: com.microsoft.azure.servicebus.amqp.AmqpManagementResponseCode
+  href: com.microsoft.azure.servicebus.amqp._amqp_response_code.yml
+  name: AmqpResponseCode
+  fullName: com.microsoft.azure.servicebus.amqp.AmqpResponseCode
   type: Enum
   syntax:
-    content: public enum AmqpManagementResponseCode
+    content: public enum AmqpResponseCode
+- uid: com.microsoft.azure.servicebus.amqp._amqp_util
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._amqp_util.yml
+  name: AmqpUtil
+  fullName: com.microsoft.azure.servicebus.amqp.AmqpUtil
+  type: Class
+  syntax:
+    content: public class AmqpUtil
 - uid: com.microsoft.azure.servicebus.amqp._base_link_handler
   parent: com.microsoft.azure.servicebus.amqp
   href: com.microsoft.azure.servicebus.amqp._base_link_handler.yml
@@ -133,6 +147,35 @@ references:
   type: Interface
   syntax:
     content: public interface IAmqpSender extends IAmqpLink
+- uid: com.microsoft.azure.servicebus.amqp._i_i_o_object
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._i_i_o_object.yml
+  name: IIOObject
+  fullName: com.microsoft.azure.servicebus.amqp.IIOObject
+  type: Interface
+  syntax:
+    content: public interface IIOObject
+- uid: com.microsoft.azure.servicebus.amqp._i_operation
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._i_operation.yml
+  name: IOperation<T>
+  fullName: com.microsoft.azure.servicebus.amqp.IOperation<T>
+  type: Interface
+  syntax:
+    content: public interface IOperation<T>
+    typeParameters:
+    - type: 8ce1ecb9
+- uid: com.microsoft.azure.servicebus.amqp._i_operation_result
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._i_operation_result.yml
+  name: IOperationResult<T,E>
+  fullName: com.microsoft.azure.servicebus.amqp.IOperationResult<T,E>
+  type: Interface
+  syntax:
+    content: public interface IOperationResult<T,E extends Throwable>
+    typeParameters:
+    - type: 8ce1ecb9
+    - type: 0ca03e3a
 - uid: com.microsoft.azure.servicebus.amqp._proton_util
   parent: com.microsoft.azure.servicebus.amqp
   href: com.microsoft.azure.servicebus.amqp._proton_util.yml
@@ -169,6 +212,14 @@ references:
   type: Class
   syntax:
     content: public class ReceiveLinkHandler extends BaseLinkHandler
+- uid: com.microsoft.azure.servicebus.amqp._request_response_channel
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._request_response_channel.yml
+  name: RequestResponseChannel
+  fullName: com.microsoft.azure.servicebus.amqp.RequestResponseChannel
+  type: Class
+  syntax:
+    content: public class RequestResponseChannel implements IIOObject
 - uid: com.microsoft.azure.servicebus.amqp._send_link_handler
   parent: com.microsoft.azure.servicebus.amqp
   href: com.microsoft.azure.servicebus.amqp._send_link_handler.yml
@@ -185,3 +236,11 @@ references:
   type: Class
   syntax:
     content: public class SessionHandler
+- uid: com.microsoft.azure.servicebus.amqp._i_i_o_object._i_o_object_state
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._i_i_o_object._i_o_object_state.yml
+  name: IIOObject.IOObjectState
+  fullName: com.microsoft.azure.servicebus.amqp.IIOObject.IOObjectState
+  type: Enum
+  syntax:
+    content: public enum IOObjectState

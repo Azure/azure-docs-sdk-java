@@ -3,17 +3,17 @@ items:
   id: _stateless_service_base
   parent: microsoft.servicefabric.services.runtime
   children:
-  - microsoft.servicefabric.services.runtime._stateless_service_base.address()
+  - microsoft.servicefabric.services.runtime._stateless_service_base.addresses()
   - microsoft.servicefabric.services.runtime._stateless_service_base.context()
   - microsoft.servicefabric.services.runtime._stateless_service_base.createServiceInstanceListeners()
   - microsoft.servicefabric.services.runtime._stateless_service_base.onAbort()
-  - microsoft.servicefabric.services.runtime._stateless_service_base.onCloseAsync()
-  - microsoft.servicefabric.services.runtime._stateless_service_base.onOpenAsync()
+  - microsoft.servicefabric.services.runtime._stateless_service_base.onCloseAsync(CancellationToken)
+  - microsoft.servicefabric.services.runtime._stateless_service_base.onOpenAsync(CancellationToken)
   - microsoft.servicefabric.services.runtime._stateless_service_base.partition()
-  - microsoft.servicefabric.services.runtime._stateless_service_base.runAsync()
+  - microsoft.servicefabric.services.runtime._stateless_service_base.runAsync(CancellationToken)
+  - microsoft.servicefabric.services.runtime._stateless_service_base.setAddresses(Map<String, String>)
   - microsoft.servicefabric.services.runtime._stateless_service_base.setPartition(StatelessServicePartition)
   - microsoft.servicefabric.services.runtime._stateless_service_base.StatelessServiceBase()
-  - microsoft.servicefabric.services.runtime._stateless_service_base.traceId()
   href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
   langs:
   - java
@@ -23,37 +23,40 @@ items:
   source:
     remote: &o0
       path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-      branch: release_linux_5.3
+      branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 9
+    startLine: 14
   package: microsoft.servicefabric.services.runtime
-  syntax: &o1
+  syntax:
     content: public class StatelessServiceBase
   inheritance:
   - java.lang.Object
   inheritedMembers:
   - microsoft.servicefabric.services.runtime._stateless_service_base.initialize(StatelessServiceContext)
-  - microsoft.servicefabric.services.runtime._stateless_service_base.withAddress(String)
-  - microsoft.servicefabric.services.runtime._stateless_service_base.withTraceId(String)
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.address()
-  id: address()
+- uid: microsoft.servicefabric.services.runtime._stateless_service_base.addresses()
+  id: addresses()
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
   href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
   langs:
   - java
-  name: address()
-  fullName: String microsoft.servicefabric.services.runtime.StatelessServiceBase.address()
+  name: addresses()
+  fullName: Map<String, String> microsoft.servicefabric.services.runtime.StatelessServiceBase.addresses()
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 17
+    startLine: 31
   package: microsoft.servicefabric.services.runtime
+  summary: >-
+    <p>Gets list of all the addresses for this service instances as (ListenerName, Endpoint) key-value pair.</p>
+
+    <p></p>
   syntax:
-    content: protected String address()
+    content: protected Map<String, String> addresses()
     return:
-      type: "26831127"
+      type: 689c8cb5
+      description: <p>An <ref refid="" kindref="compound">Map</ref> containing list of addresses as (ListenerName, Endpoint) key-value pair. </p>
 - uid: microsoft.servicefabric.services.runtime._stateless_service_base.context()
   id: context()
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
@@ -66,9 +69,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 29
+    startLine: 53
   package: microsoft.servicefabric.services.runtime
-  summary: <p>Gets the service context that this stateless service is operating under. It provides information like InstanceId, PartitionId, ServiceName etc. </p>
+  summary: >-
+    <p>Gets the service context that this stateless service is operating under. It provides information like InstanceId, PartitionId, ServiceName etc.</p>
+
+    <p></p>
   syntax:
     content: public StatelessServiceContext context()
     return:
@@ -86,9 +92,12 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 52
+    startLine: 86
   package: microsoft.servicefabric.services.runtime
-  summary: <p>Override this method to supply the communication listeners for the service instance. The endpoints returned by the communication listener's are stored as a JSON string of ListenerName, Endpoint string pairs like {"Endpoints":{"Listener1":"Endpoint1","Listener2":"Endpoint2" ...}} </p>
+  summary: >-
+    <p>Override this method to supply the communication listeners for the service instance. The endpoints returned by the communication listener's are stored as a JSON string of ListenerName, Endpoint string pairs like {"Endpoints":{"Listener1":"Endpoint1","Listener2":"Endpoint2" ...}}</p>
+
+    <p></p>
   syntax:
     content: protected List<ServiceInstanceListener> createServiceInstanceListeners()
     return:
@@ -106,51 +115,68 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 96
+    startLine: 139
   package: microsoft.servicefabric.services.runtime
   summary: <p>Notification that the service is being aborted. RunAsync MAY be running concurrently with the execution of this method, as cancellation is not awaited on the abort path. </p>
   syntax:
     content: protected void onAbort()
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.onCloseAsync()
-  id: onCloseAsync()
+- uid: microsoft.servicefabric.services.runtime._stateless_service_base.onCloseAsync(CancellationToken)
+  id: onCloseAsync(CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
   href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
   langs:
   - java
-  name: onCloseAsync()
-  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.onCloseAsync()
+  name: onCloseAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.onCloseAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 86
+    startLine: 129
   package: microsoft.servicefabric.services.runtime
-  summary: <p>This method is called as the final step of closing the service. Override this method to be notified that Close has completed for this instance's internal components. </p>
+  summary: >-
+    <p>This method is called as the final step of closing the service. Override this method to be notified that Close has completed for this instance's internal components.</p>
+
+    <p></p>
   syntax:
-    content: protected CompletableFuture<?> onCloseAsync()
+    content: protected CompletableFuture<?> onCloseAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. </p>
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.onOpenAsync()
-  id: onOpenAsync()
+- uid: microsoft.servicefabric.services.runtime._stateless_service_base.onOpenAsync(CancellationToken)
+  id: onOpenAsync(CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
   href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
   langs:
   - java
-  name: onOpenAsync()
-  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.onOpenAsync()
+  name: onOpenAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.onOpenAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 63
+    startLine: 99
   package: microsoft.servicefabric.services.runtime
   summary: >-
     <p>This method is called as the final step of opening the service. Override this method to be notified that Open has completed for this instance's internal components.</p>
 
     <p></p>
   syntax:
-    content: protected CompletableFuture<?> onOpenAsync()
+    content: protected CompletableFuture<?> onOpenAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. </p>
@@ -166,34 +192,71 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 37
+    startLine: 63
   package: microsoft.servicefabric.services.runtime
-  summary: <p>Service partition to which current service instance belongs. </p>
+  summary: >-
+    <p>Gets the service partition to which current service instance belongs.</p>
+
+    <p></p>
   syntax:
     content: protected StatelessServicePartition partition()
     return:
       type: system.fabric._stateless_service_partition
       description: <p>An <ref refid="" kindref="compound">StatelessServicePartition</ref> that represents the partition to which this service replica belongs. </p>
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.runAsync()
-  id: runAsync()
+- uid: microsoft.servicefabric.services.runtime._stateless_service_base.runAsync(CancellationToken)
+  id: runAsync(CancellationToken)
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
   href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
   langs:
   - java
-  name: runAsync()
-  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.runAsync()
+  name: runAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> microsoft.servicefabric.services.runtime.StatelessServiceBase.runAsync(CancellationToken cancellationToken)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 75
+    startLine: 114
   package: microsoft.servicefabric.services.runtime
-  summary: <p>Services that want to implement a background task which runs when it is opened, just override this method with their logic. </p>
+  summary: >-
+    <p>Services that want to implement a background task which runs when it is opened, just override this method with their logic.</p>
+
+    <p></p>
   syntax:
-    content: protected CompletableFuture<?> runAsync()
+    content: protected CompletableFuture<?> runAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 16409f84
       description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. </p>
+- uid: microsoft.servicefabric.services.runtime._stateless_service_base.setAddresses(Map<String, String>)
+  id: setAddresses(Map<String, String>)
+  parent: microsoft.servicefabric.services.runtime._stateless_service_base
+  href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
+  langs:
+  - java
+  name: setAddresses(Map<String, String> addresses)
+  fullName: void microsoft.servicefabric.services.runtime.StatelessServiceBase.setAddresses(Map<String, String> addresses)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
+    startLine: 43
+  package: microsoft.servicefabric.services.runtime
+  summary: >-
+    <p>Sets list of all the addresses for this service instance as (ListenerName, Endpoint) key-value pair.</p>
+
+    <p></p>
+  syntax:
+    content: protected void setAddresses(Map<String, String> addresses)
+    parameters:
+    - id: addresses
+      type: 689c8cb5
+      description: <p>An <ref refid="" kindref="compound">Map</ref> containing list of addresses as (ListenerName, Endpoint) key-value pair. </p>
 - uid: microsoft.servicefabric.services.runtime._stateless_service_base.setPartition(StatelessServicePartition)
   id: setPartition(StatelessServicePartition)
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
@@ -206,13 +269,18 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 41
+    startLine: 74
   package: microsoft.servicefabric.services.runtime
+  summary: >-
+    <p>Sets the service partition to which current service instance belongs.</p>
+
+    <p></p>
   syntax:
     content: protected void setPartition(StatelessServicePartition partition)
     parameters:
     - id: partition
       type: system.fabric._stateless_service_partition
+      description: <p>An <ref refid="" kindref="compound">StatefulServicePartition</ref> that represents the partition to which this service replica belongs. </p>
 - uid: microsoft.servicefabric.services.runtime._stateless_service_base.StatelessServiceBase()
   id: StatelessServiceBase()
   parent: microsoft.servicefabric.services.runtime._stateless_service_base
@@ -225,33 +293,15 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 15
+    startLine: 19
   package: microsoft.servicefabric.services.runtime
   syntax:
     content: protected StatelessServiceBase()
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.traceId()
-  id: traceId()
-  parent: microsoft.servicefabric.services.runtime._stateless_service_base
-  href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
-  langs:
-  - java
-  name: traceId()
-  fullName: String microsoft.servicefabric.services.runtime.StatelessServiceBase.traceId()
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/runtime/StatelessServiceBase.java
-    startLine: 21
-  package: microsoft.servicefabric.services.runtime
-  syntax:
-    content: protected String traceId()
-    return:
-      type: "26831127"
 references:
-- uid: "26831127"
+- uid: 689c8cb5
   spec.java:
-  - name: String
-    fullName: String
+  - name: Map<String, String>
+    fullName: Map<String, String>
 - uid: 5618da2dmicrosoft.servicefabric.services.communication.runtime._service_instance_listenera08ddfce
   spec.java:
   - name: List<
@@ -267,8 +317,6 @@ references:
   - name: CompletableFuture<?>
     fullName: CompletableFuture<?>
 - uid: microsoft.servicefabric.services.runtime._stateless_service_base.initialize(StatelessServiceContext)
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.withAddress(String)
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base.withTraceId(String)
 - uid: microsoft.servicefabric.services.runtime._stateless_service
   parent: microsoft.servicefabric.services.runtime
   href: microsoft.servicefabric.services.runtime._stateless_service.yml
@@ -298,7 +346,7 @@ references:
 
     <p>
 
-      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>.</p>
+      <bold>Remarks:</bold>Provided to a stateless service as a parameter to the <xref href="system.fabric._service_partition" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface StatelessServicePartition
 - uid: microsoft.servicefabric.services.communication.runtime._service_instance_listener
@@ -310,10 +358,12 @@ references:
   summary: <p>Represents the communication listener and its properties for a Stateless Service Instance. Endpoints given out by the communication listener are associated with name of the communication listener. </p>
   syntax:
     content: public class ServiceInstanceListener
-- uid: microsoft.servicefabric.services.runtime._stateless_service_base
-  parent: microsoft.servicefabric.services.runtime
-  href: microsoft.servicefabric.services.runtime._stateless_service_base.yml
-  name: StatelessServiceBase
-  fullName: microsoft.servicefabric.services.runtime.StatelessServiceBase
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  fullName: system.fabric.CancellationToken
   type: Class
-  syntax: *o1
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken

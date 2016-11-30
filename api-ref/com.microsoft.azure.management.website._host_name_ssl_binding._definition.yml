@@ -14,19 +14,24 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-website/src/main/java/com/microsoft/azure/management/website/HostNameSslBinding.java
-    startLine: 40
+    startLine: 41
   package: com.microsoft.azure.management.website
-  summary: <p>The entirety of a domain contact definition. </p>
+  summary: <p>The entirety of a hostname SSL binding definition. </p>
   syntax:
-    content: public interface Definition<ParentT> extends HostNameSslBinding.DefinitionStages.Blank<ParentT>,HostNameSslBinding.DefinitionStages.WithSslType<ParentT>,HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
+    content: public interface Definition<ParentT> extends HostNameSslBinding.DefinitionStages.Blank<ParentT>,HostNameSslBinding.DefinitionStages.WithHostname<ParentT>,HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>,HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>,HostNameSslBinding.DefinitionStages.WithSslType<ParentT>,HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable.attach()" data-throw-if-not-resolved="false"></xref></p>
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()
-  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withIpBasedSSL()
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname.forHostname(String)
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.withExistingKeyVault(Vault)
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withIpBasedSsl()
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withNewAppServiceCertificateOrder(String,CertificateProductType)
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.withNewKeyVault(String)
   - com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withPfxCertificateToUpload(File,String)
-  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withSniSSL()
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withReadyToUseAppServiceCertificateOrder(AppServiceCertificateOrder)
+  - com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withSniBasedSsl()
 references:
 - uid: 18a275b1
   spec.java:
@@ -44,50 +49,177 @@ references:
     return:
       type: 18a275b1
       description: <p>the next stage of the parent definition </p>
-- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withIpBasedSSL()
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname.forHostname(String)
+  parent: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname.yml
+  name: forHostname(String hostname)
+  fullName: WithCertificate<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithHostname<ParentT>.forHostname(String hostname)
+  type: Method
+  summary: <p>Specifies the hostname to bind SSL certificate to. </p>
+  syntax:
+    content: public WithCertificate<ParentT> forHostname(String hostname)
+    parameters:
+    - id: hostname
+      type: "26831127"
+      description: <p>the naked hostname, excluding "www". But use *. prefix for wild card typed certificate order. </p>
+    return:
+      type: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5da8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.withExistingKeyVault(Vault)
+  parent: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.yml
+  name: withExistingKeyVault(Vault vault)
+  fullName: WithSslType<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>.withExistingKeyVault(Vault vault)
+  type: Method
+  summary: <p>Stores the certificate in an existing vault. </p>
+  syntax:
+    content: public WithSslType<ParentT> withExistingKeyVault(Vault vault)
+    parameters:
+    - id: vault
+      type: com.microsoft.azure.management.keyvault._vault
+      description: <p>the existing vault to use </p>
+    return:
+      type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_typeda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withIpBasedSsl()
   parent: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type
   href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.yml
-  name: withIpBasedSSL()
-  fullName: WithAttach<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>.withIpBasedSSL()
+  name: withIpBasedSsl()
+  fullName: WithAttach<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>.withIpBasedSsl()
   type: Method
+  summary: <p>Uses IP based SSL. Only one hostname can be bound to IP based SSL. </p>
   syntax:
-    content: public WithAttach<ParentT> withIpBasedSSL()
+    content: public WithAttach<ParentT> withIpBasedSsl()
     return:
       type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_attachda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withNewAppServiceCertificateOrder(String,CertificateProductType)
+  parent: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.yml
+  name: withNewAppServiceCertificateOrder(String certificateOrderName, CertificateProductType productType)
+  fullName: WithKeyVault<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>.withNewAppServiceCertificateOrder(String certificateOrderName, CertificateProductType productType)
+  type: Method
+  summary: <p>Places a new App Service certificate order to use for the hostname </p>
+  syntax:
+    content: public WithKeyVault<ParentT> withNewAppServiceCertificateOrder(String certificateOrderName, CertificateProductType productType)
+    parameters:
+    - id: certificateOrderName
+      type: "26831127"
+      description: <p>the name of the certificate order </p>
+    - id: productType
+      type: com.microsoft.azure.management.website._certificate_product_type
+      description: <p>the sku of the certificate order </p>
+    return:
+      type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vaultda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.withNewKeyVault(String)
+  parent: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.yml
+  name: withNewKeyVault(String vaultName)
+  fullName: WithSslType<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>.withNewKeyVault(String vaultName)
+  type: Method
+  summary: <p>Creates a new key vault to store the certificate. </p>
+  syntax:
+    content: public WithSslType<ParentT> withNewKeyVault(String vaultName)
+    parameters:
+    - id: vaultName
+      type: "26831127"
+      description: <p>the name of the key vault to create </p>
+    return:
+      type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_typeda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
 - uid: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withPfxCertificateToUpload(File,String)
   parent: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5
   href: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.yml
   name: withPfxCertificateToUpload(File pfxFile, String password)
   fullName: WithSslType<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>.withPfxCertificateToUpload(File pfxFile, String password)
   type: Method
+  summary: <p>Uploads a PFX certificate. </p>
   syntax:
     content: public WithSslType<ParentT> withPfxCertificateToUpload(File pfxFile, String password)
     parameters:
     - id: pfxFile
       type: 8291270b
+      description: <p>the PFX certificate file to upload </p>
     - id: password
       type: "26831127"
+      description: <p>the password to the certificate </p>
     return:
       type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_typeda8a2936
-- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withSniSSL()
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.withReadyToUseAppServiceCertificateOrder(AppServiceCertificateOrder)
+  parent: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.yml
+  name: withReadyToUseAppServiceCertificateOrder(AppServiceCertificateOrder certificateOrder)
+  fullName: WithSslType<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>.withReadyToUseAppServiceCertificateOrder(AppServiceCertificateOrder certificateOrder)
+  type: Method
+  summary: <p>Specifies a ready-to-use certificate order to use. This is usually useful for reusing wildcard certificates. </p>
+  syntax:
+    content: public WithSslType<ParentT> withReadyToUseAppServiceCertificateOrder(AppServiceCertificateOrder certificateOrder)
+    parameters:
+    - id: certificateOrder
+      type: com.microsoft.azure.management.website._app_service_certificate_order
+      description: <p>the ready-to-use certificate order </p>
+    return:
+      type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_typeda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.withSniBasedSsl()
   parent: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type
   href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_ssl_type.yml
-  name: withSniSSL()
-  fullName: WithAttach<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>.withSniSSL()
+  name: withSniBasedSsl()
+  fullName: WithAttach<ParentT> com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>.withSniBasedSsl()
   type: Method
+  summary: <p>Uses Server Name Indication (SNI) based SSL. </p>
   syntax:
-    content: public WithAttach<ParentT> withSniSSL()
+    content: public WithAttach<ParentT> withSniBasedSsl()
     return:
       type: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_attachda8a2936
+      description: <p>the next stage of the hostname SSL binding definition </p>
 - uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._blank
   parent: com.microsoft.azure.management.website
   href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._blank.yml
   name: HostNameSslBinding.DefinitionStages.Blank<ParentT>
   fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.Blank<ParentT>
   type: Interface
-  summary: <p>The first stage of a security rule definition. </p>
+  summary: <p>The first stage of a hostname SSL binding definition. </p>
   syntax:
-    content: public interface Blank<ParentT> extends HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
+    content: public interface Blank<ParentT> extends HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname
+  parent: com.microsoft.azure.management.website
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_hostname.yml
+  name: HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
+  fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
+  type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing hostname to be specified. </p>
+  syntax:
+    content: public interface WithHostname<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5
+  parent: com.microsoft.azure.management.website
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definia3b8f39fd54310759e1c841e7bd917d5.yml
+  name: HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
+  fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
+  type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing certificate information to be specified. </p>
+  syntax:
+    content: public interface WithCertificate<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault
+  parent: com.microsoft.azure.management.website
+  href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_key_vault.yml
+  name: HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
+  fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
+  type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing key vault for certificate store to be specified. </p>
+  syntax:
+    content: public interface WithKeyVault<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
@@ -97,10 +229,12 @@ references:
   name: HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
   fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
   type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing SSL type to be specified. </p>
   syntax:
     content: public interface WithSslType<ParentT>
     typeParameters:
     - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_attach
   parent: com.microsoft.azure.management.website
   href: com.microsoft.azure.management.website._host_name_ssl_binding._definition_stages._with_attach.yml
@@ -108,9 +242,9 @@ references:
   fullName: com.microsoft.azure.management.website.HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
   type: Interface
   summary: >-
-    <p>The final stage of the security rule definition. </p>
+    <p>The final stage of the hostname SSL binding definition. </p>
 
-    <p>At this stage, any remaining optional settings can be specified, or the security rule definition can be attached to the parent network security group definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>At this stage, any remaining optional settings can be specified, or the hostname SSL binding definition can be attached to the parent web app definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface WithAttach<ParentT>
     typeParameters:
