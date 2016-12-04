@@ -2,6 +2,7 @@ items:
 - uid: com.microsoft.applicationinsights.telemetry
   id: telemetry
   children:
+  - com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
   - com.microsoft.applicationinsights.telemetry._base_telemetry
   - com.microsoft.applicationinsights.telemetry._duration
   - com.microsoft.applicationinsights.telemetry._event_telemetry
@@ -17,6 +18,7 @@ items:
   - com.microsoft.applicationinsights.telemetry._session_state
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry
   - com.microsoft.applicationinsights.telemetry._severity_level
+  - com.microsoft.applicationinsights.telemetry._support_sampling
   - com.microsoft.applicationinsights.telemetry._telemetry
   - com.microsoft.applicationinsights.telemetry._telemetry_context
   - com.microsoft.applicationinsights.telemetry._trace_telemetry
@@ -28,14 +30,24 @@ items:
   type: Namespace
   source:
     remote:
-      path: core/src/main/java/com/microsoft/applicationinsights/telemetry/BaseTelemetry.java
+      path: core/src/main/java/com/microsoft/applicationinsights/telemetry/BaseSampleSourceTelemetry.java
       branch: master
       repo: https://github.com/Microsoft/ApplicationInsights-Java
-    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/BaseTelemetry.java
-    startLine: 21
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/BaseSampleSourceTelemetry.java
   syntax:
     content: package com.microsoft.applicationinsights.telemetry
 references:
+- uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
+  parent: com.microsoft.applicationinsights.telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.yml
+  name: BaseSampleSourceTelemetry<T>
+  fullName: com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T>
+  type: Class
+  summary: <p>Created by gupele on 12/4/2016. </p>
+  syntax:
+    content: public class BaseSampleSourceTelemetry<T extends SendableData> extends BaseTelemetry<T> implements SupportSampling
+    typeParameters:
+    - type: 8ce1ecb9
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -70,7 +82,7 @@ references:
 
       <xref href="com.microsoft.applicationinsights.telemetry._telemetry" data-throw-if-not-resolved="false"></xref> type used to track events. </p>
   syntax:
-    content: public class EventTelemetry extends BaseTelemetry<EventData>
+    content: public class EventTelemetry extends BaseSampleSourceTelemetry<EventData>
 - uid: com.microsoft.applicationinsights.telemetry._exception_handled_at
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._exception_handled_at.yml
@@ -91,7 +103,7 @@ references:
 
       <xref href="com.microsoft.applicationinsights.telemetry._telemetry" data-throw-if-not-resolved="false"></xref> type used to track exceptions. </p>
   syntax:
-    content: public class ExceptionTelemetry extends BaseTelemetry<ExceptionData>
+    content: public class ExceptionTelemetry extends BaseSampleSourceTelemetry<ExceptionData>
 - uid: com.microsoft.applicationinsights.telemetry._json_serializable
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._json_serializable.yml
@@ -135,7 +147,7 @@ references:
 
     <p>You can send information about pages viewed by your application to Application Insights by passing an instance of this class to the 'trackPageView' method of the <xref href="com.microsoft.applicationinsights._telemetry_client" data-throw-if-not-resolved="false"></xref></p>
   syntax:
-    content: public class PageViewTelemetry extends BaseTelemetry<PageViewData>
+    content: public class PageViewTelemetry extends BaseSampleSourceTelemetry<PageViewData>
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.yml
@@ -153,7 +165,7 @@ references:
   type: Class
   summary: <p>The class that represents information about collected RDD. </p>
   syntax:
-    content: public class RemoteDependencyTelemetry extends BaseTelemetry<RemoteDependencyData>
+    content: public class RemoteDependencyTelemetry extends BaseSampleSourceTelemetry<RemoteDependencyData>
 - uid: com.microsoft.applicationinsights.telemetry._request_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._request_telemetry.yml
@@ -165,7 +177,7 @@ references:
 
     <p>You can send information about requests processed by your web application to Application Insights by passing an instance of this class to the 'trackRequest' method of the <xref href="com.microsoft.applicationinsights._telemetry_client" data-throw-if-not-resolved="false"></xref></p>
   syntax:
-    content: public class RequestTelemetry extends BaseTelemetry<RequestData>
+    content: public class RequestTelemetry extends BaseSampleSourceTelemetry<RequestData>
 - uid: com.microsoft.applicationinsights.telemetry._session_state
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._session_state.yml
@@ -196,6 +208,15 @@ references:
   summary: <p>Enum <xref href="com.microsoft.applicationinsights.telemetry._severity_level" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public enum SeverityLevel
+- uid: com.microsoft.applicationinsights.telemetry._support_sampling
+  parent: com.microsoft.applicationinsights.telemetry
+  href: com.microsoft.applicationinsights.telemetry._support_sampling.yml
+  name: SupportSampling
+  fullName: com.microsoft.applicationinsights.telemetry.SupportSampling
+  type: Interface
+  summary: <p>Created by gupele on 11/2/2016. </p>
+  syntax:
+    content: public interface SupportSampling
 - uid: com.microsoft.applicationinsights.telemetry._telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._telemetry.yml
@@ -225,4 +246,4 @@ references:
 
       <xref href="com.microsoft.applicationinsights.telemetry._telemetry" data-throw-if-not-resolved="false"></xref> type used for log messages. </p>
   syntax:
-    content: public class TraceTelemetry extends BaseTelemetry<MessageData>
+    content: public class TraceTelemetry extends BaseSampleSourceTelemetry<MessageData>

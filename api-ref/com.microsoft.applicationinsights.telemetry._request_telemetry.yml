@@ -10,6 +10,7 @@ items:
   - com.microsoft.applicationinsights.telemetry._request_telemetry.getId()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.getName()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.getResponseCode()
+  - com.microsoft.applicationinsights.telemetry._request_telemetry.getSamplingPercentage()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.getUrl()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.isSuccess()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.RequestTelemetry()
@@ -20,6 +21,7 @@ items:
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setId(String)
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setName(String)
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setResponseCode(String)
+  - com.microsoft.applicationinsights.telemetry._request_telemetry.setSamplingPercentage(Double)
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setSuccess(boolean)
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setTimestamp(Date)
   - com.microsoft.applicationinsights.telemetry._request_telemetry.setUrl(String)
@@ -43,21 +45,14 @@ items:
 
     <p>You can send information about requests processed by your web application to Application Insights by passing an instance of this class to the 'trackRequest' method of the <xref href="com.microsoft.applicationinsights._telemetry_client" data-throw-if-not-resolved="false"></xref></p>
   syntax:
-    content: public class RequestTelemetry extends BaseTelemetry<RequestData>
+    content: public class RequestTelemetry extends BaseSampleSourceTelemetry<RequestData>
   inheritance:
   - java.lang.Object
-  - com.microsoft.applicationinsights.telemetry._base_telemetry
+  - com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
   inheritedMembers:
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.BaseTelemetry()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   - com.microsoft.applicationinsights.telemetry._request_telemetry.getMetrics()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.initialize(ConcurrentMap<String, String>)
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.sanitize()
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.serialize(JsonTelemetryDataSerializer)
-  - com.microsoft.applicationinsights.telemetry._base_telemetry.setSequence(String)
+  - com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.reset()
+  - com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.setSampleRate(Envelope)
 - uid: com.microsoft.applicationinsights.telemetry._request_telemetry.additionalSanitize()
   id: additionalSanitize()
   parent: com.microsoft.applicationinsights.telemetry._request_telemetry
@@ -70,7 +65,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 248
+    startLine: 259
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected void additionalSanitize()
@@ -86,7 +81,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 256
+    startLine: 267
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected RequestData getData()
@@ -104,7 +99,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 188
+    startLine: 189
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the amount of time it took the application to handle the request. </p>
   syntax:
@@ -124,7 +119,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 235
+    startLine: 236
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the HTTP method of the request. </p>
   syntax:
@@ -144,7 +139,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 139
+    startLine: 140
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the unique identifier of the request. </p>
   syntax:
@@ -164,7 +159,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 120
+    startLine: 121
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets or human-readable name of the requested page. </p>
   syntax:
@@ -184,7 +179,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 156
+    startLine: 157
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets response code returned by the application after handling the request. </p>
   syntax:
@@ -192,6 +187,24 @@ items:
     return:
       type: "26831127"
       description: <p>Application's response code </p>
+- uid: com.microsoft.applicationinsights.telemetry._request_telemetry.getSamplingPercentage()
+  id: getSamplingPercentage()
+  parent: com.microsoft.applicationinsights.telemetry._request_telemetry
+  href: com.microsoft.applicationinsights.telemetry._request_telemetry.yml
+  langs:
+  - java
+  name: getSamplingPercentage()
+  fullName: Double com.microsoft.applicationinsights.telemetry.RequestTelemetry.getSamplingPercentage()
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
+    startLine: 249
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public Double getSamplingPercentage()
+    return:
+      type: 8dd309d9
 - uid: com.microsoft.applicationinsights.telemetry._request_telemetry.getUrl()
   id: getUrl()
   parent: com.microsoft.applicationinsights.telemetry._request_telemetry
@@ -204,7 +217,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 205
+    startLine: 206
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets request url (optional). </p>
   syntax:
@@ -227,7 +240,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 172
+    startLine: 173
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets a value indicating whether application handled the request successfully. </p>
   syntax:
@@ -247,7 +260,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 47
+    startLine: 48
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes a new instance of the HttpRequestTelemetry class. </p>
   syntax:
@@ -264,7 +277,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 80
+    startLine: 81
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes a new instance of the HttpRequestTelemetry class with the given name, time stamp, duration, HTTP response code and success property values. </p>
   syntax:
@@ -297,7 +310,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 67
+    startLine: 68
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes a new instance of the HttpRequestTelemetry class with the given name, time stamp, duration, HTTP response code and success property values. </p>
   syntax:
@@ -330,7 +343,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 196
+    startLine: 197
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the amount of time it took the application to handle the request. </p>
   syntax:
@@ -351,7 +364,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 243
+    startLine: 244
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the HTTP method of the request. </p>
   syntax:
@@ -372,7 +385,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 148
+    startLine: 149
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the unique identifier of the request. </p>
   syntax:
@@ -393,7 +406,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 128
+    startLine: 129
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets or human-readable name of the requested page. </p>
   syntax:
@@ -414,7 +427,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 164
+    startLine: 165
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets response code returned by the application after handling the request. </p>
   syntax:
@@ -423,6 +436,25 @@ items:
     - id: responseCode
       type: "26831127"
       description: <p>Application's response code </p>
+- uid: com.microsoft.applicationinsights.telemetry._request_telemetry.setSamplingPercentage(Double)
+  id: setSamplingPercentage(Double)
+  parent: com.microsoft.applicationinsights.telemetry._request_telemetry
+  href: com.microsoft.applicationinsights.telemetry._request_telemetry.yml
+  langs:
+  - java
+  name: setSamplingPercentage(Double samplingPercentage)
+  fullName: void com.microsoft.applicationinsights.telemetry.RequestTelemetry.setSamplingPercentage(Double samplingPercentage)
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
+    startLine: 254
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public void setSamplingPercentage(Double samplingPercentage)
+    parameters:
+    - id: samplingPercentage
+      type: 8dd309d9
 - uid: com.microsoft.applicationinsights.telemetry._request_telemetry.setSuccess(boolean)
   id: setSuccess(boolean)
   parent: com.microsoft.applicationinsights.telemetry._request_telemetry
@@ -435,7 +467,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 180
+    startLine: 181
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets a value indicating whether application handled the request successfully. </p>
   syntax:
@@ -456,7 +488,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 107
+    startLine: 108
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the StartTime. Uses the default behavior and sets the property on the 'data' start time </p>
   syntax:
@@ -477,7 +509,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 226
+    startLine: 227
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets request url. </p>
   syntax:
@@ -501,7 +533,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/RequestTelemetry.java
-    startLine: 217
+    startLine: 218
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets request url </p>
   syntax:
@@ -535,129 +567,43 @@ references:
   spec.java:
   - name: URL
     fullName: URL
+- uid: 8dd309d9
+  spec.java:
+  - name: Double
+    fullName: Double
 - uid: 47447f9b
   spec.java:
   - name: RequestData
     fullName: RequestData
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.BaseTelemetry()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: BaseTelemetry()
-  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.BaseTelemetry()
-  type: Constructor
-  syntax:
-    content: protected BaseTelemetry()
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: getContext()
-  fullName: TelemetryContext com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getContext()
-  type: Method
-  summary: <p>Gets the context associated with the current telemetry item. </p>
-  syntax:
-    content: public TelemetryContext getContext()
-    return:
-      type: com.microsoft.applicationinsights.telemetry._telemetry_context
-      description: <p>The context </p>
 - uid: com.microsoft.applicationinsights.telemetry._request_telemetry.getMetrics()
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: getProperties()
-  fullName: Map<String, String> com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getProperties()
+- uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.reset()
+  parent: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.yml
+  name: reset()
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.reset()
   type: Method
-  summary: <p>Gets a dictionary of application-defined property names and values providing additional information about this event. </p>
   syntax:
-    content: public Map<String, String> getProperties()
-    return:
-      type: 689c8cb5
-      description: <p>The properties </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: getSequence()
-  fullName: String com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getSequence()
+    content: public void reset()
+- uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.setSampleRate(Envelope)
+  parent: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.yml
+  name: setSampleRate(Envelope envelope)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.setSampleRate(Envelope envelope)
   type: Method
-  summary: >-
-    <p>Sequence field used to track absolute order of uploaded events. It is a two-part value that includes a stable identifier for the current boot session and an incrementing identifier for each event added to the upload queue</p>
-
-    <p>The Sequence helps track how many events were fired and how many events were uploaded and enables identification of data lost during upload and de-duplication of events on the ingress server.</p>
-
-    <p>Gets the value that defines absolute order of the telemetry item. </p>
   syntax:
-    content: public String getSequence()
-    return:
-      type: "26831127"
-      description: <p>The sequence of the <xref href="com.microsoft.applicationinsights.telemetry._telemetry" data-throw-if-not-resolved="false"></xref>. </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: getTimestamp()
-  fullName: Date com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getTimestamp()
-  type: Method
-  summary: <p>Gets date and time when event was recorded. </p>
-  syntax:
-    content: public Date getTimestamp()
-    return:
-      type: "12977444"
-      description: <p>The timestamp as Date </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.initialize(ConcurrentMap<String, String>)
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: initialize(ConcurrentMap<String, String> properties)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.initialize(ConcurrentMap<String, String> properties)
-  type: Method
-  summary: <p>Initializes the instance with the context properties </p>
-  syntax:
-    content: protected void initialize(ConcurrentMap<String, String> properties)
+    content: protected void setSampleRate(Envelope envelope)
     parameters:
-    - id: properties
-      type: bc7a2f3a
-      description: <p>The context properties </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.sanitize()
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: sanitize()
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.sanitize()
-  type: Method
-  summary: <p>Makes sure the data to send is sanitized from bad chars, proper length etc. </p>
-  syntax:
-    content: public void sanitize()
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.serialize(JsonTelemetryDataSerializer)
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: serialize(JsonTelemetryDataSerializer writer)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.serialize(JsonTelemetryDataSerializer writer)
-  type: Method
-  summary: <p>Serializes this object in JSON format. </p>
-  syntax:
-    content: public void serialize(JsonTelemetryDataSerializer writer)
-    parameters:
-    - id: writer
-      type: com.microsoft.applicationinsights.telemetry._json_telemetry_data_serializer
-      description: <p>The writer that helps with serializing into Json format </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.setSequence(String)
-  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: setSequence(String sequence)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.setSequence(String sequence)
-  type: Method
-  summary: <p>Sets the value that defines absolute order of the telemetry item. </p>
-  syntax:
-    content: public void setSequence(String sequence)
-    parameters:
-    - id: sequence
-      type: "26831127"
-      description: <p>The sequence of the <xref href="com.microsoft.applicationinsights.telemetry._telemetry" data-throw-if-not-resolved="false"></xref>. </p>
-- uid: com.microsoft.applicationinsights.telemetry._base_telemetry
+    - id: envelope
+      type: ec5c4d5a
+- uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry
   parent: com.microsoft.applicationinsights.telemetry
-  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
-  name: BaseTelemetry<T>
-  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T>
+  href: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.yml
+  name: BaseSampleSourceTelemetry<T>
+  fullName: com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T>
   type: Class
-  summary: <p>Superclass for all telemetry data classes. </p>
+  summary: <p>Created by gupele on 12/4/2016. </p>
   syntax:
-    content: public class BaseTelemetry<T extends SendableData> implements Telemetry
+    content: public class BaseSampleSourceTelemetry<T extends SendableData> extends BaseTelemetry<T> implements SupportSampling
     typeParameters:
     - type: 8ce1ecb9
 - uid: com.microsoft.applicationinsights.telemetry._duration
