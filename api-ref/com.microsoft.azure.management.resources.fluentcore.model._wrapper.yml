@@ -426,7 +426,7 @@ references:
   type: Interface
   summary: <p>Entry point for application gateway management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface ApplicationGateway extends GroupableResource,Refreshable<ApplicationGateway>,Wrapper<ApplicationGatewayInner>,Updatable<ApplicationGateway.Update>
+    content: public interface ApplicationGateway extends GroupableResource,Refreshable<ApplicationGateway>,Wrapper<ApplicationGatewayInner>,Updatable<ApplicationGateway.Update>,HasSubnet,HasPrivateIpAddress,HasManager<NetworkManager>
 - uid: com.microsoft.azure.management.network._application_gateway_backend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_backend.yml
@@ -444,7 +444,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway's backend HTTP configuration. </p>
   syntax:
-    content: public interface ApplicationGatewayBackendHttpConfiguration extends Wrapper<ApplicationGatewayBackendHttpSettingsInner>,ChildResource<ApplicationGateway>,HasProtocol<ApplicationGatewayProtocol>
+    content: public interface ApplicationGatewayBackendHttpConfiguration extends Wrapper<ApplicationGatewayBackendHttpSettingsInner>,ChildResource<ApplicationGateway>,HasProtocol<ApplicationGatewayProtocol>,HasPort
 - uid: com.microsoft.azure.management.network._application_gateway_frontend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_frontend.yml
@@ -453,16 +453,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway frontend. </p>
   syntax:
-    content: public interface ApplicationGatewayFrontend extends Wrapper<ApplicationGatewayFrontendIPConfigurationInner>,ChildResource<ApplicationGateway>
-- uid: com.microsoft.azure.management.network._application_gateway_frontend_http_listener
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._application_gateway_frontend_http_listener.yml
-  name: ApplicationGatewayFrontendHttpListener
-  fullName: com.microsoft.azure.management.network.ApplicationGatewayFrontendHttpListener
-  type: Interface
-  summary: <p>An immutable client-side representation of an application gateway's HTTP listener. </p>
-  syntax:
-    content: public interface ApplicationGatewayFrontendHttpListener extends Wrapper<ApplicationGatewayHttpListenerInner>,ChildResource<ApplicationGateway>
+    content: public interface ApplicationGatewayFrontend extends Wrapper<ApplicationGatewayFrontendIPConfigurationInner>,ChildResource<ApplicationGateway>,HasPrivateIpAddress,HasSubnet,HasPublicIpAddress
 - uid: com.microsoft.azure.management.network._application_gateway_ip_configuration
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_ip_configuration.yml
@@ -472,6 +463,15 @@ references:
   summary: <p>An immutable client-side representation of an application gateway IP configuration. </p>
   syntax:
     content: public interface ApplicationGatewayIpConfiguration extends Wrapper<ApplicationGatewayIPConfigurationInner>,ChildResource<ApplicationGateway>
+- uid: com.microsoft.azure.management.network._application_gateway_listener
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._application_gateway_listener.yml
+  name: ApplicationGatewayListener
+  fullName: com.microsoft.azure.management.network.ApplicationGatewayListener
+  type: Interface
+  summary: <p>An immutable client-side representation of an application gateway's HTTP listener. </p>
+  syntax:
+    content: public interface ApplicationGatewayListener extends Wrapper<ApplicationGatewayHttpListenerInner>,ChildResource<ApplicationGateway>,HasSslCertificate<ApplicationGatewaySslCertificate>,HasPublicIpAddress,HasProtocol<ApplicationGatewayProtocol>,HasHostName,HasServerNameIndication,HasSubnet
 - uid: com.microsoft.azure.management.network._application_gateway_request_routing_rule
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_request_routing_rule.yml
@@ -480,7 +480,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway request routing rule. </p>
   syntax:
-    content: public interface ApplicationGatewayRequestRoutingRule extends Wrapper<ApplicationGatewayRequestRoutingRuleInner>,ChildResource<ApplicationGateway>
+    content: public interface ApplicationGatewayRequestRoutingRule extends Wrapper<ApplicationGatewayRequestRoutingRuleInner>,ChildResource<ApplicationGateway>,HasPublicIpAddress,HasSslCertificate<ApplicationGatewaySslCertificate>,HasFrontendPort,HasBackendPort,HasHostName,HasCookieBasedAffinity,HasServerNameIndication
 - uid: com.microsoft.azure.management.network._application_gateway_ssl_certificate
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_ssl_certificate.yml
@@ -534,7 +534,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an inbound NAT rule. </p>
   syntax:
-    content: public interface LoadBalancerInboundNatRule extends HasFrontend,HasBackendPort,HasProtocol<TransportProtocol>,HasFloatingIp,Wrapper<InboundNatRuleInner>,ChildResource<LoadBalancer>
+    content: public interface LoadBalancerInboundNatRule extends HasFrontend,HasBackendPort,HasProtocol<TransportProtocol>,HasFloatingIp,HasFrontendPort,Wrapper<InboundNatRuleInner>,ChildResource<LoadBalancer>
 - uid: com.microsoft.azure.management.network._load_balancer_probe
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer_probe.yml
@@ -552,7 +552,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an HTTP load balancing rule. </p>
   syntax:
-    content: public interface LoadBalancingRule extends Wrapper<LoadBalancingRuleInner>,ChildResource<LoadBalancer>,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol<TransportProtocol>
+    content: public interface LoadBalancingRule extends Wrapper<LoadBalancingRuleInner>,ChildResource<LoadBalancer>,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol<TransportProtocol>,HasFrontendPort
 - uid: com.microsoft.azure.management.network._network
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._network.yml

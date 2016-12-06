@@ -4,7 +4,6 @@ items:
   parent: com.microsoft.azure.management.network
   children:
   - com.microsoft.azure.management.network._load_balancing_rule.backend()
-  - com.microsoft.azure.management.network._load_balancing_rule.frontendPort()
   - com.microsoft.azure.management.network._load_balancing_rule.idleTimeoutInMinutes()
   - com.microsoft.azure.management.network._load_balancing_rule.loadDistribution()
   - com.microsoft.azure.management.network._load_balancing_rule.probe()
@@ -20,15 +19,16 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 22
+    startLine: 23
   package: com.microsoft.azure.management.network
   summary: <p>An immutable client-side representation of an HTTP load balancing rule. </p>
   syntax:
-    content: public interface LoadBalancingRule extends Wrapper<LoadBalancingRuleInner>,ChildResource<LoadBalancer>,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol<TransportProtocol>
+    content: public interface LoadBalancingRule extends Wrapper<LoadBalancingRuleInner>,ChildResource<LoadBalancer>,HasBackendPort,HasFrontend,HasFloatingIp,HasProtocol<TransportProtocol>,HasFrontendPort
   inheritedMembers:
   - com.microsoft.azure.management.network.model._has_backend_port.backendPort()
   - com.microsoft.azure.management.network.model._has_floating_ip.floatingIpEnabled()
   - com.microsoft.azure.management.network.model._has_frontend.frontend()
+  - com.microsoft.azure.management.network.model._has_frontend_port.frontendPort()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
@@ -47,32 +47,13 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 48
+    startLine: 45
   package: com.microsoft.azure.management.network
   syntax:
     content: public LoadBalancerBackend backend()
     return:
       type: com.microsoft.azure.management.network._load_balancer_backend
       description: <p>the backend associated with the load balancing rule </p>
-- uid: com.microsoft.azure.management.network._load_balancing_rule.frontendPort()
-  id: frontendPort()
-  parent: com.microsoft.azure.management.network._load_balancing_rule
-  href: com.microsoft.azure.management.network._load_balancing_rule.yml
-  langs:
-  - java
-  name: frontendPort()
-  fullName: int com.microsoft.azure.management.network.LoadBalancingRule.frontendPort()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 43
-  package: com.microsoft.azure.management.network
-  syntax:
-    content: public int frontendPort()
-    return:
-      type: f75371fa
-      description: <p>the load balanced front end port </p>
 - uid: com.microsoft.azure.management.network._load_balancing_rule.idleTimeoutInMinutes()
   id: idleTimeoutInMinutes()
   parent: com.microsoft.azure.management.network._load_balancing_rule
@@ -85,7 +66,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 38
+    startLine: 40
   package: com.microsoft.azure.management.network
   syntax:
     content: public int idleTimeoutInMinutes()
@@ -104,7 +85,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 33
+    startLine: 35
   package: com.microsoft.azure.management.network
   syntax:
     content: public LoadDistribution loadDistribution()
@@ -123,7 +104,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 53
+    startLine: 50
   package: com.microsoft.azure.management.network
   syntax:
     content: public LoadBalancerProbe probe()
@@ -168,6 +149,17 @@ references:
     return:
       type: com.microsoft.azure.management.network._load_balancer_frontend
       description: <p>the associated frontend </p>
+- uid: com.microsoft.azure.management.network.model._has_frontend_port.frontendPort()
+  parent: com.microsoft.azure.management.network.model._has_frontend_port
+  href: com.microsoft.azure.management.network.model._has_frontend_port.yml
+  name: frontendPort()
+  fullName: int com.microsoft.azure.management.network.model.HasFrontendPort.frontendPort()
+  type: Method
+  syntax:
+    content: public int frontendPort()
+    return:
+      type: f75371fa
+      description: <p>the frontend port number the inbound network traffic is received on </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   parent: com.microsoft.azure.management.resources.fluentcore.model._wrapper
   href: com.microsoft.azure.management.resources.fluentcore.model._wrapper.yml
@@ -281,7 +273,7 @@ references:
   name: HasFrontend
   fullName: com.microsoft.azure.management.network.model.HasFrontend
   type: Interface
-  summary: <p>An interface representing a model's ability to references a load balancer frontend. </p>
+  summary: <p>An interface representing a model's ability to references a frontend. </p>
   syntax:
     content: public interface HasFrontend
 - uid: com.microsoft.azure.management.network.model._has_floating_ip
@@ -305,6 +297,15 @@ references:
     typeParameters:
     - type: b528dcf3
       description: <p>the protocol type of the value </p>
+- uid: com.microsoft.azure.management.network.model._has_frontend_port
+  parent: com.microsoft.azure.management.network.model
+  href: com.microsoft.azure.management.network.model._has_frontend_port.yml
+  name: HasFrontendPort
+  fullName: com.microsoft.azure.management.network.model.HasFrontendPort
+  type: Interface
+  summary: <p>An interface representing a model's ability to reference a frontend port. </p>
+  syntax:
+    content: public interface HasFrontendPort
 - uid: com.microsoft.azure.management.network.implementation._load_balancing_rule_impl
 - uid: com.microsoft.azure.management.network._load_distribution
   parent: com.microsoft.azure.management.network
