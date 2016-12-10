@@ -3,12 +3,12 @@ items:
   id: _session_handler
   parent: com.microsoft.azure.servicebus.amqp
   children:
-  - com.microsoft.azure.servicebus.amqp._session_handler.getSessionId()
   - com.microsoft.azure.servicebus.amqp._session_handler.onSessionFinal(Event)
   - com.microsoft.azure.servicebus.amqp._session_handler.onSessionLocalClose(Event)
+  - com.microsoft.azure.servicebus.amqp._session_handler.onSessionLocalOpen(Event)
   - com.microsoft.azure.servicebus.amqp._session_handler.onSessionRemoteClose(Event)
   - com.microsoft.azure.servicebus.amqp._session_handler.onSessionRemoteOpen(Event)
-  - com.microsoft.azure.servicebus.amqp._session_handler.SessionHandler(final String,final String)
+  - com.microsoft.azure.servicebus.amqp._session_handler.SessionHandler(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
   - com.microsoft.azure.servicebus.amqp._session_handler.TRACE_LOGGER()
   href: com.microsoft.azure.servicebus.amqp._session_handler.yml
   langs:
@@ -22,31 +22,13 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 17
+    startLine: 26
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public class SessionHandler
   inheritance:
   - java.lang.Object
   - BaseHandler
-- uid: com.microsoft.azure.servicebus.amqp._session_handler.getSessionId()
-  id: getSessionId()
-  parent: com.microsoft.azure.servicebus.amqp._session_handler
-  href: com.microsoft.azure.servicebus.amqp._session_handler.yml
-  langs:
-  - java
-  name: getSessionId()
-  fullName: String com.microsoft.azure.servicebus.amqp.SessionHandler.getSessionId()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 30
-  package: com.microsoft.azure.servicebus.amqp
-  syntax:
-    content: protected String getSessionId()
-    return:
-      type: "26831127"
 - uid: com.microsoft.azure.servicebus.amqp._session_handler.onSessionFinal(Event)
   id: onSessionFinal(Event)
   parent: com.microsoft.azure.servicebus.amqp._session_handler
@@ -59,7 +41,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 79
+    startLine: 132
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onSessionFinal(Event e)
@@ -78,10 +60,29 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 53
+    startLine: 102
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onSessionLocalClose(Event e)
+    parameters:
+    - id: e
+      type: 70fceca4
+- uid: com.microsoft.azure.servicebus.amqp._session_handler.onSessionLocalOpen(Event)
+  id: onSessionLocalOpen(Event)
+  parent: com.microsoft.azure.servicebus.amqp._session_handler
+  href: com.microsoft.azure.servicebus.amqp._session_handler.yml
+  langs:
+  - java
+  name: onSessionLocalOpen(Event e)
+  fullName: void com.microsoft.azure.servicebus.amqp.SessionHandler.onSessionLocalOpen(Event e)
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
+    startLine: 45
+  package: com.microsoft.azure.servicebus.amqp
+  syntax:
+    content: public void onSessionLocalOpen(Event e)
     parameters:
     - id: e
       type: 70fceca4
@@ -97,7 +98,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 63
+    startLine: 112
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onSessionRemoteClose(Event e)
@@ -116,34 +117,36 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 36
+    startLine: 81
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onSessionRemoteOpen(Event e)
     parameters:
     - id: e
       type: 70fceca4
-- uid: com.microsoft.azure.servicebus.amqp._session_handler.SessionHandler(final String,final String)
-  id: SessionHandler(final String,final String)
+- uid: com.microsoft.azure.servicebus.amqp._session_handler.SessionHandler(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
+  id: SessionHandler(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
   parent: com.microsoft.azure.servicebus.amqp._session_handler
   href: com.microsoft.azure.servicebus.amqp._session_handler.yml
   langs:
   - java
-  name: SessionHandler(final String entityName, final String sessionId)
-  fullName: com.microsoft.azure.servicebus.amqp.SessionHandler.SessionHandler(final String entityName, final String sessionId)
+  name: SessionHandler(final String entityName, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
+  fullName: com.microsoft.azure.servicebus.amqp.SessionHandler.SessionHandler(final String entityName, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
   type: Constructor
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 24
+    startLine: 37
   package: com.microsoft.azure.servicebus.amqp
   syntax:
-    content: public SessionHandler(final String entityName, final String sessionId)
+    content: public SessionHandler(final String entityName, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
     parameters:
     - id: entityName
       type: 3d93591e
-    - id: sessionId
-      type: 3d93591e
+    - id: onRemoteSessionOpen
+      type: acf4f1fb
+    - id: onRemoteSessionOpenError
+      type: 2be33d2d
 - uid: com.microsoft.azure.servicebus.amqp._session_handler.TRACE_LOGGER()
   id: TRACE_LOGGER()
   parent: com.microsoft.azure.servicebus.amqp._session_handler
@@ -156,7 +159,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/SessionHandler.java
-    startLine: 19
+    startLine: 28
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: protected static final Logger TRACE_LOGGER= Logger.getLogger(ClientConstants.SERVICEBUS_CLIENT_TRACE)
@@ -171,11 +174,15 @@ references:
   spec.java:
   - name: final String
     fullName: final String
+- uid: acf4f1fb
+  spec.java:
+  - name: final Consumer<Session>
+    fullName: final Consumer<Session>
+- uid: 2be33d2d
+  spec.java:
+  - name: final Consumer<ErrorCondition>
+    fullName: final Consumer<ErrorCondition>
 - uid: 70fceca4
   spec.java:
   - name: Event
     fullName: Event
-- uid: "26831127"
-  spec.java:
-  - name: String
-    fullName: String

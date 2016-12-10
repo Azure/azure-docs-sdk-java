@@ -3,8 +3,10 @@ items:
   id: _reactor_handler
   parent: com.microsoft.azure.servicebus.amqp
   children:
+  - com.microsoft.azure.servicebus.amqp._reactor_handler.getReactorDispatcher()
   - com.microsoft.azure.servicebus.amqp._reactor_handler.onReactorFinal(Event)
   - com.microsoft.azure.servicebus.amqp._reactor_handler.onReactorInit(Event)
+  - com.microsoft.azure.servicebus.amqp._reactor_handler.unsafeSetReactorDispatcher(final ReactorDispatcher)
   href: com.microsoft.azure.servicebus.amqp._reactor_handler.yml
   langs:
   - java
@@ -24,6 +26,24 @@ items:
   inheritance:
   - java.lang.Object
   - BaseHandler
+- uid: com.microsoft.azure.servicebus.amqp._reactor_handler.getReactorDispatcher()
+  id: getReactorDispatcher()
+  parent: com.microsoft.azure.servicebus.amqp._reactor_handler
+  href: com.microsoft.azure.servicebus.amqp._reactor_handler.yml
+  langs:
+  - java
+  name: getReactorDispatcher()
+  fullName: ReactorDispatcher com.microsoft.azure.servicebus.amqp.ReactorHandler.getReactorDispatcher()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/ReactorHandler.java
+    startLine: 21
+  package: com.microsoft.azure.servicebus.amqp
+  syntax:
+    content: public ReactorDispatcher getReactorDispatcher()
+    return:
+      type: com.microsoft.azure.servicebus.amqp._reactor_dispatcher
 - uid: com.microsoft.azure.servicebus.amqp._reactor_handler.onReactorFinal(Event)
   id: onReactorFinal(Event)
   parent: com.microsoft.azure.servicebus.amqp._reactor_handler
@@ -36,7 +56,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/ReactorHandler.java
-    startLine: 31
+    startLine: 41
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onReactorFinal(Event e)
@@ -55,15 +75,54 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/ReactorHandler.java
-    startLine: 20
+    startLine: 31
   package: com.microsoft.azure.servicebus.amqp
   syntax:
     content: public void onReactorInit(Event e)
     parameters:
     - id: e
       type: 70fceca4
+- uid: com.microsoft.azure.servicebus.amqp._reactor_handler.unsafeSetReactorDispatcher(final ReactorDispatcher)
+  id: unsafeSetReactorDispatcher(final ReactorDispatcher)
+  parent: com.microsoft.azure.servicebus.amqp._reactor_handler
+  href: com.microsoft.azure.servicebus.amqp._reactor_handler.yml
+  langs:
+  - java
+  name: unsafeSetReactorDispatcher(final ReactorDispatcher reactorDispatcher)
+  fullName: void com.microsoft.azure.servicebus.amqp.ReactorHandler.unsafeSetReactorDispatcher(final ReactorDispatcher reactorDispatcher)
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/amqp/ReactorHandler.java
+    startLine: 26
+  package: com.microsoft.azure.servicebus.amqp
+  syntax:
+    content: public void unsafeSetReactorDispatcher(final ReactorDispatcher reactorDispatcher)
+    parameters:
+    - id: reactorDispatcher
+      type: 93de0ef9com.microsoft.azure.servicebus.amqp._reactor_dispatcher
 references:
+- uid: 93de0ef9com.microsoft.azure.servicebus.amqp._reactor_dispatcher
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.servicebus.amqp._reactor_dispatcher
+    name: ReactorDispatcher
+    fullName: com.microsoft.azure.servicebus.amqp.ReactorDispatcher
+    href: com.microsoft.azure.servicebus.amqp._reactor_dispatcher.yml
 - uid: 70fceca4
   spec.java:
   - name: Event
     fullName: Event
+- uid: com.microsoft.azure.servicebus.amqp._reactor_dispatcher
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._reactor_dispatcher.yml
+  name: ReactorDispatcher
+  fullName: com.microsoft.azure.servicebus.amqp.ReactorDispatcher
+  type: Class
+  summary: >-
+    <p>
+
+      <ref refid="" kindref="compound">Reactor</ref> is not thread-safe - all calls to <ref refid="" kindref="compound">Proton</ref> API's should be - on the Reactor Thread. <ref refid="" kindref="compound">Reactor</ref> works out-of-box for all event driven API - ex: onReceive - which could raise upon onSocketRead. <ref refid="" kindref="compound">Reactor</ref> didn't support API's like Send() out-of-box - which could potentially run on different thread to that of Reactor. So, the following utility class is used to generate an Event to hook into <ref refid="" kindref="compound">Reactor</ref>'s event delegation pattern. It uses a <ref refid="" kindref="compound">Pipe</ref> as the IO on which Reactor Listens to. Cardinality: multiple <xref href="com.microsoft.azure.servicebus.amqp._reactor_dispatcher" data-throw-if-not-resolved="false"></xref>'s could be attached to 1 <ref refid="" kindref="compound">Reactor</ref>. Each <xref href="com.microsoft.azure.servicebus.amqp._reactor_dispatcher" data-throw-if-not-resolved="false"></xref> should be initialized Synchronously - as it calls API in <ref refid="" kindref="compound">Reactor</ref> which is not thread-safe. </p>
+  syntax:
+    content: public class ReactorDispatcher
