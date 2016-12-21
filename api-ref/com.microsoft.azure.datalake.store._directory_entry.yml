@@ -3,8 +3,10 @@ items:
   id: _directory_entry
   parent: com.microsoft.azure.datalake.store
   children:
+  - com.microsoft.azure.datalake.store._directory_entry.aclBit()
   - com.microsoft.azure.datalake.store._directory_entry.blocksize()
-  - com.microsoft.azure.datalake.store._directory_entry.DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String)
+  - com.microsoft.azure.datalake.store._directory_entry.DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String,boolean,Date)
+  - com.microsoft.azure.datalake.store._directory_entry.expiryTime()
   - com.microsoft.azure.datalake.store._directory_entry.fullName()
   - com.microsoft.azure.datalake.store._directory_entry.group()
   - com.microsoft.azure.datalake.store._directory_entry.lastAccessTime()
@@ -34,6 +36,25 @@ items:
     content: public class DirectoryEntry
   inheritance:
   - java.lang.Object
+- uid: com.microsoft.azure.datalake.store._directory_entry.aclBit()
+  id: aclBit()
+  parent: com.microsoft.azure.datalake.store._directory_entry
+  href: com.microsoft.azure.datalake.store._directory_entry.yml
+  langs:
+  - java
+  name: aclBit
+  fullName: final boolean com.microsoft.azure.datalake.store.DirectoryEntry.aclBit
+  type: Field
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/datalake/store/DirectoryEntry.java
+    startLine: 74
+  package: com.microsoft.azure.datalake.store
+  summary: <p>boolean indicating whether file has ACLs set on it. </p>
+  syntax:
+    content: public final boolean aclBit
+    return:
+      type: 4dda0764
 - uid: com.microsoft.azure.datalake.store._directory_entry.blocksize()
   id: blocksize()
   parent: com.microsoft.azure.datalake.store._directory_entry
@@ -53,22 +74,22 @@ items:
     content: public final long blocksize
     return:
       type: 4c60ae65
-- uid: com.microsoft.azure.datalake.store._directory_entry.DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String)
-  id: DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String)
+- uid: com.microsoft.azure.datalake.store._directory_entry.DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String,boolean,Date)
+  id: DirectoryEntry(String,String,long,String,String,Date,Date,DirectoryEntryType,long,int,String,boolean,Date)
   parent: com.microsoft.azure.datalake.store._directory_entry
   href: com.microsoft.azure.datalake.store._directory_entry.yml
   langs:
   - java
-  name: DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission)
-  fullName: com.microsoft.azure.datalake.store.DirectoryEntry.DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission)
+  name: DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission, boolean aclBit, Date expiryTime)
+  fullName: com.microsoft.azure.datalake.store.DirectoryEntry.DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission, boolean aclBit, Date expiryTime)
   type: Constructor
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/DirectoryEntry.java
-    startLine: 77
+    startLine: 88
   package: com.microsoft.azure.datalake.store
   syntax:
-    content: public DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission)
+    content: public DirectoryEntry(String name, String fullName, long length, String group, String user, Date lastAccessTime, Date lastModifiedTime, DirectoryEntryType type, long blocksize, int replicationFactor, String permission, boolean aclBit, Date expiryTime)
     parameters:
     - id: name
       type: "26831127"
@@ -92,6 +113,29 @@ items:
       type: f75371fa
     - id: permission
       type: "26831127"
+    - id: aclBit
+      type: 4fc6e284
+    - id: expiryTime
+      type: "12977444"
+- uid: com.microsoft.azure.datalake.store._directory_entry.expiryTime()
+  id: expiryTime()
+  parent: com.microsoft.azure.datalake.store._directory_entry
+  href: com.microsoft.azure.datalake.store._directory_entry.yml
+  langs:
+  - java
+  name: expiryTime
+  fullName: final Date com.microsoft.azure.datalake.store.DirectoryEntry.expiryTime
+  type: Field
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/datalake/store/DirectoryEntry.java
+    startLine: 80
+  package: com.microsoft.azure.datalake.store
+  summary: <p>Date+time at which the file expires, as UTC time. It is null if the file has no expiry. It is null for directories. </p>
+  syntax:
+    content: public final Date expiryTime
+    return:
+      type: 970a8f17
 - uid: com.microsoft.azure.datalake.store._directory_entry.fullName()
   id: fullName()
   parent: com.microsoft.azure.datalake.store._directory_entry
@@ -218,7 +262,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/DirectoryEntry.java
-    startLine: 75
+    startLine: 86
   package: com.microsoft.azure.datalake.store
   summary: <p>the unix-style permission string for this file or directory </p>
   syntax:
@@ -310,6 +354,10 @@ references:
   spec.java:
   - name: final int
     fullName: final int
+- uid: 4dda0764
+  spec.java:
+  - name: final boolean
+    fullName: final boolean
 - uid: "26831127"
   spec.java:
   - name: String
@@ -326,6 +374,10 @@ references:
   spec.java:
   - name: int
     fullName: int
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: com.microsoft.azure.datalake.store._directory_entry_type
   parent: com.microsoft.azure.datalake.store
   href: com.microsoft.azure.datalake.store._directory_entry_type.yml
