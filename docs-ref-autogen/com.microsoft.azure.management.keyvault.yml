@@ -19,6 +19,7 @@ items:
   - com.microsoft.azure.management.keyvault._access_policy._update_stages
   - com.microsoft.azure.management.keyvault._access_policy._update_stages._with_permissions
   - com.microsoft.azure.management.keyvault._access_policy_entry
+  - com.microsoft.azure.management.keyvault._certificate_permissions
   - com.microsoft.azure.management.keyvault._key_permissions
   - com.microsoft.azure.management.keyvault._permissions
   - com.microsoft.azure.management.keyvault._secret_permissions
@@ -97,9 +98,18 @@ references:
   name: AccessPolicyEntry
   fullName: com.microsoft.azure.management.keyvault.AccessPolicyEntry
   type: Class
-  summary: <p>An array of 0 to 16 identities that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. </p>
+  summary: <p>An identity that have access to the key vault. All identities in the array must use the same tenant ID as the key vault's tenant ID. </p>
   syntax:
     content: public class AccessPolicyEntry
+- uid: com.microsoft.azure.management.keyvault._certificate_permissions
+  parent: com.microsoft.azure.management.keyvault
+  href: com.microsoft.azure.management.keyvault._certificate_permissions.yml
+  name: CertificatePermissions
+  fullName: com.microsoft.azure.management.keyvault.CertificatePermissions
+  type: Class
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.keyvault._certificate_permissions" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public class CertificatePermissions
 - uid: com.microsoft.azure.management.keyvault._key_permissions
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._key_permissions.yml
@@ -118,7 +128,7 @@ references:
   summary: >-
     <p>
 
-      <xref href="com.microsoft.azure.management.keyvault._permissions" data-throw-if-not-resolved="false"></xref> the identity has for keys and secrets. </p>
+      <xref href="com.microsoft.azure.management.keyvault._permissions" data-throw-if-not-resolved="false"></xref> the identity has for keys, secrets and certificates. </p>
   syntax:
     content: public class Permissions
 - uid: com.microsoft.azure.management.keyvault._secret_permissions
@@ -165,7 +175,7 @@ references:
   type: Interface
   summary: <p>Entry point for key vaults management API. </p>
   syntax:
-    content: public interface Vaults extends SupportsListing<Vault>,SupportsCreating<Vault.DefinitionStages.Blank>,SupportsDeletingById,SupportsListingByGroup<Vault>,SupportsGettingByGroup<Vault>,SupportsGettingById<Vault>,SupportsDeletingByGroup,HasManager<KeyVaultManager>
+    content: public interface Vaults extends SupportsCreating<Vault.DefinitionStages.Blank>,SupportsDeletingById,SupportsListingByGroup<Vault>,SupportsGettingByGroup<Vault>,SupportsGettingById<Vault>,SupportsDeletingByGroup,HasManager<KeyVaultManager>
 - uid: com.microsoft.azure.management.keyvault._access_policy._definition_stages._blank
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._access_policy._definition_stages._blank.yml
@@ -319,21 +329,6 @@ references:
   summary: <p>A key vault definition allowing access policies to be attached. </p>
   syntax:
     content: public interface WithAccessPolicy
-- uid: com.microsoft.azure.management.keyvault._access_policy._update_definition_stages._with_attach
-  parent: com.microsoft.azure.management.keyvault
-  href: com.microsoft.azure.management.keyvault._access_policy._update_definition_stages._with_attach.yml
-  name: AccessPolicy.UpdateDefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.keyvault.AccessPolicy.UpdateDefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the access policy definition. </p>
-
-    <p>At this stage, more permissions can be added or application ID can be specified, or the access policy definition can be attached to the parent key vault update using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,AccessPolicy.UpdateDefinitionStages.WithPermissions<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_attach
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_attach.yml
@@ -349,6 +344,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.keyvault._access_policy._update_definition_stages._with_attach
+  parent: com.microsoft.azure.management.keyvault
+  href: com.microsoft.azure.management.keyvault._access_policy._update_definition_stages._with_attach.yml
+  name: AccessPolicy.UpdateDefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.keyvault.AccessPolicy.UpdateDefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the access policy definition. </p>
+
+    <p>At this stage, more permissions can be added or application ID can be specified, or the access policy definition can be attached to the parent key vault update using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,AccessPolicy.UpdateDefinitionStages.WithPermissions<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.keyvault._vault._definition_stages._with_configurations
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._vault._definition_stages._with_configurations.yml
@@ -409,18 +419,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_permissions
-  parent: com.microsoft.azure.management.keyvault
-  href: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_permissions.yml
-  name: AccessPolicy.DefinitionStages.WithPermissions<ParentT>
-  fullName: com.microsoft.azure.management.keyvault.AccessPolicy.DefinitionStages.WithPermissions<ParentT>
-  type: Interface
-  summary: <p>The access policy definition stage allowing permissions to be added. </p>
-  syntax:
-    content: public interface WithPermissions<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.keyvault._access_policy._update_definiaeef38d9f207ce3f93e04e802c9a1da1
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._access_policy._update_definiaeef38d9f207ce3f93e04e802c9a1da1.yml
@@ -442,6 +440,18 @@ references:
   summary: <p>The access policy update stage allowing permissions to be added or removed. </p>
   syntax:
     content: public interface WithPermissions
+- uid: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_permissions
+  parent: com.microsoft.azure.management.keyvault
+  href: com.microsoft.azure.management.keyvault._access_policy._definition_stages._with_permissions.yml
+  name: AccessPolicy.DefinitionStages.WithPermissions<ParentT>
+  fullName: com.microsoft.azure.management.keyvault.AccessPolicy.DefinitionStages.WithPermissions<ParentT>
+  type: Interface
+  summary: <p>The access policy definition stage allowing permissions to be added. </p>
+  syntax:
+    content: public interface WithPermissions<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.keyvault._vault._definition_stages._with_sku
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._vault._definition_stages._with_sku.yml
