@@ -30,6 +30,10 @@ items:
   - com.microsoft.azure.storage.blob._cloud_page_blob.setStreamWriteSizeInBytes(final int)
   - com.microsoft.azure.storage.blob._cloud_page_blob.startCopy(final CloudPageBlob)
   - com.microsoft.azure.storage.blob._cloud_page_blob.startCopy(final CloudPageBlob,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob)
+  - com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI)
+  - com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_page_blob.updateSequenceNumberFromResponse(HttpURLConnection)
   - com.microsoft.azure.storage.blob._cloud_page_blob.upload(final InputStream,final long)
   - com.microsoft.azure.storage.blob._cloud_page_blob.upload(final InputStream,final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -47,7 +51,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-storage-java
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 46
+    startLine: 47
   package: com.microsoft.azure.storage.blob
   summary: <p>Represents a Microsoft Azure page blob. </p>
   syntax: &o1
@@ -109,6 +113,8 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.getQualifiedUri()
   - com.microsoft.azure.storage.blob._cloud_blob.getServiceClient()
   - com.microsoft.azure.storage.blob._cloud_blob.getSnapshotID()
+  - com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedStorageUri()
+  - com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedUri()
   - com.microsoft.azure.storage.blob._cloud_blob.getStorageUri()
   - com.microsoft.azure.storage.blob._cloud_blob.getStreamMinimumReadSizeInBytes()
   - com.microsoft.azure.storage.blob._cloud_blob.getStreamWriteSizeInBytes()
@@ -134,6 +140,7 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.snapshotID()
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI)
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final boolean,final AccessCondition,final AccessCondition,final BlobRequestOptions)
   - com.microsoft.azure.storage.blob._cloud_blob.streamMinimumReadSizeInBytes()
   - com.microsoft.azure.storage.blob._cloud_blob.streamWriteSizeInBytes()
   - com.microsoft.azure.storage.blob._cloud_blob.updateEtagAndLastModifiedFromResponse(HttpURLConnection)
@@ -158,7 +165,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 237
+    startLine: 365
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Clears pages from a page blob. </p>
@@ -190,7 +197,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 268
+    startLine: 396
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Clears pages from a page blob using the specified lease ID, request options, and operation context. </p>
@@ -231,7 +238,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 81
+    startLine: 82
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class by copying values from another page blob.</p>
@@ -255,7 +262,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 71
+    startLine: 72
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute URI and storage service client.</p>
@@ -282,7 +289,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 129
+    startLine: 130
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref> and credentials.</p>
@@ -312,7 +319,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 146
+    startLine: 147
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref>, snapshot ID, and credentials.</p>
@@ -345,7 +352,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 57
+    startLine: 58
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute URI and storage service client.</p>
@@ -372,7 +379,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 96
+    startLine: 97
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute URI and credentials.</p>
@@ -402,7 +409,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 113
+    startLine: 114
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified absolute URI, snapshot ID, and credentials.</p>
@@ -435,7 +442,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 164
+    startLine: 165
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates an instance of the  class using the specified type, name, snapshot ID, and container.</p>
@@ -468,7 +475,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 305
+    startLine: 433
   package: com.microsoft.azure.storage.blob
   summary: <p>Creates a page blob. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use the <xref href="com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final AccessCondition,BlobRequestOptions,OperationContext)" data-throw-if-not-resolved="false"></xref> overload with <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
@@ -494,7 +501,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 334
+    startLine: 462
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Creates a page blob using the specified request options and operation context. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use <xref href="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false"></xref>.</p>
@@ -532,7 +539,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 406
+    startLine: 534
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Returns a collection of page ranges and their starting and ending byte offsets. </p>
@@ -560,7 +567,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 432
+    startLine: 560
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Returns a collection of page ranges and their starting and ending byte offsets using the specified request options and operation context.</p>
@@ -596,7 +603,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 461
+    startLine: 589
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Returns a collection of page ranges and their starting and ending byte offsets.</p>
@@ -629,7 +636,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 492
+    startLine: 620
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Returns a collection of page ranges and their starting and ending byte offsets using the specified request options and operation context.</p>
@@ -671,7 +678,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 570
+    startLine: 698
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Gets the collection of page ranges that differ between a specified snapshot and this object.</p>
@@ -701,7 +708,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 604
+    startLine: 732
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Gets the collection of page ranges that differ between a specified snapshot and this object.</p>
@@ -746,7 +753,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 678
+    startLine: 806
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Opens an output stream object to write data to the page blob. The page blob must already exist and any existing data may be overwritten.</p>
@@ -772,7 +779,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 704
+    startLine: 832
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Opens an output stream object to write data to the page blob, using the specified lease ID, request options and operation context. The page blob must already exist and any existing data may be overwritten.</p>
@@ -808,7 +815,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 728
+    startLine: 856
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Opens an output stream object to write data to the page blob. The page blob does not need to yet exist and will be created with the length specified. If the blob already exists on the service, it will be overwritten. </p>
@@ -840,7 +847,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 761
+    startLine: 889
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Opens an output stream object to write data to the page blob, using the specified lease ID, request options and operation context. The page blob does not need to yet exist and will be created with the length specified.If the blob already exists on the service, it will be overwritten. </p>
@@ -881,7 +888,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 949
+    startLine: 1077
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Resizes the page blob to the specified size.</p>
@@ -908,7 +915,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 972
+    startLine: 1100
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Resizes the page blob to the specified size.</p>
@@ -944,7 +951,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 1232
+    startLine: 1360
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Sets the number of bytes to buffer when writing to a <xref href="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false"></xref>.</p>
@@ -971,7 +978,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 182
+    startLine: 183
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Requests the service to start copying a blob's contents, properties, and metadata to a new blob.</p>
@@ -1002,7 +1009,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 214
+    startLine: 215
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Requests the service to start copying a blob's contents, properties, and metadata to a new blob, using the specified access conditions, lease ID, request options, and operation context.</p>
@@ -1033,6 +1040,148 @@ items:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob)
+  id: startIncrementalCopy(final CloudPageBlob)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  langs:
+  - java
+  name: startIncrementalCopy(final CloudPageBlob sourceSnapshot)
+  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
+    startLine: 243
+  package: com.microsoft.azure.storage.blob
+  summary: >-
+    <p>Requests the service to start an incremental copy of another page blob's contents, properties, and metadata to this blob.</p>
+
+    <p></p>
+  syntax:
+    content: public final String startIncrementalCopy(final CloudPageBlob sourceSnapshot)
+    parameters:
+    - id: sourceSnapshot
+      type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
+      description: <p>A <code><xref href="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false"></xref></code> object that represents the source blob to copy. Must be a snapshot.</p>
+    return:
+      type: 3d93591e
+      description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+  - type: "44102508"
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob,final AccessCondition,BlobRequestOptions,OperationContext)
+  id: startIncrementalCopy(final CloudPageBlob,final AccessCondition,BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  langs:
+  - java
+  name: startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
+    startLine: 296
+  package: com.microsoft.azure.storage.blob
+  summary: >-
+    <p>Requests the service to start copying a blob's contents, properties, and metadata to a new blob, using the specified access conditions, lease ID, request options, and operation context.</p>
+
+    <p></p>
+  syntax:
+    content: public final String startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: sourceSnapshot
+      type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
+      description: <p>A <code><xref href="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false"></xref></code> object that represents the source blob to copy. Must be a snapshot. </p>
+    - id: destinationAccessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the destination blob. </p>
+    - id: options
+      type: com.microsoft.azure.storage.blob._blob_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 3d93591e
+      description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+  - type: "44102508"
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI)
+  id: startIncrementalCopy(final URI)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  langs:
+  - java
+  name: startIncrementalCopy(final URI sourceSnapshot)
+  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
+    startLine: 266
+  package: com.microsoft.azure.storage.blob
+  summary: >-
+    <p>Requests the service to start an incremental copy of another page blob's contents, properties, and metadata to this blob.</p>
+
+    <p></p>
+  syntax:
+    content: public final String startIncrementalCopy(final URI sourceSnapshot)
+    parameters:
+    - id: sourceSnapshot
+      type: bac42120
+      description: <p>A <code><xref href="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false"></xref></code> object that represents the source blob to copy. Must be a snapshot.</p>
+    return:
+      type: 3d93591e
+      description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+  - type: "44102508"
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI,final AccessCondition,BlobRequestOptions,OperationContext)
+  id: startIncrementalCopy(final URI,final AccessCondition,BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_page_blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  langs:
+  - java
+  name: startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
+    startLine: 331
+  package: com.microsoft.azure.storage.blob
+  summary: >-
+    <p>Requests the service to start copying a blob's contents, properties, and metadata to a new blob, using the specified access conditions, lease ID, request options, and operation context.</p>
+
+    <p></p>
+  syntax:
+    content: public final String startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: sourceSnapshot
+      type: bac42120
+      description: <p>A <code><xref href="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false"></xref></code> object that represents the source blob to copy. Must be a snapshot. </p>
+    - id: destinationAccessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the destination blob. </p>
+    - id: options
+      type: com.microsoft.azure.storage.blob._blob_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 3d93591e
+      description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+  - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.updateSequenceNumberFromResponse(HttpURLConnection)
   id: updateSequenceNumberFromResponse(HttpURLConnection)
   parent: com.microsoft.azure.storage.blob._cloud_page_blob
@@ -1045,7 +1194,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 933
+    startLine: 1061
   package: com.microsoft.azure.storage.blob
   syntax:
     content: protected void updateSequenceNumberFromResponse(HttpURLConnection request)
@@ -1064,7 +1213,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 1044
+    startLine: 1172
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads the source stream data to the page blob. If the blob already exists on the service, it will be overwritten.</p>
@@ -1096,7 +1245,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 1075
+    startLine: 1203
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads the source stream data to the page blob using the specified lease ID, request options, and operation context. If the blob already exists on the service, it will be overwritten.</p>
@@ -1137,7 +1286,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 1128
+    startLine: 1256
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads a range of contiguous pages, up to 4 MB in size, at the specified offset in the page blob.</p>
@@ -1174,7 +1323,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/blob/CloudPageBlob.java
-    startLine: 1165
+    startLine: 1293
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads a range of contiguous pages, up to 4 MB in size, at the specified offset in the page blob, using the specified lease ID, request options, and operation context.</p>
@@ -2377,7 +2526,23 @@ references:
   fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getQualifiedStorageUri()
   type: Method
   summary: >-
-    <p>Returns the snapshot or shared access signature qualified URI for this blob.</p>
+    <p>Returns the snapshot and/or shared access signature qualified URI for this blob.</p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000001">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>use <xref href="com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedStorageUri()" data-throw-if-not-resolved="false"></xref> instead.</p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
 
     <p></p>
   syntax:
@@ -2393,6 +2558,22 @@ references:
   type: Method
   summary: >-
     <p>Returns the snapshot or shared access signature qualified URI for this blob.</p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000002">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>use <xref href="com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedUri()" data-throw-if-not-resolved="false"></xref> instead.</p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
 
     <p></p>
   syntax:
@@ -2430,6 +2611,36 @@ references:
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the Blob Snapshot ID. </p>
+- uid: com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedStorageUri()
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: getSnapshotQualifiedStorageUri()
+  fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedStorageUri()
+  type: Method
+  summary: >-
+    <p>Returns the blob's URI for both the primary and secondary locations, including query string information if the blob is a snapshot.</p>
+
+    <p></p>
+  syntax:
+    content: public final StorageUri getSnapshotQualifiedStorageUri()
+    return:
+      type: 93de0ef9com.microsoft.azure.storage._storage_uri
+      description: <p>A <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref> object containing the blob's URIs for both the primary and secondary locations, including snapshot query information if the blob is a snapshot.</p>
+- uid: com.microsoft.azure.storage.blob._cloud_blob.getSnapshotQualifiedUri()
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: getSnapshotQualifiedUri()
+  fullName: final URI com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedUri()
+  type: Method
+  summary: >-
+    <p>Returns the absolute URI to the blob, including query string information if the blob is a snapshot.</p>
+
+    <p></p>
+  syntax:
+    content: public final URI getSnapshotQualifiedUri()
+    return:
+      type: bac42120
+      description: <p>A <code>java.net.URI</code> object specifying the absolute URI to the blob, including snapshot query information if the blob is a snapshot.</p>
 - uid: com.microsoft.azure.storage.blob._cloud_blob.getStorageUri()
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
@@ -2836,6 +3047,27 @@ references:
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
+- uid: com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final boolean,final AccessCondition,final AccessCondition,final BlobRequestOptions)
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: startCopyImpl(final URI source, final boolean incrementalCopy, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+  fullName: StorageRequest<CloudBlobClient, CloudBlob, String> com.microsoft.azure.storage.blob.CloudBlob.startCopyImpl(final URI source, final boolean incrementalCopy, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+  type: Method
+  syntax:
+    content: protected StorageRequest<CloudBlobClient, CloudBlob, String> startCopyImpl(final URI source, final boolean incrementalCopy, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+    parameters:
+    - id: source
+      type: bac42120
+    - id: incrementalCopy
+      type: 4dda0764
+    - id: sourceAccessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+    - id: destinationAccessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+    - id: options
+      type: 93de0ef9com.microsoft.azure.storage.blob._blob_request_options
+    return:
+      type: com.microsoft.azure.storage.core._storage_request78504a52com.microsoft.azure.storage.blob._cloud_blob_clientb33c76fccom.microsoft.azure.storage.blob._cloud_blob4d03418a
 - uid: com.microsoft.azure.storage.blob._cloud_blob.streamMinimumReadSizeInBytes()
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
