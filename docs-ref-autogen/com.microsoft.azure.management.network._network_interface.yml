@@ -17,14 +17,14 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkInterface.java
-    startLine: 23
+    startLine: 24
   package: com.microsoft.azure.management.network
   summary: >-
     <p>
 
       <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> interface. </p>
   syntax:
-    content: public interface NetworkInterface extends NetworkInterfaceBase,GroupableResource,Refreshable<NetworkInterface>,Wrapper<NetworkInterfaceInner>,Updatable<NetworkInterface.Update>
+    content: public interface NetworkInterface extends NetworkInterfaceBase,GroupableResource<NetworkManager>,Refreshable<NetworkInterface>,Wrapper<NetworkInterfaceInner>,Updatable<NetworkInterface.Update>
   inheritedMembers:
   - com.microsoft.azure.management.network._network_interface_base.appliedDnsServers()
   - com.microsoft.azure.management.network._network_interface_base.dnsServers()
@@ -37,6 +37,7 @@ items:
   - com.microsoft.azure.management.network._network_interface_base.isIpForwardingEnabled()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.network._network_interface_base.macAddress()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.network._network_interface_base.networkSecurityGroupId()
   - com.microsoft.azure.management.network._network_interface_base.primaryPrivateIp()
@@ -61,7 +62,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkInterface.java
-    startLine: 32
+    startLine: 33
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, NicIpConfiguration> ipConfigurations()
@@ -80,7 +81,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/NetworkInterface.java
-    startLine: 37
+    startLine: 38
   package: com.microsoft.azure.management.network
   syntax:
     content: public NicIpConfiguration primaryIpConfiguration()
@@ -234,6 +235,17 @@ references:
     return:
       type: "26831127"
       description: <p>the MAC Address of the network interface </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.yml
+  name: manager()
+  fullName: ManagerT com.microsoft.azure.management.resources.fluentcore.arm.models.HasManager<ManagerT>.manager()
+  type: Method
+  syntax:
+    content: public ManagerT manager()
+    return:
+      type: 8b0aab42
+      description: <p>the manager client of this resource type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -394,12 +406,15 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
-  name: GroupableResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource
+  name: GroupableResource<TManager>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
   type: Interface
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource extends Resource,HasResourceGroup
+    content: public interface GroupableResource<TManager> extends Resource,HasResourceGroup,HasManager<TManager>
+    typeParameters:
+    - type: 20e9f9a4
+      description: <p>the manager object type representing the service </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._refreshable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._refreshable.yml
@@ -463,4 +478,4 @@ references:
   type: Interface
   summary: <p>Entry point for Virtual <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface Network extends GroupableResource,Refreshable<Network>,Wrapper<VirtualNetworkInner>,Updatable<Network.Update>
+    content: public interface Network extends GroupableResource<NetworkManager>,Refreshable<Network>,Wrapper<VirtualNetworkInner>,Updatable<Network.Update>

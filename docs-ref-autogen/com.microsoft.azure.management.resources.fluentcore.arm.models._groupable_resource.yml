@@ -5,8 +5,8 @@ items:
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
   langs:
   - java
-  name: GroupableResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource
+  name: GroupableResource<TManager>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
   type: Interface
   source:
     remote:
@@ -14,14 +14,18 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/GroupableResource.java
-    startLine: 17
+    startLine: 18
   package: com.microsoft.azure.management.resources.fluentcore.arm.models
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource extends Resource,HasResourceGroup
+    content: public interface GroupableResource<TManager> extends Resource,HasResourceGroup,HasManager<TManager>
+    typeParameters:
+    - type: 20e9f9a4
+      description: <p>the manager object type representing the service </p>
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.region()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.regionName()
@@ -29,6 +33,10 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.tags()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.type()
 references:
+- uid: 20e9f9a4
+  spec.java:
+  - name: TManager
+    fullName: TManager
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.yml
@@ -51,6 +59,17 @@ references:
     return:
       type: "26831127"
       description: <p>the index key. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.yml
+  name: manager()
+  fullName: ManagerT com.microsoft.azure.management.resources.fluentcore.arm.models.HasManager<ManagerT>.manager()
+  type: Method
+  syntax:
+    content: public ManagerT manager()
+    return:
+      type: 8b0aab42
+      description: <p>the manager client of this resource type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -135,6 +154,18 @@ references:
   summary: <p>An interface representing a model that has a resource group name. </p>
   syntax:
     content: public interface HasResourceGroup
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.yml
+  name: HasManager<ManagerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasManager<ManagerT>
+  type: Interface
+  summary: <p>An interface representing a model that exposes a management client. </p>
+  syntax:
+    content: public interface HasManager<ManagerT>
+    typeParameters:
+    - type: 8b0aab42
+      description: <p>the manager client type </p>
 - uid: com.microsoft.azure.management.appservice._app_service_certificate
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_certificate.yml
@@ -143,7 +174,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> app service certificate. </p>
   syntax:
-    content: public interface AppServiceCertificate extends GroupableResource,Refreshable<AppServiceCertificate>,Wrapper<CertificateInner>
+    content: public interface AppServiceCertificate extends GroupableResource<AppServiceManager>,Refreshable<AppServiceCertificate>,Wrapper<CertificateInner>
 - uid: com.microsoft.azure.management.appservice._app_service_certificate_order
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_certificate_order.yml
@@ -152,7 +183,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service Certificate Order. </p>
   syntax:
-    content: public interface AppServiceCertificateOrder extends GroupableResource,Refreshable<AppServiceCertificateOrder>,Updatable<AppServiceCertificateOrder.Update>,Wrapper<AppServiceCertificateOrderInner>
+    content: public interface AppServiceCertificateOrder extends GroupableResource<AppServiceManager>,Refreshable<AppServiceCertificateOrder>,Updatable<AppServiceCertificateOrder.Update>,Wrapper<AppServiceCertificateOrderInner>
 - uid: com.microsoft.azure.management.appservice._app_service_domain
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_domain.yml
@@ -164,7 +195,7 @@ references:
 
     <p>Domains in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> are purchased from 3rd party domain providers. By calling <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync()" data-throw-if-not-resolved="false"></xref> you agree to the agreements listed in <xref href="com.microsoft.azure.management.appservice._app_service_domains.listAgreements(String)" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface AppServiceDomain extends GroupableResource,HasName,Refreshable<AppServiceDomain>,Updatable<AppServiceDomain.Update>,Wrapper<DomainInner>
+    content: public interface AppServiceDomain extends GroupableResource<AppServiceManager>,HasName,Refreshable<AppServiceDomain>,Updatable<AppServiceDomain.Update>,Wrapper<DomainInner>
 - uid: com.microsoft.azure.management.appservice._app_service_plan
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_plan.yml
@@ -173,7 +204,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service Plan. </p>
   syntax:
-    content: public interface AppServicePlan extends GroupableResource,HasName,Refreshable<AppServicePlan>,Updatable<AppServicePlan.Update>,Wrapper<AppServicePlanInner>
+    content: public interface AppServicePlan extends GroupableResource<AppServiceManager>,HasName,Refreshable<AppServicePlan>,Updatable<AppServicePlan.Update>,Wrapper<AppServicePlanInner>
 - uid: com.microsoft.azure.management.appservice._web_app_base
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base.yml
@@ -191,7 +222,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> batch account. </p>
   syntax:
-    content: public interface BatchAccount extends GroupableResource,Refreshable<BatchAccount>,Updatable<BatchAccount.Update>,Wrapper<BatchAccountInner>
+    content: public interface BatchAccount extends GroupableResource<BatchManager>,Refreshable<BatchAccount>,Updatable<BatchAccount.Update>,Wrapper<BatchAccountInner>
 - uid: com.microsoft.azure.management.cdn._cdn_profile
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._cdn_profile.yml
@@ -200,7 +231,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> CDN profile. </p>
   syntax:
-    content: public interface CdnProfile extends GroupableResource,Refreshable<CdnProfile>,Wrapper<ProfileInner>,Updatable<CdnProfile.Update>
+    content: public interface CdnProfile extends GroupableResource<CdnManager>,Refreshable<CdnProfile>,Wrapper<ProfileInner>,Updatable<CdnProfile.Update>
 - uid: com.microsoft.azure.management.compute._availability_set
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._availability_set.yml
@@ -209,7 +240,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> availability set. </p>
   syntax:
-    content: public interface AvailabilitySet extends GroupableResource,Refreshable<AvailabilitySet>,Wrapper<AvailabilitySetInner>,Updatable<AvailabilitySet.Update>
+    content: public interface AvailabilitySet extends GroupableResource<ComputeManager>,Refreshable<AvailabilitySet>,Wrapper<AvailabilitySetInner>,Updatable<AvailabilitySet.Update>
 - uid: com.microsoft.azure.management.compute._virtual_machine
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine.yml
@@ -236,7 +267,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> DNS Zone. </p>
   syntax:
-    content: public interface DnsZone extends GroupableResource,Refreshable<DnsZone>,Wrapper<ZoneInner>,Updatable<DnsZone.Update>
+    content: public interface DnsZone extends GroupableResource<DnsZoneManager>,Refreshable<DnsZone>,Wrapper<ZoneInner>,Updatable<DnsZone.Update>
 - uid: com.microsoft.azure.management.keyvault._vault
   parent: com.microsoft.azure.management.keyvault
   href: com.microsoft.azure.management.keyvault._vault.yml
@@ -254,7 +285,7 @@ references:
   type: Interface
   summary: <p>Entry point for application gateway management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface ApplicationGateway extends GroupableResource,Refreshable<ApplicationGateway>,Wrapper<ApplicationGatewayInner>,Updatable<ApplicationGateway.Update>,HasSubnet,HasPrivateIpAddress,HasManager<NetworkManager>
+    content: public interface ApplicationGateway extends GroupableResource<NetworkManager>,Refreshable<ApplicationGateway>,Wrapper<ApplicationGatewayInner>,Updatable<ApplicationGateway.Update>,HasSubnet,HasPrivateIpAddress
 - uid: com.microsoft.azure.management.network._load_balancer
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer.yml
@@ -335,7 +366,7 @@ references:
 
     <p></p>
   syntax:
-    content: public class GroupableParentResourceImpl<FluentModelT extends Resource,InnerModelT extends com.microsoft.azure.Resource,FluentModelImplT extends GroupableParentResourceImpl<FluentModelT,InnerModelT,FluentModelImplT,ManagerT,ManagerT extends ManagerBase>> extends GroupableResourceImpl<FluentModelT, InnerModelT, FluentModelImplT, ManagerT> implements GroupableResource
+    content: public class GroupableParentResourceImpl<FluentModelT extends Resource,InnerModelT extends com.microsoft.azure.Resource,FluentModelImplT extends GroupableParentResourceImpl<FluentModelT,InnerModelT,FluentModelImplT,ManagerT,ManagerT extends ManagerBase>> extends GroupableResourceImpl<FluentModelT, InnerModelT, FluentModelImplT, ManagerT> implements GroupableResource<ManagerT>
     typeParameters:
     - type: 2f67777b
       description: <p>The fluent model type </p>
@@ -390,15 +421,6 @@ references:
       description: <p>the service manager type </p>
     - type: 8b0aab42
       description: <p>the service manager type </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource.yml
-  name: IndependentChildResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource
-  type: Interface
-  summary: <p>Interface for the child resource which can be CRUDed independently from the parent resource. </p>
-  syntax:
-    content: public interface IndependentChildResource
 - uid: com.microsoft.azure.management.resources._generic_resource
   parent: com.microsoft.azure.management.resources
   href: com.microsoft.azure.management.resources._generic_resource.yml
@@ -407,7 +429,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> generic resource. </p>
   syntax:
-    content: public interface GenericResource extends GroupableResource,Refreshable<GenericResource>,Updatable<GenericResource.Update>,Wrapper<GenericResourceInner>
+    content: public interface GenericResource extends GroupableResource<ResourceManager>,Refreshable<GenericResource>,Updatable<GenericResource.Update>,Wrapper<GenericResourceInner>
 - uid: com.microsoft.azure.management.sql._sql_server
   parent: com.microsoft.azure.management.sql
   href: com.microsoft.azure.management.sql._sql_server.yml

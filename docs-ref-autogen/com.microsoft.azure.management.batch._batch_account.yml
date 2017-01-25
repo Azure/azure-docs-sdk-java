@@ -25,15 +25,16 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 25
+    startLine: 26
   package: com.microsoft.azure.management.batch
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> batch account. </p>
   syntax: &o1
-    content: public interface BatchAccount extends GroupableResource,Refreshable<BatchAccount>,Updatable<BatchAccount.Update>,Wrapper<BatchAccountInner>
+    content: public interface BatchAccount extends GroupableResource<BatchManager>,Refreshable<BatchAccount>,Updatable<BatchAccount.Update>,Wrapper<BatchAccountInner>
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.region()
@@ -54,7 +55,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 40
+    startLine: 41
   package: com.microsoft.azure.management.batch
   syntax:
     content: public String accountEndpoint()
@@ -73,7 +74,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 61
+    startLine: 62
   package: com.microsoft.azure.management.batch
   syntax:
     content: public int activeJobAndJobScheduleQuota()
@@ -92,7 +93,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 84
+    startLine: 85
   package: com.microsoft.azure.management.batch
   syntax:
     content: public Map<String, Application> applications()
@@ -111,7 +112,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 46
+    startLine: 47
   package: com.microsoft.azure.management.batch
   syntax:
     content: public AutoStorageProperties autoStorage()
@@ -130,7 +131,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 51
+    startLine: 52
   package: com.microsoft.azure.management.batch
   syntax:
     content: public int coreQuota()
@@ -149,7 +150,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 66
+    startLine: 67
   package: com.microsoft.azure.management.batch
   syntax:
     content: public BatchAccountKeys getKeys()
@@ -168,7 +169,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 56
+    startLine: 57
   package: com.microsoft.azure.management.batch
   syntax:
     content: public int poolQuota()
@@ -187,7 +188,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 35
+    startLine: 36
   package: com.microsoft.azure.management.batch
   syntax:
     content: public ProvisioningState provisioningState()
@@ -206,7 +207,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 74
+    startLine: 75
   package: com.microsoft.azure.management.batch
   summary: >-
     <p>Regenerates the access keys for batch account.</p>
@@ -233,7 +234,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-batch/src/main/java/com/microsoft/azure/management/batch/BatchAccount.java
-    startLine: 79
+    startLine: 80
   package: com.microsoft.azure.management.batch
   summary: <p>Synchronize the storage account keys for batch account. </p>
   syntax:
@@ -290,6 +291,17 @@ references:
     return:
       type: "26831127"
       description: <p>the index key. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.yml
+  name: manager()
+  fullName: ManagerT com.microsoft.azure.management.resources.fluentcore.arm.models.HasManager<ManagerT>.manager()
+  type: Method
+  syntax:
+    content: public ManagerT manager()
+    return:
+      type: 8b0aab42
+      description: <p>the manager client of this resource type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -391,12 +403,15 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
-  name: GroupableResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource
+  name: GroupableResource<TManager>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
   type: Interface
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource
+    content: public interface GroupableResource<TManager>
+    typeParameters:
+    - type: 20e9f9a4
+      description: <p>the manager object type representing the service </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._refreshable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._refreshable.yml
