@@ -22,16 +22,17 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 27
+    startLine: 28
   package: com.microsoft.azure.management.network
   summary: <p>Entry point for load balancer management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface LoadBalancer extends GroupableResource,Refreshable<LoadBalancer>,Wrapper<LoadBalancerInner>,Updatable<LoadBalancer.Update>,HasLoadBalancingRules
+    content: public interface LoadBalancer extends GroupableResource<NetworkManager>,Refreshable<LoadBalancer>,Wrapper<LoadBalancerInner>,Updatable<LoadBalancer.Update>,HasLoadBalancingRules
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
   - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.network.model._has_load_balancing_rules.loadBalancingRules()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource.region()
@@ -52,7 +53,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 53
+    startLine: 54
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerBackend> backends()
@@ -71,7 +72,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 63
+    startLine: 64
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerFrontend> frontends()
@@ -90,7 +91,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 48
+    startLine: 49
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerHttpProbe> httpProbes()
@@ -109,7 +110,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 68
+    startLine: 69
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerInboundNatPool> inboundNatPools()
@@ -128,7 +129,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 58
+    startLine: 59
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerInboundNatRule> inboundNatRules()
@@ -147,7 +148,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 38
+    startLine: 39
   package: com.microsoft.azure.management.network
   syntax:
     content: public List<String> publicIpAddressIds()
@@ -166,7 +167,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 43
+    startLine: 44
   package: com.microsoft.azure.management.network
   syntax:
     content: public Map<String, LoadBalancerTcpProbe> tcpProbes()
@@ -282,6 +283,17 @@ references:
     return:
       type: 2108f1f4com.microsoft.azure.management.network._load_balancing_rulea08ddfce
       description: <p>the associated load balancing rules from this load balancer, indexed by their names </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.manager()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager.yml
+  name: manager()
+  fullName: ManagerT com.microsoft.azure.management.resources.fluentcore.arm.models.HasManager<ManagerT>.manager()
+  type: Method
+  syntax:
+    content: public ManagerT manager()
+    return:
+      type: 8b0aab42
+      description: <p>the manager client of this resource type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.yml
@@ -383,12 +395,15 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
-  name: GroupableResource
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource
+  name: GroupableResource<TManager>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
   type: Interface
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource extends Resource,HasResourceGroup
+    content: public interface GroupableResource<TManager> extends Resource,HasResourceGroup,HasManager<TManager>
+    typeParameters:
+    - type: 20e9f9a4
+      description: <p>the manager object type representing the service </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._refreshable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._refreshable.yml
