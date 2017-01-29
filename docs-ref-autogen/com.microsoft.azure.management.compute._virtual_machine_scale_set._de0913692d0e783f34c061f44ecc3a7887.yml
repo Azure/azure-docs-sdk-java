@@ -17,7 +17,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 329
+    startLine: 375
   package: com.microsoft.azure.management.compute
   summary: <p>The stage of a virtual machine scale set definition allowing to specify an Internet-facing load balancer for the primary network interface of the virtual machines in the scale set. </p>
   syntax:
@@ -34,7 +34,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 340
+    startLine: 386
   package: com.microsoft.azure.management.compute
   summary: >-
     <p>Specifies an Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
@@ -63,7 +63,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-compute/src/main/java/com/microsoft/azure/management/compute/VirtualMachineScaleSet.java
-    startLine: 347
+    startLine: 393
   package: com.microsoft.azure.management.compute
   summary: >-
     <p>Specifies that no public load balancer should be associated with the virtual machine scale set.</p>
@@ -75,15 +75,15 @@ items:
       type: com.microsoft.azure.management.compute._virtual_machine_scale_set._de710f4b996758b4ea074bc7585e6a5205
       description: <p>the next stage of the definition </p>
 references:
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_shared
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition.yml
-  name: VirtualMachineScaleSet.Definition
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.Definition
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_shared.yml
+  name: VirtualMachineScaleSet.DefinitionShared
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionShared
   type: Interface
-  summary: <p>The entirety of the load balancer definition. </p>
+  summary: <p>The virtual machine scale set stages shared between managed and unmanaged based virtual machine scale set definitions. </p>
   syntax:
-    content: public interface Definition extends VirtualMachineScaleSet.DefinitionStages.Blank,VirtualMachineScaleSet.DefinitionStages.WithGroup,VirtualMachineScaleSet.DefinitionStages.WithSku,VirtualMachineScaleSet.DefinitionStages.WithNetworkSubnet,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancer,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerBackendOrNatPool,VirtualMachineScaleSet.DefinitionStages.WithInternalLoadBalancerBackendOrNatPool,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerNatPool,VirtualMachineScaleSet.DefinitionStages.WithInternalInternalLoadBalancerNatPool,VirtualMachineScaleSet.DefinitionStages.WithOS,VirtualMachineScaleSet.DefinitionStages.WithLinuxRootUsername,VirtualMachineScaleSet.DefinitionStages.WithLinuxRootPasswordOrPublicKey,VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminUsername,VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminPassword,VirtualMachineScaleSet.DefinitionStages.WithLinuxCreate,VirtualMachineScaleSet.DefinitionStages.WithWindowsCreate,VirtualMachineScaleSet.DefinitionStages.WithCreate
+    content: public interface DefinitionShared extends VirtualMachineScaleSet.DefinitionStages.Blank,VirtualMachineScaleSet.DefinitionStages.WithGroup,VirtualMachineScaleSet.DefinitionStages.WithSku,VirtualMachineScaleSet.DefinitionStages.WithNetworkSubnet,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancer,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerBackendOrNatPool,VirtualMachineScaleSet.DefinitionStages.WithInternalLoadBalancerBackendOrNatPool,VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerNatPool,VirtualMachineScaleSet.DefinitionStages.WithInternalInternalLoadBalancerNatPool,VirtualMachineScaleSet.DefinitionStages.WithOS,VirtualMachineScaleSet.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0af4c2712bffb2711b49c94cf4c8dd33
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0af4c2712bffb2711b49c94cf4c8dd33.yml
@@ -100,20 +100,18 @@ references:
   fullName: VirtualMachineScaleSetImpl com.microsoft.azure.management.compute.implementation.VirtualMachineScaleSetImpl.withExistingPrimaryInternetFacingLoadBalancer(LoadBalancer loadBalancer)
   type: Method
   summary: >-
-    <p>Specifies an Internet-facing load balancer whose backends and/or NAT pools can be assigned to the primary network interfaces of the virtual machines in the scale set. </p>
+    <p>Specifies the load balancer to be used as the Internet-facing load balancer for the virtual machines in the scale set. </p>
 
-    <p>By default, all the backends and inbound NAT pools of the load balancer will be associated with the primary network interface of the scale set virtual machines. </p>
-
-    <p></p>
+    <p>This will replace the current internet-facing load balancer associated with the virtual machines in the scale set (if any). By default all the backend and inbound NAT pool of the load balancer will be associated with the primary network interface of the virtual machines unless a subset of them is selected in the next stages </p>
   syntax:
     content: public VirtualMachineScaleSetImpl withExistingPrimaryInternetFacingLoadBalancer(LoadBalancer loadBalancer)
     parameters:
     - id: loadBalancer
       type: com.microsoft.azure.management.network._load_balancer
-      description: <p>an existing Internet-facing load balancer </p>
+      description: <p>the primary Internet-facing load balancer </p>
     return:
       type: com.microsoft.azure.management.compute.implementation._virtual_machine_scale_set_impl
-      description: <p>the next stage of the definition </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer.yml
