@@ -6,7 +6,6 @@ items:
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.closeClosesMqttConnection()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.closeDoesNothingIfConnectionAlreadyClosed()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.closeDoesNothingIfConnectionNotYetOpened()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorCreatesPublishAndSubscribeTopics()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorSavesCorrectConfig()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorThrowsIllegalArgumentExceptionIfDeviceIDIsEmpty()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorThrowsIllegalArgumentExceptionIfDeviceIDIsNull()
@@ -17,24 +16,20 @@ items:
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorThrowsIllegalArgumentExceptionIfUserNameIsEmpty()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorThrowsIllegalArgumentExceptionIfUserNameIsNull()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockConfig()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttAsyncClient()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttDeliveryToken()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttMessage()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttToken()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockToken()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.openDoesNothingIfAlreadyOpened()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.openEstablishesConnectionUsingCorrectConfig()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.openThrowsIOExceptionIfConnectionFails()
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageConsumesAMessageFromReceivedQueue()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageFailsIfConnectionAlreadyClosed(@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageFailsIfConnectionClosed(@Mocked final Message)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageSucceeds()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventFailsIfConnectionClosed(@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventFailsIfConnectionNotYetOpened(@Mocked final Message)
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventReturnsBadFormatIfMessageHasEmptyBody(@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventReturnsBadFormatIfMessageHasNullBody(@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventReturnsBadFormatIfMessageIsNull()
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventReturnsErrorIfMessageNotReceived(@Mocked final Message)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message)
   href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
   langs:
   - java
@@ -47,7 +42,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 28
+    startLine: 26
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   summary: <p>Unit tests for MqttIotHubConnection. </p>
   syntax:
@@ -76,7 +71,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 329
+    startLine: 314
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void closeClosesMqttConnection()
@@ -92,7 +87,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 391
+    startLine: 368
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void closeDoesNothingIfConnectionAlreadyClosed()
@@ -108,26 +103,10 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 366
+    startLine: 354
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void closeDoesNothingIfConnectionNotYetOpened()
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorCreatesPublishAndSubscribeTopics()
-  id: constructorCreatesPublishAndSubscribeTopics()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: constructorCreatesPublishAndSubscribeTopics()
-  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.constructorCreatesPublishAndSubscribeTopics()
-  type: Method
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 79
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: public void constructorCreatesPublishAndSubscribeTopics()
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.constructorSavesCorrectConfig()
   id: constructorSavesCorrectConfig()
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
@@ -140,7 +119,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 64
+    startLine: 62
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorSavesCorrectConfig()
@@ -156,7 +135,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 134
+    startLine: 117
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfDeviceIDIsEmpty()
@@ -172,7 +151,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 154
+    startLine: 137
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfDeviceIDIsNull()
@@ -188,7 +167,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 94
+    startLine: 77
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfHostNameIsEmpty()
@@ -204,7 +183,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 114
+    startLine: 97
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfHostNameIsNull()
@@ -220,7 +199,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 214
+    startLine: 197
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfSasTokenIsEmpty()
@@ -236,7 +215,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 234
+    startLine: 217
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfSasTokenIsNull()
@@ -252,7 +231,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 174
+    startLine: 157
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfUserNameIsEmpty()
@@ -268,7 +247,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 194
+    startLine: 177
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void constructorThrowsIllegalArgumentExceptionIfUserNameIsNull()
@@ -284,84 +263,12 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 42
+    startLine: 40
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: protected DeviceClientConfig mockConfig
     return:
       type: com.microsoft.azure.sdk.iot.device._device_client_config
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttAsyncClient()
-  id: mockMqttAsyncClient()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: mockMqttAsyncClient
-  fullName: MqttAsyncClient tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.mockMqttAsyncClient
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 45
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: protected MqttAsyncClient mockMqttAsyncClient
-    return:
-      type: 87e35ab3
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttDeliveryToken()
-  id: mockMqttDeliveryToken()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: mockMqttDeliveryToken
-  fullName: IMqttDeliveryToken tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.mockMqttDeliveryToken
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 51
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: protected IMqttDeliveryToken mockMqttDeliveryToken
-    return:
-      type: 60649e1d
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttMessage()
-  id: mockMqttMessage()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: mockMqttMessage
-  fullName: MqttMessage tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.mockMqttMessage
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 57
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: protected MqttMessage mockMqttMessage
-    return:
-      type: e1250987
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockMqttToken()
-  id: mockMqttToken()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: mockMqttToken
-  fullName: IMqttToken tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.mockMqttToken
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 48
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: protected IMqttToken mockMqttToken
-    return:
-      type: 6fc15112
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.mockToken()
   id: mockToken()
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
@@ -374,7 +281,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 54
+    startLine: 55
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: protected IotHubSasToken mockToken
@@ -392,7 +299,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 310
+    startLine: 294
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void openDoesNothingIfAlreadyOpened()
@@ -408,7 +315,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 254
+    startLine: 237
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void openEstablishesConnectionUsingCorrectConfig()
@@ -424,26 +331,10 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 291
+    startLine: 275
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void openThrowsIOExceptionIfConnectionFails()
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageConsumesAMessageFromReceivedQueue()
-  id: receiveMessageConsumesAMessageFromReceivedQueue()
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: receiveMessageConsumesAMessageFromReceivedQueue()
-  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.receiveMessageConsumesAMessageFromReceivedQueue()
-  type: Method
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 593
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: public void receiveMessageConsumesAMessageFromReceivedQueue()
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageFailsIfConnectionAlreadyClosed(@Mocked final Message)
   id: receiveMessageFailsIfConnectionAlreadyClosed(@Mocked final Message)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
@@ -456,7 +347,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 627
+    startLine: 602
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void receiveMessageFailsIfConnectionAlreadyClosed(@Mocked final Message mockMsg)
@@ -475,13 +366,29 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 616
+    startLine: 591
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void receiveMessageFailsIfConnectionClosed(@Mocked final Message mockMsg)
     parameters:
     - id: mockMsg
       type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.receiveMessageSucceeds()
+  id: receiveMessageSucceeds()
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
+  langs:
+  - java
+  name: receiveMessageSucceeds()
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.receiveMessageSucceeds()
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
+    startLine: 562
+  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
+  syntax:
+    content: public void receiveMessageSucceeds()
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventFailsIfConnectionClosed(@Mocked final Message)
   id: sendEventFailsIfConnectionClosed(@Mocked final Message)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
@@ -494,7 +401,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 543
+    startLine: 514
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventFailsIfConnectionClosed(@Mocked final Message mockMsg)
@@ -513,29 +420,10 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 523
+    startLine: 494
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventFailsIfConnectionNotYetOpened(@Mocked final Message mockMsg)
-    parameters:
-    - id: mockMsg
-      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message)
-  id: sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message)
-  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
-  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
-  langs:
-  - java
-  name: sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message mockMsg)
-  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message mockMsg)
-  type: Method
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 426
-  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
-  syntax:
-    content: public void sendEventPublishesEventCorrectlyToIotHub(@Mocked final Message mockMsg)
     parameters:
     - id: mockMsg
       type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
@@ -551,7 +439,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 501
+    startLine: 472
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventReturnsBadFormatIfMessageHasEmptyBody(@Mocked final Message mockMsg)
@@ -570,7 +458,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 478
+    startLine: 448
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventReturnsBadFormatIfMessageHasNullBody(@Mocked final Message mockMsg)
@@ -589,7 +477,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 463
+    startLine: 433
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventReturnsBadFormatIfMessageIsNull()
@@ -605,30 +493,33 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
-    startLine: 565
+    startLine: 536
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void sendEventReturnsErrorIfMessageNotReceived(@Mocked final Message mockMsg)
     parameters:
     - id: mockMsg
       type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message)
+  id: sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection_test.yml
+  langs:
+  - java
+  name: sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message mockMsg)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnectionTest.sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message mockMsg)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttIotHubConnectionTest.java
+    startLine: 400
+  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.mqtt
+  syntax:
+    content: public void sendEventSendsMessageCorrectlyToIotHub(@Mocked final Message mockMsg)
+    parameters:
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
 references:
-- uid: 87e35ab3
-  spec.java:
-  - name: MqttAsyncClient
-    fullName: MqttAsyncClient
-- uid: 6fc15112
-  spec.java:
-  - name: IMqttToken
-    fullName: IMqttToken
-- uid: 60649e1d
-  spec.java:
-  - name: IMqttDeliveryToken
-    fullName: IMqttDeliveryToken
-- uid: e1250987
-  spec.java:
-  - name: MqttMessage
-    fullName: MqttMessage
 - uid: 5514d1f5com.microsoft.azure.sdk.iot.device._message
   spec.java:
   - name: '@Mocked final '
@@ -673,6 +564,30 @@ references:
   summary: <p>Grants device access to an IoT Hub for the specified amount of time. </p>
   syntax:
     content: public class IotHubSasToken
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_twin
+  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_twin.yml
+  name: MqttDeviceTwin
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceTwin
+  type: Class
+  syntax:
+    content: public class MqttDeviceTwin extends Mqtt
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_messaging
+  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_messaging.yml
+  name: MqttMessaging
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttMessaging
+  type: Class
+  syntax:
+    content: public class MqttMessaging
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_methods
+  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_methods.yml
+  name: MqttDeviceMethods
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethods
+  type: Class
+  syntax:
+    content: public class MqttDeviceMethods extends Mqtt
 - uid: com.microsoft.azure.sdk.iot.device._message
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._message.yml
