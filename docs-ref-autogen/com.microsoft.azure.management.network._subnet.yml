@@ -24,12 +24,12 @@ items:
   package: com.microsoft.azure.management.network
   summary: <p>An immutable client-side representation of a subnet of a virtual network. </p>
   syntax:
-    content: public interface Subnet extends Wrapper<SubnetInner>,ChildResource<Network>
+    content: public interface Subnet extends HasInner<SubnetInner>,ChildResource<Network>
   inheritedMembers:
-  - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
+  - com.microsoft.azure.management.resources.fluentcore.model._has_inner.inner()
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
-  - com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
 - uid: com.microsoft.azure.management.network._subnet.addressPrefix()
   id: addressPrefix()
   parent: com.microsoft.azure.management.network._subnet
@@ -138,11 +138,11 @@ references:
   spec.java:
   - name: String
     fullName: String
-- uid: com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
-  parent: com.microsoft.azure.management.resources.fluentcore.model._wrapper
-  href: com.microsoft.azure.management.resources.fluentcore.model._wrapper.yml
+- uid: com.microsoft.azure.management.resources.fluentcore.model._has_inner.inner()
+  parent: com.microsoft.azure.management.resources.fluentcore.model._has_inner
+  href: com.microsoft.azure.management.resources.fluentcore.model._has_inner.yml
   name: inner()
-  fullName: T com.microsoft.azure.management.resources.fluentcore.model.Wrapper<T>.inner()
+  fullName: T com.microsoft.azure.management.resources.fluentcore.model.HasInner<T>.inner()
   type: Method
   syntax:
     content: public T inner()
@@ -171,29 +171,29 @@ references:
     return:
       type: "26831127"
       description: <p>the name of the resource </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
   name: parent()
-  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource<ParentT>.parent()
+  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>.parent()
   type: Method
   syntax:
     content: public ParentT parent()
     return:
       type: 18a275b1
       description: <p>the parent of this child object </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.model._wrapper
+- uid: com.microsoft.azure.management.resources.fluentcore.model._has_inner
   parent: com.microsoft.azure.management.resources.fluentcore.model
-  href: com.microsoft.azure.management.resources.fluentcore.model._wrapper.yml
-  name: Wrapper<T>
-  fullName: com.microsoft.azure.management.resources.fluentcore.model.Wrapper<T>
+  href: com.microsoft.azure.management.resources.fluentcore.model._has_inner.yml
+  name: HasInner<T>
+  fullName: com.microsoft.azure.management.resources.fluentcore.model.HasInner<T>
   type: Interface
   summary: >-
     <p>The wrapper around an inner object providing extended functionalities.</p>
 
     <p></p>
   syntax:
-    content: public interface Wrapper<T>
+    content: public interface HasInner<T>
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the type of the inner object. </p>
@@ -205,7 +205,7 @@ references:
   type: Interface
   summary: <p>Base interface used by child resources. </p>
   syntax:
-    content: public interface ChildResource<ParentT> extends Indexable,HasName
+    content: public interface ChildResource<ParentT> extends Indexable,HasName,HasParent<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>parent interface </p>
@@ -221,7 +221,7 @@ references:
 
       <xref href="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false"></xref> security group. </p>
   syntax:
-    content: public interface NetworkSecurityGroup extends GroupableResource<NetworkManager>,Refreshable<NetworkSecurityGroup>,Wrapper<NetworkSecurityGroupInner>,Updatable<NetworkSecurityGroup.Update>,HasAssociatedSubnets
+    content: public interface NetworkSecurityGroup extends GroupableResource<NetworkManager, NetworkSecurityGroupInner>,Refreshable<NetworkSecurityGroup>,Updatable<NetworkSecurityGroup.Update>,HasAssociatedSubnets
 - uid: com.microsoft.azure.management._azure
   parent: com.microsoft.azure.management
   href: com.microsoft.azure.management._azure.yml
@@ -239,4 +239,4 @@ references:
   type: Interface
   summary: <p>Entry point for route table management. </p>
   syntax:
-    content: public interface RouteTable extends GroupableResource<NetworkManager>,Refreshable<RouteTable>,Wrapper<RouteTableInner>,Updatable<RouteTable.Update>,HasAssociatedSubnets
+    content: public interface RouteTable extends GroupableResource<NetworkManager, RouteTableInner>,Refreshable<RouteTable>,Updatable<RouteTable.Update>,HasAssociatedSubnets

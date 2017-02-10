@@ -107,7 +107,7 @@ references:
   name: CheckProfileDnsNameAvailabilityResult
   fullName: com.microsoft.azure.management.trafficmanager.CheckProfileDnsNameAvailabilityResult
   type: Class
-  summary: <p>The <xref href="com.microsoft.azure.management.trafficmanager._traffic_manager_profiles.checkDnsNameAvailability(String)" data-throw-if-not-resolved="false"></xref> action result. </p>
+  summary: <p>The result of checking for DNS name availability. </p>
   syntax:
     content: public class CheckProfileDnsNameAvailabilityResult
 - uid: com.microsoft.azure.management.trafficmanager._dns_config
@@ -190,7 +190,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> traffic manager profile endpoint. </p>
   syntax:
-    content: public interface TrafficManagerEndpoint extends ExternalChildResource<TrafficManagerEndpoint, TrafficManagerProfile>,Wrapper<EndpointInner>
+    content: public interface TrafficManagerEndpoint extends ExternalChildResource<TrafficManagerEndpoint, TrafficManagerProfile>,HasInner<EndpointInner>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_external_endpoint
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_external_endpoint.yml
@@ -217,7 +217,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> traffic manager profile. </p>
   syntax:
-    content: public interface TrafficManagerProfile extends GroupableResource<TrafficManager>,Refreshable<TrafficManagerProfile>,Wrapper<ProfileInner>,Updatable<TrafficManagerProfile.Update>
+    content: public interface TrafficManagerProfile extends GroupableResource<TrafficManager, ProfileInner>,Refreshable<TrafficManagerProfile>,Updatable<TrafficManagerProfile.Update>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profiles
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_profiles.yml
@@ -226,7 +226,7 @@ references:
   type: Interface
   summary: <p>Entry point to traffic manager profile management API in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public interface TrafficManagerProfiles extends SupportsCreating<TrafficManagerProfile.DefinitionStages.Blank>,SupportsListing<TrafficManagerProfile>,SupportsListingByGroup<TrafficManagerProfile>,SupportsGettingByGroup<TrafficManagerProfile>,SupportsGettingById<TrafficManagerProfile>,SupportsDeletingById,SupportsDeletingByGroup,SupportsBatchCreation<TrafficManagerProfile>,HasManager<TrafficManager>
+    content: public interface TrafficManagerProfiles extends SupportsCreating<TrafficManagerProfile.DefinitionStages.Blank>,SupportsListing<TrafficManagerProfile>,SupportsListingByGroup<TrafficManagerProfile>,SupportsGettingByGroup<TrafficManagerProfile>,SupportsGettingById<TrafficManagerProfile>,SupportsDeletingById,SupportsDeletingByGroup,SupportsBatchCreation<TrafficManagerProfile>,HasManager<TrafficManager>,HasInner<ProfilesInner>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_routing_method
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_routing_method.yml
@@ -274,7 +274,7 @@ references:
   type: Interface
   summary: <p>The stage of the traffic manager profile definition allowing to specify the resource group. </p>
   syntax:
-    content: public interface Blank extends GroupableResource<TManager>.DefinitionStages.WithGroupAndRegion<WithLeafDomainLabel>
+    content: public interface Blank extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroupAndRegion<WithLeafDomainLabel>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint._definition
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint._definition.yml
@@ -497,6 +497,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_4f8a66946953a6a6589c242eeaae08db
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_4f8a66946953a6a6589c242eeaae08db.yml
+  name: TrafficManagerEndpoint.DefinitionStages.WithAzureResource<ParentT>
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithAzureResource<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the traffic manager profile <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> endpoint definition allowing to specify the ID of the target <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithAzureResource<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_5c879aa4ead03ac231518f3ab116e4a5
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_5c879aa4ead03ac231518f3ab116e4a5.yml
@@ -511,21 +526,6 @@ references:
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_1d254ba748789e91fb35c0aac4d0561b.yml
   name: TrafficManagerEndpoint.UpdateDefinitionStages.WithAzureResource<ParentT>
   fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.UpdateDefinitionStages.WithAzureResource<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the traffic manager profile <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> endpoint definition allowing to specify the ID of the target <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithAzureResource<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_4f8a66946953a6a6589c242eeaae08db
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_4f8a66946953a6a6589c242eeaae08db.yml
-  name: TrafficManagerEndpoint.DefinitionStages.WithAzureResource<ParentT>
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithAzureResource<ParentT>
   type: Interface
   summary: >-
     <p>The stage of the traffic manager profile <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> endpoint definition allowing to specify the ID of the target <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource.</p>
@@ -563,21 +563,6 @@ references:
   summary: <p>The stage of the traffic manager profile update allowing to specify endpoints. </p>
   syntax:
     content: public interface WithEndpoint
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_ea354c342990e3a406728bee28b19cd5
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_ea354c342990e3a406728bee28b19cd5.yml
-  name: TrafficManagerEndpoint.DefinitionStages.WithEndpointThreshold<ParentT>
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithEndpointThreshold<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the nested traffic manager profile endpoint definition allowing to specify the minimum endpoints to be online in the nested profile to consider it as not degraded.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithEndpointThreshold<ParentT> extends TrafficManagerEndpoint.DefinitionStages.WithAttach<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_3f33939d568b2aee2f425b2fc9e72116
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_3f33939d568b2aee2f425b2fc9e72116.yml
@@ -593,6 +578,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_ea354c342990e3a406728bee28b19cd5
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_ea354c342990e3a406728bee28b19cd5.yml
+  name: TrafficManagerEndpoint.DefinitionStages.WithEndpointThreshold<ParentT>
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithEndpointThreshold<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the nested traffic manager profile endpoint definition allowing to specify the minimum endpoints to be online in the nested profile to consider it as not degraded.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithEndpointThreshold<ParentT> extends TrafficManagerEndpoint.DefinitionStages.WithAttach<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_aa79e4993375a8d3fc725a2ba0850e8a
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_aa79e4993375a8d3fc725a2ba0850e8a.yml
@@ -641,15 +641,6 @@ references:
   summary: <p>The stage of the traffic manager profile definition allowing to specify the relative DNS name. </p>
   syntax:
     content: public interface WithLeafDomainLabel
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1546d50ab4f67d6acc94f5fe03e6c5580
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1546d50ab4f67d6acc94f5fe03e6c5580.yml
-  name: TrafficManagerProfile.DefinitionStages.WithMonitoringConfiguration
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.DefinitionStages.WithMonitoringConfiguration
-  type: Interface
-  summary: <p>The stage of the traffic manager profile definition allowing to specify the endpoint monitoring configuration. </p>
-  syntax:
-    content: public interface WithMonitoringConfiguration
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1f64dc7cafb273d8b9b60943242081aa1
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1f64dc7cafb273d8b9b60943242081aa1.yml
@@ -657,6 +648,15 @@ references:
   fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.UpdateStages.WithMonitoringConfiguration
   type: Interface
   summary: <p>The stage of the traffic manager profile update allowing to specify the endpoint monitoring configuration. </p>
+  syntax:
+    content: public interface WithMonitoringConfiguration
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1546d50ab4f67d6acc94f5fe03e6c5580
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1546d50ab4f67d6acc94f5fe03e6c5580.yml
+  name: TrafficManagerProfile.DefinitionStages.WithMonitoringConfiguration
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.DefinitionStages.WithMonitoringConfiguration
+  type: Interface
+  summary: <p>The stage of the traffic manager profile definition allowing to specify the endpoint monitoring configuration. </p>
   syntax:
     content: public interface WithMonitoringConfiguration
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_8d27bf2f329b743c6210da4b7bcfbb78
@@ -755,21 +755,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_962135b058b970e85d59ac5ad40f2502
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_962135b058b970e85d59ac5ad40f2502.yml
-  name: TrafficManagerEndpoint.DefinitionStages.WithRoutingWeight<ParentT>
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithRoutingWeight<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the traffic manager endpoint definition allowing to specify the endpoint weight.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithRoutingWeight<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_d68cbbd0450e1de2ef1948fa10ac166b
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_d68cbbd0450e1de2ef1948fa10ac166b.yml
@@ -794,6 +779,30 @@ references:
   summary: <p>The stage of the traffic manager profile endpoint update allowing to specify the endpoint weight. </p>
   syntax:
     content: public interface WithRoutingWeight
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_962135b058b970e85d59ac5ad40f2502
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_962135b058b970e85d59ac5ad40f2502.yml
+  name: TrafficManagerEndpoint.DefinitionStages.WithRoutingWeight<ParentT>
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.DefinitionStages.WithRoutingWeight<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the traffic manager endpoint definition allowing to specify the endpoint weight.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithRoutingWeight<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_e5aff3298eebd22c13ac629443ff195d
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_e5aff3298eebd22c13ac629443ff195d.yml
+  name: TrafficManagerEndpoint.UpdateStages.WithSourceTrafficRegion
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.UpdateStages.WithSourceTrafficRegion
+  type: Interface
+  summary: <p>The stage of the traffic manager endpoint update allowing to specify the location of the external or nested profile endpoints. </p>
+  syntax:
+    content: public interface WithSourceTrafficRegion
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_21dc22eaa35a7639adfcbf5317629e31
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_21dc22eaa35a7639adfcbf5317629e31.yml
@@ -809,15 +818,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_e5aff3298eebd22c13ac629443ff195d
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_e5aff3298eebd22c13ac629443ff195d.yml
-  name: TrafficManagerEndpoint.UpdateStages.WithSourceTrafficRegion
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.UpdateStages.WithSourceTrafficRegion
-  type: Interface
-  summary: <p>The stage of the traffic manager endpoint update allowing to specify the location of the external or nested profile endpoints. </p>
-  syntax:
-    content: public interface WithSourceTrafficRegion
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_2349f44c619a8752276d6db6b5e57526
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_2349f44c619a8752276d6db6b5e57526.yml
@@ -863,21 +863,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_dd7af36e2df2b406106ce0d537e400bb
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_dd7af36e2df2b406106ce0d537e400bb.yml
-  name: TrafficManagerEndpoint.UpdateDefinitionStages.WithTrafficDisabled<ParentT>
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.UpdateDefinitionStages.WithTrafficDisabled<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the traffic manager endpoint definition allowing to disable the endpoint.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithTrafficDisabled<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_6515b460e06dcb0b2d9b2e0d1158f5af
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_6515b460e06dcb0b2d9b2e0d1158f5af.yml
@@ -893,6 +878,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_dd7af36e2df2b406106ce0d537e400bb
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_dd7af36e2df2b406106ce0d537e400bb.yml
+  name: TrafficManagerEndpoint.UpdateDefinitionStages.WithTrafficDisabled<ParentT>
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerEndpoint.UpdateDefinitionStages.WithTrafficDisabled<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the traffic manager endpoint definition allowing to disable the endpoint.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithTrafficDisabled<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_1f2e42cc04e6d250bd5a20b0bbe88c87
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_endpoint_1f2e42cc04e6d250bd5a20b0bbe88c87.yml
@@ -902,15 +902,6 @@ references:
   summary: <p>The stage of the traffic manager profile endpoint update allowing to enable or disable it. </p>
   syntax:
     content: public interface WithTrafficDisabledOrEnabled
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1356d69408172965b502b0f76c7dc04c1
-  parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1356d69408172965b502b0f76c7dc04c1.yml
-  name: TrafficManagerProfile.DefinitionStages.WithTrafficRoutingMethod
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.DefinitionStages.WithTrafficRoutingMethod
-  type: Interface
-  summary: <p>The stage of the traffic manager profile definition allowing to specify the traffic routing method for the profile. </p>
-  syntax:
-    content: public interface WithTrafficRoutingMethod
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_12941af4203c3d41478d0fd252b3080ff
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_12941af4203c3d41478d0fd252b3080ff.yml
@@ -920,15 +911,15 @@ references:
   summary: <p>The stage of the traffic manager profile update allowing to specify the traffic routing method for the profile. </p>
   syntax:
     content: public interface WithTrafficRoutingMethod
-- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile._update_stages._with_ttl
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1356d69408172965b502b0f76c7dc04c1
   parent: com.microsoft.azure.management.trafficmanager
-  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile._update_stages._with_ttl.yml
-  name: TrafficManagerProfile.UpdateStages.WithTtl
-  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.UpdateStages.WithTtl
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_1356d69408172965b502b0f76c7dc04c1.yml
+  name: TrafficManagerProfile.DefinitionStages.WithTrafficRoutingMethod
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.DefinitionStages.WithTrafficRoutingMethod
   type: Interface
-  summary: <p>The stage of the traffic manager profile update allowing to specify the DNS TTL. </p>
+  summary: <p>The stage of the traffic manager profile definition allowing to specify the traffic routing method for the profile. </p>
   syntax:
-    content: public interface WithTtl
+    content: public interface WithTrafficRoutingMethod
 - uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_11e13617fd24cdd16ebf07b7206108b35
   parent: com.microsoft.azure.management.trafficmanager
   href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile_11e13617fd24cdd16ebf07b7206108b35.yml
@@ -936,5 +927,14 @@ references:
   fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.DefinitionStages.WithTtl
   type: Interface
   summary: <p>The stage of the traffic manager profile definition allowing to specify the DNS TTL. </p>
+  syntax:
+    content: public interface WithTtl
+- uid: com.microsoft.azure.management.trafficmanager._traffic_manager_profile._update_stages._with_ttl
+  parent: com.microsoft.azure.management.trafficmanager
+  href: com.microsoft.azure.management.trafficmanager._traffic_manager_profile._update_stages._with_ttl.yml
+  name: TrafficManagerProfile.UpdateStages.WithTtl
+  fullName: com.microsoft.azure.management.trafficmanager.TrafficManagerProfile.UpdateStages.WithTtl
+  type: Interface
+  summary: <p>The stage of the traffic manager profile update allowing to specify the DNS TTL. </p>
   syntax:
     content: public interface WithTtl

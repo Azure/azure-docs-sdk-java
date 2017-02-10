@@ -17,14 +17,14 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/collection/SupportsGettingByParent.java
-    startLine: 19
+    startLine: 20
   package: com.microsoft.azure.management.resources.fluentcore.arm.collection
   summary: >-
     <p>Provides access to getting a specific <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource based on its resource group and parent.</p>
 
     <p></p>
   syntax:
-    content: public interface SupportsGettingByParent<T,ParentT extends GroupableResource<ManagerT,ManagerT>>
+    content: public interface SupportsGettingByParent<T,ParentT extends Resource &HasResourceGroup,ManagerT>
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the type of the resource collection </p>
@@ -39,12 +39,12 @@ items:
   langs:
   - java
   name: getByParent(ParentT parentResource, String name)
-  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsGettingByParent<T, ParentT extends GroupableResource<ManagerT, ManagerT>.getByParent(ParentT parentResource, String name)
+  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsGettingByParent<T, ParentT extends Resource &HasResourceGroup, ManagerT>.getByParent(ParentT parentResource, String name)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/collection/SupportsGettingByParent.java
-    startLine: 37
+    startLine: 38
   package: com.microsoft.azure.management.resources.fluentcore.arm.collection
   summary: >-
     <p>Gets the information about a resource from <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> based on the resource id.</p>
@@ -69,12 +69,12 @@ items:
   langs:
   - java
   name: getByParent(String resourceGroup, String parentName, String name)
-  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsGettingByParent<T, ParentT extends GroupableResource<ManagerT, ManagerT>.getByParent(String resourceGroup, String parentName, String name)
+  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.SupportsGettingByParent<T, ParentT extends Resource &HasResourceGroup, ManagerT>.getByParent(String resourceGroup, String parentName, String name)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/collection/SupportsGettingByParent.java
-    startLine: 28
+    startLine: 29
   package: com.microsoft.azure.management.resources.fluentcore.arm.collection
   summary: >-
     <p>Gets the information about a resource from <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> based on the resource id.</p>
@@ -120,7 +120,7 @@ references:
   type: Class
   summary: <p>Base class for independent child collection class. (Internal use only) </p>
   syntax:
-    content: public class IndependentChildrenImpl<T extends IndependentChild<ManagerT,ImplT extends T,InnerT,InnerCollectionT,ManagerT extends ManagerBase,ParentT extends GroupableResource<ManagerT>>> extends CreatableResourcesImpl<T, ImplT, InnerT> implements SupportsGettingById<T>,SupportsGettingByParent<T, ParentT, ManagerT>,SupportsListingByParent<T, ParentT, ManagerT>,SupportsDeletingById,SupportsDeletingByParent,HasManager<ManagerT>
+    content: public class IndependentChildrenImpl<T extends IndependentChild<ManagerT,ImplT extends T,InnerT,InnerCollectionT,ManagerT extends ManagerBase,ParentT extends Resource &HasResourceGroup>> extends CreatableResourcesImpl<T, ImplT, InnerT> implements SupportsGettingById<T>,SupportsGettingByParent<T, ParentT, ManagerT>,SupportsListingByParent<T, ParentT, ManagerT>,SupportsDeletingById,SupportsDeletingByParent,HasManager<ManagerT>,HasInner<InnerCollectionT>
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the individual resource type returned </p>
@@ -137,18 +137,24 @@ references:
 - uid: com.microsoft.azure.management.sql.implementation._sql_databases_impl
 - uid: com.microsoft.azure.management.sql.implementation._sql_elastic_pools_impl
 - uid: com.microsoft.azure.management.sql.implementation._sql_firewall_rules_impl
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
-  name: GroupableResource<TManager>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._resource.yml
+  name: Resource
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.Resource
   type: Interface
-  summary: <p>Base interface for resources in resource groups. </p>
+  summary: <p>Base interfaces for fluent resources. </p>
   syntax:
-    content: public interface GroupableResource<TManager> extends Resource,HasResourceGroup,HasManager<TManager>
-    typeParameters:
-    - type: 20e9f9a4
-      description: <p>the manager object type representing the service </p>
+    content: public interface Resource extends Indexable,HasId,HasName
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group.yml
+  name: HasResourceGroup
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasResourceGroup
+  type: Interface
+  summary: <p>An interface representing a model that has a resource group name. </p>
+  syntax:
+    content: public interface HasResourceGroup
 - uid: com.microsoft.azure.management._azure
   parent: com.microsoft.azure.management
   href: com.microsoft.azure.management._azure.yml
@@ -162,7 +168,7 @@ references:
   parent: com.microsoft.azure.management.resources.fluentcore.arm.collection.114c4af3fdde5d622b8f39d8a34fb30d
   href: com.microsoft.azure.management.resources.fluentcore.arm.collection.114c4af3fdde5d622b8f39d8a34fb30d.yml
   name: getByParent(ParentT parentResource, String name)
-  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.implementation.IndependentChildrenImpl<T extends IndependentChild<ManagerT, ImplT extends T, InnerT, InnerCollectionT, ManagerT extends ManagerBase, ParentT extends GroupableResource<ManagerT>.getByParent(ParentT parentResource, String name)
+  fullName: T com.microsoft.azure.management.resources.fluentcore.arm.collection.implementation.IndependentChildrenImpl<T extends IndependentChild<ManagerT, ImplT extends T, InnerT, InnerCollectionT, ManagerT extends ManagerBase, ParentT extends Resource &HasResourceGroup>.getByParent(ParentT parentResource, String name)
   type: Method
   summary: >-
     <p>Gets the information about a resource from <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> based on the resource id.</p>

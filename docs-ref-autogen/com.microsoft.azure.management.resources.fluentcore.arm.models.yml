@@ -8,6 +8,7 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_manager
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_subnet._update_stages
@@ -65,7 +66,7 @@ references:
   type: Interface
   summary: <p>Base interface used by child resources. </p>
   syntax:
-    content: public interface ChildResource<ParentT> extends Indexable,HasName
+    content: public interface ChildResource<ParentT> extends Indexable,HasName,HasParent<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>parent interface </p>
@@ -89,15 +90,17 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._groupable_resource.yml
-  name: GroupableResource<TManager>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager>
+  name: GroupableResource<TManager,InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.GroupableResource<TManager,InnerT>
   type: Interface
   summary: <p>Base interface for resources in resource groups. </p>
   syntax:
-    content: public interface GroupableResource<TManager> extends Resource,HasResourceGroup,HasManager<TManager>
+    content: public interface GroupableResource<TManager,InnerT> extends Resource,HasResourceGroup,HasManager<TManager>,HasInner<InnerT>
     typeParameters:
     - type: 20e9f9a4
       description: <p>the manager object type representing the service </p>
+    - type: 52cf8095
+      description: <p>the wrapped, inner, auto-generated implementation object type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.yml
@@ -128,6 +131,18 @@ references:
   summary: <p>An interface representing a model that has a name. </p>
   syntax:
     content: public interface HasName
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
+  name: HasParent<ParentT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>
+  type: Interface
+  summary: <p>An interface representing a child that has an immediately available parent. </p>
+  syntax:
+    content: public interface HasParent<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the parent type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_resource_group.yml
@@ -161,18 +176,20 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource.yml
-  name: IndependentChildResource<ManagerT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource<ManagerT>
+  name: IndependentChildResource<ManagerT,InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource<ManagerT,InnerT>
   type: Interface
   summary: >-
     <p>Interface for the child resource which can be CRUDed independently from the parent resource.</p>
 
     <p></p>
   syntax:
-    content: public interface IndependentChildResource<ManagerT> extends GroupableResource<ManagerT>,IndependentChild<ManagerT>
+    content: public interface IndependentChildResource<ManagerT,InnerT> extends GroupableResource<ManagerT, InnerT>,IndependentChild<ManagerT>
     typeParameters:
     - type: 8b0aab42
       description: <p>the client manager type representing the service </p>
+    - type: 52cf8095
+      description: <p>the inner, auto-generated implementation logic object type </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._parentless_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._parentless_child_resource.yml
