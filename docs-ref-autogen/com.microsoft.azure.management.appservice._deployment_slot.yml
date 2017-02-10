@@ -2,8 +2,6 @@ items:
 - uid: com.microsoft.azure.management.appservice._deployment_slot
   id: _deployment_slot
   parent: com.microsoft.azure.management.appservice
-  children:
-  - com.microsoft.azure.management.appservice._deployment_slot.parent()
   href: com.microsoft.azure.management.appservice._deployment_slot.yml
   langs:
   - java
@@ -11,16 +9,16 @@ items:
   fullName: com.microsoft.azure.management.appservice.DeploymentSlot
   type: Interface
   source:
-    remote: &o0
+    remote:
       path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/DeploymentSlot.java
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/DeploymentSlot.java
-    startLine: 18
+    startLine: 20
   package: com.microsoft.azure.management.appservice
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Web App deployment slot. </p>
   syntax:
-    content: public interface DeploymentSlot extends IndependentChildResource<AppServiceManager>,WebAppBase,Refreshable<DeploymentSlot>,Updatable<DeploymentSlot.Update>
+    content: public interface DeploymentSlot extends IndependentChildResource<AppServiceManager, SiteInner>,WebAppBase,Refreshable<DeploymentSlot>,Updatable<DeploymentSlot.Update>,HasParent<WebApp>
   inheritedMembers:
   - com.microsoft.azure.management.appservice._web_app_base.alwaysOn()
   - com.microsoft.azure.management.appservice._web_app_base.applySlotConfigurations(String)
@@ -45,7 +43,7 @@ items:
   - com.microsoft.azure.management.appservice._web_app_base.hostNamesDisabled()
   - com.microsoft.azure.management.appservice._web_app_base.hostNameSslStates()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
-  - com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
+  - com.microsoft.azure.management.resources.fluentcore.model._has_inner.inner()
   - com.microsoft.azure.management.appservice._web_app_base.isDefaultContainer()
   - com.microsoft.azure.management.appservice._web_app_base.isPremiumApp()
   - com.microsoft.azure.management.appservice._web_app_base.javaContainer()
@@ -59,7 +57,8 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
   - com.microsoft.azure.management.appservice._web_app_base.netFrameworkVersion()
   - com.microsoft.azure.management.appservice._web_app_base.nodeVersion()
-  - com.microsoft.azure.management.appservice._web_app_base.outboundIpAddresses()
+  - com.microsoft.azure.management.appservice._web_app_base.outboundIPAddresses()
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
   - com.microsoft.azure.management.appservice._web_app_base.phpVersion()
   - com.microsoft.azure.management.appservice._web_app_base.pythonVersion()
   - com.microsoft.azure.management.resources.fluentcore.model._refreshable.refresh()
@@ -85,25 +84,6 @@ items:
   - com.microsoft.azure.management.appservice._web_app_base.verifyDomainOwnership(String,String)
   - com.microsoft.azure.management.appservice._web_app_base.verifyDomainOwnershipAsync(String,String)
   - com.microsoft.azure.management.appservice._web_app_base.webSocketsEnabled()
-- uid: com.microsoft.azure.management.appservice._deployment_slot.parent()
-  id: parent()
-  parent: com.microsoft.azure.management.appservice._deployment_slot
-  href: com.microsoft.azure.management.appservice._deployment_slot.yml
-  langs:
-  - java
-  name: parent()
-  fullName: WebApp com.microsoft.azure.management.appservice.DeploymentSlot.parent()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/DeploymentSlot.java
-    startLine: 27
-  package: com.microsoft.azure.management.appservice
-  syntax:
-    content: public WebApp parent()
-    return:
-      type: com.microsoft.azure.management.appservice._web_app
-      description: <p>the web app containing this deployment slot </p>
 references:
 - uid: com.microsoft.azure.management.appservice._web_app_base.alwaysOn()
   parent: com.microsoft.azure.management.appservice._web_app_base
@@ -360,11 +340,11 @@ references:
     return:
       type: "26831127"
       description: <p>the resource ID string </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.model._wrapper.inner()
-  parent: com.microsoft.azure.management.resources.fluentcore.model._wrapper
-  href: com.microsoft.azure.management.resources.fluentcore.model._wrapper.yml
+- uid: com.microsoft.azure.management.resources.fluentcore.model._has_inner.inner()
+  parent: com.microsoft.azure.management.resources.fluentcore.model._has_inner
+  href: com.microsoft.azure.management.resources.fluentcore.model._has_inner.yml
   name: inner()
-  fullName: T com.microsoft.azure.management.resources.fluentcore.model.Wrapper<T>.inner()
+  fullName: T com.microsoft.azure.management.resources.fluentcore.model.HasInner<T>.inner()
   type: Method
   syntax:
     content: public T inner()
@@ -514,17 +494,28 @@ references:
     return:
       type: "26831127"
       description: <p>the version of Node.JS </p>
-- uid: com.microsoft.azure.management.appservice._web_app_base.outboundIpAddresses()
+- uid: com.microsoft.azure.management.appservice._web_app_base.outboundIPAddresses()
   parent: com.microsoft.azure.management.appservice._web_app_base
   href: com.microsoft.azure.management.appservice._web_app_base.yml
-  name: outboundIpAddresses()
-  fullName: Set<String> com.microsoft.azure.management.appservice.WebAppBase.outboundIpAddresses()
+  name: outboundIPAddresses()
+  fullName: Set<String> com.microsoft.azure.management.appservice.WebAppBase.outboundIPAddresses()
   type: Method
   syntax:
-    content: public Set<String> outboundIpAddresses()
+    content: public Set<String> outboundIPAddresses()
     return:
       type: df32358c
       description: <p>list of IP addresses that this web app uses for outbound connections. Those can be used when configuring firewall rules for databases accessed by this web app. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
+  name: parent()
+  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>.parent()
+  type: Method
+  syntax:
+    content: public ParentT parent()
+    return:
+      type: 18a275b1
+      description: <p>the parent of this child object </p>
 - uid: com.microsoft.azure.management.appservice._web_app_base.phpVersion()
   parent: com.microsoft.azure.management.appservice._web_app_base
   href: com.microsoft.azure.management.appservice._web_app_base.yml
@@ -820,18 +811,20 @@ references:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._independent_child_resource.yml
-  name: IndependentChildResource<ManagerT>
-  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource<ManagerT>
+  name: IndependentChildResource<ManagerT,InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.IndependentChildResource<ManagerT,InnerT>
   type: Interface
   summary: >-
     <p>Interface for the child resource which can be CRUDed independently from the parent resource.</p>
 
     <p></p>
   syntax:
-    content: public interface IndependentChildResource<ManagerT>
+    content: public interface IndependentChildResource<ManagerT,InnerT>
     typeParameters:
     - type: 8b0aab42
       description: <p>the client manager type representing the service </p>
+    - type: 52cf8095
+      description: <p>the inner, auto-generated implementation logic object type </p>
 - uid: com.microsoft.azure.management.appservice._web_app_base
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base.yml
@@ -871,16 +864,19 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the fluent type of the resource </p>
-- uid: com.microsoft.azure.management.appservice.implementation._deployment_slot_impl
-- uid: com.microsoft.azure.management.appservice._web_app
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app.yml
-  name: WebApp
-  fullName: com.microsoft.azure.management.appservice.WebApp
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
+  name: HasParent<ParentT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>
   type: Interface
-  summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> Web App. </p>
+  summary: <p>An interface representing a child that has an immediately available parent. </p>
   syntax:
-    content: public interface WebApp
+    content: public interface HasParent<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the parent type </p>
+- uid: com.microsoft.azure.management.appservice.implementation._deployment_slot_impl
 - uid: com.microsoft.azure.management._azure
   parent: com.microsoft.azure.management
   href: com.microsoft.azure.management._azure.yml

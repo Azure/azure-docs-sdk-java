@@ -2,8 +2,6 @@ items:
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
   id: _child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
-  children:
-  - com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
   langs:
   - java
@@ -11,7 +9,7 @@ items:
   fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource<ParentT>
   type: Interface
   source:
-    remote: &o0
+    remote:
       path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/ChildResource.java
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
@@ -20,32 +18,14 @@ items:
   package: com.microsoft.azure.management.resources.fluentcore.arm.models
   summary: <p>Base interface used by child resources. </p>
   syntax:
-    content: public interface ChildResource<ParentT> extends Indexable,HasName
+    content: public interface ChildResource<ParentT> extends Indexable,HasName,HasParent<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>parent interface </p>
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.parent()
-  id: parent()
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models._child_resource.yml
-  langs:
-  - java
-  name: parent()
-  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.ChildResource<ParentT>.parent()
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-resources/src/main/java/com/microsoft/azure/management/resources/fluentcore/arm/models/ChildResource.java
-    startLine: 22
-  package: com.microsoft.azure.management.resources.fluentcore.arm.models
-  syntax:
-    content: public ParentT parent()
-    return:
-      type: 18a275b1
-      description: <p>the parent of this child object </p>
+  - com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
 references:
 - uid: 18a275b1
   spec.java:
@@ -73,6 +53,17 @@ references:
     return:
       type: "26831127"
       description: <p>the name of the resource </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.parent()
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
+  name: parent()
+  fullName: ParentT com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>.parent()
+  type: Method
+  syntax:
+    content: public ParentT parent()
+    return:
+      type: 18a275b1
+      description: <p>the parent of this child object </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._indexable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._indexable.yml
@@ -91,6 +82,18 @@ references:
   summary: <p>An interface representing a model that has a name. </p>
   syntax:
     content: public interface HasName
+- uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent
+  parent: com.microsoft.azure.management.resources.fluentcore.arm.models
+  href: com.microsoft.azure.management.resources.fluentcore.arm.models._has_parent.yml
+  name: HasParent<ParentT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.arm.models.HasParent<ParentT>
+  type: Interface
+  summary: <p>An interface representing a child that has an immediately available parent. </p>
+  syntax:
+    content: public interface HasParent<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the parent type </p>
 - uid: com.microsoft.azure.management.appservice._domain_contact
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._domain_contact.yml
@@ -180,7 +183,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of a key vault access policy. </p>
   syntax:
-    content: public interface AccessPolicy extends ChildResource<Vault>,Wrapper<AccessPolicyEntry>
+    content: public interface AccessPolicy extends ChildResource<Vault>,HasInner<AccessPolicyEntry>
 - uid: com.microsoft.azure.management.network._application_gateway_backend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_backend.yml
@@ -189,7 +192,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway backend. </p>
   syntax:
-    content: public interface ApplicationGatewayBackend extends Wrapper<ApplicationGatewayBackendAddressPoolInner>,ChildResource<ApplicationGateway>,HasBackendNics
+    content: public interface ApplicationGatewayBackend extends HasInner<ApplicationGatewayBackendAddressPoolInner>,ChildResource<ApplicationGateway>,HasBackendNics
 - uid: com.microsoft.azure.management.network._application_gateway_backend_http_configuration
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_backend_http_configuration.yml
@@ -198,7 +201,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway's backend HTTP configuration. </p>
   syntax:
-    content: public interface ApplicationGatewayBackendHttpConfiguration extends Wrapper<ApplicationGatewayBackendHttpSettingsInner>,ChildResource<ApplicationGateway>,HasProtocol<ApplicationGatewayProtocol>,HasPort
+    content: public interface ApplicationGatewayBackendHttpConfiguration extends HasInner<ApplicationGatewayBackendHttpSettingsInner>,ChildResource<ApplicationGateway>,HasProtocol<ApplicationGatewayProtocol>,HasPort
 - uid: com.microsoft.azure.management.network._application_gateway_frontend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_frontend.yml
@@ -207,7 +210,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway frontend. </p>
   syntax:
-    content: public interface ApplicationGatewayFrontend extends Wrapper<ApplicationGatewayFrontendIPConfigurationInner>,ChildResource<ApplicationGateway>,HasPrivateIpAddress,HasSubnet,HasPublicIpAddress
+    content: public interface ApplicationGatewayFrontend extends HasInner<ApplicationGatewayFrontendIPConfigurationInner>,ChildResource<ApplicationGateway>,HasPrivateIPAddress,HasSubnet,HasPublicIPAddress
 - uid: com.microsoft.azure.management.network._application_gateway_ip_configuration
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_ip_configuration.yml
@@ -216,7 +219,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway IP configuration. </p>
   syntax:
-    content: public interface ApplicationGatewayIpConfiguration extends Wrapper<ApplicationGatewayIPConfigurationInner>,ChildResource<ApplicationGateway>
+    content: public interface ApplicationGatewayIpConfiguration extends HasInner<ApplicationGatewayIPConfigurationInner>,ChildResource<ApplicationGateway>
 - uid: com.microsoft.azure.management.network._application_gateway_listener
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_listener.yml
@@ -225,7 +228,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway's HTTP listener. </p>
   syntax:
-    content: public interface ApplicationGatewayListener extends Wrapper<ApplicationGatewayHttpListenerInner>,ChildResource<ApplicationGateway>,HasSslCertificate<ApplicationGatewaySslCertificate>,HasPublicIpAddress,HasProtocol<ApplicationGatewayProtocol>,HasHostName,HasServerNameIndication,HasSubnet
+    content: public interface ApplicationGatewayListener extends HasInner<ApplicationGatewayHttpListenerInner>,ChildResource<ApplicationGateway>,HasSslCertificate<ApplicationGatewaySslCertificate>,HasPublicIPAddress,HasProtocol<ApplicationGatewayProtocol>,HasHostName,HasServerNameIndication,HasSubnet
 - uid: com.microsoft.azure.management.network._application_gateway_request_routing_rule
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_request_routing_rule.yml
@@ -234,7 +237,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway request routing rule. </p>
   syntax:
-    content: public interface ApplicationGatewayRequestRoutingRule extends Wrapper<ApplicationGatewayRequestRoutingRuleInner>,ChildResource<ApplicationGateway>,HasPublicIpAddress,HasSslCertificate<ApplicationGatewaySslCertificate>,HasFrontendPort,HasBackendPort,HasHostName,HasCookieBasedAffinity,HasServerNameIndication
+    content: public interface ApplicationGatewayRequestRoutingRule extends HasInner<ApplicationGatewayRequestRoutingRuleInner>,ChildResource<ApplicationGateway>,HasPublicIPAddress,HasSslCertificate<ApplicationGatewaySslCertificate>,HasFrontendPort,HasBackendPort,HasHostName,HasCookieBasedAffinity,HasServerNameIndication
 - uid: com.microsoft.azure.management.network._application_gateway_ssl_certificate
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._application_gateway_ssl_certificate.yml
@@ -243,7 +246,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an application gateway SSL certificate. </p>
   syntax:
-    content: public interface ApplicationGatewaySslCertificate extends Wrapper<ApplicationGatewaySslCertificateInner>,ChildResource<ApplicationGateway>
+    content: public interface ApplicationGatewaySslCertificate extends HasInner<ApplicationGatewaySslCertificateInner>,ChildResource<ApplicationGateway>
 - uid: com.microsoft.azure.management.network._load_balancer_backend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer_backend.yml
@@ -307,15 +310,15 @@ references:
   summary: <p>A network security rule in a network security group. </p>
   syntax:
     content: public interface NetworkSecurityRule
-- uid: com.microsoft.azure.management.network._nic_ip_configuration
+- uid: com.microsoft.azure.management.network._nic_i_p_configuration
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._nic_ip_configuration.yml
-  name: NicIpConfiguration
-  fullName: com.microsoft.azure.management.network.NicIpConfiguration
+  href: com.microsoft.azure.management.network._nic_i_p_configuration.yml
+  name: NicIPConfiguration
+  fullName: com.microsoft.azure.management.network.NicIPConfiguration
   type: Interface
   summary: <p>An IP configuration in a network interface. </p>
   syntax:
-    content: public interface NicIpConfiguration
+    content: public interface NicIPConfiguration
 - uid: com.microsoft.azure.management.network._route
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._route.yml
@@ -334,15 +337,15 @@ references:
   summary: <p>An immutable client-side representation of a subnet of a virtual network. </p>
   syntax:
     content: public interface Subnet
-- uid: com.microsoft.azure.management.network._virtual_machine_scale_set_nic_ip_configuration
+- uid: com.microsoft.azure.management.network._virtual_machine_scale_set_nic_i_p_configuration
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._virtual_machine_scale_set_nic_ip_configuration.yml
-  name: VirtualMachineScaleSetNicIpConfiguration
-  fullName: com.microsoft.azure.management.network.VirtualMachineScaleSetNicIpConfiguration
+  href: com.microsoft.azure.management.network._virtual_machine_scale_set_nic_i_p_configuration.yml
+  name: VirtualMachineScaleSetNicIPConfiguration
+  fullName: com.microsoft.azure.management.network.VirtualMachineScaleSetNicIPConfiguration
   type: Interface
   summary: <p>An IP configuration in a network interface associated with a virtual machine scale set. </p>
   syntax:
-    content: public interface VirtualMachineScaleSetNicIpConfiguration
+    content: public interface VirtualMachineScaleSetNicIPConfiguration
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._external_child_resource
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models
   href: com.microsoft.azure.management.resources.fluentcore.arm.models._external_child_resource.yml
@@ -379,14 +382,3 @@ references:
       description: <p>parent implementation </p>
     - type: 18a275b1
       description: <p>parent interface </p>
-- uid: com.microsoft.azure.management.resources.fluentcore.arm.models.impl7838795340e54463d0b118ac0c317502.parent()
-  parent: com.microsoft.azure.management.resources.fluentcore.arm.models.impl7838795340e54463d0b118ac0c317502
-  href: com.microsoft.azure.management.resources.fluentcore.arm.models.impl7838795340e54463d0b118ac0c317502.yml
-  name: parent()
-  fullName: ParentImplT com.microsoft.azure.management.resources.fluentcore.arm.models.implementation.ChildResourceImpl<InnerT, ParentImplT extends ParentT, ParentT>.parent()
-  type: Method
-  syntax:
-    content: public ParentImplT parent()
-    return:
-      type: a6c7119d
-      description: <p>parent resource for this child resource </p>

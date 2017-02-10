@@ -102,7 +102,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> CDN endpoint. </p>
   syntax:
-    content: public interface CdnEndpoint extends ExternalChildResource<CdnEndpoint, CdnProfile>,Wrapper<EndpointInner>
+    content: public interface CdnEndpoint extends ExternalChildResource<CdnEndpoint, CdnProfile>,HasInner<EndpointInner>
 - uid: com.microsoft.azure.management.cdn._cdn_profile
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._cdn_profile.yml
@@ -111,7 +111,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> CDN profile. </p>
   syntax:
-    content: public interface CdnProfile extends GroupableResource<CdnManager>,Refreshable<CdnProfile>,Wrapper<ProfileInner>,Updatable<CdnProfile.Update>
+    content: public interface CdnProfile extends GroupableResource<CdnManager, ProfileInner>,Refreshable<CdnProfile>,Updatable<CdnProfile.Update>
 - uid: com.microsoft.azure.management.cdn._cdn_profiles
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._cdn_profiles.yml
@@ -120,7 +120,7 @@ references:
   type: Interface
   summary: <p>Entry point for CDN profile management API. </p>
   syntax:
-    content: public interface CdnProfiles extends SupportsCreating<CdnProfile.DefinitionStages.Blank>,SupportsListing<CdnProfile>,SupportsListingByGroup<CdnProfile>,SupportsGettingByGroup<CdnProfile>,SupportsGettingById<CdnProfile>,SupportsDeletingById,SupportsDeletingByGroup,SupportsBatchCreation<CdnProfile>,HasManager<CdnManager>
+    content: public interface CdnProfiles extends SupportsCreating<CdnProfile.DefinitionStages.Blank>,SupportsListing<CdnProfile>,SupportsListingByGroup<CdnProfile>,SupportsGettingByGroup<CdnProfile>,SupportsGettingById<CdnProfile>,SupportsDeletingById,SupportsDeletingByGroup,SupportsBatchCreation<CdnProfile>,HasManager<CdnManager>,HasInner<ProfilesInner>
 - uid: com.microsoft.azure.management.cdn._check_name_availability_input
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._check_name_availability_input.yml
@@ -606,22 +606,7 @@ references:
   type: Interface
   summary: <p>A Redis Cache definition allowing resource group to be set. </p>
   syntax:
-    content: public interface WithGroup extends GroupableResource<TManager>.DefinitionStages.WithGroup<WithSku>
-- uid: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_premium_attach
-  parent: com.microsoft.azure.management.cdn
-  href: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_premium_attach.yml
-  name: CdnEndpoint.DefinitionStages.WithPremiumAttach<ParentT>
-  fullName: com.microsoft.azure.management.cdn.CdnEndpoint.DefinitionStages.WithPremiumAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the CDN profile Premium Verizon endpoint definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref>. </p>
-  syntax:
-    content: public interface WithPremiumAttach<ParentT> extends CdnEndpoint.DefinitionStages.AttachablePremium<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref></p>
+    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithSku>
 - uid: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_premium_attach
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_premium_attach.yml
@@ -634,6 +619,21 @@ references:
     <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref>. </p>
   syntax:
     content: public interface WithPremiumAttach<ParentT> extends CdnEndpoint.UpdateDefinitionStages.AttachablePremium<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref></p>
+- uid: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_premium_attach
+  parent: com.microsoft.azure.management.cdn
+  href: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_premium_attach.yml
+  name: CdnEndpoint.DefinitionStages.WithPremiumAttach<ParentT>
+  fullName: com.microsoft.azure.management.cdn.CdnEndpoint.DefinitionStages.WithPremiumAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the CDN profile Premium Verizon endpoint definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref>. </p>
+  syntax:
+    content: public interface WithPremiumAttach<ParentT> extends CdnEndpoint.DefinitionStages.AttachablePremium<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachablePremium#attach()</ref></p>
@@ -655,21 +655,6 @@ references:
   summary: <p>A CDN profile definition allowing the sku to be set. </p>
   syntax:
     content: public interface WithSku
-- uid: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_standard_attach
-  parent: com.microsoft.azure.management.cdn
-  href: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_standard_attach.yml
-  name: CdnEndpoint.UpdateDefinitionStages.WithStandardAttach<ParentT>
-  fullName: com.microsoft.azure.management.cdn.CdnEndpoint.UpdateDefinitionStages.WithStandardAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the CDN profile Standard Akamai or Standard Verizon endpoint definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref>. </p>
-  syntax:
-    content: public interface WithStandardAttach<ParentT> extends CdnEndpoint.UpdateDefinitionStages.AttachableStandard<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref></p>
 - uid: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_standard_attach
   parent: com.microsoft.azure.management.cdn
   href: com.microsoft.azure.management.cdn._cdn_endpoint._definition_stages._with_standard_attach.yml
@@ -682,6 +667,21 @@ references:
     <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref>. </p>
   syntax:
     content: public interface WithStandardAttach<ParentT> extends CdnEndpoint.DefinitionStages.AttachableStandard<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref></p>
+- uid: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_standard_attach
+  parent: com.microsoft.azure.management.cdn
+  href: com.microsoft.azure.management.cdn._cdn_endpoint._update_definition_stages._with_standard_attach.yml
+  name: CdnEndpoint.UpdateDefinitionStages.WithStandardAttach<ParentT>
+  fullName: com.microsoft.azure.management.cdn.CdnEndpoint.UpdateDefinitionStages.WithStandardAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the CDN profile Standard Akamai or Standard Verizon endpoint definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the CDN profile endpoint definition can be attached to the parent CDN profile definition using <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref>. </p>
+  syntax:
+    content: public interface WithStandardAttach<ParentT> extends CdnEndpoint.UpdateDefinitionStages.AttachableStandard<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <ref refid="" kindref="compound">CdnEndpoint.DefinitionStages.AttachableStandard#attach()</ref></p>
