@@ -77,8 +77,11 @@ items:
   - com.microsoft.azure.management.compute._disk_encryption_settings
   - com.microsoft.azure.management.compute._disk_instance_view
   - com.microsoft.azure.management.compute._disk_sku_types
+  - com.microsoft.azure.management.compute._disk_volume_encryption_monitor
+  - com.microsoft.azure.management.compute._disk_volume_type
   - com.microsoft.azure.management.compute._disks
   - com.microsoft.azure.management.compute._encryption_settings
+  - com.microsoft.azure.management.compute._encryption_status
   - com.microsoft.azure.management.compute._hardware_profile
   - com.microsoft.azure.management.compute._image_data_disk
   - com.microsoft.azure.management.compute._image_disk_reference
@@ -95,6 +98,7 @@ items:
   - com.microsoft.azure.management.compute._known_linux_virtual_machine_image
   - com.microsoft.azure.management.compute._known_windows_virtual_machine_image
   - com.microsoft.azure.management.compute._linux_configuration
+  - com.microsoft.azure.management.compute._linux_v_m_disk_encryption_configuration
   - com.microsoft.azure.management.compute._network_profile
   - com.microsoft.azure.management.compute._o_s_disk
   - com.microsoft.azure.management.compute._o_s_disk_image
@@ -220,6 +224,8 @@ items:
   - com.microsoft.azure.management.compute._virtual_machine_custom_image.fd802259c92a0b84ffcb753f5868d7b7
   - com.microsoft.azure.management.compute._virtual_machine_custom_images
   - com.microsoft.azure.management.compute._virtual_machine_data_disk
+  - com.microsoft.azure.management.compute._virtual_machine_encryption
+  - com.microsoft.azure.management.compute._virtual_machine_encryption_configuration
   - com.microsoft.azure.management.compute._virtual_machine_extension
   - com.microsoft.azure.management.compute._virtual_machine_extension._de139db87725f28663dfdf073020914fa2
   - com.microsoft.azure.management.compute._virtual_machine_extension._de17b735dd9d5549496c24071fbdea9257
@@ -430,6 +436,7 @@ items:
   - com.microsoft.azure.management.compute._win_r_m_configuration
   - com.microsoft.azure.management.compute._win_r_m_listener
   - com.microsoft.azure.management.compute._windows_configuration
+  - com.microsoft.azure.management.compute._windows_v_m_disk_encryption_configuration
   href: com.microsoft.azure.management.compute.yml
   langs:
   - java
@@ -842,6 +849,27 @@ references:
   summary: <p>Defines values for <xref href="com.microsoft.azure.management.compute._disk_sku_types" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class DiskSkuTypes
+- uid: com.microsoft.azure.management.compute._disk_volume_encryption_monitor
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk_volume_encryption_monitor.yml
+  name: DiskVolumeEncryptionMonitor
+  fullName: com.microsoft.azure.management.compute.DiskVolumeEncryptionMonitor
+  type: Interface
+  summary: >-
+    <p>Type that can be used to monitor encryption enable and disable status of a virtual machine.</p>
+
+    <p>User get access to implementation of this interface from following methods:<orderedlist><listitem><p><xref href="com.microsoft.azure.management.compute._virtual_machine_encryption" data-throw-if-not-resolved="false"></xref>.[enable|disable]{1}[Async]{0-1}</p></listitem><listitem><p><xref href="com.microsoft.azure.management.compute._virtual_machine_encryption.getMonitor()" data-throw-if-not-resolved="false"></xref>[Async]{0-1} It is possible that user first get monitor instance via 2 then starts encrypting the virtual machine, in this case he can still use the same monitor instance to monitor the encryption progress. </p></listitem></orderedlist></p>
+  syntax:
+    content: public interface DiskVolumeEncryptionMonitor extends Refreshable<DiskVolumeEncryptionMonitor>
+- uid: com.microsoft.azure.management.compute._disk_volume_type
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk_volume_type.yml
+  name: DiskVolumeType
+  fullName: com.microsoft.azure.management.compute.DiskVolumeType
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.management.compute._disk_volume_type" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum DiskVolumeType
 - uid: com.microsoft.azure.management.compute._encryption_settings
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._encryption_settings.yml
@@ -851,6 +879,15 @@ references:
   summary: <p>Encryption settings for disk or snapshot. </p>
   syntax:
     content: public class EncryptionSettings
+- uid: com.microsoft.azure.management.compute._encryption_status
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._encryption_status.yml
+  name: EncryptionStatus
+  fullName: com.microsoft.azure.management.compute.EncryptionStatus
+  type: Class
+  summary: <p>Defines values for EncryptionStatuses. </p>
+  syntax:
+    content: public class EncryptionStatus
 - uid: com.microsoft.azure.management.compute._hardware_profile
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._hardware_profile.yml
@@ -995,6 +1032,15 @@ references:
   summary: <p>Describes Windows configuration of the OS Profile. </p>
   syntax:
     content: public class LinuxConfiguration
+- uid: com.microsoft.azure.management.compute._linux_v_m_disk_encryption_configuration
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._linux_v_m_disk_encryption_configuration.yml
+  name: LinuxVMDiskEncryptionConfiguration
+  fullName: com.microsoft.azure.management.compute.LinuxVMDiskEncryptionConfiguration
+  type: Class
+  summary: <p>Type representing encryption settings to be applied to a Linux virtual machine. </p>
+  syntax:
+    content: public class LinuxVMDiskEncryptionConfiguration extends VirtualMachineEncryptionConfiguration<LinuxVMDiskEncryptionConfiguration>
 - uid: com.microsoft.azure.management.compute._network_profile
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._network_profile.yml
@@ -1304,6 +1350,30 @@ references:
   summary: <p>A managed data disk of a virtual machine. </p>
   syntax:
     content: public interface VirtualMachineDataDisk extends HasInner<DataDisk>,HasName,HasId
+- uid: com.microsoft.azure.management.compute._virtual_machine_encryption
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_encryption.yml
+  name: VirtualMachineEncryption
+  fullName: com.microsoft.azure.management.compute.VirtualMachineEncryption
+  type: Interface
+  summary: <p>Virtual machine encryption related operations. </p>
+  syntax:
+    content: public interface VirtualMachineEncryption
+- uid: com.microsoft.azure.management.compute._virtual_machine_encryption_configuration
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_encryption_configuration.yml
+  name: VirtualMachineEncryptionConfiguration<T>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineEncryptionConfiguration<T>
+  type: Class
+  summary: >-
+    <p>Type representing encryption configuration to be applied to a virtual machine.</p>
+
+    <p></p>
+  syntax:
+    content: public class VirtualMachineEncryptionConfiguration<T extends VirtualMachineEncryptionConfiguration>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>type presenting Windows or Linux specific settings </p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension.yml
@@ -1757,6 +1827,15 @@ references:
   summary: <p>Describes Windows Configuration of the OS Profile. </p>
   syntax:
     content: public class WindowsConfiguration
+- uid: com.microsoft.azure.management.compute._windows_v_m_disk_encryption_configuration
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._windows_v_m_disk_encryption_configuration.yml
+  name: WindowsVMDiskEncryptionConfiguration
+  fullName: com.microsoft.azure.management.compute.WindowsVMDiskEncryptionConfiguration
+  type: Class
+  summary: <p>Type representing encryption configuration to be applied to a Windows virtual machine. </p>
+  syntax:
+    content: public class WindowsVMDiskEncryptionConfiguration extends VirtualMachineEncryptionConfiguration<WindowsVMDiskEncryptionConfiguration>
 - uid: com.microsoft.azure.management.compute._win_r_m_configuration
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._win_r_m_configuration.yml
@@ -1784,6 +1863,18 @@ references:
   summary: <p>The first stage of a image definition. </p>
   syntax:
     content: public interface Blank
+- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.c88cf2ee2857e320527e502aebdb74c7
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.c88cf2ee2857e320527e502aebdb74c7.yml
+  name: VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.Blank<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.Blank<ParentT>
+  type: Interface
+  summary: <p>The first stage of the data disk image definition. </p>
+  syntax:
+    content: public interface Blank<ParentT> extends VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithDiskLun<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._blank
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._blank.yml
@@ -1796,18 +1887,6 @@ references:
     <p></p>
   syntax:
     content: public interface Blank<ParentT> extends VirtualMachineExtension.DefinitionStages.WithImageOrPublisher<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.c88cf2ee2857e320527e502aebdb74c7
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.c88cf2ee2857e320527e502aebdb74c7.yml
-  name: VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.Blank<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.Blank<ParentT>
-  type: Interface
-  summary: <p>The first stage of the data disk image definition. </p>
-  syntax:
-    content: public interface Blank<ParentT> extends VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithDiskLun<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
@@ -2279,51 +2358,15 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine._update
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._update.yml
-  name: VirtualMachine.Update
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.Update
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._update.yml
+  name: VirtualMachineExtension.Update
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.Update
   type: Interface
-  summary: >-
-    <p>The template for an update operation, containing all the settings that can be modified. </p>
-
-    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>The entirety of virtual machine extension update as a part of parent virtual machine update. </p>
   syntax:
-    content: public interface Update extends Appliable<VirtualMachine>,Resource.UpdateWithTags<Update>,VirtualMachine.UpdateStages.WithUnmanagedDataDisk,VirtualMachine.UpdateStages.WithManagedDataDisk,VirtualMachine.UpdateStages.WithSecondaryNetworkInterface,VirtualMachine.UpdateStages.WithExtension
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_disk._update
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_disk._update.yml
-  name: VirtualMachineUnmanagedDataDisk.Update
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.Update
-  type: Interface
-  summary: <p>The entirety of a data disk update as part of a virtual machine update. </p>
-  syntax:
-    content: public interface Update extends VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskSize,VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun,VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskCaching,Settable<VirtualMachine.Update>
-- uid: com.microsoft.azure.management.compute._availability_set._update
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._availability_set._update.yml
-  name: AvailabilitySet.Update
-  fullName: com.microsoft.azure.management.compute.AvailabilitySet.Update
-  type: Interface
-  summary: >-
-    <p>The template for an availability set update operation, containing all the settings that can be modified. </p>
-
-    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface Update extends Appliable<AvailabilitySet>,Resource.UpdateWithTags<Update>,AvailabilitySet.UpdateStages.WithSku
-- uid: com.microsoft.azure.management.compute._disk._update
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._update.yml
-  name: Disk.Update
-  fullName: com.microsoft.azure.management.compute.Disk.Update
-  type: Interface
-  summary: >-
-    <p>The template for an update operation, containing all the settings that can be modified. </p>
-
-    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface Update extends Appliable<Disk>,Resource.UpdateWithTags<Disk.Update>,Disk.UpdateStages.WithSku,Disk.UpdateStages.WithSize,Disk.UpdateStages.WithOsSettings
+    content: public interface Update extends Settable<VirtualMachine.Update>,VirtualMachineExtension.UpdateStages.WithAutoUpgradeMinorVersion,VirtualMachineExtension.UpdateStages.WithSettings,VirtualMachineExtension.UpdateStages.WithTags
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update.yml
@@ -2333,15 +2376,6 @@ references:
   summary: <p>The entirety of the load balancer update. </p>
   syntax:
     content: public interface Update extends VirtualMachineScaleSet.UpdateStages.WithPrimaryLoadBalancer,VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerBackendOrNatPool,VirtualMachineScaleSet.UpdateStages.WithPrimaryInternalLoadBalancerBackendOrNatPool
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.Update
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.Update
-  type: Interface
-  summary: <p>The entirety of a unmanaged data disk update as part of a virtual machine scale set update. </p>
-  syntax:
-    content: public interface Update extends VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize,VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskLun,VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching,Settable<VirtualMachineScaleSet.Update>
 - uid: com.microsoft.azure.management.compute._snapshot._update
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._update.yml
@@ -2354,15 +2388,24 @@ references:
     <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface Update extends Appliable<Snapshot>,Resource.UpdateWithTags<Snapshot.Update>,Snapshot.UpdateStages.WithSku,Snapshot.UpdateStages.WithOsSettings
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._update.yml
-  name: VirtualMachineExtension.Update
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.Update
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.Update
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.Update
   type: Interface
-  summary: <p>The entirety of virtual machine extension update as a part of parent virtual machine update. </p>
+  summary: <p>The entirety of a unmanaged data disk update as part of a virtual machine scale set update. </p>
   syntax:
-    content: public interface Update extends Settable<VirtualMachine.Update>,VirtualMachineExtension.UpdateStages.WithAutoUpgradeMinorVersion,VirtualMachineExtension.UpdateStages.WithSettings,VirtualMachineExtension.UpdateStages.WithTags
+    content: public interface Update extends VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize,VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskLun,VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching,Settable<VirtualMachineScaleSet.Update>
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_disk._update
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_disk._update.yml
+  name: VirtualMachineUnmanagedDataDisk.Update
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.Update
+  type: Interface
+  summary: <p>The entirety of a data disk update as part of a virtual machine update. </p>
+  syntax:
+    content: public interface Update extends VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskSize,VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun,VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskCaching,Settable<VirtualMachine.Update>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update.yml
@@ -2372,6 +2415,42 @@ references:
   summary: <p>The entirety of virtual machine scale set extension update as a part of parent virtual machine scale set update. </p>
   syntax:
     content: public interface Update extends Settable<VirtualMachineScaleSet.Update>,VirtualMachineScaleSetExtension.UpdateStages.WithAutoUpgradeMinorVersion,VirtualMachineScaleSetExtension.UpdateStages.WithSettings
+- uid: com.microsoft.azure.management.compute._availability_set._update
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._availability_set._update.yml
+  name: AvailabilitySet.Update
+  fullName: com.microsoft.azure.management.compute.AvailabilitySet.Update
+  type: Interface
+  summary: >-
+    <p>The template for an availability set update operation, containing all the settings that can be modified. </p>
+
+    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface Update extends Appliable<AvailabilitySet>,Resource.UpdateWithTags<Update>,AvailabilitySet.UpdateStages.WithSku
+- uid: com.microsoft.azure.management.compute._virtual_machine._update
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._update.yml
+  name: VirtualMachine.Update
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.Update
+  type: Interface
+  summary: >-
+    <p>The template for an update operation, containing all the settings that can be modified. </p>
+
+    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface Update extends Appliable<VirtualMachine>,Resource.UpdateWithTags<Update>,VirtualMachine.UpdateStages.WithUnmanagedDataDisk,VirtualMachine.UpdateStages.WithManagedDataDisk,VirtualMachine.UpdateStages.WithSecondaryNetworkInterface,VirtualMachine.UpdateStages.WithExtension
+- uid: com.microsoft.azure.management.compute._disk._update
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._update.yml
+  name: Disk.Update
+  fullName: com.microsoft.azure.management.compute.Disk.Update
+  type: Interface
+  summary: >-
+    <p>The template for an update operation, containing all the settings that can be modified. </p>
+
+    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface Update extends Appliable<Disk>,Resource.UpdateWithTags<Disk.Update>,Disk.UpdateStages.WithSku,Disk.UpdateStages.WithSize,Disk.UpdateStages.WithOsSettings
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_definition
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._update_definition.yml
@@ -2381,18 +2460,6 @@ references:
   summary: <p>The entirety of a virtual machine extension definition as a part of parent update. </p>
   syntax:
     content: public interface UpdateDefinition<ParentT> extends VirtualMachineExtension.UpdateDefinitionStages.Blank<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithPublisher<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithType<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithVersion<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithAttach<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_definition
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_definition.yml
-  name: VirtualMachineScaleSetExtension.UpdateDefinition<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinition<ParentT>
-  type: Interface
-  summary: <p>The entirety of a virtual machine scale set extension definition as a part of parent update. </p>
-  syntax:
-    content: public interface UpdateDefinition<ParentT> extends VirtualMachineScaleSetExtension.UpdateDefinitionStages.Blank<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithPublisher<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithType<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithVersion<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAttach<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable.attach()" data-throw-if-not-resolved="false"></xref></p>
@@ -2408,15 +2475,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3631fa507f54a9ff673073c9f12e800e
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_definition
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3631fa507f54a9ff673073c9f12e800e.yml
-  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_definition.yml
+  name: VirtualMachineScaleSetExtension.UpdateDefinition<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinition<ParentT>
   type: Interface
-  summary: <p>Grouping of data disk definition stages applicable as part of a virtual machine update. </p>
+  summary: <p>The entirety of a virtual machine scale set extension definition as a part of parent update. </p>
   syntax:
-    content: public interface UpdateDefinitionStages
+    content: public interface UpdateDefinition<ParentT> extends VirtualMachineScaleSetExtension.UpdateDefinitionStages.Blank<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithPublisher<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithType<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithVersion<ParentT>,VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAttach<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_definition_stages
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._update_definition_stages.yml
@@ -2424,6 +2494,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateDefinitionStages
   type: Interface
   summary: <p>Grouping of virtual machine extension definition stages as part of parent virtual machine update. </p>
+  syntax:
+    content: public interface UpdateDefinitionStages
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensf757a2589f74a8b7d10009ec6a98e41d
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensf757a2589f74a8b7d10009ec6a98e41d.yml
+  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages
+  type: Interface
+  summary: <p>Grouping of virtual machine scale set extension definition stages as part of parent virtual machine scale set update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanae07b9cf992605f9892c8a4e5899abe0a
@@ -2435,13 +2514,13 @@ references:
   summary: <p>Grouping of unamanged data disk definition stages applicable as part of a virtual machine scale set update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensf757a2589f74a8b7d10009ec6a98e41d
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3631fa507f54a9ff673073c9f12e800e
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensf757a2589f74a8b7d10009ec6a98e41d.yml
-  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3631fa507f54a9ff673073c9f12e800e.yml
+  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of virtual machine scale set extension definition stages as part of parent virtual machine scale set update. </p>
+  summary: <p>Grouping of data disk definition stages applicable as part of a virtual machine update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dcedfb43d3f9d5b343c1b76e8c375864c
@@ -2477,6 +2556,42 @@ references:
   summary: <p>Grouping of virtual machine update stages. </p>
   syntax:
     content: public interface UpdateStages
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages.yml
+  name: VirtualMachineScaleSet.UpdateStages
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages
+  type: Interface
+  summary: <p>Grouping of virtual machine scale set update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.compute._availability_set._update_stages
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._availability_set._update_stages.yml
+  name: AvailabilitySet.UpdateStages
+  fullName: com.microsoft.azure.management.compute.AvailabilitySet.UpdateStages
+  type: Interface
+  summary: <p>Grouping of availability set update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages.yml
+  name: VirtualMachineExtension.UpdateStages
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateStages
+  type: Interface
+  summary: <p>Grouping of virtual machine extension update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.compute._disk._update_stages
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._update_stages.yml
+  name: Disk.UpdateStages
+  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages
+  type: Interface
+  summary: <p>Grouping of managed disk update stages. </p>
+  syntax:
+    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.compute._snapshot._update_stages
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._update_stages.yml
@@ -2495,51 +2610,6 @@ references:
   summary: <p>Grouping of data disk update stages. </p>
   syntax:
     content: public interface UpdateStages
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_stages
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_stages.yml
-  name: VirtualMachineScaleSetExtension.UpdateStages
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages
-  type: Interface
-  summary: <p>Grouping of virtual machine extension update stages. </p>
-  syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.compute._disk._update_stages
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._update_stages.yml
-  name: Disk.UpdateStages
-  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages
-  type: Interface
-  summary: <p>Grouping of managed disk update stages. </p>
-  syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages.yml
-  name: VirtualMachineScaleSet.UpdateStages
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages
-  type: Interface
-  summary: <p>Grouping of virtual machine scale set update stages. </p>
-  syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages.yml
-  name: VirtualMachineExtension.UpdateStages
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateStages
-  type: Interface
-  summary: <p>Grouping of virtual machine extension update stages. </p>
-  syntax:
-    content: public interface UpdateStages
-- uid: com.microsoft.azure.management.compute._availability_set._update_stages
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._availability_set._update_stages.yml
-  name: AvailabilitySet.UpdateStages
-  fullName: com.microsoft.azure.management.compute.AvailabilitySet.UpdateStages
-  type: Interface
-  summary: <p>Grouping of availability set update stages. </p>
-  syntax:
-    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update_stages
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaged_data_disk._update_stages.yml
@@ -2547,6 +2617,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages
   type: Interface
   summary: <p>Grouping of unmanaged data disk update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_stages
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extension._update_stages.yml
+  name: VirtualMachineScaleSetExtension.UpdateStages
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages
+  type: Interface
+  summary: <p>Grouping of virtual machine extension update stages. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_apply
@@ -2558,36 +2637,6 @@ references:
   summary: <p>The stage of a virtual machine scale set update containing inputs for the resource to be updated (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref>). </p>
   syntax:
     content: public interface WithApply extends Appliable<VirtualMachineScaleSet>,Resource.UpdateWithTags<WithApply>,VirtualMachineScaleSet.UpdateStages.WithManagedDataDisk,VirtualMachineScaleSet.UpdateStages.WithUnmanagedDataDisk,VirtualMachineScaleSet.UpdateStages.WithSku,VirtualMachineScaleSet.UpdateStages.WithCapacity,VirtualMachineScaleSet.UpdateStages.WithExtension,VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancer,VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerBackend,VirtualMachineScaleSet.UpdateStages.WithoutPrimaryLoadBalancerNatPool
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._up4f78a33323313272275a390cd8ef0184
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._up4f78a33323313272275a390cd8ef0184.yml
-  name: VirtualMachineExtension.UpdateDefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateDefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the virtual machine extension definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the virtual machine extension definition can be attached to the parent virtual machine definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InUpdate,VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithSettings<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithTags<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.9775fbaf88d121010657f77c32dbe42b
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.9775fbaf88d121010657f77c32dbe42b.yml
-  name: VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the data disk image definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the data disk definition can be attached to the parent image definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithDiskSettings<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_attach
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_attach.yml
@@ -2603,6 +2652,36 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._up4f78a33323313272275a390cd8ef0184
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._up4f78a33323313272275a390cd8ef0184.yml
+  name: VirtualMachineExtension.UpdateDefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateDefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the virtual machine extension definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the virtual machine extension definition can be attached to the parent virtual machine definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InUpdate,VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithSettings<ParentT>,VirtualMachineExtension.UpdateDefinitionStages.WithTags<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d903a8c9d3c7a4ef769fa32d4f6385ae3
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d903a8c9d3c7a4ef769fa32d4f6385ae3.yml
+  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the data disk definition.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InUpdate
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens4c8d190b1522b076e5e4e805f84bafe9
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens4c8d190b1522b076e5e4e805f84bafe9.yml
@@ -2618,21 +2697,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3dd655e126e91b9a239548b0555779e8
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3dd655e126e91b9a239548b0555779e8.yml
-  name: VirtualMachineUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the data disk definition.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1620744f8ba8bdbea26935e88521c0f2
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1620744f8ba8bdbea26935e88521c0f2.yml
@@ -2648,6 +2712,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.9775fbaf88d121010657f77c32dbe42b
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.9775fbaf88d121010657f77c32dbe42b.yml
+  name: VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the data disk image definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the data disk definition can be attached to the parent image definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,VirtualMachineCustomImage.CustomImageDataDisk.DefinitionStages.WithDiskSettings<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa9b7ba5930b12588004b017ab05defeb
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa9b7ba5930b12588004b017ab05defeb.yml
@@ -2656,6 +2735,21 @@ references:
   type: Interface
   summary: >-
     <p>The final stage of the unmanaged data disk definition.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3dd655e126e91b9a239548b0555779e8
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d3dd655e126e91b9a239548b0555779e8.yml
+  name: VirtualMachineUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the data disk definition.</p>
 
     <p></p>
   syntax:
@@ -2678,41 +2772,11 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d903a8c9d3c7a4ef769fa32d4f6385ae3
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._upbf8317266c596d69863529337ce516e1
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d903a8c9d3c7a4ef769fa32d4f6385ae3.yml
-  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the data disk definition.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InUpdate
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens8c5e5665b245ebf67ae8f714cc5df038
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens8c5e5665b245ebf67ae8f714cc5df038.yml
-  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of a virtual machine scale set extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithAutoUpgradeMinorVersion<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de139db87725f28663dfdf073020914fa2
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._de139db87725f28663dfdf073020914fa2.yml
-  name: VirtualMachineExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._upbf8317266c596d69863529337ce516e1.yml
+  name: VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
   type: Interface
   summary: >-
     <p>The stage of the virtual machine extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine extension image gets published.</p>
@@ -2722,15 +2786,24 @@ references:
     content: public interface WithAutoUpgradeMinorVersion<ParentT>
     typeParameters:
     - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdb17013ca36b6f3d05b09639437352b
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb27b012055df581ebf2c618dde3a3cf9
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdb17013ca36b6f3d05b09639437352b.yml
-  name: VirtualMachineScaleSetExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb27b012055df581ebf2c618dde3a3cf9.yml
+  name: VirtualMachineScaleSetExtension.UpdateStages.WithAutoUpgradeMinorVersion
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages.WithAutoUpgradeMinorVersion
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set extension update allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published. </p>
+  syntax:
+    content: public interface WithAutoUpgradeMinorVersion
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de139db87725f28663dfdf073020914fa2
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._de139db87725f28663dfdf073020914fa2.yml
+  name: VirtualMachineExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
   type: Interface
   summary: >-
-    <p>The stage of a virtual machine scale set extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published.</p>
+    <p>The stage of the virtual machine extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine extension image gets published.</p>
 
     <p></p>
   syntax:
@@ -2747,23 +2820,14 @@ references:
   summary: <p>The stage of the virtual machine extension update allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine extension image gets published. </p>
   syntax:
     content: public interface WithAutoUpgradeMinorVersion
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb27b012055df581ebf2c618dde3a3cf9
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens8c5e5665b245ebf67ae8f714cc5df038
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb27b012055df581ebf2c618dde3a3cf9.yml
-  name: VirtualMachineScaleSetExtension.UpdateStages.WithAutoUpgradeMinorVersion
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages.WithAutoUpgradeMinorVersion
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set extension update allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published. </p>
-  syntax:
-    content: public interface WithAutoUpgradeMinorVersion
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._upbf8317266c596d69863529337ce516e1
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._upbf8317266c596d69863529337ce516e1.yml
-  name: VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens8c5e5665b245ebf67ae8f714cc5df038.yml
+  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
   type: Interface
   summary: >-
-    <p>The stage of the virtual machine extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine extension image gets published.</p>
+    <p>The stage of a virtual machine scale set extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published.</p>
 
     <p></p>
   syntax:
@@ -2771,6 +2835,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdb17013ca36b6f3d05b09639437352b
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdb17013ca36b6f3d05b09639437352b.yml
+  name: VirtualMachineScaleSetExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithAutoUpgradeMinorVersion<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of a virtual machine scale set extension definition allowing to enable or disable auto upgrade of the extension when when a new minor version of virtual machine scale set extension image gets published.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithAutoUpgradeMinorVersion<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_availability_set
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_availability_set.yml
@@ -2807,24 +2886,6 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to specify the computer name prefix. </p>
   syntax:
     content: public interface WithComputerNamePrefix
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_create
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_create.yml
-  name: VirtualMachine.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<VirtualMachine>,Resource.DefinitionWithTags<WithCreate>,VirtualMachine.DefinitionStages.WithOsDiskSettings,VirtualMachine.DefinitionStages.WithVMSize,VirtualMachine.DefinitionStages.WithStorageAccount,VirtualMachine.DefinitionStages.WithAvailabilitySet,VirtualMachine.DefinitionStages.WithSecondaryNetworkInterface,VirtualMachine.DefinitionStages.WithExtension,VirtualMachine.DefinitionStages.WithPlan
-- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_create
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._definition_stages._with_create.yml
-  name: Disk.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<Disk>,Resource.DefinitionWithTags<Disk.DefinitionStages.WithCreate>,Disk.DefinitionStages.WithSku
 - uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.1d778b271c35550838623f12a13a9835
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_custom_image.1d778b271c35550838623f12a13a9835.yml
@@ -2834,24 +2895,6 @@ references:
   summary: <p>The stage of an image definition containing all the required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allowing for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithCreate extends Creatable<VirtualMachineCustomImage>,Resource.DefinitionWithTags<VirtualMachineCustomImage.DefinitionStages.WithCreate>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set definition containing all the required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allowing for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<VirtualMachineScaleSet>,VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings,VirtualMachineScaleSet.DefinitionStages.WithComputerNamePrefix,VirtualMachineScaleSet.DefinitionStages.WithCapacity,VirtualMachineScaleSet.DefinitionStages.WithUpgradePolicy,VirtualMachineScaleSet.DefinitionStages.WithOverProvision,VirtualMachineScaleSet.DefinitionStages.WithStorageAccount,VirtualMachineScaleSet.DefinitionStages.WithCustomData,VirtualMachineScaleSet.DefinitionStages.WithExtension,Resource.DefinitionWithTags<VirtualMachineScaleSet.DefinitionStages.WithCreate>
-- uid: com.microsoft.azure.management.compute._availability_set._definition_stages._with_create
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._availability_set._definition_stages._with_create.yml
-  name: AvailabilitySet.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.compute.AvailabilitySet.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of an availability set definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<AvailabilitySet>,Resource.DefinitionWithTags<WithCreate>,AvailabilitySet.DefinitionStages.WithUpdateDomainCount,AvailabilitySet.DefinitionStages.WithFaultDomainCount,AvailabilitySet.DefinitionStages.WithSku
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_create
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._definition_stages._with_create.yml
@@ -2861,6 +2904,42 @@ references:
   summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithCreate extends Creatable<Snapshot>,Resource.DefinitionWithTags<Snapshot.DefinitionStages.WithCreate>,Snapshot.DefinitionStages.WithSize,Snapshot.DefinitionStages.WithSku
+- uid: com.microsoft.azure.management.compute._availability_set._definition_stages._with_create
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._availability_set._definition_stages._with_create.yml
+  name: AvailabilitySet.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.compute.AvailabilitySet.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>The stage of an availability set definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<AvailabilitySet>,Resource.DefinitionWithTags<WithCreate>,AvailabilitySet.DefinitionStages.WithUpdateDomainCount,AvailabilitySet.DefinitionStages.WithFaultDomainCount,AvailabilitySet.DefinitionStages.WithSku
+- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_create
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._definition_stages._with_create.yml
+  name: Disk.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<Disk>,Resource.DefinitionWithTags<Disk.DefinitionStages.WithCreate>,Disk.DefinitionStages.WithSku
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_create.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set definition containing all the required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allowing for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<VirtualMachineScaleSet>,VirtualMachineScaleSet.DefinitionStages.WithOsDiskSettings,VirtualMachineScaleSet.DefinitionStages.WithComputerNamePrefix,VirtualMachineScaleSet.DefinitionStages.WithCapacity,VirtualMachineScaleSet.DefinitionStages.WithUpgradePolicy,VirtualMachineScaleSet.DefinitionStages.WithOverProvision,VirtualMachineScaleSet.DefinitionStages.WithStorageAccount,VirtualMachineScaleSet.DefinitionStages.WithCustomData,VirtualMachineScaleSet.DefinitionStages.WithExtension,Resource.DefinitionWithTags<VirtualMachineScaleSet.DefinitionStages.WithCreate>
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_create
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_create.yml
+  name: VirtualMachine.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<VirtualMachine>,Resource.DefinitionWithTags<WithCreate>,VirtualMachine.DefinitionStages.WithOsDiskSettings,VirtualMachine.DefinitionStages.WithVMSize,VirtualMachine.DefinitionStages.WithStorageAccount,VirtualMachine.DefinitionStages.WithAvailabilitySet,VirtualMachine.DefinitionStages.WithSecondaryNetworkInterface,VirtualMachine.DefinitionStages.WithExtension,VirtualMachine.DefinitionStages.WithPlan
 - uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.ea1a29c5a3fe3d951f6420704bdcab57
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_custom_image.ea1a29c5a3fe3d951f6420704bdcab57.yml
@@ -2996,15 +3075,6 @@ references:
   summary: <p>The stage of the managed snapshot definition allowing to choose data source. </p>
   syntax:
     content: public interface WithDataSnapshotSource extends Snapshot.DefinitionStages.WithDataSnapshotFromVhd,Snapshot.DefinitionStages.WithDataSnapshotFromDisk,Snapshot.DefinitionStages.WithDataSnapshotFromSnapshot
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana0f502dd7e44ecabc4e33dbb1b3321575
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana0f502dd7e44ecabc4e33dbb1b3321575.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching
-  type: Interface
-  summary: <p>The stage of the unmanaged data disk update allowing to set the disk caching type. </p>
-  syntax:
-    content: public interface WithDiskCaching
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d4e5f04aa1b711f990ba63e116894c768
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d4e5f04aa1b711f990ba63e116894c768.yml
@@ -3014,6 +3084,24 @@ references:
   summary: <p>The stage of the virtual machine data disk update allowing to set the disk caching type. </p>
   syntax:
     content: public interface WithDiskCaching
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana0f502dd7e44ecabc4e33dbb1b3321575
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana0f502dd7e44ecabc4e33dbb1b3321575.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskCaching
+  type: Interface
+  summary: <p>The stage of the unmanaged data disk update allowing to set the disk caching type. </p>
+  syntax:
+    content: public interface WithDiskCaching
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d717c1d7ed838da4b24efc779812a7983
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d717c1d7ed838da4b24efc779812a7983.yml
+  name: VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun
+  type: Interface
+  summary: <p>The stage of the virtual machine data disk update allowing to set the disk lun. </p>
+  syntax:
+    content: public interface WithDiskLun
 - uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.5b5fe6bd874caac4ba3ef469b30a698f
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_custom_image.5b5fe6bd874caac4ba3ef469b30a698f.yml
@@ -3029,15 +3117,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d717c1d7ed838da4b24efc779812a7983
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d717c1d7ed838da4b24efc779812a7983.yml
-  name: VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateStages.WithDiskLun
-  type: Interface
-  summary: <p>The stage of the virtual machine data disk update allowing to set the disk lun. </p>
-  syntax:
-    content: public interface WithDiskLun
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanab43facff5899effa289ec4f3d36dbe93
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanab43facff5899effa289ec4f3d36dbe93.yml
@@ -3062,15 +3141,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac47094fd265c9e6ba40979e881ad4b35
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac47094fd265c9e6ba40979e881ad4b35.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize
-  type: Interface
-  summary: <p>The stage of the unmanaged data disk update allowing to set the disk size. </p>
-  syntax:
-    content: public interface WithDiskSize
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d705fe7ee99672ba664c61de7961016b7
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d705fe7ee99672ba664c61de7961016b7.yml
@@ -3080,60 +3150,15 @@ references:
   summary: <p>The stage of the virtual machine data disk update allowing to set the disk size. </p>
   syntax:
     content: public interface WithDiskSize
-- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_disk_source
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac47094fd265c9e6ba40979e881ad4b35
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._definition_stages._with_disk_source.yml
-  name: Disk.DefinitionStages.WithDiskSource
-  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithDiskSource
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac47094fd265c9e6ba40979e881ad4b35.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateStages.WithDiskSize
   type: Interface
-  summary: <p>The stage of the managed disk definition allowing to choose OS source or data source. </p>
+  summary: <p>The stage of the unmanaged data disk update allowing to set the disk size. </p>
   syntax:
-    content: public interface WithDiskSource extends Disk.DefinitionStages.WithWindowsDiskSource,Disk.DefinitionStages.WithLinuxDiskSource,Disk.DefinitionStages.WithData
-- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dfa26a1ee184249f889d352ccf69da533
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dfa26a1ee184249f889d352ccf69da533.yml
-  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the data disk definition allowing to choose the source.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithDiskSource<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa5212366449e2bea71133982d3ed240d
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa5212366449e2bea71133982d3ed240d.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the unmanaged data disk definition allowing to choose the source.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithDiskSource<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaf4eb0ae72ccaf0a6ad712f2a0b8a6c25
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaf4eb0ae72ccaf0a6ad712f2a0b8a6c25.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithDiskSource<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithDiskSource<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the unmanaged data disk definition allowing to choose the source.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithDiskSource<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+    content: public interface WithDiskSize
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d4ac796e29f585a5aa3e8b48eb08b3930
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_d4ac796e29f585a5aa3e8b48eb08b3930.yml
@@ -3149,11 +3174,65 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa5212366449e2bea71133982d3ed240d
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.yml
-  name: VirtualMachineScaleSet.UpdateStages.WithExtension
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithExtension
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaa5212366449e2bea71133982d3ed240d.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the unmanaged data disk definition allowing to choose the source.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithDiskSource<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_disk_source
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._definition_stages._with_disk_source.yml
+  name: Disk.DefinitionStages.WithDiskSource
+  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithDiskSource
+  type: Interface
+  summary: <p>The stage of the managed disk definition allowing to choose OS source or data source. </p>
+  syntax:
+    content: public interface WithDiskSource extends Disk.DefinitionStages.WithWindowsDiskSource,Disk.DefinitionStages.WithLinuxDiskSource,Disk.DefinitionStages.WithData
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaf4eb0ae72ccaf0a6ad712f2a0b8a6c25
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanaf4eb0ae72ccaf0a6ad712f2a0b8a6c25.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithDiskSource<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithDiskSource<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the unmanaged data disk definition allowing to choose the source.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithDiskSource<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dfa26a1ee184249f889d352ccf69da533
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dfa26a1ee184249f889d352ccf69da533.yml
+  name: VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithDiskSource<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the data disk definition allowing to choose the source.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithDiskSource<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_extension
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_extension.yml
+  name: VirtualMachine.DefinitionStages.WithExtension
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithExtension
   type: Interface
   summary: <p>The stage of the virtual machine definition allowing to specify extensions. </p>
   syntax:
@@ -3167,6 +3246,15 @@ references:
   summary: <p>The stage of the virtual machine definition allowing to specify extensions. </p>
   syntax:
     content: public interface WithExtension
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_extension.yml
+  name: VirtualMachineScaleSet.UpdateStages.WithExtension
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithExtension
+  type: Interface
+  summary: <p>The stage of the virtual machine definition allowing to specify extensions. </p>
+  syntax:
+    content: public interface WithExtension
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de34bd2a0c4fed29b71e0c50bc0bfae121.yml
@@ -3174,15 +3262,6 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithExtension
   type: Interface
   summary: <p>The stage of a virtual machine scale set definition allowing to specify extensions. </p>
-  syntax:
-    content: public interface WithExtension
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_extension
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_extension.yml
-  name: VirtualMachine.DefinitionStages.WithExtension
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithExtension
-  type: Interface
-  summary: <p>The stage of the virtual machine definition allowing to specify extensions. </p>
   syntax:
     content: public interface WithExtension
 - uid: com.microsoft.azure.management.compute._availability_set._definition_5e566f899198966448bf006c5be3006a
@@ -3251,33 +3330,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_group
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_group.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithGroup
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithGroup
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set definition allowing to specify the resource group. </p>
-  syntax:
-    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithSku>
-- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.9fe772c303f3fd48411b0506a3421813
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.9fe772c303f3fd48411b0506a3421813.yml
-  name: VirtualMachineCustomImage.DefinitionStages.WithGroup
-  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.DefinitionStages.WithGroup
-  type: Interface
-  summary: <p>The stage of the image definition allowing to specify the resource group. </p>
-  syntax:
-    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithOSDiskImageSourceAltVirtualMachineSource>
-- uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_group
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._snapshot._definition_stages._with_group.yml
-  name: Snapshot.DefinitionStages.WithGroup
-  fullName: com.microsoft.azure.management.compute.Snapshot.DefinitionStages.WithGroup
-  type: Interface
-  summary: <p>The stage of the managed snapshot definition allowing to specify the resource group. </p>
-  syntax:
-    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithSnapshotSource>
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_group
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_group.yml
@@ -3287,6 +3339,15 @@ references:
   summary: <p>The stage of the virtual machine definition allowing to specify the resource group. </p>
   syntax:
     content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithNetwork>
+- uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.9fe772c303f3fd48411b0506a3421813
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_custom_image.9fe772c303f3fd48411b0506a3421813.yml
+  name: VirtualMachineCustomImage.DefinitionStages.WithGroup
+  fullName: com.microsoft.azure.management.compute.VirtualMachineCustomImage.DefinitionStages.WithGroup
+  type: Interface
+  summary: <p>The stage of the image definition allowing to specify the resource group. </p>
+  syntax:
+    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithOSDiskImageSourceAltVirtualMachineSource>
 - uid: com.microsoft.azure.management.compute._disk._definition_stages._with_group
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._disk._definition_stages._with_group.yml
@@ -3305,6 +3366,39 @@ references:
   summary: <p>The stage of the availability set definition allowing to specify the resource group. </p>
   syntax:
     content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithCreate>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_group
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_group.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithGroup
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithGroup
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set definition allowing to specify the resource group. </p>
+  syntax:
+    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithSku>
+- uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_group
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._snapshot._definition_stages._with_group.yml
+  name: Snapshot.DefinitionStages.WithGroup
+  fullName: com.microsoft.azure.management.compute.Snapshot.DefinitionStages.WithGroup
+  type: Interface
+  summary: <p>The stage of the managed snapshot definition allowing to specify the resource group. </p>
+  syntax:
+    content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithSnapshotSource>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1a9a1f8174a3988c9e2c35c7e0b951fd
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1a9a1f8174a3988c9e2c35c7e0b951fd.yml
+  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of a virtual machine scale set extension allowing to specify an extension image or the name of the virtual machine extension publisher.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithImageOrPublisher<ParentT> extends VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithPublisher<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensa3d82596f8209fc47b64f7dd9092853f
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensa3d82596f8209fc47b64f7dd9092853f.yml
@@ -3317,21 +3411,6 @@ references:
     <p></p>
   syntax:
     content: public interface WithImageOrPublisher<ParentT> extends VirtualMachineScaleSetExtension.DefinitionStages.WithPublisher<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._deb93102963ac8b10b96359fede347cb78
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._deb93102963ac8b10b96359fede347cb78.yml
-  name: VirtualMachineExtension.DefinitionStages.WithImageOrPublisher<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithImageOrPublisher<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the virtual machine extension definition allowing to specify extension image or specify name of the virtual machine extension publisher.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithImageOrPublisher<ParentT> extends VirtualMachineExtension.DefinitionStages.WithPublisher<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
@@ -3350,21 +3429,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1a9a1f8174a3988c9e2c35c7e0b951fd
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._deb93102963ac8b10b96359fede347cb78
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens1a9a1f8174a3988c9e2c35c7e0b951fd.yml
-  name: VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithImageOrPublisher<ParentT>
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._deb93102963ac8b10b96359fede347cb78.yml
+  name: VirtualMachineExtension.DefinitionStages.WithImageOrPublisher<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithImageOrPublisher<ParentT>
   type: Interface
   summary: >-
-    <p>The stage of a virtual machine scale set extension allowing to specify an extension image or the name of the virtual machine extension publisher.</p>
+    <p>The stage of the virtual machine extension definition allowing to specify extension image or specify name of the virtual machine extension publisher.</p>
 
     <p></p>
   syntax:
-    content: public interface WithImageOrPublisher<ParentT> extends VirtualMachineScaleSetExtension.UpdateDefinitionStages.WithPublisher<ParentT>
+    content: public interface WithImageOrPublisher<ParentT> extends VirtualMachineExtension.DefinitionStages.WithPublisher<ParentT>
     typeParameters:
     - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_custom_image.bf50e670ccd10709fea76553322f157b
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_custom_image.bf50e670ccd10709fea76553322f157b.yml
@@ -3416,15 +3495,6 @@ references:
   summary: <p>The stage of a Linux virtual machine scale set definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithLinuxCreateManaged extends VirtualMachineScaleSet.DefinitionStages.WithManagedCreate
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s3a9045592e98334fac31ba73d481704c
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s3a9045592e98334fac31ba73d481704c.yml
-  name: VirtualMachine.DefinitionStages.WithLinuxCreateManagedOrUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxCreateManagedOrUnmanaged
-  type: Interface
-  summary: <p>The stage of the Linux virtual machine definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithLinuxCreateManagedOrUnmanaged extends VirtualMachine.DefinitionStages.WithFromImageCreateOptionsManagedOrUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de196add430dede4df54fafb81cc893119
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de196add430dede4df54fafb81cc893119.yml
@@ -3434,15 +3504,15 @@ references:
   summary: <p>The stage of a Linux virtual machine scale set definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithLinuxCreateManagedOrUnmanaged extends VirtualMachineScaleSet.DefinitionStages.WithManagedCreate
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s4f6824f285810733460625589d802e51
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s3a9045592e98334fac31ba73d481704c
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s4f6824f285810733460625589d802e51.yml
-  name: VirtualMachine.DefinitionStages.WithLinuxCreateUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxCreateUnmanaged
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s3a9045592e98334fac31ba73d481704c.yml
+  name: VirtualMachine.DefinitionStages.WithLinuxCreateManagedOrUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxCreateManagedOrUnmanaged
   type: Interface
   summary: <p>The stage of the Linux virtual machine definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
-    content: public interface WithLinuxCreateUnmanaged extends VirtualMachine.DefinitionStages.WithFromImageCreateOptionsUnmanaged
+    content: public interface WithLinuxCreateManagedOrUnmanaged extends VirtualMachine.DefinitionStages.WithFromImageCreateOptionsManagedOrUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de8d5a0fbef6e202ba3c3dc3f94a691db7
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de8d5a0fbef6e202ba3c3dc3f94a691db7.yml
@@ -3452,6 +3522,15 @@ references:
   summary: <p>The stage of a Linux virtual machine scale set definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithLinuxCreateUnmanaged extends VirtualMachineScaleSet.DefinitionStages.WithUnmanagedCreate
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s4f6824f285810733460625589d802e51
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s4f6824f285810733460625589d802e51.yml
+  name: VirtualMachine.DefinitionStages.WithLinuxCreateUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxCreateUnmanaged
+  type: Interface
+  summary: <p>The stage of the Linux virtual machine definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithLinuxCreateUnmanaged extends VirtualMachine.DefinitionStages.WithFromImageCreateOptionsUnmanaged
 - uid: com.microsoft.azure.management.compute._disk._definition_stages._with_linux_disk_source
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._disk._definition_stages._with_linux_disk_source.yml
@@ -3461,15 +3540,6 @@ references:
   summary: <p>The stage of the managed disk definition allowing to choose Linux OS source. </p>
   syntax:
     content: public interface WithLinuxDiskSource
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s089d02a494908c75e8fd42f816d6b2a6
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s089d02a494908c75e8fd42f816d6b2a6.yml
-  name: VirtualMachine.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManaged
-  type: Interface
-  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root password or public key. </p>
-  syntax:
-    content: public interface WithLinuxRootPasswordOrPublicKeyManaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deace9fc6a8251d17cadcf2ddcaaee316b
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deace9fc6a8251d17cadcf2ddcaaee316b.yml
@@ -3479,15 +3549,15 @@ references:
   summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root password or public key. </p>
   syntax:
     content: public interface WithLinuxRootPasswordOrPublicKeyManaged
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deaad2e028e0124f9865f9b85fa15401d7
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s089d02a494908c75e8fd42f816d6b2a6
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deaad2e028e0124f9865f9b85fa15401d7.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s089d02a494908c75e8fd42f816d6b2a6.yml
+  name: VirtualMachine.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManaged
   type: Interface
-  summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root password or public key. </p>
+  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root password or public key. </p>
   syntax:
-    content: public interface WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
+    content: public interface WithLinuxRootPasswordOrPublicKeyManaged
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_s2830a6335b4e760a4da49140d4dc3fcb
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_s2830a6335b4e760a4da49140d4dc3fcb.yml
@@ -3495,6 +3565,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
   type: Interface
   summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root password or public key. </p>
+  syntax:
+    content: public interface WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deaad2e028e0124f9865f9b85fa15401d7
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deaad2e028e0124f9865f9b85fa15401d7.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
+  type: Interface
+  summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root password or public key. </p>
   syntax:
     content: public interface WithLinuxRootPasswordOrPublicKeyManagedOrUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_s50751fa4b9b9cda38eb5362cbea38e54
@@ -3515,15 +3594,6 @@ references:
   summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root password or public key. </p>
   syntax:
     content: public interface WithLinuxRootPasswordOrPublicKeyUnmanaged
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s52a2e017478d44add60a83999871f77d
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s52a2e017478d44add60a83999871f77d.yml
-  name: VirtualMachine.DefinitionStages.WithLinuxRootUsernameManaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootUsernameManaged
-  type: Interface
-  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root user name. </p>
-  syntax:
-    content: public interface WithLinuxRootUsernameManaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deb4cb9b647306d32fa5c9ab1506c5754d
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deb4cb9b647306d32fa5c9ab1506c5754d.yml
@@ -3531,6 +3601,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithLinuxRootUsernameManaged
   type: Interface
   summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root user name. </p>
+  syntax:
+    content: public interface WithLinuxRootUsernameManaged
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s52a2e017478d44add60a83999871f77d
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s52a2e017478d44add60a83999871f77d.yml
+  name: VirtualMachine.DefinitionStages.WithLinuxRootUsernameManaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootUsernameManaged
+  type: Interface
+  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root user name. </p>
   syntax:
     content: public interface WithLinuxRootUsernameManaged
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_s514602db81265a7b7bbb1dbd16aabf97
@@ -3551,15 +3630,6 @@ references:
   summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root user name. </p>
   syntax:
     content: public interface WithLinuxRootUsernameManagedOrUnmanaged
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_se29560feb815e313d3da4cd0a58a0b8f
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_se29560feb815e313d3da4cd0a58a0b8f.yml
-  name: VirtualMachine.DefinitionStages.WithLinuxRootUsernameUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootUsernameUnmanaged
-  type: Interface
-  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root user name. </p>
-  syntax:
-    content: public interface WithLinuxRootUsernameUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de66ca667571c6dee1b43f8db89b8ccd79
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de66ca667571c6dee1b43f8db89b8ccd79.yml
@@ -3567,6 +3637,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithLinuxRootUsernameUnmanaged
   type: Interface
   summary: <p>The stage of the Linux virtual machine scale set definition allowing to specify SSH root user name. </p>
+  syntax:
+    content: public interface WithLinuxRootUsernameUnmanaged
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_se29560feb815e313d3da4cd0a58a0b8f
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_se29560feb815e313d3da4cd0a58a0b8f.yml
+  name: VirtualMachine.DefinitionStages.WithLinuxRootUsernameUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithLinuxRootUsernameUnmanaged
+  type: Interface
+  summary: <p>The stage of the Linux virtual machine definition allowing to specify SSH root user name. </p>
   syntax:
     content: public interface WithLinuxRootUsernameUnmanaged
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_linux_snapshot_source
@@ -3578,15 +3657,6 @@ references:
   summary: <p>The stage of the managed snapshot definition allowing to choose Linux OS source. </p>
   syntax:
     content: public interface WithLinuxSnapshotSource
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_managed_create
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_managed_create.yml
-  name: VirtualMachine.DefinitionStages.WithManagedCreate
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithManagedCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the VM to be created and optionally allow managed data disks specific settings to be specified. </p>
-  syntax:
-    content: public interface WithManagedCreate extends VirtualMachine.DefinitionStages.WithManagedDataDisk,VirtualMachine.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea6ea737ac52a2ba2927b43f8f0da8037
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._dea6ea737ac52a2ba2927b43f8f0da8037.yml
@@ -3596,6 +3666,15 @@ references:
   summary: <p>The stage of the definition which contains all the minimum required inputs for the VM scale set to be created and optionally allow managed data disks specific settings to be specified. </p>
   syntax:
     content: public interface WithManagedCreate extends VirtualMachineScaleSet.DefinitionStages.WithManagedDataDisk,VirtualMachineScaleSet.DefinitionStages.WithManagedDiskOptionals,VirtualMachineScaleSet.DefinitionStages.WithCreate
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_managed_create
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_managed_create.yml
+  name: VirtualMachine.DefinitionStages.WithManagedCreate
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithManagedCreate
+  type: Interface
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the VM to be created and optionally allow managed data disks specific settings to be specified. </p>
+  syntax:
+    content: public interface WithManagedCreate extends VirtualMachine.DefinitionStages.WithManagedDataDisk,VirtualMachine.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb25af82c2a1e6ada70476a6c01d3a62c
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._upb25af82c2a1e6ada70476a6c01d3a62c.yml
@@ -3605,15 +3684,6 @@ references:
   summary: <p>The stage of a virtual machine scale set update allowing to specify managed data disks. </p>
   syntax:
     content: public interface WithManagedDataDisk
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0b63ba0b0ba7cc65b25e6f031d821a4b
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0b63ba0b0ba7cc65b25e6f031d821a4b.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithManagedDataDisk
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithManagedDataDisk
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set definition allowing to specify managed data disks. </p>
-  syntax:
-    content: public interface WithManagedDataDisk
 - uid: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_managed_data_disk
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_managed_data_disk.yml
@@ -3621,6 +3691,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachine.UpdateStages.WithManagedDataDisk
   type: Interface
   summary: <p>The stage of the virtual machine update allowing to specify managed data disk. </p>
+  syntax:
+    content: public interface WithManagedDataDisk
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0b63ba0b0ba7cc65b25e6f031d821a4b
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de0b63ba0b0ba7cc65b25e6f031d821a4b.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithManagedDataDisk
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithManagedDataDisk
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set definition allowing to specify managed data disks. </p>
   syntax:
     content: public interface WithManagedDataDisk
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_s2278a8d20e7b575ed73f22395a80096b
@@ -3659,36 +3738,6 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to specify the virtual network subnet for the primary network configuration. </p>
   syntax:
     content: public interface WithNetworkSubnet
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac9ffd9e43351c306d0037eaaf651b2b2
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac9ffd9e43351c306d0037eaaf651b2b2.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithNewVhdDiskSettings<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithNewVhdDiskSettings<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage that allows configure the unmanaged disk based on new vhd.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithNewVhdDiskSettings<ParentT> extends VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana4867c8eab3e151b350c2d363de00a286
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana4867c8eab3e151b350c2d363de00a286.yml
-  name: VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithNewVhdDiskSettings<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithNewVhdDiskSettings<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage that allows configure the unmanaged disk based on new vhd.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithNewVhdDiskSettings<ParentT> extends VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dba2c59752c0af8dfb84684e0e0dff328
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_dba2c59752c0af8dfb84684e0e0dff328.yml
@@ -3716,6 +3765,36 @@ references:
     <p></p>
   syntax:
     content: public interface WithNewVhdDiskSettings<ParentT> extends VirtualMachineUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana4867c8eab3e151b350c2d363de00a286
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmana4867c8eab3e151b350c2d363de00a286.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithNewVhdDiskSettings<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithNewVhdDiskSettings<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage that allows configure the unmanaged disk based on new vhd.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithNewVhdDiskSettings<ParentT> extends VirtualMachineScaleSetUnmanagedDataDisk.DefinitionStages.WithAttach<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac9ffd9e43351c306d0037eaaf651b2b2
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_unmanac9ffd9e43351c306d0037eaaf651b2b2.yml
+  name: VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithNewVhdDiskSettings<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithNewVhdDiskSettings<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage that allows configure the unmanaged disk based on new vhd.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithNewVhdDiskSettings<ParentT> extends VirtualMachineScaleSetUnmanagedDataDisk.UpdateDefinitionStages.WithAttach<ParentT>
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
@@ -3773,15 +3852,6 @@ references:
   summary: <p>The stage of an image definition allowing to specify configurations for the OS disk when it is created from the image's OS disk image. </p>
   syntax:
     content: public interface WithOSDiskSettings
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_os_disk_settings
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_os_disk_settings.yml
-  name: VirtualMachine.DefinitionStages.WithOsDiskSettings
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithOsDiskSettings
-  type: Interface
-  summary: <p>The stage of the virtual machine definition allowing to specify OS disk configurations. </p>
-  syntax:
-    content: public interface WithOsDiskSettings
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7fb227eb13eff9cb4ad20d938c8f2c80.yml
@@ -3791,15 +3861,15 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to specify OS disk configurations. </p>
   syntax:
     content: public interface WithOsDiskSettings
-- uid: com.microsoft.azure.management.compute._disk._update_stages._with_os_settings
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_os_disk_settings
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._update_stages._with_os_settings.yml
-  name: Disk.UpdateStages.WithOsSettings
-  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages.WithOsSettings
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_os_disk_settings.yml
+  name: VirtualMachine.DefinitionStages.WithOsDiskSettings
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithOsDiskSettings
   type: Interface
-  summary: <p>The stage of the managed disk update allowing to specify Os settings. </p>
+  summary: <p>The stage of the virtual machine definition allowing to specify OS disk configurations. </p>
   syntax:
-    content: public interface WithOsSettings
+    content: public interface WithOsDiskSettings
 - uid: com.microsoft.azure.management.compute._snapshot._update_stages._with_os_settings
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._update_stages._with_os_settings.yml
@@ -3807,6 +3877,15 @@ references:
   fullName: com.microsoft.azure.management.compute.Snapshot.UpdateStages.WithOsSettings
   type: Interface
   summary: <p>The stage of the managed snapshot update allowing to specify Os settings. </p>
+  syntax:
+    content: public interface WithOsSettings
+- uid: com.microsoft.azure.management.compute._disk._update_stages._with_os_settings
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._update_stages._with_os_settings.yml
+  name: Disk.UpdateStages.WithOsSettings
+  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages.WithOsSettings
+  type: Interface
+  summary: <p>The stage of the managed disk update allowing to specify Os settings. </p>
   syntax:
     content: public interface WithOsSettings
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_os_snapshot_from_image
@@ -3926,15 +4005,6 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to associate a backend pool and/or an inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithPrimaryInternetFacingLoadBalancerBackendOrNatPool extends VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternetFacingLoadBalancerNatPool
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7.yml
-  name: VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set update allowing to associate an inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
-  syntax:
-    content: public interface WithPrimaryInternetFacingLoadBalancerNatPool extends VirtualMachineScaleSet.UpdateStages.WithPrimaryInternalLoadBalancer
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._deee57fd65a946690a06baf11c15c01fd7.yml
@@ -3944,6 +4014,15 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to associate an inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
   syntax:
     content: public interface WithPrimaryInternetFacingLoadBalancerNatPool extends VirtualMachineScaleSet.DefinitionStages.WithPrimaryInternalLoadBalancer
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up77070e0ab430c6a4e997ceeb70f846a7.yml
+  name: VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithPrimaryInternetFacingLoadBalancerNatPool
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set update allowing to associate an inbound NAT pool of the selected Internet-facing load balancer with the primary network interface of the virtual machines in the scale set. </p>
+  syntax:
+    content: public interface WithPrimaryInternetFacingLoadBalancerNatPool extends VirtualMachineScaleSet.UpdateStages.WithPrimaryInternalLoadBalancer
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._up53088ec5516ef21c96c4d6ff76357e8f.yml
@@ -3995,6 +4074,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0ed7541090fecf4de4c6badf21368ab0
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0ed7541090fecf4de4c6badf21368ab0.yml
+  name: VirtualMachineScaleSetExtension.DefinitionStages.WithPublisher<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithPublisher<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of a virtual machine scale set extension definition allowing to specify the publisher of the extension image this extension is based on.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithPublisher<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._de17b735dd9d5549496c24071fbdea9257
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._de17b735dd9d5549496c24071fbdea9257.yml
@@ -4025,21 +4119,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0ed7541090fecf4de4c6badf21368ab0
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0ed7541090fecf4de4c6badf21368ab0.yml
-  name: VirtualMachineScaleSetExtension.DefinitionStages.WithPublisher<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithPublisher<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of a virtual machine scale set extension definition allowing to specify the publisher of the extension image this extension is based on.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithPublisher<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_s6e5bccbbb244e347da9f62b7d1a60117
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_s6e5bccbbb244e347da9f62b7d1a60117.yml
@@ -4058,36 +4137,6 @@ references:
   summary: <p>The stage of virtual machine definition allowing to specify additional network interfaces. </p>
   syntax:
     content: public interface WithSecondaryNetworkInterface
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de3f1c91a9f063b8d897a27f211661bd94
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._de3f1c91a9f063b8d897a27f211661bd94.yml
-  name: VirtualMachineExtension.DefinitionStages.WithSettings<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithSettings<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the virtual machine extension definition allowing to specify the public and private settings.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithSettings<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdaead3665095617fb18c4ab958750ee
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdaead3665095617fb18c4ab958750ee.yml
-  name: VirtualMachineScaleSetExtension.DefinitionStages.WithSettings<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithSettings<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of a virtual machine scale set extension definition allowing to specify the public and private settings.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithSettings<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens190a6a07d89830f7386adc9334b1c06a
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens190a6a07d89830f7386adc9334b1c06a.yml
@@ -4103,24 +4152,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages._with_settings
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de3f1c91a9f063b8d897a27f211661bd94
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages._with_settings.yml
-  name: VirtualMachineExtension.UpdateStages.WithSettings
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateStages.WithSettings
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._de3f1c91a9f063b8d897a27f211661bd94.yml
+  name: VirtualMachineExtension.DefinitionStages.WithSettings<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithSettings<ParentT>
   type: Interface
-  summary: <p>The stage of the virtual machine extension update allowing to add or update public and private settings. </p>
+  summary: >-
+    <p>The stage of the virtual machine extension definition allowing to specify the public and private settings.</p>
+
+    <p></p>
   syntax:
-    content: public interface WithSettings
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens34005f44dc3d619810e97f0c7ed26f53
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens34005f44dc3d619810e97f0c7ed26f53.yml
-  name: VirtualMachineScaleSetExtension.UpdateStages.WithSettings
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages.WithSettings
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set extension update allowing to add or update public and private settings. </p>
-  syntax:
-    content: public interface WithSettings
+    content: public interface WithSettings<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._up8a956b14576ff2c585e224c3b6859c3e
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._up8a956b14576ff2c585e224c3b6859c3e.yml
@@ -4136,6 +4182,39 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens34005f44dc3d619810e97f0c7ed26f53
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens34005f44dc3d619810e97f0c7ed26f53.yml
+  name: VirtualMachineScaleSetExtension.UpdateStages.WithSettings
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.UpdateStages.WithSettings
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set extension update allowing to add or update public and private settings. </p>
+  syntax:
+    content: public interface WithSettings
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages._with_settings
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._update_stages._with_settings.yml
+  name: VirtualMachineExtension.UpdateStages.WithSettings
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.UpdateStages.WithSettings
+  type: Interface
+  summary: <p>The stage of the virtual machine extension update allowing to add or update public and private settings. </p>
+  syntax:
+    content: public interface WithSettings
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdaead3665095617fb18c4ab958750ee
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensbdaead3665095617fb18c4ab958750ee.yml
+  name: VirtualMachineScaleSetExtension.DefinitionStages.WithSettings<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithSettings<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of a virtual machine scale set extension definition allowing to specify the public and private settings.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithSettings<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_size
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._definition_stages._with_size.yml
@@ -4154,6 +4233,60 @@ references:
   summary: <p>The stage of the managed disk definition allowing to specify new size. </p>
   syntax:
     content: public interface WithSize
+- uid: com.microsoft.azure.management.compute._availability_set._definition_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._availability_set._definition_stages._with_sku.yml
+  name: AvailabilitySet.DefinitionStages.WithSku
+  fullName: com.microsoft.azure.management.compute.AvailabilitySet.DefinitionStages.WithSku
+  type: Interface
+  summary: <p>The stage of the availability set definition allowing enable or disable for managed disk. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.compute._disk._update_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._update_stages._with_sku.yml
+  name: Disk.UpdateStages.WithSku
+  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages.WithSku
+  type: Interface
+  summary: <p>The stage of the managed disk update allowing to choose sku type. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithSku
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithSku
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set definition allowing to specify SKU for the virtual machines. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.yml
+  name: VirtualMachineScaleSet.UpdateStages.WithSku
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithSku
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set update allowing to change the SKU for the virtual machines in the scale set. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._disk._definition_stages._with_sku.yml
+  name: Disk.DefinitionStages.WithSku
+  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithSku
+  type: Interface
+  summary: <p>The stage of the managed disk definition allowing to choose account type. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.compute._snapshot._update_stages._with_sku
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._snapshot._update_stages._with_sku.yml
+  name: Snapshot.UpdateStages.WithSku
+  fullName: com.microsoft.azure.management.compute.Snapshot.UpdateStages.WithSku
+  type: Interface
+  summary: <p>The stage of the managed snapshot update allowing to choose account type. </p>
+  syntax:
+    content: public interface WithSku
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_sku
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._snapshot._definition_stages._with_sku.yml
@@ -4170,60 +4303,6 @@ references:
   fullName: com.microsoft.azure.management.compute.AvailabilitySet.UpdateStages.WithSku
   type: Interface
   summary: <p>The stage of the availability set definition allowing to specify sku. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._definition_stages._with_sku.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithSku
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithSku
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set definition allowing to specify SKU for the virtual machines. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._availability_set._definition_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._availability_set._definition_stages._with_sku.yml
-  name: AvailabilitySet.DefinitionStages.WithSku
-  fullName: com.microsoft.azure.management.compute.AvailabilitySet.DefinitionStages.WithSku
-  type: Interface
-  summary: <p>The stage of the availability set definition allowing enable or disable for managed disk. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._disk._definition_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._definition_stages._with_sku.yml
-  name: Disk.DefinitionStages.WithSku
-  fullName: com.microsoft.azure.management.compute.Disk.DefinitionStages.WithSku
-  type: Interface
-  summary: <p>The stage of the managed disk definition allowing to choose account type. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._update_stages._with_sku.yml
-  name: VirtualMachineScaleSet.UpdateStages.WithSku
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.UpdateStages.WithSku
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set update allowing to change the SKU for the virtual machines in the scale set. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._disk._update_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._disk._update_stages._with_sku.yml
-  name: Disk.UpdateStages.WithSku
-  fullName: com.microsoft.azure.management.compute.Disk.UpdateStages.WithSku
-  type: Interface
-  summary: <p>The stage of the managed disk update allowing to choose sku type. </p>
-  syntax:
-    content: public interface WithSku
-- uid: com.microsoft.azure.management.compute._snapshot._update_stages._with_sku
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._snapshot._update_stages._with_sku.yml
-  name: Snapshot.UpdateStages.WithSku
-  fullName: com.microsoft.azure.management.compute.Snapshot.UpdateStages.WithSku
-  type: Interface
-  summary: <p>The stage of the managed snapshot update allowing to choose account type. </p>
   syntax:
     content: public interface WithSku
 - uid: com.microsoft.azure.management.compute._snapshot._definition_stages._with_snapshot_source
@@ -4244,15 +4323,6 @@ references:
   summary: <p>The stage of the image definition allowing to choose source virtual machine. </p>
   syntax:
     content: public interface WithSourceVirtualMachine
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithStorageAccount
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount
-  type: Interface
-  summary: <p>The stage of a virtual machine scale set definition allowing to specify the storage account. </p>
-  syntax:
-    content: public interface WithStorageAccount
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_storage_account
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_storage_account.yml
@@ -4260,6 +4330,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithStorageAccount
   type: Interface
   summary: <p>The stage of the virtual machine definition allowing to specify storage account. </p>
+  syntax:
+    content: public interface WithStorageAccount
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de02aa0c10eea52819e80425c65d47893c.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithStorageAccount
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithStorageAccount
+  type: Interface
+  summary: <p>The stage of a virtual machine scale set definition allowing to specify the storage account. </p>
   syntax:
     content: public interface WithStorageAccount
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_stages._with_subnet
@@ -4280,21 +4359,6 @@ references:
   summary: <p>The stage of the virtual machine extension update allowing to add or update tags. </p>
   syntax:
     content: public interface WithTags
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_tags
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_tags.yml
-  name: VirtualMachineExtension.DefinitionStages.WithTags<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithTags<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the virtual machine extension definition allowing to specify the tags.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithTags<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._up8711a6d71164a7404a10af7565f426d9
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._up8711a6d71164a7404a10af7565f426d9.yml
@@ -4310,6 +4374,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_tags
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_tags.yml
+  name: VirtualMachineExtension.DefinitionStages.WithTags<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithTags<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the virtual machine extension definition allowing to specify the tags.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithTags<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensc3da131e8152c0ad35378f89da558240
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensc3da131e8152c0ad35378f89da558240.yml
@@ -4318,6 +4397,21 @@ references:
   type: Interface
   summary: >-
     <p>The stage of a virtual machine scale set extension definition allowing to specify the type of the virtual machine scale set extension image this extension is based on.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithType<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_type
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_type.yml
+  name: VirtualMachineExtension.DefinitionStages.WithType<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithType<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the virtual machine extension definition allowing to specify the type of the virtual machine extension image this extension is based on.</p>
 
     <p></p>
   syntax:
@@ -4340,21 +4434,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_type
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._definition_stages._with_type.yml
-  name: VirtualMachineExtension.DefinitionStages.WithType<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithType<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the virtual machine extension definition allowing to specify the type of the virtual machine extension image this extension is based on.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithType<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens27bd8e4434c1f60cd0b8b838f5bbabae
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens27bd8e4434c1f60cd0b8b838f5bbabae.yml
@@ -4388,22 +4467,13 @@ references:
   summary: <p>The stage of the definition which contains all the minimum required inputs for the VM to be created and optionally allow unmanaged data disk and settings specific to unmanaged os disk to be specified. </p>
   syntax:
     content: public interface WithUnmanagedCreate extends VirtualMachine.DefinitionStages.WithUnmanagedDataDisk,VirtualMachine.DefinitionStages.WithCreate
-- uid: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_unmanaged_data_disk
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de556e3e7055d92d007859be2e6af6cf07
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_unmanaged_data_disk.yml
-  name: VirtualMachine.UpdateStages.WithUnmanagedDataDisk
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.UpdateStages.WithUnmanagedDataDisk
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de556e3e7055d92d007859be2e6af6cf07.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithUnmanagedDataDisk
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithUnmanagedDataDisk
   type: Interface
-  summary: <p>The stage of the virtual machine definition allowing to specify unmanaged data disk configuration. </p>
-  syntax:
-    content: public interface WithUnmanagedDataDisk
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s8b2bd59eb114a42f80d2d61703811423
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s8b2bd59eb114a42f80d2d61703811423.yml
-  name: VirtualMachine.DefinitionStages.WithUnmanagedDataDisk
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithUnmanagedDataDisk
-  type: Interface
-  summary: <p>The stage of the virtual machine definition allowing to specify unmanaged data disk. </p>
+  summary: <p>The stage of the virtual machine scale set definition allowing to specify unmanaged data disk. </p>
   syntax:
     content: public interface WithUnmanagedDataDisk
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._upd19e80045beca363b0d5fd14a75627f3
@@ -4415,13 +4485,22 @@ references:
   summary: <p>The stage of the virtual machine scale set definition allowing to specify unmanaged data disk. </p>
   syntax:
     content: public interface WithUnmanagedDataDisk
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de556e3e7055d92d007859be2e6af6cf07
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s8b2bd59eb114a42f80d2d61703811423
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de556e3e7055d92d007859be2e6af6cf07.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithUnmanagedDataDisk
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithUnmanagedDataDisk
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s8b2bd59eb114a42f80d2d61703811423.yml
+  name: VirtualMachine.DefinitionStages.WithUnmanagedDataDisk
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithUnmanagedDataDisk
   type: Interface
-  summary: <p>The stage of the virtual machine scale set definition allowing to specify unmanaged data disk. </p>
+  summary: <p>The stage of the virtual machine definition allowing to specify unmanaged data disk. </p>
+  syntax:
+    content: public interface WithUnmanagedDataDisk
+- uid: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_unmanaged_data_disk
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._update_stages._with_unmanaged_data_disk.yml
+  name: VirtualMachine.UpdateStages.WithUnmanagedDataDisk
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.UpdateStages.WithUnmanagedDataDisk
+  type: Interface
+  summary: <p>The stage of the virtual machine definition allowing to specify unmanaged data disk configuration. </p>
   syntax:
     content: public interface WithUnmanagedDataDisk
 - uid: com.microsoft.azure.management.compute._availability_set._definition_6f0ccfadf19f71c8e25922f54dc7fad2
@@ -4442,36 +4521,6 @@ references:
   summary: <p>The stage of a virtual machine scale set definition allowing to specify the upgrade policy. </p>
   syntax:
     content: public interface WithUpgradePolicy
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0b5b3d0206d25885c16239e919850ec2
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0b5b3d0206d25885c16239e919850ec2.yml
-  name: VirtualMachineScaleSetExtension.DefinitionStages.WithVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithVersion<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of a virtual machine scale set extension definition allowing to specify the type of the virtual machine scale set extension version this extension is based on.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithVersion<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de9b41ab5275528e6f1a708016aad696f9
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_extension._de9b41ab5275528e6f1a708016aad696f9.yml
-  name: VirtualMachineExtension.DefinitionStages.WithVersion<ParentT>
-  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithVersion<ParentT>
-  type: Interface
-  summary: >-
-    <p>The stage of the virtual machine extension definition allowing to specify the type of the virtual machine extension version this extension is based on.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithVersion<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_extension._upb438c9ebcb51574e8cbcd0173a732e5e
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_extension._upb438c9ebcb51574e8cbcd0173a732e5e.yml
@@ -4487,6 +4536,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0b5b3d0206d25885c16239e919850ec2
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extens0b5b3d0206d25885c16239e919850ec2.yml
+  name: VirtualMachineScaleSetExtension.DefinitionStages.WithVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSetExtension.DefinitionStages.WithVersion<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of a virtual machine scale set extension definition allowing to specify the type of the virtual machine scale set extension version this extension is based on.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithVersion<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb5176152ca9315a86991fb7a6a0a7d83
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set_extensb5176152ca9315a86991fb7a6a0a7d83.yml
@@ -4502,6 +4566,21 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.compute._virtual_machine_extension._de9b41ab5275528e6f1a708016aad696f9
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine_extension._de9b41ab5275528e6f1a708016aad696f9.yml
+  name: VirtualMachineExtension.DefinitionStages.WithVersion<ParentT>
+  fullName: com.microsoft.azure.management.compute.VirtualMachineExtension.DefinitionStages.WithVersion<ParentT>
+  type: Interface
+  summary: >-
+    <p>The stage of the virtual machine extension definition allowing to specify the type of the virtual machine extension version this extension is based on.</p>
+
+    <p></p>
+  syntax:
+    content: public interface WithVersion<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_de6b3d91408c9b37dd09dcc9e79258e59
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_unmanaged_data_de6b3d91408c9b37dd09dcc9e79258e59.yml
@@ -4559,15 +4638,6 @@ references:
   summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminPasswordManaged
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_sa3c3d2711dc8f46b261bc0be042fa883
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_sa3c3d2711dc8f46b261bc0be042fa883.yml
-  name: VirtualMachine.DefinitionStages.WithWindowsAdminPasswordManagedOrUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminPasswordManagedOrUnmanaged
-  type: Interface
-  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
-  syntax:
-    content: public interface WithWindowsAdminPasswordManagedOrUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7e932fef85b84450a661ef717c3e033c
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7e932fef85b84450a661ef717c3e033c.yml
@@ -4577,15 +4647,15 @@ references:
   summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminPasswordManagedOrUnmanaged
-- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de00c056161e803d59e31a7d0d7d077740
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_sa3c3d2711dc8f46b261bc0be042fa883
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de00c056161e803d59e31a7d0d7d077740.yml
-  name: VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminPasswordUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminPasswordUnmanaged
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_sa3c3d2711dc8f46b261bc0be042fa883.yml
+  name: VirtualMachine.DefinitionStages.WithWindowsAdminPasswordManagedOrUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminPasswordManagedOrUnmanaged
   type: Interface
-  summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
+  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
   syntax:
-    content: public interface WithWindowsAdminPasswordUnmanaged
+    content: public interface WithWindowsAdminPasswordManagedOrUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_scf9bdd44a2e16d0fcfd219b7943558e8
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine._definition_scf9bdd44a2e16d0fcfd219b7943558e8.yml
@@ -4595,15 +4665,15 @@ references:
   summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminPasswordUnmanaged
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s1e39df43bd1983face7f624239a12cf5
+- uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de00c056161e803d59e31a7d0d7d077740
   parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s1e39df43bd1983face7f624239a12cf5.yml
-  name: VirtualMachine.DefinitionStages.WithWindowsAdminUsernameManaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminUsernameManaged
+  href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de00c056161e803d59e31a7d0d7d077740.yml
+  name: VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminPasswordUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminPasswordUnmanaged
   type: Interface
-  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
+  summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
   syntax:
-    content: public interface WithWindowsAdminUsernameManaged
+    content: public interface WithWindowsAdminPasswordUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._def42ccbe821f089926fdd4f9a6570563b
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._def42ccbe821f089926fdd4f9a6570563b.yml
@@ -4611,6 +4681,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminUsernameManaged
   type: Interface
   summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
+  syntax:
+    content: public interface WithWindowsAdminUsernameManaged
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s1e39df43bd1983face7f624239a12cf5
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s1e39df43bd1983face7f624239a12cf5.yml
+  name: VirtualMachine.DefinitionStages.WithWindowsAdminUsernameManaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminUsernameManaged
+  type: Interface
+  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminUsernameManaged
 - uid: com.microsoft.azure.management.compute._virtual_machine._definition_sd5940b4b2d4e110cdfa26cc144ab03cb
@@ -4631,15 +4710,6 @@ references:
   summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminUsernameManagedOrUnmanaged
-- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s465c0ecb78deb1cd582fbf2d5c059111
-  parent: com.microsoft.azure.management.compute
-  href: com.microsoft.azure.management.compute._virtual_machine._definition_s465c0ecb78deb1cd582fbf2d5c059111.yml
-  name: VirtualMachine.DefinitionStages.WithWindowsAdminUsernameUnmanaged
-  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminUsernameUnmanaged
-  type: Interface
-  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
-  syntax:
-    content: public interface WithWindowsAdminUsernameUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7e348cca2148b721477f24744d9a0437
   parent: com.microsoft.azure.management.compute
   href: com.microsoft.azure.management.compute._virtual_machine_scale_set._de7e348cca2148b721477f24744d9a0437.yml
@@ -4647,6 +4717,15 @@ references:
   fullName: com.microsoft.azure.management.compute.VirtualMachineScaleSet.DefinitionStages.WithWindowsAdminUsernameUnmanaged
   type: Interface
   summary: <p>The stage of the Windows virtual machine scale set definition allowing to specify administrator user name. </p>
+  syntax:
+    content: public interface WithWindowsAdminUsernameUnmanaged
+- uid: com.microsoft.azure.management.compute._virtual_machine._definition_s465c0ecb78deb1cd582fbf2d5c059111
+  parent: com.microsoft.azure.management.compute
+  href: com.microsoft.azure.management.compute._virtual_machine._definition_s465c0ecb78deb1cd582fbf2d5c059111.yml
+  name: VirtualMachine.DefinitionStages.WithWindowsAdminUsernameUnmanaged
+  fullName: com.microsoft.azure.management.compute.VirtualMachine.DefinitionStages.WithWindowsAdminUsernameUnmanaged
+  type: Interface
+  summary: <p>The stage of the Windows virtual machine definition allowing to specify administrator user name. </p>
   syntax:
     content: public interface WithWindowsAdminUsernameUnmanaged
 - uid: com.microsoft.azure.management.compute._virtual_machine_scale_set._deeb7a2230c5d32793a0916ccc0c9ebed0
