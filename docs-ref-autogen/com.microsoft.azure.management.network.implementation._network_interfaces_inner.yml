@@ -27,12 +27,14 @@ items:
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteAsync(String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteAsync(String,String,final ServiceCallback<Void>)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteWithServiceResponseAsync(String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.get(String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.get(String,String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroup(String,String)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroup(String,String,String)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,String)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupWithServiceResponseAsync(String,String)
+  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupWithServiceResponseAsync(String,String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTable(String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTableAsync(String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTableAsync(String,String,final ServiceCallback<EffectiveRouteListResultInner>)
@@ -45,8 +47,6 @@ items:
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getWithServiceResponseAsync(String,String)
-  - com.microsoft.azure.management.network.implementation._network_interfaces_inner.getWithServiceResponseAsync(String,String,String)
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.list()
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.listAsync()
   - com.microsoft.azure.management.network.implementation._network_interfaces_inner.listAsync(final ListOperationCallback<NetworkInterfaceInner>)
@@ -104,14 +104,14 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 43
+    startLine: 44
   package: com.microsoft.azure.management.network.implementation
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.network._network_interfaces" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: &o1
-    content: public class NetworkInterfacesInner implements InnerSupportsListing<NetworkInterfaceInner>
+    content: public class NetworkInterfacesInner implements InnerSupportsDelete<Void>,InnerSupportsListing<NetworkInterfaceInner>
   inheritance:
   - java.lang.Object
-  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginCreateOrUpdate(String,String,NetworkInterfaceInner)
   id: beginCreateOrUpdate(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -124,7 +124,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 509
+    startLine: 543
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -145,6 +145,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginCreateOrUpdateAsync(String,String,NetworkInterfaceInner)
   id: beginCreateOrUpdateAsync(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -157,7 +164,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 534
+    startLine: 570
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -178,6 +185,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginCreateOrUpdateAsync(String,String,NetworkInterfaceInner,final ServiceCallback<NetworkInterfaceInner>)
   id: beginCreateOrUpdateAsync(String,String,NetworkInterfaceInner,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -190,7 +200,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 522
+    startLine: 557
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -214,6 +224,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginCreateOrUpdateWithServiceResponseAsync(String,String,NetworkInterfaceInner)
   id: beginCreateOrUpdateWithServiceResponseAsync(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -226,7 +239,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 551
+    startLine: 588
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -247,6 +260,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginDelete(String,String)
   id: beginDelete(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -259,7 +275,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 205
+    startLine: 215
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -274,6 +290,13 @@ items:
     - id: networkInterfaceName
       type: "26831127"
       description: <p>The name of the network interface. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginDeleteAsync(String,String)
   id: beginDeleteAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -286,7 +309,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 228
+    startLine: 240
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -304,6 +327,9 @@ items:
     return:
       type: dcd884b2
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginDeleteAsync(String,String,final ServiceCallback<Void>)
   id: beginDeleteAsync(String,String,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -316,7 +342,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 217
+    startLine: 228
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -337,6 +363,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginDeleteWithServiceResponseAsync(String,String)
   id: beginDeleteWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -349,7 +378,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 244
+    startLine: 257
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -367,6 +396,9 @@ items:
     return:
       type: 27015fa1
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginGetEffectiveRouteTable(String,String)
   id: beginGetEffectiveRouteTable(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -379,7 +411,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 860
+    startLine: 920
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -397,6 +429,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._effective_route_list_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._effective_route_list_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginGetEffectiveRouteTableAsync(String,String)
   id: beginGetEffectiveRouteTableAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -409,7 +448,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 883
+    startLine: 945
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -427,6 +466,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._effective_route_list_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._effective_route_list_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginGetEffectiveRouteTableAsync(String,String,final ServiceCallback<EffectiveRouteListResultInner>)
   id: beginGetEffectiveRouteTableAsync(String,String,final ServiceCallback<EffectiveRouteListResultInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -439,7 +481,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 872
+    startLine: 933
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -460,6 +502,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._effective_route_list_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginGetEffectiveRouteTableWithServiceResponseAsync(String,String)
   id: beginGetEffectiveRouteTableWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -472,7 +517,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 899
+    startLine: 962
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -490,6 +535,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._effective_route_list_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._effective_route_list_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginListEffectiveNetworkSecurityGroups(String,String)
   id: beginListEffectiveNetworkSecurityGroups(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -502,7 +550,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1000
+    startLine: 1072
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -520,6 +568,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginListEffectiveNetworkSecurityGroupsAsync(String,String)
   id: beginListEffectiveNetworkSecurityGroupsAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -532,7 +587,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1023
+    startLine: 1097
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -550,6 +605,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627a08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginListEffectiveNetworkSecurityGroupsAsync(String,String,final ServiceCallback<EffectiveNetworkSecurityGroupListResultInner>)
   id: beginListEffectiveNetworkSecurityGroupsAsync(String,String,final ServiceCallback<EffectiveNetworkSecurityGroupListResultInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -562,7 +620,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1012
+    startLine: 1085
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -583,6 +641,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627a08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.beginListEffectiveNetworkSecurityGroupsWithServiceResponseAsync(String,String)
   id: beginListEffectiveNetworkSecurityGroupsWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -595,7 +656,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1039
+    startLine: 1114
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -613,6 +674,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627e7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.createOrUpdate(String,String,NetworkInterfaceInner)
   id: createOrUpdate(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -625,7 +689,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 440
+    startLine: 468
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -646,6 +710,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.createOrUpdateAsync(String,String,NetworkInterfaceInner)
   id: createOrUpdateAsync(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -658,7 +729,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 465
+    startLine: 495
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -679,6 +750,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.createOrUpdateAsync(String,String,NetworkInterfaceInner,final ServiceCallback<NetworkInterfaceInner>)
   id: createOrUpdateAsync(String,String,NetworkInterfaceInner,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -691,7 +765,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 453
+    startLine: 482
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -715,6 +789,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.createOrUpdateWithServiceResponseAsync(String,String,NetworkInterfaceInner)
   id: createOrUpdateWithServiceResponseAsync(String,String,NetworkInterfaceInner)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -727,7 +804,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 482
+    startLine: 513
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Creates or updates a network interface.</p>
@@ -748,6 +825,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.delete(String,String)
   id: delete(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -760,7 +840,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 145
+    startLine: 149
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -775,6 +855,13 @@ items:
     - id: networkInterfaceName
       type: "26831127"
       description: <p>The name of the network interface. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteAsync(String,String)
   id: deleteAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -787,7 +874,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 168
+    startLine: 174
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -805,6 +892,10 @@ items:
     return:
       type: dcd884b2
       description: <p>the observable for the request </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteAsync(String,String,final ServiceCallback<Void>)
   id: deleteAsync(String,String,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -817,7 +908,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 157
+    startLine: 162
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -838,6 +929,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.deleteWithServiceResponseAsync(String,String)
   id: deleteWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -850,7 +944,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 184
+    startLine: 191
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Deletes the specified network interface.</p>
@@ -868,26 +962,29 @@ items:
     return:
       type: 27015fa1
       description: <p>the observable for the request </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.get(String,String)
-  id: get(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroup(String,String)
+  id: getByResourceGroup(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: get(String resourceGroupName, String networkInterfaceName)
-  fullName: NetworkInterfaceInner com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.get(String resourceGroupName, String networkInterfaceName)
+  name: getByResourceGroup(String resourceGroupName, String networkInterfaceName)
+  fullName: NetworkInterfaceInner com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroup(String resourceGroupName, String networkInterfaceName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 285
+    startLine: 301
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public NetworkInterfaceInner get(String resourceGroupName, String networkInterfaceName)
+    content: public NetworkInterfaceInner getByResourceGroup(String resourceGroupName, String networkInterfaceName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -898,26 +995,33 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.get(String,String,String)
-  id: get(String,String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroup(String,String,String)
+  id: getByResourceGroup(String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: get(String resourceGroupName, String networkInterfaceName, String expand)
-  fullName: NetworkInterfaceInner com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.get(String resourceGroupName, String networkInterfaceName, String expand)
+  name: getByResourceGroup(String resourceGroupName, String networkInterfaceName, String expand)
+  fullName: NetworkInterfaceInner com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroup(String resourceGroupName, String networkInterfaceName, String expand)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 358
+    startLine: 380
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public NetworkInterfaceInner get(String resourceGroupName, String networkInterfaceName, String expand)
+    content: public NetworkInterfaceInner getByResourceGroup(String resourceGroupName, String networkInterfaceName, String expand)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -931,26 +1035,33 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String)
-  id: getAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String)
+  id: getByResourceGroupAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String networkInterfaceName)
-  fullName: Observable<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getAsync(String resourceGroupName, String networkInterfaceName)
+  name: getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName)
+  fullName: Observable<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 308
+    startLine: 326
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public Observable<NetworkInterfaceInner> getAsync(String resourceGroupName, String networkInterfaceName)
+    content: public Observable<NetworkInterfaceInner> getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -961,26 +1072,29 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
-  id: getAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
+  id: getByResourceGroupAsync(String,String,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
-  fullName: ServiceFuture<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+  name: getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+  fullName: ServiceFuture<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 297
+    startLine: 314
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public ServiceFuture<NetworkInterfaceInner> getAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+    content: public ServiceFuture<NetworkInterfaceInner> getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -994,26 +1108,29 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,String)
-  id: getAsync(String,String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,String)
+  id: getByResourceGroupAsync(String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String networkInterfaceName, String expand)
-  fullName: Observable<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getAsync(String resourceGroupName, String networkInterfaceName, String expand)
+  name: getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand)
+  fullName: Observable<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 383
+    startLine: 407
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public Observable<NetworkInterfaceInner> getAsync(String resourceGroupName, String networkInterfaceName, String expand)
+    content: public Observable<NetworkInterfaceInner> getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -1027,26 +1144,29 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
-  id: getAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
+  id: getByResourceGroupAsync(String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
   href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
-  fullName: ServiceFuture<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+  name: getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+  fullName: ServiceFuture<NetworkInterfaceInner> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 371
+    startLine: 394
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about the specified network interface.</p>
 
     <p></p>
   syntax:
-    content: public ServiceFuture<NetworkInterfaceInner> getAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
+    content: public ServiceFuture<NetworkInterfaceInner> getByResourceGroupAsync(String resourceGroupName, String networkInterfaceName, String expand, final ServiceCallback<NetworkInterfaceInner> serviceCallback)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -1063,6 +1183,78 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupWithServiceResponseAsync(String,String)
+  id: getByResourceGroupWithServiceResponseAsync(String,String)
+  parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
+  href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
+  langs:
+  - java
+  name: getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
+  fullName: Observable<ServiceResponse<NetworkInterfaceInner>> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
+    startLine: 343
+  package: com.microsoft.azure.management.network.implementation
+  summary: >-
+    <p>Gets information about the specified network interface.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ServiceResponse<NetworkInterfaceInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group. </p>
+    - id: networkInterfaceName
+      type: "26831127"
+      description: <p>The name of the network interface. </p>
+    return:
+      type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
+      description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getByResourceGroupWithServiceResponseAsync(String,String,String)
+  id: getByResourceGroupWithServiceResponseAsync(String,String,String)
+  parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
+  href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
+  langs:
+  - java
+  name: getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
+  fullName: Observable<ServiceResponse<NetworkInterfaceInner>> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
+    startLine: 425
+  package: com.microsoft.azure.management.network.implementation
+  summary: >-
+    <p>Gets information about the specified network interface.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ServiceResponse<NetworkInterfaceInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group. </p>
+    - id: networkInterfaceName
+      type: "26831127"
+      description: <p>The name of the network interface. </p>
+    - id: expand
+      type: "26831127"
+      description: <p>Expands referenced resources. </p>
+    return:
+      type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
+      description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTable(String,String)
   id: getEffectiveRouteTable(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1075,7 +1267,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 799
+    startLine: 853
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -1093,6 +1285,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._effective_route_list_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._effective_route_list_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTableAsync(String,String)
   id: getEffectiveRouteTableAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1105,7 +1304,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 822
+    startLine: 878
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -1123,6 +1322,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._effective_route_list_result_innera08ddfce
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTableAsync(String,String,final ServiceCallback<EffectiveRouteListResultInner>)
   id: getEffectiveRouteTableAsync(String,String,final ServiceCallback<EffectiveRouteListResultInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1135,7 +1337,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 811
+    startLine: 866
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -1156,6 +1358,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._effective_route_list_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getEffectiveRouteTableWithServiceResponseAsync(String,String)
   id: getEffectiveRouteTableWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1168,7 +1373,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 838
+    startLine: 895
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all route tables applied to a network interface.</p>
@@ -1186,6 +1391,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._effective_route_list_result_innere7daa122
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterface(String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterface(String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1198,7 +1406,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1317
+    startLine: 1409
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1222,6 +1430,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterface(String,String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterface(String,String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1234,7 +1449,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1404
+    startLine: 1502
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1261,6 +1476,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._network_interface_inner
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1273,7 +1495,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1344
+    startLine: 1438
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1297,6 +1519,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   id: getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1309,7 +1534,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1331
+    startLine: 1424
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1336,6 +1561,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1348,7 +1576,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1433
+    startLine: 1533
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1375,6 +1603,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   id: getVirtualMachineScaleSetNetworkInterfaceAsync(String,String,String,String,String,final ServiceCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1387,7 +1618,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1419
+    startLine: 1518
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1417,6 +1648,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1429,7 +1663,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1362
+    startLine: 1457
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1453,6 +1687,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String,String)
   id: getVirtualMachineScaleSetNetworkInterfaceWithServiceResponseAsync(String,String,String,String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1465,7 +1702,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1452
+    startLine: 1553
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Get the specified network interface in a virtual machine scale set.</p>
@@ -1492,69 +1729,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getWithServiceResponseAsync(String,String)
-  id: getWithServiceResponseAsync(String,String)
-  parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
-  href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
-  langs:
-  - java
-  name: getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
-  fullName: Observable<ServiceResponse<NetworkInterfaceInner>> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 324
-  package: com.microsoft.azure.management.network.implementation
-  summary: >-
-    <p>Gets information about the specified network interface.</p>
-
-    <p></p>
-  syntax:
-    content: public Observable<ServiceResponse<NetworkInterfaceInner>> getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName)
-    parameters:
-    - id: resourceGroupName
-      type: "26831127"
-      description: <p>The name of the resource group. </p>
-    - id: networkInterfaceName
-      type: "26831127"
-      description: <p>The name of the network interface. </p>
-    return:
-      type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
-      description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.getWithServiceResponseAsync(String,String,String)
-  id: getWithServiceResponseAsync(String,String,String)
-  parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
-  href: com.microsoft.azure.management.network.implementation._network_interfaces_inner.yml
-  langs:
-  - java
-  name: getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
-  fullName: Observable<ServiceResponse<NetworkInterfaceInner>> com.microsoft.azure.management.network.implementation.NetworkInterfacesInner.getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 400
-  package: com.microsoft.azure.management.network.implementation
-  summary: >-
-    <p>Gets information about the specified network interface.</p>
-
-    <p></p>
-  syntax:
-    content: public Observable<ServiceResponse<NetworkInterfaceInner>> getWithServiceResponseAsync(String resourceGroupName, String networkInterfaceName, String expand)
-    parameters:
-    - id: resourceGroupName
-      type: "26831127"
-      description: <p>The name of the resource group. </p>
-    - id: networkInterfaceName
-      type: "26831127"
-      description: <p>The name of the network interface. </p>
-    - id: expand
-      type: "26831127"
-      description: <p>Expands referenced resources. </p>
-    return:
-      type: fc480ba2com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
-      description: <p>the observable to the <xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.list()
   id: list()
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1567,7 +1744,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 593
+    startLine: 633
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -1578,6 +1755,14 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listAsync()
   id: listAsync()
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1590,7 +1775,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 626
+    startLine: 668
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -1602,6 +1787,9 @@ items:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
   overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listAsync()
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listAsync(final ListOperationCallback<NetworkInterfaceInner>)
   id: listAsync(final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1614,7 +1802,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 609
+    startLine: 650
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -1629,6 +1817,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroup(final String)
   id: listByResourceGroup(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1641,7 +1832,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 692
+    startLine: 739
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1656,6 +1847,14 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupAsync(final String)
   id: listByResourceGroupAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1668,7 +1867,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 727
+    startLine: 776
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1684,6 +1883,9 @@ items:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
   overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroupAsync(String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupAsync(final String,final ListOperationCallback<NetworkInterfaceInner>)
   id: listByResourceGroupAsync(final String,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1696,7 +1898,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 709
+    startLine: 757
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1714,6 +1916,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupNext(final String)
   id: listByResourceGroupNext(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1726,7 +1931,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1600
+    startLine: 1711
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1741,6 +1946,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupNextAsync(final String)
   id: listByResourceGroupNextAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1753,7 +1965,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1636
+    startLine: 1749
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1768,6 +1980,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   id: listByResourceGroupNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1780,7 +1995,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1618
+    startLine: 1730
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1801,6 +2016,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupNextSinglePageAsync(final String)
   id: listByResourceGroupNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1813,7 +2031,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1672
+    startLine: 1787
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1828,6 +2046,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupNextWithServiceResponseAsync(final String)
   id: listByResourceGroupNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1840,7 +2061,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1652
+    startLine: 1766
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1855,6 +2076,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupSinglePageAsync(final String)
   id: listByResourceGroupSinglePageAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1867,7 +2091,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 763
+    startLine: 814
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1882,6 +2106,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listByResourceGroupWithServiceResponseAsync(final String)
   id: listByResourceGroupWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1894,7 +2121,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 743
+    startLine: 793
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a resource group.</p>
@@ -1909,6 +2136,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listEffectiveNetworkSecurityGroups(String,String)
   id: listEffectiveNetworkSecurityGroups(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1921,7 +2151,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 939
+    startLine: 1005
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -1939,6 +2169,13 @@ items:
     return:
       type: com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627
       description: <p>the <xref href="com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listEffectiveNetworkSecurityGroupsAsync(String,String)
   id: listEffectiveNetworkSecurityGroupsAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1951,7 +2188,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 962
+    startLine: 1030
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -1969,6 +2206,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627a08ddfce
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listEffectiveNetworkSecurityGroupsAsync(String,String,final ServiceCallback<EffectiveNetworkSecurityGroupListResultInner>)
   id: listEffectiveNetworkSecurityGroupsAsync(String,String,final ServiceCallback<EffectiveNetworkSecurityGroupListResultInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -1981,7 +2221,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 951
+    startLine: 1018
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -2002,6 +2242,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627a08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listEffectiveNetworkSecurityGroupsWithServiceResponseAsync(String,String)
   id: listEffectiveNetworkSecurityGroupsWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2014,7 +2257,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 978
+    startLine: 1047
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network security groups applied to a network interface.</p>
@@ -2032,6 +2275,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.network.implementation._effective_network_136768a3108f5dfa7fecd9669d89a627e7daa122
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listNext(final String)
   id: listNext(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2044,7 +2290,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1496
+    startLine: 1600
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2059,6 +2305,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listNextAsync(final String)
   id: listNextAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2071,7 +2324,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1532
+    startLine: 1638
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2086,6 +2339,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   id: listNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2098,7 +2354,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1514
+    startLine: 1619
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2119,6 +2375,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listNextSinglePageAsync(final String)
   id: listNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2131,7 +2390,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1568
+    startLine: 1676
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2146,6 +2405,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listNextWithServiceResponseAsync(final String)
   id: listNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2158,7 +2420,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1548
+    startLine: 1655
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2173,6 +2435,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listSinglePageAsync()
   id: listSinglePageAsync()
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2185,7 +2450,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 660
+    startLine: 704
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2196,6 +2461,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfaces(final String,final String)
   id: listVirtualMachineScaleSetNetworkInterfaces(final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2208,7 +2476,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1201
+    startLine: 1286
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2226,6 +2494,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesAsync(final String,final String)
   id: listVirtualMachineScaleSetNetworkInterfacesAsync(final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2238,7 +2513,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1238
+    startLine: 1325
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2256,6 +2531,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesAsync(final String,final String,final ListOperationCallback<NetworkInterfaceInner>)
   id: listVirtualMachineScaleSetNetworkInterfacesAsync(final String,final String,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2268,7 +2546,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1219
+    startLine: 1305
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2289,6 +2567,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesNext(final String)
   id: listVirtualMachineScaleSetNetworkInterfacesNext(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2301,7 +2582,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1808
+    startLine: 1933
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2316,6 +2597,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesNextAsync(final String)
   id: listVirtualMachineScaleSetNetworkInterfacesNextAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2328,7 +2616,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1844
+    startLine: 1971
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2343,6 +2631,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   id: listVirtualMachineScaleSetNetworkInterfacesNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2355,7 +2646,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1826
+    startLine: 1952
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2376,6 +2667,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesNextSinglePageAsync(final String)
   id: listVirtualMachineScaleSetNetworkInterfacesNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2388,7 +2682,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1880
+    startLine: 2009
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2403,6 +2697,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesNextWithServiceResponseAsync(final String)
   id: listVirtualMachineScaleSetNetworkInterfacesNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2415,7 +2712,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1860
+    startLine: 1988
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2430,6 +2727,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesSinglePageAsync(final String,final String)
   id: listVirtualMachineScaleSetNetworkInterfacesSinglePageAsync(final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2442,7 +2742,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1276
+    startLine: 1365
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2460,6 +2760,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetNetworkInterfacesWithServiceResponseAsync(final String,final String)
   id: listVirtualMachineScaleSetNetworkInterfacesWithServiceResponseAsync(final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2472,7 +2775,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1255
+    startLine: 1343
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a virtual machine scale set.</p>
@@ -2490,6 +2793,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfaces(final String,final String,final String)
   id: listVirtualMachineScaleSetVMNetworkInterfaces(final String,final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2502,7 +2808,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1080
+    startLine: 1158
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2523,6 +2829,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesAsync(final String,final String,final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesAsync(final String,final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2535,7 +2848,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1119
+    startLine: 1199
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2556,6 +2869,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesAsync(final String,final String,final String,final ListOperationCallback<NetworkInterfaceInner>)
   id: listVirtualMachineScaleSetVMNetworkInterfacesAsync(final String,final String,final String,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2568,7 +2884,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1099
+    startLine: 1178
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2592,6 +2908,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesNext(final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesNext(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2604,7 +2923,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1704
+    startLine: 1822
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2619,6 +2938,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.network.implementation._network_interface_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesNextAsync(final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesNextAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2631,7 +2957,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1740
+    startLine: 1860
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2646,6 +2972,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   id: listVirtualMachineScaleSetVMNetworkInterfacesNextAsync(final String,final ServiceFuture<List<NetworkInterfaceInner>>,final ListOperationCallback<NetworkInterfaceInner>)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2658,7 +2987,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1722
+    startLine: 1841
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2679,6 +3008,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.network.implementation._network_interface_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesNextSinglePageAsync(final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2691,7 +3023,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1776
+    startLine: 1898
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2706,6 +3038,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesNextWithServiceResponseAsync(final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2718,7 +3053,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1756
+    startLine: 1877
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2733,6 +3068,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesSinglePageAsync(final String,final String,final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesSinglePageAsync(final String,final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2745,7 +3083,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1159
+    startLine: 1241
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2766,6 +3104,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listVirtualMachineScaleSetVMNetworkInterfacesWithServiceResponseAsync(final String,final String,final String)
   id: listVirtualMachineScaleSetVMNetworkInterfacesWithServiceResponseAsync(final String,final String,final String)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2778,7 +3119,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 1137
+    startLine: 1218
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets information about all network interfaces in a virtual machine in a virtual machine scale set.</p>
@@ -2799,6 +3140,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.listWithServiceResponseAsync()
   id: listWithServiceResponseAsync()
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2811,7 +3155,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 641
+    startLine: 684
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Gets all network interfaces in a subscription.</p>
@@ -2822,6 +3166,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.network.implementation._network_interface_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.network.implementation._network_interface_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interfaces_inner.NetworkInterfacesInner(Retrofit,NetworkManagementClientImpl)
   id: NetworkInterfacesInner(Retrofit,NetworkManagementClientImpl)
   parent: com.microsoft.azure.management.network.implementation._network_interfaces_inner
@@ -2834,7 +3181,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/implementation/NetworkInterfacesInner.java
-    startLine: 55
+    startLine: 56
   package: com.microsoft.azure.management.network.implementation
   summary: >-
     <p>Initializes an instance of <xref href="com.microsoft.azure.management.network.implementation._network_interfaces_inner" data-throw-if-not-resolved="false"></xref>.</p>
@@ -2854,6 +3201,18 @@ references:
   spec.java:
   - name: Retrofit
     fullName: Retrofit
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: dc385fd4
+  spec.java:
+  - name: CloudException
+    fullName: CloudException
+- uid: 9b2a4515
+  spec.java:
+  - name: RuntimeException
+    fullName: RuntimeException
 - uid: "26831127"
   spec.java:
   - name: String
@@ -3058,6 +3417,23 @@ references:
     href: com.microsoft.azure.management.network.implementation._network_interface_inner.yml
   - name: '>>'
     fullName: '>>'
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: InnerSupportsDelete<ResponseT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>
+  type: Interface
+  summary: >-
+    <p>Provides access to delete <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsDelete<ResponseT>
+    typeParameters:
+    - type: 5a5d7d33
+      description: <p>Response type for delete. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   parent: com.microsoft.azure.management.resources.fluentcore.collection
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
@@ -3092,6 +3468,28 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.network._network_interfaces" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: *o1
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: deleteAsync(String resourceGroupName, String resourceName)
+  fullName: Observable<ResponseT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>.deleteAsync(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Deletes a resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ResponseT> deleteAsync(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group. </p>
+    return:
+      type: 058422cb
+      description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
 - uid: com.microsoft.azure.management.network.implementation._network_interface_inner
   parent: com.microsoft.azure.management.network.implementation
   href: com.microsoft.azure.management.network.implementation._network_interface_inner.yml
@@ -3101,6 +3499,21 @@ references:
   summary: <p>A network interface in a resource group. </p>
   syntax:
     content: public class NetworkInterfaceInner implements Resource
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: list()
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.list()
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type available in subscription.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> list()
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listAsync()
   parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
@@ -3116,6 +3529,25 @@ references:
     return:
       type: 2115045e
       description: <p>Observable of list of resources. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: listByResourceGroup(String resourceGroupName)
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.listByResourceGroup(String resourceGroupName)
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type in specified resource group.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> listByResourceGroup(String resourceGroupName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroupAsync(String)
   parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
