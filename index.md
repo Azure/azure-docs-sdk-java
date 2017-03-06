@@ -1,18 +1,20 @@
 ---
 title: Azure for Java developers | Microsoft Docs
 description: Import dependencies into your Java projects to manage Azure resources and integrate Azure services in your applications
-services: ''
+keywords: Azure Java, Azure Java API Reference, Azure Java class library, Azure SDK
 documentationcenter: java
 author: routlaw
 manager: douge
 editor: ''
 
-ms.assetid: 4b8f8fe6-1b26-4bb4-9be9-6ae757a59e66
+ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 ms.service: multiple
 ms.workload: na
 ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
+ms.devlang: java
+ms.topic: managed-reference
+ms.prod: azure
+ms.technology: azure
 ms.date: 3/06/2016
 ms.author: routlaw;asirveda
 
