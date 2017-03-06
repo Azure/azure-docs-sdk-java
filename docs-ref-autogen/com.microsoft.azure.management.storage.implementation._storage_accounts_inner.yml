@@ -19,10 +19,10 @@ items:
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteAsync(String,String)
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteAsync(String,String,final ServiceCallback<Void>)
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteWithServiceResponseAsync(String,String)
-  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getProperties(String,String)
-  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesAsync(String,String)
-  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesAsync(String,String,final ServiceCallback<StorageAccountInner>)
-  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesWithServiceResponseAsync(String,String)
+  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroup(String,String)
+  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupAsync(String,String)
+  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupAsync(String,String,final ServiceCallback<StorageAccountInner>)
+  - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupWithServiceResponseAsync(String,String)
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.list()
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listAsync()
   - com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listAsync(final ServiceCallback<List<StorageAccountInner>>)
@@ -56,14 +56,16 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 42
+    startLine: 45
   package: com.microsoft.azure.management.storage.implementation
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.storage._storage_accounts" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: &o1
-    content: public class StorageAccountsInner implements InnerSupportsListing<StorageAccountInner>
+    content: public class StorageAccountsInner implements InnerSupportsGet<StorageAccountInner>,InnerSupportsDelete<Void>,InnerSupportsListing<StorageAccountInner>
   inheritance:
   - java.lang.Object
-  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  inheritedMembers:
+  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String,ServiceCallback<InnerT>)
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.beginCreate(String,String,StorageAccountCreateParametersInner)
   id: beginCreate(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -76,7 +78,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 260
+    startLine: 278
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -97,6 +99,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.beginCreateAsync(String,String,StorageAccountCreateParametersInner)
   id: beginCreateAsync(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -109,7 +118,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 285
+    startLine: 305
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -130,6 +139,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.beginCreateAsync(String,String,StorageAccountCreateParametersInner,final ServiceCallback<StorageAccountInner>)
   id: beginCreateAsync(String,String,StorageAccountCreateParametersInner,final ServiceCallback<StorageAccountInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -142,7 +154,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 273
+    startLine: 292
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -166,6 +178,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.beginCreateWithServiceResponseAsync(String,String,StorageAccountCreateParametersInner)
   id: beginCreateWithServiceResponseAsync(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -178,7 +193,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 302
+    startLine: 323
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -199,6 +214,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.checkNameAvailability(String)
   id: checkNameAvailability(String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -211,7 +229,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 112
+    startLine: 118
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Checks that the storage account name is valid and is not already in use.</p>
@@ -226,6 +244,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._check_name_availability_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._check_name_availability_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.checkNameAvailabilityAsync(String)
   id: checkNameAvailabilityAsync(String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -238,7 +263,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 133
+    startLine: 141
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Checks that the storage account name is valid and is not already in use.</p>
@@ -253,6 +278,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._check_name_availability_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._check_name_availability_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.checkNameAvailabilityAsync(String,final ServiceCallback<CheckNameAvailabilityResultInner>)
   id: checkNameAvailabilityAsync(String,final ServiceCallback<CheckNameAvailabilityResultInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -265,7 +293,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 123
+    startLine: 130
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Checks that the storage account name is valid and is not already in use.</p>
@@ -283,6 +311,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._check_name_availability_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.checkNameAvailabilityWithServiceResponseAsync(String)
   id: checkNameAvailabilityWithServiceResponseAsync(String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -295,7 +326,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 148
+    startLine: 157
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Checks that the storage account name is valid and is not already in use.</p>
@@ -310,6 +341,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._check_name_availability_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._check_name_availability_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.create(String,String,StorageAccountCreateParametersInner)
   id: create(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -322,7 +356,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 189
+    startLine: 201
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -343,6 +377,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.createAsync(String,String,StorageAccountCreateParametersInner)
   id: createAsync(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -355,7 +396,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 214
+    startLine: 228
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -376,6 +417,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.createAsync(String,String,StorageAccountCreateParametersInner,final ServiceCallback<StorageAccountInner>)
   id: createAsync(String,String,StorageAccountCreateParametersInner,final ServiceCallback<StorageAccountInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -388,7 +432,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 202
+    startLine: 215
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -412,6 +456,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.createWithServiceResponseAsync(String,String,StorageAccountCreateParametersInner)
   id: createWithServiceResponseAsync(String,String,StorageAccountCreateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -424,7 +471,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 231
+    startLine: 246
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Asynchronously creates a new storage account with the specified parameters. If an account is already created and a subsequent create request is issued with different properties, the account properties will be updated. If an account is already created and a subsequent create or update request is issued with the exact same set of properties, the request will succeed.</p>
@@ -445,6 +492,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_innere7daa122
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.delete(String,String)
   id: delete(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -457,7 +507,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 347
+    startLine: 371
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Deletes a storage account in Microsoft <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>.</p>
@@ -472,6 +522,13 @@ items:
     - id: accountName
       type: "26831127"
       description: <p>The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteAsync(String,String)
   id: deleteAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -484,7 +541,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 370
+    startLine: 396
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Deletes a storage account in Microsoft <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>.</p>
@@ -502,6 +559,10 @@ items:
     return:
       type: dcd884b2
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteAsync(String,String,final ServiceCallback<Void>)
   id: deleteAsync(String,String,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -514,7 +575,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 359
+    startLine: 384
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Deletes a storage account in Microsoft <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>.</p>
@@ -535,6 +596,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.deleteWithServiceResponseAsync(String,String)
   id: deleteWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -547,7 +611,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 386
+    startLine: 413
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Deletes a storage account in Microsoft <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>.</p>
@@ -565,26 +629,29 @@ items:
     return:
       type: 27015fa1
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
-- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getProperties(String,String)
-  id: getProperties(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroup(String,String)
+  id: getByResourceGroup(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
   href: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.yml
   langs:
   - java
-  name: getProperties(String resourceGroupName, String accountName)
-  fullName: StorageAccountInner com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getProperties(String resourceGroupName, String accountName)
+  name: getByResourceGroup(String resourceGroupName, String accountName)
+  fullName: StorageAccountInner com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getByResourceGroup(String resourceGroupName, String accountName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 427
+    startLine: 458
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.</p>
 
     <p></p>
   syntax:
-    content: public StorageAccountInner getProperties(String resourceGroupName, String accountName)
+    content: public StorageAccountInner getByResourceGroup(String resourceGroupName, String accountName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -595,26 +662,34 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
-- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesAsync(String,String)
-  id: getPropertiesAsync(String,String)
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroup(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
+- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupAsync(String,String)
+  id: getByResourceGroupAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
   href: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.yml
   langs:
   - java
-  name: getPropertiesAsync(String resourceGroupName, String accountName)
-  fullName: Observable<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getPropertiesAsync(String resourceGroupName, String accountName)
+  name: getByResourceGroupAsync(String resourceGroupName, String accountName)
+  fullName: Observable<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getByResourceGroupAsync(String resourceGroupName, String accountName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 450
+    startLine: 483
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.</p>
 
     <p></p>
   syntax:
-    content: public Observable<StorageAccountInner> getPropertiesAsync(String resourceGroupName, String accountName)
+    content: public Observable<StorageAccountInner> getByResourceGroupAsync(String resourceGroupName, String accountName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -625,26 +700,30 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesAsync(String,String,final ServiceCallback<StorageAccountInner>)
-  id: getPropertiesAsync(String,String,final ServiceCallback<StorageAccountInner>)
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupAsync(String,String,final ServiceCallback<StorageAccountInner>)
+  id: getByResourceGroupAsync(String,String,final ServiceCallback<StorageAccountInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
   href: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.yml
   langs:
   - java
-  name: getPropertiesAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
-  fullName: ServiceFuture<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getPropertiesAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
+  name: getByResourceGroupAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
+  fullName: ServiceFuture<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getByResourceGroupAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 439
+    startLine: 471
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.</p>
 
     <p></p>
   syntax:
-    content: public ServiceFuture<StorageAccountInner> getPropertiesAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
+    content: public ServiceFuture<StorageAccountInner> getByResourceGroupAsync(String resourceGroupName, String accountName, final ServiceCallback<StorageAccountInner> serviceCallback)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -658,26 +737,29 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
-- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getPropertiesWithServiceResponseAsync(String,String)
-  id: getPropertiesWithServiceResponseAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.getByResourceGroupWithServiceResponseAsync(String,String)
+  id: getByResourceGroupWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
   href: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.yml
   langs:
   - java
-  name: getPropertiesWithServiceResponseAsync(String resourceGroupName, String accountName)
-  fullName: Observable<ServiceResponse<StorageAccountInner>> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getPropertiesWithServiceResponseAsync(String resourceGroupName, String accountName)
+  name: getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String accountName)
+  fullName: Observable<ServiceResponse<StorageAccountInner>> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String accountName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 466
+    startLine: 500
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Returns the properties for the specified storage account including but not limited to name, SKU name, location, and account status. The ListKeys operation should be used to retrieve storage keys.</p>
 
     <p></p>
   syntax:
-    content: public Observable<ServiceResponse<StorageAccountInner>> getPropertiesWithServiceResponseAsync(String resourceGroupName, String accountName)
+    content: public Observable<ServiceResponse<StorageAccountInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String accountName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -688,6 +770,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.list()
   id: list()
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -695,22 +780,23 @@ items:
   langs:
   - java
   name: list()
-  fullName: List<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.list()
+  fullName: PagedList<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.list()
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 593
+    startLine: 633
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.</p>
 
     <p></p>
   syntax:
-    content: public List<StorageAccountInner> list()
+    content: public PagedList<StorageAccountInner> list()
     return:
-      type: 5618da2dcom.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
-      description: <p>the List&lt;<xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+      type: 36b27be0com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
+      description: <p>the PagedList&lt;StorageAccountInner&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listAsync()
   id: listAsync()
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -723,7 +809,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 612
+    startLine: 660
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -747,7 +833,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 603
+    startLine: 651
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -769,26 +855,27 @@ items:
   langs:
   - java
   name: listByResourceGroup(String resourceGroupName)
-  fullName: List<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.listByResourceGroup(String resourceGroupName)
+  fullName: PagedList<StorageAccountInner> com.microsoft.azure.management.storage.implementation.StorageAccountsInner.listByResourceGroup(String resourceGroupName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 663
+    startLine: 711
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.</p>
 
     <p></p>
   syntax:
-    content: public List<StorageAccountInner> listByResourceGroup(String resourceGroupName)
+    content: public PagedList<StorageAccountInner> listByResourceGroup(String resourceGroupName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
       description: <p>The name of the resource group within the user's subscription. </p>
     return:
-      type: 5618da2dcom.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
-      description: <p>the List&lt;<xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+      type: 36b27be0com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
+      description: <p>the PagedList&lt;StorageAccountInner&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listByResourceGroupAsync(String)
   id: listByResourceGroupAsync(String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -801,7 +888,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 684
+    startLine: 740
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -829,7 +916,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 674
+    startLine: 730
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -859,7 +946,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 701
+    startLine: 757
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the given resource group. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -886,7 +973,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 740
+    startLine: 799
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists the access keys for the specified storage account.</p>
@@ -904,6 +991,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listKeysAsync(String,String)
   id: listKeysAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -916,7 +1010,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 763
+    startLine: 824
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists the access keys for the specified storage account.</p>
@@ -934,6 +1028,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listKeysAsync(String,String,final ServiceCallback<StorageAccountListKeysResultInner>)
   id: listKeysAsync(String,String,final ServiceCallback<StorageAccountListKeysResultInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -946,7 +1043,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 752
+    startLine: 812
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists the access keys for the specified storage account.</p>
@@ -967,6 +1064,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listKeysWithServiceResponseAsync(String,String)
   id: listKeysWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -979,7 +1079,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 779
+    startLine: 841
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists the access keys for the specified storage account.</p>
@@ -997,6 +1097,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.listWithServiceResponseAsync()
   id: listWithServiceResponseAsync()
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1009,7 +1112,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 628
+    startLine: 676
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Lists all the storage accounts available under the subscription. Note that storage keys are not returned; use the ListKeys operation for this.</p>
@@ -1032,7 +1135,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 821
+    startLine: 886
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Regenerates one of the access keys for the specified storage account.</p>
@@ -1053,6 +1156,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.regenerateKeyAsync(String,String,String)
   id: regenerateKeyAsync(String,String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1065,7 +1175,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 846
+    startLine: 913
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Regenerates one of the access keys for the specified storage account.</p>
@@ -1086,6 +1196,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.regenerateKeyAsync(String,String,String,final ServiceCallback<StorageAccountListKeysResultInner>)
   id: regenerateKeyAsync(String,String,String,final ServiceCallback<StorageAccountListKeysResultInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1098,7 +1211,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 834
+    startLine: 900
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Regenerates one of the access keys for the specified storage account.</p>
@@ -1122,6 +1235,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.regenerateKeyWithServiceResponseAsync(String,String,String)
   id: regenerateKeyWithServiceResponseAsync(String,String,String)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1134,7 +1250,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 863
+    startLine: 931
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Regenerates one of the access keys for the specified storage account.</p>
@@ -1155,6 +1271,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.StorageAccountsInner(Retrofit,StorageManagementClientImpl)
   id: StorageAccountsInner(Retrofit,StorageManagementClientImpl)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1167,7 +1286,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 54
+    startLine: 57
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>Initializes an instance of <xref href="com.microsoft.azure.management.storage.implementation._storage_accounts_inner" data-throw-if-not-resolved="false"></xref>.</p>
@@ -1194,7 +1313,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 508
+    startLine: 545
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>The update operation can be used to update the SKU, encryption, access tier, or tags for a storage account. It can also be used to map the account to a custom domain. Only one custom domain is supported per storage account; the replacement/change of custom domain is not supported. In order to replace an old custom domain, the old value must be cleared/unregistered before a new value can be set. The update of multiple properties is supported. This call does not change the storage keys for the account. If you want to change the storage account keys, use the regenerate keys operation. The location and name of the storage account cannot be changed after creation.</p>
@@ -1215,6 +1334,13 @@ items:
     return:
       type: com.microsoft.azure.management.storage.implementation._storage_account_inner
       description: <p>the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.updateAsync(String,String,StorageAccountUpdateParametersInner)
   id: updateAsync(String,String,StorageAccountUpdateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1227,7 +1353,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 533
+    startLine: 572
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>The update operation can be used to update the SKU, encryption, access tier, or tags for a storage account. It can also be used to map the account to a custom domain. Only one custom domain is supported per storage account; the replacement/change of custom domain is not supported. In order to replace an old custom domain, the old value must be cleared/unregistered before a new value can be set. The update of multiple properties is supported. This call does not change the storage keys for the account. If you want to change the storage account keys, use the regenerate keys operation. The location and name of the storage account cannot be changed after creation.</p>
@@ -1248,6 +1374,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.updateAsync(String,String,StorageAccountUpdateParametersInner,final ServiceCallback<StorageAccountInner>)
   id: updateAsync(String,String,StorageAccountUpdateParametersInner,final ServiceCallback<StorageAccountInner>)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1260,7 +1389,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 521
+    startLine: 559
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>The update operation can be used to update the SKU, encryption, access tier, or tags for a storage account. It can also be used to map the account to a custom domain. Only one custom domain is supported per storage account; the replacement/change of custom domain is not supported. In order to replace an old custom domain, the old value must be cleared/unregistered before a new value can be set. The update of multiple properties is supported. This call does not change the storage keys for the account. If you want to change the storage account keys, use the regenerate keys operation. The location and name of the storage account cannot be changed after creation.</p>
@@ -1284,6 +1413,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_accounts_inner.updateWithServiceResponseAsync(String,String,StorageAccountUpdateParametersInner)
   id: updateWithServiceResponseAsync(String,String,StorageAccountUpdateParametersInner)
   parent: com.microsoft.azure.management.storage.implementation._storage_accounts_inner
@@ -1296,7 +1428,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-storage/src/main/java/com/microsoft/azure/management/storage/implementation/StorageAccountsInner.java
-    startLine: 550
+    startLine: 590
   package: com.microsoft.azure.management.storage.implementation
   summary: >-
     <p>The update operation can be used to update the SKU, encryption, access tier, or tags for a storage account. It can also be used to map the account to a custom domain. Only one custom domain is supported per storage account; the replacement/change of custom domain is not supported. In order to replace an old custom domain, the old value must be cleared/unregistered before a new value can be set. The update of multiple properties is supported. This call does not change the storage keys for the account. If you want to change the storage account keys, use the regenerate keys operation. The location and name of the storage account cannot be changed after creation.</p>
@@ -1317,11 +1449,26 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.storage.implementation._storage_account_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.storage.implementation._storage_account_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 references:
 - uid: 964879b9
   spec.java:
   - name: Retrofit
     fullName: Retrofit
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: dc385fd4
+  spec.java:
+  - name: CloudException
+    fullName: CloudException
+- uid: 9b2a4515
+  spec.java:
+  - name: RuntimeException
+    fullName: RuntimeException
 - uid: "26831127"
   spec.java:
   - name: String
@@ -1422,10 +1569,10 @@ references:
   spec.java:
   - name: Observable<ServiceResponse<Void>>
     fullName: Observable<ServiceResponse<Void>>
-- uid: 5618da2dcom.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
+- uid: 36b27be0com.microsoft.azure.management.storage.implementation._storage_account_innera08ddfce
   spec.java:
-  - name: List<
-    fullName: List<
+  - name: PagedList<
+    fullName: PagedList<
   - uid: com.microsoft.azure.management.storage.implementation._storage_account_inner
     name: StorageAccountInner
     fullName: com.microsoft.azure.management.storage.implementation.StorageAccountInner
@@ -1512,6 +1659,65 @@ references:
     href: com.microsoft.azure.management.storage.implementation._storage_account_list_keys_result_inner.yml
   - name: '>>'
     fullName: '>>'
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String,ServiceCallback<InnerT>)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+  fullName: ServiceFuture<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public ServiceFuture<InnerT> getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group. </p>
+    - id: serviceCallback
+      type: ad04a05b
+      description: <p>the async ServiceCallback to handle successful and failed responses.</p>
+    return:
+      type: 4cde70a6
+      description: <p>ServiceFuture to specific resource. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: InnerSupportsGet<InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>
+  type: Interface
+  summary: >-
+    <p>Provides access to listing <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsGet<InnerT>
+    typeParameters:
+    - type: 52cf8095
+      description: <p>the fluent type of the resource </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: InnerSupportsDelete<ResponseT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>
+  type: Interface
+  summary: >-
+    <p>Provides access to delete <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsDelete<ResponseT>
+    typeParameters:
+    - type: 5a5d7d33
+      description: <p>Response type for delete. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   parent: com.microsoft.azure.management.resources.fluentcore.collection
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
@@ -1582,6 +1788,72 @@ references:
   summary: <p>The entry point for accessing resource management APIs in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class Azure
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: deleteAsync(String resourceGroupName, String resourceName)
+  fullName: Observable<ResponseT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>.deleteAsync(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Deletes a resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ResponseT> deleteAsync(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group. </p>
+    return:
+      type: 058422cb
+      description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroup(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroup(String resourceGroupName, String resourceName)
+  fullName: InnerT com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroup(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource.</p>
+
+    <p></p>
+  syntax:
+    content: public InnerT getByResourceGroup(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group.</p>
+    return:
+      type: 52cf8095
+      description: <p>specific resource. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroupAsync(String resourceGroupName, String resourceName)
+  fullName: Observable<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroupAsync(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<InnerT> getByResourceGroupAsync(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group.</p>
+    return:
+      type: 585f32ed
+      description: <p>Observable to specific resource. </p>
 - uid: com.microsoft.azure.management.storage.implementation._storage_account_update_parameters_inner
   parent: com.microsoft.azure.management.storage.implementation
   href: com.microsoft.azure.management.storage.implementation._storage_account_update_parameters_inner.yml
@@ -1591,6 +1863,21 @@ references:
   summary: <p>The parameters that can be provided when updating the storage account properties. </p>
   syntax:
     content: public class StorageAccountUpdateParametersInner
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: list()
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.list()
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type available in subscription.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> list()
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listAsync()
   parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
@@ -1606,6 +1893,25 @@ references:
     return:
       type: 2115045e
       description: <p>Observable of list of resources. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: listByResourceGroup(String resourceGroupName)
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.listByResourceGroup(String resourceGroupName)
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type in specified resource group.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> listByResourceGroup(String resourceGroupName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroupAsync(String)
   parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
   href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
