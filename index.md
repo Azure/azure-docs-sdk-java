@@ -2,10 +2,8 @@
 title: Azure for Java developers Microsoft Docs
 description: Java SDK and API Reference for Azure
 keywords: Azure Java, Azure Java API Reference, Azure Java class library, Azure SDK
-documentationcenter: java
 author: routlaw
 manager: douge
-editor: ''
 
 ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 ms.service: multiple
