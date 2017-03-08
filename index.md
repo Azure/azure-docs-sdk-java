@@ -6,13 +6,10 @@ author: routlaw
 manager: douge
 
 ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
+ms.service: Azure
 ms.devlang: java
 ms.topic: managed-reference
-ms.prod: azure
-ms.technology: azure
+ms.technology: Azure
 ms.date: 3/06/2016
 ms.author: routlaw;asirveda
 
