@@ -4,15 +4,12 @@ description: Java SDK and API Reference for Azure
 keywords: Azure Java, Azure Java API Reference, Azure Java class library, Azure SDK
 author: routlaw
 manager: douge
-
 ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
 ms.service: Azure
 ms.devlang: java
-ms.topic: managed-reference
+ms.topic: reference
 ms.technology: Azure
 ms.date: 3/06/2016
-ms.author: routlaw;asirveda
-
 ---
 
 # Azure libraries for Java
