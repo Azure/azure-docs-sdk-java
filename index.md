@@ -21,7 +21,7 @@ Use Azure libraries in your Java projects to [manage resources](#management) and
 | [Azure Storage](#azure-storage) | [SQL Database](#sql-database)  | [Redis Cache](#redis-cache)   | [DocumentDB](#documentdb) |
 | [Service Bus](#servicebus)  | [Azure Active Directory](#azuread) | [Key Vault](#keyvault)  | [Event Hub](#eventhub)
 | [IoT Service](#iotservice) | [IoT Device](#iotdevice) | [Data Lake](#datalake)  | [AppInsights](#appinsights) | 
-| [Manage Azure resources](#management) |
+| [Batch](#batch) | [Manage Azure resources](#management) |
 
 ## Install with Maven
 
@@ -148,7 +148,7 @@ Encrypt secrets and safely access them from your applications.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-keyvault</artifactId>
-    <version>1.0.0-beta3</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -237,6 +237,22 @@ Capture data of any size and shape into a single location for performing analyti
 
 [Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.applicationinsights) | [Samples](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-get-started) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) 
 
+
+<a name="batch"></a>
+
+### [Batch](https://docs.microsoft.com/en-us/azure/batch)
+
+Run large-scale parallel and high-performance computing applications efficiently in the cloud.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-batch</artifactId>
+    <version>1.0.0-rc</version>
+</dependency>
+```
+
+[Reference](http://azure.github.io/azure-sdk-for-java) | [Samples](https://github.com/azure/azure-batch-samples) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) 
 
 <a name="management"></a> 
 
