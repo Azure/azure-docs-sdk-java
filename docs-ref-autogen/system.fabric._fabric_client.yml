@@ -30,6 +30,7 @@ items:
   - system.fabric._fabric_client.getServiceManager()
   - system.fabric._fabric_client.getSettings()
   - system.fabric._fabric_client.getTestManagementClient()
+  - system.fabric._fabric_client.registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String>)
   - system.fabric._fabric_client.updateSecurityCredentials(SecurityCredentials)
   - system.fabric._fabric_client.UpdateSettings(FabricClientSettings)
   href: system.fabric._fabric_client.yml
@@ -44,7 +45,7 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 21
+    startLine: 22
   package: system.fabric
   summary: >-
     <p>Creates and manages Service Fabric services and other entities. </p>
@@ -65,6 +66,7 @@ items:
   - system.fabric._fabric_client.initializeFabricClient(SecurityCredentials,FabricClientSettings,String [])
   - system.fabric._fabric_client.initializeFabricClient(FabricClientRole)
   - system.fabric._fabric_client.NormalizePartitionKey(Object)
+  - system.fabric._fabric_client.onClaimsRetrieval(AzureActiveDirectoryMetadata)
   - system.fabric._fabric_client.onClientConnected(long)
   - system.fabric._fabric_client.onClientDisconnected(long)
   - system.fabric._fabric_client.onNotification(long)
@@ -84,7 +86,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 463
+    startLine: 467
   package: system.fabric
   syntax:
     content: public void close()
@@ -100,7 +102,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 397
+    startLine: 401
   package: system.fabric
   syntax:
     content: public void createNativeClient(String[] hostEndPoints)
@@ -119,7 +121,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 196
+    startLine: 200
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class.</p>
@@ -141,7 +143,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 207
+    startLine: 211
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <xref href="system.fabric._fabric_client" data-throw-if-not-resolved="false"></xref> class with the specified fabric client role.</p>
@@ -165,7 +167,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 225
+    startLine: 229
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class with the desired fabric client settings. If the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> is on the same cluster as the service, then use a Local <ref refid="" kindref="compound">system.fabric.FabricClient</ref>. Local <ref refid="" kindref="compound">system.fabric.FabricClient</ref> is a feature of Service Fabric that allows the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> to connect to the local Gateway Service instead of choosing from a list. This way, your client can bypass an extra network hop. In case a service is resolving another service partition in the same cluster, then it is recommended that you use Local <ref refid="" kindref="compound">system.fabric.FabricClient</ref>, as it enables automatic load balancing and improves performance.</p>
@@ -189,7 +191,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 266
+    startLine: 270
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class with given Service Fabric Gateway addresses (hostEndpoints) and the desired fabric client settings.</p>
@@ -216,7 +218,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 283
+    startLine: 287
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class with given Service Fabric Gateway addresses (hostEndpoints), security credentials and fabric client settings.</p>
@@ -249,7 +251,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 252
+    startLine: 256
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class with given Service Fabric Gateway addresses (hostEndpoints) and security credentials.</p>
@@ -279,7 +281,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 237
+    startLine: 241
   package: system.fabric
   summary: >-
     <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.FabricClient</ref> class with given Service Fabric Gateway addresses (hostEndpoints).</p>
@@ -303,7 +305,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 103
+    startLine: 107
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._application_management_client" data-throw-if-not-resolved="false"></xref> to perform operations related to applications and application types.</p>
@@ -326,7 +328,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 174
+    startLine: 178
   package: system.fabric
   syntax:
     content: public Observable<GatewayInformation> getClientConnectionObservable()
@@ -344,7 +346,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 178
+    startLine: 182
   package: system.fabric
   syntax:
     content: public Observable<GatewayInformation> getClientDisconnectionObservable()
@@ -362,7 +364,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 125
+    startLine: 129
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._cluster_management_client" data-throw-if-not-resolved="false"></xref> to perform operations related to the Service Fabric cluster.</p>
@@ -385,7 +387,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 88
+    startLine: 92
   package: system.fabric
   syntax:
     content: public SecurityCredentials getCredential()
@@ -403,7 +405,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 84
+    startLine: 88
   package: system.fabric
   syntax:
     content: public long getFabricClientPtr()
@@ -421,7 +423,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 170
+    startLine: 174
   package: system.fabric
   syntax:
     content: public FaultManagementClient getFaultManagementClient()
@@ -439,7 +441,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 449
+    startLine: 453
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._health_client" data-throw-if-not-resolved="false"></xref> to perform operations related to health, like report health or get entity health.</p>
@@ -462,7 +464,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 92
+    startLine: 96
   package: system.fabric
   syntax:
     content: public String [] getHostEndpoints()
@@ -480,7 +482,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 159
+    startLine: 163
   package: system.fabric
   syntax:
     content: public ImageStoreClient getImageStoreClient()
@@ -498,7 +500,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 146
+    startLine: 150
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._infrastructure_service_client" data-throw-if-not-resolved="false"></xref> to perform operations related to the infrastructure on which the cluster is running.</p>
@@ -521,7 +523,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 114
+    startLine: 118
   package: system.fabric
   summary: >-
     <p>Gets the <xref href="system.fabric._property_management_client" data-throw-if-not-resolved="false"></xref> to perform operations related to names and properties.</p>
@@ -544,7 +546,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 458
+    startLine: 462
   package: system.fabric
   syntax:
     content: public QueryClient getQueryManager()
@@ -562,7 +564,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 155
+    startLine: 159
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._repair_management_client" data-throw-if-not-resolved="false"></xref> to manage repair tasks.</p>
@@ -585,7 +587,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 136
+    startLine: 140
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._service_group_management_client" data-throw-if-not-resolved="false"></xref> to perform operations related to service groups.</p>
@@ -608,7 +610,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 438
+    startLine: 442
   package: system.fabric
   summary: >-
     <p>Gets <xref href="system.fabric._service_management_client" data-throw-if-not-resolved="false"></xref> to perform operations related to services and service types.</p>
@@ -631,7 +633,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 379
+    startLine: 383
   package: system.fabric
   summary: >-
     <p>Gets the fabric client settings.</p>
@@ -654,12 +656,33 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 166
+    startLine: 170
   package: system.fabric
   syntax:
     content: public TestManagementClient getTestManagementClient()
     return:
       type: system.fabric._test_management_client
+- uid: system.fabric._fabric_client.registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String>)
+  id: registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String>)
+  parent: system.fabric._fabric_client
+  href: system.fabric._fabric_client.yml
+  langs:
+  - java
+  name: registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String> callback)
+  fullName: void system.fabric.FabricClient.registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String> callback)
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
+    startLine: 529
+  package: system.fabric
+  summary: <p>Registers the claims token retrieval callback for the ClaimsRetrieval event </p>
+  syntax:
+    content: public void registerOnClaimsRetrievalCallback(BiFunction<FabricClient, AzureActiveDirectoryMetadata, String> callback)
+    parameters:
+    - id: callback
+      type: 8ead6242system.fabric._fabric_clientb33c76fcsystem.fabric.security._azure_active_directory_metadata4d03418a
+      description: <p>function which takes <xref href="system.fabric.security._azure_active_directory_metadata" data-throw-if-not-resolved="false"></xref> as input which is required for acquiring a claims token from Azure Active Directory and returns claims token. </p>
 - uid: system.fabric._fabric_client.updateSecurityCredentials(SecurityCredentials)
   id: updateSecurityCredentials(SecurityCredentials)
   parent: system.fabric._fabric_client
@@ -672,7 +695,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 299
+    startLine: 303
   package: system.fabric
   summary: >-
     <p>Updates the fabric client security credentials.</p>
@@ -696,7 +719,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FabricClient.java
-    startLine: 287
+    startLine: 291
   package: system.fabric
   syntax:
     content: public void UpdateSettings(FabricClientSettings settings)
@@ -730,6 +753,22 @@ references:
     href: system.fabric._gateway_information.yml
   - name: '>'
     fullName: '>'
+- uid: 8ead6242system.fabric._fabric_clientb33c76fcsystem.fabric.security._azure_active_directory_metadata4d03418a
+  spec.java:
+  - name: BiFunction<
+    fullName: BiFunction<
+  - uid: system.fabric._fabric_client
+    name: FabricClient
+    fullName: system.fabric.FabricClient
+    href: system.fabric._fabric_client.yml
+  - name: ', '
+    fullName: ', '
+  - uid: system.fabric.security._azure_active_directory_metadata
+    name: AzureActiveDirectoryMetadata
+    fullName: system.fabric.security.AzureActiveDirectoryMetadata
+    href: system.fabric.security._azure_active_directory_metadata.yml
+  - name: ', String>'
+    fullName: ', String>'
 - uid: system.fabric._fabric_client.[static initializer]()
 - uid: system.fabric._fabric_client.createLocalClient()
 - uid: system.fabric._fabric_client.defaultTimeoutInMilliseconds()
@@ -737,6 +776,7 @@ references:
 - uid: system.fabric._fabric_client.initializeFabricClient(SecurityCredentials,FabricClientSettings,String [])
 - uid: system.fabric._fabric_client.initializeFabricClient(FabricClientRole)
 - uid: system.fabric._fabric_client.NormalizePartitionKey(Object)
+- uid: system.fabric._fabric_client.onClaimsRetrieval(AzureActiveDirectoryMetadata)
 - uid: system.fabric._fabric_client.onClientConnected(long)
 - uid: system.fabric._fabric_client.onClientDisconnected(long)
 - uid: system.fabric._fabric_client.onNotification(long)
@@ -843,6 +883,28 @@ references:
   type: Class
   syntax:
     content: public class FaultManagementClient
+- uid: system.fabric._fabric_client
+  parent: system.fabric
+  href: system.fabric._fabric_client.yml
+  name: FabricClient
+  fullName: system.fabric.FabricClient
+  type: Class
+  summary: >-
+    <p>Creates and manages Service Fabric services and other entities. </p>
+
+    <p>
+
+      <bold>Remarks:</bold>It is highly recommended that you share FabricClients as much as possible. This is because the <xref href="system.fabric._fabric_client" data-throw-if-not-resolved="false"></xref> has multiple optimizations such as caching and batching that you would not be able to fully utilize otherwise. </p>
+  syntax: *o1
+- uid: system.fabric.security._azure_active_directory_metadata
+  parent: system.fabric.security
+  href: system.fabric.security._azure_active_directory_metadata.yml
+  name: AzureActiveDirectoryMetadata
+  fullName: system.fabric.security.AzureActiveDirectoryMetadata
+  type: Class
+  summary: <p>Represents the metadata used to acquire authentication tokens from Azure Active Directory. </p>
+  syntax:
+    content: public class AzureActiveDirectoryMetadata
 - uid: system.fabric._observable
   parent: system.fabric
   href: system.fabric._observable.yml
@@ -871,19 +933,6 @@ references:
   summary: <p>An abstract base class for types that represent security credentials. </p>
   syntax:
     content: public class SecurityCredentials
-- uid: system.fabric._fabric_client
-  parent: system.fabric
-  href: system.fabric._fabric_client.yml
-  name: FabricClient
-  fullName: system.fabric.FabricClient
-  type: Class
-  summary: >-
-    <p>Creates and manages Service Fabric services and other entities. </p>
-
-    <p>
-
-      <bold>Remarks:</bold>It is highly recommended that you share FabricClients as much as possible. This is because the <xref href="system.fabric._fabric_client" data-throw-if-not-resolved="false"></xref> has multiple optimizations such as caching and batching that you would not be able to fully utilize otherwise. </p>
-  syntax: *o1
 - uid: system.fabric._fabric_client_settings
   parent: system.fabric
   href: system.fabric._fabric_client_settings.yml

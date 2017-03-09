@@ -2,18 +2,20 @@ items:
 - uid: microsoft.servicefabric.services.remoting
   id: remoting
   children:
+  - microsoft.servicefabric.services.remoting._method_dispatcher
   - microsoft.servicefabric.services.remoting._service
   - microsoft.servicefabric.services.remoting._service_endpoint_collection
   - microsoft.servicefabric.services.remoting._service_remoting_callback_client
-  - microsoft.servicefabric.services.remoting._service_remoting_client
-  - microsoft.servicefabric.services.remoting._service_remoting_client_factory
   - microsoft.servicefabric.services.remoting._service_remoting_listener
+  - microsoft.servicefabric.services.remoting._service_remoting_listener_factory
+  - microsoft.servicefabric.services.remoting._service_remoting_message_body
   - microsoft.servicefabric.services.remoting._service_remoting_message_handler
   - microsoft.servicefabric.services.remoting._service_remoting_message_headers
-  - microsoft.servicefabric.services.remoting._service_remoting_partition_client
+  - microsoft.servicefabric.services.remoting._service_remoting_message_serializer
   - microsoft.servicefabric.services.remoting._service_remoting_request_context
   - microsoft.servicefabric.services.remoting._service_remoting_settings
   - microsoft.servicefabric.services.remoting._service_remoting_settings_annotation
+  - microsoft.servicefabric.services.remoting._service_type_extensions
   href: microsoft.servicefabric.services.remoting.yml
   langs:
   - java
@@ -22,13 +24,54 @@ items:
   type: Namespace
   source:
     remote:
-      path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/remoting/Service.java
-      branch: master
-      repo: https://msazure.visualstudio.com/One/_git/sf-java
-    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/remoting/Service.java
+      path: '[generated]'
+    path: '[generated]'
   syntax:
     content: package microsoft.servicefabric.services.remoting
 references:
+- uid: microsoft.servicefabric.services.remoting.builder
+  href: microsoft.servicefabric.services.remoting.builder.yml
+  name: microsoft.servicefabric.services.remoting.builder
+  fullName: microsoft.servicefabric.services.remoting.builder
+  type: Namespace
+  syntax:
+    content: package microsoft.servicefabric.services.remoting.builder
+- uid: microsoft.servicefabric.services.remoting.client
+  href: microsoft.servicefabric.services.remoting.client.yml
+  name: microsoft.servicefabric.services.remoting.client
+  fullName: microsoft.servicefabric.services.remoting.client
+  type: Namespace
+  syntax:
+    content: package microsoft.servicefabric.services.remoting.client
+- uid: microsoft.servicefabric.services.remoting.description
+  href: microsoft.servicefabric.services.remoting.description.yml
+  name: microsoft.servicefabric.services.remoting.description
+  fullName: microsoft.servicefabric.services.remoting.description
+  type: Namespace
+  syntax:
+    content: package microsoft.servicefabric.services.remoting.description
+- uid: microsoft.servicefabric.services.remoting.fabrictransport
+  href: microsoft.servicefabric.services.remoting.fabrictransport.yml
+  name: microsoft.servicefabric.services.remoting.fabrictransport
+  fullName: microsoft.servicefabric.services.remoting.fabrictransport
+  type: Namespace
+  syntax:
+    content: package microsoft.servicefabric.services.remoting.fabrictransport
+- uid: microsoft.servicefabric.services.remoting.runtime
+  href: microsoft.servicefabric.services.remoting.runtime.yml
+  name: microsoft.servicefabric.services.remoting.runtime
+  fullName: microsoft.servicefabric.services.remoting.runtime
+  type: Namespace
+  syntax:
+    content: package microsoft.servicefabric.services.remoting.runtime
+- uid: microsoft.servicefabric.services.remoting._method_dispatcher
+  parent: microsoft.servicefabric.services.remoting
+  href: microsoft.servicefabric.services.remoting._method_dispatcher.yml
+  name: MethodDispatcher
+  fullName: microsoft.servicefabric.services.remoting.MethodDispatcher
+  type: Interface
+  syntax:
+    content: public interface MethodDispatcher
 - uid: microsoft.servicefabric.services.remoting._service
   parent: microsoft.servicefabric.services.remoting
   href: microsoft.servicefabric.services.remoting._service.yml
@@ -56,24 +99,6 @@ references:
   summary: <p>Defines the interface that must be implemented for providing callback mechanism from the remoting listener to the client. </p>
   syntax:
     content: public interface ServiceRemotingCallbackClient
-- uid: microsoft.servicefabric.services.remoting._service_remoting_client
-  parent: microsoft.servicefabric.services.remoting
-  href: microsoft.servicefabric.services.remoting._service_remoting_client.yml
-  name: ServiceRemotingClient
-  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingClient
-  type: Interface
-  summary: <p>Defines the interface that must be implemented to provide a client for <xref href="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false"></xref> Remoting communication. </p>
-  syntax:
-    content: public interface ServiceRemotingClient extends CommunicationClient
-- uid: microsoft.servicefabric.services.remoting._service_remoting_client_factory
-  parent: microsoft.servicefabric.services.remoting
-  href: microsoft.servicefabric.services.remoting._service_remoting_client_factory.yml
-  name: ServiceRemotingClientFactory
-  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingClientFactory
-  type: Interface
-  summary: <p>Defines the interface that must be implemented for providing the remoting communication client factory. </p>
-  syntax:
-    content: public interface ServiceRemotingClientFactory extends CommunicationClientFactory<ServiceRemotingClient>
 - uid: microsoft.servicefabric.services.remoting._service_remoting_listener
   parent: microsoft.servicefabric.services.remoting
   href: microsoft.servicefabric.services.remoting._service_remoting_listener.yml
@@ -83,6 +108,23 @@ references:
   summary: <p>Defines a base communication interface that enables interface remoting for stateless and stateful services. </p>
   syntax:
     content: public interface ServiceRemotingListener extends CommunicationListener
+- uid: microsoft.servicefabric.services.remoting._service_remoting_listener_factory
+  parent: microsoft.servicefabric.services.remoting
+  href: microsoft.servicefabric.services.remoting._service_remoting_listener_factory.yml
+  name: ServiceRemotingListenerFactory
+  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingListenerFactory
+  type: Class
+  summary: <p>This class provides a static method to create <xref href="microsoft.servicefabric.services.remoting._service_remoting_listener" data-throw-if-not-resolved="false"></xref> for remoting methods of the service interfaces that are derived from <xref href="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false"></xref> interface. </p>
+  syntax:
+    content: public class ServiceRemotingListenerFactory
+- uid: microsoft.servicefabric.services.remoting._service_remoting_message_body
+  parent: microsoft.servicefabric.services.remoting
+  href: microsoft.servicefabric.services.remoting._service_remoting_message_body.yml
+  name: ServiceRemotingMessageBody
+  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingMessageBody
+  type: Class
+  syntax:
+    content: public class ServiceRemotingMessageBody
 - uid: microsoft.servicefabric.services.remoting._service_remoting_message_handler
   parent: microsoft.servicefabric.services.remoting
   href: microsoft.servicefabric.services.remoting._service_remoting_message_handler.yml
@@ -101,15 +143,14 @@ references:
   summary: <p>Specifies the headers that are sent along with a ServiceRemoting message. </p>
   syntax:
     content: public class ServiceRemotingMessageHeaders
-- uid: microsoft.servicefabric.services.remoting._service_remoting_partition_client
+- uid: microsoft.servicefabric.services.remoting._service_remoting_message_serializer
   parent: microsoft.servicefabric.services.remoting
-  href: microsoft.servicefabric.services.remoting._service_remoting_partition_client.yml
-  name: ServiceRemotingPartitionClient
-  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingPartitionClient
+  href: microsoft.servicefabric.services.remoting._service_remoting_message_serializer.yml
+  name: ServiceRemotingMessageSerializer
+  fullName: microsoft.servicefabric.services.remoting.ServiceRemotingMessageSerializer
   type: Class
-  summary: <p>Specifies the <xref href="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false"></xref> partition client for Remoting communication </p>
   syntax:
-    content: public class ServiceRemotingPartitionClient extends ServicePartitionClientImpl<ServiceRemotingClient>
+    content: public class ServiceRemotingMessageSerializer extends MessageSerializer
 - uid: microsoft.servicefabric.services.remoting._service_remoting_request_context
   parent: microsoft.servicefabric.services.remoting
   href: microsoft.servicefabric.services.remoting._service_remoting_request_context.yml
@@ -135,3 +176,11 @@ references:
   type: Interface
   syntax:
     content: public interface ServiceRemotingSettingsAnnotation
+- uid: microsoft.servicefabric.services.remoting._service_type_extensions
+  parent: microsoft.servicefabric.services.remoting
+  href: microsoft.servicefabric.services.remoting._service_type_extensions.yml
+  name: ServiceTypeExtensions
+  fullName: microsoft.servicefabric.services.remoting.ServiceTypeExtensions
+  type: Class
+  syntax:
+    content: public class ServiceTypeExtensions

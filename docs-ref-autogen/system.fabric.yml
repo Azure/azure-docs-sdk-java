@@ -34,12 +34,9 @@ items:
   - system.fabric._cluster_repair_task
   - system.fabric._code_package
   - system.fabric._code_package_activation_context
-  - system.fabric._code_package_change_handler
-  - system.fabric._code_package_change_handler_broker
   - system.fabric._code_package_description
   - system.fabric._code_package_entry_point_kind
   - system.fabric._configuration_package
-  - system.fabric._configuration_package_change_handler
   - system.fabric._configuration_package_description
   - system.fabric._configuration_property
   - system.fabric._configuration_section
@@ -47,7 +44,6 @@ items:
   - system.fabric._copy_flag
   - system.fabric._credential_type
   - system.fabric._data_package
-  - system.fabric._data_package_change_handler
   - system.fabric._data_package_description
   - system.fabric._delete_property_operation
   - system.fabric._deployed_application_health_query_description
@@ -71,8 +67,10 @@ items:
   - system.fabric._fabric_client
   - system.fabric._fabric_client_role
   - system.fabric._fabric_client_settings
+  - system.fabric._fabric_code_package_activation_context
   - system.fabric._fabric_directory
   - system.fabric._fabric_error_code
+  - system.fabric._fabric_local_store_settings
   - system.fabric._fabric_replicator
   - system.fabric._fabric_replicator_settings
   - system.fabric._fabric_rolling_upgrade_update_flags
@@ -107,7 +105,6 @@ items:
   - system.fabric._key_value_store_replica_settings
   - system.fabric._key_value_store_transaction_settings
   - system.fabric._load_metric
-  - system.fabric._local_ese_store_settings
   - system.fabric._local_store_kind
   - system.fabric._local_store_settings
   - system.fabric._monitored_rolling_application_upgrade_policy_description
@@ -142,7 +139,10 @@ items:
   - system.fabric._operation_stream
   - system.fabric._operation_stream2
   - system.fabric._operation_type
+  - system.fabric._package_added_event_args
   - system.fabric._package_description
+  - system.fabric._package_modified_event_args
+  - system.fabric._package_removed_event_args
   - system.fabric._package_sharing_policy
   - system.fabric._package_sharing_policy_list
   - system.fabric._package_sharing_policy_scope
@@ -266,6 +266,7 @@ items:
   - system.fabric._utility
   - system.fabric._windows_credentials
   - system.fabric._x509_credentials
+  - system.fabric._x509_credentials2
   - system.fabric._x509_find_type
   - system.fabric._x509_name
   - system.fabric._x509_store_location
@@ -327,6 +328,13 @@ references:
   type: Namespace
   syntax:
     content: package system.fabric.repair
+- uid: system.fabric.security
+  href: system.fabric.security.yml
+  name: system.fabric.security
+  fullName: system.fabric.security
+  type: Namespace
+  syntax:
+    content: package system.fabric.security
 - uid: system.fabric._application_description
   parent: system.fabric
   href: system.fabric._application_description.yml
@@ -626,26 +634,10 @@ references:
   href: system.fabric._code_package_activation_context.yml
   name: CodePackageActivationContext
   fullName: system.fabric.CodePackageActivationContext
-  type: Class
+  type: Interface
   summary: <p>Represents activation context for the Service Fabric service. This is valid for fabric activated service only. </p>
   syntax:
-    content: public class CodePackageActivationContext
-- uid: system.fabric._code_package_change_handler
-  parent: system.fabric
-  href: system.fabric._code_package_change_handler.yml
-  name: CodePackageChangeHandler
-  fullName: system.fabric.CodePackageChangeHandler
-  type: Interface
-  syntax:
-    content: public interface CodePackageChangeHandler
-- uid: system.fabric._code_package_change_handler_broker
-  parent: system.fabric
-  href: system.fabric._code_package_change_handler_broker.yml
-  name: CodePackageChangeHandlerBroker
-  fullName: system.fabric.CodePackageChangeHandlerBroker
-  type: Class
-  syntax:
-    content: public class CodePackageChangeHandlerBroker
+    content: public interface CodePackageActivationContext
 - uid: system.fabric._code_package_description
   parent: system.fabric
   href: system.fabric._code_package_description.yml
@@ -675,14 +667,6 @@ references:
   summary: <p>Represents a configuration package. </p>
   syntax:
     content: public class ConfigurationPackage
-- uid: system.fabric._configuration_package_change_handler
-  parent: system.fabric
-  href: system.fabric._configuration_package_change_handler.yml
-  name: ConfigurationPackageChangeHandler
-  fullName: system.fabric.ConfigurationPackageChangeHandler
-  type: Interface
-  syntax:
-    content: public interface ConfigurationPackageChangeHandler
 - uid: system.fabric._configuration_package_description
   parent: system.fabric
   href: system.fabric._configuration_package_description.yml
@@ -742,14 +726,6 @@ references:
   type: Class
   syntax:
     content: public class DataPackage
-- uid: system.fabric._data_package_change_handler
-  parent: system.fabric
-  href: system.fabric._data_package_change_handler.yml
-  name: DataPackageChangeHandler
-  fullName: system.fabric.DataPackageChangeHandler
-  type: Interface
-  syntax:
-    content: public interface DataPackageChangeHandler
 - uid: system.fabric._data_package_description
   parent: system.fabric
   href: system.fabric._data_package_description.yml
@@ -969,6 +945,15 @@ references:
   summary: <p>Represents the configuration settings for the <xref href="system.fabric._fabric_client" data-throw-if-not-resolved="false"></xref> class. </p>
   syntax:
     content: public class FabricClientSettings
+- uid: system.fabric._fabric_code_package_activation_context
+  parent: system.fabric
+  href: system.fabric._fabric_code_package_activation_context.yml
+  name: FabricCodePackageActivationContext
+  fullName: system.fabric.FabricCodePackageActivationContext
+  type: Class
+  summary: <p>Represents activation context for the Service Fabric service. This is valid for fabric activated service only. </p>
+  syntax:
+    content: public class FabricCodePackageActivationContext implements CodePackageActivationContext
 - uid: system.fabric._fabric_directory
   parent: system.fabric
   href: system.fabric._fabric_directory.yml
@@ -985,6 +970,15 @@ references:
   type: Enum
   syntax:
     content: public enum FabricErrorCode
+- uid: system.fabric._fabric_local_store_settings
+  parent: system.fabric
+  href: system.fabric._fabric_local_store_settings.yml
+  name: FabricLocalStoreSettings
+  fullName: system.fabric.FabricLocalStoreSettings
+  type: Class
+  summary: <p>Initializes a new instance of the <xref href="system.fabric._fabric_local_store_settings" data-throw-if-not-resolved="false"></xref> class. </p>
+  syntax:
+    content: public class FabricLocalStoreSettings extends LocalStoreSettings
 - uid: system.fabric._fabric_replicator
   parent: system.fabric
   href: system.fabric._fabric_replicator.yml
@@ -1289,15 +1283,6 @@ references:
   type: Class
   syntax:
     content: public class LoadMetric
-- uid: system.fabric._local_ese_store_settings
-  parent: system.fabric
-  href: system.fabric._local_ese_store_settings.yml
-  name: LocalEseStoreSettings
-  fullName: system.fabric.LocalEseStoreSettings
-  type: Class
-  summary: <p>Initializes a new instance of the <xref href="system.fabric._local_ese_store_settings" data-throw-if-not-resolved="false"></xref> class. </p>
-  syntax:
-    content: public class LocalEseStoreSettings extends LocalStoreSettings
 - uid: system.fabric._local_store_kind
   parent: system.fabric
   href: system.fabric._local_store_kind.yml
@@ -1609,6 +1594,18 @@ references:
   type: Enum
   syntax:
     content: public enum OperationType
+- uid: system.fabric._package_added_event_args
+  parent: system.fabric
+  href: system.fabric._package_added_event_args.yml
+  name: PackageAddedEventArgs<T>
+  fullName: system.fabric.PackageAddedEventArgs<T>
+  type: Class
+  summary: <p>Describes a package added event. </p>
+  syntax:
+    content: public class PackageAddedEventArgs<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>Type of the package being described. See <xref href="system.fabric._code_package" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._configuration_package" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._data_package" data-throw-if-not-resolved="false"></xref>. Also see <xref href="system.fabric._code_package_activation_context.getCodePackageAddedEvent()" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._code_package_activation_context.getConfigurationPackageAddedEvent()" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._code_package_activation_context.getDataPackageAddedEvent()" data-throw-if-not-resolved="false"></xref>. </p>
 - uid: system.fabric._package_description
   parent: system.fabric
   href: system.fabric._package_description.yml
@@ -1621,6 +1618,30 @@ references:
     <p></p>
   syntax:
     content: public class PackageDescription
+- uid: system.fabric._package_modified_event_args
+  parent: system.fabric
+  href: system.fabric._package_modified_event_args.yml
+  name: PackageModifiedEventArgs<T>
+  fullName: system.fabric.PackageModifiedEventArgs<T>
+  type: Class
+  summary: <p>Describes a package modified event. </p>
+  syntax:
+    content: public class PackageModifiedEventArgs<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>Type of the package being described. See <xref href="system.fabric._code_package" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._configuration_package" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._data_package" data-throw-if-not-resolved="false"></xref>. Also see <xref href="system.fabric._code_package_activation_context.getCodePackageRemovedEvent()" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._code_package_activation_context.getConfigurationPackageRemovedEvent()" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._code_package_activation_context.getDataPackageRemovedEvent()" data-throw-if-not-resolved="false"></xref>. </p>
+- uid: system.fabric._package_removed_event_args
+  parent: system.fabric
+  href: system.fabric._package_removed_event_args.yml
+  name: PackageRemovedEventArgs<T>
+  fullName: system.fabric.PackageRemovedEventArgs<T>
+  type: Class
+  summary: <p>Describes a package removed event. </p>
+  syntax:
+    content: public class PackageRemovedEventArgs<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>Type of the package being described. See <xref href="system.fabric._code_package" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._configuration_package" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._data_package" data-throw-if-not-resolved="false"></xref>. Also see <xref href="system.fabric._code_package_activation_context.getCodePackageRemovedEvent()" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._code_package_activation_context.getConfigurationPackageRemovedEvent()" data-throw-if-not-resolved="false"></xref> and <xref href="system.fabric._code_package_activation_context.getDataPackageRemovedEvent()" data-throw-if-not-resolved="false"></xref>. </p>
 - uid: system.fabric._package_sharing_policy
   parent: system.fabric
   href: system.fabric._package_sharing_policy.yml
@@ -2440,6 +2461,7 @@ references:
   name: StatefulServiceInitializationParameters
   fullName: system.fabric.StatefulServiceInitializationParameters
   type: Class
+  summary: <p>Defines service initialization parameters for a stateful service. </p>
   syntax:
     content: public class StatefulServiceInitializationParameters extends ServiceInitializationParameters
 - uid: system.fabric._stateful_service_partition
@@ -2740,9 +2762,18 @@ references:
   name: X509Credentials
   fullName: system.fabric.X509Credentials
   type: Class
-  summary: <p>Specifies the security credentials that are based upon X.509 certificates. </p>
+  summary: <p>Specifies the security credentials that are based upon X.509 certificates which are located in Windows certificate store. </p>
   syntax:
     content: public class X509Credentials extends SecurityCredentials
+- uid: system.fabric._x509_credentials2
+  parent: system.fabric
+  href: system.fabric._x509_credentials2.yml
+  name: X509Credentials2
+  fullName: system.fabric.X509Credentials2
+  type: Class
+  summary: <p>Specifies the security credentials that are based upon X.509 certificates which are specified using the certificate path. </p>
+  syntax:
+    content: public class X509Credentials2 extends SecurityCredentials
 - uid: system.fabric._x509_find_type
   parent: system.fabric
   href: system.fabric._x509_find_type.yml

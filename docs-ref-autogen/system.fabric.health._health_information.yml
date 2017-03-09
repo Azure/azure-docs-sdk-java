@@ -11,7 +11,6 @@ items:
   - system.fabric.health._health_information.getSourceId()
   - system.fabric.health._health_information.getTimeToLive()
   - system.fabric.health._health_information.HealthInformation(String,String,HealthState)
-  - system.fabric.health._health_information.HealthInformation(String,String,int,String,long,boolean,long)
   - system.fabric.health._health_information.isRemoveWhenExpired()
   - system.fabric.health._health_information.setDescription(String)
   - system.fabric.health._health_information.setRemoveWhenExpired(boolean)
@@ -39,6 +38,7 @@ items:
   - java.lang.Object
   inheritedMembers:
   - system.fabric.health._health_information.description()
+  - system.fabric.health._health_information.HealthInformation(String,String,int,String,long,boolean,long)
   - system.fabric.health._health_information.healthState()
   - system.fabric.health._health_information.property()
   - system.fabric.health._health_information.removeWhenExpired()
@@ -75,7 +75,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 118
+    startLine: 125
   package: system.fabric.health
   summary: >-
     <p>Gets the description of the health information. It represents free text used to add human readable information about the report.</p>
@@ -100,7 +100,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 89
+    startLine: 96
   package: system.fabric.health
   summary: >-
     <p>Gets the health state of the health information.</p>
@@ -125,7 +125,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 74
+    startLine: 81
   package: system.fabric.health
   summary: >-
     <p>Gets the property of the health report.</p>
@@ -150,7 +150,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 136
+    startLine: 143
   package: system.fabric.health
   summary: >-
     <p>Gets the sequence number associated with the report. Must be greater than <ref refid="" kindref="compound">system.fabric.health.HealthInformation#unknownSequenceNumber</ref>.</p>
@@ -175,7 +175,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 57
+    startLine: 64
   package: system.fabric.health
   summary: >-
     <p>Gets the source Identifier which identifies the watchdog/system component which generated the health information.</p>
@@ -198,7 +198,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 105
+    startLine: 112
   package: system.fabric.health
   summary: >-
     <p>Gets how long the health report is valid. Must be larger than TimeSpan.Zero.</p>
@@ -223,48 +223,21 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 26
+    startLine: 33
   package: system.fabric.health
+  summary: <p>Initializes a new instance of the <ref refid="" kindref="compound">system.fabric.health.HealthInformation</ref> class. </p>
   syntax:
     content: public HealthInformation(String sourceId, String property, HealthState healthState)
     parameters:
     - id: sourceId
       type: "26831127"
+      description: <p>The source of the report. Cannot be null or empty. It can't start with "System.", which is reserved keyword for system components reporting. </p>
     - id: property
       type: "26831127"
+      description: <p>The property of the report. Cannot be null or empty. </p>
     - id: healthState
       type: system.fabric.health._health_state
-- uid: system.fabric.health._health_information.HealthInformation(String,String,int,String,long,boolean,long)
-  id: HealthInformation(String,String,int,String,long,boolean,long)
-  parent: system.fabric.health._health_information
-  href: system.fabric.health._health_information.yml
-  langs:
-  - java
-  name: HealthInformation(String sourceId, String property, int healthState, String description, long sequenceNumber, boolean removeWhenExpired, long timeToLive)
-  fullName: system.fabric.health.HealthInformation.HealthInformation(String sourceId, String property, int healthState, String description, long sequenceNumber, boolean removeWhenExpired, long timeToLive)
-  type: Constructor
-  source:
-    remote: *o0
-    path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 34
-  package: system.fabric.health
-  syntax:
-    content: public HealthInformation(String sourceId, String property, int healthState, String description, long sequenceNumber, boolean removeWhenExpired, long timeToLive)
-    parameters:
-    - id: sourceId
-      type: "26831127"
-    - id: property
-      type: "26831127"
-    - id: healthState
-      type: f75371fa
-    - id: description
-      type: "26831127"
-    - id: sequenceNumber
-      type: 0364520f
-    - id: removeWhenExpired
-      type: 4fc6e284
-    - id: timeToLive
-      type: 0364520f
+      description: <p>he health state of the report. Must be specified. Must be one of the values of <xref href="system.fabric.health._health_state" data-throw-if-not-resolved="false"></xref>. </p>
 - uid: system.fabric.health._health_information.isRemoveWhenExpired()
   id: isRemoveWhenExpired()
   parent: system.fabric.health._health_information
@@ -277,7 +250,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 156
+    startLine: 163
   package: system.fabric.health
   summary: "<p>Gets a value that indicates whetherÂ the report is removed from health store when it expires. If set to false, the report is treated as an error when expired. false by default.</p>\r\n<p>\r\n  <bold>Remarks:</bold>When clients report periodically, they should set RemoveWhenExpired false (default). This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires, and this will flag the entity as <ref refid=\"\" kindref=\"compound\">system.fabric.health.HealthState#Error</ref>. Periodic health clients should send reports with higher frequency than time to live to account for delays due to health client batching, message transport over the wire and health store processing. </p>"
   syntax:
@@ -297,7 +270,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 191
+    startLine: 198
   package: system.fabric.health
   summary: >-
     <p>Sets the description of the health information. It represents free text used to add human readable information about the report.</p>
@@ -323,7 +296,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 236
+    startLine: 243
   package: system.fabric.health
   summary: "<p>Sets a value that indicates whetherÂ the report is removed from health store when it expires. If set to false, the report is treated as an error when expired. false by default.</p>\r\n<p>\r\n  <bold>Remarks:</bold>When clients report periodically, they should set RemoveWhenExpired false (default). This way, is the reporter has issues (eg. deadlock) and can't report, the entity is evaluated at error when the health report expires, and this will flag the entity as <ref refid=\"\" kindref=\"compound\">system.fabric.health.HealthState#Error</ref>. Periodic health clients should send reports with higher frequency than time to live to account for delays due to health client batching, message transport over the wire and health store processing. </p>"
   syntax:
@@ -344,7 +317,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 212
+    startLine: 219
   package: system.fabric.health
   summary: >-
     <p>Sets the sequence number associated with the report. Must be greater than <ref refid="" kindref="compound">system.fabric.health.HealthInformation#unknownSequenceNumber</ref>.</p>
@@ -373,7 +346,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/health/HealthInformation.java
-    startLine: 173
+    startLine: 180
   package: system.fabric.health
   summary: >-
     <p>Sets how long the health report is valid. Must be larger than TimeSpan.Zero.</p>
@@ -414,10 +387,10 @@ references:
   spec.java:
   - name: String
     fullName: String
-- uid: f75371fa
+- uid: e02a2de0
   spec.java:
-  - name: int
-    fullName: int
+  - name: Duration
+    fullName: Duration
 - uid: 0364520f
   spec.java:
   - name: long
@@ -426,15 +399,12 @@ references:
   spec.java:
   - name: boolean
     fullName: boolean
-- uid: e02a2de0
-  spec.java:
-  - name: Duration
-    fullName: Duration
 - uid: 3c87bd19
   spec.java:
   - name: IllegalArgumentException
     fullName: IllegalArgumentException
 - uid: system.fabric.health._health_information.description()
+- uid: system.fabric.health._health_information.HealthInformation(String,String,int,String,long,boolean,long)
 - uid: system.fabric.health._health_information.healthState()
 - uid: system.fabric.health._health_information.property()
 - uid: system.fabric.health._health_information.removeWhenExpired()

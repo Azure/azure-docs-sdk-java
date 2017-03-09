@@ -10,10 +10,10 @@ items:
   - microsoft.servicefabric.services.communication.client._exception_handling_retry_result
   - microsoft.servicefabric.services.communication.client._exception_handling_throw_result
   - microsoft.servicefabric.services.communication.client._exception_information
+  - microsoft.servicefabric.services.communication.client._fabric_service_partition_client
   - microsoft.servicefabric.services.communication.client._operation_retry_control
   - microsoft.servicefabric.services.communication.client._operation_retry_settings
   - microsoft.servicefabric.services.communication.client._service_partition_client
-  - microsoft.servicefabric.services.communication.client._service_partition_client_impl
   - microsoft.servicefabric.services.communication.client._target_replica_selector
   href: microsoft.servicefabric.services.communication.client.yml
   langs:
@@ -53,17 +53,17 @@ references:
 - uid: microsoft.servicefabric.services.communication.client._communication_client_factory_base
   parent: microsoft.servicefabric.services.communication.client
   href: microsoft.servicefabric.services.communication.client._communication_client_factory_base.yml
-  name: CommunicationClientFactoryBase<TCommunicationClient>
-  fullName: microsoft.servicefabric.services.communication.client.CommunicationClientFactoryBase<TCommunicationClient>
+  name: CommunicationClientFactoryBase<T>
+  fullName: microsoft.servicefabric.services.communication.client.CommunicationClientFactoryBase<T>
   type: Class
   summary: >-
     <p>Provides the base implementation of <xref href="microsoft.servicefabric.services.communication.client._communication_client_factory" data-throw-if-not-resolved="false"></xref> for creating communication clients to talk to service fabric services. Extend the <xref href="microsoft.servicefabric.services.communication.client._communication_client_factory_base" data-throw-if-not-resolved="false"></xref> class to create communication clients for custom transport implementations. This class maintains a cache of communication clients and attempts to reuse the clients for requests to the same service endpoint.</p>
 
     <p></p>
   syntax:
-    content: public class CommunicationClientFactoryBase<TCommunicationClient extends CommunicationClient> implements CommunicationClientFactory<TCommunicationClient>
+    content: public class CommunicationClientFactoryBase<T extends CommunicationClient> implements CommunicationClientFactory<T>
     typeParameters:
-    - type: 4500d4bf
+    - type: 8ce1ecb9
       description: <p>The type of communication client </p>
 - uid: microsoft.servicefabric.services.communication.client._exception_handler
   parent: microsoft.servicefabric.services.communication.client
@@ -110,6 +110,21 @@ references:
   summary: <p>Specifies the class that encapsulates the exception seen on the communication channel and additional information required to handle that exception. </p>
   syntax:
     content: public class ExceptionInformation
+- uid: microsoft.servicefabric.services.communication.client._fabric_service_partition_client
+  parent: microsoft.servicefabric.services.communication.client
+  href: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.yml
+  name: FabricServicePartitionClient<C>
+  fullName: microsoft.servicefabric.services.communication.client.FabricServicePartitionClient<C>
+  type: Class
+  summary: >-
+    <p>Specifies an instance of the communication client that can communicate with the replicas of a particular partition.</p>
+
+    <p></p>
+  syntax:
+    content: public class FabricServicePartitionClient<C extends CommunicationClient> implements ServicePartitionClient<C>
+    typeParameters:
+    - type: 37f8610d
+      description: <p>type of Communication client </p>
 - uid: microsoft.servicefabric.services.communication.client._operation_retry_control
   parent: microsoft.servicefabric.services.communication.client
   href: microsoft.servicefabric.services.communication.client._operation_retry_control.yml
@@ -138,21 +153,6 @@ references:
     content: public interface ServicePartitionClient<TCommunicationClient extends CommunicationClient>
     typeParameters:
     - type: 4500d4bf
-- uid: microsoft.servicefabric.services.communication.client._service_partition_client_impl
-  parent: microsoft.servicefabric.services.communication.client
-  href: microsoft.servicefabric.services.communication.client._service_partition_client_impl.yml
-  name: ServicePartitionClientImpl<TCommunicationClient>
-  fullName: microsoft.servicefabric.services.communication.client.ServicePartitionClientImpl<TCommunicationClient>
-  type: Class
-  summary: >-
-    <p>Specifies an instance of the communication client that can communicate with the replicas of a particular partition.</p>
-
-    <p></p>
-  syntax:
-    content: public class ServicePartitionClientImpl<TCommunicationClient extends CommunicationClient> implements ServicePartitionClient<TCommunicationClient>
-    typeParameters:
-    - type: 4500d4bf
-      description: <p>type of Communication client </p>
 - uid: microsoft.servicefabric.services.communication.client._target_replica_selector
   parent: microsoft.servicefabric.services.communication.client
   href: microsoft.servicefabric.services.communication.client._target_replica_selector.yml
