@@ -14,9 +14,12 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onConnectionBound_call_flow_and_init_ok_amqp()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onConnectionBound_call_flow_and_init_ok_amqp_ws()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onConnectionInit_creates_Session_and_open_Connection()
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onDelivery_flow_ok(final @Mocked Event,final @Mocked DeliveryState,final @Mocked Delivery)
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onLinkFlow_call_flow_ok()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onLinkFlowBufferOverflow_call_flow_ok()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onLinkInit_call_flow_ok()
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sendComplete_flow_OK(final @Mocked AmqpResponseVerification)
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification,final @Mocked IotHubException)
   href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.yml
   langs:
   - java
@@ -42,6 +45,7 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.connection()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.data()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.delivery()
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.disposition()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.event()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.handshaker()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.link()
@@ -49,6 +53,7 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.messageWithException()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.properties()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.proton()
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.responseVerification()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sasl()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.section()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sender()
@@ -70,7 +75,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 117
+    startLine: 119
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_hostName_empty()
@@ -86,7 +91,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 103
+    startLine: 105
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_hostName_null()
@@ -102,7 +107,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 173
+    startLine: 175
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_sasToken_empty()
@@ -118,7 +123,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 159
+    startLine: 161
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_sasToken_null()
@@ -134,7 +139,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 145
+    startLine: 147
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_userName_empty()
@@ -150,7 +155,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 131
+    startLine: 133
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_checks_if_userName_null()
@@ -166,7 +171,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 74
+    startLine: 76
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void constructor_copies_params_to_members()
@@ -182,7 +187,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 190
+    startLine: 192
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void createProtonMessage_creates_Message_and_sets_Properties()
@@ -198,7 +203,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 242
+    startLine: 244
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onConnectionBound_call_flow_and_init_ok_amqp()
@@ -214,7 +219,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 273
+    startLine: 275
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onConnectionBound_call_flow_and_init_ok_amqp_ws()
@@ -230,10 +235,33 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 314
+    startLine: 316
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onConnectionInit_creates_Session_and_open_Connection()
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onDelivery_flow_ok(final @Mocked Event,final @Mocked DeliveryState,final @Mocked Delivery)
+  id: onDelivery_flow_ok(final @Mocked Event,final @Mocked DeliveryState,final @Mocked Delivery)
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.yml
+  langs:
+  - java
+  name: onDelivery_flow_ok(final @Mocked Event mockedEvent, final @Mocked DeliveryState mockedDeliveryState, final @Mocked Delivery mockedDelivery)
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandlerTest.onDelivery_flow_ok(final @Mocked Event mockedEvent, final @Mocked DeliveryState mockedDeliveryState, final @Mocked Delivery mockedDelivery)
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
+    startLine: 454
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: public void onDelivery_flow_ok(final @Mocked Event mockedEvent, final @Mocked DeliveryState mockedDeliveryState, final @Mocked Delivery mockedDelivery)
+    parameters:
+    - id: mockedEvent
+      type: f872ac75
+    - id: mockedDeliveryState
+      type: c2f65315
+    - id: mockedDelivery
+      type: 27ea71b0
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.onLinkFlow_call_flow_ok()
   id: onLinkFlow_call_flow_ok()
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test
@@ -246,7 +274,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 373
+    startLine: 375
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onLinkFlow_call_flow_ok()
@@ -262,7 +290,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 412
+    startLine: 410
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onLinkFlowBufferOverflow_call_flow_ok()
@@ -278,16 +306,85 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
-    startLine: 344
+    startLine: 346
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onLinkInit_call_flow_ok()
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sendComplete_flow_OK(final @Mocked AmqpResponseVerification)
+  id: sendComplete_flow_OK(final @Mocked AmqpResponseVerification)
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.yml
+  langs:
+  - java
+  name: sendComplete_flow_OK(final @Mocked AmqpResponseVerification mockedVerification)
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandlerTest.sendComplete_flow_OK(final @Mocked AmqpResponseVerification mockedVerification)
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
+    startLine: 493
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: public void sendComplete_flow_OK(final @Mocked AmqpResponseVerification mockedVerification)
+    parameters:
+    - id: mockedVerification
+      type: 05d52839com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification,final @Mocked IotHubException)
+  id: sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification,final @Mocked IotHubException)
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.yml
+  langs:
+  - java
+  name: sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification mockedVerification, final @Mocked IotHubException mockedIotHubException)
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandlerTest.sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification mockedVerification, final @Mocked IotHubException mockedIotHubException)
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandlerTest.java
+    startLine: 519
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: public void sendComplete_throws_exception_if_found(final @Mocked AmqpResponseVerification mockedVerification, final @Mocked IotHubException mockedIotHubException)
+    parameters:
+    - id: mockedVerification
+      type: 05d52839com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+    - id: mockedIotHubException
+      type: 05d52839com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception
 references:
+- uid: f872ac75
+  spec.java:
+  - name: final @Mocked Event
+    fullName: final @Mocked Event
+- uid: c2f65315
+  spec.java:
+  - name: final @Mocked DeliveryState
+    fullName: final @Mocked DeliveryState
+- uid: 27ea71b0
+  spec.java:
+  - name: final @Mocked Delivery
+    fullName: final @Mocked Delivery
+- uid: 05d52839com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+  spec.java:
+  - name: 'final @Mocked '
+    fullName: 'final @Mocked '
+  - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+    name: AmqpResponseVerification
+    fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpResponseVerification
+    href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification.yml
+- uid: 05d52839com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception
+  spec.java:
+  - name: 'final @Mocked '
+    fullName: 'final @Mocked '
+  - uid: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception
+    name: IotHubException
+    fullName: com.microsoft.azure.sdk.iot.service.exceptions.IotHubException
+    href: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception.yml
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.address()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.binary()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.connection()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.data()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.delivery()
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.disposition()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.event()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.handshaker()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.link()
@@ -295,6 +392,7 @@ references:
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.messageWithException()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.properties()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.proton()
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.responseVerification()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sasl()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.section()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler_test.sender()
@@ -321,6 +419,23 @@ references:
   type: Class
   syntax:
     content: public class WebSocketImpl
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification.yml
+  name: AmqpResponseVerification
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpResponseVerification
+  type: Class
+  syntax:
+    content: public class AmqpResponseVerification
+- uid: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception
+  parent: com.microsoft.azure.sdk.iot.service.exceptions
+  href: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception.yml
+  name: IotHubException
+  fullName: com.microsoft.azure.sdk.iot.service.exceptions.IotHubException
+  type: Class
+  summary: <p>Super class for IotHub exceptions </p>
+  syntax:
+    content: public class IotHubException
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.yml

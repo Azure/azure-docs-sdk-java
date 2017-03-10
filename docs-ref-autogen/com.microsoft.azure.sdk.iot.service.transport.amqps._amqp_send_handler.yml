@@ -4,20 +4,21 @@ items:
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   children:
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.AmqpSendHandler(String,String,String,IotHubServiceClientProtocol)
-  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.createProtonMessage(String,Message)
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.createProtonMessage(String,com.microsoft.azure.sdk.iot.service.Message)
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.DEVICE_PATH_FORMAT()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.ENDPOINT()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.hostName()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.iotHubServiceClientProtocol()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onConnectionBound(Event)
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onConnectionInit(Event)
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onDelivery(Event)
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onLinkFlow(Event)
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onLinkInit(Event)
-  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.protonMessage()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.sasToken()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.SEND_PORT_AMQPS()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.SEND_PORT_AMQPS_WS()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.SEND_TAG()
+  - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.sendComplete()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.userName()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.WEBSOCKET_PATH()
   - com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.WEBSOCKET_SUB_PROTOCOL()
@@ -34,7 +35,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 32
+    startLine: 35
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Instance of the QPID-Proton-J BaseHandler class to override the events what are needed to handle the send operation Contains and sets connection parameters (path, port, endpoint) Maintains the layers of AMQP protocol (Link, Session, Connection, Transport) Creates and sets SASL authentication for transport </p>
   syntax:
@@ -54,7 +55,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 58
+    startLine: 62
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: >-
     <p>Constructor to set up connection parameters and initialize handshaker for transport</p>
@@ -74,23 +75,23 @@ items:
       description: <p>The SAS token string </p>
     - id: iotHubServiceClientProtocol
       type: com.microsoft.azure.sdk.iot.service._iot_hub_service_client_protocol
-- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.createProtonMessage(String,Message)
-  id: createProtonMessage(String,Message)
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.createProtonMessage(String,com.microsoft.azure.sdk.iot.service.Message)
+  id: Message)
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
   href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.yml
   langs:
   - java
-  name: createProtonMessage(String deviceId, Message message)
-  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler.createProtonMessage(String deviceId, Message message)
+  name: createProtonMessage(String deviceId, com.microsoft.azure.sdk.iot.service.Message message)
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler.createProtonMessage(String deviceId, com.microsoft.azure.sdk.iot.service.Message message)
   type: Method
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 110
+    startLine: 114
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Create Proton message from deviceId and content string </p>
   syntax:
-    content: public void createProtonMessage(String deviceId, Message message)
+    content: public void createProtonMessage(String deviceId, com.microsoft.azure.sdk.iot.service.Message message)
     parameters:
     - id: deviceId
       type: "26831127"
@@ -110,7 +111,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 38
+    startLine: 41
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String DEVICE_PATH_FORMAT= "/devices/%s/messages/devicebound"
@@ -128,7 +129,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 37
+    startLine: 40
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String ENDPOINT= "/messages/devicebound"
@@ -146,7 +147,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 42
+    startLine: 47
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String hostName
@@ -164,7 +165,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 48
+    startLine: 52
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final IotHubServiceClientProtocol iotHubServiceClientProtocol
@@ -182,7 +183,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 168
+    startLine: 173
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Event handler for the connection bound event </p>
   syntax:
@@ -203,7 +204,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 197
+    startLine: 202
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Event handler for the connection init event </p>
   syntax:
@@ -212,6 +213,25 @@ items:
     - id: event
       type: 70fceca4
       description: <p>The proton event object </p>
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onDelivery(Event)
+  id: onDelivery(Event)
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.yml
+  langs:
+  - java
+  name: onDelivery(Event event)
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler.onDelivery(Event event)
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
+    startLine: 288
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: public void onDelivery(Event event)
+    parameters:
+    - id: event
+      type: 70fceca4
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.onLinkFlow(Event)
   id: onLinkFlow(Event)
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
@@ -224,7 +244,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 248
+    startLine: 253
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Event handler for the link flow event </p>
   syntax:
@@ -245,7 +265,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 233
+    startLine: 238
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: <p>Event handler for the link init event </p>
   syntax:
@@ -254,24 +274,6 @@ items:
     - id: event
       type: 70fceca4
       description: <p>The proton event object </p>
-- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.protonMessage()
-  id: protonMessage()
-  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
-  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.yml
-  langs:
-  - java
-  name: protonMessage
-  fullName: org.apache.qpid.proton.message.Message com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler.protonMessage
-  type: Field
-  source:
-    remote: *o0
-    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 45
-  package: com.microsoft.azure.sdk.iot.service.transport.amqps
-  syntax:
-    content: protected org.apache.qpid.proton.message.Message protonMessage
-    return:
-      type: a06b47b9
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.sasToken()
   id: sasToken()
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
@@ -284,7 +286,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 44
+    startLine: 49
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String sasToken
@@ -302,7 +304,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 35
+    startLine: 38
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String SEND_PORT_AMQPS= ":5671"
@@ -320,7 +322,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 36
+    startLine: 39
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String SEND_PORT_AMQPS_WS= ":443"
@@ -338,12 +340,28 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 34
+    startLine: 37
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String SEND_TAG= "sender"
     return:
       type: 3d93591e
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.sendComplete()
+  id: sendComplete()
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.yml
+  langs:
+  - java
+  name: sendComplete()
+  fullName: void com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler.sendComplete()
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
+    startLine: 316
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: public void sendComplete()
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler.userName()
   id: userName()
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_send_handler
@@ -356,7 +374,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 43
+    startLine: 48
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String userName
@@ -374,7 +392,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 39
+    startLine: 42
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String WEBSOCKET_PATH= "/$iothub/websocket"
@@ -392,7 +410,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 40
+    startLine: 43
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String WEBSOCKET_SUB_PROTOCOL= "AMQPWSB10"
@@ -410,7 +428,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpSendHandler.java
-    startLine: 49
+    startLine: 53
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String webSocketHostName
@@ -421,10 +439,6 @@ references:
   spec.java:
   - name: final String
     fullName: final String
-- uid: a06b47b9
-  spec.java:
-  - name: org.apache.qpid.proton.message.Message
-    fullName: org.apache.qpid.proton.message.Message
 - uid: 93de0ef9com.microsoft.azure.sdk.iot.service._iot_hub_service_client_protocol
   spec.java:
   - name: 'final '
@@ -441,6 +455,14 @@ references:
   spec.java:
   - name: Event
     fullName: Event
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps._amqp_response_verification.yml
+  name: AmqpResponseVerification
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpResponseVerification
+  type: Class
+  syntax:
+    content: public class AmqpResponseVerification
 - uid: com.microsoft.azure.sdk.iot.service._iot_hub_service_client_protocol
   parent: com.microsoft.azure.sdk.iot.service
   href: com.microsoft.azure.sdk.iot.service._iot_hub_service_client_protocol.yml
@@ -459,3 +481,12 @@ references:
   summary: <p>IotHub specific message container </p>
   syntax:
     content: public class Message
+- uid: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception
+  parent: com.microsoft.azure.sdk.iot.service.exceptions
+  href: com.microsoft.azure.sdk.iot.service.exceptions._iot_hub_exception.yml
+  name: IotHubException
+  fullName: com.microsoft.azure.sdk.iot.service.exceptions.IotHubException
+  type: Class
+  summary: <p>Super class for IotHub exceptions </p>
+  syntax:
+    content: public class IotHubException
