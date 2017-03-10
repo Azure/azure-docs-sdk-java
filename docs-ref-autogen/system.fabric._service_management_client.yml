@@ -3,6 +3,7 @@ items:
   id: _service_management_client
   parent: system.fabric
   children:
+  - system.fabric._service_management_client.close()
   - system.fabric._service_management_client.createService(ServiceDescription)
   - system.fabric._service_management_client.createService(ServiceDescription,Duration)
   - system.fabric._service_management_client.createServiceFromTemplate(URI,URI,String,long,byte [])
@@ -58,6 +59,7 @@ items:
     content: public class ServiceManagementClient
   inheritance:
   - java.lang.Object
+  - AutoCloseable
   inheritedMembers:
   - system.fabric._service_management_client.beginCreateService(long,int,long,long,NativeAsyncCallback)
   - system.fabric._service_management_client.beginCreateServiceFromTemplate(long,String,String,String,long,long,long,NativeAsyncCallback)
@@ -91,9 +93,24 @@ items:
   - system.fabric._service_management_client.registerServicePartitionResolutionChangeHandlerWithLongKey(long,String,int,long,long,long)
   - system.fabric._service_management_client.registerServicePartitionResolutionChangeHandlerWithStringKey(long,String,int,String,long,long)
   - system.fabric._service_management_client.release(long)
-  - system.fabric._service_management_client.release()
   - system.fabric._service_management_client.ServiceManagementClient(FabricClient)
   - system.fabric._service_management_client.unRegisterServicePartitionResolutionChangeHandler(long,long)
+- uid: system.fabric._service_management_client.close()
+  id: close()
+  parent: system.fabric._service_management_client
+  href: system.fabric._service_management_client.yml
+  langs:
+  - java
+  name: close()
+  fullName: void system.fabric.ServiceManagementClient.close()
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
+    startLine: 1434
+  package: system.fabric
+  syntax:
+    content: public void close()
 - uid: system.fabric._service_management_client.createService(ServiceDescription)
   id: createService(ServiceDescription)
   parent: system.fabric._service_management_client
@@ -167,7 +184,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 268
+    startLine: 267
   package: system.fabric
   summary: >-
     <p>Instantiates a service from the template specified in the Application Manifest.</p>
@@ -208,7 +225,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 306
+    startLine: 305
   package: system.fabric
   summary: >-
     <p>Instantiates a service from the template specified in the Application Manifest.</p>
@@ -252,7 +269,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 352
+    startLine: 350
   package: system.fabric
   summary: >-
     <p>Deletes the specified service instance.</p>
@@ -281,7 +298,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 370
+    startLine: 368
   package: system.fabric
   summary: >-
     <p>Deletes the specified service instance.</p>
@@ -313,7 +330,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 402
+    startLine: 400
   package: system.fabric
   summary: >-
     <p>Gets the Service Description for the specified service instance.</p>
@@ -344,7 +361,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 421
+    startLine: 419
   package: system.fabric
   summary: >-
     <p>Gets the Service Description for the specified service instance.</p>
@@ -378,7 +395,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 992
+    startLine: 990
   package: system.fabric
   summary: >-
     <p>Gets the provisioned service manifest document in the specified ApplicationTypeName and ApplicationTypeVersion.</p>
@@ -411,7 +428,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1021
+    startLine: 1019
   package: system.fabric
   summary: >-
     <p>Gets the provisioned service manifest document in the specified ApplicationTypeName and ApplicationTypeVersion.</p>
@@ -447,7 +464,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1326
+    startLine: 1324
   package: system.fabric
   syntax:
     content: public Observable<ServiceNotification> getServiceNotificationFilterMatched()
@@ -465,7 +482,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1237
+    startLine: 1235
   package: system.fabric
   summary: >-
     <p>Registers a Service Notification filter.</p>
@@ -495,7 +512,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1260
+    startLine: 1258
   package: system.fabric
   summary: >-
     <p>Registers a Service Notification filter.</p>
@@ -528,7 +545,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 492
+    startLine: 490
   package: system.fabric
   summary: "<p>Registers a handler to be raised when the accessibility information of a service partition changes.</p>\r\n<p>\r\n  <bold>Remarks:</bold>Notification will include changes on partitionâ€™s endpoints or exceptions that occurred while the information was being updated. This overload is used for UniformInt64Range partitioned service instances. Returned Int64 is the callback handle identifier for the registration. Notifications is a mechanism that delivers notifications to userâ€™s code each time there is an service address change or an address resolution error related to a service partition the code has raised interest for. This way instead of resolving every time the current <xref href=\"system.fabric._resolved_service_partition\" data-throw-if-not-resolved=\"false\"></xref> becomes stale, program registers for updates. </p>"
   syntax:
@@ -558,7 +575,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 458
+    startLine: 456
   package: system.fabric
   summary: "<p>Registers a handler to be raised when the accessibility information of a service partition changes.</p>\r\n<p>\r\n  <bold>Remarks:</bold>Notification will include changes on partitionâ€™s endpoints or exceptions that occurred while the information was being updated. This overload is used for Singleton partitioned service instances. Returned Int64 is the callback handle identifier for the registration. Notifications is a mechanism that delivers notifications to userâ€™s code each time there is an service address change or an address resolution error related to a service partition the code has raised interest for. This way instead of resolving every time the current <xref href=\"system.fabric._resolved_service_partition\" data-throw-if-not-resolved=\"false\"></xref> becomes stale, program registers for updates. </p>"
   syntax:
@@ -585,7 +602,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 527
+    startLine: 525
   package: system.fabric
   summary: "<p>Registers a handler to be raised when the accessibility information of a service partition changes.</p>\r\n<p>\r\n  <bold>Remarks:</bold>Notification will include changes on partitionâ€™s endpoints or exceptions that occurred while the information was being updated. This overload is used for Named partitioned service instances. Returned Int64 is the callback handle identifier for the registration. Notifications is a mechanism that delivers notifications to userâ€™s code each time there is an service address change or an address resolution error related to a service partition the code has raised interest for. This way instead of resolving every time the current <xref href=\"system.fabric._resolved_service_partition\" data-throw-if-not-resolved=\"false\"></xref> becomes stale, program registers for updates. </p>"
   syntax:
@@ -615,7 +632,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1112
+    startLine: 1110
   package: system.fabric
   summary: >-
     <p>Removes a service replica.</p>
@@ -651,7 +668,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1141
+    startLine: 1139
   package: system.fabric
   summary: >-
     <p>Removes a service replica.</p>
@@ -690,7 +707,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 570
+    startLine: 568
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -719,7 +736,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 598
+    startLine: 596
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -751,7 +768,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 703
+    startLine: 701
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -783,7 +800,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 734
+    startLine: 732
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -818,7 +835,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 775
+    startLine: 773
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -853,7 +870,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 819
+    startLine: 817
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -891,7 +908,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 632
+    startLine: 630
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -923,7 +940,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 673
+    startLine: 671
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -958,7 +975,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 850
+    startLine: 848
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -990,7 +1007,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 881
+    startLine: 879
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -1025,7 +1042,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 922
+    startLine: 920
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -1060,7 +1077,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 966
+    startLine: 964
   package: system.fabric
   summary: >-
     <p>Queries the system for the set of endpoints the specified service partition is listening to.</p>
@@ -1098,7 +1115,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1179
+    startLine: 1177
   package: system.fabric
   summary: >-
     <p>Restarts the service replica.</p>
@@ -1131,7 +1148,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1201
+    startLine: 1199
   package: system.fabric
   summary: >-
     <p>Restarts the service replica.</p>
@@ -1167,7 +1184,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1286
+    startLine: 1284
   package: system.fabric
   summary: >-
     <p>Unregisters a Service Notification filter.</p>
@@ -1194,7 +1211,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1299
+    startLine: 1297
   package: system.fabric
   summary: >-
     <p>Unregisters a Service Notification filter.</p>
@@ -1224,7 +1241,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 549
+    startLine: 547
   package: system.fabric
   summary: <p>Unregisters a change handler previously registered with <ref refid="" kindref="compound">system.fabric.ServiceManagementClient#registerServicePartitionResolutionChangeHandler(java.net.URI,system.fabric.ServicePartitionResolutionChangeHandler)</ref></p>
   syntax:
@@ -1245,7 +1262,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1053
+    startLine: 1051
   package: system.fabric
   summary: >-
     <p>Updates a service with the specified description.</p>
@@ -1275,7 +1292,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServiceManagementClient.java
-    startLine: 1071
+    startLine: 1069
   package: system.fabric
   summary: >-
     <p>Updates a service with the specified description.</p>
@@ -1403,7 +1420,6 @@ references:
 - uid: system.fabric._service_management_client.registerServicePartitionResolutionChangeHandlerWithLongKey(long,String,int,long,long,long)
 - uid: system.fabric._service_management_client.registerServicePartitionResolutionChangeHandlerWithStringKey(long,String,int,String,long,long)
 - uid: system.fabric._service_management_client.release(long)
-- uid: system.fabric._service_management_client.release()
 - uid: system.fabric._service_management_client.ServiceManagementClient(FabricClient)
 - uid: system.fabric._service_management_client.unRegisterServicePartitionResolutionChangeHandler(long,long)
 - uid: system.fabric._fabric_client

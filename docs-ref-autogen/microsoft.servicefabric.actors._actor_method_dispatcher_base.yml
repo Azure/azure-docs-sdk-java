@@ -3,15 +3,10 @@ items:
   id: _actor_method_dispatcher_base
   parent: microsoft.servicefabric.actors
   children:
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.continueWith(CompletableFuture<?>)
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.continueWithResult(int,CompletableFuture<TRetval>)
+  - microsoft.servicefabric.actors._actor_method_dispatcher_base.createResponseMessageBody(Object)
   - microsoft.servicefabric.actors._actor_method_dispatcher_base.deserializeRequestMessageBody(byte [])
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.dispatchAsync(int,ActorBase,ActorMessageBody)
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.getInterfaceId()
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.getMethodName(int)
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.initialize(int,Map<Integer, String>,List<Class<?>>,List<Class<?>>)
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.onDispatchAsync(int,Object,Object)
-  - microsoft.servicefabric.actors._actor_method_dispatcher_base.serializeRequestMessageBody(ActorMessageBody)
+  - microsoft.servicefabric.actors._actor_method_dispatcher_base.getRequestMessageBodyValue(Object)
+  - microsoft.servicefabric.actors._actor_method_dispatcher_base.serializeResponseMessageBody(Object)
   href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
   langs:
   - java
@@ -24,71 +19,48 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 12
+    startLine: 8
   package: microsoft.servicefabric.actors
   summary: <p>The base class used by remoting code generator to generate the type that dispatches requests from the client to the right interface and method of the remoted object. </p>
   syntax:
-    content: public class ActorMethodDispatcherBase
+    content: public class ActorMethodDispatcherBase extends MethodDispatcherBaseWithSerializer
   inheritance:
   - java.lang.Object
-  - microsoft.servicefabric.actors.ActorMethodDispatcher
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.continueWith(CompletableFuture<?>)
-  id: continueWith(CompletableFuture<?>)
+  - microsoft.servicefabric.services.remoting._method_dispatcher
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base_with_serializer
+  inheritedMembers:
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.continueWith(CompletableFuture<?>)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.continueWithResult(int,CompletableFuture<TRetval>)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.createResponseBody(int,Object)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.dispatch(Object,int,Object)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.dispatchAsync(Object,int,Object)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.getInterfaceId()
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.getMethodName(int)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.initialize(int,Map<Integer, String>)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.onDispatch(int,Object,Object)
+  - microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.onDispatchAsync(int,Object,Object)
+- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.createResponseMessageBody(Object)
+  id: createResponseMessageBody(Object)
   parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
   href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
   langs:
   - java
-  name: continueWith(CompletableFuture<?> task)
-  fullName: CompletableFuture<Object> microsoft.servicefabric.actors.ActorMethodDispatcherBase.continueWith(CompletableFuture<?> task)
+  name: createResponseMessageBody(Object responseMessageBodyValue)
+  fullName: Object microsoft.servicefabric.actors.ActorMethodDispatcherBase.createResponseMessageBody(Object responseMessageBodyValue)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 114
+    startLine: 26
   package: microsoft.servicefabric.actors
-  summary: >-
-    <p>Internal - used by Service remoting</p>
-
-    <p></p>
   syntax:
-    content: protected CompletableFuture<Object> continueWith(CompletableFuture<?> task)
+    content: protected Object createResponseMessageBody(Object responseMessageBodyValue)
     parameters:
-    - id: task
-      type: 16409f84
-      description: <p>continuation future </p>
+    - id: responseMessageBodyValue
+      type: "79317049"
     return:
-      type: 55aa5245
-      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. </p>
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.continueWithResult(int,CompletableFuture<TRetval>)
-  id: continueWithResult(int,CompletableFuture<TRetval>)
-  parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
-  href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
-  langs:
-  - java
-  name: continueWithResult(int methodId, CompletableFuture<TRetval> task)
-  fullName: protected<TRetval> CompletableFuture<Object> microsoft.servicefabric.actors.ActorMethodDispatcherBase.continueWithResult(int methodId, CompletableFuture<TRetval> task)
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 102
-  package: microsoft.servicefabric.actors
-  summary: >-
-    <p>Internal - used by Service remoting</p>
-
-    <p></p>
-  syntax:
-    content: protected <TRetval> CompletableFuture<Object> continueWithResult(int methodId, CompletableFuture<TRetval> task)
-    parameters:
-    - id: methodId
-      type: f75371fa
-      description: <p>method id </p>
-    - id: task
-      type: 77318c5d
-      description: <p>continuation future </p>
-    return:
-      type: d2898f57
-      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. </p>
+      type: "79317049"
 - uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.deserializeRequestMessageBody(byte [])
   id: deserializeRequestMessageBody(byte [])
   parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
@@ -101,179 +73,58 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 31
+    startLine: 11
   package: microsoft.servicefabric.actors
   syntax:
-    content: public ActorMessageBody deserializeRequestMessageBody(byte[] requestMsgBodyBytes)
+    content: protected ActorMessageBody deserializeRequestMessageBody(byte[] requestMsgBodyBytes)
     parameters:
     - id: requestMsgBodyBytes
       type: ccd9418d
     return:
       type: bfa80cc3
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.dispatchAsync(int,ActorBase,ActorMessageBody)
-  id: dispatchAsync(int,ActorBase,ActorMessageBody)
+- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.getRequestMessageBodyValue(Object)
+  id: getRequestMessageBodyValue(Object)
   parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
   href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
   langs:
   - java
-  name: dispatchAsync(int methodId, ActorBase actor, ActorMessageBody requestMsgBody)
-  fullName: CompletableFuture<ActorMessageBody> microsoft.servicefabric.actors.ActorMethodDispatcherBase.dispatchAsync(int methodId, ActorBase actor, ActorMessageBody requestMsgBody)
+  name: getRequestMessageBodyValue(Object requestMessageBody)
+  fullName: Object microsoft.servicefabric.actors.ActorMethodDispatcherBase.getRequestMessageBodyValue(Object requestMessageBody)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 59
+    startLine: 21
   package: microsoft.servicefabric.actors
-  summary: >-
-    <p>This method is implemented by the generated method dispatcher to dispatch request to the specified methodId of the interface implemented by the remoted object.</p>
-
-    <p></p>
   syntax:
-    content: public CompletableFuture<ActorMessageBody> dispatchAsync(int methodId, ActorBase actor, ActorMessageBody requestMsgBody)
+    content: protected Object getRequestMessageBodyValue(Object requestMessageBody)
     parameters:
-    - id: methodId
-      type: f75371fa
-      description: <p>id of the method </p>
-    - id: actor
-      type: microsoft.servicefabric.actors._actor_base
-      description: <p>The remoted object instance </p>
-    - id: requestMsgBody
-      type: bfa80cc3
-      description: <p>The request body </p>
-    return:
-      type: 53cbc4d0
-      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. The result of the task is the return value from the method. </p>
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.getInterfaceId()
-  id: getInterfaceId()
-  parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
-  href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
-  langs:
-  - java
-  name: getInterfaceId()
-  fullName: int microsoft.servicefabric.actors.ActorMethodDispatcherBase.getInterfaceId()
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 26
-  package: microsoft.servicefabric.actors
-  syntax:
-    content: public int getInterfaceId()
-    return:
-      type: f75371fa
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.getMethodName(int)
-  id: getMethodName(int)
-  parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
-  href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
-  langs:
-  - java
-  name: getMethodName(int methodId)
-  fullName: String microsoft.servicefabric.actors.ActorMethodDispatcherBase.getMethodName(int methodId)
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 41
-  package: microsoft.servicefabric.actors
-  syntax:
-    content: public String getMethodName(int methodId)
-    parameters:
-    - id: methodId
-      type: f75371fa
-    return:
-      type: "26831127"
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.initialize(int,Map<Integer, String>,List<Class<?>>,List<Class<?>>)
-  id: initialize(int,Map<Integer, String>,List<Class<?>>,List<Class<?>>)
-  parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
-  href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
-  langs:
-  - java
-  name: initialize(int interfaceId, Map<Integer, String> methodNameMap, List<Class<?>> requestBodyTypes, List<Class<?>> responseBodyTypes)
-  fullName: void microsoft.servicefabric.actors.ActorMethodDispatcherBase.initialize(int interfaceId, Map<Integer, String> methodNameMap, List<Class<?>> requestBodyTypes, List<Class<?>> responseBodyTypes)
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 17
-  package: microsoft.servicefabric.actors
-  syntax:
-    content: public void initialize(int interfaceId, Map<Integer, String> methodNameMap, List<Class<?>> requestBodyTypes, List<Class<?>> responseBodyTypes)
-    parameters:
-    - id: interfaceId
-      type: f75371fa
-    - id: methodNameMap
-      type: 5188bed5
-    - id: requestBodyTypes
-      type: 0e0b5418
-    - id: responseBodyTypes
-      type: 0e0b5418
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.onDispatchAsync(int,Object,Object)
-  id: onDispatchAsync(int,Object,Object)
-  parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
-  href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
-  langs:
-  - java
-  name: onDispatchAsync(int methodId, Object actor, Object requestBody)
-  fullName: abstract CompletableFuture<Object> microsoft.servicefabric.actors.ActorMethodDispatcherBase.onDispatchAsync(int methodId, Object actor, Object requestBody)
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 133
-  package: microsoft.servicefabric.actors
-  summary: >-
-    <p>This method is implemented by the generated method dispatcher to dispatch request to the specified methodId of the interface implemented by the remoted object.</p>
-
-    <p></p>
-  syntax:
-    content: protected abstract CompletableFuture<Object> onDispatchAsync(int methodId, Object actor, Object requestBody)
-    parameters:
-    - id: methodId
-      type: f75371fa
-      description: <p>id of the method </p>
-    - id: actor
+    - id: requestMessageBody
       type: "79317049"
-      description: <p>the remoted object instance </p>
-    - id: requestBody
-      type: "79317049"
-      description: <p>The request body </p>
     return:
-      type: "55e17007"
-      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. The result of the task is the return value from the method. </p>
-- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.serializeRequestMessageBody(ActorMessageBody)
-  id: serializeRequestMessageBody(ActorMessageBody)
+      type: "79317049"
+- uid: microsoft.servicefabric.actors._actor_method_dispatcher_base.serializeResponseMessageBody(Object)
+  id: serializeResponseMessageBody(Object)
   parent: microsoft.servicefabric.actors._actor_method_dispatcher_base
   href: microsoft.servicefabric.actors._actor_method_dispatcher_base.yml
   langs:
   - java
-  name: serializeRequestMessageBody(ActorMessageBody responseMsgBody)
-  fullName: byte [] microsoft.servicefabric.actors.ActorMethodDispatcherBase.serializeRequestMessageBody(ActorMessageBody responseMsgBody)
+  name: serializeResponseMessageBody(Object responseMsgBody)
+  fullName: byte [] microsoft.servicefabric.actors.ActorMethodDispatcherBase.serializeResponseMessageBody(Object responseMsgBody)
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.actors/src/microsoft/servicefabric/actors/ActorMethodDispatcherBase.java
-    startLine: 36
+    startLine: 16
   package: microsoft.servicefabric.actors
   syntax:
-    content: public byte [] serializeRequestMessageBody(ActorMessageBody responseMsgBody)
+    content: protected byte [] serializeResponseMessageBody(Object responseMsgBody)
     parameters:
     - id: responseMsgBody
-      type: bfa80cc3
+      type: "79317049"
     return:
       type: ccd9418d
 references:
-- uid: f75371fa
-  spec.java:
-  - name: int
-    fullName: int
-- uid: 5188bed5
-  spec.java:
-  - name: Map<Integer, String>
-    fullName: Map<Integer, String>
-- uid: 0e0b5418
-  spec.java:
-  - name: List<Class<?>>
-    fullName: List<Class<?>>
 - uid: ccd9418d
   spec.java:
   - name: byte []
@@ -282,49 +133,215 @@ references:
   spec.java:
   - name: ActorMessageBody
     fullName: ActorMessageBody
-- uid: "26831127"
-  spec.java:
-  - name: String
-    fullName: String
-- uid: 53cbc4d0
-  spec.java:
-  - name: CompletableFuture<ActorMessageBody>
-    fullName: CompletableFuture<ActorMessageBody>
-- uid: 16409f84
-  spec.java:
-  - name: CompletableFuture<?>
-    fullName: CompletableFuture<?>
-- uid: 55aa5245
-  spec.java:
-  - name: CompletableFuture<Object>
-    fullName: CompletableFuture<Object>
 - uid: "79317049"
   spec.java:
   - name: Object
     fullName: Object
-- uid: "55e17007"
-  spec.java:
-  - name: abstract CompletableFuture<Object>
-    fullName: abstract CompletableFuture<Object>
-- uid: 77318c5d
-  spec.java:
-  - name: CompletableFuture<TRetval>
-    fullName: CompletableFuture<TRetval>
-- uid: d2898f57
-  spec.java:
-  - name: <TRetval> CompletableFuture<Object>
-    fullName: <TRetval> CompletableFuture<Object>
-- uid: microsoft.servicefabric.actors._actor_base
-  parent: microsoft.servicefabric.actors
-  href: microsoft.servicefabric.actors._actor_base.yml
-  name: ActorBase
-  fullName: microsoft.servicefabric.actors.ActorBase
-  type: Class
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.continueWith(CompletableFuture<?>)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: continueWith(CompletableFuture<?> future)
+  fullName: CompletableFuture<Object> microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.continueWith(CompletableFuture<?> future)
+  type: Method
   summary: >-
-    <p>Represents base class for actors. <xref href="microsoft.servicefabric.actors._actor" data-throw-if-not-resolved="false"></xref></p>
+    <p>Internal - used by <xref href="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false"></xref> remoting</p>
 
-    <p>
-
-      <bold>Remarks:</bold>This is a base type for actor, it provides the functionality that is common across actors implemented by actor deriving from <xref href="microsoft.servicefabric.actors._actor" data-throw-if-not-resolved="false"></xref> The state is preserved across actor garbage collections and fail-overs. The storage and retrieval of the state is provided by the actor state provider <xref href="microsoft.servicefabric.actors._actor_state_provider" data-throw-if-not-resolved="false"></xref>. </p>
+    <p></p>
   syntax:
-    content: public class ActorBase
+    content: protected CompletableFuture<Object> continueWith(CompletableFuture<?> future)
+    parameters:
+    - id: future
+      type: 16409f84
+      description: <p>continuation future </p>
+    return:
+      type: 55aa5245
+      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.continueWithResult(int,CompletableFuture<TRetval>)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: continueWithResult(int methodId, CompletableFuture<TRetval> future)
+  fullName: protected<TRetval> CompletableFuture<Object> microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.continueWithResult(int methodId, CompletableFuture<TRetval> future)
+  type: Method
+  summary: >-
+    <p>Internal - used by <xref href="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false"></xref> remoting</p>
+
+    <p></p>
+  syntax:
+    content: protected <TRetval> CompletableFuture<Object> continueWithResult(int methodId, CompletableFuture<TRetval> future)
+    parameters:
+    - id: methodId
+      type: f75371fa
+      description: <p>method id </p>
+    - id: future
+      type: 77318c5d
+      description: <p>continuation future </p>
+    return:
+      type: d2898f57
+      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.createResponseBody(int,Object)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: createResponseBody(int methodId, Object returnValue)
+  fullName: abstract Object microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.createResponseBody(int methodId, Object returnValue)
+  type: Method
+  summary: >-
+    <p>This method is implemented by the generated method dispatcher to create the response from the specified return value as a result of dispatching the method to the remoted object.</p>
+
+    <p></p>
+  syntax:
+    content: protected abstract Object createResponseBody(int methodId, Object returnValue)
+    parameters:
+    - id: methodId
+      type: f75371fa
+      description: <p>Id of the method. </p>
+    - id: returnValue
+      type: "79317049"
+      description: <p>The returned value from the method. </p>
+    return:
+      type: 1377799a
+      description: <p>A <ref refid="" kindref="compound">Object</ref> that represents the response body to be sent back to the client. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.dispatch(Object,int,Object)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: dispatch(Object objectImplementation, int methodId, Object requestMsgBody)
+  fullName: void microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.dispatch(Object objectImplementation, int methodId, Object requestMsgBody)
+  type: Method
+  summary: >-
+    <p>This method is used to dispatch one way messages to the specified methodId of the interface implemented by the remoted object.</p>
+
+    <p></p>
+  syntax:
+    content: public void dispatch(Object objectImplementation, int methodId, Object requestMsgBody)
+    parameters:
+    - id: objectImplementation
+      type: "79317049"
+      description: <p>remoted object Implementation. </p>
+    - id: methodId
+      type: f75371fa
+      description: <p>methodId of the interface implemented by the remoted object. </p>
+    - id: requestMsgBody
+      type: "79317049"
+      description: <p>message body. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.dispatchAsync(Object,int,Object)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: dispatchAsync(Object objectImplementation, int methodId, Object requestMsgBody)
+  fullName: CompletableFuture<Object> microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.dispatchAsync(Object objectImplementation, int methodId, Object requestMsgBody)
+  type: Method
+  summary: >-
+    <p>This method is implemented by the generated method dispatcher to dispatch request to the specified methodId of the interface implemented by the remoted object.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Object> dispatchAsync(Object objectImplementation, int methodId, Object requestMsgBody)
+    parameters:
+    - id: objectImplementation
+      type: "79317049"
+      description: <p>The remoted object instance </p>
+    - id: methodId
+      type: f75371fa
+      description: <p>id of the method </p>
+    - id: requestMsgBody
+      type: "79317049"
+      description: <p>The request body </p>
+    return:
+      type: 55aa5245
+      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. The result of the task is the return value from the method. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.getInterfaceId()
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: getInterfaceId()
+  fullName: int microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.getInterfaceId()
+  type: Method
+  summary: >-
+    <p>Interface Id is used to identify remoting Interfaces.</p>
+
+    <p></p>
+  syntax:
+    content: public int getInterfaceId()
+    return:
+      type: f75371fa
+      description: <p>interface id. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.getMethodName(int)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: getMethodName(int methodId)
+  fullName: String microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.getMethodName(int methodId)
+  type: Method
+  syntax:
+    content: public String getMethodName(int methodId)
+    parameters:
+    - id: methodId
+      type: f75371fa
+    return:
+      type: "26831127"
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.initialize(int,Map<Integer, String>)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: initialize(int interfaceId, Map<Integer, String> methodNameMap)
+  fullName: void microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.initialize(int interfaceId, Map<Integer, String> methodNameMap)
+  type: Method
+  syntax:
+    content: public void initialize(int interfaceId, Map<Integer, String> methodNameMap)
+    parameters:
+    - id: interfaceId
+      type: f75371fa
+    - id: methodNameMap
+      type: 5188bed5
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.onDispatch(int,Object,Object)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: onDispatch(int methodId, Object remotedObject, Object requestBody)
+  fullName: abstract void microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.onDispatch(int methodId, Object remotedObject, Object requestBody)
+  type: Method
+  summary: >-
+    <p>This method is implemented by the generated method dispatcher to dispatch one way messages to the specified methodId of the interface implemented by the remoted object.</p>
+
+    <p></p>
+  syntax:
+    content: protected abstract void onDispatch(int methodId, Object remotedObject, Object requestBody)
+    parameters:
+    - id: methodId
+      type: f75371fa
+      description: <p>Id of the method. </p>
+    - id: remotedObject
+      type: "79317049"
+      description: <p>The remoted object instance. </p>
+    - id: requestBody
+      type: "79317049"
+      description: <p>message body </p>
+    return:
+      type: 5beb11ad
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.onDispatchAsync(int,Object,Object)
+  parent: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base.yml
+  name: onDispatchAsync(int methodId, Object remotedObject, Object requestBody)
+  fullName: abstract CompletableFuture<Object> microsoft.servicefabric.services.remoting.builder.MethodDispatcherBase.onDispatchAsync(int methodId, Object remotedObject, Object requestBody)
+  type: Method
+  summary: >-
+    <p>This method is implemented by the generated method dispatcher to dispatch request to the specified methodId of the interface implemented by the remoted object.</p>
+
+    <p></p>
+  syntax:
+    content: protected abstract CompletableFuture<Object> onDispatchAsync(int methodId, Object remotedObject, Object requestBody)
+    parameters:
+    - id: methodId
+      type: f75371fa
+      description: <p>id of the method </p>
+    - id: remotedObject
+      type: "79317049"
+      description: <p>the remoted object instance </p>
+    - id: requestBody
+      type: "79317049"
+      description: <p>The request body </p>
+    return:
+      type: "55e17007"
+      description: <p>A <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref> that represents outstanding operation. The result of the task is the return value from the method. </p>
+- uid: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base_with_serializer
+  parent: microsoft.servicefabric.services.remoting.builder
+  href: microsoft.servicefabric.services.remoting.builder._method_dispatcher_base_with_serializer.yml
+  name: MethodDispatcherBaseWithSerializer
+  fullName: microsoft.servicefabric.services.remoting.builder.MethodDispatcherBaseWithSerializer
+  type: Class
+  syntax:
+    content: public class MethodDispatcherBaseWithSerializer
