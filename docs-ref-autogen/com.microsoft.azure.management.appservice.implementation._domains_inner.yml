@@ -36,9 +36,10 @@ items:
   - com.microsoft.azure.management.appservice.implementation._domains_inner.deleteWithServiceResponseAsync(String,String)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.deleteWithServiceResponseAsync(String,String,Boolean)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.DomainsInner(Retrofit,WebSiteManagementClientImpl)
-  - com.microsoft.azure.management.appservice.implementation._domains_inner.get(String,String)
-  - com.microsoft.azure.management.appservice.implementation._domains_inner.getAsync(String,String)
-  - com.microsoft.azure.management.appservice.implementation._domains_inner.getAsync(String,String,final ServiceCallback<DomainInner>)
+  - com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroup(String,String)
+  - com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupAsync(String,String)
+  - com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupAsync(String,String,final ServiceCallback<DomainInner>)
+  - com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupWithServiceResponseAsync(String,String)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequest()
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequestAsync()
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequestAsync(final ServiceCallback<DomainControlCenterSsoRequestInner>)
@@ -47,7 +48,6 @@ items:
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierAsync(String,String,String)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierAsync(String,String,String,final ServiceCallback<DomainOwnershipIdentifierInner>)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierWithServiceResponseAsync(String,String,String)
-  - com.microsoft.azure.management.appservice.implementation._domains_inner.getWithServiceResponseAsync(String,String)
   - com.microsoft.azure.management.appservice.implementation._domains_inner.list()
   - com.microsoft.azure.management.appservice.implementation._domains_inner.listAsync()
   - com.microsoft.azure.management.appservice.implementation._domains_inner.listAsync(final ListOperationCallback<DomainInner>)
@@ -104,13 +104,16 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 43
+    startLine: 46
   package: com.microsoft.azure.management.appservice.implementation
   summary: <p>An instance of this class provides access to all the operations defined in Domains. </p>
   syntax: &o1
-    content: public class DomainsInner
+    content: public class DomainsInner implements InnerSupportsGet<DomainInner>,InnerSupportsDelete<Void>,InnerSupportsListing<DomainInner>
   inheritance:
   - java.lang.Object
+  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  inheritedMembers:
+  - com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String,ServiceCallback<InnerT>)
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.beginCreateOrUpdate(String,String,DomainInner)
   id: beginCreateOrUpdate(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -123,7 +126,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 835
+    startLine: 892
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -144,6 +147,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.beginCreateOrUpdateAsync(String,String,DomainInner)
   id: beginCreateOrUpdateAsync(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -156,7 +166,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 862
+    startLine: 921
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -177,6 +187,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.beginCreateOrUpdateAsync(String,String,DomainInner,final ServiceCallback<DomainInner>)
   id: beginCreateOrUpdateAsync(String,String,DomainInner,final ServiceCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -189,7 +202,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 849
+    startLine: 907
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -213,6 +226,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.beginCreateOrUpdateWithServiceResponseAsync(String,String,DomainInner)
   id: beginCreateOrUpdateWithServiceResponseAsync(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -225,7 +241,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 880
+    startLine: 940
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -246,6 +262,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailability()
   id: checkAvailability()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -258,7 +277,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 145
+    startLine: 151
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -269,6 +288,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailability(String)
   id: checkAvailability(String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -281,7 +307,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 210
+    startLine: 222
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -296,6 +322,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityAsync()
   id: checkAvailabilityAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -308,7 +341,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 166
+    startLine: 174
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -319,6 +352,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityAsync(final ServiceCallback<DomainAvailablilityCheckResultInner>)
   id: checkAvailabilityAsync(final ServiceCallback<DomainAvailablilityCheckResultInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -331,7 +367,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 156
+    startLine: 163
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -346,6 +382,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityAsync(String)
   id: checkAvailabilityAsync(String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -358,7 +397,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 233
+    startLine: 247
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -373,6 +412,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityAsync(String,final ServiceCallback<DomainAvailablilityCheckResultInner>)
   id: checkAvailabilityAsync(String,final ServiceCallback<DomainAvailablilityCheckResultInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -385,7 +427,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 222
+    startLine: 235
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -403,6 +445,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityWithServiceResponseAsync()
   id: checkAvailabilityWithServiceResponseAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -415,7 +460,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 181
+    startLine: 190
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -426,6 +471,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.checkAvailabilityWithServiceResponseAsync(String)
   id: checkAvailabilityWithServiceResponseAsync(String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -438,7 +486,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 249
+    startLine: 264
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Check if a domain is available for registration. Check if a domain is available for registration.</p>
@@ -453,6 +501,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdate(String,String,DomainInner)
   id: createOrUpdate(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -465,7 +516,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 762
+    startLine: 813
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -486,6 +537,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateAsync(String,String,DomainInner)
   id: createOrUpdateAsync(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -498,7 +556,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 789
+    startLine: 842
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -519,6 +577,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateAsync(String,String,DomainInner,final ServiceCallback<DomainInner>)
   id: createOrUpdateAsync(String,String,DomainInner,final ServiceCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -531,7 +592,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 776
+    startLine: 828
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -555,6 +616,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateOwnershipIdentifier(String,String,String,DomainOwnershipIdentifierInner)
   id: createOrUpdateOwnershipIdentifier(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -567,7 +631,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1295
+    startLine: 1384
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -591,6 +655,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner)
   id: createOrUpdateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -603,7 +674,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1324
+    startLine: 1415
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -627,6 +698,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner,final ServiceCallback<DomainOwnershipIdentifierInner>)
   id: createOrUpdateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner,final ServiceCallback<DomainOwnershipIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -639,7 +713,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1310
+    startLine: 1400
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -666,6 +740,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateOwnershipIdentifierWithServiceResponseAsync(String,String,String,DomainOwnershipIdentifierInner)
   id: createOrUpdateOwnershipIdentifierWithServiceResponseAsync(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -678,7 +755,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1343
+    startLine: 1435
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -702,6 +779,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.createOrUpdateWithServiceResponseAsync(String,String,DomainInner)
   id: createOrUpdateWithServiceResponseAsync(String,String,DomainInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -714,7 +794,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 807
+    startLine: 861
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates or updates a domain. Creates or updates a domain.</p>
@@ -735,6 +815,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable for the request </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.delete(String,String)
   id: delete(String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -747,7 +830,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 924
+    startLine: 987
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -762,6 +845,13 @@ items:
     - id: domainName
       type: "26831127"
       description: <p>Name of the domain. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.delete(String,String,Boolean)
   id: delete(String,String,Boolean)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -774,7 +864,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1000
+    startLine: 1069
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -792,6 +882,13 @@ items:
     - id: forceHardDeleteDomain
       type: 866c2227
       description: <p>Specify &lt;code&gt;true&lt;/code&gt; to delete the domain immediately. The default is &lt;code&gt;false&lt;/code&gt; which deletes the domain after 24 hours. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteAsync(String,String)
   id: deleteAsync(String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -804,7 +901,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 949
+    startLine: 1014
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -822,6 +919,10 @@ items:
     return:
       type: dcd884b2
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteAsync(String,String,Boolean)
   id: deleteAsync(String,String,Boolean)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -834,7 +935,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1027
+    startLine: 1098
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -855,6 +956,9 @@ items:
     return:
       type: dcd884b2
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteAsync(String,String,Boolean,final ServiceCallback<Void>)
   id: deleteAsync(String,String,Boolean,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -867,7 +971,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1014
+    startLine: 1084
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -891,6 +995,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteAsync(String,String,final ServiceCallback<Void>)
   id: deleteAsync(String,String,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -903,7 +1010,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 937
+    startLine: 1001
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -924,6 +1031,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteOwnershipIdentifier(String,String,String)
   id: deleteOwnershipIdentifier(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -936,7 +1046,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1390
+    startLine: 1485
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete ownership identifier for domain. Delete ownership identifier for domain.</p>
@@ -954,6 +1064,13 @@ items:
     - id: name
       type: "26831127"
       description: <p>Name of identifier. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteOwnershipIdentifierAsync(String,String,String)
   id: deleteOwnershipIdentifierAsync(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -966,7 +1083,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1417
+    startLine: 1514
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete ownership identifier for domain. Delete ownership identifier for domain.</p>
@@ -987,6 +1104,9 @@ items:
     return:
       type: dcd884b2
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteOwnershipIdentifierAsync(String,String,String,final ServiceCallback<Void>)
   id: deleteOwnershipIdentifierAsync(String,String,String,final ServiceCallback<Void>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -999,7 +1119,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1404
+    startLine: 1500
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete ownership identifier for domain. Delete ownership identifier for domain.</p>
@@ -1023,6 +1143,9 @@ items:
     return:
       type: aa81d378
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteOwnershipIdentifierWithServiceResponseAsync(String,String,String)
   id: deleteOwnershipIdentifierWithServiceResponseAsync(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1035,7 +1158,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1435
+    startLine: 1533
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete ownership identifier for domain. Delete ownership identifier for domain.</p>
@@ -1056,6 +1179,9 @@ items:
     return:
       type: 27015fa1
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteWithServiceResponseAsync(String,String)
   id: deleteWithServiceResponseAsync(String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1068,7 +1194,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 966
+    startLine: 1032
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -1086,6 +1212,9 @@ items:
     return:
       type: 27015fa1
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.deleteWithServiceResponseAsync(String,String,Boolean)
   id: deleteWithServiceResponseAsync(String,String,Boolean)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1098,7 +1227,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1045
+    startLine: 1117
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Delete a domain. Delete a domain.</p>
@@ -1119,6 +1248,9 @@ items:
     return:
       type: 27015fa1
       description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.DomainsInner(Retrofit,WebSiteManagementClientImpl)
   id: DomainsInner(Retrofit,WebSiteManagementClientImpl)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1131,7 +1263,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 55
+    startLine: 58
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Initializes an instance of <xref href="com.microsoft.azure.management.appservice.implementation._domains_inner" data-throw-if-not-resolved="false"></xref>.</p>
@@ -1146,26 +1278,26 @@ items:
     - id: client
       type: com.microsoft.azure.management.appservice.implementation._web_site_management_client_impl
       description: <p>the instance of the service client containing this operation class. </p>
-- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.get(String,String)
-  id: get(String,String)
+- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroup(String,String)
+  id: getByResourceGroup(String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
   href: com.microsoft.azure.management.appservice.implementation._domains_inner.yml
   langs:
   - java
-  name: get(String resourceGroupName, String domainName)
-  fullName: DomainInner com.microsoft.azure.management.appservice.implementation.DomainsInner.get(String resourceGroupName, String domainName)
+  name: getByResourceGroup(String resourceGroupName, String domainName)
+  fullName: DomainInner com.microsoft.azure.management.appservice.implementation.DomainsInner.getByResourceGroup(String resourceGroupName, String domainName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 679
+    startLine: 724
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get a domain. Get a domain.</p>
 
     <p></p>
   syntax:
-    content: public DomainInner get(String resourceGroupName, String domainName)
+    content: public DomainInner getByResourceGroup(String resourceGroupName, String domainName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -1176,26 +1308,34 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
-- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getAsync(String,String)
-  id: getAsync(String,String)
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroup(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
+- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupAsync(String,String)
+  id: getByResourceGroupAsync(String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
   href: com.microsoft.azure.management.appservice.implementation._domains_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String domainName)
-  fullName: Observable<DomainInner> com.microsoft.azure.management.appservice.implementation.DomainsInner.getAsync(String resourceGroupName, String domainName)
+  name: getByResourceGroupAsync(String resourceGroupName, String domainName)
+  fullName: Observable<DomainInner> com.microsoft.azure.management.appservice.implementation.DomainsInner.getByResourceGroupAsync(String resourceGroupName, String domainName)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 704
+    startLine: 751
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get a domain. Get a domain.</p>
 
     <p></p>
   syntax:
-    content: public Observable<DomainInner> getAsync(String resourceGroupName, String domainName)
+    content: public Observable<DomainInner> getByResourceGroupAsync(String resourceGroupName, String domainName)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -1206,26 +1346,30 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getAsync(String,String,final ServiceCallback<DomainInner>)
-  id: getAsync(String,String,final ServiceCallback<DomainInner>)
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupAsync(String,String,final ServiceCallback<DomainInner>)
+  id: getByResourceGroupAsync(String,String,final ServiceCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
   href: com.microsoft.azure.management.appservice.implementation._domains_inner.yml
   langs:
   - java
-  name: getAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
-  fullName: ServiceFuture<DomainInner> com.microsoft.azure.management.appservice.implementation.DomainsInner.getAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
+  name: getByResourceGroupAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
+  fullName: ServiceFuture<DomainInner> com.microsoft.azure.management.appservice.implementation.DomainsInner.getByResourceGroupAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
   type: Method
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 692
+    startLine: 738
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get a domain. Get a domain.</p>
 
     <p></p>
   syntax:
-    content: public ServiceFuture<DomainInner> getAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
+    content: public ServiceFuture<DomainInner> getByResourceGroupAsync(String resourceGroupName, String domainName, final ServiceCallback<DomainInner> serviceCallback)
     parameters:
     - id: resourceGroupName
       type: "26831127"
@@ -1239,6 +1383,42 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getByResourceGroupWithServiceResponseAsync(String,String)
+  id: getByResourceGroupWithServiceResponseAsync(String,String)
+  parent: com.microsoft.azure.management.appservice.implementation._domains_inner
+  href: com.microsoft.azure.management.appservice.implementation._domains_inner.yml
+  langs:
+  - java
+  name: getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String domainName)
+  fullName: Observable<ServiceResponse<DomainInner>> com.microsoft.azure.management.appservice.implementation.DomainsInner.getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String domainName)
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
+    startLine: 769
+  package: com.microsoft.azure.management.appservice.implementation
+  summary: >-
+    <p>Get a domain. Get a domain.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ServiceResponse<DomainInner>> getByResourceGroupWithServiceResponseAsync(String resourceGroupName, String domainName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>Name of the resource group to which the resource belongs. </p>
+    - id: domainName
+      type: "26831127"
+      description: <p>Name of the domain. </p>
+    return:
+      type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
+      description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequest()
   id: getControlCenterSsoRequest()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1251,7 +1431,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 386
+    startLine: 411
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Generate a single sign-on request for the domain management portal. Generate a single sign-on request for the domain management portal.</p>
@@ -1262,6 +1442,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequestAsync()
   id: getControlCenterSsoRequestAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1274,7 +1461,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 407
+    startLine: 434
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Generate a single sign-on request for the domain management portal. Generate a single sign-on request for the domain management portal.</p>
@@ -1285,6 +1472,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequestAsync(final ServiceCallback<DomainControlCenterSsoRequestInner>)
   id: getControlCenterSsoRequestAsync(final ServiceCallback<DomainControlCenterSsoRequestInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1297,7 +1487,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 397
+    startLine: 423
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Generate a single sign-on request for the domain management portal. Generate a single sign-on request for the domain management portal.</p>
@@ -1312,6 +1502,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getControlCenterSsoRequestWithServiceResponseAsync()
   id: getControlCenterSsoRequestWithServiceResponseAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1324,7 +1517,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 422
+    startLine: 450
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Generate a single sign-on request for the domain management portal. Generate a single sign-on request for the domain management portal.</p>
@@ -1335,6 +1528,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifier(String,String,String)
   id: getOwnershipIdentifier(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1347,7 +1543,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1205
+    startLine: 1288
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get ownership identifier for domain. Get ownership identifier for domain.</p>
@@ -1368,6 +1564,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierAsync(String,String,String)
   id: getOwnershipIdentifierAsync(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1380,7 +1583,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1232
+    startLine: 1317
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get ownership identifier for domain. Get ownership identifier for domain.</p>
@@ -1401,6 +1604,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierAsync(String,String,String,final ServiceCallback<DomainOwnershipIdentifierInner>)
   id: getOwnershipIdentifierAsync(String,String,String,final ServiceCallback<DomainOwnershipIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1413,7 +1619,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1219
+    startLine: 1303
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get ownership identifier for domain. Get ownership identifier for domain.</p>
@@ -1437,6 +1643,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getOwnershipIdentifierWithServiceResponseAsync(String,String,String)
   id: getOwnershipIdentifierWithServiceResponseAsync(String,String,String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1449,7 +1658,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1250
+    startLine: 1336
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get ownership identifier for domain. Get ownership identifier for domain.</p>
@@ -1470,36 +1679,9 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
-- uid: com.microsoft.azure.management.appservice.implementation._domains_inner.getWithServiceResponseAsync(String,String)
-  id: getWithServiceResponseAsync(String,String)
-  parent: com.microsoft.azure.management.appservice.implementation._domains_inner
-  href: com.microsoft.azure.management.appservice.implementation._domains_inner.yml
-  langs:
-  - java
-  name: getWithServiceResponseAsync(String resourceGroupName, String domainName)
-  fullName: Observable<ServiceResponse<DomainInner>> com.microsoft.azure.management.appservice.implementation.DomainsInner.getWithServiceResponseAsync(String resourceGroupName, String domainName)
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 721
-  package: com.microsoft.azure.management.appservice.implementation
-  summary: >-
-    <p>Get a domain. Get a domain.</p>
-
-    <p></p>
-  syntax:
-    content: public Observable<ServiceResponse<DomainInner>> getWithServiceResponseAsync(String resourceGroupName, String domainName)
-    parameters:
-    - id: resourceGroupName
-      type: "26831127"
-      description: <p>Name of the resource group to which the resource belongs. </p>
-    - id: domainName
-      type: "26831127"
-      description: <p>Name of the domain. </p>
-    return:
-      type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
-      description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.list()
   id: list()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1512,7 +1694,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 283
+    startLine: 301
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1523,6 +1705,14 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listAsync()
   id: listAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1535,7 +1725,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 318
+    startLine: 338
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1546,6 +1736,10 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listAsync()
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listAsync(final ListOperationCallback<DomainInner>)
   id: listAsync(final ListOperationCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1558,7 +1752,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 300
+    startLine: 319
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1573,6 +1767,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroup(final String)
   id: listByResourceGroup(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1585,7 +1782,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 567
+    startLine: 605
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1600,6 +1797,14 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupAsync(final String)
   id: listByResourceGroupAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1612,7 +1817,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 604
+    startLine: 644
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1627,6 +1832,10 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  overridden: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroupAsync(String)
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupAsync(final String,final ListOperationCallback<DomainInner>)
   id: listByResourceGroupAsync(final String,final ListOperationCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1639,7 +1848,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 585
+    startLine: 624
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1657,6 +1866,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupNext(final String)
   id: listByResourceGroupNext(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1669,7 +1881,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1792
+    startLine: 1914
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1684,6 +1896,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupNextAsync(final String)
   id: listByResourceGroupNextAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1696,7 +1915,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1830
+    startLine: 1954
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1711,6 +1930,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupNextAsync(final String,final ServiceFuture<List<DomainInner>>,final ListOperationCallback<DomainInner>)
   id: listByResourceGroupNextAsync(final String,final ServiceFuture<List<DomainInner>>,final ListOperationCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1723,7 +1945,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1811
+    startLine: 1934
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1737,13 +1959,16 @@ items:
       description: <p>The NextLink from the previous successful call to List operation. </p>
     - id: serviceFuture
       type: bd82102acom.microsoft.azure.management.appservice.implementation._domain_innere7daa122
-      description: <p>the ServiceCall object tracking the Retrofit calls </p>
+      description: <p>the ServiceFuture object tracking the Retrofit calls </p>
     - id: serviceCallback
       type: 3c4303efcom.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the async ServiceCallback to handle successful and failed responses. </p>
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupNextSinglePageAsync(final String)
   id: listByResourceGroupNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1756,7 +1981,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1868
+    startLine: 1994
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1771,6 +1996,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupNextWithServiceResponseAsync(final String)
   id: listByResourceGroupNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1783,7 +2011,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1847
+    startLine: 1972
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1798,6 +2026,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupSinglePageAsync(final String)
   id: listByResourceGroupSinglePageAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1810,7 +2041,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 642
+    startLine: 684
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1825,6 +2056,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listByResourceGroupWithServiceResponseAsync(final String)
   id: listByResourceGroupWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1837,7 +2071,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 621
+    startLine: 662
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a resource group. Get all domains in a resource group.</p>
@@ -1852,6 +2086,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listNext(final String)
   id: listNext(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1864,7 +2101,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1574
+    startLine: 1682
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1879,6 +2116,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listNextAsync(final String)
   id: listNextAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1891,7 +2135,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1612
+    startLine: 1722
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1906,6 +2150,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listNextAsync(final String,final ServiceFuture<List<DomainInner>>,final ListOperationCallback<DomainInner>)
   id: listNextAsync(final String,final ServiceFuture<List<DomainInner>>,final ListOperationCallback<DomainInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1918,7 +2165,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1593
+    startLine: 1702
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1932,13 +2179,16 @@ items:
       description: <p>The NextLink from the previous successful call to List operation. </p>
     - id: serviceFuture
       type: bd82102acom.microsoft.azure.management.appservice.implementation._domain_innere7daa122
-      description: <p>the ServiceCall object tracking the Retrofit calls </p>
+      description: <p>the ServiceFuture object tracking the Retrofit calls </p>
     - id: serviceCallback
       type: 3c4303efcom.microsoft.azure.management.appservice.implementation._domain_innera08ddfce
       description: <p>the async ServiceCallback to handle successful and failed responses. </p>
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listNextSinglePageAsync(final String)
   id: listNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1951,7 +2201,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1650
+    startLine: 1762
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1966,6 +2216,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listNextWithServiceResponseAsync(final String)
   id: listNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -1978,7 +2231,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1629
+    startLine: 1740
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -1993,6 +2246,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiers(final String,final String)
   id: listOwnershipIdentifiers(final String,final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2005,7 +2261,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1085
+    startLine: 1161
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2023,6 +2279,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersAsync(final String,final String)
   id: listOwnershipIdentifiersAsync(final String,final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2035,7 +2298,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1124
+    startLine: 1202
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2053,6 +2316,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersAsync(final String,final String,final ListOperationCallback<DomainOwnershipIdentifierInner>)
   id: listOwnershipIdentifiersAsync(final String,final String,final ListOperationCallback<DomainOwnershipIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2065,7 +2331,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1104
+    startLine: 1181
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2086,6 +2352,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersNext(final String)
   id: listOwnershipIdentifiersNext(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2098,7 +2367,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1901
+    startLine: 2030
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2113,6 +2382,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersNextAsync(final String)
   id: listOwnershipIdentifiersNextAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2125,7 +2401,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1939
+    startLine: 2070
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2140,6 +2416,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersNextAsync(final String,final ServiceFuture<List<DomainOwnershipIdentifierInner>>,final ListOperationCallback<DomainOwnershipIdentifierInner>)
   id: listOwnershipIdentifiersNextAsync(final String,final ServiceFuture<List<DomainOwnershipIdentifierInner>>,final ListOperationCallback<DomainOwnershipIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2152,7 +2431,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1920
+    startLine: 2050
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2166,13 +2445,16 @@ items:
       description: <p>The NextLink from the previous successful call to List operation. </p>
     - id: serviceFuture
       type: bd82102acom.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
-      description: <p>the ServiceCall object tracking the Retrofit calls </p>
+      description: <p>the ServiceFuture object tracking the Retrofit calls </p>
     - id: serviceCallback
       type: 3c4303efcom.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the async ServiceCallback to handle successful and failed responses. </p>
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersNextSinglePageAsync(final String)
   id: listOwnershipIdentifiersNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2185,7 +2467,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1977
+    startLine: 2110
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2200,6 +2482,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersNextWithServiceResponseAsync(final String)
   id: listOwnershipIdentifiersNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2212,7 +2497,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1956
+    startLine: 2088
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2227,6 +2512,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersSinglePageAsync(final String,final String)
   id: listOwnershipIdentifiersSinglePageAsync(final String,final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2239,7 +2527,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1164
+    startLine: 1244
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2257,6 +2545,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listOwnershipIdentifiersWithServiceResponseAsync(final String,final String)
   id: listOwnershipIdentifiersWithServiceResponseAsync(final String,final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2269,7 +2560,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1142
+    startLine: 1221
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Lists domain ownership identifiers. Lists domain ownership identifiers.</p>
@@ -2287,6 +2578,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendations(final DomainRecommendationSearchParametersInner)
   id: listRecommendations(final DomainRecommendationSearchParametersInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2299,7 +2593,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 455
+    startLine: 486
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2314,6 +2608,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._name_identifier_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsAsync(final DomainRecommendationSearchParametersInner)
   id: listRecommendationsAsync(final DomainRecommendationSearchParametersInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2326,7 +2627,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 492
+    startLine: 525
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2341,6 +2642,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._name_identifier_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsAsync(final DomainRecommendationSearchParametersInner,final ListOperationCallback<NameIdentifierInner>)
   id: listRecommendationsAsync(final DomainRecommendationSearchParametersInner,final ListOperationCallback<NameIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2353,7 +2657,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 473
+    startLine: 505
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2371,6 +2675,9 @@ items:
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._name_identifier_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsNext(final String)
   id: listRecommendationsNext(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2383,7 +2690,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1683
+    startLine: 1798
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2398,6 +2705,13 @@ items:
     return:
       type: 36b27be0com.microsoft.azure.management.appservice.implementation._name_identifier_innera08ddfce
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsNextAsync(final String)
   id: listRecommendationsNextAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2410,7 +2724,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1721
+    startLine: 1838
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2425,6 +2739,9 @@ items:
     return:
       type: 32da0907com.microsoft.azure.management.appservice.implementation._name_identifier_innere7daa122
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsNextAsync(final String,final ServiceFuture<List<NameIdentifierInner>>,final ListOperationCallback<NameIdentifierInner>)
   id: listRecommendationsNextAsync(final String,final ServiceFuture<List<NameIdentifierInner>>,final ListOperationCallback<NameIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2437,7 +2754,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1702
+    startLine: 1818
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2451,13 +2768,16 @@ items:
       description: <p>The NextLink from the previous successful call to List operation. </p>
     - id: serviceFuture
       type: bd82102acom.microsoft.azure.management.appservice.implementation._name_identifier_innere7daa122
-      description: <p>the ServiceCall object tracking the Retrofit calls </p>
+      description: <p>the ServiceFuture object tracking the Retrofit calls </p>
     - id: serviceCallback
       type: 3c4303efcom.microsoft.azure.management.appservice.implementation._name_identifier_innera08ddfce
       description: <p>the async ServiceCallback to handle successful and failed responses. </p>
     return:
       type: b7698b59com.microsoft.azure.management.appservice.implementation._name_identifier_innere7daa122
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsNextSinglePageAsync(final String)
   id: listRecommendationsNextSinglePageAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2470,7 +2790,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1759
+    startLine: 1878
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2485,6 +2805,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._name_identifier_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsNextWithServiceResponseAsync(final String)
   id: listRecommendationsNextWithServiceResponseAsync(final String)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2497,7 +2820,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1738
+    startLine: 1856
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2512,6 +2835,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._name_identifier_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsSinglePageAsync(final DomainRecommendationSearchParametersInner)
   id: listRecommendationsSinglePageAsync(final DomainRecommendationSearchParametersInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2524,7 +2850,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 530
+    startLine: 565
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2539,6 +2865,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._name_identifier_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listRecommendationsWithServiceResponseAsync(final DomainRecommendationSearchParametersInner)
   id: listRecommendationsWithServiceResponseAsync(final DomainRecommendationSearchParametersInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2551,7 +2880,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 509
+    startLine: 543
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get domain name recommendations based on keywords. Get domain name recommendations based on keywords.</p>
@@ -2566,6 +2895,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._name_identifier_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._name_identifier_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listSinglePageAsync()
   id: listSinglePageAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2578,7 +2910,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 354
+    startLine: 376
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -2589,6 +2921,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object wrapped in <ref refid="" kindref="compound">ServiceResponse</ref> if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.listWithServiceResponseAsync()
   id: listWithServiceResponseAsync()
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2601,7 +2936,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 334
+    startLine: 355
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Get all domains in a subscription. Get all domains in a subscription.</p>
@@ -2612,6 +2947,9 @@ items:
     return:
       type: f9d74917com.microsoft.azure.management.appservice.implementation._domain_inner2646ccb0
       description: <p>the observable to the PagedList&lt;<xref href="com.microsoft.azure.management.appservice.implementation._domain_inner" data-throw-if-not-resolved="false"></xref>&gt; object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.updateOwnershipIdentifier(String,String,String,DomainOwnershipIdentifierInner)
   id: updateOwnershipIdentifier(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2624,7 +2962,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1480
+    startLine: 1582
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -2648,6 +2986,13 @@ items:
     return:
       type: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner
       description: <p>the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object if successful. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
+  - type: dc385fd4
+    description: <p>thrown if the request is rejected by server </p>
+  - type: 9b2a4515
+    description: <p>all other wrapped checked exceptions if the request fails to be sent </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.updateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner)
   id: updateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2660,7 +3005,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1509
+    startLine: 1613
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -2684,6 +3029,9 @@ items:
     return:
       type: c2d0e8c6com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.updateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner,final ServiceCallback<DomainOwnershipIdentifierInner>)
   id: updateOwnershipIdentifierAsync(String,String,String,DomainOwnershipIdentifierInner,final ServiceCallback<DomainOwnershipIdentifierInner>)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2696,7 +3044,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1495
+    startLine: 1598
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -2723,6 +3071,9 @@ items:
     return:
       type: c522ce07com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innera08ddfce
       description: <p>the <ref refid="" kindref="compound">ServiceFuture</ref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domains_inner.updateOwnershipIdentifierWithServiceResponseAsync(String,String,String,DomainOwnershipIdentifierInner)
   id: updateOwnershipIdentifierWithServiceResponseAsync(String,String,String,DomainOwnershipIdentifierInner)
   parent: com.microsoft.azure.management.appservice.implementation._domains_inner
@@ -2735,7 +3086,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-appservice/src/main/java/com/microsoft/azure/management/appservice/implementation/DomainsInner.java
-    startLine: 1528
+    startLine: 1633
   package: com.microsoft.azure.management.appservice.implementation
   summary: >-
     <p>Creates an ownership identifier for a domain or updates identifier details for an existing identifer. Creates an ownership identifier for a domain or updates identifier details for an existing identifer.</p>
@@ -2759,11 +3110,26 @@ items:
     return:
       type: fc480ba2com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_innere7daa122
       description: <p>the observable to the <xref href="com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner" data-throw-if-not-resolved="false"></xref> object </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>thrown if parameters fail the validation </p>
 references:
 - uid: 964879b9
   spec.java:
   - name: Retrofit
     fullName: Retrofit
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: dc385fd4
+  spec.java:
+  - name: CloudException
+    fullName: CloudException
+- uid: 9b2a4515
+  spec.java:
+  - name: RuntimeException
+    fullName: RuntimeException
 - uid: 897eb10acom.microsoft.azure.management.appservice.implementation._domain_availablility_check_result_innera08ddfce
   spec.java:
   - name: final ServiceCallback<
@@ -3140,6 +3506,82 @@ references:
     href: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner.yml
   - name: '>>'
     fullName: '>>'
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String,ServiceCallback<InnerT>)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+  fullName: ServiceFuture<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public ServiceFuture<InnerT> getByResourceGroupAsync(String resourceGroupName, String resourceName, ServiceCallback<InnerT> serviceCallback)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group. </p>
+    - id: serviceCallback
+      type: ad04a05b
+      description: <p>the async ServiceCallback to handle successful and failed responses.</p>
+    return:
+      type: 4cde70a6
+      description: <p>ServiceFuture to specific resource. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: InnerSupportsGet<InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>
+  type: Interface
+  summary: >-
+    <p>Provides access to listing <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsGet<InnerT>
+    typeParameters:
+    - type: 52cf8095
+      description: <p>the fluent type of the resource </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: InnerSupportsDelete<ResponseT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>
+  type: Interface
+  summary: >-
+    <p>Provides access to delete <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsDelete<ResponseT>
+    typeParameters:
+    - type: 5a5d7d33
+      description: <p>Response type for delete. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  parent: com.microsoft.azure.management.resources.fluentcore.collection
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: InnerSupportsListing<InnerT>
+  fullName: com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>
+  type: Interface
+  summary: >-
+    <p>Provides access to listing <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources of a specific type in a subscription. </p>
+
+    <p>(Note: this interface is not intended to be implemented by user code)</p>
+
+    <p></p>
+  syntax:
+    content: public interface InnerSupportsListing<InnerT>
+    typeParameters:
+    - type: 52cf8095
+      description: <p>the fluent type of the resource </p>
 - uid: com.microsoft.azure.management.appservice.implementation._web_site_management_client_impl
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._web_site_management_client_impl.yml
@@ -3175,6 +3617,36 @@ references:
   summary: <p>Information about a domain. </p>
   syntax:
     content: public class DomainInner
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.list()
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: list()
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.list()
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type available in subscription.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> list()
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listAsync()
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: listAsync()
+  fullName: Observable<Page<InnerT>> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.listAsync()
+  type: Method
+  summary: >-
+    <p>Returns the observable for the page list of all resources of specific type in subscription.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<Page<InnerT>> listAsync()
+    return:
+      type: 2115045e
+      description: <p>Observable of list of resources. </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._domain_control_center_sso_request_inner.yml
@@ -3202,6 +3674,110 @@ references:
   summary: <p>Domain recommendation search parameters. </p>
   syntax:
     content: public class DomainRecommendationSearchParametersInner
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroup(String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: listByResourceGroup(String resourceGroupName)
+  fullName: PagedList<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.listByResourceGroup(String resourceGroupName)
+  type: Method
+  summary: >-
+    <p>Lists the page list of all resources of specific type in specified resource group.</p>
+
+    <p></p>
+  syntax:
+    content: public PagedList<InnerT> listByResourceGroup(String resourceGroupName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    return:
+      type: 3c53fc26
+      description: <p>the paged list of resources if successful. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.listByResourceGroupAsync(String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_listing.yml
+  name: listByResourceGroupAsync(String resourceGroup)
+  fullName: Observable<Page<InnerT>> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsListing<InnerT>.listByResourceGroupAsync(String resourceGroup)
+  type: Method
+  summary: >-
+    <p>Returns the observable for the page list of all resources of specific type in specified resource group.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<Page<InnerT>> listByResourceGroupAsync(String resourceGroup)
+    parameters:
+    - id: resourceGroup
+      type: "26831127"
+      description: <p>name of the resource group. </p>
+    return:
+      type: 2115045e
+      description: <p>Observable of list of resources. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroup(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroup(String resourceGroupName, String resourceName)
+  fullName: InnerT com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroup(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource.</p>
+
+    <p></p>
+  syntax:
+    content: public InnerT getByResourceGroup(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group.</p>
+    return:
+      type: 52cf8095
+      description: <p>specific resource. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.getByResourceGroupAsync(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_get.yml
+  name: getByResourceGroupAsync(String resourceGroupName, String resourceName)
+  fullName: Observable<InnerT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsGet<InnerT>.getByResourceGroupAsync(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Returns the specific resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<InnerT> getByResourceGroupAsync(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group.</p>
+    return:
+      type: 585f32ed
+      description: <p>Observable to specific resource. </p>
+- uid: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.deleteAsync(String,String)
+  parent: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete
+  href: com.microsoft.azure.management.resources.fluentcore.collection._inner_supports_delete.yml
+  name: deleteAsync(String resourceGroupName, String resourceName)
+  fullName: Observable<ResponseT> com.microsoft.azure.management.resources.fluentcore.collection.InnerSupportsDelete<ResponseT>.deleteAsync(String resourceGroupName, String resourceName)
+  type: Method
+  summary: >-
+    <p>Deletes a resource asynchronously.</p>
+
+    <p></p>
+  syntax:
+    content: public Observable<ResponseT> deleteAsync(String resourceGroupName, String resourceName)
+    parameters:
+    - id: resourceGroupName
+      type: "26831127"
+      description: <p>The name of the resource group within the user's subscription. </p>
+    - id: resourceName
+      type: "26831127"
+      description: <p>The name of the resource within specified resource group. </p>
+    return:
+      type: 058422cb
+      description: <p>the <ref refid="" kindref="compound">ServiceResponse</ref> object if successful. </p>
 - uid: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._domain_ownership_identifier_inner.yml

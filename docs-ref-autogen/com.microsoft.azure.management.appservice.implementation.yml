@@ -15,7 +15,6 @@ items:
   - com.microsoft.azure.management.appservice.implementation._backup_item_inner
   - com.microsoft.azure.management.appservice.implementation._backup_request_inner
   - com.microsoft.azure.management.appservice.implementation._capability_inner
-  - com.microsoft.azure.management.appservice.implementation._certificate_details_inner
   - com.microsoft.azure.management.appservice.implementation._certificate_email_inner
   - com.microsoft.azure.management.appservice.implementation._certificate_inner
   - com.microsoft.azure.management.appservice.implementation._certificate_order_action_inner
@@ -50,6 +49,7 @@ items:
   - com.microsoft.azure.management.appservice.implementation._network_features_inner
   - com.microsoft.azure.management.appservice.implementation._operation_inner
   - com.microsoft.azure.management.appservice.implementation._page_impl
+  - com.microsoft.azure.management.appservice.implementation._page_impl1
   - com.microsoft.azure.management.appservice.implementation._perf_mon_response_inner
   - com.microsoft.azure.management.appservice.implementation._premier_add_on_inner
   - com.microsoft.azure.management.appservice.implementation._premier_add_on_offer_inner
@@ -69,10 +69,13 @@ items:
   - com.microsoft.azure.management.appservice.implementation._site_auth_settings_inner
   - com.microsoft.azure.management.appservice.implementation._site_cloneability_inner
   - com.microsoft.azure.management.appservice.implementation._site_config_inner
+  - com.microsoft.azure.management.appservice.implementation._site_configuration_snapshot_info_inner
   - com.microsoft.azure.management.appservice.implementation._site_inner
   - com.microsoft.azure.management.appservice.implementation._site_instance_inner
   - com.microsoft.azure.management.appservice.implementation._site_logs_config_inner
   - com.microsoft.azure.management.appservice.implementation._site_php_error_log_flag_inner
+  - com.microsoft.azure.management.appservice.implementation._site_seal_inner
+  - com.microsoft.azure.management.appservice.implementation._site_seal_request_inner
   - com.microsoft.azure.management.appservice.implementation._site_source_control_inner
   - com.microsoft.azure.management.appservice.implementation._sku_info_inner
   - com.microsoft.azure.management.appservice.implementation._sku_infos_inner
@@ -149,7 +152,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.appservice._app_service_certificate_orders" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public class AppServiceCertificateOrdersInner
+    content: public class AppServiceCertificateOrdersInner implements InnerSupportsGet<AppServiceCertificateOrderInner>,InnerSupportsListing<AppServiceCertificateOrderInner>
 - uid: com.microsoft.azure.management.appservice.implementation._app_service_environment_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._app_service_environment_inner.yml
@@ -167,7 +170,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in AppServiceEnvironments. </p>
   syntax:
-    content: public class AppServiceEnvironmentsInner
+    content: public class AppServiceEnvironmentsInner implements InnerSupportsGet<AppServiceEnvironmentInner>,InnerSupportsDelete<Void>,InnerSupportsListing<AppServiceEnvironmentInner>
 - uid: com.microsoft.azure.management.appservice.implementation._app_service_manager
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._app_service_manager.yml
@@ -194,7 +197,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.appservice._app_service_plans" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public class AppServicePlansInner
+    content: public class AppServicePlansInner implements InnerSupportsGet<AppServicePlanInner>,InnerSupportsDelete<Void>,InnerSupportsListing<AppServicePlanInner>
 - uid: com.microsoft.azure.management.appservice.implementation._backup_item_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._backup_item_inner.yml
@@ -222,15 +225,6 @@ references:
   summary: <p>Describes the capabilities/features allowed for a specific SKU. </p>
   syntax:
     content: public class CapabilityInner
-- uid: com.microsoft.azure.management.appservice.implementation._certificate_details_inner
-  parent: com.microsoft.azure.management.appservice.implementation
-  href: com.microsoft.azure.management.appservice.implementation._certificate_details_inner.yml
-  name: CertificateDetailsInner
-  fullName: com.microsoft.azure.management.appservice.implementation.CertificateDetailsInner
-  type: Class
-  summary: <p>SSL certificate details. </p>
-  syntax:
-    content: public class CertificateDetailsInner
 - uid: com.microsoft.azure.management.appservice.implementation._certificate_email_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._certificate_email_inner.yml
@@ -266,7 +260,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in Certificates. </p>
   syntax:
-    content: public class CertificatesInner
+    content: public class CertificatesInner implements InnerSupportsDelete<Void>,InnerSupportsListing<CertificateInner>
 - uid: com.microsoft.azure.management.appservice.implementation._connection_string_dictionary_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._connection_string_dictionary_inner.yml
@@ -356,7 +350,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in DeletedWebApps. </p>
   syntax:
-    content: public class DeletedWebAppsInner
+    content: public class DeletedWebAppsInner implements InnerSupportsListing<DeletedSiteInner>
 - uid: com.microsoft.azure.management.appservice.implementation._deployment_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._deployment_inner.yml
@@ -419,7 +413,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in Domains. </p>
   syntax:
-    content: public class DomainsInner
+    content: public class DomainsInner implements InnerSupportsGet<DomainInner>,InnerSupportsDelete<Void>,InnerSupportsListing<DomainInner>
 - uid: com.microsoft.azure.management.appservice.implementation._geo_region_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._geo_region_inner.yml
@@ -540,6 +534,21 @@ references:
     <p></p>
   syntax:
     content: public class PageImpl<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>type of <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource </p>
+- uid: com.microsoft.azure.management.appservice.implementation._page_impl1
+  parent: com.microsoft.azure.management.appservice.implementation
+  href: com.microsoft.azure.management.appservice.implementation._page_impl1.yml
+  name: PageImpl1<T>
+  fullName: com.microsoft.azure.management.appservice.implementation.PageImpl1<T>
+  type: Class
+  summary: >-
+    <p>An instance of this class defines a page of <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resources and a link to get the next page of resources, if any.</p>
+
+    <p></p>
+  syntax:
+    content: public class PageImpl1<T>
     typeParameters:
     - type: 8ce1ecb9
       description: <p>type of <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> resource </p>
@@ -714,6 +723,15 @@ references:
   summary: <p>Configuration of an App Service app. </p>
   syntax:
     content: public class SiteConfigInner
+- uid: com.microsoft.azure.management.appservice.implementation._site_configuration_snapshot_info_inner
+  parent: com.microsoft.azure.management.appservice.implementation
+  href: com.microsoft.azure.management.appservice.implementation._site_configuration_snapshot_info_inner.yml
+  name: SiteConfigurationSnapshotInfoInner
+  fullName: com.microsoft.azure.management.appservice.implementation.SiteConfigurationSnapshotInfoInner
+  type: Class
+  summary: <p>A snapshot of a web app configuration. </p>
+  syntax:
+    content: public class SiteConfigurationSnapshotInfoInner
 - uid: com.microsoft.azure.management.appservice.implementation._site_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._site_inner.yml
@@ -750,6 +768,24 @@ references:
   summary: <p>Used for getting PHP error logging flag. </p>
   syntax:
     content: public class SitePhpErrorLogFlagInner
+- uid: com.microsoft.azure.management.appservice.implementation._site_seal_inner
+  parent: com.microsoft.azure.management.appservice.implementation
+  href: com.microsoft.azure.management.appservice.implementation._site_seal_inner.yml
+  name: SiteSealInner
+  fullName: com.microsoft.azure.management.appservice.implementation.SiteSealInner
+  type: Class
+  summary: <p>Site seal. </p>
+  syntax:
+    content: public class SiteSealInner
+- uid: com.microsoft.azure.management.appservice.implementation._site_seal_request_inner
+  parent: com.microsoft.azure.management.appservice.implementation
+  href: com.microsoft.azure.management.appservice.implementation._site_seal_request_inner.yml
+  name: SiteSealRequestInner
+  fullName: com.microsoft.azure.management.appservice.implementation.SiteSealRequestInner
+  type: Class
+  summary: <p>Site seal request. </p>
+  syntax:
+    content: public class SiteSealRequestInner
 - uid: com.microsoft.azure.management.appservice.implementation._site_source_control_inner
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._site_source_control_inner.yml
@@ -947,7 +983,7 @@ references:
   type: Class
   summary: <p>An instance of this class provides access to all the operations defined in <xref href="com.microsoft.azure.management.appservice._web_apps" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
-    content: public class WebAppsInner
+    content: public class WebAppsInner implements InnerSupportsGet<SiteInner>,InnerSupportsDelete<Void>,InnerSupportsListing<SiteInner>
 - uid: com.microsoft.azure.management.appservice.implementation._web_site_management_client_impl
   parent: com.microsoft.azure.management.appservice.implementation
   href: com.microsoft.azure.management.appservice.implementation._web_site_management_client_impl.yml
