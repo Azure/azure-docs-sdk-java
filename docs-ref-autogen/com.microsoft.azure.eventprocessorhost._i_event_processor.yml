@@ -74,7 +74,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 65
+    startLine: 69
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Called when the underlying client experiences an error while receiving. <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
@@ -101,12 +101,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 55
+    startLine: 59
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> instance was set up with an <xref href="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false"></xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: &o3
@@ -117,7 +117,7 @@ items:
       description: <p>Information about the partition. </p>
     - id: messages
       type: 2a13b5a5com.microsoft.azure.eventhubs._event_dataa08ddfce
-      description: <p>The events to be processed. </p>
+      description: <p>The events to be processed. May be empty. </p>
   exceptions:
   - type: 8a99d4b0
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)
@@ -198,6 +198,14 @@ references:
   type: Class
   syntax:
     content: public class EventProcessorHost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
+  name: EventProcessorOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions
+  type: Class
+  syntax:
+    content: public class EventProcessorOptions
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
   href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
@@ -229,7 +237,7 @@ references:
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> instance was set up with an <xref href="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false"></xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: *o3
