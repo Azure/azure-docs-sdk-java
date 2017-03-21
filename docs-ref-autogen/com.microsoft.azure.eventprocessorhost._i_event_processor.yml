@@ -187,7 +187,20 @@ references:
   name: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
   type: Class
-  summary: <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: >-
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>Serializing a received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+
+    <p>Here's how AMQP message sections map to <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+
+    i.   <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> - AMQPMessage.ApplicationProperties section
+
+    ii.  <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has Data section
+
+    iii. <xref href="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+
+    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class EventData
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
