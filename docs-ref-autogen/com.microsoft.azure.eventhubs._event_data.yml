@@ -9,6 +9,8 @@ items:
   - com.microsoft.azure.eventhubs._event_data.getBody()
   - com.microsoft.azure.eventhubs._event_data.getBodyLength()
   - com.microsoft.azure.eventhubs._event_data.getBodyOffset()
+  - com.microsoft.azure.eventhubs._event_data.getBytes()
+  - com.microsoft.azure.eventhubs._event_data.getObject()
   - com.microsoft.azure.eventhubs._event_data.getProperties()
   - com.microsoft.azure.eventhubs._event_data.getSystemProperties()
   - com.microsoft.azure.eventhubs._event_data.setProperties(final Map<String, Object>)
@@ -24,9 +26,22 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 31
+    startLine: 47
   package: com.microsoft.azure.eventhubs
-  summary: <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: >-
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>Serializing a received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+
+    <p>Here's how AMQP message sections map to <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+
+    i.   <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> - AMQPMessage.ApplicationProperties section
+
+    ii.  <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has Data section
+
+    iii. <xref href="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+
+    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: &o1
     content: public class EventData
   inheritance:
@@ -48,7 +63,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 106
+    startLine: 135
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Construct <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> to Send to EventHubs. Typical pattern to create a Sending <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> is: <preformatted>
@@ -87,7 +102,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 136
+    startLine: 165
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Construct <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> to Send to EventHubs. Typical pattern to create a Sending <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> is: <preformatted>
@@ -126,7 +141,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 164
+    startLine: 193
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Construct <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> to Send to EventHubs. Typical pattern to create a Sending <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> is: <preformatted>
@@ -159,14 +174,14 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 181
+    startLine: 227
   package: com.microsoft.azure.eventhubs
-  summary: <p>Get Actual Payload/Data wrapped by <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. This is the underlying array and should be used in conjunction with <xref href="com.microsoft.azure.eventhubs._event_data.getBodyOffset()" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.eventhubs._event_data.getBodyLength()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: &o5
+  summary: "<p>Get Actual Payload/Data wrapped by <xref href=\"com.microsoft.azure.eventhubs._event_data\" data-throw-if-not-resolved=\"false\"></xref>. This is the underlying array and should be used in conjunction with <xref href=\"com.microsoft.azure.eventhubs._event_data.getBodyOffset()\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"com.microsoft.azure.eventhubs._event_data.getBodyLength()\" data-throw-if-not-resolved=\"false\"></xref>. \r\nnull if the body of the AMQP message doesn't have Data section <xrefsect id=\"deprecated_1_deprecated000003\"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href=\"com.microsoft.azure.eventhubs._event_data.getBytes()\" data-throw-if-not-resolved=\"false\"></xref></p></xrefdescription></xrefsect></p>"
+  syntax: &o6
     content: public byte [] getBody()
     return:
       type: ccd9418d
-      description: <p>returns the byte[] of the actual data </p>
+      description: <p>byte[] of the actual data </p>
 - uid: com.microsoft.azure.eventhubs._event_data.getBodyLength()
   id: getBodyLength()
   parent: com.microsoft.azure.eventhubs._event_data
@@ -179,10 +194,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 203
+    startLine: 253
   package: com.microsoft.azure.eventhubs
-  summary: <p>Get the length of the Actual Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: &o4
+  summary: <p>Get the length of the Actual Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. <xrefsect id="deprecated_1_deprecated000005"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref></p></xrefdescription></xrefsect></p>
+  syntax: &o5
     content: public int getBodyLength()
     return:
       type: f75371fa
@@ -204,10 +219,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 192
+    startLine: 240
   package: com.microsoft.azure.eventhubs
-  summary: <p>Get the offset of the current Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: &o3
+  summary: <p>Get the offset of the current Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. <xrefsect id="deprecated_1_deprecated000004"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref></p></xrefdescription></xrefsect></p>
+  syntax: &o4
     content: public int getBodyOffset()
     return:
       type: f75371fa
@@ -217,6 +232,59 @@ items:
     description: 
   - type: com.microsoft.azure.eventhubs._event_data.getBody()
     description: 
+- uid: com.microsoft.azure.eventhubs._event_data.getBytes()
+  id: getBytes()
+  parent: com.microsoft.azure.eventhubs._event_data
+  href: com.microsoft.azure.eventhubs._event_data.yml
+  langs:
+  - java
+  name: getBytes()
+  fullName: byte [] com.microsoft.azure.eventhubs.EventData.getBytes()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
+    startLine: 264
+  package: com.microsoft.azure.eventhubs
+  summary: "<p>Get Actual Payload/Data wrapped by <xref href=\"com.microsoft.azure.eventhubs._event_data\" data-throw-if-not-resolved=\"false\"></xref>. \r\nnull if the body of the message has other inter-operable AMQP messages, whose body does not represent byte[]. In that case use <xref href=\"com.microsoft.azure.eventhubs._event_data.getObject()\" data-throw-if-not-resolved=\"false\"></xref>. </p>"
+  syntax: &o3
+    content: public byte [] getBytes()
+    return:
+      type: ccd9418d
+      description: <p>byte[] of the actual data </p>
+- uid: com.microsoft.azure.eventhubs._event_data.getObject()
+  id: getObject()
+  parent: com.microsoft.azure.eventhubs._event_data
+  href: com.microsoft.azure.eventhubs._event_data.yml
+  langs:
+  - java
+  name: getObject()
+  fullName: Object com.microsoft.azure.eventhubs.EventData.getObject()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
+    startLine: 215
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Use this method only if, the sender could be sending messages using third-party AMQP libraries. </p>
+
+    <p>If all the senders of EventHub use client libraries released and maintained by Microsoft Azure EventHubs, use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> method. </p>
+
+    <p>Get the value of AMQP messages' Body section on the received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>If the AMQP message Body is always guaranteed to have Data section, use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> method. <ref refid="" kindref="compound">Binary</ref> if the Body is Data section </p>
+
+    <p>
+
+      <ref refid="" kindref="compound">List</ref> if the Body is AmqpSequence </p>
+
+    <p>package org.apache.qpid.proton.amqp contains various AMQP types that could be returned. </p>
+  syntax: &o7
+    content: public Object getObject()
+    return:
+      type: "79317049"
+      description: <p>returns the Object which could represent either Data or AmqpValue or AmqpSequence. </p>
 - uid: com.microsoft.azure.eventhubs._event_data.getProperties()
   id: getProperties()
   parent: com.microsoft.azure.eventhubs._event_data
@@ -229,7 +297,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 212
+    startLine: 276
   package: com.microsoft.azure.eventhubs
   summary: <p>Application property bag </p>
   syntax: &o2
@@ -249,7 +317,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 247
+    startLine: 311
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>SystemProperties that are populated by EventHubService. </p>
@@ -276,9 +344,9 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/EventData.java
-    startLine: 228
+    startLine: 292
   package: com.microsoft.azure.eventhubs
-  summary: <p>Set Application Properties <xrefsect id="deprecated_1_deprecated000003"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> and add properties to the bag. </p></xrefdescription></xrefsect></p>
+  summary: <p>Set Application Properties <xrefsect id="deprecated_1_deprecated000006"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> and add properties to the bag. </p></xrefdescription></xrefsect></p>
   syntax:
     content: public void setProperties(final Map<String, Object> applicationProperties)
     parameters:
@@ -298,6 +366,10 @@ references:
   spec.java:
   - name: ByteBuffer
     fullName: ByteBuffer
+- uid: "79317049"
+  spec.java:
+  - name: Object
+    fullName: Object
 - uid: f75371fa
   spec.java:
   - name: int
@@ -335,7 +407,20 @@ references:
   name: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
   type: Class
-  summary: <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: >-
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>Serializing a received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+
+    <p>Here's how AMQP message sections map to <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+
+    i.   <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> - AMQPMessage.ApplicationProperties section
+
+    ii.  <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has Data section
+
+    iii. <xref href="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+
+    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: *o1
 - uid: com.microsoft.azure.eventhubs._event_data.getProperties()
   parent: com.microsoft.azure.eventhubs._event_data
@@ -369,27 +454,56 @@ references:
         <p>
 
           <xref href="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false"></xref> which can be used to create Senders and Receivers to EventHub </p>
+- uid: com.microsoft.azure.eventhubs._event_data.getBytes()
+  parent: com.microsoft.azure.eventhubs._event_data
+  href: com.microsoft.azure.eventhubs._event_data.yml
+  name: getBytes()
+  fullName: byte [] com.microsoft.azure.eventhubs.EventData.getBytes()
+  type: Method
+  summary: "<p>Get Actual Payload/Data wrapped by <xref href=\"com.microsoft.azure.eventhubs._event_data\" data-throw-if-not-resolved=\"false\"></xref>. \r\nnull if the body of the message has other inter-operable AMQP messages, whose body does not represent byte[]. In that case use <xref href=\"com.microsoft.azure.eventhubs._event_data.getObject()\" data-throw-if-not-resolved=\"false\"></xref>. </p>"
+  syntax: *o3
 - uid: com.microsoft.azure.eventhubs._event_data.getBodyOffset()
   parent: com.microsoft.azure.eventhubs._event_data
   href: com.microsoft.azure.eventhubs._event_data.yml
   name: getBodyOffset()
   fullName: int com.microsoft.azure.eventhubs.EventData.getBodyOffset()
   type: Method
-  summary: <p>Get the offset of the current Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: *o3
+  summary: <p>Get the offset of the current Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. <xrefsect id="deprecated_1_deprecated000004"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref></p></xrefdescription></xrefsect></p>
+  syntax: *o4
 - uid: com.microsoft.azure.eventhubs._event_data.getBodyLength()
   parent: com.microsoft.azure.eventhubs._event_data
   href: com.microsoft.azure.eventhubs._event_data.yml
   name: getBodyLength()
   fullName: int com.microsoft.azure.eventhubs.EventData.getBodyLength()
   type: Method
-  summary: <p>Get the length of the Actual Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: *o4
+  summary: <p>Get the length of the Actual Payload/Data in the byte array returned by <xref href="com.microsoft.azure.eventhubs._event_data.getBody()" data-throw-if-not-resolved="false"></xref>. <xrefsect id="deprecated_1_deprecated000005"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref></p></xrefdescription></xrefsect></p>
+  syntax: *o5
 - uid: com.microsoft.azure.eventhubs._event_data.getBody()
   parent: com.microsoft.azure.eventhubs._event_data
   href: com.microsoft.azure.eventhubs._event_data.yml
   name: getBody()
   fullName: byte [] com.microsoft.azure.eventhubs.EventData.getBody()
   type: Method
-  summary: <p>Get Actual Payload/Data wrapped by <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. This is the underlying array and should be used in conjunction with <xref href="com.microsoft.azure.eventhubs._event_data.getBodyOffset()" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.eventhubs._event_data.getBodyLength()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax: *o5
+  summary: "<p>Get Actual Payload/Data wrapped by <xref href=\"com.microsoft.azure.eventhubs._event_data\" data-throw-if-not-resolved=\"false\"></xref>. This is the underlying array and should be used in conjunction with <xref href=\"com.microsoft.azure.eventhubs._event_data.getBodyOffset()\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"com.microsoft.azure.eventhubs._event_data.getBodyLength()\" data-throw-if-not-resolved=\"false\"></xref>. \r\nnull if the body of the AMQP message doesn't have Data section <xrefsect id=\"deprecated_1_deprecated000003\"><xreftitle>Deprecated</xreftitle><xrefdescription><p>use <xref href=\"com.microsoft.azure.eventhubs._event_data.getBytes()\" data-throw-if-not-resolved=\"false\"></xref></p></xrefdescription></xrefsect></p>"
+  syntax: *o6
+- uid: com.microsoft.azure.eventhubs._event_data.getObject()
+  parent: com.microsoft.azure.eventhubs._event_data
+  href: com.microsoft.azure.eventhubs._event_data.yml
+  name: getObject()
+  fullName: Object com.microsoft.azure.eventhubs.EventData.getObject()
+  type: Method
+  summary: >-
+    <p>Use this method only if, the sender could be sending messages using third-party AMQP libraries. </p>
+
+    <p>If all the senders of EventHub use client libraries released and maintained by Microsoft Azure EventHubs, use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> method. </p>
+
+    <p>Get the value of AMQP messages' Body section on the received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+
+    <p>If the AMQP message Body is always guaranteed to have Data section, use <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> method. <ref refid="" kindref="compound">Binary</ref> if the Body is Data section </p>
+
+    <p>
+
+      <ref refid="" kindref="compound">List</ref> if the Body is AmqpSequence </p>
+
+    <p>package org.apache.qpid.proton.amqp contains various AMQP types that could be returned. </p>
+  syntax: *o7
