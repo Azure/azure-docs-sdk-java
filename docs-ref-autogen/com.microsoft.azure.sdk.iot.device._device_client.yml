@@ -9,7 +9,6 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.DEVICE_ID_ATTRIBUTE()
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient()
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,IotHubClientProtocol)
-  - com.microsoft.azure.sdk.iot.device._device_client.deviceTwin()
   - com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE()
   - com.microsoft.azure.sdk.iot.device._device_client.initIotHubClient(String,String,String,String,IotHubClientProtocol)
   - com.microsoft.azure.sdk.iot.device._device_client.logger()
@@ -31,6 +30,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin(IotHubEventCallback,Object,PropertyCallBack,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.state()
   - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
+  - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDeviceMethod(DeviceMethodCallback,Object,IotHubEventCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.taskScheduler()
   - com.microsoft.azure.sdk.iot.device._device_client.transport()
   href: com.microsoft.azure.sdk.iot.device._device_client.yml
@@ -45,7 +45,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 46
+    startLine: 45
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>The public-facing API. Allows a single logical or physical device to connect to an IoT Hub. The IoT Hub client supports sending events to and receiving messages from an IoT Hub. </p>
@@ -95,7 +95,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 86
+    startLine: 85
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClientConfig config
@@ -113,7 +113,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 84
+    startLine: 83
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The charset used for URL-encoding the device ID in the connection string. </p>
   syntax:
@@ -132,7 +132,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 74
+    startLine: 73
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The device ID attribute name in a connection string. </p>
   syntax:
@@ -151,7 +151,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 502
+    startLine: 546
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClient()
@@ -187,24 +187,6 @@ items:
     description: <p>if any of<programlisting><codeline><highlight class="normal">connString<sp></sp></highlight></codeline></programlisting> or <programlisting><codeline><highlight class="normal">protocol<sp></sp></highlight></codeline></programlisting> are<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> ; or if<programlisting><codeline><highlight class="normal">connString<sp></sp></highlight></codeline></programlisting> is missing one of the following attributes:<programlisting><codeline><highlight class="normal">HostName<sp></sp></highlight></codeline></programlisting> ,<programlisting><codeline><highlight class="normal">DeviceId<sp></sp></highlight></codeline></programlisting> , or <programlisting><codeline><highlight class="normal">SharedAccessKey<sp></sp></highlight></codeline></programlisting> . </p>
   - type: "44102508"
     description: <p>if the IoT hub hostname does not conform to RFC 3986. </p>
-- uid: com.microsoft.azure.sdk.iot.device._device_client.deviceTwin()
-  id: deviceTwin()
-  parent: com.microsoft.azure.sdk.iot.device._device_client
-  href: com.microsoft.azure.sdk.iot.device._device_client.yml
-  langs:
-  - java
-  name: deviceTwin
-  fullName: DeviceTwin com.microsoft.azure.sdk.iot.device.DeviceClient.deviceTwin
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 89
-  package: com.microsoft.azure.sdk.iot.device
-  syntax:
-    content: protected DeviceTwin deviceTwin
-    return:
-      type: com.microsoft.azure.sdk.iot.device._device_twin._device_twin
 - uid: com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE()
   id: HOSTNAME_ATTRIBUTE()
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -217,7 +199,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 72
+    startLine: 71
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The hostname attribute name in a connection string. </p>
   syntax:
@@ -236,7 +218,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 433
+    startLine: 477
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Initializes an IoT Hub device client with the given parameters.</p>
@@ -335,7 +317,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 67
+    startLine: 66
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The number of milliseconds the transport will wait between polling for messages. </p>
   syntax:
@@ -354,7 +336,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 69
+    startLine: 68
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_HTTPS= 25*60*1000
@@ -372,7 +354,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 68
+    startLine: 67
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_MQTT= 10l
@@ -390,7 +372,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 62
+    startLine: 61
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The number of milliseconds the transport will wait between sending out messages. </p>
   syntax:
@@ -473,7 +455,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 55
+    startLine: 54
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected static final String SET_CERTIFICATE_PATH= "SetCertificatePath"
@@ -491,7 +473,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 54
+    startLine: 53
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected static final String SET_MINIMUM_POLLING_INTERVAL= "SetMinimumPollingInterval"
@@ -509,7 +491,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 56
+    startLine: 55
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected static final String SET_SAS_TOKEN_EXPIRY_TIME= "SetSASTokenExpiryTime"
@@ -562,7 +544,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 624
+    startLine: 668
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets a runtime option identified by parameter<programlisting><codeline><highlight class="normal">optionName<sp></sp></highlight></codeline></programlisting> to<programlisting><codeline><highlight class="normal">value<sp></sp></highlight></codeline></programlisting> .</p>
@@ -591,7 +573,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 76
+    startLine: 75
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The shared access key attribute name in a connection string. </p>
   syntax:
@@ -610,7 +592,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 78
+    startLine: 77
   package: com.microsoft.azure.sdk.iot.device
   summary: <p>The shared access signature attribute name in a connection string. </p>
   syntax:
@@ -702,6 +684,44 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if called when client is not opened or called before starting twin. </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.subscribeToDeviceMethod(DeviceMethodCallback,Object,IotHubEventCallback,Object)
+  id: subscribeToDeviceMethod(DeviceMethodCallback,Object,IotHubEventCallback,Object)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: subscribeToDeviceMethod(DeviceMethodCallback deviceMethodCallback, Object deviceMethodCallbackContext, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.subscribeToDeviceMethod(DeviceMethodCallback deviceMethodCallback, Object deviceMethodCallbackContext, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 430
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Subscribes to device methods</p>
+
+    <p></p>
+  syntax:
+    content: public void subscribeToDeviceMethod(DeviceMethodCallback deviceMethodCallback, Object deviceMethodCallbackContext, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+    parameters:
+    - id: deviceMethodCallback
+      type: com.microsoft.azure.sdk.iot.device._device_twin._device_method_callback
+      description: <p>Callback on which device methods shall be invoked. Cannot be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> . </p>
+    - id: deviceMethodCallbackContext
+      type: "79317049"
+      description: <p>Context for device method callback. Can be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> . </p>
+    - id: deviceMethodStatusCallback
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_event_callback
+      description: <p>Callback for providing IotHub status for device methods. Cannot be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> . </p>
+    - id: deviceMethodStatusCallbackContext
+      type: "79317049"
+      description: <p>Context for device method status callback. Can be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> .</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>if called when client is not opened. </p>
+  - type: 3c87bd19
+    description: <p>if either callback are null. </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.taskScheduler()
   id: taskScheduler()
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -732,7 +752,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 87
+    startLine: 86
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected IotHubTransport transport
@@ -833,14 +853,6 @@ references:
   summary: <p>An interface for an IoT Hub transport. </p>
   syntax:
     content: public interface IotHubTransport
-- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_twin
-  parent: com.microsoft.azure.sdk.iot.device._device_twin
-  href: com.microsoft.azure.sdk.iot.device._device_twin._device_twin.yml
-  name: DeviceTwin
-  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceTwin
-  type: Class
-  syntax:
-    content: public class DeviceTwin
 - uid: com.microsoft.azure.sdk.iot.device._device_client._iot_hub_client_state
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._device_client._iot_hub_client_state.yml
@@ -858,6 +870,22 @@ references:
   type: Class
   syntax:
     content: public class CustomLogger
+- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_twin
+  parent: com.microsoft.azure.sdk.iot.device._device_twin
+  href: com.microsoft.azure.sdk.iot.device._device_twin._device_twin.yml
+  name: DeviceTwin
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceTwin
+  type: Class
+  syntax:
+    content: public class DeviceTwin
+- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_method
+  parent: com.microsoft.azure.sdk.iot.device._device_twin
+  href: com.microsoft.azure.sdk.iot.device._device_twin._device_method.yml
+  name: DeviceMethod
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethod
+  type: Class
+  syntax:
+    content: public class DeviceMethod
 - uid: com.microsoft.azure.sdk.iot.device._iot_hub_client_protocol
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._iot_hub_client_protocol.yml
@@ -944,3 +972,11 @@ references:
     typeParameters:
     - type: 5f35c83f
     - type: be713184
+- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_method_callback
+  parent: com.microsoft.azure.sdk.iot.device._device_twin
+  href: com.microsoft.azure.sdk.iot.device._device_twin._device_method_callback.yml
+  name: DeviceMethodCallback
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethodCallback
+  type: Interface
+  syntax:
+    content: public interface DeviceMethodCallback
