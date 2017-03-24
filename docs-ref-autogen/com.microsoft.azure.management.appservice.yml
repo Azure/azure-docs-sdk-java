@@ -223,6 +223,7 @@ items:
   - com.microsoft.azure.management.appservice._scm_type
   - com.microsoft.azure.management.appservice._site_availability_state
   - com.microsoft.azure.management.appservice._site_cloneability_criterion
+  - com.microsoft.azure.management.appservice._site_config
   - com.microsoft.azure.management.appservice._site_limits
   - com.microsoft.azure.management.appservice._site_load_balancing
   - com.microsoft.azure.management.appservice._site_machine_key
@@ -306,6 +307,7 @@ items:
   - com.microsoft.azure.management.appservice._web_apps
   - com.microsoft.azure.management.appservice._web_apps_tests
   - com.microsoft.azure.management.appservice._web_container
+  - com.microsoft.azure.management.appservice._worker_pool
   - com.microsoft.azure.management.appservice._worker_size_options
   href: com.microsoft.azure.management.appservice.yml
   langs:
@@ -388,7 +390,7 @@ references:
   type: Interface
   summary: <p>An immutable client-side representation of an <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref> App Service Certificate. </p>
   syntax:
-    content: public interface AppServiceCertificateKeyVaultBinding extends IndependentChildResource<AppServiceManager, AppServiceCertificateInner>
+    content: public interface AppServiceCertificateKeyVaultBinding extends IndependentChildResource<AppServiceManager, AppServiceCertificateResourceInner>
 - uid: com.microsoft.azure.management.appservice._app_service_certificate_order
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_certificate_order.yml
@@ -1379,6 +1381,15 @@ references:
   summary: <p>An app cloneability criterion. </p>
   syntax:
     content: public class SiteCloneabilityCriterion
+- uid: com.microsoft.azure.management.appservice._site_config
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._site_config.yml
+  name: SiteConfig
+  fullName: com.microsoft.azure.management.appservice.SiteConfig
+  type: Class
+  summary: <p>Configuration of an App Service app. </p>
+  syntax:
+    content: public class SiteConfig
 - uid: com.microsoft.azure.management.appservice._site_limits
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._site_limits.yml
@@ -1628,6 +1639,15 @@ references:
   summary: <p>Defines values for Java web container. </p>
   syntax:
     content: public class WebContainer
+- uid: com.microsoft.azure.management.appservice._worker_pool
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._worker_pool.yml
+  name: WorkerPool
+  fullName: com.microsoft.azure.management.appservice.WorkerPool
+  type: Class
+  summary: <p>Worker pool of an App Service Environment. </p>
+  syntax:
+    content: public class WorkerPool
 - uid: com.microsoft.azure.management.appservice._worker_size_options
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._worker_size_options.yml
@@ -1793,18 +1813,6 @@ references:
   summary: <p>Container interface for all the definitions that need to be implemented. </p>
   syntax:
     content: public interface Definition extends WebApp.DefinitionStages.Blank,WebApp.DefinitionStages.WithRegion,WebApp.DefinitionStages.WithAppServicePlan,WebApp.DefinitionStages.WithNewAppServicePlan
-- uid: com.microsoft.azure.management.appservice._web_app_base._definition
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_base._definition.yml
-  name: WebAppBase.Definition<FluentT>
-  fullName: com.microsoft.azure.management.appservice.WebAppBase.Definition<FluentT>
-  type: Interface
-  summary: <p>Container interface for all the definitions that need to be implemented. </p>
-  syntax:
-    content: public interface Definition<FluentT> extends WebAppBase.DefinitionStages.WithHostNameSslBinding<FluentT>,WebAppBase.DefinitionStages.WithWebContainer<FluentT>
-    typeParameters:
-    - type: dee0e3c3
-      description: <p>the fluent interface of the web app or deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._domain_contact._definition
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._domain_contact._definition.yml
@@ -1817,6 +1825,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.appservice._web_app_base._definition
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app_base._definition.yml
+  name: WebAppBase.Definition<FluentT>
+  fullName: com.microsoft.azure.management.appservice.WebAppBase.Definition<FluentT>
+  type: Interface
+  summary: <p>Container interface for all the definitions that need to be implemented. </p>
+  syntax:
+    content: public interface Definition<FluentT> extends WebAppBase.DefinitionStages.WithHostNameSslBinding<FluentT>,WebAppBase.DefinitionStages.WithWebContainer<FluentT>
+    typeParameters:
+    - type: dee0e3c3
+      description: <p>the fluent interface of the web app or deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._web_app_source_control._definition
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_source_control._definition.yml
@@ -2027,6 +2047,15 @@ references:
   summary: <p>The template for a domain update operation, containing all the settings that can be modified. </p>
   syntax:
     content: public interface Update extends Appliable<AppServiceDomain>,AppServiceDomain.UpdateStages.WithAdminContact,AppServiceDomain.UpdateStages.WithBillingContact,AppServiceDomain.UpdateStages.WithTechContact,AppServiceDomain.UpdateStages.WithAutoRenew,AppServiceDomain.UpdateStages.WithDomainPrivacy
+- uid: com.microsoft.azure.management.appservice._deployment_slot._update
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._deployment_slot._update.yml
+  name: DeploymentSlot.Update
+  fullName: com.microsoft.azure.management.appservice.DeploymentSlot.Update
+  type: Interface
+  summary: <p>The template for a deployment slot update operation, containing all the settings that can be modified. </p>
+  syntax:
+    content: public interface Update extends WebAppBase.Update<DeploymentSlot>
 - uid: com.microsoft.azure.management.appservice._web_app._update
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app._update.yml
@@ -2048,24 +2077,6 @@ references:
     typeParameters:
     - type: dee0e3c3
       description: <p>the fluent interface of the web app or deployment slot </p>
-- uid: com.microsoft.azure.management.appservice._deployment_slot._update
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._deployment_slot._update.yml
-  name: DeploymentSlot.Update
-  fullName: com.microsoft.azure.management.appservice.DeploymentSlot.Update
-  type: Interface
-  summary: <p>The template for a deployment slot update operation, containing all the settings that can be modified. </p>
-  syntax:
-    content: public interface Update extends WebAppBase.Update<DeploymentSlot>
-- uid: com.microsoft.azure.management.appservice._app_service_certificate_order._update
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_certificate_order._update.yml
-  name: AppServiceCertificateOrder.Update
-  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.Update
-  type: Interface
-  summary: <p>The template for an app service certificate order update operation, containing all the settings that can be modified. </p>
-  syntax:
-    content: public interface Update extends Appliable<AppServiceCertificateOrder>,AppServiceCertificateOrder.UpdateStages.WithAutoRenew
 - uid: com.microsoft.azure.management.appservice._app_service_plan._update
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_plan._update.yml
@@ -2075,6 +2086,15 @@ references:
   summary: <p>The template for a site update operation, containing all the settings that can be modified. </p>
   syntax:
     content: public interface Update extends Appliable<AppServicePlan>,AppServicePlan.UpdateStages.WithCapacity,AppServicePlan.UpdateStages.WithPerSiteScaling,AppServicePlan.UpdateStages.WithPricingTier
+- uid: com.microsoft.azure.management.appservice._app_service_certificate_order._update
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_certificate_order._update.yml
+  name: AppServiceCertificateOrder.Update
+  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.Update
+  type: Interface
+  summary: <p>The template for an app service certificate order update operation, containing all the settings that can be modified. </p>
+  syntax:
+    content: public interface Update extends Appliable<AppServiceCertificateOrder>,AppServiceCertificateOrder.UpdateStages.WithAutoRenew
 - uid: com.microsoft.azure.management.appservice._web_app_source_control._update_definition
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_source_control._update_definition.yml
@@ -2111,13 +2131,13 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._update_definition_stages
+- uid: com.microsoft.azure.management.appservice._web_app_source_control._update_definition_stages
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._update_definition_stages.yml
-  name: HostNameSslBinding.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.UpdateDefinitionStages
+  href: com.microsoft.azure.management.appservice._web_app_source_control._update_definition_stages.yml
+  name: WebAppSourceControl.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.appservice.WebAppSourceControl.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of hostname SSL binding definition stages applicable as part of a web app update. </p>
+  summary: <p>Grouping of web app source control definition stages applicable as part of a web app update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
 - uid: com.microsoft.azure.management.appservice._host_name_binding._update_definition_stages
@@ -2129,24 +2149,15 @@ references:
   summary: <p>Grouping of host name binding definition stages applicable as part of a web app creation. </p>
   syntax:
     content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.appservice._web_app_source_control._update_definition_stages
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._update_definition_stages
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_source_control._update_definition_stages.yml
-  name: WebAppSourceControl.UpdateDefinitionStages
-  fullName: com.microsoft.azure.management.appservice.WebAppSourceControl.UpdateDefinitionStages
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._update_definition_stages.yml
+  name: HostNameSslBinding.UpdateDefinitionStages
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.UpdateDefinitionStages
   type: Interface
-  summary: <p>Grouping of web app source control definition stages applicable as part of a web app update. </p>
+  summary: <p>Grouping of hostname SSL binding definition stages applicable as part of a web app update. </p>
   syntax:
     content: public interface UpdateDefinitionStages
-- uid: com.microsoft.azure.management.appservice._web_app._update_stages
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app._update_stages.yml
-  name: WebApp.UpdateStages
-  fullName: com.microsoft.azure.management.appservice.WebApp.UpdateStages
-  type: Interface
-  summary: <p>Grouping of all the web app update stages. </p>
-  syntax:
-    content: public interface UpdateStages
 - uid: com.microsoft.azure.management.appservice._web_app_base._update_stages
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base._update_stages.yml
@@ -2163,6 +2174,15 @@ references:
   fullName: com.microsoft.azure.management.appservice.AppServicePlan.UpdateStages
   type: Interface
   summary: <p>Grouping of all the site update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.appservice._web_app._update_stages
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app._update_stages.yml
+  name: WebApp.UpdateStages
+  fullName: com.microsoft.azure.management.appservice.WebApp.UpdateStages
+  type: Interface
+  summary: <p>Grouping of all the web app update stages. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.appservice._app_service_certificate_order._update_stages
@@ -2267,6 +2287,21 @@ references:
     typeParameters:
     - type: dee0e3c3
       description: <p>the type of the resource, either a web app or a deployment slot </p>
+- uid: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_attach
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_attach.yml
+  name: DomainContact.DefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.appservice.DomainContact.DefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the domain contact definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the domain contact definition can be attached to the parent domain definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,DomainContact.DefinitionStages.WithOrganization<ParentT>,DomainContact.DefinitionStages.WithJobTitle<ParentT>,DomainContact.DefinitionStages.WithFaxNumber<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._web_app_source_control._up5ae9c1309f57e46ef90dba05b3e6cadb
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_source_control._up5ae9c1309f57e46ef90dba05b3e6cadb.yml
@@ -2282,36 +2317,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._host_name_binding._definition_stages._with_attach
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_binding._definition_stages._with_attach.yml
-  name: HostNameBinding.DefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameBinding.DefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the hostname binding definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the hostname binding definition can be attached to the parent web app definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._definition_stages._with_attach
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._definition_stages._with_attach.yml
-  name: HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the hostname SSL binding definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the hostname SSL binding definition can be attached to the parent web app definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._host_name_binding._update_9812d5fee3aee0f7518876ade7ee6835
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._host_name_binding._update_9812d5fee3aee0f7518876ade7ee6835.yml
@@ -2327,6 +2332,36 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._definition_stages._with_attach
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._definition_stages._with_attach.yml
+  name: HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the hostname SSL binding definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the hostname SSL binding definition can be attached to the parent web app definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.appservice._host_name_binding._definition_stages._with_attach
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._host_name_binding._definition_stages._with_attach.yml
+  name: HostNameBinding.DefinitionStages.WithAttach<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameBinding.DefinitionStages.WithAttach<ParentT>
+  type: Interface
+  summary: >-
+    <p>The final stage of the hostname binding definition. </p>
+
+    <p>At this stage, any remaining optional settings can be specified, or the hostname binding definition can be attached to the parent web app definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._web_app_source_control._definition_stages._with_attach
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_source_control._definition_stages._with_attach.yml
@@ -2357,39 +2392,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_attach
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_attach.yml
-  name: DomainContact.DefinitionStages.WithAttach<ParentT>
-  fullName: com.microsoft.azure.management.appservice.DomainContact.DefinitionStages.WithAttach<ParentT>
-  type: Interface
-  summary: >-
-    <p>The final stage of the domain contact definition. </p>
-
-    <p>At this stage, any remaining optional settings can be specified, or the domain contact definition can be attached to the parent domain definition using <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public interface WithAttach<ParentT> extends Attachable<ParentT>.InDefinition,DomainContact.DefinitionStages.WithOrganization<ParentT>,DomainContact.DefinitionStages.WithJobTitle<ParentT>,DomainContact.DefinitionStages.WithFaxNumber<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_certificate_orderff9e93f7eae4c9674fbfb0b6197b5ed1
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_certificate_orderff9e93f7eae4c9674fbfb0b6197b5ed1.yml
-  name: AppServiceCertificateOrder.UpdateStages.WithAutoRenew
-  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.UpdateStages.WithAutoRenew
-  type: Interface
-  summary: <p>An app service certificate order definition allowing auto-renew settings to be set. </p>
-  syntax:
-    content: public interface WithAutoRenew
-- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_auto_renew
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_auto_renew.yml
-  name: AppServiceDomain.UpdateStages.WithAutoRenew
-  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithAutoRenew
-  type: Interface
-  summary: <p>A domain definition allowing auto-renew setting to be set. </p>
-  syntax:
-    content: public interface WithAutoRenew
 - uid: com.microsoft.azure.management.appservice._app_service_domain._definition_stages._with_auto_renew
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_domain._definition_stages._with_auto_renew.yml
@@ -2406,6 +2408,24 @@ references:
   fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithAutoRenew
   type: Interface
   summary: <p>An app service certificate order definition allowing auto-renew settings to be set. </p>
+  syntax:
+    content: public interface WithAutoRenew
+- uid: com.microsoft.azure.management.appservice._app_service_certificate_orderff9e93f7eae4c9674fbfb0b6197b5ed1
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_certificate_orderff9e93f7eae4c9674fbfb0b6197b5ed1.yml
+  name: AppServiceCertificateOrder.UpdateStages.WithAutoRenew
+  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.UpdateStages.WithAutoRenew
+  type: Interface
+  summary: <p>An app service certificate order definition allowing auto-renew settings to be set. </p>
+  syntax:
+    content: public interface WithAutoRenew
+- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_auto_renew
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_auto_renew.yml
+  name: AppServiceDomain.UpdateStages.WithAutoRenew
+  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithAutoRenew
+  type: Interface
+  summary: <p>A domain definition allowing auto-renew setting to be set. </p>
   syntax:
     content: public interface WithAutoRenew
 - uid: com.microsoft.azure.management.appservice._app_service_domain._definid1b46ec0912f252655ed28fa81d3355e
@@ -2468,18 +2488,6 @@ references:
   summary: <p>An app service plan definition allowing instance capacity to be set. </p>
   syntax:
     content: public interface WithCapacity
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._defa76534e940f611d0bcb27df915f01a29
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._defa76534e940f611d0bcb27df915f01a29.yml
-  name: HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
-  type: Interface
-  summary: <p>The stage of a hostname SSL binding definition allowing certificate information to be specified. </p>
-  syntax:
-    content: public interface WithCertificate<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._app_service_certificate._d91c28a6e91e63e8b0ceffdb66fc4bdd1
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_certificate._d91c28a6e91e63e8b0ceffdb66fc4bdd1.yml
@@ -2501,6 +2509,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._defa76534e940f611d0bcb27df915f01a29
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._defa76534e940f611d0bcb27df915f01a29.yml
+  name: HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithCertificate<ParentT>
+  type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing certificate information to be specified. </p>
+  syntax:
+    content: public interface WithCertificate<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._app_service_certificate_order31c2807ce37a992e52a60322cba15f1a
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_certificate_order31c2807ce37a992e52a60322cba15f1a.yml
@@ -2579,18 +2599,6 @@ references:
   summary: <p>A deployment slot definition allowing the configuration to clone from to be specified. </p>
   syntax:
     content: public interface WithConfiguration
-- uid: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_connection_string
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_connection_string.yml
-  name: WebAppBase.UpdateStages.WithConnectionString<FluentT>
-  fullName: com.microsoft.azure.management.appservice.WebAppBase.UpdateStages.WithConnectionString<FluentT>
-  type: Interface
-  summary: <p>A web app update stage allowing connection strings to be set. </p>
-  syntax:
-    content: public interface WithConnectionString<FluentT>
-    typeParameters:
-    - type: dee0e3c3
-      description: <p>the type of the resource, either a web app or a deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._web_app_base._definition_sea63cf931f9608d9ff58201c24d51b20
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base._definition_sea63cf931f9608d9ff58201c24d51b20.yml
@@ -2598,6 +2606,18 @@ references:
   fullName: com.microsoft.azure.management.appservice.WebAppBase.DefinitionStages.WithConnectionString<FluentT>
   type: Interface
   summary: <p>A web app definition stage allowing connection strings to be set. </p>
+  syntax:
+    content: public interface WithConnectionString<FluentT>
+    typeParameters:
+    - type: dee0e3c3
+      description: <p>the type of the resource, either a web app or a deployment slot </p>
+- uid: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_connection_string
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_connection_string.yml
+  name: WebAppBase.UpdateStages.WithConnectionString<FluentT>
+  fullName: com.microsoft.azure.management.appservice.WebAppBase.UpdateStages.WithConnectionString<FluentT>
+  type: Interface
+  summary: <p>A web app update stage allowing connection strings to be set. </p>
   syntax:
     content: public interface WithConnectionString<FluentT>
     typeParameters:
@@ -2615,27 +2635,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_certificate_order58063743bbdf7b94bf4879c40d90c213
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_certificate_order58063743bbdf7b94bf4879c40d90c213.yml
-  name: AppServiceCertificateOrder.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>An app service certificate order definition with sufficient inputs to create a new app service certificate order in the cloud, but exposing additional optional inputs to specify. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<AppServiceCertificateOrder>,AppServiceCertificateOrder.DefinitionStages.WithValidYears,AppServiceCertificateOrder.DefinitionStages.WithAutoRenew,Resource.DefinitionWithTags<WithCreate>
-- uid: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_create
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_create.yml
-  name: WebAppBase.DefinitionStages.WithCreate<FluentT>
-  fullName: com.microsoft.azure.management.appservice.WebAppBase.DefinitionStages.WithCreate<FluentT>
-  type: Interface
-  summary: <p>A site definition with sufficient inputs to create a new web app / deployments slot in the cloud, but exposing additional optional inputs to specify. </p>
-  syntax:
-    content: public interface WithCreate<FluentT> extends Creatable<FluentT>,Resource.DefinitionWithTags<WithCreate<FluentT>>,WebAppBase.DefinitionStages.WithSiteEnabled<FluentT>,WebAppBase.DefinitionStages.WithScmSiteAlsoStopped<FluentT>,WebAppBase.DefinitionStages.WithClientAffinityEnabled<FluentT>,WebAppBase.DefinitionStages.WithClientCertEnabled<FluentT>,WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>,WebAppBase.DefinitionStages.WithAppSettings<FluentT>,WebAppBase.DefinitionStages.WithConnectionString<FluentT>,WebAppBase.DefinitionStages.WithSourceControl<FluentT>
-    typeParameters:
-    - type: dee0e3c3
-      description: <p>the type of the resource, either a web app or a deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._app_service_plan._definition_stages._with_create
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_plan._definition_stages._with_create.yml
@@ -2654,6 +2653,27 @@ references:
   summary: <p>An app service certificate definition with sufficient inputs to create a new app service certificate in the cloud, but exposing additional optional inputs to specify. </p>
   syntax:
     content: public interface WithCreate extends Creatable<AppServiceCertificate>
+- uid: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_create
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_create.yml
+  name: WebAppBase.DefinitionStages.WithCreate<FluentT>
+  fullName: com.microsoft.azure.management.appservice.WebAppBase.DefinitionStages.WithCreate<FluentT>
+  type: Interface
+  summary: <p>A site definition with sufficient inputs to create a new web app / deployments slot in the cloud, but exposing additional optional inputs to specify. </p>
+  syntax:
+    content: public interface WithCreate<FluentT> extends Creatable<FluentT>,Resource.DefinitionWithTags<WithCreate<FluentT>>,WebAppBase.DefinitionStages.WithSiteEnabled<FluentT>,WebAppBase.DefinitionStages.WithScmSiteAlsoStopped<FluentT>,WebAppBase.DefinitionStages.WithClientAffinityEnabled<FluentT>,WebAppBase.DefinitionStages.WithClientCertEnabled<FluentT>,WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>,WebAppBase.DefinitionStages.WithAppSettings<FluentT>,WebAppBase.DefinitionStages.WithConnectionString<FluentT>,WebAppBase.DefinitionStages.WithSourceControl<FluentT>
+    typeParameters:
+    - type: dee0e3c3
+      description: <p>the type of the resource, either a web app or a deployment slot </p>
+- uid: com.microsoft.azure.management.appservice._app_service_certificate_order58063743bbdf7b94bf4879c40d90c213
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_certificate_order58063743bbdf7b94bf4879c40d90c213.yml
+  name: AppServiceCertificateOrder.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>An app service certificate order definition with sufficient inputs to create a new app service certificate order in the cloud, but exposing additional optional inputs to specify. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<AppServiceCertificateOrder>,AppServiceCertificateOrder.DefinitionStages.WithValidYears,AppServiceCertificateOrder.DefinitionStages.WithAutoRenew,Resource.DefinitionWithTags<WithCreate>
 - uid: com.microsoft.azure.management.appservice._app_service_domain._definition_stages._with_create
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_domain._definition_stages._with_create.yml
@@ -2687,20 +2707,20 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_domain_privacy
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_domain_privacy.yml
-  name: AppServiceDomain.UpdateStages.WithDomainPrivacy
-  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithDomainPrivacy
-  type: Interface
-  summary: <p>A domain definition allowing domain privacy to be set. </p>
-  syntax:
-    content: public interface WithDomainPrivacy
 - uid: com.microsoft.azure.management.appservice._app_service_domain._defini981ef57a2203ec4984cf6cda1f448ef3
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_domain._defini981ef57a2203ec4984cf6cda1f448ef3.yml
   name: AppServiceDomain.DefinitionStages.WithDomainPrivacy
   fullName: com.microsoft.azure.management.appservice.AppServiceDomain.DefinitionStages.WithDomainPrivacy
+  type: Interface
+  summary: <p>A domain definition allowing domain privacy to be set. </p>
+  syntax:
+    content: public interface WithDomainPrivacy
+- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_domain_privacy
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_domain_privacy.yml
+  name: AppServiceDomain.UpdateStages.WithDomainPrivacy
+  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithDomainPrivacy
   type: Interface
   summary: <p>A domain definition allowing domain privacy to be set. </p>
   syntax:
@@ -2825,18 +2845,15 @@ references:
   summary: <p>An app service plan definition allowing resource group to be set. </p>
   syntax:
     content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithPricingTier>
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def364034ea76e8adaa15cd5943c7a98865
+- uid: com.microsoft.azure.management.appservice._app_service_certificate_orderd40bea381fe771cab5799816564a916b
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def364034ea76e8adaa15cd5943c7a98865.yml
-  name: HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
+  href: com.microsoft.azure.management.appservice._app_service_certificate_orderd40bea381fe771cab5799816564a916b.yml
+  name: AppServiceCertificateOrder.DefinitionStages.WithHostName
+  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithHostName
   type: Interface
-  summary: <p>The stage of a hostname SSL binding definition allowing hostname to be specified. </p>
+  summary: <p>An app service certificate order definition allowing hostname to be set. </p>
   syntax:
-    content: public interface WithHostname<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+    content: public interface WithHostName
 - uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._upd33cd9cf64c781c15982e857bdb824e2c
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._host_name_ssl_binding._upd33cd9cf64c781c15982e857bdb824e2c.yml
@@ -2849,15 +2866,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_certificate_orderd40bea381fe771cab5799816564a916b
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def364034ea76e8adaa15cd5943c7a98865
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_certificate_orderd40bea381fe771cab5799816564a916b.yml
-  name: AppServiceCertificateOrder.DefinitionStages.WithHostName
-  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithHostName
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def364034ea76e8adaa15cd5943c7a98865.yml
+  name: HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithHostname<ParentT>
   type: Interface
-  summary: <p>An app service certificate order definition allowing hostname to be set. </p>
+  summary: <p>The stage of a hostname SSL binding definition allowing hostname to be specified. </p>
   syntax:
-    content: public interface WithHostName
+    content: public interface WithHostname<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._web_app_base._definition_s3544ecd7cced415c3e1a923e275b6009
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base._definition_s3544ecd7cced415c3e1a923e275b6009.yml
@@ -2906,18 +2926,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._web_app_base._update_stagec07a0527cf3c8f697416ed244d7c0fd4
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_base._update_stagec07a0527cf3c8f697416ed244d7c0fd4.yml
-  name: WebAppBase.UpdateStages.WithHostNameSslBinding<FluentT>
-  fullName: com.microsoft.azure.management.appservice.WebAppBase.UpdateStages.WithHostNameSslBinding<FluentT>
-  type: Interface
-  summary: <p>The stage of the web app update allowing SSL binding to be set. </p>
-  syntax:
-    content: public interface WithHostNameSslBinding<FluentT>
-    typeParameters:
-    - type: dee0e3c3
-      description: <p>the type of the resource, either a web app or a deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._web_app_base._definition_s53784287154fbf07f955eccf2eee2f24
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base._definition_s53784287154fbf07f955eccf2eee2f24.yml
@@ -2927,6 +2935,18 @@ references:
   summary: <p>A web app definition stage allowing SSL binding to be set. </p>
   syntax:
     content: public interface WithHostNameSslBinding<FluentT> extends WebAppBase.DefinitionStages.WithHostNameBinding<FluentT>
+    typeParameters:
+    - type: dee0e3c3
+      description: <p>the type of the resource, either a web app or a deployment slot </p>
+- uid: com.microsoft.azure.management.appservice._web_app_base._update_stagec07a0527cf3c8f697416ed244d7c0fd4
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app_base._update_stagec07a0527cf3c8f697416ed244d7c0fd4.yml
+  name: WebAppBase.UpdateStages.WithHostNameSslBinding<FluentT>
+  fullName: com.microsoft.azure.management.appservice.WebAppBase.UpdateStages.WithHostNameSslBinding<FluentT>
+  type: Interface
+  summary: <p>The stage of the web app update allowing SSL binding to be set. </p>
+  syntax:
+    content: public interface WithHostNameSslBinding<FluentT>
     typeParameters:
     - type: dee0e3c3
       description: <p>the type of the resource, either a web app or a deployment slot </p>
@@ -2942,18 +2962,15 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def997cfa71fd2195fa7fc4a744e98a08d9
+- uid: com.microsoft.azure.management.appservice._app_service_certificate_order8d76259cbd08f1b3fea76656d21c6a66
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def997cfa71fd2195fa7fc4a744e98a08d9.yml
-  name: HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
+  href: com.microsoft.azure.management.appservice._app_service_certificate_order8d76259cbd08f1b3fea76656d21c6a66.yml
+  name: AppServiceCertificateOrder.DefinitionStages.WithKeyVault
+  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithKeyVault
   type: Interface
-  summary: <p>The stage of a hostname SSL binding definition allowing key vault for certificate store to be specified. </p>
+  summary: <p>An app service certificate order definition allowing more domain verification methods to be set. </p>
   syntax:
-    content: public interface WithKeyVault<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
+    content: public interface WithKeyVault
 - uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._upd6ef6823eee77dba9af783b01fc8032d6
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._host_name_ssl_binding._upd6ef6823eee77dba9af783b01fc8032d6.yml
@@ -2966,15 +2983,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_certificate_order8d76259cbd08f1b3fea76656d21c6a66
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def997cfa71fd2195fa7fc4a744e98a08d9
   parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_certificate_order8d76259cbd08f1b3fea76656d21c6a66.yml
-  name: AppServiceCertificateOrder.DefinitionStages.WithKeyVault
-  fullName: com.microsoft.azure.management.appservice.AppServiceCertificateOrder.DefinitionStages.WithKeyVault
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def997cfa71fd2195fa7fc4a744e98a08d9.yml
+  name: HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithKeyVault<ParentT>
   type: Interface
-  summary: <p>An app service certificate order definition allowing more domain verification methods to be set. </p>
+  summary: <p>The stage of a hostname SSL binding definition allowing key vault for certificate store to be specified. </p>
   syntax:
-    content: public interface WithKeyVault
+    content: public interface WithKeyVault<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_last_name
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_last_name.yml
@@ -2999,15 +3019,6 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._web_app._update_stages._with_new_app_service_plan
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app._update_stages._with_new_app_service_plan.yml
-  name: WebApp.UpdateStages.WithNewAppServicePlan
-  fullName: com.microsoft.azure.management.appservice.WebApp.UpdateStages.WithNewAppServicePlan
-  type: Interface
-  summary: <p>As web app update allowing more information of a new app service plan to be set. </p>
-  syntax:
-    content: public interface WithNewAppServicePlan
 - uid: com.microsoft.azure.management.appservice._web_app._definition_stages._with_new_app_service_plan
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app._definition_stages._with_new_app_service_plan.yml
@@ -3015,6 +3026,15 @@ references:
   fullName: com.microsoft.azure.management.appservice.WebApp.DefinitionStages.WithNewAppServicePlan
   type: Interface
   summary: <p>As web app definition allowing more information of a new app service plan to be set. </p>
+  syntax:
+    content: public interface WithNewAppServicePlan
+- uid: com.microsoft.azure.management.appservice._web_app._update_stages._with_new_app_service_plan
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app._update_stages._with_new_app_service_plan.yml
+  name: WebApp.UpdateStages.WithNewAppServicePlan
+  fullName: com.microsoft.azure.management.appservice.WebApp.UpdateStages.WithNewAppServicePlan
+  type: Interface
+  summary: <p>As web app update allowing more information of a new app service plan to be set. </p>
   syntax:
     content: public interface WithNewAppServicePlan
 - uid: com.microsoft.azure.management.appservice._domain_contact._definition_stages._with_organization
@@ -3176,18 +3196,6 @@ references:
     typeParameters:
     - type: dee0e3c3
       description: <p>the type of the resource, either a web app or a deployment slot </p>
-- uid: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_site_configs
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_site_configs.yml
-  name: WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>
-  fullName: com.microsoft.azure.management.appservice.WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>
-  type: Interface
-  summary: <p>A web app definition stage allowing other configurations to be set. These configurations can be cloned when creating or swapping with a deployment slot. </p>
-  syntax:
-    content: public interface WithSiteConfigs<FluentT>
-    typeParameters:
-    - type: dee0e3c3
-      description: <p>the type of the resource, either a web app or a deployment slot </p>
 - uid: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_site_configs
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._web_app_base._update_stages._with_site_configs.yml
@@ -3195,6 +3203,18 @@ references:
   fullName: com.microsoft.azure.management.appservice.WebAppBase.UpdateStages.WithSiteConfigs<FluentT>
   type: Interface
   summary: <p>The stage of the web app update allowing other configurations to be set. These configurations can be cloned when creating or swapping with a deployment slot. </p>
+  syntax:
+    content: public interface WithSiteConfigs<FluentT>
+    typeParameters:
+    - type: dee0e3c3
+      description: <p>the type of the resource, either a web app or a deployment slot </p>
+- uid: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_site_configs
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._web_app_base._definition_stages._with_site_configs.yml
+  name: WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>
+  fullName: com.microsoft.azure.management.appservice.WebAppBase.DefinitionStages.WithSiteConfigs<FluentT>
+  type: Interface
+  summary: <p>A web app definition stage allowing other configurations to be set. These configurations can be cloned when creating or swapping with a deployment slot. </p>
   syntax:
     content: public interface WithSiteConfigs<FluentT>
     typeParameters:
@@ -3248,18 +3268,6 @@ references:
     typeParameters:
     - type: dee0e3c3
       description: <p>the type of the resource, either a web app or a deployment slot </p>
-- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def229254f7c96ba50b6f1b992b820297d9
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def229254f7c96ba50b6f1b992b820297d9.yml
-  name: HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
-  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
-  type: Interface
-  summary: <p>The stage of a hostname SSL binding definition allowing SSL type to be specified. </p>
-  syntax:
-    content: public interface WithSslType<ParentT>
-    typeParameters:
-    - type: 18a275b1
-      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._upda3031bfeb2de8f616bc80e494bfaa8ce
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._host_name_ssl_binding._upda3031bfeb2de8f616bc80e494bfaa8ce.yml
@@ -3272,6 +3280,18 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
+- uid: com.microsoft.azure.management.appservice._host_name_ssl_binding._def229254f7c96ba50b6f1b992b820297d9
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._host_name_ssl_binding._def229254f7c96ba50b6f1b992b820297d9.yml
+  name: HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
+  fullName: com.microsoft.azure.management.appservice.HostNameSslBinding.DefinitionStages.WithSslType<ParentT>
+  type: Interface
+  summary: <p>The stage of a hostname SSL binding definition allowing SSL type to be specified. </p>
+  syntax:
+    content: public interface WithSslType<ParentT>
+    typeParameters:
+    - type: 18a275b1
+      description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.management.appservice._domain_contact._definition8e3d72e9821676ab0903930626f121f8
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._domain_contact._definition8e3d72e9821676ab0903930626f121f8.yml
@@ -3308,20 +3328,20 @@ references:
     typeParameters:
     - type: 18a275b1
       description: <p>the return type of the final <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_update.attach()" data-throw-if-not-resolved="false"></xref></p>
-- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_tech_contact
-  parent: com.microsoft.azure.management.appservice
-  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_tech_contact.yml
-  name: AppServiceDomain.UpdateStages.WithTechContact
-  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithTechContact
-  type: Interface
-  summary: <p>A domain definition allowing tech contact to be set. </p>
-  syntax:
-    content: public interface WithTechContact
 - uid: com.microsoft.azure.management.appservice._app_service_domain._defini98dd03d78089edf24a86a3b9c8edc094
   parent: com.microsoft.azure.management.appservice
   href: com.microsoft.azure.management.appservice._app_service_domain._defini98dd03d78089edf24a86a3b9c8edc094.yml
   name: AppServiceDomain.DefinitionStages.WithTechContact
   fullName: com.microsoft.azure.management.appservice.AppServiceDomain.DefinitionStages.WithTechContact
+  type: Interface
+  summary: <p>A domain definition allowing tech contact to be set. </p>
+  syntax:
+    content: public interface WithTechContact
+- uid: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_tech_contact
+  parent: com.microsoft.azure.management.appservice
+  href: com.microsoft.azure.management.appservice._app_service_domain._update_stages._with_tech_contact.yml
+  name: AppServiceDomain.UpdateStages.WithTechContact
+  fullName: com.microsoft.azure.management.appservice.AppServiceDomain.UpdateStages.WithTechContact
   type: Interface
   summary: <p>A domain definition allowing tech contact to be set. </p>
   syntax:
