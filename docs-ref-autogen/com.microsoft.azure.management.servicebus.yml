@@ -215,7 +215,7 @@ references:
 
     <p></p>
   syntax:
-    content: public interface AuthorizationRule<RuleT extends AuthorizationRule> extends IndependentChildResource<ServiceBusManager, SharedAccessAuthorizationRuleInner>,Refreshable<RuleT>
+    content: public interface AuthorizationRule<RuleT extends AuthorizationRule<RuleT>> extends IndependentChildResource<ServiceBusManager, SharedAccessAuthorizationRuleInner>,Refreshable<RuleT>
     typeParameters:
     - type: b15084b9
       description: <p>the specific rule type </p>
@@ -492,7 +492,7 @@ references:
   type: Interface
   summary: <p>The first stage of namespace authorization rule definition. </p>
   syntax:
-    content: public interface Blank extends AuthorizationRule<RuleT extends AuthorizationRule>.DefinitionStages.WithListenOrSendOrManage<WithCreate>
+    content: public interface Blank extends AuthorizationRule<RuleT extends AuthorizationRule<RuleT>.DefinitionStages.WithListenOrSendOrManage<WithCreate>
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages._blank
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages._blank.yml
@@ -510,7 +510,7 @@ references:
   type: Interface
   summary: <p>The first stage of queue authorization rule definition. </p>
   syntax:
-    content: public interface Blank extends AuthorizationRule<RuleT extends AuthorizationRule>.DefinitionStages.WithListenOrSendOrManage<QueueAuthorizationRule.DefinitionStages.WithCreate>
+    content: public interface Blank extends AuthorizationRule<RuleT extends AuthorizationRule<RuleT>.DefinitionStages.WithListenOrSendOrManage<QueueAuthorizationRule.DefinitionStages.WithCreate>
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._blank
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._blank.yml
@@ -547,15 +547,6 @@ references:
   summary: <p>The first stage of topic authorization rule definition. </p>
   syntax:
     content: public interface Blank
-- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule._definition
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule._definition.yml
-  name: NamespaceAuthorizationRule.Definition
-  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.Definition
-  type: Interface
-  summary: <p>The entirety of the namespace authorization rule definition. </p>
-  syntax:
-    content: public interface Definition extends NamespaceAuthorizationRule.DefinitionStages.Blank,NamespaceAuthorizationRule.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.servicebus._queue._definition
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition.yml
@@ -565,6 +556,15 @@ references:
   summary: <p>The entirety of the Service Bus queue definition. </p>
   syntax:
     content: public interface Definition extends Queue.DefinitionStages.Blank,Queue.DefinitionStages.WithCreate
+- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule._definition
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule._definition.yml
+  name: NamespaceAuthorizationRule.Definition
+  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.Definition
+  type: Interface
+  summary: <p>The entirety of the namespace authorization rule definition. </p>
+  syntax:
+    content: public interface Definition extends NamespaceAuthorizationRule.DefinitionStages.Blank,NamespaceAuthorizationRule.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.servicebus._queue_authorization_rule._definition
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue_authorization_rule._definition.yml
@@ -682,6 +682,33 @@ references:
   summary: <p>Grouping of Service Bus topic authorization rule definition stages. </p>
   syntax:
     content: public interface DefinitionStages
+- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule._update
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule._update.yml
+  name: NamespaceAuthorizationRule.Update
+  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.Update
+  type: Interface
+  summary: <p>The entirety of the namespace authorization rule update. </p>
+  syntax:
+    content: public interface Update extends Appliable<NamespaceAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule<RuleT>.UpdateStages.WithListenOrSendOrManage<Update>
+- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._service_bus_namespace._update.yml
+  name: ServiceBusNamespace.Update
+  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.Update
+  type: Interface
+  summary: <p>The template for a Service Bus namespace update operation, containing all the settings that can be modified. </p>
+  syntax:
+    content: public interface Update extends Appliable<ServiceBusNamespace>,Resource.UpdateWithTags<Update>,ServiceBusNamespace.UpdateStages.WithSku,ServiceBusNamespace.UpdateStages.WithQueue,ServiceBusNamespace.UpdateStages.WithTopic,ServiceBusNamespace.UpdateStages.WithAuthorizationRule
+- uid: com.microsoft.azure.management.servicebus._subscription._update
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._subscription._update.yml
+  name: Subscription.Update
+  fullName: com.microsoft.azure.management.servicebus.Subscription.Update
+  type: Interface
+  summary: <p>The template for a subscription update operation, containing all the settings that can be modified. </p>
+  syntax:
+    content: public interface Update extends Appliable<Subscription>,Subscription.UpdateStages.WithDeleteOnIdle,Subscription.UpdateStages.WithMessageLockDuration,Subscription.UpdateStages.WithDefaultMessageTTL,Subscription.UpdateStages.WithSession,Subscription.UpdateStages.WithMessageBatching,Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription,Subscription.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount,Subscription.UpdateStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
 - uid: com.microsoft.azure.management.servicebus._queue._update
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._update.yml
@@ -700,15 +727,6 @@ references:
   summary: <p>The template for a Service Bus topic update operation, containing all the settings that can be modified. </p>
   syntax:
     content: public interface Update extends Appliable<Topic>,Topic.UpdateStages.WithSize,Topic.UpdateStages.WithDeleteOnIdle,Topic.UpdateStages.WithDefaultMessageTTL,Topic.UpdateStages.WithExpressMessage,Topic.UpdateStages.WithMessageBatching,Topic.UpdateStages.WithDuplicateMessageDetection,Topic.UpdateStages.WithSubscription,Topic.UpdateStages.WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._service_bus_namespace._update.yml
-  name: ServiceBusNamespace.Update
-  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.Update
-  type: Interface
-  summary: <p>The template for a Service Bus namespace update operation, containing all the settings that can be modified. </p>
-  syntax:
-    content: public interface Update extends Appliable<ServiceBusNamespace>,Resource.UpdateWithTags<Update>,ServiceBusNamespace.UpdateStages.WithSku,ServiceBusNamespace.UpdateStages.WithQueue,ServiceBusNamespace.UpdateStages.WithTopic,ServiceBusNamespace.UpdateStages.WithAuthorizationRule
 - uid: com.microsoft.azure.management.servicebus._queue_authorization_rule._update
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue_authorization_rule._update.yml
@@ -717,25 +735,7 @@ references:
   type: Interface
   summary: <p>The entirety of the queue authorization rule update. </p>
   syntax:
-    content: public interface Update extends Appliable<QueueAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule>.UpdateStages.WithListenOrSendOrManage<QueueAuthorizationRule.Update>
-- uid: com.microsoft.azure.management.servicebus._subscription._update
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._update.yml
-  name: Subscription.Update
-  fullName: com.microsoft.azure.management.servicebus.Subscription.Update
-  type: Interface
-  summary: <p>The template for a subscription update operation, containing all the settings that can be modified. </p>
-  syntax:
-    content: public interface Update extends Appliable<Subscription>,Subscription.UpdateStages.WithDeleteOnIdle,Subscription.UpdateStages.WithMessageLockDuration,Subscription.UpdateStages.WithDefaultMessageTTL,Subscription.UpdateStages.WithSession,Subscription.UpdateStages.WithMessageBatching,Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription,Subscription.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount,Subscription.UpdateStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
-- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule._update
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule._update.yml
-  name: NamespaceAuthorizationRule.Update
-  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.Update
-  type: Interface
-  summary: <p>The entirety of the namespace authorization rule update. </p>
-  syntax:
-    content: public interface Update extends Appliable<NamespaceAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule>.UpdateStages.WithListenOrSendOrManage<Update>
+    content: public interface Update extends Appliable<QueueAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule<RuleT>.UpdateStages.WithListenOrSendOrManage<QueueAuthorizationRule.Update>
 - uid: com.microsoft.azure.management.servicebus._topic_authorization_rule._update
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._topic_authorization_rule._update.yml
@@ -744,16 +744,7 @@ references:
   type: Interface
   summary: <p>The entirety of the topic authorization rule update. </p>
   syntax:
-    content: public interface Update extends Appliable<TopicAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule>.UpdateStages.WithListenOrSendOrManage<TopicAuthorizationRule.Update>
-- uid: com.microsoft.azure.management.servicebus._authorization_rule._update_stages
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._authorization_rule._update_stages.yml
-  name: AuthorizationRule.UpdateStages
-  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.UpdateStages
-  type: Interface
-  summary: <p>Grouping of commons authorization rule update stages shared between different Service Bus entities (namespace, queue, topic, subscription) access rules. </p>
-  syntax:
-    content: public interface UpdateStages
+    content: public interface Update extends Appliable<TopicAuthorizationRule>,AuthorizationRule<RuleT extends AuthorizationRule<RuleT>.UpdateStages.WithListenOrSendOrManage<TopicAuthorizationRule.Update>
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages.yml
@@ -772,13 +763,13 @@ references:
   summary: <p>Grouping of Service Bus queue update stages. </p>
   syntax:
     content: public interface UpdateStages
-- uid: com.microsoft.azure.management.servicebus._topic._update_stages
+- uid: com.microsoft.azure.management.servicebus._authorization_rule._update_stages
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._update_stages.yml
-  name: Topic.UpdateStages
-  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages
+  href: com.microsoft.azure.management.servicebus._authorization_rule._update_stages.yml
+  name: AuthorizationRule.UpdateStages
+  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.UpdateStages
   type: Interface
-  summary: <p>Grouping of Service Bus topic update stages. </p>
+  summary: <p>Grouping of commons authorization rule update stages shared between different Service Bus entities (namespace, queue, topic, subscription) access rules. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.servicebus._subscription._update_stages
@@ -788,6 +779,15 @@ references:
   fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages
   type: Interface
   summary: <p>Grouping of subscription update stages. </p>
+  syntax:
+    content: public interface UpdateStages
+- uid: com.microsoft.azure.management.servicebus._topic._update_stages
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._topic._update_stages.yml
+  name: Topic.UpdateStages
+  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages
+  type: Interface
+  summary: <p>Grouping of Service Bus topic update stages. </p>
   syntax:
     content: public interface UpdateStages
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._upde4871c65dc841820eec035c3ac7e6dc7
@@ -808,13 +808,13 @@ references:
   summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the queue. </p>
   syntax:
     content: public interface WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_authorization_rule
+- uid: com.microsoft.azure.management.servicebus._subscription._update_stages._with_authorization_rule
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_authorization_rule.yml
-  name: Queue.DefinitionStages.WithAuthorizationRule
-  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithAuthorizationRule
+  href: com.microsoft.azure.management.servicebus._subscription._update_stages._with_authorization_rule.yml
+  name: Subscription.UpdateStages.WithAuthorizationRule
+  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithAuthorizationRule
   type: Interface
-  summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the queue. </p>
+  summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the subscription. </p>
   syntax:
     content: public interface WithAuthorizationRule
 - uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_authorization_rule
@@ -835,13 +835,22 @@ references:
   summary: <p>The stage of the Service Bus namespace definition allowing to add an authorization rule for accessing the namespace. </p>
   syntax:
     content: public interface WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._subscription._update_stages._with_authorization_rule
+- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_authorization_rule
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._update_stages._with_authorization_rule.yml
-  name: Subscription.UpdateStages.WithAuthorizationRule
-  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithAuthorizationRule
+  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_authorization_rule.yml
+  name: Topic.DefinitionStages.WithAuthorizationRule
+  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithAuthorizationRule
   type: Interface
-  summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the subscription. </p>
+  summary: <p>The stage of the topic definition allowing to add an authorization rule for accessing the topic. </p>
+  syntax:
+    content: public interface WithAuthorizationRule
+- uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_authorization_rule
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_authorization_rule.yml
+  name: Queue.DefinitionStages.WithAuthorizationRule
+  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithAuthorizationRule
+  type: Interface
+  summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the queue. </p>
   syntax:
     content: public interface WithAuthorizationRule
 - uid: com.microsoft.azure.management.servicebus._subscription._definition_s76c932d3591faedd525e7b13934a78a3
@@ -853,42 +862,6 @@ references:
   summary: <p>The stage of the queue definition allowing to add an authorization rule for accessing the subscription. </p>
   syntax:
     content: public interface WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_authorization_rule
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_authorization_rule.yml
-  name: Topic.DefinitionStages.WithAuthorizationRule
-  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithAuthorizationRule
-  type: Interface
-  summary: <p>The stage of the topic definition allowing to add an authorization rule for accessing the topic. </p>
-  syntax:
-    content: public interface WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._topic_authorization_rule._f23935d56b5d5f55b3ef4b05a4abc4e5
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic_authorization_rule._f23935d56b5d5f55b3ef4b05a4abc4e5.yml
-  name: TopicAuthorizationRule.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.servicebus.TopicAuthorizationRule.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<TopicAuthorizationRule>
-- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule_32c1e376c87543f7f4351dff4c326f0d
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule_32c1e376c87543f7f4351dff4c326f0d.yml
-  name: NamespaceAuthorizationRule.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<NamespaceAuthorizationRule>
-- uid: com.microsoft.azure.management.servicebus._queue_authorization_rule._4ceea3b46b5117da9b598827f39f88de
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue_authorization_rule._4ceea3b46b5117da9b598827f39f88de.yml
-  name: QueueAuthorizationRule.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.servicebus.QueueAuthorizationRule.DefinitionStages.WithCreate
-  type: Interface
-  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
-  syntax:
-    content: public interface WithCreate extends Creatable<QueueAuthorizationRule>
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_create
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_create.yml
@@ -907,15 +880,15 @@ references:
   summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithCreate extends Creatable<Topic>,Topic.DefinitionStages.WithSize,Topic.DefinitionStages.WithPartitioning,Topic.DefinitionStages.WithDeleteOnIdle,Topic.DefinitionStages.WithDefaultMessageTTL,Topic.DefinitionStages.WithExpressMessage,Topic.DefinitionStages.WithMessageBatching,Topic.DefinitionStages.WithDuplicateMessageDetection,Topic.UpdateStages.WithSubscription,Topic.DefinitionStages.WithAuthorizationRule
-- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_create
+- uid: com.microsoft.azure.management.servicebus._topic_authorization_rule._f23935d56b5d5f55b3ef4b05a4abc4e5
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_create.yml
-  name: ServiceBusNamespace.DefinitionStages.WithCreate
-  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithCreate
+  href: com.microsoft.azure.management.servicebus._topic_authorization_rule._f23935d56b5d5f55b3ef4b05a4abc4e5.yml
+  name: TopicAuthorizationRule.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.servicebus.TopicAuthorizationRule.DefinitionStages.WithCreate
   type: Interface
   summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
-    content: public interface WithCreate extends Creatable<ServiceBusNamespace>,Resource.DefinitionWithTags<Update>,ServiceBusNamespace.DefinitionStages.WithSku,ServiceBusNamespace.DefinitionStages.WithQueue,ServiceBusNamespace.DefinitionStages.WithTopic,ServiceBusNamespace.DefinitionStages.WithAuthorizationRule
+    content: public interface WithCreate extends Creatable<TopicAuthorizationRule>
 - uid: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_create
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_create.yml
@@ -925,24 +898,33 @@ references:
   summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithCreate extends Creatable<Subscription>,Subscription.DefinitionStages.WithDeleteOnIdle,Subscription.DefinitionStages.WithMessageLockDuration,Subscription.DefinitionStages.WithDefaultMessageTTL,Subscription.DefinitionStages.WithSession,Subscription.DefinitionStages.WithMessageBatching,Subscription.DefinitionStages.WithExpiredMessageMovedToDeadLetterSubscription,Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnMaxDeliveryCount,Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
-- uid: com.microsoft.azure.management.servicebus._subscription._update_stagebc7f6ca59e8d61c0f6ff726882cd86e6
+- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_create
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._update_stagebc7f6ca59e8d61c0f6ff726882cd86e6.yml
-  name: Subscription.UpdateStages.WithDefaultMessageTTL
-  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithDefaultMessageTTL
+  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_create.yml
+  name: ServiceBusNamespace.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithCreate
   type: Interface
-  summary: <p>The stage of the subscription definition allowing to define default TTL for messages. </p>
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
-    content: public interface WithDefaultMessageTTL
-- uid: com.microsoft.azure.management.servicebus._subscription._definition_s4811153b3d4f60acf641e32d49b3acbf
+    content: public interface WithCreate extends Creatable<ServiceBusNamespace>,Resource.DefinitionWithTags<Update>,ServiceBusNamespace.DefinitionStages.WithSku,ServiceBusNamespace.DefinitionStages.WithQueue,ServiceBusNamespace.DefinitionStages.WithTopic,ServiceBusNamespace.DefinitionStages.WithAuthorizationRule
+- uid: com.microsoft.azure.management.servicebus._namespace_authorization_rule_32c1e376c87543f7f4351dff4c326f0d
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._definition_s4811153b3d4f60acf641e32d49b3acbf.yml
-  name: Subscription.DefinitionStages.WithDefaultMessageTTL
-  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithDefaultMessageTTL
+  href: com.microsoft.azure.management.servicebus._namespace_authorization_rule_32c1e376c87543f7f4351dff4c326f0d.yml
+  name: NamespaceAuthorizationRule.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.servicebus.NamespaceAuthorizationRule.DefinitionStages.WithCreate
   type: Interface
-  summary: <p>The stage of the subscription definition allowing to define default TTL for messages. </p>
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
   syntax:
-    content: public interface WithDefaultMessageTTL
+    content: public interface WithCreate extends Creatable<NamespaceAuthorizationRule>
+- uid: com.microsoft.azure.management.servicebus._queue_authorization_rule._4ceea3b46b5117da9b598827f39f88de
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue_authorization_rule._4ceea3b46b5117da9b598827f39f88de.yml
+  name: QueueAuthorizationRule.DefinitionStages.WithCreate
+  fullName: com.microsoft.azure.management.servicebus.QueueAuthorizationRule.DefinitionStages.WithCreate
+  type: Interface
+  summary: <p>The stage of the definition which contains all the minimum required inputs for the resource to be created (via <xref href="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false"></xref>), but also allows for any other optional settings to be specified. </p>
+  syntax:
+    content: public interface WithCreate extends Creatable<QueueAuthorizationRule>
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_default_message_t_t_l
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_default_message_t_t_l.yml
@@ -961,13 +943,22 @@ references:
   summary: <p>The stage of the queue definition allowing to define default TTL for messages. </p>
   syntax:
     content: public interface WithDefaultMessageTTL
-- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_default_message_t_t_l
+- uid: com.microsoft.azure.management.servicebus._subscription._update_stagebc7f6ca59e8d61c0f6ff726882cd86e6
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_default_message_t_t_l.yml
-  name: Topic.DefinitionStages.WithDefaultMessageTTL
-  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithDefaultMessageTTL
+  href: com.microsoft.azure.management.servicebus._subscription._update_stagebc7f6ca59e8d61c0f6ff726882cd86e6.yml
+  name: Subscription.UpdateStages.WithDefaultMessageTTL
+  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithDefaultMessageTTL
   type: Interface
-  summary: <p>The stage of the topic definition allowing to define default TTL for messages. </p>
+  summary: <p>The stage of the subscription definition allowing to define default TTL for messages. </p>
+  syntax:
+    content: public interface WithDefaultMessageTTL
+- uid: com.microsoft.azure.management.servicebus._subscription._definition_s4811153b3d4f60acf641e32d49b3acbf
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._subscription._definition_s4811153b3d4f60acf641e32d49b3acbf.yml
+  name: Subscription.DefinitionStages.WithDefaultMessageTTL
+  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithDefaultMessageTTL
+  type: Interface
+  summary: <p>The stage of the subscription definition allowing to define default TTL for messages. </p>
   syntax:
     content: public interface WithDefaultMessageTTL
 - uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_default_message_t_t_l
@@ -979,15 +970,15 @@ references:
   summary: <p>The stage of the topic definition allowing to define default TTL for messages. </p>
   syntax:
     content: public interface WithDefaultMessageTTL
-- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_delete_on_idle
+- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_default_message_t_t_l
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_delete_on_idle.yml
-  name: Topic.DefinitionStages.WithDeleteOnIdle
-  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithDeleteOnIdle
+  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_default_message_t_t_l.yml
+  name: Topic.DefinitionStages.WithDefaultMessageTTL
+  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithDefaultMessageTTL
   type: Interface
-  summary: <p>The stage of the topic definition allowing to define auto delete behaviour. </p>
+  summary: <p>The stage of the topic definition allowing to define default TTL for messages. </p>
   syntax:
-    content: public interface WithDeleteOnIdle
+    content: public interface WithDefaultMessageTTL
 - uid: com.microsoft.azure.management.servicebus._queue._update_stages._with_delete_on_idle
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._update_stages._with_delete_on_idle.yml
@@ -1002,6 +993,15 @@ references:
   href: com.microsoft.azure.management.servicebus._topic._update_stages._with_delete_on_idle.yml
   name: Topic.UpdateStages.WithDeleteOnIdle
   fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithDeleteOnIdle
+  type: Interface
+  summary: <p>The stage of the topic definition allowing to define auto delete behaviour. </p>
+  syntax:
+    content: public interface WithDeleteOnIdle
+- uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_delete_on_idle
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_delete_on_idle.yml
+  name: Topic.DefinitionStages.WithDeleteOnIdle
+  fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithDeleteOnIdle
   type: Interface
   summary: <p>The stage of the topic definition allowing to define auto delete behaviour. </p>
   syntax:
@@ -1033,15 +1033,6 @@ references:
   summary: <p>The stage of the queue definition allowing to define auto delete behaviour. </p>
   syntax:
     content: public interface WithDeleteOnIdle
-- uid: com.microsoft.azure.management.servicebus._queue._definition_stages_10c3053a9247dcebe4d63657b9e8515b6
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue._definition_stages_10c3053a9247dcebe4d63657b9e8515b6.yml
-  name: Queue.DefinitionStages.WithDuplicateMessageDetection
-  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithDuplicateMessageDetection
-  type: Interface
-  summary: <p>The stage of the queue definition allowing to specify duration of the duplicate message detection history. </p>
-  syntax:
-    content: public interface WithDuplicateMessageDetection
 - uid: com.microsoft.azure.management.servicebus._topic._definition_stages_1b81820c2e8461c14e4d10bdbb034a46e
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._topic._definition_stages_1b81820c2e8461c14e4d10bdbb034a46e.yml
@@ -1058,6 +1049,15 @@ references:
   fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithDuplicateMessageDetection
   type: Interface
   summary: <p>The stage of the topic definition allowing to specify duration of the duplicate message detection history. </p>
+  syntax:
+    content: public interface WithDuplicateMessageDetection
+- uid: com.microsoft.azure.management.servicebus._queue._definition_stages_10c3053a9247dcebe4d63657b9e8515b6
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue._definition_stages_10c3053a9247dcebe4d63657b9e8515b6.yml
+  name: Queue.DefinitionStages.WithDuplicateMessageDetection
+  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithDuplicateMessageDetection
+  type: Interface
+  summary: <p>The stage of the queue definition allowing to specify duration of the duplicate message detection history. </p>
   syntax:
     content: public interface WithDuplicateMessageDetection
 - uid: com.microsoft.azure.management.servicebus._queue._update_stages._with_duplicate_message_detection
@@ -1087,15 +1087,6 @@ references:
   summary: <p>The stage of the queue definition allowing to specify whether expired message can be moved to secondary dead-letter queue. </p>
   syntax:
     content: public interface WithExpiredMessageMovedToDeadLetterQueue
-- uid: com.microsoft.azure.management.servicebus._subscription._update_stage724befd2dd7e080d2f8271c67d8cbd90
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._update_stage724befd2dd7e080d2f8271c67d8cbd90.yml
-  name: Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription
-  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription
-  type: Interface
-  summary: <p>The stage of the subscription update allowing to specify whether expired message can be moved to secondary dead-letter subscription. </p>
-  syntax:
-    content: public interface WithExpiredMessageMovedToDeadLetterSubscription
 - uid: com.microsoft.azure.management.servicebus._subscription._definition_s66c8e08f74c8b0153d208ee9a0dd2ea7
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._subscription._definition_s66c8e08f74c8b0153d208ee9a0dd2ea7.yml
@@ -1105,15 +1096,15 @@ references:
   summary: <p>The stage of the subscription definition allowing to specify whether expired message can be moved to secondary dead-letter subscription. </p>
   syntax:
     content: public interface WithExpiredMessageMovedToDeadLetterSubscription
-- uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_express_message
+- uid: com.microsoft.azure.management.servicebus._subscription._update_stage724befd2dd7e080d2f8271c67d8cbd90
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_express_message.yml
-  name: Queue.DefinitionStages.WithExpressMessage
-  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithExpressMessage
+  href: com.microsoft.azure.management.servicebus._subscription._update_stage724befd2dd7e080d2f8271c67d8cbd90.yml
+  name: Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription
+  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithExpiredMessageMovedToDeadLetterSubscription
   type: Interface
-  summary: <p>The stage of the queue definition allowing to mark messages as express messages. </p>
+  summary: <p>The stage of the subscription update allowing to specify whether expired message can be moved to secondary dead-letter subscription. </p>
   syntax:
-    content: public interface WithExpressMessage
+    content: public interface WithExpiredMessageMovedToDeadLetterSubscription
 - uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_express_message
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_express_message.yml
@@ -1121,15 +1112,6 @@ references:
   fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithExpressMessage
   type: Interface
   summary: <p>The stage of the topic definition allowing to mark messages as express messages. </p>
-  syntax:
-    content: public interface WithExpressMessage
-- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_express_message
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_express_message.yml
-  name: Topic.UpdateStages.WithExpressMessage
-  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithExpressMessage
-  type: Interface
-  summary: <p>The stage of the topic definition allowing to mark it as either holding regular or express messages. </p>
   syntax:
     content: public interface WithExpressMessage
 - uid: com.microsoft.azure.management.servicebus._queue._update_stages._with_express_message
@@ -1141,6 +1123,24 @@ references:
   summary: <p>The stage of the queue definition allowing to mark it as either holding regular or express messages. </p>
   syntax:
     content: public interface WithExpressMessage
+- uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_express_message
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_express_message.yml
+  name: Queue.DefinitionStages.WithExpressMessage
+  fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithExpressMessage
+  type: Interface
+  summary: <p>The stage of the queue definition allowing to mark messages as express messages. </p>
+  syntax:
+    content: public interface WithExpressMessage
+- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_express_message
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_express_message.yml
+  name: Topic.UpdateStages.WithExpressMessage
+  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithExpressMessage
+  type: Interface
+  summary: <p>The stage of the topic definition allowing to mark it as either holding regular or express messages. </p>
+  syntax:
+    content: public interface WithExpressMessage
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_group
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_group.yml
@@ -1150,21 +1150,6 @@ references:
   summary: <p>The stage of the Service Bus namespace definition allowing to specify the resource group. </p>
   syntax:
     content: public interface WithGroup extends GroupableResource<TManager, InnerT>.DefinitionStages.WithGroup<WithCreate>
-- uid: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_listen
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_listen.yml
-  name: AuthorizationRule.DefinitionStages.WithListen<T>
-  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.DefinitionStages.WithListen<T>
-  type: Interface
-  summary: >-
-    <p>The stage of the Service Bus authorization rule definition allowing to enable listen policy.</p>
-
-    <p></p>
-  syntax:
-    content: public interface WithListen<T>
-    typeParameters:
-    - type: 8ce1ecb9
-      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.servicebus._authorization_rule._update_stages._with_listen
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._authorization_rule._update_stages._with_listen.yml
@@ -1180,21 +1165,21 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.servicebus._authorization_rule._updateb13116ea667bebdf06e85d769e03ee5f
+- uid: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_listen
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._authorization_rule._updateb13116ea667bebdf06e85d769e03ee5f.yml
-  name: AuthorizationRule.UpdateStages.WithListenOrSendOrManage<T>
-  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.UpdateStages.WithListenOrSendOrManage<T>
+  href: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_listen.yml
+  name: AuthorizationRule.DefinitionStages.WithListen<T>
+  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.DefinitionStages.WithListen<T>
   type: Interface
   summary: >-
-    <p>The stage of the Service Bus authorization rule update allowing to enable listen, send or manage policy.</p>
+    <p>The stage of the Service Bus authorization rule definition allowing to enable listen policy.</p>
 
     <p></p>
   syntax:
-    content: public interface WithListenOrSendOrManage<T> extends AuthorizationRule<T>.UpdateStages.WithListen,AuthorizationRule<T>.UpdateStages.WithSendOrManage
+    content: public interface WithListen<T>
     typeParameters:
     - type: 8ce1ecb9
-      description: <p>the next stage of the update </p>
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.servicebus._authorization_rule._definia8347ed67fcbf3f376b3c515044876dd
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._authorization_rule._definia8347ed67fcbf3f376b3c515044876dd.yml
@@ -1210,21 +1195,21 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_manage
+- uid: com.microsoft.azure.management.servicebus._authorization_rule._updateb13116ea667bebdf06e85d769e03ee5f
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_manage.yml
-  name: AuthorizationRule.DefinitionStages.WithManage<T>
-  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.DefinitionStages.WithManage<T>
+  href: com.microsoft.azure.management.servicebus._authorization_rule._updateb13116ea667bebdf06e85d769e03ee5f.yml
+  name: AuthorizationRule.UpdateStages.WithListenOrSendOrManage<T>
+  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.UpdateStages.WithListenOrSendOrManage<T>
   type: Interface
   summary: >-
-    <p>The stage of the Service Bus authorization rule definition allowing to enable manage policy.</p>
+    <p>The stage of the Service Bus authorization rule update allowing to enable listen, send or manage policy.</p>
 
     <p></p>
   syntax:
-    content: public interface WithManage<T>
+    content: public interface WithListenOrSendOrManage<T> extends AuthorizationRule<T>.UpdateStages.WithListen,AuthorizationRule<T>.UpdateStages.WithSendOrManage
     typeParameters:
     - type: 8ce1ecb9
-      description: <p>the next stage of the definition </p>
+      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.servicebus._authorization_rule._update_stages._with_manage
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._authorization_rule._update_stages._with_manage.yml
@@ -1240,15 +1225,21 @@ references:
     typeParameters:
     - type: 8ce1ecb9
       description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_message_batching
+- uid: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_manage
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_message_batching.yml
-  name: Topic.UpdateStages.WithMessageBatching
-  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithMessageBatching
+  href: com.microsoft.azure.management.servicebus._authorization_rule._definition_stages._with_manage.yml
+  name: AuthorizationRule.DefinitionStages.WithManage<T>
+  fullName: com.microsoft.azure.management.servicebus.AuthorizationRule.DefinitionStages.WithManage<T>
   type: Interface
-  summary: <p>The stage of the topic definition allowing configure message batching behaviour. </p>
+  summary: >-
+    <p>The stage of the Service Bus authorization rule definition allowing to enable manage policy.</p>
+
+    <p></p>
   syntax:
-    content: public interface WithMessageBatching
+    content: public interface WithManage<T>
+    typeParameters:
+    - type: 8ce1ecb9
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_message_batching
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_message_batching.yml
@@ -1256,24 +1247,6 @@ references:
   fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithMessageBatching
   type: Interface
   summary: <p>The stage of the queue definition allowing specify batching behaviour. </p>
-  syntax:
-    content: public interface WithMessageBatching
-- uid: com.microsoft.azure.management.servicebus._queue._update_stages._with_message_batching
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue._update_stages._with_message_batching.yml
-  name: Queue.UpdateStages.WithMessageBatching
-  fullName: com.microsoft.azure.management.servicebus.Queue.UpdateStages.WithMessageBatching
-  type: Interface
-  summary: <p>The stage of the queue definition allowing configure message batching behaviour. </p>
-  syntax:
-    content: public interface WithMessageBatching
-- uid: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_message_batching
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_message_batching.yml
-  name: Subscription.DefinitionStages.WithMessageBatching
-  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithMessageBatching
-  type: Interface
-  summary: <p>The stage of the subscription definition allowing specify batching behaviour. </p>
   syntax:
     content: public interface WithMessageBatching
 - uid: com.microsoft.azure.management.servicebus._subscription._update_stages._with_message_batching
@@ -1285,6 +1258,24 @@ references:
   summary: <p>The stage of the subscription definition allowing configure message batching behaviour. </p>
   syntax:
     content: public interface WithMessageBatching
+- uid: com.microsoft.azure.management.servicebus._queue._update_stages._with_message_batching
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue._update_stages._with_message_batching.yml
+  name: Queue.UpdateStages.WithMessageBatching
+  fullName: com.microsoft.azure.management.servicebus.Queue.UpdateStages.WithMessageBatching
+  type: Interface
+  summary: <p>The stage of the queue definition allowing configure message batching behaviour. </p>
+  syntax:
+    content: public interface WithMessageBatching
+- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_message_batching
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_message_batching.yml
+  name: Topic.UpdateStages.WithMessageBatching
+  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithMessageBatching
+  type: Interface
+  summary: <p>The stage of the topic definition allowing configure message batching behaviour. </p>
+  syntax:
+    content: public interface WithMessageBatching
 - uid: com.microsoft.azure.management.servicebus._topic._definition_stages._with_message_batching
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._topic._definition_stages._with_message_batching.yml
@@ -1292,6 +1283,15 @@ references:
   fullName: com.microsoft.azure.management.servicebus.Topic.DefinitionStages.WithMessageBatching
   type: Interface
   summary: <p>The stage of the topic definition allowing specify batching behaviour. </p>
+  syntax:
+    content: public interface WithMessageBatching
+- uid: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_message_batching
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_message_batching.yml
+  name: Subscription.DefinitionStages.WithMessageBatching
+  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithMessageBatching
+  type: Interface
+  summary: <p>The stage of the subscription definition allowing specify batching behaviour. </p>
   syntax:
     content: public interface WithMessageBatching
 - uid: com.microsoft.azure.management.servicebus._subscription._definition_s49e848423f1445d1d6c37ef0517d9b40
@@ -1330,20 +1330,20 @@ references:
   summary: <p>The stage of the queue definition allowing to define duration for message lock. </p>
   syntax:
     content: public interface WithMessageLockDuration
-- uid: com.microsoft.azure.management.servicebus._queue._update_stages._w31c6a0d0e24a59b3a3f6deb48d35c71a
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._queue._update_stages._w31c6a0d0e24a59b3a3f6deb48d35c71a.yml
-  name: Queue.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
-  fullName: com.microsoft.azure.management.servicebus.Queue.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
-  type: Interface
-  summary: <p>The stage of the queue definition allowing to specify maximum delivery count of message before moving it to dead-letter queue. </p>
-  syntax:
-    content: public interface WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages_1989dffe42f5ca76ab9de772364fa6a90
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages_1989dffe42f5ca76ab9de772364fa6a90.yml
   name: Queue.DefinitionStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
   fullName: com.microsoft.azure.management.servicebus.Queue.DefinitionStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
+  type: Interface
+  summary: <p>The stage of the queue definition allowing to specify maximum delivery count of message before moving it to dead-letter queue. </p>
+  syntax:
+    content: public interface WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
+- uid: com.microsoft.azure.management.servicebus._queue._update_stages._w31c6a0d0e24a59b3a3f6deb48d35c71a
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._queue._update_stages._w31c6a0d0e24a59b3a3f6deb48d35c71a.yml
+  name: Queue.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
+  fullName: com.microsoft.azure.management.servicebus.Queue.UpdateStages.WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
   type: Interface
   summary: <p>The stage of the queue definition allowing to specify maximum delivery count of message before moving it to dead-letter queue. </p>
   syntax:
@@ -1357,20 +1357,20 @@ references:
   summary: <p>The stage of the subscription definition allowing to specify maximum delivery count of message before moving it to dead-letter queue. </p>
   syntax:
     content: public interface WithMessageMovedToDeadLetterQueueOnMaxDeliveryCount
-- uid: com.microsoft.azure.management.servicebus._subscription._definition_s2b838424a3bc514760933f38c2aeabc5
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._definition_s2b838424a3bc514760933f38c2aeabc5.yml
-  name: Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
-  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
-  type: Interface
-  summary: <p>The stage of the subscription definition allowing to specify whether message those are failed on filter evaluation can be moved to secondary dead-letter subscription. </p>
-  syntax:
-    content: public interface WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
 - uid: com.microsoft.azure.management.servicebus._subscription._update_staged91d8dc8d17e2028c41f4d9df1442a7a
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._subscription._update_staged91d8dc8d17e2028c41f4d9df1442a7a.yml
   name: Subscription.UpdateStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
   fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
+  type: Interface
+  summary: <p>The stage of the subscription definition allowing to specify whether message those are failed on filter evaluation can be moved to secondary dead-letter subscription. </p>
+  syntax:
+    content: public interface WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
+- uid: com.microsoft.azure.management.servicebus._subscription._definition_s2b838424a3bc514760933f38c2aeabc5
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._subscription._definition_s2b838424a3bc514760933f38c2aeabc5.yml
+  name: Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
+  fullName: com.microsoft.azure.management.servicebus.Subscription.DefinitionStages.WithMessageMovedToDeadLetterSubscriptionOnFilterEvaluationException
   type: Interface
   summary: <p>The stage of the subscription definition allowing to specify whether message those are failed on filter evaluation can be moved to secondary dead-letter subscription. </p>
   syntax:
@@ -1402,15 +1402,6 @@ references:
   summary: <p>The stage of the queue definition allowing to specify partitioning behaviour. </p>
   syntax:
     content: public interface WithPartitioning
-- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_queue
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_queue.yml
-  name: ServiceBusNamespace.DefinitionStages.WithQueue
-  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithQueue
-  type: Interface
-  summary: <p>The stage of the Service Bus namespace definition allowing to add a new queue in the namespace. </p>
-  syntax:
-    content: public interface WithQueue
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_queue
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_queue.yml
@@ -1418,6 +1409,15 @@ references:
   fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.UpdateStages.WithQueue
   type: Interface
   summary: <p>The stage of the Service Bus namespace update allowing to manage queues in the namespace. </p>
+  syntax:
+    content: public interface WithQueue
+- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_queue
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_queue.yml
+  name: ServiceBusNamespace.DefinitionStages.WithQueue
+  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithQueue
+  type: Interface
+  summary: <p>The stage of the Service Bus namespace definition allowing to add a new queue in the namespace. </p>
   syntax:
     content: public interface WithQueue
 - uid: com.microsoft.azure.management.servicebus._authorization_rule._update_stages._with_send
@@ -1489,15 +1489,6 @@ references:
   summary: <p>The stage of the queue definition allowing to enable session support. </p>
   syntax:
     content: public interface WithSession
-- uid: com.microsoft.azure.management.servicebus._subscription._update_stages._with_session
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._subscription._update_stages._with_session.yml
-  name: Subscription.UpdateStages.WithSession
-  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithSession
-  type: Interface
-  summary: <p>The stage of the subscription definition allowing to enable session support. </p>
-  syntax:
-    content: public interface WithSession
 - uid: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_session
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._subscription._definition_stages._with_session.yml
@@ -1516,15 +1507,15 @@ references:
   summary: <p>The stage of the queue definition allowing to enable session support. </p>
   syntax:
     content: public interface WithSession
-- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_size
+- uid: com.microsoft.azure.management.servicebus._subscription._update_stages._with_session
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_size.yml
-  name: Topic.UpdateStages.WithSize
-  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithSize
+  href: com.microsoft.azure.management.servicebus._subscription._update_stages._with_session.yml
+  name: Subscription.UpdateStages.WithSession
+  fullName: com.microsoft.azure.management.servicebus.Subscription.UpdateStages.WithSession
   type: Interface
-  summary: <p>The stage of the topic definition allowing to specify size. </p>
+  summary: <p>The stage of the subscription definition allowing to enable session support. </p>
   syntax:
-    content: public interface WithSize
+    content: public interface WithSession
 - uid: com.microsoft.azure.management.servicebus._queue._definition_stages._with_size
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._queue._definition_stages._with_size.yml
@@ -1552,15 +1543,15 @@ references:
   summary: <p>The stage of the queue definition allowing to specify size. </p>
   syntax:
     content: public interface WithSize
-- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_sku
+- uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_size
   parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_sku.yml
-  name: ServiceBusNamespace.DefinitionStages.WithSku
-  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithSku
+  href: com.microsoft.azure.management.servicebus._topic._update_stages._with_size.yml
+  name: Topic.UpdateStages.WithSize
+  fullName: com.microsoft.azure.management.servicebus.Topic.UpdateStages.WithSize
   type: Interface
-  summary: <p>The stage of the Service Bus namespace definition allowing to specify the sku. </p>
+  summary: <p>The stage of the topic definition allowing to specify size. </p>
   syntax:
-    content: public interface WithSku
+    content: public interface WithSize
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_sku
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_sku.yml
@@ -1568,6 +1559,15 @@ references:
   fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.UpdateStages.WithSku
   type: Interface
   summary: <p>The stage of the Service Bus namespace update allowing to change the sku. </p>
+  syntax:
+    content: public interface WithSku
+- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_sku
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_sku.yml
+  name: ServiceBusNamespace.DefinitionStages.WithSku
+  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithSku
+  type: Interface
+  summary: <p>The stage of the Service Bus namespace definition allowing to specify the sku. </p>
   syntax:
     content: public interface WithSku
 - uid: com.microsoft.azure.management.servicebus._topic._update_stages._with_subscription
@@ -1588,15 +1588,6 @@ references:
   summary: <p>The stage of the Service Bus namespace update allowing to manage subscriptions for the topic. </p>
   syntax:
     content: public interface WithSubscription
-- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_topic
-  parent: com.microsoft.azure.management.servicebus
-  href: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_topic.yml
-  name: ServiceBusNamespace.UpdateStages.WithTopic
-  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.UpdateStages.WithTopic
-  type: Interface
-  summary: <p>The stage of the Service Bus namespace update allowing to manage topics in the namespace. </p>
-  syntax:
-    content: public interface WithTopic
 - uid: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_topic
   parent: com.microsoft.azure.management.servicebus
   href: com.microsoft.azure.management.servicebus._service_bus_namespace._definition_stages._with_topic.yml
@@ -1604,5 +1595,14 @@ references:
   fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.DefinitionStages.WithTopic
   type: Interface
   summary: <p>The stage of the Service Bus namespace definition allowing to add a new topic in the namespace. </p>
+  syntax:
+    content: public interface WithTopic
+- uid: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_topic
+  parent: com.microsoft.azure.management.servicebus
+  href: com.microsoft.azure.management.servicebus._service_bus_namespace._update_stages._with_topic.yml
+  name: ServiceBusNamespace.UpdateStages.WithTopic
+  fullName: com.microsoft.azure.management.servicebus.ServiceBusNamespace.UpdateStages.WithTopic
+  type: Interface
+  summary: <p>The stage of the Service Bus namespace update allowing to manage topics in the namespace. </p>
   syntax:
     content: public interface WithTopic
