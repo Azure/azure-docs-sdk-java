@@ -5,6 +5,7 @@ items:
   children:
   - com.microsoft.azure.servicebus._message_sender.create(final MessagingFactory,final String,final String)
   - com.microsoft.azure.servicebus._message_sender.getContext()
+  - com.microsoft.azure.servicebus._message_sender.getLastKnownError()
   - com.microsoft.azure.servicebus._message_sender.getSendPath()
   - com.microsoft.azure.servicebus._message_sender.onClose()
   - com.microsoft.azure.servicebus._message_sender.onClose(final ErrorCondition)
@@ -26,7 +27,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 58
+    startLine: 59
   package: com.microsoft.azure.servicebus
   summary: <p>Abstracts all amqp related details translates event-driven reactor model into async send Api </p>
   syntax: &o1
@@ -42,7 +43,7 @@ items:
   - com.microsoft.azure.servicebus._client_entity.getIsClosed()
   - com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
   - com.microsoft.azure.servicebus._client_entity.setClosed()
-  - com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+  - com.microsoft.azure.servicebus._client_entity.throwIfClosed()
 - uid: com.microsoft.azure.servicebus._message_sender.create(final MessagingFactory,final String,final String)
   id: create(final MessagingFactory,final String,final String)
   parent: com.microsoft.azure.servicebus._message_sender
@@ -55,7 +56,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 83
+    startLine: 86
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessageSender> create(final MessagingFactory factory, final String sendLinkName, final String senderPath)
@@ -80,12 +81,30 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 683
+    startLine: 629
   package: com.microsoft.azure.servicebus
   syntax:
     content: public ErrorContext getContext()
     return:
       type: com.microsoft.azure.servicebus._error_context
+- uid: com.microsoft.azure.servicebus._message_sender.getLastKnownError()
+  id: getLastKnownError()
+  parent: com.microsoft.azure.servicebus._message_sender
+  href: com.microsoft.azure.servicebus._message_sender.yml
+  langs:
+  - java
+  name: getLastKnownError()
+  fullName: Exception com.microsoft.azure.servicebus.MessageSender.getLastKnownError()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
+    startLine: 839
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: protected Exception getLastKnownError()
+    return:
+      type: 8a99d4b0
 - uid: com.microsoft.azure.servicebus._message_sender.getSendPath()
   id: getSendPath()
   parent: com.microsoft.azure.servicebus._message_sender
@@ -98,7 +117,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 174
+    startLine: 178
   package: com.microsoft.azure.servicebus
   syntax:
     content: public String getSendPath()
@@ -116,7 +135,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 882
+    startLine: 811
   package: com.microsoft.azure.servicebus
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -134,7 +153,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 382
+    startLine: 358
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onClose(final ErrorCondition condition)
@@ -154,7 +173,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 389
+    startLine: 364
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onError(final Exception completionException)
@@ -174,7 +193,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 699
+    startLine: 649
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onFlow(final int creditIssued)
@@ -194,7 +213,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 329
+    startLine: 305
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onOpenComplete(Exception completionException)
@@ -215,7 +234,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 473
+    startLine: 438
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onSendComplete(final Delivery delivery)
@@ -235,7 +254,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 257
+    startLine: 244
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> send(final Iterable<Message> messages)
@@ -256,7 +275,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageSender.java
-    startLine: 307
+    startLine: 287
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> send(Message msg)
@@ -379,17 +398,14 @@ references:
     content: protected final void setClosed()
     return:
       type: 3f6357ce
-- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed()
   parent: com.microsoft.azure.servicebus._client_entity
   href: com.microsoft.azure.servicebus._client_entity.yml
-  name: throwIfClosed(Throwable cause)
-  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed(Throwable cause)
+  name: throwIfClosed()
+  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed()
   type: Method
   syntax:
-    content: protected final void throwIfClosed(Throwable cause)
-    parameters:
-    - id: cause
-      type: a04fafd7
+    content: protected final void throwIfClosed()
     return:
       type: 3f6357ce
 - uid: com.microsoft.azure.servicebus._client_entity
