@@ -5,12 +5,12 @@ items:
   children:
   - com.microsoft.azure.servicebus._message_receiver.create(final MessagingFactory,final String,final String,final int,final IReceiverSettingsProvider)
   - com.microsoft.azure.servicebus._message_receiver.getContext()
+  - com.microsoft.azure.servicebus._message_receiver.getLastKnownError()
   - com.microsoft.azure.servicebus._message_receiver.getPrefetchCount()
   - com.microsoft.azure.servicebus._message_receiver.getReceivePath()
   - com.microsoft.azure.servicebus._message_receiver.getReceiveTimeout()
   - com.microsoft.azure.servicebus._message_receiver.onClose()
   - com.microsoft.azure.servicebus._message_receiver.onClose(ErrorCondition)
-  - com.microsoft.azure.servicebus._message_receiver.onError(final ErrorCondition)
   - com.microsoft.azure.servicebus._message_receiver.onError(final Exception)
   - com.microsoft.azure.servicebus._message_receiver.onOpenComplete(Exception)
   - com.microsoft.azure.servicebus._message_receiver.onReceiveComplete(Delivery)
@@ -29,7 +29,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 46
+    startLine: 48
   package: com.microsoft.azure.servicebus
   summary: <p>Common Receiver that abstracts all amqp related details translates event-driven reactor model into async receive Api </p>
   syntax: &o1
@@ -45,7 +45,7 @@ items:
   - com.microsoft.azure.servicebus._client_entity.getIsClosed()
   - com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
   - com.microsoft.azure.servicebus._client_entity.setClosed()
-  - com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+  - com.microsoft.azure.servicebus._client_entity.throwIfClosed()
 - uid: com.microsoft.azure.servicebus._message_receiver.create(final MessagingFactory,final String,final String,final int,final IReceiverSettingsProvider)
   id: create(final MessagingFactory,final String,final String,final int,final IReceiverSettingsProvider)
   parent: com.microsoft.azure.servicebus._message_receiver
@@ -58,7 +58,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 181
+    startLine: 167
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final int prefetchCount, final IReceiverSettingsProvider settingsProvider)
@@ -87,12 +87,30 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 680
+    startLine: 591
   package: com.microsoft.azure.servicebus
   syntax:
     content: public ErrorContext getContext()
     return:
       type: com.microsoft.azure.servicebus._error_context
+- uid: com.microsoft.azure.servicebus._message_receiver.getLastKnownError()
+  id: getLastKnownError()
+  parent: com.microsoft.azure.servicebus._message_receiver
+  href: com.microsoft.azure.servicebus._message_receiver.yml
+  langs:
+  - java
+  name: getLastKnownError()
+  fullName: Exception com.microsoft.azure.servicebus.MessageReceiver.getLastKnownError()
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
+    startLine: 650
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: protected Exception getLastKnownError()
+    return:
+      type: 8a99d4b0
 - uid: com.microsoft.azure.servicebus._message_receiver.getPrefetchCount()
   id: getPrefetchCount()
   parent: com.microsoft.azure.servicebus._message_receiver
@@ -105,7 +123,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 248
+    startLine: 220
   package: com.microsoft.azure.servicebus
   syntax:
     content: public int getPrefetchCount()
@@ -123,7 +141,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 197
+    startLine: 182
   package: com.microsoft.azure.servicebus
   syntax:
     content: public String getReceivePath()
@@ -141,7 +159,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 282
+    startLine: 245
   package: com.microsoft.azure.servicebus
   syntax:
     content: public Duration getReceiveTimeout()
@@ -159,7 +177,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 709
+    startLine: 622
   package: com.microsoft.azure.servicebus
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -177,7 +195,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 667
+    startLine: 585
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onClose(ErrorCondition condition)
@@ -185,25 +203,6 @@ items:
     - id: condition
       type: 6fca0d17
   overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onClose(ErrorCondition)
-- uid: com.microsoft.azure.servicebus._message_receiver.onError(final ErrorCondition)
-  id: onError(final ErrorCondition)
-  parent: com.microsoft.azure.servicebus._message_receiver
-  href: com.microsoft.azure.servicebus._message_receiver.yml
-  langs:
-  - java
-  name: onError(final ErrorCondition error)
-  fullName: void com.microsoft.azure.servicebus.MessageReceiver.onError(final ErrorCondition error)
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 404
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public void onError(final ErrorCondition error)
-    parameters:
-    - id: error
-      type: 8ddccbbc
 - uid: com.microsoft.azure.servicebus._message_receiver.onError(final Exception)
   id: onError(final Exception)
   parent: com.microsoft.azure.servicebus._message_receiver
@@ -216,7 +215,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 411
+    startLine: 339
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onError(final Exception exception)
@@ -236,7 +235,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 340
+    startLine: 277
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onOpenComplete(Exception exception)
@@ -257,7 +256,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 377
+    startLine: 321
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onReceiveComplete(Delivery delivery)
@@ -277,7 +276,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 292
+    startLine: 253
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Collection<Message>> receive(final int maxMessageCount)
@@ -298,7 +297,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 256
+    startLine: 226
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void setPrefetchCount(final int value)
@@ -317,7 +316,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessageReceiver.java
-    startLine: 287
+    startLine: 249
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void setReceiveTimeout(final Duration value)
@@ -387,10 +386,6 @@ references:
   spec.java:
   - name: Delivery
     fullName: Delivery
-- uid: 8ddccbbc
-  spec.java:
-  - name: final ErrorCondition
-    fullName: final ErrorCondition
 - uid: 0e0204bc
   spec.java:
   - name: final Exception
@@ -458,17 +453,14 @@ references:
     content: protected final void setClosed()
     return:
       type: 3f6357ce
-- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed()
   parent: com.microsoft.azure.servicebus._client_entity
   href: com.microsoft.azure.servicebus._client_entity.yml
-  name: throwIfClosed(Throwable cause)
-  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed(Throwable cause)
+  name: throwIfClosed()
+  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed()
   type: Method
   syntax:
-    content: protected final void throwIfClosed(Throwable cause)
-    parameters:
-    - id: cause
-      type: a04fafd7
+    content: protected final void throwIfClosed()
     return:
       type: 3f6357ce
 - uid: com.microsoft.azure.servicebus._client_entity

@@ -11,7 +11,7 @@ items:
   - com.microsoft.azure.servicebus._messaging_factory.getOperationTimeout()
   - com.microsoft.azure.servicebus._messaging_factory.getReactorScheduler()
   - com.microsoft.azure.servicebus._messaging_factory.getRetryPolicy()
-  - com.microsoft.azure.servicebus._messaging_factory.getSession(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
+  - com.microsoft.azure.servicebus._messaging_factory.getSession(final String,final Consumer<Session>,final BiConsumer<ErrorCondition, Exception>)
   - com.microsoft.azure.servicebus._messaging_factory.getTokenProvider()
   - com.microsoft.azure.servicebus._messaging_factory.onClose()
   - com.microsoft.azure.servicebus._messaging_factory.onConnectionError(ErrorCondition)
@@ -31,7 +31,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 42
+    startLine: 44
   package: com.microsoft.azure.servicebus
   summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
   syntax: &o1
@@ -47,9 +47,10 @@ items:
   - com.microsoft.azure.servicebus._messaging_factory.getHostName()
   - com.microsoft.azure.servicebus._client_entity.getIsClosed()
   - com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
+  - com.microsoft.azure.servicebus._client_entity.getLastKnownError()
   - com.microsoft.azure.servicebus._messaging_factory.MessagingFactory(final ConnectionStringBuilder,final RetryPolicy)
   - com.microsoft.azure.servicebus._client_entity.setClosed()
-  - com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+  - com.microsoft.azure.servicebus._client_entity.throwIfClosed()
 - uid: com.microsoft.azure.servicebus._messaging_factory.createFromConnectionString(final String)
   id: createFromConnectionString(final String)
   parent: com.microsoft.azure.servicebus._messaging_factory
@@ -62,7 +63,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 191
+    startLine: 174
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionString(final String connectionString)
@@ -83,7 +84,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 196
+    startLine: 178
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionString(final String connectionString, final RetryPolicy retryPolicy)
@@ -106,7 +107,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 44
+    startLine: 45
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static final Duration DefaultOperationTimeout= Duration.ofSeconds(60)
@@ -124,7 +125,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 469
+    startLine: 411
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deregisterForConnectionError(Link link)
@@ -144,7 +145,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 153
+    startLine: 137
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CBSChannel getCBSChannel()
@@ -162,7 +163,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 181
+    startLine: 166
   package: com.microsoft.azure.servicebus
   syntax:
     content: public Duration getOperationTimeout()
@@ -180,7 +181,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 110
+    startLine: 102
   package: com.microsoft.azure.servicebus
   syntax:
     content: public ReactorDispatcher getReactorScheduler()
@@ -198,35 +199,35 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 186
+    startLine: 170
   package: com.microsoft.azure.servicebus
   syntax:
     content: public RetryPolicy getRetryPolicy()
     return:
       type: com.microsoft.azure.servicebus._retry_policy
-- uid: com.microsoft.azure.servicebus._messaging_factory.getSession(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
-  id: getSession(final String,final Consumer<Session>,final Consumer<ErrorCondition>)
+- uid: com.microsoft.azure.servicebus._messaging_factory.getSession(final String,final Consumer<Session>,final BiConsumer<ErrorCondition, Exception>)
+  id: getSession(final String,final Consumer<Session>,final BiConsumer<ErrorCondition, Exception>)
   parent: com.microsoft.azure.servicebus._messaging_factory
   href: com.microsoft.azure.servicebus._messaging_factory.yml
   langs:
   - java
-  name: getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
-  fullName: Session com.microsoft.azure.servicebus.MessagingFactory.getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
+  name: getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final BiConsumer<ErrorCondition, Exception> onRemoteSessionOpenError)
+  fullName: Session com.microsoft.azure.servicebus.MessagingFactory.getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final BiConsumer<ErrorCondition, Exception> onRemoteSessionOpenError)
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 167
+    startLine: 148
   package: com.microsoft.azure.servicebus
   syntax:
-    content: public Session getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final Consumer<ErrorCondition> onRemoteSessionOpenError)
+    content: public Session getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final BiConsumer<ErrorCondition, Exception> onRemoteSessionOpenError)
     parameters:
     - id: path
       type: 3d93591e
     - id: onRemoteSessionOpen
       type: acf4f1fb
     - id: onRemoteSessionOpenError
-      type: 2be33d2d
+      type: 1ed0d477
     return:
       type: 29aec771
 - uid: com.microsoft.azure.servicebus._messaging_factory.getTokenProvider()
@@ -241,7 +242,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 118
+    startLine: 108
   package: com.microsoft.azure.servicebus
   syntax:
     content: public SharedAccessSignatureTokenProvider getTokenProvider()
@@ -259,7 +260,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 316
+    startLine: 282
   package: com.microsoft.azure.servicebus
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -277,7 +278,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 221
+    startLine: 213
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onConnectionError(ErrorCondition error)
@@ -297,7 +298,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 206
+    startLine: 197
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onOpenComplete(Exception exception)
@@ -317,7 +318,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 463
+    startLine: 406
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerForConnectionError(Link link)
@@ -337,7 +338,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 474
+    startLine: 415
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void scheduleOnReactorThread(final DispatchHandler handler)
@@ -356,7 +357,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 479
+    startLine: 419
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void scheduleOnReactorThread(final int delay, final DispatchHandler handler)
@@ -378,10 +379,10 @@ references:
   spec.java:
   - name: final Consumer<Session>
     fullName: final Consumer<Session>
-- uid: 2be33d2d
+- uid: 1ed0d477
   spec.java:
-  - name: final Consumer<ErrorCondition>
-    fullName: final Consumer<ErrorCondition>
+  - name: final BiConsumer<ErrorCondition, Exception>
+    fullName: final BiConsumer<ErrorCondition, Exception>
 - uid: 29aec771
   spec.java:
   - name: Session
@@ -482,6 +483,16 @@ references:
 - uid: com.microsoft.azure.servicebus._messaging_factory.getHostName()
 - uid: com.microsoft.azure.servicebus._client_entity.getIsClosed()
 - uid: com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
+- uid: com.microsoft.azure.servicebus._client_entity.getLastKnownError()
+  parent: com.microsoft.azure.servicebus._client_entity
+  href: com.microsoft.azure.servicebus._client_entity.yml
+  name: getLastKnownError()
+  fullName: Exception com.microsoft.azure.servicebus.ClientEntity.getLastKnownError()
+  type: Method
+  syntax:
+    content: protected Exception getLastKnownError()
+    return:
+      type: 8a99d4b0
 - uid: com.microsoft.azure.servicebus._messaging_factory.MessagingFactory(final ConnectionStringBuilder,final RetryPolicy)
 - uid: com.microsoft.azure.servicebus._client_entity.setClosed()
   parent: com.microsoft.azure.servicebus._client_entity
@@ -493,17 +504,14 @@ references:
     content: protected final void setClosed()
     return:
       type: 3f6357ce
-- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed(Throwable)
+- uid: com.microsoft.azure.servicebus._client_entity.throwIfClosed()
   parent: com.microsoft.azure.servicebus._client_entity
   href: com.microsoft.azure.servicebus._client_entity.yml
-  name: throwIfClosed(Throwable cause)
-  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed(Throwable cause)
+  name: throwIfClosed()
+  fullName: final void com.microsoft.azure.servicebus.ClientEntity.throwIfClosed()
   type: Method
   syntax:
-    content: protected final void throwIfClosed(Throwable cause)
-    parameters:
-    - id: cause
-      type: a04fafd7
+    content: protected final void throwIfClosed()
     return:
       type: 3f6357ce
 - uid: com.microsoft.azure.servicebus._client_entity
@@ -586,7 +594,7 @@ references:
 
       <xref href="com.microsoft.azure.servicebus._connection_string_builder" data-throw-if-not-resolved="false"></xref> can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
 
-    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>eventHubName<sp></sp>or<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
+    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>eventHubName<sp></sp>or<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
 
     <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>
   syntax:
