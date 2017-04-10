@@ -10,10 +10,10 @@ items:
   - com.microsoft.azure.batch._file_operations.deleteFileFromTask(String,String,String)
   - com.microsoft.azure.batch._file_operations.deleteFileFromTask(String,String,String,Boolean)
   - com.microsoft.azure.batch._file_operations.deleteFileFromTask(String,String,String,Boolean,Iterable<BatchClientBehavior>)
-  - com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String)
-  - com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>)
-  - com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String)
-  - com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,Iterable<BatchClientBehavior>)
+  - com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
+  - com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,OutputStream)
+  - com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
+  - com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,OutputStream)
   - com.microsoft.azure.batch._file_operations.getFilePropertiesFromComputeNode(String,String,String)
   - com.microsoft.azure.batch._file_operations.getFilePropertiesFromComputeNode(String,String,String,Iterable<BatchClientBehavior>)
   - com.microsoft.azure.batch._file_operations.getFilePropertiesFromTask(String,String,String)
@@ -37,7 +37,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-batch-sdk-for-java
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 32
+    startLine: 30
   package: com.microsoft.azure.batch
   summary: <p>Performs file-related operations on an Azure Batch account. </p>
   syntax:
@@ -59,7 +59,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 51
+    startLine: 49
   package: com.microsoft.azure.batch
   summary: >-
     <p>Gets a collection of behaviors that modify or customize requests to the Batch service.</p>
@@ -83,7 +83,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 220
+    startLine: 218
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified compute node.</p>
@@ -118,7 +118,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 234
+    startLine: 232
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified compute node.</p>
@@ -156,7 +156,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 249
+    startLine: 247
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified compute node.</p>
@@ -197,7 +197,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 174
+    startLine: 172
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified task's directory on its compute node.</p>
@@ -232,7 +232,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 188
+    startLine: 186
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified task's directory on its compute node.</p>
@@ -270,7 +270,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 203
+    startLine: 201
   package: com.microsoft.azure.batch
   summary: >-
     <p>Deletes the specified file from the specified task's directory on its compute node.</p>
@@ -299,64 +299,26 @@ items:
     description: <p>Exception thrown when an error response is received from the Batch service. </p>
   - type: cbf33bbe
     description: <p>Exception thrown when there is an error in serialization/deserialization of data sent to/received from the Batch service. </p>
-- uid: com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String)
-  id: getFileFromComputeNode(String,String,String)
+- uid: com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
+  id: getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
   parent: com.microsoft.azure.batch._file_operations
   href: com.microsoft.azure.batch._file_operations.yml
   langs:
   - java
-  name: getFileFromComputeNode(String poolId, String nodeId, String fileName)
-  fullName: InputStream com.microsoft.azure.batch.FileOperations.getFileFromComputeNode(String poolId, String nodeId, String fileName)
+  name: getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
+  fullName: void com.microsoft.azure.batch.FileOperations.getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 320
+    startLine: 313
   package: com.microsoft.azure.batch
   summary: >-
     <p>Downloads the specified file from the specified compute node.</p>
 
     <p></p>
   syntax:
-    content: public InputStream getFileFromComputeNode(String poolId, String nodeId, String fileName)
-    parameters:
-    - id: poolId
-      type: "26831127"
-      description: <p>The ID of the pool that contains the compute node. </p>
-    - id: nodeId
-      type: "26831127"
-      description: <p>The ID of the compute node. </p>
-    - id: fileName
-      type: "26831127"
-      description: <p>The name of the file to download. </p>
-    return:
-      type: 76fcb9b7
-      description: <p>A stream into which the file contents will be written. </p>
-  exceptions:
-  - type: c8683d81
-    description: <p>Exception thrown when an error response is received from the Batch service. </p>
-  - type: cbf33bbe
-    description: <p>Exception thrown when there is an error in serialization/deserialization of data sent to/received from the Batch service. </p>
-- uid: com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>)
-  id: getFileFromComputeNode(String,String,String,Iterable<BatchClientBehavior>)
-  parent: com.microsoft.azure.batch._file_operations
-  href: com.microsoft.azure.batch._file_operations.yml
-  langs:
-  - java
-  name: getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
-  fullName: InputStream com.microsoft.azure.batch.FileOperations.getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 335
-  package: com.microsoft.azure.batch
-  summary: >-
-    <p>Downloads the specified file from the specified compute node.</p>
-
-    <p></p>
-  syntax:
-    content: public InputStream getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
+    content: public void getFileFromComputeNode(String poolId, String nodeId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
     parameters:
     - id: poolId
       type: "26831127"
@@ -370,72 +332,72 @@ items:
     - id: additionalBehaviors
       type: 2a13b5a5com.microsoft.azure.batch._batch_client_behaviora08ddfce
       description: <p>A collection of <xref href="com.microsoft.azure.batch._batch_client_behavior" data-throw-if-not-resolved="false"></xref> instances that are applied to the Batch service request. </p>
-    return:
-      type: 76fcb9b7
+    - id: outputStream
+      type: 3a09e348
       description: <p>A stream into which the file contents will be written. </p>
   exceptions:
   - type: c8683d81
     description: <p>Exception thrown when an error response is received from the Batch service. </p>
   - type: cbf33bbe
     description: <p>Exception thrown when there is an error in serialization/deserialization of data sent to/received from the Batch service. </p>
-- uid: com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String)
-  id: getFileFromTask(String,String,String)
+- uid: com.microsoft.azure.batch._file_operations.getFileFromComputeNode(String,String,String,OutputStream)
+  id: getFileFromComputeNode(String,String,String,OutputStream)
   parent: com.microsoft.azure.batch._file_operations
   href: com.microsoft.azure.batch._file_operations.yml
   langs:
   - java
-  name: getFileFromTask(String jobId, String taskId, String fileName)
-  fullName: InputStream com.microsoft.azure.batch.FileOperations.getFileFromTask(String jobId, String taskId, String fileName)
+  name: getFileFromComputeNode(String poolId, String nodeId, String fileName, OutputStream outputStream)
+  fullName: void com.microsoft.azure.batch.FileOperations.getFileFromComputeNode(String poolId, String nodeId, String fileName, OutputStream outputStream)
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 267
+    startLine: 298
   package: com.microsoft.azure.batch
   summary: >-
-    <p>Downloads the specified file from the specified task's directory on its compute node.</p>
+    <p>Downloads the specified file from the specified compute node.</p>
 
     <p></p>
   syntax:
-    content: public InputStream getFileFromTask(String jobId, String taskId, String fileName)
+    content: public void getFileFromComputeNode(String poolId, String nodeId, String fileName, OutputStream outputStream)
     parameters:
-    - id: jobId
+    - id: poolId
       type: "26831127"
-      description: <p>The ID of the job containing the task. </p>
-    - id: taskId
+      description: <p>The ID of the pool that contains the compute node. </p>
+    - id: nodeId
       type: "26831127"
-      description: <p>The ID of the task. </p>
+      description: <p>The ID of the compute node. </p>
     - id: fileName
       type: "26831127"
       description: <p>The name of the file to download. </p>
-    return:
-      type: 76fcb9b7
+    - id: outputStream
+      type: 3a09e348
       description: <p>A stream into which the file contents will be written. </p>
   exceptions:
   - type: c8683d81
     description: <p>Exception thrown when an error response is received from the Batch service. </p>
   - type: cbf33bbe
     description: <p>Exception thrown when there is an error in serialization/deserialization of data sent to/received from the Batch service. </p>
-- uid: com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,Iterable<BatchClientBehavior>)
-  id: getFileFromTask(String,String,String,Iterable<BatchClientBehavior>)
+- uid: com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
+  id: getFileFromTask(String,String,String,Iterable<BatchClientBehavior>,OutputStream)
   parent: com.microsoft.azure.batch._file_operations
   href: com.microsoft.azure.batch._file_operations.yml
   langs:
   - java
-  name: getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
-  fullName: InputStream com.microsoft.azure.batch.FileOperations.getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
+  name: getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
+  fullName: void com.microsoft.azure.batch.FileOperations.getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 282
+    startLine: 280
   package: com.microsoft.azure.batch
   summary: >-
     <p>Downloads the specified file from the specified task's directory on its compute node.</p>
 
     <p></p>
   syntax:
-    content: public InputStream getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors)
+    content: public void getFileFromTask(String jobId, String taskId, String fileName, Iterable<BatchClientBehavior> additionalBehaviors, OutputStream outputStream)
     parameters:
     - id: jobId
       type: "26831127"
@@ -449,8 +411,46 @@ items:
     - id: additionalBehaviors
       type: 2a13b5a5com.microsoft.azure.batch._batch_client_behaviora08ddfce
       description: <p>A collection of <xref href="com.microsoft.azure.batch._batch_client_behavior" data-throw-if-not-resolved="false"></xref> instances that are applied to the Batch service request. </p>
-    return:
-      type: 76fcb9b7
+    - id: outputStream
+      type: 3a09e348
+      description: <p>A stream into which the file contents will be written. </p>
+  exceptions:
+  - type: c8683d81
+    description: <p>Exception thrown when an error response is received from the Batch service. </p>
+  - type: cbf33bbe
+    description: <p>Exception thrown when there is an error in serialization/deserialization of data sent to/received from the Batch service. </p>
+- uid: com.microsoft.azure.batch._file_operations.getFileFromTask(String,String,String,OutputStream)
+  id: getFileFromTask(String,String,String,OutputStream)
+  parent: com.microsoft.azure.batch._file_operations
+  href: com.microsoft.azure.batch._file_operations.yml
+  langs:
+  - java
+  name: getFileFromTask(String jobId, String taskId, String fileName, OutputStream outputStream)
+  fullName: void com.microsoft.azure.batch.FileOperations.getFileFromTask(String jobId, String taskId, String fileName, OutputStream outputStream)
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/FileOperations.java
+    startLine: 265
+  package: com.microsoft.azure.batch
+  summary: >-
+    <p>Downloads the specified file from the specified task's directory on its compute node.</p>
+
+    <p></p>
+  syntax:
+    content: public void getFileFromTask(String jobId, String taskId, String fileName, OutputStream outputStream)
+    parameters:
+    - id: jobId
+      type: "26831127"
+      description: <p>The ID of the job containing the task. </p>
+    - id: taskId
+      type: "26831127"
+      description: <p>The ID of the task. </p>
+    - id: fileName
+      type: "26831127"
+      description: <p>The name of the file to download. </p>
+    - id: outputStream
+      type: 3a09e348
       description: <p>A stream into which the file contents will be written. </p>
   exceptions:
   - type: c8683d81
@@ -469,7 +469,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 414
+    startLine: 372
   package: com.microsoft.azure.batch
   summary: >-
     <p>Gets information about a file on a compute node.</p>
@@ -507,7 +507,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 429
+    startLine: 387
   package: com.microsoft.azure.batch
   summary: >-
     <p>Gets information about a file on a compute node.</p>
@@ -548,7 +548,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 373
+    startLine: 331
   package: com.microsoft.azure.batch
   summary: >-
     <p>Gets information about a file from the specified task's directory on its compute node.</p>
@@ -586,7 +586,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 388
+    startLine: 346
   package: com.microsoft.azure.batch
   summary: >-
     <p>Gets information about a file from the specified task's directory on its compute node.</p>
@@ -627,7 +627,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 125
+    startLine: 123
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists files on the specified compute node.</p>
@@ -662,7 +662,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 140
+    startLine: 138
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists files on the specified compute node.</p>
@@ -703,7 +703,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 156
+    startLine: 154
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists files on the specified compute node.</p>
@@ -747,7 +747,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 76
+    startLine: 74
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists the files in the specified task's directory on its compute node.</p>
@@ -782,7 +782,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 91
+    startLine: 89
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists the files in the specified task's directory on its compute node.</p>
@@ -823,7 +823,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 107
+    startLine: 105
   package: com.microsoft.azure.batch
   summary: >-
     <p>Lists the files in the specified task's directory on its compute node.</p>
@@ -867,7 +867,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/FileOperations.java
-    startLine: 62
+    startLine: 60
   package: com.microsoft.azure.batch
   summary: >-
     <p>Sets a collection of behaviors that modify or customize requests to the Batch service.</p>
@@ -930,10 +930,10 @@ references:
     href: com.microsoft.azure.batch._batch_client_behavior.yml
   - name: '>'
     fullName: '>'
-- uid: 76fcb9b7
+- uid: 3a09e348
   spec.java:
-  - name: InputStream
-    fullName: InputStream
+  - name: OutputStream
+    fullName: OutputStream
 - uid: com.microsoft.azure.batch._file_operations.FileOperations(BatchClient,Iterable<BatchClientBehavior>)
 - uid: com.microsoft.azure.batch._i_inherited_behaviors
   parent: com.microsoft.azure.batch
