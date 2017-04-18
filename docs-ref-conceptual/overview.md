@@ -34,7 +34,7 @@ VirtualMachine linuxVM = azure.virtualMachines().define(linuxVmName)
            .create();
  ```
 
-Review the [Install article](java-sdk-azure-install.md) to import the SDK into your Maven or Gradle projects. Then read the [Get Started](java-sdk-azure-get-started.md) to set up authentication and run some sample code against your own Azure subscription. The more in depth [concepts article](java-sdk-azure-patterns.md) article goes into the patterns the SDK uses and how to leverage those to simplify your application code.
+Review the [Install instructions](java-sdk-azure-install.md) to get the SDK into your Maven or Gradle projects either on the command line . Then read the [Get started](java-sdk-azure-get-started.md) to set up authentication and run some sample code against your own Azure subscription. The more in depth [concepts article](java-sdk-azure-patterns.md) article goes into the patterns the SDK uses and how to leverage those to simplify your application code.
 
 Use the code in the following samples to learn how to perform common tasks with the Azure SDK for Java:
 

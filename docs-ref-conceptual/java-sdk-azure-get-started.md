@@ -178,7 +178,58 @@ az vm delete --resourceGroup sampleResourceGroup --name testLinuxVM
 
 ## Deploy a web app from a GitHub repo
 
+Replace the code in AzureSDKApp.java with the following class:
 
+```java
+package com.fabrikam.testSDKApp;
+
+import com.microsoft.azure.management.Azure;
+import com.microsoft.azure.management.resources.fluentcore.utils.SdkContext;
+import com.microsoft.azure.management.appservice.WebApp;
+import com.microsoft.rest.LogLevel;
+import com.microsoft.azure.management.resources.fluentcore.arm.Region;
+
+import java.io.File;
+
+public class AzureSDKApp {
+
+    public static void main(String[] args) {
+        try {
+
+            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+            final String appName = SdkContext.randomResourceName("webapp-", 20);
+            
+            Azure azure = Azure.configure()
+                    .withLogLevel(LogLevel.BASIC)
+                    .authenticate(credFile)
+                    .withDefaultSubscription();
+
+            WebApp app = azure.webApps().define(appName)
+                    .withNewResourceGroup("sampleResourceGroup")
+                    .withNewAppServicePlan("testAppServicePlan")
+                    .withRegion(Region.US_WEST2)
+                    .withFreePricingTier()
+                    .defineSourceControl()
+                    .withPublicGitRepository(
+                       "https://github.com/Azure-Samples/app-service-web-dotnet-get-started")
+                    .withBranch("master")
+                    .attach()
+                    .create();
+            
+           
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+This code will deploy a .NET app directly from a public GitHub repo into Azure App Service. Verify the deployment through the CLI:
+
+```azurecli
+az appservice
 
 ## Explore the samples code
 
