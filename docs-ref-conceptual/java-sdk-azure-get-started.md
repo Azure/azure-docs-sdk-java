@@ -88,6 +88,19 @@ This creates a basic Maven project under the `testSDKApp` folder. Add the the fo
 
 Also add an entry to use the maven-exec-plugin to run the sample:
 
+```XML
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <configuration>
+                <mainClass>com.fabrikam.testSDKApp.AzureSDKApp</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+ ```
 
 
 ## Create a virtual machine
@@ -154,18 +167,20 @@ mvn exec:java
 You'll see some REST requests and responses in the console as the SDK makes its underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
 ```azurecli
-az vm list --resource-group sampleResourceGroup --query [].name
+az vm list --resource-group sampleResourceGroup
 ```
 
-```json
-[
-  "azureTestLnuxvm534"
-]
+Once you've verified that the code worked, delete the VM from the CLI
+
+```azurecli
+az vm delete --resourceGroup sampleResourceGroup --name testLinuxVM
 ```
 
-## List virtual machines in a subscription
+## Deploy a web app from a GitHub repo
 
-## Get sample code
+
+
+## Explore the samples code
 
 ## Review the reference and release notes
 
