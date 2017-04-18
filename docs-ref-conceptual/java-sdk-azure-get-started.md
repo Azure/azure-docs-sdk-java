@@ -18,10 +18,12 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 
 ## Prerequisites
 
-- Maven
-- Java 8
+- An Azure account. If you don't have one , [get a free trial](https://azure.microsoft.com/free/)
+- [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+- [Maven 3](http://maven.apache.org/download.cgi)
+- [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)
 
-This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Java SDK for Azure.
+This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Java SDK for Azure. 
 
 ## Install the Azure SDK for Java
 
@@ -29,7 +31,7 @@ Follow [the install instructions](java-install-azure-sdk.md) to get the SDK on y
 
 ## Set up authentication
 
-Your Java application will need access to information and objects in your Azure subscription, but you don't want to use your personal account information directly in your programs. Create a service principal in Azure to run your code under, which will have its own set of credentials 
+Your Java application will need access to read and create resources in your Azure subscription, but you don't want to use your personal account information directly in your programs. Create a service principal in Azure to run your code under, which will have its own set of credentials 
 
 ## Create a Linux virtual machine
 
