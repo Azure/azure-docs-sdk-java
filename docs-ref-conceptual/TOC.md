@@ -13,5 +13,11 @@
 ## [Web Apps](java-sdk-azure-web-apps-samples.md)
 ## [Resource manager](java-sdk-azure-sql-database-samples.md)
 # [Reference](https://docs.microsoft.com/java/api)
-## [Storage]
-## [App Service]
+## Storage
+### Package 1
+### Package 2
+### Package 3
+## App Service
+### Package Topic 1
+### Package Topic 2
+### Package Topic 3
