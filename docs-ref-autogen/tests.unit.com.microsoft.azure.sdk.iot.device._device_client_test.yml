@@ -22,6 +22,12 @@ items:
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.connStringConstructorWithDeviceKeyInitializesAmqpsTransport(@Mocked final AmqpsTransport)
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.connStringConstructorWithDeviceKeyInitializesHttpsTransport(@Mocked final HttpsTransport)
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.connStringConstructorWithDeviceKeyInitializesMqttTransport(@Mocked final HttpsTransport)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContext(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextThrowsIfDefaultCertFailed(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificatePathProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificateProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificateProvidedInvalidThrows(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openDoesNothingIfCalledTwice(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask)
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openOpensTransport(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask)
   - tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openStartsReceiveTask(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask)
@@ -79,7 +85,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 29
+    startLine: 32
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   summary: <p>Unit tests for DeviceClient. </p>
   syntax:
@@ -101,7 +107,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 456
+    startLine: 674
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void closeClosesTransport( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport, @Mocked final IotHubSendTask mockSendTask, @Mocked final IotHubReceiveTask mockReceiveTask)
@@ -126,7 +132,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 522
+    startLine: 740
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void closeDoesNothingOnClosedClient( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final IotHubSendTask mockSendTask, @Mocked final IotHubReceiveTask mockReceiveTask)
@@ -151,7 +157,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 489
+    startLine: 707
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void closeDoesNothingOnUnopenedClient( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final IotHubSendTask mockSendTask, @Mocked final IotHubReceiveTask mockReceiveTask)
@@ -176,7 +182,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 422
+    startLine: 640
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void closeWaitsForTasksToFinish( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport, @Mocked final IotHubSendTask mockSendTask, @Mocked final IotHubReceiveTask mockReceiveTask)
@@ -201,7 +207,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 206
+    startLine: 209
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsForNullConnString()
@@ -217,7 +223,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 264
+    startLine: 267
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfConnStringFoundBothSharedAccessKeyAndSASToken( @Mocked final AmqpsTransport mockTransport)
@@ -236,7 +242,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 226
+    startLine: 229
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfConnStringMissingDeviceId( @Mocked final AmqpsTransport mockTransport)
@@ -255,7 +261,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 213
+    startLine: 216
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfConnStringMissingHostname( @Mocked final AmqpsTransport mockTransport)
@@ -274,7 +280,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 239
+    startLine: 242
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfConnStringMissingSharedAccessKey( @Mocked final AmqpsTransport mockTransport)
@@ -293,7 +299,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 252
+    startLine: 255
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfConnStringMissingSharedAccessKeyAndSASToken( @Mocked final AmqpsTransport mockTransport)
@@ -312,7 +318,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 280
+    startLine: 283
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorFailsIfNullProtocol()
@@ -328,7 +334,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 61
+    startLine: 64
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorSavesDeviceId( @Mocked final AmqpsTransport mockTransport)
@@ -347,7 +353,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 40
+    startLine: 43
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorSavesHostname( @Mocked final AmqpsTransport mockTransport)
@@ -366,7 +372,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 82
+    startLine: 85
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorSavesSharedAccessKey( @Mocked final AmqpsTransport mockTransport)
@@ -385,7 +391,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 102
+    startLine: 105
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorSavesSharedAccessToken( @Mocked final AmqpsTransport mockTransport)
@@ -404,7 +410,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 186
+    startLine: 189
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorWithDeviceKeyInitializesAmqps_Ws_Transport( @Mocked final AmqpsTransport mockTransport)
@@ -423,7 +429,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 146
+    startLine: 149
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorWithDeviceKeyInitializesAmqpsTransport( @Mocked final AmqpsTransport mockTransport)
@@ -442,7 +448,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 126
+    startLine: 129
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorWithDeviceKeyInitializesHttpsTransport( @Mocked final HttpsTransport mockTransport)
@@ -461,13 +467,175 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 166
+    startLine: 169
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void connStringConstructorWithDeviceKeyInitializesMqttTransport( @Mocked final HttpsTransport mockTransport)
     parameters:
     - id: mockTransport
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.https._https_transport
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContext(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContext(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContext( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContext( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 320
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContext( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextThrowsIfDefaultCertFailed(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContextThrowsIfDefaultCertFailed(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContextThrowsIfDefaultCertFailed( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContextThrowsIfDefaultCertFailed( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 356
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContextThrowsIfDefaultCertFailed( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificatePathProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContextWithCertificatePathProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContextWithCertificatePathProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContextWithCertificatePathProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 391
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContextWithCertificatePathProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 429
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContextWithCertificatePathProvidedThrowsIfInvalidCertPath( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificateProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContextWithCertificateProvided(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContextWithCertificateProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContextWithCertificateProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 459
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContextWithCertificateProvided( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openCreatesSSLContextWithCertificateProvidedInvalidThrows(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  id: openCreatesSSLContextWithCertificateProvidedInvalidThrows(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.yml
+  langs:
+  - java
+  name: openCreatesSSLContextWithCertificateProvidedInvalidThrows( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.DeviceClientTest.openCreatesSSLContextWithCertificateProvidedInvalidThrows( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
+    startLine: 497
+  package: tests.unit.com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void openCreatesSSLContextWithCertificateProvidedInvalidThrows( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask, @Mocked final IotHubSSLContext mockIotHubSSLContext)
+    parameters:
+    - id: mockScheduler
+      type: f92ba1f6
+    - id: mockTransport
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
+    - id: mockMsg
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+    - id: mockTask
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task
+    - id: mockIotHubSSLContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test.openDoesNothingIfCalledTwice(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask)
   id: openDoesNothingIfCalledTwice(@Mocked final ScheduledExecutorService,@Mocked final AmqpsTransport,@Mocked final Message,@Mocked final IotHubSendTask)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device._device_client_test
@@ -480,7 +648,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 395
+    startLine: 613
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void openDoesNothingIfCalledTwice( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask)
@@ -505,7 +673,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 291
+    startLine: 294
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void openOpensTransport( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask)
@@ -530,7 +698,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 344
+    startLine: 562
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void openStartsReceiveTask( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask)
@@ -555,7 +723,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 316
+    startLine: 534
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void openStartsSendTask( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask)
@@ -580,7 +748,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 371
+    startLine: 589
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void openThrowsIOExceptionIfTransportOpenFails( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubSendTask mockTask)
@@ -605,7 +773,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 557
+    startLine: 775
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendEventAsyncAddsMessageToTransport( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubEventCallback mockCallback)
@@ -630,7 +798,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 619
+    startLine: 837
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendEventAsyncFailsIfClientAlreadyClosed( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubEventCallback mockCallback)
@@ -655,7 +823,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 601
+    startLine: 819
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendEventAsyncFailsIfClientNotOpened( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final Message mockMsg, @Mocked final IotHubEventCallback mockCallback)
@@ -680,7 +848,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 583
+    startLine: 801
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendEventAsyncRejectsNullMessage( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final IotHubEventCallback mockCallback)
@@ -703,7 +871,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1038
+    startLine: 1256
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendRPSucceeds(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Set<Property> mockSet)
@@ -730,7 +898,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1071
+    startLine: 1289
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendRPThrowsIfCalledBeforeStartingTwin(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Set<Property> mockSet)
@@ -757,7 +925,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1103
+    startLine: 1321
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendRPThrowsIfCalledWhenClientNotOpen(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Set<Property> mockSet)
@@ -784,7 +952,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1133
+    startLine: 1351
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void sendRPThrowsIfCalledWhenRPNullOrEmpty(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -809,7 +977,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 695
+    startLine: 913
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setMessageCallbackRejectsNullCallbackAndNonnullContext( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport)
@@ -830,7 +998,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 670
+    startLine: 888
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setMessageCallbackSetsCallbackContext( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final MessageCallback mockCallback)
@@ -853,7 +1021,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 646
+    startLine: 864
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setMessageCallbackSetsMessageCallback( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport, @Mocked final MessageCallback mockCallback)
@@ -876,7 +1044,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1362
+    startLine: 1580
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionMinimumPollingIntervalAfterOpenFails( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport)
@@ -897,7 +1065,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1379
+    startLine: 1597
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionMinimumPollingIntervalSucceeds( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport)
@@ -918,7 +1086,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1329
+    startLine: 1547
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionMinimumPollingIntervalWithAMQPfails( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport)
@@ -939,7 +1107,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1347
+    startLine: 1565
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionMinimumPollingIntervalWithStringInsteadOfLongFails( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport)
@@ -960,7 +1128,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1556
+    startLine: 1774
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeAfterClientOpenAMQPSucceeds( @Mocked final AmqpsTransport mockTransport)
@@ -979,7 +1147,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1450
+    startLine: 1668
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeAfterClientOpenHTTPSucceeds( @Mocked final HttpsTransport mockTransport)
@@ -998,7 +1166,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1623
+    startLine: 1841
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeAfterClientOpenMQTTSucceeds( @Mocked final MqttTransport mockTransport)
@@ -1017,7 +1185,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1491
+    startLine: 1709
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeAfterClientOpenTransportWithSasTokenSucceeds( @Mocked final HttpsTransport mockTransport)
@@ -1036,7 +1204,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1525
+    startLine: 1743
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeAMQPSucceeds( @Mocked final AmqpsTransport mockTransport)
@@ -1055,7 +1223,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1420
+    startLine: 1638
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeHTTPSucceeds( @Mocked final HttpsTransport mockTransport)
@@ -1074,7 +1242,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1593
+    startLine: 1811
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeMQTTSucceeds( @Mocked final MqttTransport mockTransport)
@@ -1093,7 +1261,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1406
+    startLine: 1624
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionSASTokenExpiryTimeWithStringInsteadOfLongFails( @Mocked final HttpsTransport mockTransport)
@@ -1112,7 +1280,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1294
+    startLine: 1512
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionWithnullOptionNameThrows( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final AmqpsTransport mockTransport)
@@ -1133,7 +1301,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1312
+    startLine: 1530
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void setOptionWithUnknownOptionNameThrows( @Mocked final ScheduledExecutorService mockScheduler, @Mocked final HttpsTransport mockTransport)
@@ -1154,7 +1322,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 713
+    startLine: 931
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void startDeviceTwinSucceeds(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1179,7 +1347,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 807
+    startLine: 1025
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void startDeviceTwinThrowsIfCalledTwice(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1204,7 +1372,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 839
+    startLine: 1057
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void startDeviceTwinThrowsIfCalledWhenClientNotOpen(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1229,7 +1397,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 775
+    startLine: 993
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void startDeviceTwinThrowsIfPropCBisNull(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1254,7 +1422,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 743
+    startLine: 961
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void startDeviceTwinThrowsIfStatusCBisNull(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1279,7 +1447,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1164
+    startLine: 1382
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDeviceMethodSucceeds(@Mocked final IotHubEventCallback mockedStatusCB, @Mocked final DeviceMethodCallback mockedDeviceMethodCB, @Mocked final MqttTransport mockTransport, @Mocked final DeviceMethod mockedMethod)
@@ -1304,7 +1472,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1196
+    startLine: 1414
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDeviceMethodThrowsIfClientNotOpen(@Mocked final IotHubEventCallback mockedStatusCB, @Mocked final DeviceMethodCallback mockedDeviceMethodCB, @Mocked final MqttTransport mockTransport, @Mocked final DeviceMethod mockedMethod)
@@ -1329,7 +1497,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1219
+    startLine: 1437
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDeviceMethodThrowsIfDeviceMethodCallbackNull(@Mocked final IotHubEventCallback mockedStatusCB, @Mocked final DeviceMethodCallback mockedDeviceMethodCB, @Mocked final MqttTransport mockTransport, @Mocked final DeviceMethod mockedMethod)
@@ -1354,7 +1522,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1240
+    startLine: 1458
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDeviceMethodThrowsIfDeviceMethodStatusCallbackNull(@Mocked final IotHubEventCallback mockedStatusCB, @Mocked final DeviceMethodCallback mockedDeviceMethodCB, @Mocked final MqttTransport mockTransport, @Mocked final DeviceMethod mockedMethod)
@@ -1379,7 +1547,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1264
+    startLine: 1482
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDeviceMethodWorksEvenWhenCalledTwice(@Mocked final IotHubEventCallback mockedStatusCB, @Mocked final DeviceMethodCallback mockedDeviceMethodCB, @Mocked final MqttTransport mockTransport, @Mocked final DeviceMethod mockedMethod)
@@ -1404,7 +1572,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 869
+    startLine: 1087
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDPSucceeds(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Map<Property, Pair<PropertyCallBack<String, Object>, Object>> mockMap)
@@ -1431,7 +1599,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 932
+    startLine: 1150
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDPSucceedsEvenWhenUserCBIsNull(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1456,7 +1624,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 1006
+    startLine: 1224
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDPThrowsIfCalledBeforeStartingTwin(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Map<Property, Pair<PropertyCallBack<String, Object>, Object>> mockMap)
@@ -1483,7 +1651,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 973
+    startLine: 1191
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDPThrowsIfCalledWhenClientNotOpen(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport, @Mocked final Map<Property, Pair<PropertyCallBack<String, Object>, Object>> mockMap)
@@ -1510,7 +1678,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/DeviceClientTest.java
-    startLine: 901
+    startLine: 1119
   package: tests.unit.com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void subscribeToDPWorksWhenMapIsNull(@Mocked final DeviceTwin mockedDeviceTwin, @Mocked final IotHubEventCallback mockedStatusCB, @Mocked final PropertyCallBack mockedPropertyCB, @Mocked final AmqpsTransport mockTransport)
@@ -1560,6 +1728,14 @@ references:
     name: IotHubSendTask
     fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubSendTask
     href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_send_task.yml
+- uid: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+  spec.java:
+  - name: '@Mocked final '
+    fullName: '@Mocked final '
+  - uid: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+    name: IotHubSSLContext
+    fullName: com.microsoft.azure.sdk.iot.device.IotHubSSLContext
+    href: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context.yml
 - uid: 5514d1f5com.microsoft.azure.sdk.iot.device.transport._iot_hub_receive_task
   spec.java:
   - name: '@Mocked final '
@@ -1708,6 +1884,14 @@ references:
   summary: <p>Sends batched messages and invokes callbacks on completed requests. Meant to be used with an executor that continuously calls run(). </p>
   syntax:
     content: public class IotHubSendTask
+- uid: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context.yml
+  name: IotHubSSLContext
+  fullName: com.microsoft.azure.sdk.iot.device.IotHubSSLContext
+  type: Class
+  syntax:
+    content: public class IotHubSSLContext
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_receive_task
   parent: com.microsoft.azure.sdk.iot.device.transport
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_receive_task.yml

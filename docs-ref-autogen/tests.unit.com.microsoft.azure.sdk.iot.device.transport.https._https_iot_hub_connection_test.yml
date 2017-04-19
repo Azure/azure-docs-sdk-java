@@ -4,11 +4,12 @@ items:
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   children:
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageHasCorrectUrl(@Mocked final IotHubMessageUri)
-  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri,@Mocked final Message)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsNullIfNoMessageReceived(@Mocked final IotHubMessageUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSavesEtag(@Mocked final IotHubMessageUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSendsGetRequest(@Mocked final IotHubMessageUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsAuthToSasToken(@Mocked final IotHubMessageUri)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri,@Mocked final IotHubSSLContext)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsIotHubToToPath(@Mocked final IotHubMessageUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsMessageLockTimeout(@Mocked final IotHubMessageUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsReadTimeout(@Mocked final IotHubMessageUri)
@@ -20,6 +21,7 @@ items:
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSendsPostRequest(@Mocked final IotHubEventUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsAuthToSasToken(@Mocked final IotHubEventUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsContentTypeCorrectly(@Mocked final IotHubEventUri)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri,@Mocked final IotHubSSLContext)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsIotHubToToPath(@Mocked final IotHubEventUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsReadTimeout(@Mocked final IotHubEventUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventThrowsIOExceptionIfRequestFails(@Mocked final IotHubEventUri)
@@ -27,6 +29,7 @@ items:
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultFailsIfReceiveNotCalled(@Mocked final IotHubRejectUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsAuthToSasToken(@Mocked final IotHubRejectUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsIfMatchToEtag(@Mocked final IotHubRejectUri)
+  - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri,@Mocked final IotHubSSLContext)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsReadTimeout(@Mocked final IotHubRejectUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultThrowsIOExceptionIfBadResponseStatus(@Mocked final IotHubRejectUri)
   - tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultThrowsIOExceptionIfRequestFails(@Mocked final IotHubRejectUri)
@@ -51,7 +54,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 36
+    startLine: 33
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   summary: <p>Unit tests for HttpsIotHubConnection. </p>
   syntax:
@@ -79,32 +82,34 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 323
+    startLine: 345
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageHasCorrectUrl(@Mocked final IotHubMessageUri mockUri)
     parameters:
     - id: mockUri
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
-- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri)
-  id: receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri)
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri,@Mocked final Message)
+  id: receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri,@Mocked final Message)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
   href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.yml
   langs:
   - java
-  name: receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri)
-  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnectionTest.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri)
+  name: receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri, @Mocked final Message mockedMessage)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnectionTest.receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri, @Mocked final Message mockedMessage)
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 488
+    startLine: 535
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
-    content: public void receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri)
+    content: public void receiveMessageReturnsMessageBody(@Mocked final IotHubMessageUri mockUri, @Mocked final Message mockedMessage)
     parameters:
     - id: mockUri
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
+    - id: mockedMessage
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._message
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageReturnsNullIfNoMessageReceived(@Mocked final IotHubMessageUri)
   id: receiveMessageReturnsNullIfNoMessageReceived(@Mocked final IotHubMessageUri)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
@@ -117,7 +122,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 548
+    startLine: 589
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageReturnsNullIfNoMessageReceived(@Mocked final IotHubMessageUri mockUri)
@@ -136,7 +141,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 520
+    startLine: 561
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSavesEtag(@Mocked final IotHubMessageUri mockUri)
@@ -155,7 +160,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 356
+    startLine: 378
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSendsGetRequest(@Mocked final IotHubMessageUri mockUri)
@@ -174,13 +179,34 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 397
+    startLine: 419
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSetsAuthToSasToken(@Mocked final IotHubMessageUri mockUri)
     parameters:
     - id: mockUri
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri,@Mocked final IotHubSSLContext)
+  id: receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.yml
+  langs:
+  - java
+  name: receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri mockUri, @Mocked final IotHubSSLContext mockContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnectionTest.receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri mockUri, @Mocked final IotHubSSLContext mockContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
+    startLine: 510
+  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
+  syntax:
+    content: public void receiveMessageSetsIotHubSSLContext(@Mocked final IotHubMessageUri mockUri, @Mocked final IotHubSSLContext mockContext)
+    parameters:
+    - id: mockUri
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
+    - id: mockContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.receiveMessageSetsIotHubToToPath(@Mocked final IotHubMessageUri)
   id: receiveMessageSetsIotHubToToPath(@Mocked final IotHubMessageUri)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
@@ -193,7 +219,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 434
+    startLine: 456
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSetsIotHubToToPath(@Mocked final IotHubMessageUri mockUri)
@@ -212,7 +238,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 460
+    startLine: 482
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSetsMessageLockTimeout(@Mocked final IotHubMessageUri mockUri)
@@ -231,7 +257,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 372
+    startLine: 394
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageSetsReadTimeout(@Mocked final IotHubMessageUri mockUri)
@@ -250,7 +276,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 569
+    startLine: 610
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void receiveMessageThrowsIOExceptionIfRequestFails(@Mocked final IotHubMessageUri mockUri)
@@ -269,7 +295,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 58
+    startLine: 55
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventHasCorrectUrl( @Mocked final IotHubEventUri mockUri)
@@ -288,7 +314,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 284
+    startLine: 306
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventReturnsCorrectStatusCode(@Mocked final IotHubEventUri mockUri)
@@ -307,7 +333,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 109
+    startLine: 106
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSendsMessageBody( @Mocked final IotHubEventUri mockUri)
@@ -326,7 +352,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 135
+    startLine: 132
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSendsMessageProperties( @Mocked final IotHubEventUri mockUri, @Mocked final MessageProperty mockProperty)
@@ -347,7 +373,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 92
+    startLine: 89
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSendsPostRequest( @Mocked final IotHubEventUri mockUri)
@@ -366,7 +392,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 195
+    startLine: 217
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSetsAuthToSasToken(@Mocked final IotHubEventUri mockUri)
@@ -385,13 +411,34 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 258
+    startLine: 280
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSetsContentTypeCorrectly(@Mocked final IotHubEventUri mockUri)
     parameters:
     - id: mockUri
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_event_uri
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri,@Mocked final IotHubSSLContext)
+  id: sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.yml
+  langs:
+  - java
+  name: sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri mockUri, @Mocked final IotHubSSLContext mockContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnectionTest.sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri mockUri, @Mocked final IotHubSSLContext mockContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
+    startLine: 192
+  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
+  syntax:
+    content: public void sendEventSetsIotHubSSLContext(@Mocked final IotHubEventUri mockUri, @Mocked final IotHubSSLContext mockContext)
+    parameters:
+    - id: mockUri
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_event_uri
+    - id: mockContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendEventSetsIotHubToToPath(@Mocked final IotHubEventUri)
   id: sendEventSetsIotHubToToPath(@Mocked final IotHubEventUri)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
@@ -404,7 +451,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 232
+    startLine: 254
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSetsIotHubToToPath(@Mocked final IotHubEventUri mockUri)
@@ -423,7 +470,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 170
+    startLine: 167
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventSetsReadTimeout(@Mocked final IotHubEventUri mockUri)
@@ -442,7 +489,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 307
+    startLine: 329
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendEventThrowsIOExceptionIfRequestFails(@Mocked final IotHubEventUri mockUri)
@@ -461,7 +508,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 1124
+    startLine: 1204
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultFailsIfNoMessageReceived( @Mocked final IotHubRejectUri mockUri)
@@ -480,7 +527,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 1115
+    startLine: 1195
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultFailsIfReceiveNotCalled( @Mocked final IotHubRejectUri mockUri)
@@ -499,7 +546,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 986
+    startLine: 1027
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultSetsAuthToSasToken(@Mocked final IotHubRejectUri mockUri)
@@ -518,13 +565,34 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 1033
+    startLine: 1074
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultSetsIfMatchToEtag(@Mocked final IotHubRejectUri mockUri)
     parameters:
     - id: mockUri
       type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_reject_uri
+- uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri,@Mocked final IotHubSSLContext)
+  id: sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri,@Mocked final IotHubSSLContext)
+  parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
+  href: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.yml
+  langs:
+  - java
+  name: sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri mockUri, @Mocked final IotHubSSLContext mockedContext)
+  fullName: void tests.unit.com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnectionTest.sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri mockUri, @Mocked final IotHubSSLContext mockedContext)
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
+    startLine: 1107
+  package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
+  syntax:
+    content: public void sendMessageResultSetsIotHubSSLContext(@Mocked final IotHubRejectUri mockUri, @Mocked final IotHubSSLContext mockedContext)
+    parameters:
+    - id: mockUri
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_reject_uri
+    - id: mockedContext
+      type: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
 - uid: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test.sendMessageResultSetsReadTimeout(@Mocked final IotHubRejectUri)
   id: sendMessageResultSetsReadTimeout(@Mocked final IotHubRejectUri)
   parent: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection_test
@@ -537,7 +605,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 951
+    startLine: 992
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultSetsReadTimeout(@Mocked final IotHubRejectUri mockUri)
@@ -556,7 +624,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 1093
+    startLine: 1173
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultThrowsIOExceptionIfBadResponseStatus(@Mocked final IotHubRejectUri mockUri)
@@ -575,7 +643,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 1066
+    startLine: 1146
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultThrowsIOExceptionIfRequestFails(@Mocked final IotHubRejectUri mockUri)
@@ -594,7 +662,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 750
+    startLine: 791
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenAbandonSendsPostRequest(@Mocked final IotHubAbandonUri mockUri)
@@ -613,7 +681,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 782
+    startLine: 823
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenAbandonSetsIotHubToToPath(@Mocked final IotHubAbandonUri mockUri)
@@ -632,7 +700,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 707
+    startLine: 748
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenAbandonUsesAbandonUrl(@Mocked final IotHubAbandonUri mockUri)
@@ -651,7 +719,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 628
+    startLine: 669
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenCompleteSendsDeleteRequest(@Mocked final IotHubCompleteUri mockUri)
@@ -670,7 +738,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 660
+    startLine: 701
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenCompleteSetsIotHubToToPath(@Mocked final IotHubCompleteUri mockUri)
@@ -689,7 +757,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 585
+    startLine: 626
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenCompleteUsesCompleteUrl(@Mocked final IotHubCompleteUri mockUri)
@@ -708,7 +776,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 872
+    startLine: 913
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenRejectSendsDeleteRequest(@Mocked final IotHubRejectUri mockUri)
@@ -727,7 +795,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 904
+    startLine: 945
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenRejectSetsIotHubToToPath(@Mocked final IotHubRejectUri mockUri)
@@ -746,7 +814,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/test/java/tests/unit/com/microsoft/azure/sdk/iot/device/transport/https/HttpsIotHubConnectionTest.java
-    startLine: 829
+    startLine: 870
   package: tests.unit.com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: public void sendMessageResultWhenRejectUsesRejectUrl(@Mocked final IotHubRejectUri mockUri)
@@ -770,6 +838,14 @@ references:
     name: MessageProperty
     fullName: com.microsoft.azure.sdk.iot.device.MessageProperty
     href: com.microsoft.azure.sdk.iot.device._message_property.yml
+- uid: 5514d1f5com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+  spec.java:
+  - name: '@Mocked final '
+    fullName: '@Mocked final '
+  - uid: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+    name: IotHubSSLContext
+    fullName: com.microsoft.azure.sdk.iot.device.IotHubSSLContext
+    href: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context.yml
 - uid: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
   spec.java:
   - name: '@Mocked final '
@@ -778,6 +854,14 @@ references:
     name: IotHubMessageUri
     fullName: com.microsoft.azure.sdk.iot.device.net.IotHubMessageUri
     href: com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri.yml
+- uid: 5514d1f5com.microsoft.azure.sdk.iot.device._message
+  spec.java:
+  - name: '@Mocked final '
+    fullName: '@Mocked final '
+  - uid: com.microsoft.azure.sdk.iot.device._message
+    name: Message
+    fullName: com.microsoft.azure.sdk.iot.device.Message
+    href: com.microsoft.azure.sdk.iot.device._message.yml
 - uid: 5514d1f5com.microsoft.azure.sdk.iot.device.net._iot_hub_complete_uri
   spec.java:
   - name: '@Mocked final '
@@ -891,6 +975,14 @@ references:
   summary: <p>An IoT Hub message property. </p>
   syntax:
     content: public class MessageProperty
+- uid: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device._iot_hub_s_s_l_context.yml
+  name: IotHubSSLContext
+  fullName: com.microsoft.azure.sdk.iot.device.IotHubSSLContext
+  type: Class
+  syntax:
+    content: public class IotHubSSLContext
 - uid: com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri
   parent: com.microsoft.azure.sdk.iot.device.net
   href: com.microsoft.azure.sdk.iot.device.net._iot_hub_message_uri.yml
@@ -900,6 +992,14 @@ references:
   summary: <p>A URI for a device to poll for messages from an IoT Hub. </p>
   syntax:
     content: public class IotHubMessageUri
+- uid: com.microsoft.azure.sdk.iot.device._message
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device._message.yml
+  name: Message
+  fullName: com.microsoft.azure.sdk.iot.device.Message
+  type: Class
+  syntax:
+    content: public class Message
 - uid: com.microsoft.azure.sdk.iot.device.net._iot_hub_complete_uri
   parent: com.microsoft.azure.sdk.iot.device.net
   href: com.microsoft.azure.sdk.iot.device.net._iot_hub_complete_uri.yml
