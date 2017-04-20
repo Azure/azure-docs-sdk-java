@@ -17,8 +17,14 @@ ms.assetid: e4537f38-a60d-4218-a9ba-3cba7af61b8b
 
 # Azure SDK for Java samples for SQL Database
 
-| **SQL Database** ||
+| **Create databases** ||
+|---|---|
+| [Create and manage SQL databases][2] | Create SQL databases, set performance levels, and configure firewalls.  | 
+| **Scale databases** ||
+|---|---|
+| [Manage SQL databases across multiple regions][2] | Create a master SQL databases and read-only databases from the master in multiple regions. Connect VMs to their nearest SQL database instance with a virtual network and firewall rules. | 
+| **Elastic Pools** ||
 |---|---|
 | [Manage SQL Databases in elastic pools][2] | Create, delete, and move SQL databases in and out of elastic pools. | 
 
-[6]: java-sdk-azure-configure-webapp-sources.md
+[2]: java-sdk-azure-configure-webapp-sources.md
