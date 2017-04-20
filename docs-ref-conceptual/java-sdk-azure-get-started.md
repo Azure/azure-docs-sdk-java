@@ -161,7 +161,7 @@ public class AzureSDKApp {
 Run the sample from the command line:
 
 ```
-mvn exec:java
+mvn compile exec:java
 ```
 
 You'll see some REST requests and responses in the console as the SDK makes its underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
@@ -178,7 +178,7 @@ az vm delete --resourceGroup sampleResourceGroup --name testLinuxVM
 
 ## Deploy a web app from a GitHub repo
 
-Replace the code in AzureSDKApp.java with the following class:
+Replace the code in AzureSDKApp.java with the following class. Update the appName variable to a unique value before running the code.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -197,7 +197,7 @@ public class AzureSDKApp {
         try {
 
             final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            final String appName = SdkContext.randomResourceName("webapp-", 20);
+            final String appName = "YOUR_APP_NAME";
             
             Azure azure = Azure.configure()
                     .withLogLevel(LogLevel.BASIC)
@@ -226,14 +226,26 @@ public class AzureSDKApp {
 }
 ```
 
+Run the code as before using Maven
+
+```
+mvn clean compile exec:java
+```
+
 This code will deploy a .NET app directly from a public GitHub repo into Azure App Service. Verify the deployment through the CLI:
 
 ```azurecli
-az appservice
+az appservice web browse --name appname
+```
 
-## Explore the samples code
+## Explore sample code
 
-## Review the reference and release notes
+To learn more about how to use the Azure SDK for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md), [resource groups](java-sdk-azure-resource-groups-samples.md), and [SQL database](java-sdk-azure-sql-databases.md).
 
-## Get help from the community
+## Reference and release notes
 
+A complete [SDK reference](java-sdk-azure-reference.md) is available. Review the [release notes](java-sdk-azure-release-notes.md) to learn about new features, updates and changes to the SDK.
+
+## Get help and give feedback
+
+Post questions to the community on [Stack Overflow](http://stackoverflow.com/questions/tagged/azure+java) and open issues against the SDK on the [project GitHub](https://github.com/Azure/azure-sdk-for-java).

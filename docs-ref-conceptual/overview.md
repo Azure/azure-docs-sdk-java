@@ -16,7 +16,7 @@ ms.assetid: 9aaf22a2-382a-4b13-a8e3-0e467d607207
 
 # Azure SDK for Java
 
-The Java SDK for Azure lets you create and manage Azure resources from your Java applications.
+The Java SDK for Azure lets you create and manage Azure resources from your Java applications. If you're looking for documentation to create Java apps on Azure, see [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782).
 
 The Azure SDK for Java has a [fluent](java-sdk-azure-patterns.md) interface to configure resources exactly to your specifications. For example, to add a Linux VM in an existing Azure resource group:
 
