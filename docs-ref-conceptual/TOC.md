@@ -11,7 +11,7 @@
 ## [Virtual machines](java-sdk-azure-virtual-machine-samples.md)
 ## [Resource groups](java-sdk-azure-resource-groups-samples.md)
 ## [Web Apps](java-sdk-azure-web-apps-samples.md)
-## [Resource manager](java-sdk-azure-sql-database-samples.md)
+## [SQL Database](java-sdk-azure-sql-database-samples.md)
 # [Reference](https://docs.microsoft.com/java/api)
 ## Storage
 ### Package 1
