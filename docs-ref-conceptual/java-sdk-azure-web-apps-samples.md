@@ -16,18 +16,15 @@ ms.assetid: 43633e5c-9fb1-4807-ba63-e24c126754e2
 
 # Azure SDK for Java samples for web apps
 
-| **Create app** ||
+| **Create an app** ||
 |---|---|
 | [Create a web app and deploy from FTP or GitHub][6] | Deploy web apps through local Git, FTP, and continuous integration from GitHub. |
 | [Create a web app and manage deployment slots][7] | Create a web app and deploy to staging slots, then swap between slots. |
 | **Configure app** ||
-|----|---|
 | [Create a web app and configure a custom domain][8] | Create a web app with a custom domain and self-signed SSL certificate. |
 | **Scale apps** ||
-|----|---|
 | [Scale a web app with high availability across multiple regions][11] | Scale a web app in three different geographical regions and make them available through a single endpoint using Azure Traffic Manager. | 
 | **Connect app to resources** ||
-|----|---|
 | [Connect a web app to a storage account][9] | Create an Azure storage account and add the storage account connection string to the app settings. |
 | [Connect a web app to a SQL database][10] | Create a web app and SQL database, then add the SQL database connection string to the app settings. |
 
