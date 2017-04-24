@@ -27,7 +27,7 @@ This get started guide uses the Maven build tool to build and run Java source co
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources in your Azure subscription in order to use the Java SDK for Azure. Create a service principal and configure your app to run with its credentials to grant this access. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
+Your Java application needs permissions to read and create resources in your Azure subscription in order to use the Java SDK for Azure. Create a service principal and configure your app to run with its credentials to grant this access. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.   
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli), and make sure to capture the output seen below from the tool:
 
@@ -60,7 +60,7 @@ graphURL=https\://graph.windows.net/
 - key: use the *password* value from the service principal output .
 - tenant: use the *tenant* value from the service principal output.
 
-Save this file in a secure location on your system where your code can read it. Set an environment variable with the full path to the file in your shell, for example:
+Save this file in a secure location on your system where your code can read it. Set an environment variable with the full path to the authentication file in your shell, for example:
 
 ```bash
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
@@ -86,7 +86,7 @@ This creates a basic Maven project under the `testSDKApp` folder. Add the the fo
 </dependency>
 ```
 
-Also add an entry to use the maven-exec-plugin to run the sample:
+Also add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the sample:
 
 ```XML
 <build>
@@ -105,7 +105,7 @@ Also add an entry to use the maven-exec-plugin to run the sample:
 
 ## Create a virtual machine
 
-Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Add the following code, making sure to provide an actual username and password for the virtual machine:
+Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Paste the following code, then set real values for `userName` and `password`.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -164,7 +164,7 @@ Run the sample from the command line:
 mvn compile exec:java
 ```
 
-You'll see some REST requests and responses in the console as the SDK makes its underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
+You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
 ```azurecli
 az vm list --resource-group sampleResourceGroup
@@ -173,12 +173,12 @@ az vm list --resource-group sampleResourceGroup
 Once you've verified that the code worked, delete the VM from the CLI
 
 ```azurecli
-az vm delete --resourceGroup sampleResourceGroup --name testLinuxVM
+az vm delete --resource-group sampleResourceGroup --name testLinuxVM
 ```
 
 ## Deploy a web app from a GitHub repo
 
-Replace the code in AzureSDKApp.java with the following class. Update the appName variable to a unique value before running the code.
+Replace the code in AzureSDKApp.java with the following class. Update the `appName` variable to a unique value before running the code.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -235,7 +235,7 @@ mvn clean compile exec:java
 This code will deploy a .NET app directly from a public GitHub repo into Azure App Service. Verify the deployment through the CLI:
 
 ```azurecli
-az appservice web browse --name appname
+az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NAME
 ```
 
 ## Explore sample code

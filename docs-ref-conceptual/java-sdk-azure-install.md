@@ -32,22 +32,15 @@ Add a dependency entry in your `pom.xml` to import the SDK into your [Maven](htt
 
 Add a compile entry in the dependency section of your build.gradle file to import the SDK into your [Gradle](https://gradle.org) project:
 
+```groovy
 dependencies {
     compile 'com.microsoft.azure:azure:1.0.0-beta5'
 }
-
-## Install into Eclipse or IntelliJ
-
-Download the [Azure Toolkit for Eclipse](/azure/azure-toolkit-for-eclipse-installation.md) or the [Azure Toolkit for IntelliJ](/azure/azure-toolkit-for-intellij.md) , which contain the Azure SDK for Java as well as:
-
-- Azure service client APIs to integrate Azure services in your app.
-- Project templates and samples to get started quickly.
-- The Azure Explorer to navigate and manage your Azure resources from your IDE.
-- Remote debugging of apps deployed into Azure App Service.
+```
 
 ## Verify your install
 
-After configuring your build tool or IDE, create a new class source file in the location appropriate to your project tooling with the following contents:
+After configuring your build tool, create a new class source file in the location appropriate to your project tooling with the following contents:
 
 ```java
 import com.microsoft.azure.credentials.AzureTokenCredentials;
@@ -72,8 +65,8 @@ public class TestJavaSDK {
 }
 ```
 
-If you're using an IDE, the import of the SDK is successful if the `Azure` and `AzureTokenCredentials` imports resolve. On the command line, run the compile step for your build tool (such as `mvn compile` for Maven) and verify that the compile is successful.
+If you're using an IDE, the import of the SDK is successful if the `Azure` and `AzureTokenCredentials` imports resolve. On the command line, run the compile step for your build tool (such as `mvn compile`) and verify the code compiles successfully.
 
 ## Next steps
 
-Now that the SDK is ready to use, visit the [get started with the Azure SDK for Java] guide to see it in action.
+Now that the SDK is ready to use, visit the [get started with the Azure SDK for Java](java-sdk-azure-get-started.md) guide to see it in action.
