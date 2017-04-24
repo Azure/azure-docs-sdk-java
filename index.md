@@ -121,7 +121,7 @@ Dependable information delivery as a brokered or third-party communication mecha
 </dependency>
 ```
 
-[Reference](https://github.com/Azure/azure-service-bus-java) | [Samples](https://github.com/Azure/azure-service-bus/samples) | [GitHub](https://github.com/Azure/azure-service-bus-java)    
+[Reference](https://github.com/Azure/azure-service-bus-java) | [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples) | [GitHub](https://github.com/Azure/azure-service-bus-java)    
 
 <a name="azuread"></a>
 
@@ -169,7 +169,7 @@ High throughput event and telemetry handling for your instrumentation or IoT sce
 </dependency>   
 ```
 
-[Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.eventhubs) | [Samples](https://github.com/Azure/azure-event-hubs/samples) | [GitHub](https://github.com/azure/azure-event-hubs-java)  
+[Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.eventhubs) | [Samples](https://github.com/Azure/azure-event-hubs/tree/master/samples) | [GitHub](https://github.com/azure/azure-event-hubs-java)  
 
 <a name="iotservice"></a> 
 
