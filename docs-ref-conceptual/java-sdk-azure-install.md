@@ -24,7 +24,7 @@ Add a dependency entry in your `pom.xml` to import the SDK into your [Maven](htt
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -34,7 +34,7 @@ Add a compile entry in the dependency section of your build.gradle file to impor
 
 ```groovy
 dependencies {
-    compile 'com.microsoft.azure:azure:1.0.0-beta5'
+    compile 'com.microsoft.azure:azure:1.0.0'
 }
 ```
 

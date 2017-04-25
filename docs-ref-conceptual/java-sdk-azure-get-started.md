@@ -84,7 +84,7 @@ This creates a basic Maven project under the `testSDKApp` folder. Add the the fo
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
