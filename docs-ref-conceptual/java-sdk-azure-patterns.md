@@ -91,7 +91,40 @@ Specific resource objects have verbs that change the state of the resource in Az
 VirtualMachine vmToRestart = azure.getVirtualMachines().getById(id);
 vmToRestart.restart();
 ```
-These resource collection verbs generally do not have asynchronous versions in the management API.    
+These resource collection verbs generally do not have asynchronous versions in the management API.
+
+# Lazy resource creation
+
+A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to configure the virtual machine with those resources.
+
+Use `Creatable<T>` objects to define Azure resources for use in your code but only create them when needed in Azure. Code written with `Creatable<T>` objects offloads resource creation in the Azure environment to the management API, boosting performance. 
+
+Generate `Creatable<T>` objects through the resource collections' `define()` verb:
+
+```java
+Creatable<PublicIPAddress> publicIPAddressCreatable = azure.publicIPAddresses().define(publicIPAddressName)
+                    .withRegion(Region.US_EAST)
+                    .withNewResourceGroup(rgName);
+```
+
+The Azure resource defined by the `Creatable<T>` does not yet exist in your subscription. A `Creatable<T>` is a local representation of a resource that the management API will create when its needed. Use this `Creatable<T>` to define other Azure resources that need this resource. 
+
+```java
+Creatable<VirtualMachine> vmCreatable = azure.virtualMachines().define("creatableVM")
+        .withNewPrimaryPublicIPAddress(publicIPAddressCreatable)
+```
+
+Create the resources in your Azure subscription using the  `create()` method for the resource collection. 
+
+```java
+CreatedResources<VirtualMachine> virtualMachine = azure.virtualMachines().create(vmCreatable);
+```
+
+Passing `Creatable<T>` to `create()` calls returns a `CreatedResources` object instead of a single resource object.  The `CreatedResources<T>` object lets you access all resources created by the `create()` call, not just the type from the resource collection. To access the public IP address created in Azure for the virtual machine created in the above example:
+
+```java
+PublicIPAddress pip = (PublicIPAddress) virtualMachine.createdRelatedResource(publicIPAddressCreatable.key());
+```    
 
 ## Exception handling
 
