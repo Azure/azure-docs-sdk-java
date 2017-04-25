@@ -1,6 +1,6 @@
 ---
-title: Azure SDK for Java resource manager samples
-description: Get sample code for creating and updating Azure resource groups using the Java SDK for Azure
+title: Azure Management libraries for Java resource manager samples
+description: Get sample code for creating and updating Azure resource groups using the Azure Management libraries for Java
 keywords: Azure, Java, SDK, API, Maven, Gradle, resource groups
 author: rloutlaw
 ms.author: routlaw
@@ -15,7 +15,7 @@ ms.assetid: 259f6804-17d9-48d6-ba57-f61ef6909a4e
 ---
 
 
-# Azure SDK for Java samples for Azure resource manager
+# Azure Management libraries for Java samples for Azure resource manager
 
 The following table includes links to Java source code to create and configure Azure resource groups and work with resource manager templates.   
 

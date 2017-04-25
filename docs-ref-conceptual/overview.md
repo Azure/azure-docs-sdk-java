@@ -1,6 +1,6 @@
 ---
-title: Azure SDK for Java
-description: Overview of the Azure SDK for Java
+title: Azure Management libraries for Java
+description: Overview of the Azure Management libraries for Java
 keywords: Azure, Java, SDK, API
 author: rloutlaw
 ms.author: routlaw
@@ -14,11 +14,11 @@ ms.service: multiple
 ms.assetid: 9aaf22a2-382a-4b13-a8e3-0e467d607207
 ---
 
-# Azure SDK for Java
+# Azure libraries for Java
 
-The Java SDK for Azure lets you create and manage Azure resources from your Java applications. If you're looking for documentation to create Java apps on Azure, see [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782).
+The Azure Management libraries for Java lets you create and manage Azure resources from your Java applications. If you're looking for documentation to create Java apps on Azure, see [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782).
 
-The Azure SDK for Java has a [fluent](java-sdk-azure-patterns.md) interface that helps you build and customize Azure resources with clear, easy to understand code. For example, the following code creates a new Ubuntu Linux VM with name `linuxVmName` in an existing Azure resource group `rgName`. 
+The Azure Management libraries for Java has a [fluent](java-sdk-azure-patterns.md) interface that helps you build and customize Azure resources with clear, easy to understand code. For example, the following code creates a new Ubuntu Linux VM with name `linuxVmName` in an existing Azure resource group `rgName`. 
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define(linuxVmName)
@@ -37,7 +37,7 @@ VirtualMachine linuxVM = azure.virtualMachines().define(linuxVmName)
 
 Review the [install instructions](java-sdk-azure-install.md) to start using the SDK immediately with your Maven or Gradle projects. Set up authentication and run sample code against your own Azure subscription in the [get started article](java-sdk-azure-get-started.md). The [patterns article](java-sdk-azure-patterns.md) article goes into the conventions the SDK uses and how to leverage them to simplify your application code. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-release-notes.md).
 
-The following samples cover common automation tasks with the Azure SDK for Java and are formatted for copy and paste into you own apps:
+The following samples cover common automation tasks with the Azure Management libraries for Java and are formatted for copy and paste into you own apps:
 
 - [Virtual machines](java-sdk-azure-virtual-machine-samples.md)
 - [Resource groups](java-sdk-azure-resource-groups-samples.md)

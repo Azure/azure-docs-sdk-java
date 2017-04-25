@@ -1,5 +1,5 @@
 ---
-title: Lazy resource initialization with the Java SDK for Azure
+title: Lazy resource initialization with the Azure Management libraries for Java
 description: Learn about how to use lazy resource creation and Creatable<T> objects to help your code run faster. 
 keywords: Azure, Java, SDK, API, Maven, Gradle, performance, async, lazy creation
 author: rloutlaw

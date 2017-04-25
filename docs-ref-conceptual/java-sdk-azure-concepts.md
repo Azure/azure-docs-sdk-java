@@ -1,5 +1,5 @@
 ---
-title: Azure SDK for Java usage concepts and patterns
+title: Azure Management libraries for Java usage concepts and patterns
 description: 
 keywords: Azure, Java, SDK, API, Maven, Gradle, authentication, active directory, service principal
 author: rloutlaw
@@ -16,7 +16,7 @@ ms.assetid: f452468b-7aae-4944-abad-0b1aaf19170d
 
 ## Build objects through fluent interface
 
-Do not call constructors to create objects when using the SDK. The SDK provides fluent interfaces to build objects for use in your code. Fluent interfaces let you customize objects using method chains instead of long parameter lists and allow you to customize the objects as much as you need when you create them. For example, the entry-point Azure object:
+Do not call constructors to create objects when using the Azure management libraries. Build objects for use in your code using the fluent interface. Fluent interfaces let you customize objects using method chains instead of long parameter lists and allow you to customize the objects as much as you need when you create them. For example, the entry-point Azure object:
 
 ```java
 Azure azure = Azure

@@ -1,6 +1,6 @@
 ---
-title: Azure SDK for Java virtual machine samples
-description: Get sample code for creating and updating Azure virtual machines using the Java SDK for Azure
+title: Azure Management libraries for Java virtual machine samples
+description: Get sample code for creating and updating Azure virtual machines using the Azure Management libraries for Java
 keywords: Azure, Java, SDK, API, Maven, Gradle, virtual machines
 author: rloutlaw
 ms.author: routlaw
@@ -14,7 +14,7 @@ ms.service: multiple
 ms.assetid: 1eeb166f-8253-4fde-82d2-43997fda7819
 ---
 
-# Azure SDK for Java samples for virtual machines
+# Azure Management libraries for Java samples for virtual machines
 
 The following table includes links to Java source code to create and configure Azure virtual machines.
 

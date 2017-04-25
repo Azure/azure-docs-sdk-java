@@ -1,6 +1,6 @@
 ---
-title: Authenticate with the Azure SDK for Java
-description: Authenticate with a service principal into the Azure SDK for Java
+title: Authenticate with the Azure Management libraries for Java
+description: Authenticate with a service principal into the Azure Management libraries for Java
 keywords: Azure, Java, SDK, API, Maven, Gradle, authentication, active directory, service principal
 author: rloutlaw
 ms.author: routlaw
@@ -15,7 +15,7 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 ---
 
 
-# Authenticate with the Azure SDK for Java using a service principal
+# Authenticate with the Azure Management libraries for Java using a service principal
 
 ## Authenticate with AzureTokenCredentials
 

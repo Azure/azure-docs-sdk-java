@@ -1,6 +1,6 @@
 ---
-title: Install the Azure SDK for Java
-description: Import the Azure SDK for Java into your Maven or Gradle project
+title: Install the Azure Management libraries for Java
+description: Import the Azure Management libraries for Java into your Maven or Gradle project
 keywords: Azure, Java, SDK, API, Maven, Gradle
 author: rloutlaw
 ms.author: routlaw
@@ -14,11 +14,11 @@ ms.service: multiple
 ms.assetid: 3d6961b1-5bf5-4514-84cf-100d756f41fd
 ---
 
-# Set up the Azure SDK for Java
+# Set up the Azure Management libraries for Java
 
 ## Install with Maven
 
-Add a dependency entry in your `pom.xml` to import the SDK into your [Maven](https://maven.apache.org) project.
+Add a dependency entry in your `pom.xml` to import the libraries into your [Maven](https://maven.apache.org) project.
 
 ```XML
 <dependency>
@@ -30,7 +30,7 @@ Add a dependency entry in your `pom.xml` to import the SDK into your [Maven](htt
 
 ## Install with Gradle
 
-Add a compile entry in the dependency section of your build.gradle file to import the SDK into your [Gradle](https://gradle.org) project:
+Add a compile entry in the dependency section of your build.gradle file to import the libraries into your [Gradle](https://gradle.org) project:
 
 ```groovy
 dependencies {
@@ -46,7 +46,7 @@ After configuring your build tool, create a new class source file in the locatio
 import com.microsoft.azure.credentials.AzureTokenCredentials;
 import com.microsoft.azure.management.Azure;
 
-public class TestJavaSDK {
+public class TestJavaApp {
 	
 	public static void main(String[] args) {
 		
@@ -65,8 +65,8 @@ public class TestJavaSDK {
 }
 ```
 
-If you're using an IDE, the import of the SDK is successful if the `Azure` and `AzureTokenCredentials` imports resolve. On the command line, run the compile step for your build tool (such as `mvn compile`) and verify the code compiles successfully.
+If you're using an IDE, the import of the libraries are successful if the `Azure` and `AzureTokenCredentials` imports resolve. On the command line, run the compile step for your build tool (such as `mvn compile`) and verify the code compiles successfully.
 
 ## Next steps
 
-Now that the SDK is ready to use, visit the [get started with the Azure SDK for Java](java-sdk-azure-get-started.md) guide to see it in action.
+Now that the libraries are ready to use, visit the [get started with the Azure Management libraries for Java](java-sdk-azure-get-started.md) guide to see it in action.

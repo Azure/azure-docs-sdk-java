@@ -1,6 +1,6 @@
 ---
-title: Get started with the Azure SDK for Java
-description: Get started with basic use of the Azure SDK for Java with your own Azure subscription.
+title: Get started with the Azure Management libraries for Java
+description: Get started with basic use of the Azure Management libraries for Java with your own Azure subscription.
 keywords: Azure, Java, SDK, API ,authenticate, get-started
 author: rloutlaw
 ms.author: routlaw
@@ -14,7 +14,7 @@ ms.service: multiple
 ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
-# Get started with the Azure SDK for Java
+# Get started with the Azure Management libraries for Java
 
 ## Prerequisites
 
@@ -23,11 +23,11 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)
 
-This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Java SDK for Azure. 
+This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Azure Management libraries for Java. 
 
 ## Set up authentication
 
-Grant your application read and create permissions to your Azure subscription using a service principal. Service principals provide scoped access to resources in your account, and the Java SDK for Azure is designed around logging in with a service principal instead of a username and password.
+Grant your application read and create permissions to your Azure subscription using a service principal. Service principals provide scoped access to resources in your account, and the Azure Management libraries for Java is designed around logging in with a service principal instead of a username and password.
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli), and make sure to capture the output:
 
@@ -78,7 +78,7 @@ cd java-sdk-test
 mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testSDKApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-This creates a basic Maven project under the `testSDKApp` folder. Add the the following entry into the project `pom.xml` to import the Java SDK for Azure.
+This creates a basic Maven project under the `testSDKApp` folder. Add the the following entry into the project `pom.xml` to import the Azure Management libraries for Java.
 
 ```XML
 <dependency>
@@ -247,7 +247,7 @@ az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NA
 
 ## Explore sample code
 
-To learn more about how to use the Azure SDK for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md), [resource groups](java-sdk-azure-resource-groups-samples.md), and [SQL database](java-sdk-azure-sql-databases.md).
+To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md), [resource groups](java-sdk-azure-resource-groups-samples.md), and [SQL database](java-sdk-azure-sql-databases.md).
 
 ## Reference and release notes
 
