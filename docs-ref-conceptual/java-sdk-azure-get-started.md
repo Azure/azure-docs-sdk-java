@@ -76,7 +76,7 @@ cd java-sdk-test
 mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testSDKApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-This creates a basic Maven project under the `testSDKApp` folder. Add the the following entry into the project `pom.xml`'s dependency section to import the Java SDK for Azure.
+This creates a basic Maven project under the `testSDKApp` folder. Add the the following entry into the project `pom.xml` to import the Java SDK for Azure.
 
 ```XML
 <dependency>
@@ -86,7 +86,7 @@ This creates a basic Maven project under the `testSDKApp` folder. Add the the fo
 </dependency>
 ```
 
-Also add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the sample:
+Add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the sample:
 
 ```XML
 <build>
@@ -105,7 +105,7 @@ Also add a `build` entry under the top-level `project` element to use the [maven
 
 ## Create a virtual machine
 
-Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Paste the following code, then set real values for `userName` and `password`.
+Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Paste in the following code, then set real values for `userName` and `password`.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -232,7 +232,7 @@ Run the code as before using Maven
 mvn clean compile exec:java
 ```
 
-This code will deploy a .NET app directly from a public GitHub repo into Azure App Service. Verify the deployment through the CLI:
+This code will deploy a .NET app directly from a public GitHub repo into App Service. Open up a browser to the application using the CLI:
 
 ```azurecli
 az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NAME
