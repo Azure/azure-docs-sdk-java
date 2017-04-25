@@ -252,7 +252,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 </dependency>
 ```
 
-[Reference](http://azure.github.io/azure-sdk-for-java) | [Samples](https://github.com/azure/azure-batch-samples) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) 
+[Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.batch) | [Samples](https://github.com/azure/azure-batch-samples) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) 
 
 <a name="management"></a> 
 
