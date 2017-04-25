@@ -27,9 +27,9 @@ This get started guide uses the Maven build tool to build and run Java source co
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources in your Azure subscription in order to use the Java SDK for Azure. Create a service principal and configure your app to run with its credentials to grant this access. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.   
+Grant your application read and create permissions to your Azure subscription using a service principal. Service principals provide scoped access to resources in your account, and the Java SDK for Azure is designed around logging in with a service principal instead of a username and password.
 
-[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli), and make sure to capture the output seen below from the tool:
+[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli), and make sure to capture the output:
 
 ```json
 {
@@ -41,7 +41,7 @@ Your Java application needs permissions to read and create resources in your Azu
 }
 ```
 
-Next, create a properties file on your system using the service principal credentials:
+Next, copy the following into a text file on your system:
 
 ```text
 # sample management library properties file
@@ -55,12 +55,14 @@ authURL=https\://login.windows.net/
 graphURL=https\://graph.windows.net/
 ```
 
+Replace the top four values with the following:
+
 - subscription: use the *id* value from `az account show` in the Azure CLI 2.0.
 - client: use the *appId* value from the output taken from a service principal output.
 - key: use the *password* value from the service principal output .
 - tenant: use the *tenant* value from the service principal output.
 
-Save this file in a secure location on your system where your code can read it. Set an environment variable with the full path to the authentication file in your shell, for example:
+Save this file in a secure location on your system where your code can read it. Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the authentication file in your shell.    
 
 ```bash
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
@@ -103,9 +105,14 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
  ```
 
 
-## Create a virtual machine
+## Create a Linux virtual machine
 
-Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Paste in the following code, then set real values for `userName` and `password`.
+Create a new file named AzureSDKApp.java in the project's `src/main/java` directory. Paste in the following code, then set real values for `userName` and `password`. 
+
+This code performs the following steps:
+
+1. Authenticates with Azure using the service principal information in `AZURE_AUTH_LOCATION`
+2. Creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -178,7 +185,7 @@ az vm delete --resource-group sampleResourceGroup --name testLinuxVM
 
 ## Deploy a web app from a GitHub repo
 
-Replace the code in AzureSDKApp.java with the following class. Update the `appName` variable to a unique value before running the code.
+Replace the code in AzureSDKApp.java with the following class. Update the `appName` variable to a unique value before running the code. This code deploys an code from the `master` branch in a GitHub repo into a new Azure App Service webapp running in a free pricing tier plan.
 
 ```java
 package com.fabrikam.testSDKApp;
@@ -226,13 +233,13 @@ public class AzureSDKApp {
 }
 ```
 
-Run the code as before using Maven
+Run the code as before using Maven:
 
 ```
 mvn clean compile exec:java
 ```
 
-This code will deploy a .NET app directly from a public GitHub repo into App Service. Open up a browser to the application using the CLI:
+Open up a browser to the application using the Azure CLI:
 
 ```azurecli
 az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NAME
