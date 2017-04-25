@@ -33,7 +33,7 @@ For example, to include the latest version of the [Azure management libraries](#
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -101,7 +101,7 @@ Scalable NoSQL database with JSON documents and SQL or JavaScript query syntax.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-documentdb</artifactId>
-    <version>1.9.3</version>
+    <version>1.10.0</version>
 </dependency>
 ```
 
@@ -133,7 +133,7 @@ Identity management and secure sign-in for your applications.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>adal4j</artifactId>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
 </dependency>
 ```
    
@@ -181,7 +181,7 @@ Manage identities, send messages, and get feedback from devices in your IoT hub.
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-service-client</artifactId>
-    <version>1.0.13</version>
+    <version>1.3.19</version>
 </dependency>
 ```   
    
@@ -196,8 +196,8 @@ Send a message to an IoT hub from your device.
 ```XML
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
-    <artifactId>iot-service-client</artifactId>
-    <version>1.0.18</version>
+    <artifactId>iot-device-client</artifactId>
+    <version>1.1.25</version>
 </dependency>
 ```  
 
@@ -249,7 +249,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-batch</artifactId>
-    <version>1.0.0-rc</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -265,7 +265,7 @@ Create, update, and delete Azure resources from your application code.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
