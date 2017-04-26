@@ -75,7 +75,7 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-The `client`, `tenant` and `key` are the same as the values used with file-based authentication. The `AzureEnvironment.AZURE` creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the `client`, `tenant`, and `key` values directly in environment variables or from a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values directly as cleartext strings in your code to prevent a leak of the credentials through your version control history.
+The `client`, `tenant` and `key` are the same as the values used with file-based authentication. The `AzureEnvironment.AZURE` creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the `client`, `tenant`, and `key` values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.
 
 
 
