@@ -1,24 +1,33 @@
 ---
-title: Install the Azure Management libraries for Java
-description: Import the Azure Management libraries for Java into your Maven or Gradle project
-keywords: Azure, Java, SDK, API, Maven, Gradle
-author: rloutlaw
-ms.author: routlaw
+title: Azure for Java developers Microsoft Docs
+description: Java SDK and API Reference for Azure
+keywords: Azure Java, Azure Java API Reference, Azure Java class library, Azure SDK
+author: routlaw
 manager: douge
-ms.date: 04/16/2017
-ms.topic: article
-ms.prod: azure
-ms.technology: azure
+ms.assetid: 7b92e776-959b-4632-8b1d-047ce1417616
+ms.service: Azure
 ms.devlang: java
-ms.service: multiple
-ms.assetid: 3d6961b1-5bf5-4514-84cf-100d756f41fd
+ms.topic: reference
+ms.technology: Azure
+ms.date: 3/06/2016
 ---
 
-# Set up the Azure Management libraries for Java
+# Azure libraries for Java
+
+Use Azure libraries in your Java projects to [manage resources](#management) and integrate services in your applications.  
+
+| | | | |
+|:-------------:|:----------:|:----:|:---:|
+| [Azure Storage](#azure-storage) | [SQL Database](#sql-database)  | [Redis Cache](#redis-cache)   | [DocumentDB](#documentdb) |
+| [Service Bus](#servicebus)  | [Azure Active Directory](#azuread) | [Key Vault](#keyvault)  | [Event Hub](#eventhub)
+| [IoT Service](#iotservice) | [IoT Device](#iotdevice) | [Data Lake](#datalake)  | [AppInsights](#appinsights) | 
+| [Batch](#batch) | [Manage Azure resources](#management) |
 
 ## Install with Maven
 
-Add a dependency entry in your `pom.xml` to import the libraries into your [Maven](https://maven.apache.org) project.
+Add a dependency entry in your `pom.xml` to import a library into your [Maven](https://maven.apache.org) project.
+
+For example, to include the latest version of the [Azure management libraries](#management):
 
 ```XML
 <dependency>
@@ -28,45 +37,234 @@ Add a dependency entry in your `pom.xml` to import the libraries into your [Mave
 </dependency>
 ```
 
-## Install with Gradle
+Other Java build tools like Gradle are supported but the install steps are not provided in this article. Review the documentation for your build tool on how to consume Maven imports.
 
-Add a compile entry in the dependency section of your build.gradle file to import the libraries into your [Gradle](https://gradle.org) project:
+## Azure service libraries
 
-```groovy
-dependencies {
-    compile 'com.microsoft.azure:azure:1.0.0'
-}
+Use these libraries to consume and integrate Azure services in your applications.
+
+<a name="azure-storage"></a>
+
+### [Azure Storage](https://docs.microsoft.com/azure/storage/storage-introduction)  
+
+Data storage and messaging for your applications.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-storage</artifactId>
+    <version>5.0.0</version>
+</dependency>
+```   
+
+[Samples](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage) | [GitHub](https://github.com/Azure/azure-storage-java)  
+
+<a name="sql-database"></a>
+
+### [SQL Database](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview)
+
+JDBC driver for Azure SQL Database.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>6.1.0.jre8</version>
+</dependency>
 ```
 
-## Verify your install
+[Samples](https://docs.microsoft.com/en-us/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  
 
-After configuring your build tool, create a new class source file in the location appropriate to your project tooling with the following contents:
+<a name="redis-cache"></a>
 
-```java
-import com.microsoft.azure.credentials.AzureTokenCredentials;
-import com.microsoft.azure.management.Azure;
+### [Redis Cache](https://azure.microsoft.com/en-us/services/cache/)
 
-public class TestJavaApp {
-	
-	public static void main(String[] args) {
-		
-	    AzureTokenCredentials credentials = null;
-	    
-	    try {
-	    	Azure azure = Azure.configure()
-	    			.authenticate(credentials)
-	                .withDefaultSubscription();	
-	    }
-	    catch(Exception e) {
-	    	System.out.println(e.getMessage());
-	        e.printStackTrace();
-	    }
-	}
-}
+Low-latency, high-performance distributed key-value store.
+
+```XML
+<dependency>
+    <groupId>redis.clients</groupId>
+    <artifactId>jedis</artifactId>
+    <version>2.9.0</version>
+    <type>jar</type>
+    <scope>compile</scope>
+</dependency>
+```   
+
+[Reference](http://xetorthio.github.io/jedis) | [Samples](https://docs.microsoft.com/en-us/azure/redis-cache/cache-java-get-started) | [GitHub](https://github.com/xetorthio/jedis)    
+
+<a name="documentdb"></a>
+
+### [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-introduction)
+
+Scalable NoSQL database with JSON documents and SQL or JavaScript query syntax.   
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-documentdb</artifactId>
+    <version>1.10.0</version>
+</dependency>
 ```
 
-If you're using an IDE, the import of the libraries are successful if the `Azure` and `AzureTokenCredentials` imports resolve. On the command line, run the compile step for your build tool (such as `mvn compile`) and verify the code compiles successfully.
+[Samples](https://docs.microsoft.com/en-us/azure/documentdb/documentdb-java-application) | [GitHub](https://github.com/Azure/azure-documentdb-java)   
 
-## Next steps
+<a name="servicebus"></a>
 
-Now that the libraries are ready to use, visit the [get started with the Azure Management libraries for Java](java-sdk-azure-get-started.md) guide to see it in action.
+### [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
+
+Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol) to connect your applications.
+
+```XML
+<dependency>
+  <groupId>org.apache.qpid</groupId>
+  <artifactId>qpid-jms-client</artifactId>
+  <version>0.22.0</version>
+</dependency>
+```
+
+[Reference](http://docs.oracle.com/javaee/7/api/javax/jms/package-summary.html) | [Sample](https://github.com/apache/qpid-jms/tree/0.20.0/qpid-jms-examples) | [GitHub](https://github.com/apache/qpid-jms)    
+
+<a name="azuread"></a>
+
+### [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)   
+
+Identity management and secure sign-in for your applications.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>adal4j</artifactId>
+    <version>1.2.0</version>
+</dependency>
+```
+   
+[Samples](https://github.com/Azure-Samples?utf8=%E2%9C%93&q=active%20directory%20&type=&language=java) | [GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) 
+ 
+<a name="keyvault"></a>
+
+### [Key Vault](https://docs.microsoft.com/azure/key-vault) 
+
+Encrypt secrets and safely access them from your applications. 
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-keyvault</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+[Samples](https://github.com/Azure-Samples/key-vault-java-manage-key-vaults) | [GitHub](https://github.com/Azure/azure-sdk-for-java)  
+
+<a name="eventhub"></a>
+
+### [Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-what-is-event-hubs) 
+   
+High throughput event and telemetry handling for your instrumentation or IoT scenarios.
+
+```XML
+<dependency> 
+    <groupId>com.microsoft.azure</groupId> 
+    <artifactId>azure-eventhubs</artifactId> 
+    <version>0.13.1</version> 
+</dependency>   
+```
+
+[Samples](https://github.com/azure/azure-event-hubs-java#publishing-events) | [GitHub](https://github.com/azure/azure-event-hubs-java)  
+
+<a name="iotservice"></a> 
+
+### [IoT Service](https://docs.microsoft.com/azure/iot-hub/)
+
+Manage identities, send messages, and get feedback from devices in your IoT hub.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure.sdk.iot</groupId>
+    <artifactId>iot-service-client</artifactId>
+    <version>1.3.19</version>
+</dependency>
+```   
+   
+[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/service/iot-service-samples) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) 
+
+<a name="iotdevice"></a> 
+
+### [IoT Device](https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide)
+
+Send a message to an IoT hub from your device.  
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure.sdk.iot</groupId>
+    <artifactId>iot-device-client</artifactId>
+    <version>1.1.25</version>
+</dependency>
+```  
+
+[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/device/iot-device-samples) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) 
+
+<a name="datalake"></a> 
+
+### [Data Lake Store](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-overview)   
+   
+Capture data of any size and shape into a single location for performing analytics.    
+
+```XML
+<dependency>
+   <groupId>com.microsoft.azure</groupId>
+   <artifactId>azure-data-lake-store-sdk</artifactId>
+   <version>2.1.4</version>
+</dependency>
+```   
+
+[Samples](https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started) | [GitHub](https://github.com/Azure/azure-data-lake-store-java) 
+
+<a name="appinsights"></a> 
+
+### [AppInsights](https://docs.microsoft.com/azure/application-insights/app-insights-overview)
+
+Track usage, add telemetry, and monitor your web apps.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>applicationinsights-web</artifactId>
+    <version>1.0.7</version>
+</dependency>
+```
+
+[Samples](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-get-started) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) 
+
+<a name="batch"></a>
+
+### [Batch](https://docs.microsoft.com/en-us/azure/batch)
+
+Run large-scale parallel and high-performance computing applications efficiently in the cloud.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-batch</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+[Samples](https://github.com/azure/azure-batch-samples) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) 
+
+<a name="management"></a> 
+
+## Azure management 
+
+Create, update, and delete Azure resources from your application code.
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
+
+[Samples](https://github.com/Azure/azure-sdk-for-java#sample-code) | [GitHub](https://github.com/Azure/azure-sdk-for-java) 
