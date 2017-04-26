@@ -17,13 +17,9 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 
 # Authenticate with the Azure Management libraries for Java using a service principal
 
-## Authenticate with AzureTokenCredentials
-
-TBD
-
 ## File based authentication (Preview)
 
-The simplest way to authenticate is to create a properties file that contains credentials for an [Azure service principal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects)
+The simplest way to authenticate is to create a properties file that contains credentials for an [Azure service principal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects). If you don't have a service principal created for your app yet, [create one now with the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli).
 
 ```text
 # sample management library properties file
@@ -60,3 +56,26 @@ Azure azure = Azure
         .authenticate(credFile)
         .withDefaultSubscription();
 ```
+
+## Create an ApplicationTokenCredentials object
+
+Create an instance of `ApplicationTokenCredentials` to supply the service principal credentials to the top-level `Azure` object from inside your code.
+
+```
+import com.microsoft.azure.credentials.ApplicationTokenCredentials;
+import com.microsoft.azure.AzureEnvironment;
+
+...
+
+ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, key, AzureEnvironment.AZURE);
+Azure azure = Azure
+        .configure()
+        .withLogLevel(LogLevel.NONE)
+        .authenticate(credentials)
+        .withDefaultSubscription();
+```
+
+The `client`, `tenant` and `key` are the same as the values used with file-based authentication. The `AzureEnvironment.AZURE` creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the `client`, `tenant`, and `key` values directly in environment variables or from a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values directly as cleartext strings in your code to prevent a leak of the credentials through your version control history.
+
+
+
