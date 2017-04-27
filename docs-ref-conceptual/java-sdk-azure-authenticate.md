@@ -67,7 +67,8 @@ import com.microsoft.azure.AzureEnvironment;
 
 ...
 
-ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, key, AzureEnvironment.AZURE);
+ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, 
+                                                 key, AzureEnvironment.AZURE);
 Azure azure = Azure
         .configure()
         .withLogLevel(LogLevel.NONE)
@@ -75,7 +76,7 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-The `client`, `tenant` and `key` are the same as the values used with file-based authentication. The `AzureEnvironment.AZURE` creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the `client`, `tenant`, and `key` values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.
+The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.
 
 
 

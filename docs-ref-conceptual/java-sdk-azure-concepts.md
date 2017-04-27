@@ -95,7 +95,7 @@ vmToRestart.restart();
 ```
 These resource collection verbs generally do not have asynchronous versions in the management API.
 
-# Lazy resource creation
+## Lazy resource creation
 
 A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to configure the virtual machine with those resources.
 
@@ -144,4 +144,4 @@ Configure the amount of logging from the management API when you build the entry
 | com.microsoft.rest.LogLevel.HEADERS | Everything in BASIC plus the request and response headers REST calls
 | com.microsoft.rest.LogLevel.BODY_AND_HEADERS | Everything in both BODY and HEADERS log level
 
-Bind a [SLF4J logging implementation](https://www.slf4j.org/manual.html) if you need to log output to a logging framework like [Log4J 2](https://logging.apache.org/log4j/2.x/)
+Bind a [SLF4J logging implementation](https://www.slf4j.org/manual.html) if you need to log output to a logging framework like [Log4J 2](https://logging.apache.org/log4j/2.x/).

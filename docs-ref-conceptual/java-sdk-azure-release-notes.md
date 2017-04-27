@@ -14,7 +14,7 @@ ms.date: 3/06/2016
 
 # Release Notes 
 
-## April 14, 2017
+## April 14, 2017 - 1.0.0
 
 This release of the Azure management libraries for Java is the first "Generally Availble" release. Some parts of the library are still in Preview, see the table below for the current state of the libraries:
 
@@ -29,7 +29,17 @@ More services    |  Resource Manager, Key Vault, Redis,  CDN, Batch       |  App
 Fundamentals     |   Authentication - core      |  Async methods       |         |
 
 Preview features are marked with the @Beta annotation at the class, interface or method level in the libraries. 
-These features can be modified in any way, or even removed, in the future.
+Preview features can be modified in any way, or even removed, in the future.
+
+### Import with Maven
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure</artifactId>
+    <version>1.0.0</version>
+</dependency>
+```
 
 ### Get help and give feedback
 

@@ -14,7 +14,7 @@ ms.date: 3/06/2016
 
 # Azure libraries for Java
 
-Use Azure libraries in your Java projects to [manage resources](#management) and integrate services in your applications.  
+Leverage Azure libraries in your Java projects to natively integrate Azure services in your applications. Each library isn't dependent on other Azure libraries-pick and choose just what you need from the list below.
 
 | | | | |
 |:-------------:|:----------:|:----:|:---:|
@@ -27,7 +27,7 @@ Use Azure libraries in your Java projects to [manage resources](#management) and
 
 Add a dependency entry in your `pom.xml` to import a library into your [Maven](https://maven.apache.org) project.
 
-For example, to include the latest version of the [Azure management libraries](#management):
+For example, to include the latest version of the [Azure Management libraries for Java](#management):
 
 ```XML
 <dependency>
@@ -41,7 +41,7 @@ Other Java build tools like Gradle are supported but the install steps are not p
 
 ## Azure service libraries
 
-Use these libraries to consume and integrate Azure services in your applications.
+Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782).
 
 <a name="azure-storage"></a>
 
@@ -79,7 +79,7 @@ JDBC driver for Azure SQL Database.
 
 ### [Redis Cache](https://azure.microsoft.com/en-us/services/cache/)
 
-Low-latency, high-performance distributed key-value store.
+Low-latency, high-performance key-value store.
 
 ```XML
 <dependency>
@@ -97,7 +97,7 @@ Low-latency, high-performance distributed key-value store.
 
 ### [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-introduction)
 
-Scalable NoSQL database with JSON documents and SQL or JavaScript query syntax.   
+Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax.   
 
 ```XML
 <dependency>
@@ -145,7 +145,7 @@ Identity management and secure sign-in for your applications.
 
 ### [Key Vault](https://docs.microsoft.com/azure/key-vault) 
 
-Encrypt secrets and safely access them from your applications. 
+Safely access keys and secrets from your applications. 
 
 ```XML
 <dependency>
@@ -177,7 +177,7 @@ High throughput event and telemetry handling for your instrumentation or IoT sce
 
 ### [IoT Service](https://docs.microsoft.com/azure/iot-hub/)
 
-Manage identities, send messages, and get feedback from devices in your IoT hub.
+Manage identities, send messages, and get feedback from devices registered with your IoT hub.
 
 ```XML
 <dependency>
@@ -255,7 +255,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 
 <a name="management"></a> 
 
-## Azure management 
+## Manage Azure resources
 
 Create, update, and delete Azure resources from your application code.
 
