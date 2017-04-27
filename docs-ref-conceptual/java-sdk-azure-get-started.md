@@ -210,21 +210,20 @@ public class AzureApp {
         try {
 
             final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            final String appName = "YOUR_APP_NAME";
-            
+            final String appName = "rlocoffeetalking";
+
             Azure azure = Azure.configure()
                     .withLogLevel(LogLevel.BASIC)
                     .authenticate(credFile)
                     .withDefaultSubscription();
 
             WebApp app = azure.webApps().define(appName)
-                    .withNewResourceGroup("sampleResourceGroup")
-                    .withNewAppServicePlan("testAppServicePlan")
                     .withRegion(Region.US_WEST2)
-                    .withFreePricingTier()
+                    .withNewResourceGroup("sampleResourceGroup")
+                    .withNewWindowsPlan(PricingTier.FREE_F1)
                     .defineSourceControl()
                     .withPublicGitRepository(
-                       "https://github.com/Azure-Samples/app-service-web-java-get-started")
+                            "https://github.com/Azure-Samples/app-service-web-java-get-started")
                     .withBranch("master")
                     .attach()
                     .create();
