@@ -329,7 +329,7 @@ To learn more about how to use the Azure Management libraries for Java to manage
 
 ## Reference and release notes
 
-A complete [SDK reference](java-sdk-azure-reference.md) is available. Review the [release notes](java-sdk-azure-release-notes.md) to learn about new features, updates and changes to the libraries.
+A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries.
 
 ## Get help and give feedback
 

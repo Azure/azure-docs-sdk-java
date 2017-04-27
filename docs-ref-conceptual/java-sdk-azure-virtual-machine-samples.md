@@ -16,22 +16,24 @@ ms.assetid: 1eeb166f-8253-4fde-82d2-43997fda7819
 
 # Azure Management libraries for Java samples for virtual machines
 
-The following table includes links to Java source code to create and configure Azure virtual machines.
+The following table links to Java source you can use to create and configure Azure virtual machines.
 
 | **Create virtual machines** || 
 |---|---|
-| [Manage virtual machines][3] | Create, modify, start, stop, and delete virtual machines. |
-| [Create a virtual machine from a custom image][5] | Create a custom virtual machine image and use it to create new virtual machines. | 
-| [Create a virtual machine using specialized VHD from a snapshot][7] | Create snapshot from the virtual machine's OS and data disks, create managed disks from the snapshots, then create a virtual machine by attaching the managed disks. |  
-| [Create virtual machines in parallel in the same network][7] | Create virtual machines in the same region on the same virtual network with two subnets in parallel. |
+| [Manage virtual machines][1] | Create, modify, start, stop, and delete virtual machines. |
+| [Create a virtual machine from a custom image][2] | Create a custom virtual machine image and use it to create new virtual machines. | 
+| [Create a virtual machine using specialized VHD from a snapshot][3] | Create snapshot from the virtual machine's OS and data disks, create managed disks from the snapshots, then create a virtual machine by attaching the managed disks. |  
+| [Create virtual machines in parallel in the same network][4] | Create virtual machines in the same region on the same virtual network with two subnets in parallel. |
 | [Create virtual machines across regions in parallel][5] | Create and load balance a set of virtual machines across multiple Azure regions. |
 | **Network virtual machines** || 
-| [Manage virtual networks][7] | Set up a virtual network with two subnets and restrict Internet access to the subnets. |
+| [Manage virtual networks][6] | Set up a virtual network with two subnets and restrict Internet access to the subnets. |
 | **Create scale sets** ||
-| [Create a virtual machine scale set with a load balancer][4] | Create a VM scale set, set up a load balancer, and get SSH connection strings to the scale set VMs. |
+| [Create a virtual machine scale set with a load balancer][7] | Create a VM scale set, set up a load balancer, and get SSH connection strings to the scale set VMs. |
 
-[3]: azure-java-sdk-manage-virtual-machines.md
-[4]: azure-java-sdk-manage-vm-scalesets.md
-[5]: azure-java-sdk-virtual-machines-in-parallel.md
-[7]: azure-java-sdk-manage-virtual-networks.md
-[7]: azure-java-sdk-manage-virtual-networks.md
+[1]: https://review.docs.microsoft.com/azure/java/java-manage-virtual-machines?branch=pr-en-us-9782
+[2]: https://azure.microsoft.com/en-us/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image/
+[3]: https://azure.microsoft.com/en-us/resources/samples/managed-disk-java-create-virtual-machine-using-specialized-disk-from-vhd/
+[4]: https://azure.microsoft.com/en-us/resources/samples/compute-java-manage-virtual-machines-in-parallel/
+[5]: https://review.docs.microsoft.com/azure/java/java-virtual-machines-in-parallel?branch=pr-en-us-9782
+[6]: https://review.docs.microsoft.com/azure/java/java-manage-virtual-networks?branch=pr-en-us-9782
+[7]: https://review.docs.microsoft.com/azure/java/java-manage-vm-scalesets?branch=pr-en-us-9782
