@@ -16,11 +16,11 @@ ms.assetid: 9aaf22a2-382a-4b13-a8e3-0e467d607207
 
 # Azure libraries for Java
 
-The Azure libraries for Java let you use Azure services and manage Azure resources from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects.
+The Azure libraries for Java let you use Azure services and manage Azure resources from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects. 
 
 ## Consume Azure services
 
-Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. View the [complete list of service libraries](java-sdk-azure-install.md) and check out the [tutorials](java-tutorials-services.md) to learn more about adding features to your app with Azure services.
+Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782) to learn more about building Java apps with Azure services.
 
 ## Manage Azure resources
 
@@ -52,4 +52,4 @@ The following samples cover common automation tasks with the Azure Management li
 - [Web apps](java-sdk-azure-web-apps-samples.md)
 - [SQL Database](java-sdk-azure-sql-database-samples.md)
 
-A complete [reference](java-sdk-reference.md) is available for all packages and classes in the Azure libraries for Java.
+A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries.
