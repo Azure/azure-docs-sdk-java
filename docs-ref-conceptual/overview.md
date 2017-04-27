@@ -16,21 +16,15 @@ ms.assetid: 9aaf22a2-382a-4b13-a8e3-0e467d607207
 
 # Azure libraries for Java
 
-The Azure libraries for Java let you use Azure services and manage Azure resources from your Java applications. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your projects.
+The Azure libraries for Java let you use Azure services and manage Azure resources from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects.
 
 ## Consume Azure services
 
-Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. View the [complete list of service libraries and their Maven dependencies](https://docs.microsoft.com/java/api) and check out the [tutorials](java-tutorials-services.md) to learn more about adding features to your app with Azure services.
-
-### Get started
-
-- [Use blob storage from Java](../storage/storage-java-how-to-use-blob-storage.md) 
-- [Connect and query data from SQL Database](../sql-database/sql-database-connect-query-java.md)
-- [Get started with Azure Redis Cache](../redis-cache/cache-java-get-started.md)
+Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. View the [complete list of service libraries](java-sdk-azure-install.md) and check out the [tutorials](java-tutorials-services.md) to learn more about adding features to your app with Azure services.
 
 ## Manage Azure resources
 
-Azure resources can be provisioned and managed from Java applications using the [Azure Management libraries for Java](https://review.docs.microsoft.com/en-us/java/api/docs-ref-conceptual/java-sdk-azure-get-started?branch=java-sdk-experience). 
+Create and manage Azure resources from your Java applications using the [Azure Management libraries for Java](https://review.docs.microsoft.com/en-us/java/api/docs-ref-conceptual/java-sdk-azure-get-started?branch=java-sdk-experience). 
 Use these libraries to build your own Azure automation tools and services. 
 
 For example, the following code creates a new Ubuntu Linux VM with name `linuxVmName` in an existing Azure resource group `rgName`. 

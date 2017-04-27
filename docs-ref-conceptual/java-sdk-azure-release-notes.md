@@ -12,53 +12,31 @@ ms.technology: Azure
 ms.date: 3/06/2016
 ---
 
-# Release Notes for 1.0.0-beta5
+# Release Notes 
 
-## What's new
+## April 14, 2017
 
-### Feature 1
+This release of the Azure management libraries for Java is the first "Generally Availble" release. Some parts of the library are still in Preview, see the table below for the current state of the libraries:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris cursus lorem ipsum, ut gravida leo interdum eget. Nulla maximus, sem.
 
-### Feature 2
+Service or feature | Available as GA | Available as Preview  | Coming soon |
+---------|---------|---------|---------|
+Compute  | Virtual machines and VM extensions, Virtual machine scale sets, managed disks   |  |  Azure container services ,Azure container registry  |
+Storage   |  Storage accounts       |         |   Encryption      |
+SQL Database  | Databases, firewalls, elastic pools        |         |         |
+Networking    |  Virtual networks , network interfaces , IP addresses ,routing tables, network security groups , DNS, Traffic manager  |    Load balancers, Application gateways     |         |
+More services    |  Resource Manager, Key Vault, Redis,  CDN, Batch       |  App service - Web apps, Functions, Service Bus    | Monitor, Graph RBAC, DocumentDB ,Scheduler        |
+Fundamentals     |   Authentication - core      |  Async methods       |         |
 
-Fusce accumsan placerat iaculis. Phasellus rutrum, mauris non sagittis tincidunt, lacus urna malesuada nunc, a accumsan nibh justo a magna.
+Preview features are marked with the @Beta annotation at the class, interface or method level in the libraries. 
+These features can be modified in any way, or even removed, in the future.
 
-## API changes
+### Get help and give feedback
 
-### `Create()` defaults to managed disks
+Check out the [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-java-sdk) community for help using the libraries in your own code. If you encounter any bugs or have suggestions to improve these libraries, please file issues via [GitHub](https://github.com/Azure/azure-sdk-for-java/issues).
 
-In `VirtualMachine, VirtualMachineScaleSet` and `VirtualMachineScaleSetVM` the OS and data disks getters and withers default to managed disks. The withers and getters for storage account based (unmanaged) OS and data disks are renamed to include the term `unmanaged`.
+### Migrate from previous releases
 
-### `Create()` creates unmanaged disks on explicit requests
+[Migrate from 1.0.0-beta5](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.0.0.md)    
 
-Starting in 1.0.0-beta5, if you like to continue to use the storage account based (unmanaged) operating system and data disks, you may use `withUnmanagedDisks()` in the `define() ... create()` method chain. 
-
-```java
-    azure.virtualMachines().define("myLinuxVM")
-       .withRegion(Region.US_EAST)
-       .withNewResourceGroup(rgName)
-       .withNewPrimaryNetwork("10.0.0.0/28")
-       .withPrimaryPrivateIpAddressDynamic()
-       .withNewPrimaryPublicIpAddress("mylinuxvmdns")
-       .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-       .withRootUsername("tirekicker")
-       .withSsh(sshKey)
-       // Unmanaged disks - uses Storage Account
-       .withUnmanagedDisks()
-       .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
-       .create();
-```
-
-See the [manage virtual machine with unmanaged disks](https://github.com/azure-samples/compute-java-manage-virtual-machine-with-unmanaged-disks) sample for more code examples.
-
-## Migration 
-
-[Migrate from Beta 4](migrate-from-beta-4.md)    
-[Migrate from 0.91](migrate-from-before-1.md)
-
-## Previous versions
-
-[1.0.0-beta4 release notes](release-notes-1-0-0-beta4.md)   
-[1.0.0-beta3 release notes](release-notes-1-0-0-beta3.md)
 

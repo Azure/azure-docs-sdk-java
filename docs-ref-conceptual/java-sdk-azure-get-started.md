@@ -228,7 +228,7 @@ public class AzureApp {
                     .withBranch("master")
                     .attach()
                     .create();
-                    
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -322,16 +322,16 @@ public class AzureApp {
 }
 ```
 
-You can browse for the `helloazure.txt` file through the Azure portal or through [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
+You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 
 ## Explore more samples
 
-To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md), [resource groups](java-sdk-azure-resource-groups-samples.md), and [SQL database](java-sdk-azure-sql-databases.md).
+To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-databases.md).
 
 ## Reference and release notes
 
-A complete [SDK reference](java-sdk-azure-reference.md) is available. Review the [release notes](java-sdk-azure-release-notes.md) to learn about new features, updates and changes to the SDK.
+A complete [SDK reference](java-sdk-azure-reference.md) is available. Review the [release notes](java-sdk-azure-release-notes.md) to learn about new features, updates and changes to the libraries.
 
 ## Get help and give feedback
 
-Post questions to the community on [Stack Overflow](http://stackoverflow.com/questions/tagged/azure+java) and open issues against the SDK on the [project GitHub](https://github.com/Azure/azure-sdk-for-java).
+Post questions to the community on [Stack Overflow](http://stackoverflow.com/questions/tagged/azure+java). Open issues against the Azure libraries for Java on the [project GitHub](https://github.com/Azure/azure-sdk-for-java) and make suggestions for how to improve the Java developer experience on Azure through [Uservoice](https://feedback.azure.com/forums/170031-sdk-and-tools).
