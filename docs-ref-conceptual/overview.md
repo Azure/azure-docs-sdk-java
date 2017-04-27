@@ -27,12 +27,12 @@ Use services such as SQL Database, Azure Storage, Active Directory, and Document
 Create and manage Azure resources from your Java applications using the [Azure Management libraries for Java](https://review.docs.microsoft.com/en-us/java/api/docs-ref-conceptual/java-sdk-azure-get-started?branch=java-sdk-experience). 
 Use these libraries to build your own Azure automation tools and services. 
 
-For example, the following code creates a new Ubuntu Linux VM with name `linuxVmName` in an existing Azure resource group `rgName`. 
+For example, the following code creates a new Ubuntu Linux VM with name `myAzureVM` in an existing Azure resource group `sampleResourceGroup`. 
 
 ```java
-VirtualMachine linuxVM = azure.virtualMachines().define(linuxVmName)
+VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .withRegion(region)
-           .withExistingResourceGroup(rgName)
+           .withExistingResourceGroup("sampleResourceGroup")
            .withNewPrimaryNetwork("10.0.0.0/28")
            .withPrimaryPrivateIpAddressDynamic()
            .withoutPrimaryPublicIpAddress()
