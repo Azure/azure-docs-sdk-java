@@ -44,12 +44,14 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .create();
  ```
 
-Review the [install instructions](java-sdk-azure-install.md) to start using the libraries immediately with your Java projects. Set up authentication and run sample code against your own Azure subscription in the [get started article](java-sdk-azure-get-started.md). The [concepts article](java-sdk-azure-concepts.md) article goes into the conventions the libraries use and how to leverage them to simplify your application code. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-release-notes.md).
+Review the [install instructions](java-sdk-azure-install.md) to start using the libraries immediately with your Java projects. Set up authentication and run sample code against your own Azure subscription in the [get started article](java-sdk-azure-get-started.md). The [concepts article](java-sdk-azure-concepts.md) article details how the use the features of the management libraries to simplify your development. 
+
+## Sample code and reference
 
 The following samples cover common automation tasks with the Azure Management libraries for Java and have code ready to use in your own apps:
 
 - [Virtual machines](java-sdk-azure-virtual-machine-samples.md)
 - [Web apps](java-sdk-azure-web-apps-samples.md)
 - [SQL Database](java-sdk-azure-sql-database-samples.md)
-
-A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries.
+   
+A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-release-notes.md).
