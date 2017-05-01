@@ -14,6 +14,8 @@ ms.date: 3/06/2016
 
 # Azure libraries for Java release notes 
 
+The latest release notes for each of the Azure libraries for Java are listed below. Links to release notes for previous versions are available at the bottom of the current notes.
+
 Service  | Release notes  | Last updated  
 ---------|---------|---------|
 SQL Database     |         |              
