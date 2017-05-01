@@ -1,6 +1,6 @@
 ---
-title: Get started with the Azure Management libraries for Java
-description: Get started with basic use of the Azure Management libraries for Java with your own Azure subscription.
+title: Get started with the Azure libraries for Java
+description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
 keywords: Azure, Java, SDK, API ,authenticate, get-started
 author: rloutlaw
 ms.author: routlaw
@@ -14,7 +14,7 @@ ms.service: multiple
 ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
-# Get started with the Azure Management libraries for Java
+# Get started with the Azure libraries for Java
 
 ## Prerequisites
 
@@ -27,9 +27,13 @@ This get started guide uses the Maven build tool to build and run Java source co
 
 ## Set up authentication
 
-Grant your application read and create permissions to your Azure subscription using a service principal. Service principals provide scoped access to resources in your account, and the Azure Management libraries for Java are designed around logging in with a service principal instead of a username and password.
+Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.+
 
-[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli), and make sure to capture the output:
+[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password]https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
+
+```azurecli
+az ad sp create-for-rbac --name AzureJavaTest --password "MY_SECURE_PASSWORD"
+```
 
 ```json
 {
@@ -113,12 +117,7 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
 
 ## Create a Linux virtual machine
 
-Create a new file named AzureApp.java in the project's `src/main/java` directory. Paste in the following code, then set real values for `userName` and `password`. 
-
-This code performs the following steps:
-
-1. Authenticates with Azure using the service principal information in `AZURE_AUTH_LOCATION`
-2. Creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
+Create a new file named `AzureApp.java` in the project's `src/main/java` directory. Paste in the following code to set up the imports used in the example code:
 
 ```java
 package com.fabrikam.testAzureApp;
@@ -127,13 +126,30 @@ import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;
 import com.microsoft.azure.management.compute.KnownLinuxVirtualMachineImage;
 import com.microsoft.azure.management.compute.VirtualMachineSizeTypes;
-import com.microsoft.rest.LogLevel;
+import com.microsoft.azure.management.appservice.WebApp;
+import com.microsoft.azure.management.storage.StorageAccount;
+import com.microsoft.azure.management.storage.SkuName;
+import com.microsoft.azure.management.storage.StorageAccountKey;
 import com.microsoft.azure.management.resources.fluentcore.arm.Region;
+import com.microsoft.azure.management.resources.fluentcore.utils.SdkContext;
+
+import com.microsoft.rest.LogLevel;
+
+import com.microsoft.azure.storage.*;
+import com.microsoft.azure.storage.blob.*;
 
 import java.io.File;
 
 public class AzureApp {
 
+}
+```
+
+Next paste in the following `main` method, then set real values for `userName` and `password`. 
+
+This main method creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
+
+```java
     public static void main(String[] args) {
 
         final String userName = "YOUR_VM_USERNAME";
@@ -168,7 +184,6 @@ public class AzureApp {
             e.printStackTrace();
         }
     }
-}
 ```
 
 Run the sample from the command line:
@@ -183,29 +198,17 @@ You'll see some REST requests and responses in the console as the SDK makes the 
 az vm list --resource-group sampleResourceGroup
 ```
 
-Once you've verified that the code worked, delete the VM from the CLI using the name returned in the previous command.
+Once you've verified that the code worked, delete resource group from the CLI to delete the VM and its resources.
 
 ```azurecli
-az vm delete --resource-group sampleResourceGroup --name my_azure_vm
+az group delete --name sampleResourceGroup
 ```
 
 ## Deploy a web app from a GitHub repo
 
-This code deploys an code from the `master` branch in a GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Update the `appName` variable to a unique value before running the code. 
+This code deploys an code from the `master` branch in a GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
 
 ```java
-package com.fabrikam.testSDKApp;
-
-import com.microsoft.azure.management.Azure;
-import com.microsoft.azure.management.resources.fluentcore.utils.SdkContext;
-import com.microsoft.azure.management.appservice.WebApp;
-import com.microsoft.rest.LogLevel;
-import com.microsoft.azure.management.resources.fluentcore.arm.Region;
-
-import java.io.File;
-
-public class AzureApp {
-
     public static void main(String[] args) {
         try {
 
@@ -233,7 +236,6 @@ public class AzureApp {
             e.printStackTrace();
         }
     }
-}
 ```
 
 Run the code as before using Maven:
@@ -242,35 +244,23 @@ Run the code as before using Maven:
 mvn clean compile exec:java
 ```
 
-Open up a browser to the application using the Azure CLI:
+Open up a browser to the application using the CLI:
 
 ```azurecli
 az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NAME
 ```
 
+Remove the web app and plan from your subscription once you've proven you can reach it
+
+```azurecli
+az group delete --name sampleResourceGroup
+```
+
 ## Write a blob into a new storage account
 
-The last example creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to create a new container and upload a text file to the blob storage. 
+The next example main method creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to create a new container and upload a text file to the blob storage. 
 
 ```java
-package com.fabrikam.testAzureApp;
-
-import com.microsoft.azure.management.Azure;
-import com.microsoft.azure.management.resources.fluentcore.utils.SdkContext;
-import com.microsoft.azure.management.storage.StorageAccount;
-import com.microsoft.azure.management.storage.SkuName;
-import com.microsoft.azure.management.storage.StorageAccountKey;
-import com.microsoft.rest.LogLevel;
-import com.microsoft.azure.management.resources.fluentcore.arm.Region;
-
-import com.microsoft.azure.storage.*;
-import com.microsoft.azure.storage.blob.*;
-
-import java.io.File;
-import java.util.List;
-
-public class AzureApp {
-
     public static void main(String[] args) {
 
         try {
@@ -287,7 +277,7 @@ public class AzureApp {
             String storageAccountName = SdkContext.randomResourceName("st",8);
             StorageAccount storage = azure.storageAccounts().define(storageAccountName)
                         .withRegion(Region.US_WEST2)
-                        .withNewResourceGroup("storageSample")
+                        .withNewResourceGroup("sampleResourceGroup")
                         .create();
 
             // create a storage container to hold the file
@@ -323,14 +313,20 @@ public class AzureApp {
 
 You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 
+## Connect to a SQL database
+
+This sample isn't in its own main method, but shows how y
+
+```
+
 ## Explore more samples
 
 To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-databases.md).
 
 ## Reference and release notes
 
-A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries.
+A [reference](java-sdk-reference.md) is available for all packages.
 
 ## Get help and give feedback
 
-Post questions to the community on [Stack Overflow](http://stackoverflow.com/questions/tagged/azure+java). Open issues against the Azure libraries for Java on the [project GitHub](https://github.com/Azure/azure-sdk-for-java) and make suggestions for how to improve the Java developer experience on Azure through [Uservoice](https://feedback.azure.com/forums/170031-sdk-and-tools).
+Post questions to the community on [Stack Overflow](http://stackoverflow.com/questions/tagged/azure+java). Report bugs and open issues against the Azure libraries for Java on the [project GitHub](https://github.com/Azure/azure-sdk-for-java).
