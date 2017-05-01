@@ -29,7 +29,7 @@ This get started guide uses the Maven build tool to build and run Java source co
 
 Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.+
 
-[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password]https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
+[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
 
 ```azurecli
 az ad sp create-for-rbac --name AzureJavaTest --password "MY_SECURE_PASSWORD"

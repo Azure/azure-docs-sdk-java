@@ -19,7 +19,7 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 
 ## Service authentication with connection strings
 
-Most Azure service libraries require a connection string or keys to authenticate your app to access the service. For example, SQL Database uses a JDBC connection string:
+Most Azure service libraries require a connection string or keys to authenticate access the service from your app. For example, SQL Database uses a JDBC connection string:
 
 ```java
 String url = "jdbc:sqlserver://myazuredb.database.windows.net:1433;" + 
@@ -30,7 +30,7 @@ String url = "jdbc:sqlserver://myazuredb.database.windows.net:1433;" +
                 Connection conn = DriverManager.getConnection(url);
 ```
 
-or to authenticate with Azure Storage:
+and Azure Storage uses a storage key:
 
 ```java
 final String storageConnection = "DefaultEndpointsProtocol=https;"
@@ -39,7 +39,7 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
                     + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings or keys are availble through the Azure portal and the CLI.  Query connection strings and key programatically through the Azure Management libraries for Java.
+Service connection strings or keys are availble through the Azure portal and the CLI.  Query connection strings and keys programatically through the Azure Management libraries for Java.
 
 Other service libraries require your application to run with a service prinicpal authorizing the application to read from the service, which works similarly to the management library steps below.
 
@@ -87,7 +87,7 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-### Create an ApplicationTokenCredentials object
+### Authenticate with an ApplicationTokenCredentials object
 
 Create an instance of `ApplicationTokenCredentials` to supply the service principal credentials to the top-level `Azure` object from inside your code.
 

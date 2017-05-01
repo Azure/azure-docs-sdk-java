@@ -73,7 +73,7 @@ JDBC driver for Azure SQL Database.
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/en-us/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  
+[Samples](https://docs.microsoft.com/en-us/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  | [Release Notes](java-sdk-release-notes.md)
 
 <a name="redis-cache"></a>
 
