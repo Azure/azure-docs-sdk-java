@@ -313,12 +313,6 @@ The next example main method creates an [Azure storage account](https://docs.mic
 
 You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 
-## Connect to a SQL database
-
-This sample isn't in its own main method, but shows how y
-
-```
-
 ## Explore more samples
 
 To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-databases.md).
