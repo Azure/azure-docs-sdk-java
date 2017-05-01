@@ -41,7 +41,7 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
 
 Service connection strings or keys are availble through the Azure portal and the CLI.  Query connection strings and keys programatically through the Azure Management libraries for Java.
 
-Other service libraries require your application to run with a service prinicpal authorizing the application to read from the service, which works similarly to the management library steps below.
+Other service libraries require your application to run with a service prinicpal authorizing the application to read and write to the service, which works similarly to the management library steps below.
 
 ## Azure management libraries for Java authentication
 
