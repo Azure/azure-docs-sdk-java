@@ -17,7 +17,7 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 
 # Authenticate with the Azure libraries for Java 
 
-## Service authentication with connection strings
+## Connect to services with connection strings
 
 Most Azure service libraries require a connection string or keys to authenticate access the service from your app. For example, SQL Database uses a JDBC connection string:
 
@@ -30,7 +30,7 @@ String url = "jdbc:sqlserver://myazuredb.database.windows.net:1433;" +
                 Connection conn = DriverManager.getConnection(url);
 ```
 
-and Azure Storage uses a storage key:
+Azure Storage uses a storage key:
 
 ```java
 final String storageConnection = "DefaultEndpointsProtocol=https;"
@@ -39,13 +39,48 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
                     + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings or keys are availble through the Azure portal and the CLI.  Query connection strings and keys programatically through the Azure Management libraries for Java.
+Service connection strings are used in other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and the strings are accessible through the Azure portal and the CLI.  You can also use the Azure Management libraries for Java to query connection strings and keys programatically in your code. 
 
-Other service libraries require your application to run with a service prinicpal authorizing the application to read and write to the service, which works similarly to the management library steps below.
+This snippet 
+
+```java
+            // create a new storage account
+            StorageAccount stor2 = azure.storageAccounts().getByResourceGroup("myResourceGroup","myStorageAccount");
+
+            // create a storage container to hold the file
+            List<StorageAccountKey> keys = storage.getKeys();
+            final String storageConnection = "DefaultEndpointsProtocol=https;"
+                   + "AccountName=" + storage.name()
+                   + ";AccountKey=" + keys.get(0).value()
+                    + ";EndpointSuffix=core.windows.net";
+```
+
+Other service libraries require your application to run with a [service prinicpal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects) authorizing the application with your granted credentials. This configuration is similar to the object-based authentication steps for the management library listed below.
 
 ## Azure management libraries for Java authentication
 
 Two options are available to authenticate your application with Azure when using the Java management libraries to create and manage resources.
+
+### Authenticate with an ApplicationTokenCredentials object
+
+Create an instance of `ApplicationTokenCredentials` to supply the service principal credentials to the top-level `Azure` object from inside your code.
+
+```
+import com.microsoft.azure.credentials.ApplicationTokenCredentials;
+import com.microsoft.azure.AzureEnvironment;
+
+...
+
+ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, 
+                                                 key, AzureEnvironment.AZURE);
+Azure azure = Azure
+        .configure()
+        .withLogLevel(LogLevel.NONE)
+        .authenticate(credentials)
+        .withDefaultSubscription();
+```
+
+The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
 
 ### File based authentication (Preview)
 
@@ -86,27 +121,6 @@ Azure azure = Azure
         .authenticate(credFile)
         .withDefaultSubscription();
 ```
-
-### Authenticate with an ApplicationTokenCredentials object
-
-Create an instance of `ApplicationTokenCredentials` to supply the service principal credentials to the top-level `Azure` object from inside your code.
-
-```
-import com.microsoft.azure.credentials.ApplicationTokenCredentials;
-import com.microsoft.azure.AzureEnvironment;
-
-...
-
-ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, 
-                                                 key, AzureEnvironment.AZURE);
-Azure azure = Azure
-        .configure()
-        .withLogLevel(LogLevel.NONE)
-        .authenticate(credentials)
-        .withDefaultSubscription();
-```
-
-The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.
 
 
 
