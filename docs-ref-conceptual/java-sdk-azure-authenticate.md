@@ -57,6 +57,8 @@ This snippet uses the management libraries to create a storage account connectio
 
 Other libraries require your application to run with a [service prinicpal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects) authorizing the application to run with granted credentials. This configuration is similar to the object-based authentication steps for the management library listed below.
 
+<a name="mgmt-auth"></a>
+
 ## Azure management libraries for Java authentication
 
 Two options are available to authenticate your application with Azure when using the Java management libraries to create and manage resources.
@@ -81,6 +83,8 @@ Azure azure = Azure
 ```
 
 The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
+
+<a name="mgmt-file"></a>
 
 ### File based authentication (Preview)
 

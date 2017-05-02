@@ -66,7 +66,7 @@ This code:
 0. Defines a `Disk` Creatable with a 50GB size and random name for use with a virtual machine.
 0. Uses the `azure.virtualMachines().define()..create()` chain to create the Windows Server 2012 virtual machine. The API creates the `Disk` defined in the previous step the same time as the virtual machine. A 10GB data disk is also attached to the virtual machine through `withNewDataDisk(10)`.
 
-Learn more about using [Creatables](java-sdk-azure-concepts.md#Creatables) do define local representations of resources and create them just as other Azure resources need them.
+Learn more about using [Creatable<T> objects](java-sdk-azure-concepts.md#Creatables) to define local representations of resources and create them just as other Azure resources need them.
 
 ## Stop, start, and restart a virtual machine
 

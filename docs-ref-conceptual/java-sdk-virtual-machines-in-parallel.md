@@ -17,7 +17,7 @@ ms.author: routlaw;asirveda
 [This sample](https://github.com/Azure-Samples/compute-java-create-virtual-machines-across-regions-in-parallel) creates virtual machines in parallel across different Azure regions using the [Azure management libraries for Java](https://github.com/Azure/azure-sdk-for-java).
 
 > [!IMPORTANT]
-> The sample creates a total of 48 VMs running Ubuntu 16.04 LTS of [size STANDARD_DS3_V2](../virtual-machines/virtual-machines-windows-sizes.md) across four regions. The sample code deletes these virtual machines before exiting. Make sure to [check your service limits and quota](../azure-subscription-service-limits.md) before running this sample with the default number of VMs.
+> The sample creates a total of 48 VMs running Ubuntu 16.04 LTS of [size STANDARD_DS3_V2](http://docs.microsoft.com/azure/virtual-machines/virtual-machines-windows-sizes) across four regions. The sample code deletes these virtual machines before exiting. Make sure to [check your service limits and quota](http://docs.microsoft.com/azure/azure-subscription-service-limits) before running this sample with the default number of VMs.
 
 ## Run the sample
 
@@ -148,7 +148,7 @@ The `azure.virtualMachines().create(creatableVirtualMachines)` call creates all 
 
 Use the returned `CreatedResources<VirtualMachine>` object to access any resources created in the Azure subscription during the the `create()` method, not just the returned `VirtualMachine` type. Cast the returned value from `createdRelatedResources()` to the correct type. 
 
-Learn more about working with `Creatables` and `CreatedResources` in our [API concepts article](java-sdk-azure-concepts.md).
+Learn more about working with `Creatable<T>` and `CreatedResources` in our [library concepts article](java-sdk-azure-concepts.md).
 
 ## Delete the resource group 
 

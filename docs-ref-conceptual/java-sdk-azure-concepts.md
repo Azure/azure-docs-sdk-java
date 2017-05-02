@@ -94,6 +94,8 @@ vmToRestart.restart();
 ```
 These methods generally do not have asynchronous versions in the management libraries.
 
+<a name="Creatables"></a>
+
 ## Lazy resource creation
 
 A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to ensure the virtual machine has those resources when it is created.
