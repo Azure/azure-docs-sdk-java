@@ -27,4 +27,4 @@ ms.assetid: e4537f38-a60d-4218-a9ba-3cba7af61b8b
 
 [1]: https://azure.microsoft.com/en-us/resources/samples/sql-database-java-manage-db/
 [2]: https://azure.microsoft.com/en-us/resources/samples/sql-database-java-manage-sql-databases-across-regions/
-[3]: https://review.docs.microsoft.com/azure/java/java-manage-sql-elastic-pools?branch=pr-en-us-9782
+[3]: java-sdk-manage-sql-elastic-pools.md

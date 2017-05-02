@@ -28,9 +28,9 @@ ms.assetid: 43633e5c-9fb1-4807-ba63-e24c126754e2
 | [Connect a web app to a storage account][5] | Create an Azure storage account and add the storage account connection string to the app settings. |
 | [Connect a web app to a SQL database][6] | Create a web app and SQL database, then add the SQL database connection string to the app settings. |
 
-[1]: https://review.docs.microsoft.com/azure/java/java-configure-webapp-sources?branch=pr-en-us-9782
-[2]: https://azure.microsoft.com/en-us/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
-[3]: https://azure.microsoft.com/en-us/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
-[4]: https://azure.microsoft.com/en-us/resources/samples/app-service-java-scale-web-apps-on-linux/
-[5]: https://azure.microsoft.com/en-us/resources/samples/app-service-java-manage-storage-connections-for-web-apps/
-[6]: https://azure.microsoft.com/en-us/resources/samples/app-service-java-manage-data-connections-for-web-apps/
+[1]: java-sdk-configure-webapp-sources.md
+[2]: https://azure.microsoft.com/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
+[3]: https://azure.microsoft.com/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
+[4]: https://azure.microsoft.com/resources/samples/app-service-java-scale-web-apps-on-linux/
+[5]: https://azure.microsoft.com/resources/samples/app-service-java-manage-storage-connections-for-web-apps/
+[6]: https://azure.microsoft.com/resources/samples/app-service-java-manage-data-connections-for-web-apps/

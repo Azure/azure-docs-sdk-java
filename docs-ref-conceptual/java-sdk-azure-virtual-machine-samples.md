@@ -30,10 +30,10 @@ The following table links to Java source you can use to create and configure Azu
 | **Create scale sets** ||
 | [Create a virtual machine scale set with a load balancer][7] | Create a VM scale set, set up a load balancer, and get SSH connection strings to the scale set VMs. |
 
-[1]: https://review.docs.microsoft.com/azure/java/java-manage-virtual-machines?branch=pr-en-us-9782
-[2]: https://azure.microsoft.com/en-us/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image/
-[3]: https://azure.microsoft.com/en-us/resources/samples/managed-disk-java-create-virtual-machine-using-specialized-disk-from-vhd/
-[4]: https://azure.microsoft.com/en-us/resources/samples/compute-java-manage-virtual-machines-in-parallel/
-[5]: https://review.docs.microsoft.com/azure/java/java-virtual-machines-in-parallel?branch=pr-en-us-9782
-[6]: https://review.docs.microsoft.com/azure/java/java-manage-virtual-networks?branch=pr-en-us-9782
-[7]: https://review.docs.microsoft.com/azure/java/java-manage-vm-scalesets?branch=pr-en-us-9782
+[1]: java-sdk-manage-virtual-machines.md
+[2]: https://azure.microsoft.com/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image/
+[3]: https://azure.microsoft.com/resources/samples/managed-disk-java-create-virtual-machine-using-specialized-disk-from-vhd/
+[4]: https://azure.microsoft.com/resources/samples/compute-java-manage-virtual-machines-in-parallel/
+[5]: java-sdk-virtual-machines-in-parallel.md
+[6]: java-sdk-manage-virtual-networks.md
+[7]: java-sdk-manage-vm-scalesets.md
