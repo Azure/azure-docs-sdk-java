@@ -30,7 +30,7 @@ View the [complete code sample on GitHub](https://github.com/Azure-Samples/netwo
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Create a network security group to block Internet traffic
 
@@ -178,4 +178,4 @@ This sample creates a virtual network with two subnets and with one virtual mach
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

@@ -30,7 +30,7 @@ View the [complete sample code on GitHub](https://github.com/Azure-Samples/app-s
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Create a App Service app running Apache Tomcat
 
@@ -162,4 +162,4 @@ The fourth application deploys the code in your master branch every time you pus
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

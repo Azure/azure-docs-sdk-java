@@ -30,7 +30,7 @@ mvn clean compile exec:java
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Create a SQL database server with an elastic pool
 
@@ -132,4 +132,4 @@ The sample deletes all resources it created before exiting.
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

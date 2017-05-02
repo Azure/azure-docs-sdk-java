@@ -31,7 +31,7 @@ View the [complete code sample on GitHub](https://github.com/Azure-Samples/compu
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Create a Windows virtual machine
 
@@ -161,4 +161,4 @@ The sample logs information about both virtual machines and deletes them both be
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

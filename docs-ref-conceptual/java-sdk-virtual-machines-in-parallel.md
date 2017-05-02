@@ -33,7 +33,7 @@ View the [complete code sample on GitHub](https://github.com/Azure-Samples/compu
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Set locations and counts for the virtual machines
 
@@ -192,4 +192,4 @@ The `finally` block deletes the resources from your Azure subscription even in t
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

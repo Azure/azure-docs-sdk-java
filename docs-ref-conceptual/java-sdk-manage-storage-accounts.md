@@ -31,7 +31,7 @@ View the [complete code sample on GitHub](https://github.com/Azure-Samples/stora
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]   
+[!INCLUDE [auth-include](includes/java-auth-include.md)] 
 
 ## Create a storage account
 
@@ -105,4 +105,4 @@ azure.storageAccounts().deleteByResourceGroup(rgName,accountName);
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]

@@ -30,7 +30,7 @@ View the [complete code sample on GitHub](https://github.com/Azure-Samples/compu
 
 ## Authenticate with Azure
 
-[!INCLUDE [auth-include](../../includes/java-auth-include.md)]
+[!INCLUDE [auth-include](includes/java-auth-include.md)]
 
 ## Create a virtual network for the scale set
 
@@ -233,4 +233,4 @@ Scale the number of virtual machines in the scale set using `withCapacity()` and
 
 ## Next steps
 
-[!INCLUDE [next-steps](../../includes/java-next-steps.md)]
+[!INCLUDE [next-steps](includes/java-next-steps.md)]
