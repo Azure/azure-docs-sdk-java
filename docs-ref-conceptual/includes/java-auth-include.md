@@ -1,4 +1,4 @@
-Create an [authentication file](java-sdk-azure-authenticate.md#mgmt-file) and export an environment variable `AZURE_AUTH_LOCATION` on the command line with the full path to the file.
+Create an [authentication file](../java-sdk-azure-authenticate.md#mgmt-file) and export an environment variable `AZURE_AUTH_LOCATION` on the command line with the full path to the file.
 
 ```bash
 export AZURE_AUTH_LOCATION=/Users/raisa/azure.auth
@@ -17,4 +17,4 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-[Learn more](java-sdk-azure-concepts.md#mgmt-auth) about authentication options when using the Azure management libraries for Java.
+[Learn more](../java-sdk-azure-authenticate.md#mgmt-auth) about authentication options when using the Azure management libraries for Java.
