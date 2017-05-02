@@ -17,4 +17,4 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-[Learn more](../articles/java/java-sdk-azure-concepts.md#authentication) about authentication options  when using the Azure management libraries for Java.
+[Learn more](java-sdk-azure-concepts.md#mgmt-auth) about authentication options when using the Azure management libraries for Java.

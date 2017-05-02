@@ -21,7 +21,7 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 - An Azure account. If you don't have one , [get a free trial](https://azure.microsoft.com/free/)
 - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Maven 3](http://maven.apache.org/download.cgi)
-- [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-az-cli2)
+- [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
 This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Azure Management libraries for Java. 
 

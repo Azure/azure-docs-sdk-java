@@ -25,6 +25,6 @@ ms.assetid: e4537f38-a60d-4218-a9ba-3cba7af61b8b
 | **Elastic Pools** ||
 | [Manage SQL Databases in elastic pools][3] | Create, delete, and move SQL databases in and out of elastic pools. | 
 
-[1]: https://azure.microsoft.com/en-us/resources/samples/sql-database-java-manage-db/
-[2]: https://azure.microsoft.com/en-us/resources/samples/sql-database-java-manage-sql-databases-across-regions/
+[1]: https://azure.microsoft.com/resources/samples/sql-database-java-manage-db/
+[2]: https://azure.microsoft.com/resources/samples/sql-database-java-manage-sql-databases-across-regions/
 [3]: java-sdk-manage-sql-elastic-pools.md

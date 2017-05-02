@@ -20,11 +20,28 @@ The Azure libraries for Java let you use Azure services and manage Azure resourc
 
 ## Consume Azure services
 
-Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782) to learn more about building Java apps with Azure services.
+Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native APIs. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out [Java developer center](https://azure.microsoft.com/develop/java/) to learn more about building Java apps with Azure services.
+
+Here's some example code to write out the contents of all blobs in an Azure storage container:
+
+```java
+            // get the container from the blob client
+			CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
+
+			// For each item in the container
+			for (ListBlobItem blobItem : container.listBlobs()) {
+			    // If the item is a blob, not a virtual directory
+			    if (blobItem instanceof CloudBlockBlob) {
+			        // Download the text
+			    	CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
+			    	System.out.println(retrievedBlob.downloadText());
+			    }
+			}
+```
 
 ## Manage Azure resources
 
-Create and manage Azure resources from your Java applications using the [Azure Management libraries for Java](https://review.docs.microsoft.com/en-us/java/api/docs-ref-conceptual/java-sdk-azure-get-started?branch=java-sdk-experience). 
+Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). 
 Use these libraries to build your own Azure automation tools and services. 
 
 For example, the following code creates a new Ubuntu Linux VM with name `myAzureVM` in an existing Azure resource group `sampleResourceGroup`. 
