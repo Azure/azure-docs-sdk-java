@@ -18,21 +18,24 @@ ms.assetid: f452468b-7aae-4944-abad-0b1aaf19170d
 
 ## Build resources through a fluent interface
 
-Do not call constructors to create objects when using the Azure management libraries. Build objects for use in your code using the fluent interface. Fluent interfaces let you customize objects using method chains instead of long parameter lists and allow you to customize the objects as much as you need when you create them. For example, the entry-point Azure object:
+A fluent interface is a specific form of the builder pattern that creates objects through a method chain that enforces correct configuration of a resource. For example, to create a new storage account
 
 ```java
-Azure azure = Azure
-                    .configure()
-                    .withLogLevel(LogLevel.NONE)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+StorageAccount storage = azure.storageAccounts().define(storageAccountName)
+                  .withRegion(region)
+                  .withNewResourceGroup(resourceGroup)
+                  .create();
 ```
 
-Once built through the fluent interface the objects are immutable (is this true? I can't find where that's not the case)
+As you go through the method chain, your IDE suggests the next method to call in the fluent conversation. 
+
+(insert gif here)
+
+Chain the methods suggested by the IDE as long as they make sense for your resource-if you are missing a required method in the chain your IDE will highlight it with a compile error.
 
 ## Resource collections
 
-The management API has a single point of entry through the `com.microsoft.azure.management.Azure` object. Select which type of resources to work with using the  resource collections in the `Azure` object. For example, SQL Database:
+The management library has a single point of entry through the top-level `com.microsoft.azure.management.Azure` object to create and update resources. Select which type of resources to work with using the resource collection methods defined in the `Azure` object. For example, SQL Database:
 
 ```java
 SqlServer sqlServer = azure.sqlServers().define(sqlServerName)
@@ -43,15 +46,13 @@ SqlServer sqlServer = azure.sqlServers().define(sqlServerName)
                     .create();
 ```
 
-Most fluent conversations you have with the API starts with selecting the appropriate resource collection for the Azure resources you need to work with.     
-
 ## Lists and iterations
 
-Every resource collection has a `list()` method to return every instance of that resource in your current subscription. For example, `azure.sqlServers().list()` returns all SQL databases in the subscription.
+Each resource collection has a `list()` method to return every instance of that resource in your current subscription. For example, `azure.sqlServers().list()` returns all SQL databases in the subscription.
 
 Use the `listByResourceGroup(String groupname)` method to scope the returned List to a specific [Azure resource group](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups).  
 
-Iterate over the returned `PagedList` collection just as you would a normal `List`:
+Search and iterate over the returned `PagedList` collection just as you would a normal `List`:
 
 ```java
 PagedList<VirtualMachine> vms = azure.virtualMachines().list();
@@ -60,19 +61,17 @@ for (VirtualMachine vm : vms) {
 }
 ```   
 
-## Returned object collections
+## Collections returned from queries
 
-The management API follows convention for returned object collections depending on the properties of the returned objects:
+The management libraries follows a convention for returned collections from queries:
 
-- Lists: Unordered data that is easy to iterate over.
+- Lists: Unordered data that is easy to search and interate over.
 - Maps: Maps are key/value pairs with unique keys, but not necessarily unique values. An example of a Map would be app settings for a App Service webapp.
-- Sets: Sets have unique keys and values. A good example of a Set would be networks attached to a virtual machine, which would have both a unique identifier and a unique network configuration.
-
-The returned collection types let you make assumptions about the returned objects when working with the collections in your code.   
+- Sets: Sets have unique keys and values. An example of a Set would be networks attached to a virtual machine, which would have both an unique identifier (the key) and a unique network configuration (the value).
 
 ## Actionable verbs
 
-Resource collection methods with verbs in their names take immediate action in Azure. These methods work synchronously and block execution in the current thread until they complete. 
+Methods with verbs in their names take immediate action in Azure. These methods work synchronously and block execution in the current thread until they complete. 
 
 | Verb   |  Sample Usage |
 |--------|---------------|
@@ -87,19 +86,19 @@ Resource collection methods with verbs in their names take immediate action in A
  
 Asynchronous versions of these methods exist with a `Async` suffix use [Reactive extensions](https://github.com/ReactiveX/RxJava). 
 
-Specific resource objects have verbs that change the state of the resource in Azure. For example:
+Some objects have methods with that change the state of the resource in Azure. For example, `restart()` on a `VirtualMachine`:
 
 ```java
 VirtualMachine vmToRestart = azure.getVirtualMachines().getById(id);
 vmToRestart.restart();
 ```
-These resource collection verbs generally do not have asynchronous versions in the management API.
+These methods generally do not have asynchronous versions in the management libraries.
 
 ## Lazy resource creation
 
-A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to configure the virtual machine with those resources.
+A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to ensure the virtual machine has those resources when it is created.
 
-Use `Creatable<T>` objects to define Azure resources for use in your code but only create them when needed in Azure. Code written with `Creatable<T>` objects offloads resource creation in the Azure environment to the management API, boosting performance. 
+Use `Creatable<T>` objects to define Azure resources for use in your code but only create them when needed in Azure. Code written with `Creatable<T>` objects defers resource creation in the Azure environment to the management libraries, which create them only when they are needed and in parallel with other resources when possible.
 
 Generate `Creatable<T>` objects through the resource collections' `define()` verb:
 
@@ -109,14 +108,14 @@ Creatable<PublicIPAddress> publicIPAddressCreatable = azure.publicIPAddresses().
                     .withNewResourceGroup(rgName);
 ```
 
-The Azure resource defined by the `Creatable<T>` does not yet exist in your subscription. A `Creatable<T>` is a local representation of a resource that the management API will create when its needed. Use this `Creatable<T>` to define other Azure resources that need this resource. 
+The Azure resource defined by the `Creatable<PublicIPAddress>` in this example does not yet exist in your subscription when you run this code. The `Creatable<PublicIPAddress>` is a local representation of a resource that the management library will create when its needed. Use this `Creatable<PublicIPAddress>` to define other Azure resources with this IP address. 
 
 ```java
 Creatable<VirtualMachine> vmCreatable = azure.virtualMachines().define("creatableVM")
         .withNewPrimaryPublicIPAddress(publicIPAddressCreatable)
 ```
 
-Create the resources in your Azure subscription using the  `create()` method for the resource collection. 
+Create the resources in your Azure subscription using the `create()` method for the resource collection. 
 
 ```java
 CreatedResources<VirtualMachine> virtualMachine = azure.virtualMachines().create(vmCreatable);

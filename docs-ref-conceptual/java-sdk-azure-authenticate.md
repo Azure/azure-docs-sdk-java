@@ -39,9 +39,9 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
                     + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings are used in other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and the strings are accessible through the Azure portal and the CLI.  You can also use the Azure Management libraries for Java to query connection strings and keys programatically in your code. 
+Service connection strings are used in other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and you can get those strings using the Azure portal or the CLI.  You can also use the Azure Management libraries for Java to query resouces to build connection strings in your code. 
 
-This snippet 
+This snippet uses the management libraries to create a storage account connection string:
 
 ```java
             // create a new storage account
@@ -55,7 +55,7 @@ This snippet
                     + ";EndpointSuffix=core.windows.net";
 ```
 
-Other service libraries require your application to run with a [service prinicpal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects) authorizing the application with your granted credentials. This configuration is similar to the object-based authentication steps for the management library listed below.
+Other libraries require your application to run with a [service prinicpal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects) authorizing the application to run with granted credentials. This configuration is similar to the object-based authentication steps for the management library listed below.
 
 ## Azure management libraries for Java authentication
 
