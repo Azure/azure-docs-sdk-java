@@ -22,7 +22,7 @@ The Azure libraries for Java let you use Azure services and manage Azure resourc
 
 Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native interfaces. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out [Java developer center](https://azure.microsoft.com/develop/java/) to learn more about adding features to your apps with Azure services.
 
-Here's some example code to write out the contents of all blobs in an Azure storage container:
+For example, to print out the contents of all blobs in an Azure storage container:
 
 ```java
             // get the container from the blob client
@@ -41,10 +41,9 @@ Here's some example code to write out the contents of all blobs in an Azure stor
 
 ## Manage Azure resources
 
-Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). 
-Use these libraries to build your own Azure automation tools and services. 
+Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). Use these libraries to build your own Azure automation tools and services. 
 
-For example, the following code creates a new Ubuntu Linux VM with name `myAzureVM` in an existing Azure resource group `sampleResourceGroup`. 
+For example, the to create a Linux VM in an existing Azure resource group:
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
@@ -61,7 +60,7 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .create();
  ```
 
-Review the [install instructions](java-sdk-azure-install.md) to start using the libraries immediately with your Java projects. Set up authentication and run sample code against your own Azure subscription in the [get started article](java-sdk-azure-get-started.md). The [concepts article](java-sdk-azure-concepts.md) article details how the use the features of the management libraries to simplify your development. 
+Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects the and [get started article](java-sdk-azure-get-started.md) to set up your environment and run some example code in your own subscription. 
 
 ## Sample code and reference
 
@@ -71,4 +70,4 @@ The following samples cover common automation tasks with the Azure Management li
 - [Web apps](java-sdk-azure-web-apps-samples.md)
 - [SQL Database](java-sdk-azure-sql-database-samples.md)
    
-A unified [reference](https://docs.microsoft.com/java/api) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-azure-release-notes.md).
+A unified [reference](https://docs.microsoft.com/java/api) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions from previous versions are available in the [release notes](java-sdk-azure-release-notes.md).
