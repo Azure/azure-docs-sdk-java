@@ -82,7 +82,7 @@ cd java-azure-test
 mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-This creates a basic Maven project under the `testAzureApp` folder. Add the the following entries into the project `pom.xml` to import the Azure management libraries for Java and the Azure Storage libraries for Java.
+This creates a basic Maven project under the `testAzureApp` folder. Add the following entries into the project `pom.xml` to import the Azure management libraries for Java and the Azure Storage libraries for Java.
 
 ```XML
 <dependency>
