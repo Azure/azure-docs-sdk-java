@@ -1,6 +1,6 @@
 ---
-title: Authenticate with the Azure Management libraries for Java
-description: Authenticate with a service principal into the Azure Management libraries for Java
+title: Authenticate with the Azure management libraries for Java
+description: Authenticate with a service principal into the Azure management libraries for Java
 keywords: Azure, Java, SDK, API, Maven, Gradle, authentication, active directory, service principal
 author: rloutlaw
 ms.author: routlaw
@@ -39,7 +39,7 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
                     + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings are used in other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and you can get those strings using the Azure portal or the CLI.  You can also use the Azure Management libraries for Java to query resouces to build connection strings in your code. 
+Service connection strings are used in other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and you can get those strings using the Azure portal or the CLI.  You can also use the Azure management libraries for Java to query resouces to build connection strings in your code. 
 
 This snippet uses the management libraries to create a storage account connection string:
 

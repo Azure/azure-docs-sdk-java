@@ -1,6 +1,6 @@
 ---
-title: Azure Management libraries for Java release notes | Microsoft Docs
-description: See what's new and watch for breaking changes in the Azure Management libraries for Java
+title: Azure management libraries for Java release notes | Microsoft Docs
+description: See what's new and watch for breaking changes in the Azure management libraries for Java
 keywords: Azure,  Java, API, reference,  notes,  updates, deprecate
 author: routlaw
 manager: douge

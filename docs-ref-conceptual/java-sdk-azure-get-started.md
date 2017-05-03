@@ -23,7 +23,7 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
-This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle or SBT work fine with the Azure Management libraries for Java. 
+This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle work fine with the Azure libraries for Java. 
 
 ## Set up authentication
 
@@ -82,7 +82,7 @@ cd java-azure-test
 mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-This creates a basic Maven project under the `testAzureApp` folder. Add the the following entries into the project `pom.xml` to import the Azure Management libraries for Java and the Azure Storage libraries for Java.
+This creates a basic Maven project under the `testAzureApp` folder. Add the the following entries into the project `pom.xml` to import the Azure management libraries for Java and the Azure Storage libraries for Java.
 
 ```XML
 <dependency>
@@ -403,7 +403,7 @@ az group delete --name sampleResourceGroup
 
 ## Explore more samples
 
-To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-database-samples.md).
+To learn more about how to use the Azure management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-database-samples.md).
 
 ## Reference and release notes
 

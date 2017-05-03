@@ -64,7 +64,7 @@ Review the [install instructions](java-sdk-azure-install.md) for a full list of 
 
 ## Sample code and reference
 
-The following samples cover common automation tasks with the Azure Management libraries for Java and have code ready to use in your own apps:
+The following samples cover common automation tasks with the Azure management libraries for Java and have code ready to use in your own apps:
 
 - [Virtual machines](java-sdk-azure-virtual-machine-samples.md)
 - [Web apps](java-sdk-azure-web-apps-samples.md)

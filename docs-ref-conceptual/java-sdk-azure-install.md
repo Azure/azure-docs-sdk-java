@@ -14,7 +14,7 @@ ms.date: 3/06/2016
 
 # Azure libraries for Java
 
-Leverage Azure libraries in your Java projects to natively integrate Azure services in your applications. Each library isn't dependent on other Azure libraries-pick and choose just what you need from the list below.
+Azure libraries help you consume Azure services in your Java apps using native interfaces. Each library isn't dependent on other Azure libraries-pick and choose just what you need from the list below.
 
 | | | | |
 |:-------------:|:----------:|:----:|:---:|
@@ -27,7 +27,7 @@ Leverage Azure libraries in your Java projects to natively integrate Azure servi
 
 Add a dependency entry in your `pom.xml` to import a library into your [Maven](https://maven.apache.org) project.
 
-For example, to include the latest version of the [Azure Management libraries for Java](#management):
+For example, to include the latest version of the [Azure management libraries for Java](#management):
 
 ```XML
 <dependency>
