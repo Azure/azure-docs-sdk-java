@@ -139,7 +139,7 @@ Identity management and secure sign-in for your applications.
 </dependency>
 ```
    
-[Samples](https://github.com/Azure-Samples?utf8=%E2%9C%93&q=active%20directory%20&type=&language=java) | [Reference](https://github.com/AzureAD/azure-activedirectory-library-for-java/blob/dev/changelog.txt) | [GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) | [Release Notes](java-sdk-release-notes.md)
+[Samples](https://github.com/Azure-Samples?utf8=%E2%9C%93&q=active%20directory%20&type=&language=java) | [Reference](https://github.com/AzureAD/azure-activedirectory-library-for-java/blob/dev/changelog.txt) | [GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) | [Release Notes](https://github.com/AzureAD/azure-activedirectory-library-for-javaT-)
  
 <a name="keyvault"></a>
 
