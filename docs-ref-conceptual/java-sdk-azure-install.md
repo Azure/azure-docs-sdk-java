@@ -41,7 +41,7 @@ Other Java build tools like Gradle are supported but the install steps are not p
 
 ## Azure service libraries
 
-Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Azure for Java developers](https://review.docs.microsoft.com/en-us/azure/java/index?branch=pr-en-us-9782).
+Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Azure for Java developers]().
 
 <a name="azure-storage"></a>
 
@@ -61,7 +61,7 @@ Data storage and messaging for your applications.
 
 <a name="sql-database"></a>
 
-### [SQL Database](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview)
+### [SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
 
 JDBC driver for Azure SQL Database.
 
@@ -73,11 +73,11 @@ JDBC driver for Azure SQL Database.
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/en-us/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  | [Release Notes](https://github.com/Microsoft/mssql-jdbc/blob/master/CHANGELOG.md)
+[Samples](https://docs.microsoft.com/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  | [Release Notes](https://github.com/Microsoft/mssql-jdbc/blob/master/CHANGELOG.md)
 
 <a name="redis-cache"></a>
 
-### [Redis Cache](https://azure.microsoft.com/en-us/services/cache/)
+### [Redis Cache](https://azure.microsoft.com/services/cache/)
 
 Low-latency, high-performance key-value store.
 
@@ -91,7 +91,7 @@ Low-latency, high-performance key-value store.
 </dependency>
 ```   
 
-[Samples](https://docs.microsoft.com/en-us/azure/redis-cache/cache-java-get-started) | [Reference](http://xetorthio.github.io/jedis)  | [GitHub](https://github.com/xetorthio/jedis)  | [Release Notes](https://github.com/xetorthio/jedis/releases)  
+[Samples](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started) | [Reference](http://xetorthio.github.io/jedis)  | [GitHub](https://github.com/xetorthio/jedis)  | [Release Notes](https://github.com/xetorthio/jedis/releases)  
 
 <a name="documentdb"></a>
 
@@ -107,11 +107,11 @@ Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/en-us/azure/documentdb/documentdb-java-application) | [Reference](overview.md) | [GitHub](https://github.com/Azure/azure-documentdb-java)   | [Release Notes](https://github.com/Azure/azure-documentdb-java/blob/master/changelog.md)
+[Samples](https://docs.microsoft.com/azure/documentdb/documentdb-java-application) | [Reference](overview.md) | [GitHub](https://github.com/Azure/azure-documentdb-java)   | [Release Notes](https://github.com/Azure/azure-documentdb-java/blob/master/changelog.md)
 
 <a name="servicebus"></a>
 
-### [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
+### [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
 
 Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol) to connect your applications.
 
@@ -159,7 +159,7 @@ Safely access keys and secrets from your applications.
 
 <a name="eventhub"></a>
 
-### [Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-what-is-event-hubs) 
+### [Event Hub](https://docs.microsoft.com/azure/event-hubs/event-hubs-what-is-event-hubs) 
    
 High throughput event and telemetry handling for your instrumentation or IoT scenarios.
 
@@ -235,11 +235,11 @@ Track usage, add telemetry, and monitor your web apps.
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-get-started) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) | [Release Notes](https://github.com/Microsoft/ApplicationInsights-Java#to-upgrade-to-the-latest-sdk)
+[Samples](https://docs.microsoft.com/azure/application-insights/app-insights-java-get-started) | [Reference](overview.md) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) | [Release Notes](https://github.com/Microsoft/ApplicationInsights-Java#to-upgrade-to-the-latest-sdk)
 
 <a name="batch"></a>
 
-### [Batch](https://docs.microsoft.com/en-us/azure/batch)
+### [Batch](https://docs.microsoft.com/azure/batch)
 
 Run large-scale parallel and high-performance computing applications efficiently in the cloud.
 

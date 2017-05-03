@@ -113,7 +113,7 @@ Save this file in a secure location on your system where your code can read it. 
 AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
-Create the entry point `Azure` object to start working with the API:
+Create the entry point `Azure` object to start working with the libraries:
 
 ```java
 // pull in the location of the authenticaiton properties file from the environment 

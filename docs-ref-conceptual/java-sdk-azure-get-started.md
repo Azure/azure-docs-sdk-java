@@ -222,7 +222,7 @@ Replace the main method in `AzureApp.java` with the code below, setting a real v
 
     public static void main(String args[])
     {
-        // create the db using the management api
+        // create the db using the management libraries
         try {
             final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
             Azure azure = Azure.configure()
