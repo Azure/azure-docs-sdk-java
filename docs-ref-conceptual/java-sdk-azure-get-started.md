@@ -169,7 +169,7 @@ Paste in the following `main` method in the class. This code creates an [Azure s
             String storageAccountName = SdkContext.randomResourceName("st",8);
             StorageAccount storage = azure.storageAccounts().define(storageAccountName)
                         .withRegion(Region.US_WEST2)
-                        .withNewResourceGroup("sampleResourceGroup")
+                        .withNewResourceGroup("sampleStorageResourceGroup")
                         .create();
 
             // create a storage container to hold the file
@@ -211,12 +211,18 @@ mvn compile exec:java
 
 You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 
+Clean up the storage account using the CLI:
+
+```azurecli
+az group delete --name sampleStorageResourceGroup
+```
+
 ## Connect to a SQL database
 
 This `main` method creates a new SQL database with a firewall rule allowing remote access,  and then connects to it using the SQL Database JBDC driver. 
 The code then creates a new table, inserts a single row, and then retrieves the row's values in a separate SELECT query.
 
-Replace the main method in `AzureApp.java` with the code below, setting a real value for `dbPassword`.
+Replace the current main method in `AzureApp.java` with the code below, setting a real value for the `dbPassword` variable.
 
 ```java
 
@@ -238,7 +244,7 @@ Replace the main method in `AzureApp.java` with the code below, setting a real v
 
             SqlServer sampleSQLServer = azure.sqlServers().define(sqlServerName)
                             .withRegion(Region.US_EAST)
-                            .withNewResourceGroup("sampleResourceGroup")
+                            .withNewResourceGroup("sampleSqlResourceGroup")
                             .withAdministratorLogin(adminUser)
                             .withAdministratorPassword(dbPassword)
                             .withNewFirewallRule("0.0.0.0","255.255.255.255")
@@ -288,6 +294,12 @@ Run the sample from the command line:
 mvn clean compile exec:java
 ```
 
+Then clean up the resources using the CLI:
+
+```azurecli
+az group delete --name sampleSqlResourceGroup
+```
+
 ## Create a Linux virtual machine
 
 Next replace the `main` method, setting real values for `userName` and `password`. 
@@ -313,7 +325,7 @@ This main method creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` 
             // create a Ubuntu virtual machine in a new resource group 
             VirtualMachine linuxVM = azure.virtualMachines().define("testLinuxVM")
                     .withRegion(Region.US_EAST)
-                    .withNewResourceGroup("sampleResourceGroup")
+                    .withNewResourceGroup("sampleVmResourceGroup")
                     .withNewPrimaryNetwork("10.0.0.0/24")
                     .withPrimaryPrivateIpAddressDynamic()
                     .withoutPrimaryPublicIpAddress()
@@ -340,13 +352,13 @@ mvn clean compile exec:java
 You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
 ```azurecli
-az vm list --resource-group sampleResourceGroup
+az vm list --resource-group sampleVmResourceGroup
 ```
 
 Once you've verified that the code worked, delete resource group from the CLI to delete the VM and its resources.
 
 ```azurecli
-az group delete --name sampleResourceGroup
+az group delete --name sampleVmResourceGroup
 ```
 
 ## Deploy a web app from a GitHub repo
@@ -367,7 +379,7 @@ This code deploys an code from the `master` branch in a GitHub repo into a new [
 
             WebApp app = azure.webApps().define(appName)
                     .withRegion(Region.US_WEST2)
-                    .withNewResourceGroup("sampleResourceGroup")
+                    .withNewResourceGroup("sampleWebResourceGroup")
                     .withNewWindowsPlan(PricingTier.FREE_F1)
                     .defineSourceControl()
                     .withPublicGitRepository(
@@ -392,13 +404,13 @@ mvn clean compile exec:java
 Open up a browser to the application using the CLI:
 
 ```azurecli
-az appservice web browse --resource-group sampleResourceGroup --name YOUR_APP_NAME
+az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
 ```
 
 Remove the web app and plan from your subscription once you've proven you can reach it
 
 ```azurecli
-az group delete --name sampleResourceGroup
+az group delete --name sampleWebResourceGroup
 ```
 
 ## Explore more samples
