@@ -29,7 +29,7 @@ StorageAccount storage = azure.storageAccounts().define(storageAccountName)
 
 As you go through the method chain, your IDE suggests the next method to call in the fluent conversation.   
 
-![GIF of IntelliJ command completion working through a fluent chain](media/intelliJFluent.gif)
+![GIF of IntelliJ command completion working through a fluent chain](intelliJFluent.gif)
 
 Chain the methods suggested by the IDE as long as they make sense for your resource-if you are missing a required method in the chain your IDE will highlight it with a compile error.
 
