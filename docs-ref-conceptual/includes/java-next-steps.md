@@ -1,1 +1,1 @@
-For more information and samples for the Azure management libraries for Java, see the [Azure for Java developers](https://docs.microsoft.com/en-us/java/api) documentation.
+For more information and samples for the Azure management libraries for Java, see the [Azure for Java developers](https://docs.microsoft.com/java/api) documentation.

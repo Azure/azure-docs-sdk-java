@@ -71,4 +71,4 @@ The following samples cover common automation tasks with the Azure Management li
 - [Web apps](java-sdk-azure-web-apps-samples.md)
 - [SQL Database](java-sdk-azure-sql-database-samples.md)
    
-A unified [reference](java-sdk-reference.md) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-release-notes.md).
+A unified [reference](https://docs.microsoft.com/java/api) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions are available in the [release notes](java-sdk-azure-release-notes.md).

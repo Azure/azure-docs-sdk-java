@@ -403,11 +403,11 @@ az group delete --name sampleResourceGroup
 
 ## Explore more samples
 
-To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-databases.md).
+To learn more about how to use the Azure Management libraries for Java to manage resources and automate tasks, see our sample code for [virtual machines](java-sdk-azure-virtual-machine-samples.md), [web apps](java-sdk-azure-web-apps-samples.md) and [SQL database](java-sdk-azure-sql-database-samples.md).
 
 ## Reference and release notes
 
-A [reference](java-sdk-reference.md) is available for all packages.
+A [reference](http://docs.microsoft.com/java/api) is available for all packages.
 
 ## Get help and give feedback
 
