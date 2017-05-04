@@ -73,8 +73,11 @@ import com.microsoft.azure.AzureEnvironment;
 
 // ...
 
-ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, 
-                                                 key, AzureEnvironment.AZURE);
+ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, 
+        tenant,
+        key, 
+        AzureEnvironment.AZURE);
+        
 Azure azure = Azure
         .configure()
         .withLogLevel(LogLevel.NONE)
