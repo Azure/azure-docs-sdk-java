@@ -43,7 +43,7 @@ For example, to print out the contents of all blobs in an Azure storage containe
 
 Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). Use these libraries to build your own Azure automation tools and services. 
 
-For example, the to create a Linux VM in an existing Azure resource group:
+For example, to create a Linux VM in an existing Azure resource group:
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
@@ -60,7 +60,7 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .create();
  ```
 
-Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects the and [get started article](java-sdk-azure-get-started.md) to set up your environment and run some example code in your own subscription. 
+Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects and the [get started article](java-sdk-azure-get-started.md) to set up your environment and run some example code in your own subscription. 
 
 ## Sample code and reference
 

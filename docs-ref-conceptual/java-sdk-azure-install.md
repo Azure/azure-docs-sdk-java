@@ -14,7 +14,7 @@ ms.date: 3/06/2016
 
 # Azure libraries for Java
 
-Azure libraries help you consume Azure services in your Java apps using native interfaces. Each library isn't dependent on other Azure libraries-pick and choose just what you need from the list below.
+Azure libraries help you consume Azure services in your Java apps using native interfaces. Each library is independent and can be used separately from the others another.
 
 | | | | |
 |:-------------:|:----------:|:----:|:---:|
@@ -41,7 +41,7 @@ Other Java build tools like Gradle are supported but the install steps are not p
 
 ## Azure service libraries
 
-Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Azure for Java developers]().
+Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Java developer center](https://azure.microsoft.com/develop/java).
 
 <a name="azure-storage"></a>
 

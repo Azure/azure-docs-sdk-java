@@ -16,6 +16,8 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 
 # Get started with the Azure libraries for Java
 
+This guide walks you through setting up your development environment to authenticate to Azure using a service principal and then run sample code that creates and uses resources in your Azure subscription.
+
 ## Prerequisites
 
 - An Azure account. If you don't have one , [get a free trial](https://azure.microsoft.com/free/)
@@ -27,7 +29,7 @@ This get started guide uses the Maven build tool to build and run Java source co
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.+
+Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
 
@@ -285,9 +287,6 @@ Replace the current main method in `AzureApp.java` with the code below, setting 
         }
     }
 ```
-
-Then run the code:
-
 Run the sample from the command line:
 
 ```

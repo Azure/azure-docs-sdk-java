@@ -19,7 +19,7 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 
 ## Connect to services with connection strings
 
-Most Azure service libraries require a connection string or keys to authenticate access the service from your app. For example, SQL Database uses a JDBC connection string:
+Most Azure service libraries use a connection string or keys to connect to the service from your app. For example, SQL Database uses a JDBC connection string:
 
 ```java
 String url = "jdbc:sqlserver://myazuredb.database.windows.net:1433;" + 
@@ -82,7 +82,7 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud-change this to a different `AzureEnvironment` enum if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
+The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud. Change this to a different `AzureEnvironment` enum value if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
 
 <a name="mgmt-file"></a>
 
