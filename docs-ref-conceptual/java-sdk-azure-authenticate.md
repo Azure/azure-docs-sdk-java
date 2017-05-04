@@ -59,7 +59,7 @@ Other libraries require your application to run with a [service prinicpal](https
 
 <a name="mgmt-auth"></a>
 
-## Azure management libraries for Java authentication
+##  Authenticate with the Azure management libraries for Java
 
 Two options are available to authenticate your application with Azure when using the Java management libraries to create and manage resources.
 
