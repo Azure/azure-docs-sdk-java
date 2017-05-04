@@ -20,16 +20,16 @@ This guide walks you through setting up your development environment to authenti
 
 ## Prerequisites
 
-- An Azure account. If you don't have one , [get a free trial](https://azure.microsoft.com/free/)
+- An Azure account. If you don't have one, [get a free trial](https://azure.microsoft.com/free/)
 - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
-This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle work fine with the Azure libraries for Java. 
+This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle also work with the Azure libraries for Java. 
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
+Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
 
@@ -155,52 +155,51 @@ public class AzureApp {
 Paste in the following `main` method in the class. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to upload a text file to the blob storage in a new container.
 
 ```java
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        try {
+    try {
 
-            // use the properties file with the service principal information to authenticate
-            // change the name of the environment variable if you used a different name in the previous step
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+        // use the properties file with the service principal information to authenticate
+        // change the name of the environment variable if you used a different name in the previous step
+        final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+        Azure azure = Azure.configure()
+                .withLogLevel(LogLevel.BASIC)
+                .authenticate(credFile)
+                .withDefaultSubscription();
 
-            // create a new storage account
-            String storageAccountName = SdkContext.randomResourceName("st",8);
-            StorageAccount storage = azure.storageAccounts().define(storageAccountName)
-                        .withRegion(Region.US_WEST2)
-                        .withNewResourceGroup("sampleStorageResourceGroup")
-                        .create();
+        // create a new storage account
+        String storageAccountName = SdkContext.randomResourceName("st",8);
+        StorageAccount storage = azure.storageAccounts().define(storageAccountName)
+                    .withRegion(Region.US_WEST2)
+                    .withNewResourceGroup("sampleStorageResourceGroup")
+                    .create();
 
-            // create a storage container to hold the file
-            List<StorageAccountKey> keys = storage.getKeys();
-            final String storageConnection = "DefaultEndpointsProtocol=https;"
-                   + "AccountName=" + storage.name()
-                   + ";AccountKey=" + keys.get(0).value()
-                    + ";EndpointSuffix=core.windows.net";
+        // create a storage container to hold the file
+        List<StorageAccountKey> keys = storage.getKeys();
+        final String storageConnection = "DefaultEndpointsProtocol=https;"
+                + "AccountName=" + storage.name()
+                + ";AccountKey=" + keys.get(0).value()
+                + ";EndpointSuffix=core.windows.net";
 
-            CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
-            CloudBlobClient serviceClient = account.createCloudBlobClient();
+        CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
+        CloudBlobClient serviceClient = account.createCloudBlobClient();
 
-            // Container name must be lower case.
-            CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
-            container.createIfNotExists();
+        // Container name must be lower case.
+        CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
+        container.createIfNotExists();
 
-            // Make the container public
-            BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
-            containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
-            container.uploadPermissions(containerPermissions);
+        // Make the container public
+        BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
+        containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
+        container.uploadPermissions(containerPermissions);
 
-            // write a blob to the container
-            CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
-            blob.uploadText("hello Azure");
+        // write a blob to the container
+        CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
+        blob.uploadText("hello Azure");
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
     }
 }
 ```
@@ -210,6 +209,7 @@ Run the sample from the command line:
 ```
 mvn compile exec:java
 ```
+You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the storage account.
 
 You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 
@@ -228,64 +228,64 @@ Replace the current main method in `AzureApp.java` with the code below, setting 
 
 ```java
 
-    public static void main(String args[])
-    {
-        // create the db using the management libraries
-        try {
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+public static void main(String args[])
+{
+    // create the db using the management libraries
+    try {
+        final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+        Azure azure = Azure.configure()
+                .withLogLevel(LogLevel.BASIC)
+                .authenticate(credFile)
+                .withDefaultSubscription();
 
-            final String adminUser = SdkContext.randomResourceName("db",8);
-            final String sqlServerName = SdkContext.randomResourceName("sql",10);
-            final String sqlDbName = SdkContext.randomResourceName("dbname",8);
-            final String dbPassword = "YOUR_PASSWORD_HERE";
-
-
-            SqlServer sampleSQLServer = azure.sqlServers().define(sqlServerName)
-                            .withRegion(Region.US_EAST)
-                            .withNewResourceGroup("sampleSqlResourceGroup")
-                            .withAdministratorLogin(adminUser)
-                            .withAdministratorPassword(dbPassword)
-                            .withNewFirewallRule("0.0.0.0","255.255.255.255")
-                            .create();
-
-            SqlDatabase sampleSQLDb = sampleSQLServer.databases().define(sqlDbName).create();
-
-            // assemble the connection string to the database
-            final String domain = sampleSQLServer.fullyQualifiedDomainName();
-            String url = "jdbc:sqlserver://"+ domain + ":1433;" +
-                    "database=" + sqlDbName +";" +
-                    "user=" + adminUser+ "@" + sqlServerName + ";" +
-                    "password=" + dbPassword + ";" +
-                    "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-
-            // connect to the database, create a table and insert a entry into it
-            Connection conn = DriverManager.getConnection(url);
-
-            String createTable = "CREATE TABLE CLOUD ( name varchar(255), code int);";
-            String insertValues = "INSERT INTO CLOUD (name, code ) VALUES ('Azure', 1);";
-            String selectValues = "SELECT * FROM CLOUD";
-            Statement createStatement = conn.createStatement();
-            createStatement.execute(createTable);
-            Statement insertStatement = conn.createStatement();
-            insertStatement.execute(insertValues);
-            Statement selectStatement = conn.createStatement();
-            ResultSet rst = selectStatement.executeQuery(selectValues);
-
-            while (rst.next()) {
-                System.out.println(rst.getString(1) + " "
-                        + rst.getString(2));
-            }
+        final String adminUser = SdkContext.randomResourceName("db",8);
+        final String sqlServerName = SdkContext.randomResourceName("sql",10);
+        final String sqlDbName = SdkContext.randomResourceName("dbname",8);
+        final String dbPassword = "YOUR_PASSWORD_HERE";
 
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(e.getStackTrace().toString());
+        SqlServer sampleSQLServer = azure.sqlServers().define(sqlServerName)
+                        .withRegion(Region.US_EAST)
+                        .withNewResourceGroup("sampleSqlResourceGroup")
+                        .withAdministratorLogin(adminUser)
+                        .withAdministratorPassword(dbPassword)
+                        .withNewFirewallRule("0.0.0.0","255.255.255.255")
+                        .create();
+
+        SqlDatabase sampleSQLDb = sampleSQLServer.databases().define(sqlDbName).create();
+
+        // assemble the connection string to the database
+        final String domain = sampleSQLServer.fullyQualifiedDomainName();
+        String url = "jdbc:sqlserver://"+ domain + ":1433;" +
+                "database=" + sqlDbName +";" +
+                "user=" + adminUser+ "@" + sqlServerName + ";" +
+                "password=" + dbPassword + ";" +
+                "encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+
+        // connect to the database, create a table and insert a entry into it
+        Connection conn = DriverManager.getConnection(url);
+
+        String createTable = "CREATE TABLE CLOUD ( name varchar(255), code int);";
+        String insertValues = "INSERT INTO CLOUD (name, code ) VALUES ('Azure', 1);";
+        String selectValues = "SELECT * FROM CLOUD";
+        Statement createStatement = conn.createStatement();
+        createStatement.execute(createTable);
+        Statement insertStatement = conn.createStatement();
+        insertStatement.execute(insertValues);
+        Statement selectStatement = conn.createStatement();
+        ResultSet rst = selectStatement.executeQuery(selectValues);
+
+        while (rst.next()) {
+            System.out.println(rst.getString(1) + " "
+                    + rst.getString(2));
         }
+
+
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        System.out.println(e.getStackTrace().toString());
     }
+}
 ```
 Run the sample from the command line:
 
@@ -301,45 +301,45 @@ az group delete --name sampleSqlResourceGroup
 
 ## Create a Linux virtual machine
 
-Next replace the `main` method, setting real values for `userName` and `password`. 
+This example creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
 
-This main method creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
+Replace the `main` method, setting real values for `userName` and `password`. 
 
 ```java
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        final String userName = "YOUR_VM_USERNAME";
-        final String password = "YOUR_VM_PASSWORD";
+    final String userName = "YOUR_VM_USERNAME";
+    final String password = "YOUR_VM_PASSWORD";
 
-        try {
+    try {
 
-            // use the properties file with the service principal information to authenticate
-            // change the name of the environment variable if you used a different name in the previous step
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));    
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
-           
-            // create a Ubuntu virtual machine in a new resource group 
-            VirtualMachine linuxVM = azure.virtualMachines().define("testLinuxVM")
-                    .withRegion(Region.US_EAST)
-                    .withNewResourceGroup("sampleVmResourceGroup")
-                    .withNewPrimaryNetwork("10.0.0.0/24")
-                    .withPrimaryPrivateIpAddressDynamic()
-                    .withoutPrimaryPublicIpAddress()
-                    .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-                    .withRootUsername(userName)
-                    .withRootPassword(password)
-                    .withUnmanagedDisks()
-                    .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
-                    .create();   
+        // use the properties file with the service principal information to authenticate
+        // change the name of the environment variable if you used a different name in the previous step
+        final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));    
+        Azure azure = Azure.configure()
+                .withLogLevel(LogLevel.BASIC)
+                .authenticate(credFile)
+                .withDefaultSubscription();
+        
+        // create a Ubuntu virtual machine in a new resource group 
+        VirtualMachine linuxVM = azure.virtualMachines().define("testLinuxVM")
+                .withRegion(Region.US_EAST)
+                .withNewResourceGroup("sampleVmResourceGroup")
+                .withNewPrimaryNetwork("10.0.0.0/24")
+                .withPrimaryPrivateIpAddressDynamic()
+                .withoutPrimaryPublicIpAddress()
+                .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+                .withRootUsername(userName)
+                .withRootPassword(password)
+                .withUnmanagedDisks()
+                .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
+                .create();   
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
     }
+}
 ```
 
 Run the sample from the command line:
@@ -348,7 +348,7 @@ Run the sample from the command line:
 mvn clean compile exec:java
 ```
 
-You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
+When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
 ```azurecli
 az vm list --resource-group sampleVmResourceGroup
@@ -362,36 +362,36 @@ az group delete --name sampleVmResourceGroup
 
 ## Deploy a web app from a GitHub repo
 
-This code deploys an code from the `master` branch in a GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
+This code deploys a web application from the `master` branch in a GitHub repo into a new [Azure App Service Web App](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in the free pricing tier.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
 
 ```java
-    public static void main(String[] args) {
-        try {
+public static void main(String[] args) {
+    try {
 
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            final String appName = "YOUR_APP_NAME";
+        final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+        final String appName = "YOUR_APP_NAME";
 
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+        Azure azure = Azure.configure()
+                .withLogLevel(LogLevel.BASIC)
+                .authenticate(credFile)
+                .withDefaultSubscription();
 
-            WebApp app = azure.webApps().define(appName)
-                    .withRegion(Region.US_WEST2)
-                    .withNewResourceGroup("sampleWebResourceGroup")
-                    .withNewWindowsPlan(PricingTier.FREE_F1)
-                    .defineSourceControl()
-                    .withPublicGitRepository(
-                            "https://github.com/Azure-Samples/app-service-web-java-get-started")
-                    .withBranch("master")
-                    .attach()
-                    .create();
+        WebApp app = azure.webApps().define(appName)
+                .withRegion(Region.US_WEST2)
+                .withNewResourceGroup("sampleWebResourceGroup")
+                .withNewWindowsPlan(PricingTier.FREE_F1)
+                .defineSourceControl()
+                .withPublicGitRepository(
+                        "https://github.com/Azure-Samples/app-service-web-java-get-started")
+                .withBranch("master")
+                .attach()
+                .create();
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
     }
+}
 ```
 
 Run the code as before using Maven:
@@ -400,13 +400,13 @@ Run the code as before using Maven:
 mvn clean compile exec:java
 ```
 
-Open up a browser to the application using the CLI:
+Open a browser pointed to the application using the CLI:
 
 ```azurecli
 az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
 ```
 
-Remove the web app and plan from your subscription once you've proven you can reach it
+Remove the web app and plan from your subscription once you've verified the deployment.
 
 ```azurecli
 az group delete --name sampleWebResourceGroup

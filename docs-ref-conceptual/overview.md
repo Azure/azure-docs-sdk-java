@@ -20,23 +20,23 @@ The Azure libraries for Java let you use Azure services and manage Azure resourc
 
 ## Consume Azure services
 
-Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native interfaces. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out [Java developer center](https://azure.microsoft.com/develop/java/) to learn more about adding features to your apps with Azure services.
+Use services such as SQL Database, Azure Storage, Active Directory, and DocumentDB in your Java applications with native interfaces. Import the libraries for the services you want to use from [the complete list](java-sdk-azure-install.md) and check out the [Java developer center](https://azure.microsoft.com/develop/java/) to learn more about adding features to your apps with Azure services.
 
 For example, to print out the contents of all blobs in an Azure storage container:
 
 ```java
-            // get the container from the blob client
-			CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
+// get the container from the blob client
+CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
 
-			// For each item in the container
-			for (ListBlobItem blobItem : container.listBlobs()) {
-			    // If the item is a blob, not a virtual directory
-			    if (blobItem instanceof CloudBlockBlob) {
-			        // Download the text
-			    	CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
-			    	System.out.println(retrievedBlob.downloadText());
-			    }
-			}
+// For each item in the container
+for (ListBlobItem blobItem : container.listBlobs()) {
+    // If the item is a blob, not a virtual directory
+    if (blobItem instanceof CloudBlockBlob) {
+        // Download the text
+        CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
+        System.out.println(retrievedBlob.downloadText());
+    }
+}
 ```
 
 ## Manage Azure resources
@@ -47,17 +47,17 @@ For example, to create a Linux VM in an existing Azure resource group:
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
-           .withRegion(region)
-           .withExistingResourceGroup("sampleResourceGroup")
-           .withNewPrimaryNetwork("10.0.0.0/28")
-           .withPrimaryPrivateIpAddressDynamic()
-           .withoutPrimaryPublicIpAddress()
-           .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-           .withRootUsername(userName)
-           .withRootPassword(password)
-           .withUnmanagedStorage()
-           .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
-           .create();
+    .withRegion(region)
+    .withExistingResourceGroup("sampleResourceGroup")
+    .withNewPrimaryNetwork("10.0.0.0/28")
+    .withPrimaryPrivateIpAddressDynamic()
+    .withoutPrimaryPublicIpAddress()
+    .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+    .withRootUsername(userName)
+    .withRootPassword(password)
+    .withUnmanagedStorage()
+    .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
+    .create();
  ```
 
 Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects and the [get started article](java-sdk-azure-get-started.md) to set up your environment and run some example code in your own subscription. 

@@ -41,7 +41,7 @@ Other Java build tools like Gradle are supported but the install steps are not p
 
 ## Azure service libraries
 
-Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at [Java developer center](https://azure.microsoft.com/develop/java).
+Integrate Azure services to add functionality to your apps using these libraries. Learn more about building apps with Azure services at the [Java developer center](https://azure.microsoft.com/develop/java).
 
 <a name="azure-storage"></a>
 
@@ -161,7 +161,7 @@ Safely access keys and secrets from your applications.
 
 ### [Event Hub](https://docs.microsoft.com/azure/event-hubs/event-hubs-what-is-event-hubs) 
    
-High throughput event and telemetry handling for your instrumentation or IoT scenarios.
+High-throughput event and telemetry handling for your instrumentation or IoT scenarios.
 
 ```XML
 <dependency> 
