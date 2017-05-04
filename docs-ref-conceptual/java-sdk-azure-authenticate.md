@@ -19,40 +19,40 @@ ms.assetid: 10f457e3-578b-4655-8cd1-51339226ee7d
 
 ## Connect to services with connection strings
 
-Most Azure service libraries use a connection string or keys to connect to the service from your app. For example, SQL Database uses a JDBC connection string:
+Most Azure service libraries use a connection string or secure key to authenticate to the service. For example, SQL Database uses a JDBC connection string:
 
 ```java
 String url = "jdbc:sqlserver://myazuredb.database.windows.net:1433;" + 
-                "database=testjavadb;" + 
-                "user=myazdbuser;" +
-                "password=myazdbpass;" +
-                "encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
-                Connection conn = DriverManager.getConnection(url);
+        "database=testjavadb;" + 
+        "user=myazdbuser;" +
+        "password=myazdbpass;" +
+        "encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+        Connection conn = DriverManager.getConnection(url);
 ```
 
 Azure Storage uses a storage key:
 
 ```java
 final String storageConnection = "DefaultEndpointsProtocol=https;"
-                   + "AccountName=" + storageName 
-                   + ";AccountKey=" + storageKey
-                    + ";EndpointSuffix=core.windows.net";
+        + "AccountName=" + storageName 
+        + ";AccountKey=" + storageKey
+        + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings are used to authenticate to other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues) and you can get those strings using the Azure portal or the CLI.  You can also use the Azure management libraries for Java to query resources to build connection strings in your code. 
+Service connection strings are used to authenticate to other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues). You can get the connection strings using the Azure portal or the CLI.  You can also use the Azure management libraries for Java to query resources to build connection strings in your code. 
 
 This snippet uses the management libraries to create a storage account connection string:
 
 ```java
-            // create a new storage account
-            StorageAccount stor2 = azure.storageAccounts().getByResourceGroup("myResourceGroup","myStorageAccount");
+// create a new storage account
+StorageAccount stor2 = azure.storageAccounts().getByResourceGroup("myResourceGroup","myStorageAccount");
 
-            // create a storage container to hold the file
-            List<StorageAccountKey> keys = storage.getKeys();
-            final String storageConnection = "DefaultEndpointsProtocol=https;"
-                   + "AccountName=" + storage.name()
-                   + ";AccountKey=" + keys.get(0).value()
-                    + ";EndpointSuffix=core.windows.net";
+// create a storage container to hold the file
+List<StorageAccountKey> keys = storage.getKeys();
+final String storageConnection = "DefaultEndpointsProtocol=https;"
+        + "AccountName=" + storage.name()
+        + ";AccountKey=" + keys.get(0).value()
+        + ";EndpointSuffix=core.windows.net";
 ```
 
 Other libraries require your application to run with a [service prinicpal](https://docs.microsoft.com/azure/active-directory/develop/active-directory-application-objects) authorizing the application to run with granted credentials. This configuration is similar to the object-based authentication steps for the management library listed below.
@@ -67,11 +67,11 @@ Two options are available to authenticate your application with Azure when using
 
 Create an instance of `ApplicationTokenCredentials` to supply the service principal credentials to the top-level `Azure` object from inside your code.
 
-```
+```java
 import com.microsoft.azure.credentials.ApplicationTokenCredentials;
 import com.microsoft.azure.AzureEnvironment;
 
-...
+// ...
 
 ApplicationTokenCredentials credentials = new ApplicationTokenCredentials(client, tenant, 
                                                  key, AzureEnvironment.AZURE);
@@ -82,7 +82,7 @@ Azure azure = Azure
         .withDefaultSubscription();
 ```
 
-The `client`, `tenant` and `key` are the same service principal values used with file-based authentication. The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud. Change this to a different `AzureEnvironment` enum value if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
+The `client`, `tenant` and `key` are the same service principal values used with [file-based authentication](#mgmt-file). The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud. Change this to a different `AzureEnvironment` enum value if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent a leak of the credentials through your version control history.   
 
 <a name="mgmt-file"></a>
 
