@@ -25,11 +25,11 @@ This guide walks you through setting up your development environment to authenti
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
-This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle work fine with the Azure libraries for Java. 
+This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle also work with the Azure libraries for Java. 
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application use its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
+Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
 
@@ -218,7 +218,7 @@ az group delete --name sampleVmResourceGroup
 
 ## Deploy a web app from a GitHub repo
 
-This code deploys an code from the `master` branch in a public GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
+This code deploys a web application from the `master` branch in a public GitHub repo into a new [Azure App Service Web App](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in the free pricing tier.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
 
 ```java
     public static void main(String[] args) {
@@ -256,13 +256,13 @@ Run the code as before using Maven:
 mvn clean compile exec:java
 ```
 
-Open up a browser to the application using the CLI:
+Open a browser pointed to the application using the CLI:
 
 ```azurecli
 az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
 ```
 
-Remove the web app and plan from your subscription once you've proven you can reach it
+Remove the web app and plan from your subscription once you've verified the deployment.
 
 ```azurecli
 az group delete --name sampleWebResourceGroup
