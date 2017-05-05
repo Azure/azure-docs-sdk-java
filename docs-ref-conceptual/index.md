@@ -48,20 +48,19 @@ In addition to using Java libraries to create and manage resources within Azure,
 For example, to print out the contents of all blobs in an Azure storage container:
 
 ```java
-            // get the container from the blob client
-			CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
+// get the container from the blob client
+CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
 
-			// For each item in the container
-			for (ListBlobItem blobItem : container.listBlobs()) {
-			    // If the item is a blob, not a virtual directory
-			    if (blobItem instanceof CloudBlockBlob) {
-			        // Download the text
-			    	CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
-			    	System.out.println(retrievedBlob.downloadText());
-			    }
-			}
+// For each item in the container
+for (ListBlobItem blobItem : container.listBlobs()) {
+    // If the item is a blob, not a virtual directory
+    if (blobItem instanceof CloudBlockBlob) {
+        // Download the text
+        CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
+        System.out.println(retrievedBlob.downloadText());
+    }
+}
 ```
-
 
 ## Sample code and reference
 
