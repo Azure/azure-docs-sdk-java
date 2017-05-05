@@ -1,1 +1,1 @@
-For more information and samples for the Azure management libraries for Java, see the [Azure for Java developers](https://docs.microsoft.com/java/api) documentation.
+For more information on creating and deploying Java apps on Azure, visit the [Java developer center](https://docs.microsoft.com/java/api).
