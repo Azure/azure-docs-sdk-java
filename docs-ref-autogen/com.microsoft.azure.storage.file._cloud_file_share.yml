@@ -3,19 +3,25 @@ items:
   id: _cloud_file_share
   parent: com.microsoft.azure.storage.file
   children:
+  - com.microsoft.azure.storage.file._cloud_file_share.assertNoSnapshot()
   - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final StorageUri)
   - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final StorageUri,final StorageCredentials)
-  - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final String,final CloudFileClient)
+  - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final String,String,final CloudFileClient)
   - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final URI)
   - com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final URI,final StorageCredentials)
   - com.microsoft.azure.storage.file._cloud_file_share.create()
   - com.microsoft.azure.storage.file._cloud_file_share.create(FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.createIfNotExists()
   - com.microsoft.azure.storage.file._cloud_file_share.createIfNotExists(FileRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_share.createSnapshot()
+  - com.microsoft.azure.storage.file._cloud_file_share.createSnapshot(final AccessCondition,FileRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_share.createSnapshot(final HashMap<String, String>,final AccessCondition,FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.delete()
   - com.microsoft.azure.storage.file._cloud_file_share.delete(AccessCondition,FileRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_share.delete(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists()
   - com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists(AccessCondition,FileRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.downloadAttributes()
   - com.microsoft.azure.storage.file._cloud_file_share.downloadAttributes(AccessCondition,FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.downloadPermissions()
@@ -27,12 +33,15 @@ items:
   - com.microsoft.azure.storage.file._cloud_file_share.getMetadata()
   - com.microsoft.azure.storage.file._cloud_file_share.getName()
   - com.microsoft.azure.storage.file._cloud_file_share.getProperties()
+  - com.microsoft.azure.storage.file._cloud_file_share.getQualifiedUri()
   - com.microsoft.azure.storage.file._cloud_file_share.getRootDirectoryReference()
   - com.microsoft.azure.storage.file._cloud_file_share.getServiceClient()
+  - com.microsoft.azure.storage.file._cloud_file_share.getSnapshot()
   - com.microsoft.azure.storage.file._cloud_file_share.getStats()
   - com.microsoft.azure.storage.file._cloud_file_share.getStats(FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_share.getStorageUri()
   - com.microsoft.azure.storage.file._cloud_file_share.getUri()
+  - com.microsoft.azure.storage.file._cloud_file_share.isSnapshot()
   - com.microsoft.azure.storage.file._cloud_file_share.setMetadata(final HashMap<String, String>)
   - com.microsoft.azure.storage.file._cloud_file_share.setProperties(final FileShareProperties)
   - com.microsoft.azure.storage.file._cloud_file_share.uploadMetadata()
@@ -67,6 +76,26 @@ items:
   inheritedMembers:
   - com.microsoft.azure.storage.file._cloud_file_share.name()
   - com.microsoft.azure.storage.file._cloud_file_share.properties()
+  - com.microsoft.azure.storage.file._cloud_file_share.snapshotID()
+- uid: com.microsoft.azure.storage.file._cloud_file_share.assertNoSnapshot()
+  id: assertNoSnapshot()
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: assertNoSnapshot()
+  nameWithType: CloudFileShare.assertNoSnapshot()
+  fullName: void com.microsoft.azure.storage.file.CloudFileShare.assertNoSnapshot()
+  overload: com.microsoft.azure.storage.file._cloud_file_share.assertNoSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 1064
+  package: com.microsoft.azure.storage.file
+  summary: <p>Asserts that the share is not a snapshot. </p>
+  syntax:
+    content: protected void assertNoSnapshot()
 - uid: com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final StorageUri)
   id: CloudFileShare(final StorageUri)
   parent: com.microsoft.azure.storage.file._cloud_file_share
@@ -81,7 +110,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 138
+    startLine: 146
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates an instance of the  class using the specified URI.</p>
@@ -110,7 +139,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 168
+    startLine: 179
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates an instance of the  class using the specified <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref> and credentials.</p>
@@ -124,36 +153,39 @@ items:
       description: <p>A <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref> object which represents the absolute <xref href="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false"></xref> of the share. </p>
     - id: credentials
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
-      description: <p>A <xref href="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false"></xref> object used to authenticate access.</p>
+      description: <p>A <xref href="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false"></xref> object used to authenticate access. </p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>If a storage service error occurred. </p>
-- uid: com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final String,final CloudFileClient)
-  id: CloudFileShare(final String,final CloudFileClient)
+- uid: com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare(final String,String,final CloudFileClient)
+  id: CloudFileShare(final String,String,final CloudFileClient)
   parent: com.microsoft.azure.storage.file._cloud_file_share
   href: com.microsoft.azure.storage.file._cloud_file_share.yml
   langs:
   - java
-  name: CloudFileShare(final String shareName, final CloudFileClient client)
-  nameWithType: CloudFileShare.CloudFileShare(final String shareName, final CloudFileClient client)
-  fullName: com.microsoft.azure.storage.file.CloudFileShare.CloudFileShare(final String shareName, final CloudFileClient client)
+  name: CloudFileShare(final String shareName, String snapshotID, final CloudFileClient client)
+  nameWithType: CloudFileShare.CloudFileShare(final String shareName, String snapshotID, final CloudFileClient client)
+  fullName: com.microsoft.azure.storage.file.CloudFileShare.CloudFileShare(final String shareName, String snapshotID, final CloudFileClient client)
   overload: com.microsoft.azure.storage.file._cloud_file_share.CloudFileShare*
   type: Constructor
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 106
+    startLine: 113
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates an instance of the  class using the specified name and client.</p>
 
     <p></p>
   syntax:
-    content: protected CloudFileShare(final String shareName, final CloudFileClient client)
+    content: protected CloudFileShare(final String shareName, String snapshotID, final CloudFileClient client)
     parameters:
     - id: shareName
       type: 3d93591e
       description: <p>A <code>String</code> which represents the name of the share, which must adhere to share naming rules. The share name should not include any path separator characters (/). Share names must be lowercase, between 3-63 characters long and must start with a letter or number. Share names may contain only letters, numbers, and the dash (-) character. </p>
+    - id: snapshotID
+      type: "26831127"
+      description: <p>A <code>String</code> that represents the snapshot version, if applicable. </p>
     - id: client
       type: 93de0ef9com.microsoft.azure.storage.file._cloud_file_client
       description: <p>A <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref> object that represents the associated service client, and that specifies the endpoint for the File service.</p>
@@ -176,7 +208,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 125
+    startLine: 133
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates an instance of the  class using the specified URI.</p>
@@ -205,7 +237,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 153
+    startLine: 163
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates an instance of the  class using the specified URI and credentials.</p>
@@ -219,7 +251,7 @@ items:
       description: <p>A <code>java.net.URI</code> object that represents the absolute URI of the share. </p>
     - id: credentials
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
-      description: <p>A <xref href="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false"></xref> object used to authenticate access.</p>
+      description: <p>A <xref href="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false"></xref> object used to authenticate access. </p>
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>If a storage service error occurred. </p>
@@ -237,7 +269,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 179
+    startLine: 199
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates the share.</p>
@@ -262,7 +294,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 199
+    startLine: 219
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates the share using the specified options and operation context.</p>
@@ -294,7 +326,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 267
+    startLine: 292
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates the share if it does not exist.</p>
@@ -325,7 +357,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 289
+    startLine: 314
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Creates the share if it does not exist, using the specified request options and operation context.</p>
@@ -349,6 +381,113 @@ items:
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>If a storage service error occurred. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot()
+  id: createSnapshot()
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: createSnapshot()
+  nameWithType: CloudFileShare.createSnapshot()
+  fullName: final CloudFileShare com.microsoft.azure.storage.file.CloudFileShare.createSnapshot()
+  overload: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 730
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Creates a snapshot of the share.</p>
+
+    <p></p>
+  syntax:
+    content: protected final CloudFileShare createSnapshot()
+    return:
+      type: 93de0ef9com.microsoft.azure.storage.file._cloud_file_share
+      description: <p>A <code><xref href="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false"></xref></code> object that represents the snapshot of the share.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot(final AccessCondition,FileRequestOptions,OperationContext)
+  id: createSnapshot(final AccessCondition,FileRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: createSnapshot(final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  nameWithType: CloudFileShare.createSnapshot(final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  fullName: final CloudFileShare com.microsoft.azure.storage.file.CloudFileShare.createSnapshot(final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  overload: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 755
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Creates a snapshot of the file share using the specified request options and operation context.</p>
+
+    <p></p>
+  syntax:
+    content: protected final CloudFileShare createSnapshot(final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: accessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the share. </p>
+    - id: options
+      type: com.microsoft.azure.storage.file._file_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 93de0ef9com.microsoft.azure.storage.file._cloud_file_share
+      description: <p>A <code><xref href="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false"></xref></code> object that represents the snapshot of the file share.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot(final HashMap<String, String>,final AccessCondition,FileRequestOptions,OperationContext)
+  id: createSnapshot(final HashMap<String, String>,final AccessCondition,FileRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  nameWithType: CloudFileShare.createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  fullName: final CloudFileShare com.microsoft.azure.storage.file.CloudFileShare.createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  overload: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 782
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Creates a snapshot of the file share using the specified request options and operation context.</p>
+
+    <p></p>
+  syntax:
+    content: protected final CloudFileShare createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: metadata
+      type: 496ce5ae
+      description: <p>A collection of name-value pairs defining the metadata of the snapshot, or null. </p>
+    - id: accessCondition
+      type: 93de0ef9com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the file share. </p>
+    - id: options
+      type: com.microsoft.azure.storage.file._file_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 93de0ef9com.microsoft.azure.storage.file._cloud_file_share
+      description: <p>A <code><xref href="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false"></xref></code> object that represents the snapshot of the file share.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.file._cloud_file_share.delete()
   id: delete()
   parent: com.microsoft.azure.storage.file._cloud_file_share
@@ -363,7 +502,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 320
+    startLine: 345
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Deletes the share.</p>
@@ -388,7 +527,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 342
+    startLine: 367
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Deletes the share using the specified request options and operation context.</p>
@@ -397,6 +536,46 @@ items:
   syntax:
     content: public void delete(AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
     parameters:
+    - id: accessCondition
+      type: com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the share. </p>
+    - id: options
+      type: com.microsoft.azure.storage.file._file_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.delete(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
+  id: delete(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: delete(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  nameWithType: CloudFileShare.delete(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  fullName: void com.microsoft.azure.storage.file.CloudFileShare.delete(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  overload: com.microsoft.azure.storage.file._cloud_file_share.delete*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 397
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Deletes the share using the specified snapshot and request options, and operation context. </p>
+
+    <p>A share that has snapshots cannot be deleted unless the snapshots are also deleted. If a share has snapshots, use the <xref href="com.microsoft.azure.storage.file._delete_share_snapshots_option.INCLUDE_SNAPSHOTS()" data-throw-if-not-resolved="false"></xref> value in the  parameter to include the snapshots when deleting the base share.</p>
+
+    <p></p>
+  syntax:
+    content: protected void delete(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: deleteSnapshotsOption
+      type: com.microsoft.azure.storage.file._delete_share_snapshots_option
+      description: <p>A <xref href="com.microsoft.azure.storage.file._delete_share_snapshots_option" data-throw-if-not-resolved="false"></xref> object that indicates whether to delete only snapshots, or the share and its snapshots. </p>
     - id: accessCondition
       type: com.microsoft.azure.storage._access_condition
       description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the share. </p>
@@ -423,7 +602,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 397
+    startLine: 452
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Deletes the share if it exists.</p>
@@ -454,7 +633,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 421
+    startLine: 477
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Deletes the share if it exists using the specified request options and operation context.</p>
@@ -463,6 +642,52 @@ items:
   syntax:
     content: public boolean deleteIfExists(AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
     parameters:
+    - id: accessCondition
+      type: com.microsoft.azure.storage._access_condition
+      description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the share. </p>
+    - id: options
+      type: com.microsoft.azure.storage.file._file_request_options
+      description: <p>A <xref href="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false"></xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref href="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false"></xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 4fc6e284
+      description: >-
+        <p>
+
+          <code>true</code> if the share existed and was deleted; otherwise, <code>false</code>.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
+  id: deleteIfExists(DeleteShareSnapshotsOption,AccessCondition,FileRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: deleteIfExists(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  nameWithType: CloudFileShare.deleteIfExists(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  fullName: boolean com.microsoft.azure.storage.file.CloudFileShare.deleteIfExists(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+  overload: com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 510
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Deletes the share if it exists, using the specified snapshot and request options, and operation context. </p>
+
+    <p>A share that has snapshots cannot be deleted unless the snapshots are also deleted. If a share has snapshots, use the <xref href="com.microsoft.azure.storage.file._delete_share_snapshots_option.INCLUDE_SNAPSHOTS()" data-throw-if-not-resolved="false"></xref> value in the  parameter to include the snapshots when deleting the base share.</p>
+
+    <p></p>
+  syntax:
+    content: protected boolean deleteIfExists(DeleteShareSnapshotsOption deleteSnapshotsOption, AccessCondition accessCondition, FileRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: deleteSnapshotsOption
+      type: com.microsoft.azure.storage.file._delete_share_snapshots_option
+      description: <p>A <xref href="com.microsoft.azure.storage.file._delete_share_snapshots_option" data-throw-if-not-resolved="false"></xref> object that indicates whether to delete only snapshots, or the share and its snapshots. </p>
     - id: accessCondition
       type: com.microsoft.azure.storage._access_condition
       description: <p>An <xref href="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false"></xref> object that represents the access conditions for the share. </p>
@@ -495,7 +720,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 453
+    startLine: 542
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Downloads the share's attributes, which consist of metadata and properties.</p>
@@ -520,7 +745,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 476
+    startLine: 565
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Downloads the share's attributes, which consist of metadata and properties, using the specified request options and operation context.</p>
@@ -555,7 +780,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 541
+    startLine: 630
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Downloads the permission settings for the share.</p>
@@ -583,7 +808,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 565
+    startLine: 654
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Downloads the permissions settings for the share using the specified request options and operation context.</p>
@@ -621,7 +846,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 726
+    startLine: 949
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a value that indicates whether the share exists.</p>
@@ -652,7 +877,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 751
+    startLine: 974
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a value that indicates whether the share exists, using the specified request options and operation context.</p>
@@ -693,7 +918,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 844
+    startLine: 1086
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a shared access signature for the share. Note this does not contain the leading "?".</p>
@@ -730,7 +955,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 870
+    startLine: 1112
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a shared access signature for the share. Note this does not contain the leading "?".</p>
@@ -773,7 +998,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1264
+    startLine: 1561
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the metadata for the share. This value is initialized with the metadata from the share by a call to <xref href="com.microsoft.azure.storage.file._cloud_file_share.downloadAttributes()" data-throw-if-not-resolved="false"></xref>, and is set on the share with a call to <xref href="com.microsoft.azure.storage.file._cloud_file_share.uploadMetadata()" data-throw-if-not-resolved="false"></xref>.</p>
@@ -798,7 +1023,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1254
+    startLine: 1551
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the name of the share.</p>
@@ -823,7 +1048,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1273
+    startLine: 1570
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the properties for the share.</p>
@@ -834,6 +1059,36 @@ items:
     return:
       type: com.microsoft.azure.storage.file._file_share_properties
       description: <p>A <xref href="com.microsoft.azure.storage.file._file_share_properties" data-throw-if-not-resolved="false"></xref> object that represents the properties for the share. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.getQualifiedUri()
+  id: getQualifiedUri()
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: getQualifiedUri()
+  nameWithType: CloudFileShare.getQualifiedUri()
+  fullName: final URI com.microsoft.azure.storage.file.CloudFileShare.getQualifiedUri()
+  overload: com.microsoft.azure.storage.file._cloud_file_share.getQualifiedUri*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 1538
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Returns the snapshot or shared access signature qualified URI for this share.</p>
+
+    <p></p>
+  syntax:
+    content: public final URI getQualifiedUri()
+    return:
+      type: bac42120
+      description: <p>A <code>java.net.URI</code> object that represents the snapshot or shared access signature.</p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+    description: <p>If a storage service error occurred. </p>
+  - type: "44102508"
+    description: <p>If the resource URI is invalid. </p>
 - uid: com.microsoft.azure.storage.file._cloud_file_share.getRootDirectoryReference()
   id: getRootDirectoryReference()
   parent: com.microsoft.azure.storage.file._cloud_file_share
@@ -848,7 +1103,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1180
+    startLine: 1432
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a reference to a <xref href="com.microsoft.azure.storage.file._cloud_file_directory" data-throw-if-not-resolved="false"></xref> object that represents the root file directory within this share.</p>
@@ -876,7 +1131,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1227
+    startLine: 1486
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the File service client associated with this share.</p>
@@ -887,6 +1142,31 @@ items:
     return:
       type: com.microsoft.azure.storage.file._cloud_file_client
       description: <p>A <xref href="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false"></xref> object that represents the service client associated with this share. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.getSnapshot()
+  id: getSnapshot()
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: getSnapshot()
+  nameWithType: CloudFileShare.getSnapshot()
+  fullName: final String com.microsoft.azure.storage.file.CloudFileShare.getSnapshot()
+  overload: com.microsoft.azure.storage.file._cloud_file_share.getSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 1504
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Returns the snapshotID for this share.</p>
+
+    <p></p>
+  syntax:
+    content: protected final String getSnapshot()
+    return:
+      type: 3d93591e
+      description: <p>The snapshotID as a string for this share. </p>
 - uid: com.microsoft.azure.storage.file._cloud_file_share.getStats()
   id: getStats()
   parent: com.microsoft.azure.storage.file._cloud_file_share
@@ -901,7 +1181,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 639
+    startLine: 860
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Queries the service for this share's <xref href="com.microsoft.azure.storage.file._share_stats" data-throw-if-not-resolved="false"></xref>.</p>
@@ -929,7 +1209,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 661
+    startLine: 882
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Queries the service for this share's <xref href="com.microsoft.azure.storage.file._share_stats" data-throw-if-not-resolved="false"></xref>.</p>
@@ -964,7 +1244,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1245
+    startLine: 1524
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the list of URIs for all locations.</p>
@@ -989,7 +1269,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1236
+    startLine: 1495
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns the URI for this share.</p>
@@ -1000,6 +1280,34 @@ items:
     return:
       type: "62304784"
       description: <p>The absolute URI to the share. </p>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.isSnapshot()
+  id: isSnapshot()
+  parent: com.microsoft.azure.storage.file._cloud_file_share
+  href: com.microsoft.azure.storage.file._cloud_file_share.yml
+  langs:
+  - java
+  name: isSnapshot()
+  nameWithType: CloudFileShare.isSnapshot()
+  fullName: final boolean com.microsoft.azure.storage.file.CloudFileShare.isSnapshot()
+  overload: com.microsoft.azure.storage.file._cloud_file_share.isSnapshot*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
+    startLine: 1515
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Indicates whether this share is a snapshot.</p>
+
+    <p></p>
+  syntax:
+    content: protected final boolean isSnapshot()
+    return:
+      type: 4dda0764
+      description: >-
+        <p>
+
+          <code>true</code> if the share is a snapshot, otherwise <code>false</code>.</p>
 - uid: com.microsoft.azure.storage.file._cloud_file_share.setMetadata(final HashMap<String, String>)
   id: setMetadata(final HashMap<String, String>)
   parent: com.microsoft.azure.storage.file._cloud_file_share
@@ -1014,7 +1322,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1285
+    startLine: 1582
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Sets the metadata collection of name-value pairs to be set on the share with an <xref href="com.microsoft.azure.storage.file._cloud_file_share.uploadMetadata()" data-throw-if-not-resolved="false"></xref> call. This collection will overwrite any existing share metadata. If this is set to an empty collection, the share metadata will be cleared on an <xref href="com.microsoft.azure.storage.file._cloud_file_share.uploadMetadata()" data-throw-if-not-resolved="false"></xref> call.</p>
@@ -1040,7 +1348,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1296
+    startLine: 1593
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Sets the properties for the share.</p>
@@ -1066,7 +1374,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 911
+    startLine: 1153
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads the share's metadata.</p>
@@ -1091,7 +1399,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 933
+    startLine: 1175
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads the share's metadata using the specified request options and operation context.</p>
@@ -1126,7 +1434,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1078
+    startLine: 1328
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads the share's permissions.</p>
@@ -1155,7 +1463,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1102
+    startLine: 1352
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads the share's permissions using the specified request options and operation context.</p>
@@ -1193,7 +1501,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 995
+    startLine: 1239
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Updates the share's properties on the storage service. </p>
@@ -1222,7 +1530,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileShare.java
-    startLine: 1020
+    startLine: 1264
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Updates the share's properties using the request options, and operation context. </p>
@@ -1256,6 +1564,10 @@ references:
   spec.java:
   - name: final String
     fullName: final String
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: 93de0ef9com.microsoft.azure.storage.file._cloud_file_client
   spec.java:
   - name: 'final '
@@ -1268,6 +1580,64 @@ references:
   name: CloudFileShare
   nameWithType: CloudFileShare.CloudFileShare
   fullName: com.microsoft.azure.storage.file.CloudFileShare.CloudFileShare
+  package: com.microsoft.azure.storage.file
+- uid: com.microsoft.azure.storage.file._cloud_file_share.delete*
+  name: delete
+  nameWithType: CloudFileShare.delete
+  fullName: void com.microsoft.azure.storage.file.CloudFileShare.delete
+  package: com.microsoft.azure.storage.file
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists*
+  name: deleteIfExists
+  nameWithType: CloudFileShare.deleteIfExists
+  fullName: boolean com.microsoft.azure.storage.file.CloudFileShare.deleteIfExists
+  package: com.microsoft.azure.storage.file
+- uid: 93de0ef9com.microsoft.azure.storage.file._cloud_file_share
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.storage.file._cloud_file_share
+    name: CloudFileShare
+    fullName: com.microsoft.azure.storage.file.CloudFileShare
+    href: com.microsoft.azure.storage.file._cloud_file_share.yml
+- uid: com.microsoft.azure.storage.file._cloud_file_share.createSnapshot*
+  name: createSnapshot
+  nameWithType: CloudFileShare.createSnapshot
+  fullName: final CloudFileShare com.microsoft.azure.storage.file.CloudFileShare.createSnapshot
+  package: com.microsoft.azure.storage.file
+- uid: 93de0ef9com.microsoft.azure.storage._access_condition
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.storage._access_condition
+    name: AccessCondition
+    fullName: com.microsoft.azure.storage.AccessCondition
+    href: com.microsoft.azure.storage._access_condition.yml
+- uid: 496ce5ae
+  spec.java:
+  - name: final HashMap<String, String>
+    fullName: final HashMap<String, String>
+- uid: com.microsoft.azure.storage.file._cloud_file_share.assertNoSnapshot*
+  name: assertNoSnapshot
+  nameWithType: CloudFileShare.assertNoSnapshot
+  fullName: void com.microsoft.azure.storage.file.CloudFileShare.assertNoSnapshot
+  package: com.microsoft.azure.storage.file
+- uid: com.microsoft.azure.storage.file._cloud_file_share.getSnapshot*
+  name: getSnapshot
+  nameWithType: CloudFileShare.getSnapshot
+  fullName: final String com.microsoft.azure.storage.file.CloudFileShare.getSnapshot
+  package: com.microsoft.azure.storage.file
+- uid: 4dda0764
+  spec.java:
+  - name: final boolean
+    fullName: final boolean
+- uid: com.microsoft.azure.storage.file._cloud_file_share.isSnapshot*
+  name: isSnapshot
+  nameWithType: CloudFileShare.isSnapshot
+  fullName: final boolean com.microsoft.azure.storage.file.CloudFileShare.isSnapshot
   package: com.microsoft.azure.storage.file
 - uid: 93de0ef9com.microsoft.azure.storage.file._file_share_properties
   spec.java:
@@ -1307,24 +1677,10 @@ references:
   nameWithType: CloudFileShare.create
   fullName: void com.microsoft.azure.storage.file.CloudFileShare.create
   package: com.microsoft.azure.storage.file
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
 - uid: com.microsoft.azure.storage.file._cloud_file_share.createIfNotExists*
   name: createIfNotExists
   nameWithType: CloudFileShare.createIfNotExists
   fullName: boolean com.microsoft.azure.storage.file.CloudFileShare.createIfNotExists
-  package: com.microsoft.azure.storage.file
-- uid: com.microsoft.azure.storage.file._cloud_file_share.delete*
-  name: delete
-  nameWithType: CloudFileShare.delete
-  fullName: void com.microsoft.azure.storage.file.CloudFileShare.delete
-  package: com.microsoft.azure.storage.file
-- uid: com.microsoft.azure.storage.file._cloud_file_share.deleteIfExists*
-  name: deleteIfExists
-  nameWithType: CloudFileShare.deleteIfExists
-  fullName: boolean com.microsoft.azure.storage.file.CloudFileShare.deleteIfExists
   package: com.microsoft.azure.storage.file
 - uid: com.microsoft.azure.storage.file._cloud_file_share.downloadAttributes*
   name: downloadAttributes
@@ -1346,14 +1702,6 @@ references:
   nameWithType: CloudFileShare.exists
   fullName: boolean com.microsoft.azure.storage.file.CloudFileShare.exists
   package: com.microsoft.azure.storage.file
-- uid: 93de0ef9com.microsoft.azure.storage._access_condition
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.azure.storage._access_condition
-    name: AccessCondition
-    fullName: com.microsoft.azure.storage.AccessCondition
-    href: com.microsoft.azure.storage._access_condition.yml
 - uid: e333ca4f
   spec.java:
   - name: InvalidKeyException
@@ -1366,10 +1714,6 @@ references:
     name: SharedAccessFilePolicy
     fullName: com.microsoft.azure.storage.file.SharedAccessFilePolicy
     href: com.microsoft.azure.storage.file._shared_access_file_policy.yml
-- uid: "26831127"
-  spec.java:
-  - name: String
-    fullName: String
 - uid: com.microsoft.azure.storage.file._cloud_file_share.generateSharedAccessSignature*
   name: generateSharedAccessSignature
   nameWithType: CloudFileShare.generateSharedAccessSignature
@@ -1442,6 +1786,11 @@ references:
   nameWithType: CloudFileShare.getStorageUri
   fullName: StorageUri com.microsoft.azure.storage.file.CloudFileShare.getStorageUri
   package: com.microsoft.azure.storage.file
+- uid: com.microsoft.azure.storage.file._cloud_file_share.getQualifiedUri*
+  name: getQualifiedUri
+  nameWithType: CloudFileShare.getQualifiedUri
+  fullName: final URI com.microsoft.azure.storage.file.CloudFileShare.getQualifiedUri
+  package: com.microsoft.azure.storage.file
 - uid: com.microsoft.azure.storage.file._cloud_file_share.getName*
   name: getName
   nameWithType: CloudFileShare.getName
@@ -1461,10 +1810,6 @@ references:
   nameWithType: CloudFileShare.getProperties
   fullName: FileShareProperties com.microsoft.azure.storage.file.CloudFileShare.getProperties
   package: com.microsoft.azure.storage.file
-- uid: 496ce5ae
-  spec.java:
-  - name: final HashMap<String, String>
-    fullName: final HashMap<String, String>
 - uid: com.microsoft.azure.storage.file._cloud_file_share.setMetadata*
   name: setMetadata
   nameWithType: CloudFileShare.setMetadata
@@ -1472,6 +1817,7 @@ references:
   package: com.microsoft.azure.storage.file
 - uid: com.microsoft.azure.storage.file._cloud_file_share.name()
 - uid: com.microsoft.azure.storage.file._cloud_file_share.properties()
+- uid: com.microsoft.azure.storage.file._cloud_file_share.snapshotID()
 - uid: com.microsoft.azure.storage._storage_uri
   parent: com.microsoft.azure.storage
   href: com.microsoft.azure.storage._storage_uri.yml
@@ -1527,16 +1873,26 @@ references:
 
     <p>Shares hold directories, which are encapsulated as <xref href="com.microsoft.azure.storage.file._cloud_file_directory" data-throw-if-not-resolved="false"></xref> objects, and directories hold files. Directories can also contain sub-directories. </p>
   syntax: *o1
-- uid: com.microsoft.azure.storage._storage_credentials
-  parent: com.microsoft.azure.storage
-  href: com.microsoft.azure.storage._storage_credentials.yml
-  name: StorageCredentials
-  nameWithType: StorageCredentials
-  fullName: com.microsoft.azure.storage.StorageCredentials
-  type: Class
-  summary: <p>Represents a set of credentials used to authenticate access to a Microsoft Azure storage account. This is the base class for the <xref href="com.microsoft.azure.storage._storage_credentials_account_and_key" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._storage_credentials_shared_access_signature" data-throw-if-not-resolved="false"></xref> classes. </p>
+- uid: com.microsoft.azure.storage.file._delete_share_snapshots_option
+  parent: com.microsoft.azure.storage.file
+  href: com.microsoft.azure.storage.file._delete_share_snapshots_option.yml
+  name: DeleteShareSnapshotsOption
+  nameWithType: DeleteShareSnapshotsOption
+  fullName: com.microsoft.azure.storage.file.DeleteShareSnapshotsOption
+  type: Enum
+  summary: <p>Specifies options when calling the delete share operation. </p>
   syntax:
-    content: public class StorageCredentials
+    content: public enum DeleteShareSnapshotsOption
+- uid: com.microsoft.azure.storage._access_condition
+  parent: com.microsoft.azure.storage
+  href: com.microsoft.azure.storage._access_condition.yml
+  name: AccessCondition
+  nameWithType: AccessCondition
+  fullName: com.microsoft.azure.storage.AccessCondition
+  type: Class
+  summary: <p>Represents a set of access conditions to be used for operations against the storage services. </p>
+  syntax:
+    content: public class AccessCondition
 - uid: com.microsoft.azure.storage.file._file_request_options
   parent: com.microsoft.azure.storage.file
   href: com.microsoft.azure.storage.file._file_request_options.yml
@@ -1557,16 +1913,26 @@ references:
   summary: <p>Represents the current logical operation. A logical operation may have a one-to-many relationship with multiple individual physical requests. </p>
   syntax:
     content: public class OperationContext
-- uid: com.microsoft.azure.storage._access_condition
-  parent: com.microsoft.azure.storage
-  href: com.microsoft.azure.storage._access_condition.yml
-  name: AccessCondition
-  nameWithType: AccessCondition
-  fullName: com.microsoft.azure.storage.AccessCondition
-  type: Class
-  summary: <p>Represents a set of access conditions to be used for operations against the storage services. </p>
+- uid: com.microsoft.azure.storage.file._delete_share_snapshots_option.INCLUDE_SNAPSHOTS()
+  parent: com.microsoft.azure.storage.file._delete_share_snapshots_option
+  href: com.microsoft.azure.storage.file._delete_share_snapshots_option.yml
+  name: INCLUDE_SNAPSHOTS
+  nameWithType: DeleteShareSnapshotsOption.INCLUDE_SNAPSHOTS
+  fullName: com.microsoft.azure.storage.file.DeleteShareSnapshotsOption.INCLUDE_SNAPSHOTS
+  type: Field
+  summary: <p>Specifies deleting the blob and its snapshots. </p>
   syntax:
-    content: public class AccessCondition
+    content: public INCLUDE_SNAPSHOTS
+- uid: com.microsoft.azure.storage._storage_credentials
+  parent: com.microsoft.azure.storage
+  href: com.microsoft.azure.storage._storage_credentials.yml
+  name: StorageCredentials
+  nameWithType: StorageCredentials
+  fullName: com.microsoft.azure.storage.StorageCredentials
+  type: Class
+  summary: <p>Represents a set of credentials used to authenticate access to a Microsoft Azure storage account. This is the base class for the <xref href="com.microsoft.azure.storage._storage_credentials_account_and_key" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.storage._storage_credentials_shared_access_signature" data-throw-if-not-resolved="false"></xref> classes. </p>
+  syntax:
+    content: public class StorageCredentials
 - uid: com.microsoft.azure.storage.file._file_share_permissions
   parent: com.microsoft.azure.storage.file
   href: com.microsoft.azure.storage.file._file_share_permissions.yml
