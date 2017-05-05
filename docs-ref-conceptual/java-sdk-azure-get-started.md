@@ -25,7 +25,7 @@ This guide walks you through setting up your development environment to authenti
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
-This get started guide uses the Maven build tool to build and run Java source code, but other build tools such as Gradle work fine with the Azure libraries for Java. 
+This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle work fine with the Azure libraries for Java. 
 
 ## Set up authentication
 
@@ -74,9 +74,9 @@ Save this file in a secure location on your system where your code can read it. 
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
-## Import libraries into a new Maven project
+## Create a new Maven project
 
-Create a new Maven project from the command line in a new directory on your system:
+Create a Maven project from the command line in a new directory on your system:
 
 ```
 mkdir java-azure-test
@@ -97,10 +97,14 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
     <artifactId>azure-storage</artifactId>
     <version>5.0.0</version>
 </dependency>
-
+<dependency>
+    <groupId>com.microsoft.sqlserver</groupId>
+    <artifactId>mssql-jdbc</artifactId>
+    <version>6.1.0.jre8</version>
+</dependency>
 ```
 
-Add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the sample:
+Add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the samples:
 
 ```XML
 <build>
@@ -116,9 +120,10 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
 </build>
  ```
 
-## Write a blob into a new storage account
 
-Create a new file named `AzureApp.java` in the project's `src/main/java` directory. Paste in the following code to set up the imports used in the example code:
+## Create a Linux virtual machine
+
+Create a new file named `AzureApp.java` in the project's `src/main/java` directory. Paste in the following code to set up the imports used in the example code in this guide:
 
 ```java
 package com.fabrikam.testAzureApp;
@@ -152,57 +157,45 @@ public class AzureApp {
 }
 ```
 
-Paste in the following `main` method in the class. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to upload a text file to the blob storage in a new container.
+Create a `main` method for the class using the following code, setting real values for `userName` and `password`. 
+
+This main method creates a new Linux VM with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East Azure region.
 
 ```java
     public static void main(String[] args) {
+
+        final String userName = "YOUR_VM_USERNAME";
+        final String sshKey = "YOUR_PUBLIC_SSH_KEY";
 
         try {
 
             // use the properties file with the service principal information to authenticate
             // change the name of the environment variable if you used a different name in the previous step
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));    
             Azure azure = Azure.configure()
                     .withLogLevel(LogLevel.BASIC)
                     .authenticate(credFile)
                     .withDefaultSubscription();
-
-            // create a new storage account
-            String storageAccountName = SdkContext.randomResourceName("st",8);
-            StorageAccount storage = azure.storageAccounts().define(storageAccountName)
-                        .withRegion(Region.US_WEST2)
-                        .withNewResourceGroup("sampleStorageResourceGroup")
-                        .create();
-
-            // create a storage container to hold the file
-            List<StorageAccountKey> keys = storage.getKeys();
-            final String storageConnection = "DefaultEndpointsProtocol=https;"
-                   + "AccountName=" + storage.name()
-                   + ";AccountKey=" + keys.get(0).value()
-                    + ";EndpointSuffix=core.windows.net";
-
-            CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
-            CloudBlobClient serviceClient = account.createCloudBlobClient();
-
-            // Container name must be lower case.
-            CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
-            container.createIfNotExists();
-
-            // Make the container public
-            BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
-            containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
-            container.uploadPermissions(containerPermissions);
-
-            // write a blob to the container
-            CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
-            blob.uploadText("hello Azure");
+           
+            // create a Ubuntu virtual machine in a new resource group 
+            VirtualMachine linuxVM = azure.virtualMachines().define("testLinuxVM")
+                    .withRegion(Region.US_EAST)
+                    .withNewResourceGroup("sampleVmResourceGroup")
+                    .withNewPrimaryNetwork("10.0.0.0/24")
+                    .withPrimaryPrivateIpAddressDynamic()
+                    .withoutPrimaryPublicIpAddress()
+                    .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+                    .withRootUsername(userName)
+                    .withSsh(sshKey)
+                    .withUnmanagedDisks()
+                    .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
+                    .create();   
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
-}
 ```
 
 Run the sample from the command line:
@@ -211,12 +204,68 @@ Run the sample from the command line:
 mvn compile exec:java
 ```
 
-You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
-
-Clean up the storage account using the CLI:
+You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
 ```azurecli
-az group delete --name sampleStorageResourceGroup
+az vm list --resource-group sampleVmResourceGroup
+```
+
+Once you've verified that the code worked, delete resource group from the CLI to delete the VM and its resources.
+
+```azurecli
+az group delete --name sampleVmResourceGroup
+```
+
+## Deploy a web app from a GitHub repo
+
+This code deploys an code from the `master` branch in a public GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
+
+```java
+    public static void main(String[] args) {
+        try {
+
+            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+            final String appName = "YOUR_APP_NAME";
+
+            Azure azure = Azure.configure()
+                    .withLogLevel(LogLevel.BASIC)
+                    .authenticate(credFile)
+                    .withDefaultSubscription();
+
+            WebApp app = azure.webApps().define(appName)
+                    .withRegion(Region.US_WEST2)
+                    .withNewResourceGroup("sampleWebResourceGroup")
+                    .withNewWindowsPlan(PricingTier.FREE_F1)
+                    .defineSourceControl()
+                    .withPublicGitRepository(
+                            "https://github.com/Azure-Samples/app-service-web-java-get-started")
+                    .withBranch("master")
+                    .attach()
+                    .create();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+        }
+    }
+```
+
+Run the code as before using Maven:
+
+```
+mvn clean compile exec:java
+```
+
+Open up a browser to the application using the CLI:
+
+```azurecli
+az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
+```
+
+Remove the web app and plan from your subscription once you've proven you can reach it
+
+```azurecli
+az group delete --name sampleWebResourceGroup
 ```
 
 ## Connect to a SQL database
@@ -299,47 +348,59 @@ Then clean up the resources using the CLI:
 az group delete --name sampleSqlResourceGroup
 ```
 
-## Create a Linux virtual machine
+## Write a blob into a new storage account
 
-Next replace the `main` method, setting real values for `userName` and `password`. 
-
-This main method creates a new Ubuntu Linux VM in Azure with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East region.
+Paste in the following `main` method in the class. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to upload a text file to the blob storage in a new container.
 
 ```java
     public static void main(String[] args) {
-
-        final String userName = "YOUR_VM_USERNAME";
-        final String password = "YOUR_VM_PASSWORD";
 
         try {
 
             // use the properties file with the service principal information to authenticate
             // change the name of the environment variable if you used a different name in the previous step
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));    
+            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
             Azure azure = Azure.configure()
                     .withLogLevel(LogLevel.BASIC)
                     .authenticate(credFile)
                     .withDefaultSubscription();
-           
-            // create a Ubuntu virtual machine in a new resource group 
-            VirtualMachine linuxVM = azure.virtualMachines().define("testLinuxVM")
-                    .withRegion(Region.US_EAST)
-                    .withNewResourceGroup("sampleVmResourceGroup")
-                    .withNewPrimaryNetwork("10.0.0.0/24")
-                    .withPrimaryPrivateIpAddressDynamic()
-                    .withoutPrimaryPublicIpAddress()
-                    .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
-                    .withRootUsername(userName)
-                    .withRootPassword(password)
-                    .withUnmanagedDisks()
-                    .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
-                    .create();   
+
+            // create a new storage account
+            String storageAccountName = SdkContext.randomResourceName("st",8);
+            StorageAccount storage = azure.storageAccounts().define(storageAccountName)
+                        .withRegion(Region.US_WEST2)
+                        .withNewResourceGroup("sampleStorageResourceGroup")
+                        .create();
+
+            // create a storage container to hold the file
+            List<StorageAccountKey> keys = storage.getKeys();
+            final String storageConnection = "DefaultEndpointsProtocol=https;"
+                   + "AccountName=" + storage.name()
+                   + ";AccountKey=" + keys.get(0).value()
+                    + ";EndpointSuffix=core.windows.net";
+
+            CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
+            CloudBlobClient serviceClient = account.createCloudBlobClient();
+
+            // Container name must be lower case.
+            CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
+            container.createIfNotExists();
+
+            // Make the container public
+            BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
+            containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
+            container.uploadPermissions(containerPermissions);
+
+            // write a blob to the container
+            CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
+            blob.uploadText("hello Azure");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
     }
+}
 ```
 
 Run the sample from the command line:
@@ -348,68 +409,12 @@ Run the sample from the command line:
 mvn clean compile exec:java
 ```
 
-You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
+You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
+
+Clean up the storage account using the CLI:
 
 ```azurecli
-az vm list --resource-group sampleVmResourceGroup
-```
-
-Once you've verified that the code worked, delete resource group from the CLI to delete the VM and its resources.
-
-```azurecli
-az group delete --name sampleVmResourceGroup
-```
-
-## Deploy a web app from a GitHub repo
-
-This code deploys an code from the `master` branch in a GitHub repo into a new [Azure App Service webapp](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in a free pricing tier plan.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
-
-```java
-    public static void main(String[] args) {
-        try {
-
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            final String appName = "YOUR_APP_NAME";
-
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
-
-            WebApp app = azure.webApps().define(appName)
-                    .withRegion(Region.US_WEST2)
-                    .withNewResourceGroup("sampleWebResourceGroup")
-                    .withNewWindowsPlan(PricingTier.FREE_F1)
-                    .defineSourceControl()
-                    .withPublicGitRepository(
-                            "https://github.com/Azure-Samples/app-service-web-java-get-started")
-                    .withBranch("master")
-                    .attach()
-                    .create();
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
-    }
-```
-
-Run the code as before using Maven:
-
-```
-mvn clean compile exec:java
-```
-
-Open up a browser to the application using the CLI:
-
-```azurecli
-az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
-```
-
-Remove the web app and plan from your subscription once you've proven you can reach it
-
-```azurecli
-az group delete --name sampleWebResourceGroup
+az group delete --name sampleStorageResourceGroup
 ```
 
 ## Explore more samples
