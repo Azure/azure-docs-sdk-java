@@ -9,7 +9,7 @@ ms.service: Azure
 ms.devlang: java
 ms.topic: reference
 ms.technology: Azure
-ms.date: 3/06/2016
+ms.date: 4/24/2017
 ---
 
 # Azure libraries for Java
@@ -19,7 +19,7 @@ Use Azure libraries in your Java projects to [manage resources](#management) and
 | | | | |
 |:-------------:|:----------:|:----:|:---:|
 | [Azure Storage](#azure-storage) | [SQL Database](#sql-database)  | [Redis Cache](#redis-cache)   | [DocumentDB](#documentdb) |
-| [Service Bus](#servicebus)  | [Azure Active Directory](#azuread) | [Key Vault](#keyvault)  | [Event Hub](#eventhub)
+| [Service Bus](#servicebus)  | [Azure Active Directory](#azuread) | [Key Vault](#keyvault)  | [Event Hubs](#eventhubs)
 | [IoT Service](#iotservice) | [IoT Device](#iotdevice) | [Data Lake](#datalake)  | [AppInsights](#appinsights) | 
 | [Batch](#batch) | [Manage Azure resources](#management) |
 
@@ -33,7 +33,7 @@ For example, to include the latest version of the [Azure management libraries](#
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -101,7 +101,7 @@ Scalable NoSQL database with JSON documents and SQL or JavaScript query syntax.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-documentdb</artifactId>
-    <version>1.9.3</version>
+    <version>1.10.0</version>
 </dependency>
 ```
 
@@ -109,19 +109,20 @@ Scalable NoSQL database with JSON documents and SQL or JavaScript query syntax.
 
 <a name="servicebus"></a>
 
-### [Service Bus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
+### [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview)
 
-Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol) to connect your applications.
+Dependable information delivery as a brokered or third-party communication mechanism.
 
 ```XML
 <dependency>
-  <groupId>org.apache.qpid</groupId>
-  <artifactId>qpid-jms-client</artifactId>
-  <version>0.11.1</version>
+  <groupId>com.microsoft.azure</groupId>
+  <artifactId>azure-servicebus</artifactId>
+  <version>1.0.0-PREVIEW</version>
 </dependency>
 ```
 
-[Reference](http://docs.oracle.com/javaee/7/api/javax/jms/package-summary.html) | [Sample](https://github.com/apache/qpid-jms/tree/0.20.0/qpid-jms-examples) | [GitHub](https://github.com/apache/qpid-jms)    
+[Reference](https://github.com/Azure/azure-service-bus-java) | [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples) | [GitHub](https://github.com/Azure/azure-service-bus-java)    
+
 <a name="azuread"></a>
 
 ### [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)   
@@ -132,7 +133,7 @@ Identity management and secure sign-in for your applications.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>adal4j</artifactId>
-    <version>1.1.3</version>
+    <version>1.2.0</version>
 </dependency>
 ```
    
@@ -154,9 +155,9 @@ Encrypt secrets and safely access them from your applications.
 
 [Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.keyvault) | [Samples](https://github.com/Azure-Samples/key-vault-java-manage-key-vaults) | [GitHub](https://github.com/Azure/azure-sdk-for-java)  
 
-<a name="eventhub"></a>
+<a name="eventhubs"></a>
 
-### [Event Hub](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-what-is-event-hubs) 
+### [Event Hubs](https://docs.microsoft.com/en-us/azure/event-hubs/event-hubs-what-is-event-hubs) 
    
 High throughput event and telemetry handling for your instrumentation or IoT scenarios.
 
@@ -164,11 +165,11 @@ High throughput event and telemetry handling for your instrumentation or IoT sce
 <dependency> 
     <groupId>com.microsoft.azure</groupId> 
     <artifactId>azure-eventhubs</artifactId> 
-    <version>0.10.0</version> 
+    <version>0.13.1</version> 
 </dependency>   
 ```
 
-[Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.eventhubs) | [Samples](https://github.com/azure/azure-event-hubs-java#publishing-events) | [GitHub](https://github.com/azure/azure-event-hubs-java)  
+[Reference](https://docs.microsoft.com/en-us/java/api/com.microsoft.azure.eventhubs) | [Samples](https://github.com/Azure/azure-event-hubs/tree/master/samples) | [GitHub](https://github.com/azure/azure-event-hubs-java)  
 
 <a name="iotservice"></a> 
 
@@ -180,7 +181,7 @@ Manage identities, send messages, and get feedback from devices in your IoT hub.
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-service-client</artifactId>
-    <version>1.0.13</version>
+    <version>1.3.19</version>
 </dependency>
 ```   
    
@@ -195,8 +196,8 @@ Send a message to an IoT hub from your device.
 ```XML
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
-    <artifactId>iot-service-client</artifactId>
-    <version>1.0.18</version>
+    <artifactId>iot-device-client</artifactId>
+    <version>1.1.25</version>
 </dependency>
 ```  
 
@@ -248,7 +249,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-batch</artifactId>
-    <version>1.0.0-rc</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -264,7 +265,7 @@ Create, update, and delete Azure resources from your application code.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0-beta5</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
