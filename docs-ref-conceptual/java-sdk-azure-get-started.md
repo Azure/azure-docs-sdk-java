@@ -123,7 +123,8 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
 
 ## Create a Linux virtual machine
 
-Create a new file named `AzureApp.java` in the project's `src/main/java` directory. Paste in the following code to set up the imports used in the example code in this guide:
+Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code.
+The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
 
 ```java
 package com.fabrikam.testAzureApp;
@@ -154,14 +155,6 @@ import java.sql.Statement;
 
 public class AzureApp {
 
-}
-```
-
-Create a `main` method for the class using the following code, setting real values for `userName` and `password`. 
-
-This main method creates a new Linux VM with name `testLinuxVM` in a new Azure resource group `sampleResourceGroup` running in the US East Azure region.
-
-```java
     public static void main(String[] args) {
 
         final String userName = "YOUR_VM_USERNAME";
@@ -196,6 +189,7 @@ This main method creates a new Linux VM with name `testLinuxVM` in a new Azure r
             e.printStackTrace();
         }
     }
+}
 ```
 
 Run the sample from the command line:
@@ -218,7 +212,7 @@ az group delete --name sampleVmResourceGroup
 
 ## Deploy a web app from a GitHub repo
 
-This code deploys a web application from the `master` branch in a public GitHub repo into a new [Azure App Service Web App](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in the free pricing tier.  Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. 
+Replace the main method in `AzureApp.java` with the one below, updating the `appName` variable to a unique value before running the code. This code deploys a web application from the `master` branch in a public GitHub repo into a new [Azure App Service Web App](https://docs.microsoft.com/azure/app-service-web/app-service-web-overview) running in the free pricing tier.
 
 ```java
     public static void main(String[] args) {
@@ -270,10 +264,8 @@ az group delete --name sampleWebResourceGroup
 
 ## Connect to a SQL database
 
-This `main` method creates a new SQL database with a firewall rule allowing remote access,  and then connects to it using the SQL Database JBDC driver. 
-The code then creates a new table, inserts a single row, and then retrieves the row's values in a separate SELECT query.
-
 Replace the current main method in `AzureApp.java` with the code below, setting a real value for the `dbPassword` variable.
+This code creates a new SQL database with a firewall rule allowing remote access,  and then connects to it using the SQL Database JBDC driver. 
 
 ```java
 
@@ -350,7 +342,7 @@ az group delete --name sampleSqlResourceGroup
 
 ## Write a blob into a new storage account
 
-Paste in the following `main` method in the class. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to upload a text file to the blob storage in a new container.
+Replace the current main method in `AzureApp.java` with the code below. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to create a new text file in the cloud.
 
 ```java
     public static void main(String[] args) {
