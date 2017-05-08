@@ -41,11 +41,11 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 
 Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects and then read the [get started article](java-sdk-azure-get-started.md) to set up your authentication and run sample code against your own Azure subscription. 
 
-## Consume Azure services
+## Connect to Azure services
 
-In addition to using Java libraries to create and manage resources within Azure, you can also use Java libraries to connect your applications to those resources and use them in your apps. For example, you might connect to a SQL Database or store data in Azure Storage. Select the library you need for a particular service from the [complete list of libraries](java-sdk-azure-install.md) and visit the [Java developer center](https://azure.microsoft.com/develop/java/) for tutorials and sample code that use these libraries.
+In addition to using Java libraries to create and manage resources within Azure, you can also use Java libraries to connect  and use those resources in your apps. For example, you might update a table SQL Database or store files in Azure Storage. Select the library you need for a particular service from the [complete list of libraries](java-sdk-azure-install.md) and visit the [Java developer center](https://azure.microsoft.com/develop/java/) for tutorials and sample code for help using them in your apps.
 
-For example, to print out the contents of all blobs in an Azure storage container:
+For example, to print out the contents of every blob in an Azure storage container:
 
 ```java
 // get the container from the blob client

@@ -18,7 +18,7 @@ ms.assetid: f452468b-7aae-4944-abad-0b1aaf19170d
 
 ## Build resources through a fluent interface
 
-A fluent interface is a specific form of the builder pattern that creates objects through a method chain that enforces correct configuration of a resource. For example, to create a new storage account
+A fluent interface is a pattern that creates objects using a method chain that correctly configures the object's attributes. For example, to create a new Azure Storage account
 
 ```java
 StorageAccount storage = azure.storageAccounts().define(storageAccountName)
@@ -31,7 +31,7 @@ As you go through the method chain, your IDE suggests the next method to call in
 
 ![GIF of IntelliJ command completion working through a fluent chain](intelliJFluent.gif)
 
-Chain the methods suggested by the IDE as long as they make sense for the Azure resource being defined. If you are missing a required method in the chain your IDE will highlight it with a compile error.
+Chain the methods suggested by the IDE as long as they make sense for the Azure resource being defined. If you are missing a required method in the chain your IDE will highlight it with an error.
 
 ## Resource collections
 
@@ -52,7 +52,7 @@ Each resource collection has a `list()` method to return every instance of that 
 
 Use the `listByResourceGroup(String groupname)` method to scope the returned List to a specific [Azure resource group](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview#resource-groups).  
 
-Search and iterate over the returned `PagedList` collection just as you would a normal `List`:
+Search and iterate over the returned `PagedList<T>` collection just as you would a normal `List<T>`:
 
 ```java
 PagedList<VirtualMachine> vms = azure.virtualMachines().list();
@@ -63,11 +63,11 @@ for (VirtualMachine vm : vms) {
 
 ## Collections returned from queries
 
-The management libraries follows a convention for returned collections from queries:
+The management libraries return specific collection types from queries based on the structure of the results.
 
-- Lists: Unordered data that is easy to search and iterate over.
-- Maps: Maps are key/value pairs with unique keys, but not necessarily unique values. An example of a Map would be app settings for an App Service Web App.
-- Sets: Sets have unique keys and values. An example of a Set would be networks attached to a virtual machine, which would have both an unique identifier (the key) and a unique network configuration (the value).
+- `List<T>`: Unordered data that is easy to search and iterate over.
+- `Map<T>`: Maps are key/value pairs with unique keys, but not necessarily unique values. An example of a Map would be app settings for an App Service Web App.
+- `Set<T>`: Sets have unique keys and values. An example of a Set would be networks attached to a virtual machine, which would have both an unique identifier (the key) and a unique network configuration (the value).
 
 ## Actionable verbs
 
@@ -84,25 +84,25 @@ Methods with verbs in their names take immediate action in Azure. These methods 
 >[!NOTE]
 > `define()` and `update()` are verbs but do not block unless followed by a `create()` or `apply()`.
  
-Asynchronous versions of these methods exist with the `Async` suffix using [Reactive extensions](https://github.com/ReactiveX/RxJava). 
+Asynchronous versions of some of these  methods exist with the `Async` suffix using [Reactive extensions](https://github.com/ReactiveX/RxJava). 
 
-Some objects have methods with that change the state of the resource in Azure. For example, `restart()` on a `VirtualMachine`:
+Some objects have other methods with that change the state of the resource in Azure. For example, `restart()` on a `VirtualMachine`.
 
 ```java
 VirtualMachine vmToRestart = azure.getVirtualMachines().getById(id);
 vmToRestart.restart();
 ```
-These methods generally do not have asynchronous versions in the management libraries.
+These methods do not always have asynchronous versions and will block execution on their thread until they complete.
 
 <a name="Creatables"></a>
 
 ## Lazy resource creation
 
-A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to ensure the virtual machine has those resources when it is created.
+A challenge when creating Azure resources arises when a new resource depends on another resource that doesn't yet exist. An example of this scenario is reserving a public IP address and setting up a disk when creating a new virtual machine. You don't want to verify reserving the address or the creating the disk, you just want to ensure the virtual machine has those resources when it is created.
 
-Use `Creatable<T>` objects to define Azure resources for use in your code but only create them when needed in Azure. Code written with `Creatable<T>` objects defers resource creation in the Azure environment to the management libraries, which create them only when they are needed and in parallel with other resources when possible.
+`Creatable<T>` objects let you define Azure resources for use in your code without waiting around for them to be created in your subscription. The management libraries defer creating  `Creatable<T>` objects until they are needed.
 
-Generate `Creatable<T>` objects through the resource collections' `define()` verb:
+Generate `Creatable<T>` objects for Azure resources through the `define()` verb:
 
 ```java
 Creatable<PublicIPAddress> publicIPAddressCreatable = azure.publicIPAddresses().define(publicIPAddressName)
@@ -110,20 +110,20 @@ Creatable<PublicIPAddress> publicIPAddressCreatable = azure.publicIPAddresses().
     .withNewResourceGroup(rgName);
 ```
 
-The Azure resource defined by the `Creatable<PublicIPAddress>` in this example does not yet exist in your subscription when you run this code. The `Creatable<PublicIPAddress>` is a local representation of a resource that the management library will create when its needed. Use this `Creatable<PublicIPAddress>` to define other Azure resources with this IP address. 
+The Azure resource defined by the `Creatable<PublicIPAddress>` in this example does not yet exist in your subscription when this code executes.  Use the `publicIPAddressCreatable` object to create other Azure resources with this IP address. 
 
 ```java
 Creatable<VirtualMachine> vmCreatable = azure.virtualMachines().define("creatableVM")
     .withNewPrimaryPublicIPAddress(publicIPAddressCreatable)
 ```
 
-Create the resources in your Azure subscription using the `create()` method for the resource collection. 
+The `Creatable<T>` resources are generated in your subscription when any resource that is defined using the object is built in Azure using `create()`. Continuing the IP address and virtual machine example:
 
 ```java
 CreatedResources<VirtualMachine> virtualMachine = azure.virtualMachines().create(vmCreatable);
 ```
 
-Passing `Creatable<T>` to `create()` calls returns a `CreatedResources` object instead of a single resource object.  The `CreatedResources<T>` object lets you access all resources created by the `create()` call, not just the type from the resource collection. To access the public IP address created in Azure for the virtual machine created in the above example:
+Passing the `Creatable<T>` to `create()` calls returns a `CreatedResources` object instead of a single resource object.  The `CreatedResources<T>` object lets you access all resources created by the `create()` call, not just the typed resource in the call. To access the public IP address created in Azure for the virtual machine created in the above example:
 
 ```java
 PublicIPAddress pip = (PublicIPAddress) virtualMachine.createdRelatedResource(publicIPAddressCreatable.key());
@@ -131,7 +131,7 @@ PublicIPAddress pip = (PublicIPAddress) virtualMachine.createdRelatedResource(pu
 
 ## Exception handling
 
-The management libraries define Exception classes that extend `com.microsoft.rest.RestException`. Catch exceptions generated by management libraries with a `catch (RestException exception)` block after the relevant `try` statement.
+The management libraries' Exception classes extend `com.microsoft.rest.RestException`. Catch exceptions generated by the management libraries with a `catch (RestException exception)` block after the relevant `try` statement.
 
 ## Logs and trace
 
