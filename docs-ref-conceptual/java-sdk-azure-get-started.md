@@ -16,7 +16,7 @@ ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 
 # Get started with the Azure libraries for Java
 
-This guide walks you through setting up your development environment to authenticate to Azure using a service principal and then run sample code that creates and uses resources in your Azure subscription.
+This guide walks you through setting up a development environment with an Azure service principal and running sample code that creates and uses resources in your Azure subscription using the Azure libraries for Java.
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ This guide uses Maven build tool to build and run the sample code, but other bui
 
 ## Set up authentication
 
-Your Java application needs permissions to read and create resources your Azure subscription in order to run the sample code in this guide. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
+Your Java application needs read and create permissions in your Azure subscription to run the sample code in this tutorial. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
 [Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`.
 
@@ -40,8 +40,8 @@ az ad sp create-for-rbac --name AzureJavaTest --password "MY_SECURE_PASSWORD"
 ```json
 {
   "appId": "a487e0c1-82af-47d9-9a0b-af184eb87646d",
-  "displayName": "JavaSDKTest",
-  "name": "http://JavaSDKTest",
+  "displayName": "AzureJavaTest",
+  "name": "http://AzureJavaTest",
   "password": password,
   "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
 }
@@ -81,10 +81,11 @@ Create a Maven project from the command line in a new directory on your system:
 ```
 mkdir java-azure-test
 cd java-azure-test
-mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp  \ 
+-DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
-This creates a basic Maven project under the `testAzureApp` folder. Add the following entries into the project `pom.xml` to import the Azure management libraries for Java and the Azure Storage libraries for Java.
+This creates a basic Maven project under the `testAzureApp` folder. Add the following entries into the project `pom.xml` to import the libraries used in the sample code in this tutorial.
 
 ```XML
 <dependency>
@@ -119,12 +120,10 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
     </plugins>
 </build>
  ```
-
-
+   
 ## Create a Linux virtual machine
 
-Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code.
-The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
+Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
 
 ```java
 package com.fabrikam.testAzureApp;
@@ -204,7 +203,7 @@ You'll see some REST requests and responses in the console as the SDK makes the 
 az vm list --resource-group sampleVmResourceGroup
 ```
 
-Once you've verified that the code worked, delete resource group from the CLI to delete the VM and its resources.
+Once you've verified that the code worked, use the CLI to delete the VM and its resources.
 
 ```azurecli
 az group delete --name sampleVmResourceGroup
