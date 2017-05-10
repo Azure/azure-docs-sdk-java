@@ -2,24 +2,22 @@ items:
 - uid: com.microsoft.azure.sdk.iot.deps.serializer
   id: serializer
   children:
-  - com.microsoft.azure.sdk.iot.deps.serializer._helpers
-  - com.microsoft.azure.sdk.iot.deps.serializer._method
-  - com.microsoft.azure.sdk.iot.deps.serializer._method._operation
-  - com.microsoft.azure.sdk.iot.deps.serializer._method_test
-  - com.microsoft.azure.sdk.iot.deps.serializer._register_manager
-  - com.microsoft.azure.sdk.iot.deps.serializer._twin
+  - com.microsoft.azure.sdk.iot.deps.serializer._file_upload_notification_parser
+  - com.microsoft.azure.sdk.iot.deps.serializer._file_upload_request_parser
+  - com.microsoft.azure.sdk.iot.deps.serializer._file_upload_response_parser
+  - com.microsoft.azure.sdk.iot.deps.serializer._file_upload_status_parser
+  - com.microsoft.azure.sdk.iot.deps.serializer._method_parser
+  - com.microsoft.azure.sdk.iot.deps.serializer._method_parser._operation
+  - com.microsoft.azure.sdk.iot.deps.serializer._register_manager_parser
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_changed_callback
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_connection_state
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_metadata
+  - com.microsoft.azure.sdk.iot.deps.serializer._twin_parser
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_properties
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_properties_change_callback
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_property
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_status
   - com.microsoft.azure.sdk.iot.deps.serializer._twin_tags
-  - com.microsoft.azure.sdk.iot.deps.serializer._twin_test
-  - com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_desired_callback
-  - com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_reported_callback
-  - com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_tags_callback
   href: com.microsoft.azure.sdk.iot.deps.serializer.yml
   langs:
   - java
@@ -29,74 +27,79 @@ items:
   type: Namespace
   source:
     remote:
-      path: deps/serializer/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/Method.java
+      path: deps/serializer/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/FileUploadNotificationParser.java
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
-    path: deps/serializer/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/Method.java
+    path: deps/serializer/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/FileUploadNotificationParser.java
     startLine: 3
   syntax:
     content: package com.microsoft.azure.sdk.iot.deps.serializer
 references:
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._helpers
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_notification_parser
   parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._helpers.yml
-  name: Helpers
-  nameWithType: Helpers
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.Helpers
+  href: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_notification_parser.yml
+  name: FileUploadNotificationParser
+  nameWithType: FileUploadNotificationParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadNotificationParser
   type: Class
-  summary: <p>Test helpers. </p>
+  summary: '<p>Representation of the notification of a single File Upload, with a Json deserializer. Ex of JSON format: { "deviceId":"mydevice", "blobUri":"https://{storage account}.blob.core.windows.net/{container name}/mydevice/myfile.jpg", "blobName":"mydevice/myfile.jpg", "lastUpdatedTime":"2016-06-01T21:22:41+00:00", "blobSizeInBytes":1234, "enqueuedTimeUtc":"2016-06-01T21:22:43.7996883Z" } </p>'
   syntax:
-    content: public class Helpers
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._method
+    content: public class FileUploadNotificationParser
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_request_parser
   parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._method.yml
-  name: Method
-  nameWithType: Method
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.Method
+  href: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_request_parser.yml
+  name: FileUploadRequestParser
+  nameWithType: FileUploadRequestParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadRequestParser
   type: Class
-  summary: <p>Representation of a single Direct <xref href="com.microsoft.azure.sdk.iot.deps.serializer._method" data-throw-if-not-resolved="false"></xref> Access collection with a Json serializer and deserializer. </p>
+  summary: '<p>Representation of a single File Upload request with a Json serializer. Ex of JSON format: { "blobName": "{name of the file for which a SAS URI will be generated}" } </p>'
   syntax:
-    content: public class Method
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._method_test
+    content: public class FileUploadRequestParser
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_response_parser
   parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._method_test.yml
-  name: MethodTest
-  nameWithType: MethodTest
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.MethodTest
+  href: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_response_parser.yml
+  name: FileUploadResponseParser
+  nameWithType: FileUploadResponseParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadResponseParser
   type: Class
-  summary: <p>Unit tests for <xref href="com.microsoft.azure.sdk.iot.deps.serializer._method" data-throw-if-not-resolved="false"></xref> serializer </p>
+  summary: '<p>Representation of a single container for the File Upload response with a Json deserializer. Ex of JSON format: { "correlationId": "somecorrelationid", "hostname": "contoso.azure-devices.net", "containerName": "testcontainer", "blobName": "test-device1/image.jpg", "sasToken": "1234asdfSAStoken" } </p>'
   syntax:
-    content: public class MethodTest
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._register_manager
+    content: public class FileUploadResponseParser
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_status_parser
   parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._register_manager.yml
-  name: RegisterManager
-  nameWithType: RegisterManager
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.RegisterManager
+  href: com.microsoft.azure.sdk.iot.deps.serializer._file_upload_status_parser.yml
+  name: FileUploadStatusParser
+  nameWithType: FileUploadStatusParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadStatusParser
+  type: Class
+  summary: '<p>Representation of the status of a single file for the File Upload, with a Json serializer. Ex of JSON format: { "correlationId": "{correlation ID received from the initial request}", "isSuccess": bool, "statusCode": XXX, "statusDescription": "Description of status" } </p>'
+  syntax:
+    content: public class FileUploadStatusParser
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._method_parser
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer._method_parser.yml
+  name: MethodParser
+  nameWithType: MethodParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.MethodParser
+  type: Class
+  summary: <p>Representation of a single Direct Method Access collection with a Json serializer and deserializer. </p>
+  syntax:
+    content: public class MethodParser
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._register_manager_parser
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer._register_manager_parser.yml
+  name: RegisterManagerParser
+  nameWithType: RegisterManagerParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.RegisterManagerParser
   type: Class
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
-    <p>
+    <p>Twin management representation</p>
 
-      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> management representation</p>
-
-    <p>This class is part of the <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref>. It contains the Device identity management. </p>
+    <p>This class is part of the Twin. It contains the Device identity management. </p>
   syntax:
-    content: public class RegisterManager
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin
-  parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._twin.yml
-  name: Twin
-  nameWithType: Twin
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.Twin
-  type: Class
-  summary: >-
-    <p>
-
-      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> Representation including the twin collection and Json serializer and deserializer. </p>
-  syntax:
-    content: public class Twin
+    content: public class RegisterManagerParser
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_changed_callback
   parent: com.microsoft.azure.sdk.iot.deps.serializer
   href: com.microsoft.azure.sdk.iot.deps.serializer._twin_changed_callback.yml
@@ -105,11 +108,11 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinChangedCallback
   type: Interface
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
-    <p>An interface for an IoT Hub Device <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> callback.</p>
+    <p>An interface for an IoT Hub Device Twin callback.</p>
 
-    <p>Developers are expected to create an implementation of this interface, and the transport will call <ref refid="" kindref="compound">TwinChangedCallback#execute(Map)</ref> upon receiving a property or tags changes from an IoT Hub Device <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Developers are expected to create an implementation of this interface, and the transport will call <ref refid="" kindref="compound">TwinChangedCallback#execute(Map)</ref> upon receiving a property or tags changes from an IoT Hub Device Twin. </p>
   syntax:
     content: public interface TwinChangedCallback
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_connection_state
@@ -120,7 +123,7 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinConnectionState
   type: Enum
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
     <p>Enum for device connection state </p>
   syntax:
@@ -133,13 +136,26 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinMetadata
   type: Class
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
     <p>
 
-      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> metadata representation </p>
+      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_parser" data-throw-if-not-resolved="false"></xref> metadata representation </p>
   syntax:
     content: public class TwinMetadata
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_parser
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer._twin_parser.yml
+  name: TwinParser
+  nameWithType: TwinParser
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinParser
+  type: Class
+  summary: >-
+    <p>
+
+      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_parser" data-throw-if-not-resolved="false"></xref> Representation including the twin collection and Json serializer and deserializer. </p>
+  syntax:
+    content: public class TwinParser
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_properties
   parent: com.microsoft.azure.sdk.iot.deps.serializer
   href: com.microsoft.azure.sdk.iot.deps.serializer._twin_properties.yml
@@ -148,13 +164,13 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinProperties
   type: Class
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
     <p>
 
-      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> Properties representation</p>
+      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_parser" data-throw-if-not-resolved="false"></xref> Properties representation</p>
 
-    <p>This class is part of the <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref>. It is necessary to generate the properties json. </p>
+    <p>This class is part of the <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_parser" data-throw-if-not-resolved="false"></xref>. It is necessary to generate the properties json. </p>
   syntax:
     content: public class TwinProperties
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_properties_change_callback
@@ -165,11 +181,11 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinPropertiesChangeCallback
   type: Interface
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
-    <p>An interface for an IoT Hub Device <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> callback.</p>
+    <p>An interface for an IoT Hub Device Twin callback.</p>
 
-    <p>Developers are expected to create an implementation of this interface, and the transport will call <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_properties_change_callback" data-throw-if-not-resolved="false"></xref> upon receiving a property changes from an IoT Hub Device <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Developers are expected to create an implementation of this interface, and the transport will call <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin_properties_change_callback" data-throw-if-not-resolved="false"></xref> upon receiving a property changes from an IoT Hub Device Twin. </p>
   syntax:
     content: public interface TwinPropertiesChangeCallback
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_property
@@ -180,7 +196,7 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinProperty
   type: Class
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
     <p>
 
@@ -195,7 +211,7 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinStatus
   type: Enum
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
     <p>Enum for device status </p>
   syntax:
@@ -208,56 +224,17 @@ references:
   fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinTags
   type: Class
   summary: >-
-    <p>INNER TWIN CLASS</p>
+    <p>INNER TWINPARSER CLASS</p>
 
-    <p>
-
-      <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> tags representation </p>
+    <p>Twin tags representation </p>
   syntax:
     content: public class TwinTags
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_test
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._method_parser._operation
   parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._twin_test.yml
-  name: TwinTest
-  nameWithType: TwinTest
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinTest
-  type: Class
-  summary: <p>Unit tests for <xref href="com.microsoft.azure.sdk.iot.deps.serializer._twin" data-throw-if-not-resolved="false"></xref> serializer </p>
-  syntax:
-    content: public class TwinTest
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_desired_callback
-  parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_desired_callback.yml
-  name: TwinTest.OnDesiredCallback
-  nameWithType: TwinTest.OnDesiredCallback
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinTest.OnDesiredCallback
-  type: Class
-  syntax:
-    content: protected class OnDesiredCallback implements TwinChangedCallback
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_reported_callback
-  parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_reported_callback.yml
-  name: TwinTest.OnReportedCallback
-  nameWithType: TwinTest.OnReportedCallback
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinTest.OnReportedCallback
-  type: Class
-  syntax:
-    content: protected class OnReportedCallback implements TwinChangedCallback
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_tags_callback
-  parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._twin_test._on_tags_callback.yml
-  name: TwinTest.OnTagsCallback
-  nameWithType: TwinTest.OnTagsCallback
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.TwinTest.OnTagsCallback
-  type: Class
-  syntax:
-    content: protected class OnTagsCallback implements TwinChangedCallback
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._method._operation
-  parent: com.microsoft.azure.sdk.iot.deps.serializer
-  href: com.microsoft.azure.sdk.iot.deps.serializer._method._operation.yml
-  name: Method.Operation
-  nameWithType: Method.Operation
-  fullName: com.microsoft.azure.sdk.iot.deps.serializer.Method.Operation
+  href: com.microsoft.azure.sdk.iot.deps.serializer._method_parser._operation.yml
+  name: MethodParser.Operation
+  nameWithType: MethodParser.Operation
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.MethodParser.Operation
   type: Enum
   syntax:
     content: protected enum Operation
