@@ -1,13 +1,13 @@
 items:
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe
-  id: _with_backend_or_probe
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat
+  id: _with_probe_or_nat
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe.yml
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat.yml
   langs:
   - java
-  name: LoadBalancer.DefinitionStages.WithBackendOrProbe
-  nameWithType: LoadBalancer.DefinitionStages.WithBackendOrProbe
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackendOrProbe
+  name: LoadBalancer.DefinitionStages.WithProbeOrNat
+  nameWithType: LoadBalancer.DefinitionStages.WithProbeOrNat
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbeOrNat
   type: Interface
   source:
     remote:
@@ -15,38 +15,19 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 170
+    startLine: 176
   package: com.microsoft.azure.management.network
-  summary: <p>The stage of a load balancer definition allowing to add a backend or start adding probes, or NAT rules, or NAT pools. </p>
+  summary: <p>The stage of a load balancer definition allowing to add a probe or an inbound NAT rule or pool. </p>
   syntax:
-    content: public interface WithBackendOrProbe extends LoadBalancer.DefinitionStages.WithBackend,LoadBalancer.DefinitionStages.WithProbeOrNat
+    content: public interface WithProbeOrNat extends LoadBalancer.DefinitionStages.WithProbe,LoadBalancer.DefinitionStages.WithInboundNatRule,LoadBalancer.DefinitionStages.WithInboundNatPool
   inheritedMembers:
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.defineBackend(String)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineHttpProbe(String)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_pool.defineInboundNatPool(String)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_rule.defineInboundNatRule(String)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineTcpProbe(String)
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.withExistingVirtualMachines(HasNetworkInterfaces...)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withHttpProbe(String)
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withTcpProbe(int)
 references:
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.defineBackend(String)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.yml
-  name: defineBackend(String name)
-  nameWithType: LoadBalancer.DefinitionStages.WithBackend.defineBackend(String name)
-  fullName: LoadBalancerBackend.DefinitionStages.Blank<WithBackendOrProbe> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackend.defineBackend(String name)
-  type: Method
-  summary: <p>Starts the definition of a backend. </p>
-  syntax:
-    content: public LoadBalancerBackend.DefinitionStages.Blank<WithBackendOrProbe> defineBackend(String name)
-    parameters:
-    - id: name
-      type: "26831127"
-      description: <p>the name to assign to the backend </p>
-    return:
-      type: 4ca3e598com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probea08ddfce
-      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineHttpProbe(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
@@ -127,30 +108,6 @@ references:
     return:
       type: 93bcca18com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6a08ddfce
       description: <p>the first stage of the new probe definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.withExistingVirtualMachines(HasNetworkInterfaces...)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.yml
-  name: withExistingVirtualMachines(HasNetworkInterfaces...vms)
-  nameWithType: LoadBalancer.DefinitionStages.WithVirtualMachine<ReturnT>.withExistingVirtualMachines(HasNetworkInterfaces...vms)
-  fullName: ReturnT com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithVirtualMachine<ReturnT>.withExistingVirtualMachines(HasNetworkInterfaces...vms)
-  type: Method
-  summary: >-
-    <p>Adds the specified set of virtual machines, assuming they are from the same availability set, to this load balancer's back end address pool. </p>
-
-    <p>This will create a new backend address pool for this load balancer and add references to the primary IP configurations of the primary network interfaces of each of the provided set of virtual machines. </p>
-
-    <p>If the virtual machines are not in the same availability set, the load balancer will still be created, but the virtual machines will not associated with its back end. </p>
-
-    <p>Only those virtual machines will be associated with the load balancer that already have an existing network interface. Virtual machines without a network interface will be skipped. </p>
-  syntax:
-    content: public ReturnT withExistingVirtualMachines(HasNetworkInterfaces...vms)
-    parameters:
-    - id: vms
-      type: 6bb6a610
-      description: <p>existing virtual machines </p>
-    return:
-      type: c1a5ebc4
-      description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withHttpProbe(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
@@ -191,26 +148,36 @@ references:
     return:
       type: com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.yml
-  name: LoadBalancer.DefinitionStages.WithBackend
-  nameWithType: LoadBalancer.DefinitionStages.WithBackend
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackend
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
+  name: LoadBalancer.DefinitionStages.WithProbe
+  nameWithType: LoadBalancer.DefinitionStages.WithProbe
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe
   type: Interface
-  summary: <p>The stage of a load balancer definition allowing to add a backend. </p>
+  summary: <p>The stage of the load balancer definition allowing to add a load balancing probe. </p>
   syntax:
-    content: public interface WithBackend extends LoadBalancer.DefinitionStages.WithVirtualMachine<WithBackendOrProbe>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat
+    content: public interface WithProbe
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_rule
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat.yml
-  name: LoadBalancer.DefinitionStages.WithProbeOrNat
-  nameWithType: LoadBalancer.DefinitionStages.WithProbeOrNat
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbeOrNat
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_rule.yml
+  name: LoadBalancer.DefinitionStages.WithInboundNatRule
+  nameWithType: LoadBalancer.DefinitionStages.WithInboundNatRule
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithInboundNatRule
   type: Interface
-  summary: <p>The stage of a load balancer definition allowing to add a probe or an inbound NAT rule or pool. </p>
+  summary: <p>The stage of a load balancer definition allowing to create a new inbound NAT rule. </p>
   syntax:
-    content: public interface WithProbeOrNat
+    content: public interface WithInboundNatRule
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_pool
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_pool.yml
+  name: LoadBalancer.DefinitionStages.WithInboundNatPool
+  nameWithType: LoadBalancer.DefinitionStages.WithInboundNatPool
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithInboundNatPool
+  type: Interface
+  summary: <p>The stage of a load balancer definition allowing to create a new inbound NAT pool for a virtual machine scale set. </p>
+  syntax:
+    content: public interface WithInboundNatPool
 - uid: com.microsoft.azure.management.network._load_balancer._definition
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition.yml
@@ -221,3 +188,13 @@ references:
   summary: <p>The entirety of the load balancer definition. </p>
   syntax:
     content: public interface Definition extends LoadBalancer.DefinitionStages.Blank,LoadBalancer.DefinitionStages.WithGroup,LoadBalancer.DefinitionStages.WithFrontend,LoadBalancer.DefinitionStages.WithCreate,LoadBalancer.DefinitionStages.WithPublicFrontendOrBackend,LoadBalancer.DefinitionStages.WithPrivateFrontendOrBackend,LoadBalancer.DefinitionStages.WithNetworkSubnet,LoadBalancer.DefinitionStages.WithBackend,LoadBalancer.DefinitionStages.WithBackendOrProbe,LoadBalancer.DefinitionStages.WithProbe,LoadBalancer.DefinitionStages.WithProbeOrLoadBalancingRule,LoadBalancer.DefinitionStages.WithProbeOrNat,LoadBalancer.DefinitionStages.WithLoadBalancingRule,LoadBalancer.DefinitionStages.WithLoadBalancingRuleOrCreate,LoadBalancer.DefinitionStages.WithCreateAndInboundNatPool,LoadBalancer.DefinitionStages.WithCreateAndInboundNatRule,LoadBalancer.DefinitionStages.WithCreateAndNatChoice
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe.yml
+  name: LoadBalancer.DefinitionStages.WithBackendOrProbe
+  nameWithType: LoadBalancer.DefinitionStages.WithBackendOrProbe
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackendOrProbe
+  type: Interface
+  summary: <p>The stage of a load balancer definition allowing to add a backend or start adding probes, or NAT rules, or NAT pools. </p>
+  syntax:
+    content: public interface WithBackendOrProbe extends LoadBalancer.DefinitionStages.WithBackend,LoadBalancer.DefinitionStages.WithProbeOrNat
