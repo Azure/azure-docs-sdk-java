@@ -8,6 +8,8 @@ items:
   - com.microsoft.azure.servicebus._messaging_factory.DefaultOperationTimeout()
   - com.microsoft.azure.servicebus._messaging_factory.deregisterForConnectionError(Link)
   - com.microsoft.azure.servicebus._messaging_factory.getCBSChannel()
+  - com.microsoft.azure.servicebus._messaging_factory.getHostName()
+  - com.microsoft.azure.servicebus._messaging_factory.getManagementChannel()
   - com.microsoft.azure.servicebus._messaging_factory.getOperationTimeout()
   - com.microsoft.azure.servicebus._messaging_factory.getReactorScheduler()
   - com.microsoft.azure.servicebus._messaging_factory.getRetryPolicy()
@@ -32,11 +34,11 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 44
+    startLine: 45
   package: com.microsoft.azure.servicebus
   summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
   syntax: &o1
-    content: public class MessagingFactory extends ClientEntity implements IAmqpConnection
+    content: public class MessagingFactory extends ClientEntity implements IAmqpConnection,ISessionProvider
   inheritance:
   - java.lang.Object
   - com.microsoft.azure.servicebus._client_entity
@@ -45,7 +47,6 @@ items:
   - com.microsoft.azure.servicebus._client_entity.close()
   - com.microsoft.azure.servicebus._client_entity.closeSync()
   - com.microsoft.azure.servicebus._client_entity.getClientId()
-  - com.microsoft.azure.servicebus._messaging_factory.getHostName()
   - com.microsoft.azure.servicebus._client_entity.getIsClosed()
   - com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
   - com.microsoft.azure.servicebus._client_entity.getLastKnownError()
@@ -66,7 +67,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 174
+    startLine: 188
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionString(final String connectionString)
@@ -89,7 +90,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 178
+    startLine: 192
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionString(final String connectionString, final RetryPolicy retryPolicy)
@@ -113,7 +114,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 45
+    startLine: 46
   package: com.microsoft.azure.servicebus
   syntax:
     content: public static final Duration DefaultOperationTimeout= Duration.ofSeconds(60)
@@ -133,7 +134,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 411
+    startLine: 425
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deregisterForConnectionError(Link link)
@@ -155,12 +156,52 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 137
+    startLine: 141
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CBSChannel getCBSChannel()
     return:
       type: com.microsoft.azure.servicebus._c_b_s_channel
+- uid: com.microsoft.azure.servicebus._messaging_factory.getHostName()
+  id: getHostName()
+  parent: com.microsoft.azure.servicebus._messaging_factory
+  href: com.microsoft.azure.servicebus._messaging_factory.yml
+  langs:
+  - java
+  name: getHostName()
+  nameWithType: MessagingFactory.getHostName()
+  fullName: String com.microsoft.azure.servicebus.MessagingFactory.getHostName()
+  overload: com.microsoft.azure.servicebus._messaging_factory.getHostName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
+    startLine: 96
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public String getHostName()
+    return:
+      type: "26831127"
+- uid: com.microsoft.azure.servicebus._messaging_factory.getManagementChannel()
+  id: getManagementChannel()
+  parent: com.microsoft.azure.servicebus._messaging_factory
+  href: com.microsoft.azure.servicebus._messaging_factory.yml
+  langs:
+  - java
+  name: getManagementChannel()
+  nameWithType: MessagingFactory.getManagementChannel()
+  fullName: ManagementChannel com.microsoft.azure.servicebus.MessagingFactory.getManagementChannel()
+  overload: com.microsoft.azure.servicebus._messaging_factory.getManagementChannel*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
+    startLine: 151
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public ManagementChannel getManagementChannel()
+    return:
+      type: com.microsoft.azure.servicebus._management_channel
 - uid: com.microsoft.azure.servicebus._messaging_factory.getOperationTimeout()
   id: getOperationTimeout()
   parent: com.microsoft.azure.servicebus._messaging_factory
@@ -175,7 +216,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 166
+    startLine: 180
   package: com.microsoft.azure.servicebus
   syntax:
     content: public Duration getOperationTimeout()
@@ -195,7 +236,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 102
+    startLine: 106
   package: com.microsoft.azure.servicebus
   syntax:
     content: public ReactorDispatcher getReactorScheduler()
@@ -215,7 +256,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 170
+    startLine: 184
   package: com.microsoft.azure.servicebus
   syntax:
     content: public RetryPolicy getRetryPolicy()
@@ -235,7 +276,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 148
+    startLine: 162
   package: com.microsoft.azure.servicebus
   syntax:
     content: public Session getSession(final String path, final Consumer<Session> onRemoteSessionOpen, final BiConsumer<ErrorCondition, Exception> onRemoteSessionOpenError)
@@ -248,6 +289,7 @@ items:
       type: 1ed0d477
     return:
       type: 29aec771
+  overridden: com.microsoft.azure.servicebus.amqp._i_session_provider.getSession(final String,final Consumer<Session>,final BiConsumer<ErrorCondition, Exception>)
 - uid: com.microsoft.azure.servicebus._messaging_factory.getTokenProvider()
   id: getTokenProvider()
   parent: com.microsoft.azure.servicebus._messaging_factory
@@ -262,7 +304,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 108
+    startLine: 112
   package: com.microsoft.azure.servicebus
   syntax:
     content: public SharedAccessSignatureTokenProvider getTokenProvider()
@@ -282,7 +324,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 282
+    startLine: 296
   package: com.microsoft.azure.servicebus
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -302,7 +344,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 213
+    startLine: 227
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onConnectionError(ErrorCondition error)
@@ -324,7 +366,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 197
+    startLine: 211
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void onOpenComplete(Exception exception)
@@ -346,7 +388,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 406
+    startLine: 420
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerForConnectionError(Link link)
@@ -368,7 +410,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 415
+    startLine: 429
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void scheduleOnReactorThread(final DispatchHandler handler)
@@ -389,7 +431,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/servicebus/MessagingFactory.java
-    startLine: 419
+    startLine: 433
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void scheduleOnReactorThread(final int delay, final DispatchHandler handler)
@@ -403,6 +445,15 @@ references:
   spec.java:
   - name: final Duration
     fullName: final Duration
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.servicebus._messaging_factory.getHostName*
+  name: getHostName
+  nameWithType: MessagingFactory.getHostName
+  fullName: String com.microsoft.azure.servicebus.MessagingFactory.getHostName
+  package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._messaging_factory.getReactorScheduler*
   name: getReactorScheduler
   nameWithType: MessagingFactory.getReactorScheduler
@@ -417,6 +468,11 @@ references:
   name: getCBSChannel
   nameWithType: MessagingFactory.getCBSChannel
   fullName: CBSChannel com.microsoft.azure.servicebus.MessagingFactory.getCBSChannel
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus._messaging_factory.getManagementChannel*
+  name: getManagementChannel
+  nameWithType: MessagingFactory.getManagementChannel
+  fullName: ManagementChannel com.microsoft.azure.servicebus.MessagingFactory.getManagementChannel
   package: com.microsoft.azure.servicebus
 - uid: 3d93591e
   spec.java:
@@ -581,7 +637,6 @@ references:
     content: public String getClientId()
     return:
       type: "26831127"
-- uid: com.microsoft.azure.servicebus._messaging_factory.getHostName()
 - uid: com.microsoft.azure.servicebus._client_entity.getIsClosed()
 - uid: com.microsoft.azure.servicebus._client_entity.getIsClosingOrClosed()
 - uid: com.microsoft.azure.servicebus._client_entity.getLastKnownError()
@@ -637,6 +692,15 @@ references:
   type: Interface
   syntax:
     content: public interface IAmqpConnection
+- uid: com.microsoft.azure.servicebus.amqp._i_session_provider
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._i_session_provider.yml
+  name: ISessionProvider
+  nameWithType: ISessionProvider
+  fullName: com.microsoft.azure.servicebus.amqp.ISessionProvider
+  type: Interface
+  syntax:
+    content: public interface ISessionProvider
 - uid: com.microsoft.azure.servicebus.amqp._connection_handler
   parent: com.microsoft.azure.servicebus.amqp
   href: com.microsoft.azure.servicebus.amqp._connection_handler.yml
@@ -677,6 +741,15 @@ references:
   type: Class
   syntax:
     content: public class CBSChannel
+- uid: com.microsoft.azure.servicebus._management_channel
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._management_channel.yml
+  name: ManagementChannel
+  nameWithType: ManagementChannel
+  fullName: com.microsoft.azure.servicebus.ManagementChannel
+  type: Class
+  syntax:
+    content: public class ManagementChannel
 - uid: com.microsoft.azure.servicebus._retry_policy
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._retry_policy.yml
@@ -712,15 +785,24 @@ references:
     <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>
   syntax:
     content: public class ConnectionStringBuilder
-- uid: com.microsoft.azure.servicebus.amqp._reactor_handler
-  parent: com.microsoft.azure.servicebus.amqp
-  href: com.microsoft.azure.servicebus.amqp._reactor_handler.yml
-  name: ReactorHandler
-  nameWithType: ReactorHandler
-  fullName: com.microsoft.azure.servicebus.amqp.ReactorHandler
-  type: Class
+- uid: com.microsoft.azure.servicebus.amqp._i_session_provider.getSession(final String,final Consumer<Session>,final BiConsumer<ErrorCondition, Exception>)
+  parent: com.microsoft.azure.servicebus.amqp._i_session_provider
+  href: com.microsoft.azure.servicebus.amqp._i_session_provider.yml
+  name: getSession(final String path, final Consumer<Session> onSessionOpen, final BiConsumer<ErrorCondition, Exception> onSessionOpenError)
+  nameWithType: ISessionProvider.getSession(final String path, final Consumer<Session> onSessionOpen, final BiConsumer<ErrorCondition, Exception> onSessionOpenError)
+  fullName: Session com.microsoft.azure.servicebus.amqp.ISessionProvider.getSession(final String path, final Consumer<Session> onSessionOpen, final BiConsumer<ErrorCondition, Exception> onSessionOpenError)
+  type: Method
   syntax:
-    content: public class ReactorHandler
+    content: public Session getSession(final String path, final Consumer<Session> onSessionOpen, final BiConsumer<ErrorCondition, Exception> onSessionOpenError)
+    parameters:
+    - id: path
+      type: 3d93591e
+    - id: onSessionOpen
+      type: acf4f1fb
+    - id: onSessionOpenError
+      type: 1ed0d477
+    return:
+      type: 29aec771
 - uid: com.microsoft.azure.servicebus.amqp._i_amqp_connection.onOpenComplete(Exception)
   parent: com.microsoft.azure.servicebus.amqp._i_amqp_connection
   href: com.microsoft.azure.servicebus.amqp._i_amqp_connection.yml
@@ -778,3 +860,12 @@ references:
   type: Class
   syntax:
     content: public class DispatchHandler
+- uid: com.microsoft.azure.servicebus.amqp._reactor_handler
+  parent: com.microsoft.azure.servicebus.amqp
+  href: com.microsoft.azure.servicebus.amqp._reactor_handler.yml
+  name: ReactorHandler
+  nameWithType: ReactorHandler
+  fullName: com.microsoft.azure.servicebus.amqp.ReactorHandler
+  type: Class
+  syntax:
+    content: public class ReactorHandler
