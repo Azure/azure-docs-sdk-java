@@ -16,6 +16,7 @@ ms.service: storage
 # Azure Storage SDK for Java
 
 ## Overview
+> [THIS PAGE IS A TEMPLATE FOR DISCUSSION ONLY]
 
 The [Azure Storage](https://docs.microsoft.com/azure/storage/) SDK provides APIs for accessing and managing Azure cloud storage services.
 
