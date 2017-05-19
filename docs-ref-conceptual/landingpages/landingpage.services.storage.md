@@ -13,11 +13,11 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage client libraries
+# Azure Storage libraries
 
 ## Overview
 
-[Azure Storage](https://docs.microsoft.com/azure/storage/) lets you read and write objects, table data in cloud storage. Azure Storage also has queues that apps can use to send messages to other applications, and applications can share storage through mounted SMB file shares.
+Read and write objects and table data to [Azure Storage](https://docs.microsoft.com/azure/storage/) from your Java applications. Define and send messages with queues and mount shared  filesystems to share data between applications.
 
 ## Import the client libraries
 
@@ -33,7 +33,7 @@ Add the following dependency to your Maven project's `pom.xml` file.
 
 ## Samples
 
-Explore [sample Java code and applications](https://azure.microsoft.com/resources/samples/?platform=java)
+Explore [sample Java code and applications](https://azure.microsoft.com/resources/samples/?platform=java).
    
 
 <h2 class="accented">Packages</h2>
