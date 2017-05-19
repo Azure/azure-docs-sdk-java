@@ -19,7 +19,7 @@ ms.service: storage
 
 Read and write objects and table data to [Azure Storage](https://docs.microsoft.com/azure/storage/) from your Java applications. Define and send messages with queues and mount shared  filesystems to share data between applications.
 
-## Import the client libraries
+## Import the libraries
 
 Add the following dependency to your Maven project's `pom.xml` file. 
 
