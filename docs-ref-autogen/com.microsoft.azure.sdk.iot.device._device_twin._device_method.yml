@@ -3,7 +3,7 @@ items:
   id: _device_method
   parent: com.microsoft.azure.sdk.iot.device._device_twin
   children:
-  - com.microsoft.azure.sdk.iot.device._device_twin._device_method.DeviceMethod(DeviceClient,DeviceClientConfig,IotHubEventCallback,Object)
+  - com.microsoft.azure.sdk.iot.device._device_twin._device_method.DeviceMethod(DeviceIO,DeviceClientConfig,IotHubEventCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_twin._device_method.subscribeToDeviceMethod(DeviceMethodCallback,Object)
   href: com.microsoft.azure.sdk.iot.device._device_twin._device_method.yml
   langs:
@@ -26,15 +26,15 @@ items:
   - java.lang.Object
   inheritedMembers:
   - com.microsoft.azure.sdk.iot.device._device_twin._device_method.logger()
-- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_method.DeviceMethod(DeviceClient,DeviceClientConfig,IotHubEventCallback,Object)
-  id: DeviceMethod(DeviceClient,DeviceClientConfig,IotHubEventCallback,Object)
+- uid: com.microsoft.azure.sdk.iot.device._device_twin._device_method.DeviceMethod(DeviceIO,DeviceClientConfig,IotHubEventCallback,Object)
+  id: DeviceMethod(DeviceIO,DeviceClientConfig,IotHubEventCallback,Object)
   parent: com.microsoft.azure.sdk.iot.device._device_twin._device_method
   href: com.microsoft.azure.sdk.iot.device._device_twin._device_method.yml
   langs:
   - java
-  name: DeviceMethod(DeviceClient client, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
-  nameWithType: DeviceMethod.DeviceMethod(DeviceClient client, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
-  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethod.DeviceMethod(DeviceClient client, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+  name: DeviceMethod(DeviceIO deviceIO, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+  nameWithType: DeviceMethod.DeviceMethod(DeviceIO deviceIO, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.DeviceMethod.DeviceMethod(DeviceIO deviceIO, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
   overload: com.microsoft.azure.sdk.iot.device._device_twin._device_method.DeviceMethod*
   type: Constructor
   source:
@@ -44,10 +44,10 @@ items:
   package: com.microsoft.azure.sdk.iot.device._device_twin
   summary: <p>This constructor creates an instance of device method class which helps facilitate the interation for device methods between the user and IotHub. </p>
   syntax:
-    content: public DeviceMethod(DeviceClient client, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
+    content: public DeviceMethod(DeviceIO deviceIO, DeviceClientConfig config, IotHubEventCallback deviceMethodStatusCallback, Object deviceMethodStatusCallbackContext)
     parameters:
-    - id: client
-      type: com.microsoft.azure.sdk.iot.device._device_client
+    - id: deviceIO
+      type: com.microsoft.azure.sdk.iot.device._device_i_o
       description: >-
         <p>
 
@@ -66,7 +66,7 @@ items:
       description: <p>Context to be passed when device method status is invoked. Can be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting></p>
   exceptions:
   - type: 3c87bd19
-    description: <p>This exception is thrown if either client or config or deviceMethodStatusCallback are null </p>
+    description: <p>This exception is thrown if either deviceIO or config or deviceMethodStatusCallback are null </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_twin._device_method.subscribeToDeviceMethod(DeviceMethodCallback,Object)
   id: subscribeToDeviceMethod(DeviceMethodCallback,Object)
   parent: com.microsoft.azure.sdk.iot.device._device_twin._device_method
@@ -148,23 +148,67 @@ references:
   summary: <p>This class enables mocking of the base class wait and notify functions </p>
   syntax:
     content: public class ObjectLock
-- uid: com.microsoft.azure.sdk.iot.device._device_client
+- uid: com.microsoft.azure.sdk.iot.device._device_i_o
   parent: com.microsoft.azure.sdk.iot.device
-  href: com.microsoft.azure.sdk.iot.device._device_client.yml
-  name: DeviceClient
-  nameWithType: DeviceClient
-  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient
+  href: com.microsoft.azure.sdk.iot.device._device_i_o.yml
+  name: DeviceIO
+  nameWithType: DeviceIO
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceIO
   type: Class
   summary: >-
-    <p>The public-facing API. Allows a single logical or physical device to connect to an IoT Hub. The IoT Hub client supports sending events to and receiving messages from an IoT Hub. </p>
+    <p>Implement the standard I/O interface with the IoTHub.</p>
 
-    <p>To support these workflows, the client library will provide the following abstractions: a message, with its payload and associated properties; and a client, which sends and receives messages. </p>
+    <p>+----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | | | <xref href="com.microsoft.azure.sdk.iot.device._device_client" data-throw-if-not-resolved="false"></xref> |--------------<mdash></mdash>&gt;| <xref href="com.microsoft.azure.sdk.iot.device._device_client_config" data-throw-if-not-resolved="false"></xref> | | | | | +----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | \/ | +----------------------------------------------------------------------<mdash></mdash>+ | | Services | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | | | Telemetry | | DeviceTwin | | DeviceMethod | | FileUpload | | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | +----------------------------------------------------------------------<mdash></mdash>+ | | \/ \/ <heading level="6"></heading></p>
 
-    <p>The client buffers messages while the network is down, and re-sends them when the network comes back online. It also batches messages to improve communication efficiency (HTTPS only). </p>
+    <p>
 
-    <p>The client supports HTTPS 1.1 and AMQPS 1.0 transports. </p>
+      <heading level="1">
+
+        <xref href="com.microsoft.azure.sdk.iot.device._device_i_o" data-throw-if-not-resolved="false"></xref>
+
+      </heading>
+
+    </p>
+
+    <p>
+
+      <heading level="1">+-------------<mdash></mdash>+ +----------------------------------<mdash></mdash>+ +---------<mdash></mdash>+</heading>
+
+    </p>
+
+    <p>
+
+      <heading level="1">| | | open | | |</heading>
+
+    </p>
+
+    <p>
+
+      <heading level="1">| sendEventAsync | | +------------<mdash></mdash>+ | | close |</heading>
+
+    </p>
+
+    <p>
+
+      <heading level="1">| | | | taskScheduler | | | |</heading>
+
+    </p>
+
+    <p>
+
+      <heading level="1">+-----<mdash></mdash>+----<mdash></mdash>+ +<ndash></ndash>+-------------<mdash></mdash>+<ndash></ndash>+------<mdash></mdash>+<ndash></ndash>+-+ +-----<mdash></mdash>+<mdash></mdash>+</heading>
+
+    </p>
+
+    <p>
+
+      <heading level="6">######|###############|###################|#########|##################|</heading>
+
+    </p>
+
+    <p>| | | | | | | \/ \/ | | | +-------------<mdash></mdash>+ +----------------<mdash></mdash>+ | | | | IoTHubSendTask | | IoTHubReceiveTask | | | | | +-----<mdash></mdash>+ | | +------<mdash></mdash>+ | | | | | | Run | | | | Run | | | | | +<mdash></mdash>+<mdash></mdash>+-<mdash></mdash>+<mdash></mdash>+ +-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+ | transport | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ | \/ \/ \/ \/ \/ | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessage | | handleMessage | | Close | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | +--------------------------------------------------------------------------------<mdash></mdash>+ </p>
   syntax:
-    content: public class DeviceClient
+    content: public class DeviceIO
 - uid: com.microsoft.azure.sdk.iot.device._device_client_config
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._device_client_config.yml
