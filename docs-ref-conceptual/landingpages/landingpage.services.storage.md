@@ -13,18 +13,15 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage SDK for Java
+# Azure Storage client libraries
 
 ## Overview
-> [THIS PAGE IS A TEMPLATE FOR DISCUSSION ONLY]
 
-The [Azure Storage](https://docs.microsoft.com/azure/storage/) SDK provides APIs for accessing and managing Azure cloud storage services.
+[Azure Storage](https://docs.microsoft.com/azure/storage/) lets you read and write objects, table data in cloud storage. Azure Storage also has queues that apps can use to send messages to other applications, and applications can share storage through mounted SMB file shares.
 
-## Packages
+## Import the client libraries
 
-### [Azure Storage](https://docs.microsoft.com/azure/storage/storage-introduction)  
-
-Data storage and messaging for your applications.
+Add the following dependency to your Maven project's `pom.xml` file. 
 
 ```XML
 <dependency>
@@ -36,10 +33,52 @@ Data storage and messaging for your applications.
 
 ## Samples
 
-| Sample                    | Description                                  |
-|---------------------------|----------------------------------------------|
-| (SAMPLE LINK)             | (SAMPLE DESCRIPTION)                         |
+Explore [sample Java code and applications](https://azure.microsoft.com/resources/samples/?platform=java)
+   
 
-
-## (APPEND NAMESPACES TABLE HERE)
-
+<h2 class="accented">Packages</h2>
+		<table class="nameValue">
+			<tr id="com_microsoft_azure_management_storage" data-moniker=" 0 ">
+				<td>
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.management.storage" data-linktype="relative-path">com.microsoft.azure.management.storage</a></span>
+				</td>
+				<td>
+				<p>This package contains the classes for StorageManagementClient. The Storage Management Client. </p>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage" data-linktype="relative-path">com.microsoft.azure.storage</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_analytics" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.analytics" data-linktype="relative-path">com.microsoft.azure.storage.analytics</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_blob" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.blob" data-linktype="relative-path">com.microsoft.azure.storage.blob</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_core" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.core" data-linktype="relative-path">com.microsoft.azure.storage.core</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_file" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.file" data-linktype="relative-path">com.microsoft.azure.storage.file</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_queue" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.queue" data-linktype="relative-path">com.microsoft.azure.storage.queue</a></span>
+				</td>
+			</tr>
+			<tr id="com_microsoft_azure_storage_table" data-moniker=" 0 ">
+				<td colspan="2">
+					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.table" data-linktype="relative-path">com.microsoft.azure.storage.table</a></span>
+				</td>
+			</tr>
+		</table>
