@@ -33,8 +33,8 @@ Add the following dependency to your Maven project's `pom.xml` file.
 
 ## Samples
 
-Explore [sample Java code and applications](https://azure.microsoft.com/resources/samples/?platform=java).
-   
+| [Get started with Azure Blob Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-blob-java-getting-started/) | Create, read, update and delete blobs, lock and restrict access to containers in Azure Storage. |
+| [Get started with Azure Queue Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-queue-java-getting-started/) | Create and delete queues and insert, get, peek at, and delete messages from queues. | 
 
 <h2 class="accented">Packages</h2>
 		<table class="nameValue">
