@@ -56,6 +56,8 @@ The following code writes a new file to an existing blob storage container using
 | [Get started with Azure Blob Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-blob-java-getting-started/) | Create, read, update, restrict access, and delete files and objects in Azure Storage. |
 | [Get started with Azure Queue Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-queue-java-getting-started/) | Insert, peek, retrieve and delete messages from Azure Storage queues. | 
 
+Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+
 <h2 class="accented">Packages</h2>
 		<table class="nameValue">
 			<tr id="com_microsoft_azure_management_storage" data-moniker=" 0 ">
