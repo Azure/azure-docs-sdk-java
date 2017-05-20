@@ -31,6 +31,24 @@ Add the following dependency to your Maven project's `pom.xml` file.
 </dependency>
 ```   
 
+## Example usage
+
+The following code writes a new file to an existing blob storage container using a provided [storage connection string](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).
+
+```java
+    // create a CloudBlobClient to interact with 
+	//the blob storage in this Azure Storage account
+    CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
+    CloudBlobClient serviceClient = account.createCloudBlobClient();
+
+    // Container name must be lower case.
+    CloudBlobContainer container = serviceClient.getContainerReference("testcontainer");
+
+    // write a blob to the container
+    CloudBlockBlob blob = container.getBlockBlobReference("newlogo.png");
+    blob.uploadFromFile("/Users/raisa/fabrikam.png");
+```
+
 ## Samples
 
 | | |
