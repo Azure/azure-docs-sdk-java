@@ -88,6 +88,7 @@ items:
   - com.microsoft.azure.batch.protocol.models._disable_job_option
   - com.microsoft.azure.batch.protocol.models._elevation_level
   - com.microsoft.azure.batch.protocol.models._environment_setting
+  - com.microsoft.azure.batch.protocol.models._error_category
   - com.microsoft.azure.batch.protocol.models._error_message
   - com.microsoft.azure.batch.protocol.models._exit_code_mapping
   - com.microsoft.azure.batch.protocol.models._exit_code_range_mapping
@@ -187,6 +188,7 @@ items:
   - com.microsoft.azure.batch.protocol.models._job_update_headers
   - com.microsoft.azure.batch.protocol.models._job_update_options
   - com.microsoft.azure.batch.protocol.models._job_update_parameter
+  - com.microsoft.azure.batch.protocol.models._linux_user_configuration
   - com.microsoft.azure.batch.protocol.models._metadata_item
   - com.microsoft.azure.batch.protocol.models._multi_instance_settings
   - com.microsoft.azure.batch.protocol.models._name_value_pair
@@ -202,6 +204,11 @@ items:
   - com.microsoft.azure.batch.protocol.models._o_s_type
   - com.microsoft.azure.batch.protocol.models._on_all_tasks_complete
   - com.microsoft.azure.batch.protocol.models._on_task_failure
+  - com.microsoft.azure.batch.protocol.models._output_file
+  - com.microsoft.azure.batch.protocol.models._output_file_blob_container_destination
+  - com.microsoft.azure.batch.protocol.models._output_file_destination
+  - com.microsoft.azure.batch.protocol.models._output_file_upload_condition
+  - com.microsoft.azure.batch.protocol.models._output_file_upload_options
   - com.microsoft.azure.batch.protocol.models._page_impl
   - com.microsoft.azure.batch.protocol.models._pool_add_headers
   - com.microsoft.azure.batch.protocol.models._pool_add_options
@@ -255,7 +262,6 @@ items:
   - com.microsoft.azure.batch.protocol.models._resource_file
   - com.microsoft.azure.batch.protocol.models._resource_statistics
   - com.microsoft.azure.batch.protocol.models._schedule
-  - com.microsoft.azure.batch.protocol.models._scheduling_error_category
   - com.microsoft.azure.batch.protocol.models._scheduling_state
   - com.microsoft.azure.batch.protocol.models._start_task
   - com.microsoft.azure.batch.protocol.models._start_task_information
@@ -276,6 +282,8 @@ items:
   - com.microsoft.azure.batch.protocol.models._task_delete_options
   - com.microsoft.azure.batch.protocol.models._task_dependencies
   - com.microsoft.azure.batch.protocol.models._task_execution_information
+  - com.microsoft.azure.batch.protocol.models._task_execution_result
+  - com.microsoft.azure.batch.protocol.models._task_failure_information
   - com.microsoft.azure.batch.protocol.models._task_get_headers
   - com.microsoft.azure.batch.protocol.models._task_get_options
   - com.microsoft.azure.batch.protocol.models._task_id_range
@@ -287,7 +295,6 @@ items:
   - com.microsoft.azure.batch.protocol.models._task_list_subtasks_options
   - com.microsoft.azure.batch.protocol.models._task_reactivate_headers
   - com.microsoft.azure.batch.protocol.models._task_reactivate_options
-  - com.microsoft.azure.batch.protocol.models._task_scheduling_error
   - com.microsoft.azure.batch.protocol.models._task_scheduling_policy
   - com.microsoft.azure.batch.protocol.models._task_state
   - com.microsoft.azure.batch.protocol.models._task_statistics
@@ -1126,7 +1133,7 @@ references:
   nameWithType: ComputeNodeUser
   fullName: com.microsoft.azure.batch.protocol.models.ComputeNodeUser
   type: Class
-  summary: <p>A user account on a compute node. </p>
+  summary: <p>A user account for RDP or SSH access on a compute node. </p>
   syntax:
     content: public class ComputeNodeUser
 - uid: com.microsoft.azure.batch.protocol.models._delete_certificate_error
@@ -1189,6 +1196,16 @@ references:
   summary: <p>An environment variable to be set on a task process. </p>
   syntax:
     content: public class EnvironmentSetting
+- uid: com.microsoft.azure.batch.protocol.models._error_category
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._error_category.yml
+  name: ErrorCategory
+  nameWithType: ErrorCategory
+  fullName: com.microsoft.azure.batch.protocol.models.ErrorCategory
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._error_category" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum ErrorCategory
 - uid: com.microsoft.azure.batch.protocol.models._error_message
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._error_message.yml
@@ -2179,6 +2196,16 @@ references:
   summary: <p>The set of changes to be made to a job. </p>
   syntax:
     content: public class JobUpdateParameter
+- uid: com.microsoft.azure.batch.protocol.models._linux_user_configuration
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._linux_user_configuration.yml
+  name: LinuxUserConfiguration
+  nameWithType: LinuxUserConfiguration
+  fullName: com.microsoft.azure.batch.protocol.models.LinuxUserConfiguration
+  type: Class
+  summary: <p>Properties used to create a user account on a Linux node. </p>
+  syntax:
+    content: public class LinuxUserConfiguration
 - uid: com.microsoft.azure.batch.protocol.models._metadata_item
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._metadata_item.yml
@@ -2329,6 +2356,56 @@ references:
   summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._o_s_type" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public enum OSType
+- uid: com.microsoft.azure.batch.protocol.models._output_file
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._output_file.yml
+  name: OutputFile
+  nameWithType: OutputFile
+  fullName: com.microsoft.azure.batch.protocol.models.OutputFile
+  type: Class
+  summary: <p>A specification for uploading files from an Azure Batch node to another location after the Batch service has finished executing the task process. </p>
+  syntax:
+    content: public class OutputFile
+- uid: com.microsoft.azure.batch.protocol.models._output_file_blob_container_destination
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._output_file_blob_container_destination.yml
+  name: OutputFileBlobContainerDestination
+  nameWithType: OutputFileBlobContainerDestination
+  fullName: com.microsoft.azure.batch.protocol.models.OutputFileBlobContainerDestination
+  type: Class
+  summary: <p>Specifies a file upload destination within an Azure blob storage container. </p>
+  syntax:
+    content: public class OutputFileBlobContainerDestination
+- uid: com.microsoft.azure.batch.protocol.models._output_file_destination
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._output_file_destination.yml
+  name: OutputFileDestination
+  nameWithType: OutputFileDestination
+  fullName: com.microsoft.azure.batch.protocol.models.OutputFileDestination
+  type: Class
+  summary: <p>The destination to which a file should be uploaded. </p>
+  syntax:
+    content: public class OutputFileDestination
+- uid: com.microsoft.azure.batch.protocol.models._output_file_upload_condition
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._output_file_upload_condition.yml
+  name: OutputFileUploadCondition
+  nameWithType: OutputFileUploadCondition
+  fullName: com.microsoft.azure.batch.protocol.models.OutputFileUploadCondition
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._output_file_upload_condition" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum OutputFileUploadCondition
+- uid: com.microsoft.azure.batch.protocol.models._output_file_upload_options
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._output_file_upload_options.yml
+  name: OutputFileUploadOptions
+  nameWithType: OutputFileUploadOptions
+  fullName: com.microsoft.azure.batch.protocol.models.OutputFileUploadOptions
+  type: Class
+  summary: <p>Details about an output file upload operation, including under what conditions to perform the upload. </p>
+  syntax:
+    content: public class OutputFileUploadOptions
 - uid: com.microsoft.azure.batch.protocol.models._page_impl
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._page_impl.yml
@@ -2865,16 +2942,6 @@ references:
   summary: <p>The schedule according to which jobs will be created. </p>
   syntax:
     content: public class Schedule
-- uid: com.microsoft.azure.batch.protocol.models._scheduling_error_category
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models._scheduling_error_category.yml
-  name: SchedulingErrorCategory
-  nameWithType: SchedulingErrorCategory
-  fullName: com.microsoft.azure.batch.protocol.models.SchedulingErrorCategory
-  type: Enum
-  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._scheduling_error_category" data-throw-if-not-resolved="false"></xref>. </p>
-  syntax:
-    content: public enum SchedulingErrorCategory
 - uid: com.microsoft.azure.batch.protocol.models._scheduling_state
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._scheduling_state.yml
@@ -3075,6 +3142,26 @@ references:
   summary: <p>Information about the execution of a task. </p>
   syntax:
     content: public class TaskExecutionInformation
+- uid: com.microsoft.azure.batch.protocol.models._task_execution_result
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._task_execution_result.yml
+  name: TaskExecutionResult
+  nameWithType: TaskExecutionResult
+  fullName: com.microsoft.azure.batch.protocol.models.TaskExecutionResult
+  type: Enum
+  summary: <p>Defines values for <xref href="com.microsoft.azure.batch.protocol.models._task_execution_result" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public enum TaskExecutionResult
+- uid: com.microsoft.azure.batch.protocol.models._task_failure_information
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._task_failure_information.yml
+  name: TaskFailureInformation
+  nameWithType: TaskFailureInformation
+  fullName: com.microsoft.azure.batch.protocol.models.TaskFailureInformation
+  type: Class
+  summary: <p>Information about a task failure. </p>
+  syntax:
+    content: public class TaskFailureInformation
 - uid: com.microsoft.azure.batch.protocol.models._task_get_headers
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._task_get_headers.yml
@@ -3185,16 +3272,6 @@ references:
   summary: <p>Additional parameters for the Task_reactivate operation. </p>
   syntax:
     content: public class TaskReactivateOptions
-- uid: com.microsoft.azure.batch.protocol.models._task_scheduling_error
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models._task_scheduling_error.yml
-  name: TaskSchedulingError
-  nameWithType: TaskSchedulingError
-  fullName: com.microsoft.azure.batch.protocol.models.TaskSchedulingError
-  type: Class
-  summary: <p>Information about an error when scheduling a task. </p>
-  syntax:
-    content: public class TaskSchedulingError
 - uid: com.microsoft.azure.batch.protocol.models._task_scheduling_policy
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._task_scheduling_policy.yml
@@ -3292,7 +3369,7 @@ references:
   nameWithType: UserAccount
   fullName: com.microsoft.azure.batch.protocol.models.UserAccount
   type: Class
-  summary: <p>Properties used to create a user on an Azure Batch node. </p>
+  summary: <p>Properties used to create a user used to execute tasks on an Azure Batch node. </p>
   syntax:
     content: public class UserAccount
 - uid: com.microsoft.azure.batch.protocol.models._user_identity
