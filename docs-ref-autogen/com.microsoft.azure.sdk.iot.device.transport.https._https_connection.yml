@@ -3,20 +3,16 @@ items:
   id: _https_connection
   parent: com.microsoft.azure.sdk.iot.device.transport.https
   children:
-  - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.body()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connect()
-  - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connection()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.getResponseHeaders()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.getResponseStatus()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.HttpsConnection()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.HttpsConnection(URL,HttpsMethod)
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readError()
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readInput()
-  - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readInputStream(InputStream)
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setReadTimeoutMillis(int)
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setRequestHeader(String,String)
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setRequestMethod(HttpsMethod)
-  - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext(SSLContext)
   - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.writeOutput(byte [])
   href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
   langs:
@@ -31,7 +27,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 31
+    startLine: 30
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>A wrapper for the Java SE class <ref refid="" kindref="compound">HttpsURLConnection</ref>. Used to avoid compatibility issues when testing with the mocking framework JMockit, as well as to avoid some undocumented side effects when using HttpsURLConnection. </p>
@@ -41,26 +37,8 @@ items:
     content: public class HttpsConnection
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.body()
-  id: body()
-  parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
-  href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
-  langs:
-  - java
-  name: body
-  nameWithType: HttpsConnection.body
-  fullName: byte [] com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.body
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 41
-  package: com.microsoft.azure.sdk.iot.device.transport.https
-  summary: <p>The body. <ref refid="" kindref="compound">HttpsURLConnection</ref> silently calls <xref href="com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connect()" data-throw-if-not-resolved="false"></xref> when the output stream is written to. We buffer the body and defer writing to the output stream until <xref href="com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connect()" data-throw-if-not-resolved="false"></xref> is called. </p>
-  syntax:
-    content: protected byte [] body
-    return:
-      type: ccd9418d
+  inheritedMembers:
+  - com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext(SSLContext)
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connect()
   id: connect()
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
@@ -75,7 +53,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 78
+    startLine: 77
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Sends the request to the URL given in the constructor.</p>
@@ -86,26 +64,6 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if the connection could not be established, or the server responded with a bad status code. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connection()
-  id: connection()
-  parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
-  href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
-  langs:
-  - java
-  name: connection
-  nameWithType: HttpsConnection.connection
-  fullName: final HttpsURLConnection com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.connection
-  type: Field
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 34
-  package: com.microsoft.azure.sdk.iot.device.transport.https
-  summary: <p>The underlying HTTPS connection. </p>
-  syntax:
-    content: protected final HttpsURLConnection connection
-    return:
-      type: 9d854a40
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.getResponseHeaders()
   id: getResponseHeaders()
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
@@ -120,7 +78,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 250
+    startLine: 248
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Returns the response headers as a <ref refid="" kindref="compound">Map</ref>, where the key is the header field name and the values are the values associated with the header field name.</p>
@@ -130,10 +88,7 @@ items:
     content: public Map<String, List<String>> getResponseHeaders()
     return:
       type: b2319095
-      description: <p>the response headers.</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>if no response was received. </p>
+      description: <p>the response headers. </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.getResponseStatus()
   id: getResponseStatus()
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
@@ -148,7 +103,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 234
+    startLine: 233
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Returns the response status code.</p>
@@ -176,7 +131,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 299
+    startLine: 298
   package: com.microsoft.azure.sdk.iot.device.transport.https
   syntax:
     content: protected HttpsConnection()
@@ -194,7 +149,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 51
+    startLine: 50
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Constructor. Opens a connection to the given URL.</p>
@@ -226,7 +181,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 209
+    startLine: 208
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Reads from the error stream and returns the error reason.</p>
@@ -254,7 +209,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 189
+    startLine: 188
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Reads from the input stream (response stream) and returns the response.</p>
@@ -268,38 +223,6 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if the input stream could not be accessed, for example if the server could not be reached. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readInputStream(InputStream)
-  id: readInputStream(InputStream)
-  parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
-  href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
-  langs:
-  - java
-  name: readInputStream(InputStream stream)
-  nameWithType: HttpsConnection.readInputStream(InputStream stream)
-  fullName: static byte [] com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.readInputStream(InputStream stream)
-  overload: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readInputStream*
-  type: Method
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 266
-  package: com.microsoft.azure.sdk.iot.device.transport.https
-  summary: >-
-    <p>Reads the input stream until the stream is empty.</p>
-
-    <p></p>
-  syntax:
-    content: protected static byte [] readInputStream(InputStream stream)
-    parameters:
-    - id: stream
-      type: 76fcb9b7
-      description: <p>the input stream.</p>
-    return:
-      type: ccd9418d
-      description: <p>the content of the input stream.</p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>if the input stream could not be read from. </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setReadTimeoutMillis(int)
   id: setReadTimeoutMillis(int)
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
@@ -314,7 +237,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 144
+    startLine: 143
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Sets the read timeout in milliseconds. The read timeout is the number of milliseconds after the server receives a request and before the server sends data back.</p>
@@ -340,7 +263,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 131
+    startLine: 130
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Sets the request header field to the given value.</p>
@@ -369,7 +292,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 101
+    startLine: 100
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Sets the request method (i.e. POST).</p>
@@ -384,27 +307,6 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the request currently has a non-empty body and the new method is not a POST or a PUT. This is because Java's <ref refid="" kindref="compound">HttpsURLConnection</ref> silently converts the HTTPS method to POST or PUT if a body is written to the request. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext(SSLContext)
-  id: setSSLContext(SSLContext)
-  parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
-  href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
-  langs:
-  - java
-  name: setSSLContext(SSLContext sslContext)
-  nameWithType: HttpsConnection.setSSLContext(SSLContext sslContext)
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.setSSLContext(SSLContext sslContext)
-  overload: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext*
-  type: Method
-  source:
-    remote: *o0
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 288
-  package: com.microsoft.azure.sdk.iot.device.transport.https
-  syntax:
-    content: protected void setSSLContext(SSLContext sslContext)
-    parameters:
-    - id: sslContext
-      type: 13e89c07
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.writeOutput(byte [])
   id: writeOutput(byte [])
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
@@ -419,7 +321,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/https/HttpsConnection.java
-    startLine: 160
+    startLine: 159
   package: com.microsoft.azure.sdk.iot.device.transport.https
   summary: >-
     <p>Saves the body to be sent with the request.</p>
@@ -435,14 +337,6 @@ items:
   - type: 3c87bd19
     description: <p>if the request does not currently use method POST or PUT and the body is non-empty. This is because Java's <ref refid="" kindref="compound">HttpsURLConnection</ref> silently converts the HTTPS method to POST or PUT if a body is written to the request. </p>
 references:
-- uid: 9d854a40
-  spec.java:
-  - name: final HttpsURLConnection
-    fullName: final HttpsURLConnection
-- uid: ccd9418d
-  spec.java:
-  - name: byte []
-    fullName: byte []
 - uid: cbf33bbe
   spec.java:
   - name: IOException
@@ -488,6 +382,10 @@ references:
   nameWithType: HttpsConnection.setReadTimeoutMillis
   fullName: void com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.setReadTimeoutMillis
   package: com.microsoft.azure.sdk.iot.device.transport.https
+- uid: ccd9418d
+  spec.java:
+  - name: byte []
+    fullName: byte []
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.writeOutput*
   name: writeOutput
   nameWithType: HttpsConnection.writeOutput
@@ -517,24 +415,7 @@ references:
   nameWithType: HttpsConnection.getResponseHeaders
   fullName: Map<String, List<String>> com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.getResponseHeaders
   package: com.microsoft.azure.sdk.iot.device.transport.https
-- uid: 76fcb9b7
-  spec.java:
-  - name: InputStream
-    fullName: InputStream
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.readInputStream*
-  name: readInputStream
-  nameWithType: HttpsConnection.readInputStream
-  fullName: static byte [] com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.readInputStream
-  package: com.microsoft.azure.sdk.iot.device.transport.https
-- uid: 13e89c07
-  spec.java:
-  - name: SSLContext
-    fullName: SSLContext
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext*
-  name: setSSLContext
-  nameWithType: HttpsConnection.setSSLContext
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.https.HttpsConnection.setSSLContext
-  package: com.microsoft.azure.sdk.iot.device.transport.https
+- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.setSSLContext(SSLContext)
 - uid: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.connect()
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_connection
   href: com.microsoft.azure.sdk.iot.device.transport.https._https_connection.yml
