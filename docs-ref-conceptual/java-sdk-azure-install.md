@@ -53,7 +53,7 @@ Data storage and messaging for your applications.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-storage</artifactId>
-    <version>5.0.0</version>
+    <version>5.2.0</version>
 </dependency>
 ```   
 
@@ -95,7 +95,7 @@ Low-latency, high-performance key-value store.
 
 <a name="documentdb"></a>
 
-### [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-introduction)
+### [CosmosDB](https://docs.microsoft.com/azure/documentdb/documentdb-introduction)
 
 Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax.   
 
@@ -103,7 +103,7 @@ Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-documentdb</artifactId>
-    <version>1.10.0</version>
+    <version>1.11.0</version>
 </dependency>
 ```
 
@@ -119,7 +119,7 @@ Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/
 <dependency>
   <groupId>org.apache.qpid</groupId>
   <artifactId>qpid-jms-client</artifactId>
-  <version>0.22.0</version>
+  <version>0.23.0</version>
 </dependency>
 ```
 
@@ -167,7 +167,7 @@ High-throughput event and telemetry handling for your instrumentation or IoT sce
 <dependency> 
     <groupId>com.microsoft.azure</groupId> 
     <artifactId>azure-eventhubs</artifactId> 
-    <version>0.13.1</version> 
+    <version>0.14.0</version> 
 </dependency>   
 ```
 
@@ -183,7 +183,7 @@ Manage identities, send messages, and get feedback from devices registered with 
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-service-client</artifactId>
-    <version>1.3.19</version>
+    <version>1.4.20</version>
 </dependency>
 ```   
    
@@ -199,7 +199,7 @@ Send a message to an IoT hub from your device.
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-device-client</artifactId>
-    <version>1.1.25</version>
+    <version>1.1.27</version>
 </dependency>
 ```  
 
@@ -215,7 +215,7 @@ Capture data of any size and shape into a single location for performing analyti
 <dependency>
    <groupId>com.microsoft.azure</groupId>
    <artifactId>azure-data-lake-store-sdk</artifactId>
-   <version>2.1.4</version>
+   <version>2.1.5</version>
 </dependency>
 ```   
 
@@ -247,7 +247,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-batch</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
