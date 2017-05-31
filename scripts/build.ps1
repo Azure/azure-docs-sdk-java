@@ -37,6 +37,7 @@ $scriptHome = Split-Path $scriptPath
 $scriptParent = Split-Path $scriptHome
 $apiref = "docs-ref-autogen"
 $code2yamlZip = "code2yaml.zip"
+$code2yamlArtifact = "https://ci.appveyor.com/api/projects/ansyral/code2yaml/artifacts/code2yaml.zip?branch=azuredocs"
 $code2yaml = "code2yaml"
 $src = "src"
 Push-Location $scriptParent
@@ -46,6 +47,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 if (Test-Path $code2yaml){
     Remove-Item $code2yaml\* -recurse -Force
 }
+Invoke-WebRequest $code2yamlArtifact -OutFile $scriptHome\$code2yamlZip
 Unzip $scriptHome\$code2yamlZip $scriptParent\$code2yaml
 
 # update config
