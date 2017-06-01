@@ -1,9 +1,8 @@
 ---
 uid: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
-summary: *content
+summary: Receives a batch of [EventData](/java/api/com.microsoft.azure.eventhubs._event_data) objects from an Event Hubs partition.
+remarks: *content
 ---
-
-Receives a batch of [EventData](/java/api/com.microsoft.azure.eventhubs._event_data) objects from an Event Hubs partition.
 
 The following sample code uses the synchronous version of the API, but the concepts are the same:
 
