@@ -47,7 +47,7 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 
 ## Example
 
-Retrieve A JSON Web Token for a user in your an Active Directory tenant using Azure Active Directory's [Graph API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-graph-api). This token can then be used to authenticate the user with a web API or application.
+Retrieve a JSON Web Token for a user in your an Active Directory tenant using Azure Active Directory's [Graph API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-graph-api). This token can then be used to authenticate the user with a web API or application.
 
 ```java
 ExecutorService service = Executors.newFixedThreadPool(1);
