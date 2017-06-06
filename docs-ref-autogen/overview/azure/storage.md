@@ -17,7 +17,12 @@ ms.service: storage
 
 ## Overview
 
-Use the Azure Storage client libraries to read and write objects and files from [Azure Blob storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage) and send and receive messages between cloud-connected applications with [Azure Queue storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-queue-storage). The client libraries also provide interfaces for working with large structured data with [Azure Table storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-table-storage) and mounted shared file systems with [Azure File storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-file-storage).
+Use the Azure Storage client libraries to:
+
+- Read and write objects and files from [Azure Blob storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage)
+- Send and receive messages between cloud-connected applications with [Azure Queue storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-queue-storage)
+- Read and write large structured data with [Azure Table storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-table-storage) 
+- Share storage between apps with [Azure File storage](https://docs.microsoft.com/azure/storage/storage-java-how-to-use-file-storage)
 
 Create, update, and manage Azure Storage accounts and query and regenerate access keys from your Java code with the management libraries.
 

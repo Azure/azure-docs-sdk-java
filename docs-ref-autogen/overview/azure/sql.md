@@ -19,7 +19,7 @@ ms.service: appservice
 
 Work with data stored in  [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)  from Java with the Azure SQL database JDBC driver. The driver can be used to issue SQL queries directly from your code through JDBC or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
 
-The management libraries provide an interface to create, manage, and scale Azure SQL Database deployments from your Java code. Set up and manage databases in [elastic pools](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool) to share resources and configure databases across multiple regions from your Java code.
+The management libraries provide an interface to create, manage, and scale Azure SQL Database deployments from your Java code. Set up and manage databases in [elastic pools](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool) to share resources and configure databases across multiple regions from your code.
 
 ## Import the libraries
 
