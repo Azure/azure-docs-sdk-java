@@ -17,7 +17,7 @@ ms.service: compute
 
 ## Overview
 
-Define, configure, and deploy new Windows and Linux virtual machines and virtual machine scale sets with the Azure management libraries for Java. The libraries also let start, stop, and deallocate existing virtual machines in your subscription and work with managed and unmanaged disks and images.
+Define, configure, and deploy new Windows and Linux virtual machines and virtual machine scale sets from your code with the Azure management libraries for Java. The libraries also let start and stop existing virtual machines and attach or detach disks to stopped VMs in your subscription.
 
 ## Import the libraries
 
