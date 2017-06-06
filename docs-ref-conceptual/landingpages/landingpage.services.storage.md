@@ -1,5 +1,5 @@
 ---
-title: Azure Storage SDK for Java
+title: Azure Storage libraries for Java
 description: 
 keywords: Azure, Java, SDK, API, Storage
 author: douge
@@ -17,11 +17,13 @@ ms.service: storage
 
 ## Overview
 
-Read and write objects and table data to [Azure Storage](https://docs.microsoft.com/azure/storage/) from your Java applications. Define and send messages with queues and mount shared  filesystems to share data between applications.
+Read and write objects and send messages between your Java apps with the [Azure Storage](https://docs.microsoft.com/azure/storage/) client libraries. Create, update, and manage Azure Storage accounts from Java code with the management libraries.
 
 ## Import the libraries
 
-Add the following dependency to your Maven project's `pom.xml` file. 
+Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+
+### Client 
 
 ```XML
 <dependency>
@@ -31,9 +33,19 @@ Add the following dependency to your Maven project's `pom.xml` file.
 </dependency>
 ```   
 
-## Example usage
+### Management
 
-The following code writes a new file to an existing blob storage container using a provided [storage connection string](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).
+```XML
+dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-storage</artifactId>
+    <version>1.0.0</version>
+</dependency
+```   
+
+## Example
+
+Write a new blob to an existing storage container using a provided [storage account connection string](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string).
 
 ```java
     // create a CloudBlobClient to interact with 
@@ -55,52 +67,6 @@ The following code writes a new file to an existing blob storage container using
 |--|--|
 | [Get started with Azure Blob Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-blob-java-getting-started/) | Create, read, update, restrict access, and delete files and objects in Azure Storage. |
 | [Get started with Azure Queue Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-queue-java-getting-started/) | Insert, peek, retrieve and delete messages from Azure Storage queues. | 
+| [Manage Azure Storage accounts](java-sdk-manage-storage-accounts.md) | Create, update , and delete storage accounts. Retrieve and regenerate storage account access keys.
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
-
-<h2 class="accented">Packages</h2>
-		<table class="nameValue">
-			<tr id="com_microsoft_azure_management_storage" data-moniker=" 0 ">
-				<td>
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.management.storage" data-linktype="relative-path">com.microsoft.azure.management.storage</a></span>
-				</td>
-				<td>
-				<p>This package contains the classes for StorageManagementClient. The Storage Management Client. </p>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage" data-linktype="relative-path">com.microsoft.azure.storage</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_analytics" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.analytics" data-linktype="relative-path">com.microsoft.azure.storage.analytics</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_blob" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.blob" data-linktype="relative-path">com.microsoft.azure.storage.blob</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_core" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.core" data-linktype="relative-path">com.microsoft.azure.storage.core</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_file" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.file" data-linktype="relative-path">com.microsoft.azure.storage.file</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_queue" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.queue" data-linktype="relative-path">com.microsoft.azure.storage.queue</a></span>
-				</td>
-			</tr>
-			<tr id="com_microsoft_azure_storage_table" data-moniker=" 0 ">
-				<td colspan="2">
-					<span class="lang-java"><a class="xref" href="../../com.microsoft.azure.storage.table" data-linktype="relative-path">com.microsoft.azure.storage.table</a></span>
-				</td>
-			</tr>
-		</table>
