@@ -17,7 +17,7 @@ ms.service: appservice
 
 ## Overview
 
-Authenticate users and manage access controls to your applications with Azure Active Directory.
+Authenticate users and control access to your applications with Azure Active Directory.
 
 ## Import the libraries
 
@@ -45,26 +45,26 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 
 ## Example
 
-Connect to a Azure SQL database and select all records in the sales table.
+Retrieve A JSON Web Token for a user in your an Active Directory tenant using Azure Active Directory's [Graph API](https://docs.microsoft.com/azure/active-directory/develop/active-directory-graph-api). This token can then be used to authenticate the user with a web API or application.
 
 ```java
 ExecutorService service = Executors.newFixedThreadPool(1);
 AuthenticationContext context = ew AuthenticationContext(AUTHORITY, false, service);
-
+Future<AuthenticationResult> future = context.acquireToken(
+    "https://graph.windows.net", YOUR_TENANT_ID, username, password,
+    null);
+AuthenticationResult result = future.get();
+System.out.println("Access Token - " + result.getAccessToken());
+System.out.println("Refresh Token - " + result.getRefreshToken());
+System.out.println("ID Token - " + result.getIdToken());
 ```
 
 ## Samples
 
 | | |
 |--|--|
-| [Connect and query data from Azure SQL Database using JDBC][4] | Configure a sample database, then run select, insert, update, and delete commands. |
-| [Create and manage SQL databases][1] | Create SQL databases, set performance levels, and configure firewalls.  | 
-| [Manage SQL databases across multiple regions][2] | Create a master SQL database and read-only databases from the master in multiple regions. Connect VMs to their nearest SQL database instance with a virtual network and firewall rules. | 
-| [Manage SQL databases in elastic pools][3] | Create, delete, and move SQL databases in and out of elastic pools. | 
-
-[1]: https://azure.microsoft.com/resources/samples/sql-database-java-manage-db/
-[2]: https://azure.microsoft.com/resources/samples/sql-database-java-manage-sql-databases-across-regions/
-[3]: java-sdk-manage-sql-elastic-pools.md
-[4]: https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java
+| [Java web app sign-in and sign-out with Azure AD](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devquickstarts-webapp-java) | Sign users in and out of your web apps with the ADAL4J library.
+| [Access an API with Azure AD using a command line app](https://docs.microsoft.com/azure/active-directory/develop/active-directory-devquickstarts-headless-java) | Sign a user in from a command line app and use their credentials to access a web API using OAuth 2.0 | 
+| [Access Active Directory Graph API from your Java app](https://azure.microsoft.com/resources/samples/active-directory-java-graphapi-web/) | Query user information from your Java web app using the Active Directory Graph API | 
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
