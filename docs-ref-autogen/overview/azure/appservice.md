@@ -17,7 +17,7 @@ ms.service: appservice
 
 ## Overview
 
-Deploy and scale web apps, APIs, and mobile apps running in [Azure App Service](https://docs.microsoft.com/azure/app-service) from your Java code.
+Deploy, manage, and scale web apps, APIs, and mobile apps running in [Azure App Service](https://docs.microsoft.com/azure/app-service) from your Java code using the management libraries. The management libraries also provide a Java interface for automating configuration task as an alternative ro using the Azure Portal or [CLI](https://docs.microsoft.com/cli/azure/install-azure-cli).
 
 ## Import the libraries
 
