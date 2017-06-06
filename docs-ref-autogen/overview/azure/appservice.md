@@ -47,7 +47,6 @@ WebApp app = azure.webApps().define("newLinuxWebApp")
 
 ## Samples
 
-| | |
 | **Create an app** ||
 |---|---|
 | [Create a web app and deploy from FTP or GitHub][1] | Deploy web apps from local Git, FTP, and continuous integration from GitHub. |
