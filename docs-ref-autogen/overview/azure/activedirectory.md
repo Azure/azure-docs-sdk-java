@@ -1,7 +1,7 @@
 ---
-title: Azure Active directory libraries for Java
-description: 
-keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , JDBC
+title: Azure Active Directory libraries for Java
+description: Reference documentation for the Java client and management libraries Azure Active Directory
+keywords: Azure, Java, SDK, API, SQL, authentication, AAD, Active Directory , Graph, OAuth 2.0
 author: rloutlaw
 ms.author: routlaw
 manager: douge
@@ -10,14 +10,16 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: appservice
+ms.service: active-directory
 ---
 
 # Azure Active Directory libraries for Java
 
 ## Overview
 
-Authenticate users and control access to your applications with Azure Active Directory.
+Authenticate users to web apps and manage access to API and applications with Azure Active Directory. The [Azure Active Directory authentication library (ADAL) for Java](https://github.com/AzureAD/azure-activedirectory-library-for-java) provides a Java interface to set up OAuth2, OpenID Connect, and Graph API authentication flows and single sign-on with [SAML 2.0](https://docs.microsoft.com/azure/active-directory/develop/active-directory-saml-protocol-reference).
+
+The management libraries provide an interface to configure [role based access control](https://docs.microsoft.com/azure/active-directory/role-based-access-control-what-is) and assign identities (such as users and [service principals](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-application-objects) to those roles.
 
 ## Import the libraries
 
