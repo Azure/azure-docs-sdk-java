@@ -7,7 +7,7 @@ Receives a batch of [EventData](/java/api/com.microsoft.azure.eventhubs._event_d
 
 The following sample code uses the synchronous version of the API, but the concepts are the same:
 
-```java
+```javascript
 EventHubClient client = createFromConnectionStringSync(final String connectionString)("connection");
 PartitionReceiver receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1"); 
 Iterable{<}EventData{>} receivedEvents = receiver.receiveSync();
