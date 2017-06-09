@@ -74,6 +74,6 @@ Write a new blob to an existing storage container using a provided [storage acco
 |--|--|
 | [Get started with Azure Blob Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-blob-java-getting-started/) | Create, read, update, restrict access, and delete files and objects in Azure Storage. |
 | [Get started with Azure Queue Storage in Java](https://azure.microsoft.com/en-us/resources/samples/storage-queue-java-getting-started/) | Insert, peek, retrieve and delete messages from Azure Storage queues. | 
-| [Manage Azure Storage accounts](java-sdk-manage-storage-accounts.md) | Create, update , and delete storage accounts. Retrieve and regenerate storage account access keys.
+| [Manage Azure Storage accounts](https://docs.microsoft.com/java/azure/java-sdk-manage-storage-accounts) | Create, update , and delete storage accounts. Retrieve and regenerate storage account access keys.
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
