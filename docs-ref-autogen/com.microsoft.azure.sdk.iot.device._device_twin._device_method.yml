@@ -153,57 +153,67 @@ references:
   fullName: com.microsoft.azure.sdk.iot.device.DeviceIO
   type: Class
   summary: >-
-    <p>Implement the standard I/O interface with the IoTHub.</p>
+    <p>Implement the standard I/O interface with the IoTHub. <verbatim>+-------------------------------------+                  +-----------------------------------+
 
-    <p>+----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | | | <xref href="com.microsoft.azure.sdk.iot.device._device_client" data-throw-if-not-resolved="false"></xref> |---------------<mdash></mdash>+ <xref href="com.microsoft.azure.sdk.iot.device._device_client_config" data-throw-if-not-resolved="false"></xref> | | | | | +----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | \/ | +----------------------------------------------------------------------<mdash></mdash>+ | | Services | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | | | Telemetry | | DeviceTwin | | DeviceMethod | | FileUpload | | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | +----------------------------------------------------------------------<mdash></mdash>+ | | \/ \/ <heading level="6"></heading></p>
+    |                                     |                  |                                   |
 
-    <p>
+    |             DeviceClient            |------------------+        DeviceClientConfig         |
 
-      <heading level="1">
+    |                                     |                  |                                   |
 
-        <xref href="com.microsoft.azure.sdk.iot.device._device_i_o" data-throw-if-not-resolved="false"></xref>
+    +-------------------------------------+                  +-----------------------------------+
 
-      </heading>
+       |                        |
 
-    </p>
+       |                       \/
 
-    <p>
+       |  +---------------------------------------------------------------------------------------------+
 
-      <heading level="1">+-------------<mdash></mdash>+ +----------------------------------<mdash></mdash>+ +---------<mdash></mdash>+</heading>
+       |  | Services                                                                                    |
 
-    </p>
+       |  |  +-----------+    +------------+    +--------------+                        +------------+  |
 
-    <p>
+       |  |  | Telemetry |    | DeviceTwin |    | DeviceMethod |                        | FileUpload |  |
 
-      <heading level="1">| | | open | | |</heading>
+       |  |  +-----------+    +------------+    +--------------+                        +---------+--+  |
 
-    </p>
+       |  +---------------------------------------------------------------------------------------|-----+
 
-    <p>
+       |                                    |                                                     |
 
-      <heading level="1">| sendEventAsync | | +------------<mdash></mdash>+ | | close |</heading>
+      \/                                   \/                                                     |
 
-    </p>
+    #####################################################################################         |
 
-    <p>
+    # DeviceIO                                                                          #         |
 
-      <heading level="1">| | | | taskScheduler | | | |</heading>
+    #  +----------------+    +-------------------------------------+    +------------+  #         |
 
-    </p>
+    #  |                |    |                open                 |    |            |  #         |
 
-    <p>
+    #  | sendEventAsync |    |                   +---------------+ |    |   close    |  #         |
 
-      <heading level="1">+-----<mdash></mdash>+----<mdash></mdash>+ +<ndash></ndash>+-------------<mdash></mdash>+<ndash></ndash>+------<mdash></mdash>+<ndash></ndash>+-+ +-----<mdash></mdash>+<mdash></mdash>+</heading>
+    #  |                |    |                   | taskScheduler | |    |            |  #         |
 
-    </p>
+    #  +--------+-------+    +--+----------------+--+---------+--+-+    +--------+---+  #         |
 
-    <p>
+    ############|###############|###################|#########|##################|#######         |
 
-      <heading level="6">######|###############|###################|#########|##################|</heading>
+                |               |                   |         |                  |                |
 
-    </p>
+                |               |                  \/        \/                  |                |
 
-    <p>| | | | | | | \/ \/ | | | +-------------<mdash></mdash>+ +----------------<mdash></mdash>+ | | | | IoTHubSendTask | | IoTHubReceiveTask | | | | | +-----<mdash></mdash>+ | | +------<mdash></mdash>+ | | | | | | Run | | | | Run | | | | | +<mdash></mdash>+<mdash></mdash>+-<mdash></mdash>+<mdash></mdash>+ +-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+ | transport | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ | \/ \/ \/ \/ \/ | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessage | | handleMessage | | Close | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | +--------------------------------------------------------------------------------<mdash></mdash>+ </p>
+                |               |    +----------------+   +-------------------+  |                |
+
+                |               |    | IoTHubSendTask |   | IoTHubReceiveTask |  |                |
+
+                |               |    |   +--------+   |   |    +---------+    |  |                |
+
+                |               |    |   |   Run  |   |   |    |   Run   |    |  |                |
+
+                |               |    +---+---+----+---+   +----+----+----+----+  |                |
+
+    </verbatim> IotHubTransport | | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ +-------------------------------------------<mdash></mdash>+ | \/ \/ \/ \/ \/ | | IoTHubTransportManager | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessages | | handleMessage | | Close | | | | Open | | Close | | send | | receive | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | +-------<mdash></mdash>+-----------------------------<mdash></mdash>+----------------------<mdash></mdash>+----------<mdash></mdash>+ +<mdash></mdash>+---------------------------------------<mdash></mdash>+ | | | | \/ \/ \/ \/ +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +---------------<mdash></mdash>+ +--------------------<mdash></mdash>+ | AmqpsTransport | | MqttTransport | | HttpsTransport | | HttpsTransportManager | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ | AmqpsIotHubConnection | | MqttIotHubConnection | | HttpsIotHubConnection | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ </p>
   syntax:
     content: public class DeviceIO
 - uid: com.microsoft.azure.sdk.iot.device._device_client_config

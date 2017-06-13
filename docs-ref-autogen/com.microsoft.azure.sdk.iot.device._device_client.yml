@@ -25,6 +25,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin(IotHubEventCallback,Object,PropertyCallBack,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
   - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDeviceMethod(DeviceMethodCallback,Object,IotHubEventCallback,Object)
+  - com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
   href: com.microsoft.azure.sdk.iot.device._device_client.yml
   langs:
   - java
@@ -38,7 +39,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 34
+    startLine: 37
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>The public-facing API. Allows a single logical or physical device to connect to an IoT Hub. The IoT Hub client supports sending events to and receiving messages from an IoT Hub. </p>
@@ -67,7 +68,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 198
+    startLine: 202
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Completes all current outstanding requests and closes the IoT Hub client. Must be called to terminate the background thread that is sending data to IoT Hub. After<programlisting><codeline><highlight class="normal">close()<sp></sp></highlight></codeline></programlisting> is called, the IoT Hub client is no longer usable. If the client is already closed, the function shall do nothing. <xrefsect id="deprecated_1_deprecated000008"><xreftitle>Deprecated</xreftitle><xrefdescription><p>: As of release 1.1.25 this call is replaced by <xref href="com.microsoft.azure.sdk.iot.device._device_client.closeNow()" data-throw-if-not-resolved="false"></xref></p></xrefdescription></xrefsect></p>
@@ -92,7 +93,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 226
+    startLine: 230
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Closes the IoT Hub client by releasing any resources held by client. When closeNow is called all the messages that were in transit or pending to be sent will be informed to the user in the callbacks and any existing connection to IotHub will be closed. Must be called to terminate the background thread that is sending data to IoT Hub. After<programlisting><codeline><highlight class="normal">closeNow()<sp></sp></highlight></codeline></programlisting> is called, the IoT Hub client is no longer usable. If the client is already closed, the function shall do nothing.</p>
@@ -116,7 +117,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 91
+    startLine: 94
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -151,7 +152,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 71
+    startLine: 74
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -187,7 +188,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 455
+    startLine: 532
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClient()
@@ -205,7 +206,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 124
+    startLine: 128
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Constructor that takes a connection string as an argument.</p>
@@ -238,7 +239,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 65
+    startLine: 68
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -274,7 +275,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 179
+    startLine: 183
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Starts asynchronously sending and receiving messages from an IoT Hub. If the client is already open, the function shall do nothing.</p>
@@ -298,7 +299,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 105
+    startLine: 109
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected long RECEIVE_PERIOD_MILLIS
@@ -317,7 +318,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 54
+    startLine: 57
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -354,7 +355,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 58
+    startLine: 61
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_HTTPS= 25*60*1000
@@ -373,7 +374,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 56
+    startLine: 59
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_MQTT= 10L
@@ -392,7 +393,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 44
+    startLine: 47
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -430,7 +431,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 248
+    startLine: 258
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Asynchronously sends an event message to the IoT Hub.</p>
@@ -467,7 +468,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 376
+    startLine: 386
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sends reported properties</p>
@@ -498,7 +499,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 272
+    startLine: 282
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets the message callback.</p>
@@ -535,7 +536,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 635
+    startLine: 712
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets a runtime option identified by parameter<programlisting><codeline><highlight class="normal">optionName<sp></sp></highlight></codeline></programlisting> to<programlisting><codeline><highlight class="normal">value<sp></sp></highlight></codeline></programlisting> .</p>
@@ -565,7 +566,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 77
+    startLine: 80
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -600,7 +601,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 83
+    startLine: 86
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -636,7 +637,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 300
+    startLine: 310
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Starts the device twin.</p>
@@ -678,7 +679,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 343
+    startLine: 353
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to desired properties</p>
@@ -707,7 +708,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 420
+    startLine: 430
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to device methods</p>
@@ -733,6 +734,49 @@ items:
     description: <p>if called when client is not opened. </p>
   - type: 3c87bd19
     description: <p>if either callback are null. </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
+  id: uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: uploadToBlobAsync(String destinationBlobName, InputStream inputStream, long streamLength, IotHubEventCallback callback, Object callbackContext)
+  nameWithType: DeviceClient.uploadToBlobAsync(String destinationBlobName, InputStream inputStream, long streamLength, IotHubEventCallback callback, Object callbackContext)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.uploadToBlobAsync(String destinationBlobName, InputStream inputStream, long streamLength, IotHubEventCallback callback, Object callbackContext)
+  overload: com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 477
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Asynchronously upload a stream to the IoT Hub.</p>
+
+    <p></p>
+  syntax:
+    content: public void uploadToBlobAsync(String destinationBlobName, InputStream inputStream, long streamLength, IotHubEventCallback callback, Object callbackContext)
+    parameters:
+    - id: destinationBlobName
+      type: "26831127"
+      description: <p>is a string with the name of the file in the storage. </p>
+    - id: inputStream
+      type: 76fcb9b7
+      description: <p>is a InputStream with the stream to upload in the blob. </p>
+    - id: streamLength
+      type: 0364520f
+      description: <p>is a long with the number of bytes in the stream to upload. </p>
+    - id: callback
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_event_callback
+      description: <p>the callback to be invoked when a file is uploaded. </p>
+    - id: callbackContext
+      type: "79317049"
+      description: <p>a context to be passed to the callback. Can be<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> .</p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided blob name, or the file path is<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> , empty or not valid, or if the callback is<programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> . </p>
+  - type: cbf33bbe
+    description: <p>if the client cannot create a instance of the FileUpload or the transport. </p>
 references:
 - uid: 0364520f
   spec.java:
@@ -856,6 +900,15 @@ references:
   nameWithType: DeviceClient.subscribeToDeviceMethod
   fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.subscribeToDeviceMethod
   package: com.microsoft.azure.sdk.iot.device
+- uid: 76fcb9b7
+  spec.java:
+  - name: InputStream
+    fullName: InputStream
+- uid: com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync*
+  name: uploadToBlobAsync
+  nameWithType: DeviceClient.uploadToBlobAsync
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.uploadToBlobAsync
+  package: com.microsoft.azure.sdk.iot.device
 - uid: com.microsoft.azure.sdk.iot.device._device_client.setOption*
   name: setOption
   nameWithType: DeviceClient.setOption
@@ -893,57 +946,67 @@ references:
   fullName: com.microsoft.azure.sdk.iot.device.DeviceIO
   type: Class
   summary: >-
-    <p>Implement the standard I/O interface with the IoTHub.</p>
+    <p>Implement the standard I/O interface with the IoTHub. <verbatim>+-------------------------------------+                  +-----------------------------------+
 
-    <p>+----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | | | <xref href="com.microsoft.azure.sdk.iot.device._device_client" data-throw-if-not-resolved="false"></xref> |---------------<mdash></mdash>+ <xref href="com.microsoft.azure.sdk.iot.device._device_client_config" data-throw-if-not-resolved="false"></xref> | | | | | +----------------------------------<mdash></mdash>+ +--------------------------------<mdash></mdash>+ | | | \/ | +----------------------------------------------------------------------<mdash></mdash>+ | | Services | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | | | Telemetry | | DeviceTwin | | DeviceMethod | | FileUpload | | | | +--------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +---------<mdash></mdash>+ | | +----------------------------------------------------------------------<mdash></mdash>+ | | \/ \/ <heading level="6"></heading></p>
+    |                                     |                  |                                   |
 
-    <p>
+    |             DeviceClient            |------------------+        DeviceClientConfig         |
 
-      <heading level="1">
+    |                                     |                  |                                   |
 
-        <xref href="com.microsoft.azure.sdk.iot.device._device_i_o" data-throw-if-not-resolved="false"></xref>
+    +-------------------------------------+                  +-----------------------------------+
 
-      </heading>
+       |                        |
 
-    </p>
+       |                       \/
 
-    <p>
+       |  +---------------------------------------------------------------------------------------------+
 
-      <heading level="1">+-------------<mdash></mdash>+ +----------------------------------<mdash></mdash>+ +---------<mdash></mdash>+</heading>
+       |  | Services                                                                                    |
 
-    </p>
+       |  |  +-----------+    +------------+    +--------------+                        +------------+  |
 
-    <p>
+       |  |  | Telemetry |    | DeviceTwin |    | DeviceMethod |                        | FileUpload |  |
 
-      <heading level="1">| | | open | | |</heading>
+       |  |  +-----------+    +------------+    +--------------+                        +---------+--+  |
 
-    </p>
+       |  +---------------------------------------------------------------------------------------|-----+
 
-    <p>
+       |                                    |                                                     |
 
-      <heading level="1">| sendEventAsync | | +------------<mdash></mdash>+ | | close |</heading>
+      \/                                   \/                                                     |
 
-    </p>
+    #####################################################################################         |
 
-    <p>
+    # DeviceIO                                                                          #         |
 
-      <heading level="1">| | | | taskScheduler | | | |</heading>
+    #  +----------------+    +-------------------------------------+    +------------+  #         |
 
-    </p>
+    #  |                |    |                open                 |    |            |  #         |
 
-    <p>
+    #  | sendEventAsync |    |                   +---------------+ |    |   close    |  #         |
 
-      <heading level="1">+-----<mdash></mdash>+----<mdash></mdash>+ +<ndash></ndash>+-------------<mdash></mdash>+<ndash></ndash>+------<mdash></mdash>+<ndash></ndash>+-+ +-----<mdash></mdash>+<mdash></mdash>+</heading>
+    #  |                |    |                   | taskScheduler | |    |            |  #         |
 
-    </p>
+    #  +--------+-------+    +--+----------------+--+---------+--+-+    +--------+---+  #         |
 
-    <p>
+    ############|###############|###################|#########|##################|#######         |
 
-      <heading level="6">######|###############|###################|#########|##################|</heading>
+                |               |                   |         |                  |                |
 
-    </p>
+                |               |                  \/        \/                  |                |
 
-    <p>| | | | | | | \/ \/ | | | +-------------<mdash></mdash>+ +----------------<mdash></mdash>+ | | | | IoTHubSendTask | | IoTHubReceiveTask | | | | | +-----<mdash></mdash>+ | | +------<mdash></mdash>+ | | | | | | Run | | | | Run | | | | | +<mdash></mdash>+<mdash></mdash>+-<mdash></mdash>+<mdash></mdash>+ +-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+-<mdash></mdash>+ | transport | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ | \/ \/ \/ \/ \/ | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessage | | handleMessage | | Close | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | +--------------------------------------------------------------------------------<mdash></mdash>+ </p>
+                |               |    +----------------+   +-------------------+  |                |
+
+                |               |    | IoTHubSendTask |   | IoTHubReceiveTask |  |                |
+
+                |               |    |   +--------+   |   |    +---------+    |  |                |
+
+                |               |    |   |   Run  |   |   |    |   Run   |    |  |                |
+
+                |               |    +---+---+----+---+   +----+----+----+----+  |                |
+
+    </verbatim> IotHubTransport | | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ +-------------------------------------------<mdash></mdash>+ | \/ \/ \/ \/ \/ | | IoTHubTransportManager | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessages | | handleMessage | | Close | | | | Open | | Close | | send | | receive | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | +-------<mdash></mdash>+-----------------------------<mdash></mdash>+----------------------<mdash></mdash>+----------<mdash></mdash>+ +<mdash></mdash>+---------------------------------------<mdash></mdash>+ | | | | \/ \/ \/ \/ +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +---------------<mdash></mdash>+ +--------------------<mdash></mdash>+ | AmqpsTransport | | MqttTransport | | HttpsTransport | | HttpsTransportManager | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ | AmqpsIotHubConnection | | MqttIotHubConnection | | HttpsIotHubConnection | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ </p>
   syntax:
     content: public class DeviceIO
 - uid: com.microsoft.azure.sdk.iot.device._device_twin._device_twin
@@ -964,6 +1027,16 @@ references:
   type: Class
   syntax:
     content: public class DeviceMethod
+- uid: com.microsoft.azure.sdk.iot.device.fileupload._file_upload
+  parent: com.microsoft.azure.sdk.iot.device.fileupload
+  href: com.microsoft.azure.sdk.iot.device.fileupload._file_upload.yml
+  name: FileUpload
+  nameWithType: FileUpload
+  fullName: com.microsoft.azure.sdk.iot.device.fileupload.FileUpload
+  type: Class
+  summary: <p>Provide means to upload file in the Azure Storage using the IoTHub. </p>
+  syntax:
+    content: public class FileUpload
 - uid: com.microsoft.azure.sdk.iot.device._custom_logger
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._custom_logger.yml
