@@ -5,12 +5,18 @@ function CloneOrPull
       if (Test-Path $folderName\.git)
       {
           Push-Location $folderName
-          & git pull
+          & git pull origin $branchOrTag
           Pop-Location
       }
       else
       {
-          & git clone -q --branch=$branchOrTag $gitRepo $folderName
+          $ErrorActionPreference = 'SilentlyContinue'
+          $out = & git clone -q --branch=$branchOrTag $gitRepo $folderName
+	  if ($LastExitCode -ne 0)
+          {
+              echo $out
+          }
+	  $ErrorActionPreference = 'Stop'
       }
 }
 
