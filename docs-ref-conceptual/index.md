@@ -95,6 +95,4 @@ Complete walkthroughs for app creation and deployment.
     <li><a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a></li>
     <li><a href="/azure/documentdb/documentdb-java-application">CosmosDB</a></li>
     <li><a href="/azure/storage/storage-java-how-to-use-blob-storage">Azure Storage</a></li>
-    <li><a href="/azure/app-service-api/app-service-api-java-api-app">REST API Apps</a></li>
-    <li><a
 </ul>
