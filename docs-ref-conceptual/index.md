@@ -1,20 +1,29 @@
 ---
-title: Azure libraries for Java
-description: Overview of the Azure management and service libraries for Java
+title: Azure for Java developers - Tutorials, API Reference | Microsoft Docs
+description: Tools, SDKs, tutorials, and samples to help you create and deploy Java apps to Azure.
 keywords: Azure, Java, SDK, API
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 04/16/2017
+layout: LandingPage
+ms.date: 06/13/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: multiple
-ms.assetid: 9aaf22a2-382a-4b13-a8e3-0e467d607207
 ---
 
-# Azure libraries for Java
+<div class="content">
+    <h1>Azure for Java developers</h1>
+
+<div class="card">
+    <div class="card-block">
+        <h2 class="card-title">Tools</h2>
+        <p>Download the Azure tools, libraries, and plugins to help you build and deploy Java apps</p>
+        <a href="java-azure-tools.md">Browse all tools</a>
+    </div>
+</div>
 
 The Azure libraries for Java help you manage Azure resources and connect to services from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects. 
 
