@@ -88,6 +88,13 @@ Create and deploy an app using your favorite tools in five minutes.
 
 ## Tutorials and samples
 
+Complete walkthroughs for app creation and deployment.
+
 <ul>
-    <li>Create a Java web app with <a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a> or <a href="/azure/documentdb/documentdb-java-application">CosmosDB</a>.</li>
+    <li><a href="/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
+    <li><a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a></li>
+    <li><a href="/azure/documentdb/documentdb-java-application">CosmosDB</a></li>
+    <li><a href="/azure/storage/storage-java-how-to-use-blob-storage">Azure Storage</a></li>
+    <li><a href="/azure/app-service-api/app-service-api-java-api-app">REST API Apps</a></li>
+    <li><a
 </ul>
