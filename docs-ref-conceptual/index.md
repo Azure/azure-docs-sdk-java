@@ -23,11 +23,9 @@ Get started building great Java apps on Azure.
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
-                    <div class="cardImageOuter">
-                    </div>
                     <div class="cardText">
                         <h2>Tools</h2>
-                        <a href="java-azure-tools.md">Download Azure tools, libraries, and plugins.</a>
+                        <a href="java-azure-tools.md">Download Azure tools and plugins.</a>
                     </div>
                 </div>
             </div>
@@ -39,8 +37,8 @@ Get started building great Java apps on Azure.
                     <div class="cardImageOuter">
                     </div>
                     <div class="cardText">
-                        <h2>Reference</h2>
-                        <a href="java-azure-tools.md">Use Java libraries to connect to services and manage Azure resources.</a>
+                        <h2>Libraries</h2>
+                        <a href="java-sdk-azure-install.md">Connect to services and manage Azure resources.</a>
                     </div>
                 </div>
             </div>
@@ -53,15 +51,13 @@ Get started building great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Jenkins CI/CD</h2>
-                        <a href="java-azure-tools.md">Deploy with Jenkins with your own deployment or with Visual Studio Team Services.</a>
+                        <a href="java-azure-tools.md">Set up a Jenkins pipeline to deploy apps to Azure.</a>
                     </div>
                 </div>
             </div>
         </div>
     </li>
 </ul>
-
-The Azure libraries for Java help you manage Azure resources and connect to services from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects. 
 
 ## Management APIs
 
@@ -83,44 +79,13 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 [Get started with the management API](java-sdk-azure-get-started.md)
 
 ## Five-minute quickstarts
-<div class="ico48Case">
-   <div class="ico48Link">
-        <a href="java-quickstart-maven-webapps.md">
-            <img src="../media/index/Maven.svg" alt="">
-            <span>Maven</span>
-        </a>
-    </div>
-    <div class="ico48Link">
-        <a href="/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app">
-            <img src="../media/index/IntelliJ.svg" alt="">
-            <span>IntelliJ</span>
-        </a>
-    </div>
-    <div class="ico48Link">
-        <a href="/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app">
-            <img src="../media/index/Eclipse.svg" alt="">
-            <span>Eclipse</span>
-        </a>
-    </div>
-        <div class="ico48Link">
-        <a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">
-            <img src="../media/index/spring.svg" alt="">
-            <span>Spring Boot</span>
-        </a>
-    </div>
-    <div class="ico48Link">
-        <a href="/azure/container-service/container-service-deploy-spring-boot-app-on-kubernetes">
-            <img src="../media/index/azure_dev-10.svg" alt="">
-            <span>Docker</span>
-        </a>
-    </div>
-</div>
+<ul>
+   <li><a href="/azure/app-service-web/app-service-web-get-started-java">Web Apps</a></li>
+   <li><a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
+</ul>
 
 ## Tutorials and samples
 
-<p>Create, deploy, monitor, and secure Java apps running in Azure.</p>
 <ol>
     <li>Create a Java web app with <a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a> or <a href="/azure/documentdb/documentdb-java-application">CosmosDB</a>.</li>
-    <li>Set up a CI/CD pipeline for your apps with <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">Jenkins</a> or <a href="https://www.visualstudio.com/docs/build/apps/java/maven-to-azure">Visual Studio Team Services</a>.</li>
-    <li>Monitor your apps with <a href="/azure/monitoring-and-diagnostics/monitoring-get-started">Azure Monitor</a> or <a href="/azure/application-insights/app-insights-java-get-started">Application Insights</a>.
 </ol>
