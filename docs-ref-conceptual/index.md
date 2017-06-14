@@ -38,7 +38,7 @@ Get started building great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Libraries</h2>
-                        <a href="java-sdk-azure-install.md">Connect to services and manage Azure resources.</a>
+                        <a href="java-sdk-azure-install.md">Use services and manage Azure resources.</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ Get started building great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Jenkins CI/CD</h2>
-                        <a href="java-azure-tools.md">Set up a Jenkins pipeline to deploy apps to Azure.</a>
+                        <a href="java-azure-tools.md">Use Jenkins to deploy to Azure.</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ Get started building great Java apps on Azure.
 
 ## Management APIs
 
-Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). The fluent interface of the API makes it easy to define and create resources from your code.
+Create and manage Azure resources with an easy to use fluent API with the [Azure management libraries for Java](java-sdk-azure-get-started.md). 
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
@@ -76,16 +76,19 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .create();
  ```
 
-[Get started with the management API](java-sdk-azure-get-started.md)
+[Get started with the Azure management libraries for Java](java-sdk-azure-get-started.md)
 
 ## Five-minute quickstarts
+Create and deploy an app using your favorite tools in five minutes.
 <ul>
-   <li><a href="/azure/app-service-web/app-service-web-get-started-java">Web Apps</a></li>
+   <li><a href="">Maven</a></li>
    <li><a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
+   <li><a href="">Docker and Kubernetes</a></li>
+   <li>
 </ul>
 
 ## Tutorials and samples
 
-<ol>
+<ul>
     <li>Create a Java web app with <a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a> or <a href="/azure/documentdb/documentdb-java-application">CosmosDB</a>.</li>
-</ol>
+</ul>
