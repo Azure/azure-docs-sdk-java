@@ -84,7 +84,6 @@ Create and deploy an app using your favorite tools in five minutes.
    <li><a href="">Maven</a></li>
    <li><a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
    <li><a href="">Docker and Kubernetes</a></li>
-   <li>
 </ul>
 
 ## Tutorials and samples
