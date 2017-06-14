@@ -14,16 +14,28 @@ ms.devlang: java
 ms.service: multiple
 ---
 
-<div class="content">
-    <h1>Azure for Java developers</h1>
-
-<div class="card">
-    <div class="card-block">
-        <h2 class="card-title">Tools</h2>
-        <p>Download the Azure tools, libraries, and plugins to help you build and deploy Java apps</p>
-        <a href="java-azure-tools.md">Browse all tools</a>
-    </div>
-</div>
+# Azure for Java developers
+<ul class="panelContent">
+    <li>
+        <a href="java-azure-tools.md">
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                        <div class="cardImage">
+                            <img src="media/index/data-lake-store.svg" alt="" />
+                        </div>
+                    </div>
+                    <div class="cardText">
+                        <h3>Tools</h3>
+                        <p>Download tools, SDKs, and plugins for Java development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </a>
+    </li>
+</ul>
 
 The Azure libraries for Java help you manage Azure resources and connect to services from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects. 
 
