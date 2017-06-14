@@ -61,7 +61,7 @@ Get started building great Java apps on Azure.
 
 ## Management APIs
 
-Create and manage Azure resources with an easy to use fluent API with the [Azure management libraries for Java](java-sdk-azure-get-started.md). 
+Import the [Azure management libraries for Java](java-sdk-azure-install.md) to manage your Azure resources with an easy to use fluent API. 
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
