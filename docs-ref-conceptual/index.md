@@ -16,6 +16,8 @@ ms.service: multiple
 
 # Azure for Java developers
 
+Get started building great Java apps on Azure.
+
 <ul class="panelContent">
     <li>
         <div class="cardSize">
@@ -25,7 +27,7 @@ ms.service: multiple
                     </div>
                     <div class="cardText">
                         <h2>Tools</h2>
-                        <a href="java-azure-tools.md">Download tools, SDKs, and plugins for Java development.</a>
+                        <a href="java-azure-tools.md">Download Azure tools, libraries, and plugins.</a>
                     </div>
                 </div>
             </div>
@@ -37,8 +39,8 @@ ms.service: multiple
                     <div class="cardImageOuter">
                     </div>
                     <div class="cardText">
-                        <h2>Libraries and SDKs</h2>
-                        <a href="java-azure-tools.md">Connect your apps to services and manage Azure resources from your code.</a>
+                        <h2>Reference</h2>
+                        <a href="java-azure-tools.md">Use Java libraries to connect to services and manage Azure resources.</a>
                     </div>
                 </div>
             </div>
@@ -50,8 +52,8 @@ ms.service: multiple
                     <div class="cardImageOuter">
                     </div>
                     <div class="cardText">
-                        <h2>CI/CD</h2>
-                        <a href="java-azure-tools.md">Deploy your apps with Jenkins or Team Services.</a>
+                        <h2>Jenkins CI/CD</h2>
+                        <a href="java-azure-tools.md">Deploy with Jenkins with your own deployment or with Visual Studio Team Services.</a>
                     </div>
                 </div>
             </div>
@@ -61,11 +63,9 @@ ms.service: multiple
 
 The Azure libraries for Java help you manage Azure resources and connect to services from your application code. The libraries are available as [Maven imports](java-sdk-azure-install.md) for use in your Java projects. 
 
-## Manage Azure resources
+## Management APIs
 
-Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). Use these libraries to build your own Azure automation tools and services. 
-
-For example, to create a Linux VM you would write the following code:
+Create and manage Azure resources from your Java applications using the [Azure management libraries for Java](java-sdk-azure-get-started.md). The fluent interface of the API makes it easy to define and create resources from your code.
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
@@ -77,40 +77,50 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
            .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
            .withRootUsername(userName)
            .withSsh(key)
-           .withUnmanagedStorage()
-           .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
            .create();
  ```
 
-Review the [install instructions](java-sdk-azure-install.md) for a full list of the libraries and how to import them into your projects and then read the [get started article](java-sdk-azure-get-started.md) to set up your authentication and run sample code against your own Azure subscription. 
+[Get started with the management API](java-sdk-azure-get-started.md)
 
-## Connect to Azure services
+## Five-minute quickstarts
+<div class="ico48Case">
+   <div class="ico48Link">
+        <a href="java-quickstart-maven-webapps.md">
+            <img src="../media/index/Maven.svg" alt="">
+            <span>Maven</span>
+        </a>
+    </div>
+    <div class="ico48Link">
+        <a href="/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app">
+            <img src="../media/index/IntelliJ.svg" alt="">
+            <span>IntelliJ</span>
+        </a>
+    </div>
+    <div class="ico48Link">
+        <a href="/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app">
+            <img src="../media/index/Eclipse.svg" alt="">
+            <span>Eclipse</span>
+        </a>
+    </div>
+        <div class="ico48Link">
+        <a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">
+            <img src="../media/index/spring.svg" alt="">
+            <span>Spring Boot</span>
+        </a>
+    </div>
+    <div class="ico48Link">
+        <a href="/azure/container-service/container-service-deploy-spring-boot-app-on-kubernetes">
+            <img src="../media/index/azure_dev-10.svg" alt="">
+            <span>Docker</span>
+        </a>
+    </div>
+</div>
 
-In addition to using Java libraries to create and manage resources within Azure, you can also use Java libraries to connect  and use those resources in your apps. For example, you might update a table SQL Database or store files in Azure Storage. Select the library you need for a particular service from the [complete list of libraries](java-sdk-azure-install.md) and visit the [Java developer center](https://azure.microsoft.com/develop/java/) for tutorials and sample code for help using them in your apps.
+## Tutorials and samples
 
-For example, to print out the contents of every blob in an Azure storage container:
-
-```java
-// get the container from the blob client
-CloudBlobContainer container = blobClient.getContainerReference("blobcontainer");
-
-// For each item in the container
-for (ListBlobItem blobItem : container.listBlobs()) {
-    // If the item is a blob, not a virtual directory
-    if (blobItem instanceof CloudBlockBlob) {
-        // Download the text
-        CloudBlockBlob retrievedBlob = (CloudBlockBlob) blobItem;
-        System.out.println(retrievedBlob.downloadText());
-    }
-}
-```
-
-## Sample code and reference
-
-The following samples cover common automation tasks with the Azure management libraries for Java and have code ready to use in your own apps:
-
-- [Virtual machines](java-sdk-azure-virtual-machine-samples.md)
-- [Web apps](java-sdk-azure-web-apps-samples.md)
-- [SQL Database](java-sdk-azure-sql-database-samples.md)
-   
-A [reference](https://docs.microsoft.com/java/api) is available for all packages in both the service and management libraries. New features, breaking changes, and migration instructions from previous versions are available in the [release notes](java-sdk-azure-release-notes.md).
+<p>Create, deploy, monitor, and secure Java apps running in Azure.</p>
+<ol>
+    <li>Create a Java web app with <a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a> or <a href="/azure/documentdb/documentdb-java-application">CosmosDB</a>.</li>
+    <li>Set up a CI/CD pipeline for your apps with <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">Jenkins</a> or <a href="https://www.visualstudio.com/docs/build/apps/java/maven-to-azure">Visual Studio Team Services</a>.</li>
+    <li>Monitor your apps with <a href="/azure/monitoring-and-diagnostics/monitoring-get-started">Azure Monitor</a> or <a href="/azure/application-insights/app-insights-java-get-started">Application Insights</a>.
+</ol>
