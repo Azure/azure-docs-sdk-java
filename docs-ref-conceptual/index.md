@@ -15,25 +15,47 @@ ms.service: multiple
 ---
 
 # Azure for Java developers
+
 <ul class="panelContent">
     <li>
-        <a href="java-azure-tools.md">
         <div class="cardSize">
             <div class="cardPadding">
                 <div class="card">
                     <div class="cardImageOuter">
-                        <div class="cardImage">
-                            <img src="media/index/data-lake-store.svg" alt="" />
-                        </div>
                     </div>
                     <div class="cardText">
-                        <h3>Tools</h3>
-                        <p>Download tools, SDKs, and plugins for Java development.</p>
+                        <h2>Tools</h2>
+                        <a href="java-azure-tools.md">Download tools, SDKs, and plugins for Java development.</a>
                     </div>
                 </div>
             </div>
         </div>
-        </a>
+    </li><li>
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                    </div>
+                    <div class="cardText">
+                        <h2>Libraries and SDKs</h2>
+                        <a href="java-azure-tools.md">Connect your apps to services and manage Azure resources from your code.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li><li>
+        <div class="cardSize">
+            <div class="cardPadding">
+                <div class="card">
+                    <div class="cardImageOuter">
+                    </div>
+                    <div class="cardText">
+                        <h2>CI/CD</h2>
+                        <a href="java-azure-tools.md">Deploy your apps with Jenkins or Team Services.</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </li>
 </ul>
 
