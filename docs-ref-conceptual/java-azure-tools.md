@@ -14,13 +14,23 @@ ms.author: routlaw;asirveda
 
 # Azure tools for Java developers
 
-## Azure CLI 2.0
+## Client and management libraries
 
-The Azure 2.0 CLI provides a command line interface to create and configure Azure resources in your subscriptions. The Azure CLI 2.0 is cross-platform and has query and filtering features so you can pipe output directly to your favorite command line tools. 
+Connect to services and manage Azure resources from your applications with the Azure libraries for Java. Import the management libraries into your Maven projects by adding this dependency to your project *pom.xml*.
 
-[Install the Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-azure-cli)
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
 
-## Eclipse and IntelliJ
+View the [complete list of install dependencies](java-sdk-azure-install.md) for the Azure libraries for Java.
+
+[Get started with Azure libraries for Java](java-sdk-azure-get-started.md).
+
+## Eclipse and IntelliJ plugins
 
 The Azure toolkits for [Eclipse](https://eclipse.org/downloads/packages/eclipse-ide-java-developers/lunar) and [IntelliJ](https://www.jetbrains.com/idea/) provide project templates, samples, and functionality for Java developers working in Azure. The toolkits let you:
  
@@ -28,8 +38,14 @@ The Azure toolkits for [Eclipse](https://eclipse.org/downloads/packages/eclipse-
 - Deploy applications as Docker images to Azure virtual machines.
 - Publish WAR packaged web apps to Azure App Service.
 
-[Install the Azure Toolkit for Eclipse](../azure-toolkit-for-eclipse-installation.md)   
-[Install the Azure Toolkit for IntelliJ](../azure-toolkit-for-intellij.md)
+[Get started with Azure Toolkit for Eclipse](https://docs.microsoft.com/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app). 
+[Get started with Azure Toolkit for IntelliJ](https://docs.microsoft.com/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app).
+
+## Azure CLI 2.0
+
+The Azure 2.0 CLI provides a command-line experience to manage Azure resources. You can use it in your browser with [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/overview), or you can [install](https://docs.microsoft.com/cli/azure/install-azure-cli) it on macOS, Linux, and Windows and run it from the command line.
+
+[Get started with Azure CLI 2.0](https://docs.microsoft.com/cli/azure/get-started-with-azure-cli).
 
 ## Manage resources 
 
@@ -44,17 +60,6 @@ Manage Azure storage accounts, containers, and blobs/files from your desktop. Az
 SSMS provides an integrated environment to create and manage your Azure SQL Databases. SSMS provides tools to create, update, monitor your databases and build queries to work with your data in your application. SSMS is available on Windows.
 
 [Use SQL Server Management Studio to connect and query data](../sql-database/sql-database-connect-query-ssms.md)
-
-### Visual Studio 2017
-
-Cloud Explorer lets you view and manage Azure resources from within Visual Studio. Resources are organized into a searchable tree view, and you interact with the from Cloud Explorer or bring them up in the Azure Portal with a single click.
-
-Visual Studio 2017 supports Azure resource group projects, which let you customize and deploy infrastructure using a single, repeatable operation. Deployments are generated from templates you create or import and customize [from the community](https://azure.microsoft.com/resources/templates/).
-
-[Visual Studio 2017 Cloud Explorer](../vs-azure-tools-resources-managing-with-cloud-explorer.md)    
-[Get started with Azure resource groups and Visual Studio](../azure-resource-manager/vs-azure-tools-resource-groups-deployment-projects-create-deploy.md)
-
-The Cloud Explorer and Azure resource group projects are available in Visual Studio 2015 and 2017 on Windows.
 
 ## Local development
 
