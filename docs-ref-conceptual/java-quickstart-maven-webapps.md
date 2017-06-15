@@ -18,7 +18,7 @@ ms.author: routlaw
 ---
 # Create and deploy a Java app to Azure with Maven
 
-This quickstart helps you create and deploy a simple Java web app to [Azure App Service](../app-service/app-service-value-prop-what-is.md) in just a few minutes using [Apache Maven](http://maven.apache.org) and the Azure CLI.
+This quickstart helps you create and deploy a simple Java web app to [Azure App Service](/azure/app-service/app-service-value-prop-what-is) in just a few minutes using [Apache Maven](http://maven.apache.org) and the Azure CLI.
 
 ## Before you begin
 
@@ -29,8 +29,7 @@ Before you start, set up the following:
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
-[!INCLUDE [quickstarts-free-trial-note](../../includes/quickstarts-free-trial-note.md)]
-
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ## Get the sample code
 
@@ -74,7 +73,7 @@ To see other possible values you can use for `---location`, use [az appservice l
 
 ## Create an App Service plan
 
-Create a **FREE** [App Service plan](../app-service/azure-web-sites-web-hosting-plans-in-depth-overview.md) using [az appservice plan create](/cli/azure/appservice/plan#create). App Service plans allocate resources shared across all web apps running in the plan.
+Create a **FREE** [App Service plan](/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview) using [az appservice plan create](/cli/azure/appservice/plan#create). App Service plans allocate resources shared across all web apps running in the plan.
 
 
 ```azurecli
