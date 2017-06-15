@@ -51,7 +51,7 @@ Get started building great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Jenkins CI/CD</h2>
-                        <a href="java-azure-tools.md">Use Jenkins to deploy to Azure.</a>
+                        <a href="">Use Jenkins to deploy apps to Azure.</a>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,7 @@ Get started building great Java apps on Azure.
 
 ## Management APIs
 
-Import the [Azure management libraries for Java](java-sdk-azure-install.md) to manage your Azure resources with an easy to use fluent API. 
+Install our easy-to-use fluent [Java APIs](java-sdk-azure-install.md#management) to manage Azure resources.
 
 ```java
 VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
@@ -79,20 +79,20 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 [Get started with the Azure management libraries for Java](java-sdk-azure-get-started.md)
 
 ## Five-minute quickstarts
-Create and deploy an app using your favorite tools in five minutes.
+Create and deploy a app with your favorite tools in five minutes.
 <ul>
-   <li><a href="">Maven</a></li>
-   <li><a href="/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
+   <li><a href="java-quickstart-maven-webapps.md">Maven</a></li>
+   <li><a href="https://docs.microsoft.com/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
    <li><a href="">Docker and Kubernetes</a></li>
 </ul>
 
-## Tutorials and samples
+## Tutorials
 
-Complete walkthroughs for app creation and deployment.
+Walkthroughs for using Azure services in your apps.
 
 <ul>
-    <li><a href="/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
-    <li><a href="/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a></li>
-    <li><a href="/azure/documentdb/documentdb-java-application">CosmosDB</a></li>
-    <li><a href="/azure/storage/storage-java-how-to-use-blob-storage">Azure Storage</a></li>
+    <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
+    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a></li>
+    <li><a href="https://docs.microsoft.com/azure/documentdb/documentdb-java-application">CosmosDB</a></li>
+    <li><a href="https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage">Azure Storage</a></li>
 </ul>
