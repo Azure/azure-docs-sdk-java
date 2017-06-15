@@ -53,13 +53,13 @@ The Azure 2.0 CLI provides a command-line experience to manage Azure resources. 
 
 Manage Azure storage accounts, containers, and blobs/files from your desktop. Azure Storage Explorer is currently in Preview and works on Windows, macOS, and Linux.
 
-[Get started with Azure Storage Explorer](../vs-azure-tools-storage-manage-with-storage-explorer.md)
+[Get started with Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer.md)
 
 ### SQL Server Management Studio (SSMS)
 
 SSMS provides an integrated environment to create and manage your Azure SQL Databases. SSMS provides tools to create, update, monitor your databases and build queries to work with your data in your application. SSMS is available on Windows.
 
-[Use SQL Server Management Studio to connect and query data](../sql-database/sql-database-connect-query-ssms.md)
+[Use SQL Server Management Studio to connect and query data](https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-ssms.md)
 
 ## Local development
 
@@ -67,7 +67,7 @@ SSMS provides an integrated environment to create and manage your Azure SQL Data
 
 Develop and test your apps using Azure storage locally without incurring any charges or modifying the resources in your Azure subscription. When you're satisfied with your code running in the emulator, you simply switch some connection strings in your app to enable the workload with an Azure Storage account in the cloud.
 
-[Develop and test your code with Azure Storage Emulator](../storage/storage-use-emulator.md)
+[Develop and test your code with Azure Storage Emulator](https://docs.microsoft.com/azure/storage/storage-use-emulator.md)
 
 The storage emulator currently only runs on Windows.
 
@@ -75,6 +75,6 @@ The storage emulator currently only runs on Windows.
 
 The DocumentDB emulator provides a local environment that emulates the  DocumentDB NoSQL database service for development purposes. When you're satisfied with how your application is working in the DocumentDB Emulator, you can switch to using a DocumentDB account in your Azure cloud subscription.
 
-[Get started with the Azure DocumentDB Emulator](../documentdb/documentdb-nosql-local-emulator.md)
+[Get started with the Azure DocumentDB Emulator](https://docs.microsoft.com/azure/documentdb/documentdb-nosql-local-emulator.md)
 
 The DocumentDB emulator runs on Windows Server 2012 R2, Windows Server 2016, or Windows 10.

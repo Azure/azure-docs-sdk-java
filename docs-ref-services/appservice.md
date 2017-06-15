@@ -59,7 +59,7 @@ WebApp app = azure.webApps().define("newLinuxWebApp")
 | [Connect to a storage account][5] | Create an Azure storage account and add the storage account connection string to the app settings. |
 | [Connect to a SQL database][6] | Create a web app and SQL database, and then add the SQL database connection string to the app settings. |
 
-[1]: java-sdk-configure-webapp-sources.md
+[1]: ../docs-ref-conceptual/java-sdk-configure-webapp-sources.md
 [2]: https://azure.microsoft.com/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
 [3]: https://azure.microsoft.com/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
 [4]: https://azure.microsoft.com/resources/samples/app-service-java-scale-web-apps-on-linux/
