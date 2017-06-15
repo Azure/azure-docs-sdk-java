@@ -226,9 +226,7 @@ mvn clean package
 mvn install -s az-settings.xml
 ```
 
-Switch back to the browser window and hit refresh to view your changes:
-
-[Updated JSP running in Azure](media/maven-quickstart/app-service-updated-app.png)
+Refresh your browser after the app redeploys to view your changes.
 
 ## Manage your new Azure app
 
@@ -260,4 +258,4 @@ az group delete --name myResrouceGroup
 
 ## Next steps
 
-Explore other [tutorials to create Java apps on Azure](java-tutorials-services-web-mobile.md).
+Browse the full list of [Azure Java samples](https://azure.microsoft.com/resources/samples/?term=java)).
