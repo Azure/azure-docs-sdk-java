@@ -51,11 +51,6 @@ VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
 
 ## Samples
 
-| | |
-|--|--|
-| [Manage virtual machines](../docs-ref-conceptual/java-sdk-manage-virtual-machines.md) | Create, update, and delete a Linux or Windows virtual machine. Stop and start virtual machines and add and remove disks to new and existing virtual machines. | 
-| [Manage virtual machine scale sets](../docs-ref-conceptual/java-sdk-manage-vm-scalesets.md) | Create a Linux virtual machine scale set, set up a load balancer, and get SSH connection strings to each of the scale set VMs. |
-| [Create a virtual machine from a custom image](https://azure.microsoft.com/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image) | Create a generalized Linux image from an existing VM and use it to create a new virtual machine. | 
-
+[!INCLUDE [java-vm-samples](includes/java-vm-samples.md)]
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
