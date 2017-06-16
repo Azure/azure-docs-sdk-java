@@ -92,7 +92,7 @@ Learn how to use Azure services in your Java apps.
 
 <ul>
     <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">Connect and query SQL Database</a></li>
-    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create a Java web app with Spring Boot and MySQL</a></li>
-    <li><a href="https://docs.microsoft.com/azure/documentdb/documentdb-java-application">Build and deploy a NoSQL web app with CosmosDB</a></li>
+    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create an app with Spring Boot and MySQL</a></li>
+    <li><a href="https://docs.microsoft.com/azure/documentdb/documentdb-java-application">Create an app using a NoSQL database with CosmosDB</a></li>
     <li><a href="https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage">Read and write blobs to Azure Storage</a></li>
 </ul>
