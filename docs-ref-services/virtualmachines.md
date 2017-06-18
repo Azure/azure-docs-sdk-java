@@ -51,6 +51,6 @@ VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
 
 ## Samples
 
-[!INCLUDE [java-vm-samples](includes/java-vm-samples.md)]
+[!INCLUDE [java-vm-samples](../docs-ref-conceptual/includes/java-vm-samples.md)]
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
