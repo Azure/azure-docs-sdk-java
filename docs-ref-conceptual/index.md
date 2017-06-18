@@ -16,7 +16,7 @@ ms.service: multiple
 
 # Azure for Java developers
 
-Get started building great Java apps on Azure.
+Build great Java apps on Azure.
 
 <ul class="panelContent">
     <li>
@@ -59,6 +59,14 @@ Get started building great Java apps on Azure.
     </li>
 </ul>
 
+## Five-minute quickstarts
+Create and deploy a sample app in five minutes.
+<ul>
+   <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Web Apps</a></li>
+   <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
+   <li><a href="https://docs.microsoft.com/azure/cosmos-db/create-documentdb-java">CosmosDB</a></li>
+</ul>
+
 ## Management APIs
 
 Install our easy-to-use fluent [Java APIs](java-sdk-azure-install.md#management) to manage Azure resources.
@@ -78,21 +86,10 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 
 [Get started with the Azure management libraries for Java](java-sdk-azure-get-started.md)
 
-## Five-minute quickstarts
-Create and deploy a app with your favorite tools in five minutes.
-<ul>
-   <li><a href="java-quickstart-maven-webapps.md">Maven</a></li>
-   <li><a href="https://docs.microsoft.com/azure/app-service/app-service-deploy-spring-boot-web-app-on-azure">Spring Boot</a></li>
-   <li><a href="">Docker and Kubernetes</a></li>
-</ul>
-
 ## Tutorials
 
-Walkthroughs for using Azure services in your apps.
+Learn how to use Azure services in your Java apps.
 
 <ul>
-    <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
-    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">MySQL</a></li>
-    <li><a href="https://docs.microsoft.com/azure/documentdb/documentdb-java-application">CosmosDB</a></li>
-    <li><a href="https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage">Azure Storage</a></li>
+    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create an app with Spring Boot and MySQL</a></li>
 </ul>
