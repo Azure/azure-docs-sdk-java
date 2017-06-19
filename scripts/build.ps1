@@ -52,7 +52,14 @@ Unzip $scriptHome\$code2yamlZip $scriptParent\$code2yaml
 
 # update config
 $config = Get-Content $scriptParent\code2yaml.json -Raw | ConvertFrom-Json
-$config | add-member -Name "output_path" -value "_javadocs" -MemberType NoteProperty
+if (!$config.PSObject.Properties['output_path'])
+{
+  $config | add-member -Name "output_path" -value "_javadocs" -MemberType NoteProperty
+}
+else
+{
+  $config.output_path = "_javadocs"
+}
 $config | ConvertTo-Json | Out-File $scriptParent\code2yaml_updated.json -Force
 
 # run code2yaml to generate metadata yaml files
