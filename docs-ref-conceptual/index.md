@@ -38,7 +38,7 @@ Build great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Libraries</h2>
-                        <a href="java-sdk-azure-install.md">Use services and manage Azure resources.</a>
+                        <a href="java-sdk-azure-overview.md">Use services and manage Azure resources.</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@ Build great Java apps on Azure.
                     </div>
                     <div class="cardText">
                         <h2>Jenkins CI/CD</h2>
-                        <a href="">Use Jenkins to deploy apps to Azure.</a>
+                        <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">Use Jenkins to deploy apps to Azure.</a>
                     </div>
                 </div>
             </div>
