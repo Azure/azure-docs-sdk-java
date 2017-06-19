@@ -18,44 +18,63 @@ ms.service: multiple
 
 Build great Java apps on Azure.
 
-<ul class="panelContent">
+<ul class="cardsY panelContent">
     <li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h2>Tools</h2>
-                        <a href="java-azure-tools.md">Download Azure tools and plugins.</a>
+        <a href="java-azure-tools.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="/media/common/i_tools.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h2>Tools</h2>
+                            Download Azure tools and plugins.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </li><li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardImageOuter">
-                    </div>
-                    <div class="cardText">
-                        <h2>Libraries</h2>
-                        <a href="java-sdk-azure-overview.md">Use services and manage Azure resources.</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li><li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardImageOuter">
-                    </div>
-                    <div class="cardText">
-                        <h2>Jenkins CI/CD</h2>
-                        <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">Use Jenkins to deploy apps to Azure.</a>
+        </a>
+    </li>
+    <li>
+        <a href="java-sdk-azure-install.md">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="/media/common/i_reference.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h2>Libraries</h2>
+                            Use services and manage Azure resources.
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </a>
+    </li>
+    <li>
+        <a href="/azure/virtual-machines/linux/tutorial-jenkins-github-docker-cicd">
+            <div class="cardSize">
+                <div class="cardPadding">
+                    <div class="card">
+                        <div class="cardImageOuter">
+                            <div class="cardImage">
+                                <img src="/media/common/i_deploy.svg" alt="" />
+                            </div>
+                        </div>
+                        <div class="cardText">
+                            <h2>Jenkins CI/CD</h2>
+                            Use Jenkins to deploy apps to Azure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
     </li>
 </ul>
 
