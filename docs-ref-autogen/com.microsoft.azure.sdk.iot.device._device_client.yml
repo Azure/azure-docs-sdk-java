@@ -15,6 +15,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS_AMQPS()
   - com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS_HTTPS()
   - com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS_MQTT()
+  - com.microsoft.azure.sdk.iot.device._device_client.registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.SEND_PERIOD_MILLIS()
   - com.microsoft.azure.sdk.iot.device._device_client.sendEventAsync(Message,IotHubEventCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.sendReportedProperties(Set<Property>)
@@ -380,6 +381,35 @@ items:
     content: public static long RECEIVE_PERIOD_MILLIS_MQTT= 10L
     return:
       type: 0364520f
+- uid: com.microsoft.azure.sdk.iot.device._device_client.registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
+  id: registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  nameWithType: DeviceClient.registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  overload: com.microsoft.azure.sdk.iot.device._device_client.registerConnectionStateCallback*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 819
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Registers a callback to be executed whenever the connection to the device is lost or established.</p>
+
+    <p></p>
+  syntax:
+    content: public void registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+    parameters:
+    - id: callback
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback
+      description: <p>the callback to be called. </p>
+    - id: callbackContext
+      type: "79317049"
+      description: <p>a context to be passed to the callback. Can be <programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> if no callback is provided. </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.SEND_PERIOD_MILLIS()
   id: SEND_PERIOD_MILLIS()
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -914,6 +944,11 @@ references:
   nameWithType: DeviceClient.setOption
   fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.setOption
   package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device._device_client.registerConnectionStateCallback*
+  name: registerConnectionStateCallback
+  nameWithType: DeviceClient.registerConnectionStateCallback
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.registerConnectionStateCallback
+  package: com.microsoft.azure.sdk.iot.device
 - uid: com.microsoft.azure.sdk.iot.device._device_client.setOption(String,Object)
   parent: com.microsoft.azure.sdk.iot.device._device_client
   href: com.microsoft.azure.sdk.iot.device._device_client.yml
@@ -1161,3 +1196,16 @@ references:
   type: Interface
   syntax:
     content: public interface DeviceMethodCallback
+- uid: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback.yml
+  name: IotHubConnectionStateCallback
+  nameWithType: IotHubConnectionStateCallback
+  fullName: com.microsoft.azure.sdk.iot.device.IotHubConnectionStateCallback
+  type: Interface
+  summary: >-
+    <p>An interface for an IoT Hub connection state callback.</p>
+
+    <p>Developers are expected to create an implementation of this interface, and the transport will call <ref refid="" kindref="compound">IotHubConnectionStateCallback#execute(IotHubConnectionState, Object)</ref> passing in the connection status (down, success, etc.). </p>
+  syntax:
+    content: public interface IotHubConnectionStateCallback

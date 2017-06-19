@@ -10,6 +10,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_i_o.isEmpty()
   - com.microsoft.azure.sdk.iot.device._device_i_o.isOpen()
   - com.microsoft.azure.sdk.iot.device._device_i_o.open()
+  - com.microsoft.azure.sdk.iot.device._device_i_o.registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_i_o.sendEventAsync(Message,IotHubEventCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_i_o.sendEventAsync(Message,IotHubResponseCallback,Object)
   - com.microsoft.azure.sdk.iot.device._device_i_o.setReceivePeriodInMilliseconds(long)
@@ -267,6 +268,35 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if a connection to an IoT Hub is cannot be established. </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_i_o.registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
+  id: registerConnectionStateCallback(IotHubConnectionStateCallback,Object)
+  parent: com.microsoft.azure.sdk.iot.device._device_i_o
+  href: com.microsoft.azure.sdk.iot.device._device_i_o.yml
+  langs:
+  - java
+  name: registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  nameWithType: DeviceIO.registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceIO.registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+  overload: com.microsoft.azure.sdk.iot.device._device_i_o.registerConnectionStateCallback*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceIO.java
+    startLine: 456
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Registers a callback with the configured transport to be executed whenever the connection to the device is lost or established.</p>
+
+    <p></p>
+  syntax:
+    content: public void registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
+    parameters:
+    - id: callback
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback
+      description: <p>the callback to be called. </p>
+    - id: callbackContext
+      type: "79317049"
+      description: <p>a context to be passed to the callback. Can be <programlisting><codeline><highlight class="normal">null<sp></sp></highlight></codeline></programlisting> if no callback is provided. </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_i_o.sendEventAsync(Message,IotHubEventCallback,Object)
   id: sendEventAsync(Message,IotHubEventCallback,Object)
   parent: com.microsoft.azure.sdk.iot.device._device_i_o
@@ -478,6 +508,11 @@ references:
   nameWithType: DeviceIO.isEmpty
   fullName: boolean com.microsoft.azure.sdk.iot.device.DeviceIO.isEmpty
   package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device._device_i_o.registerConnectionStateCallback*
+  name: registerConnectionStateCallback
+  nameWithType: DeviceIO.registerConnectionStateCallback
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceIO.registerConnectionStateCallback
+  package: com.microsoft.azure.sdk.iot.device
 - uid: com.microsoft.azure.sdk.iot.device._custom_logger
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._custom_logger.yml
@@ -582,3 +617,16 @@ references:
     <p>Developers are expected to create an implementation of this interface, and the transport will call <xref href="com.microsoft.azure.sdk.iot.device._iot_hub_response_callback.execute(ResponseMessage,Object)" data-throw-if-not-resolved="false"></xref> upon receiving a response from an IoT Hub. </p>
   syntax:
     content: public interface IotHubResponseCallback
+- uid: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device._iot_hub_connection_state_callback.yml
+  name: IotHubConnectionStateCallback
+  nameWithType: IotHubConnectionStateCallback
+  fullName: com.microsoft.azure.sdk.iot.device.IotHubConnectionStateCallback
+  type: Interface
+  summary: >-
+    <p>An interface for an IoT Hub connection state callback.</p>
+
+    <p>Developers are expected to create an implementation of this interface, and the transport will call <ref refid="" kindref="compound">IotHubConnectionStateCallback#execute(IotHubConnectionState, Object)</ref> passing in the connection status (down, success, etc.). </p>
+  syntax:
+    content: public interface IotHubConnectionStateCallback
