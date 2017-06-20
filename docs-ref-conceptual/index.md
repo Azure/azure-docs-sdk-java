@@ -80,7 +80,7 @@ Build great Java apps on Azure.
 
 ## Five-minute quickstarts
 Create and deploy a sample app in five minutes.
-<ul>
+<ul class="noBullet">
    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Web Apps</a></li>
    <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
    <li><a href="https://docs.microsoft.com/azure/cosmos-db/create-documentdb-java">CosmosDB</a></li>
@@ -109,6 +109,6 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 
 Learn how to use Azure services in your Java apps.
 
-<ul>
+<ul class="noBullet">
     <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create an app with Spring Boot and MySQL</a></li>
 </ul>
