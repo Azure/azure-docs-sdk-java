@@ -77,7 +77,7 @@ ms.service: multiple
 </ul>
 
 ## Five-minute Quickstarts
-Learn how to use Azure services with Java:
+Learn how to build Java apps with Azure services.
 <ul class="noBullet">
    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Deploy a Java webapp</a></li>
    <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">Connect to Azure SQL Database</a></li>
