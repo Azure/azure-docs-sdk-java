@@ -258,4 +258,4 @@ az group delete --name myResrouceGroup
 
 ## Next steps
 
-Browse the full list of [Azure Java samples](https://azure.microsoft.com/resources/samples/?term=java)).
+Browse the full list of [Azure Java samples](https://azure.microsoft.com/resources/samples/?term=java).
