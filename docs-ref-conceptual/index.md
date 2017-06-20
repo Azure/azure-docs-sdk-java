@@ -16,8 +16,6 @@ ms.service: multiple
 
 # Azure for Java developers
 
-Build great Java apps on Azure.
-
 <ul class="cardsY panelContent">
     <li>
         <a href="java-azure-tools.md">
@@ -78,12 +76,12 @@ Build great Java apps on Azure.
     </li>
 </ul>
 
-## Five-minute quickstarts
-Create and deploy a sample app in five minutes.
+## Five-minute Quickstarts
+Learn how to use Azure services with Java:
 <ul class="noBullet">
-   <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Web Apps</a></li>
-   <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">SQL Database</a></li>
-   <li><a href="https://docs.microsoft.com/azure/cosmos-db/create-documentdb-java">CosmosDB</a></li>
+   <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Deploy a Java webapp</a></li>
+   <li><a href="https://docs.microsoft.com/azure/sql-database/sql-database-connect-query-java">Connect to SQL Database</a></li>
+   <li><a href="https://docs.microsoft.com/azure/cosmos-db/create-documentdb-java">Build a NoSQL webapp with CosmosDB</a></li>
 </ul>
 
 ## Management APIs
@@ -110,5 +108,5 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 Learn how to use Azure services in your Java apps.
 
 <ul class="noBullet">
-    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create an app with Spring Boot and MySQL</a></li>
+    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-tutorial-java-mysql">Create an web app with Spring Boot and MySQL</a></li>
 </ul>
