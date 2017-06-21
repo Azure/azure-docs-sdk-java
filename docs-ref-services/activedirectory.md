@@ -21,6 +21,9 @@ Sign-on users to web apps and control access to API and applications with Azure 
 
 The management libraries provide an interface to configure [role based access control](https://docs.microsoft.com/azure/active-directory/role-based-access-control-what-is) and assign identities (such as users and [service principals](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-application-objects)) to those roles.
 
+- [Client library](http://javadoc.io/doc/com.microsoft.azure/adal4j/1.2.0)
+- [Management API](https://docs.microsoft.com/java/api/overview/azure/activedirectory/managementapi)
+
 ## Import the libraries
 
 Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.

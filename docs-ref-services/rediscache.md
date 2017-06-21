@@ -21,6 +21,9 @@ Azure Redis Cache is based on the popular open source [Redis](https://redis.io/)
 
 Redis is an advanced key-value store, where keys can contain data structures such as strings, hashes, lists, sets, and sorted sets. Redis supports a set of atomic operations on these data types.
 
+- [Client library](http://xetorthio.github.io/jedis/ )
+- [Management API](https://docs.microsoft.com/java/api/overview/azure/rediscache/managementapi)
+
 ## Import the libraries
 
 Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
