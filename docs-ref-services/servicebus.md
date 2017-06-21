@@ -19,8 +19,8 @@ ms.service: service-bus
 
 Microsoft Azure Service Bus supports a set of cloud-based, message-oriented middleware technologies including reliable message queuing and durable publish/subscribe messaging. Client libraries are available that work with the Java Messaging Service (JMS) 2.0 specification.
 
-- [Client library](https://docs.microsoft.com/en-us/java/api/overview/azure/servicebus/managementapi)
-- [Management API](https://qpid.apache.org/components/jms/index.html)
+- [Client library](https://qpid.apache.org/components/jms/index.html)
+- [Management API](https://docs.microsoft.com/en-us/java/api/overview/azure/servicebus/managementapi)
 
 ## Import the libraries
 
