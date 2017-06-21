@@ -17,7 +17,7 @@ ms.service: mysql
 
 ## Overview
 
-The recommended client library for accessing Azure Database for MySQL is the open-source [JDBC driver](https://dev.mysql.com/doc/connector-j/5.1/). Use the JDBC driver to connect to the database and execute SQL statements directly or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
+The recommended client library for accessing Azure Database for MySQL is the open-source [JDBC driver](https://dev.mysql.com/doc/connector-j/5.1/en/connector-j-reference.html). Use the JDBC driver to connect to the database and execute SQL statements directly or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
 
 Learn more about [Azure Database for MySQL](https://docs.microsoft.com/azure/MySQL/)
 
