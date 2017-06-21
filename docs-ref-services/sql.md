@@ -21,6 +21,9 @@ Work with data stored in  [Azure SQL Database](https://docs.microsoft.com/azure/
 
 The management libraries provide an interface to create, manage, and scale Azure SQL Database deployments from your Java code. Set up and manage databases in [elastic pools](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool) to share resources and configure databases across multiple regions from your code.
 
+- [Client library](https://docs.microsoft.com/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server)
+- [Management API](https://docs.microsoft.com/java/api/overview/azure/sql/managementapi)
+
 ## Import the libraries
 
 Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
