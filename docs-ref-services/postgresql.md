@@ -17,7 +17,7 @@ ms.service: postgresql
 
 ## Overview
 
-The recommended client library for accessing Azure Database for PostgreSQL is the open-source [JDBC driver](http://jdbc.postgresql.org/). Use the JDBC driver to connect to the database and execute SQL statements directly or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
+The recommended client library for accessing Azure Database for PostgreSQL is the open-source [JDBC driver](https://jdbc.postgresql.org/documentation/publicapi/index.html). Use the JDBC driver to connect to the database and execute SQL statements directly or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
 
 Learn more about [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/)
 
