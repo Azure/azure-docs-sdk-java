@@ -29,7 +29,7 @@ ms.service: multiple
                         </div>
                         <div class="cardText">
                             <h3 style="margin-bottom: 0; font-size: 24px">Tools</h3>
-                            <p style="font-size: 1rem">Download Azure tools and plugins.</p>
+                            <p style="font-size: 1rem">Download Azure tools and plug-ins</p>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@ ms.service: multiple
                         </div>
                         <div class="cardText">
                             <h3 style="margin-bottom: 0; font-size: 24px">Libraries</h3>
-                            <p style="font-size: 1rem">Use services and manage Azure resources.</p>
+                            <p style="font-size: 1rem">Use services and manage Azure resources</p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@ ms.service: multiple
                         </div>
                         <div class="cardText">
                             <h3 style="margin-bottom: 0; font-size: 24px">Jenkins CI/CD</h3>
-                            <p style="font-size: 1rem">Use Jenkins to deploy apps to Azure.</p>
+                            <p style="font-size: 1rem">Use Jenkins to deploy apps to Azure</p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +76,7 @@ ms.service: multiple
     </li>
 </ul>
 
-## Five-minute Quickstarts
+## 5-inute Quickstarts
 Learn how to build Java apps with Azure services.
 <ul class="noBullet">
    <li><a href="https://docs.microsoft.com/azure/app-service-web/app-service-web-get-started-java">Deploy a Java webapp</a></li>
@@ -105,7 +105,7 @@ VirtualMachine linuxVM = azure.virtualMachines().define("myAzureVM")
 
 [Get started with the Azure management libraries for Java](java-sdk-azure-get-started.md)
 
-## Tutorials
+## Step-by-Step Tutorials
 
 Learn how to use Azure services in your Java apps.
 
