@@ -46,4 +46,4 @@ The Azure 2.0 CLI provides a command-line experience to manage Azure resources. 
 
 Manage Azure storage accounts, containers, and blobs/files from your desktop. Azure Storage Explorer is currently in Preview and works on Windows, macOS, and Linux.
 
-[Get started with Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer.md)
+[Get started with Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-manage-with-storage-explorer)
