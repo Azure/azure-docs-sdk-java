@@ -14,6 +14,7 @@ items:
   - microsoft.servicefabric.services.communication.client._fabric_service_partition_client.getPartitionKey()
   - microsoft.servicefabric.services.communication.client._fabric_service_partition_client.getServiceUri()
   - microsoft.servicefabric.services.communication.client._fabric_service_partition_client.getTargetReplicaSelector()
+  - microsoft.servicefabric.services.communication.client._fabric_service_partition_client.invokeWithRetryAsync(Function<C, CompletableFuture<T>>,CancellationToken,Class<?>...)
   - microsoft.servicefabric.services.communication.client._fabric_service_partition_client.invokeWithRetryAsync(Function<C, CompletableFuture<T>>,Class<?>...)
   href: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.yml
   langs:
@@ -28,7 +29,7 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 24
+    startLine: 25
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Specifies an instance of the communication client that can communicate with the replicas of a particular partition.</p>
@@ -56,7 +57,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 49
+    startLine: 50
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Instantiates a service partition client that uses the specified communication client factory to create a client to talk to the service endpoint identified by the service uri argument.</p>
@@ -85,7 +86,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 65
+    startLine: 66
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Instantiates a service partition client that uses the specified communication client factory to create a client to talk to the service endpoint identified by the service uri, partitionkey arguments.</p>
@@ -117,7 +118,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 86
+    startLine: 87
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Instantiates a service partition client that uses the specified communication client factory to create a client to talk to the service endpoint identified by the service uri, partitionkey and replica selector arguments.</p>
@@ -152,7 +153,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 110
+    startLine: 111
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Instantiates a service partition client that uses the specified communication client factory to create a client to talk to the service endpoint identified by the service uri, partitionkey, replica and listener arguments.</p>
@@ -190,7 +191,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 137
+    startLine: 138
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Instantiates a service partition client that uses the specified communication client factory to create a client to talk to the service endpoint identified by the service uri, partitionkey, replica and listener arguments.</p>
@@ -231,7 +232,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 182
+    startLine: 183
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the communication client factory</p>
@@ -256,7 +257,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 192
+    startLine: 193
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the resolved service partition that was set on the client.</p>
@@ -281,7 +282,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 202
+    startLine: 203
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the name of the listener in the replica to which the client should connect to.</p>
@@ -306,7 +307,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 172
+    startLine: 173
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the partition key.</p>
@@ -331,7 +332,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 162
+    startLine: 163
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the name of the service</p>
@@ -356,7 +357,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 212
+    startLine: 213
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Gets the information about which replica in the partition the client should connect to.</p>
@@ -367,6 +368,41 @@ items:
     return:
       type: microsoft.servicefabric.services.communication.client._target_replica_selector
       description: <p>A <xref href="microsoft.servicefabric.services.communication.client._target_replica_selector" data-throw-if-not-resolved="false"></xref></p>
+- uid: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.invokeWithRetryAsync(Function<C, CompletableFuture<T>>,CancellationToken,Class<?>...)
+  id: )
+  parent: microsoft.servicefabric.services.communication.client._fabric_service_partition_client
+  href: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.yml
+  langs:
+  - java
+  name: invokeWithRetryAsync(Function<C, CompletableFuture<T>> func, CancellationToken cancellationToken, Class<?>... doNotRetryExceptionTypes)
+  nameWithType: FabricServicePartitionClient<C>.invokeWithRetryAsync(Function<C, CompletableFuture<T>> func, CancellationToken cancellationToken, Class<?>... doNotRetryExceptionTypes)
+  fullName: public<T> CompletableFuture<T> microsoft.servicefabric.services.communication.client.FabricServicePartitionClient<C extends CommunicationClient>.invokeWithRetryAsync(Function<C, CompletableFuture<T>> func, CancellationToken cancellationToken, Class<?>... doNotRetryExceptionTypes)
+  overload: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.invokeWithRetryAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
+    startLine: 254
+  package: microsoft.servicefabric.services.communication.client
+  summary: >-
+    <p>Invokes the given Function, retrying for exceptions thrown other than the exceptions in the doNotRetryExceptionTypes. For exceptions that are not in doNotRetryExceptionTypes, <xref href="microsoft.servicefabric.services.communication.client._communication_client_factory" data-throw-if-not-resolved="false"></xref>'s ReportOperationExceptionAsync() method controls if the exception should be retried or not.</p>
+
+    <p></p>
+  syntax:
+    content: public <T> CompletableFuture<T> invokeWithRetryAsync(Function<C, CompletableFuture<T>> func, CancellationToken cancellationToken, Class<?>... doNotRetryExceptionTypes)
+    parameters:
+    - id: func
+      type: 8c4f8da5
+      description: <p>Function being invoked </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: <p>Token to signal the cancellation of async operation. </p>
+    - id: doNotRetryExceptionTypes
+      type: 0f2b04be
+      description: <p>Exceptions for which the service partition client should not retry </p>
+    return:
+      type: 6d056e8b
+      description: <p>A <ref refid="" kindref="compound">CompletableFuture</ref> that represents outstanding operation. The result of the Task is the result from the function given in the argument. </p>
 - uid: microsoft.servicefabric.services.communication.client._fabric_service_partition_client.invokeWithRetryAsync(Function<C, CompletableFuture<T>>,Class<?>...)
   id: )
   parent: microsoft.servicefabric.services.communication.client._fabric_service_partition_client
@@ -381,7 +417,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/communication/client/FabricServicePartitionClient.java
-    startLine: 231
+    startLine: 232
   package: microsoft.servicefabric.services.communication.client
   summary: >-
     <p>Invokes the given Function, retrying for exceptions thrown other than the exceptions in the doNotRetryExceptionTypes. For exceptions that are not in doNotRetryExceptionTypes, <xref href="microsoft.servicefabric.services.communication.client._communication_client_factory" data-throw-if-not-resolved="false"></xref>'s ReportOperationExceptionAsync() method controls if the exception should be retried or not.</p>
@@ -548,3 +584,13 @@ references:
   type: Class
   syntax:
     content: public class OperationRetrySettings
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
