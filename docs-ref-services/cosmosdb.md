@@ -55,6 +55,7 @@ Find matching documents in CosmosDB using a SQL-like query interface:
 | [Develop a Java app using Azure CosmosDB's Graph API][3] |  Store and access data from a Java application using the Graph API in Cosmos DB |
 | [Develop a Java app using Azure CosmosDB's DocumentDB API][4] | Use  Azure Cosmos DB with the DocumentDB API to store and access data from a Java application | 
 
+
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
 
 [2]: https://azure.microsoft.com/resources/samples/azure-cosmos-db-mongodb-java-getting-started/
