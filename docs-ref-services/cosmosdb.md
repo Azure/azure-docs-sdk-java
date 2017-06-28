@@ -19,7 +19,7 @@ ms.service: cosmosdb
 
 Use CosmosDB in your Java applications to store and query JSON documents in a NoSQL data store.
 
-Learn more about [Azure CosmnosDB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
+Learn more about [Azure CosmosDB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
 
 ## Import the libraries
 
@@ -51,9 +51,9 @@ Find matching documents in CosmosDB using a SQL-like query interface:
 ## Samples
 
 | **Cosmos DB** ||
-| [Develop a Java app using Azure Cosmos DB's MongoDB API][2] | Sample Java application that connects to Azure Cosmos DB with the MongoDB API |
-| [Develop a Java app using Azure Cosmos DB's Graph API][3] |  Store and access data from a Java application using the Graph API in Cosmos DB |
-| [Develop a Java app using Azure Cosmos DB's DocumentDB API][4] | Use  Azure Cosmos DB with the DocumentDB API to store and access data from a Java application | 
+| [Develop a Java app using Azure CosmosDB's MongoDB API][2] | Sample Java application that connects to Azure Cosmos DB with the MongoDB API |
+| [Develop a Java app using Azure CosmosDB's Graph API][3] |  Store and access data from a Java application using the Graph API in Cosmos DB |
+| [Develop a Java app using Azure CosmosDB's DocumentDB API][4] | Use  Azure Cosmos DB with the DocumentDB API to store and access data from a Java application | 
 
 Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
 
