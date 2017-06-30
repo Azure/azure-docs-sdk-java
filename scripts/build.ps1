@@ -37,7 +37,7 @@ $scriptHome = Split-Path $scriptPath
 $scriptParent = Split-Path $scriptHome
 $apiref = "docs-ref-autogen"
 $code2yamlZip = "code2yaml.zip"
-$code2yamlArtifact = "https://ci.appveyor.com/api/projects/ansyral/code2yaml/artifacts/code2yaml.zip?branch=azuredocs"
+$code2yamlArtifact = "https://ci.appveyor.com/api/projects/ansyral/code2yaml/artifacts/code2yaml.zip?branch=azuredocs&pr=false"
 $code2yaml = "code2yaml"
 $src = "src"
 Push-Location $scriptParent
