@@ -30,7 +30,7 @@ View the [complete list of libraries](java-sdk-azure-install.md) and [get starte
 
 ## Eclipse and IntelliJ plugins
 
-Manage Azure resources and deploy apps from your IDE with The Azure toolkits for [Eclipse](https://eclipse.org/downloads/packages/eclipse-ide-java-developers/lunar) and [IntelliJ](https://www.jetbrains.com/idea/).   
+Manage Azure resources and deploy apps from your IDE with The Azure toolkits for [Eclipse](https://docs.microsoft.com/azure/azure-toolkit-for-eclipse) and [IntelliJ](https://docs.microsoft.com/azure/azure-toolkit-for-intellij).   
 
 ![IntelliJ toolkit showing the Azure Explorer](media/intelliJ-azure-explorer.png)
 

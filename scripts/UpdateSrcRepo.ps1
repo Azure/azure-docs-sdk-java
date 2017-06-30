@@ -20,14 +20,6 @@ function CloneOrPull
       }
 }
 
-function Unzip 
-{ 
-     param([string]$zipfile, [string]$outpath) 
- 
- 
-     [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)
-}
-
 $ErrorActionPreference = 'Stop'
 
 $scriptPath = $MyInvocation.MyCommand.Path
@@ -52,23 +44,4 @@ Foreach($repo in $config.repo){
 		Pop-Location
 	}
 }
-Pop-Location
-
-Push-Location $rootFolder
-
-# Generate Mapping file
-$code2yamlConfigGeneratorZip = "code2yamlConfigGenerator.zip"
-$code2yamlConfigGeneratorArtifact = "https://ci.appveyor.com/api/projects/ansyral/code2yamlConfigGenerator/artifacts/code2yamlConfigGenerator.zip?branch=master"
-$code2yamlConfigGenerator = "code2yamlConfigGenerator"
-# unzip code2yamlConfigGenerator.zip to src folder
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-
-Invoke-WebRequest $code2yamlConfigGeneratorArtifact -OutFile $rootFolder\$code2yamlConfigGeneratorZip
-Unzip $rootFolder\$code2yamlConfigGeneratorZip $rootFolder\$code2yamlConfigGenerator
-& $rootFolder\$code2yamlConfigGenerator\Code2YamlConfigGenerator $rootFolder $rootFolder\docs-ref-mapping\reference.yml $rootFolder\$src
-if (Test-Path $code2yamlConfigGenerator){
-    Remove-Item $code2yamlConfigGenerator\* -recurse -Force
-	Remove-Item $code2yamlConfigGeneratorZip -Force
-}
-
 Pop-Location
