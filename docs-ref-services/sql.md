@@ -34,7 +34,7 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 <dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
-    <version>6.1.0.jre8</version>
+    <version>6.2.0.jre8</version>
 </dependency>
 ```   
 
@@ -44,7 +44,7 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-sql</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
