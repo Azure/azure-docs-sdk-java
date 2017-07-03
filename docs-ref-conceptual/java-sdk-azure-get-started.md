@@ -105,7 +105,7 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
 <dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
-    <version>6.1.0.jre8</version>
+    <version>6.2.0.jre8</version>
 </dependency>
 ```
 
