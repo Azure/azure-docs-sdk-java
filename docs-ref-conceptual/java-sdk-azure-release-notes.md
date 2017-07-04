@@ -14,22 +14,32 @@ ms.date: 3/06/2016
 
 # Release Notes 
 
-## April 14, 2017 - 1.0.0
+## June 30, 2017 - 1.1.0 
 
-This release of the Azure management libraries for Java is the first "Generally Availble" release. Some parts of the library are still in Preview, see the table below for the current state of the libraries:
+V1.1 is backwards compatible with V1.0 in the APIs intended for public use that reached the general availability (stable) stage in V1.0.
 
+Some breaking changes were introduced in APIs marked with the @Beta annotation in V.0
+
+If you are migrating your code to 1.1.0, you can use [these notes](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.1.0.md) for preparing your code for 1.1.0 from 1.0.0.
+
+### Generally availabile in V1.1
+
+Some of the APIs that were still in Beta in V1.0 are now GA in V1.1, in particular:
+
+- async methods
+- all methods in CDN that were previously in Beta
+- all methods and interfaces in Application Gateways that were previously in Beta
+
+ Some parts of the library are still in Preview. Refer to the table below for the current state of the libraries:
 
 Service or feature | Available as GA | Available as Preview  | Coming soon |
 ---------|---------|---------|---------|
-Compute  | Virtual machines and VM extensions, Virtual machine scale sets, managed disks   |  |  Azure container services ,Azure container registry  |
+Compute  | Virtual machines and VM extensions, Virtual machine scale sets, managed disks   | Azure container service, Azure container registry |    |
 Storage   |  Storage accounts       |         |   Encryption      |
-SQL Database  | Databases, firewalls, elastic pools        |         |         |
-Networking    |  Virtual networks , network interfaces , IP addresses ,routing tables, network security groups , DNS, Traffic manager  |    Load balancers, Application gateways     |         |
-More services    |  Resource Manager, Key Vault, Redis,  CDN, Batch       |  App service - Web apps, Functions, Service Bus    | Monitor, Graph RBAC, DocumentDB ,Scheduler        |
-Fundamentals     |   Authentication - core      |  Async methods       |         |
-
-Preview features are marked with the @Beta annotation at the class, interface or method level in the libraries. 
-Preview features can be modified in any way, or even removed, in the future.
+SQL Database  | Databases, firewalls, elastic pools        |         |   More features      |
+Networking    |  Virtual networks , network interfaces , IP addresses ,routing tables, network security groups , DNS, Traffic managers, Application gateways  |    Load balancers     |   VPN, Network watchers   |
+More services    |  Resource Manager, Key Vault, Redis,  CDN, Batch       |  Web apps, Function apps, Service Bus, Graph RBAC, DocumentDB   | Monitor ,Scheduler, Functions management, Search, more Graph RBAC features        |
+Fundamentals     |   Authentication - core , Async methods       |      |         |
 
 ### Import with Maven
 
@@ -37,7 +47,7 @@ Preview features can be modified in any way, or even removed, in the future.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
@@ -47,6 +57,6 @@ Check out the [Stack Overflow](http://stackoverflow.com/questions/tagged/azure-j
 
 ### Migrate from previous releases
 
-[Migrate from 1.0.0-beta5](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.0.0.md)    
+[Migrate from 1.0.0-beta5](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.0.0.md)  [Migrate from 1.1.0](https://github.com/Azure/azure-sdk-for-java/blob/master/notes/prepare-for-1.1.0.md)
 
 
