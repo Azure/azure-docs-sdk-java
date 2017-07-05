@@ -33,7 +33,7 @@ For example, to include the latest version of the [Azure management libraries fo
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
