@@ -23,7 +23,7 @@ items:
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Created by gupele on 12/4/2016. </p>
   syntax:
-    content: public class BaseSampleSourceTelemetry<T extends SendableData> extends BaseTelemetry<T> implements SupportSampling
+    content: public class BaseSampleSourceTelemetry<T extends Domain> extends BaseTelemetry<T> implements SupportSampling
     typeParameters:
     - type: 8ce1ecb9
   inheritance:
@@ -32,8 +32,10 @@ items:
   inheritedMembers:
   - com.microsoft.applicationinsights.telemetry._base_telemetry.additionalSanitize()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.BaseTelemetry()
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.getBaseTypeName()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getData()
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.getEnvelopName()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
   - com.microsoft.applicationinsights.telemetry._support_sampling.getSamplingPercentage()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
@@ -52,7 +54,7 @@ items:
   - java
   name: reset()
   nameWithType: BaseSampleSourceTelemetry<T>.reset()
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.reset()
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends Domain>.reset()
   overload: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.reset*
   type: Method
   source:
@@ -70,7 +72,7 @@ items:
   - java
   name: setSampleRate(Envelope envelope)
   nameWithType: BaseSampleSourceTelemetry<T>.setSampleRate(Envelope envelope)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.setSampleRate(Envelope envelope)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends Domain>.setSampleRate(Envelope envelope)
   overload: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.setSampleRate*
   type: Method
   source:
@@ -91,7 +93,7 @@ references:
 - uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.reset*
   name: reset
   nameWithType: BaseSampleSourceTelemetry<T>.reset
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.reset
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends Domain>.reset
   package: com.microsoft.applicationinsights.telemetry
 - uid: ec5c4d5a
   spec.java:
@@ -100,14 +102,14 @@ references:
 - uid: com.microsoft.applicationinsights.telemetry._base_sample_source_telemetry.setSampleRate*
   name: setSampleRate
   nameWithType: BaseSampleSourceTelemetry<T>.setSampleRate
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends SendableData>.setSampleRate
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseSampleSourceTelemetry<T extends Domain>.setSampleRate
   package: com.microsoft.applicationinsights.telemetry
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.additionalSanitize()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: additionalSanitize()
   nameWithType: BaseTelemetry<T>.additionalSanitize()
-  fullName: abstract void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.additionalSanitize()
+  fullName: abstract void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.additionalSanitize()
   type: Method
   summary: <p>Concrete classes should implement this method </p>
   syntax:
@@ -119,18 +121,32 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: BaseTelemetry()
   nameWithType: BaseTelemetry<T>.BaseTelemetry()
-  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.BaseTelemetry()
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.BaseTelemetry()
   type: Constructor
   syntax:
     content: protected BaseTelemetry()
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getBaseTypeName()
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: getBaseTypeName()
+  nameWithType: BaseTelemetry<T>.getBaseTypeName()
+  fullName: String com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getBaseTypeName()
+  type: Method
+  syntax:
+    content: protected String getBaseTypeName()
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: getContext()
   nameWithType: BaseTelemetry<T>.getContext()
-  fullName: TelemetryContext com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getContext()
+  fullName: TelemetryContext com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getContext()
   type: Method
-  summary: <p>Gets the context associated with the current telemetry item. </p>
+  summary: >-
+    <p>Gets the context associated with the current telemetry item.</p>
+
+    <p></p>
   syntax:
     content: public TelemetryContext getContext()
     return:
@@ -141,22 +157,39 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: getData()
   nameWithType: BaseTelemetry<T>.getData()
-  fullName: abstract T com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getData()
+  fullName: abstract T com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getData()
   type: Method
-  summary: <p>Concrete classes should implement this method which supplies the data structure that this instance works with, which needs to implement <ref refid="" kindref="compound">SendableData</ref></p>
+  summary: >-
+    <p>Concrete classes should implement this method which supplies the data structure that this instance works with, which needs to implement <xref href="com.microsoft.applicationinsights.telemetry._json_serializable" data-throw-if-not-resolved="false"></xref></p>
+
+    <p></p>
   syntax:
     content: protected abstract T getData()
     return:
       type: 521c6d27
       description: <p>The inner data structure </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getEnvelopName()
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: getEnvelopName()
+  nameWithType: BaseTelemetry<T>.getEnvelopName()
+  fullName: String com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getEnvelopName()
+  type: Method
+  syntax:
+    content: protected String getEnvelopName()
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: getProperties()
   nameWithType: BaseTelemetry<T>.getProperties()
-  fullName: Map<String, String> com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getProperties()
+  fullName: Map<String, String> com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getProperties()
   type: Method
-  summary: <p>Gets a dictionary of application-defined property names and values providing additional information about this event. </p>
+  summary: >-
+    <p>Gets a dictionary of application-defined property names and values providing additional information about this event.</p>
+
+    <p></p>
   syntax:
     content: public Map<String, String> getProperties()
     return:
@@ -178,14 +211,16 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: getSequence()
   nameWithType: BaseTelemetry<T>.getSequence()
-  fullName: String com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getSequence()
+  fullName: String com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getSequence()
   type: Method
   summary: >-
-    <p>Sequence field used to track absolute order of uploaded events. It is a two-part value that includes a stable identifier for the current boot session and an incrementing identifier for each event added to the upload queue</p>
+    <p>Sequence field used to track absolute order of uploaded events. It is a two-part value that includes a stable identifier for the current boot session and an incrementing identifier for each event added to the upload queue </p>
 
-    <p>The Sequence helps track how many events were fired and how many events were uploaded and enables identification of data lost during upload and de-duplication of events on the ingress server.</p>
+    <p>The Sequence helps track how many events were fired and how many events were uploaded and enables identification of data lost during upload and de-duplication of events on the ingress server. </p>
 
-    <p>Gets the value that defines absolute order of the telemetry item. </p>
+    <p>Gets the value that defines absolute order of the telemetry item.</p>
+
+    <p></p>
   syntax:
     content: public String getSequence()
     return:
@@ -196,9 +231,12 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: getTimestamp()
   nameWithType: BaseTelemetry<T>.getTimestamp()
-  fullName: Date com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.getTimestamp()
+  fullName: Date com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getTimestamp()
   type: Method
-  summary: <p>Gets date and time when event was recorded. </p>
+  summary: >-
+    <p>Gets date and time when event was recorded.</p>
+
+    <p></p>
   syntax:
     content: public Date getTimestamp()
     return:
@@ -209,9 +247,12 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: initialize(ConcurrentMap<String, String> properties)
   nameWithType: BaseTelemetry<T>.initialize(ConcurrentMap<String, String> properties)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.initialize(ConcurrentMap<String, String> properties)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.initialize(ConcurrentMap<String, String> properties)
   type: Method
-  summary: <p>Initializes the instance with the context properties </p>
+  summary: >-
+    <p>Initializes the instance with the context properties</p>
+
+    <p></p>
   syntax:
     content: protected void initialize(ConcurrentMap<String, String> properties)
     parameters:
@@ -223,7 +264,7 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: sanitize()
   nameWithType: BaseTelemetry<T>.sanitize()
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.sanitize()
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.sanitize()
   type: Method
   summary: <p>Makes sure the data to send is sanitized from bad chars, proper length etc. </p>
   syntax:
@@ -233,9 +274,12 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: serialize(JsonTelemetryDataSerializer writer)
   nameWithType: BaseTelemetry<T>.serialize(JsonTelemetryDataSerializer writer)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.serialize(JsonTelemetryDataSerializer writer)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.serialize(JsonTelemetryDataSerializer writer)
   type: Method
-  summary: <p>Serializes this object in JSON format. </p>
+  summary: >-
+    <p>Serializes this object in JSON format.</p>
+
+    <p></p>
   syntax:
     content: public void serialize(JsonTelemetryDataSerializer writer)
     parameters:
@@ -259,9 +303,12 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: setSequence(String sequence)
   nameWithType: BaseTelemetry<T>.setSequence(String sequence)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.setSequence(String sequence)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.setSequence(String sequence)
   type: Method
-  summary: <p>Sets the value that defines absolute order of the telemetry item. </p>
+  summary: >-
+    <p>Sets the value that defines absolute order of the telemetry item.</p>
+
+    <p></p>
   syntax:
     content: public void setSequence(String sequence)
     parameters:
@@ -273,9 +320,12 @@ references:
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
   name: setTimestamp(Date date)
   nameWithType: BaseTelemetry<T>.setTimestamp(Date date)
-  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends SendableData>.setTimestamp(Date date)
+  fullName: void com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.setTimestamp(Date date)
   type: Method
-  summary: <p>Sets date and time when event was recorded. </p>
+  summary: >-
+    <p>Sets date and time when event was recorded.</p>
+
+    <p></p>
   syntax:
     content: public void setTimestamp(Date date)
     parameters:
@@ -291,7 +341,7 @@ references:
   type: Class
   summary: <p>Superclass for all telemetry data classes. </p>
   syntax:
-    content: public class BaseTelemetry<T extends SendableData>
+    content: public class BaseTelemetry<T extends Domain>
     typeParameters:
     - type: 8ce1ecb9
 - uid: com.microsoft.applicationinsights.telemetry._support_sampling
