@@ -7,7 +7,13 @@ items:
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.cancelJob(String)
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.createFromConnectionString(String)
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.getJob(String)
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.getNextJob(Query)
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.hasNextJob(Query)
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.JobClient()
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob(String)
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob(String,Integer)
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse(JobType,JobStatus)
+  - com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse(JobType,JobStatus,Integer)
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.scheduleDeviceMethod(String,String,String,Long,Long,Object,Date,long)
   - com.microsoft.azure.sdk.iot.service.jobs._job_client.scheduleUpdateTwin(String,String,DeviceTwinDevice,Date,long)
   href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
@@ -23,7 +29,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 29
+    startLine: 24
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>
@@ -47,7 +53,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 255
+    startLine: 249
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>Cancel a current jod on the IoTHub</p>
@@ -83,7 +89,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 44
+    startLine: 40
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>Static constructor to create instance from connection string</p>
@@ -117,7 +123,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 216
+    startLine: 210
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>Get the current job on the iotHub.</p>
@@ -139,6 +145,70 @@ items:
     description: <p>if the function cannot create a URL for the job, or the IO failed on request </p>
   - type: 0d494ee6
     description: <p>if the http request failed </p>
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.getNextJob(Query)
+  id: getNextJob(Query)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: getNextJob(Query query)
+  nameWithType: JobClient.getNextJob(Query query)
+  fullName: synchronized JobResult com.microsoft.azure.sdk.iot.service.jobs.JobClient.getNextJob(Query query)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.getNextJob*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 398
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>returns the next job result in response. Query's further if page size has been met and has next is not called </p>
+  syntax:
+    content: public synchronized JobResult getNextJob(Query query)
+    parameters:
+    - id: query
+      type: com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>Query for which to look for next job response by </p>
+    return:
+      type: cffad4f2com.microsoft.azure.sdk.iot.service.jobs._job_result
+      description: <p>next job result if available </p>
+  exceptions:
+  - type: 0d494ee6
+    description: <p>When IotHub fails to respond </p>
+  - type: cbf33bbe
+    description: <p>if any of the input parameters are incorrect </p>
+  - type: 05807805
+    description: <p>if called when no further responses are left </p>
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.hasNextJob(Query)
+  id: hasNextJob(Query)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: hasNextJob(Query query)
+  nameWithType: JobClient.hasNextJob(Query query)
+  fullName: synchronized boolean com.microsoft.azure.sdk.iot.service.jobs.JobClient.hasNextJob(Query query)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.hasNextJob*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 379
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>returns the availability of next job result in response. Query's further if page size has been met </p>
+  syntax:
+    content: public synchronized boolean hasNextJob(Query query)
+    parameters:
+    - id: query
+      type: com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>Query for which to look for next job response by </p>
+    return:
+      type: 85b427c6
+      description: <p>true if next job result is available , false otherwise </p>
+  exceptions:
+  - type: 0d494ee6
+    description: <p>When IotHub fails to respond </p>
+  - type: cbf33bbe
+    description: <p>if any of the input parameters are incorrect </p>
 - uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.JobClient()
   id: JobClient()
   parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
@@ -153,10 +223,146 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 337
+    startLine: 467
   package: com.microsoft.azure.sdk.iot.service.jobs
   syntax:
     content: protected JobClient()
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob(String)
+  id: queryDeviceJob(String)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: queryDeviceJob(String sqlQuery)
+  nameWithType: JobClient.queryDeviceJob(String sqlQuery)
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryDeviceJob(String sqlQuery)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 366
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>Query for device Job limited by default page size of 100 for response </p>
+  syntax:
+    content: public synchronized Query queryDeviceJob(String sqlQuery)
+    parameters:
+    - id: sqlQuery
+      type: "26831127"
+      description: <p>sql style query over device.jobs </p>
+    return:
+      type: cffad4f2com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>Query object for this query </p>
+  exceptions:
+  - type: 0d494ee6
+    description: <p>When IotHub fails to respond </p>
+  - type: cbf33bbe
+    description: <p>When any of the parameters are incorrect </p>
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob(String,Integer)
+  id: queryDeviceJob(String,Integer)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: queryDeviceJob(String sqlQuery, Integer pageSize)
+  nameWithType: JobClient.queryDeviceJob(String sqlQuery, Integer pageSize)
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryDeviceJob(String sqlQuery, Integer pageSize)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 337
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>Query for device Job </p>
+  syntax:
+    content: public synchronized Query queryDeviceJob(String sqlQuery, Integer pageSize)
+    parameters:
+    - id: sqlQuery
+      type: "26831127"
+      description: <p>sql style query over device.jobs </p>
+    - id: pageSize
+      type: 08effaa0
+      description: <p>the value per which to limit the size of query response by. </p>
+    return:
+      type: cffad4f2com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>Query object for this query </p>
+  exceptions:
+  - type: 0d494ee6
+    description: <p>When IotHub fails to respond </p>
+  - type: cbf33bbe
+    description: <p>When any of the parameters are incorrect </p>
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse(JobType,JobStatus)
+  id: queryJobResponse(JobType,JobStatus)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: queryJobResponse(JobType jobType, JobStatus jobStatus)
+  nameWithType: JobClient.queryJobResponse(JobType jobType, JobStatus jobStatus)
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryJobResponse(JobType jobType, JobStatus jobStatus)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 460
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>Query the iot hub for a jobs response. Query response are limited by default page size per attempt </p>
+  syntax:
+    content: public synchronized Query queryJobResponse(JobType jobType, JobStatus jobStatus)
+    parameters:
+    - id: jobType
+      type: com.microsoft.azure.sdk.iot.service.jobs._job_type
+      description: <p>The type of job to query for </p>
+    - id: jobStatus
+      type: com.microsoft.azure.sdk.iot.service.jobs._job_status
+      description: <p>The status of the job to query for </p>
+    return:
+      type: cffad4f2com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>A query object on which to look for responses by </p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>If any of the input parameters are incorrect </p>
+  - type: 0d494ee6
+    description: <p>If IotHub failed to respond </p>
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse(JobType,JobStatus,Integer)
+  id: queryJobResponse(JobType,JobStatus,Integer)
+  parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_client.yml
+  langs:
+  - java
+  name: queryJobResponse(JobType jobType, JobStatus jobStatus, Integer pageSize)
+  nameWithType: JobClient.queryJobResponse(JobType jobType, JobStatus jobStatus, Integer pageSize)
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryJobResponse(JobType jobType, JobStatus jobStatus, Integer pageSize)
+  overload: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse*
+  type: Method
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
+    startLine: 431
+  package: com.microsoft.azure.sdk.iot.service.jobs
+  summary: <p>Query the iot hub for a jobs response. Query response are limited by page size per attempt </p>
+  syntax:
+    content: public synchronized Query queryJobResponse(JobType jobType, JobStatus jobStatus, Integer pageSize)
+    parameters:
+    - id: jobType
+      type: com.microsoft.azure.sdk.iot.service.jobs._job_type
+      description: <p>The type of job to query for </p>
+    - id: jobStatus
+      type: com.microsoft.azure.sdk.iot.service.jobs._job_status
+      description: <p>The status of the job to query for </p>
+    - id: pageSize
+      type: 08effaa0
+      description: <p>The value to which to limit the job response size by </p>
+    return:
+      type: cffad4f2com.microsoft.azure.sdk.iot.service.devicetwin._query
+      description: <p>A query object on which to look for responses by </p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>If any of the input parameters are incorrect </p>
+  - type: 0d494ee6
+    description: <p>If IotHub failed to respond </p>
 - uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.scheduleDeviceMethod(String,String,String,Long,Long,Object,Date,long)
   id: scheduleDeviceMethod(String,String,String,Long,Long,Object,Date,long)
   parent: com.microsoft.azure.sdk.iot.service.jobs._job_client
@@ -171,7 +377,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 148
+    startLine: 143
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>Creates a new Job to invoke method on one or multiple devices</p>
@@ -228,7 +434,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/jobs/JobClient.java
-    startLine: 74
+    startLine: 70
   package: com.microsoft.azure.sdk.iot.service.jobs
   summary: >-
     <p>Creates a new Job to update twin tags and desired properties on one or multiple devices</p>
@@ -328,6 +534,46 @@ references:
   nameWithType: JobClient.cancelJob
   fullName: synchronized JobResult com.microsoft.azure.sdk.iot.service.jobs.JobClient.cancelJob
   package: com.microsoft.azure.sdk.iot.service.jobs
+- uid: 08effaa0
+  spec.java:
+  - name: Integer
+    fullName: Integer
+- uid: cffad4f2com.microsoft.azure.sdk.iot.service.devicetwin._query
+  spec.java:
+  - name: 'synchronized '
+    fullName: 'synchronized '
+  - uid: com.microsoft.azure.sdk.iot.service.devicetwin._query
+    name: Query
+    fullName: com.microsoft.azure.sdk.iot.service.devicetwin.Query
+    href: com.microsoft.azure.sdk.iot.service.devicetwin._query.yml
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryDeviceJob*
+  name: queryDeviceJob
+  nameWithType: JobClient.queryDeviceJob
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryDeviceJob
+  package: com.microsoft.azure.sdk.iot.service.jobs
+- uid: 85b427c6
+  spec.java:
+  - name: synchronized boolean
+    fullName: synchronized boolean
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.hasNextJob*
+  name: hasNextJob
+  nameWithType: JobClient.hasNextJob
+  fullName: synchronized boolean com.microsoft.azure.sdk.iot.service.jobs.JobClient.hasNextJob
+  package: com.microsoft.azure.sdk.iot.service.jobs
+- uid: 05807805
+  spec.java:
+  - name: NoSuchElementException
+    fullName: NoSuchElementException
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.getNextJob*
+  name: getNextJob
+  nameWithType: JobClient.getNextJob
+  fullName: synchronized JobResult com.microsoft.azure.sdk.iot.service.jobs.JobClient.getNextJob
+  package: com.microsoft.azure.sdk.iot.service.jobs
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.queryJobResponse*
+  name: queryJobResponse
+  nameWithType: JobClient.queryJobResponse
+  fullName: synchronized Query com.microsoft.azure.sdk.iot.service.jobs.JobClient.queryJobResponse
+  package: com.microsoft.azure.sdk.iot.service.jobs
 - uid: com.microsoft.azure.sdk.iot.service.jobs._job_client.JobClient*
   name: JobClient
   nameWithType: JobClient.JobClient
@@ -384,6 +630,33 @@ references:
   summary: <p>Super class for IotHub exceptions </p>
   syntax:
     content: public class IotHubException
+- uid: com.microsoft.azure.sdk.iot.service.devicetwin._query
+  parent: com.microsoft.azure.sdk.iot.service.devicetwin
+  href: com.microsoft.azure.sdk.iot.service.devicetwin._query.yml
+  name: Query
+  nameWithType: Query
+  fullName: com.microsoft.azure.sdk.iot.service.devicetwin.Query
+  type: Class
+  syntax:
+    content: public class Query
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_type
+  parent: com.microsoft.azure.sdk.iot.service.jobs
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_type.yml
+  name: JobType
+  nameWithType: JobType
+  fullName: com.microsoft.azure.sdk.iot.service.jobs.JobType
+  type: Enum
+  syntax:
+    content: public enum JobType
+- uid: com.microsoft.azure.sdk.iot.service.jobs._job_status
+  parent: com.microsoft.azure.sdk.iot.service.jobs
+  href: com.microsoft.azure.sdk.iot.service.jobs._job_status.yml
+  name: JobStatus
+  nameWithType: JobStatus
+  fullName: com.microsoft.azure.sdk.iot.service.jobs.JobStatus
+  type: Enum
+  syntax:
+    content: public enum JobStatus
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._twin_parser
   parent: com.microsoft.azure.sdk.iot.deps.serializer
   href: com.microsoft.azure.sdk.iot.deps.serializer._twin_parser.yml
