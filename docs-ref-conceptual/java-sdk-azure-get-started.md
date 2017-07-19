@@ -95,7 +95,7 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 <dependency>
     <groupId>com.microsoft.azure</groupId>
@@ -105,7 +105,7 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
 <dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
-    <version>6.2.0.jre8</version>
+    <version>6.2.1.jre8</version>
 </dependency>
 ```
 
