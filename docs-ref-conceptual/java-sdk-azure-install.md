@@ -33,7 +33,7 @@ For example, to include the latest version of the [Azure management libraries fo
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -69,7 +69,7 @@ JDBC driver for Azure SQL Database.
 <dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>mssql-jdbc</artifactId>
-    <version>6.2.0.jre8</version>
+    <version>6.2.1.jre8</version>
 </dependency>
 ```
 
@@ -263,7 +263,7 @@ Create, update, and delete Azure resources from your application code.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 

@@ -27,7 +27,7 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-appservice</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```   
 
