@@ -34,6 +34,8 @@ predictable performance with a simple, capacity-oriented pricing model and at ex
 commercial on-premises brokers. For many customers, Service Bus Premium can replace dedicated on-premises messaging 
 clusters today, even if the attached workloads do not run in the cloud. 
 
+Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/en-us/azure/service-bus-messaging/) 
+
 For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with 
 AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
 
