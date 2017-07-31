@@ -45,7 +45,7 @@ Integrate Azure services to add functionality to your apps using these libraries
 
 <a name="azure-storage"></a>
 
-### [Azure Storage](https://docs.microsoft.com/azure/storage/storage-introduction)  
+### [Azure Storage](/azure/storage/storage-introduction)  
 
 Data storage and messaging for your applications.
 
@@ -57,11 +57,11 @@ Data storage and messaging for your applications.
 </dependency>
 ```   
 
-[Samples](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage) | [Reference](https://docs.microsoft.com/java/api/overview/azure/storage) | [GitHub](https://github.com/Azure/azure-storage-java)  | [Release Notes](https://github.com/Azure/azure-storage-java/blob/master/ChangeLog.txt)
+[Samples](https://github.com/Azure/azure-storage-java/tree/master/microsoft-azure-storage-samples/src/com/microsoft/azure/storage) | [Reference](/java/api/overview/azure/storage) | [GitHub](https://github.com/Azure/azure-storage-java)  | [Release Notes](https://github.com/Azure/azure-storage-java/blob/master/ChangeLog.txt)
 
 <a name="sql-database"></a>
 
-### [SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)
+### [SQL Database](/azure/sql-database/sql-database-technical-overview)
 
 JDBC driver for Azure SQL Database.
 
@@ -73,7 +73,7 @@ JDBC driver for Azure SQL Database.
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](https://docs.microsoft.com/java/api/overview/azure/sql) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  | [Release Notes](https://github.com/Microsoft/mssql-jdbc/blob/master/CHANGELOG.md)
+[Samples](/sql/connect/jdbc/step-3-proof-of-concept-connecting-to-sql-using-java) | [Reference](/java/api/overview/azure/sql) | [GitHub](https://github.com/Microsoft/mssql-jdbc)  | [Release Notes](https://github.com/Microsoft/mssql-jdbc/blob/master/CHANGELOG.md)
 
 <a name="redis-cache"></a>
 
@@ -91,11 +91,11 @@ Low-latency, high-performance key-value store.
 </dependency>
 ```   
 
-[Samples](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started) | [Reference](http://xetorthio.github.io/jedis)  | [GitHub](https://github.com/xetorthio/jedis)  | [Release Notes](https://github.com/xetorthio/jedis/releases)  
+[Samples](/azure/redis-cache/cache-java-get-started) | [Reference](http://xetorthio.github.io/jedis)  | [GitHub](https://github.com/xetorthio/jedis)  | [Release Notes](https://github.com/xetorthio/jedis/releases)  
 
 <a name="documentdb"></a>
 
-### [CosmosDB](https://docs.microsoft.com/azure/documentdb/documentdb-introduction)
+### [Cosmos DB](/azure/documentdb/documentdb-introduction)
 
 Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax.   
 
@@ -107,11 +107,11 @@ Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/azure/documentdb/documentdb-java-application) | [Reference](http://azure.github.io/azure-documentdb-java/) | [GitHub](https://github.com/Azure/azure-documentdb-java)   | [Release Notes](https://github.com/Azure/azure-documentdb-java/blob/master/changelog.md)
+[Samples](/azure/documentdb/documentdb-java-application) | [Reference](http://azure.github.io/azure-documentdb-java/) | [GitHub](https://github.com/Azure/azure-documentdb-java)   | [Release Notes](https://github.com/Azure/azure-documentdb-java/blob/master/changelog.md)
 
 <a name="servicebus"></a>
 
-### [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
+### [Service Bus](/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
 
 Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol) to connect your applications.
 
@@ -127,7 +127,7 @@ Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/
 
 <a name="azuread"></a>
 
-### [Azure Active Directory](https://docs.microsoft.com/azure/active-directory/active-directory-whatis)   
+### [Azure Active Directory](/azure/active-directory/active-directory-whatis)   
 
 Identity management and secure sign-in for your applications.
 
@@ -139,11 +139,11 @@ Identity management and secure sign-in for your applications.
 </dependency>
 ```
    
-[Samples](https://github.com/Azure-Samples?utf8=%E2%9C%93&q=active%20directory%20&type=&language=java) | [Reference](https://docs.microsoft.com/java/api/overview/azure/activedirectory) | [GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) | [Release Notes](https://github.com/AzureAD/azure-activedirectory-library-for-javaT-)
+[Samples](https://github.com/Azure-Samples?utf8=%E2%9C%93&q=active%20directory%20&type=&language=java) | [Reference](/java/api/overview/azure/activedirectory) | [GitHub](https://github.com/AzureAD/azure-activedirectory-library-for-java) | [Release Notes](https://github.com/AzureAD/azure-activedirectory-library-for-javaT-)
  
 <a name="keyvault"></a>
 
-### [Key Vault](https://docs.microsoft.com/azure/key-vault) 
+### [Key Vault](/azure/key-vault) 
 
 Safely access keys and secrets from your applications. 
 
@@ -155,11 +155,11 @@ Safely access keys and secrets from your applications.
 </dependency>
 ```
 
-[Samples](https://github.com/Azure-Samples/key-vault-java-manage-key-vaults) | [Reference](https://docs.microsoft.com/java/api/overview/azure/keyvault) | [GitHub](https://github.com/Azure/azure-keyvault-java) | [Release Notes](https://github.com/Azure/azure-keyvault-java) 
+[Samples](https://github.com/Azure-Samples/key-vault-java-manage-key-vaults) | [Reference](/java/api/overview/azure/keyvault) | [GitHub](https://github.com/Azure/azure-keyvault-java) | [Release Notes](https://github.com/Azure/azure-keyvault-java) 
 
 <a name="eventhub"></a>
 
-### [Event Hub](https://docs.microsoft.com/azure/event-hubs/event-hubs-what-is-event-hubs) 
+### [Event Hub](/azure/event-hubs/event-hubs-what-is-event-hubs) 
    
 High-throughput event and telemetry handling for your instrumentation or IoT scenarios.
 
@@ -171,11 +171,11 @@ High-throughput event and telemetry handling for your instrumentation or IoT sce
 </dependency>   
 ```
 
-[Samples](https://github.com/Azure/azure-event-hubs/tree/master/samples#java) | [Reference](https://docs.microsoft.com/java/api/overview/azure/eventhub) | [GitHub](https://github.com/azure/azure-event-hubs-java)  | [Release Notes](https://github.com/Azure/azure-event-hubs-java)
+[Samples](https://github.com/Azure/azure-event-hubs/tree/master/samples#java) | [Reference](/java/api/overview/azure/eventhub) | [GitHub](https://github.com/azure/azure-event-hubs-java)  | [Release Notes](https://github.com/Azure/azure-event-hubs-java)
 
 <a name="iotservice"></a> 
 
-### [IoT Service](https://docs.microsoft.com/azure/iot-hub/)
+### [IoT Service](/azure/iot-hub/)
 
 Manage identities, send messages, and get feedback from devices registered with your IoT hub.
 
@@ -187,11 +187,11 @@ Manage identities, send messages, and get feedback from devices registered with 
 </dependency>
 ```   
    
-[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/service/iot-service-samples) | [Reference](https://docs.microsoft.com/java/api/overview/azure/iot) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) | [Release Notes](https://github.com/Azure/azure-iot-sdk-java/blob/master/readme.md)
+[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/service/iot-service-samples) | [Reference](/java/api/overview/azure/iot) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) | [Release Notes](https://github.com/Azure/azure-iot-sdk-java/blob/master/readme.md)
 
 <a name="iotdevice"></a> 
 
-### [IoT Device](https://docs.microsoft.com/azure/iot-hub/iot-hub-devguide)
+### [IoT Device](/azure/iot-hub/iot-hub-devguide)
 
 Send a message to an IoT hub from your device.  
 
@@ -203,11 +203,11 @@ Send a message to an IoT hub from your device.
 </dependency>
 ```  
 
-[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/device/iot-device-samples) | [Reference](https://docs.microsoft.com/java/api/overview/azure/iot) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) | [Release Notes](https://github.com/Azure/azure-iot-sdk-java/blob/master/readme.md)
+[Samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/device/iot-device-samples) | [Reference](/java/api/overview/azure/iot) | [GitHub](https://github.com/Azure/azure-iot-sdk-java) | [Release Notes](https://github.com/Azure/azure-iot-sdk-java/blob/master/readme.md)
 
 <a name="datalake"></a> 
 
-### [Data Lake Store](https://docs.microsoft.com/azure/data-lake-store/data-lake-store-overview)   
+### [Data Lake Store](/azure/data-lake-store/data-lake-store-overview)   
    
 Capture data of any size and shape into a single location for performing analytics.    
 
@@ -219,11 +219,11 @@ Capture data of any size and shape into a single location for performing analyti
 </dependency>
 ```   
 
-[Samples](https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started) | [Reference](https://docs.microsoft.com/java/api/overview/azure/datalakestore) | [GitHub](https://github.com/Azure/azure-data-lake-store-java) | [Release Notes](https://github.com/Azure/azure-data-lake-store-java/blob/master/CHANGES.md)
+[Samples](https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started) | [Reference](/java/api/overview/azure/datalakestore) | [GitHub](https://github.com/Azure/azure-data-lake-store-java) | [Release Notes](https://github.com/Azure/azure-data-lake-store-java/blob/master/CHANGES.md)
 
 <a name="appinsights"></a> 
 
-### [AppInsights](https://docs.microsoft.com/azure/application-insights/app-insights-overview)
+### [AppInsights](/azure/application-insights/app-insights-overview)
 
 Track usage, add telemetry, and monitor your web apps.
 
@@ -235,11 +235,11 @@ Track usage, add telemetry, and monitor your web apps.
 </dependency>
 ```
 
-[Samples](https://docs.microsoft.com/azure/application-insights/app-insights-java-get-started) | [Reference](https://docs.microsoft.com/java/api/overview/azure/appinsights) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) | [Release Notes](https://github.com/Microsoft/ApplicationInsights-Java#to-upgrade-to-the-latest-sdk)
+[Samples](/azure/application-insights/app-insights-java-get-started) | [Reference](/java/api/overview/azure/appinsights) | [GitHub](https://github.com/Microsoft/ApplicationInsights-Java) | [Release Notes](https://github.com/Microsoft/ApplicationInsights-Java#to-upgrade-to-the-latest-sdk)
 
 <a name="batch"></a>
 
-### [Batch](https://docs.microsoft.com/azure/batch)
+### [Batch](/azure/batch)
 
 Run large-scale parallel and high-performance computing applications efficiently in the cloud.
 
@@ -251,7 +251,7 @@ Run large-scale parallel and high-performance computing applications efficiently
 </dependency>
 ```
 
-[Samples](https://github.com/azure/azure-batch-samples) | [Reference](https://docs.microsoft.com/java/api/overview/azure/batch) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) | [Release Notes](https://github.com/Azure/azure-batch-sdk-for-java/blob/master/README.md)
+[Samples](https://github.com/azure/azure-batch-samples) | [Reference](/java/api/overview/azure/batch) | [GitHub](https://github.com/azure/azure-batch-sdk-for-java) | [Release Notes](https://github.com/Azure/azure-batch-sdk-for-java/blob/master/README.md)
 
 <a name="management"></a> 
 
@@ -267,4 +267,4 @@ Create, update, and delete Azure resources from your application code.
 </dependency>
 ```
 
-[Samples](https://github.com/Azure/azure-sdk-for-java#sample-code) | [Reference](https://docs.microsoft.com/java/api/overview/azure/) | [GitHub](https://github.com/Azure/azure-sdk-for-java) | [Release Notes](java-sdk-azure-release-notes.md)
+[Samples](https://github.com/Azure/azure-sdk-for-java#sample-code) | [Reference](/java/api/overview/azure/) | [GitHub](https://github.com/Azure/azure-sdk-for-java) | [Release Notes](java-sdk-azure-release-notes.md)

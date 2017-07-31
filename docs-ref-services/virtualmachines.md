@@ -17,11 +17,15 @@ ms.service: compute
 
 ## Overview
 
-Define, configure, and deploy new Windows and Linux virtual machines and virtual machine scale sets from your code with the Azure management libraries for Java. The libraries also let start and stop existing virtual machines and attach or detach disks to stopped VMs in your subscription.
+On-demand, scalable computing resources running Linux or Windows.
 
-## Import the libraries
+To get started with Azure virtual machines, see [Create a Linux virtual machine with the Azure portal](/azure/virtual-machines/linux/quick-create-portal).
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+## Management API
+
+Create, configure, and scale out Windows and Linux virtual machines in Azure from your code with the management API.
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
 ```XML
 <dependency>
@@ -31,9 +35,10 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```   
 
+
 ## Example
 
-Create a new Linux virtual machine from a marketplace image in an existing Azure resource group.
+Create a new Linux virtual machine in a new Azure resource group.
 
 ```java
 VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
@@ -42,15 +47,29 @@ VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
             .withNewPrimaryNetwork("10.0.0.0/28")
             .withPrimaryPrivateIpAddressDynamic()
             .withoutPrimaryPublicIpAddress()
-            .withPopularWindowsImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
+            .withPopularLinuxImage(KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS)
             .withRootUsername(userName)
             .withSshKey(key)
             .withSize(VirtualMachineSizeTypes.STANDARD_D3_V2)
             .create();
 ```
 
+> [!div class="nextstepaction"]
+> [Explore the Management APIs](/java/api/overview/azure/virtualmachines/managementapi)
+
+
 ## Samples
 
-[!INCLUDE [java-vm-samples](../docs-ref-conceptual/includes/java-vm-samples.md)]
+[Manage virtual machines][1]   
+[Manage virtual networks][6]   
+[Create a virtual machine from a custom image][2]   
+[Create virtual machines across regions in parallel][5]    
+[Create a virtual machine scale set with a load balancer][7]    
 
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+[1]: ../java-sdk-manage-virtual-machines.md
+[2]: https://azure.microsoft.com/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image/
+[5]: ../java-sdk-virtual-machines-in-parallel.md
+[6]: ../java-sdk-manage-virtual-networks.md
+[7]: ../java-sdk-manage-vm-scalesets.md
+
+Explore more [sample Java code for Azure virtual machines](https://azure.microsoft.com/resources/samples/?platform=java&term=VM) you can use in your apps.

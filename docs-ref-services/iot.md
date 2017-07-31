@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, event, IoT, streams, devices, iot hub
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 06/21/2017
+ms.date: 07/20/2017
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -15,33 +15,40 @@ ms.service: iot-hub
 
 # Azure IoT libraries for Java
 
-## Overview
+Connect, monitor, and control Internet of Things assets with [Azure IoT Hub](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-what-is-iot-hub).
 
-Register devices and send messages from the cloud to registered devices using the IoT Service library. Send messages to the cloud and receive messages on devices using the IoT Device library.
+To get started with Azure IoT Hub, see [Connect your device to your IoT hub using Java](/azure/iot-hub/iot-hub-java-java-getstarted).
 
-## Import the libraries
+## IoT Service library
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+Register devices and send messages from the cloud to registered devices using the IoT Service library.
 
-### IoT Service library
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.  
 
 ```XML
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-service-client</artifactId>
-    <version>1.4.20</version>
+    <version>1.6.23</version>
 </dependency>
 ```   
 
-### Iot Device library
+## Iot Device library
+
+Send messages to the cloud and receive messages on devices using the IoT Device library.
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.  
 
 ```XML
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-device-client</artifactId>
-    <version>1.1.27</version>
+    <version>1.3.31</version>
 </dependency>
 ```
+
+> [!div class="nextstepaction"]
+> [Explore the Client APIs](/java/api/overview/azure/iot/clientlibrary)   
 
 ## Example
 
@@ -66,9 +73,10 @@ catch (ExecutionException e) {
 }
 ```
 
+
 ## Samples
 
-[!INCLUDE [java-iot-samples](../docs-ref-conceptual/includes/iot.md)]
+[IoT Device samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/device/iot-device-samples)     
+[IoT Service samples](https://github.com/Azure/azure-iot-sdk-java/tree/master/service/iot-service-samples)
 
-
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+Explore more [sample Java code for Azure IoT](https://azure.microsoft.com/resources/samples/?platform=java&term=iot) you can use in your apps.
