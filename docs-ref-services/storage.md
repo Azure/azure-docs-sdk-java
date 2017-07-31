@@ -94,7 +94,7 @@ for(StorageAccountKey key : storageAccountKeys)    {
 
 ## Samples
 
-[Manage Azure Storage accounts](../docs-ref-conceptual/java-sdk-manage-storage-accounts)    
+[Manage Azure Storage accounts](../docs-ref-conceptual/java-sdk-manage-storage-accounts.md)    
 [Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blob-java-getting-started)   
 [Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)   
 [Read files from blob storage in a web app](https://github.com/Azure-Samples/app-service-java-manage-storage-connections-for-web-apps-on-linux)
