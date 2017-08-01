@@ -67,4 +67,4 @@ Add a dependency to your Maven project's `pom.xml` file to use the library in yo
 
 ## Examples
 
-The sample code repository contains two samples for how to [send](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/main/java/com/microsoft/azure/servicebus/samples/SendSample.java) and [receive](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/main/java/com/microsoft/azure/servicebus/samples/ReceiveSample.java) messages from Service Bus.
+The sample code repository contains two samples for how to [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java) and [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java) and [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
