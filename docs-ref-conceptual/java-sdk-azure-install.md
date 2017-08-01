@@ -268,3 +268,14 @@ Create, update, and delete Azure resources from your application code.
 ```
 
 [Samples](https://github.com/Azure/azure-sdk-for-java#sample-code) | [Reference](https://docs.microsoft.com/java/api/overview/azure/) | [GitHub](https://github.com/Azure/azure-sdk-for-java) | [Release Notes](java-sdk-azure-release-notes.md)
+
+<a name="servicebus"></a>
+
+   
+
+```XML
+<dependency> 
+    <groupId>com.microsoft.azure</groupId> 
+    <artifactId>azure-servicebus</artifactId> 
+</dependency>   
+```
