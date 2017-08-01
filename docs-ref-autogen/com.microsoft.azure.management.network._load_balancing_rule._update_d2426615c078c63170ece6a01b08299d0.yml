@@ -5,7 +5,6 @@ items:
   parent: com.microsoft.azure.management.network
   children:
   - com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toBackend(String)
-  - com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toDefaultBackend()
   href: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.yml
   langs:
   - java
@@ -19,14 +18,17 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 339
+    startLine: 376
   package: com.microsoft.azure.management.network
   summary: <p>The stage of a load balancing rule definition allowing to specify the backend to associate the rule with. </p>
   syntax:
-    content: public interface WithBackend<ReturnT>
+    content: public interface WithBackend<ReturnT> extends LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>
     typeParameters:
     - type: c1a5ebc4
       description: <p>the stage of the parent definition to return to after attaching this definition </p>
+  inheritedMembers:
+  - com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.toExistingVirtualMachines(HasNetworkInterfaces...)
+  - com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.toExistingVirtualMachines(Collection<HasNetworkInterfaces>)
 - uid: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toBackend(String)
   id: toBackend(String)
   parent: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0
@@ -41,7 +43,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 347
+    startLine: 384
   package: com.microsoft.azure.management.network
   summary: >-
     <p>Specifies a backend on this load balancer to send network traffic to. </p>
@@ -53,28 +55,6 @@ items:
     - id: backendName
       type: "26831127"
       description: <p>the name of an existing backend </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancing_rule._update_d4005a41be73048706153a1efd47c639a5b94c421
-      description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toDefaultBackend()
-  id: toDefaultBackend()
-  parent: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0
-  href: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.yml
-  langs:
-  - java
-  name: toDefaultBackend()
-  nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toDefaultBackend()
-  fullName: WithBackendPort<ReturnT> com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toDefaultBackend()
-  overload: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toDefaultBackend*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancingRule.java
-    startLine: 354
-  package: com.microsoft.azure.management.network
-  summary: <p>Selects the load balancer's default backend as the backend to send network traffic to. </p>
-  syntax:
-    content: public WithBackendPort<ReturnT> toDefaultBackend()
     return:
       type: com.microsoft.azure.management.network._load_balancing_rule._update_d4005a41be73048706153a1efd47c639a5b94c421
       description: <p>the next stage of the definition </p>
@@ -100,11 +80,67 @@ references:
   nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toBackend
   fullName: WithBackendPort<ReturnT> com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toBackend
   package: com.microsoft.azure.management.network
-- uid: com.microsoft.azure.management.network._load_balancing_rule._update_d2426615c078c63170ece6a01b08299d0.toDefaultBackend*
-  name: toDefaultBackend
-  nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toDefaultBackend
-  fullName: WithBackendPort<ReturnT> com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithBackend<ReturnT>.toDefaultBackend
-  package: com.microsoft.azure.management.network
+- uid: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.toExistingVirtualMachines(HasNetworkInterfaces...)
+  parent: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba
+  href: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.yml
+  name: toExistingVirtualMachines(HasNetworkInterfaces...vms)
+  nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>.toExistingVirtualMachines(HasNetworkInterfaces...vms)
+  fullName: WithBackendPort<ReturnT> com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>.toExistingVirtualMachines(HasNetworkInterfaces...vms)
+  type: Method
+  summary: >-
+    <p>Adds the specified set of virtual machines, assuming they are from the same availability set, to a new back end address pool to be associated with this load balancing rule. </p>
+
+    <p>This will add references to the primary IP configurations of the primary network interfaces of the provided set of virtual machines. </p>
+
+    <p>If the virtual machines are not in the same availability set, they will not be associated with the backend. </p>
+
+    <p>Only those virtual machines will be associated with the load balancer that already have an existing network interface. Virtual machines without a network interface will be skipped. </p>
+  syntax:
+    content: public WithBackendPort<ReturnT> toExistingVirtualMachines(HasNetworkInterfaces...vms)
+    parameters:
+    - id: vms
+      type: 6bb6a610
+      description: <p>existing virtual machines </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancing_rule._update_d4005a41be73048706153a1efd47c639a5b94c421
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.toExistingVirtualMachines(Collection<HasNetworkInterfaces>)
+  parent: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba
+  href: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.yml
+  name: toExistingVirtualMachines(Collection<HasNetworkInterfaces> vms)
+  nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>.toExistingVirtualMachines(Collection<HasNetworkInterfaces> vms)
+  fullName: WithBackendPort<ReturnT> com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>.toExistingVirtualMachines(Collection<HasNetworkInterfaces> vms)
+  type: Method
+  summary: >-
+    <p>Adds the specified set of virtual machines, assuming they are from the same availability set, to a new back end address pool to be associated with this load balancing rule. </p>
+
+    <p>This will add references to the primary IP configurations of the primary network interfaces of the provided set of virtual machines. </p>
+
+    <p>If the virtual machines are not in the same availability set, they will not be associated with the backend. </p>
+
+    <p>Only those virtual machines will be associated with the load balancer that already have an existing network interface. Virtual machines without a network interface will be skipped. </p>
+  syntax:
+    content: public WithBackendPort<ReturnT> toExistingVirtualMachines(Collection<HasNetworkInterfaces> vms)
+    parameters:
+    - id: vms
+      type: 12ebb11acom.microsoft.azure.management.network.model._has_network_interfacesa08ddfce
+      description: <p>existing virtual machines </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancing_rule._update_d4005a41be73048706153a1efd47c639a5b94c421
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancing_rule._update_d73b584584b19d8a0cda5e12e7aa143ba.yml
+  name: LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>
+  nameWithType: LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>
+  fullName: com.microsoft.azure.management.network.LoadBalancingRule.UpdateDefinitionStages.WithVirtualMachine<ReturnT>
+  type: Interface
+  summary: <p>The stage of a load balancing rule definition allowing to select a set of virtual machines to load balance the network traffic among. </p>
+  syntax:
+    content: public interface WithVirtualMachine<ReturnT>
+    typeParameters:
+    - type: c1a5ebc4
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network._load_balancing_rule._update_definition
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancing_rule._update_definition.yml
