@@ -15,6 +15,6 @@ ms.service: multiple
 
 # Java samples for Azure Active Directory
 
-The following table links to Java source you can use to create and configure Azure virtual machines.
+The following table links to Java source you can use to access and work with Azure Active Directory(AD) in your apps.
 
 [!INCLUDE [java-vm-samples](includes/java-aad-samples.md)]
