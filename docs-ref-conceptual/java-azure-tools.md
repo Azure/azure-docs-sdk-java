@@ -1,5 +1,5 @@
 ---
-title: Azure tools for Java developers | Microsoft Docs
+title: Tools for Azure Java developers | Microsoft Docs
 description: IDE integrations, emulators, resource explorers, and command-line interfaces for Java developers working on Azure.
 author: rloutlaw
 manager: douge

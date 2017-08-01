@@ -17,15 +17,15 @@ ms.service: postgresql
 
 ## Overview
 
-The recommended client library for accessing Azure Database for PostgreSQL is the open-source [JDBC driver](https://jdbc.postgresql.org/documentation/publicapi/index.html). Use the JDBC driver to connect to the database and execute SQL statements directly or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
+[Azure Database for PostgreSQL](/azure/sql-database/sql-database-technical-overview) is a relational database service in Azure built for developers based on the community version of open source [PostgreSQL](https://www.postgresql.org/) database engine.
 
-Learn more about [Azure Database for PostgreSQL](https://docs.microsoft.com/azure/postgresql/)
+To get started with Azure Database for PostgreSQL, see [Use Java to connect and query data](/azure/postgresql/connect-java).
 
-## Import the libraries
+## Client JDBC driver
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+Connect to Azure Database for PostgreSQL from your applications using the open-source [PostgreSQL JDBC driver](https://jdbc.postgresql.org/). You can use the [Java JDBC API](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) to directly connect to the database or use data access frameworks that interact with the database through JDBC such as [Hibernate](http://hibernate.org/).
 
-### JDBC driver 
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client JDBC driver in your project.  
 
 ```XML
 <dependency>
@@ -52,8 +52,6 @@ try {
 
 ## Samples
 
-| | |
-|--|--|
-| [Design a PostgreSQL database using the Azure CLI](https://docs.microsoft.com/azure/postgresql/tutorial-design-database-using-azure-cli) | Create an Azure Database for PostgreSQL ,configure firewall rules, and connect to the database with the psql utility.
+[Design a PostgreSQL database using the Azure CLI](https://docs.microsoft.com/azure/postgresql/tutorial-design-database-using-azure-cli) 
 
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+Explore more [sample Java code for Azure Database for PostgreSQL](https://azure.microsoft.com/resources/samples/?platform=java&term=postgres) you can use in your apps.
