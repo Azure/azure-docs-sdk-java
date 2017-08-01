@@ -271,11 +271,16 @@ Create, update, and delete Azure resources from your application code.
 
 <a name="servicebus"></a>
 
+### [ServiceBus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) 
    
+Service Bus is an enterprise-class, transactional messaging platform service.
 
 ```XML
 <dependency> 
     <groupId>com.microsoft.azure</groupId> 
     <artifactId>azure-servicebus</artifactId> 
+    <version>1.0.0</version> 
 </dependency>   
 ```
+
+[Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java) | [Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus) | [GitHub](https://github.com/azure/azure-service-bus-java)  | [Release Notes](https://github.com/Azure/azure-service-bus-java)
