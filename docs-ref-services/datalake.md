@@ -17,15 +17,16 @@ ms.service: data-lake-store
 
 ## Overview
 
-Read and write to files stored in Data Lake Store with buffered streams, get and set file permissions and metadata, and create, delete, and rename files or directories in a Data Lake Store.
+Capture data of any size, type, and ingestion speed in a single place for analytics with [Azure Data Lake Store](/azure/data-lake-store/data-lake-store-overview).
 
-Use the Azure Data Lake Store management libraries to manage accounts, firewall rules, and trusted identity providers.
+To get started with Data Lake Store, see [Get started with Azure Data Lake Store using Java](/azure/data-lake-store/data-lake-store-get-started-java-sdk).
 
-## Import the libraries
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+## Client library
 
-### Client library
+Read and write files, set permissions and metadata, and manage files and directories in Data Lake Store with the client library.
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
 
 ```XML
 <dependency>
@@ -35,23 +36,12 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```   
 
-### Management 
-
-```XML
-<dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-datalake-store</artifactId>
-    <version>1.1.2</version>
-</dependency>
-```
-
 ## Example
 
-Create a Data Lake client from a fully qualified domain name and OAuth2 access token, then create a new file and write to it.
+Create a Data Lake client from a fully qualified domain name and OAuth2 access token, then create a file in Data Lake and write to it.
 
 ```java
-// 
-AccessTokenProvider provider = new ClientCredsTokenProvider(authTokenEndpoint, clientId, clientKey);
+// AccessTokenProvider provider = new ClientCredsTokenProvider(authTokenEndpoint, clientId, clientKey);
 ADLStoreClient client = ADLStoreClient.createClient(accountFQDN, provider);
 
 // create directory
@@ -68,9 +58,32 @@ for (int i = 1; i <= 10; i++) {
 out.close();
 ```
 
+> [!div class="nextstepaction"]
+> [Explore the Client APIs](/java/api/overview/azure/datalakestore/clientlibrary)
+
+
+## Management API
+
+Use the management API to manage Data Lake Store accounts, firewall rules, and trusted identity providers.
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.
+
+
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-datalake-store</artifactId>
+    <version>1.0.0-beta1.3</version>
+</dependency>
+```
+
+> [!div class="nextstepaction"]
+> [Explore the Management APIs](/java/api/overview/azure/datalakestore/managementapi)
+
 ## Samples
 
-[!INCLUDE [java-datalake-samples](../docs-ref-conceptual/includes/datalake.md)]
+[Azure Data Lake Get Started][1] 
 
+[1]: https://github.com/Azure-Samples/data-lake-store-java-upload-download-get-started
 
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+Explore more [sample Java code for Azure Data Lake Store](https://azure.microsoft.com/resources/samples/?platform=java&term=lake) you can use in your apps.

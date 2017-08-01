@@ -17,15 +17,15 @@ ms.service: batch
 
 ## Overview
 
-The Azure Batch client libraries let you configure compute nodes and pools, define tasks and configure them to run in jobs, and set up a job manager to control and monitor job execution. [Learn more](https://docs.microsoft.com/en-us/azure/batch/batch-api-basics) about using these objects to run large-scale parallel compute solutions.
+Run large-scale parallel and high-performance computing applications efficiently in the cloud with [Azure Batch](/azure/batch/batch-technical-overview).   
 
-Use the Azure Batch management libraries to create and delete batch accounts, read and regenerate batch account keys, and manage batch account storage.
+To get started with Azure Batch, see [Create a Batch account with the Azure portal](/azure/batch/batch-account-create-portal).
 
-## Import the libraries
+## Client library
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+The Azure Batch client libraries let you configure compute nodes and pools, define tasks and configure them to run in jobs, and set up a job manager to control and monitor job execution. [Learn more](/azure/batch/batch-api-basics) about using these objects to run large-scale parallel compute solutions.
 
-### Client library
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
 
 ```XML
 <dependency>
@@ -35,7 +35,29 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```   
 
-### Management 
+### Example
+
+Set up a pool of Linux compute nodes in a batch account:
+
+```java
+// create the batch client for an account using its URI and keys
+BatchClient client = BatchClient.open(new BatchSharedKeyCredentials("https://fabrikambatch.eastus.batch.azure.com", "fabrikambatch", batchKey));
+
+// configure a pool of VMs to use 
+VirtualMachineConfiguration configuration = new VirtualMachineConfiguration();
+configuration.withNodeAgentSKUId("batch.node.ubuntu 16.04");
+client.poolOperations().createPool(poolId, poolVMSize, configuration, poolVMCount);
+```
+
+> [!div class="nextstepaction"]
+> [Explore the Client APIs](/java/api/overview/azure/batch/clientlibrary)
+
+
+## Management API
+
+Use the Azure Batch management libraries to create and delete batch accounts, read and regenerate batch account keys, and manage batch account storage.
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.
 
 ```XML
 <dependency>
@@ -45,23 +67,31 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```
 
-## Example
+### Example
 
-Set up a pool of Linux compute nodes in a batch account:
+Create an Azure Batch account and configure a new application and Azure storage account for it.
 
 ```java
-// create the batch client for an account using its URI and keys
-BatchClient client = BatchClient.open(new BatchSharedKeyCredentials(batchUri, batchAccount, batchKey));
-
-// configure a pool of VMs to use 
-VirtualMachineConfiguration configuration = new VirtualMachineConfiguration();
-configuration.withNodeAgentSKUId("batch.node.ubuntu 16.04");
-client.poolOperations().createPool(poolId, poolVMSize, configuration, poolVMCount);
+BatchAccount batchAccount = azure.batchAccounts().define("newBatchAcct")
+    .withRegion(Region.US_EAST)
+    .withNewResourceGroup("myResourceGroup")
+    .defineNewApplication("batchAppName")
+        .defineNewApplicationPackage(applicationPackageName)
+        .withAllowUpdates(true)
+        .withDisplayName(applicationDisplayName)
+        .attach()
+    .withNewStorageAccount("batchStorageAcct")
+    .create();
 ```
+
+> [!div class="nextstepaction"]
+> [Explore the Management APIs](/java/api/overview/azure/batch/managementapi)
+
 
 ## Samples
 
-[!INCLUDE [java-sql-samples](../docs-ref-conceptual/includes/batch.md)]
+[Manage Batch accounts][1]   
 
+Explore more [sample Java code for Azure Batch](https://azure.microsoft.com/resources/samples/?platform=java&term=batch) you can use in your apps.
 
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+[1]: https://github.com/Azure-Samples/batch-java-manage-batch-accounts
