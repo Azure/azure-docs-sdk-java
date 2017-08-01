@@ -110,21 +110,21 @@ Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax
 [Samples](/azure/documentdb/documentdb-java-application) | [Reference](http://azure.github.io/azure-documentdb-java/) | [GitHub](https://github.com/Azure/azure-documentdb-java)   | [Release Notes](https://github.com/Azure/azure-documentdb-java/blob/master/changelog.md)
 
 <a name="servicebus"></a>
-
-### [Service Bus](/azure/service-bus-messaging/service-bus-fundamentals-hybrid-solutions)
-
-Java Message Service (JMS) support through [AMQP](https://en.wikipedia.org/wiki/Advanced_Message_Queuing_Protocol) to connect your applications.
-
-```XML
-<dependency>
-  <groupId>org.apache.qpid</groupId>
-  <artifactId>qpid-jms-client</artifactId>
-  <version>0.23.0</version>
-</dependency>
-```
-
-[Reference](http://docs.oracle.com/javaee/7/api/javax/jms/package-summary.html) | [Sample](https://github.com/apache/qpid-jms/tree/0.20.0/qpid-jms-examples) | [GitHub](https://github.com/apache/qpid-jms) | [Release Notes](https://qpid.apache.org/releases/index.html)   
-
+ 
+ ### [ServiceBus](/azure/service-bus-messaging/service-bus-messaging-overview) 
+    
+ Service Bus is an enterprise-class, transactional messaging platform service.
+ 
+ ```XML
+ <dependency> 
+     <groupId>com.microsoft.azure</groupId> 
+     <artifactId>azure-servicebus</artifactId> 
+     <version>1.0.0</version> 
+ </dependency>   
+ ```
+ 
+ [Samples](https://github.com/Azure/azure-service-bus/tree/master/samples/Java) | [Reference](https://docs.microsoft.com/java/api/overview/azure/servicebus) | [GitHub](https://github.com/azure/azure-service-bus-java)  | [Release Notes](https://github.com/Azure/azure-service-bus-java)   
+  
 <a name="azuread"></a>
 
 ### [Azure Active Directory](/azure/active-directory/active-directory-whatis)   
