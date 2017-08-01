@@ -47,7 +47,7 @@ Fundamentals     |   Authentication - core , Async methods       |      |       
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
