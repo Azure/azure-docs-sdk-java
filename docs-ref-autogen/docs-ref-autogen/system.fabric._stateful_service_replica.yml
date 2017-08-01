@@ -1,0 +1,508 @@
+### YamlMime:ManagedReference
+items:
+- uid: system.fabric._stateful_service_replica
+  id: _stateful_service_replica
+  parent: system.fabric
+  children:
+  - system.fabric._stateful_service_replica.abort()
+  - system.fabric._stateful_service_replica.changeRoleAsync(ReplicaRole,CancellationToken)
+  - system.fabric._stateful_service_replica.closeAsync(CancellationToken)
+  - system.fabric._stateful_service_replica.initialize(StatefulServiceInitializationParameters)
+  - system.fabric._stateful_service_replica.openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: StatefulServiceReplica
+  nameWithType: StatefulServiceReplica
+  fullName: system.fabric.StatefulServiceReplica
+  type: Interface
+  source:
+    remote: &o0
+      path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+      branch: master
+      repo: https://msazure.visualstudio.com/One/_git/sf-java
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 17
+  package: system.fabric
+  summary: >-
+    <p>Defines behavior that governs the lifecycle of a replica, such as startup, initialization, role changes, and shutdown. </p>
+
+    <p>
+
+      <bold>Remarks:</bold>Stateful service types must implement this interface. The logic of a stateful service type includes behavior that is invoked on Primary replicas and behavior that is invoked on Secondary replicas. If the service author wants to make use of the provided <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref>, then the service must also implement <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> to use the implementation of <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> that is provided by <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref></p>
+  syntax:
+    content: public interface StatefulServiceReplica
+- uid: system.fabric._stateful_service_replica.abort()
+  id: abort()
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: abort()
+  nameWithType: StatefulServiceReplica.abort()
+  fullName: void system.fabric.StatefulServiceReplica.abort()
+  overload: system.fabric._stateful_service_replica.abort*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 93
+  package: system.fabric
+  summary: >-
+    <p>Ungracefully terminates an instance. </p>
+
+    <p>
+
+      <bold>Remarks:</bold>Lease loss and, in response to the service, the use of <xref href="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false"></xref> to report a <ref refid="" kindref="compound">system.fabric.FaultType#Permanent</ref> fault are examples of ungraceful termination. When this method is invoked, the service instance should immediately release and clean up all references and return. </p>
+  syntax:
+    content: public void abort()
+- uid: system.fabric._stateful_service_replica.changeRoleAsync(ReplicaRole,CancellationToken)
+  id: changeRoleAsync(ReplicaRole,CancellationToken)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  nameWithType: StatefulServiceReplica.changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  fullName: CompletableFuture<String> system.fabric.StatefulServiceReplica.changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  overload: system.fabric._stateful_service_replica.changeRoleAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 70
+  package: system.fabric
+  summary: >-
+    <p>Changes the role of a Primary or Secondary replica.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>The new role is indicated as a parameter. When the service transitions to the new role, the service has a chance to update its current listening address. The listening address is the address where clients connect to it. This enables the service when it is a Primary replica to only claim some resources such as ports when communication from clients is expected. </p>
+  syntax:
+    content: public CompletableFuture<String> changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+    parameters:
+    - id: newRole
+      type: system.fabric._replica_role
+      description: <p>The updated <xref href="system.fabric._replica_role" data-throw-if-not-resolved="false"></xref> that this replica should transition to. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: 06be942d
+      description: <p>Returns <ref refid="" kindref="compound">CompletableFuture</ref> of type <ref refid="" kindref="compound">java.lang.String</ref>, the serviceâ€™s new connection address that is to be associated with the replica via Service Fabric Naming. </p>
+- uid: system.fabric._stateful_service_replica.closeAsync(CancellationToken)
+  id: closeAsync(CancellationToken)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: closeAsync(CancellationToken cancellationToken)
+  nameWithType: StatefulServiceReplica.closeAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<Void> system.fabric.StatefulServiceReplica.closeAsync(CancellationToken cancellationToken)
+  overload: system.fabric._stateful_service_replica.closeAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 81
+  package: system.fabric
+  summary: >-
+    <p>Closes the service replica when it is being shut down. Note that cancellation is advisory and that the operation might still be completed even if it is canceled.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Void> closeAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: db03ee24
+      description: <p>Returns <ref refid="" kindref="compound">CompletableFuture</ref>. </p>
+- uid: system.fabric._stateful_service_replica.initialize(StatefulServiceInitializationParameters)
+  id: initialize(StatefulServiceInitializationParameters)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: initialize(StatefulServiceInitializationParameters initializationParameters)
+  nameWithType: StatefulServiceReplica.initialize(StatefulServiceInitializationParameters initializationParameters)
+  fullName: void system.fabric.StatefulServiceReplica.initialize(StatefulServiceInitializationParameters initializationParameters)
+  overload: system.fabric._stateful_service_replica.initialize*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 24
+  package: system.fabric
+  summary: >-
+    <p>Initializes a newly created service replica.</p>
+
+    <p></p>
+  syntax:
+    content: public void initialize(StatefulServiceInitializationParameters initializationParameters)
+    parameters:
+    - id: initializationParameters
+      type: system.fabric._stateful_service_initialization_parameters
+      description: <p>The <xref href="system.fabric._stateful_service_initialization_parameters" data-throw-if-not-resolved="false"></xref> for this replica. </p>
+- uid: system.fabric._stateful_service_replica.openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)
+  id: openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  langs:
+  - java
+  name: openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  nameWithType: StatefulServiceReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  fullName: CompletableFuture<Replicator> system.fabric.StatefulServiceReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  overload: system.fabric._stateful_service_replica.openAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/StatefulServiceReplica.java
+    startLine: 46
+  package: system.fabric
+  summary: >-
+    <p>Opens an initialized service replica so that additional actions can be taken.</p>
+
+    <p></p>
+  syntax: &o1
+    content: public CompletableFuture<Replicator> openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+    parameters:
+    - id: openMode
+      type: system.fabric._replica_open_mode
+      description: <p>This supports the Service Fabric infrastructure and is not meant to be used directly from your code. </p>
+    - id: partition
+      type: system.fabric._stateful_service_partition
+      description: <p>The <xref href="system.fabric._stateful_service_partition" data-throw-if-not-resolved="false"></xref> information for this replica. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: 9cdf14d0system.fabric._replicatora08ddfce
+      description: <p>Returns <ref refid="" kindref="compound">CompletableFuture</ref>&lt;<xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>&gt;, the <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref> that is used by the stateful service. To use the Service Fabric implementation, in <xref href="system.fabric._stateful_service_replica.openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)" data-throw-if-not-resolved="false"></xref> , the replica should return a <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> that is obtained from <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref></p>
+references:
+- uid: system.fabric._stateful_service_replica.initialize*
+  name: initialize
+  nameWithType: StatefulServiceReplica.initialize
+  fullName: void system.fabric.StatefulServiceReplica.initialize
+  package: system.fabric
+- uid: 9cdf14d0system.fabric._replicatora08ddfce
+  spec.java:
+  - name: CompletableFuture<
+    fullName: CompletableFuture<
+  - uid: system.fabric._replicator
+    name: Replicator
+    fullName: system.fabric.Replicator
+    href: system.fabric._replicator.yml
+  - name: '>'
+    fullName: '>'
+- uid: system.fabric._stateful_service_replica.openAsync*
+  name: openAsync
+  nameWithType: StatefulServiceReplica.openAsync
+  fullName: CompletableFuture<Replicator> system.fabric.StatefulServiceReplica.openAsync
+  package: system.fabric
+- uid: 06be942d
+  spec.java:
+  - name: CompletableFuture<String>
+    fullName: CompletableFuture<String>
+- uid: system.fabric._stateful_service_replica.changeRoleAsync*
+  name: changeRoleAsync
+  nameWithType: StatefulServiceReplica.changeRoleAsync
+  fullName: CompletableFuture<String> system.fabric.StatefulServiceReplica.changeRoleAsync
+  package: system.fabric
+- uid: db03ee24
+  spec.java:
+  - name: CompletableFuture<Void>
+    fullName: CompletableFuture<Void>
+- uid: system.fabric._stateful_service_replica.closeAsync*
+  name: closeAsync
+  nameWithType: StatefulServiceReplica.closeAsync
+  fullName: CompletableFuture<Void> system.fabric.StatefulServiceReplica.closeAsync
+  package: system.fabric
+- uid: system.fabric._stateful_service_replica.abort*
+  name: abort
+  nameWithType: StatefulServiceReplica.abort
+  fullName: void system.fabric.StatefulServiceReplica.abort
+  package: system.fabric
+- uid: microsoft.servicefabric.services.runtime._stateful_service_replica_adapter
+- uid: system.fabric._key_value_store_replica
+  parent: system.fabric
+  href: system.fabric._key_value_store_replica.yml
+  name: KeyValueStoreReplica
+  nameWithType: KeyValueStoreReplica
+  fullName: system.fabric.KeyValueStoreReplica
+  type: Class
+  summary: <p>Provides a transactional, replicated, associative data storage to service writers â€“ ready for integration into any Service Fabric service. </p>
+  syntax:
+    content: public class KeyValueStoreReplica implements StatefulServiceReplica
+- uid: system.fabric._key_value_store_replica.initialize(StatefulServiceInitializationParameters)
+  parent: system.fabric._key_value_store_replica
+  href: system.fabric._key_value_store_replica.yml
+  name: initialize(StatefulServiceInitializationParameters initializationParameters)
+  nameWithType: KeyValueStoreReplica.initialize(StatefulServiceInitializationParameters initializationParameters)
+  fullName: void system.fabric.KeyValueStoreReplica.initialize(StatefulServiceInitializationParameters initializationParameters)
+  type: Method
+  summary: >-
+    <p>Initializes the replica in preparation for opening.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>This method does not need to be called explicitly if the application replica derives from <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica</ref>, which is the recommended pattern. In this case, the application replica should override <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica#onInitialize(system.fabric.StatefulServiceInitializationParameters)</ref> instead. </p>
+  syntax:
+    content: public void initialize(StatefulServiceInitializationParameters initializationParameters)
+    parameters:
+    - id: initializationParameters
+      type: system.fabric._stateful_service_initialization_parameters
+      description: <p>The initialization information for the replica. </p>
+- uid: system.fabric._stateful_service_initialization_parameters
+  parent: system.fabric
+  href: system.fabric._stateful_service_initialization_parameters.yml
+  name: StatefulServiceInitializationParameters
+  nameWithType: StatefulServiceInitializationParameters
+  fullName: system.fabric.StatefulServiceInitializationParameters
+  type: Class
+  summary: <p>Defines service initialization parameters for a stateful service. </p>
+  syntax:
+    content: public class StatefulServiceInitializationParameters extends ServiceInitializationParameters
+- uid: system.fabric._replicator
+  parent: system.fabric
+  href: system.fabric._replicator.yml
+  name: Replicator
+  nameWithType: Replicator
+  fullName: system.fabric.Replicator
+  type: Interface
+  syntax:
+    content: public interface Replicator extends PrimaryReplicator
+- uid: system.fabric._key_value_store_replica.openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)
+  parent: system.fabric._key_value_store_replica
+  href: system.fabric._key_value_store_replica.yml
+  name: openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  nameWithType: KeyValueStoreReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  fullName: CompletableFuture<Replicator> system.fabric.KeyValueStoreReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Opens the replica and its replicator in preparation for coming online in a replica set.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>This method does not need to be called explicitly if the application replica derives from <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica</ref>, which is the recommended pattern. In this case, the application replica should override OnOpenAsync instead. </p>
+  syntax:
+    content: public CompletableFuture<Replicator> openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+    parameters:
+    - id: openMode
+      type: system.fabric._replica_open_mode
+      description: <p>Specifies the context under which this replica is begin opened. </p>
+    - id: partition
+      type: system.fabric._stateful_service_partition
+      description: <p>Contains information describing the replica set to which this replica belongs. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: 9cdf14d0system.fabric._replicatora08ddfce
+      description: <p>A CompletableFuture to indicate completion of the open <ref refid="" kindref="compound">java.util.concurrent.CompletableFuture</ref>. </p>
+- uid: system.fabric._replica_open_mode
+  parent: system.fabric
+  href: system.fabric._replica_open_mode.yml
+  name: ReplicaOpenMode
+  nameWithType: ReplicaOpenMode
+  fullName: system.fabric.ReplicaOpenMode
+  type: Enum
+  syntax:
+    content: public enum ReplicaOpenMode
+- uid: system.fabric._stateful_service_partition
+  parent: system.fabric
+  href: system.fabric._stateful_service_partition.yml
+  name: StatefulServicePartition
+  nameWithType: StatefulServicePartition
+  fullName: system.fabric.StatefulServicePartition
+  type: Interface
+  syntax:
+    content: public interface StatefulServicePartition extends ServicePartition
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref href="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false"></xref> object, which manages cancellation tokens retrieved from its <xref href="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false"></xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false"></xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
+- uid: system.fabric._stateful_service_replica.openAsync(ReplicaOpenMode,StatefulServicePartition,CancellationToken)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  name: openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  nameWithType: StatefulServiceReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  fullName: CompletableFuture<Replicator> system.fabric.StatefulServiceReplica.openAsync(ReplicaOpenMode openMode, StatefulServicePartition partition, CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Opens an initialized service replica so that additional actions can be taken.</p>
+
+    <p></p>
+  syntax: *o1
+- uid: system.fabric._fabric_replicator
+  parent: system.fabric
+  href: system.fabric._fabric_replicator.yml
+  name: FabricReplicator
+  nameWithType: FabricReplicator
+  fullName: system.fabric.FabricReplicator
+  type: Class
+  summary: >-
+    <p>Replicates state for high availability and reliability. </p>
+
+    <p>
+
+      <bold>Remarks:</bold>Provides the default implementation of the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref>, <xref href="system.fabric._replicator" data-throw-if-not-resolved="false"></xref>, and <xref href="system.fabric._primary_replicator" data-throw-if-not-resolved="false"></xref> interfaces, which user services can use, along with their implementation of the <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> interface. An instance of the <ref refid="" kindref="compound">system.fabric.FabricReplicator</ref> class is obtained via the <xref href="system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)" data-throw-if-not-resolved="false"></xref> method, which can be cast to <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for use. </p>
+  syntax:
+    content: public class FabricReplicator implements Replicator
+- uid: system.fabric._stateful_service_partition.createReplicator(StateProvider,ReplicatorSettings)
+  parent: system.fabric._stateful_service_partition
+  href: system.fabric._stateful_service_partition.yml
+  name: createReplicator(StateProvider stateProvider, ReplicatorSettings replicatorSettings)
+  nameWithType: StatefulServicePartition.createReplicator(StateProvider stateProvider, ReplicatorSettings replicatorSettings)
+  fullName: FabricReplicator system.fabric.StatefulServicePartition.createReplicator(StateProvider stateProvider, ReplicatorSettings replicatorSettings)
+  type: Method
+  summary: >-
+    <p>Creates a <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> with the specified settings and returns it to the replica.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>This method should be used to create a <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> to service as the <xref href="system.fabric._state_replicator" data-throw-if-not-resolved="false"></xref> for a stateful service that implements <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public FabricReplicator createReplicator(StateProvider stateProvider, ReplicatorSettings replicatorSettings)
+    parameters:
+    - id: stateProvider
+      type: system.fabric._state_provider
+      description: <p>The <xref href="system.fabric._state_provider" data-throw-if-not-resolved="false"></xref> with which the returned <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> should be associated. This is often the same object that implements <xref href="system.fabric._stateful_service_replica" data-throw-if-not-resolved="false"></xref>, but certain services might be factored differently. </p>
+    - id: replicatorSettings
+      type: system.fabric._replicator_settings
+      description: >-
+        <p>
+
+          <xref href="system.fabric._replicator_settings" data-throw-if-not-resolved="false"></xref> with which the returned <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref> should be configured. </p>
+    return:
+      type: system.fabric._fabric_replicator
+      description: <p>Returns <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref>. </p>
+- uid: system.fabric._key_value_store_replica.changeRoleAsync(ReplicaRole,CancellationToken)
+  parent: system.fabric._key_value_store_replica
+  href: system.fabric._key_value_store_replica.yml
+  name: changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  nameWithType: KeyValueStoreReplica.changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  fullName: CompletableFuture<String> system.fabric.KeyValueStoreReplica.changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Changes the replica role of the replica and its replicator.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>This method does not need to be called explicitly if the application replica derives from <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica</ref>, which is the recommended pattern. In this case, the application replica should override <xref href="system.fabric._key_value_store_replica.onChangeRoleAsync(ReplicaRole,CancellationToken)" data-throw-if-not-resolved="false"></xref> instead. </p>
+  syntax:
+    content: public CompletableFuture<String> changeRoleAsync(ReplicaRole newRole, CancellationToken cancellationToken)
+    parameters:
+    - id: newRole
+      type: system.fabric._replica_role
+      description: <p>The target replica role. </p>
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: 06be942d
+      description: <p>A task whose result is the address of this replica. </p>
+- uid: system.fabric._replica_role
+  parent: system.fabric
+  href: system.fabric._replica_role.yml
+  name: ReplicaRole
+  nameWithType: ReplicaRole
+  fullName: system.fabric.ReplicaRole
+  type: Enum
+  syntax:
+    content: public enum ReplicaRole
+- uid: system.fabric._key_value_store_replica.closeAsync(CancellationToken)
+  parent: system.fabric._key_value_store_replica
+  href: system.fabric._key_value_store_replica.yml
+  name: closeAsync(CancellationToken cancellationToken)
+  nameWithType: KeyValueStoreReplica.closeAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<Void> system.fabric.KeyValueStoreReplica.closeAsync(CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Closes the replica and its replicator in preparation for going offline from a replica set. Currently unused. Reserved for future use.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>The replica has not necessarily been removed permanently from the replica set and may be re-opened at a later time. The most common causes for closing a replica is graceful shutdown in preparation for upgrade or load balancing. This method does not need to be called explicitly if the application replica derives from <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica</ref>, which is the recommended pattern. In this case, the application replica should override <xref href="system.fabric._key_value_store_replica.onCloseAsync(CancellationToken)" data-throw-if-not-resolved="false"></xref> instead. </p>
+  syntax:
+    content: public CompletableFuture<Void> closeAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref href="system.fabric._cancellation_token" data-throw-if-not-resolved="false"></xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: db03ee24
+      description: <p>A task that represents the asynchronous operation. </p>
+- uid: system.fabric._key_value_store_replica.abort()
+  parent: system.fabric._key_value_store_replica
+  href: system.fabric._key_value_store_replica.yml
+  name: abort()
+  nameWithType: KeyValueStoreReplica.abort()
+  fullName: void system.fabric.KeyValueStoreReplica.abort()
+  type: Method
+  summary: <p>Aborts this instance of the <ref refid="" kindref="compound">system.fabric.KeyValueStoreReplica</ref> class. </p>
+  syntax:
+    content: public void abort()
+- uid: system.fabric._service_partition.reportFault(FaultType)
+  parent: system.fabric._service_partition
+  href: system.fabric._service_partition.yml
+  name: reportFault(FaultType faultType)
+  nameWithType: ServicePartition.reportFault(FaultType faultType)
+  fullName: void system.fabric.ServicePartition.reportFault(FaultType faultType)
+  type: Method
+  summary: >-
+    <p>Reports the load for a set of load balancing metrics. The load can be reported at any time via the <ref refid="" kindref="compound">java.util.Collection</ref> of <xref href="system.fabric._load_metric" data-throw-if-not-resolved="false"></xref> method and provides one or more properties of the <xref href="system.fabric._load_metric" data-throw-if-not-resolved="false"></xref> method.</p>
+
+    <p>
+
+      <bold>Remarks:</bold>A fault is typically reported when the service code encounters some issue from which it cannot recover. </p>
+  syntax:
+    content: public void reportFault(FaultType faultType)
+    parameters:
+    - id: faultType
+      type: system.fabric._fault_type
+      description: <p>The <xref href="system.fabric._load_metric" data-throw-if-not-resolved="false"></xref> that the service has encountered. </p>
+- uid: system.fabric._state_provider
+  parent: system.fabric
+  href: system.fabric._state_provider.yml
+  name: StateProvider
+  nameWithType: StateProvider
+  fullName: system.fabric.StateProvider
+  type: Interface
+  summary: <p>Defines the behavior that a service must implement to interact with the <xref href="system.fabric._fabric_replicator" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public interface StateProvider
+- uid: system.fabric._state_replicator
+  parent: system.fabric
+  href: system.fabric._state_replicator.yml
+  name: StateReplicator
+  nameWithType: StateReplicator
+  fullName: system.fabric.StateReplicator
+  type: Interface
+  syntax:
+    content: public interface StateReplicator
