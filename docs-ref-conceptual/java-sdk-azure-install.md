@@ -53,7 +53,7 @@ Data storage and messaging for your applications.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-storage</artifactId>
-    <version>5.2.0</version>
+    <version>5.4.0</version>
 </dependency>
 ```   
 
@@ -103,7 +103,7 @@ Scalable NoSQL database with JSON documents and a SQL or JavaScript query syntax
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-documentdb</artifactId>
-    <version>1.11.0</version>
+    <version>1.12.0</version>
 </dependency>
 ```
 
@@ -167,7 +167,7 @@ High-throughput event and telemetry handling for your instrumentation or IoT sce
 <dependency> 
     <groupId>com.microsoft.azure</groupId> 
     <artifactId>azure-eventhubs</artifactId> 
-    <version>0.14.0</version> 
+    <version>0.14.4</version> 
 </dependency>   
 ```
 
@@ -183,7 +183,7 @@ Manage identities, send messages, and get feedback from devices registered with 
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-service-client</artifactId>
-    <version>1.4.20</version>
+    <version>1.7.23</version>
 </dependency>
 ```   
    
@@ -199,7 +199,7 @@ Send a message to an IoT hub from your device.
 <dependency>
     <groupId>com.microsoft.azure.sdk.iot</groupId>
     <artifactId>iot-device-client</artifactId>
-    <version>1.1.27</version>
+    <version>1.3.32</version>
 </dependency>
 ```  
 
@@ -231,7 +231,7 @@ Track usage, add telemetry, and monitor your web apps.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-web</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.8</version>
 </dependency>
 ```
 
