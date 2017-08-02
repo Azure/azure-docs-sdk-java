@@ -13,12 +13,15 @@ items:
   source:
     remote:
       path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-      branch: master
+      branch: 880e2022bf46b71f481107effb7c878a9ae065dd
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 565
+    startLine: 648
   package: com.microsoft.azure.management.network
-  summary: <p>The template for a load balancer update operation, containing all the settings that can be modified. </p>
+  summary: >-
+    <p>The template for a load balancer update operation, containing all the settings that can be modified. </p>
+
+    <p>Call <xref href="com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()" data-throw-if-not-resolved="false"></xref> to apply the changes to the resource in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface Update extends Appliable<LoadBalancer>,Resource.UpdateWithTags<Update>,LoadBalancer.UpdateStages.WithProbe,LoadBalancer.UpdateStages.WithBackend,LoadBalancer.UpdateStages.WithLoadBalancingRule,LoadBalancer.UpdateStages.WithInternetFrontend,LoadBalancer.UpdateStages.WithInternalFrontend,LoadBalancer.UpdateStages.WithNetworkSubnet,LoadBalancer.UpdateStages.WithInboundNatRule,LoadBalancer.UpdateStages.WithInboundNatPool
   inheritedMembers:
@@ -38,11 +41,14 @@ items:
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.updateHttpProbe(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_inbound_nat_pool.updateInboundNatPool(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_inbound_nat_rule.updateInboundNatRule(String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.updateInternalFrontend(String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.updateInternetFrontend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.updateLoadBalancingRule(String)
-  - com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.updatePrivateFrontend(String)
-  - com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.updatePublicFrontend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.updateTcpProbe(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_network_subnet.withFrontendSubnet(Network,String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.withHttpProbe(String)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol,int)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.withoutBackend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.withoutFrontend(String)
   - com.microsoft.azure.management.network._load_balancer._update_stages._with_inbound_nat_pool.withoutInboundNatPool(String)
@@ -52,6 +58,7 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withoutTag(String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withTag(String,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withTags(Map<String, String>)
+  - com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.withTcpProbe(int)
 references:
 - uid: com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()
   parent: com.microsoft.azure.management.resources.fluentcore.model._appliable
@@ -186,7 +193,10 @@ references:
   nameWithType: LoadBalancer.UpdateStages.WithLoadBalancingRule.defineLoadBalancingRule(String name)
   fullName: LoadBalancingRule.UpdateDefinitionStages.Blank<Update> com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithLoadBalancingRule.defineLoadBalancingRule(String name)
   type: Method
-  summary: <p>Begins the definition of a new load balancing rule to add to the load balancer. </p>
+  summary: >-
+    <p>Begins the definition of a new load balancing rule to add to the load balancer. </p>
+
+    <p>The definition must be completed with a call to <xref href="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false"></xref></p>
   syntax:
     content: public LoadBalancingRule.UpdateDefinitionStages.Blank<Update> defineLoadBalancingRule(String name)
     parameters:
@@ -333,6 +343,40 @@ references:
     return:
       type: c82e5d15
       description: <p>the first stage of the inbound NAT rule update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.updateInternalFrontend(String)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.yml
+  name: updateInternalFrontend(String name)
+  nameWithType: LoadBalancer.UpdateStages.WithInternalFrontend.updateInternalFrontend(String name)
+  fullName: LoadBalancerPrivateFrontend.Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithInternalFrontend.updateInternalFrontend(String name)
+  type: Method
+  summary: <p>Begins the description of an update to an existing internal frontend. </p>
+  syntax:
+    content: public LoadBalancerPrivateFrontend.Update updateInternalFrontend(String name)
+    parameters:
+    - id: name
+      type: "26831127"
+      description: <p>the name of an existing frontend from this load balancer </p>
+    return:
+      type: 2aea4259
+      description: <p>the first stage of the frontend update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.updateInternetFrontend(String)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.yml
+  name: updateInternetFrontend(String name)
+  nameWithType: LoadBalancer.UpdateStages.WithInternetFrontend.updateInternetFrontend(String name)
+  fullName: LoadBalancerPublicFrontend.Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithInternetFrontend.updateInternetFrontend(String name)
+  type: Method
+  summary: <p>Begins the description of an update to an existing Internet-facing frontend. </p>
+  syntax:
+    content: public LoadBalancerPublicFrontend.Update updateInternetFrontend(String name)
+    parameters:
+    - id: name
+      type: "26831127"
+      description: <p>the name of the frontend to update </p>
+    return:
+      type: 2f429a09
+      description: <p>the first stage of the frontend update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.updateLoadBalancingRule(String)
   parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule
   href: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.yml
@@ -350,40 +394,6 @@ references:
     return:
       type: ef517a50
       description: <p>the first stage of the load balancing rule update </p>
-- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.updatePrivateFrontend(String)
-  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend
-  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_internal_frontend.yml
-  name: updatePrivateFrontend(String name)
-  nameWithType: LoadBalancer.UpdateStages.WithInternalFrontend.updatePrivateFrontend(String name)
-  fullName: LoadBalancerPrivateFrontend.Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithInternalFrontend.updatePrivateFrontend(String name)
-  type: Method
-  summary: <p>Begins the description of an update to an existing internal frontend. </p>
-  syntax:
-    content: public LoadBalancerPrivateFrontend.Update updatePrivateFrontend(String name)
-    parameters:
-    - id: name
-      type: "26831127"
-      description: <p>the name of an existing frontend from this load balancer </p>
-    return:
-      type: 2aea4259
-      description: <p>the first stage of the frontend update </p>
-- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.updatePublicFrontend(String)
-  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend
-  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_internet_frontend.yml
-  name: updatePublicFrontend(String name)
-  nameWithType: LoadBalancer.UpdateStages.WithInternetFrontend.updatePublicFrontend(String name)
-  fullName: LoadBalancerPublicFrontend.Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithInternetFrontend.updatePublicFrontend(String name)
-  type: Method
-  summary: <p>Begins the description of an update to an existing Internet-facing frontend. </p>
-  syntax:
-    content: public LoadBalancerPublicFrontend.Update updatePublicFrontend(String name)
-    parameters:
-    - id: name
-      type: "26831127"
-      description: <p>the name of the frontend to update </p>
-    return:
-      type: 2f429a09
-      description: <p>the first stage of the frontend update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.updateTcpProbe(String)
   parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe
   href: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.yml
@@ -421,6 +431,75 @@ references:
     return:
       type: com.microsoft.azure.management.network._load_balancer._update
       description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.withHttpProbe(String)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.yml
+  name: withHttpProbe(String requestPath)
+  nameWithType: LoadBalancer.UpdateStages.WithProbe.withHttpProbe(String requestPath)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithProbe.withHttpProbe(String requestPath)
+  type: Method
+  summary: >-
+    <p>Adds an HTTP probe checking for an HTTP 200 response from the specified path at regular intervals, using port 80. </p>
+
+    <p>An automatically generated name is assigned to the probe. </p>
+  syntax:
+    content: public Update withHttpProbe(String requestPath)
+    parameters:
+    - id: requestPath
+      type: "26831127"
+      description: <p>the path for the probe to invoke </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol,int)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.yml
+  name: withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
+  nameWithType: LoadBalancer.UpdateStages.WithLoadBalancingRule.withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithLoadBalancingRule.withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
+  type: Method
+  summary: >-
+    <p>Adds a load balancing rule between the specified front end and back end ports and protocol. </p>
+
+    <p>The new rule will be created under the name "default". </p>
+  syntax:
+    content: public Update withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
+    parameters:
+    - id: frontendPort
+      type: f75371fa
+      description: <p>the port number on the front end to accept incoming traffic on </p>
+    - id: protocol
+      type: com.microsoft.azure.management.network._transport_protocol
+      description: <p>the protocol to load balance </p>
+    - id: backendPort
+      type: f75371fa
+      description: <p>the port number on the back end to send load balanced traffic to </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the definition </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.withLoadBalancingRule(int,TransportProtocol)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_load_balancing_rule.yml
+  name: withLoadBalancingRule(int port, TransportProtocol protocol)
+  nameWithType: LoadBalancer.UpdateStages.WithLoadBalancingRule.withLoadBalancingRule(int port, TransportProtocol protocol)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithLoadBalancingRule.withLoadBalancingRule(int port, TransportProtocol protocol)
+  type: Method
+  summary: >-
+    <p>Adds a load balancing rule for the specified port and protocol. </p>
+
+    <p>The new rule will be created under the name "default". </p>
+  syntax:
+    content: public Update withLoadBalancingRule(int port, TransportProtocol protocol)
+    parameters:
+    - id: port
+      type: f75371fa
+      description: <p>the port number on the front and back end for the network traffic to be load balanced on </p>
+    - id: protocol
+      type: com.microsoft.azure.management.network._transport_protocol
+      description: <p>the protocol to load balance </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.withoutBackend(String)
   parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend
   href: com.microsoft.azure.management.network._load_balancer._update_stages._with_backend.yml
@@ -577,6 +656,26 @@ references:
     return:
       type: 8ce1ecb9
       description: <p>the next stage of the resource update </p>
+- uid: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.withTcpProbe(int)
+  parent: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe
+  href: com.microsoft.azure.management.network._load_balancer._update_stages._with_probe.yml
+  name: withTcpProbe(int port)
+  nameWithType: LoadBalancer.UpdateStages.WithProbe.withTcpProbe(int port)
+  fullName: Update com.microsoft.azure.management.network.LoadBalancer.UpdateStages.WithProbe.withTcpProbe(int port)
+  type: Method
+  summary: >-
+    <p>Adds a TCP probe checking the specified port. </p>
+
+    <p>The probe will be named using an automatically generated name. </p>
+  syntax:
+    content: public Update withTcpProbe(int port)
+    parameters:
+    - id: port
+      type: f75371fa
+      description: <p>the port number for the probe to monitor </p>
+    return:
+      type: com.microsoft.azure.management.network._load_balancer._update
+      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._appliable
   parent: com.microsoft.azure.management.resources.fluentcore.model
   href: com.microsoft.azure.management.resources.fluentcore.model._appliable.yml
@@ -689,3 +788,13 @@ references:
   summary: <p>The stage of a load balancer update allowing to create a new inbound NAT pool for a virtual machine scale set. </p>
   syntax:
     content: public interface WithInboundNatPool
+- uid: com.microsoft.azure.management._azure
+  parent: com.microsoft.azure.management
+  href: com.microsoft.azure.management._azure.yml
+  name: Azure
+  nameWithType: Azure
+  fullName: com.microsoft.azure.management.Azure
+  type: Class
+  summary: <p>The entry point for accessing resource management APIs in <xref href="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false"></xref>. </p>
+  syntax:
+    content: public class Azure
