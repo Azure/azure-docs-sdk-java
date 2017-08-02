@@ -1,34 +1,32 @@
 ---
 title: Azure SQL Database libraries for Java
-description: 
+description: Connect to Azure SQL database using the JDBC driver or mangement Azure SQL database instances with the management API.
 keywords: Azure, Java, SDK, API, SQL, database , JDBC
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 05/17/2017
-ms.topic: article
+ms.date: 07/05/2017
+ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: appservice
+ms.service: sql-database
 ---
 
 # Azure SQL Database libraries for Java
 
 ## Overview
 
-Work with data stored in  [Azure SQL Database](https://docs.microsoft.com/azure/sql-database/sql-database-technical-overview)  from Java with the Azure SQL database JDBC driver. The driver can be used to issue SQL queries directly from your code through JDBC or through data access frameworks like [Spring Data JPA](http://projects.spring.io/spring-data-jpa/) and [Hibernate](http://hibernate.org/orm/).
+[Azure SQL Database](/azure/sql-database/sql-database-technical-overview) is a relational database service using the Microsoft SQL Server engine that supports table, JSON, spatial, and XML data. 
 
-The management libraries provide an interface to create, manage, and scale Azure SQL Database deployments from your Java code. Set up and manage databases in [elastic pools](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-elastic-pool) to share resources and configure databases across multiple regions from your code.
+To get started with Azure SQL Database, see [Azure SQL Database: Use Java to connect and query data](/azure/sql-database/sql-database-connect-query-java).
 
-- [Client library](https://docs.microsoft.com/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server)
-- [Management API](https://docs.microsoft.com/java/api/overview/azure/sql/managementapi)
+## Client JDBC driver
 
-## Import the libraries
+Connect to Azure SQL Database from your applications using the [SQL Database JDBC driver](/sql/connect/jdbc/microsoft-jdbc-driver-for-sql-server). You can use the [Java JDBC API](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/) to directly connect with the database or use data access frameworks that interact with the database through JDBC such as [Hibernate](http://hibernate.org/).
 
-Add a dependency to your Maven project's `pom.xml` file to use the libraries in your own project.
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client JDBC driver in your project.
 
-### JDBC driver
 
 ```XML
 <dependency>
@@ -38,7 +36,25 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```   
 
-### Management
+### Example
+
+Connect to SQL database and select all records in a table using JDBC.
+
+```java
+String connectionString = "jdbc:sqlserver://fabrikam.database.windows.net:1433;database=fiber;user=raisa;password=testpass;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
+try {
+    Connection conn = DriverManager.getConnection(connectionString);
+    Statement statement = conn.createStatement();
+    ResultSet resultSet = statement.executeQuery("SELECT * FROM SALES");
+}  
+```
+
+## Management API
+
+Create and manage Azure SQL Database resources in your subscription with the management API.   
+
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.
+
 
 ```XML
 <dependency>
@@ -48,24 +64,25 @@ Add a dependency to your Maven project's `pom.xml` file to use the libraries in 
 </dependency>
 ```
 
-## Example
+> [!div class="nextstepaction"]
+> [Explore the Management APIs](/java/api/overview/azure/sql/managementapi)
 
-Connect to a Azure SQL database and select all records in the sales table.
+### Example
+
+Create a SQL Database resource and restrict access to a range of IP addresses using a firewall rule.
 
 ```java
-
-String url = String.format("jdbc:sqlserver://%s.database.windows.net:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;", hostName, dbName, user, password);
-Connection connection = null;
-try {
-    connection = DriverManager.getConnection(url);
-    String selectSql = "SELECT * FROM SALES";
-    Statement statement = connection.createStatement();
-    ResultSet resultSet = statement.executeQuery(selectSql);
-}
+SqlServer sqlServer = azure.sqlServers().define(sqlDbName)
+                    .withRegion(Region.US_EAST)
+                    .withNewResourceGroup(resourceGroupName)
+                    .withAdministratorLogin(administratorLogin)
+                    .withAdministratorPassword(administratorPassword)
+                    .withNewFirewallRule("172.16.0.0", "172.31.255.255")
+                    .create();
 ```
 
 ## Samples
 
-[!INCLUDE [java-sql-samples](../docs-ref-conceptual/includes/java-sql-samples.md)]
+[!INCLUDE [java-sql-samples](../docs-ref-conceptual/includes/sql.md)]
 
-Explore more [sample Java code](https://azure.microsoft.com/resources/samples/?platform=java) you can use in your apps.
+Explore more [sample Java code for Azure SQL Database](https://azure.microsoft.com/resources/samples/?platform=java&term=SQL) you can use in your apps.

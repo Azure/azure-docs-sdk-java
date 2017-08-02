@@ -35,7 +35,7 @@ items:
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Abstracts all amqp related details translates event-driven reactor model into async send Api </p>
   syntax: &o1
-    content: public class CoreMessageSender extends ClientEntity implements IAmqpSender
+    content: public class CoreMessageSender extends ClientEntity
   inheritance:
   - java.lang.Object
   - com.microsoft.azure.servicebus.primitives._client_entity
@@ -182,7 +182,6 @@ items:
     parameters:
     - id: condition
       type: 6fca0d17
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onClose(ErrorCondition)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender.onError(Exception)
   id: onError(Exception)
   parent: com.microsoft.azure.servicebus.primitives._core_message_sender
@@ -204,7 +203,6 @@ items:
     parameters:
     - id: completionException
       type: 8a99d4b0
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onError(Exception)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender.onFlow(final int)
   id: onFlow(final int)
   parent: com.microsoft.azure.servicebus.primitives._core_message_sender
@@ -226,7 +224,6 @@ items:
     parameters:
     - id: creditIssued
       type: cd225469
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_sender.onFlow(final int)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender.onOpenComplete(Exception)
   id: onOpenComplete(Exception)
   parent: com.microsoft.azure.servicebus.primitives._core_message_sender
@@ -248,8 +245,6 @@ items:
     parameters:
     - id: completionException
       type: 8a99d4b0
-      description: <p>completionException=null if open is successful </p>
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onOpenComplete(Exception)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender.onSendComplete(final Delivery)
   id: onSendComplete(final Delivery)
   parent: com.microsoft.azure.servicebus.primitives._core_message_sender
@@ -271,7 +266,6 @@ items:
     parameters:
     - id: delivery
       type: e00ff619
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_sender.onSendComplete(final Delivery)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender.peekMessagesAsync(long,int)
   id: peekMessagesAsync(long,int)
   parent: com.microsoft.azure.servicebus.primitives._core_message_sender
@@ -628,15 +622,6 @@ references:
   summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
   syntax:
     content: public class ClientEntity
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_sender
-  parent: com.microsoft.azure.servicebus.amqp
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_sender.yml
-  name: IAmqpSender
-  nameWithType: IAmqpSender
-  fullName: com.microsoft.azure.servicebus.amqp.IAmqpSender
-  type: Interface
-  syntax:
-    content: public interface IAmqpSender
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
@@ -656,15 +641,6 @@ references:
   type: Class
   syntax:
     content: public class RetryPolicy
-- uid: com.microsoft.azure.servicebus.amqp._dispatch_handler
-  parent: com.microsoft.azure.servicebus.amqp
-  href: com.microsoft.azure.servicebus.amqp._dispatch_handler.yml
-  name: DispatchHandler
-  nameWithType: DispatchHandler
-  fullName: com.microsoft.azure.servicebus.amqp.DispatchHandler
-  type: Class
-  syntax:
-    content: public class DispatchHandler
 - uid: com.microsoft.azure.servicebus.primitives._core_message_sender
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives._core_message_sender.yml
@@ -683,64 +659,3 @@ references:
   type: Class
   syntax:
     content: public class TimeoutTracker
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onOpenComplete(Exception)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onOpenComplete(Exception completionException)
-  nameWithType: IAmqpLink.onOpenComplete(Exception completionException)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onOpenComplete(Exception completionException)
-  type: Method
-  syntax:
-    content: public void onOpenComplete(Exception completionException)
-    parameters:
-    - id: completionException
-      type: 8a99d4b0
-      description: <p>completionException=null if open is successful </p>
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onClose(ErrorCondition)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onClose(ErrorCondition condition)
-  nameWithType: IAmqpLink.onClose(ErrorCondition condition)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onClose(ErrorCondition condition)
-  type: Method
-  syntax:
-    content: public void onClose(ErrorCondition condition)
-    parameters:
-    - id: condition
-      type: 6fca0d17
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onError(Exception)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onError(Exception exception)
-  nameWithType: IAmqpLink.onError(Exception exception)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onError(Exception exception)
-  type: Method
-  syntax:
-    content: public void onError(Exception exception)
-    parameters:
-    - id: exception
-      type: 8a99d4b0
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_sender.onSendComplete(final Delivery)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_sender
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_sender.yml
-  name: onSendComplete(final Delivery delivery)
-  nameWithType: IAmqpSender.onSendComplete(final Delivery delivery)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpSender.onSendComplete(final Delivery delivery)
-  type: Method
-  syntax:
-    content: public void onSendComplete(final Delivery delivery)
-    parameters:
-    - id: delivery
-      type: e00ff619
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_sender.onFlow(final int)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_sender
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_sender.yml
-  name: onFlow(final int creditIssued)
-  nameWithType: IAmqpSender.onFlow(final int creditIssued)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpSender.onFlow(final int creditIssued)
-  type: Method
-  syntax:
-    content: public void onFlow(final int creditIssued)
-    parameters:
-    - id: creditIssued
-      type: cd225469

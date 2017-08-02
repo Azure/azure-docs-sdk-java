@@ -51,7 +51,7 @@ items:
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Common Receiver that abstracts all amqp related details translates event-driven reactor model into async receive Api </p>
   syntax: &o1
-    content: public class CoreMessageReceiver extends ClientEntity implements IAmqpReceiver
+    content: public class CoreMessageReceiver extends ClientEntity
   inheritance:
   - java.lang.Object
   - com.microsoft.azure.servicebus.primitives._client_entity
@@ -476,7 +476,6 @@ items:
     parameters:
     - id: condition
       type: 6fca0d17
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onClose(ErrorCondition)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.onError(ErrorCondition)
   id: onError(ErrorCondition)
   parent: com.microsoft.azure.servicebus.primitives._core_message_receiver
@@ -519,7 +518,6 @@ items:
     parameters:
     - id: exception
       type: 8a99d4b0
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onError(Exception)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.onOpenComplete(Exception)
   id: onOpenComplete(Exception)
   parent: com.microsoft.azure.servicebus.primitives._core_message_receiver
@@ -539,10 +537,8 @@ items:
   syntax:
     content: public void onOpenComplete(Exception exception)
     parameters:
-    - id: completionException
+    - id: exception
       type: 8a99d4b0
-      description: <p>completionException=null if open is successful </p>
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_link.onOpenComplete(Exception)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.onReceiveComplete(Delivery)
   id: onReceiveComplete(Delivery)
   parent: com.microsoft.azure.servicebus.primitives._core_message_receiver
@@ -564,7 +560,6 @@ items:
     parameters:
     - id: delivery
       type: a2b35a06
-  overridden: com.microsoft.azure.servicebus.amqp._i_amqp_receiver.onReceiveComplete(Delivery)
 - uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.peekMessagesAsync(long,int,String)
   id: peekMessagesAsync(long,int,String)
   parent: com.microsoft.azure.servicebus.primitives._core_message_receiver
@@ -1135,15 +1130,6 @@ references:
   summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
   syntax:
     content: public class ClientEntity
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_receiver
-  parent: com.microsoft.azure.servicebus.amqp
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_receiver.yml
-  name: IAmqpReceiver
-  nameWithType: IAmqpReceiver
-  fullName: com.microsoft.azure.servicebus.amqp.IAmqpReceiver
-  type: Interface
-  syntax:
-    content: public interface IAmqpReceiver
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
@@ -1209,55 +1195,6 @@ references:
   summary: <p>This is the base exception that service bus will produce for all error cases. </p>
   syntax:
     content: public class ServiceBusException
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onOpenComplete(Exception)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onOpenComplete(Exception completionException)
-  nameWithType: IAmqpLink.onOpenComplete(Exception completionException)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onOpenComplete(Exception completionException)
-  type: Method
-  syntax:
-    content: public void onOpenComplete(Exception completionException)
-    parameters:
-    - id: completionException
-      type: 8a99d4b0
-      description: <p>completionException=null if open is successful </p>
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_receiver.onReceiveComplete(Delivery)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_receiver
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_receiver.yml
-  name: onReceiveComplete(Delivery delivery)
-  nameWithType: IAmqpReceiver.onReceiveComplete(Delivery delivery)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpReceiver.onReceiveComplete(Delivery delivery)
-  type: Method
-  syntax:
-    content: public void onReceiveComplete(Delivery delivery)
-    parameters:
-    - id: delivery
-      type: a2b35a06
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onError(Exception)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onError(Exception exception)
-  nameWithType: IAmqpLink.onError(Exception exception)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onError(Exception exception)
-  type: Method
-  syntax:
-    content: public void onError(Exception exception)
-    parameters:
-    - id: exception
-      type: 8a99d4b0
-- uid: com.microsoft.azure.servicebus.amqp._i_amqp_link.onClose(ErrorCondition)
-  parent: com.microsoft.azure.servicebus.amqp._i_amqp_link
-  href: com.microsoft.azure.servicebus.amqp._i_amqp_link.yml
-  name: onClose(ErrorCondition condition)
-  nameWithType: IAmqpLink.onClose(ErrorCondition condition)
-  fullName: void com.microsoft.azure.servicebus.amqp.IAmqpLink.onClose(ErrorCondition condition)
-  type: Method
-  syntax:
-    content: public void onClose(ErrorCondition condition)
-    parameters:
-    - id: condition
-      type: 6fca0d17
 - uid: com.microsoft.azure.servicebus.primitives._message_with_lock_token
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives._message_with_lock_token.yml

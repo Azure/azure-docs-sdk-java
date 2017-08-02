@@ -25,8 +25,6 @@ This guide walks you through setting up a development environment with an Azure 
 - [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) (included in Azure Cloud Shell)
 - [Maven 3](http://maven.apache.org/download.cgi) (included in Azure Cloud Shell)
 
-[!INCLUDE [azure-cloud-shell](../docs-ref-conceptual/includes/azure-shell.md)]
-
 ## Set up authentication
 
 Your Java application needs read and create permissions in your Azure subscription to run the sample code in this tutorial. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
