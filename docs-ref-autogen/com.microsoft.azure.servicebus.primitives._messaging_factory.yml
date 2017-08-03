@@ -8,17 +8,13 @@ items:
   - com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringAsync(final String)
   - com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringBuilder(final ConnectionStringBuilder)
   - com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringBuilderAsync(final ConnectionStringBuilder)
-  - com.microsoft.azure.servicebus.primitives._messaging_factory.DefaultOperationTimeout()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.deregisterForConnectionError(Link)
-  - com.microsoft.azure.servicebus.primitives._messaging_factory.getConnection()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.getOperationTimeout()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.getRetryPolicy()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.onClose()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionError(ErrorCondition)
-  - com.microsoft.azure.servicebus.primitives._messaging_factory.onOpenComplete(Exception)
+  - com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionOpen()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.registerForConnectionError(Link)
-  - com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread(final DispatchHandler)
-  - com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread(final int,final DispatchHandler)
   href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
   langs:
   - java
@@ -32,9 +28,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 40
+    startLine: 44
   package: com.microsoft.azure.servicebus.primitives
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
+  summary: <p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>
   syntax: &o1
     content: public class MessagingFactory extends ClientEntity
   inheritance:
@@ -64,15 +60,23 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 175
+    startLine: 223
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Creates an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref> from the given connection string. This method blocks for a connection to the namespace to be established. </p>
   syntax:
     content: public static MessagingFactory createFromConnectionString(final String connectionString)
     parameters:
     - id: connectionString
       type: 3d93591e
+      description: <p>connection string to the bus namespace or entity </p>
     return:
       type: com.microsoft.azure.servicebus.primitives._messaging_factory
+      description: <p>an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref></p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if blocking thread is interrupted </p>
+  - type: f25e3dc2
+    description: <p>if a connection couldn't be established to the namespace. Cause of the failure can be found by calling <ref refid="" kindref="compound">Exception#getCause()</ref></p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringAsync(final String)
   id: createFromConnectionStringAsync(final String)
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -87,15 +91,18 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 164
+    startLine: 198
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Creates an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref> from the given connection string. This is a non-blocking method. </p>
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionStringAsync(final String connectionString)
     parameters:
     - id: connectionString
       type: 3d93591e
+      description: <p>connection string to the bus namespace or entity </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus.primitives._messaging_factorya08ddfce
+      description: <p>a <code>CompletableFuture</code> which completes when a connection is established to the namespace or when a connection couldn't be established. </p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringBuilder(final ConnectionStringBuilder)
   id: createFromConnectionStringBuilder(final ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -110,15 +117,23 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 170
+    startLine: 211
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Creates an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref> from the given connection string builder. This method blocks for a connection to the namespace to be established. </p>
   syntax:
     content: public static MessagingFactory createFromConnectionStringBuilder(final ConnectionStringBuilder builder)
     parameters:
     - id: builder
       type: 93de0ef9com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>connection string builder to the bus namespace or entity </p>
     return:
       type: com.microsoft.azure.servicebus.primitives._messaging_factory
+      description: <p>an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref></p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if blocking thread is interrupted </p>
+  - type: f25e3dc2
+    description: <p>if a connection couldn't be established to the namespace. Cause of the failure can be found by calling <ref refid="" kindref="compound">Exception#getCause()</ref></p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringBuilderAsync(final ConnectionStringBuilder)
   id: createFromConnectionStringBuilderAsync(final ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -133,34 +148,18 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 152
+    startLine: 174
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Creates an instance of <xref href="com.microsoft.azure.servicebus.primitives._messaging_factory" data-throw-if-not-resolved="false"></xref> from the given connection string builder. This is a non-blocking method. </p>
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromConnectionStringBuilderAsync(final ConnectionStringBuilder builder)
     parameters:
     - id: builder
       type: 93de0ef9com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>connection string builder to the bus namespace or entity </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus.primitives._messaging_factorya08ddfce
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.DefaultOperationTimeout()
-  id: DefaultOperationTimeout()
-  parent: com.microsoft.azure.servicebus.primitives._messaging_factory
-  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
-  langs:
-  - java
-  name: DefaultOperationTimeout
-  nameWithType: MessagingFactory.DefaultOperationTimeout
-  fullName: final Duration com.microsoft.azure.servicebus.primitives.MessagingFactory.DefaultOperationTimeout
-  type: Field
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 42
-  package: com.microsoft.azure.servicebus.primitives
-  syntax:
-    content: public static final Duration DefaultOperationTimeout= Duration.ofSeconds(30)
-    return:
-      type: 89ac7c4d
+      description: <p>a <code>CompletableFuture</code> which completes when a connection is established to the namespace or when a connection couldn't be established. </p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.deregisterForConnectionError(Link)
   id: deregisterForConnectionError(Link)
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -175,33 +174,14 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 403
+    startLine: 501
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
     content: public void deregisterForConnectionError(Link link)
     parameters:
     - id: link
       type: a7c9e797
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.getConnection()
-  id: getConnection()
-  parent: com.microsoft.azure.servicebus.primitives._messaging_factory
-  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
-  langs:
-  - java
-  name: getConnection()
-  nameWithType: MessagingFactory.getConnection()
-  fullName: Connection com.microsoft.azure.servicebus.primitives.MessagingFactory.getConnection()
-  overload: com.microsoft.azure.servicebus.primitives._messaging_factory.getConnection*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 132
-  package: com.microsoft.azure.servicebus.primitives
-  syntax:
-    content: public Connection getConnection()
-    return:
-      type: 8270ccc2
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.getOperationTimeout()
   id: getOperationTimeout()
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -216,12 +196,14 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 142
+    startLine: 154
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Gets the operation timeout from the connections string. </p>
   syntax:
     content: public Duration getOperationTimeout()
     return:
       type: e02a2de0
+      description: <p>operation timeout specified in the connection string </p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.getRetryPolicy()
   id: getRetryPolicy()
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -236,12 +218,14 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 147
+    startLine: 163
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Gets the retry policy from the connection string. </p>
   syntax:
     content: public RetryPolicy getRetryPolicy()
     return:
       type: com.microsoft.azure.servicebus.primitives._retry_policy
+      description: <p>retry policy specified in the connection string </p>
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onClose()
   id: onClose()
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -256,7 +240,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 289
+    startLine: 352
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -276,34 +260,33 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 196
+    startLine: 252
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
     content: public void onConnectionError(ErrorCondition error)
     parameters:
     - id: error
       type: 6fca0d17
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onOpenComplete(Exception)
-  id: onOpenComplete(Exception)
+- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionOpen()
+  id: onConnectionOpen()
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
   href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
   langs:
   - java
-  name: onOpenComplete(Exception exception)
-  nameWithType: MessagingFactory.onOpenComplete(Exception exception)
-  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.onOpenComplete(Exception exception)
-  overload: com.microsoft.azure.servicebus.primitives._messaging_factory.onOpenComplete*
+  name: onConnectionOpen()
+  nameWithType: MessagingFactory.onConnectionOpen()
+  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.onConnectionOpen()
+  overload: com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionOpen*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 181
+    startLine: 232
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
-    content: public void onOpenComplete(Exception exception)
-    parameters:
-    - id: exception
-      type: 8a99d4b0
+    content: public void onConnectionOpen()
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.registerForConnectionError(Link)
   id: registerForConnectionError(Link)
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -318,71 +301,15 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 397
+    startLine: 492
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
     content: public void registerForConnectionError(Link link)
     parameters:
     - id: link
       type: a7c9e797
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread(final DispatchHandler)
-  id: scheduleOnReactorThread(final DispatchHandler)
-  parent: com.microsoft.azure.servicebus.primitives._messaging_factory
-  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
-  langs:
-  - java
-  name: scheduleOnReactorThread(final DispatchHandler handler)
-  nameWithType: MessagingFactory.scheduleOnReactorThread(final DispatchHandler handler)
-  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.scheduleOnReactorThread(final DispatchHandler handler)
-  overload: com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 408
-  package: com.microsoft.azure.servicebus.primitives
-  syntax:
-    content: public void scheduleOnReactorThread(final DispatchHandler handler)
-    parameters:
-    - id: handler
-      type: 64a4eb2c
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread(final int,final DispatchHandler)
-  id: scheduleOnReactorThread(final int,final DispatchHandler)
-  parent: com.microsoft.azure.servicebus.primitives._messaging_factory
-  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
-  langs:
-  - java
-  name: scheduleOnReactorThread(final int delay, final DispatchHandler handler)
-  nameWithType: MessagingFactory.scheduleOnReactorThread(final int delay, final DispatchHandler handler)
-  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.scheduleOnReactorThread(final int delay, final DispatchHandler handler)
-  overload: com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 413
-  package: com.microsoft.azure.servicebus.primitives
-  syntax:
-    content: public void scheduleOnReactorThread(final int delay, final DispatchHandler handler)
-    parameters:
-    - id: delay
-      type: cd225469
-    - id: handler
-      type: 64a4eb2c
 references:
-- uid: 89ac7c4d
-  spec.java:
-  - name: final Duration
-    fullName: final Duration
-- uid: 8270ccc2
-  spec.java:
-  - name: Connection
-    fullName: Connection
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.getConnection*
-  name: getConnection
-  nameWithType: MessagingFactory.getConnection
-  fullName: Connection com.microsoft.azure.servicebus.primitives.MessagingFactory.getConnection
-  package: com.microsoft.azure.servicebus.primitives
 - uid: e02a2de0
   spec.java:
   - name: Duration
@@ -397,14 +324,10 @@ references:
   nameWithType: MessagingFactory.getRetryPolicy
   fullName: RetryPolicy com.microsoft.azure.servicebus.primitives.MessagingFactory.getRetryPolicy
   package: com.microsoft.azure.servicebus.primitives
-- uid: 8a99d4b0
-  spec.java:
-  - name: Exception
-    fullName: Exception
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onOpenComplete*
-  name: onOpenComplete
-  nameWithType: MessagingFactory.onOpenComplete
-  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.onOpenComplete
+- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionOpen*
+  name: onConnectionOpen
+  nameWithType: MessagingFactory.onConnectionOpen
+  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.onConnectionOpen
   package: com.microsoft.azure.servicebus.primitives
 - uid: 6fca0d17
   spec.java:
@@ -429,19 +352,6 @@ references:
   nameWithType: MessagingFactory.deregisterForConnectionError
   fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.deregisterForConnectionError
   package: com.microsoft.azure.servicebus.primitives
-- uid: 64a4eb2c
-  spec.java:
-  - name: final DispatchHandler
-    fullName: final DispatchHandler
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.scheduleOnReactorThread*
-  name: scheduleOnReactorThread
-  nameWithType: MessagingFactory.scheduleOnReactorThread
-  fullName: void com.microsoft.azure.servicebus.primitives.MessagingFactory.scheduleOnReactorThread
-  package: com.microsoft.azure.servicebus.primitives
-- uid: cd225469
-  spec.java:
-  - name: final int
-    fullName: final int
 - uid: 93de0ef9com.microsoft.azure.servicebus.primitives._connection_string_builder
   spec.java:
   - name: 'final '
@@ -474,6 +384,14 @@ references:
   nameWithType: MessagingFactory.createFromConnectionStringAsync
   fullName: static CompletableFuture<MessagingFactory> com.microsoft.azure.servicebus.primitives.MessagingFactory.createFromConnectionStringAsync
   package: com.microsoft.azure.servicebus.primitives
+- uid: 8256ba40
+  spec.java:
+  - name: InterruptedException
+    fullName: InterruptedException
+- uid: f25e3dc2
+  spec.java:
+  - name: ExecutionException
+    fullName: ExecutionException
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.createFromConnectionStringBuilder*
   name: createFromConnectionStringBuilder
   nameWithType: MessagingFactory.createFromConnectionStringBuilder
@@ -603,7 +521,12 @@ references:
   nameWithType: ClientEntity
   fullName: com.microsoft.azure.servicebus.primitives.ClientEntity
   type: Class
-  summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
+  summary: >-
+    <p>Contract for all client entities with Open-Close/Abort state m/c </p>
+
+    <p>main-purpose: closeAll related entities </p>
+
+    <p>Internal-class </p>
   syntax:
     content: public class ClientEntity
 - uid: com.microsoft.azure.servicebus.primitives._connection_string_builder
@@ -614,13 +537,11 @@ references:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
   type: Class
   summary: >-
-    <p>
+    <p>This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
 
-      <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
+    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal">ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp>or<sp></sp>SubscriptionPath</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
 
-    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>eventHubName<sp></sp>or<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
-
-    <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>
+    <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - URL that points to the servicebus namespace </p></listitem><listitem><p>EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p></listitem><listitem><p>SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity. </p></listitem><listitem><p>SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token. </p></listitem><listitem><p>OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string. </p></listitem><listitem><p><xref href="com.microsoft.azure.servicebus.primitives._retry_policy" data-throw-if-not-resolved="false"></xref> - Name of the retry policy. </p></listitem></itemizedlist></p>
   syntax:
     content: public class ConnectionStringBuilder
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -630,6 +551,7 @@ references:
   nameWithType: RetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
   type: Class
+  summary: <p>Represents an abstraction of a policy for retrying messaging operations when an exception is encountered. Some exceptions encountered by a sender or receiver can be transient like ServerBusy and the operation will succeed if retried. Clients can specify a retry policy using <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> which guides senders and receivers to automatically retry the failed operation before throwing the exception to the client application. Users should not implement this class, instead should use one of the provided implementations through <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getDefault()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class RetryPolicy
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -639,5 +561,5 @@ references:
   nameWithType: MessagingFactory
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
   type: Class
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
+  summary: <p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>
   syntax: *o1

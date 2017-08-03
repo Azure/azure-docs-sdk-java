@@ -12,10 +12,6 @@ items:
   - com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder,String,ReceiveMode)
   - com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String)
   - com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String,ReceiveMode)
-  - com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath(MessagingFactory,String,String)
-  - com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath(MessagingFactory,String,String,ReceiveMode)
-  - com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync(MessagingFactory,String,String)
-  - com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync(MessagingFactory,String,String,ReceiveMode)
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionString(String)
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionString(String,ReceiveMode)
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringAsync(String)
@@ -24,16 +20,10 @@ items:
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder,ReceiveMode)
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder)
   - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder,ReceiveMode)
-  - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath(MessagingFactory,String)
-  - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath(MessagingFactory,String,ReceiveMode)
-  - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync(MessagingFactory,String)
-  - com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync(MessagingFactory,String,ReceiveMode)
   - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionString(String)
   - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringAsync(String)
   - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringBuilder(ConnectionStringBuilder)
   - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringBuilderAsync(ConnectionStringBuilder)
-  - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPath(MessagingFactory,String)
-  - com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPathAsync(MessagingFactory,String)
   href: com.microsoft.azure.servicebus._client_factory.yml
   langs:
   - java
@@ -47,8 +37,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 8
+    startLine: 14
   package: com.microsoft.azure.servicebus
+  summary: <p>Utility class for creating message senders and receivers. </p>
   syntax:
     content: public class ClientFactory
   inheritance:
@@ -67,17 +58,32 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 116
+    startLine: 210
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from service bus connection string with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static IMessageSession acceptSessionFromConnectionString(String amqpConnectionString, String sessionId)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>connection string </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_session
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the session cannot be accepted </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionString(String,String,ReceiveMode)
   id: acceptSessionFromConnectionString(String,String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -92,19 +98,38 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 121
+    startLine: 224
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> from service bus connection string with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static IMessageSession acceptSessionFromConnectionString(String amqpConnectionString, String sessionId, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>connection string </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_session
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the session cannot be accepted </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringAsync(String,String)
   id: acceptSessionFromConnectionStringAsync(String,String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -119,17 +144,24 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 146
+    startLine: 270
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode asynchronously from service bus connection string with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSession> acceptSessionFromConnectionStringAsync(String amqpConnectionString, String sessionId)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
+      description: <p>a CompletableFuture representing the pending session accepting </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringAsync(String,String,ReceiveMode)
   id: acceptSessionFromConnectionStringAsync(String,String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -144,19 +176,30 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 151
+    startLine: 282
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> asynchronously from service bus connection string with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSession> acceptSessionFromConnectionStringAsync(String amqpConnectionString, String sessionId, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
+      description: <p>a CompletableFuture representing the pending session accepting </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder,String)
   id: acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder,String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -171,17 +214,32 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 126
+    startLine: 237
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from service bus connection string builder with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static IMessageSession acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder, String sessionId)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_session
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the session cannot be accepted </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder,String,ReceiveMode)
   id: acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder,String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -196,19 +254,38 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 131
+    startLine: 251
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> from service bus connection string builder with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static IMessageSession acceptSessionFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder, String sessionId, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_session
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the session cannot be accepted </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String)
   id: acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -223,17 +300,24 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 157
+    startLine: 294
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode asynchronously from service bus connection string builder with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSession> acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder amqpConnectionStringBuilder, String sessionId)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
+      description: <p>a CompletableFuture representing the pending session accepting </p>
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String,ReceiveMode)
   id: acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder,String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -248,131 +332,30 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 162
+    startLine: 306
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Accept a <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> asynchronously from service bus connection string builder with specified session id. Session Id can be null, if null, service will return the first available session.</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSession> acceptSessionFromConnectionStringBuilderAsync(ConnectionStringBuilder amqpConnectionStringBuilder, String sessionId, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>connection string builder </p>
     - id: sessionId
       type: "26831127"
+      description: <p>session id, if null, service will return the first available session, otherwise, service will return specified session </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath(MessagingFactory,String,String)
-  id: acceptSessionFromEntityPath(MessagingFactory,String,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  nameWithType: ClientFactory.acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  fullName: static IMessageSession com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  overload: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 136
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static IMessageSession acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: sessionId
-      type: "26831127"
-    return:
-      type: com.microsoft.azure.servicebus._i_message_session
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath(MessagingFactory,String,String,ReceiveMode)
-  id: acceptSessionFromEntityPath(MessagingFactory,String,String,ReceiveMode)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  nameWithType: ClientFactory.acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  fullName: static IMessageSession com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  overload: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 141
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static IMessageSession acceptSessionFromEntityPath(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: sessionId
-      type: "26831127"
-    - id: receiveMode
-      type: com.microsoft.azure.servicebus._receive_mode
-    return:
-      type: com.microsoft.azure.servicebus._i_message_session
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync(MessagingFactory,String,String)
-  id: acceptSessionFromEntityPathAsync(MessagingFactory,String,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  nameWithType: ClientFactory.acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  fullName: static CompletableFuture<IMessageSession> com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId)
-  overload: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 169
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static CompletableFuture<IMessageSession> acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: sessionId
-      type: "26831127"
-    return:
-      type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync(MessagingFactory,String,String,ReceiveMode)
-  id: acceptSessionFromEntityPathAsync(MessagingFactory,String,String,ReceiveMode)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  nameWithType: ClientFactory.acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  fullName: static CompletableFuture<IMessageSession> com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-  overload: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 174
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static CompletableFuture<IMessageSession> acceptSessionFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, String sessionId, ReceiveMode receiveMode)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: sessionId
-      type: "26831127"
-    - id: receiveMode
-      type: com.microsoft.azure.servicebus._receive_mode
-    return:
-      type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
+      description: <p>a CompletableFuture representing the pending session accepting </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionString(String)
   id: createMessageReceiverFromConnectionString(String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -387,15 +370,29 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 50
+    startLine: 89
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from service bus connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static IMessageReceiver createMessageReceiverFromConnectionString(String amqpConnectionString)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_receiver
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the receiver cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionString(String,ReceiveMode)
   id: createMessageReceiverFromConnectionString(String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -410,17 +407,35 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 55
+    startLine: 103
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from service bus connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static IMessageReceiver createMessageReceiverFromConnectionString(String amqpConnectionString, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_receiver
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the receiver cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringAsync(String)
   id: createMessageReceiverFromConnectionStringAsync(String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -435,15 +450,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 80
+    startLine: 152
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode asynchronously from connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromConnectionStringAsync(String amqpConnectionString)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
+      description: <p>a CompletableFuture representing the pending creating </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringAsync(String,ReceiveMode)
   id: createMessageReceiverFromConnectionStringAsync(String,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -458,17 +479,27 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 85
+    startLine: 163
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode asynchronously from connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromConnectionStringAsync(String amqpConnectionString, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
+      description: <p>a CompletableFuture representing the pending creating </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder)
   id: createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -483,15 +514,33 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 60
+    startLine: 118
   package: com.microsoft.azure.servicebus
-  syntax:
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from ConnectionStringBuilder <preformatted><xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> messageReceiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, queueName));
+
+    </preformatted></p>
+
+    <p></p>
+  syntax: &o1
     content: public static IMessageReceiver createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: >-
+        <p>
+
+          <ref refid="" kindref="compound">ConnectionStringBuilder</ref>
+
+        </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_receiver
+      description: <p>The <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the receiver cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder,ReceiveMode)
   id: createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -506,17 +555,39 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 65
+    startLine: 134
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> from ConnectionStringBuilder <preformatted><xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> messageReceiver = <xref href="com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder)" data-throw-if-not-resolved="false"></xref>(new ConnectionStringBuilder(connectionString, queueName), <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref>);
+
+    </preformatted></p>
+
+    <p></p>
   syntax:
     content: public static IMessageReceiver createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: >-
+        <p>
+
+          <ref refid="" kindref="compound">ConnectionStringBuilder</ref>
+
+        </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_receiver
+      description: <p>The <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the receiver cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder)
   id: createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -531,15 +602,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 91
+    startLine: 174
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode asynchronously from ConnectionStringBuilder</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder amqpConnectionStringBuilder)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
+      description: <p>a CompletableFuture representing the pending creating </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder,ReceiveMode)
   id: createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder,ReceiveMode)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -554,121 +631,27 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 96
+    startLine: 185
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> asynchronously from ConnectionStringBuilder</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromConnectionStringBuilderAsync(ConnectionStringBuilder amqpConnectionStringBuilder, ReceiveMode receiveMode)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     - id: receiveMode
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref> PeekLock or ReceiveAndDelete </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath(MessagingFactory,String)
-  id: createMessageReceiverFromEntityPath(MessagingFactory,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  fullName: static IMessageReceiver com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 70
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static IMessageReceiver createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    return:
-      type: com.microsoft.azure.servicebus._i_message_receiver
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath(MessagingFactory,String,ReceiveMode)
-  id: createMessageReceiverFromEntityPath(MessagingFactory,String,ReceiveMode)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  fullName: static IMessageReceiver com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 75
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static IMessageReceiver createMessageReceiverFromEntityPath(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: receiveMode
-      type: com.microsoft.azure.servicebus._receive_mode
-    return:
-      type: com.microsoft.azure.servicebus._i_message_receiver
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync(MessagingFactory,String)
-  id: createMessageReceiverFromEntityPathAsync(MessagingFactory,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  fullName: static CompletableFuture<IMessageReceiver> com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 103
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    return:
-      type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync(MessagingFactory,String,ReceiveMode)
-  id: createMessageReceiverFromEntityPathAsync(MessagingFactory,String,ReceiveMode)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  fullName: static CompletableFuture<IMessageReceiver> com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 108
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static CompletableFuture<IMessageReceiver> createMessageReceiverFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath, ReceiveMode receiveMode)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    - id: receiveMode
-      type: com.microsoft.azure.servicebus._receive_mode
-    return:
-      type: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
+      description: <p>a CompletableFuture representing the pending creating </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionString(String)
   id: createMessageSenderFromConnectionString(String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -683,15 +666,29 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 13
+    startLine: 29
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create message sender from service bus connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static IMessageSender createMessageSenderFromConnectionString(String amqpConnectionString)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_sender
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_sender" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the sender cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringAsync(String)
   id: createMessageSenderFromConnectionStringAsync(String)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -706,15 +703,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 28
+    startLine: 58
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create message sender asynchronously from connection string with <ulink url="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas">Shared Access Signatures</ulink></p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSender> createMessageSenderFromConnectionStringAsync(String amqpConnectionString)
     parameters:
     - id: amqpConnectionString
       type: "26831127"
+      description: <p>the connection string </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sendera08ddfce
+      description: <p>a CompletableFuture representing the pending creating of <xref href="com.microsoft.azure.servicebus._i_message_sender" data-throw-if-not-resolved="false"></xref> instance </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringBuilder(ConnectionStringBuilder)
   id: createMessageSenderFromConnectionStringBuilder(ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -729,15 +732,31 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 18
+    startLine: 44
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create message sender from ConnectionStringBuilder <preformatted><xref href="com.microsoft.azure.servicebus._i_message_sender" data-throw-if-not-resolved="false"></xref> messageSender = ClientFactory.createMessageSenderFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, queueName));
+
+    </preformatted></p>
+
+    <p></p>
   syntax:
     content: public static IMessageSender createMessageSenderFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     return:
       type: com.microsoft.azure.servicebus._i_message_sender
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._i_message_sender" data-throw-if-not-resolved="false"></xref> instance </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the sender cannot be created </p>
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromConnectionStringBuilderAsync(ConnectionStringBuilder)
   id: createMessageSenderFromConnectionStringBuilderAsync(ConnectionStringBuilder)
   parent: com.microsoft.azure.servicebus._client_factory
@@ -752,66 +771,30 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 34
+    startLine: 69
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Create message sender asynchronously from ConnectionStringBuilder</p>
+
+    <p></p>
   syntax:
     content: public static CompletableFuture<IMessageSender> createMessageSenderFromConnectionStringBuilderAsync(ConnectionStringBuilder amqpConnectionStringBuilder)
     parameters:
     - id: amqpConnectionStringBuilder
       type: com.microsoft.azure.servicebus.primitives._connection_string_builder
+      description: <p>the connection string builder </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sendera08ddfce
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPath(MessagingFactory,String)
-  id: createMessageSenderFromEntityPath(MessagingFactory,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageSenderFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  nameWithType: ClientFactory.createMessageSenderFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  fullName: static IMessageSender com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPath*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 23
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static IMessageSender createMessageSenderFromEntityPath(MessagingFactory messagingFactory, String entityPath)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    return:
-      type: com.microsoft.azure.servicebus._i_message_sender
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPathAsync(MessagingFactory,String)
-  id: createMessageSenderFromEntityPathAsync(MessagingFactory,String)
-  parent: com.microsoft.azure.servicebus._client_factory
-  href: com.microsoft.azure.servicebus._client_factory.yml
-  langs:
-  - java
-  name: createMessageSenderFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  nameWithType: ClientFactory.createMessageSenderFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  fullName: static CompletableFuture<IMessageSender> com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-  overload: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPathAsync*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ClientFactory.java
-    startLine: 41
-  package: com.microsoft.azure.servicebus
-  syntax:
-    content: public static CompletableFuture<IMessageSender> createMessageSenderFromEntityPathAsync(MessagingFactory messagingFactory, String entityPath)
-    parameters:
-    - id: messagingFactory
-      type: com.microsoft.azure.servicebus.primitives._messaging_factory
-    - id: entityPath
-      type: "26831127"
-    return:
-      type: 9cdf14d0com.microsoft.azure.servicebus._i_message_sendera08ddfce
+      description: <p>a CompletableFuture representing the pending creating of <xref href="com.microsoft.azure.servicebus._i_message_sender" data-throw-if-not-resolved="false"></xref> instance </p>
 references:
+- uid: 8256ba40
+  spec.java:
+  - name: InterruptedException
+    fullName: InterruptedException
+- uid: 73fec9fb
+  spec.java:
+  - name: ServiceBusException
+    fullName: ServiceBusException
 - uid: "26831127"
   spec.java:
   - name: String
@@ -825,11 +808,6 @@ references:
   name: createMessageSenderFromConnectionStringBuilder
   nameWithType: ClientFactory.createMessageSenderFromConnectionStringBuilder
   fullName: static IMessageSender com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromConnectionStringBuilder
-  package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPath*
-  name: createMessageSenderFromEntityPath
-  nameWithType: ClientFactory.createMessageSenderFromEntityPath
-  fullName: static IMessageSender com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromEntityPath
   package: com.microsoft.azure.servicebus
 - uid: 9cdf14d0com.microsoft.azure.servicebus._i_message_sendera08ddfce
   spec.java:
@@ -851,11 +829,6 @@ references:
   nameWithType: ClientFactory.createMessageSenderFromConnectionStringBuilderAsync
   fullName: static CompletableFuture<IMessageSender> com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromConnectionStringBuilderAsync
   package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageSenderFromEntityPathAsync*
-  name: createMessageSenderFromEntityPathAsync
-  nameWithType: ClientFactory.createMessageSenderFromEntityPathAsync
-  fullName: static CompletableFuture<IMessageSender> com.microsoft.azure.servicebus.ClientFactory.createMessageSenderFromEntityPathAsync
-  package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionString*
   name: createMessageReceiverFromConnectionString
   nameWithType: ClientFactory.createMessageReceiverFromConnectionString
@@ -865,11 +838,6 @@ references:
   name: createMessageReceiverFromConnectionStringBuilder
   nameWithType: ClientFactory.createMessageReceiverFromConnectionStringBuilder
   fullName: static IMessageReceiver com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromConnectionStringBuilder
-  package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPath*
-  name: createMessageReceiverFromEntityPath
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPath
-  fullName: static IMessageReceiver com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPath
   package: com.microsoft.azure.servicebus
 - uid: 9cdf14d0com.microsoft.azure.servicebus._i_message_receivera08ddfce
   spec.java:
@@ -891,11 +859,6 @@ references:
   nameWithType: ClientFactory.createMessageReceiverFromConnectionStringBuilderAsync
   fullName: static CompletableFuture<IMessageReceiver> com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromConnectionStringBuilderAsync
   package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromEntityPathAsync*
-  name: createMessageReceiverFromEntityPathAsync
-  nameWithType: ClientFactory.createMessageReceiverFromEntityPathAsync
-  fullName: static CompletableFuture<IMessageReceiver> com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromEntityPathAsync
-  package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromConnectionString*
   name: acceptSessionFromConnectionString
   nameWithType: ClientFactory.acceptSessionFromConnectionString
@@ -905,11 +868,6 @@ references:
   name: acceptSessionFromConnectionStringBuilder
   nameWithType: ClientFactory.acceptSessionFromConnectionStringBuilder
   fullName: static IMessageSession com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromConnectionStringBuilder
-  package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPath*
-  name: acceptSessionFromEntityPath
-  nameWithType: ClientFactory.acceptSessionFromEntityPath
-  fullName: static IMessageSession com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPath
   package: com.microsoft.azure.servicebus
 - uid: 9cdf14d0com.microsoft.azure.servicebus._i_message_sessiona08ddfce
   spec.java:
@@ -931,11 +889,6 @@ references:
   nameWithType: ClientFactory.acceptSessionFromConnectionStringBuilderAsync
   fullName: static CompletableFuture<IMessageSession> com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromConnectionStringBuilderAsync
   package: com.microsoft.azure.servicebus
-- uid: com.microsoft.azure.servicebus._client_factory.acceptSessionFromEntityPathAsync*
-  name: acceptSessionFromEntityPathAsync
-  nameWithType: ClientFactory.acceptSessionFromEntityPathAsync
-  fullName: static CompletableFuture<IMessageSession> com.microsoft.azure.servicebus.ClientFactory.acceptSessionFromEntityPathAsync
-  package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._receive_mode
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._receive_mode.yml
@@ -943,8 +896,22 @@ references:
   nameWithType: ReceiveMode
   fullName: com.microsoft.azure.servicebus.ReceiveMode
   type: Enum
+  summary: >-
+    <p>Enumeration to represent the two receive modes Azure Service Bus supports.</p>
+
+    <p></p>
   syntax:
     content: public enum ReceiveMode
+- uid: com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()
+  parent: com.microsoft.azure.servicebus._receive_mode
+  href: com.microsoft.azure.servicebus._receive_mode.yml
+  name: PEEKLOCK
+  nameWithType: ReceiveMode.PEEKLOCK
+  fullName: com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK
+  type: Field
+  summary: <p>In this mode, received message is not deleted from the queue or subscription, instead it is temporarily locked to the receiver, making it invisible to other receivers. Then the service waits for one of the three events <itemizedlist><listitem><p>If the receiver processes the message successfully, it calls  and the message will be deleted. </p></listitem><listitem><p>If the receiver decides that it can't process the message successfully, it calls  and the message will be unlocked and made available to other receivers. </p></listitem><listitem><p>If the receiver wants to defer the processing of the message to a later point in time, it calls  and the message will be deferred. A deferred can only be received by its sequence number. </p></listitem><listitem><p>If the receiver wants to dead-letter the message, it calls  and the message will be moved to a special sub-queue called deadletter queue. </p></listitem><listitem><p>If the receiver calls neither of these methods within a configurable period of time (by default, 60 seconds), the service assumes the receiver has failed. In this case, it behaves as if the receiver had called , making the message available to other receivers </p></listitem></itemizedlist></p>
+  syntax:
+    content: public PEEKLOCK
 - uid: com.microsoft.azure.servicebus._i_message_sender
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message_sender.yml
@@ -952,6 +919,7 @@ references:
   nameWithType: IMessageSender
   fullName: com.microsoft.azure.servicebus.IMessageSender
   type: Interface
+  summary: <p>Represents a message sender that sends messages to Azure Service Bus. </p>
   syntax:
     content: public interface IMessageSender
 - uid: com.microsoft.azure.servicebus.primitives._service_bus_exception
@@ -961,7 +929,7 @@ references:
   nameWithType: ServiceBusException
   fullName: com.microsoft.azure.servicebus.primitives.ServiceBusException
   type: Class
-  summary: <p>This is the base exception that service bus will produce for all error cases. </p>
+  summary: <p>This is the base exception that service bus will generate for all error cases. </p>
   syntax:
     content: public class ServiceBusException
 - uid: com.microsoft.azure.servicebus.primitives._connection_string_builder
@@ -972,25 +940,13 @@ references:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
   type: Class
   summary: >-
-    <p>
+    <p>This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
 
-      <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
+    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal">ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp>or<sp></sp>SubscriptionPath</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
 
-    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>eventHubName<sp></sp>or<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
-
-    <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>
+    <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - URL that points to the servicebus namespace </p></listitem><listitem><p>EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p></listitem><listitem><p>SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity. </p></listitem><listitem><p>SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token. </p></listitem><listitem><p>OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string. </p></listitem><listitem><p><xref href="com.microsoft.azure.servicebus.primitives._retry_policy" data-throw-if-not-resolved="false"></xref> - Name of the retry policy. </p></listitem></itemizedlist></p>
   syntax:
     content: public class ConnectionStringBuilder
-- uid: com.microsoft.azure.servicebus.primitives._messaging_factory
-  parent: com.microsoft.azure.servicebus.primitives
-  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
-  name: MessagingFactory
-  nameWithType: MessagingFactory
-  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
-  type: Class
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
-  syntax:
-    content: public class MessagingFactory
 - uid: com.microsoft.azure.servicebus._i_message_receiver
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -1000,6 +956,20 @@ references:
   type: Interface
   syntax:
     content: public interface IMessageReceiver
+- uid: com.microsoft.azure.servicebus._client_factory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder)
+  parent: com.microsoft.azure.servicebus._client_factory
+  href: com.microsoft.azure.servicebus._client_factory.yml
+  name: createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder)
+  nameWithType: ClientFactory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder)
+  fullName: static IMessageReceiver com.microsoft.azure.servicebus.ClientFactory.createMessageReceiverFromConnectionStringBuilder(ConnectionStringBuilder amqpConnectionStringBuilder)
+  type: Method
+  summary: >-
+    <p>Create <xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> in default <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode from ConnectionStringBuilder <preformatted><xref href="com.microsoft.azure.servicebus._i_message_receiver" data-throw-if-not-resolved="false"></xref> messageReceiver = ClientFactory.createMessageReceiverFromConnectionStringBuilder(new ConnectionStringBuilder(connectionString, queueName));
+
+    </preformatted></p>
+
+    <p></p>
+  syntax: *o1
 - uid: com.microsoft.azure.servicebus._i_message_session
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message_session.yml
@@ -1009,3 +979,13 @@ references:
   type: Interface
   syntax:
     content: public interface IMessageSession
+- uid: com.microsoft.azure.servicebus.primitives._messaging_factory
+  parent: com.microsoft.azure.servicebus.primitives
+  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
+  name: MessagingFactory
+  nameWithType: MessagingFactory
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  type: Class
+  summary: <p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>
+  syntax:
+    content: public class MessagingFactory

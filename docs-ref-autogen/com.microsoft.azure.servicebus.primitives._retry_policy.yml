@@ -27,8 +27,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 10
+    startLine: 17
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Represents an abstraction of a policy for retrying messaging operations when an exception is encountered. Some exceptions encountered by a sender or receiver can be transient like ServerBusy and the operation will succeed if retried. Clients can specify a retry policy using <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> which guides senders and receivers to automatically retry the failed operation before throwing the exception to the client application. Users should not implement this class, instead should use one of the provided implementations through <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getDefault()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: &o1
     content: public class RetryPolicy
   inheritance:
@@ -47,12 +48,14 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 55
+    startLine: 82
   package: com.microsoft.azure.servicebus.primitives
-  syntax:
+  summary: <p>Retry policy that provides exponentially increasing retry intervals with each successive failure. This policy is suitable for use by use most client applications and is also the default policy if no retry policy is specified. </p>
+  syntax: &o2
     content: public static RetryPolicy getDefault()
     return:
       type: com.microsoft.azure.servicebus.primitives._retry_policy
+      description: <p>a retry policy that provides exponentially increasing retry intervals </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.getNextRetryInterval(String,Exception,Duration)
   id: getNextRetryInterval(String,Exception,Duration)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -67,10 +70,10 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 83
+    startLine: 114
   package: com.microsoft.azure.servicebus.primitives
   summary: >-
-    <p>Gets the Interval after which nextRetry should be done.</p>
+    <p>Gets the interval after which nextRetry should be attempted, based on the last exception encountered and the remaining time before the operation times out.</p>
 
     <p></p>
   syntax:
@@ -78,16 +81,16 @@ items:
     parameters:
     - id: clientId
       type: "26831127"
-      description: <p>clientId </p>
+      description: <p>id of the sender or receiver or client object that encountered the exception. </p>
     - id: lastException
       type: 8a99d4b0
-      description: <p>lastException </p>
+      description: <p>last exception encountered </p>
     - id: remainingTime
       type: e02a2de0
-      description: <p>remainingTime to retry </p>
+      description: <p>remainingTime to retry before the operation times out </p>
     return:
       type: e02a2de0
-      description: <p>returns 'null' Duration when not Allowed </p>
+      description: <p>duration after which the operation will be retried. Returns null when the operation should not retried. </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()
   id: getNoRetry()
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -102,12 +105,14 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 64
+    startLine: 95
   package: com.microsoft.azure.servicebus.primitives
-  syntax:
+  summary: <p>Gets a retry policy that doesn't retry any operations, effectively disabling retries. Clients can use this retry policy in case they do not want any operation automatically retried. </p>
+  syntax: &o3
     content: public static RetryPolicy getNoRetry()
     return:
       type: com.microsoft.azure.servicebus.primitives._retry_policy
+      description: <p>a retry policy that doesn't retry any operations </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.getRetryCount(String)
   id: getRetryCount(String)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -122,7 +127,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 69
+    startLine: 100
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected int getRetryCount(String clientId)
@@ -145,13 +150,15 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 25
+    startLine: 38
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Increments the number of successive retry attempts made by a client. </p>
   syntax:
     content: public void incrementRetryCount(String clientId)
     parameters:
     - id: clientId
       type: "26831127"
+      description: <p>id of the client retrying a failed operation </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.isRetryableException(Exception)
   id: isRetryableException(Exception)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -166,15 +173,18 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 40
+    startLine: 62
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Determines if an exception is retry-able or not. Only transient exceptions should be retried. </p>
   syntax:
     content: public static boolean isRetryableException(Exception exception)
     parameters:
     - id: exception
       type: 8a99d4b0
+      description: <p>exception encountered by an operation, to be determined if it is retry-able. </p>
     return:
       type: 4fc6e284
+      description: <p>true if the exception is retry-able (like ServerBusy or other transient exception), else returns false </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.onGetNextRetryInterval(String,Exception,Duration,int)
   id: onGetNextRetryInterval(String,Exception,Duration,int)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -189,21 +199,27 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 103
+    startLine: 140
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Adjusts the interval after which nextRetry should be attempted, based on the last exception encountered, the remaining time before the operation times out and the minimum wait time before retry. Clients can override this method to specify a wait time based on the exception encountered. </p>
   syntax:
     content: protected abstract Duration onGetNextRetryInterval(String clientId, Exception lastException, Duration remainingTime, int baseWaitTime)
     parameters:
     - id: clientId
       type: "26831127"
+      description: <p>id of the sender or receiver or client object that encountered the exception. </p>
     - id: lastException
       type: 8a99d4b0
+      description: <p>last exception encountered </p>
     - id: remainingTime
       type: e02a2de0
+      description: <p>remainingTime to retry before the operation times out </p>
     - id: baseWaitTime
       type: f75371fa
+      description: <p>minimum wait time determined by the base retry policy. Overriding methods can return a different value. </p>
     return:
       type: 266bb878
+      description: <p>duration after which the operation will be retried. Returns null when the operation should not retried </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.resetRetryCount(String)
   id: resetRetryCount(String)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -218,13 +234,15 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 31
+    startLine: 48
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Resets the number of retry attempts made by a client. This method is called by the client when retried operation succeeds. </p>
   syntax:
     content: public void resetRetryCount(String clientId)
     parameters:
     - id: clientId
       type: "26831127"
+      description: <p>id of the client that just retried a failed operation and succeeded. </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.RetryPolicy(final String)
   id: RetryPolicy(final String)
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -239,13 +257,15 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 18
+    startLine: 28
   package: com.microsoft.azure.servicebus.primitives
+  summary: <p>Creates an instance of <xref href="com.microsoft.azure.servicebus.primitives._retry_policy" data-throw-if-not-resolved="false"></xref> with the given name. </p>
   syntax:
     content: protected RetryPolicy(final String name)
     parameters:
     - id: name
       type: 3d93591e
+      description: <p>name of the policy </p>
 - uid: com.microsoft.azure.servicebus.primitives._retry_policy.toString()
   id: toString()
   parent: com.microsoft.azure.servicebus.primitives._retry_policy
@@ -260,7 +280,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/RetryPolicy.java
-    startLine: 106
+    startLine: 143
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public String toString()
@@ -365,4 +385,38 @@ references:
   nameWithType: RetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
   type: Class
+  summary: <p>Represents an abstraction of a policy for retrying messaging operations when an exception is encountered. Some exceptions encountered by a sender or receiver can be transient like ServerBusy and the operation will succeed if retried. Clients can specify a retry policy using <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> which guides senders and receivers to automatically retry the failed operation before throwing the exception to the client application. Users should not implement this class, instead should use one of the provided implementations through <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getDefault()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax: *o1
+- uid: com.microsoft.azure.servicebus.primitives._connection_string_builder
+  parent: com.microsoft.azure.servicebus.primitives
+  href: com.microsoft.azure.servicebus.primitives._connection_string_builder.yml
+  name: ConnectionStringBuilder
+  nameWithType: ConnectionStringBuilder
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  type: Class
+  summary: >-
+    <p>This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>
+
+    <p>Sample Code: <preformatted><programlisting><codeline><highlight class="normal">ConnectionStringBuilder<sp></sp>connectionStringBuilder<sp></sp>=<sp></sp>new<sp></sp>ConnectionStringBuilder(</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusNamespaceName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"ServiceBusEntityName",<sp></sp>//<sp></sp>QueueName<sp></sp>or<sp></sp>TopicName<sp></sp>or<sp></sp>SubscriptionPath</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKeyName",<sp></sp></highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp><sp></sp>"SharedAccessSignatureKey");</highlight></codeline><codeline><highlight class="normal"><sp></sp></highlight></codeline><codeline><highlight class="normal">String<sp></sp>connectionString<sp></sp>=<sp></sp>connectionStringBuilder.toString();</highlight></codeline></programlisting></preformatted></p>
+
+    <p>A connection string is basically a string consisted of key-value pair separated by ";". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - URL that points to the servicebus namespace </p></listitem><listitem><p>EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p></listitem><listitem><p>SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity. </p></listitem><listitem><p>SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token. </p></listitem><listitem><p>OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string. </p></listitem><listitem><p><xref href="com.microsoft.azure.servicebus.primitives._retry_policy" data-throw-if-not-resolved="false"></xref> - Name of the retry policy. </p></listitem></itemizedlist></p>
+  syntax:
+    content: public class ConnectionStringBuilder
+- uid: com.microsoft.azure.servicebus.primitives._retry_policy.getDefault()
+  parent: com.microsoft.azure.servicebus.primitives._retry_policy
+  href: com.microsoft.azure.servicebus.primitives._retry_policy.yml
+  name: getDefault()
+  nameWithType: RetryPolicy.getDefault()
+  fullName: static RetryPolicy com.microsoft.azure.servicebus.primitives.RetryPolicy.getDefault()
+  type: Method
+  summary: <p>Retry policy that provides exponentially increasing retry intervals with each successive failure. This policy is suitable for use by use most client applications and is also the default policy if no retry policy is specified. </p>
+  syntax: *o2
+- uid: com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()
+  parent: com.microsoft.azure.servicebus.primitives._retry_policy
+  href: com.microsoft.azure.servicebus.primitives._retry_policy.yml
+  name: getNoRetry()
+  nameWithType: RetryPolicy.getNoRetry()
+  fullName: static RetryPolicy com.microsoft.azure.servicebus.primitives.RetryPolicy.getNoRetry()
+  type: Method
+  summary: <p>Gets a retry policy that doesn't retry any operations, effectively disabling retries. Clients can use this retry policy in case they do not want any operation automatically retried. </p>
+  syntax: *o3
