@@ -28,7 +28,7 @@ items:
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.peekMessagesAsync(long,int,String)
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveAsync(final int)
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveAsync(final int,Duration)
-  - com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveBySequenceNumbersAsync(Long [])
+  - com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveDeferredMessageBatchAsync(Long [])
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.renewMessageLocksAsync(UUID [])
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.renewSessionLocksAsync()
   - com.microsoft.azure.servicebus.primitives._core_message_receiver.setPrefetchCount(final int)
@@ -49,7 +49,6 @@ items:
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
     startLine: 64
   package: com.microsoft.azure.servicebus.primitives
-  summary: <p>Common Receiver that abstracts all amqp related details translates event-driven reactor model into async receive Api </p>
   syntax: &o1
     content: public class CoreMessageReceiver extends ClientEntity
   inheritance:
@@ -79,7 +78,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 906
+    startLine: 992
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
@@ -104,7 +103,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 916
+    startLine: 1002
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -129,7 +128,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 895
+    startLine: 981
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> completeMessageAsync(byte[] deliveryTag)
@@ -152,7 +151,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 901
+    startLine: 987
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> completeMessageAsync(UUID lockToken)
@@ -175,7 +174,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 157
+    startLine: 161
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final int prefetchCount, final SettleModePair settleModePair)
@@ -206,7 +205,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 174
+    startLine: 179
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final String sessionId, final boolean isBrowsableSession, final int prefetchCount, final SettleModePair settleModePair)
@@ -241,7 +240,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 937
+    startLine: 1023
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
@@ -270,7 +269,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 960
+    startLine: 1046
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
@@ -299,7 +298,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 921
+    startLine: 1007
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
@@ -324,7 +323,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 932
+    startLine: 1018
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -349,7 +348,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 842
+    startLine: 928
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public ErrorContext getContext()
@@ -369,7 +368,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 345
+    startLine: 379
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public int getPrefetchCount()
@@ -389,7 +388,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 354
+    startLine: 388
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public String getSessionId()
@@ -409,7 +408,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 360
+    startLine: 394
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public Instant getSessionLockedUntilUtc()
@@ -429,7 +428,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1227
+    startLine: 1410
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<byte[]> getSessionStateAsync()
@@ -449,7 +448,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 860
+    startLine: 946
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -469,7 +468,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 828
+    startLine: 914
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onClose(ErrorCondition condition)
@@ -490,7 +489,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 675
+    startLine: 764
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onError(ErrorCondition error)
@@ -511,7 +510,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 682
+    startLine: 771
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onError(Exception exception)
@@ -532,7 +531,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 486
+    startLine: 546
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onOpenComplete(Exception exception)
@@ -553,7 +552,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 548
+    startLine: 623
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onReceiveComplete(Delivery delivery)
@@ -574,7 +573,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1291
+    startLine: 1484
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<Message>> peekMessagesAsync(long fromSequenceNumber, int messageCount, String sessionId)
@@ -601,7 +600,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 398
+    startLine: 441
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<MessageWithDeliveryTag>> receiveAsync(final int maxMessageCount)
@@ -624,7 +623,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 403
+    startLine: 446
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<MessageWithDeliveryTag>> receiveAsync(final int maxMessageCount, Duration timeout)
@@ -635,24 +634,24 @@ items:
       type: e02a2de0
     return:
       type: 9161dfdccom.microsoft.azure.servicebus.primitives._message_with_delivery_tage7daa122
-- uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveBySequenceNumbersAsync(Long [])
-  id: receiveBySequenceNumbersAsync(Long [])
+- uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveDeferredMessageBatchAsync(Long [])
+  id: receiveDeferredMessageBatchAsync(Long [])
   parent: com.microsoft.azure.servicebus.primitives._core_message_receiver
   href: com.microsoft.azure.servicebus.primitives._core_message_receiver.yml
   langs:
   - java
-  name: receiveBySequenceNumbersAsync(Long[] sequenceNumbers)
-  nameWithType: CoreMessageReceiver.receiveBySequenceNumbersAsync(Long[] sequenceNumbers)
-  fullName: CompletableFuture<Collection<MessageWithLockToken>> com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.receiveBySequenceNumbersAsync(Long[] sequenceNumbers)
-  overload: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveBySequenceNumbersAsync*
+  name: receiveDeferredMessageBatchAsync(Long[] sequenceNumbers)
+  nameWithType: CoreMessageReceiver.receiveDeferredMessageBatchAsync(Long[] sequenceNumbers)
+  fullName: CompletableFuture<Collection<MessageWithLockToken>> com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.receiveDeferredMessageBatchAsync(Long[] sequenceNumbers)
+  overload: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveDeferredMessageBatchAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1099
+    startLine: 1255
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Collection<MessageWithLockToken>> receiveBySequenceNumbersAsync(Long[] sequenceNumbers)
+    content: public CompletableFuture<Collection<MessageWithLockToken>> receiveDeferredMessageBatchAsync(Long[] sequenceNumbers)
     parameters:
     - id: sequenceNumbers
       type: 193cb696
@@ -672,7 +671,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1069
+    startLine: 1213
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<Instant>> renewMessageLocksAsync(UUID[] lockTokens)
@@ -695,7 +694,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1200
+    startLine: 1378
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> renewSessionLocksAsync()
@@ -715,7 +714,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 372
+    startLine: 406
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void setPrefetchCount(final int value)
@@ -736,7 +735,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1264
+    startLine: 1452
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> setSessionStateAsync(byte[] sessionState)
@@ -759,7 +758,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1154
+    startLine: 1321
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
@@ -975,10 +974,10 @@ references:
     href: com.microsoft.azure.servicebus.primitives._message_with_lock_token.yml
   - name: '>>'
     fullName: '>>'
-- uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveBySequenceNumbersAsync*
-  name: receiveBySequenceNumbersAsync
-  nameWithType: CoreMessageReceiver.receiveBySequenceNumbersAsync
-  fullName: CompletableFuture<Collection<MessageWithLockToken>> com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.receiveBySequenceNumbersAsync
+- uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.receiveDeferredMessageBatchAsync*
+  name: receiveDeferredMessageBatchAsync
+  nameWithType: CoreMessageReceiver.receiveDeferredMessageBatchAsync
+  fullName: CompletableFuture<Collection<MessageWithLockToken>> com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.receiveDeferredMessageBatchAsync
   package: com.microsoft.azure.servicebus.primitives
 - uid: com.microsoft.azure.servicebus.primitives._core_message_receiver.updateDispositionAsync*
   name: updateDispositionAsync
@@ -1127,7 +1126,12 @@ references:
   nameWithType: ClientEntity
   fullName: com.microsoft.azure.servicebus.primitives.ClientEntity
   type: Class
-  summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
+  summary: >-
+    <p>Contract for all client entities with Open-Close/Abort state m/c </p>
+
+    <p>main-purpose: closeAll related entities </p>
+
+    <p>Internal-class </p>
   syntax:
     content: public class ClientEntity
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -1137,7 +1141,7 @@ references:
   nameWithType: MessagingFactory
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
   type: Class
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
+  summary: <p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>
   syntax:
     content: public class MessagingFactory
 - uid: com.microsoft.azure.servicebus.primitives._settle_mode_pair
@@ -1156,6 +1160,7 @@ references:
   nameWithType: RetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
   type: Class
+  summary: <p>Represents an abstraction of a policy for retrying messaging operations when an exception is encountered. Some exceptions encountered by a sender or receiver can be transient like ServerBusy and the operation will succeed if retried. Clients can specify a retry policy using <xref href="com.microsoft.azure.servicebus.primitives._connection_string_builder" data-throw-if-not-resolved="false"></xref> which guides senders and receivers to automatically retry the failed operation before throwing the exception to the client application. Users should not implement this class, instead should use one of the provided implementations through <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getDefault()" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.servicebus.primitives._retry_policy.getNoRetry()" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public class RetryPolicy
 - uid: com.microsoft.azure.servicebus.primitives._message_with_delivery_tag
@@ -1174,7 +1179,6 @@ references:
   nameWithType: CoreMessageReceiver
   fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   type: Class
-  summary: <p>Common Receiver that abstracts all amqp related details translates event-driven reactor model into async receive Api </p>
   syntax: *o1
 - uid: com.microsoft.azure.servicebus.primitives._timeout_tracker
   parent: com.microsoft.azure.servicebus.primitives
@@ -1192,7 +1196,7 @@ references:
   nameWithType: ServiceBusException
   fullName: com.microsoft.azure.servicebus.primitives.ServiceBusException
   type: Class
-  summary: <p>This is the base exception that service bus will produce for all error cases. </p>
+  summary: <p>This is the base exception that service bus will generate for all error cases. </p>
   syntax:
     content: public class ServiceBusException
 - uid: com.microsoft.azure.servicebus.primitives._message_with_lock_token

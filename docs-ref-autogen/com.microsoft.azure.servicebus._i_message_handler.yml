@@ -19,8 +19,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageHandler.java
-    startLine: 4
+    startLine: 10
   package: com.microsoft.azure.servicebus
+  summary: <p>Defines the contract for registering the callback <xref href="com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler)" data-throw-if-not-resolved="false"></xref> and <ref refid="" kindref="compound">SubscriptionClient#registerMessageHandler(IMessageHandler)</ref> for <xref href="com.microsoft.azure.servicebus._queue_client" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.servicebus._subscription_client" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface IMessageHandler
 - uid: com.microsoft.azure.servicebus._i_message_handler.notifyException(Throwable,ExceptionPhase)
@@ -37,15 +38,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageHandler.java
-    startLine: 8
+    startLine: 26
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Receiving the exceptions that passed by pump during message processing.</p>
+
+    <p></p>
   syntax:
     content: public void notifyException(Throwable exception, ExceptionPhase phase)
     parameters:
     - id: exception
       type: a04fafd7
+      description: <p>Exception received in pump. </p>
     - id: phase
       type: com.microsoft.azure.servicebus._exception_phase
+      description: <p>Exception phase. </p>
 - uid: com.microsoft.azure.servicebus._i_message_handler.onMessageAsync(IMessage)
   id: onMessageAsync(IMessage)
   parent: com.microsoft.azure.servicebus._i_message_handler
@@ -60,15 +67,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageHandler.java
-    startLine: 6
+    startLine: 18
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>The callback for message pump to pass received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>s.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> onMessageAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>. </p>
     return:
       type: db03ee24
+      description: <p>CompletableFuture for the message handler. </p>
 references:
 - uid: db03ee24
   spec.java:
@@ -95,8 +108,21 @@ references:
   nameWithType: IMessage
   fullName: com.microsoft.azure.servicebus.IMessage
   type: Interface
+  summary: >-
+    <p>Represents a message that is exchanged between Azure Service Bus and clients.</p>
+
+    <p></p>
   syntax:
     content: public interface IMessage
+- uid: com.microsoft.azure.servicebus._message
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._message.yml
+  name: Message
+  nameWithType: Message
+  fullName: com.microsoft.azure.servicebus.Message
+  type: Class
+  syntax:
+    content: public class Message
 - uid: com.microsoft.azure.servicebus._exception_phase
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._exception_phase.yml
@@ -104,5 +130,40 @@ references:
   nameWithType: ExceptionPhase
   fullName: com.microsoft.azure.servicebus.ExceptionPhase
   type: Enum
+  summary: >-
+    <p>Enumeration to represent the phase in a message pump or session pump at which an exception occurred.</p>
+
+    <p></p>
   syntax:
     content: public enum ExceptionPhase
+- uid: com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler)
+  parent: com.microsoft.azure.servicebus._queue_client
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  name: registerMessageHandler(IMessageHandler handler)
+  nameWithType: QueueClient.registerMessageHandler(IMessageHandler handler)
+  fullName: void com.microsoft.azure.servicebus.QueueClient.registerMessageHandler(IMessageHandler handler)
+  type: Method
+  summary: <p>Register the <xref href="com.microsoft.azure.servicebus._i_message_handler" data-throw-if-not-resolved="false"></xref> for processing received messages. </p>
+  syntax:
+    content: public void registerMessageHandler(IMessageHandler handler)
+    parameters:
+    - id: handler
+      type: com.microsoft.azure.servicebus._i_message_handler
+- uid: com.microsoft.azure.servicebus._queue_client
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  name: QueueClient
+  nameWithType: QueueClient
+  fullName: com.microsoft.azure.servicebus.QueueClient
+  type: Class
+  syntax:
+    content: public class QueueClient
+- uid: com.microsoft.azure.servicebus._subscription_client
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._subscription_client.yml
+  name: SubscriptionClient
+  nameWithType: SubscriptionClient
+  fullName: com.microsoft.azure.servicebus.SubscriptionClient
+  type: Class
+  syntax:
+    content: public class SubscriptionClient

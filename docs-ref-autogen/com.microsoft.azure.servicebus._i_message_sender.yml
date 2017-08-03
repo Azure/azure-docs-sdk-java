@@ -25,14 +25,15 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 8
+    startLine: 13
   package: com.microsoft.azure.servicebus
+  summary: <p>Represents a message sender that sends messages to Azure Service Bus. </p>
   syntax:
-    content: public interface IMessageSender extends IMessageEntity
+    content: public interface IMessageSender extends IMessageEntityClient
   inheritedMembers:
   - com.microsoft.azure.servicebus._i_closeable.close()
   - com.microsoft.azure.servicebus._i_closeable.closeAsync()
-  - com.microsoft.azure.servicebus._i_message_entity.getEntityPath()
+  - com.microsoft.azure.servicebus._i_message_entity_client.getEntityPath()
 - uid: com.microsoft.azure.servicebus._i_message_sender.cancelScheduledMessage(long)
   id: cancelScheduledMessage(long)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -47,13 +48,20 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 23
+    startLine: 81
   package: com.microsoft.azure.servicebus
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void cancelScheduledMessage(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if scheduled message couldn't be cancelled </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.cancelScheduledMessageAsync(long)
   id: cancelScheduledMessageAsync(long)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -68,15 +76,18 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 19
+    startLine: 61
   package: com.microsoft.azure.servicebus
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This is an asynchronous method returning a CompletableFuture which completes when the message is cancelled. </p>
   syntax:
     content: public CompletableFuture<Void> cancelScheduledMessageAsync(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending cancellation </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.scheduleMessage(IMessage,Instant)
   id: scheduleMessage(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -91,17 +102,26 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 21
+    startLine: 72
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public long scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if message couldn't be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.scheduleMessageAsync(IMessage,Instant)
   id: scheduleMessageAsync(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -116,17 +136,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 17
+    startLine: 54
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. The CompletableFuture, on completion, returns the sequence number of the scheduled message which can be used to cancel the scheduling of the message. </p>
   syntax:
     content: public CompletableFuture<Long> scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 30822cb1
+      description: <p>a CompletableFuture representing the pending send, which returns the sequence number of the scheduled message. This sequence number can be used to cancel the scheduling of the message. </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.send(IMessage)
   id: send(IMessage)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -141,13 +165,20 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 9
+    startLine: 21
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void send(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if message couldn't be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.sendAsync(IMessage)
   id: sendAsync(IMessage)
   parent: com.microsoft.azure.servicebus._i_message_sender
@@ -162,60 +193,81 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 13
+    startLine: 37
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. </p>
   syntax:
     content: public CompletableFuture<Void> sendAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.sendBatch(Collection<? extends IMessage>)
   id: sendBatch(Collection<? extends IMessage>)
   parent: com.microsoft.azure.servicebus._i_message_sender
   href: com.microsoft.azure.servicebus._i_message_sender.yml
   langs:
   - java
-  name: sendBatch(Collection<? extends IMessage> message)
-  nameWithType: IMessageSender.sendBatch(Collection<? extends IMessage> message)
-  fullName: void com.microsoft.azure.servicebus.IMessageSender.sendBatch(Collection<? extends IMessage> message)
+  name: sendBatch(Collection<? extends IMessage> messages)
+  nameWithType: IMessageSender.sendBatch(Collection<? extends IMessage> messages)
+  fullName: void com.microsoft.azure.servicebus.IMessageSender.sendBatch(Collection<? extends IMessage> messages)
   overload: com.microsoft.azure.servicebus._i_message_sender.sendBatch*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 11
+    startLine: 30
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This method blocks until the batch is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
-    content: public void sendBatch(Collection<? extends IMessage> message)
+    content: public void sendBatch(Collection<? extends IMessage> messages)
     parameters:
-    - id: message
+    - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the batch couldn't be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._i_message_sender.sendBatchAsync(Collection<? extends IMessage>)
   id: sendBatchAsync(Collection<? extends IMessage>)
   parent: com.microsoft.azure.servicebus._i_message_sender
   href: com.microsoft.azure.servicebus._i_message_sender.yml
   langs:
   - java
-  name: sendBatchAsync(Collection<? extends IMessage> message)
-  nameWithType: IMessageSender.sendBatchAsync(Collection<? extends IMessage> message)
-  fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageSender.sendBatchAsync(Collection<? extends IMessage> message)
+  name: sendBatchAsync(Collection<? extends IMessage> messages)
+  nameWithType: IMessageSender.sendBatchAsync(Collection<? extends IMessage> messages)
+  fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageSender.sendBatchAsync(Collection<? extends IMessage> messages)
   overload: com.microsoft.azure.servicebus._i_message_sender.sendBatchAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSender.java
-    startLine: 15
+    startLine: 44
   package: com.microsoft.azure.servicebus
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the batch is sent to the entity. </p>
   syntax:
-    content: public CompletableFuture<Void> sendBatchAsync(Collection<? extends IMessage> message)
+    content: public CompletableFuture<Void> sendBatchAsync(Collection<? extends IMessage> messages)
     parameters:
-    - id: message
+    - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 references:
+- uid: 8256ba40
+  spec.java:
+  - name: InterruptedException
+    fullName: InterruptedException
+- uid: 73fec9fb
+  spec.java:
+  - name: ServiceBusException
+    fullName: ServiceBusException
 - uid: com.microsoft.azure.servicebus._i_message_sender.send*
   name: send
   nameWithType: IMessageSender.send
@@ -289,6 +341,7 @@ references:
   nameWithType: ICloseable.close()
   fullName: void com.microsoft.azure.servicebus.ICloseable.close()
   type: Method
+  summary: <p>Synchronously closes and disposes any resources associated with this object. Calling this method is equivalent of calling . This method blocks until this object is closed. </p>
   syntax:
     content: public void close()
 - uid: com.microsoft.azure.servicebus._i_closeable.closeAsync()
@@ -298,30 +351,41 @@ references:
   nameWithType: ICloseable.closeAsync()
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.ICloseable.closeAsync()
   type: Method
+  summary: <p>Closes and disposes any resources associated with this object. An object cannot be used after it is closed. This is an asynchronous method that returns a CompletableFuture immediately. This object is completely closed when the returned CompletableFuture is completed. </p>
   syntax:
     content: public CompletableFuture<Void> closeAsync()
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus._i_message_entity.getEntityPath()
-  parent: com.microsoft.azure.servicebus._i_message_entity
-  href: com.microsoft.azure.servicebus._i_message_entity.yml
+      description: <p>a CompletableFuture representing the closing of this object. </p>
+- uid: com.microsoft.azure.servicebus._i_message_entity_client.getEntityPath()
+  parent: com.microsoft.azure.servicebus._i_message_entity_client
+  href: com.microsoft.azure.servicebus._i_message_entity_client.yml
   name: getEntityPath()
-  nameWithType: IMessageEntity.getEntityPath()
-  fullName: String com.microsoft.azure.servicebus.IMessageEntity.getEntityPath()
+  nameWithType: IMessageEntityClient.getEntityPath()
+  fullName: String com.microsoft.azure.servicebus.IMessageEntityClient.getEntityPath()
   type: Method
+  summary: >-
+    <p>Gets the path of the entity this client is sending messages to or receiving messages from.</p>
+
+    <p></p>
   syntax:
     content: public String getEntityPath()
     return:
       type: "26831127"
-- uid: com.microsoft.azure.servicebus._i_message_entity
+      description: <p>path of the entity this client is connecting to </p>
+- uid: com.microsoft.azure.servicebus._i_message_entity_client
   parent: com.microsoft.azure.servicebus
-  href: com.microsoft.azure.servicebus._i_message_entity.yml
-  name: IMessageEntity
-  nameWithType: IMessageEntity
-  fullName: com.microsoft.azure.servicebus.IMessageEntity
+  href: com.microsoft.azure.servicebus._i_message_entity_client.yml
+  name: IMessageEntityClient
+  nameWithType: IMessageEntityClient
+  fullName: com.microsoft.azure.servicebus.IMessageEntityClient
   type: Interface
+  summary: >-
+    <p>Represents a messaging client to an Azure Service Bus entity.</p>
+
+    <p></p>
   syntax:
-    content: public interface IMessageEntity extends ICloseable
+    content: public interface IMessageEntityClient extends ICloseable
 - uid: com.microsoft.azure.servicebus._i_queue_client
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_queue_client.yml
@@ -348,11 +412,13 @@ references:
   nameWithType: TopicClient.send(IMessage message)
   fullName: void com.microsoft.azure.servicebus.TopicClient.send(IMessage message)
   type: Method
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void send(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._queue_client.send(IMessage)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -360,11 +426,13 @@ references:
   nameWithType: QueueClient.send(IMessage message)
   fullName: void com.microsoft.azure.servicebus.QueueClient.send(IMessage message)
   type: Method
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void send(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._i_message
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -372,6 +440,10 @@ references:
   nameWithType: IMessage
   fullName: com.microsoft.azure.servicebus.IMessage
   type: Interface
+  summary: >-
+    <p>Represents a message that is exchanged between Azure Service Bus and clients.</p>
+
+    <p></p>
   syntax:
     content: public interface IMessage
 - uid: com.microsoft.azure.servicebus.primitives._service_bus_exception
@@ -381,7 +453,7 @@ references:
   nameWithType: ServiceBusException
   fullName: com.microsoft.azure.servicebus.primitives.ServiceBusException
   type: Class
-  summary: <p>This is the base exception that service bus will produce for all error cases. </p>
+  summary: <p>This is the base exception that service bus will generate for all error cases. </p>
   syntax:
     content: public class ServiceBusException
 - uid: com.microsoft.azure.servicebus._topic_client.sendBatch(Collection<? extends IMessage>)
@@ -391,11 +463,13 @@ references:
   nameWithType: TopicClient.sendBatch(Collection<? extends IMessage> messages)
   fullName: void com.microsoft.azure.servicebus.TopicClient.sendBatch(Collection<? extends IMessage> messages)
   type: Method
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This method blocks until the batch is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void sendBatch(Collection<? extends IMessage> messages)
     parameters:
     - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._queue_client.sendBatch(Collection<? extends IMessage>)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -403,11 +477,13 @@ references:
   nameWithType: QueueClient.sendBatch(Collection<? extends IMessage> messages)
   fullName: void com.microsoft.azure.servicebus.QueueClient.sendBatch(Collection<? extends IMessage> messages)
   type: Method
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This method blocks until the batch is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void sendBatch(Collection<? extends IMessage> messages)
     parameters:
     - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
 - uid: com.microsoft.azure.servicebus._topic_client.sendAsync(IMessage)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -415,13 +491,16 @@ references:
   nameWithType: TopicClient.sendAsync(IMessage message)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.TopicClient.sendAsync(IMessage message)
   type: Method
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. </p>
   syntax:
     content: public CompletableFuture<Void> sendAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 - uid: com.microsoft.azure.servicebus._queue_client.sendAsync(IMessage)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -429,13 +508,16 @@ references:
   nameWithType: QueueClient.sendAsync(IMessage message)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.QueueClient.sendAsync(IMessage message)
   type: Method
+  summary: <p>Sends a message to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. </p>
   syntax:
     content: public CompletableFuture<Void> sendAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 - uid: com.microsoft.azure.servicebus._topic_client.sendBatchAsync(Collection<? extends IMessage>)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -443,13 +525,16 @@ references:
   nameWithType: TopicClient.sendBatchAsync(Collection<? extends IMessage> messages)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.TopicClient.sendBatchAsync(Collection<? extends IMessage> messages)
   type: Method
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the batch is sent to the entity. </p>
   syntax:
     content: public CompletableFuture<Void> sendBatchAsync(Collection<? extends IMessage> messages)
     parameters:
     - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 - uid: com.microsoft.azure.servicebus._queue_client.sendBatchAsync(Collection<? extends IMessage>)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -457,13 +542,16 @@ references:
   nameWithType: QueueClient.sendBatchAsync(Collection<? extends IMessage> messages)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.QueueClient.sendBatchAsync(Collection<? extends IMessage> messages)
   type: Method
+  summary: <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the batch is sent to the entity. </p>
   syntax:
     content: public CompletableFuture<Void> sendBatchAsync(Collection<? extends IMessage> messages)
     parameters:
     - id: messages
       type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>collection of messages to be sent to the entity </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending send </p>
 - uid: com.microsoft.azure.servicebus._topic_client.scheduleMessageAsync(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -471,15 +559,19 @@ references:
   nameWithType: TopicClient.scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
   fullName: CompletableFuture<Long> com.microsoft.azure.servicebus.TopicClient.scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
   type: Method
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. The CompletableFuture, on completion, returns the sequence number of the scheduled message which can be used to cancel the scheduling of the message. </p>
   syntax:
     content: public CompletableFuture<Long> scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 30822cb1
+      description: <p>a CompletableFuture representing the pending send, which returns the sequence number of the scheduled message. This sequence number can be used to cancel the scheduling of the message. </p>
 - uid: com.microsoft.azure.servicebus._queue_client.scheduleMessageAsync(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -487,15 +579,19 @@ references:
   nameWithType: QueueClient.scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
   fullName: CompletableFuture<Long> com.microsoft.azure.servicebus.QueueClient.scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
   type: Method
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. The CompletableFuture, on completion, returns the sequence number of the scheduled message which can be used to cancel the scheduling of the message. </p>
   syntax:
     content: public CompletableFuture<Long> scheduleMessageAsync(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 30822cb1
+      description: <p>a CompletableFuture representing the pending send, which returns the sequence number of the scheduled message. This sequence number can be used to cancel the scheduling of the message. </p>
 - uid: com.microsoft.azure.servicebus._topic_client.cancelScheduledMessageAsync(long)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -503,13 +599,16 @@ references:
   nameWithType: TopicClient.cancelScheduledMessageAsync(long sequenceNumber)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.TopicClient.cancelScheduledMessageAsync(long sequenceNumber)
   type: Method
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This is an asynchronous method returning a CompletableFuture which completes when the message is cancelled. </p>
   syntax:
     content: public CompletableFuture<Void> cancelScheduledMessageAsync(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending cancellation </p>
 - uid: com.microsoft.azure.servicebus._queue_client.cancelScheduledMessageAsync(long)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -517,13 +616,16 @@ references:
   nameWithType: QueueClient.cancelScheduledMessageAsync(long sequenceNumber)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.QueueClient.cancelScheduledMessageAsync(long sequenceNumber)
   type: Method
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This is an asynchronous method returning a CompletableFuture which completes when the message is cancelled. </p>
   syntax:
     content: public CompletableFuture<Void> cancelScheduledMessageAsync(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending cancellation </p>
 - uid: com.microsoft.azure.servicebus._topic_client.scheduleMessage(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -531,15 +633,19 @@ references:
   nameWithType: TopicClient.scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
   fullName: long com.microsoft.azure.servicebus.TopicClient.scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
   type: Method
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public long scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
 - uid: com.microsoft.azure.servicebus._queue_client.scheduleMessage(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -547,15 +653,19 @@ references:
   nameWithType: QueueClient.scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
   fullName: long com.microsoft.azure.servicebus.QueueClient.scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
   type: Method
+  summary: <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public long scheduleMessage(IMessage message, Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>message to be sent to the entity </p>
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
+      description: <p>instant at which the message should be enqueued in the entity </p>
     return:
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
 - uid: com.microsoft.azure.servicebus._topic_client.cancelScheduledMessage(long)
   parent: com.microsoft.azure.servicebus._topic_client
   href: com.microsoft.azure.servicebus._topic_client.yml
@@ -563,11 +673,13 @@ references:
   nameWithType: TopicClient.cancelScheduledMessage(long sequenceNumber)
   fullName: void com.microsoft.azure.servicebus.TopicClient.cancelScheduledMessage(long sequenceNumber)
   type: Method
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void cancelScheduledMessage(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
 - uid: com.microsoft.azure.servicebus._queue_client.cancelScheduledMessage(long)
   parent: com.microsoft.azure.servicebus._queue_client
   href: com.microsoft.azure.servicebus._queue_client.yml
@@ -575,8 +687,10 @@ references:
   nameWithType: QueueClient.cancelScheduledMessage(long sequenceNumber)
   fullName: void com.microsoft.azure.servicebus.QueueClient.cancelScheduledMessage(long sequenceNumber)
   type: Method
+  summary: <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods. </p>
   syntax:
     content: public void cancelScheduledMessage(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>sequence number of the scheduled message </p>
