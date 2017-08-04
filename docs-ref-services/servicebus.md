@@ -58,30 +58,68 @@ Add a dependency to your Maven project's `pom.xml` file to use the library in yo
 </dependency>
 ```
 
-## Example
+## Examples
 
-Send a random number in a message to a queue.
+The [sample code repository](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/) contains samples for how to [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java) and [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java) and [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
+
 
 ```java
-// Configure JNDI environment using a properties file in the classpath
-Hashtable<String, String> env = new Hashtable<String, String>();
-env.put(Context.INITIAL_CONTEXT_FACTORY, 
-            "org.apache.qpid.amqp_1_0.jms.jndi.PropertiesFileInitialContextFactory");
-env.put(Context.PROVIDER_URL, "servicebus.properties");
-Context context = new InitialContext(env);
+public class BasicSendReceiveWithQueueClient {
+    // Connection String for the namespace can be obtained from the Azure portal under the
+    // 'Shared Access policies' section.
+    private static final String connectionString = "{connection string}";
+    private static final String queueName = "{queue name}";
+    private static IQueueClient queueClient;
+    private static int totalSend = 100;
+    private static int totalReceived = 0;
 
-// create the connection
-ConnectionFactory cf = (ConnectionFactory) context.lookup("servicebus");
-connection = cf.createConnection();
-sendSession = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-sender = sendSession.createProducer(queue);
+    public static void main(String[] args) throws Exception {
 
-// send a random message
-TextMessage message = sendSession.createTextMessage();
-message.setText("Test AMQP message from JMS");
-long randomMessageID = randomGenerator.nextLong() >>>1;
-message.setJMSMessageID("ID:" + randomMessageID);
-sender.send(message);
+        Log.log("Starting BasicSendReceiveWithQueueClient sample");
+
+        // create client
+        Log.log("Create queue client.");
+        queueClient = new QueueClient(new ConnectionStringBuilder(connectionString, queueName), ReceiveMode.PeekLock);
+
+        // send and receive
+        queueClient.registerMessageHandler(new MessageHandler(queueClient), new MessageHandlerOptions(1, false, Duration.ofMinutes(1)));
+        for (int i = 0; i < totalSend; i++) {
+            int j = i;
+            Log.log("Sending message #%d.", j);
+            queueClient.sendAsync(new Message("" + i)).thenRunAsync(() -> { Log.log("Sent message #%d.", j);});
+        }
+
+        while(totalReceived != totalSend) {
+            Thread.sleep(1000);
+        }
+
+        Log.log("Received all messages, exiting the sample.");
+        Log.log("Closing queue client.");
+        queueClient.close();
+    }
+
+    static class MessageHandler implements IMessageHandler {
+        private IQueueClient client;
+
+        public MessageHandler(IQueueClient client) {
+            this.client = client;
+        }
+
+        @Override
+        public CompletableFuture<Void> onMessageAsync(IMessage iMessage) {
+            Log.log("Received message with sq#: %d and lock token: %s.", iMessage.getSequenceNumber(), iMessage.getLockToken());
+            return this.client.completeAsync(iMessage.getLockToken()).thenRunAsync(() -> {
+                Log.log("Completed message sq#: %d and locktoken: %s", iMessage.getSequenceNumber(), iMessage.getLockToken());
+                totalReceived++;
+            });
+        }
+
+        @Override
+        public void notifyException(Throwable throwable, ExceptionPhase exceptionPhase) {
+            Log.log(exceptionPhase + "-" + throwable.getMessage());
+        }
+    }
+}
 ```
 
 > [!div class="nextstepaction"]
@@ -99,16 +137,13 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
     <artifactId>azure-mgmt-servicebus</artifactId>
     <version>1.1.2</version>
 </dependency>
-
-## Examples
-
-The sample code repository contains two samples for how to [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java) and [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java) and [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
+```
 
 > [!div class="nextstepaction"]
 > [Explore the Management APIs](/java/api/overview/azure/servicebus/managementapi)
 
 
-## Samples
+## Examples
 
 [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features)
 [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)
