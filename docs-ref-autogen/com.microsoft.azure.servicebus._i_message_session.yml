@@ -25,9 +25,17 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 8
+    startLine: 19
   package: com.microsoft.azure.servicebus
-  syntax:
+  summary: >-
+    <p>Describes a Session object. <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> can be used to perform operations on sessions. </p>
+
+    <p>Service Bus Sessions, also called 'Groups' in the AMQP 1.0 protocol, are unbounded sequences of related messages. ServiceBus guarantees ordering of messages in a session. </p>
+
+    <p>Any sender can create a session when submitting messages into a Topic or Queue by setting the <ref refid="" kindref="compound">Message#sessionId</ref> property on <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to some application defined unique identifier. At the AMQP 1.0 protocol level, this value maps to the group-id property. </p>
+
+    <p>Sessions come into existence when there is at least one message with the session's SessionId in the Queue or Topic subscription. Once a Session exists, there is no defined moment or gesture for when the session expires or disappears. </p>
+  syntax: &o5
     content: public interface IMessageSession extends IMessageReceiver
   inheritedMembers:
   - com.microsoft.azure.servicebus._i_message_receiver.abandon(UUID)
@@ -38,8 +46,6 @@ items:
   - com.microsoft.azure.servicebus._i_closeable.closeAsync()
   - com.microsoft.azure.servicebus._i_message_receiver.complete(UUID)
   - com.microsoft.azure.servicebus._i_message_receiver.completeAsync(UUID)
-  - com.microsoft.azure.servicebus._i_message_receiver.completeBatch(Collection<? extends IMessage>)
-  - com.microsoft.azure.servicebus._i_message_receiver.completeBatchAsync(Collection<? extends IMessage>)
   - com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID)
   - com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID,Map<String, Object>)
   - com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID,String,String)
@@ -92,12 +98,13 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 11
+    startLine: 29
   package: com.microsoft.azure.servicebus
   syntax:
     content: public Instant getLockedUntilUtc()
     return:
       type: 328f8254
+      description: <p>Gets the time that the session identified by <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref> is locked until for this client. </p>
 - uid: com.microsoft.azure.servicebus._i_message_session.getSessionId()
   id: getSessionId()
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -112,12 +119,13 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 9
+    startLine: 24
   package: com.microsoft.azure.servicebus
-  syntax:
+  syntax: &o1
     content: public String getSessionId()
     return:
       type: "26831127"
+      description: <p>Gets the SessionId. </p>
 - uid: com.microsoft.azure.servicebus._i_message_session.getState()
   id: getState()
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -132,12 +140,22 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 21
+    startLine: 78
   package: com.microsoft.azure.servicebus
-  syntax:
+  summary: >-
+    <p>Gets the session state.</p>
+
+    <p></p>
+  syntax: &o3
     content: public byte [] getState()
     return:
       type: ccd9418d
+      description: <p>The session state </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if get state failed. </p>
 - uid: com.microsoft.azure.servicebus._i_message_session.getStateAsync()
   id: getStateAsync()
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -152,12 +170,17 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 23
+    startLine: 85
   package: com.microsoft.azure.servicebus
+  summary: <p>Asynchronously gets the session state. </p>
   syntax:
     content: public CompletableFuture<byte[]> getStateAsync()
     return:
       type: 5fe2dfa4
+      description: <p>a CompletableFuture representing the pending session state retrieving. </p>
+  see:
+  - type: com.microsoft.azure.servicebus._i_message_session.getState()
+    description: ''
 - uid: com.microsoft.azure.servicebus._i_message_session.renewSessionLock()
   id: renewSessionLock()
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -172,10 +195,23 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 13
+    startLine: 43
   package: com.microsoft.azure.servicebus
-  syntax:
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref>. The lock will be renewed based on the setting specified on the entity. </p>
+
+    <p>When you accept a session, the session is locked for this client instance by the service for a duration as specified during the Queue/Subscription creation. If processing of the session requires longer than this duration, the session-lock needs to be renewed. For each renewal, the session-lock is renewed by the entity's LockDuration. </p>
+
+    <p>Renewal of session renews all the messages in the session as well. Each individual message need not be renewed.</p>
+
+    <p></p>
+  syntax: &o2
     content: public void renewSessionLock()
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the renew failed. </p>
 - uid: com.microsoft.azure.servicebus._i_message_session.renewSessionLockAsync()
   id: renewSessionLockAsync()
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -190,12 +226,20 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 15
+    startLine: 51
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref>. The lock will be renewed based on the setting specified on the entity.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> renewSessionLockAsync()
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending renew. </p>
+  see:
+  - type: com.microsoft.azure.servicebus._i_message_session.renewSessionLock()
+    description: ''
 - uid: com.microsoft.azure.servicebus._i_message_session.setState(byte [])
   id: setState(byte [])
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -210,13 +254,23 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 17
+    startLine: 60
   package: com.microsoft.azure.servicebus
-  syntax:
+  summary: >-
+    <p>Set a custom state on the session which can be later retrieved using <xref href="com.microsoft.azure.servicebus._i_message_session.getState()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax: &o4
     content: public void setState(byte[] state)
     parameters:
     - id: state
       type: ccd9418d
+      description: <p>The session state. </p>
+  exceptions:
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+  - type: 73fec9fb
+    description: <p>if the set state failed. </p>
 - uid: com.microsoft.azure.servicebus._i_message_session.setStateAsync(byte [])
   id: setStateAsync(byte [])
   parent: com.microsoft.azure.servicebus._i_message_session
@@ -231,15 +285,24 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessageSession.java
-    startLine: 19
+    startLine: 69
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Asynchronously set a custom state on the session which can be later retrieved using <xref href="com.microsoft.azure.servicebus._i_message_session.getState()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> setStateAsync(byte[] state)
     parameters:
     - id: state
       type: ccd9418d
+      description: <p>The session state. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending session state setting. </p>
+  see:
+  - type: com.microsoft.azure.servicebus._i_message_session.setState(byte [])
+    description: ''
 references:
 - uid: "26831127"
   spec.java:
@@ -259,6 +322,14 @@ references:
   nameWithType: IMessageSession.getLockedUntilUtc
   fullName: Instant com.microsoft.azure.servicebus.IMessageSession.getLockedUntilUtc
   package: com.microsoft.azure.servicebus
+- uid: 8256ba40
+  spec.java:
+  - name: InterruptedException
+    fullName: InterruptedException
+- uid: 73fec9fb
+  spec.java:
+  - name: ServiceBusException
+    fullName: ServiceBusException
 - uid: com.microsoft.azure.servicebus._i_message_session.renewSessionLock*
   name: renewSessionLock
   nameWithType: IMessageSession.renewSessionLock
@@ -308,11 +379,19 @@ references:
   nameWithType: IMessageReceiver.abandon(UUID lockToken)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Abandon <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with lock token. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message</p>
+
+    <p></p>
   syntax:
     content: public void abandon(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.abandon(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -320,13 +399,25 @@ references:
   nameWithType: IMessageReceiver.abandon(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Abandon <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with lock token and updated message property. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message</p>
+
+    <p></p>
   syntax:
     content: public void abandon(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.abandonAsync(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -334,13 +425,22 @@ references:
   nameWithType: IMessageReceiver.abandonAsync(UUID lockToken)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Asynchronously abandon <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with lock token. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> abandonAsync(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending abandon. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.abandonAsync(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -348,15 +448,28 @@ references:
   nameWithType: IMessageReceiver.abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Asynchronously abandon <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with lock token and updated message property. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending abandon. </p>
 - uid: com.microsoft.azure.servicebus._i_closeable.close()
   parent: com.microsoft.azure.servicebus._i_closeable
   href: com.microsoft.azure.servicebus._i_closeable.yml
@@ -387,11 +500,19 @@ references:
   nameWithType: IMessageReceiver.complete(UUID lockToken)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.complete(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Completes a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token. This will delete the message from the service.</p>
+
+    <p></p>
   syntax:
     content: public void complete(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.completeAsync(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -399,39 +520,22 @@ references:
   nameWithType: IMessageReceiver.completeAsync(UUID lockToken)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Asynchronously completes a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token. This will delete the message from the service.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> completeAsync(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus._i_message_receiver.completeBatch(Collection<? extends IMessage>)
-  parent: com.microsoft.azure.servicebus._i_message_receiver
-  href: com.microsoft.azure.servicebus._i_message_receiver.yml
-  name: completeBatch(Collection<? extends IMessage> messages)
-  nameWithType: IMessageReceiver.completeBatch(Collection<? extends IMessage> messages)
-  fullName: void com.microsoft.azure.servicebus.IMessageReceiver.completeBatch(Collection<? extends IMessage> messages)
-  type: Method
-  syntax:
-    content: public void completeBatch(Collection<? extends IMessage> messages)
-    parameters:
-    - id: messages
-      type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
-- uid: com.microsoft.azure.servicebus._i_message_receiver.completeBatchAsync(Collection<? extends IMessage>)
-  parent: com.microsoft.azure.servicebus._i_message_receiver
-  href: com.microsoft.azure.servicebus._i_message_receiver.yml
-  name: completeBatchAsync(Collection<? extends IMessage> messages)
-  nameWithType: IMessageReceiver.completeBatchAsync(Collection<? extends IMessage> messages)
-  fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.completeBatchAsync(Collection<? extends IMessage> messages)
-  type: Method
-  syntax:
-    content: public CompletableFuture<Void> completeBatchAsync(Collection<? extends IMessage> messages)
-    parameters:
-    - id: messages
-      type: d56263b8com.microsoft.azure.servicebus._i_messagea08ddfce
-    return:
-      type: db03ee24
+      description: <p>a CompletableFuture representing the pending complete. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -439,11 +543,19 @@ references:
   nameWithType: IMessageReceiver.deadLetter(UUID lockToken)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue.</p>
+
+    <p></p>
   syntax:
     content: public void deadLetter(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -451,13 +563,25 @@ references:
   nameWithType: IMessageReceiver.deadLetter(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with modified message properties.</p>
+
+    <p></p>
   syntax:
     content: public void deadLetter(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID,String,String)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -465,15 +589,25 @@ references:
   nameWithType: IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
   type: Method
+  summary: >-
+    <p>Moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with deadletter reason and error description.</p>
+
+    <p></p>
   syntax:
     content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: deadLetterReason
       type: "26831127"
+      description: <p>The deadletter reason. </p>
     - id: deadLetterErrorDescription
       type: "26831127"
+      description: <p>The deadletter error description. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetter(UUID,String,String,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -481,17 +615,31 @@ references:
   nameWithType: IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with deadletter reason and error description and modified properties.</p>
+
+    <p></p>
   syntax:
     content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: deadLetterReason
       type: "26831127"
+      description: <p>The deadletter reason. </p>
     - id: deadLetterErrorDescription
       type: "26831127"
+      description: <p>The deadletter error description. </p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetterAsync(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -499,13 +647,22 @@ references:
   nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Asynchronously moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with deadletter.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetterAsync(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -513,15 +670,28 @@ references:
   nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Asynchronously moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with modified properties.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetterAsync(UUID,String,String)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -529,17 +699,28 @@ references:
   nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
   type: Method
+  summary: >-
+    <p>Asynchronously moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with deadletter reason and error description.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: deadLetterReason
       type: "26831127"
+      description: <p>The deadletter reason. </p>
     - id: deadLetterErrorDescription
       type: "26831127"
+      description: <p>The deadletter error description. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deadLetterAsync(UUID,String,String,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -547,19 +728,34 @@ references:
   nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Asynchronously moves a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to the deadletter sub-queue with deadletter reason and error description and modified properties.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: deadLetterReason
       type: "26831127"
+      description: <p>The deadletter reason. </p>
     - id: deadLetterErrorDescription
       type: "26831127"
+      description: <p>The deadletter error description. </p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.defer(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -567,11 +763,19 @@ references:
   nameWithType: IMessageReceiver.defer(UUID lockToken)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Defers a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token. This will move message into deferred subqueue.</p>
+
+    <p></p>
   syntax:
     content: public void defer(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.defer(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -579,13 +783,25 @@ references:
   nameWithType: IMessageReceiver.defer(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Defers a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token with modified message property. This will move message into deferred subqueue.</p>
+
+    <p></p>
   syntax:
     content: public void defer(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deferAsync(UUID)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -593,13 +809,22 @@ references:
   nameWithType: IMessageReceiver.deferAsync(UUID lockToken)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID lockToken)
   type: Method
+  summary: >-
+    <p>Asynchronously defers a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token. This will move message into deferred subqueue.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deferAsync(UUID lockToken)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending defer. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.deferAsync(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -607,15 +832,28 @@ references:
   nameWithType: IMessageReceiver.deferAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID lockToken, Map<String, Object> propertiesToModify)
   type: Method
+  summary: >-
+    <p>Asynchronously defers a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> using its lock token with modified message propert. This will move message into deferred subqueue.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> deferAsync(UUID lockToken, Map<String, Object> propertiesToModify)
     parameters:
     - id: lockToken
       type: add9545a
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> lock token <xref href="com.microsoft.azure.servicebus._message.getLockToken()" data-throw-if-not-resolved="false"></xref></p>
     - id: propertiesToModify
       type: e7b06046
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> properties to modify. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending defer. </p>
 - uid: com.microsoft.azure.servicebus._i_message_entity_client.getEntityPath()
   parent: com.microsoft.azure.servicebus._i_message_entity_client
   href: com.microsoft.azure.servicebus._i_message_entity_client.yml
@@ -639,10 +877,15 @@ references:
   nameWithType: IMessageReceiver.getPrefetchCount()
   fullName: int com.microsoft.azure.servicebus.IMessageReceiver.getPrefetchCount()
   type: Method
+  summary: >-
+    <p>Get the prefetch value set.</p>
+
+    <p></p>
   syntax:
     content: public int getPrefetchCount()
     return:
       type: f75371fa
+      description: <p>The set prefetch count value. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.getReceiveMode()
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -650,10 +893,20 @@ references:
   nameWithType: IMessageReceiver.getReceiveMode()
   fullName: ReceiveMode com.microsoft.azure.servicebus.IMessageReceiver.getReceiveMode()
   type: Method
+  summary: >-
+    <p>Get current receiver's <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
   syntax:
     content: public ReceiveMode getReceiveMode()
     return:
       type: com.microsoft.azure.servicebus._receive_mode
+      description: >-
+        <p>
+
+          <xref href="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false"></xref>
+
+        </p>
 - uid: com.microsoft.azure.servicebus._i_message_browser.peek()
   parent: com.microsoft.azure.servicebus._i_message_browser
   href: com.microsoft.azure.servicebus._i_message_browser.yml
@@ -828,10 +1081,15 @@ references:
   nameWithType: IMessageReceiver.receive()
   fullName: IMessage com.microsoft.azure.servicebus.IMessageReceiver.receive()
   type: Method
+  summary: >-
+    <p>Receives a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with default server wait time.</p>
+
+    <p></p>
   syntax:
     content: public IMessage receive()
     return:
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> or null if there is no message. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receive(Duration)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -839,13 +1097,19 @@ references:
   nameWithType: IMessageReceiver.receive(Duration serverWaitTime)
   fullName: IMessage com.microsoft.azure.servicebus.IMessageReceiver.receive(Duration serverWaitTime)
   type: Method
+  summary: >-
+    <p>Receives a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> with specified server wait time.</p>
+
+    <p></p>
   syntax:
     content: public IMessage receive(Duration serverWaitTime)
     parameters:
     - id: serverWaitTime
       type: e02a2de0
+      description: <p>The server wait time </p>
     return:
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> or null if there is no message. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveAsync()
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -853,10 +1117,15 @@ references:
   nameWithType: IMessageReceiver.receiveAsync()
   fullName: CompletableFuture<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveAsync()
   type: Method
+  summary: >-
+    <p>Receives a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from Azure Service Bus.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<IMessage> receiveAsync()
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>The message received. Returns null if no message is found </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveAsync(Duration)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -864,13 +1133,19 @@ references:
   nameWithType: IMessageReceiver.receiveAsync(Duration serverWaitTime)
   fullName: CompletableFuture<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveAsync(Duration serverWaitTime)
   type: Method
+  summary: >-
+    <p>Receives a <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from Azure Service Bus with server wait time.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<IMessage> receiveAsync(Duration serverWaitTime)
     parameters:
     - id: serverWaitTime
       type: e02a2de0
+      description: <p>The time the client waits for receiving a message before it times out. </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>The message received. Returns null if no message is found </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveBatch(int)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -878,13 +1153,19 @@ references:
   nameWithType: IMessageReceiver.receiveBatch(int maxMessageCount)
   fullName: Collection<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveBatch(int maxMessageCount)
   type: Method
+  summary: >-
+    <p>Receives a maximum of maxMessageCount <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from Azure Service Bus.</p>
+
+    <p></p>
   syntax:
     content: public Collection<IMessage> receiveBatch(int maxMessageCount)
     parameters:
     - id: maxMessageCount
       type: f75371fa
+      description: <p>The maximum number of messages that will be received. </p>
     return:
       type: 12ebb11acom.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>List of messages received. Returns null if no message is found. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveBatch(int,Duration)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -892,15 +1173,22 @@ references:
   nameWithType: IMessageReceiver.receiveBatch(int maxMessageCount, Duration serverWaitTime)
   fullName: Collection<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveBatch(int maxMessageCount, Duration serverWaitTime)
   type: Method
+  summary: >-
+    <p>Receives a maximum of maxMessageCount <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from Azure Service Bus with server wait time.</p>
+
+    <p></p>
   syntax:
     content: public Collection<IMessage> receiveBatch(int maxMessageCount, Duration serverWaitTime)
     parameters:
     - id: maxMessageCount
       type: f75371fa
+      description: <p>The maximum number of messages that will be received. </p>
     - id: serverWaitTime
       type: e02a2de0
+      description: <p>The time the client waits for receiving a message before it times out. </p>
     return:
       type: 12ebb11acom.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>List of messages received. Returns null if no message is found. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveBatchAsync(int)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -908,13 +1196,19 @@ references:
   nameWithType: IMessageReceiver.receiveBatchAsync(int maxMessageCount)
   fullName: CompletableFuture<Collection<IMessage>> com.microsoft.azure.servicebus.IMessageReceiver.receiveBatchAsync(int maxMessageCount)
   type: Method
+  summary: >-
+    <p>Asynchronously receives a maximum of maxMessageCount <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from the entity.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Collection<IMessage>> receiveBatchAsync(int maxMessageCount)
     parameters:
     - id: maxMessageCount
       type: f75371fa
+      description: <p>The maximum number of messages that will be received. </p>
     return:
       type: 9161dfdccom.microsoft.azure.servicebus._i_messagee7daa122
+      description: <p>a CompletableFuture representing the pending receive. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveBatchAsync(int,Duration)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -922,15 +1216,22 @@ references:
   nameWithType: IMessageReceiver.receiveBatchAsync(int maxMessageCount, Duration serverWaitTime)
   fullName: CompletableFuture<Collection<IMessage>> com.microsoft.azure.servicebus.IMessageReceiver.receiveBatchAsync(int maxMessageCount, Duration serverWaitTime)
   type: Method
+  summary: >-
+    <p>Asynchronously receives a maximum of maxMessageCount <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from Azure Service Bus with server wait time.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Collection<IMessage>> receiveBatchAsync(int maxMessageCount, Duration serverWaitTime)
     parameters:
     - id: maxMessageCount
       type: f75371fa
+      description: <p>The maximum number of messages that will be received. </p>
     - id: serverWaitTime
       type: e02a2de0
+      description: <p>The time the client waits for receiving a message before it times out. </p>
     return:
       type: 9161dfdccom.microsoft.azure.servicebus._i_messagee7daa122
+      description: <p>a CompletableFuture representing the pending receive. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveDeferredMessage(long)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -938,13 +1239,19 @@ references:
   nameWithType: IMessageReceiver.receiveDeferredMessage(long sequenceNumber)
   fullName: IMessage com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessage(long sequenceNumber)
   type: Method
+  summary: >-
+    <p>Receives a deferred <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>. Deferred messages can only be received by using sequence number.</p>
+
+    <p></p>
   syntax:
     content: public IMessage receiveDeferredMessage(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>The <xref href="com.microsoft.azure.servicebus._message.getSequenceNumber()" data-throw-if-not-resolved="false"></xref>. </p>
     return:
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> or null if there is no message for given sequence number. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveDeferredMessageAsync(long)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -952,13 +1259,19 @@ references:
   nameWithType: IMessageReceiver.receiveDeferredMessageAsync(long sequenceNumber)
   fullName: CompletableFuture<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessageAsync(long sequenceNumber)
   type: Method
+  summary: >-
+    <p>Asynchronously receives a specific deferred <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> identified by sequence number.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<IMessage> receiveDeferredMessageAsync(long sequenceNumber)
     parameters:
     - id: sequenceNumber
       type: 0364520f
+      description: <p>The sequence number of the message that will be received. </p>
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>a CompletableFuture representing the pending receive. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveDeferredMessageBatch(Collection<Long>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -966,13 +1279,19 @@ references:
   nameWithType: IMessageReceiver.receiveDeferredMessageBatch(Collection<Long> sequenceNumbers)
   fullName: Collection<IMessage> com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessageBatch(Collection<Long> sequenceNumbers)
   type: Method
+  summary: >-
+    <p>Receives a batch of deferred <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
   syntax:
     content: public Collection<IMessage> receiveDeferredMessageBatch(Collection<Long> sequenceNumbers)
     parameters:
     - id: sequenceNumbers
       type: f936a554
+      description: <p>The sequence numbers of desired deferred messages. </p>
     return:
       type: 12ebb11acom.microsoft.azure.servicebus._i_messagea08ddfce
+      description: <p>List of messages received. Returns null if no message is found. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.receiveDeferredMessageBatchAsync(Collection<Long>)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -980,13 +1299,19 @@ references:
   nameWithType: IMessageReceiver.receiveDeferredMessageBatchAsync(Collection<Long> sequenceNumbers)
   fullName: CompletableFuture<Collection<IMessage>> com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessageBatchAsync(Collection<Long> sequenceNumbers)
   type: Method
+  summary: >-
+    <p>Asynchronously receives a set of deferred <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> from the entity.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Collection<IMessage>> receiveDeferredMessageBatchAsync(Collection<Long> sequenceNumbers)
     parameters:
     - id: sequenceNumbers
       type: f936a554
+      description: <p>The sequence numbers of the message that will be received. </p>
     return:
       type: 9161dfdccom.microsoft.azure.servicebus._i_messagee7daa122
+      description: <p>a CompletableFuture representing the pending receive. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.renewMessageLock(IMessage)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -994,13 +1319,19 @@ references:
   nameWithType: IMessageReceiver.renewMessageLock(IMessage message)
   fullName: Instant com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(IMessage message)
   type: Method
+  summary: >-
+    <p>Renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref href="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK()" data-throw-if-not-resolved="false"></xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is renewed by the entity's LockDuration.</p>
+
+    <p></p>
   syntax:
     content: public Instant renewMessageLock(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to be renewed </p>
     return:
       type: 328f8254
+      description: <p>The new locked until UTC time. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.renewMessageLockAsync(IMessage)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -1008,13 +1339,19 @@ references:
   nameWithType: IMessageReceiver.renewMessageLockAsync(IMessage message)
   fullName: CompletableFuture<Instant> com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(IMessage message)
   type: Method
+  summary: >-
+    <p>Asynchronously renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Instant> renewMessageLockAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to be renewed </p>
     return:
       type: 6666b360
+      description: <p>a CompletableFuture representing the pending renew. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver.setPrefetchCount(int)
   parent: com.microsoft.azure.servicebus._i_message_receiver
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -1022,11 +1359,18 @@ references:
   nameWithType: IMessageReceiver.setPrefetchCount(int prefetchCount)
   fullName: void com.microsoft.azure.servicebus.IMessageReceiver.setPrefetchCount(int prefetchCount)
   type: Method
+  summary: >-
+    <p>Set the prefetch count of the receiver. Prefetch speeds up the message flow by aiming to have a message readily available for local retrieval when and before the application asks for one using Receive. Setting a non-zero value prefetches PrefetchCount number of messages. Setting the value to zero turns prefetch off. For RECEIVEANDDELETE mode, the default value is 0. For PEEKLOCK mode, the default value is 100. </p>
+
+    <p>The value cannot be set until the receiver is created.</p>
+
+    <p></p>
   syntax:
     content: public void setPrefetchCount(int prefetchCount)
     parameters:
     - id: prefetchCount
       type: f75371fa
+      description: <p>The desired prefetch count. </p>
 - uid: com.microsoft.azure.servicebus._i_message_receiver
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message_receiver.yml
@@ -1034,6 +1378,7 @@ references:
   nameWithType: IMessageReceiver
   fullName: com.microsoft.azure.servicebus.IMessageReceiver
   type: Interface
+  summary: <p>Defines message receiver interface. The MessageReceiver can be used to receive messages from Queues and Subscriptions and acknowledge them. </p>
   syntax:
     content: public interface IMessageReceiver extends IMessageEntityClient,IMessageBrowser
 - uid: com.microsoft.azure.servicebus._message_session
@@ -1056,6 +1401,7 @@ references:
     content: public String getSessionId()
     return:
       type: "26831127"
+      description: <p>Gets the SessionId. </p>
 - uid: com.microsoft.azure.servicebus._message_session.getLockedUntilUtc()
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1067,6 +1413,15 @@ references:
     content: public Instant getLockedUntilUtc()
     return:
       type: 328f8254
+      description: <p>Gets the time that the session identified by <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref> is locked until for this client. </p>
+- uid: com.microsoft.azure.servicebus._i_message_session.getSessionId()
+  parent: com.microsoft.azure.servicebus._i_message_session
+  href: com.microsoft.azure.servicebus._i_message_session.yml
+  name: getSessionId()
+  nameWithType: IMessageSession.getSessionId()
+  fullName: String com.microsoft.azure.servicebus.IMessageSession.getSessionId()
+  type: Method
+  syntax: *o1
 - uid: com.microsoft.azure.servicebus._message_session.renewSessionLock()
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1074,6 +1429,14 @@ references:
   nameWithType: MessageSession.renewSessionLock()
   fullName: void com.microsoft.azure.servicebus.MessageSession.renewSessionLock()
   type: Method
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref>. The lock will be renewed based on the setting specified on the entity. </p>
+
+    <p>When you accept a session, the session is locked for this client instance by the service for a duration as specified during the Queue/Subscription creation. If processing of the session requires longer than this duration, the session-lock needs to be renewed. For each renewal, the session-lock is renewed by the entity's LockDuration. </p>
+
+    <p>Renewal of session renews all the messages in the session as well. Each individual message need not be renewed.</p>
+
+    <p></p>
   syntax:
     content: public void renewSessionLock()
 - uid: com.microsoft.azure.servicebus.primitives._service_bus_exception
@@ -1093,10 +1456,31 @@ references:
   nameWithType: MessageSession.renewSessionLockAsync()
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.MessageSession.renewSessionLockAsync()
   type: Method
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref>. The lock will be renewed based on the setting specified on the entity.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> renewSessionLockAsync()
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending renew. </p>
+- uid: com.microsoft.azure.servicebus._i_message_session.renewSessionLock()
+  parent: com.microsoft.azure.servicebus._i_message_session
+  href: com.microsoft.azure.servicebus._i_message_session.yml
+  name: renewSessionLock()
+  nameWithType: IMessageSession.renewSessionLock()
+  fullName: void com.microsoft.azure.servicebus.IMessageSession.renewSessionLock()
+  type: Method
+  summary: >-
+    <p>Renews the lock on the session specified by the <xref href="com.microsoft.azure.servicebus._i_message_session.getSessionId()" data-throw-if-not-resolved="false"></xref>. The lock will be renewed based on the setting specified on the entity. </p>
+
+    <p>When you accept a session, the session is locked for this client instance by the service for a duration as specified during the Queue/Subscription creation. If processing of the session requires longer than this duration, the session-lock needs to be renewed. For each renewal, the session-lock is renewed by the entity's LockDuration. </p>
+
+    <p>Renewal of session renews all the messages in the session as well. Each individual message need not be renewed.</p>
+
+    <p></p>
+  syntax: *o2
 - uid: com.microsoft.azure.servicebus._message_session.setState(byte [])
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1104,11 +1488,28 @@ references:
   nameWithType: MessageSession.setState(byte[] sessionState)
   fullName: void com.microsoft.azure.servicebus.MessageSession.setState(byte[] sessionState)
   type: Method
+  summary: >-
+    <p>Set a custom state on the session which can be later retrieved using <xref href="com.microsoft.azure.servicebus._i_message_session.getState()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
   syntax:
     content: public void setState(byte[] sessionState)
     parameters:
-    - id: sessionState
+    - id: state
       type: ccd9418d
+      description: <p>The session state. </p>
+- uid: com.microsoft.azure.servicebus._i_message_session.getState()
+  parent: com.microsoft.azure.servicebus._i_message_session
+  href: com.microsoft.azure.servicebus._i_message_session.yml
+  name: getState()
+  nameWithType: IMessageSession.getState()
+  fullName: byte [] com.microsoft.azure.servicebus.IMessageSession.getState()
+  type: Method
+  summary: >-
+    <p>Gets the session state.</p>
+
+    <p></p>
+  syntax: *o3
 - uid: com.microsoft.azure.servicebus._message_session.setStateAsync(byte [])
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1116,13 +1517,31 @@ references:
   nameWithType: MessageSession.setStateAsync(byte[] sessionState)
   fullName: CompletableFuture<Void> com.microsoft.azure.servicebus.MessageSession.setStateAsync(byte[] sessionState)
   type: Method
+  summary: >-
+    <p>Asynchronously set a custom state on the session which can be later retrieved using <xref href="com.microsoft.azure.servicebus._i_message_session.getState()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> setStateAsync(byte[] sessionState)
     parameters:
-    - id: sessionState
+    - id: state
       type: ccd9418d
+      description: <p>The session state. </p>
     return:
       type: db03ee24
+      description: <p>a CompletableFuture representing the pending session state setting. </p>
+- uid: com.microsoft.azure.servicebus._i_message_session.setState(byte [])
+  parent: com.microsoft.azure.servicebus._i_message_session
+  href: com.microsoft.azure.servicebus._i_message_session.yml
+  name: setState(byte[] state)
+  nameWithType: IMessageSession.setState(byte[] state)
+  fullName: void com.microsoft.azure.servicebus.IMessageSession.setState(byte[] state)
+  type: Method
+  summary: >-
+    <p>Set a custom state on the session which can be later retrieved using <xref href="com.microsoft.azure.servicebus._i_message_session.getState()" data-throw-if-not-resolved="false"></xref>.</p>
+
+    <p></p>
+  syntax: *o4
 - uid: com.microsoft.azure.servicebus._message_session.getState()
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1130,10 +1549,15 @@ references:
   nameWithType: MessageSession.getState()
   fullName: byte [] com.microsoft.azure.servicebus.MessageSession.getState()
   type: Method
+  summary: >-
+    <p>Gets the session state.</p>
+
+    <p></p>
   syntax:
     content: public byte [] getState()
     return:
       type: ccd9418d
+      description: <p>The session state </p>
 - uid: com.microsoft.azure.servicebus._message_session.getStateAsync()
   parent: com.microsoft.azure.servicebus._message_session
   href: com.microsoft.azure.servicebus._message_session.yml
@@ -1141,7 +1565,34 @@ references:
   nameWithType: MessageSession.getStateAsync()
   fullName: CompletableFuture<byte[]> com.microsoft.azure.servicebus.MessageSession.getStateAsync()
   type: Method
+  summary: <p>Asynchronously gets the session state. </p>
   syntax:
     content: public CompletableFuture<byte[]> getStateAsync()
     return:
       type: 5fe2dfa4
+      description: <p>a CompletableFuture representing the pending session state retrieving. </p>
+- uid: com.microsoft.azure.servicebus._i_message_session
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._i_message_session.yml
+  name: IMessageSession
+  nameWithType: IMessageSession
+  fullName: com.microsoft.azure.servicebus.IMessageSession
+  type: Interface
+  summary: >-
+    <p>Describes a Session object. <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> can be used to perform operations on sessions. </p>
+
+    <p>Service Bus Sessions, also called 'Groups' in the AMQP 1.0 protocol, are unbounded sequences of related messages. ServiceBus guarantees ordering of messages in a session. </p>
+
+    <p>Any sender can create a session when submitting messages into a Topic or Queue by setting the <ref refid="" kindref="compound">Message#sessionId</ref> property on <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to some application defined unique identifier. At the AMQP 1.0 protocol level, this value maps to the group-id property. </p>
+
+    <p>Sessions come into existence when there is at least one message with the session's SessionId in the Queue or Topic subscription. Once a Session exists, there is no defined moment or gesture for when the session expires or disappears. </p>
+  syntax: *o5
+- uid: com.microsoft.azure.servicebus._message
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._message.yml
+  name: Message
+  nameWithType: Message
+  fullName: com.microsoft.azure.servicebus.Message
+  type: Class
+  syntax:
+    content: public class Message
