@@ -20,8 +20,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ISessionHandler.java
-    startLine: 4
+    startLine: 10
   package: com.microsoft.azure.servicebus
+  summary: <p>Defines the contract for registering the session message processing callback <ref refid="" kindref="compound">QueueClient#registerSessionHandler(ISessionHandler)</ref> or <ref refid="" kindref="compound">SubscriptionClient#registerSessionHandler(ISessionHandler)</ref> for <xref href="com.microsoft.azure.servicebus._queue_client" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.servicebus._subscription_client" data-throw-if-not-resolved="false"></xref>. </p>
   syntax:
     content: public interface ISessionHandler
 - uid: com.microsoft.azure.servicebus._i_session_handler.notifyException(Throwable,ExceptionPhase)
@@ -38,15 +39,21 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ISessionHandler.java
-    startLine: 15
+    startLine: 35
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Receiving the exceptions that passed by pump during message processing.</p>
+
+    <p></p>
   syntax:
     content: public void notifyException(Throwable exception, ExceptionPhase phase)
     parameters:
     - id: exception
       type: a04fafd7
+      description: <p>Exception received in pump. </p>
     - id: phase
       type: com.microsoft.azure.servicebus._exception_phase
+      description: <p>Exception phase. </p>
 - uid: com.microsoft.azure.servicebus._i_session_handler.OnCloseSessionAsync(IMessageSession)
   id: OnCloseSessionAsync(IMessageSession)
   parent: com.microsoft.azure.servicebus._i_session_handler
@@ -61,9 +68,12 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ISessionHandler.java
-    startLine: 13
+    startLine: 27
   package: com.microsoft.azure.servicebus
-  summary: <p>Called just before a session is closed by the session pump </p>
+  summary: >-
+    <p>Called just before a session is closed by the session pump</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> OnCloseSessionAsync(IMessageSession session)
     parameters:
@@ -87,17 +97,24 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/ISessionHandler.java
-    startLine: 6
+    startLine: 19
   package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>The callback for message pump to pass received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>s.</p>
+
+    <p></p>
   syntax:
     content: public CompletableFuture<Void> onMessageAsync(IMessageSession session, IMessage message)
     parameters:
     - id: session
       type: com.microsoft.azure.servicebus._i_message_session
+      description: <p>The <xref href="com.microsoft.azure.servicebus._message_session" data-throw-if-not-resolved="false"></xref> of the message. </p>
     - id: message
       type: com.microsoft.azure.servicebus._i_message
+      description: <p>The received <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref>. </p>
     return:
       type: db03ee24
+      description: <p>CompletableFuture for the message handler. </p>
 references:
 - uid: db03ee24
   spec.java:
@@ -129,6 +146,14 @@ references:
   nameWithType: IMessageSession
   fullName: com.microsoft.azure.servicebus.IMessageSession
   type: Interface
+  summary: >-
+    <p>Describes a Session object. <xref href="com.microsoft.azure.servicebus._i_message_session" data-throw-if-not-resolved="false"></xref> can be used to perform operations on sessions. </p>
+
+    <p>Service Bus Sessions, also called 'Groups' in the AMQP 1.0 protocol, are unbounded sequences of related messages. ServiceBus guarantees ordering of messages in a session. </p>
+
+    <p>Any sender can create a session when submitting messages into a Topic or Queue by setting the <ref refid="" kindref="compound">Message#sessionId</ref> property on <xref href="com.microsoft.azure.servicebus._message" data-throw-if-not-resolved="false"></xref> to some application defined unique identifier. At the AMQP 1.0 protocol level, this value maps to the group-id property. </p>
+
+    <p>Sessions come into existence when there is at least one message with the session's SessionId in the Queue or Topic subscription. Once a Session exists, there is no defined moment or gesture for when the session expires or disappears. </p>
   syntax:
     content: public interface IMessageSession extends IMessageReceiver
 - uid: com.microsoft.azure.servicebus._i_message
@@ -144,6 +169,24 @@ references:
     <p></p>
   syntax:
     content: public interface IMessage
+- uid: com.microsoft.azure.servicebus._message
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._message.yml
+  name: Message
+  nameWithType: Message
+  fullName: com.microsoft.azure.servicebus.Message
+  type: Class
+  syntax:
+    content: public class Message
+- uid: com.microsoft.azure.servicebus._message_session
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._message_session.yml
+  name: MessageSession
+  nameWithType: MessageSession
+  fullName: com.microsoft.azure.servicebus.MessageSession
+  type: Class
+  syntax:
+    content: public class MessageSession
 - uid: com.microsoft.azure.servicebus._exception_phase
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._exception_phase.yml
@@ -157,3 +200,21 @@ references:
     <p></p>
   syntax:
     content: public enum ExceptionPhase
+- uid: com.microsoft.azure.servicebus._queue_client
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  name: QueueClient
+  nameWithType: QueueClient
+  fullName: com.microsoft.azure.servicebus.QueueClient
+  type: Class
+  syntax:
+    content: public class QueueClient
+- uid: com.microsoft.azure.servicebus._subscription_client
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus._subscription_client.yml
+  name: SubscriptionClient
+  nameWithType: SubscriptionClient
+  fullName: com.microsoft.azure.servicebus.SubscriptionClient
+  type: Class
+  syntax:
+    content: public class SubscriptionClient
