@@ -64,18 +64,6 @@ The Azure Toolkit for IntelliJ - April 2016 release includes the following enhan
 * **Ability to delete an existing Web Application container in Azure from within IntelliJ**. The Azure Toolkit for IntelliJ now allows you to delete an existing Azure Web container without leaving IntelliJ.
 
 ## See Also
-For more information about the Azure Toolkits for Java IDEs, see the following links:
-
-* [Azure Toolkit for Eclipse]
-  * [What's New in the Azure Toolkit for Eclipse]
-  * [Installing the Azure Toolkit for Eclipse]
-  * [Create a Hello World Web App for Azure in Eclipse]
-  * [Sign In Instructions for the Azure Toolkit for Eclipse]
-* [Azure Toolkit for IntelliJ]
-  * *What's New in the Azure Toolkit for IntelliJ (This Article)*
-  * [Installing the Azure Toolkit for IntelliJ]
-  * [Sign In Instructions for the Azure Toolkit for IntelliJ]
-  * [Create a Hello World Web App for Azure in IntelliJ]
 
 For more information about using Azure with Java, see the [Azure Java Developer Center].
 
@@ -97,6 +85,6 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [Managing Storage Accounts using the Azure Explorer for IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
 [Managing Virtual Machines using the Azure Explorer for IntelliJ]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
 
-[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 
 [HDInsight Tools Plugin for IntelliJ]: ./hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md

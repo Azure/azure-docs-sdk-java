@@ -73,20 +73,6 @@ There are two methods of installing the Azure Toolkit for IntelliJ, from the Set
    
     ![Restart IntelliJ IDEA][07]
 
-## See Also
-For more information about the Azure Toolkits for Java IDEs, see the following links:
-
-* [Azure Toolkit for Eclipse]
-  * [What's New in the Azure Toolkit for Eclipse]
-  * [Installing the Azure Toolkit for Eclipse]
-  * [Sign In Instructions for the Azure Toolkit for Eclipse]
-  * [Create a Hello World Web App for Azure in Eclipse]
-* [Azure Toolkit for IntelliJ]
-  * [What's New in the Azure Toolkit for IntelliJ]
-  * *Installing the Azure Toolkit for IntelliJ (This Article)*
-  * [Sign In Instructions for the Azure Toolkit for IntelliJ]
-  * [Create a Hello World Web App for Azure in IntelliJ]
-
 For more information about using Azure with Java, see the [Azure Java Developer Center].
 
 <!-- URL List -->
@@ -102,7 +88,7 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [What's New in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
 [What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 
 <!-- IMG List -->
 

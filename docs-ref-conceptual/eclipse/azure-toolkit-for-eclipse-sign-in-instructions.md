@@ -136,18 +136,6 @@ If you sign out of Azure when you are using Eclipse, you will need to reconfigur
    ![Select Subscriptions Dialog Box][A07]
 
 ## See Also
-For more information about the Azure Toolkits for Java IDEs, see the following links:
-
-* [Azure Toolkit for Eclipse]
-  * [What's New in the Azure Toolkit for Eclipse]
-  * [Installing the Azure Toolkit for Eclipse]
-  * *Sign In Instructions for the Azure Toolkit for Eclipse (This Article)*
-  * [Create a Hello World Web App for Azure in Eclipse]
-* [Azure Toolkit for IntelliJ]
-  * [What's New in the Azure Toolkit for IntelliJ]
-  * [Installing the Azure Toolkit for IntelliJ]
-  * [Sign In Instructions for the Azure Toolkit for IntelliJ]
-  * [Create a Hello World Web App for Azure in IntelliJ]
 
 For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
 
@@ -164,7 +152,7 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [What's New in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
 [What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- IMG List -->

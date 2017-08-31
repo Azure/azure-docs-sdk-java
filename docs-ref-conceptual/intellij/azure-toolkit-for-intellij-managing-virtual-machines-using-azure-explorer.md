@@ -148,19 +148,6 @@ For more information about Azure virtual-machine sizes and pricing, see the foll
   * [Windows virtual-machine pricing]
   * [Linux virtual-machine pricing]
 
-For more information about the Azure Toolkits for Java IDEs, see the following resources:
-
-* [Azure Toolkit for Eclipse]
-  * [What's new in the Azure Toolkit for Eclipse]
-  * [Installing the Azure Toolkit for Eclipse]
-  * [Sign-in instructions for the Azure Toolkit for Eclipse]
-  * [Create a Hello World web app for Azure in Eclipse]
-* [Azure Toolkit for IntelliJ]
-  * [What's new in the Azure Toolkit for IntelliJ]
-  * [Installing the Azure Toolkit for IntelliJ]
-  * [Sign-in instructions for the Azure Toolkit for IntelliJ]
-  * [Create a Hello World web app for Azure in IntelliJ]
-
 For more information about using Azure with Java, see [Azure Java Developer Center] and [Java Tools for Visual Studio Team Services].
 
 <!-- URL List -->
@@ -176,7 +163,7 @@ For more information about using Azure with Java, see [Azure Java Developer Cent
 [What's new in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
 [What's new in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 [Sizes for Windows virtual machines in Azure]: /azure/virtual-machines/virtual-machines-windows-sizes

@@ -306,18 +306,6 @@ Azure Plugin for Eclipse - December 2011 CTP has released. New features include:
 * **Custom Azure project and role folder icons:** For better visibility and easier navigation within your workspace and project.
 
 ## See Also
-For more information about the Azure Toolkits for Java IDEs, see the following links:
-
-* [Azure Toolkit for Eclipse]
-  * *What's New in the Azure Toolkit for Eclipse (This Article)*
-  * [Installing the Azure Toolkit for Eclipse]
-  * [Create a Hello World Web App for Azure in Eclipse]
-  * [Sign In Instructions for the Azure Toolkit for Eclipse]
-* [Azure Toolkit for IntelliJ]
-  * [What's New in the Azure Toolkit for IntelliJ]
-  * [Installing the Azure Toolkit for IntelliJ]
-  * [Sign In Instructions for the Azure Toolkit for IntelliJ]
-  * [Create a Hello World Web App for Azure in IntelliJ]
 
 For more information about using Azure with Java, see the [Azure Java Developer Center].
 
@@ -339,7 +327,7 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [Managing Storage Accounts using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-storage-accounts-using-azure-explorer.md
 [Managing Virtual Machines using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md
 
-[Azure Java Developer Center]: http://go.microsoft.com/fwlink/?LinkID=699547
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 
 [Azul Systems web page for the Zulu OpenJDK]: http://go.microsoft.com/fwlink/?LinkId=402457
 [Azure Service Endpoints]: http://go.microsoft.com/fwlink/?LinkID=699526
