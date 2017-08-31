@@ -100,8 +100,8 @@ For more information about Azure redis caches, configuration settings and pricin
 
 [Redis Cache Pricing]: https://azure.microsoft.com/pricing/details/cache/
 [Azure Redis Cache]: https://azure.microsoft.com/services/cache/
-[Redis Cache Documentation]: ./redis-cache/index.md
-[How to configure Azure Redis Cache]: ./redis-cache/cache-configure.md
+[Redis Cache Documentation]: /azure/redis-cache
+[How to configure Azure Redis Cache]: /azure/redis-cache/cache-configure
 [Sign In Instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 
 <!-- IMG List -->

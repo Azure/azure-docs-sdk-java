@@ -21,7 +21,7 @@ ms.author: robmcm;asirveda
 The Azure Toolkit for IntelliJ provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the IntelliJ integrated development environment (IDE). It is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
 
 > [!NOTE]
-> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse](azure-toolkit-for-eclipse.md).
+> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse](../eclipse/azure-toolkit-for-eclipse.md).
 > 
 > 
 
@@ -31,7 +31,7 @@ The following articles will help you start using the Azure Toolkit for IntelliJ:
 * [What's new in the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-whats-new.md)
 * [Installing the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-installation.md)
 * [Sign-in instructions for the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-sign-in-instructions.md)
-* [Create a Hello World web app for Azure in IntelliJ](app-service-web/app-service-web-intellij-create-hello-world-web-app.md)
+* [Create a Hello World web app for Azure in IntelliJ](/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app)
 
 ## Use the Azure Toolkit for IntelliJ
 The following articles demonstrate using the Azure Toolkit for IntelliJ to add Azure functionality to your Java projects:
@@ -40,7 +40,7 @@ The following articles demonstrate using the Azure Toolkit for IntelliJ to add A
 * [Manage storage accounts by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
 * [Publish a Spring Boot app as a Docker container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-publish-spring-boot-docker-app.md)
 * [Publish a web app as a Docker container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-publish-as-docker-container.md)
-* [Use HDInsight Tools Plugin for IntelliJ IDEA to create Spark applications for an HDInsight Spark Linux cluster](hdinsight/hdinsight-apache-spark-intellij-tool-plugin.md)
+* [Use HDInsight Tools Plugin for IntelliJ IDEA to create Spark applications for an HDInsight Spark Linux cluster](/azure/hdinsight/hdinsight-apache-spark-intellij-tool-plugin)
 
 ## Next steps
 

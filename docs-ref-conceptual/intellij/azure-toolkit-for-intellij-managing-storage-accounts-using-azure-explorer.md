@@ -30,7 +30,7 @@ The Azure Explorer, which is part of the Azure Toolkit for IntelliJ, provides Ja
 
 To create a storage account by using the Azure Explorer, do the following:
 
-1. Sign in to your Azure account by using the [Sign-in instructions for the Azure Toolkit for Eclipse]. 
+1. Sign in to your Azure account by using the [Sign-in instructions for the Azure Toolkit for IntelliJ]. 
 
 2. In the **Azure Explorer** view, expand the **Azure** node, right-click **Storage Accounts**, and then click **Create Storage Account**.
 
@@ -111,7 +111,7 @@ For more information about using Azure with Java, see [Azure Java Developer Cent
 
 <!-- URL List -->
 
-[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
+[Azure Toolkit for Eclipse]: ../eclipse/azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
 [Create a Hello World web app for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Create a Hello World web app for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md

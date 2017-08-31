@@ -22,7 +22,7 @@ ms.author: robmcm;asirveda
 The Azure Toolkit for Eclipse provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the Eclipse integrated development environment (IDE). It is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
 
 > [!NOTE]
-> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ](azure-toolkit-for-intellij.md).
+> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij.md).
 > 
 > 
 
@@ -33,7 +33,7 @@ The following articles will help you start using the Azure Toolkit for Eclipse:
 * [Installing the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-installation.md)
 * [Sign-in instructions for the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-sign-in-instructions.md)
 * [Create a Hello World cloud service for Azure in Eclipse](azure-toolkit-for-eclipse-creating-a-hello-world-application.md)
-* [Create a Hello World web app for Azure in Eclipse](app-service-web/app-service-web-eclipse-create-hello-world-web-app.md)
+* [Create a Hello World web app for Azure in Eclipse](/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app)
 
 ## Configure Azure project settings
 The following articles show you how to use the Azure Toolkit for Eclipse to configure settings for your Azure projects:
@@ -54,7 +54,7 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to add Az
 * [Manage virtual machines by using the Azure Explorer for Eclipse](azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md)
 * [Publish a Spring Boot app as a Docker container by using the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-publish-spring-boot-docker-app.md)
 * [Publish a web app as a Docker container by using the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-publish-as-docker-container.md)
-* [Use HDInsight Tools Plugin for Eclipse to create Spark applications for an HDInsight Spark Linux cluster](hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md)
+* [Use HDInsight Tools Plugin for Eclipse to create Spark applications for an HDInsight Spark Linux cluster](/azure/hdinsight/hdinsight-apache-spark-eclipse-tool-plugin)
 
 ## Next steps
 
