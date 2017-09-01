@@ -312,7 +312,7 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 <!-- URL List -->
 
 [Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
-[Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
+[Azure Toolkit for IntelliJ]: ../intellij/azure-toolkit-for-intellij.md
 [Create a Hello World Web App for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
 [Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
 [Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
@@ -338,7 +338,7 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [Deploying Large Deployments]: http://go.microsoft.com/fwlink/?LinkID=699536
 [Endpoints properties]: http://go.microsoft.com/fwlink/?LinkID=699525#endpoints_properties
 [Environment variables properties]: http://go.microsoft.com/fwlink/?LinkID=699525#environment_variables_properties
-[HDInsight Tools Plugin for Eclipse]: ./hdinsight/hdinsight-apache-spark-eclipse-tool-plugin.md
+[HDInsight Tools Plugin for Eclipse]: /azure/hdinsight/hdinsight-apache-spark-eclipse-tool-plugin
 [How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: http://go.microsoft.com/fwlink/?LinkID=264703
 [How to Use SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545
 [Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
