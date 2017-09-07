@@ -39,16 +39,16 @@ items:
   summary: >-
     <p>This is a logical representation of receiving from a EventHub partition. </p>
 
-    <p>A <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> (i.e., <xref href="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false"></xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
+    <p>A <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> (i.e., <xref uid="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false">PartitionReceiver.getEpoch</xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
 
     <p></p>
   syntax: &o1
     content: public class PartitionReceiver
   see:
   - type: com.microsoft.azure.eventhubs._event_hub_client.createReceiver(final String,final String,final String)
-    description: ''
+    description: EventHubClient::createReceiver
   - type: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final String,final long)
-    description: ''
+    description: EventHubClient::createEpochReceiver
   inheritance:
   - java.lang.Object
   - ClientEntity
@@ -194,7 +194,7 @@ items:
       description: <p>the upper limit of events this receiver will actively receive regardless of whether a receive operation is pending. </p>
   see:
   - type: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
-    description: ''
+    description: setPrefetchCount
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getProperties()
   id: getProperties()
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -252,7 +252,7 @@ items:
     startLine: 225
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Gets the temporal <xref href="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false"></xref> for this EventHub partition. In general, this information is a representation of, where this <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>'s end of stream is, at the time <xref href="com.microsoft.azure.eventhubs._receiver_runtime_information.getRetrievalTime()" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>Gets the temporal <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> for this EventHub partition. In general, this information is a representation of, where this <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s end of stream is, at the time <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information.getRetrievalTime()" data-throw-if-not-resolved="false">ReceiverRuntimeInformation#getRetrievalTime()</xref>.</p>
 
     <p></p>
   syntax:
@@ -297,13 +297,13 @@ items:
     startLine: 297
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Receive a batch of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s from an EventHub partition </p>
+    <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from an EventHub partition </p>
 
-    <p>Sample code (sample uses sync version of the api but concept are identical): <preformatted><xref href="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false"></xref> client = <xref href="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false"></xref>("__connection__");
+    <p>Sample code (sample uses sync version of the api but concept are identical): <preformatted><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
 
-    <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
+    <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
 
-    Iterable{&lt;}<xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>{&gt;} receivedEvents = receiver.receiveSync();</preformatted></p>
+    Iterable{&lt;}<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>{&gt;} receivedEvents = receiver.receiveSync();</preformatted></p>
 
     <p>
 
@@ -357,10 +357,10 @@ items:
     parameters:
     - id: maxEventCount
       type: cd225469
-      description: <p>maximum number of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s that this call should return </p>
+      description: <p>maximum number of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s that this call should return </p>
     return:
       type: 5ae8a14ccom.microsoft.azure.eventhubs._event_datae7daa122
-      description: <p>A completableFuture that will yield a batch of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> is present. </p>
+      description: <p>A completableFuture that will yield a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is present. </p>
 - uid: com.microsoft.azure.eventhubs._partition_receiver.receiveSync(final int)
   id: receiveSync(final int)
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -378,7 +378,7 @@ items:
     startLine: 237
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Synchronous version of <xref href="com.microsoft.azure.eventhubs._partition_receiver.receive(final int)" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._partition_receiver.receive(final int)" data-throw-if-not-resolved="false">receive</xref>.</p>
 
     <p></p>
   syntax:
@@ -386,13 +386,13 @@ items:
     parameters:
     - id: maxEventCount
       type: cd225469
-      description: <p>maximum number of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s that this call should return </p>
+      description: <p>maximum number of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s that this call should return </p>
     return:
       type: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
-      description: <p>Batch of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> is present. </p>
+      description: <p>Batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is present. </p>
   exceptions:
   - type: 73fec9fb
-    description: <p>if ServiceBus client encountered any unrecoverable/non-transient problems during <xref href="com.microsoft.azure.eventhubs._partition_receiver.receive(final int)" data-throw-if-not-resolved="false"></xref></p>
+    description: <p>if ServiceBus client encountered any unrecoverable/non-transient problems during <xref uid="com.microsoft.azure.eventhubs._partition_receiver.receive(final int)" data-throw-if-not-resolved="false">receive</xref></p>
 - uid: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
   id: setPrefetchCount(final int)
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -410,7 +410,7 @@ items:
     startLine: 198
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Set the number of events that can be pre-fetched and cached at the <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Set the number of events that can be pre-fetched and cached at the <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
 
     <p>By default the value is 300</p>
 
@@ -443,7 +443,7 @@ items:
     startLine: 333
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Register a receive handler that will be called when an event is available. A <xref href="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false"></xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
+    <p>Register a receive handler that will be called when an event is available. A <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
 
     <p></p>
   syntax:
@@ -451,7 +451,7 @@ items:
     parameters:
     - id: receiveHandler
       type: 93de0ef9com.microsoft.azure.eventhubs._partition_receive_handler
-      description: <p>An implementation of <xref href="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false"></xref>. Setting this handler to <code>null</code> will stop the receive pump. </p>
+      description: <p>An implementation of <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref>. Setting this handler to <code>null</code> will stop the receive pump. </p>
     return:
       type: db03ee24
       description: <p>A completableFuture which sets receiveHandler </p>
@@ -472,7 +472,7 @@ items:
     startLine: 346
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Register a receive handler that will be called when an event is available. A <xref href="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false"></xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
+    <p>Register a receive handler that will be called when an event is available. A <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
 
     <p></p>
   syntax:
@@ -480,10 +480,10 @@ items:
     parameters:
     - id: receiveHandler
       type: 93de0ef9com.microsoft.azure.eventhubs._partition_receive_handler
-      description: <p>An implementation of <xref href="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false"></xref></p>
+      description: <p>An implementation of <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref></p>
     - id: invokeWhenNoEvents
       type: 4dda0764
-      description: <p>flag to indicate whether the <ref refid="" kindref="compound">PartitionReceiveHandler#onReceive(Iterable)</ref> should be invoked when the receive call times out </p>
+      description: <p>flag to indicate whether the <xref uid="" data-throw-if-not-resolved="false">PartitionReceiveHandler#onReceive(Iterable)</xref> should be invoked when the receive call times out </p>
     return:
       type: db03ee24
       description: <p>A completableFuture which sets receiveHandler </p>
@@ -703,7 +703,7 @@ references:
   nameWithType: ReceiverOptions
   fullName: com.microsoft.azure.eventhubs.ReceiverOptions
   type: Class
-  summary: <p>Represents various optional behaviors which can be turned on or off during the creation of a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. </p>
+  summary: <p>Represents various optional behaviors which can be turned on or off during the creation of a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
   syntax:
     content: public class ReceiverOptions
 - uid: com.microsoft.azure.eventhubs._receiver_runtime_information
@@ -713,7 +713,7 @@ references:
   nameWithType: ReceiverRuntimeInformation
   fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
   type: Class
-  summary: <p>Represents the temporal receiver runtime information for a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. Current received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> and <xref href="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false"></xref> can be used to find approximate value of pending events (which are not processed yet). </p>
+  summary: <p>Represents the temporal receiver runtime information for a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. Current received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> and <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> can be used to find approximate value of pending events (which are not processed yet). </p>
   syntax:
     content: public class ReceiverRuntimeInformation
 - uid: com.microsoft.azure.eventhubs._partition_receiver
@@ -726,7 +726,7 @@ references:
   summary: >-
     <p>This is a logical representation of receiving from a EventHub partition. </p>
 
-    <p>A <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> (i.e., <xref href="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false"></xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
+    <p>A <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> (i.e., <xref uid="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false">PartitionReceiver.getEpoch</xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
 
     <p></p>
   syntax: *o1
@@ -738,7 +738,7 @@ references:
   fullName: final void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
   type: Method
   summary: >-
-    <p>Set the number of events that can be pre-fetched and cached at the <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Set the number of events that can be pre-fetched and cached at the <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
 
     <p>By default the value is 300</p>
 
@@ -752,7 +752,7 @@ references:
   fullName: Instant com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.getRetrievalTime()
   type: Method
   summary: >-
-    <p>Get the timestamp at which this <xref href="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false"></xref> was constructed.</p>
+    <p>Get the timestamp at which this <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> was constructed.</p>
 
     <p></p>
   syntax:
@@ -768,19 +768,19 @@ references:
   fullName: com.microsoft.azure.eventhubs.EventData
   type: Class
   summary: >-
-    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
-    <p>Serializing a received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+    <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
 
-    <p>Here's how AMQP message sections map to <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
 
-    i.   <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> - AMQPMessage.ApplicationProperties section
+    i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
 
-    ii.  <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has Data section
+    ii.  <xref uid="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false">getBytes()</xref> - if AMQPMessage.Body has Data section
 
-    iii. <xref href="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+    iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
 
-    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
     content: public class EventData
 - uid: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
@@ -791,13 +791,13 @@ references:
   fullName: CompletableFuture<Iterable<EventData>> com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int maxEventCount)
   type: Method
   summary: >-
-    <p>Receive a batch of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>'s from an EventHub partition </p>
+    <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from an EventHub partition </p>
 
-    <p>Sample code (sample uses sync version of the api but concept are identical): <preformatted><xref href="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false"></xref> client = <xref href="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false"></xref>("__connection__");
+    <p>Sample code (sample uses sync version of the api but concept are identical): <preformatted><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
 
-    <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
+    <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
 
-    Iterable{&lt;}<xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>{&gt;} receivedEvents = receiver.receiveSync();</preformatted></p>
+    Iterable{&lt;}<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>{&gt;} receivedEvents = receiver.receiveSync();</preformatted></p>
 
     <p>
 
@@ -868,7 +868,7 @@ references:
   fullName: static EventHubClient com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionStringSync(final String connectionString)
   type: Method
   summary: >-
-    <p>Synchronous version of <xref href="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">createFromConnectionString(String)</xref>.</p>
 
     <p></p>
   syntax:
@@ -876,13 +876,13 @@ references:
     parameters:
     - id: connectionString
       type: 3d93591e
-      description: <p>The connection string to be used. See <ref refid="" kindref="compound">ConnectionStringBuilder</ref> to construct a connectionString. </p>
+      description: <p>The connection string to be used. See <xref uid="" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
     return:
       type: com.microsoft.azure.eventhubs._event_hub_client
       description: >-
         <p>
 
-          <xref href="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false"></xref> which can be used to create Senders and Receivers to EventHub </p>
+          <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> which can be used to create Senders and Receivers to EventHub </p>
 - uid: com.microsoft.azure.eventhubs._partition_receive_handler
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._partition_receive_handler.yml
@@ -891,7 +891,7 @@ references:
   fullName: com.microsoft.azure.eventhubs.PartitionReceiveHandler
   type: Class
   summary: >-
-    <p>A handler class for the receive operation. Use any implementation of this abstract class to specify user action when using <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref>'s setReceiveHandler().</p>
+    <p>A handler class for the receive operation. Use any implementation of this abstract class to specify user action when using <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s setReceiveHandler().</p>
 
     <p></p>
   syntax:
@@ -934,10 +934,10 @@ references:
       description: <p>the partition Id that the receiver belongs to. All data received will be from this partition only. </p>
     - id: startingOffset
       type: 3d93591e
-      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref href="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false"></xref></p>'
+      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref uid="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false">PartitionReceiver#START_OF_STREAM</xref></p>'
     return:
       type: 9971d449com.microsoft.azure.eventhubs._partition_receivera08ddfce
-      description: <p>a CompletableFuture that would result in a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> instance when it is completed. </p>
+      description: <p>a CompletableFuture that would result in a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> instance when it is completed. </p>
 - uid: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final String,final long)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
@@ -962,10 +962,10 @@ references:
       description: <p>the partition Id that the receiver belongs to. All data received will be from this partition only. </p>
     - id: startingOffset
       type: 3d93591e
-      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref href="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false"></xref></p>'
+      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref uid="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false">PartitionReceiver#START_OF_STREAM</xref></p>'
     - id: epoch
       type: 4c60ae65
       description: <p>an unique identifier (epoch value) that the service uses, to enforce partition/lease ownership. </p>
     return:
       type: 9971d449com.microsoft.azure.eventhubs._partition_receivera08ddfce
-      description: <p>a CompletableFuture that would result in a <xref href="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false"></xref> when it is completed. </p>
+      description: <p>a CompletableFuture that would result in a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> when it is completed. </p>
