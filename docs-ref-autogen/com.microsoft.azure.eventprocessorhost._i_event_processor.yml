@@ -26,13 +26,13 @@ items:
   summary: >-
     <p>Interface that must be implemented by event processor classes.</p>
 
-    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref href="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false"></xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
 
-    <p>Although <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false"></xref>. <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false"></xref> is called first, then <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false"></xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false"></xref> is called after the last <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false"></xref> call returns. </p>
+    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns. </p>
 
     <p>
 
-      <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false"></xref> could be called while <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false"></xref> or <xref href="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false"></xref> is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref> could be called while <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> or <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
   syntax:
     content: public interface IEventProcessor
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)
@@ -83,7 +83,7 @@ items:
     startLine: 69
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Called when the underlying client experiences an error while receiving. <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
+    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
 
     <p></p>
   syntax: &o1
@@ -114,7 +114,7 @@ items:
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> instance was set up with an <xref href="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false"></xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: &o3
@@ -221,19 +221,19 @@ references:
   fullName: com.microsoft.azure.eventhubs.EventData
   type: Class
   summary: >-
-    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
-    <p>Serializing a received <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+    <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
 
-    <p>Here's how AMQP message sections map to <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
 
-    i.   <xref href="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false"></xref> - AMQPMessage.ApplicationProperties section
+    i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
 
-    ii.  <xref href="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has Data section
+    ii.  <xref uid="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false">getBytes()</xref> - if AMQPMessage.Body has Data section
 
-    iii. <xref href="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+    iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
 
-    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref href="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false"></xref>. </p>
+    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
     content: public class EventData
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
@@ -262,7 +262,7 @@ references:
   fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onError(PartitionContext context, Throwable error)
   type: Method
   summary: >-
-    <p>Called when the underlying client experiences an error while receiving. <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
+    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
 
     <p></p>
   syntax: *o1
@@ -288,7 +288,7 @@ references:
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> instance was set up with an <xref href="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false"></xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: *o3

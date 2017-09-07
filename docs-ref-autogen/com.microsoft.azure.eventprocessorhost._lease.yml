@@ -34,11 +34,11 @@ items:
   summary: >-
     <p>
 
-      <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> class is public so that advanced users can implement an <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref>. Unless you are implementing <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
 
-    <p>When implementing an <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
 
-    <p>Note that a <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax: &o1
     content: public class Lease
   inheritance:
@@ -60,7 +60,7 @@ items:
     startLine: 74
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Epoch is a concept used by Event Hub receivers. Basically, if a receiver is created on a partition with a higher epoch than the existing receiver, the previous receiver is forcibly disconnected. Attempting to create a receiver with a lower epoch that the existing receiver will fail. The <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> carries the epoch around so that when a host steals a lease, it can create a receiver with a higher epoch.</p>
+    <p>Epoch is a concept used by Event Hub receivers. Basically, if a receiver is created on a partition with a higher epoch than the existing receiver, the previous receiver is forcibly disconnected. Attempting to create a receiver with a lower epoch that the existing receiver will fail. The <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> carries the epoch around so that when a host steals a lease, it can create a receiver with a higher epoch.</p>
 
     <p></p>
   syntax:
@@ -84,7 +84,7 @@ items:
     startLine: 106
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>The owner of a lease is the name of the <xref href="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false"></xref> which currently holds the lease.</p>
+    <p>The owner of a lease is the name of the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> which currently holds the lease.</p>
 
     <p></p>
   syntax:
@@ -108,7 +108,7 @@ items:
     startLine: 126
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Returns the id of the partition that this <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> is for. Immutable so there is no corresponding setter.</p>
+    <p>Returns the id of the partition that this <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> is for. Immutable so there is no corresponding setter.</p>
 
     <p></p>
   syntax:
@@ -132,7 +132,7 @@ items:
     startLine: 138
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>The <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> carries an arbitrary string called the "token". AzureStorageCheckpointLeaseManager uses this to store the blob lease ID used by the Azure Storage API. Other implementations of <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> may use it for anything.</p>
+    <p>The <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> carries an arbitrary string called the "token". AzureStorageCheckpointLeaseManager uses this to store the blob lease ID used by the Azure Storage API. Other implementations of <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> may use it for anything.</p>
 
     <p></p>
   syntax:
@@ -181,7 +181,7 @@ items:
     startLine: 160
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>If an implementation of <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> supports the concept of lease expiration, then a class derived from <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> may override this function to inspect the lease and return whether it has expired.</p>
+    <p>If an implementation of <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> supports the concept of lease expiration, then a class derived from <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> may override this function to inspect the lease and return whether it has expired.</p>
 
     <p></p>
   syntax:
@@ -228,7 +228,7 @@ items:
     startLine: 57
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create a <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> by duplicating the given <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref>.</p>
+    <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> by duplicating the given <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref>.</p>
 
     <p></p>
   syntax:
@@ -253,7 +253,7 @@ items:
     startLine: 43
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create a <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> for the given partition.</p>
+    <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> for the given partition.</p>
 
     <p></p>
   syntax:
@@ -414,11 +414,11 @@ references:
   summary: >-
     <p>
 
-      <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> class is public so that advanced users can implement an <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref>. Unless you are implementing <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
 
-    <p>When implementing an <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
 
-    <p>Note that a <xref href="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false"></xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref href="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false"></xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax: *o1
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost
