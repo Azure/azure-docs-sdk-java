@@ -25,7 +25,7 @@ This quickstart helps you create and deploy a simple Java web app to [Azure App 
 Before you start, set up the following:
 
 - [Git](https://git-scm.com/)
-- [Java 8](https://packages.ubuntu.com/xenial/java/default-jre)
+- [Java 8](https://www.azul.com/downloads/zulu/)
 - [Maven 3](http://maven.apache.org/download.cgi)
 - [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2)
 
