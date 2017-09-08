@@ -31,7 +31,7 @@ Create and manage Azure [virtual networks](/azure/virtual-network/virtual-networ
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-network</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```   
 
