@@ -31,7 +31,7 @@ Create Traffic Manager profiles, define endpoints, and change the routing method
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-trafficmanager</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```   
 

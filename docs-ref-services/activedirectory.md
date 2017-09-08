@@ -61,7 +61,7 @@ Configure [role based access control](/azure/active-directory/role-based-access-
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-graph-rbac</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 

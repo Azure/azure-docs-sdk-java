@@ -67,7 +67,7 @@ Crete and manage Azure Storage accounts and connection keys with the management 
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-storage</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency
 ```   
 

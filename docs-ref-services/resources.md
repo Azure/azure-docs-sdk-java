@@ -30,7 +30,7 @@ Use the management API to create resource groups and deploy resources from templ
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-resources</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
