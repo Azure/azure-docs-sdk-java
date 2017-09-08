@@ -93,7 +93,7 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 <dependency>
     <groupId>com.microsoft.azure</groupId>

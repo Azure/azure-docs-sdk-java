@@ -27,6 +27,7 @@ The Azure Toolkit for Eclipse provides templates and functionality that you can 
 > 
 
 ## Get started with the Azure Toolkit for Eclipse
+
 The following articles will help you start using the Azure Toolkit for Eclipse:
 
 * [What's new in the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-whats-new.md)
@@ -35,17 +36,9 @@ The following articles will help you start using the Azure Toolkit for Eclipse:
 * [Create a Hello World cloud service for Azure in Eclipse](azure-toolkit-for-eclipse-creating-a-hello-world-application.md)
 * [Create a Hello World web app for Azure in Eclipse](/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app)
 
-## Configure Azure project settings
-The following articles show you how to use the Azure Toolkit for Eclipse to configure settings for your Azure projects:
-
-* [Azure project properties](azure-toolkit-for-eclipse-azure-project-properties.md)
-* [Azure role properties](azure-toolkit-for-eclipse-azure-role-properties.md)
-* [Azure service endpoints](azure-toolkit-for-eclipse-azure-service-endpoints.md)
-* [Azure storage account list](azure-toolkit-for-eclipse-azure-storage-account-list.md)
-* [Enable session affinity](azure-toolkit-for-eclipse-enable-session-affinity.md)
-* [Enabling remote access for Azure deployments in Eclipse](azure-toolkit-for-eclipse-enabling-remote-access-for-azure-deployments.md)
 
 ## Use the Azure Toolkit for Eclipse
+
 The following articles demonstrate using the Azure Toolkit for Eclipse to add Azure functionality to your Java projects:
 
 * [Displaying Javadoc content in Eclipse for the Package for Azure Libraries for Java](azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries.md)
@@ -62,7 +55,7 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to add Az
 
 <!-- URL List -->
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- Temporarily Deprecated URLs -->

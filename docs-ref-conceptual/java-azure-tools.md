@@ -22,7 +22,7 @@ Connect to services and manage Azure resources from your applications with the A
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
@@ -30,7 +30,7 @@ View the [complete list of libraries](java-sdk-azure-install.md) and [get starte
 
 ## Eclipse and IntelliJ plugins
 
-Manage Azure resources and deploy apps from your IDE with The Azure toolkits for [Eclipse](https://docs.microsoft.com/azure/azure-toolkit-for-eclipse) and [IntelliJ](https://docs.microsoft.com/azure/azure-toolkit-for-intellij).   
+Manage Azure resources and deploy apps from your IDE with The Azure toolkits for [Eclipse](eclipse/azure-toolkit-for-eclipse.md) and [IntelliJ](intellij/azure-toolkit-for-intellij.md).   
 
 ![IntelliJ toolkit showing the Azure Explorer](media/intelliJ-azure-explorer.png)
 

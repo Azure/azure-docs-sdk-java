@@ -63,7 +63,7 @@ Use the Azure Batch management libraries to create and delete batch accounts, re
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-batch</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 

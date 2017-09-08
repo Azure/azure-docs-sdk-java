@@ -59,7 +59,7 @@ Use the Azure Key Vault management libraries to create key vaults, authorize app
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-keyvault</artifactId>
-    <version>1.1.2</version>
+    <version>1.2.1</version>
 </dependency>
 ```
 
