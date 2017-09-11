@@ -29,23 +29,32 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 The following articles will help you start using the Azure Toolkit for IntelliJ:
 
 * [What's new in the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-whats-new.md)
+
 * [Installing the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-installation.md)
+
 * [Sign-in instructions for the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-sign-in-instructions.md)
+
 * [Create a Hello World web app for Azure in IntelliJ](/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app)
 
 ## Use the Azure Toolkit for IntelliJ with your Java Projects
 The following articles demonstrate using the Azure Toolkit for IntelliJ to add Azure functionality to your Java projects:
 
 * [Run a Hello World web app in a Linux container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-hello-world-web-app-linux.md)
+
 * [Publish a Spring Boot app as a Docker container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-publish-spring-boot-docker-app.md)
+
 * [Publish a web app as a Docker container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-publish-as-docker-container.md)
+
 * [Use HDInsight Tools Plugin for IntelliJ IDEA to create Spark applications for an HDInsight Spark Linux cluster](/azure/hdinsight/hdinsight-apache-spark-intellij-tool-plugin)
 
 ## Manage Azure resources using the Azure Toolkit for IntelliJ
+The following articles demonstrate using the Azure Toolkit for IntelliJ to manage your Azure resources:
 
 * [Manage redis caches by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer.md)
-* [Manage virtual machines by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
+
 * [Manage storage accounts by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
+
+* [Manage virtual machines by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
 
 ## Next steps
 
