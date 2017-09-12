@@ -1,10 +1,10 @@
 ---
-title: Publish a Spring Boot app as a Docker container by using the Azure Toolkit for IntelliJ | Microsoft Docs
+title: Publish a Spring Boot app as a Docker container by using the Azure Toolkit for IntelliJ
 description: Learn how to publish a web app to Microsoft Azure as a Docker container by using the Azure Toolkit for IntelliJ.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 06/21/2017
+ms.date: 09/11/2017
 ms.author: robmcm
 
 ---
@@ -40,11 +40,11 @@ The following steps walk you through cloning the Spring Boot Docker repo by usin
 
 1. Enter your credentials if you are prompted to log in.
 
-   * If you are using a username/password to log in to GitHub:
+   * If you are using a username/password to log in to GitHub: 
 
       ![Dialog box for entering GitHub username and password][CL02a]
 
-   * If you are using a token to log in to GitHub:
+   * If you are using a token to log in to GitHub: 
 
       ![Dialog box for entering a GitHub token][CL02b]
 
@@ -214,9 +214,9 @@ IntelliJ should display the completed artifact for your Spring Boot app in the p
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
-
 To learn about additional methods for creating Spring Boot apps by using IntelliJ, see [Creating Spring Boot Projects](https://www.jetbrains.com/help/idea/creating-spring-boot-projects.html) on the JetBrains website.
+
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
 <!-- URL List -->
 
@@ -231,42 +231,42 @@ To learn about additional methods for creating Spring Boot apps by using Intelli
 
 <!-- IMG List -->
 
-[CL01]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL01.png
-[CL02a]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL02a.png
-[CL02b]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL02b.png
-[CL03]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL03.png
-[CL04]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL04.png
-[CL05]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL05.png
-[CL06]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL06.png
-[CL07]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL07.png
-[CL08]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL08.png
-[CL09]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL09.png
-[CL10]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL10.png
-[CL11]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL11.png
-[CL12]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL12.png
-[CL13]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL13.png
-[CL14]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL14.png
+[CL01]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL01.png
+[CL02a]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL02a.png
+[CL02b]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL02b.png
+[CL03]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL03.png
+[CL04]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL04.png
+[CL05]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL05.png
+[CL06]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL06.png
+[CL07]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL07.png
+[CL08]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL08.png
+[CL09]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL09.png
+[CL10]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL10.png
+[CL11]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL11.png
+[CL12]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL12.png
+[CL13]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL13.png
+[CL14]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/CL14.png
 
-[ART01]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART01.png
-[ART02]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART02.png
-[ART03]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART03.png
-[ART04a]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04a.png
-[ART04b]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04b.png
-[ART04c]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04c.png
-[ART04d]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04d.png
-[ART05]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART05.png
+[ART01]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART01.png
+[ART02]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART02.png
+[ART03]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART03.png
+[ART04a]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04a.png
+[ART04b]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04b.png
+[ART04c]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04c.png
+[ART04d]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART04d.png
+[ART05]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/ART05.png
 
-[BU01]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU01.png
-[BU02]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU02.png
-[BU03]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU03.png
-[BU04]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU04.png
-[BU05]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU05.png
-[BU06]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU06.png
+[BU01]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU01.png
+[BU02]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU02.png
+[BU03]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU03.png
+[BU04]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU04.png
+[BU05]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU05.png
+[BU06]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/BU06.png
 
-[PU01]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU01.png
-[PU02]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU02.png
-[PU03a]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU03a.png
-[PU03b]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU03b.png
-[PU04]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU04.png
-[PU05]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU05.png
-[PU06]: ./media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU06.png
+[PU01]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU01.png
+[PU02]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU02.png
+[PU03a]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU03a.png
+[PU03b]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU03b.png
+[PU04]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU04.png
+[PU05]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU05.png
+[PU06]: media/azure-toolkit-for-intellij-publish-spring-boot-docker-app/PU06.png
