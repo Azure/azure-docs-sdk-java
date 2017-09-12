@@ -1,10 +1,10 @@
 ---
-title: Manage storage accounts by using the Azure Explorer for IntelliJ | Microsoft Docs
+title: Manage storage accounts by using the Azure Explorer for IntelliJ
 description: Learn how to manage your Azure storage accounts by using the Azure Explorer for IntelliJ.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 09/11/2017
 ms.author: robmcm
 
 ---
@@ -95,6 +95,7 @@ To delete a storage account by using the Azure Explorer, do the following:
    ![Delete storage account confirmation window][DS02]
 
 ## Next steps
+
 For more information about Azure storage accounts, sizes, and pricing, see the following resources:
 
 * [Introduction to Microsoft Azure Storage]
@@ -106,25 +107,11 @@ For more information about Azure storage accounts, sizes, and pricing, see the f
   * [Windows storage-account pricing]
   * [Linux storage-account pricing]
 
-
-For more information about using Azure with Java, see [Azure Java Developer Center] and [Java Tools for Visual Studio Team Services].
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
 <!-- URL List -->
 
-[Azure Toolkit for Eclipse]: ../eclipse/azure-toolkit-for-eclipse.md
-[Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
-[Create a Hello World web app for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
-[Create a Hello World web app for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Sign-in instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
 [Sign-in instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's new in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's new in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
-
-[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
-
 [Introduction to Microsoft Azure Storage]: /azure/storage/storage-introduction
 [About Azure storage accounts]: /azure/storage/storage-create-storage-account
 [Azure storage replication]: /azure/storage/storage-redundancy
@@ -138,12 +125,12 @@ For more information about using Azure with Java, see [Azure Java Developer Cent
 
 <!-- IMG List -->
 
-[CS01]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CS01.png
-[CS02]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CS02.png
-[CC01]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CC01.png
-[CC02]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CC02.png
+[CS01]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CS01.png
+[CS02]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CS02.png
+[CC01]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CC01.png
+[CC02]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/CC02.png
 
-[DS01]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DS01.png
-[DS02]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DS02.png
-[DC01]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DC01.png
-[DC02]: ./media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DC02.png
+[DS01]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DS01.png
+[DS02]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DS02.png
+[DC01]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DC01.png
+[DC02]: media/azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer/DC02.png

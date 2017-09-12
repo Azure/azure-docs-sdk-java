@@ -4,7 +4,7 @@ description: Learn about the latest features in the Azure Toolkit for Eclipse.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 16b066ea-aae7-4c30-9a12-fa0c3711b93e
@@ -13,11 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 09/11/2017
 ms.author: robmcm;asirveda;martinsawicki
 
 ---
-# What's New in the Azure Toolkit for Eclipse
+
+# What's new in the Azure Toolkit for Eclipse
+
 ## Azure Toolkit for Eclipse Releases
 This article contains information on the various releases and latest updates to the Azure Toolkit for Eclipse.
 
@@ -305,24 +307,16 @@ Azure Plugin for Eclipse - December 2011 CTP has released. New features include:
 * **Quick context-menu access to role configuration UI**: Just right-click on the role folder, and click **Properties**.
 * **Custom Azure project and role folder icons:** For better visibility and easier navigation within your workspace and project.
 
-## See Also
+## Next steps
 
-For more information about using Azure with Java, see the [Azure Java Developer Center].
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
 <!-- URL List -->
 
-[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
 [Azure Toolkit for IntelliJ]: ../intellij/azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
-[Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Sign In Instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Sign In Instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's New in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
+[Installing the Azure Toolkit for Eclipse]: azure-toolkit-for-eclipse-installation.md
 
-[Azure Sign In Instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
+[Azure Sign In Instructions for the Azure Toolkit for Eclipse]: azure-toolkit-for-eclipse-sign-in-instructions.md
 [How to publish a Web App as a Docker Container using the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-publish-as-docker-container.md
 [Managing Storage Accounts using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-storage-accounts-using-azure-explorer.md
 [Managing Virtual Machines using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md
@@ -341,7 +335,6 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 [HDInsight Tools Plugin for Eclipse]: /azure/hdinsight/hdinsight-apache-spark-eclipse-tool-plugin
 [How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: http://go.microsoft.com/fwlink/?LinkID=264703
 [How to Use SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545
-[Installing the Azure Toolkit for Eclipse]: http://go.microsoft.com/fwlink/?LinkId=699546
 [Local storage properties]: http://go.microsoft.com/fwlink/?LinkID=699525#local_storage_properties
 [Microsoft Azure Client API]: http://go.microsoft.com/fwlink/?LinkId=280397
 [Server configuration properties]: http://go.microsoft.com/fwlink/?LinkID=699525#server_configuration_properties
@@ -352,13 +345,13 @@ For more information about using Azure with Java, see the [Azure Java Developer 
 
 <!-- IMG List -->
 
-[ic710876]: ./media/azure-toolkit-for-eclipse-whats-new/ic710876.png
-[ic710877]: ./media/azure-toolkit-for-eclipse-whats-new/ic710877.png
-[ic710879]: ./media/azure-toolkit-for-eclipse-whats-new/ic710879.png
-[ic710880]: ./media/azure-toolkit-for-eclipse-whats-new/ic710880.png
-[ic710881]: ./media/azure-toolkit-for-eclipse-whats-new/ic710881.png
-[ic710876]: ./media/azure-toolkit-for-eclipse-whats-new/ic710876.png
-[ic710882]: ./media/azure-toolkit-for-eclipse-whats-new/ic710882.png
-[ic710883]: ./media/azure-toolkit-for-eclipse-whats-new/ic710883.png
+[ic710876]: media/azure-toolkit-for-eclipse-whats-new/ic710876.png
+[ic710877]: media/azure-toolkit-for-eclipse-whats-new/ic710877.png
+[ic710879]: media/azure-toolkit-for-eclipse-whats-new/ic710879.png
+[ic710880]: media/azure-toolkit-for-eclipse-whats-new/ic710880.png
+[ic710881]: media/azure-toolkit-for-eclipse-whats-new/ic710881.png
+[ic710876]: media/azure-toolkit-for-eclipse-whats-new/ic710876.png
+[ic710882]: media/azure-toolkit-for-eclipse-whats-new/ic710882.png
+[ic710883]: media/azure-toolkit-for-eclipse-whats-new/ic710883.png
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694270.aspx -->

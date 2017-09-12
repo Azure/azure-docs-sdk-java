@@ -1,10 +1,10 @@
 ---
-title: Azure Toolkit for Eclipse | Microsoft Docs
+title: Azure Toolkit for Eclipse
 description: Learn about the Azure Toolkit for Eclipse.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: ef2f3839-2549-4471-9b53-0deb7f4c128b
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 06/21/2017
+ms.date: 09/11/2017
 ms.author: robmcm;asirveda
 
 ---
@@ -40,15 +40,13 @@ The following articles will help you start using the Azure Toolkit for Eclipse:
 ## Use the Azure Toolkit for Eclipse with your Java Projects
 The following articles demonstrate using the Azure Toolkit for Eclipse to add Azure functionality to your Java projects:
 
-* [Displaying Javadoc content in Eclipse for the Package for Azure Libraries for Java](azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries.md)
-
-* [Deploying large deployments](azure-toolkit-for-eclipse-deploying-large-deployments.md)
-
 * [Publish a Spring Boot app as a Docker container by using the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-publish-spring-boot-docker-app.md)
 
 * [Publish a web app as a Docker container by using the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-publish-as-docker-container.md)
 
 * [Use HDInsight Tools Plugin for Eclipse to create Spark applications for an HDInsight Spark Linux cluster](/azure/hdinsight/hdinsight-apache-spark-eclipse-tool-plugin)
+
+* [Displaying Javadoc content in Eclipse for the Package for Azure Libraries for Java](azure-toolkit-for-eclipse-displaying-javadoc-content-for-azure-libraries.md)
 
 ## Manage Azure resources using the Azure Toolkit for Eclipse
 The following articles demonstrate using the Azure Toolkit for Eclipse to manage your Azure resources:
@@ -61,7 +59,9 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to manage
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+For more information about using Java with Azure, see the [Azure Java Developer Center](https://azure.microsoft.com/develop/java/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
+
+<!-- [!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)] -->
 
 <!-- URL List -->
 
@@ -70,6 +70,7 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to manage
 
 <!-- Temporarily Deprecated URLs -->
 
+<!-- [Deploying large deployments](azure-toolkit-for-eclipse-deploying-large-deployments.md) -->
 <!-- [How to Maintain Session Data with Session Affinity]: http://go.microsoft.com/fwlink/?LinkID=699539 -->
 <!-- [How to Use Co-located Caching]: http://go.microsoft.com/fwlink/?LinkID=699542 -->
 <!-- [How to Use Dedicated Caching]: http://go.microsoft.com/fwlink/?LinkID=699543 -->
@@ -77,8 +78,8 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to manage
 <!-- [How to Use SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699545 -->
 <!-- [SSL Offloading]: http://go.microsoft.com/fwlink/?LinkID=699549 -->
 <!-- [Using the Azure Service Runtime Library in JSP]: http://go.microsoft.com/fwlink/?LinkID=699551 -->
-<!-- [How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: ./active-directory/active-directory-java-authenticate-users-access-control-eclipse.md -->
-<!-- [Debug a Java Web App on Azure in Eclipse]: ./app-service-web/app-service-web-debug-java-web-app-in-eclipse.md -->
-<!-- [Debugging Azure Applications in Eclipse]: ./azure-toolkit-for-eclipse-debugging-azure-applications.md -->
+<!-- [How to Authenticate Web Users with Azure Access Control Service Using Eclipse]: /azure/active-directory/active-directory-java-authenticate-users-access-control-eclipse.md -->
+<!-- [Debug a Java Web App on Azure in Eclipse]: /azure/app-service-web/app-service-web-debug-java-web-app-in-eclipse.md -->
+<!-- [Debugging Azure Applications in Eclipse]: azure-toolkit-for-eclipse-debugging-azure-applications.md -->
 
 <!-- Legacy MSDN URL = https://msdn.microsoft.com/library/azure/hh694271.aspx -->

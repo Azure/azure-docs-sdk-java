@@ -1,10 +1,10 @@
 ---
-title: Managing Redis Caches using the Azure Explorer for IntelliJ | Microsoft Docs
+title: Managing Redis Caches using the Azure Explorer for IntelliJ
 description: Learn how to manage your Azure redis caches by using the Azure Explorer for IntelliJ.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 06/14/2017
+ms.date: 09/11/2017
 ms.author: robmcm
 
 ---
@@ -44,9 +44,9 @@ The following steps walk you through the steps to create a redis cache using the
 
    b. **Subscription**: Specifies the Azure subscription you want to use for the new redis cache.
 
-   c. **Resource Group**: Specifies the resource group for your redis cache; you need to choose one of the following options:
-      * **Create New**: Specifies that you want to create a new resource group.
-      * **Use Existing**: Specifies that you will choose from a list of resource groups associated with your Azure account.
+   c. **Resource Group**: Specifies the resource group for your redis cache; you need to choose one of the following options: 
+      * **Create New**: Specifies that you want to create a new resource group. 
+      * **Use Existing**: Specifies that you will choose from a list of resource groups associated with your Azure account. 
 
    d. **Location**: Specifies the location where your redis cache is created; for example, *West US*.
 
@@ -87,14 +87,14 @@ After your redis cache has been created, it will be displayed in the Azure Explo
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
-
 For more information about Azure redis caches, configuration settings and pricing, see the following links:
 
 * [Azure Redis Cache]
 * [Redis Cache Documentation]
 * [Redis Cache Pricing]
 * [How to configure Azure Redis Cache]
+
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
 <!-- URL List -->
 
@@ -106,12 +106,12 @@ For more information about Azure redis caches, configuration settings and pricin
 
 <!-- IMG List -->
 
-[CR01]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR01.png
-[CR02]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR02.png
-[CR03]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR03.png
+[CR01]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR01.png
+[CR02]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR02.png
+[CR03]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/CR03.png
 
-[SP01]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/SP01.png
-[SP02]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/SP02.png
+[SP01]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/SP01.png
+[SP02]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/SP02.png
 
-[DE01]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/DE01.png
-[DE02]: ./media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/DE02.png
+[DE01]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/DE01.png
+[DE02]: media/azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer/DE02.png
