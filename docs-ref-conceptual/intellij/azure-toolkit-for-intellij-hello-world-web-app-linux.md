@@ -141,7 +141,7 @@ For additional resources for Docker, see the official [Docker website][Docker].
 [Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
-[Create Docker Registry using Azure CLI]: container-registry/container-registry-get-started-azure-cli.md
+[Create Docker Registry using Azure CLI]: /azure/container-registry/container-registry-get-started-azure-cli
 
 [Docker]: https://www.docker.com/
 [Configuring artifacts]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html
