@@ -35,7 +35,7 @@ items:
 
     <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
 
-    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
 
@@ -43,7 +43,7 @@ items:
 
     iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
 
-    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
+    </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax: &o1
     content: public class EventData
   inheritance:
@@ -66,21 +66,21 @@ items:
     startLine: 141
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <preformatted>
+    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <pre>
 
     i.  Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
 
     ii. If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> for the Consumer.
 
-    </preformatted></p>
+    </pre></p>
 
-    <p>Sample Code: <preformatted><xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> eventData = new EventData(telemetryEventBytes);
+    <p>Sample Code: <pre><xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> eventData = new EventData(telemetryEventBytes);
 
     eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
 
     partitionSender.Send(eventData);
 
-    </preformatted></p>
+    </pre></p>
 
     <p></p>
   syntax:
@@ -109,15 +109,21 @@ items:
     startLine: 170
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <preformatted>
+    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <pre>
 
     i.  Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
 
     ii. If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> for the Consumer.
 
-     </preformatted></p>
+     </pre></p>
 
-    <p>Illustration: <preformatted><programlisting><codeline><highlight class="normal">EventData<sp></sp>eventData<sp></sp>=<sp></sp>new<sp></sp>EventData(telemetryEventBytes,<sp></sp>offset,<sp></sp>length);</highlight></codeline><codeline><highlight class="normal">eventData.getProperties().put("eventType",<sp></sp>"com.microsoft.azure.monitoring.EtlEvent");</highlight></codeline><codeline><highlight class="normal">partitionSender.Send(eventData);</highlight></codeline></programlisting></preformatted></p>
+    <p>Illustration: <pre><code>EventData eventData = new EventData(telemetryEventBytes, offset, length);
+
+        eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
+
+        partitionSender.Send(eventData);
+
+        </code></pre></p>
 
     <p></p>
   syntax:
@@ -152,15 +158,21 @@ items:
     startLine: 197
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <preformatted>
+    <p>Construct <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to Send to EventHubs. Typical pattern to create a Sending <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is: <pre>
 
     i.  Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
 
     ii. If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> for the Consumer.
 
-     </preformatted></p>
+     </pre></p>
 
-    <p>Illustration: <preformatted><programlisting><codeline><highlight class="normal">EventData<sp></sp>eventData<sp></sp>=<sp></sp>new<sp></sp>EventData(telemetryEventByteBuffer);</highlight></codeline><codeline><highlight class="normal">eventData.getProperties().put("eventType",<sp></sp>"com.microsoft.azure.monitoring.EtlEvent");</highlight></codeline><codeline><highlight class="normal"><sp></sp><sp></sp><sp></sp>partitionSender.Send(eventData);</highlight></codeline></programlisting></preformatted></p>
+    <p>Illustration: <pre><code>EventData eventData = new EventData(telemetryEventByteBuffer);
+
+        eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
+
+           partitionSender.Send(eventData);
+
+        </code></pre></p>
 
     <p></p>
   syntax:
@@ -554,7 +566,7 @@ references:
 
     <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
 
-    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
 
@@ -562,7 +574,7 @@ references:
 
     iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
 
-    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
+    </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax: *o1
 - uid: com.microsoft.azure.eventhubs._event_data.getProperties()
   parent: com.microsoft.azure.eventhubs._event_data
