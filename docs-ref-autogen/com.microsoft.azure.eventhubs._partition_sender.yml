@@ -77,21 +77,21 @@ items:
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific EventHub partition. The target partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. This send pattern emphasize data correlation over general availability and latency. </p>
 
-    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <preformatted>
+    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">EventHubClient#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">EventHubClient#send(Iterable)</xref>
 
     ii.  <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)" data-throw-if-not-resolved="false">EventHubClient#send(EventData, String)</xref> or <xref uid="" data-throw-if-not-resolved="false">EventHubClient#send(Iterable, String)</xref>
 
-    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></preformatted></p>
+    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></pre></p>
 
-    <p>Use this type of Send, if: <preformatted>
+    <p>Use this type of Send, if: <pre>
 
     i. The client wants to take direct control of distribution of data across partitions. In this case client is responsible for making sure there is at least one sender per event hub partition.
 
     ii. User cannot use partition key as a mean to direct events to specific partition, yet there is a need for data correlation with partitioning scheme.
 
-    </preformatted></p>
+    </pre></p>
 
     <p></p>
   syntax: &o2
@@ -124,25 +124,25 @@ items:
 
     <p>There are 3 ways to send to EventHubs, to understand this particular type of Send refer to the overload <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">send(EventData)</xref>, which is the same type of Send and is used to send single <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
-    <p>Sending a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s is useful in the following cases: <preformatted>
+    <p>Sending a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s is useful in the following cases: <pre>
 
     i.  Efficient send - sending a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> maximizes the overall throughput by optimally using the number of sessions created to EventHubs' service.
 
     ii. Send multiple <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s in a Transaction. To achieve ACID properties, the Gateway Service will forward all <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s in the batch to a single EventHubs' partition.
 
-    </preformatted></p>
+    </pre></p>
 
-    <p>Sample code (sample uses sync version of the api but concept are identical): <preformatted>
+    <p>Sample code (sample uses sync version of the api but concept are identical): <pre>
 
     Gson gson = new GsonBuilder().create();
 
     <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
 
-    <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> senderToPartitionOne = client.createPartitionSenderSync("1");</preformatted></p>
+    <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> senderToPartitionOne = client.createPartitionSenderSync("1");</pre></p>
 
     <p>
 
-      <preformatted>while (true)
+      <pre>while (true)
 
     {
 
@@ -166,19 +166,19 @@ items:
 
             events.add(sendEvent);
 
-        }</preformatted>
+        }</pre>
 
     </p>
 
     <p>
 
-      <preformatted>    senderToPartitionOne.sendSync(events);
+      <pre>    senderToPartitionOne.sendSync(events);
 
         System.out.println(String.format("Sent Batch... Size: %s", events.size()));
 
     }
 
-    </preformatted>
+    </pre>
 
     </p>
 
@@ -349,7 +349,7 @@ references:
 
     <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
 
-    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><preformatted>
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
 
@@ -357,7 +357,7 @@ references:
 
     iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
 
-    </preformatted> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
+    </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
     content: public class EventData
 - uid: com.microsoft.azure.eventhubs._partition_sender.send(EventData)
@@ -370,21 +370,21 @@ references:
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific EventHub partition. The target partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. This send pattern emphasize data correlation over general availability and latency. </p>
 
-    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <preformatted>
+    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">EventHubClient#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">EventHubClient#send(Iterable)</xref>
 
     ii.  <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)" data-throw-if-not-resolved="false">EventHubClient#send(EventData, String)</xref> or <xref uid="" data-throw-if-not-resolved="false">EventHubClient#send(Iterable, String)</xref>
 
-    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></preformatted></p>
+    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></pre></p>
 
-    <p>Use this type of Send, if: <preformatted>
+    <p>Use this type of Send, if: <pre>
 
     i. The client wants to take direct control of distribution of data across partitions. In this case client is responsible for making sure there is at least one sender per event hub partition.
 
     ii. User cannot use partition key as a mean to direct events to specific partition, yet there is a need for data correlation with partitioning scheme.
 
-    </preformatted></p>
+    </pre></p>
 
     <p></p>
   syntax: *o2
@@ -400,23 +400,23 @@ references:
 
     <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <itemizedlist><listitem><p><xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable)</xref></p></listitem><listitem><p><xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)" data-throw-if-not-resolved="false">send(EventData, String)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable, String)</xref></p></listitem><listitem><p><xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></p></listitem></itemizedlist></p>
 
-    <p>Use this method to Send, if: <preformatted>
+    <p>Use this method to Send, if: <pre>
 
     a)  the send(<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>) operation should be highly available and
 
     b)  the data needs to be evenly distributed among all partitions; exception being, when a subset of partitions are unavailable
 
-    </preformatted></p>
+    </pre></p>
 
     <p>
 
-      <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> send's the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a Service Gateway, which in-turn will forward the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to one of the EventHubs' partitions. Here's the message forwarding algorithm: <preformatted>
+      <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> send's the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a Service Gateway, which in-turn will forward the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to one of the EventHubs' partitions. Here's the message forwarding algorithm: <pre>
 
     i.  Forward the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s to EventHub partitions, by equally distributing the data among all partitions (ex: Round-robin the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s to all EventHubs' partitions)
 
     ii. If one of the EventHub partitions is unavailable for a moment, the Service Gateway will automatically detect it and forward the message to another available partition - making the Send operation highly-available.
 
-    </preformatted></p>
+    </pre></p>
 
     <p></p>
   syntax:
@@ -438,21 +438,21 @@ references:
   summary: >-
     <p>Send an '<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with a partitionKey' to EventHub. All <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s with a partitionKey are guaranteed to land on the same partition. This send pattern emphasize data correlation over general availability and latency. </p>
 
-    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <preformatted>
+    <p>There are 3 ways to send to EventHubs, each exposed as a method (along with its sendBatch overload): <pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable)</xref>
 
     ii.  <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)" data-throw-if-not-resolved="false">send(EventData, String)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable, String)</xref>
 
-    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></preformatted></p>
+    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></pre></p>
 
-    <p>Use this type of Send, if: <preformatted>
+    <p>Use this type of Send, if: <pre>
 
     i.  There is a need for correlation of events based on Sender instance; The sender can generate a UniqueId and set it as partitionKey - which on the received Message can be used for correlation
 
     ii. The client wants to take control of distribution of data across partitions.
 
-    </preformatted></p>
+    </pre></p>
 
     <p>Multiple PartitionKey's could be mapped to one Partition. EventHubs service uses a proprietary Hash algorithm to map the PartitionKey to a PartitionId. Using this type of Send (Sending using a specific partitionKey), could sometimes result in partitions which are not evenly distributed.</p>
 
@@ -515,13 +515,13 @@ references:
   summary: >-
     <p>Create a <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> which can publish <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s directly to a specific EventHub partition (sender type iii. in the below list). </p>
 
-    <p>There are 3 patterns/ways to send to EventHubs: <preformatted>
+    <p>There are 3 patterns/ways to send to EventHubs: <pre>
 
     i.   <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable)</xref>
 
     ii.  <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)" data-throw-if-not-resolved="false">send(EventData, String)</xref> or <xref uid="" data-throw-if-not-resolved="false">send(Iterable, String)</xref>
 
-    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></preformatted></p>
+    iii. <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">PartitionSender#send(EventData)</xref> or <xref uid="" data-throw-if-not-resolved="false">PartitionSender#send(Iterable)</xref></pre></p>
 
     <p></p>
   syntax:

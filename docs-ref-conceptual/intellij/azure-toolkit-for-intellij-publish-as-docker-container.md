@@ -1,10 +1,10 @@
 ---
-title: Publish a Docker container by using the Azure Toolkit for IntelliJ | Microsoft Docs
+title: Publish a Docker container by using the Azure Toolkit for IntelliJ
 description: Learn how to publish a web app to Microsoft Azure as a Docker container by using the Azure Toolkit for IntelliJ.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 09/11/2017
 ms.author: robmcm
 
 ---
@@ -182,44 +182,30 @@ For more information about creating artifacts in IntelliJ, see [Configuring arti
 
 ## Next steps
 
-For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
-
 For additional resources for Docker, see the official [Docker website].
 
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+
 <!-- URL List -->
-
-[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
-[Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
-[Create a Hello World web app for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
-[Create a Hello World web app for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Sign-in instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Sign-in instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's new in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's new in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
-
-[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 [Docker website]: https://www.docker.com/
 [Configuring artifacts]: https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html
 
 <!-- IMG List -->
 
-[PUB01]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB01.png
-[PUB02]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB02.png
-[PUB03]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB03.png
-[PUB04a]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04a.png
-[PUB04b]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04b.png
-[PUB04c]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04c.png
-[PUB04d]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04d.png
-[PUB05]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB05.png
-[PUB06]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB06.png
-[PUB07]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB07.png
-[PUB08]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB08.png
-[PUB09]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/PUB09.png
+[PUB01]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB01.png
+[PUB02]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB02.png
+[PUB03]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB03.png
+[PUB04a]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04a.png
+[PUB04b]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04b.png
+[PUB04c]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04c.png
+[PUB04d]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB04d.png
+[PUB05]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB05.png
+[PUB06]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB06.png
+[PUB07]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB07.png
+[PUB08]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB08.png
+[PUB09]: media/azure-toolkit-for-intellij-publish-as-docker-container/PUB09.png
 
-[ART01]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/ART01.png
-[ART02]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/ART02.png
-[ART03]: ./media/azure-toolkit-for-intellij-publish-as-docker-container/ART03.png
+[ART01]: media/azure-toolkit-for-intellij-publish-as-docker-container/ART01.png
+[ART02]: media/azure-toolkit-for-intellij-publish-as-docker-container/ART02.png
+[ART03]: media/azure-toolkit-for-intellij-publish-as-docker-container/ART03.png

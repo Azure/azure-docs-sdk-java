@@ -1,10 +1,10 @@
 ---
-title: Sign In Instructions for the Azure Toolkit for Eclipse | Microsoft Docs
+title: Sign In Instructions for the Azure Toolkit for Eclipse
 description: Learn how to sign into Microsoft Azure by using the Azure Toolkit for Eclipse.
 services: ''
 documentationcenter: java
 author: rmcmurray
-manager: erikre
+manager: routlaw
 editor: ''
 
 ms.assetid: 
@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 04/14/2017
+ms.date: 09/11/2017
 ms.author: robmcm
 
 ---
@@ -22,46 +22,12 @@ ms.author: robmcm
 
 The Azure Toolkit for Eclipse provides two methods for signing into your Azure account:
 
-  * **Interactive** - when you are using this method, you will enter your Azure credentials each time you sign into your Azure account.
   * **Automated** - when you are using this method, you will create a credentials file which contains your service principal data, after which you can use the credentials file to automatically sign into your Azure account.
+  * **Interactive** - when you are using this method, you will enter your Azure credentials each time you sign into your Azure account.
 
 The steps in the following sections will describe how to use each method.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
-
-## Signing into your Azure account interactively
-
-The following steps will illustrate how to sign into Azure by manually entering your Azure credentials.
-
-1. Open your project with Eclipse.
-
-1. Click **Tools**, then click **Azure**, and then click **Sign In**.
-
-   ![Eclipse Menu for Azure Sign In][I01]
-
-1. When the **Azure Sign In** dialog box appears, select **Interactive**, and then click **Sign In**.
-
-   ![Sign In Dialog Box][I02]
-
-1. When the **Azure Log In** dialog box appears, enter your Azure credentials, and then click **Sign In**.
-
-   ![Azure Log In Dialog Box][I03]
-
-1. When the **Select Subscriptions** dialog box appears, select the subscriptions that you want to use, and then click **OK**.
-
-   ![Select Subscriptions Dialog Box][I04]
-
-## Signing out of your Azure account when you signed in interactively
-
-After you have configured the steps in the previous section, you will automatically signed out of your Azure account each time you restart Eclipse. However, if you want to sign out of your Azure account without restarting Eclipse, use the following steps.
-
-1. In Eclipse, click **Tools**, then click **Azure**, and then click **Sign Out**.
-
-   ![Eclipse Menu for Azure Sign Out][L01]
-
-1. When the **Azure Sign Out** dialog box appears, click **Yes**.
-
-   ![Sign Out Dialog Box][L02]
 
 ## Signing into your Azure account automatically and creating a credentials file to use in the future
 
@@ -135,42 +101,63 @@ If you sign out of Azure when you are using Eclipse, you will need to reconfigur
 
    ![Select Subscriptions Dialog Box][A07]
 
-## See Also
+## Signing into your Azure account interactively
 
-For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
+The following steps will illustrate how to sign into Azure by manually entering your Azure credentials.
+
+1. Open your project with Eclipse.
+
+1. Click **Tools**, then click **Azure**, and then click **Sign In**.
+
+   ![Eclipse Menu for Azure Sign In][I01]
+
+1. When the **Azure Sign In** dialog box appears, select **Interactive**, and then click **Sign In**.
+
+   ![Sign In Dialog Box][I02]
+
+1. When the **Azure Log In** dialog box appears, enter your Azure credentials, and then click **Sign In**.
+
+   ![Azure Log In Dialog Box][I03]
+
+1. When the **Select Subscriptions** dialog box appears, select the subscriptions that you want to use, and then click **OK**.
+
+   ![Select Subscriptions Dialog Box][I04]
+
+## Signing out of your Azure account when you signed in interactively
+
+After you have configured the steps in the previous section, you will automatically signed out of your Azure account each time you restart Eclipse. However, if you want to sign out of your Azure account without restarting Eclipse, use the following steps.
+
+1. In Eclipse, click **Tools**, then click **Azure**, and then click **Sign Out**.
+
+   ![Eclipse Menu for Azure Sign Out][L01]
+
+1. When the **Azure Sign Out** dialog box appears, click **Yes**.
+
+   ![Sign Out Dialog Box][L02]
+
+## Next steps
+
+[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
 
 <!-- URL List -->
 
-[Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse.md
-[Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij.md
-[Create a Hello World Web App for Azure in Eclipse]: ./app-service-web/app-service-web-eclipse-create-hello-world-web-app.md
-[Create a Hello World Web App for Azure in IntelliJ]: ./app-service-web/app-service-web-intellij-create-hello-world-web-app.md
-[Installing the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-installation.md
-[Installing the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-installation.md
-[Sign In Instructions for the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-sign-in-instructions.md
-[Sign In Instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
-[What's New in the Azure Toolkit for Eclipse]: ./azure-toolkit-for-eclipse-whats-new.md
-[What's New in the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-whats-new.md
-
-[Azure Java Developer Center]: https://docs.microsoft.com/java/azure
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- IMG List -->
 
-[I01]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/I01.png
-[I02]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/I02.png
-[I03]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/I03.png
-[I04]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/I04.png
+[I01]: media/azure-toolkit-for-eclipse-sign-in-instructions/I01.png
+[I02]: media/azure-toolkit-for-eclipse-sign-in-instructions/I02.png
+[I03]: media/azure-toolkit-for-eclipse-sign-in-instructions/I03.png
+[I04]: media/azure-toolkit-for-eclipse-sign-in-instructions/I04.png
 
-[A01]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A01.png
-[A02]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A02.png
-[A03]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A03.png
-[A04]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A04.png
-[A05]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A05.png
-[A06]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A06.png
-[A07]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A07.png
-[A08]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/A08.png
+[A01]: media/azure-toolkit-for-eclipse-sign-in-instructions/A01.png
+[A02]: media/azure-toolkit-for-eclipse-sign-in-instructions/A02.png
+[A03]: media/azure-toolkit-for-eclipse-sign-in-instructions/A03.png
+[A04]: media/azure-toolkit-for-eclipse-sign-in-instructions/A04.png
+[A05]: media/azure-toolkit-for-eclipse-sign-in-instructions/A05.png
+[A06]: media/azure-toolkit-for-eclipse-sign-in-instructions/A06.png
+[A07]: media/azure-toolkit-for-eclipse-sign-in-instructions/A07.png
+[A08]: media/azure-toolkit-for-eclipse-sign-in-instructions/A08.png
 
-[L01]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/L01.png
-[L02]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/L02.png
-[L03]: ./media/azure-toolkit-for-eclipse-sign-in-instructions/L03.png
+[L01]: media/azure-toolkit-for-eclipse-sign-in-instructions/L01.png
+[L02]: media/azure-toolkit-for-eclipse-sign-in-instructions/L02.png
+[L03]: media/azure-toolkit-for-eclipse-sign-in-instructions/L03.png
