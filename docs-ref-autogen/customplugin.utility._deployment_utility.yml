@@ -6,18 +6,16 @@ items:
   children:
   - customplugin.utility._deployment_utility.build(String)
   - customplugin.utility._deployment_utility.clean(String)
-  - customplugin.utility._deployment_utility.connect(String)
-  - customplugin.utility._deployment_utility.connect(String,String)
+  - customplugin.utility._deployment_utility.connect(IProject,String)
   - customplugin.utility._deployment_utility.connect(String,String,String)
-  - customplugin.utility._deployment_utility.deploy(String)
-  - customplugin.utility._deployment_utility.deploy(String,String)
+  - customplugin.utility._deployment_utility.deploy(IProject)
   - customplugin.utility._deployment_utility.executeCommand(String)
   - customplugin.utility._deployment_utility.executeCommand(String,String)
   - customplugin.utility._deployment_utility.executeCommand(String [])
   - customplugin.utility._deployment_utility.getDeploymentProfileType(String)
   - customplugin.utility._deployment_utility.invokeWorkerThread(IRunnableWithProgress)
   - customplugin.utility._deployment_utility.rebuild(String)
-  - customplugin.utility._deployment_utility.uninstall(String)
+  - customplugin.utility._deployment_utility.uninstall(IProject)
   - customplugin.utility._deployment_utility.writeToPluginConsole(String,String)
   href: customplugin.utility._deployment_utility.yml
   langs:
@@ -32,7 +30,7 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 21
+    startLine: 26
   package: customplugin.utility
   summary: >-
     <p>
@@ -56,7 +54,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 117
+    startLine: 122
   package: customplugin.utility
   summary: >-
     <p>Given a project directory, build it using gradle</p>
@@ -81,7 +79,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 126
+    startLine: 131
   package: customplugin.utility
   summary: >-
     <p>Given a project-directory, clean it using</p>
@@ -92,57 +90,32 @@ items:
     parameters:
     - id: projectDirPath
       type: "26831127"
-- uid: customplugin.utility._deployment_utility.connect(String)
-  id: connect(String)
+- uid: customplugin.utility._deployment_utility.connect(IProject,String)
+  id: connect(IProject,String)
   parent: customplugin.utility._deployment_utility
   href: customplugin.utility._deployment_utility.yml
   langs:
   - java
-  name: connect(String projDirPath)
-  nameWithType: DeploymentUtility.connect(String projDirPath)
-  fullName: static void customplugin.utility.DeploymentUtility.connect(String projDirPath)
+  name: connect(IProject project, String localOrCloudPublishProfileFilePath)
+  nameWithType: DeploymentUtility.connect(IProject project, String localOrCloudPublishProfileFilePath)
+  fullName: static void customplugin.utility.DeploymentUtility.connect(IProject project, String localOrCloudPublishProfileFilePath)
   overload: customplugin.utility._deployment_utility.connect*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 161
+    startLine: 168
   package: customplugin.utility
   summary: >-
-    <p>Given a project-path, connects to cluster. Defaults to local cluster.</p>
+    <p>Given a reference to a eclipse project and local/cloud information, reads publish-profile connects to cluster.</p>
 
     <p></p>
   syntax:
-    content: public static void connect(String projDirPath)
+    content: public static void connect(IProject project, String localOrCloudPublishProfileFilePath)
     parameters:
-    - id: projDirPath
-      type: "26831127"
-- uid: customplugin.utility._deployment_utility.connect(String,String)
-  id: connect(String,String)
-  parent: customplugin.utility._deployment_utility
-  href: customplugin.utility._deployment_utility.yml
-  langs:
-  - java
-  name: connect(String projDirPath, String localOrCloud)
-  nameWithType: DeploymentUtility.connect(String projDirPath, String localOrCloud)
-  fullName: static void customplugin.utility.DeploymentUtility.connect(String projDirPath, String localOrCloud)
-  overload: customplugin.utility._deployment_utility.connect*
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 171
-  package: customplugin.utility
-  summary: >-
-    <p>Given a project-path and local/cloud information, connects to cluster.</p>
-
-    <p></p>
-  syntax:
-    content: public static void connect(String projDirPath, String localOrCloud)
-    parameters:
-    - id: projDirPath
-      type: "26831127"
-    - id: localOrCloud
+    - id: project
+      type: 1750ec8e
+    - id: localOrCloudPublishProfileFilePath
       type: "26831127"
 - uid: customplugin.utility._deployment_utility.connect(String,String,String)
   id: connect(String,String,String)
@@ -158,7 +131,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 198
+    startLine: 228
   package: customplugin.utility
   summary: >-
     <p>Given a project-path, script-path and local/cloud information, connects to cluster</p>
@@ -173,58 +146,31 @@ items:
       type: "26831127"
     - id: localOrCloud
       type: "26831127"
-- uid: customplugin.utility._deployment_utility.deploy(String)
-  id: deploy(String)
+- uid: customplugin.utility._deployment_utility.deploy(IProject)
+  id: deploy(IProject)
   parent: customplugin.utility._deployment_utility
   href: customplugin.utility._deployment_utility.yml
   langs:
   - java
-  name: deploy(String projDirPath)
-  nameWithType: DeploymentUtility.deploy(String projDirPath)
-  fullName: static void customplugin.utility.DeploymentUtility.deploy(String projDirPath)
+  name: deploy(IProject project)
+  nameWithType: DeploymentUtility.deploy(IProject project)
+  fullName: static void customplugin.utility.DeploymentUtility.deploy(IProject project)
   overload: customplugin.utility._deployment_utility.deploy*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 221
+    startLine: 263
   package: customplugin.utility
   summary: >-
-    <p>Given a project path, deploys the application</p>
+    <p>Given a project reference, deploys the application</p>
 
     <p></p>
   syntax:
-    content: public static void deploy(String projDirPath)
+    content: public static void deploy(IProject project)
     parameters:
-    - id: projDirPath
-      type: "26831127"
-- uid: customplugin.utility._deployment_utility.deploy(String,String)
-  id: deploy(String,String)
-  parent: customplugin.utility._deployment_utility
-  href: customplugin.utility._deployment_utility.yml
-  langs:
-  - java
-  name: deploy(String scriptPath, String projDirPath)
-  nameWithType: DeploymentUtility.deploy(String scriptPath, String projDirPath)
-  fullName: static void customplugin.utility.DeploymentUtility.deploy(String scriptPath, String projDirPath)
-  overload: customplugin.utility._deployment_utility.deploy*
-  type: Method
-  source:
-    remote: *o0
-    path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 246
-  package: customplugin.utility
-  summary: >-
-    <p>Given a project-path and script-path, deploys the application</p>
-
-    <p></p>
-  syntax:
-    content: public static void deploy(String scriptPath, String projDirPath)
-    parameters:
-    - id: scriptPath
-      type: "26831127"
-    - id: projDirPath
-      type: "26831127"
+    - id: project
+      type: 1750ec8e
 - uid: customplugin.utility._deployment_utility.executeCommand(String)
   id: executeCommand(String)
   parent: customplugin.utility._deployment_utility
@@ -239,7 +185,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 51
+    startLine: 56
   package: customplugin.utility
   summary: >-
     <p>Execute shell script command</p>
@@ -286,7 +232,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 71
+    startLine: 76
   package: customplugin.utility
   summary: >-
     <p>Execute a shell script command</p>
@@ -321,7 +267,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 31
+    startLine: 36
   package: customplugin.utility
   summary: >-
     <p>Execute list of shell script commands</p>
@@ -368,7 +314,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 294
+    startLine: 316
   package: customplugin.utility
   summary: >-
     <p>Given the target-profile, returns the <xref uid="customplugin.utility._deployment_profile_type" data-throw-if-not-resolved="false">DeploymentProfileType</xref></p>
@@ -401,7 +347,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 312
+    startLine: 334
   package: customplugin.utility
   summary: >-
     <p>Invokes the input worker thread, which would be for build, deploy etc.</p>
@@ -427,7 +373,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 135
+    startLine: 140
   package: customplugin.utility
   summary: >-
     <p>Given a project directory, build it using gradle</p>
@@ -438,31 +384,31 @@ items:
     parameters:
     - id: projectDirPath
       type: "26831127"
-- uid: customplugin.utility._deployment_utility.uninstall(String)
-  id: uninstall(String)
+- uid: customplugin.utility._deployment_utility.uninstall(IProject)
+  id: uninstall(IProject)
   parent: customplugin.utility._deployment_utility
   href: customplugin.utility._deployment_utility.yml
   langs:
   - java
-  name: uninstall(String projDirPath)
-  nameWithType: DeploymentUtility.uninstall(String projDirPath)
-  fullName: static void customplugin.utility.DeploymentUtility.uninstall(String projDirPath)
+  name: uninstall(IProject project)
+  nameWithType: DeploymentUtility.uninstall(IProject project)
+  fullName: static void customplugin.utility.DeploymentUtility.uninstall(IProject project)
   overload: customplugin.utility._deployment_utility.uninstall*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 269
+    startLine: 289
   package: customplugin.utility
   summary: >-
-    <p>Given a project-path, uninstalls the application</p>
+    <p>Given a project-refernce, uninstalls the application</p>
 
     <p></p>
   syntax:
-    content: public static void uninstall(String projDirPath)
+    content: public static void uninstall(IProject project)
     parameters:
-    - id: projDirPath
-      type: "26831127"
+    - id: project
+      type: 1750ec8e
 - uid: customplugin.utility._deployment_utility.writeToPluginConsole(String,String)
   id: writeToPluginConsole(String,String)
   parent: customplugin.utility._deployment_utility
@@ -477,7 +423,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/eclipseplugin/customplugin/src/customplugin/utility/DeploymentUtility.java
-    startLine: 105
+    startLine: 110
   package: customplugin.utility
   summary: >-
     <p>Given a console and a string to write, it will write the string to that console.</p>
@@ -552,6 +498,10 @@ references:
   nameWithType: DeploymentUtility.rebuild
   fullName: static void customplugin.utility.DeploymentUtility.rebuild
   package: customplugin.utility
+- uid: 1750ec8e
+  spec.java:
+  - name: IProject
+    fullName: IProject
 - uid: customplugin.utility._deployment_utility.connect*
   name: connect
   nameWithType: DeploymentUtility.connect

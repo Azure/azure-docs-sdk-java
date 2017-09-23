@@ -5,10 +5,14 @@ items:
   parent: system.fabric
   children:
   - system.fabric._cancellation_token.canBeCancelled()
+  - system.fabric._cancellation_token.close()
   - system.fabric._cancellation_token.getDefault()
   - system.fabric._cancellation_token.isCancelled()
   - system.fabric._cancellation_token.registerCancellationCallback(Runnable)
+  - system.fabric._cancellation_token.registerCancellationCallback(String,Runnable)
   - system.fabric._cancellation_token.throwIfCancellationRequested()
+  - system.fabric._cancellation_token.unregisterCancellationCallback(Runnable)
+  - system.fabric._cancellation_token.unregisterCancellationCallback(String,Runnable)
   href: system.fabric._cancellation_token.yml
   langs:
   - java
@@ -22,13 +26,14 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 15
+    startLine: 18
   package: system.fabric
   summary: <p>A <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">CancellationToken</xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref uid="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource</xref> object, which manages cancellation tokens retrieved from its <xref uid="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#getToken()</xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref uid="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#cancel()</xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
   syntax: &o2
     content: public class CancellationToken
   inheritance:
   - java.lang.Object
+  - AutoCloseable
 - uid: system.fabric._cancellation_token.canBeCancelled()
   id: canBeCancelled()
   parent: system.fabric._cancellation_token
@@ -43,7 +48,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 30
+    startLine: 34
   package: system.fabric
   summary: <p>Specifies if the Cancellation token can be cancelled or not. If the <xref uid="" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> is created using <xref uid="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#getToken()</xref>, then the token can cancelled using <xref uid="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#cancel()</xref> method. If the <xref uid="" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> is created using <xref uid="system.fabric._cancellation_token.getDefault()" data-throw-if-not-resolved="false">system.fabric.CancellationToken#getDefault()</xref>, then it can not be cancelled. It simply acts as a dummy token. </p>
   syntax:
@@ -51,6 +56,24 @@ items:
     return:
       type: 4fc6e284
       description: <p>Returns true if the token can be cancelled, else false. </p>
+- uid: system.fabric._cancellation_token.close()
+  id: close()
+  parent: system.fabric._cancellation_token
+  href: system.fabric._cancellation_token.yml
+  langs:
+  - java
+  name: close()
+  nameWithType: CancellationToken.close()
+  fullName: void system.fabric.CancellationToken.close()
+  overload: system.fabric._cancellation_token.close*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
+    startLine: 105
+  package: system.fabric
+  syntax:
+    content: public void close()
 - uid: system.fabric._cancellation_token.getDefault()
   id: getDefault()
   parent: system.fabric._cancellation_token
@@ -65,7 +88,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 58
+    startLine: 61
   package: system.fabric
   summary: >-
     <p>Creates and returns a Cancellation token object. This method should be used when the <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">CancellationToken</xref> doesn't support cancellation. Only Cancellation tokens created through <xref uid="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false">CancellationTokenSource#getToken()</xref> supports cancellations.</p>
@@ -95,7 +118,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 47
+    startLine: 50
   package: system.fabric
   summary: >-
     <p>Gets whether cancellation has been requested for this token.</p>
@@ -120,7 +143,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 73
+    startLine: 76
   package: system.fabric
   summary: <p>Registers a callback which will be executed when this <xref uid="" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> object is cancelled. </p>
   syntax:
@@ -132,6 +155,29 @@ items:
         <p>
 
           <xref uid="" data-throw-if-not-resolved="false">java.lang.Runnable</xref> to be executed when on token cancel event. </p>
+- uid: system.fabric._cancellation_token.registerCancellationCallback(String,Runnable)
+  id: registerCancellationCallback(String,Runnable)
+  parent: system.fabric._cancellation_token
+  href: system.fabric._cancellation_token.yml
+  langs:
+  - java
+  name: registerCancellationCallback(String name, Runnable callback)
+  nameWithType: CancellationToken.registerCancellationCallback(String name, Runnable callback)
+  fullName: void system.fabric.CancellationToken.registerCancellationCallback(String name, Runnable callback)
+  overload: system.fabric._cancellation_token.registerCancellationCallback*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
+    startLine: 80
+  package: system.fabric
+  syntax:
+    content: public void registerCancellationCallback(String name, Runnable callback)
+    parameters:
+    - id: name
+      type: "26831127"
+    - id: callback
+      type: 2b8852ea
 - uid: system.fabric._cancellation_token.throwIfCancellationRequested()
   id: throwIfCancellationRequested()
   parent: system.fabric._cancellation_token
@@ -146,11 +192,55 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
-    startLine: 65
+    startLine: 68
   package: system.fabric
   summary: <p>Throws a CancellationException if this token has had cancellation requested. </p>
   syntax:
     content: public void throwIfCancellationRequested()
+- uid: system.fabric._cancellation_token.unregisterCancellationCallback(Runnable)
+  id: unregisterCancellationCallback(Runnable)
+  parent: system.fabric._cancellation_token
+  href: system.fabric._cancellation_token.yml
+  langs:
+  - java
+  name: unregisterCancellationCallback(Runnable callback)
+  nameWithType: CancellationToken.unregisterCancellationCallback(Runnable callback)
+  fullName: void system.fabric.CancellationToken.unregisterCancellationCallback(Runnable callback)
+  overload: system.fabric._cancellation_token.unregisterCancellationCallback*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
+    startLine: 84
+  package: system.fabric
+  syntax:
+    content: public void unregisterCancellationCallback(Runnable callback)
+    parameters:
+    - id: callback
+      type: 2b8852ea
+- uid: system.fabric._cancellation_token.unregisterCancellationCallback(String,Runnable)
+  id: unregisterCancellationCallback(String,Runnable)
+  parent: system.fabric._cancellation_token
+  href: system.fabric._cancellation_token.yml
+  langs:
+  - java
+  name: unregisterCancellationCallback(String name, Runnable callback)
+  nameWithType: CancellationToken.unregisterCancellationCallback(String name, Runnable callback)
+  fullName: void system.fabric.CancellationToken.unregisterCancellationCallback(String name, Runnable callback)
+  overload: system.fabric._cancellation_token.unregisterCancellationCallback*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/CancellationToken.java
+    startLine: 88
+  package: system.fabric
+  syntax:
+    content: public void unregisterCancellationCallback(String name, Runnable callback)
+    parameters:
+    - id: name
+      type: "26831127"
+    - id: callback
+      type: 2b8852ea
 references:
 - uid: 4fc6e284
   spec.java:
@@ -179,6 +269,20 @@ references:
   name: registerCancellationCallback
   nameWithType: CancellationToken.registerCancellationCallback
   fullName: void system.fabric.CancellationToken.registerCancellationCallback
+  package: system.fabric
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: system.fabric._cancellation_token.unregisterCancellationCallback*
+  name: unregisterCancellationCallback
+  nameWithType: CancellationToken.unregisterCancellationCallback
+  fullName: void system.fabric.CancellationToken.unregisterCancellationCallback
+  package: system.fabric
+- uid: system.fabric._cancellation_token.close*
+  name: close
+  nameWithType: CancellationToken.close
+  fullName: void system.fabric.CancellationToken.close
   package: system.fabric
 - uid: system.fabric._cancellation_token.getDefault*
   name: getDefault
