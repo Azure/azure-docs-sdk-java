@@ -76,6 +76,7 @@ items:
   - system.fabric._fabric_replicator_settings
   - system.fabric._fabric_rolling_upgrade_update_flags
   - system.fabric._fabric_runtime
+  - system.fabric._fabric_state_replicator
   - system.fabric._fabric_upgrade_description
   - system.fabric._fabric_upgrade_progress
   - system.fabric._fabric_upgrade_state
@@ -105,6 +106,7 @@ items:
   - system.fabric._key_value_store_replica
   - system.fabric._key_value_store_replica_settings
   - system.fabric._key_value_store_transaction_settings
+  - system.fabric._ktl_logger_shared_log_settings
   - system.fabric._load_metric
   - system.fabric._local_store_kind
   - system.fabric._local_store_settings
@@ -252,6 +254,8 @@ items:
   - system.fabric._transaction
   - system.fabric._transaction_base
   - system.fabric._transaction_isolation_level
+  - system.fabric._transactional_replicator_settings
+  - system.fabric._transactional_replicator_settings_flags
   - system.fabric._unknown_safety_check
   - system.fabric._unknown_upgrade_safety_check
   - system.fabric._upgrade_domain_progress
@@ -1100,6 +1104,15 @@ references:
   summary: <p>Allows user created hosts to obtain their <xref uid="system.fabric._code_package_activation_context" data-throw-if-not-resolved="false">system.fabric.CodePackageActivationContext</xref>, well as to register the necessary service factories [ <xref uid="system.fabric._stateless_service_factory" data-throw-if-not-resolved="false">system.fabric.StatelessServiceFactory</xref>, <xref uid="system.fabric._stateful_service_factory" data-throw-if-not-resolved="false">system.fabric.StatefulServiceFactory</xref> ] or service types directly. </p>
   syntax:
     content: public class FabricRuntime
+- uid: system.fabric._fabric_state_replicator
+  parent: system.fabric
+  href: system.fabric._fabric_state_replicator.yml
+  name: FabricStateReplicator
+  nameWithType: FabricStateReplicator
+  fullName: system.fabric.FabricStateReplicator
+  type: Class
+  syntax:
+    content: public class FabricStateReplicator extends FabricReplicator
 - uid: system.fabric._fabric_upgrade_description
   parent: system.fabric
   href: system.fabric._fabric_upgrade_description.yml
@@ -1386,6 +1399,15 @@ references:
   summary: <p>Specifies the optional settings to describe the behavior of transactions supported by <xref uid="system.fabric._key_value_store_replica" data-throw-if-not-resolved="false">system.fabric.KeyValueStoreReplica</xref>. </p>
   syntax:
     content: public class KeyValueStoreTransactionSettings
+- uid: system.fabric._ktl_logger_shared_log_settings
+  parent: system.fabric
+  href: system.fabric._ktl_logger_shared_log_settings.yml
+  name: KtlLoggerSharedLogSettings
+  nameWithType: KtlLoggerSharedLogSettings
+  fullName: system.fabric.KtlLoggerSharedLogSettings
+  type: Class
+  syntax:
+    content: public class KtlLoggerSharedLogSettings
 - uid: system.fabric._load_metric
   parent: system.fabric
   href: system.fabric._load_metric.yml
@@ -1674,7 +1696,7 @@ references:
 
       <b>Remarks:</b>
 
-      <xref uid="" data-throw-if-not-resolved="false">system.fabric.Operation</xref> is the base interface that describes state changes that are delivered to a Secondary replica. They contain the <xref uid="" data-throw-if-not-resolved="false">system.fabric.StateReplicator#replicateAsync(OperationData, SequenceNumber, system.fabric.CancellationToken)</xref> and the sequence number and other identifying information. </p>
+      <xref uid="" data-throw-if-not-resolved="false">system.fabric.Operation</xref> is the base interface that describes state changes that are delivered to a Secondary replica. They contain the <xref uid="system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)" data-throw-if-not-resolved="false">system.fabric.StateReplicator#replicateAsync(OperationData, SequenceNumber, system.fabric.CancellationToken)</xref> and the sequence number and other identifying information. </p>
   syntax:
     content: public interface Operation
 - uid: system.fabric._operation_data
@@ -2125,6 +2147,7 @@ references:
   nameWithType: ReplicaRole
   fullName: system.fabric.ReplicaRole
   type: Enum
+  summary: <p>Defines the replica role </p>
   syntax:
     content: public enum ReplicaRole
 - uid: system.fabric._replica_set_configuration
@@ -2823,6 +2846,7 @@ references:
   nameWithType: StateReplicator
   fullName: system.fabric.StateReplicator
   type: Interface
+  summary: <p>Exposes replication related functions of the <xref uid="system.fabric._fabric_replicator" data-throw-if-not-resolved="false">FabricReplicator</xref> class that are used by <xref uid="system.fabric._state_provider" data-throw-if-not-resolved="false">StateProvider</xref> to replicate state to ensure high availability. </p>
   syntax:
     content: public interface StateReplicator
 - uid: system.fabric._state_replicator2
@@ -2873,6 +2897,24 @@ references:
   type: Class
   syntax:
     content: public class Transaction extends TransactionBase
+- uid: system.fabric._transactional_replicator_settings
+  parent: system.fabric
+  href: system.fabric._transactional_replicator_settings.yml
+  name: TransactionalReplicatorSettings
+  nameWithType: TransactionalReplicatorSettings
+  fullName: system.fabric.TransactionalReplicatorSettings
+  type: Class
+  syntax:
+    content: public class TransactionalReplicatorSettings
+- uid: system.fabric._transactional_replicator_settings_flags
+  parent: system.fabric
+  href: system.fabric._transactional_replicator_settings_flags.yml
+  name: TransactionalReplicatorSettingsFlags
+  nameWithType: TransactionalReplicatorSettingsFlags
+  fullName: system.fabric.TransactionalReplicatorSettingsFlags
+  type: Enum
+  syntax:
+    content: public enum TransactionalReplicatorSettingsFlags
 - uid: system.fabric._transaction_base
   parent: system.fabric
   href: system.fabric._transaction_base.yml

@@ -66,10 +66,12 @@ references:
   nameWithType: StateReplicator.getCopyStream()
   fullName: OperationStream system.fabric.StateReplicator.getCopyStream()
   type: Method
+  summary: <p>Gets copy stream </p>
   syntax:
     content: public OperationStream getCopyStream()
     return:
       type: system.fabric._operation_stream
+      description: <p>The returned CopyStream contains <xref uid="system.fabric._operation_data" data-throw-if-not-resolved="false">OperationData</xref> objects that implement <xref uid="system.fabric._operation" data-throw-if-not-resolved="false">Operation</xref>. The <xref uid="system.fabric._operation_data" data-throw-if-not-resolved="false">OperationData</xref> objects are obtained from the CopyState <xref uid="system.fabric._operation_data_stream" data-throw-if-not-resolved="false">OperationDataStream</xref> that the Primary replica returns from <xref uid="system.fabric._state_provider.getCopyState(SequenceNumber,OperationDataStream)" data-throw-if-not-resolved="false">StateProvider#getCopyState(SequenceNumber, OperationDataStream)</xref>. When a replica is created and has to catch up, it should obtain the CopyStream and begin to send, apply, and acknowledge the Copy objects that implement <xref uid="system.fabric._operation" data-throw-if-not-resolved="false">Operation</xref>. In parallel, the replica responds to the corresponding <xref uid="system.fabric._state_provider.getCopyContext()" data-throw-if-not-resolved="false">StateProvider#getCopyContext()</xref> and <xref uid="" data-throw-if-not-resolved="false">OperationDataStream#getNextAsync(CancellationToken)</xref>calls. The stream is empty when the returned <xref uid="system.fabric._operation" data-throw-if-not-resolved="false">Operation</xref> method is null. </p>
 - uid: system.fabric._state_replicator.getReplicationStream()
   parent: system.fabric._state_replicator
   href: system.fabric._state_replicator.yml
@@ -77,10 +79,12 @@ references:
   nameWithType: StateReplicator.getReplicationStream()
   fullName: OperationStream system.fabric.StateReplicator.getReplicationStream()
   type: Method
+  summary: <p>Gets replication stream. </p>
   syntax:
     content: public OperationStream getReplicationStream()
     return:
       type: system.fabric._operation_stream
+      description: <p>The ReplicationStream implements <xref uid="system.fabric._operation_stream" data-throw-if-not-resolved="false">OperationStream</xref>. The ReplicationStream contains <xref uid="system.fabric._operation_data" data-throw-if-not-resolved="false">OperationData</xref> objects that implement <xref uid="system.fabric._operation" data-throw-if-not-resolved="false">Operation</xref>. The objects are provided by the Primary replica via <xref uid="system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)" data-throw-if-not-resolved="false">StateReplicator#replicateAsync(OperationData, SequenceNumber, CancellationToken)</xref>. Generally a Secondary replica should send <xref uid="" data-throw-if-not-resolved="false">OperationStream#getOperationAsync(CancellationToken)</xref>. Although Service Fabric does not require services to do so, generally services should transfer all <xref uid="system.fabric._operation_data" data-throw-if-not-resolved="false">OperationData</xref> objects out of the copy stream first, and then transfer operations out of the replication stream. The transfer from both copies in parallel is supported but increases the complexity of applying state updates correctly and is recommended only for advanced services. The stream is empty when the returned <xref uid="system.fabric._operation" data-throw-if-not-resolved="false">Operation</xref> method is null. </p>
 - uid: system.fabric._state_replicator.replicateAsync(OperationData,SequenceNumber,CancellationToken)
   parent: system.fabric._state_replicator
   href: system.fabric._state_replicator.yml
@@ -88,17 +92,22 @@ references:
   nameWithType: StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
   fullName: CompletableFuture<SequenceNumber> system.fabric.StateReplicator.replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
   type: Method
+  summary: <p>Replicates state changes from Primary replica to the Secondary replicas and receives a quorum acknowledgement that those state changes have been applied. </p>
   syntax:
     content: public CompletableFuture<SequenceNumber> replicateAsync(OperationData operationData, SequenceNumber sequenceNumber, CancellationToken cancellationToken)
     parameters:
     - id: operationData
       type: system.fabric._operation_data
+      description: <p>Represents the state change that the Primary replica wants to replicate. </p>
     - id: sequenceNumber
       type: system.fabric._sequence_number
+      description: <p>Long, the LSN of the operation. Note that this is the same value which is returned by the task. Providing it as an out parameter is useful for services which want to prepare the local write to commit when the task finishes. </p>
     - id: cancellationToken
       type: system.fabric._cancellation_token
+      description: <p>A write quorum of replicas that have been lost. It can be used to send a notification that the operation should be canceled. Note that cancellation is advisory and that the operation might still be completed even if it is canceled. </p>
     return:
       type: 9cdf14d0system.fabric._sequence_numbera08ddfce
+      description: <p>Returns completable future of type long, the LSN of the operation. </p>
 - uid: system.fabric._state_replicator.updateReplicatorSettings(ReplicatorSettings)
   parent: system.fabric._state_replicator
   href: system.fabric._state_replicator.yml
@@ -106,11 +115,13 @@ references:
   nameWithType: StateReplicator.updateReplicatorSettings(ReplicatorSettings settings)
   fullName: void system.fabric.StateReplicator.updateReplicatorSettings(ReplicatorSettings settings)
   type: Method
+  summary: <p>Enables modification of replicator settings during runtime. The only setting which can be modified is the security credentials. </p>
   syntax:
     content: public void updateReplicatorSettings(ReplicatorSettings settings)
     parameters:
     - id: settings
       type: system.fabric._replicator_settings
+      description: <p>The new <xref uid="system.fabric._replicator_settings" data-throw-if-not-resolved="false">ReplicatorSettings</xref> with updated credentials. </p>
 - uid: system.fabric._state_replicator
   parent: system.fabric
   href: system.fabric._state_replicator.yml
@@ -118,9 +129,9 @@ references:
   nameWithType: StateReplicator
   fullName: system.fabric.StateReplicator
   type: Interface
+  summary: <p>Exposes replication related functions of the <xref uid="system.fabric._fabric_replicator" data-throw-if-not-resolved="false">FabricReplicator</xref> class that are used by <xref uid="system.fabric._state_provider" data-throw-if-not-resolved="false">StateProvider</xref> to replicate state to ensure high availability. </p>
   syntax:
     content: public interface StateReplicator
-- uid: system.fabric._j_state_replicator
 - uid: system.fabric._replicator_settings
   parent: system.fabric
   href: system.fabric._replicator_settings.yml
