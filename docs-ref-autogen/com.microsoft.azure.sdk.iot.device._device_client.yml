@@ -10,6 +10,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.DEVICE_ID_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient()
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,IotHubClientProtocol)
+  - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,IotHubClientProtocol,String,boolean,String,boolean)
   - com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device._device_client.open()
   - com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS
@@ -41,7 +42,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 38
+    startLine: 40
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>The public-facing API. Allows a single logical or physical device to connect to an IoT Hub. The IoT Hub client supports sending events to and receiving messages from an IoT Hub. </p>
@@ -70,7 +71,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 214
+    startLine: 262
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Completes all current outstanding requests and closes the IoT Hub client. Must be called to terminate the background thread that is sending data to IoT Hub. After<code>close() 
@@ -97,7 +98,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 242
+    startLine: 290
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Closes the IoT Hub client by releasing any resources held by client. When closeNow is called all the messages that were in transit or pending to be sent will be informed to the user in the callbacks and any existing connection to IotHub will be closed. Must be called to terminate the background thread that is sending data to IoT Hub. After<code>closeNow() 
@@ -123,7 +124,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 95
+    startLine: 97
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -158,7 +159,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 75
+    startLine: 77
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -194,7 +195,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 544
+    startLine: 575
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClient()
@@ -212,7 +213,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 128
+    startLine: 130
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Constructor that takes a connection string as an argument.</p>
@@ -251,9 +252,55 @@ items:
 
           </code> , or <code>SharedAccessKey 
 
-          </code> . </p>
+          </code> or if the IoT hub hostname does not conform to RFC 3986 or if the provided<code>connString 
+
+          </code> is for an x509 authenticated device </p>
   - type: "44102508"
-    description: <p>if the IoT hub hostname does not conform to RFC 3986. </p>
+    description: <p>if the hostname in the connection string is not a valid URI </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,IotHubClientProtocol,String,boolean,String,boolean)
+  id: DeviceClient(String,IotHubClientProtocol,String,boolean,String,boolean)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: DeviceClient(String connString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
+  nameWithType: DeviceClient.DeviceClient(String connString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.DeviceClient(String connString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
+  overload: com.microsoft.azure.sdk.iot.device._device_client.DeviceClient*
+  type: Constructor
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 157
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Constructor that uses x509 authentication for communicating with IotHub</p>
+
+    <p></p>
+  syntax:
+    content: public DeviceClient(String connString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
+    parameters:
+    - id: connString
+      type: "26831127"
+      description: '<p>the connection string for the x509 device to connect as (format: "HostName=...;DeviceId=...;x509=true") </p>'
+    - id: protocol
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_client_protocol
+      description: <p>the protocol to use when communicating with IotHub </p>
+    - id: publicKeyCertificate
+      type: "26831127"
+      description: <p>the PEM formatted public key certificate or the path to a PEM formatted public key certificate file </p>
+    - id: isCertificatePath
+      type: 4fc6e284
+      description: <p>if the provided publicKeyCertificate is a path to a file containing the PEM formatted public key certificate </p>
+    - id: privateKey
+      type: "26831127"
+      description: <p>the PEM formatted private key or the path to a PEM formatted private key file </p>
+    - id: isPrivateKeyPath
+      type: 4fc6e284
+      description: <p>if the provided privateKey is a path to a file containing the PEM formatted private key </p>
+  exceptions:
+  - type: "44102508"
+    description: <p>if the hostname in the connection string is not a valid URI </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE
   id: HOSTNAME_ATTRIBUTE
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -267,7 +314,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 69
+    startLine: 71
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -303,7 +350,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 191
+    startLine: 237
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Starts asynchronously sending and receiving messages from an IoT Hub. If the client is already open, the function shall do nothing.</p>
@@ -313,7 +360,7 @@ items:
     content: public void open()
   exceptions:
   - type: cbf33bbe
-    description: <p>if a connection to an IoT Hub is cannot be established. </p>
+    description: <p>if a connection to an IoT Hub cannot be established. </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS
   id: RECEIVE_PERIOD_MILLIS
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -327,7 +374,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 109
+    startLine: 111
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected long RECEIVE_PERIOD_MILLIS
@@ -346,7 +393,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 58
+    startLine: 60
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -383,7 +430,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 62
+    startLine: 64
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_HTTPS= 25*60*1000
@@ -402,7 +449,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 60
+    startLine: 62
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_MQTT= 10L
@@ -422,7 +469,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 804
+    startLine: 846
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Registers a callback to be executed whenever the connection to the device is lost or established.</p>
@@ -453,7 +500,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 48
+    startLine: 50
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -491,7 +538,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 270
+    startLine: 318
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Asynchronously sends an event message to the IoT Hub.</p>
@@ -537,7 +584,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 398
+    startLine: 444
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sends reported properties</p>
@@ -571,7 +618,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 294
+    startLine: 340
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets the message callback.</p>
@@ -617,7 +664,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 722
+    startLine: 765
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets a runtime option identified by parameter<code>optionName 
@@ -644,6 +691,9 @@ items:
     - id: value
       type: "79317049"
       description: <p>an object of the appropriate type for the option's value </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided optionName is null </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.SHARED_ACCESS_KEY_ATTRIBUTE
   id: SHARED_ACCESS_KEY_ATTRIBUTE
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -657,7 +707,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 81
+    startLine: 83
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -692,7 +742,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 87
+    startLine: 89
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>
@@ -728,7 +778,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 322
+    startLine: 368
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Starts the device twin.</p>
@@ -785,7 +835,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 365
+    startLine: 411
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to desired properties</p>
@@ -817,7 +867,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 442
+    startLine: 488
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to device methods</p>
@@ -869,7 +919,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 489
+    startLine: 535
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Asynchronously upload a stream to the IoT Hub.</p>
@@ -936,6 +986,10 @@ references:
   nameWithType: DeviceClient.DeviceClient
   fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.DeviceClient
   package: com.microsoft.azure.sdk.iot.device
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: cbf33bbe
   spec.java:
   - name: IOException
