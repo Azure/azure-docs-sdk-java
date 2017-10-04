@@ -84,6 +84,9 @@ items:
   - com.microsoft.azure.batch.protocol.models._compute_node_update_user_headers
   - com.microsoft.azure.batch.protocol.models._compute_node_update_user_options
   - com.microsoft.azure.batch.protocol.models._compute_node_user
+  - com.microsoft.azure.batch.protocol.models._container_configuration
+  - com.microsoft.azure.batch.protocol.models._container_registry
+  - com.microsoft.azure.batch.protocol.models._data_disk
   - com.microsoft.azure.batch.protocol.models._delete_certificate_error
   - com.microsoft.azure.batch.protocol.models._dependency_action
   - com.microsoft.azure.batch.protocol.models._disable_compute_node_scheduling_option
@@ -276,6 +279,7 @@ items:
   - com.microsoft.azure.batch.protocol.models._start_task
   - com.microsoft.azure.batch.protocol.models._start_task_information
   - com.microsoft.azure.batch.protocol.models._start_task_state
+  - com.microsoft.azure.batch.protocol.models._storage_account_type
   - com.microsoft.azure.batch.protocol.models._subtask_information
   - com.microsoft.azure.batch.protocol.models._subtask_state
   - com.microsoft.azure.batch.protocol.models._task_add_collection_headers
@@ -288,6 +292,8 @@ items:
   - com.microsoft.azure.batch.protocol.models._task_add_result
   - com.microsoft.azure.batch.protocol.models._task_add_status
   - com.microsoft.azure.batch.protocol.models._task_constraints
+  - com.microsoft.azure.batch.protocol.models._task_container_execution_information
+  - com.microsoft.azure.batch.protocol.models._task_container_settings
   - com.microsoft.azure.batch.protocol.models._task_count_validation_status
   - com.microsoft.azure.batch.protocol.models._task_counts
   - com.microsoft.azure.batch.protocol.models._task_delete_headers
@@ -1158,6 +1164,36 @@ references:
   summary: <p>A user account for RDP or SSH access on a compute node. </p>
   syntax:
     content: public class ComputeNodeUser
+- uid: com.microsoft.azure.batch.protocol.models._container_configuration
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._container_configuration.yml
+  name: ContainerConfiguration
+  nameWithType: ContainerConfiguration
+  fullName: com.microsoft.azure.batch.protocol.models.ContainerConfiguration
+  type: Class
+  summary: <p>The configuration for container-enabled pools. </p>
+  syntax:
+    content: public class ContainerConfiguration
+- uid: com.microsoft.azure.batch.protocol.models._container_registry
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._container_registry.yml
+  name: ContainerRegistry
+  nameWithType: ContainerRegistry
+  fullName: com.microsoft.azure.batch.protocol.models.ContainerRegistry
+  type: Class
+  summary: <p>A private container registry. </p>
+  syntax:
+    content: public class ContainerRegistry
+- uid: com.microsoft.azure.batch.protocol.models._data_disk
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._data_disk.yml
+  name: DataDisk
+  nameWithType: DataDisk
+  fullName: com.microsoft.azure.batch.protocol.models.DataDisk
+  type: Class
+  summary: <p>Settings which will be used by the data disks associated to compute nodes in the pool. </p>
+  syntax:
+    content: public class DataDisk
 - uid: com.microsoft.azure.batch.protocol.models._delete_certificate_error
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._delete_certificate_error.yml
@@ -1475,7 +1511,7 @@ references:
   nameWithType: ImageReference
   fullName: com.microsoft.azure.batch.protocol.models.ImageReference
   type: Class
-  summary: <p>A reference to an Azure Virtual Machines Marketplace image. To get the list of all imageReferences verified by Azure Batch, see the 'List supported node agent SKUs' operation. </p>
+  summary: <p>A reference to an Azure Virtual Machines Marketplace image or a custom Azure Virtual Machine image. To get the list of all Azure Marketplace image references verified by Azure Batch, see the 'List node agent SKUs' operation. </p>
   syntax:
     content: public class ImageReference
 - uid: com.microsoft.azure.batch.protocol.models._inbound_endpoint
@@ -1795,7 +1831,7 @@ references:
   nameWithType: JobManagerTask
   fullName: com.microsoft.azure.batch.protocol.models.JobManagerTask
   type: Class
-  summary: <p>Specifies details of a Job Manager task. </p>
+  summary: <p>Specifies details of a Job Manager task. The Job Manager task is automatically started when the job is created. The Batch service tries to schedule the Job Manager task before any other tasks in the job. When shrinking a pool, the Batch service tries to preserve compute nodes where Job Manager tasks are running for as long as possible (that is, nodes running 'normal' tasks are removed before nodes running Job Manager tasks). When a Job Manager task fails and needs to be restarted, the system tries to schedule it at the highest priority. If there are no idle nodes available, the system may terminate one of the running tasks in the pool and return it to the queue in order to make room for the Job Manager task to restart. Note that a Job Manager task in one job does not have priority over tasks in other jobs. Across jobs, only job level priorities are observed. For example, if a Job Manager in a priority 0 job needs to be restarted, it will not displace tasks of a priority 1 job. </p>
   syntax:
     content: public class JobManagerTask
 - uid: com.microsoft.azure.batch.protocol.models._job_patch_headers
@@ -1845,7 +1881,7 @@ references:
   nameWithType: JobPreparationTask
   fullName: com.microsoft.azure.batch.protocol.models.JobPreparationTask
   type: Class
-  summary: <p>A Job Preparation task to run before any tasks of the job on any given compute node. </p>
+  summary: '<p>A Job Preparation task to run before any tasks of the job on any given compute node. You can use Job Preparation to prepare a compute node to run tasks for the job. Activities commonly performed in Job Preparation include: Downloading common resource files used by all the tasks in the job. The Job Preparation task can download these common resource files to the shared location on the compute node. (AZ_BATCH_NODE_ROOT_DIR), or starting a local service on the compute node so that all tasks of that job can communicate with it. If the Job Preparation task fails (that is, exhausts its retry count before exiting with exit code 0), Batch will not run tasks of this job on the compute node. The node remains ineligible to run tasks of this job until it is reimaged. The node remains active and can be used for other jobs. The Job Preparation task can run multiple times on the same compute node. Therefore, you should write the Job Preparation task to handle re-execution. If the compute node is rebooted, the Job Preparation task is run again on the node before scheduling any other task of the job, if rerunOnNodeRebootAfterSuccess is true or if the Job Preparation task did not previously complete. If the compute node is reimaged, the Job Preparation task is run again before scheduling any task of the job. </p>'
   syntax:
     content: public class JobPreparationTask
 - uid: com.microsoft.azure.batch.protocol.models._job_preparation_task_execution_information
@@ -1875,7 +1911,7 @@ references:
   nameWithType: JobReleaseTask
   fullName: com.microsoft.azure.batch.protocol.models.JobReleaseTask
   type: Class
-  summary: <p>A Job Release task to run on job completion on any compute node where the job has run. </p>
+  summary: "<p>A Job Release task to run on job completion on any compute node where the job has run. The Job Release task runs when the job ends, because of one of the following: The user calls the Terminate Job API, or the Delete Job API while the job is still active, the job's maximum wall clock time constraint is reached, and the job is still active, or the job's Job Manager task completed, and the job is configured to terminate when the Job Manager completes. The Job Release task runs on each compute node where tasks of the job have run and the Job Preparation task ran and completed. If you reimage a compute node after it has run the Job Preparation task, and the job ends without any further tasks of the job running on that compute node (and hence the Job Preparation task does not re-run), then the Job Release task does not run on that node. If a compute node reboots while the Job Release task is still running, the Job Release task runs again when the compute node starts up. The job is not marked as complete until all Job Release tasks have completed. The Job Release task runs in the background. It does not occupy a scheduling slot; that is, it does not count towards the maxTasksPerNode limit specified on the pool. </p>"
   syntax:
     content: public class JobReleaseTask
 - uid: com.microsoft.azure.batch.protocol.models._job_release_task_execution_information
@@ -2435,7 +2471,7 @@ references:
   nameWithType: OSDisk
   fullName: com.microsoft.azure.batch.protocol.models.OSDisk
   type: Class
-  summary: <p>A reference to an OS disk image. </p>
+  summary: <p>Settings for the operating system disk of the virtual machine. </p>
   syntax:
     content: public class OSDisk
 - uid: com.microsoft.azure.batch.protocol.models._o_s_type
@@ -3084,6 +3120,16 @@ references:
   summary: <p>Defines values for <xref uid="com.microsoft.azure.batch.protocol.models._start_task_state" data-throw-if-not-resolved="false">StartTaskState</xref>. </p>
   syntax:
     content: public enum StartTaskState
+- uid: com.microsoft.azure.batch.protocol.models._storage_account_type
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._storage_account_type.yml
+  name: StorageAccountType
+  nameWithType: StorageAccountType
+  fullName: com.microsoft.azure.batch.protocol.models.StorageAccountType
+  type: Enum
+  summary: <p>Defines values for <xref uid="com.microsoft.azure.batch.protocol.models._storage_account_type" data-throw-if-not-resolved="false">StorageAccountType</xref>. </p>
+  syntax:
+    content: public enum StorageAccountType
 - uid: com.microsoft.azure.batch.protocol.models._subtask_information
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._subtask_information.yml
@@ -3204,6 +3250,26 @@ references:
   summary: <p>Execution constraints to apply to a task. </p>
   syntax:
     content: public class TaskConstraints
+- uid: com.microsoft.azure.batch.protocol.models._task_container_execution_information
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._task_container_execution_information.yml
+  name: TaskContainerExecutionInformation
+  nameWithType: TaskContainerExecutionInformation
+  fullName: com.microsoft.azure.batch.protocol.models.TaskContainerExecutionInformation
+  type: Class
+  summary: <p>Contains information about the container which a task is executing. </p>
+  syntax:
+    content: public class TaskContainerExecutionInformation
+- uid: com.microsoft.azure.batch.protocol.models._task_container_settings
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models._task_container_settings.yml
+  name: TaskContainerSettings
+  nameWithType: TaskContainerSettings
+  fullName: com.microsoft.azure.batch.protocol.models.TaskContainerSettings
+  type: Class
+  summary: <p>The container settings for a task. </p>
+  syntax:
+    content: public class TaskContainerSettings
 - uid: com.microsoft.azure.batch.protocol.models._task_counts
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models._task_counts.yml

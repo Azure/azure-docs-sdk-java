@@ -116,10 +116,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 59
+    startLine: 60
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -152,10 +152,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 101
+    startLine: 106
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -191,10 +191,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 80
+    startLine: 83
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -226,10 +226,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 70
+    startLine: 72
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -264,10 +264,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 124
+    startLine: 131
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -302,10 +302,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 113
+    startLine: 119
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -343,10 +343,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 237
+    startLine: 245
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -357,7 +357,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     return:
       type: com.microsoft.azure.batch.protocol.models._task_add_collection_result
       description: <p>the TaskAddCollectionResult object if successful. </p>
@@ -382,10 +382,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 284
+    startLine: 292
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -396,7 +396,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     - id: taskAddCollectionOptions
       type: com.microsoft.azure.batch.protocol.models._task_add_collection_options
       description: <p>Additional parameters for the operation </p>
@@ -424,10 +424,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 260
+    startLine: 268
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -438,7 +438,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     return:
       type: c2d0e8c6com.microsoft.azure.batch.protocol.models._task_add_collection_resulta08ddfce
       description: <p>the observable to the TaskAddCollectionResult object </p>
@@ -459,10 +459,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 249
+    startLine: 257
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -473,7 +473,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     - id: serviceCallback
       type: 897eb10acom.microsoft.azure.batch.protocol.models._task_add_collection_resulta08ddfce
       description: <p>the async ServiceCallback to handle successful and failed responses. </p>
@@ -497,10 +497,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 309
+    startLine: 317
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -511,7 +511,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     - id: taskAddCollectionOptions
       type: com.microsoft.azure.batch.protocol.models._task_add_collection_options
       description: <p>Additional parameters for the operation </p>
@@ -535,10 +535,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 297
+    startLine: 305
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -549,7 +549,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     - id: taskAddCollectionOptions
       type: com.microsoft.azure.batch.protocol.models._task_add_collection_options
       description: <p>Additional parameters for the operation </p>
@@ -576,10 +576,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 271
+    startLine: 279
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -590,7 +590,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     return:
       type: cc516622com.microsoft.azure.batch.protocol.models._task_add_collection_resultb33c76fccom.microsoft.azure.batch.protocol.models._task_add_collection_headerse7daa122
       description: <p>the observable to the TaskAddCollectionResult object </p>
@@ -611,10 +611,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 321
+    startLine: 329
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task ids during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly.</p>
+    <p>Adds a collection of tasks to the specified job. Note that each task must have a unique ID. The Batch service may not return the results for each task in the same order the tasks were submitted in this request. If the server times out or the connection is closed during the request, the request may have been partially or fully processed, or not at all. In such cases, the user should re-issue the request. Note that it is up to the user to correctly handle failures when re-issuing a request. For example, you should use the same task IDs during a retry so that if the prior operation succeeded, the retry will not create extra tasks unexpectedly. If the response contains any tasks which failed to add, a client can retry the request. In a retry, it is most efficient to resubmit only tasks that failed to add, and to omit tasks that were successfully added on the first attempt. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -625,7 +625,7 @@ items:
       description: <p>The ID of the job to which the task collection is to be added. </p>
     - id: value
       type: 5618da2dcom.microsoft.azure.batch.protocol.models._task_add_parametera08ddfce
-      description: <p>The collection of tasks to add. </p>
+      description: <p>The collection of tasks to add. The total serialized size of this collection must be less than 4MB. If it is greater than 4MB (for example if each task has 100's of resource files or environment variables), the request will fail with code 'RequestBodyTooLarge' and should be retried again with fewer tasks. </p>
     - id: taskAddCollectionOptions
       type: com.microsoft.azure.batch.protocol.models._task_add_collection_options
       description: <p>Additional parameters for the operation </p>
@@ -649,10 +649,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 90
+    startLine: 94
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -684,10 +684,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 135
+    startLine: 143
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Adds a task to the specified job.</p>
+    <p>Adds a task to the specified job. The maximum lifetime of a task from addition to completion is 7 days. If a task has not completed within 7 days of being added it will be terminated by the Batch service and left in whatever state it was in at that time.</p>
 
     <p></p>
   syntax:
@@ -722,7 +722,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 333
+    startLine: 341
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -758,7 +758,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 379
+    startLine: 387
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -797,7 +797,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 356
+    startLine: 364
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -832,7 +832,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 345
+    startLine: 353
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -870,7 +870,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 404
+    startLine: 412
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -908,7 +908,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 392
+    startLine: 400
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -949,7 +949,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 367
+    startLine: 375
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -984,7 +984,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 416
+    startLine: 424
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Deletes a task from the specified job. When a task is deleted, all of the files in its directory on the compute node where it ran are also deleted (regardless of the retention time). For multi-instance tasks, the delete task operation applies synchronously to the primary task; subtasks and their files are then deleted asynchronously in the background.</p>
@@ -1022,7 +1022,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 429
+    startLine: 437
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1061,7 +1061,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 476
+    startLine: 484
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1103,7 +1103,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 452
+    startLine: 460
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1138,7 +1138,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 441
+    startLine: 449
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1176,7 +1176,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 501
+    startLine: 509
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1214,7 +1214,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 489
+    startLine: 497
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1255,7 +1255,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 463
+    startLine: 471
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1290,7 +1290,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 513
+    startLine: 521
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Gets information about the specified task. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1328,7 +1328,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 147
+    startLine: 155
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1364,7 +1364,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 190
+    startLine: 198
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1403,7 +1403,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 168
+    startLine: 176
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1435,7 +1435,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 158
+    startLine: 166
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1470,7 +1470,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 213
+    startLine: 221
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1505,7 +1505,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 202
+    startLine: 210
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1543,7 +1543,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 903
+    startLine: 911
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1579,7 +1579,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 947
+    startLine: 955
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1618,7 +1618,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 925
+    startLine: 933
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1650,7 +1650,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 915
+    startLine: 923
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1688,7 +1688,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 971
+    startLine: 979
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1723,7 +1723,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 960
+    startLine: 968
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1764,7 +1764,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 935
+    startLine: 943
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1796,7 +1796,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 982
+    startLine: 990
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -1831,7 +1831,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 617
+    startLine: 625
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -1870,7 +1870,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 664
+    startLine: 672
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -1912,7 +1912,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 640
+    startLine: 648
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -1947,7 +1947,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 629
+    startLine: 637
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -1985,7 +1985,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 689
+    startLine: 697
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -2023,7 +2023,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 677
+    startLine: 685
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -2064,7 +2064,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 651
+    startLine: 659
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -2099,7 +2099,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 701
+    startLine: 709
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the subtasks that are associated with the specified multi-instance task. If the task is not a multi-instance task then this returns an empty collection.</p>
@@ -2137,7 +2137,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 178
+    startLine: 186
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -2169,7 +2169,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 224
+    startLine: 232
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Lists all of the tasks that are associated with the specified job. For multi-instance tasks, information such as affinityId, executionInfo and nodeInfo refer to the primary task. Use the list subtasks API to retrieve information about subtasks.</p>
@@ -2204,10 +2204,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 808
+    startLine: 816
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2240,10 +2240,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 854
+    startLine: 862
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2279,10 +2279,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 831
+    startLine: 839
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2314,10 +2314,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 820
+    startLine: 828
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2352,10 +2352,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 879
+    startLine: 887
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2390,10 +2390,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 867
+    startLine: 875
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2431,10 +2431,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 842
+    startLine: 850
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2466,10 +2466,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 891
+    startLine: 899
   package: com.microsoft.azure.batch.protocol
   summary: >-
-    <p>Reactivates the specified task. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or scheduling error is no longer available after reactivation. This will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, this will fail if the job has completed (or is terminating or deleting).</p>
+    <p>Reactivates a task, allowing it to run again even if its retry count has been exhausted. Reactivation makes a task eligible to be retried again up to its maximum retry count. The task's state is changed to active. As the task is no longer in the completed state, any previous exit code or failure information is no longer available after reactivation. Each time a task is reactivated, its retry count is reset to 0. Reactivation will fail for tasks that are not completed or that previously completed successfully (with an exit code of 0). Additionally, it will fail if the job has completed (or is terminating or deleting).</p>
 
     <p></p>
   syntax:
@@ -2504,7 +2504,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 713
+    startLine: 721
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2540,7 +2540,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 759
+    startLine: 767
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2579,7 +2579,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 736
+    startLine: 744
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2614,7 +2614,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 725
+    startLine: 733
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2652,7 +2652,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 784
+    startLine: 792
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2690,7 +2690,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 772
+    startLine: 780
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2731,7 +2731,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 747
+    startLine: 755
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2766,7 +2766,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 796
+    startLine: 804
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Terminates the specified task. When the task has been terminated, it moves to the completed state. For multi-instance tasks, the terminate task operation applies synchronously to the primary task; subtasks are then terminated asynchronously in the background.</p>
@@ -2804,7 +2804,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 524
+    startLine: 532
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -2840,7 +2840,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 567
+    startLine: 575
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -2857,7 +2857,7 @@ items:
       description: <p>The ID of the task to update. </p>
     - id: constraints
       type: com.microsoft.azure.batch.protocol.models._task_constraints
-      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. </p>
+      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. For multi-instance tasks, updating the retention time applies only to the primary task and not subtasks. </p>
     - id: taskUpdateOptions
       type: com.microsoft.azure.batch.protocol.models._task_update_options
       description: <p>Additional parameters for the operation </p>
@@ -2882,7 +2882,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 545
+    startLine: 553
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -2917,7 +2917,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 535
+    startLine: 543
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -2955,7 +2955,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 592
+    startLine: 600
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -2972,7 +2972,7 @@ items:
       description: <p>The ID of the task to update. </p>
     - id: constraints
       type: com.microsoft.azure.batch.protocol.models._task_constraints
-      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. </p>
+      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. For multi-instance tasks, updating the retention time applies only to the primary task and not subtasks. </p>
     - id: taskUpdateOptions
       type: com.microsoft.azure.batch.protocol.models._task_update_options
       description: <p>Additional parameters for the operation </p>
@@ -2996,7 +2996,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 580
+    startLine: 588
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -3013,7 +3013,7 @@ items:
       description: <p>The ID of the task to update. </p>
     - id: constraints
       type: com.microsoft.azure.batch.protocol.models._task_constraints
-      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. </p>
+      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. For multi-instance tasks, updating the retention time applies only to the primary task and not subtasks. </p>
     - id: taskUpdateOptions
       type: com.microsoft.azure.batch.protocol.models._task_update_options
       description: <p>Additional parameters for the operation </p>
@@ -3040,7 +3040,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 555
+    startLine: 563
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -3075,7 +3075,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/Tasks.java
-    startLine: 604
+    startLine: 612
   package: com.microsoft.azure.batch.protocol
   summary: >-
     <p>Updates the properties of the specified task.</p>
@@ -3092,7 +3092,7 @@ items:
       description: <p>The ID of the task to update. </p>
     - id: constraints
       type: com.microsoft.azure.batch.protocol.models._task_constraints
-      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. </p>
+      description: <p>Constraints that apply to this task. If omitted, the task is given the default constraints. For multi-instance tasks, updating the retention time applies only to the primary task and not subtasks. </p>
     - id: taskUpdateOptions
       type: com.microsoft.azure.batch.protocol.models._task_update_options
       description: <p>Additional parameters for the operation </p>
