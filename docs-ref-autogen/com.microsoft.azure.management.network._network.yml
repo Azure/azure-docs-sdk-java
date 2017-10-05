@@ -6,6 +6,9 @@ items:
   children:
   - com.microsoft.azure.management.network._network.addressSpaces()
   - com.microsoft.azure.management.network._network.dnsServerIPs()
+  - com.microsoft.azure.management.network._network.isPrivateIPAddressAvailable(String)
+  - com.microsoft.azure.management.network._network.isPrivateIPAddressInNetwork(String)
+  - com.microsoft.azure.management.network._network.peerings()
   - com.microsoft.azure.management.network._network.subnets()
   href: com.microsoft.azure.management.network._network.yml
   langs:
@@ -17,10 +20,10 @@ items:
   source:
     remote: &o0
       path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
-      branch: 880e2022bf46b71f481107effb7c878a9ae065dd
+      branch: v1.3.0
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
-    startLine: 24
+    startLine: 26
   package: com.microsoft.azure.management.network
   summary: <p>Entry point for Virtual <xref uid="com.microsoft.azure.management.network._network" data-throw-if-not-resolved="false">Network</xref> management API in <xref uid="com.microsoft.azure.management._azure" data-throw-if-not-resolved="false">Azure</xref>. </p>
   syntax: &o1
@@ -53,7 +56,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
-    startLine: 35
+    startLine: 50
   package: com.microsoft.azure.management.network
   syntax:
     content: public List<String> addressSpaces()
@@ -74,13 +77,86 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
-    startLine: 40
+    startLine: 55
   package: com.microsoft.azure.management.network
   syntax:
     content: public List<String> dnsServerIPs()
     return:
       type: 7d60c20e
       description: <p>list of DNS server IP addresses associated with this virtual network </p>
+- uid: com.microsoft.azure.management.network._network.isPrivateIPAddressAvailable(String)
+  id: isPrivateIPAddressAvailable(String)
+  parent: com.microsoft.azure.management.network._network
+  href: com.microsoft.azure.management.network._network.yml
+  langs:
+  - java
+  name: isPrivateIPAddressAvailable(String ipAddress)
+  nameWithType: Network.isPrivateIPAddressAvailable(String ipAddress)
+  fullName: boolean com.microsoft.azure.management.network.Network.isPrivateIPAddressAvailable(String ipAddress)
+  overload: com.microsoft.azure.management.network._network.isPrivateIPAddressAvailable*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
+    startLine: 37
+  package: com.microsoft.azure.management.network
+  summary: <p>Checks if the specified private IP address is available in this network. </p>
+  syntax:
+    content: public boolean isPrivateIPAddressAvailable(String ipAddress)
+    parameters:
+    - id: ipAddress
+      type: "26831127"
+      description: <p>an IP address from this network's address space </p>
+    return:
+      type: 4fc6e284
+      description: <p>true if the address is within this network's address space and is available </p>
+- uid: com.microsoft.azure.management.network._network.isPrivateIPAddressInNetwork(String)
+  id: isPrivateIPAddressInNetwork(String)
+  parent: com.microsoft.azure.management.network._network
+  href: com.microsoft.azure.management.network._network.yml
+  langs:
+  - java
+  name: isPrivateIPAddressInNetwork(String ipAddress)
+  nameWithType: Network.isPrivateIPAddressInNetwork(String ipAddress)
+  fullName: boolean com.microsoft.azure.management.network.Network.isPrivateIPAddressInNetwork(String ipAddress)
+  overload: com.microsoft.azure.management.network._network.isPrivateIPAddressInNetwork*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
+    startLine: 45
+  package: com.microsoft.azure.management.network
+  summary: <p>Checks if the specified private IP address is within this network's address space. </p>
+  syntax:
+    content: public boolean isPrivateIPAddressInNetwork(String ipAddress)
+    parameters:
+    - id: ipAddress
+      type: "26831127"
+      description: <p>an IP address </p>
+    return:
+      type: 4fc6e284
+      description: <p>true if the specified IP address is within this network's address space, otherwise false </p>
+- uid: com.microsoft.azure.management.network._network.peerings()
+  id: peerings()
+  parent: com.microsoft.azure.management.network._network
+  href: com.microsoft.azure.management.network._network.yml
+  langs:
+  - java
+  name: peerings()
+  nameWithType: Network.peerings()
+  fullName: NetworkPeerings com.microsoft.azure.management.network.Network.peerings()
+  overload: com.microsoft.azure.management.network._network.peerings*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
+    startLine: 69
+  package: com.microsoft.azure.management.network
+  syntax:
+    content: public NetworkPeerings peerings()
+    return:
+      type: com.microsoft.azure.management.network._network_peerings
+      description: <p>entry point to managing virtual network peerings for this network </p>
 - uid: com.microsoft.azure.management.network._network.subnets()
   id: subnets()
   parent: com.microsoft.azure.management.network._network
@@ -95,7 +171,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/Network.java
-    startLine: 48
+    startLine: 63
   package: com.microsoft.azure.management.network
   summary: >-
     <p></p>
@@ -107,6 +183,24 @@ items:
       type: 2108f1f4com.microsoft.azure.management.network._subneta08ddfce
       description: <p>subnets of this virtual network as a map indexed by subnet name</p>
 references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.management.network._network.isPrivateIPAddressAvailable*
+  name: isPrivateIPAddressAvailable
+  nameWithType: Network.isPrivateIPAddressAvailable
+  fullName: boolean com.microsoft.azure.management.network.Network.isPrivateIPAddressAvailable
+  package: com.microsoft.azure.management.network
+- uid: com.microsoft.azure.management.network._network.isPrivateIPAddressInNetwork*
+  name: isPrivateIPAddressInNetwork
+  nameWithType: Network.isPrivateIPAddressInNetwork
+  fullName: boolean com.microsoft.azure.management.network.Network.isPrivateIPAddressInNetwork
+  package: com.microsoft.azure.management.network
 - uid: 7d60c20e
   spec.java:
   - name: List<String>
@@ -135,6 +229,11 @@ references:
   name: subnets
   nameWithType: Network.subnets
   fullName: Map<String, Subnet> com.microsoft.azure.management.network.Network.subnets
+  package: com.microsoft.azure.management.network
+- uid: com.microsoft.azure.management.network._network.peerings*
+  name: peerings
+  nameWithType: Network.peerings
+  fullName: NetworkPeerings com.microsoft.azure.management.network.Network.peerings
   package: com.microsoft.azure.management.network
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id.id()
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models._has_id
@@ -360,9 +459,19 @@ references:
   nameWithType: Subnet
   fullName: com.microsoft.azure.management.network.Subnet
   type: Interface
-  summary: <p>An immutable client-side representation of a subnet of a virtual network. </p>
+  summary: <p>A client-side representation of a subnet of a virtual network. </p>
   syntax:
     content: public interface Subnet
+- uid: com.microsoft.azure.management.network._network_peerings
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._network_peerings.yml
+  name: NetworkPeerings
+  nameWithType: NetworkPeerings
+  fullName: com.microsoft.azure.management.network.NetworkPeerings
+  type: Interface
+  summary: <p>Entry point to network peering management API. </p>
+  syntax:
+    content: public interface NetworkPeerings
 - uid: com.microsoft.azure.management.network._network
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._network.yml
