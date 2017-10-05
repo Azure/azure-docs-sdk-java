@@ -13,14 +13,14 @@ items:
   source:
     remote:
       path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-      branch: 880e2022bf46b71f481107effb7c878a9ae065dd
+      branch: v1.3.0
       repo: https://github.com/Azure/azure-sdk-for-java
     path: azure-mgmt-network/src/main/java/com/microsoft/azure/management/network/LoadBalancer.java
-    startLine: 74
+    startLine: 107
   package: com.microsoft.azure.management.network
   summary: <p>The entirety of the load balancer definition. </p>
   syntax:
-    content: public interface Definition extends LoadBalancer.DefinitionStages.Blank,LoadBalancer.DefinitionStages.WithGroup,LoadBalancer.DefinitionStages.WithFrontend,LoadBalancer.DefinitionStages.WithCreate,LoadBalancer.DefinitionStages.WithPublicFrontendOrBackend,LoadBalancer.DefinitionStages.WithPrivateFrontendOrBackend,LoadBalancer.DefinitionStages.WithNetworkSubnet,LoadBalancer.DefinitionStages.WithBackend,LoadBalancer.DefinitionStages.WithBackendOrProbe,LoadBalancer.DefinitionStages.WithProbe,LoadBalancer.DefinitionStages.WithProbeOrLoadBalancingRule,LoadBalancer.DefinitionStages.WithProbeOrNat,LoadBalancer.DefinitionStages.WithLoadBalancingRule,LoadBalancer.DefinitionStages.WithLoadBalancingRuleOrCreate,LoadBalancer.DefinitionStages.WithCreateAndInboundNatPool,LoadBalancer.DefinitionStages.WithCreateAndInboundNatRule,LoadBalancer.DefinitionStages.WithCreateAndNatChoice
+    content: public interface Definition extends LoadBalancer.DefinitionStages.Blank,LoadBalancer.DefinitionStages.WithGroup,LoadBalancer.DefinitionStages.WithCreate,LoadBalancer.DefinitionStages.WithBackend,LoadBalancer.DefinitionStages.WithLoadBalancingRule,LoadBalancer.DefinitionStages.WithLBRuleOrNat,LoadBalancer.DefinitionStages.WithLBRuleOrNatOrCreate,LoadBalancer.DefinitionStages.WithCreateAndInboundNatPool,LoadBalancer.DefinitionStages.WithCreateAndInboundNatRule,LoadBalancer.DefinitionStages.WithCreateAndNatChoice
   inheritedMembers:
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.create()
   - com.microsoft.azure.management.resources.fluentcore.model._creatable.createAsync(final ServiceCallback<T>)
@@ -35,14 +35,9 @@ items:
   - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineTcpProbe(String)
   - com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   - com.microsoft.azure.management.resources.fluentcore.arm.models._has_name.name()
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.withExistingVirtualMachines(HasNetworkInterfaces...)
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet.withFrontendSubnet(Network,String)
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withHttpProbe(String)
-  - com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.withLoadBalancingRule(int,TransportProtocol,int)
-  - com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.withLoadBalancingRule(int,TransportProtocol)
+  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_sku.withSku(LoadBalancerSkuType)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTags(Map<String, String>)
-  - com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withTcpProbe(int)
 references:
 - uid: com.microsoft.azure.management.resources.fluentcore.model._creatable.create()
   parent: com.microsoft.azure.management.resources.fluentcore.model._creatable
@@ -101,37 +96,34 @@ references:
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.yml
   name: defineBackend(String name)
   nameWithType: LoadBalancer.DefinitionStages.WithBackend.defineBackend(String name)
-  fullName: LoadBalancerBackend.DefinitionStages.Blank<WithBackendOrProbe> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackend.defineBackend(String name)
+  fullName: LoadBalancerBackend.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackend.defineBackend(String name)
   type: Method
   summary: <p>Starts the definition of a backend. </p>
   syntax:
-    content: public LoadBalancerBackend.DefinitionStages.Blank<WithBackendOrProbe> defineBackend(String name)
+    content: public LoadBalancerBackend.DefinitionStages.Blank<WithCreate> defineBackend(String name)
     parameters:
     - id: name
       type: "26831127"
       description: <p>the name to assign to the backend </p>
     return:
-      type: 4ca3e598com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probea08ddfce
+      type: 4ca3e598com.microsoft.azure.management.network._load_balancer._definition_stages._with_createa08ddfce
       description: <p>the next stage of the update </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineHttpProbe(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
   name: defineHttpProbe(String name)
   nameWithType: LoadBalancer.DefinitionStages.WithProbe.defineHttpProbe(String name)
-  fullName: LoadBalancerHttpProbe.DefinitionStages.Blank<WithProbeOrLoadBalancingRule> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.defineHttpProbe(String name)
+  fullName: LoadBalancerHttpProbe.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.defineHttpProbe(String name)
   type: Method
-  summary: >-
-    <p>Begins the definition of a new HTTP probe to add to the load balancer. </p>
-
-    <p>The definition must be completed with a call to <xref uid="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false">LoadBalancerHttpProbe.DefinitionStages.WithAttach#attach()</xref></p>
+  summary: <p>Begins the definition of a new HTTP probe to add to the load balancer. </p>
   syntax:
-    content: public LoadBalancerHttpProbe.DefinitionStages.Blank<WithProbeOrLoadBalancingRule> defineHttpProbe(String name)
+    content: public LoadBalancerHttpProbe.DefinitionStages.Blank<WithCreate> defineHttpProbe(String name)
     parameters:
     - id: name
       type: "26831127"
       description: <p>the name of the probe </p>
     return:
-      type: c813f461com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6a08ddfce
+      type: c813f461com.microsoft.azure.management.network._load_balancer._definition_stages._with_createa08ddfce
       description: <p>the first stage of the new probe definition </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_pool.defineInboundNatPool(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_inbound_nat_pool
@@ -160,10 +152,7 @@ references:
   nameWithType: LoadBalancer.DefinitionStages.WithInboundNatRule.defineInboundNatRule(String name)
   fullName: LoadBalancerInboundNatRule.DefinitionStages.Blank<WithCreateAndInboundNatRule> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithInboundNatRule.defineInboundNatRule(String name)
   type: Method
-  summary: >-
-    <p>Begins the definition of a new inbound NAT rule to add to the load balancer. </p>
-
-    <p>The definition must be completed with a call to <xref uid="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false">LoadBalancerInboundNatRule.DefinitionStages.WithAttach#attach()</xref></p>
+  summary: <p>Begins the definition of a new inbound NAT rule to add to the load balancer. </p>
   syntax:
     content: public LoadBalancerInboundNatRule.DefinitionStages.Blank<WithCreateAndInboundNatRule> defineInboundNatRule(String name)
     parameters:
@@ -178,74 +167,74 @@ references:
   href: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.yml
   name: defineLoadBalancingRule(String name)
   nameWithType: LoadBalancer.DefinitionStages.WithLoadBalancingRule.defineLoadBalancingRule(String name)
-  fullName: LoadBalancingRule.DefinitionStages.Blank<WithLoadBalancingRuleOrCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLoadBalancingRule.defineLoadBalancingRule(String name)
+  fullName: LoadBalancingRule.DefinitionStages.Blank<WithLBRuleOrNatOrCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLoadBalancingRule.defineLoadBalancingRule(String name)
   type: Method
-  summary: >-
-    <p>Begins the definition of a new load balancing rule to add to the load balancer. </p>
-
-    <p>The definition must be completed with a call to <xref uid="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false">LoadBalancingRule.DefinitionStages.WithAttach#attach()</xref></p>
+  summary: <p>Begins the definition of a new load balancing rule to add to the load balancer. </p>
   syntax:
-    content: public LoadBalancingRule.DefinitionStages.Blank<WithLoadBalancingRuleOrCreate> defineLoadBalancingRule(String name)
+    content: public LoadBalancingRule.DefinitionStages.Blank<WithLBRuleOrNatOrCreate> defineLoadBalancingRule(String name)
     parameters:
     - id: name
       type: "26831127"
       description: <p>the name of the load balancing rule </p>
     return:
-      type: f685ce58com.microsoft.azure.management.network._load_balancer._definition_sta9d74f24e1c6844c1407c3a1a3de3b187a08ddfce
+      type: f685ce58com.microsoft.azure.management.network._load_balancer._definition_sta8630b661e2d2a7a382c616df9a6aed5ba08ddfce
       description: <p>the first stage of the new load balancing rule definition </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_private_frontend.definePrivateFrontend(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_private_frontend
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_private_frontend.yml
   name: definePrivateFrontend(String name)
   nameWithType: LoadBalancer.DefinitionStages.WithPrivateFrontend.definePrivateFrontend(String name)
-  fullName: LoadBalancerPrivateFrontend.DefinitionStages.Blank<WithPrivateFrontendOrBackend> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPrivateFrontend.definePrivateFrontend(String name)
-  type: Method
-  syntax:
-    content: public LoadBalancerPrivateFrontend.DefinitionStages.Blank<WithPrivateFrontendOrBackend> definePrivateFrontend(String name)
-    parameters:
-    - id: name
-      type: "26831127"
-    return:
-      type: 9e278c36com.microsoft.azure.management.network._load_balancer._definition_sta01506d95eede28f60114acac161a0e64a08ddfce
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend.definePublicFrontend(String)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend.yml
-  name: definePublicFrontend(String name)
-  nameWithType: LoadBalancer.DefinitionStages.WithPublicFrontend.definePublicFrontend(String name)
-  fullName: LoadBalancerPublicFrontend.DefinitionStages.Blank<WithPublicFrontendOrBackend> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPublicFrontend.definePublicFrontend(String name)
+  fullName: LoadBalancerPrivateFrontend.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPrivateFrontend.definePrivateFrontend(String name)
   type: Method
   summary: >-
-    <p>Begins the definition of a new load public balancer frontend. </p>
+    <p>Begins an explicit definition of a new private (internal) load balancer frontend. </p>
 
-    <p>The definition must be completed with a call to <xref uid="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false">LoadBalancerPublicFrontend.DefinitionStages.WithAttach#attach()</xref></p>
+    <p>(Note that private frontends can also be created implicitly as part of a load balancing rule, inbound NAT rule or inbound NAT pool definition, by referencing an existing subnet within those definitions.) </p>
   syntax:
-    content: public LoadBalancerPublicFrontend.DefinitionStages.Blank<WithPublicFrontendOrBackend> definePublicFrontend(String name)
+    content: public LoadBalancerPrivateFrontend.DefinitionStages.Blank<WithCreate> definePrivateFrontend(String name)
     parameters:
     - id: name
       type: "26831127"
       description: <p>the name for the frontend </p>
     return:
-      type: 233b2dcdcom.microsoft.azure.management.network._load_balancer._definition_sta63b05de135bb5a49cc15b225a239ff9fa08ddfce
-      description: <p>the first stage of the new frontend definition </p>
+      type: 9e278c36com.microsoft.azure.management.network._load_balancer._definition_stages._with_createa08ddfce
+      description: <p>the first stage of a new frontend definition </p>
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend.definePublicFrontend(String)
+  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_public_frontend.yml
+  name: definePublicFrontend(String name)
+  nameWithType: LoadBalancer.DefinitionStages.WithPublicFrontend.definePublicFrontend(String name)
+  fullName: LoadBalancerPublicFrontend.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPublicFrontend.definePublicFrontend(String name)
+  type: Method
+  summary: >-
+    <p>Begins an explicit definition of a new public (Internet-facing) load balancer frontend. </p>
+
+    <p>(Note that frontends can also be created implicitly as part of a load balancing rule, inbound NAT rule or inbound NAT pool definition, by referencing an existing public IP address within those definitions.) </p>
+  syntax:
+    content: public LoadBalancerPublicFrontend.DefinitionStages.Blank<WithCreate> definePublicFrontend(String name)
+    parameters:
+    - id: name
+      type: "26831127"
+      description: <p>the name for the frontend </p>
+    return:
+      type: 233b2dcdcom.microsoft.azure.management.network._load_balancer._definition_stages._with_createa08ddfce
+      description: <p>the first stage of a new frontend definition </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.defineTcpProbe(String)
   parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
   name: defineTcpProbe(String name)
   nameWithType: LoadBalancer.DefinitionStages.WithProbe.defineTcpProbe(String name)
-  fullName: LoadBalancerTcpProbe.DefinitionStages.Blank<WithProbeOrLoadBalancingRule> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.defineTcpProbe(String name)
+  fullName: LoadBalancerTcpProbe.DefinitionStages.Blank<WithCreate> com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.defineTcpProbe(String name)
   type: Method
-  summary: >-
-    <p>Begins the definition of a new TCP probe to add to the load balancer. </p>
-
-    <p>The definition must be completed with a call to <xref uid="com.microsoft.azure.management.resources.fluentcore.model._attachable._in_definition.attach()" data-throw-if-not-resolved="false">LoadBalancerTcpProbe.DefinitionStages.WithAttach#attach()</xref></p>
+  summary: <p>Begins the definition of a new TCP probe to add to the load balancer. </p>
   syntax:
-    content: public LoadBalancerTcpProbe.DefinitionStages.Blank<WithProbeOrLoadBalancingRule> defineTcpProbe(String name)
+    content: public LoadBalancerTcpProbe.DefinitionStages.Blank<WithCreate> defineTcpProbe(String name)
     parameters:
     - id: name
       type: "26831127"
       description: <p>the name of the probe </p>
     return:
-      type: 93bcca18com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6a08ddfce
+      type: 93bcca18com.microsoft.azure.management.network._load_balancer._definition_stages._with_createa08ddfce
       description: <p>the first stage of the new probe definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.model._indexable.key()
   parent: com.microsoft.azure.management.resources.fluentcore.model._indexable
@@ -271,121 +260,25 @@ references:
     return:
       type: "26831127"
       description: <p>the name of the resource </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.withExistingVirtualMachines(HasNetworkInterfaces...)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_virtual_machine.yml
-  name: withExistingVirtualMachines(HasNetworkInterfaces...vms)
-  nameWithType: LoadBalancer.DefinitionStages.WithVirtualMachine<ReturnT>.withExistingVirtualMachines(HasNetworkInterfaces...vms)
-  fullName: ReturnT com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithVirtualMachine<ReturnT>.withExistingVirtualMachines(HasNetworkInterfaces...vms)
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_sku.withSku(LoadBalancerSkuType)
+  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_sku
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_sku.yml
+  name: withSku(LoadBalancerSkuType skuType)
+  nameWithType: LoadBalancer.DefinitionStages.WithSku.withSku(LoadBalancerSkuType skuType)
+  fullName: WithCreate com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithSku.withSku(LoadBalancerSkuType skuType)
   type: Method
   summary: >-
-    <p>Adds the specified set of virtual machines, assuming they are from the same availability set, to this load balancer's back end address pool. </p>
+    <p>Specifies the SKU for the load balancer.</p>
 
-    <p>This will create a new backend address pool for this load balancer and add references to the primary IP configurations of the primary network interfaces of each of the provided set of virtual machines. </p>
-
-    <p>If the virtual machines are not in the same availability set, the load balancer will still be created, but the virtual machines will not associated with its back end. </p>
-
-    <p>Only those virtual machines will be associated with the load balancer that already have an existing network interface. Virtual machines without a network interface will be skipped. </p>
+    <p></p>
   syntax:
-    content: public ReturnT withExistingVirtualMachines(HasNetworkInterfaces...vms)
+    content: public WithCreate withSku(LoadBalancerSkuType skuType)
     parameters:
-    - id: vms
-      type: 6bb6a610
-      description: <p>existing virtual machines </p>
+    - id: skuType
+      type: com.microsoft.azure.management.network._load_balancer_sku_type
+      description: <p>the SKU type </p>
     return:
-      type: c1a5ebc4
-      description: <p>the next stage of the update </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet.withFrontendSubnet(Network,String)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet.yml
-  name: withFrontendSubnet(Network network, String subnetName)
-  nameWithType: LoadBalancer.DefinitionStages.WithNetworkSubnet.withFrontendSubnet(Network network, String subnetName)
-  fullName: WithPrivateFrontendOrBackend com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithNetworkSubnet.withFrontendSubnet(Network network, String subnetName)
-  type: Method
-  summary: >-
-    <p>Assigns the specified subnet from the selected network as teh default private frontend of this load balancer, thereby making the load balancer internal. </p>
-
-    <p>Once the first private frontend is added, only private frontends can be added thereafter. </p>
-  syntax:
-    content: public WithPrivateFrontendOrBackend withFrontendSubnet(Network network, String subnetName)
-    parameters:
-    - id: network
-      type: com.microsoft.azure.management.network._network
-      description: <p>an existing virtual network </p>
-    - id: subnetName
-      type: "26831127"
-      description: <p>the name of an existing subnet on the specified network </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancer._definition_sta01506d95eede28f60114acac161a0e64
-      description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withHttpProbe(String)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
-  name: withHttpProbe(String requestPath)
-  nameWithType: LoadBalancer.DefinitionStages.WithProbe.withHttpProbe(String requestPath)
-  fullName: WithProbeOrLoadBalancingRule com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.withHttpProbe(String requestPath)
-  type: Method
-  summary: >-
-    <p>Adds an HTTP probe checking for an HTTP 200 response from the specified path at regular intervals, using port 80. </p>
-
-    <p>An automatically generated name is assigned to the probe. </p>
-  syntax:
-    content: public WithProbeOrLoadBalancingRule withHttpProbe(String requestPath)
-    parameters:
-    - id: requestPath
-      type: "26831127"
-      description: <p>the path for the probe to invoke </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6
-      description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.withLoadBalancingRule(int,TransportProtocol,int)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b
-  href: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.yml
-  name: withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
-  nameWithType: LoadBalancer.DefinitionStages.WithLoadBalancingRule.withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
-  fullName: WithLoadBalancingRuleOrCreate com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLoadBalancingRule.withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
-  type: Method
-  summary: >-
-    <p>Creates a load balancing rule between the specified front end and back end ports and protocol. </p>
-
-    <p>The new rule will be assigned an automatically generated name. </p>
-  syntax:
-    content: public WithLoadBalancingRuleOrCreate withLoadBalancingRule(int frontendPort, TransportProtocol protocol, int backendPort)
-    parameters:
-    - id: frontendPort
-      type: f75371fa
-      description: <p>the port number on the front end to accept incoming traffic on </p>
-    - id: protocol
-      type: com.microsoft.azure.management.network._transport_protocol
-      description: <p>the protocol to load balance </p>
-    - id: backendPort
-      type: f75371fa
-      description: <p>the port number on the back end to send load balanced traffic to </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancer._definition_sta9d74f24e1c6844c1407c3a1a3de3b187
-      description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.withLoadBalancingRule(int,TransportProtocol)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b
-  href: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.yml
-  name: withLoadBalancingRule(int port, TransportProtocol protocol)
-  nameWithType: LoadBalancer.DefinitionStages.WithLoadBalancingRule.withLoadBalancingRule(int port, TransportProtocol protocol)
-  fullName: WithLoadBalancingRuleOrCreate com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLoadBalancingRule.withLoadBalancingRule(int port, TransportProtocol protocol)
-  type: Method
-  summary: >-
-    <p>Creates a load balancing rule for the specified port and protocol and default frontend and backend associations. </p>
-
-    <p>The load balancing rule will created under the name "default". It will reference a backend, a frontend, and a load balancing probe all named "default". </p>
-  syntax:
-    content: public WithLoadBalancingRuleOrCreate withLoadBalancingRule(int port, TransportProtocol protocol)
-    parameters:
-    - id: port
-      type: f75371fa
-      description: <p>the port number on the front and back end for the network traffic to be load balanced on </p>
-    - id: protocol
-      type: com.microsoft.azure.management.network._transport_protocol
-      description: <p>the protocol to load balance </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancer._definition_sta9d74f24e1c6844c1407c3a1a3de3b187
+      type: com.microsoft.azure.management.network._load_balancer._definition_stages._with_create
       description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTag(String,String)
   parent: com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09
@@ -424,26 +317,6 @@ references:
     return:
       type: 8ce1ecb9
       description: <p>the next stage of the definition </p>
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.withTcpProbe(int)
-  parent: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
-  name: withTcpProbe(int port)
-  nameWithType: LoadBalancer.DefinitionStages.WithProbe.withTcpProbe(int port)
-  fullName: WithProbeOrLoadBalancingRule com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe.withTcpProbe(int port)
-  type: Method
-  summary: >-
-    <p>Adds a TCP probe checking the specified port. </p>
-
-    <p>The probe will be named using an automatically generated name. </p>
-  syntax:
-    content: public WithProbeOrLoadBalancingRule withTcpProbe(int port)
-    parameters:
-    - id: port
-      type: f75371fa
-      description: <p>the port number for the probe to monitor </p>
-    return:
-      type: com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6
-      description: <p>the next stage of the definition </p>
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._blank
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._blank.yml
@@ -464,16 +337,6 @@ references:
   summary: <p>The stage of the load balancer definition allowing to specify the resource group. </p>
   syntax:
     content: public interface WithGroup
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_frontend
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_frontend.yml
-  name: LoadBalancer.DefinitionStages.WithFrontend
-  nameWithType: LoadBalancer.DefinitionStages.WithFrontend
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithFrontend
-  type: Interface
-  summary: '<p>The stage of a load balancer definition describing the nature of the frontend of the load balancer: internal or Internet-facing. </p>'
-  syntax:
-    content: public interface WithFrontend
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_create
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_create.yml
@@ -481,39 +344,9 @@ references:
   nameWithType: LoadBalancer.DefinitionStages.WithCreate
   fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithCreate
   type: Interface
-  summary: <p>The stage of a load balancer definition containing all the required inputs for the resource to be created (via <xref uid="com.microsoft.azure.management.resources.fluentcore.model._creatable.create()" data-throw-if-not-resolved="false">WithCreate#create()</xref>), but also allowing for any other optional settings to be specified. </p>
+  summary: <p>The stage of a load balancer definition containing all the required inputs for the resource to be created, but also allowing for any other optional settings to be specified. </p>
   syntax:
     content: public interface WithCreate
-- uid: com.microsoft.azure.management.network._load_balancer._definition_sta63b05de135bb5a49cc15b225a239ff9f
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_sta63b05de135bb5a49cc15b225a239ff9f.yml
-  name: LoadBalancer.DefinitionStages.WithPublicFrontendOrBackend
-  nameWithType: LoadBalancer.DefinitionStages.WithPublicFrontendOrBackend
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPublicFrontendOrBackend
-  type: Interface
-  summary: <p>The stage of an Internet-facing load balancer definition allowing to add additional public frontends or add the first backend pool. </p>
-  syntax:
-    content: public interface WithPublicFrontendOrBackend
-- uid: com.microsoft.azure.management.network._load_balancer._definition_sta01506d95eede28f60114acac161a0e64
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_sta01506d95eede28f60114acac161a0e64.yml
-  name: LoadBalancer.DefinitionStages.WithPrivateFrontendOrBackend
-  nameWithType: LoadBalancer.DefinitionStages.WithPrivateFrontendOrBackend
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithPrivateFrontendOrBackend
-  type: Interface
-  summary: <p>The stage of an internal load balancer definition allowing to specify another private frontend or start specifying a backend. </p>
-  syntax:
-    content: public interface WithPrivateFrontendOrBackend
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_network_subnet.yml
-  name: LoadBalancer.DefinitionStages.WithNetworkSubnet
-  nameWithType: LoadBalancer.DefinitionStages.WithNetworkSubnet
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithNetworkSubnet
-  type: Interface
-  summary: <p>The stage of a load balancer definition allowing to specify an existing subnet as the private frontend. </p>
-  syntax:
-    content: public interface WithNetworkSubnet
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend.yml
@@ -524,46 +357,6 @@ references:
   summary: <p>The stage of a load balancer definition allowing to add a backend. </p>
   syntax:
     content: public interface WithBackend
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_backend_or_probe.yml
-  name: LoadBalancer.DefinitionStages.WithBackendOrProbe
-  nameWithType: LoadBalancer.DefinitionStages.WithBackendOrProbe
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithBackendOrProbe
-  type: Interface
-  summary: <p>The stage of a load balancer definition allowing to add a backend or start adding probes, or NAT rules, or NAT pools. </p>
-  syntax:
-    content: public interface WithBackendOrProbe
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe.yml
-  name: LoadBalancer.DefinitionStages.WithProbe
-  nameWithType: LoadBalancer.DefinitionStages.WithProbe
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbe
-  type: Interface
-  summary: <p>The stage of the load balancer definition allowing to add a load balancing probe. </p>
-  syntax:
-    content: public interface WithProbe
-- uid: com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_sta66d04fba0588cf54d771d05c1852eca6.yml
-  name: LoadBalancer.DefinitionStages.WithProbeOrLoadBalancingRule
-  nameWithType: LoadBalancer.DefinitionStages.WithProbeOrLoadBalancingRule
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbeOrLoadBalancingRule
-  type: Interface
-  summary: <p>The stage of a load balancer definition allowing to add another probe or start adding load balancing rules. </p>
-  syntax:
-    content: public interface WithProbeOrLoadBalancingRule
-- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat
-  parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_probe_or_nat.yml
-  name: LoadBalancer.DefinitionStages.WithProbeOrNat
-  nameWithType: LoadBalancer.DefinitionStages.WithProbeOrNat
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithProbeOrNat
-  type: Interface
-  summary: <p>The stage of a load balancer definition allowing to add a probe or an inbound NAT rule or pool. </p>
-  syntax:
-    content: public interface WithProbeOrNat
 - uid: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition_stab0238ac2329ce1301f36375e85a87f7b.yml
@@ -574,16 +367,26 @@ references:
   summary: <p>The stage of a load balancer definition allowing to create a load balancing rule. </p>
   syntax:
     content: public interface WithLoadBalancingRule
-- uid: com.microsoft.azure.management.network._load_balancer._definition_sta9d74f24e1c6844c1407c3a1a3de3b187
+- uid: com.microsoft.azure.management.network._load_balancer._definition_stages._with_l_b_rule_or_nat
   parent: com.microsoft.azure.management.network
-  href: com.microsoft.azure.management.network._load_balancer._definition_sta9d74f24e1c6844c1407c3a1a3de3b187.yml
-  name: LoadBalancer.DefinitionStages.WithLoadBalancingRuleOrCreate
-  nameWithType: LoadBalancer.DefinitionStages.WithLoadBalancingRuleOrCreate
-  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLoadBalancingRuleOrCreate
+  href: com.microsoft.azure.management.network._load_balancer._definition_stages._with_l_b_rule_or_nat.yml
+  name: LoadBalancer.DefinitionStages.WithLBRuleOrNat
+  nameWithType: LoadBalancer.DefinitionStages.WithLBRuleOrNat
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLBRuleOrNat
+  type: Interface
+  summary: <p>The stage of a load balancer definition allowing to add a load blanacing rule, or an inbound NAT rule or pool. </p>
+  syntax:
+    content: public interface WithLBRuleOrNat
+- uid: com.microsoft.azure.management.network._load_balancer._definition_sta8630b661e2d2a7a382c616df9a6aed5b
+  parent: com.microsoft.azure.management.network
+  href: com.microsoft.azure.management.network._load_balancer._definition_sta8630b661e2d2a7a382c616df9a6aed5b.yml
+  name: LoadBalancer.DefinitionStages.WithLBRuleOrNatOrCreate
+  nameWithType: LoadBalancer.DefinitionStages.WithLBRuleOrNatOrCreate
+  fullName: com.microsoft.azure.management.network.LoadBalancer.DefinitionStages.WithLBRuleOrNatOrCreate
   type: Interface
   summary: <p>The stage of a load balancer definition allowing to create a load balancing rule or create the load balancer. </p>
   syntax:
-    content: public interface WithLoadBalancingRuleOrCreate
+    content: public interface WithLBRuleOrNatOrCreate
 - uid: com.microsoft.azure.management.network._load_balancer._definition_sta8f7fa264b83d4e924c1ae99942561ca8
   parent: com.microsoft.azure.management.network
   href: com.microsoft.azure.management.network._load_balancer._definition_sta8f7fa264b83d4e924c1ae99942561ca8.yml
