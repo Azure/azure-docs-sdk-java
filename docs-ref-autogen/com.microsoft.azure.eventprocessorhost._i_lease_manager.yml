@@ -512,6 +512,95 @@ references:
   fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.updateLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._azure_storage_checkpoint_lease_manager
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: InMemoryLeaseManager
+  nameWithType: InMemoryLeaseManager
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager
+  type: Class
+  syntax:
+    content: public class InMemoryLeaseManager
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLeaseRenewIntervalInMilliseconds()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: getLeaseRenewIntervalInMilliseconds()
+  nameWithType: InMemoryLeaseManager.getLeaseRenewIntervalInMilliseconds()
+  fullName: int com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLeaseRenewIntervalInMilliseconds()
+  type: Method
+  summary: >-
+    <p>Allows a lease manager implementation to specify to PartitionManager how often it should scan leases and renew them. In order to redistribute leases in a timely fashion after a host ceases operating, we recommend a relatively short interval, such as ten seconds. Obviously it should be less than half of the lease length, to prevent accidental expiration.</p>
+
+    <p></p>
+  syntax:
+    content: public int getLeaseRenewIntervalInMilliseconds()
+    return:
+      type: f75371fa
+      description: <p>The sleep interval between scans, specified in milliseconds. </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLeaseDurationInMilliseconds()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: getLeaseDurationInMilliseconds()
+  nameWithType: InMemoryLeaseManager.getLeaseDurationInMilliseconds()
+  fullName: int com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLeaseDurationInMilliseconds()
+  type: Method
+  summary: >-
+    <p>Mostly useful for testing.</p>
+
+    <p></p>
+  syntax:
+    content: public int getLeaseDurationInMilliseconds()
+    return:
+      type: f75371fa
+      description: <p>Duration of a lease before it expires unless renewed. </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.leaseStoreExists()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: leaseStoreExists()
+  nameWithType: InMemoryLeaseManager.leaseStoreExists()
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.leaseStoreExists()
+  type: Method
+  summary: >-
+    <p>Does the lease store exist?</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> leaseStoreExists()
+    return:
+      type: ec0e250a
+      description: <p>true if it does, false if not </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.createLeaseStoreIfNotExists()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: createLeaseStoreIfNotExists()
+  nameWithType: InMemoryLeaseManager.createLeaseStoreIfNotExists()
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createLeaseStoreIfNotExists()
+  type: Method
+  summary: >-
+    <p>Create the lease store if it does not exist, do nothing if it does exist.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> createLeaseStoreIfNotExists()
+    return:
+      type: ec0e250a
+      description: <p>true if the lease store already exists or was created successfully, false if not </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.deleteLeaseStore()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: deleteLeaseStore()
+  nameWithType: InMemoryLeaseManager.deleteLeaseStore()
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLeaseStore()
+  type: Method
+  summary: >-
+    <p>Not used by <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>, but a convenient function to have for testing.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> deleteLeaseStore()
+    return:
+      type: ec0e250a
+      description: <p>true if the lease store was deleted successfully, false if not </p>
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
@@ -538,6 +627,44 @@ references:
     <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax:
     content: public class Lease
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: getLease(String partitionId)
+  nameWithType: InMemoryLeaseManager.getLease(String partitionId)
+  fullName: Future<Lease> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLease(String partitionId)
+  type: Method
+  summary: >-
+    <p>Return the lease info for the specified partition. Can return null if no lease has been created in the store for the specified partition.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Lease> getLease(String partitionId)
+    parameters:
+    - id: partitionId
+      type: "26831127"
+      description: <p>id of partition to get lease for </p>
+    return:
+      type: 9b3030f6com.microsoft.azure.eventprocessorhost._leasea08ddfce
+      description: <p>lease info for the partition, or null </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getAllLeases()
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: getAllLeases()
+  nameWithType: InMemoryLeaseManager.getAllLeases()
+  fullName: Iterable<Future<Lease>> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getAllLeases()
+  type: Method
+  summary: >-
+    <p>Return the lease info for all partitions.</p>
+
+    <p>A typical implementation could just call <xref uid="com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)" data-throw-if-not-resolved="false">getLease()</xref> on all partitions.</p>
+
+    <p></p>
+  syntax:
+    content: public Iterable<Future<Lease>> getAllLeases()
+    return:
+      type: 1f5dfe8ecom.microsoft.azure.eventprocessorhost._leasee7daa122
+      description: <p>Iterable list of lease info. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease(String)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
@@ -550,6 +677,99 @@ references:
 
     <p></p>
   syntax: *o1
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.createLeaseIfNotExists(String)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: createLeaseIfNotExists(String partitionId)
+  nameWithType: InMemoryLeaseManager.createLeaseIfNotExists(String partitionId)
+  fullName: Future<Lease> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createLeaseIfNotExists(String partitionId)
+  type: Method
+  summary: >-
+    <p>Create in the store the lease info for the given partition, if it does not exist. Do nothing if it does exist in the store already.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Lease> createLeaseIfNotExists(String partitionId)
+    parameters:
+    - id: partitionId
+      type: "26831127"
+      description: <p>id of partition to create lease info for </p>
+    return:
+      type: 9b3030f6com.microsoft.azure.eventprocessorhost._leasea08ddfce
+      description: <p>the existing or newly-created lease info for the partition </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.deleteLease(Lease)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: deleteLease(Lease lease)
+  nameWithType: InMemoryLeaseManager.deleteLease(Lease lease)
+  fullName: Future<Void> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLease(Lease lease)
+  type: Method
+  summary: >-
+    <p>Delete the lease info for the given partition from the store. If there is no stored lease for the given partition, that is treated as success.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Void> deleteLease(Lease lease)
+    parameters:
+    - id: lease
+      type: com.microsoft.azure.eventprocessorhost._lease
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> info for the desired partition as previously obtained from <xref uid="com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)" data-throw-if-not-resolved="false">getLease()</xref></p>
+    return:
+      type: 075d0a89
+      description: <p>Void </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.acquireLease(Lease)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: acquireLease(Lease lease)
+  nameWithType: InMemoryLeaseManager.acquireLease(Lease lease)
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.acquireLease(Lease lease)
+  type: Method
+  summary: >-
+    <p>Acquire the lease on the desired partition for this <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>.</p>
+
+    <p>Note that it is legal to acquire a lease that is already owned by another host. Lease-stealing is how partitions are redistributed when additional hosts are started.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> acquireLease(Lease lease)
+    parameters:
+    - id: lease
+      type: com.microsoft.azure.eventprocessorhost._lease
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> info for the desired partition as previously obtained from <xref uid="com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)" data-throw-if-not-resolved="false">getLease()</xref></p>
+    return:
+      type: ec0e250a
+      description: <p>true if the lease was acquired successfully, false if not </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.renewLease(Lease)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: renewLease(Lease lease)
+  nameWithType: InMemoryLeaseManager.renewLease(Lease lease)
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.renewLease(Lease lease)
+  type: Method
+  summary: >-
+    <p>Renew a lease currently held by this host.</p>
+
+    <p>If the lease has been stolen, or expired, or released, it is not possible to renew it. You will have to call <xref uid="com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)" data-throw-if-not-resolved="false">getLease()</xref> and then <xref uid="com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.acquireLease(Lease)" data-throw-if-not-resolved="false">acquireLease()</xref> again.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> renewLease(Lease lease)
+    parameters:
+    - id: lease
+      type: com.microsoft.azure.eventprocessorhost._lease
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be renewed </p>
+    return:
+      type: ec0e250a
+      description: <p>true if the lease was renewed successfully, false if not </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease(Lease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
@@ -564,3 +784,50 @@ references:
 
     <p></p>
   syntax: *o2
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.releaseLease(Lease)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: releaseLease(Lease lease)
+  nameWithType: InMemoryLeaseManager.releaseLease(Lease lease)
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.releaseLease(Lease lease)
+  type: Method
+  summary: >-
+    <p>Give up a lease currently held by this host.</p>
+
+    <p>If the lease has been stolen, or expired, releasing it is unnecessary, and will fail if attempted.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> releaseLease(Lease lease)
+    parameters:
+    - id: lease
+      type: com.microsoft.azure.eventprocessorhost._lease
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be give up </p>
+    return:
+      type: ec0e250a
+      description: <p>true if the lease was released successfully, false if not </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.updateLease(Lease)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: updateLease(Lease lease)
+  nameWithType: InMemoryLeaseManager.updateLease(Lease lease)
+  fullName: Future<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.updateLease(Lease lease)
+  type: Method
+  summary: >-
+    <p>Update the store with the information in the provided lease.</p>
+
+    <p>It is necessary to currently hold a lease in order to update it. If the lease has been stolen, or expired, or released, it cannot be updated. Updating should renew the lease before performing the update to avoid lease expiration during the process.</p>
+
+    <p></p>
+  syntax:
+    content: public Future<Boolean> updateLease(Lease lease)
+    parameters:
+    - id: lease
+      type: com.microsoft.azure.eventprocessorhost._lease
+      description: <p>New lease info to be stored </p>
+    return:
+      type: ec0e250a
+      description: <p>true if the updated was performed successfully, false if not </p>
