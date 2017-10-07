@@ -10,13 +10,14 @@ items:
   - com.microsoft.azure.storage.file._cloud_file_client.downloadServiceProperties(FileRequestOptions,OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_client.getDefaultRequestOptions()
   - com.microsoft.azure.storage.file._cloud_file_client.getShareReference(final String)
+  - com.microsoft.azure.storage.file._cloud_file_client.getShareReference(final String,String)
   - com.microsoft.azure.storage.file._cloud_file_client.isUsePathStyleUris()
   - com.microsoft.azure.storage.file._cloud_file_client.listShares()
   - com.microsoft.azure.storage.file._cloud_file_client.listShares(final String)
-  - com.microsoft.azure.storage.file._cloud_file_client.listShares(final String,final ShareListingDetails,final FileRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_client.listShares(final String,final EnumSet<ShareListingDetails>,final FileRequestOptions,final OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented()
   - com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented(final String)
-  - com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented(final String,final ShareListingDetails,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
+  - com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented(final String,final EnumSet<ShareListingDetails>,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
   - com.microsoft.azure.storage.file._cloud_file_client.setDefaultRequestOptions(FileRequestOptions)
   - com.microsoft.azure.storage.file._cloud_file_client.uploadServiceProperties(final FileServiceProperties)
   - com.microsoft.azure.storage.file._cloud_file_client.uploadServiceProperties(final FileServiceProperties,FileRequestOptions,OperationContext)
@@ -127,7 +128,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 417
+    startLine: 421
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Retrieves the current <xref uid="com.microsoft.azure.storage.file._file_service_properties" data-throw-if-not-resolved="false">FileServiceProperties</xref> for the given storage service. This encapsulates the CORS configurations.</p>
@@ -155,7 +156,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 440
+    startLine: 444
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Retrieves the current <xref uid="com.microsoft.azure.storage.file._file_service_properties" data-throw-if-not-resolved="false">FileServiceProperties</xref> for the given storage service. This encapsulates the CORS configurations.</p>
@@ -190,7 +191,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 510
+    startLine: 514
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Gets the <xref uid="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false">FileRequestOptions</xref> that is used for requests associated with this </p>
@@ -233,6 +234,41 @@ items:
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
   - type: "44102508"
+- uid: com.microsoft.azure.storage.file._cloud_file_client.getShareReference(final String,String)
+  id: getShareReference(final String,String)
+  parent: com.microsoft.azure.storage.file._cloud_file_client
+  href: com.microsoft.azure.storage.file._cloud_file_client.yml
+  langs:
+  - java
+  name: getShareReference(final String shareName, String snapshotID)
+  nameWithType: CloudFileClient.getShareReference(final String shareName, String snapshotID)
+  fullName: CloudFileShare com.microsoft.azure.storage.file.CloudFileClient.getShareReference(final String shareName, String snapshotID)
+  overload: com.microsoft.azure.storage.file._cloud_file_client.getShareReference*
+  type: Method
+  source:
+    remote: *o0
+    path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
+    startLine: 123
+  package: com.microsoft.azure.storage.file
+  summary: >-
+    <p>Gets a <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> object with the specified name.</p>
+
+    <p></p>
+  syntax:
+    content: public CloudFileShare getShareReference(final String shareName, String snapshotID)
+    parameters:
+    - id: shareName
+      type: 3d93591e
+      description: <p>The name of the share, which must adhere to share naming rules. The share name should not include any path separator characters (/). Share names must be lowercase, between 3-63 characters long and must start with a letter or number. Share names may contain only letters, numbers, and the dash (-) character. </p>
+    - id: snapshotID
+      type: "26831127"
+      description: <p>A <code>String</code> that represents the snapshot ID of the share. </p>
+    return:
+      type: com.microsoft.azure.storage.file._cloud_file_share
+      description: <p>A reference to a <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> object. </p>
+  exceptions:
+  - type: com.microsoft.azure.storage._storage_exception
+  - type: "44102508"
 - uid: com.microsoft.azure.storage.file._cloud_file_client.isUsePathStyleUris()
   id: isUsePathStyleUris()
   parent: com.microsoft.azure.storage.file._cloud_file_client
@@ -247,7 +283,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 532
+    startLine: 536
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Indicates whether path-style URIs are being used.</p>
@@ -278,17 +314,14 @@ items:
     startLine: 135
   package: com.microsoft.azure.storage.file
   summary: >-
-    <p>Gets a <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> object with the specified name.</p>
+    <p>Returns an enumerable collection of shares for this File service client.</p>
 
     <p></p>
   syntax:
     content: public Iterable<CloudFileShare> listShares()
     return:
       type: 2a13b5a5com.microsoft.azure.storage.file._cloud_file_sharea08ddfce
-      description: <p>A reference to a <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> object. </p>
-  exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
-  - type: "44102508"
+      description: <p>An enumerable collection of <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> objects retrieved lazily that represent the shares for this client. </p>
 - uid: com.microsoft.azure.storage.file._cloud_file_client.listShares(final String)
   id: listShares(final String)
   parent: com.microsoft.azure.storage.file._cloud_file_client
@@ -318,35 +351,35 @@ items:
     return:
       type: 2a13b5a5com.microsoft.azure.storage.file._cloud_file_sharea08ddfce
       description: <p>An enumerable collection of <xref uid="com.microsoft.azure.storage.file._cloud_file_share" data-throw-if-not-resolved="false">CloudFileShare</xref> objects retrieved lazily that represent the shares for this client whose names begin with the specified prefix. </p>
-- uid: com.microsoft.azure.storage.file._cloud_file_client.listShares(final String,final ShareListingDetails,final FileRequestOptions,final OperationContext)
-  id: listShares(final String,final ShareListingDetails,final FileRequestOptions,final OperationContext)
+- uid: com.microsoft.azure.storage.file._cloud_file_client.listShares(final String,final EnumSet<ShareListingDetails>,final FileRequestOptions,final OperationContext)
+  id: listShares(final String,final EnumSet<ShareListingDetails>,final FileRequestOptions,final OperationContext)
   parent: com.microsoft.azure.storage.file._cloud_file_client
   href: com.microsoft.azure.storage.file._cloud_file_client.yml
   langs:
   - java
-  name: listShares(final String prefix, final ShareListingDetails detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
-  nameWithType: CloudFileClient.listShares(final String prefix, final ShareListingDetails detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
-  fullName: Iterable<CloudFileShare> com.microsoft.azure.storage.file.CloudFileClient.listShares(final String prefix, final ShareListingDetails detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
+  name: listShares(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
+  nameWithType: CloudFileClient.listShares(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
+  fullName: Iterable<CloudFileShare> com.microsoft.azure.storage.file.CloudFileClient.listShares(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
   overload: com.microsoft.azure.storage.file._cloud_file_client.listShares*
   type: Method
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 175
+    startLine: 176
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns an enumerable collection of shares whose names begin with the specified prefix for this File service client, using the specified details settings, request options, and operation context.</p>
 
     <p></p>
   syntax:
-    content: public Iterable<CloudFileShare> listShares(final String prefix, final ShareListingDetails detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
+    content: public Iterable<CloudFileShare> listShares(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final FileRequestOptions options, final OperationContext opContext)
     parameters:
     - id: prefix
       type: 3d93591e
       description: <p>A <code>String</code> that represents the share name prefix. </p>
     - id: detailsIncluded
-      type: 93de0ef9com.microsoft.azure.storage.file._share_listing_details
-      description: <p>A <xref uid="com.microsoft.azure.storage.file._share_listing_details" data-throw-if-not-resolved="false">ShareListingDetails</xref> value that indicates whether share metadata will be returned. </p>
+      type: 7f216280com.microsoft.azure.storage.file._share_listing_detailsa08ddfce
+      description: <p>A <code>java.util.EnumSet</code> object that contains <xref uid="com.microsoft.azure.storage.file._share_listing_details" data-throw-if-not-resolved="false">ShareListingDetails</xref> values that indicate whether share snapshots and/or metadata will be returned. </p>
     - id: options
       type: 93de0ef9com.microsoft.azure.storage.file._file_request_options
       description: <p>A <xref uid="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false">FileRequestOptions</xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref uid="com.microsoft.azure.storage.file._cloud_file_client" data-throw-if-not-resolved="false">CloudFileClient</xref>). </p>
@@ -370,7 +403,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 190
+    startLine: 191
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a result segment of an enumerable collection of shares for this File service client.</p>
@@ -398,7 +431,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 210
+    startLine: 211
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a result segment of an enumerable collection of shares whose names begin with the specified prefix for this File service client.</p>
@@ -416,35 +449,35 @@ items:
   exceptions:
   - type: com.microsoft.azure.storage._storage_exception
     description: <p>If a storage service error occurred. </p>
-- uid: com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented(final String,final ShareListingDetails,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
-  id: listSharesSegmented(final String,final ShareListingDetails,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
+- uid: com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented(final String,final EnumSet<ShareListingDetails>,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
+  id: listSharesSegmented(final String,final EnumSet<ShareListingDetails>,final Integer,final ResultContinuation,final FileRequestOptions,final OperationContext)
   parent: com.microsoft.azure.storage.file._cloud_file_client
   href: com.microsoft.azure.storage.file._cloud_file_client.yml
   langs:
   - java
-  name: listSharesSegmented(final String prefix, final ShareListingDetails detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
-  nameWithType: CloudFileClient.listSharesSegmented(final String prefix, final ShareListingDetails detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
-  fullName: ResultSegment<CloudFileShare> com.microsoft.azure.storage.file.CloudFileClient.listSharesSegmented(final String prefix, final ShareListingDetails detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
+  name: listSharesSegmented(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
+  nameWithType: CloudFileClient.listSharesSegmented(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
+  fullName: ResultSegment<CloudFileShare> com.microsoft.azure.storage.file.CloudFileClient.listSharesSegmented(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
   overload: com.microsoft.azure.storage.file._cloud_file_client.listSharesSegmented*
   type: Method
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 245
+    startLine: 247
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Returns a result segment of an enumerable collection of shares whose names begin with the specified prefix, using the specified listing details options, request options, and operation context.</p>
 
     <p></p>
   syntax:
-    content: public ResultSegment<CloudFileShare> listSharesSegmented(final String prefix, final ShareListingDetails detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
+    content: public ResultSegment<CloudFileShare> listSharesSegmented(final String prefix, final EnumSet<ShareListingDetails> detailsIncluded, final Integer maxResults, final ResultContinuation continuationToken, final FileRequestOptions options, final OperationContext opContext)
     parameters:
     - id: prefix
       type: 3d93591e
       description: <p>A <code>String</code> that represents the prefix of the share name. </p>
     - id: detailsIncluded
-      type: 93de0ef9com.microsoft.azure.storage.file._share_listing_details
-      description: <p>A <xref uid="com.microsoft.azure.storage.file._share_listing_details" data-throw-if-not-resolved="false">ShareListingDetails</xref> value that indicates whether share metadata will be returned. </p>
+      type: 7f216280com.microsoft.azure.storage.file._share_listing_detailsa08ddfce
+      description: <p>A <code>java.util.EnumSet</code> object that contains <xref uid="com.microsoft.azure.storage.file._share_listing_details" data-throw-if-not-resolved="false">ShareListingDetails</xref> values that indicate whether share snapshots and/or metadata will be returned. </p>
     - id: maxResults
       type: 3437983f
       description: <p>The maximum number of results to retrieve. If <code>null</code> or greater than 5000, the server will return up to 5,000 items. Must be at least 1. </p>
@@ -477,7 +510,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 521
+    startLine: 525
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Sets the <xref uid="com.microsoft.azure.storage.file._file_request_options" data-throw-if-not-resolved="false">FileRequestOptions</xref> that is used for any requests associated with this  object.</p>
@@ -503,7 +536,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 465
+    startLine: 469
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads a new <xref uid="com.microsoft.azure.storage.file._file_service_properties" data-throw-if-not-resolved="false">FileServiceProperties</xref> configuration to the given storage service. This encapsulates the CORS configurations.</p>
@@ -532,7 +565,7 @@ items:
   source:
     remote: *o0
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/file/CloudFileClient.java
-    startLine: 488
+    startLine: 492
   package: com.microsoft.azure.storage.file
   summary: >-
     <p>Uploads a new <xref uid="com.microsoft.azure.storage.file._file_service_properties" data-throw-if-not-resolved="false">FileServiceProperties</xref> configuration to the given storage service. This encapsulates the CORS configurations.</p>
@@ -576,6 +609,10 @@ references:
   nameWithType: CloudFileClient.getShareReference
   fullName: CloudFileShare com.microsoft.azure.storage.file.CloudFileClient.getShareReference
   package: com.microsoft.azure.storage.file
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: 2a13b5a5com.microsoft.azure.storage.file._cloud_file_sharea08ddfce
   spec.java:
   - name: Iterable<
@@ -591,14 +628,16 @@ references:
   nameWithType: CloudFileClient.listShares
   fullName: Iterable<CloudFileShare> com.microsoft.azure.storage.file.CloudFileClient.listShares
   package: com.microsoft.azure.storage.file
-- uid: 93de0ef9com.microsoft.azure.storage.file._share_listing_details
+- uid: 7f216280com.microsoft.azure.storage.file._share_listing_detailsa08ddfce
   spec.java:
-  - name: 'final '
-    fullName: 'final '
+  - name: final EnumSet<
+    fullName: final EnumSet<
   - uid: com.microsoft.azure.storage.file._share_listing_details
     name: ShareListingDetails
     fullName: com.microsoft.azure.storage.file.ShareListingDetails
     href: com.microsoft.azure.storage.file._share_listing_details.yml
+  - name: '>'
+    fullName: '>'
 - uid: 93de0ef9com.microsoft.azure.storage.file._file_request_options
   spec.java:
   - name: 'final '
