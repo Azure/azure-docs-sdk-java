@@ -31,7 +31,7 @@ Create, configure, and scale out Windows and Linux virtual machines in Azure fro
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-compute</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```   
 
