@@ -31,7 +31,7 @@ Create CDN profiles, define endpoints, and add content to the CDN using the mana
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-cdn</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```   
 

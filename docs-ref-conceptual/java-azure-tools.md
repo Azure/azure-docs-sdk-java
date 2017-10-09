@@ -22,7 +22,7 @@ Connect to services and manage Azure resources from your applications with the A
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 

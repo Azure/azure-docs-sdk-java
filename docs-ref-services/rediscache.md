@@ -55,7 +55,7 @@ Create and scale Azure Redis resources and manage access keys to with the manage
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-redis</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 

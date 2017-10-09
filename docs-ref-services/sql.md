@@ -60,7 +60,7 @@ Create and manage Azure SQL Database resources in your subscription with the man
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-sql</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
