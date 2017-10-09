@@ -135,7 +135,7 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-servicebus</artifactId>
-    <version>1.2.1</version>
+    <version>1.3.0</version>
 </dependency>
 ```
 
