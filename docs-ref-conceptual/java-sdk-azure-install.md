@@ -271,7 +271,7 @@ Create, update, and delete Azure resources from your application code.
 
 <a name="servicebus"></a>
 
-### [ServiceBus](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) 
+### [ServiceBus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-messaging-overview) 
    
 Service Bus is an enterprise-class, transactional messaging platform service.
 
