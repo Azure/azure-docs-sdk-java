@@ -1,0 +1,386 @@
+### YamlMime:ManagedReference
+items:
+- uid: system.fabric._cluster_health_policy
+  id: _cluster_health_policy
+  parent: system.fabric
+  children:
+  - system.fabric._cluster_health_policy.ClusterHealthPolicy()
+  - system.fabric._cluster_health_policy.getApplicationTypeHealthPolicyMap()
+  - system.fabric._cluster_health_policy.getConsiderWarningAsError()
+  - system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications()
+  - system.fabric._cluster_health_policy.getMaxPercentUnhealthyNodes()
+  - system.fabric._cluster_health_policy.setConsiderWarningAsError(boolean)
+  - system.fabric._cluster_health_policy.setMaxPercentUnhealthyApplications(byte)
+  - system.fabric._cluster_health_policy.setMaxPercentUnhealthyNodes(byte)
+  - system.fabric._cluster_health_policy.toNative(PinCollection)
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: ClusterHealthPolicy
+  nameWithType: ClusterHealthPolicy
+  fullName: system.fabric.ClusterHealthPolicy
+  type: Class
+  source:
+    remote: &o0
+      path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+      branch: master
+      repo: https://msazure.visualstudio.com/One/_git/sf-java
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 5
+  package: system.fabric
+  summary: <p>Defines a health policy used to evaluate the health of the cluster or of a cluster node. </p>
+  syntax:
+    content: public class ClusterHealthPolicy
+  inheritance:
+  - java.lang.Object
+- uid: system.fabric._cluster_health_policy.ClusterHealthPolicy()
+  id: ClusterHealthPolicy()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: ClusterHealthPolicy()
+  nameWithType: ClusterHealthPolicy.ClusterHealthPolicy()
+  fullName: system.fabric.ClusterHealthPolicy.ClusterHealthPolicy()
+  overload: system.fabric._cluster_health_policy.ClusterHealthPolicy*
+  type: Constructor
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 35
+  package: system.fabric
+  summary: >-
+    <p>Initializes a new instance of the <xref uid="" data-throw-if-not-resolved="false">system.fabric.ClusterHealthPolicy</xref> class. </p>
+
+    <p>
+
+      <b>Remarks: </b>By default, no errors or warnings are tolerated. </p>
+  syntax:
+    content: public ClusterHealthPolicy()
+- uid: system.fabric._cluster_health_policy.getApplicationTypeHealthPolicyMap()
+  id: getApplicationTypeHealthPolicyMap()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: getApplicationTypeHealthPolicyMap()
+  nameWithType: ClusterHealthPolicy.getApplicationTypeHealthPolicyMap()
+  fullName: ApplicationTypeHealthPolicyMap system.fabric.ClusterHealthPolicy.getApplicationTypeHealthPolicyMap()
+  overload: system.fabric._cluster_health_policy.getApplicationTypeHealthPolicyMap*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 96
+  package: system.fabric
+  summary: >-
+    <p>Gets the map with MaxPercentUnhealthyApplications per application type name.</p>
+
+    <p>
+
+      <b>Remarks:</b>If no policy is specified for an application type name, the default MaxPercentUnhealthyApplications is used for evaluation. </p>
+
+    <p>
+
+      <b>Remarks:</b>The application type health policy map can be used during cluster health evaluation to describe special application types. By default, all applications are put into a pool and evaluated with <xref uid="system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications()" data-throw-if-not-resolved="false">ClusterHealthPolicy#getMaxPercentUnhealthyApplications()</xref>. If one or more application types are special and should be treated in a different way, they can be taken out of the global pool and evaluated against the percentages associated with their application type name in the map. For example, in a cluster there are thousands of applications of different types, and a few control application instances of a special application type. The control applications should never be in error. So users can specify global MaxPercentUnhealthyApplications to 20% to tolerate some failures, but for the application type "ControlApplicationType" set the MaxPercentUnhealthyApplications to 0. This way, if some of the many applications are unhealthy, but below the global unhealthy percentage, the cluster would be evaluated to Warning. A warning health state does not impact cluster upgrade or other monitoring triggered by Error health state. But even one control application in error would make cluster health error, which can rollback or prevent a cluster upgrade. For the application types defined in the map, all application instances are taken out of the global pool of applications. They are evaluated based on the total number of applications of the application type, using the specific MaxPercentUnhealthyApplications from the map. All the rest of the applications remain in the global pool and are evaluated with MaxPercentUnhealthyApplications. To define entries for the specific application types in the cluster manifest, inside FabricSettings add entries for parameters with name formed by prefix "ApplicationTypeMaxPercentUnhealthyApplications-" followed by application type name. If no policy is specified for an application type, the default MaxPercentUnhealthyApplications is used for evaluation. The application type health evaluation is done only when the cluster is configured with EnableApplicationTypeHealthEvaluation true. The setting is disabled by default. </p>
+  syntax:
+    content: public ApplicationTypeHealthPolicyMap getApplicationTypeHealthPolicyMap()
+    return:
+      type: system.fabric._application_type_health_policy_map
+      description: <p>The application type health policy map with MaxPercentUnhealthyApplications per application type name. </p>
+- uid: system.fabric._cluster_health_policy.getConsiderWarningAsError()
+  id: getConsiderWarningAsError()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: getConsiderWarningAsError()
+  nameWithType: ClusterHealthPolicy.getConsiderWarningAsError()
+  fullName: boolean system.fabric.ClusterHealthPolicy.getConsiderWarningAsError()
+  overload: system.fabric._cluster_health_policy.getConsiderWarningAsError*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 217
+  package: system.fabric
+  summary: >-
+    <p>Gets a boolean that determines whetherÂ reports with warning state should be treated with the same severity as errors.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean getConsiderWarningAsError()
+    return:
+      type: 4fc6e284
+      description: <p>true if reports with warning state should be treated as errors; false if warnings should not be treated as errors. </p>
+- uid: system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications()
+  id: getMaxPercentUnhealthyApplications()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: getMaxPercentUnhealthyApplications()
+  nameWithType: ClusterHealthPolicy.getMaxPercentUnhealthyApplications()
+  fullName: byte system.fabric.ClusterHealthPolicy.getMaxPercentUnhealthyApplications()
+  overload: system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 194
+  package: system.fabric
+  summary: >-
+    <p>Sets the maximum allowed percentage of unhealthy applications.</p>
+
+    <p>
+
+      <b>Remarks:</b>The percentage represents the maximum tolerated percentage of applications that can be unhealthy before the cluster is considered in error. If the percentage is respected but there is at least one unhealthy application, the health is evaluated as Warning. This is calculated by dividing the number of unhealthy applications over the total number of applications deployed in the cluster, excluding all applications of an application types that are included in the <xref uid="system.fabric._application_type_health_policy_map" data-throw-if-not-resolved="false">ApplicationTypeHealthPolicyMap</xref>. The computation rounds up to tolerate one failure on small numbers of applications. Default percentage: zero. </p>
+  syntax: &o1
+    content: public byte getMaxPercentUnhealthyApplications()
+    return:
+      type: d357ea40
+      description: <p>The maximum allowed percentage of unhealthy applications. Allowed values are integer values from zero to 100. </p>
+- uid: system.fabric._cluster_health_policy.getMaxPercentUnhealthyNodes()
+  id: getMaxPercentUnhealthyNodes()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: getMaxPercentUnhealthyNodes()
+  nameWithType: ClusterHealthPolicy.getMaxPercentUnhealthyNodes()
+  fullName: byte system.fabric.ClusterHealthPolicy.getMaxPercentUnhealthyNodes()
+  overload: system.fabric._cluster_health_policy.getMaxPercentUnhealthyNodes*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 147
+  package: system.fabric
+  summary: >-
+    <p>Gets the maximum allowed percentage of unhealthy nodes.</p>
+
+    <p>
+
+      <b>Remarks:</b>The percentage represents the maximum tolerated percentage of nodes that can be unhealthy before the cluster is considered in error. If the percentage is respected but there is at least one unhealthy node, the health is evaluated as Warning. This is calculated by dividing the number of unhealthy nodes over the total number of nodes in the cluster. The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage: zero. </p>
+
+    <p>In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to tolerate that. </p>
+  syntax:
+    content: public byte getMaxPercentUnhealthyNodes()
+    return:
+      type: d357ea40
+      description: <p>The maximum allowed percentage of unhealthy nodes. Allowed values are integer values from zero to 100. </p>
+- uid: system.fabric._cluster_health_policy.setConsiderWarningAsError(boolean)
+  id: setConsiderWarningAsError(boolean)
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: setConsiderWarningAsError(boolean considerWarningAsError)
+  nameWithType: ClusterHealthPolicy.setConsiderWarningAsError(boolean considerWarningAsError)
+  fullName: void system.fabric.ClusterHealthPolicy.setConsiderWarningAsError(boolean considerWarningAsError)
+  overload: system.fabric._cluster_health_policy.setConsiderWarningAsError*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 206
+  package: system.fabric
+  summary: >-
+    <p>Sets a boolean that determines whetherÂ reports with warning state should be treated with the same severity as errors.</p>
+
+    <p></p>
+  syntax:
+    content: public void setConsiderWarningAsError(boolean considerWarningAsError)
+    parameters:
+    - id: considerWarningAsError
+      type: 4fc6e284
+      description: <p>true if reports with warning state should be treated as errors; false if warnings should not be treated as errors. </p>
+- uid: system.fabric._cluster_health_policy.setMaxPercentUnhealthyApplications(byte)
+  id: setMaxPercentUnhealthyApplications(byte)
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: setMaxPercentUnhealthyApplications(byte maxPercentUnhealthyApplications)
+  nameWithType: ClusterHealthPolicy.setMaxPercentUnhealthyApplications(byte maxPercentUnhealthyApplications)
+  fullName: void system.fabric.ClusterHealthPolicy.setMaxPercentUnhealthyApplications(byte maxPercentUnhealthyApplications)
+  overload: system.fabric._cluster_health_policy.setMaxPercentUnhealthyApplications*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 169
+  package: system.fabric
+  summary: >-
+    <p>Sets the maximum allowed percentage of unhealthy applications.</p>
+
+    <p>
+
+      <b>Remarks:</b>The percentage represents the maximum tolerated percentage of applications that can be unhealthy before the cluster is considered in error. If the percentage is respected but there is at least one unhealthy application, the health is evaluated as Warning. This is calculated by dividing the number of unhealthy applications over the total number of applications deployed in the cluster, excluding all applications of an application types that are included in the <xref uid="system.fabric._application_type_health_policy_map" data-throw-if-not-resolved="false">ApplicationTypeHealthPolicyMap</xref>. The computation rounds up to tolerate one failure on small numbers of applications. Default percentage: zero. </p>
+  syntax:
+    content: public void setMaxPercentUnhealthyApplications(byte maxPercentUnhealthyApplications)
+    parameters:
+    - id: maxPercentUnhealthyApplications
+      type: d357ea40
+      description: <p>The maximum allowed percentage of unhealthy applications. Allowed values are integer values from zero to 100. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>The specified value was outside the range of integer values from zero to 100. </p>
+- uid: system.fabric._cluster_health_policy.setMaxPercentUnhealthyNodes(byte)
+  id: setMaxPercentUnhealthyNodes(byte)
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: setMaxPercentUnhealthyNodes(byte maxPercentUnhealthyNodes)
+  nameWithType: ClusterHealthPolicy.setMaxPercentUnhealthyNodes(byte maxPercentUnhealthyNodes)
+  fullName: void system.fabric.ClusterHealthPolicy.setMaxPercentUnhealthyNodes(byte maxPercentUnhealthyNodes)
+  overload: system.fabric._cluster_health_policy.setMaxPercentUnhealthyNodes*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 120
+  package: system.fabric
+  summary: >-
+    <p>Gets the maximum allowed percentage of unhealthy nodes.</p>
+
+    <p>
+
+      <b>Remarks:</b>The percentage represents the maximum tolerated percentage of nodes that can be unhealthy before the cluster is considered in error. If the percentage is respected but there is at least one unhealthy node, the health is evaluated as Warning. This is calculated by dividing the number of unhealthy nodes over the total number of nodes in the cluster. The computation rounds up to tolerate one failure on small numbers of nodes. Default percentage: zero. </p>
+
+    <p>In large clusters, some nodes will always be down or out for repairs, so this percentage should be configured to tolerate that. </p>
+
+    <p></p>
+  syntax:
+    content: public void setMaxPercentUnhealthyNodes(byte maxPercentUnhealthyNodes)
+    parameters:
+    - id: maxPercentUnhealthyNodes
+      type: d357ea40
+      description: <p>The maximum allowed percentage of unhealthy nodes. Allowed values are integer values from zero to 100. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>The specified value was outside the range of integer values from zero to 100. </p>
+- uid: system.fabric._cluster_health_policy.toNative(PinCollection)
+  id: toNative(PinCollection)
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  langs:
+  - java
+  name: toNative(PinCollection pinCollection)
+  nameWithType: ClusterHealthPolicy.toNative(PinCollection pinCollection)
+  fullName: long system.fabric.ClusterHealthPolicy.toNative(PinCollection pinCollection)
+  overload: system.fabric._cluster_health_policy.toNative*
+  type: Method
+  source:
+    remote: *o0
+    path: src/prod/src/java/system.fabric/src/system/fabric/ClusterHealthPolicy.java
+    startLine: 42
+  package: system.fabric
+  syntax:
+    content: public long toNative(PinCollection pinCollection)
+    parameters:
+    - id: pinCollection
+      type: system.fabric._pin_collection
+    return:
+      type: 0364520f
+references:
+- uid: system.fabric._cluster_health_policy.ClusterHealthPolicy*
+  name: ClusterHealthPolicy
+  nameWithType: ClusterHealthPolicy.ClusterHealthPolicy
+  fullName: system.fabric.ClusterHealthPolicy.ClusterHealthPolicy
+  package: system.fabric
+- uid: 0364520f
+  spec.java:
+  - name: long
+    fullName: long
+- uid: system.fabric._cluster_health_policy.toNative*
+  name: toNative
+  nameWithType: ClusterHealthPolicy.toNative
+  fullName: long system.fabric.ClusterHealthPolicy.toNative
+  package: system.fabric
+- uid: system.fabric._cluster_health_policy.getApplicationTypeHealthPolicyMap*
+  name: getApplicationTypeHealthPolicyMap
+  nameWithType: ClusterHealthPolicy.getApplicationTypeHealthPolicyMap
+  fullName: ApplicationTypeHealthPolicyMap system.fabric.ClusterHealthPolicy.getApplicationTypeHealthPolicyMap
+  package: system.fabric
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: d357ea40
+  spec.java:
+  - name: byte
+    fullName: byte
+- uid: system.fabric._cluster_health_policy.setMaxPercentUnhealthyNodes*
+  name: setMaxPercentUnhealthyNodes
+  nameWithType: ClusterHealthPolicy.setMaxPercentUnhealthyNodes
+  fullName: void system.fabric.ClusterHealthPolicy.setMaxPercentUnhealthyNodes
+  package: system.fabric
+- uid: system.fabric._cluster_health_policy.getMaxPercentUnhealthyNodes*
+  name: getMaxPercentUnhealthyNodes
+  nameWithType: ClusterHealthPolicy.getMaxPercentUnhealthyNodes
+  fullName: byte system.fabric.ClusterHealthPolicy.getMaxPercentUnhealthyNodes
+  package: system.fabric
+- uid: system.fabric._cluster_health_policy.setMaxPercentUnhealthyApplications*
+  name: setMaxPercentUnhealthyApplications
+  nameWithType: ClusterHealthPolicy.setMaxPercentUnhealthyApplications
+  fullName: void system.fabric.ClusterHealthPolicy.setMaxPercentUnhealthyApplications
+  package: system.fabric
+- uid: system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications*
+  name: getMaxPercentUnhealthyApplications
+  nameWithType: ClusterHealthPolicy.getMaxPercentUnhealthyApplications
+  fullName: byte system.fabric.ClusterHealthPolicy.getMaxPercentUnhealthyApplications
+  package: system.fabric
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: system.fabric._cluster_health_policy.setConsiderWarningAsError*
+  name: setConsiderWarningAsError
+  nameWithType: ClusterHealthPolicy.setConsiderWarningAsError
+  fullName: void system.fabric.ClusterHealthPolicy.setConsiderWarningAsError
+  package: system.fabric
+- uid: system.fabric._cluster_health_policy.getConsiderWarningAsError*
+  name: getConsiderWarningAsError
+  nameWithType: ClusterHealthPolicy.getConsiderWarningAsError
+  fullName: boolean system.fabric.ClusterHealthPolicy.getConsiderWarningAsError
+  package: system.fabric
+- uid: system.fabric._application_type_health_policy_map
+  parent: system.fabric
+  href: system.fabric._application_type_health_policy_map.yml
+  name: ApplicationTypeHealthPolicyMap
+  nameWithType: ApplicationTypeHealthPolicyMap
+  fullName: system.fabric.ApplicationTypeHealthPolicyMap
+  type: Class
+  summary: >-
+    <p>Defines a policy map with entries for application type health policies, which is used during cluster health evaluation. </p>
+
+    <p>
+
+      <b>Remarks:</b>The application type health policy map can be used during cluster health evaluation to describe special application types. The application types included in the map are evaluated against the percentage included in the map, and not with the global <xref uid="system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications()" data-throw-if-not-resolved="false">system.fabric.ClusterHealthPolicy#getMaxPercentUnhealthyApplications()</xref>. The applications of application types specified in the map are not counted against the global pool of applications. </p>
+  syntax:
+    content: public class ApplicationTypeHealthPolicyMap
+- uid: system.fabric._pin_collection
+  parent: system.fabric
+  href: system.fabric._pin_collection.yml
+  name: PinCollection
+  nameWithType: PinCollection
+  fullName: system.fabric.PinCollection
+  type: Class
+  syntax:
+    content: public class PinCollection
+- uid: system.fabric._cluster_health_policy.getMaxPercentUnhealthyApplications()
+  parent: system.fabric._cluster_health_policy
+  href: system.fabric._cluster_health_policy.yml
+  name: getMaxPercentUnhealthyApplications()
+  nameWithType: ClusterHealthPolicy.getMaxPercentUnhealthyApplications()
+  fullName: byte system.fabric.ClusterHealthPolicy.getMaxPercentUnhealthyApplications()
+  type: Method
+  summary: >-
+    <p>Sets the maximum allowed percentage of unhealthy applications.</p>
+
+    <p>
+
+      <b>Remarks:</b>The percentage represents the maximum tolerated percentage of applications that can be unhealthy before the cluster is considered in error. If the percentage is respected but there is at least one unhealthy application, the health is evaluated as Warning. This is calculated by dividing the number of unhealthy applications over the total number of applications deployed in the cluster, excluding all applications of an application types that are included in the <xref uid="system.fabric._application_type_health_policy_map" data-throw-if-not-resolved="false">ApplicationTypeHealthPolicyMap</xref>. The computation rounds up to tolerate one failure on small numbers of applications. Default percentage: zero. </p>
+  syntax: *o1
