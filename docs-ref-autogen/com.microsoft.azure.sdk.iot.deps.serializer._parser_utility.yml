@@ -4,13 +4,16 @@ items:
   id: _parser_utility
   parent: com.microsoft.azure.sdk.iot.deps.serializer
   children:
+  - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.dateTimeUtcToString(Date)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateStringFromDate(Date)
-  - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeOffset(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeUtc(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.mapToJsonElement(Map<String, Object>)
+  - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.stringToDateTimeOffset(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateBlobName(String)
+  - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateHostName(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateId(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateKey(String,boolean)
+  - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateMap(Map<String, Object>,int,boolean)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateObject(Object)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateQuery(String)
   - com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateStringUTF8(String)
@@ -27,13 +30,54 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 20
+    startLine: 21
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: <p>Set of static functions to help the serializer. </p>
   syntax:
     content: public class ParserUtility
   inheritance:
   - java.lang.Object
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.dateTimeUtcToString(Date)
+  id: dateTimeUtcToString(Date)
+  parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
+  href: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.yml
+  langs:
+  - java
+  name: dateTimeUtcToString(Date date)
+  nameWithType: ParserUtility.dateTimeUtcToString(Date date)
+  fullName: static String com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.dateTimeUtcToString(Date date)
+  overload: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.dateTimeUtcToString*
+  type: Method
+  source:
+    remote: *o0
+    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
+    startLine: 409
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+  summary: >-
+    <p>Helper to convert the provided Date UTC into String. Expected result: "2016-06-01T21:22:43.799Z"</p>
+
+    <p></p>
+  syntax:
+    content: public static String dateTimeUtcToString(Date date)
+    parameters:
+    - id: date
+      type: "12977444"
+      description: >-
+        <p>is the<code>Date 
+
+            </code> with the date and time </p>
+    return:
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> with the date and time using the UTC format. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if the provided date is<code>null 
+
+          </code> . </p>
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateStringFromDate(Date)
   id: getDateStringFromDate(Date)
   parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
@@ -48,7 +92,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 328
+    startLine: 439
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Convert from a date object back into a string representation Expected format of returned string: "2016-01-21T11:05:21"</p>
@@ -66,38 +110,6 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the provided date is null </p>
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeOffset(String)
-  id: getDateTimeOffset(String)
-  parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
-  href: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.yml
-  langs:
-  - java
-  name: getDateTimeOffset(String dataTime)
-  nameWithType: ParserUtility.getDateTimeOffset(String dataTime)
-  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateTimeOffset(String dataTime)
-  overload: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeOffset*
-  type: Method
-  source:
-    remote: *o0
-    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 292
-  package: com.microsoft.azure.sdk.iot.deps.serializer
-  summary: >-
-    <p>Helper to convert the provided string in a offset Date. Expected format: "2016-06-01T21:22:41+00:00"</p>
-
-    <p></p>
-  syntax:
-    content: protected static Date getDateTimeOffset(String dataTime)
-    parameters:
-    - id: dataTime
-      type: "26831127"
-      description: <p>is the string with the date and time </p>
-    return:
-      type: "12977444"
-      description: <p>Date parsed from the string </p>
-  exceptions:
-  - type: 3c87bd19
-    description: <p>if the date and time in the string is not in the correct format. </p>
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeUtc(String)
   id: getDateTimeUtc(String)
   parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
@@ -112,7 +124,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 234
+    startLine: 315
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to convert the provided string in a UTC Date. Expected format: "2016-06-01T21:22:43.7996883Z"</p>
@@ -144,14 +156,14 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 347
+    startLine: 458
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to convert a provided map in to a JsonElement, including sub-maps.</p>
 
     <p></p>
   syntax:
-    content: protected static JsonElement mapToJsonElement(Map<String, Object> map)
+    content: public static JsonElement mapToJsonElement(Map<String, Object> map)
     parameters:
     - id: map
       type: e7b06046
@@ -162,6 +174,38 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the provided map is null. </p>
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.stringToDateTimeOffset(String)
+  id: stringToDateTimeOffset(String)
+  parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
+  href: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.yml
+  langs:
+  - java
+  name: stringToDateTimeOffset(String dateTime)
+  nameWithType: ParserUtility.stringToDateTimeOffset(String dateTime)
+  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.stringToDateTimeOffset(String dateTime)
+  overload: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.stringToDateTimeOffset*
+  type: Method
+  source:
+    remote: *o0
+    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
+    startLine: 373
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+  summary: >-
+    <p>Helper to convert the provided string in a offset Date. Expected format: "2016-06-01T21:22:41+00:00"</p>
+
+    <p></p>
+  syntax:
+    content: public static Date stringToDateTimeOffset(String dateTime)
+    parameters:
+    - id: dateTime
+      type: "26831127"
+      description: <p>is the string with the date and time </p>
+    return:
+      type: "12977444"
+      description: <p>Date parsed from the string </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the date and time in the string is not in the correct format. </p>
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateBlobName(String)
   id: validateBlobName(String)
   parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
@@ -176,7 +220,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 101
+    startLine: 102
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to validate if the provided blob name is not null, empty, and valid.</p>
@@ -191,6 +235,35 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the blob name do not fit the criteria. </p>
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateHostName(String)
+  id: validateHostName(String)
+  parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
+  href: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.yml
+  langs:
+  - java
+  name: validateHostName(String hostName)
+  nameWithType: ParserUtility.validateHostName(String hostName)
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateHostName(String hostName)
+  overload: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateHostName*
+  type: Method
+  source:
+    remote: *o0
+    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
+    startLine: 295
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+  summary: >-
+    <p>Validate if a provided host name is valid using the follow criteria. A case-sensitive string (up to 128 char long) of ASCII 7-bit alphanumeric chars<itemizedlist><listitem><p>{'-', ':', '.', '+', '', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}. Contains at least one separator '.'</p></listitem></itemizedlist></p>
+
+    <p></p>
+  syntax:
+    content: public static void validateHostName(String hostName)
+    parameters:
+    - id: hostName
+      type: "26831127"
+      description: <p>is the host name to test </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided host name do not fits the criteria </p>
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateId(String)
   id: validateId(String)
   parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
@@ -205,14 +278,14 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 191
+    startLine: 251
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Validate if a provided ID is valid using the follow criteria. A case-sensitive string (up to 128 char long) of ASCII 7-bit alphanumeric chars<itemizedlist><listitem><p>{'-', ':', '.', '+', '', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}.</p></listitem></itemizedlist></p>
 
     <p></p>
   syntax:
-    content: protected static void validateId(String id)
+    content: public static void validateId(String id)
     parameters:
     - id: id
       type: "26831127"
@@ -234,14 +307,14 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 152
+    startLine: 153
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to validate if the provided string is a valid json key.</p>
 
     <p></p>
   syntax:
-    content: protected static void validateKey(String key, boolean isMetadata)
+    content: public static void validateKey(String key, boolean isMetadata)
     parameters:
     - id: key
       type: "26831127"
@@ -252,6 +325,49 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the string do not fit the criteria. </p>
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateMap(Map<String, Object>,int,boolean)
+  id: validateMap(Map<String, Object>,int,boolean)
+  parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
+  href: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.yml
+  langs:
+  - java
+  name: validateMap(Map<String, Object> map, int maxLevel, boolean allowMetadata)
+  nameWithType: ParserUtility.validateMap(Map<String, Object> map, int maxLevel, boolean allowMetadata)
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateMap(Map<String, Object> map, int maxLevel, boolean allowMetadata)
+  overload: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateMap*
+  type: Method
+  source:
+    remote: *o0
+    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
+    startLine: 193
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+  summary: >-
+    <p>Helper to validate if the provided map in terms of maximum levels and optionally if the keys ar not metadata.</p>
+
+    <p></p>
+  syntax:
+    content: public static void validateMap(Map<String, Object> map, int maxLevel, boolean allowMetadata)
+    parameters:
+    - id: map
+      type: e7b06046
+      description: >-
+        <p>the<code>Map 
+
+            </code> to be validate. It can be<code>null 
+
+            </code> , and it will succeed in this case. </p>
+    - id: maxLevel
+      type: f75371fa
+      description: <p>the max number of level allowed in the map. </p>
+    - id: allowMetadata
+      type: 4fc6e284
+      description: >-
+        <p>the<code>boolean 
+
+            </code> that indicates if the key can contain metadata <code>$</code> or not. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>If the Map contains more than maxLevel levels or do not allow metadata but contains metadata key. </p>
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateObject(Object)
   id: validateObject(Object)
   parent: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility
@@ -266,14 +382,14 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 135
+    startLine: 136
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to validate if the provided object is not null.</p>
 
     <p></p>
   syntax:
-    content: protected static void validateObject(Object val)
+    content: public static void validateObject(Object val)
     parameters:
     - id: val
       type: "79317049"
@@ -295,7 +411,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 72
+    startLine: 73
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: <p>Validates if query contains select and from keywords and also if it is a valid utf-8 string </p>
   syntax:
@@ -321,14 +437,14 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/serializer/ParserUtility.java
-    startLine: 42
+    startLine: 43
   package: com.microsoft.azure.sdk.iot.deps.serializer
   summary: >-
     <p>Helper to validate if the provided string is not null, empty, and all characters are UTF-8.</p>
 
     <p></p>
   syntax:
-    content: protected static void validateStringUTF8(String str)
+    content: public static void validateStringUTF8(String str)
     parameters:
     - id: str
       type: "26831127"
@@ -350,6 +466,16 @@ references:
   nameWithType: ParserUtility.validateStringUTF8
   fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateStringUTF8
   package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateQuery*
+  name: validateQuery
+  nameWithType: ParserUtility.validateQuery
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateQuery
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateBlobName*
+  name: validateBlobName
+  nameWithType: ParserUtility.validateBlobName
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateBlobName
+  package: com.microsoft.azure.sdk.iot.deps.serializer
 - uid: "79317049"
   spec.java:
   - name: Object
@@ -368,24 +494,53 @@ references:
   nameWithType: ParserUtility.validateKey
   fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateKey
   package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: e7b06046
+  spec.java:
+  - name: Map<String, Object>
+    fullName: Map<String, Object>
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateMap*
+  name: validateMap
+  nameWithType: ParserUtility.validateMap
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateMap
+  package: com.microsoft.azure.sdk.iot.deps.serializer
 - uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateId*
   name: validateId
   nameWithType: ParserUtility.validateId
   fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateId
   package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateHostName*
+  name: validateHostName
+  nameWithType: ParserUtility.validateHostName
+  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateHostName
+  package: com.microsoft.azure.sdk.iot.deps.serializer
 - uid: "12977444"
   spec.java:
   - name: Date
     fullName: Date
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeOffset*
-  name: getDateTimeOffset
-  nameWithType: ParserUtility.getDateTimeOffset
-  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateTimeOffset
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeUtc*
+  name: getDateTimeUtc
+  nameWithType: ParserUtility.getDateTimeUtc
+  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateTimeUtc
   package: com.microsoft.azure.sdk.iot.deps.serializer
-- uid: e7b06046
-  spec.java:
-  - name: Map<String, Object>
-    fullName: Map<String, Object>
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.stringToDateTimeOffset*
+  name: stringToDateTimeOffset
+  nameWithType: ParserUtility.stringToDateTimeOffset
+  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.stringToDateTimeOffset
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.dateTimeUtcToString*
+  name: dateTimeUtcToString
+  nameWithType: ParserUtility.dateTimeUtcToString
+  fullName: static String com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.dateTimeUtcToString
+  package: com.microsoft.azure.sdk.iot.deps.serializer
+- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateStringFromDate*
+  name: getDateStringFromDate
+  nameWithType: ParserUtility.getDateStringFromDate
+  fullName: static String com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateStringFromDate
+  package: com.microsoft.azure.sdk.iot.deps.serializer
 - uid: 8585b2e7
   spec.java:
   - name: JsonElement
@@ -394,24 +549,4 @@ references:
   name: mapToJsonElement
   nameWithType: ParserUtility.mapToJsonElement
   fullName: static JsonElement com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.mapToJsonElement
-  package: com.microsoft.azure.sdk.iot.deps.serializer
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateQuery*
-  name: validateQuery
-  nameWithType: ParserUtility.validateQuery
-  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateQuery
-  package: com.microsoft.azure.sdk.iot.deps.serializer
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.validateBlobName*
-  name: validateBlobName
-  nameWithType: ParserUtility.validateBlobName
-  fullName: static void com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.validateBlobName
-  package: com.microsoft.azure.sdk.iot.deps.serializer
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateTimeUtc*
-  name: getDateTimeUtc
-  nameWithType: ParserUtility.getDateTimeUtc
-  fullName: static Date com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateTimeUtc
-  package: com.microsoft.azure.sdk.iot.deps.serializer
-- uid: com.microsoft.azure.sdk.iot.deps.serializer._parser_utility.getDateStringFromDate*
-  name: getDateStringFromDate
-  nameWithType: ParserUtility.getDateStringFromDate
-  fullName: static String com.microsoft.azure.sdk.iot.deps.serializer.ParserUtility.getDateStringFromDate
   package: com.microsoft.azure.sdk.iot.deps.serializer
