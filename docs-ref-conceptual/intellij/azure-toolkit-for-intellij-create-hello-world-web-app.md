@@ -303,7 +303,7 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 <!-- URL List -->
 
 [Azure Toolkit for IntelliJ]: azure-toolkit-for-intellij.md
-[Web Apps Overview]: ./app-service-web-overview.md
+[Web Apps Overview]: /azure/app-service/app-service-web-overview
 [Apache Tomcat]: http://tomcat.apache.org/
 [Jetty]: http://www.eclipse.org/jetty/
 

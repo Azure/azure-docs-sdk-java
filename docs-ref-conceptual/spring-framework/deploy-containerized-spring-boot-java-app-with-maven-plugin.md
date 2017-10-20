@@ -305,7 +305,7 @@ For more information about the various technologies discussed in this article, s
 
 * [Log in to Azure from the Azure CLI](/azure/xplat-cli-connect)
 
-* [How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app to Azure App Service ](deploy-spring-boot-app-with-maven-plugin.md)
+* [How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app to Azure App Service ](deploy-spring-boot-java-app-with-maven-plugin.md)
 
 * [Create an Azure service principal with Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli)
 
