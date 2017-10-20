@@ -24,6 +24,11 @@ ms.author: robmcm;asirveda;martinsawicki
 This article contains information on the various releases and latest updates to the Azure Toolkit for Eclipse.
 
 > [!NOTE]
+> See the following web page for the latest information:
+> 
+> <https://github.com/Microsoft/azure-tools-for-java/releases>
+
+> [!NOTE]
 > There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ].
 > 
 > 
