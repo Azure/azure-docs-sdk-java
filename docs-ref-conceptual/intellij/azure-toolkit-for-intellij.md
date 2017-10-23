@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/11/2017
+ms.date: 10/19/2017
 ms.author: robmcm;asirveda
 
 ---
@@ -29,13 +29,11 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 ## Get started with the Azure Toolkit for IntelliJ
 The following articles will help you start using the Azure Toolkit for IntelliJ:
 
-* [What's new in the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-whats-new.md)
-
 * [Installing the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-installation.md)
 
 * [Sign-in instructions for the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-sign-in-instructions.md)
 
-* [Create a Hello World web app for Azure in IntelliJ](/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app)
+* [Create a Hello World web app for Azure in IntelliJ](azure-toolkit-for-intellij-create-hello-world-web-app.md)
 
 ## Use the Azure Toolkit for IntelliJ with your Java Projects
 The following articles demonstrate using the Azure Toolkit for IntelliJ to add Azure functionality to your Java projects:
@@ -58,6 +56,12 @@ The following articles demonstrate using the Azure Toolkit for IntelliJ to manag
 * [Manage virtual machines by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
 
 ## Next steps
+
+For more information about the Azure Toolkit for IntelliJ, see the following pages:
+
+* [Azure Toolkit Release Notes](https://github.com/Microsoft/azure-tools-for-java/releases)
+
+* [Azure Toolkit for IntelliJ in the JetBrains Plugins Repository](https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij)
 
 For more information about using Java with Azure, see the [Azure Java Developer Center](https://azure.microsoft.com/develop/java/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
 
