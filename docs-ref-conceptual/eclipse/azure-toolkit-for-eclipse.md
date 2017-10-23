@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/11/2017
+ms.date: 10/19/2017
 ms.author: robmcm;asirveda
 
 ---
@@ -28,8 +28,6 @@ The Azure Toolkit for Eclipse provides templates and functionality that you can 
 
 ## Get started with the Azure Toolkit for Eclipse
 The following articles will help you start using the Azure Toolkit for Eclipse:
-
-* [What's new in the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-whats-new.md)
 
 * [Installing the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-installation.md)
 
@@ -58,6 +56,12 @@ The following articles demonstrate using the Azure Toolkit for Eclipse to manage
 * [Manage virtual machines by using the Azure Explorer for Eclipse](azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md)
 
 ## Next steps
+
+For more information about the Azure Toolkit for Eclipse, see the following pages:
+
+* [Azure Toolkit Release Notes](https://github.com/Microsoft/azure-tools-for-java/releases)
+
+* [Azure Toolkit for Eclipse in the Eclipse Marketplace](http://marketplace.eclipse.org/content/azure-toolkit-eclipse)
 
 For more information about using Java with Azure, see the [Azure Java Developer Center](https://azure.microsoft.com/develop/java/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
 
