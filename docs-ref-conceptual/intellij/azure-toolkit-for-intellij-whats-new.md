@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/11/2017
+ms.date: 10/19/2017
 ms.author: robmcm;asirveda;martinsawicki
 
 ---
@@ -22,6 +22,11 @@ ms.author: robmcm;asirveda;martinsawicki
 
 ## Azure Toolkit for IntelliJ Releases
 This article contains information on the various releases and latest updates to the Azure Toolkit for IntelliJ.
+
+> [!NOTE]
+> See the following web page for the latest information:
+> 
+> <https://github.com/Microsoft/azure-tools-for-java/releases>
 
 > [!NOTE]
 > There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse].
