@@ -14,7 +14,7 @@ ms.service: multiple
 ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
-# Get started with the Azure libraries for Java
+# Get started with the Azure using Eclipse
 
 This guide walks you through setting up a development environment with an Azure service principal and running sample code that creates and uses resources in your Azure subscription using the Azure libraries for Java.
 
@@ -22,8 +22,7 @@ This guide walks you through setting up a development environment with an Azure 
 
 - An Azure account. If you don't have one , [get a free trial](https://azure.microsoft.com/free/)
 - [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/quickstart) or [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2).
-- [Java 8](https://www.azul.com/downloads/zulu/) (included in Azure Cloud Shell)
-- [Maven 3](http://maven.apache.org/download.cgi) (included in Azure Cloud Shell)
+- [Eclipse](http://www.eclipse.org/downloads/)
 
 ## Set up authentication
 
@@ -78,16 +77,13 @@ export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 > [!NOTE]
 > This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle also work with the Azure libraries for Java. 
 
-Create a Maven project from the command line in a new directory on your system:
+Open Eclipse, select File > New. In the new window that appears open the Maven folder then select Maven Project. 
 
-```
-mkdir java-azure-test
-cd java-azure-test
-mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp  \ 
--DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
-```
+Leave the selections on the next screen defaults, and select next. Do the same for this screen regarding archetypes.
 
-This creates a basic Maven project under the `testAzureApp` folder. Add the following entries into the project `pom.xml` to import the libraries used in the sample code in this tutorial.
+When you come to the screen asking for groupID, ArtifactID, etc. Enter "com.fabrikam" for the groupID and enter an artifactID of your choice.
+
+Now, open the pom.xml file. Inside the `dependencies` tag add the following code:
 
 ```XML
 <dependency>
@@ -107,25 +103,25 @@ This creates a basic Maven project under the `testAzureApp` folder. Add the foll
 </dependency>
 ```
 
-Add a `build` entry under the top-level `project` element to use the [maven-exec-plugin](http://www.mojohaus.org/exec-maven-plugin/) to run the samples:
-
-```XML
-<build>
-    <plugins>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <configuration>
-                <mainClass>com.fabrikam.testAzureApp.AzureApp</mainClass>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
- ```
+Now, save the pom.xml. This will prompt Eclipse to download all the specified dependencies. This may take a moment.
    
+## Install the azure toolkit for Eclipse
+
+The Azure toolkit is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development.
+
+Select the **Help** menu and then select **Install New software**.
+
+In the **Work with:** field enter `http://dl.microsoft.com/eclipse` and press enter.
+
+Then, select the checkbox next to **Azure toolkit for Java** and uncheck the checkbox for **Contact all update sites during install to find required software**. Then select next.
+
+
+
 ## Create a Linux virtual machine
 
 Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
+
+In order to create an `sshkey`, open the azure cloud shell and enter `ssh-keygen -t rsa -b 2048`. Name the file and then access the .public file to get the key which you will use in the following code, copy and paste it all into your variable `sshKey`.
 
 ```java
 package com.fabrikam.testAzureApp;
@@ -134,6 +130,7 @@ import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;
 import com.microsoft.azure.management.compute.KnownLinuxVirtualMachineImage;
 import com.microsoft.azure.management.compute.VirtualMachineSizeTypes;
+import com.microsoft.azure.management.appservice.PricingTier;
 import com.microsoft.azure.management.appservice.WebApp;
 import com.microsoft.azure.management.storage.StorageAccount;
 import com.microsoft.azure.management.storage.SkuName;
@@ -153,6 +150,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
 
 public class AzureApp {
 
@@ -193,11 +191,6 @@ public class AzureApp {
 }
 ```
 
-Run the sample from the command line:
-
-```
-mvn compile exec:java
-```
 
 You'll see some REST requests and responses in the console as the SDK makes the underlying calls to the Azure REST API to configure the virtual machine and its resources. When the program finishes, verify the virtual machine in your subscription with the Azure CLI 2.0:
 
@@ -247,16 +240,11 @@ Replace the main method in `AzureApp.java` with the one below, updating the `app
 
 Run the code as before using Maven:
 
-```
-mvn clean compile exec:java
-```
-
 Open a browser pointed to the application using the CLI:
 
 ```azurecli-interactive
 az appservice web browse --resource-group sampleWebResourceGroup --name YOUR_APP_NAME
 ```
-
 Remove the web app and plan from your subscription once you've verified the deployment.
 
 ```azurecli-interactive
@@ -331,10 +319,6 @@ This code creates a new SQL database with a firewall rule allowing remote access
 ```
 Run the sample from the command line:
 
-```
-mvn clean compile exec:java
-```
-
 Then clean up the resources using the CLI:
 
 ```azurecli-interactive
@@ -365,7 +349,7 @@ Replace the current main method in `AzureApp.java` with the code below. This cod
                         .withNewResourceGroup("sampleStorageResourceGroup")
                         .create();
 
-            // create a storage container to hold the file
+            // create a storage container to hold the files
             List<StorageAccountKey> keys = storage.getKeys();
             final String storageConnection = "DefaultEndpointsProtocol=https;"
                    + "AccountName=" + storage.name()
@@ -397,10 +381,6 @@ Replace the current main method in `AzureApp.java` with the code below. This cod
 ```
 
 Run the sample from the command line:
-
-```
-mvn clean compile exec:java
-```
 
 You can browse for the `helloazure.txt` file in your storage account through the Azure portal or with [Azure Storage Explorer](https://docs.microsoft.com/azure/vs-azure-tools-storage-explorer-blobs).
 

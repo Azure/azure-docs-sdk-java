@@ -1,21 +1,17 @@
 ---
-title: Installing the Azure Toolkit for IntelliJ
-description: Learn how to install the Azure Toolkit for the IntelliJ IDEA.
-services: ''
-documentationcenter: java
-author: rmcmurray
-manager: routlaw
-editor: ''
-
-ms.assetid: c6817c7b-f28c-4c06-8216-41c7a8117de3
+title: Get started with the Azure libraries for Java
+description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
+keywords: Azure, Java, SDK, API ,authenticate, get-started
+author: roygara
+ms.author: v-rogara
+manager: timlt
+ms.date: 04/16/2017
+ms.topic: get-started-article
+ms.prod: azure
+ms.technology: azure
+ms.devlang: java
 ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 09/11/2017
-ms.author: robmcm
-
+ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
 # Installing the Azure Toolkit for IntelliJ
