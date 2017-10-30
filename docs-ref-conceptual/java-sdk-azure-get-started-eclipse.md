@@ -72,6 +72,12 @@ Save this file in a secure location on your system where your code can read it. 
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
+If you're working in a windows environment, then you'll want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+
+```powershell
+[Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
+```
+
 ## Create a new Maven project
 
 > [!NOTE]
@@ -81,7 +87,7 @@ Open Eclipse, select File > New. In the new window that appears open the Maven f
 
 Leave the selections on the next screen defaults, and select next. Do the same for this screen regarding archetypes.
 
-When you come to the screen asking for groupID, ArtifactID, etc. Enter "com.fabrikam" for the groupID and enter an artifactID of your choice.
+When you come to the screen asking for groupID, ArtifactID, etc. Enter "com.fabrikam" for the groupID and enter "AzureApp" for the artifactID.
 
 Now, open the pom.xml file. Inside the `dependencies` tag add the following code:
 
@@ -124,7 +130,7 @@ Create a new file named `AzureApp.java` in the project's `src/main/java` directo
 In order to create an `sshkey`, open the azure cloud shell and enter `ssh-keygen -t rsa -b 2048`. Name the file and then access the .public file to get the key which you will use in the following code, copy and paste it all into your variable `sshKey`.
 
 ```java
-package com.fabrikam.testAzureApp;
+package com.fabrikam.AzureApp;
 
 import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;

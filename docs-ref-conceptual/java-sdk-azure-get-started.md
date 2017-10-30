@@ -73,6 +73,12 @@ Save this file in a secure location on your system where your code can read it. 
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
+If you're working in a windows environment, then you'll want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+
+```powershell
+[Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
+```
+
 ## Create a new Maven project
 
 > [!NOTE]
@@ -83,7 +89,7 @@ Create a Maven project from the command line in a new directory on your system:
 ```
 mkdir java-azure-test
 cd java-azure-test
-mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=testAzureApp  \ 
+mvn archetype:generate -DgroupId=com.fabrikam -DartifactId=AzureApp  \ 
 -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 ```
 
@@ -128,7 +134,7 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
 Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
 
 ```java
-package com.fabrikam.testAzureApp;
+package com.fabrikam.AzureApp;
 
 import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;

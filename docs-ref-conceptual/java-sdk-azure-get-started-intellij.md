@@ -72,6 +72,12 @@ Save this file in a secure location on your system where your code can read it. 
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
+If you're working in a windows environment, then you'll want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+
+```powershell
+[Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
+```
+
 ## Create a new Maven project
 
 > [!NOTE]
