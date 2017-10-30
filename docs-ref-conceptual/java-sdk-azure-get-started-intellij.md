@@ -1,17 +1,16 @@
 ---
-title: Get started with the Azure libraries for Java
+title: Get started with the Azure libraries for Java using Intellij
 description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
 keywords: Azure, Java, SDK, API ,authenticate, get-started
 author: roygara
 ms.author: v-rogara
 manager: timlt
-ms.date: 04/16/2017
+ms.date: 10/30/2017
 ms.topic: get-started-article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
 ms.service: multiple
-ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
 # Get started with the Azure using Intellij
