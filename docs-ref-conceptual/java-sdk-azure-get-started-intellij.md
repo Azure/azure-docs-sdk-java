@@ -1,5 +1,5 @@
 ---
-title: Get started with the Azure libraries for Java using Intellij
+title: Get started with Azure for Java using Intellij
 description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
 keywords: Azure, Java, SDK, API ,authenticate, get-started
 author: roygara
@@ -34,6 +34,8 @@ Your Java application needs read and create permissions in your Azure subscripti
 az ad sp create-for-rbac --name AzureJavaTest --password "MY_SECURE_PASSWORD"
 ```
 
+Which gives you a reply in the following format:
+
 ```json
 {
   "appId": "a487e0c1-82af-47d9-9a0b-af184eb87646d",
@@ -65,7 +67,9 @@ Replace the top four values with the following:
 - key: use the *password* value from the service principal output .
 - tenant: use the *tenant* value from the service principal output.
 
-Save this file in a secure location on your system where your code can read it. Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the authentication file in your shell.    
+Save this file in a secure location on your system where your code can read it. You may use this file for future code so it's recommended to store it somewhere external to the application in this article. 
+
+Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the authentication file in your shell.  
 
 ```bash
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
