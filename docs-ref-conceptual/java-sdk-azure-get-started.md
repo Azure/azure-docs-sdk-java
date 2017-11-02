@@ -44,7 +44,7 @@ Which gives you a reply in the following format:
   "displayName": "AzureJavaTest",
   "name": "http://AzureJavaTest",
   "password": password,
-  "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  "tenant": "tttttttt-tttt-tttt-tttt-tttttttttttt"
 }
 ```
 
@@ -52,10 +52,10 @@ Next, copy the following into a text file on your system:
 
 ```text
 # sample management library properties file
-subscription=########-####-####-####-############
-client=########-####-####-####-############
-key=XXXXXXXXXXXXXXXX
-tenant=########-####-####-####-############
+subscription=ssssssss-ssss-ssss-ssss-ssssssssssss
+client=cccccccc-cccc-cccc-cccc-cccccccccccc
+key=kkkkkkkkkkkkkkkk
+tenant=tttttttt-tttt-tttt-tttt-tttttttttttt
 managementURI=https\://management.core.windows.net/
 baseURL=https\://management.azure.com/
 authURL=https\://login.windows.net/
@@ -69,7 +69,7 @@ Replace the top four values with the following:
 - key: use the *password* value from the service principal output .
 - tenant: use the *tenant* value from the service principal output.
 
-Save this file in a secure location on your system where your code can read it. You may use this file for future code so it's recommended to store it somewhere external to the application in this article. 
+Save this file in a secure location on your system where your code can read it. You may use this file for future code so it's recommended to store it somewhere external to the application in this article.
 
 Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the authentication file in your shell.   
 

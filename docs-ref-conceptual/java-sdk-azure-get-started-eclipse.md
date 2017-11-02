@@ -42,7 +42,7 @@ Which gives you a reply in the following format:
   "displayName": "AzureJavaTest",
   "name": "http://AzureJavaTest",
   "password": password,
-  "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  "tenant": "tttttttt-tttt-tttt-tttt-tttttttttttt"
 }
 ```
 
@@ -50,10 +50,10 @@ Next, copy the following into a text file on your system:
 
 ```text
 # sample management library properties file
-subscription=########-####-####-####-############
-client=########-####-####-####-############
-key=XXXXXXXXXXXXXXXX
-tenant=########-####-####-####-############
+subscription=ssssssss-ssss-ssss-ssss-ssssssssssss
+client=cccccccc-cccc-cccc-cccc-cccccccccccc
+key=kkkkkkkkkkkkkkkk
+tenant=tttttttt-tttt-tttt-tttt-tttttttttttt
 managementURI=https\://management.core.windows.net/
 baseURL=https\://management.azure.com/
 authURL=https\://login.windows.net/
@@ -123,8 +123,6 @@ Select the **Help** menu and then select **Install New software**.
 In the **Work with:** field enter `http://dl.microsoft.com/eclipse` and press enter.
 
 Then, select the checkbox next to **Azure toolkit for Java** and uncheck the checkbox for **Contact all update sites during install to find required software**. Then select next.
-
-
 
 ## Create a Linux virtual machine
 

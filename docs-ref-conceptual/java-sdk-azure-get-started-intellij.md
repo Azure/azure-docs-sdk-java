@@ -42,7 +42,7 @@ Which gives you a reply in the following format:
   "displayName": "AzureJavaTest",
   "name": "http://AzureJavaTest",
   "password": password,
-  "tenant": "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+  "tenant": "tttttttt-tttt-tttt-tttt-tttttttttttt"
 }
 ```
 
@@ -50,10 +50,10 @@ Next, copy the following into a text file on your system:
 
 ```text
 # sample management library properties file
-subscription=########-####-####-####-############
-client=########-####-####-####-############
-key=XXXXXXXXXXXXXXXX
-tenant=########-####-####-####-############
+subscription=ssssssss-ssss-ssss-ssss-ssssssssssss
+client=cccccccc-cccc-cccc-cccc-cccccccccccc
+key=kkkkkkkkkkkkkkkk
+tenant=tttttttt-tttt-tttt-tttt-tttttttttttt
 managementURI=https\://management.core.windows.net/
 baseURL=https\://management.azure.com/
 authURL=https\://login.windows.net/
