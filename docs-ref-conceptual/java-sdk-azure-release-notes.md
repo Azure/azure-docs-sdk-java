@@ -16,7 +16,7 @@ ms.date: 3/06/2016
 
 ## October 5, 2017 - 1.3.0 
 
-Version 1.3.0 is backwards compatible with previous versions for serivces and featured use that reached the general availability (stable) stage in previous releases.
+Version 1.3.0 is backwards compatible with previous versions for services and features use that reached the general availability (stable) stage in previous releases.
 
 Any breaking changes from Preview versions for those services are marked with the @Beta annotation.
 
