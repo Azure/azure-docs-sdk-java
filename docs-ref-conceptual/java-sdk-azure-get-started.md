@@ -29,7 +29,7 @@ This guide walks you through setting up a development environment with an Azure 
 
 Your Java application needs read and create permissions in your Azure subscription to run the sample code in this tutorial. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
-[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. You'll need to provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`. Your password must be eight to sixteen characters and match at least three out of the four following criteria:
+[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. Provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`. Your password must be 8 to 16 characters and match at least 3 out of the 4 following criteria:
 
 * Include lowercase characters
 * Include uppercase characters
@@ -71,7 +71,7 @@ Replace the top four values with the following:
 
 - subscription: use the *id* value from `az account show` in the Azure CLI 2.0.
 - client: use the *appId* value from the output taken from a service principal output.
-- key: use the *password* value from the service principal output .
+- key: use the *password* value from the service principal output.
 - tenant: use the *tenant* value from the service principal output.
 
 Save this file in a secure location on your system where your code can read it. You may use this file for future code so it's recommended to store it somewhere external to the application in this article.
@@ -82,7 +82,7 @@ Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the auth
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
-If you're working in a windows environment, then you'll want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+If you're working in a windows environment, then you want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
 
 ```powershell
 [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
