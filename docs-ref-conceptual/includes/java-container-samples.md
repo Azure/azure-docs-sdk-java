@@ -7,5 +7,5 @@
 
 [1]: https://azure.microsoft.com/resources/samples/acr-java-manage-azure-container-registry/
 [2]: https://azure.microsoft.com/resources/samples/acs-java-manage-azure-container-service/
-[3]: hhttps://azure.microsoft.com/resources/samples/app-service-java-deploy-image-from-acr-to-linux/
+[3]: https://azure.microsoft.com/resources/samples/app-service-java-deploy-image-from-acr-to-linux/
 [4]: https://azure.microsoft.com/resources/samples/aad-java-browse-graph-and-manage-roles/
