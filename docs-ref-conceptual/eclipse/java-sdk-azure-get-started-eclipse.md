@@ -1,7 +1,7 @@
 ---
 title: Get started with Azure for Java using Eclipse
 description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
-keywords: Azure, Java, SDK, API ,authenticate, get-started
+keywords: Azure, Java, SDK, API, authenticate, get-started
 author: roygara
 ms.author: v-rogara
 manager: timlt
@@ -80,7 +80,7 @@ Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the auth
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
-If you're working in a windows environment, then you want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+If you're working in a windows environment, add the variable to your system properties. Open PowerShell and, after replacing the second variable with the path to your file, enter the following command:
 
 ```powershell
 [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
@@ -91,9 +91,9 @@ If you're working in a windows environment, then you want to add the variable to
 > [!NOTE]
 > This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle also work with the Azure libraries for Java. 
 
-Open Eclipse, select File > New. In the new window that appears open the Maven folder then select Maven Project. 
+Open Eclipse, select **File** -> **New**. In the new window that appears open the Maven folder then select Maven Project. 
 
-Leave the selections on the next screen defaults, and select next. Do the same for this screen regarding archetypes.
+Leave the selections on the next screen defaults, and select **Next**. Do the same for this screen regarding archetypes.
 
 When you come to the screen asking for groupID, ArtifactID, etc. Enter "com.fabrikam" for the groupID and enter "AzureApp" for the artifactID.
 
@@ -263,7 +263,7 @@ Remove the web app and plan from your subscription once you've verified the depl
 az group delete --name sampleWebResourceGroup
 ```
 
-## Connect to a SQL database
+## Connect to an Azure SQL database
 
 Replace the current main method in `AzureApp.java` with the code below, setting a real value for the `dbPassword` variable.
 This code creates a new SQL database with a firewall rule allowing remote access,  and then connects to it using the SQL Database JBDC driver. 
@@ -330,6 +330,10 @@ This code creates a new SQL database with a firewall rule allowing remote access
     }
 ```
 Run the sample from the command line:
+
+```
+mvn clean compile exec:java
+```
 
 Then clean up the resources using the CLI:
 

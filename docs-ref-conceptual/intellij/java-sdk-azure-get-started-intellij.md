@@ -1,7 +1,7 @@
 ---
 title: Get started with Azure for Java using Intellij
 description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
-keywords: Azure, Java, SDK, API ,authenticate, get-started
+keywords: Azure, Java, SDK, API, authenticate, get-started
 author: roygara
 ms.author: v-rogara
 manager: timlt
@@ -80,7 +80,7 @@ Set an environment variable `AZURE_AUTH_LOCATION` with the full path to the auth
 export AZURE_AUTH_LOCATION=/Users/raisa/azureauth.properties
 ```
 
-If you're working in a windows environment, then you want to add the variable to your system properties. Open powershell and, after replacing the second variable with the path to your file, enter the following command:
+If you're working in a windows environment, add the variable to your system properties. Open PowerShell and, after replacing the second variable with the path to your file, enter the following command:
 
 ```powershell
 [Environment]::SetEnvironmentVariable("AZURE_AUTH_LOCATION", "C:\<fullpath>\azureauth.properties", "Machine")
@@ -264,7 +264,7 @@ Remove the web app and plan from your subscription once you've verified the depl
 az group delete --name sampleWebResourceGroup
 ```
 
-## Connect to a SQL database
+## Connect to an Azure SQL database
 
 Replace the current main method in `AzureApp.java` with the code below, setting a real value for the `dbPassword` variable.
 This code creates a new SQL database with a firewall rule allowing remote access,  and then connects to it using the SQL Database JBDC driver. 
@@ -332,6 +332,10 @@ This code creates a new SQL database with a firewall rule allowing remote access
 ```
 Run the sample from the command line:
 
+```
+mvn clean compile exec:java
+```
+
 Then clean up the resources using the CLI:
 
 ```azurecli-interactive
@@ -343,52 +347,52 @@ az group delete --name sampleSqlResourceGroup
 Replace the current main method in `AzureApp.java` with the code below. This code creates an [Azure storage account](https://docs.microsoft.com/azure/storage/storage-introduction) and then uses the Azure Storage libraries for Java to create a new text file in the cloud.
 
 ```java
-    public static void main(String[] args) {
+public static void main(String[] args) {
 
-        try {
+    try {
 
-            // use the properties file with the service principal information to authenticate
-            // change the name of the environment variable if you used a different name in the previous step
-            final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
-            Azure azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+        // use the properties file with the service principal information to authenticate
+        // change the name of the environment variable if you used a different name in the previous step
+        final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
+        Azure azure = Azure.configure()
+                .withLogLevel(LogLevel.BASIC)
+                .authenticate(credFile)
+                .withDefaultSubscription();
 
-            // create a new storage account
-            String storageAccountName = SdkContext.randomResourceName("st",8);
-            StorageAccount storage = azure.storageAccounts().define(storageAccountName)
-                        .withRegion(Region.US_WEST2)
-                        .withNewResourceGroup("sampleStorageResourceGroup")
-                        .create();
+        // create a new storage account
+        String storageAccountName = SdkContext.randomResourceName("st",8);
+        StorageAccount storage = azure.storageAccounts().define(storageAccountName)
+                    .withRegion(Region.US_WEST2)
+                    .withNewResourceGroup("sampleStorageResourceGroup")
+                    .create();
 
-            // create a storage container to hold the file
-            List<StorageAccountKey> keys = storage.getKeys();
-            final String storageConnection = "DefaultEndpointsProtocol=https;"
-                   + "AccountName=" + storage.name()
-                   + ";AccountKey=" + keys.get(0).value()
-                    + ";EndpointSuffix=core.windows.net";
+        // create a storage container to hold the file
+        List<StorageAccountKey> keys = storage.getKeys();
+        final String storageConnection = "DefaultEndpointsProtocol=https;"
+                + "AccountName=" + storage.name()
+                + ";AccountKey=" + keys.get(0).value()
+                + ";EndpointSuffix=core.windows.net";
 
-            CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
-            CloudBlobClient serviceClient = account.createCloudBlobClient();
+        CloudStorageAccount account = CloudStorageAccount.parse(storageConnection);
+        CloudBlobClient serviceClient = account.createCloudBlobClient();
 
-            // Container name must be lower case.
-            CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
-            container.createIfNotExists();
+        // Container name must be lower case.
+        CloudBlobContainer container = serviceClient.getContainerReference("helloazure");
+        container.createIfNotExists();
 
-            // Make the container public
-            BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
-            containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
-            container.uploadPermissions(containerPermissions);
+        // Make the container public
+        BlobContainerPermissions containerPermissions = new BlobContainerPermissions();
+        containerPermissions.setPublicAccess(BlobContainerPublicAccessType.CONTAINER);
+        container.uploadPermissions(containerPermissions);
 
-            // write a blob to the container
-            CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
-            blob.uploadText("hello Azure");
+        // write a blob to the container
+        CloudBlockBlob blob = container.getBlockBlobReference("helloazure.txt");
+        blob.uploadText("hello Azure");
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            e.printStackTrace();
-        }
+    } catch (Exception e) {
+        System.out.println(e.getMessage());
+        e.printStackTrace();
+    }
     }
 }
 ```
