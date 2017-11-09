@@ -15,19 +15,19 @@ ms.service: multiple
 
 # Get started with the Azure using Eclipse
 
-This guide walks you through setting up a development environment with an Azure service principal. It also provides you with sample code that creates and uses resources in your Azure subscription using the Azure libraries for Java.
+This guide walks you through setting up a development environment and using the Azure libraries for Java. You'll create a service principal to authenticate with Azure and run some sample code that creates and uses Azure resources in your subscription.
 
 ## Prerequisites
 
 - An Azure account. If you don't have one, [get a free trial](https://azure.microsoft.com/free/)
 - [Azure Cloud Shell](https://docs.microsoft.com/azure/cloud-shell/quickstart) or [Azure CLI 2.0](https://docs.microsoft.com/cli/azure/install-az-cli2).
-- [Eclipse](http://www.eclipse.org/downloads/)
+- The latest stable version of [Eclipse](http://www.eclipse.org/downloads/)
 
 ## Set up authentication
 
 Your Java application needs read and create permissions in your Azure subscription to run the sample code in this tutorial. Create a service principal and configure your application to run with its credentials. Service principals provide a way to create a non-interactive account associated with your identity to which you grant only the privileges your app needs to run.
 
-[Create a service principal using the Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli) and capture the output. Provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`. Your password must be 8 to 16 characters and match at least 3 out of the 4 following criteria:
+[Create a service principal](/cli/azure/create-an-azure-service-principal-azure-cli) to grant your code permission to create and update resources in your subscription without using your account credentials directly. Make sure to capture the output. Provide a [secure password](https://docs.microsoft.com/azure/active-directory/active-directory-passwords-policy) in the password argument instead of `MY_SECURE_PASSWORD`. Your password must be 8 to 16 characters and match at least 3 out of the 4 following criteria:
 
 * Include lowercase characters
 * Include uppercase characters
