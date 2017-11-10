@@ -13,12 +13,21 @@ ms.workload: web
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 10/19/2017
+ms.date: 11/01/2017
 ms.author: robmcm;asirveda
 
 ---
 # Create a basic Azure web app using Eclipse
 This tutorial shows how to create and deploy a basic Hello World application to Azure as a Web App by using the [Azure Toolkit for Eclipse]. A basic JSP example is shown for simplicity, but similar steps would be appropriate for a Java servlet, as far as Azure deployment is concerned.
+
+> [!NOTE]
+> 
+> The Azure Toolkit for Eclipse was updated in August 2017, with a different workflow. With that in mind, this article contains two different sections:
+>
+> * The first section illustrates creating a Hello World web app by using the August 2017 (or later) version of the Azure Toolkit for Eclipse.
+>
+> * The second section of this article demonstrates creating a Hello World web app by using the April 2017 (or earlier) version of the toolkit.
+> 
 
 When you have completed this tutorial, your application will look similar to the following illustration when you view it in a web browser:
 
@@ -26,8 +35,13 @@ When you have completed this tutorial, your application will look similar to the
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## To create a Hello World application
-First, we'll start off with creating a Java project.
+
+## Create a Hello World web app by using the version 3.0.7 or later toolkit
+
+
+## Create a Hello World web app by using the version 3.0.6 or earlier toolkit
+
+### Create a new web app project
 
 1. Start Eclipse, and at the menu click **File**, click **New**, and then click **Dynamic Web Project**. (If you don't see **Dynamic Web Project** listed as an available project after clicking **File** and **New**, then do the following: click **File**, click **New**, click **Project...**, expand **Web**, click **Dynamic Web Project**, and click **Next**.)
 
@@ -51,7 +65,7 @@ First, we'll start off with creating a Java project.
 
 8. Save index.jsp.
 
-## To deploy your application to an Azure Web App Container
+### Deploy your web app to Azure
 There are several ways by which you can deploy a Java web application to Azure. This tutorial describes one of the simplest: your application will be deployed to an Azure Web App Container - no special project type nor additional tools are needed. The JDK and the web container software will be provided for you by Azure, so there is no need to upload your own; all you need is your Java Web App. As a result, the publishing process for your application will take seconds, not minutes.
 
 1. In Eclipse's Project Explorer, right-click **MyWebApp**.
@@ -185,7 +199,7 @@ When the **Azure Explorer** view is displayed, use follow these steps to start o
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+[!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)]
 
 For additional information about creating Azure Web Apps, see the [Web Apps Overview].
 

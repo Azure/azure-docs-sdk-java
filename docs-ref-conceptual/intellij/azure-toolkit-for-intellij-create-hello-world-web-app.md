@@ -13,7 +13,7 @@ ms.workload: web
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 10/19/2017
+ms.date: 11/01/2017
 ms.author: robmcm;asirveda
 
 ---
@@ -29,6 +29,10 @@ This tutorial shows how to create and deploy a basic Hello World application to 
 >
 > * The second section of this article demonstrates creating a Hello World web app by using the April 2017 (or earlier) version of the toolkit.
 > 
+
+When you have completed this tutorial, your application will look similar to the following illustration when you view it in a web browser:
+
+![Preview of Hello World app][01]
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
@@ -296,7 +300,7 @@ When the **Azure Explorer** view is displayed, follow these steps to start or st
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+[!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
 
 For additional information about creating Azure Web Apps, see the [Web Apps Overview].
 

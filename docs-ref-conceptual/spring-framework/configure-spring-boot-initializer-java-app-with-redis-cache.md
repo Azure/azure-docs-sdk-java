@@ -14,7 +14,7 @@ ms.workload: na
 ms.tgt_pltfrm: cache-redis
 ms.devlang: java
 ms.topic: article
-ms.date: 10/11/2017
+ms.date: 11/01/2017
 ms.author: robmcm;zhijzhao;yidon
 ---
 
@@ -115,10 +115,19 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ![Editing the application.properties file][RE02]
 
-   > [!NOTE]
-   >
-   > If you were using a different Redis client like Jedis that enables SSL, you would specify port 6380 in your *application.properties* file. For more information, see [How to use Azure Redis Cache with Java][Redis Cache with Java].
-   >
+   > [!NOTE] 
+   > 
+   > If you were using a different Redis client like Jedis that enables SSL, you would specify port 6380 in your *application.properties* file. For example:
+   > 
+   > ```yaml
+   > spring.redis.host=myspringbootcache.redis.cache.windows.net
+   > spring.redis.password=57686f6120447564652c2049495320526f636b73=
+   > spring.redis.ssl=true
+   > spring.redis.port=6380
+   > ```
+   > 
+   > For more information, see [How to use Azure Redis Cache with Java][Redis Cache with Java]. 
+   > 
 
 1. Save and close the *application.properties* file.
 
