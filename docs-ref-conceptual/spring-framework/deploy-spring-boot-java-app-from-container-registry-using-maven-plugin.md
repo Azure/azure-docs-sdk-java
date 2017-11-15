@@ -91,7 +91,7 @@ In this section, you clone a containerized Spring Boot application and test it l
 
 > [!NOTE]
 >
-> When you are using Docker locally, you may see an error which states that you cannot connect to localhost on port 2375. If this happens, you may need to enable using Docker locally without TLS. To do so, open your Docker settings and check the option to **Expose Docker Daemon on TCP://localhost:2375 without TLS**.
+> When you are using Docker locally, you may see an error which states that you cannot connect to localhost on port 2375. If this happens, you may need to enable using Docker locally without TLS. To do so, open your Docker settings and check the option to **Expose daemon on TCP://localhost:2375 without TLS**.
 >
 > ![Expose Docker daemon on local TCP port 2375][TL01]
 
