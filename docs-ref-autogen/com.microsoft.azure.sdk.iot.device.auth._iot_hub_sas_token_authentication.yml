@@ -4,15 +4,23 @@ items:
   id: _iot_hub_sas_token_authentication
   parent: com.microsoft.azure.sdk.iot.device.auth
   children:
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.deviceId
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.ENCODING_FORMAT_NAME
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getCurrentSasToken()
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getRenewedSasToken()
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getSSLContext()
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getTokenValidSecs()
-  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.IotHubSasTokenAuthentication(String,String,String,String)
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.hostname
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.iotHubSSLContext
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.isRenewalNecessary()
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.MILLISECONDS_PER_SECOND
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.MINIMUM_EXPIRATION_TIME_OFFSET
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.sasToken
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setIotHubTrustedCert(String)
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setPathToIotHubTrustedCert(String)
   - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setTokenValidSecs(long)
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.sslContextNeedsUpdate
+  - com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.tokenValidSecs
   href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
   langs:
   - java
@@ -26,12 +34,50 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 14
+    startLine: 11
   package: com.microsoft.azure.sdk.iot.device.auth
   syntax:
     content: public class IotHubSasTokenAuthentication
   inheritance:
   - java.lang.Object
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.deviceId
+  id: deviceId
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: deviceId
+  nameWithType: IotHubSasTokenAuthentication.deviceId
+  fullName: String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.deviceId
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 30
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected String deviceId
+    return:
+      type: "26831127"
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.ENCODING_FORMAT_NAME
+  id: ENCODING_FORMAT_NAME
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: ENCODING_FORMAT_NAME
+  nameWithType: IotHubSasTokenAuthentication.ENCODING_FORMAT_NAME
+  fullName: final String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.ENCODING_FORMAT_NAME
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 24
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected static final String ENCODING_FORMAT_NAME= StandardCharsets.UTF_8.displayName()
+    return:
+      type: 3d93591e
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getCurrentSasToken()
   id: getCurrentSasToken()
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -46,7 +92,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 87
+    startLine: 47
   package: com.microsoft.azure.sdk.iot.device.auth
   summary: >-
     <p>Getter for SasToken. If the saved token has expired, this method shall not renew it even if possible</p>
@@ -65,23 +111,18 @@ items:
   - java
   name: getRenewedSasToken()
   nameWithType: IotHubSasTokenAuthentication.getRenewedSasToken()
-  fullName: String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getRenewedSasToken()
+  fullName: abstract String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getRenewedSasToken()
   overload: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getRenewedSasToken*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 65
+    startLine: 40
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: >-
-    <p>Getter for SasToken. If the saved token has expired, this method shall renew it if possible</p>
-
-    <p></p>
   syntax:
-    content: public String getRenewedSasToken()
+    content: public abstract String getRenewedSasToken()
     return:
-      type: "26831127"
-      description: <p>The value of SasToken </p>
+      type: 9065866d
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getSSLContext()
   id: getSSLContext()
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -90,23 +131,18 @@ items:
   - java
   name: getSSLContext()
   nameWithType: IotHubSasTokenAuthentication.getSSLContext()
-  fullName: SSLContext com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getSSLContext()
+  fullName: abstract SSLContext com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getSSLContext()
   overload: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getSSLContext*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 98
+    startLine: 37
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: <p>Getter for SSLContext </p>
   syntax:
-    content: public SSLContext getSSLContext()
+    content: public abstract SSLContext getSSLContext()
     return:
-      type: 13e89c07
-      description: <p>The value of SSLContext </p>
-  exceptions:
-  - type: cbf33bbe
-    description: <p>if an error occurs when generating the SSLContext </p>
+      type: 6de79eb1
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getTokenValidSecs()
   id: getTokenValidSecs()
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -121,55 +157,50 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 121
+    startLine: 71
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: >-
-    <p>Getter for TokenValidSecs</p>
-
-    <p></p>
   syntax:
     content: public long getTokenValidSecs()
     return:
       type: 0364520f
-      description: <p>the value of the tokenValidSecs </p>
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.IotHubSasTokenAuthentication(String,String,String,String)
-  id: IotHubSasTokenAuthentication(String,String,String,String)
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.hostname
+  id: hostname
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
   href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
   langs:
   - java
-  name: IotHubSasTokenAuthentication(String hostname, String deviceId, String deviceKey, String sharedAccessToken)
-  nameWithType: IotHubSasTokenAuthentication.IotHubSasTokenAuthentication(String hostname, String deviceId, String deviceKey, String sharedAccessToken)
-  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.IotHubSasTokenAuthentication(String hostname, String deviceId, String deviceKey, String sharedAccessToken)
-  overload: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.IotHubSasTokenAuthentication*
-  type: Constructor
+  name: hostname
+  nameWithType: IotHubSasTokenAuthentication.hostname
+  fullName: String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.hostname
+  type: Field
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 48
+    startLine: 29
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: >-
-    <p>Constructor that takes a connection string containing a sas token or a device key</p>
-
-    <p></p>
   syntax:
-    content: public IotHubSasTokenAuthentication(String hostname, String deviceId, String deviceKey, String sharedAccessToken)
-    parameters:
-    - id: hostname
+    content: protected String hostname
+    return:
       type: "26831127"
-      description: <p>the IotHub host name </p>
-    - id: deviceId
-      type: "26831127"
-      description: <p>the IotHub device id </p>
-    - id: deviceKey
-      type: "26831127"
-      description: <p>the device key for the device. Must be null if the provided sharedAccessToken is not </p>
-    - id: sharedAccessToken
-      type: "26831127"
-      description: <p>the sas token string for accessing the device. Must be null if the provided deviceKey is not. </p>
-  exceptions:
-  - type: 836e31af
-    description: <p>if the provided sas token has expired </p>
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.iotHubSSLContext
+  id: iotHubSSLContext
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: iotHubSSLContext
+  nameWithType: IotHubSasTokenAuthentication.iotHubSSLContext
+  fullName: IotHubSSLContext com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.iotHubSSLContext
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 27
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected IotHubSSLContext iotHubSSLContext
+    return:
+      type: com.microsoft.azure.sdk.iot.device.auth._iot_hub_s_s_l_context
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.isRenewalNecessary()
   id: isRenewalNecessary()
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -184,14 +215,69 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 142
+    startLine: 65
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: <p>Returns true if the saved sas token has expired and cannot be auto-renewed through the device key </p>
   syntax:
     content: public boolean isRenewalNecessary()
     return:
       type: 4fc6e284
-      description: <p>if the sas token needs manual renewal </p>
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.MILLISECONDS_PER_SECOND
+  id: MILLISECONDS_PER_SECOND
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: MILLISECONDS_PER_SECOND
+  nameWithType: IotHubSasTokenAuthentication.MILLISECONDS_PER_SECOND
+  fullName: final long com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.MILLISECONDS_PER_SECOND
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 21
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected static final long MILLISECONDS_PER_SECOND= 1000L
+    return:
+      type: 4c60ae65
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.MINIMUM_EXPIRATION_TIME_OFFSET
+  id: MINIMUM_EXPIRATION_TIME_OFFSET
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: MINIMUM_EXPIRATION_TIME_OFFSET
+  nameWithType: IotHubSasTokenAuthentication.MINIMUM_EXPIRATION_TIME_OFFSET
+  fullName: final long com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.MINIMUM_EXPIRATION_TIME_OFFSET
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 22
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected static final long MINIMUM_EXPIRATION_TIME_OFFSET= 1L
+    return:
+      type: 4c60ae65
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.sasToken
+  id: sasToken
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: sasToken
+  nameWithType: IotHubSasTokenAuthentication.sasToken
+  fullName: IotHubSasToken com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.sasToken
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 26
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected IotHubSasToken sasToken
+    return:
+      type: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setIotHubTrustedCert(String)
   id: setIotHubTrustedCert(String)
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -200,21 +286,21 @@ items:
   - java
   name: setIotHubTrustedCert(String certificate)
   nameWithType: IotHubSasTokenAuthentication.setIotHubTrustedCert(String certificate)
-  fullName: void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setIotHubTrustedCert(String certificate)
+  fullName: abstract void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setIotHubTrustedCert(String certificate)
   overload: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setIotHubTrustedCert*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 198
+    startLine: 35
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: <p>Setter for the user trusted certificate </p>
   syntax:
-    content: public void setIotHubTrustedCert(String certificate)
+    content: public abstract void setIotHubTrustedCert(String certificate)
     parameters:
     - id: certificate
       type: "26831127"
-      description: <p>valid user trusted certificate string </p>
+    return:
+      type: 5beb11ad
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setPathToIotHubTrustedCert(String)
   id: setPathToIotHubTrustedCert(String)
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -223,21 +309,21 @@ items:
   - java
   name: setPathToIotHubTrustedCert(String pathToCertificate)
   nameWithType: IotHubSasTokenAuthentication.setPathToIotHubTrustedCert(String pathToCertificate)
-  fullName: void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setPathToIotHubTrustedCert(String pathToCertificate)
+  fullName: abstract void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setPathToIotHubTrustedCert(String pathToCertificate)
   overload: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setPathToIotHubTrustedCert*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 182
+    startLine: 34
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: <p>Setter for the providing trusted certificate. </p>
   syntax:
-    content: public void setPathToIotHubTrustedCert(String pathToCertificate)
+    content: public abstract void setPathToIotHubTrustedCert(String pathToCertificate)
     parameters:
     - id: pathToCertificate
       type: "26831127"
-      description: <p>path to the certificate for one way authentication. </p>
+    return:
+      type: 5beb11ad
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setTokenValidSecs(long)
   id: setTokenValidSecs(long)
   parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
@@ -252,88 +338,137 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
-    startLine: 132
+    startLine: 53
   package: com.microsoft.azure.sdk.iot.device.auth
-  summary: >-
-    <p>Setter for TokenValidSecs</p>
-
-    <p></p>
   syntax:
     content: public void setTokenValidSecs(long tokenValidSecs)
     parameters:
     - id: tokenValidSecs
       type: 0364520f
-      description: <p>the value to set </p>
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.sslContextNeedsUpdate
+  id: sslContextNeedsUpdate
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: sslContextNeedsUpdate
+  nameWithType: IotHubSasTokenAuthentication.sslContextNeedsUpdate
+  fullName: boolean com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.sslContextNeedsUpdate
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 32
+  package: com.microsoft.azure.sdk.iot.device.auth
+  syntax:
+    content: protected boolean sslContextNeedsUpdate
+    return:
+      type: 4fc6e284
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.tokenValidSecs
+  id: tokenValidSecs
+  parent: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.yml
+  langs:
+  - java
+  name: tokenValidSecs
+  nameWithType: IotHubSasTokenAuthentication.tokenValidSecs
+  fullName: long com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.tokenValidSecs
+  type: Field
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/auth/IotHubSasTokenAuthentication.java
+    startLine: 19
+  package: com.microsoft.azure.sdk.iot.device.auth
+  summary: >-
+    <p>The number of seconds after which the generated SAS token for a message will become invalid. We also use the expiry time, which is computed as <code>currentTime() + DEVICE_KEY_VALID_LENGTH 
+
+        </code> , as a salt when generating our SAS token. </p>
+  syntax:
+    content: protected long tokenValidSecs= 3600
+    return:
+      type: 0364520f
 references:
-- uid: 836e31af
+- uid: 0364520f
   spec.java:
-  - name: SecurityException
-    fullName: SecurityException
+  - name: long
+    fullName: long
 - uid: "26831127"
   spec.java:
   - name: String
     fullName: String
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.IotHubSasTokenAuthentication*
-  name: IotHubSasTokenAuthentication
-  nameWithType: IotHubSasTokenAuthentication.IotHubSasTokenAuthentication
-  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.IotHubSasTokenAuthentication
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: 4c60ae65
+  spec.java:
+  - name: final long
+    fullName: final long
+- uid: 3d93591e
+  spec.java:
+  - name: final String
+    fullName: final String
+- uid: 5beb11ad
+  spec.java:
+  - name: abstract void
+    fullName: abstract void
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setPathToIotHubTrustedCert*
+  name: setPathToIotHubTrustedCert
+  nameWithType: IotHubSasTokenAuthentication.setPathToIotHubTrustedCert
+  fullName: abstract void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setPathToIotHubTrustedCert
   package: com.microsoft.azure.sdk.iot.device.auth
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setIotHubTrustedCert*
+  name: setIotHubTrustedCert
+  nameWithType: IotHubSasTokenAuthentication.setIotHubTrustedCert
+  fullName: abstract void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setIotHubTrustedCert
+  package: com.microsoft.azure.sdk.iot.device.auth
+- uid: 6de79eb1
+  spec.java:
+  - name: abstract SSLContext
+    fullName: abstract SSLContext
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getSSLContext*
+  name: getSSLContext
+  nameWithType: IotHubSasTokenAuthentication.getSSLContext
+  fullName: abstract SSLContext com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getSSLContext
+  package: com.microsoft.azure.sdk.iot.device.auth
+- uid: 9065866d
+  spec.java:
+  - name: abstract String
+    fullName: abstract String
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getRenewedSasToken*
   name: getRenewedSasToken
   nameWithType: IotHubSasTokenAuthentication.getRenewedSasToken
-  fullName: String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getRenewedSasToken
+  fullName: abstract String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getRenewedSasToken
   package: com.microsoft.azure.sdk.iot.device.auth
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getCurrentSasToken*
   name: getCurrentSasToken
   nameWithType: IotHubSasTokenAuthentication.getCurrentSasToken
   fullName: String com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getCurrentSasToken
   package: com.microsoft.azure.sdk.iot.device.auth
-- uid: cbf33bbe
-  spec.java:
-  - name: IOException
-    fullName: IOException
-- uid: 13e89c07
-  spec.java:
-  - name: SSLContext
-    fullName: SSLContext
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getSSLContext*
-  name: getSSLContext
-  nameWithType: IotHubSasTokenAuthentication.getSSLContext
-  fullName: SSLContext com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getSSLContext
-  package: com.microsoft.azure.sdk.iot.device.auth
-- uid: 0364520f
-  spec.java:
-  - name: long
-    fullName: long
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getTokenValidSecs*
-  name: getTokenValidSecs
-  nameWithType: IotHubSasTokenAuthentication.getTokenValidSecs
-  fullName: long com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getTokenValidSecs
-  package: com.microsoft.azure.sdk.iot.device.auth
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setTokenValidSecs*
   name: setTokenValidSecs
   nameWithType: IotHubSasTokenAuthentication.setTokenValidSecs
   fullName: void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setTokenValidSecs
   package: com.microsoft.azure.sdk.iot.device.auth
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.isRenewalNecessary*
   name: isRenewalNecessary
   nameWithType: IotHubSasTokenAuthentication.isRenewalNecessary
   fullName: boolean com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.isRenewalNecessary
   package: com.microsoft.azure.sdk.iot.device.auth
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setPathToIotHubTrustedCert*
-  name: setPathToIotHubTrustedCert
-  nameWithType: IotHubSasTokenAuthentication.setPathToIotHubTrustedCert
-  fullName: void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setPathToIotHubTrustedCert
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.getTokenValidSecs*
+  name: getTokenValidSecs
+  nameWithType: IotHubSasTokenAuthentication.getTokenValidSecs
+  fullName: long com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.getTokenValidSecs
   package: com.microsoft.azure.sdk.iot.device.auth
-- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_authentication.setIotHubTrustedCert*
-  name: setIotHubTrustedCert
-  nameWithType: IotHubSasTokenAuthentication.setIotHubTrustedCert
-  fullName: void com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthentication.setIotHubTrustedCert
-  package: com.microsoft.azure.sdk.iot.device.auth
+- uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_software_authentication
+  parent: com.microsoft.azure.sdk.iot.device.auth
+  href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token_software_authentication.yml
+  name: IotHubSasTokenSoftwareAuthentication
+  nameWithType: IotHubSasTokenSoftwareAuthentication
+  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenSoftwareAuthentication
+  type: Class
+  syntax:
+    content: public class IotHubSasTokenSoftwareAuthentication
 - uid: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token
   parent: com.microsoft.azure.sdk.iot.device.auth
   href: com.microsoft.azure.sdk.iot.device.auth._iot_hub_sas_token.yml
