@@ -19,11 +19,11 @@ ms.author: robmcm;asirveda
 ---
 
 # Azure Toolkit for IntelliJ
-The Azure Toolkit for IntelliJ provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the IntelliJ integrated development environment (IDE). It is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
+The Azure Toolkit for IntelliJ provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the IntelliJ integrated development environment (IDE).
 
 > [!NOTE]
-> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse](../eclipse/azure-toolkit-for-eclipse.md).
 > 
+> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse](../eclipse/azure-toolkit-for-eclipse.md).
 > 
 
 ## Get started with the Azure Toolkit for IntelliJ
@@ -64,6 +64,11 @@ For more information about the Azure Toolkit for IntelliJ, see the following pag
 * [Azure Toolkit for IntelliJ in the JetBrains Plugins Repository](https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij)
 
 For more information about using Java with Azure, see the [Azure Java Developer Center](https://azure.microsoft.com/develop/java/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
+
+> [!NOTE]
+> 
+> The Azure Toolkit for IntelliJ is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
+> 
 
 <!-- [!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)] -->
 

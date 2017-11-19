@@ -19,11 +19,11 @@ ms.author: robmcm;asirveda
 ---
 
 # Azure Toolkit for Eclipse
-The Azure Toolkit for Eclipse provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the Eclipse integrated development environment (IDE). It is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
+The Azure Toolkit for Eclipse provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the Eclipse integrated development environment (IDE).
 
 > [!NOTE]
-> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij.md).
 > 
+> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij.md).
 > 
 
 ## Get started with the Azure Toolkit for Eclipse
@@ -66,6 +66,11 @@ For more information about the Azure Toolkit for Eclipse, see the following page
 For more information about using Java with Azure, see the [Azure Java Developer Center](https://azure.microsoft.com/develop/java/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
 
 <!-- [!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)] -->
+
+> [!NOTE]
+> 
+> The Azure Toolkit for Eclipse is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
+> 
 
 <!-- URL List -->
 
