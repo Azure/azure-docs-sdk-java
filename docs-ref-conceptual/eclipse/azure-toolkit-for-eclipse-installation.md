@@ -47,7 +47,7 @@ The following steps show you how to install the Azure Toolkit for Eclipse.
    
    ![Installing the Azure Toolkit for Eclipse][02]
 
-1. If you expand the **Azure Toolkit for Eclipse**, you will see a list of components like following examples:
+1. If you expand **Azure Toolkit for Eclipse**, you will see a list of components that will be installed; for example:
 
    | Feature | Description | 
    |---|---| 

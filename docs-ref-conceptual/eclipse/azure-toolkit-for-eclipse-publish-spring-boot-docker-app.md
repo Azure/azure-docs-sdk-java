@@ -32,7 +32,7 @@ This tutorial walks you through the steps to deploy a Spring Boot application as
 
 ### Import the public repository
 
-The following steps walk you through cloning the Spring Boot Docker repository to your local computer by using IntelliJ. If you want to use a command line, see [Deploy a Spring Boot application on Linux in Azure Container Service][Deploy Spring Boot on Linux in ACS].
+The following steps walk you through cloning the Spring Boot Docker repository to your local computer by using IntelliJ. If you want to use a command line, see [Deploy a Spring Boot application on Linux in Azure Container Service][Deploy Spring Boot on Linux in AKS].
 
 1. Open Eclipse.
 
@@ -207,7 +207,7 @@ For additional resources for Docker, see the official [Docker website].
 <!-- URL List -->
 
 [Azure Management Portal]: http://go.microsoft.com/fwlink/?LinkID=512959
-[Deploy Spring Boot on Linux in ACS]: /azure/container-service/kubernetes/container-service-deploy-spring-boot-app-on-linux
+[Deploy Spring Boot on Linux in AKS]: /azure/container-service/kubernetes/container-service-deploy-spring-boot-app-on-linux
 [Docker]: https://www.docker.com/
 [Publish Container with Azure Toolkit]: azure-toolkit-for-eclipse-publish-as-docker-container.md
 [Spring Boot]: http://projects.spring.io/spring-boot/
