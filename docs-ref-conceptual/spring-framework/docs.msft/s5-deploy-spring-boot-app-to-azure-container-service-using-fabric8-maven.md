@@ -17,7 +17,7 @@ ms.date: 11/01/2017
 ms.author: yuwzho;robmcm
 ---
 
-# Deploy a containerized Spring Boot web app using a Cosmos DB database to App Service Linux using IntelliJ
+# Deploy a sample Spring Boot web app to Azure Container Service using the Fabric8 Maven Plugin
 
 This article will show you how to clone a sample Spring Boot application that uses Cosmos DB for data and deploy it to Azure Container Service using the Fabric8 Maven Plugin.
 
