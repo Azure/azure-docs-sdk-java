@@ -8,14 +8,6 @@ When you complete the steps in this tutorial you will have a simple todo list ru
 
 ## What You'll Need
 
-In order to complete the steps in this tutorial, you need to have the following prerequisites:
-
-* An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* The [Azure Command-Line Interface (CLI)].
-* An up-to-date [Java Development Kit (JDK)], version 1.7 or later.
-* Apache's [Maven] build tool (Version 3).
-* A [Git] client.
-* A [Docker] client.
 
 In order to complete the steps in this tutorial, you need to have the following prerequisites:
 

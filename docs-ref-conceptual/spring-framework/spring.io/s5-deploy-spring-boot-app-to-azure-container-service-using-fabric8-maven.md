@@ -377,19 +377,19 @@ In order to complete the steps in this tutorial, you need to have the following 
    >
    > You may see an error message similar to the following when you attempt to deploy your Docker image:
    >
-   > `[INFO] Building image wingtiptoysregistry.azurecr.io/todo-app-java-on-azure`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] BUILD FAILURE`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] Total time: 12.069s`
-   > `[INFO] Finished at: Sat Nov 11 21:12:00 GMT 2017`
-   > `[INFO] Final Memory: 14M/107M`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (de`
-   > `fault-cli) on project todo-app-java-on-azure: Exception caught: java.util.concu`
-   > `rrent.ExecutionException: com.spotify.docker.client.shaded.javax.ws.rs.Processi`
-   > `ngException: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.`
-   > `0.50:2375 [/192.168.0.50] failed: Connection refused (connect failed) -> [Help 1]`
+   > `[INFO] Building image wingtiptoysregistry.azurecr.io/todo-app-java-on-azure`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] BUILD FAILURE`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] Total time: 12.069s`<br/>
+   > `[INFO] Finished at: Sat Nov 11 21:12:00 GMT 2017`<br/>
+   > `[INFO] Final Memory: 14M/107M`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (de`<br/>
+   > `fault-cli) on project todo-app-java-on-azure: Exception caught: java.util.concu`<br/>
+   > `rrent.ExecutionException: com.spotify.docker.client.shaded.javax.ws.rs.Processi`<br/>
+   > `ngException: org.apache.http.conn.HttpHostConnectException: Connect to 192.168.`<br/>
+   > `0.50:2375 [/192.168.0.50] failed: Connection refused (connect failed) -> [Help 1]`<br/>
    >
    > If this happens, you should try setting your DOCKER_HOST environment variable to localhost; for example:
    >
@@ -405,29 +405,29 @@ In order to complete the steps in this tutorial, you need to have the following 
    >
    > You may see an error message similar to the following when you attempt to deploy your Docker image to your Kubernetes cluster:
    >
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] BUILD FAILURE`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] Total time: 2.011s`
-   > `[INFO] Finished at: Sat Nov 11 12:34:56 GMT 2017`
-   > `[INFO] Final Memory: 27M/330M`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[ERROR] Failed to execute goal io.fabric8:fabric8-maven-plugin:3.1.37:resource`
-   > `(fmp) on project client: Execution fmp of goal io.fabric8:fabric8-maven-plugin:`
-   > `3.1.37:resource failed: Unable to load the mojo 'resource' (or one of its requi`
-   > `red components) from the plugin 'io.fabric8:fabric8-maven-plugin:3.1.37': com.g`
-   > `oogle.inject.ProvisionException: Guice provision errors:`
-   > `[ERROR] `
-   > `[ERROR] 1) No implementation for io.fabric8.maven.core.util.GoalFinder was boun`
-   > `d. while locating io.fabric8.maven.plugin.ResourceMojo at ClassRealm[plugin>io.`
-   > `fabric8:fabric8-maven-plugin:3.1.37, parent: sun.misc.Launcher$AppClassLoader@3`
-   > `479404a] while locating org.apache.maven.plugin.Mojo annotated with @com.google`
-   > `.inject.name.Named(value=io.fabric8:fabric8-maven-plugin:3.1.37:resource)`
-   > `[ERROR] `
-   > `[ERROR] 1 error`
-   > `[ERROR] role: org.apache.maven.plugin.Mojo`
-   > `[ERROR] roleHint: io.fabric8:fabric8-maven-plugin:3.1.37:resource`
-   > `[ERROR] -> [Help 1]`
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] BUILD FAILURE`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] Total time: 2.011s`<br/>
+   > `[INFO] Finished at: Sat Nov 11 12:34:56 GMT 2017`<br/>
+   > `[INFO] Final Memory: 27M/330M`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[ERROR] Failed to execute goal io.fabric8:fabric8-maven-plugin:3.1.37:resource`<br/>
+   > `(fmp) on project client: Execution fmp of goal io.fabric8:fabric8-maven-plugin:`<br/>
+   > `3.1.37:resource failed: Unable to load the mojo 'resource' (or one of its requi`<br/>
+   > `red components) from the plugin 'io.fabric8:fabric8-maven-plugin:3.1.37': com.g`<br/>
+   > `oogle.inject.ProvisionException: Guice provision errors:`<br/>
+   > `[ERROR] `<br/>
+   > `[ERROR] 1) No implementation for io.fabric8.maven.core.util.GoalFinder was boun`<br/>
+   > `d. while locating io.fabric8.maven.plugin.ResourceMojo at ClassRealm[plugin>io.`<br/>
+   > `fabric8:fabric8-maven-plugin:3.1.37, parent: sun.misc.Launcher$AppClassLoader@3`<br/>
+   > `479404a] while locating org.apache.maven.plugin.Mojo annotated with @com.google`<br/>
+   > `.inject.name.Named(value=io.fabric8:fabric8-maven-plugin:3.1.37:resource)`<br/>
+   > `[ERROR] `<br/>
+   > `[ERROR] 1 error`<br/><br/>
+   > `[ERROR] role: org.apache.maven.plugin.Mojo`<br/>
+   > `[ERROR] roleHint: io.fabric8:fabric8-maven-plugin:3.1.37:resource`<br/>
+   > `[ERROR] -> [Help 1]`<br/>
    >
    > If this happens, your Maven installation may be mismatched with your version of the Fabric8 Maven Plugin. To resolve the issue, you chould try upgrading your Maven installation.
    >

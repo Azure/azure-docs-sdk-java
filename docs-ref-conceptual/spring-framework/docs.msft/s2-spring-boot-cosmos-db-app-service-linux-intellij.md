@@ -308,7 +308,7 @@ To publish your Spring Boot app, you need to create a deployment-ready artifact.
 1. Click **OK** to close the **Project Structure** dialog box.
 
 > [!NOTE]
-> For more information about creating artifacts in IntelliJ, see [Configuring Artifacts] on the JetBrains website.
+> For more information about creating artifacts in IntelliJ, see [Configuring Artifacts](https://www.jetbrains.com/help/idea/2016.1/configuring-artifacts.html) on the JetBrains website.
 >
 
 ## Add the Maven project and build the artifact for deployment

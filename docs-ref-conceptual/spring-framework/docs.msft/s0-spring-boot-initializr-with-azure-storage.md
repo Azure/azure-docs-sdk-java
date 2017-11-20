@@ -242,23 +242,23 @@ The following prerequisites are required in order to follow the steps in this ar
    > 
    > When you compile your application, you might see the following error message:
    > 
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] BUILD FAILURE`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[INFO] Total time: 2.616 s`
-   > `[INFO] Finished at: 2017-11-11T13:14:15Z`
-   > `[INFO] Final Memory: 26M/213M`
-   > `[INFO] ------------------------------------------------------------------------`
-   > `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2`
-   > `.18.1:test (default-test) on project wingtiptoysdemo: Execution default-test of`
-   > `goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test failed: The for`
-   > `ked VM terminated without properly saying goodbye. VM crash or System.exit called?`
-   > `[ERROR] Command was /bin/sh -c cd /home/robert/SpringBoot/wingtiptoysdemo && /u`
-   > `sr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /home/robert/SpringBoot/wingt`
-   > `iptoysdemo/target/surefire/surefirebooter6371623993063346766.jar /home/robert/S`
-   > `pringBoot/wingtiptoysdemo/target/surefire/surefire5107893623933537917tmp /home/`
-   > `robert/SpringBoot/wingtiptoysdemo/target/surefire/surefire_01414159391084128068tmp`
-   > `[ERROR] -> [Help 1]`
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] BUILD FAILURE`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[INFO] Total time: 2.616 s`<br/>
+   > `[INFO] Finished at: 2017-11-11T13:14:15Z`<br/>
+   > `[INFO] Final Memory: 26M/213M`<br/>
+   > `[INFO] ------------------------------------------------------------------------`<br/>
+   > `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2`<br/>
+   > `.18.1:test (default-test) on project wingtiptoysdemo: Execution default-test of`<br/>
+   > `goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test failed: The for`<br/>
+   > `ked VM terminated without properly saying goodbye. VM crash or System.exit called?`<br/>
+   > `[ERROR] Command was /bin/sh -c cd /home/robert/SpringBoot/wingtiptoysdemo && /u`<br/>
+   > `sr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /home/robert/SpringBoot/wingt`<br/>
+   > `iptoysdemo/target/surefire/surefirebooter6371623993063346766.jar /home/robert/S`<br/>
+   > `pringBoot/wingtiptoysdemo/target/surefire/surefire5107893623933537917tmp /home/`<br/>
+   > `robert/SpringBoot/wingtiptoysdemo/target/surefire/surefire_01414159391084128068tmp`<br/>
+   > `[ERROR] -> [Help 1]`<br/>
    > 
    > If this happens, you might want to disable the Maven Surefire testing; to do so,
    > add the following plugin entry in your *pom.xml* file:
