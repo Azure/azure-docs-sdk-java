@@ -1,0 +1,1709 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  id: _provisioning_service_client
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  children:
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification,int)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String,int)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createFromConnectionString(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification,int)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateEnrollmentGroup(EnrollmentGroup)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(EnrollmentGroup)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String,String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(Enrollment)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String,String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(DeviceRegistrationStatus)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String,String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getEnrollmentGroup(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getIndividualEnrollment(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getRegistrationStatus(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.runBulkOperation(BulkOperationMode,Collection<Enrollment>)
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: ProvisioningServiceClient
+  nameWithType: ProvisioningServiceClient
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient
+  type: Class
+  source:
+    remote: &o0
+      path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+      branch: master
+      repo: https://github.com/Azure/azure-iot-sdk-java
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 75
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Device Provisioning Service Client.</p>
+
+    <p>The IoT Hub Device Provisioning Service is a helper service for IoT Hub that enables automatic device provisioning to a specified IoT hub without requiring human intervention. You can use the Device Provisioning Service to provision millions of devices in a secure and scalable manner.</p>
+
+    <p>This java SDK provides an API to help developers to create and maintain Enrollments on the IoT Hub Device Provisioning Service, it translate the rest API in java Objects and Methods.</p>
+
+    <p>To use the this SDK, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.
+
+        import com.microsoft.azure.sdk.iot.provisioning.service.*;
+
+        </code></pre></p>
+
+    <p>The main APIs are exposed by the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client" data-throw-if-not-resolved="false">ProvisioningServiceClient</xref>, it contains the public Methods that the application shall call to create and maintain the Enrollments. The Objects in the <b>configs</b> package shall be filled and passed as parameters of the public API, for example, to create a new enrollment, the application shall create the object <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> with the appropriate enrollment configurations, and call the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)" data-throw-if-not-resolved="false">createOrUpdateIndividualEnrollment(Enrollment)</xref>.</p>
+
+    <p>The IoT Hub Device Provisioning Service supports SQL queries too. The application can create a new query using one of the queries factories, for instance <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)" data-throw-if-not-resolved="false">createIndividualEnrollmentQuery(QuerySpecification)</xref>, passing the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, with the SQL query. This factory returns a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> object, which is an active iterator.</p>
+
+    <p>This java SDK can be represented in the follow diagram, the first layer are the public APIs the your application shall use:</p>
+
+    <p>
+
+      <pre>
+
+        <code>+===============+       +==========================================+                           +============+   +===+
+
+        |    configs    |------&gt;|         ProvisioningServiceClient        |                        +-&gt;|    Query   |   |   |
+
+        +===============+       +==+=================+==================+==+                        |  +======+=====+   | e |
+
+                                  /                  |                   \                          |         |         | x |
+
+                                 /                   |                    \                         |         |         | c |
+
+        +-----------------------+-----+  +-----------+------------+  +-----+---------------------+  |         |         | e |
+
+        | IndividualEnrollmentManager |  | EnrollmentGroupManager |  | RegistrationStatusManager |  |         |         | p |
+
+        +---------------+------+------+  +-----------+------+-----+  +-------------+-------+-----+  |         |         | t |
+
+                         \      \                    |       \                     |        \       |         |         | i |
+
+                          \      +----------------------------+------------------------------+------+         |         | o |
+
+                           \                         |                             |                          |         | n |
+
+         +--------+      +--+------------------------+-----------------------------+--------------------------+-----+   | s |
+
+         |  auth  |-----&gt;|                                     ContractApiHttp                                      |   |   |
+
+         +--------+      +-------------------------------------------+----------------------------------------------+   +===+
+
+                                                                     |
+
+                                                                     |
+
+                               +-------------------------------------+------------------------------------------+
+
+                               |                 com.microsoft.azure.sdk.iot.deps.transport.http                |
+
+                               +--------------------------------------------------------------------------------+
+
+        </code>
+
+      </pre>
+
+    </p>
+
+    <p></p>
+  syntax: &o1
+    content: public class ProvisioningServiceClient
+  inheritance:
+  - java.lang.Object
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification)
+  id: createEnrollmentGroupQuery(QuerySpecification)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 832
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create an enrollmentGroup query.</p>
+
+    <p>This method will create a new enrollment group query on Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p></p>
+  syntax: &o7
+    content: public Query createEnrollmentGroupQuery(QuerySpecification querySpecification)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameter is not correct. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification,int)
+  id: createEnrollmentGroupQuery(QuerySpecification,int)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createEnrollmentGroupQuery(QuerySpecification querySpecification, int pageSize)
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification, int pageSize)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification, int pageSize)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 856
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create an enrollmentGroup query.</p>
+
+    <p>This method will create a new enrollment group query on Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p>For each iteration, the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> will return a List of objects correspondent to the query result. The maximum number of items per iteration can be specified by the pageSize. It is optional, you can provide <b>0</b> for default pageSize or use the API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification)" data-throw-if-not-resolved="false">createEnrollmentGroupQuery(QuerySpecification)</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public Query createEnrollmentGroupQuery(QuerySpecification querySpecification, int pageSize)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    - id: pageSize
+      type: f75371fa
+      description: >-
+        <p>the<code>int 
+
+            </code> with the maximum number of items per iteration. It can be 0 for default, but not negative. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameters are not correct. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String)
+  id: createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId)
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 1061
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create a registration status query.</p>
+
+    <p>This method will create a new registration status query for a specific enrollment group on the Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p></p>
+  syntax:
+    content: public Query createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    - id: enrollmentGroupId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> or empty. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String,int)
+  id: createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String,int)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId, int pageSize)
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId, int pageSize)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId, int pageSize)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 1086
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create a registration status query.</p>
+
+    <p>This method will create a new registration status query for a specific enrollment group on the Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p>For each iteration, the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> will return a List of objects correspondent to the query result. The maximum number of items per iteration can be specified by the pageSize. It is optional, you can provide <b>0</b> for default pageSize or use the API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)" data-throw-if-not-resolved="false">createIndividualEnrollmentQuery(QuerySpecification)</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public Query createEnrollmentGroupRegistrationStatusQuery(QuerySpecification querySpecification, String enrollmentGroupId, int pageSize)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    - id: enrollmentGroupId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> or empty. </p>
+    - id: pageSize
+      type: f75371fa
+      description: >-
+        <p>the<code>int 
+
+            </code> with the maximum number of items per iteration. It can be 0 for default, but not negative. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameters are not correct. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createFromConnectionString(String)
+  id: createFromConnectionString(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createFromConnectionString(String connectionString)
+  nameWithType: ProvisioningServiceClient.createFromConnectionString(String connectionString)
+  fullName: static ProvisioningServiceClient com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createFromConnectionString(String connectionString)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createFromConnectionString*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 95
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Create a new instance of the<code>DeviceProvisioningServiceClient 
+
+        </code> that exposes the API to the Device Provisioning Service.</p>
+
+    <p>The Device Provisioning Service Client is created based on a <b>Provisioning Connection String</b>. </p>
+
+    <p>Once you create a Device Provisioning Service on Azure, you can get the connection string on the Azure portal.</p>
+
+    <p></p>
+  syntax:
+    content: public static ProvisioningServiceClient createFromConnectionString(String connectionString)
+    parameters:
+    - id: connectionString
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that cares the connection string of the Device Provisioning Service. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+      description: >-
+        <p>The<code>ProvisioningServiceClient 
+
+            </code> with the new instance of this object. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if the connectionString is<code>null 
+
+          </code> or empty. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)
+  id: createIndividualEnrollmentQuery(QuerySpecification)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  nameWithType: ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 521
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create a individual enrollment query.</p>
+
+    <p>This method will create a new individual enrollment query for Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p></p>
+  syntax: &o4
+    content: public Query createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameter is not correct. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification,int)
+  id: createIndividualEnrollmentQuery(QuerySpecification,int)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createIndividualEnrollmentQuery(QuerySpecification querySpecification, int pageSize)
+  nameWithType: ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification, int pageSize)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification, int pageSize)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 545
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: >-
+    <p>Factory to create a individual enrollment query.</p>
+
+    <p>This method will create a new individual enrollment query for Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p>For each iteration, the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> will return a List of objects correspondent to the query result. The maximum number of items per iteration can be specified by the pageSize. It is optional, you can provide <b>0</b> for default pageSize or use the API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)" data-throw-if-not-resolved="false">createIndividualEnrollmentQuery(QuerySpecification)</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public Query createIndividualEnrollmentQuery(QuerySpecification querySpecification, int pageSize)
+    parameters:
+    - id: querySpecification
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref> with the SQL query. It cannot be<code>null 
+
+            </code> . </p>
+    - id: pageSize
+      type: f75371fa
+      description: >-
+        <p>the<code>int 
+
+            </code> with the maximum number of items per iteration. It can be 0 for default, but not negative. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service._query
+      description: <p>The <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameters are not correct. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateEnrollmentGroup(EnrollmentGroup)
+  id: createOrUpdateEnrollmentGroup(EnrollmentGroup)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createOrUpdateEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  nameWithType: ProvisioningServiceClient.createOrUpdateEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  fullName: EnrollmentGroup com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateEnrollmentGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 620
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Create or update an enrollment group record.</p>\r\n<p>This API creates a new enrollment group or update a existed one. All enrollment group in the Device Provisioning Service contains a unique identifier called enrollmentGroupId. If this API is called with an enrollmentGroupId that already exists, it will replace the existed enrollmentGroup information by the new one. On the other hand, if the enrollmentGroupId does not exit, it will be created.</p>\r\n<p>To use the Device Provisioning Service API, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.\r\n    import com.microsoft.azure.sdk.iot.provisioning.service.*;\r\n    </code></pre></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will create a new enrollmentGroup that will provisioning multiple devices to the ContosoHub.azure-devices.net. <pre><code>// EnrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    private static final String IOTHUB_HOST_NAME = \"ContosoHub.azure-devices.net\";\r\n    private static String PUBLIC_CERTIFICATE_STRING =\r\n            \"-----BEGIN CERTIFICATE-----\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\\n\" +\r\n            \"-----END CERTIFICATE-----\\n\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Create a new enrollmentGroup configurations.\r\n        Attestation attestation = X509Attestation.createFromSigningCertificates(PUBLIC_KEY_CERTIFICATE_STRING);\r\n        EnrollmentGroup enrollmentGroup =\r\n            new EnrollmentGroup(\r\n                enrollmentGroupId,\r\n                attestation);\r\n        enrollmentGroup.setIotHubHostName(IOTHUB_HOST_NAME);\r\n        enrollmentGroup.setProvisioningStatus(ProvisioningStatus.ENABLED);\r\n    \r\n        // Create a new enrollmentGroup.\r\n        EnrollmentGroup enrollmentGroupResult =  provisioningServiceClient.createOrUpdateEnrollmentGroup(enrollmentGroup);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public EnrollmentGroup createOrUpdateEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+    parameters:
+    - id: enrollmentGroup
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
+      description: <p>the <xref uid="" data-throw-if-not-resolved="false">EnrollmentGroup</xref> object that describes the individual enrollment that will be created of updated. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">EnrollmentGroup</xref> object with the result of the create or update requested. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning was not able to create or update the enrollment </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)
+  id: createOrUpdateIndividualEnrollment(Enrollment)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  nameWithType: ProvisioningServiceClient.createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  fullName: Enrollment com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 220
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Create or update a individual device enrollment record.</p>\r\n<p>This API creates a new enrollment or update a existed one. All enrollments in the Device Provisioning Service contains a unique identifier called registrationId. If this API is called for an enrollment with a registrationId that already exists, it will replace the existed enrollment information by the new one. On the other hand, if the registrationId does not exit, this API will create a new enrollment.</p>\r\n<p>To use the Device Provisioning Service API, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.\r\n    import com.microsoft.azure.sdk.iot.provisioning.service.*;\r\n    </code></pre></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will create a new enrollment that will provisioning the ContosoDevice1000 to the ContosoHub.azure-devices.net using TPM attestation. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String TPM_ENDORSEMENT_KEY = \"tpm-endorsement-key\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private static final String DEVICE_ID = \"ContosoDevice1000\";\r\n    private static final String IOTHUB_HOST_NAME = \"ContosoHub.azure-devices.net\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Create a new individual enrollment configurations.\r\n        Attestation attestation = new TpmAttestation(TPM_ENDORSEMENT_KEY);\r\n        Enrollment enrollment =\r\n           new Enrollment(\r\n                REGISTRATION_ID,\r\n                attestation);\r\n        enrollment.setDeviceId(DEVICE_ID);\r\n        enrollment.setIotHubHostName(IOTHUB_HOST_NAME);\r\n        enrollment.setProvisioningStatus(ProvisioningStatus.DISABLED);\r\n    \r\n        // Create a new individual enrollment.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.createOrUpdateIndividualEnrollment(enrollment);\r\n    }\r\n    </code></pre></p>\r\n<p>If the registrationId already exists, this method will update existed enrollments. Note that update the enrollment will not change the status of the device that was already registered using the old enrollment.</p>\r\n<p>The follow code will update the provisioningStatus of the previous enrollment from <b>disabled</b> to <b>enabled</b>. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the content of the previous enrollment.\r\n        Enrollment enrollment =  deviceProvisioningServiceClient.getIndividualEnrollment(REGISTRATION_ID);\r\n    \r\n        // Change the provisioning status, from disabled to enabled\r\n        enrollment.setProvisioningStatus(ProvisioningStatus.ENABLED);\r\n    \r\n        // Update the individual enrollment information.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.createOrUpdateIndividualEnrollment(enrollment);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o10
+    content: public Enrollment createOrUpdateIndividualEnrollment(Enrollment enrollment)
+    parameters:
+    - id: enrollment
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> object that describes the individual enrollment that will be created of updated. It cannot be<code>null 
+
+            </code> . </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> object with the result of the create or update requested. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameter is not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to create or update the enrollment. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(EnrollmentGroup)
+  id: deleteEnrollmentGroup(EnrollmentGroup)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 717
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the enrollmentGroup information.</p>\r\n<p>This method will remove the enrollmentGroup from the Device Provisioning Service using the provided <xref uid=\"\" data-throw-if-not-resolved=\"false\">EnrollmentGroup</xref> information. The Device Provisioning Service will care about the enrollmentGroupId and the eTag on the enrollmentGroup. If you want to delete the enrollment regardless the eTag, you can set the<code>eTag=\"*\" \r\n    </code> into the enrollmentGroup, or use the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)\" data-throw-if-not-resolved=\"false\">deleteEnrollmentGroup(String)</xref> passing only the enrollmentGroupId.</p>\r\n<p>Note that delete the enrollmentGroup will not remove the Devices itself from the IotHub.</p>\r\n<p>If the enrollmentGroupId does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the enrollmentGroup \"enrollmentGroupId-1\". <pre><code>// EnrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the enrollmentGroup information.\r\n        EnrollmentGroup enrollmentGroupResult =  deviceProvisioningServiceClient.getEnrollmentGroup(ENROLLMENT_GROUP_ID);\r\n    \r\n        // Delete the enrollmentGroup information.\r\n        deviceProvisioningServiceClient.deleteEnrollmentGroup(enrollmentResult);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public void deleteEnrollmentGroup(EnrollmentGroup enrollmentGroup)
+    parameters:
+    - id: enrollmentGroup
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">EnrollmentGroup</xref> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> . </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the enrollmentGroup information for the provided enrollmentGroup. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)
+  id: deleteEnrollmentGroup(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteEnrollmentGroup(String enrollmentGroupId)
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 763
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the enrollmentGroup information.</p>\r\n<p>This method will remove the enrollmentGroup from the Device Provisioning Service using the provided enrollmentGroupId. It will delete the enrollmentGroup regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String,String)\" data-throw-if-not-resolved=\"false\">deleteEnrollmentGroup(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollmentGroup will not remove the Devices itself from the IotHub.</p>\r\n<p>If the enrollmentGroupId does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the enrollmentGroup \"enrollmentGroupId-1\". <pre><code>// EnrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the enrollmentGroup information.\r\n        deviceProvisioningServiceClient.deleteEnrollmentGroup(ENROLLMENT_GROUP_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o5
+    content: public void deleteEnrollmentGroup(String enrollmentGroupId)
+    parameters:
+    - id: enrollmentGroupId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> or empty. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the enrollmentGroup information for the provided enrollmentGroupId. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String,String)
+  id: deleteEnrollmentGroup(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 813
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the enrollmentGroup information.</p>\r\n<p>This method will remove the enrollmentGroup from the Device Provisioning Service using the provided enrollmentGroupId and eTag. If you want to delete the enrollmentGroup regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)\" data-throw-if-not-resolved=\"false\">deleteEnrollmentGroup(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollmentGroup will not remove the Device itself from the IotHub.</p>\r\n<p>If the enrollmentGroupId does not exists or eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the enrollmentGroup \"enrollmentGroupId-1\" regardless the eTag. <pre><code>// enrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the enrollmentGroup information.\r\n        deviceProvisioningServiceClient.deleteEnrollmentGroup(ENROLLMENT_GROUP_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o6
+    content: public void deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+    parameters:
+    - id: enrollmentGroupId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> or empty. </p>
+    - id: eTag
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> with the enrollmentGroup eTag. It can be<code>null 
+
+            </code> or empty. The Device Provisioning Service will ignore it in all of these cases. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the enrollmentGroup information for the provided enrollmentGroupId and eTag. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(Enrollment)
+  id: deleteIndividualEnrollment(Enrollment)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteIndividualEnrollment(Enrollment enrollment)
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment(Enrollment enrollment)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment(Enrollment enrollment)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 404
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the individual enrollment information.</p>\r\n<p>This method will remove the individual enrollment from the Device Provisioning Service using the provided <xref uid=\"\" data-throw-if-not-resolved=\"false\">Enrollment</xref> information. The Device Provisioning Service will care about the registrationId and the eTag on the enrollment. If you want to delete the enrollment regardless the eTag, you can set the<code>eTag=\"*\" \r\n    </code> into the enrollment, or use the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)\" data-throw-if-not-resolved=\"false\">deleteIndividualEnrollment(String)</xref> passing only the registrationId.</p>\r\n<p>Note that delete the enrollment will not remove the Device itself from the IotHub.</p>\r\n<p>If the registrationId does not exists or the eTag not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the individual enrollment \"registrationId-1\". <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the individual enrollment information.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.getIndividualEnrollment(REGISTRATION_ID);\r\n    \r\n        // Delete the individual enrollment information.\r\n        deviceProvisioningServiceClient.deleteIndividualEnrollment(enrollmentResult);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public void deleteIndividualEnrollment(Enrollment enrollment)
+    parameters:
+    - id: enrollment
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> that identifies the individual enrollment. It cannot be<code>null 
+
+            </code> . </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameter is not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to execute the bulk operation. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)
+  id: deleteIndividualEnrollment(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteIndividualEnrollment(String registrationId)
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 451
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the individual enrollment information.</p>\r\n<p>This method will remove the individual enrollment from the Device Provisioning Service using the provided registrationId. It will delete the enrollment regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String,String)\" data-throw-if-not-resolved=\"false\">deleteIndividualEnrollment(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollment will not remove the Device itself from the IotHub.</p>\r\n<p>If the registrationId does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the individual enrollment \"registrationId-1\". <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the individual enrollment information.\r\n        deviceProvisioningServiceClient.deleteIndividualEnrollment(REGISTRATION_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o2
+    content: public void deleteIndividualEnrollment(String registrationId)
+    parameters:
+    - id: registrationId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the individual enrollment. It cannot be<code>null 
+
+            </code> or empty. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided registrationId is not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to execute the bulk operation. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String,String)
+  id: deleteIndividualEnrollment(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteIndividualEnrollment(String registrationId, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId, String eTag)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 502
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the individual enrollment information.</p>\r\n<p>This method will remove the individual enrollment from the Device Provisioning Service using the provided registrationId and eTag. If you want to delete the enrollment regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)\" data-throw-if-not-resolved=\"false\">deleteIndividualEnrollment(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollment will not remove the Device itself from the IotHub.</p>\r\n<p>If the registrationId does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the individual enrollment \"registrationId-1\" regardless the eTag. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the individual enrollment information.\r\n        deviceProvisioningServiceClient.deleteIndividualEnrollment(REGISTRATION_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o3
+    content: public void deleteIndividualEnrollment(String registrationId, String eTag)
+    parameters:
+    - id: registrationId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the individual enrollment. It cannot be<code>null 
+
+            </code> or empty. </p>
+    - id: eTag
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> with the Enrollment eTag. It can be<code>null 
+
+            </code> or empty. The Device Provisioning Service will ignore it in all of these cases. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided registrationId is not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to execute the bulk operation. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(DeviceRegistrationStatus)
+  id: deleteRegistrationStatus(DeviceRegistrationStatus)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteRegistrationStatus(DeviceRegistrationStatus deviceRegistrationStatus)
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus(DeviceRegistrationStatus deviceRegistrationStatus)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus(DeviceRegistrationStatus deviceRegistrationStatus)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 950
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the Registration Status information.</p>\r\n<p>This method will remove the registrationStatus from the Device Provisioning Service using the provided <xref uid=\"\" data-throw-if-not-resolved=\"false\">DeviceRegistrationStatus</xref> information. The Device Provisioning Service will care about the id and the eTag on the deviceRegistrationStatus. If you want to delete the registrationStatus regardless the eTag, you can use the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)\" data-throw-if-not-resolved=\"false\">deleteRegistrationStatus(String)</xref> passing only the id.</p>\r\n<p>If the id does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the registrationStatus \"registrationId-1\". <pre><code>// Registration Status information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the registration status information.\r\n        DeviceRegistrationStatus registrationStatusResult =  deviceProvisioningServiceClient.getRegistrationStatus(REGISTRATION_ID);\r\n    \r\n        // Delete the registration status information.\r\n        deviceProvisioningServiceClient.deleteRegistrationStatus(registrationStatusResult);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public void deleteRegistrationStatus(DeviceRegistrationStatus deviceRegistrationStatus)
+    parameters:
+    - id: deviceRegistrationStatus
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._device_registration_status
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">DeviceRegistrationStatus</xref> that identifies the registrationStatus. It cannot be<code>null 
+
+            </code> . </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the registration status information for the provided deviceRegistrationStatus. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)
+  id: deleteRegistrationStatus(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteRegistrationStatus(String id)
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus(String id)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus(String id)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 994
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the registration status information.</p>\r\n<p>This method will remove the registrationStatus from the Device Provisioning Service using the provided id. It will delete the registration status regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String,String)\" data-throw-if-not-resolved=\"false\">deleteRegistrationStatus(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>If the id does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the registration status \"registrationId-1\". <pre><code>// RegistrationStatus information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the registration status information.\r\n        deviceProvisioningServiceClient.deleteRegistrationStatus(REGISTRATION_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o8
+    content: public void deleteRegistrationStatus(String id)
+    parameters:
+    - id: id
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the registrationStatus. It cannot be<code>null 
+
+            </code> or empty. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the registrationStatus information for the provided registrationId. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String,String)
+  id: deleteRegistrationStatus(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: deleteRegistrationStatus(String id, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus(String id, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus(String id, String eTag)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 1042
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Delete the registration status information.</p>\r\n<p>This method will remove the registration status from the Device Provisioning Service using the provided id and eTag. If you want to delete the registration status regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)\" data-throw-if-not-resolved=\"false\">deleteRegistrationStatus(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>If the id does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the registrationStatus \"registrationId-1\" regardless the eTag. <pre><code>// Registration Status information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the registrationStatus information.\r\n        deviceProvisioningServiceClient.deleteRegistrationStatus(REGISTRATION_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o9
+    content: public void deleteRegistrationStatus(String id, String eTag)
+    parameters:
+    - id: id
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the registrationStatus. It cannot be<code>null 
+
+            </code> or empty. </p>
+    - id: eTag
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> with the registrationStatus eTag. It can be<code>null 
+
+            </code> or empty. The Device Provisioning Service will ignore it in all of these cases. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to delete the registrationStatus information for the provided registrationId and eTag. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getEnrollmentGroup(String)
+  id: getEnrollmentGroup(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: getEnrollmentGroup(String enrollmentGroupId)
+  nameWithType: ProvisioningServiceClient.getEnrollmentGroup(String enrollmentGroupId)
+  fullName: EnrollmentGroup com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getEnrollmentGroup(String enrollmentGroupId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getEnrollmentGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 666
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Retrieve the enrollmentGroup information.</p>\r\n<p>This method will return the enrollmentGroup information for the provided enrollmentGroupId. It will retrieve the correspondent enrollmentGroup from the Device Provisioning Service, and return it in the <xref uid=\"\" data-throw-if-not-resolved=\"false\">EnrollmentGroup</xref> object.</p>\r\n<p>If the enrollmentGroupId does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will get and print the information about the enrollmentGroupId \"enrollmentGroupId-1\". <pre><code>// EnrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the individual enrollment information.\r\n        EnrollmentGroup enrollmentGroupResult =  deviceProvisioningServiceClient.getEnrollmentGroup(ENROLLMENT_GROUP_ID);\r\n        System.out.println(enrollmentGroupResult.toString());\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public EnrollmentGroup getEnrollmentGroup(String enrollmentGroupId)
+    parameters:
+    - id: enrollmentGroupId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the enrollmentGroup. It cannot be<code>null 
+
+            </code> or empty. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
+      description: <p>The <xref uid="" data-throw-if-not-resolved="false">EnrollmentGroup</xref> with the content of the enrollmentGroup in the Provisioning Device Service. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to retrieve the enrollmentGroup information for the provided enrollmentGroupId. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getIndividualEnrollment(String)
+  id: getIndividualEnrollment(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: getIndividualEnrollment(String registrationId)
+  nameWithType: ProvisioningServiceClient.getIndividualEnrollment(String registrationId)
+  fullName: Enrollment com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getIndividualEnrollment(String registrationId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getIndividualEnrollment*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 352
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Retrieve the individual enrollment information.</p>\r\n<p>This method will return the enrollment information for the provided registrationId. It will retrieve the correspondent individual enrollment from the Device Provisioning Service, and return it in the <xref uid=\"\" data-throw-if-not-resolved=\"false\">Enrollment</xref> object.</p>\r\n<p>If the registrationId do not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will get and print the information about the individual enrollment \"registrationId-1\". <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the individual enrollment information.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.getIndividualEnrollment(REGISTRATION_ID);\r\n        System.out.println(enrollmentResult.toString());\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public Enrollment getIndividualEnrollment(String registrationId)
+    parameters:
+    - id: registrationId
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the individual enrollment. It cannot be<code>null 
+
+            </code> or empty. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+      description: <p>The <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> with the content of the individual enrollment in the Provisioning Device Service. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameter is not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to execute the bulk operation. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getRegistrationStatus(String)
+  id: getRegistrationStatus(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: getRegistrationStatus(String id)
+  nameWithType: ProvisioningServiceClient.getRegistrationStatus(String id)
+  fullName: DeviceRegistrationStatus com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getRegistrationStatus(String id)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getRegistrationStatus*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 902
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Retrieve the registration status information.</p>\r\n<p>This method will return the registrationStatus for the provided id. It will retrieve the correspondent registrationStatus from the Device Provisioning Service, and return it in the <xref uid=\"\" data-throw-if-not-resolved=\"false\">DeviceRegistrationStatus</xref> object.</p>\r\n<p>If the id do not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will get and print the information about the registrationStatus \"registrationId-1\". <pre><code>// Registration status information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the registrationStatus information.\r\n        DeviceRegistrationStatus registrationStatusResult =  deviceProvisioningServiceClient.getRegistrationStatus(REGISTRATION_ID);\r\n        System.out.println(registrationStatusResult.toString());\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public DeviceRegistrationStatus getRegistrationStatus(String id)
+    parameters:
+    - id: id
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that identifies the registrationStatus. It cannot be<code>null 
+
+            </code> or empty. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._device_registration_status
+      description: <p>The <xref uid="" data-throw-if-not-resolved="false">DeviceRegistrationStatus</xref> with the content of the registrationStatus in the Provisioning Device Service. </p>
+  exceptions:
+  - type: 407b0ee3
+    description: <p>if the Provisioning Device Service was not able to retrieve the registrationStatus information for the provided registrationId. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.runBulkOperation(BulkOperationMode,Collection<Enrollment>)
+  id: runBulkOperation(BulkOperationMode,Collection<Enrollment>)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  langs:
+  - java
+  name: runBulkOperation(BulkOperationMode bulkOperationMode, Collection<Enrollment> enrollments)
+  nameWithType: ProvisioningServiceClient.runBulkOperation(BulkOperationMode bulkOperationMode, Collection<Enrollment> enrollments)
+  fullName: BulkOperationResult com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.runBulkOperation(BulkOperationMode bulkOperationMode, Collection<Enrollment> enrollments)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.runBulkOperation*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/ProvisioningServiceClient.java
+    startLine: 303
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+  summary: "<p>Create, update or delete a set of individual device enrollments.</p>\r\n<p>This API provide the means to do a single operation over multiple individual enrollments. A valid operation is determined by <xref uid=\"\" data-throw-if-not-resolved=\"false\">BulkOperationMode</xref>, and can be 'create', 'update', 'updateIfMatchETag', or 'delete'.</p>\r\n<p>To use the Device Provisioning Service API, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.\r\n    import com.microsoft.azure.sdk.iot.provisioning.service.*;\r\n    </code></pre></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will create two new enrollment that will provisioning the ContosoDevice1000 and ContosoDevice1001 to the ContosoHub.azure-devices.net using TPM attestation. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String TPM_ENDORSEMENT_KEY = \"tpm-endorsement-key\";\r\n    private static final String IOTHUB_HOST_NAME = \"ContosoHub.azure-devices.net\";\r\n    \r\n    private static final String REGISTRATION_ID_1 = \"registrationId-1\";\r\n    private static final String DEVICE_ID_1 = \"ContosoDevice1000\";\r\n    \r\n    private static final String REGISTRATION_ID_2 = \"registrationId-2\";\r\n    private static final String DEVICE_ID_2 = \"ContosoDevice1001\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Create two new individual enrollment configurations.\r\n        Attestation attestation = new TpmAttestation(TPM_ENDORSEMENT_KEY);\r\n        Enrollment enrollment1 =\r\n           new Enrollment(\r\n                REGISTRATION_ID_1,\r\n                attestation);\r\n        enrollment1.setDeviceId(DEVICE_ID_1);\r\n        enrollment1.setIotHubHostName(IOTHUB_HOST_NAME);\r\n        enrollment1.setProvisioningStatus(ProvisioningStatus.DISABLED);\r\n    \r\n        Enrollment enrollment2 =\r\n           new Enrollment(\r\n                REGISTRATION_ID_2,\r\n                attestation);\r\n        enrollment2.setDeviceId(DEVICE_ID_2);\r\n        enrollment2.setIotHubHostName(IOTHUB_HOST_NAME);\r\n        enrollment2.setProvisioningStatus(ProvisioningStatus.DISABLED);\r\n    \r\n        // Add these 2 enrollments to a list of enrollments.\r\n        List&lt;Enrollment&gt; enrollments = new LinkedList&lt;&gt;();\r\n        enrollments.add(enrollment1);\r\n        enrollments.add(enrollment2);\r\n    \r\n        // Create these 2 new individual enrollment using the bulk operation.\r\n        BulkOperationResult bulkOperationResult =  provisioningServiceClient.runBulkOperation(BulkOperationMode.create, enrollments);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax:
+    content: public BulkOperationResult runBulkOperation(BulkOperationMode bulkOperationMode, Collection<Enrollment> enrollments)
+    parameters:
+    - id: bulkOperationMode
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_mode
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false">BulkOperationMode</xref> that defines the single operation to do over the enrollments. It cannot be<code>null 
+
+            </code> . </p>
+    - id: enrollments
+      type: 12ebb11acom.microsoft.azure.sdk.iot.provisioning.service.configs._enrollmenta08ddfce
+      description: >-
+        <p>the collection of <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> that contains the description of each individual enrollment. It cannot be<code>null 
+
+            </code> or empty. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_result
+      description: <p>A <xref uid="" data-throw-if-not-resolved="false">BulkOperationResult</xref> object with the result of operation for each enrollment. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the provided parameters are not correct. </p>
+  - type: 637b6540
+    description: <p>if the SDK failed to send the request to the Device Provisioning Service. </p>
+  - type: 407b0ee3
+    description: <p>if the Device Provisioning Service was not able to execute the bulk operation. </p>
+references:
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createFromConnectionString*
+  name: createFromConnectionString
+  nameWithType: ProvisioningServiceClient.createFromConnectionString
+  fullName: static ProvisioningServiceClient com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createFromConnectionString
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: 637b6540
+  spec.java:
+  - name: ProvisioningServiceClientTransportException
+    fullName: ProvisioningServiceClientTransportException
+- uid: 407b0ee3
+  spec.java:
+  - name: ProvisioningServiceClientException
+    fullName: ProvisioningServiceClientException
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment*
+  name: createOrUpdateIndividualEnrollment
+  nameWithType: ProvisioningServiceClient.createOrUpdateIndividualEnrollment
+  fullName: Enrollment com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateIndividualEnrollment
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: 12ebb11acom.microsoft.azure.sdk.iot.provisioning.service.configs._enrollmenta08ddfce
+  spec.java:
+  - name: Collection<
+    fullName: Collection<
+  - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+    name: Enrollment
+    fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.Enrollment
+    href: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.runBulkOperation*
+  name: runBulkOperation
+  nameWithType: ProvisioningServiceClient.runBulkOperation
+  fullName: BulkOperationResult com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.runBulkOperation
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getIndividualEnrollment*
+  name: getIndividualEnrollment
+  nameWithType: ProvisioningServiceClient.getIndividualEnrollment
+  fullName: Enrollment com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getIndividualEnrollment
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment*
+  name: deleteIndividualEnrollment
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery*
+  name: createIndividualEnrollmentQuery
+  nameWithType: ProvisioningServiceClient.createIndividualEnrollmentQuery
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createIndividualEnrollmentQuery
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateEnrollmentGroup*
+  name: createOrUpdateEnrollmentGroup
+  nameWithType: ProvisioningServiceClient.createOrUpdateEnrollmentGroup
+  fullName: EnrollmentGroup com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateEnrollmentGroup
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getEnrollmentGroup*
+  name: getEnrollmentGroup
+  nameWithType: ProvisioningServiceClient.getEnrollmentGroup
+  fullName: EnrollmentGroup com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getEnrollmentGroup
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup*
+  name: deleteEnrollmentGroup
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery*
+  name: createEnrollmentGroupQuery
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupQuery
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupQuery
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.getRegistrationStatus*
+  name: getRegistrationStatus
+  nameWithType: ProvisioningServiceClient.getRegistrationStatus
+  fullName: DeviceRegistrationStatus com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.getRegistrationStatus
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus*
+  name: deleteRegistrationStatus
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery*
+  name: createEnrollmentGroupRegistrationStatusQuery
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupRegistrationStatusQuery
+  package: com.microsoft.azure.sdk.iot.provisioning.service
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._individual_enrollment_manager
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  href: com.microsoft.azure.sdk.iot.provisioning.service._individual_enrollment_manager.yml
+  name: IndividualEnrollmentManager
+  nameWithType: IndividualEnrollmentManager
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.IndividualEnrollmentManager
+  type: Class
+  summary: >-
+    <p>Individual Enrollment Manager</p>
+
+    <p>This is the inner class that implements the Individual Enrollment APIs. </p>
+
+    <p>For the public API, please see <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client" data-throw-if-not-resolved="false">ProvisioningServiceClient</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public class IndividualEnrollmentManager
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._enrollment_group_manager
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  href: com.microsoft.azure.sdk.iot.provisioning.service._enrollment_group_manager.yml
+  name: EnrollmentGroupManager
+  nameWithType: EnrollmentGroupManager
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.EnrollmentGroupManager
+  type: Class
+  summary: >-
+    <p>Enrollment Group Manager</p>
+
+    <p>This is the inner class that implements the Enrollment Group APIs. </p>
+
+    <p>For the exposed API, please see <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client" data-throw-if-not-resolved="false">ProvisioningServiceClient</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public class EnrollmentGroupManager
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._registration_status_manager
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  href: com.microsoft.azure.sdk.iot.provisioning.service._registration_status_manager.yml
+  name: RegistrationStatusManager
+  nameWithType: RegistrationStatusManager
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.RegistrationStatusManager
+  type: Class
+  summary: >-
+    <p>Registration Status Manager</p>
+
+    <p>This is the inner class that implements the Registration Status APIs. </p>
+
+    <p>For the exposed API, please see <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client" data-throw-if-not-resolved="false">ProvisioningServiceClient</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public class RegistrationStatusManager
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: ProvisioningServiceClient
+  nameWithType: ProvisioningServiceClient
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient
+  type: Class
+  summary: >-
+    <p>Device Provisioning Service Client.</p>
+
+    <p>The IoT Hub Device Provisioning Service is a helper service for IoT Hub that enables automatic device provisioning to a specified IoT hub without requiring human intervention. You can use the Device Provisioning Service to provision millions of devices in a secure and scalable manner.</p>
+
+    <p>This java SDK provides an API to help developers to create and maintain Enrollments on the IoT Hub Device Provisioning Service, it translate the rest API in java Objects and Methods.</p>
+
+    <p>To use the this SDK, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.
+
+        import com.microsoft.azure.sdk.iot.provisioning.service.*;
+
+        </code></pre></p>
+
+    <p>The main APIs are exposed by the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client" data-throw-if-not-resolved="false">ProvisioningServiceClient</xref>, it contains the public Methods that the application shall call to create and maintain the Enrollments. The Objects in the <b>configs</b> package shall be filled and passed as parameters of the public API, for example, to create a new enrollment, the application shall create the object <xref uid="" data-throw-if-not-resolved="false">Enrollment</xref> with the appropriate enrollment configurations, and call the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)" data-throw-if-not-resolved="false">createOrUpdateIndividualEnrollment(Enrollment)</xref>.</p>
+
+    <p>The IoT Hub Device Provisioning Service supports SQL queries too. The application can create a new query using one of the queries factories, for instance <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)" data-throw-if-not-resolved="false">createIndividualEnrollmentQuery(QuerySpecification)</xref>, passing the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, with the SQL query. This factory returns a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> object, which is an active iterator.</p>
+
+    <p>This java SDK can be represented in the follow diagram, the first layer are the public APIs the your application shall use:</p>
+
+    <p>
+
+      <pre>
+
+        <code>+===============+       +==========================================+                           +============+   +===+
+
+        |    configs    |------&gt;|         ProvisioningServiceClient        |                        +-&gt;|    Query   |   |   |
+
+        +===============+       +==+=================+==================+==+                        |  +======+=====+   | e |
+
+                                  /                  |                   \                          |         |         | x |
+
+                                 /                   |                    \                         |         |         | c |
+
+        +-----------------------+-----+  +-----------+------------+  +-----+---------------------+  |         |         | e |
+
+        | IndividualEnrollmentManager |  | EnrollmentGroupManager |  | RegistrationStatusManager |  |         |         | p |
+
+        +---------------+------+------+  +-----------+------+-----+  +-------------+-------+-----+  |         |         | t |
+
+                         \      \                    |       \                     |        \       |         |         | i |
+
+                          \      +----------------------------+------------------------------+------+         |         | o |
+
+                           \                         |                             |                          |         | n |
+
+         +--------+      +--+------------------------+-----------------------------+--------------------------+-----+   | s |
+
+         |  auth  |-----&gt;|                                     ContractApiHttp                                      |   |   |
+
+         +--------+      +-------------------------------------------+----------------------------------------------+   +===+
+
+                                                                     |
+
+                                                                     |
+
+                               +-------------------------------------+------------------------------------------+
+
+                               |                 com.microsoft.azure.sdk.iot.deps.transport.http                |
+
+                               +--------------------------------------------------------------------------------+
+
+        </code>
+
+      </pre>
+
+    </p>
+
+    <p></p>
+  syntax: *o1
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment.yml
+  name: Enrollment
+  nameWithType: Enrollment
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.Enrollment
+  type: Class
+  summary: >-
+    <p>Representation of a single Device Provisioning Service enrollment with a JSON serializer and deserializer.</p>
+
+    <p>This object is used to send <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> information to the provisioning service, or receive <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> information from the provisioning service.</p>
+
+    <p>To create or update an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> on the provisioning service you should fill this object and call the public API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createOrUpdateIndividualEnrollment(Enrollment)</xref>. The minimum information required by the provisioning service is the<code>registrationId 
+
+        </code> and the <code>attestation 
+
+        </code> .</p>
+
+    <p>A new device can be provisioned by two attestation mechanisms, Trust Platform Module (see <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._tpm_attestation" data-throw-if-not-resolved="false">TpmAttestation</xref>) or DICE (see <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._x509_attestation" data-throw-if-not-resolved="false">X509Attestation</xref>). The definition of each one you should use depending on the physical authentication hardware that the device contains.</p>
+
+    <p>The content of this class will be serialized in a JSON format and sent as a body of the rest API to the provisioning service.</p>
+
+    <p>When serialized, an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> will look like the following example: <pre>
+
+    *<code>*{
+
+             "registrationId":"validRegistrationId",
+
+             "deviceId":"ContosoDevice-123",
+
+             "attestation":{
+
+                 "type":"tpm",
+
+                 "tpm":{
+
+                     "endorsementKey":"validEndorsementKey"
+
+                 }
+
+             },
+
+             "iotHubHostName":"ContosoIoTHub.azure-devices.net",
+
+             "provisioningStatus":"enabled"
+
+        *}
+
+        </code></pre></p>
+
+    <p>The content of this class can be filled by a JSON, received from the provisioning service, as result of a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> operation like create, update, or query enrollment.</p>
+
+    <p>The following JSON is a sample or the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> response, received from the provisioning service. <pre>
+
+    *<code>*{
+
+             "registrationId":"validRegistrationId",
+
+             "deviceId":"ContosoDevice-123",
+
+             "attestation":{
+
+                 "type":"tpm",
+
+                 "tpm":{
+
+                     "endorsementKey":"validEndorsementKey"
+
+                 }
+
+             },
+
+             "iotHubHostName":"ContosoIoTHub.azure-devices.net",
+
+             "provisioningStatus":"enabled"
+
+             "createdDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+             "lastUpdatedDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+             "etag": "\"00000000-0000-0000-0000-00000000000\""
+
+        *}
+
+        </code></pre></p>
+
+    <p></p>
+  syntax:
+    content: public class Enrollment extends Serializable
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.exceptions._provisioning_service_client_exception
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.exceptions
+  href: com.microsoft.azure.sdk.iot.provisioning.service.exceptions._provisioning_service_client_exception.yml
+  name: ProvisioningServiceClientException
+  nameWithType: ProvisioningServiceClientException
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.exceptions.ProvisioningServiceClientException
+  type: Class
+  summary: >-
+    <p>Super class for the Device Provisioning Service exceptions on the Service Client.</p>
+
+    <p>
+
+      <pre>
+
+        <code>ProvisioningServiceClientException
+
+            |
+
+            +--&gt;ProvisioningServiceClientTransportException [any transport layer exception]
+
+            |
+
+            +--&gt;ProvisioningServiceClientServiceException [any exception reported in the http response]
+
+                    |
+
+                    |
+
+                    +--&gt;ProvisioningServiceClientBadUsageException [any http response 4xx]
+
+                    |        |
+
+                    |        +--&gt;ProvisioningServiceClientBadFormatException [400]
+
+                    |        +--&gt;ProvisioningServiceClientUnathorizedException [401]
+
+                    |        +--&gt;ProvisioningServiceClientNotFoundException [404]
+
+                    |        +--&gt;ProvisioningServiceClientPreconditionFailedException [412]
+
+                    |        +--&gt;ProvisioningServiceClientTooManyRequestsException [429]
+
+                    |
+
+                    +--&gt;ProvisioningServiceClientTransientException [any http response 5xx]
+
+                    |        |
+
+                    |        +--&gt;ProvisioningServiceClientInternalServerErrorException [500]
+
+                    |
+
+                    +--&gt;ProvisioningServiceClientUnknownException [any other http response &gt;300, but not 4xx or 5xx]
+
+        </code>
+
+      </pre>
+
+    </p>
+  syntax:
+    content: public class ProvisioningServiceClientException
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_result
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_result.yml
+  name: BulkOperationResult
+  nameWithType: BulkOperationResult
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.BulkOperationResult
+  type: Class
+  summary: >-
+    <p>Representation of a single Device Provisioning Service bulk operation result with a JSON deserializer.</p>
+
+    <p>This result is returned as a result of the <xref uid="" data-throw-if-not-resolved="false">ProvisioningServiceClient#runBulkOperation(BulkOperationMode, Collection)</xref>.</p>
+
+    <p>The provisioning service provides general bulk result in the isSuccessful, and a individual error result for each enrolment in the bulk.</p>
+
+    <p>The following JSON is an example of the result from a bulk operation. <pre><code>{
+
+            "isSuccessful":true,
+
+            "errors": [
+
+                {
+
+                    "registrationId":"validRegistrationId1",
+
+                    "errorCode":200,
+
+                    "errorStatus":"Succeeded"
+
+                },
+
+                {
+
+                    "registrationId":"validRegistrationId2",
+
+                    "errorCode":200,
+
+                    "errorStatus":"Succeeded"
+
+                }
+
+            ]
+
+        }
+
+        </code></pre></p>
+
+    <p></p>
+  syntax:
+    content: public class BulkOperationResult
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_mode
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._bulk_operation_mode.yml
+  name: BulkOperationMode
+  nameWithType: BulkOperationMode
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.BulkOperationMode
+  type: Enum
+  summary: >-
+    <p>The Device Provisioning Service bulk operation modes.</p>
+
+    <p></p>
+  syntax:
+    content: public enum BulkOperationMode
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteIndividualEnrollment(String registrationId)
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId)
+  type: Method
+  summary: "<p>Delete the individual enrollment information.</p>\r\n<p>This method will remove the individual enrollment from the Device Provisioning Service using the provided registrationId. It will delete the enrollment regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String,String)\" data-throw-if-not-resolved=\"false\">deleteIndividualEnrollment(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollment will not remove the Device itself from the IotHub.</p>\r\n<p>If the registrationId does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the individual enrollment \"registrationId-1\". <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the individual enrollment information.\r\n        deviceProvisioningServiceClient.deleteIndividualEnrollment(REGISTRATION_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o2
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteIndividualEnrollment(String registrationId, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteIndividualEnrollment(String registrationId, String eTag)
+  type: Method
+  summary: "<p>Delete the individual enrollment information.</p>\r\n<p>This method will remove the individual enrollment from the Device Provisioning Service using the provided registrationId and eTag. If you want to delete the enrollment regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteIndividualEnrollment(String)\" data-throw-if-not-resolved=\"false\">deleteIndividualEnrollment(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollment will not remove the Device itself from the IotHub.</p>\r\n<p>If the registrationId does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the individual enrollment \"registrationId-1\" regardless the eTag. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the individual enrollment information.\r\n        deviceProvisioningServiceClient.deleteIndividualEnrollment(REGISTRATION_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o3
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._query
+  parent: com.microsoft.azure.sdk.iot.provisioning.service
+  href: com.microsoft.azure.sdk.iot.provisioning.service._query.yml
+  name: Query
+  nameWithType: Query
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.Query
+  type: Class
+  summary: >-
+    <p>The query iterator.</p>
+
+    <p>The<code>Query 
+
+        </code> iterator is the result of the query factory for <table rows="3" cols="2"><row><entry thead="no"><p><b>IndividualEnrollment:</b></p></entry><entry thead="no"><p><xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification,int)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createIndividualEnrollmentQuery(QuerySpecification, int)</xref></p></entry></row><row><entry thead="no"><p><b>EnrollmentGroup:</b></p></entry><entry thead="no"><p><xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification,int)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createEnrollmentGroupQuery(QuerySpecification, int)</xref></p></entry></row><row><entry thead="no"><p><b>RegistrationStatus:</b></p></entry><entry thead="no"><p><xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupRegistrationStatusQuery(QuerySpecification,String,int)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createEnrollmentGroupRegistrationStatusQuery(QuerySpecification, String, int)</xref></p></entry></row></table></p>
+
+    <p>On all cases, the <b>QuerySpecification</b> contains a SQL query that must follow the <ulink url="https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-query-language">Query Language</ulink> for the Device Provisioning Service.</p>
+
+    <p>Optionally, an<code>Integer 
+
+        </code> with the <b>pageSize</b>, can determine the maximum number of the items in the <xref uid="" data-throw-if-not-resolved="false">QueryResult</xref> returned by the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.next()" data-throw-if-not-resolved="false">next()</xref>. It must be any positive integer, and if it contains 0, the Device Provisioning Service will ignore it and use a standard page size.</p>
+
+    <p>You can use this Object as a standard Iterator, just using the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.hasNext()" data-throw-if-not-resolved="false">hasNext()</xref> and <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.next()" data-throw-if-not-resolved="false">next()</xref> in a <code>while 
+
+        </code> loop, up to the point where the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.hasNext()" data-throw-if-not-resolved="false">hasNext()</xref> return<code>false 
+
+        </code> . But, keep in mind that the <xref uid="" data-throw-if-not-resolved="false">QueryResult</xref> can contain a empty list, even if the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.hasNext()" data-throw-if-not-resolved="false">hasNext()</xref> returned<code>true 
+
+        </code> . For example, image that you have 10 Individual Enrollments in the Device Provisioning Service and you created new query with the<code>pageSize 
+
+        </code> equals 5. The first<code>hasNext() 
+
+        </code> will return<code>true 
+
+        </code> , and the first<code>next() 
+
+        </code> will return a<code>QueryResult 
+
+        </code> with 5 items. After that you call the<code>hasNext 
+
+        </code> , which will returns<code>true 
+
+        </code> . Now, before you get the next page, somebody delete all the Individual Enrollments, What happened, when you call the<code>next() 
+
+        </code> , it will return a valid<code>QueryResult 
+
+        </code> , but the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._query_result.getItems()" data-throw-if-not-resolved="false">QueryResult#getItems()</xref> will return a empty list.</p>
+
+    <p>You can also store a query context (QuerySpecification + ContinuationToken) and restart it in the future, from the point where you stopped.</p>
+
+    <p>Besides the Items, the queryResult contains the continuationToken, the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._query_result.getContinuationToken()" data-throw-if-not-resolved="false">QueryResult#getContinuationToken()</xref> shall return it. In any point in the future, you may recreate the query using the same query factories that you used for the first time, and call <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query.next(String)" data-throw-if-not-resolved="false">next(String)</xref> providing the stored continuationToken to get the next page.</p>
+
+    <p></p>
+  syntax:
+    content: public class Query
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._query_specification.yml
+  name: QuerySpecification
+  nameWithType: QuerySpecification
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.QuerySpecification
+  type: Class
+  summary: >-
+    <p>Representation of a single Device Provisioning Service query specification with a JSON serializer.</p>
+
+    <p></p>
+  syntax:
+    content: public class QuerySpecification
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createIndividualEnrollmentQuery(QuerySpecification)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  nameWithType: ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createIndividualEnrollmentQuery(QuerySpecification querySpecification)
+  type: Method
+  summary: >-
+    <p>Factory to create a individual enrollment query.</p>
+
+    <p>This method will create a new individual enrollment query for Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p></p>
+  syntax: *o4
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group.yml
+  name: EnrollmentGroup
+  nameWithType: EnrollmentGroup
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup
+  type: Class
+  summary: >-
+    <p>Representation of a single Device Provisioning Service enrollment group with a JSON serializer and deserializer.</p>
+
+    <p>This object is used to send <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> information to the provisioning service, or receive <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> information from the provisioning service.</p>
+
+    <p>To create or update an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> on the provisioning service you should fill this object and call the public API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateEnrollmentGroup(EnrollmentGroup)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createOrUpdateEnrollmentGroup(EnrollmentGroup)</xref>. The minimum information required by the provisioning service is the <xref uid="" data-throw-if-not-resolved="false">enrollmentGroupId</xref> and the <xref uid="" data-throw-if-not-resolved="false">attestation</xref>.</p>
+
+    <p>To provision a device using <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref>, it must contain a DICE chip with a signingCertificate for the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._x509_attestation" data-throw-if-not-resolved="false">X509Attestation</xref> mechanism.</p>
+
+    <p>The content of this class will be serialized in a JSON format and sent as a body of the rest API to the provisioning service.</p>
+
+    <p>When serialized, an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> will look like the following example: <pre><code>{
+
+            "enrollmentGroupId":"validEnrollmentGroupId",
+
+            "attestation":{
+
+                "type":"x509",
+
+                "signingCertificates":{
+
+                    "primary":{
+
+                        "certificate":"[valid certificate]"
+
+                    }
+
+                }
+
+            },
+
+            "iotHubHostName":"ContosoIoTHub.azure-devices.net",
+
+            "provisioningStatus":"enabled"
+
+        }
+
+        </code></pre></p>
+
+    <p>The content of this class can be filled by a JSON, received from the provisioning service, as result of a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> operation like create, update, or query <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref>.</p>
+
+    <p>The following JSON is a sample of the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group" data-throw-if-not-resolved="false">EnrollmentGroup</xref> response, received from the provisioning service. <pre><code>{
+
+            "enrollmentGroupId":"validEnrollmentGroupId",
+
+            "attestation":{
+
+                "type":"x509",
+
+                "signingCertificates":{
+
+                    "primary":{
+
+                        "certificate":"[valid certificate]",
+
+                        "info": {
+
+                            "subjectName": "CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US",
+
+                            "sha1Thumbprint": "0000000000000000000000000000000000",
+
+                            "sha256Thumbprint": "validEnrollmentGroupId",
+
+                            "issuerName": "CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US",
+
+                            "notBeforeUtc": "2017-11-14T12:34:18Z",
+
+                            "notAfterUtc": "2017-11-20T12:34:18Z",
+
+                            "serialNumber": "000000000000000000",
+
+                            "version": 3
+
+                        }
+
+                    }
+
+                }
+
+            },
+
+            "iotHubHostName":"ContosoIoTHub.azure-devices.net",
+
+            "provisioningStatus":"enabled",
+
+            "createdDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+            "lastUpdatedDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+            "etag": "\"00000000-0000-0000-0000-00000000000\""
+
+        }
+
+        </code></pre></p>
+
+    <p></p>
+  syntax:
+    content: public class EnrollmentGroup extends Serializable
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteEnrollmentGroup(String enrollmentGroupId)
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId)
+  type: Method
+  summary: "<p>Delete the enrollmentGroup information.</p>\r\n<p>This method will remove the enrollmentGroup from the Device Provisioning Service using the provided enrollmentGroupId. It will delete the enrollmentGroup regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String,String)\" data-throw-if-not-resolved=\"false\">deleteEnrollmentGroup(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollmentGroup will not remove the Devices itself from the IotHub.</p>\r\n<p>If the enrollmentGroupId does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the enrollmentGroup \"enrollmentGroupId-1\". <pre><code>// EnrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the enrollmentGroup information.\r\n        deviceProvisioningServiceClient.deleteEnrollmentGroup(ENROLLMENT_GROUP_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o5
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteEnrollmentGroup(String enrollmentGroupId, String eTag)
+  type: Method
+  summary: "<p>Delete the enrollmentGroup information.</p>\r\n<p>This method will remove the enrollmentGroup from the Device Provisioning Service using the provided enrollmentGroupId and eTag. If you want to delete the enrollmentGroup regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteEnrollmentGroup(String)\" data-throw-if-not-resolved=\"false\">deleteEnrollmentGroup(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>Note that delete the enrollmentGroup will not remove the Device itself from the IotHub.</p>\r\n<p>If the enrollmentGroupId does not exists or eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the enrollmentGroup \"enrollmentGroupId-1\" regardless the eTag. <pre><code>// enrollmentGroup information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String ENROLLMENT_GROUP_ID = \"enrollmentGroupId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the enrollmentGroup information.\r\n        deviceProvisioningServiceClient.deleteEnrollmentGroup(ENROLLMENT_GROUP_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o6
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createEnrollmentGroupQuery(QuerySpecification)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  nameWithType: ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  fullName: Query com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createEnrollmentGroupQuery(QuerySpecification querySpecification)
+  type: Method
+  summary: >-
+    <p>Factory to create an enrollmentGroup query.</p>
+
+    <p>This method will create a new enrollment group query on Device Provisioning Service and return it as a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._query" data-throw-if-not-resolved="false">Query</xref> iterator.</p>
+
+    <p>The Device Provisioning Service expects a SQL query in the <xref uid="" data-throw-if-not-resolved="false">QuerySpecification</xref>, for instance <code>"SELECT * FROM enrollments" 
+
+        </code> .</p>
+
+    <p></p>
+  syntax: *o7
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._device_registration_status
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._device_registration_status.yml
+  name: DeviceRegistrationStatus
+  nameWithType: DeviceRegistrationStatus
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.DeviceRegistrationStatus
+  type: Class
+  summary: >-
+    <p>Representation of a single Device Provisioning Service device registration status with a JSON deserializer.</p>
+
+    <p>Example of JSON format: <pre><code>{
+
+            "registrationId":"validRegistrationId",
+
+            "createdDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+            "assignedHub":"ContosoIoTHub.azure-devices.net",
+
+            "deviceId":"ContosoDevice-123",
+
+            "status":"assigned"
+
+            "lastUpdatedDateTimeUtc": "2017-09-28T16:29:42.3447817Z",
+
+            "errorCode":200
+
+            "errorMessage":"Succeeded"
+
+            "etag": "\"00000000-0000-0000-0000-00000000000\""
+
+        }
+
+        </code></pre></p>
+
+    <p></p>
+  syntax:
+    content: public class DeviceRegistrationStatus
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteRegistrationStatus(String id)
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus(String id)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus(String id)
+  type: Method
+  summary: "<p>Delete the registration status information.</p>\r\n<p>This method will remove the registrationStatus from the Device Provisioning Service using the provided id. It will delete the registration status regardless the eTag. It means that this API correspond to the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String,String)\" data-throw-if-not-resolved=\"false\">deleteRegistrationStatus(String, String)</xref> with the<code>eTag=\"*\" \r\n    </code> .</p>\r\n<p>If the id does not exists, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the registration status \"registrationId-1\". <pre><code>// RegistrationStatus information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the registration status information.\r\n        deviceProvisioningServiceClient.deleteRegistrationStatus(REGISTRATION_ID);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o8
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String,String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: deleteRegistrationStatus(String id, String eTag)
+  nameWithType: ProvisioningServiceClient.deleteRegistrationStatus(String id, String eTag)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.deleteRegistrationStatus(String id, String eTag)
+  type: Method
+  summary: "<p>Delete the registration status information.</p>\r\n<p>This method will remove the registration status from the Device Provisioning Service using the provided id and eTag. If you want to delete the registration status regardless the eTag, you can use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.deleteRegistrationStatus(String)\" data-throw-if-not-resolved=\"false\">deleteRegistrationStatus(String)</xref> or you can pass the eTag as<code>null \r\n    </code> , empty, or <code>\"*\" \r\n    </code> .</p>\r\n<p>If the id does not exists or the eTag does not matches, this method will throw <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientNotFoundException</xref>. for more exceptions that this method can throw, please see <xref uid=\"\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClientExceptionManager</xref></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will delete the information about the registrationStatus \"registrationId-1\" regardless the eTag. <pre><code>// Registration Status information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private Static final String ANY_ETAG = \"*\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Delete the registrationStatus information.\r\n        deviceProvisioningServiceClient.deleteRegistrationStatus(REGISTRATION_ID, ANY_ETAG);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o9
+- uid: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client
+  href: com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.yml
+  name: createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  nameWithType: ProvisioningServiceClient.createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  fullName: Enrollment com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateIndividualEnrollment(Enrollment enrollment)
+  type: Method
+  summary: "<p>Create or update a individual device enrollment record.</p>\r\n<p>This API creates a new enrollment or update a existed one. All enrollments in the Device Provisioning Service contains a unique identifier called registrationId. If this API is called for an enrollment with a registrationId that already exists, it will replace the existed enrollment information by the new one. On the other hand, if the registrationId does not exit, this API will create a new enrollment.</p>\r\n<p>To use the Device Provisioning Service API, you must include the follow package on your application. <pre><code>// Include the following imports to use the Device Provisioning Service APIs.\r\n    import com.microsoft.azure.sdk.iot.provisioning.service.*;\r\n    </code></pre></p>\r\n<p>\r\n  <b>Sample:</b>\r\n</p>\r\n<p>The follow code will create a new enrollment that will provisioning the ContosoDevice1000 to the ContosoHub.azure-devices.net using TPM attestation. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String TPM_ENDORSEMENT_KEY = \"tpm-endorsement-key\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    private static final String DEVICE_ID = \"ContosoDevice1000\";\r\n    private static final String IOTHUB_HOST_NAME = \"ContosoHub.azure-devices.net\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Create a new individual enrollment configurations.\r\n        Attestation attestation = new TpmAttestation(TPM_ENDORSEMENT_KEY);\r\n        Enrollment enrollment =\r\n           new Enrollment(\r\n                REGISTRATION_ID,\r\n                attestation);\r\n        enrollment.setDeviceId(DEVICE_ID);\r\n        enrollment.setIotHubHostName(IOTHUB_HOST_NAME);\r\n        enrollment.setProvisioningStatus(ProvisioningStatus.DISABLED);\r\n    \r\n        // Create a new individual enrollment.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.createOrUpdateIndividualEnrollment(enrollment);\r\n    }\r\n    </code></pre></p>\r\n<p>If the registrationId already exists, this method will update existed enrollments. Note that update the enrollment will not change the status of the device that was already registered using the old enrollment.</p>\r\n<p>The follow code will update the provisioningStatus of the previous enrollment from <b>disabled</b> to <b>enabled</b>. <pre><code>// Enrollment information.\r\n    private static final String PROVISIONING_CONNECTION_STRING = \"HostName=ContosoProvisioning.azure-devices-provisioning.net;\" +\r\n                                                                 \"SharedAccessKeyName=contosoprovisioningserviceowner;\" +\r\n                                                                 \"SharedAccessKey=0000000000000000000000000000000000000000000=\";\r\n    private static final String REGISTRATION_ID = \"registrationId-1\";\r\n    \r\n    public static void main(String[] args) throws IOException, URISyntaxException, ProvisioningServiceClientException\r\n    {\r\n        // Create a Device Provisioning Service Client.\r\n        DeviceProvisioningServiceClient deviceProvisioningServiceClient =\r\n            DeviceProvisioningServiceClient.createFromConnectionString(PROVISIONING_CONNECTION_STRING);\r\n    \r\n        // Get the content of the previous enrollment.\r\n        Enrollment enrollment =  deviceProvisioningServiceClient.getIndividualEnrollment(REGISTRATION_ID);\r\n    \r\n        // Change the provisioning status, from disabled to enabled\r\n        enrollment.setProvisioningStatus(ProvisioningStatus.ENABLED);\r\n    \r\n        // Update the individual enrollment information.\r\n        Enrollment enrollmentResult =  deviceProvisioningServiceClient.createOrUpdateIndividualEnrollment(enrollment);\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o10
