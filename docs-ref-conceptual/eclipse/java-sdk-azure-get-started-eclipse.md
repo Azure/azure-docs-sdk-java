@@ -121,7 +121,7 @@ Now, save the pom.xml. This prompts Eclipse to download all the specified depend
    
 ## Install the azure toolkit for Eclipse
 
-The Azure toolkit is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development.
+The [Azure toolkit](azure-toolkit-for-eclipse.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse.md).
 
 Select the **Help** menu and then select **Install New software**.
 

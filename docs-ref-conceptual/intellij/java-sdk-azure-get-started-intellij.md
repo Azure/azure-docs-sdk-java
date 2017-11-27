@@ -123,7 +123,7 @@ Save the pom.xml.
    
 ## Install the azure toolkit for Intellij
 
-The Azure toolkit is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development.
+The [Azure toolkit](azure-toolkit-for-intellij-installation.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-installation.md).
 
 Select the **File** menu and then select **Settings...**. 
 
