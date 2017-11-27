@@ -13,14 +13,21 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 09/11/2017
+ms.date: 11/01/2017
 ms.author: robmcm
 
 ---
 
 # Installing the Azure Toolkit for Eclipse
 
-The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the Eclipse development environment. The Azure Toolkit for Eclipse is an Open Source project. The source code is available under the MIT License from <https://github.com/microsoft/azure-tools-for-java>.
+The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the Eclipse development environment.
+
+> [!NOTE] 
+> 
+> The Azure Toolkit for Eclipse is an Open Source project, whose source code is available under the MIT License from the project's site on GitHub at the following URL: 
+> 
+> <https://github.com/microsoft/azure-tools-for-java> 
+> 
 
 The following steps show you how to install the Azure Toolkit for Eclipse.
 
@@ -40,17 +47,17 @@ The following steps show you how to install the Azure Toolkit for Eclipse.
    
    ![Installing the Azure Toolkit for Eclipse][02]
 
-1. If you expand the **Azure Toolkit for Eclipse**, you will see a list of items like following example:
-   
-   * **Application Insights Plugin for Java**: This component allows you to use Azure's telemetry logging and analysis services for your applications and server instances.
-   * **Azure Access Control Services Filter**: This component provides support for authenticating application users with Azure ACS, enabling single sign-on scenarios and externalizing identity logic from the application.
-   * **Azure Common Plugin**: This component provides the common functionality needed by other toolkit components.
-   * **Azure Explorer for Eclipse**: This component provides the common functionality needed by other toolkit components.
-   * **Azure Plugin for Eclipse with Java**: This component provides support for developing projects that help build, test and deploy Java applications for the Microsoft Azure cloud in Eclipse and via command line.
-   * **Azure Web Apps Plugin with Java**: This component provides support for deploying Java web applications to Microsoft Azure Web App containers.
-   * **Microsoft JDBC Driver 4.2 for SQL Server**: This component provides JDBC API for SQL Server and Microsoft Azure SQL Database for Java Platform Enterprise Edition 8.
-   * **Package for Apache Qpid Client Libraries for JMS**: This component provides the JMS client component from the Apache Qpid project to enable your application to use AMQP messaging in Microsoft Azure.
-   * **Package for Microsoft Azure Libraries for Java**: This component provides APIs for accessing Microsoft Azure services, such as storage, service bus, service runtime, etc.
+1. If you expand **Azure Toolkit for Eclipse**, you will see a list of components that will be installed; for example:
+
+   | Feature | Description | 
+   |---|---| 
+   | **Application Insights Plugin for Java** | Allows you to use Azure's telemetry logging and analysis services for your applications and server instances. | 
+   | **Azure Common Plugin** | provides the common functionality needed by other toolkit components. | 
+   | **Azure Container Tools for Eclipse** | Enables you to build and deploy a .WAR as a Docker container to a docker machine. | 
+   | **Azure Containers for Eclipse** | Enables you to deploy a .WAR or .JAR artifact as a Docker container to an Azure virtual machine. | 
+   | **Azure Explorer for Eclipse** | Provides an explorer-style interface for managing your Azure resources. | 
+   | **Microsoft JDBC Driver 6.1 for SQL Server** | Provides JDBC API for SQL Server and Microsoft Azure SQL Database for Java Platform Enterprise Edition 8. | 
+   | **Package for Microsoft Azure Libraries for Java** | Provides APIs for accessing Microsoft Azure services, such as storage, service bus, service runtime, etc. | 
 
 1. Click **Next**. (If you experience unusual delays when installing the toolkit, ensure that **Contact all update sites during install to find required software** is unchecked.)
 
@@ -72,7 +79,7 @@ The following steps show you how to install the Azure Toolkit for Eclipse.
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+[!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)]
 
 <!-- URL List -->
 

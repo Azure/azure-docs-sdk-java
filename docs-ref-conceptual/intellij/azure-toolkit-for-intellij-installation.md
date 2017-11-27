@@ -13,17 +13,23 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: Java
 ms.topic: article
-ms.date: 10/19/2017
+ms.date: 11/01/2017
 ms.author: robmcm
 
 ---
 
 # Installing the Azure Toolkit for IntelliJ
-The Azure Toolkit for IntelliJ provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the IntelliJ IDEA development environment. The Azure Toolkit for IntelliJ is an Open Source project, whose source code is available under the MIT License from the project's site on GitHub at the following URL:
 
-<https://github.com/microsoft/azure-tools-for-java>
+The Azure Toolkit for IntelliJ provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the IntelliJ IDEA development environment.
 
-There are two methods of installing the Azure Toolkit for IntelliJ, from the Settings dialog box and from the Configure menu on the start screen; both installation methods will be demonstrated in the following steps.
+> [!NOTE] 
+> 
+> The Azure Toolkit for IntelliJ is an Open Source project, whose source code is available under the MIT License from the project's site on GitHub at the following URL: 
+> 
+> <https://github.com/microsoft/azure-tools-for-java> 
+> 
+
+There are two methods of installing the Azure Toolkit for IntelliJ: by using the **Settings** dialog box, and by using the **Configure** menu on the start screen. Both installation methods will be demonstrated in the following steps.
 
 [!INCLUDE [azure-toolkit-for-IntelliJ-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
@@ -89,7 +95,7 @@ There are two methods of installing the Azure Toolkit for IntelliJ, from the Set
 
 ## Next steps
 
-[!INCLUDE [azure-toolkit-additional-resources](../includes/azure-toolkit-additional-resources.md)]
+[!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
 
 <!-- URL List -->
 

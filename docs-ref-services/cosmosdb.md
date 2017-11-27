@@ -40,7 +40,7 @@ Connect to Cosmos DB using the [DocumentDB](/azure/cosmos-db/documentdb-introduc
 Select matching JSON documents in Cosmos DB using SQL query syntax.
 
 ```java
-DocumentClient client = new DocumentClient(new DocumentClient("https://contoso.documents.azure.com:443",
+DocumentClient client = new DocumentClient("https://contoso.documents.azure.com:443",
                 "contosoCosmosDBKey", 
                 new ConnectionPolicy(),
                 ConsistencyLevel.Session);

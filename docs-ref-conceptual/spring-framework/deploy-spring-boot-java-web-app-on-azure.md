@@ -14,7 +14,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 10/11/2017
+ms.date: 11/01/2017
 ms.author: asirveda;robmcm
 ---
 
