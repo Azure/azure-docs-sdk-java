@@ -15,7 +15,7 @@ ms.service: multiple
 
 # Get started with the Azure libraries using Intellij
 
-This guide walks you through setting up a development environment and using the Azure libraries for Java. You'll create a service principal to authenticate with Azure and run some sample code that creates and uses Azure resources in your subscription.
+This guide walks you through setting up a development environment and using the Azure libraries for Java. You'll create a service principal to authenticate with Azure and run some sample code that creates and uses Azure resources in your subscription. Using Intellij is optional for Java development with Azure. Any IDE that has Maven integration works. Alternatively, you can run your code from the commandline using Maven if you prefer not to use any IDE. However, if you intend to develop a web app using Java, then either Eclipse or Intellij will be required.
 
 ## Prerequisites
 
