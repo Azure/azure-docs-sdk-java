@@ -13,7 +13,7 @@ ms.devlang: java
 ms.service: multiple
 ---
 
-# Get started with the Azure using Eclipse
+# Get started with the Azure libraries using Eclipse
 
 This guide walks you through setting up a development environment and using the Azure libraries for Java. You'll create a service principal to authenticate with Azure and run some sample code that creates and uses Azure resources in your subscription.
 
