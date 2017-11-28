@@ -11,6 +11,28 @@ The following prerequisites are required in order to follow the steps in this ar
 * An up-to-date [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
 * Apache's [Maven](http://maven.apache.org/), version 3.0 or later.
 
+## Create a custom application using the Spring Initializr
+
+1. Browse to <https://start.spring.io/>.
+
+1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
+
+   ![Basic Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-basic.png)
+
+   **NOTE**: The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
+   
+1. Scroll down to the **Azure** section and check the boxes for **Azure Support** and **Azure Storage**.
+
+   ![Full Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-advanced.png)
+
+1. Scroll to the bottom of the page and click the button to **Generate Project**.
+
+   ![Full Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-generate.png)
+
+1. When prompted, download the project to a path on your local computer.
+
+   ![Download custom Spring Boot project](media/s0-spring-boot-initializr-with-azure-storage/download-app.png)
+
 ## Sign into Azure and select the subscription to use
 
 1. Open a command prompt.
@@ -106,31 +128,6 @@ The following prerequisites are required in order to follow the steps in this ar
    }
    ```
 
-## Create a custom application using the Spring Initializr
-
-1. Browse to <https://start.spring.io/>.
-
-1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
-
-   ![Basic Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-basic.png)
-
-   > [!NOTE]
-   >
-   > The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
-   >
-
-1. Scroll down to the **Azure** section and check the boxes for **Azure Support** and **Azure Storage**.
-
-   ![Full Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-advanced.png)
-
-1. Scroll to the bottom of the page and click the button to **Generate Project**.
-
-   ![Full Spring Initializr options](media/s0-spring-boot-initializr-with-azure-storage/spring-initializr-generate.png)
-
-1. When prompted, download the project to a path on your local computer.
-
-   ![Download custom Spring Boot project](media/s0-spring-boot-initializr-with-azure-storage/download-app.png)
-
 ## Configure and compile your Spring Boot application
 
 1. Extract the files from the downloaded project archive into a directory.
@@ -201,10 +198,8 @@ The following prerequisites are required in order to follow the steps in this ar
        }
    }
    ```
-   > [!NOTE]
-   >
-   > The above example autowires the storage account settings that you defined in the *application.properties* file.
-   >
+
+   **NOTE**: The above example autowires the storage account settings that you defined in the *application.properties* file.
 
 1. Compile and run the application:
    ```shell
@@ -215,42 +210,42 @@ The following prerequisites are required in order to follow the steps in this ar
    https://wingtiptoysstorage.blob.core.windows.net/mycontainer//
    ```
 
-   > [!NOTE]
-   > 
-   > When you compile your application, you might see the following error message:
-   > 
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[INFO] BUILD FAILURE`<br/>
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[INFO] Total time: 2.616 s`<br/>
-   > `[INFO] Finished at: 2017-11-11T13:14:15Z`<br/>
-   > `[INFO] Final Memory: 26M/213M`<br/>
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2`<br/>
-   > `.18.1:test (default-test) on project wingtiptoysdemo: Execution default-test of`<br/>
-   > `goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test failed: The for`<br/>
-   > `ked VM terminated without properly saying goodbye. VM crash or System.exit called?`<br/>
-   > `[ERROR] Command was /bin/sh -c cd /home/robert/SpringBoot/wingtiptoysdemo && /u`<br/>
-   > `sr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /home/robert/SpringBoot/wingt`<br/>
-   > `iptoysdemo/target/surefire/surefirebooter6371623993063346766.jar /home/robert/S`<br/>
-   > `pringBoot/wingtiptoysdemo/target/surefire/surefire5107893623933537917tmp /home/`<br/>
-   > `robert/SpringBoot/wingtiptoysdemo/target/surefire/surefire_01414159391084128068tmp`<br/>
-   > `[ERROR] -> [Help 1]`<br/>
-   > 
-   > If this happens, you might want to disable the Maven Surefire testing; to do so,
-   > add the following plugin entry in your *pom.xml* file:
-   > 
-   > ```xml
-   > <plugin>
-   >   <groupId>org.apache.maven.plugins</groupId>
-   >   <artifactId>maven-surefire-plugin</artifactId>
-   >   <version>2.20.1</version>
-   >   <configuration>
-   >     <skipTests>true</skipTests>
-   >   </configuration>
-   > </plugin>
-   > ```
-   > 
+### Troubleshooting Notes
+
+When you compile your application, you might see the following error message:
+
+```
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 2.616 s
+[INFO] Finished at: 2017-11-11T13:14:15Z
+[INFO] Final Memory: 26M/213M
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2
+.18.1:test (default-test) on project wingtiptoysdemo: Execution default-test of
+goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test failed: The for
+ked VM terminated without properly saying goodbye. VM crash or System.exit called?
+[ERROR] Command was /bin/sh -c cd /home/robert/SpringBoot/wingtiptoysdemo && /u
+sr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /home/robert/SpringBoot/wingt
+iptoysdemo/target/surefire/surefirebooter6371623993063346766.jar /home/robert/S
+pringBoot/wingtiptoysdemo/target/surefire/surefire5107893623933537917tmp /home/
+robert/SpringBoot/wingtiptoysdemo/target/surefire/surefire_01414159391084128068tmp
+[ERROR] -> [Help 1]
+```
+
+If this happens, you might want to disable the Maven Surefire testing; to do so, add the following plugin entry in your *pom.xml* file:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-surefire-plugin</artifactId>
+  <version>2.20.1</version>
+  <configuration>
+    <skipTests>true</skipTests>
+  </configuration>
+</plugin>
+```
 
 ## Summary
 
