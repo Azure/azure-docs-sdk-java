@@ -407,19 +407,19 @@ references:
   type: Class
   summary: "<p>Representation of a single Twin collection for Provisioning.</p>\r\n<p>The <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> can contain up to 5 levels of sub TwinCollections. Once the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is a extension of the<code>HashMap \r\n    </code> , both <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, <xref uid=\"\" data-throw-if-not-resolved=\"false\">get(Object)</xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\">getTwinMetadata(String)</xref> for <b>Color</b> will return the Object TwinMetadata that contain <xref uid=\"\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdated()</xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdatedVersion()</xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
   syntax: *o2
-- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment
   parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
-  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment.yml
-  name: Enrollment
-  nameWithType: Enrollment
-  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.Enrollment
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment.yml
+  name: IndividualEnrollment
+  nameWithType: IndividualEnrollment
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.IndividualEnrollment
   type: Class
   summary: >-
     <p>Representation of a single Device Provisioning Service enrollment with a JSON serializer and deserializer.</p>
 
-    <p>This object is used to send <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> information to the provisioning service, or receive <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> information from the provisioning service.</p>
+    <p>This object is used to send <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> information to the provisioning service, or receive <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> information from the provisioning service.</p>
 
-    <p>To create or update an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> on the provisioning service you should fill this object and call the public API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(Enrollment)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createOrUpdateIndividualEnrollment(Enrollment)</xref>. The minimum information required by the provisioning service is the<code>registrationId 
+    <p>To create or update an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> on the provisioning service you should fill this object and call the public API <xref uid="com.microsoft.azure.sdk.iot.provisioning.service._provisioning_service_client.createOrUpdateIndividualEnrollment(IndividualEnrollment)" data-throw-if-not-resolved="false">ProvisioningServiceClient#createOrUpdateIndividualEnrollment(IndividualEnrollment)</xref>. The minimum information required by the provisioning service is the<code>registrationId 
 
         </code> and the <code>attestation 
 
@@ -429,7 +429,7 @@ references:
 
     <p>The content of this class will be serialized in a JSON format and sent as a body of the rest API to the provisioning service.</p>
 
-    <p>When serialized, an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> will look like the following example: <pre>
+    <p>When serialized, an <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> will look like the following example: <pre>
 
     *<code>*{
 
@@ -457,9 +457,9 @@ references:
 
         </code></pre></p>
 
-    <p>The content of this class can be filled by a JSON, received from the provisioning service, as result of a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> operation like create, update, or query enrollment.</p>
+    <p>The content of this class can be filled by a JSON, received from the provisioning service, as result of a <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> operation like create, update, or query enrollment.</p>
 
-    <p>The following JSON is a sample or the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment" data-throw-if-not-resolved="false">Enrollment</xref> response, received from the provisioning service. <pre>
+    <p>The following JSON is a sample or the <xref uid="com.microsoft.azure.sdk.iot.provisioning.service.configs._individual_enrollment" data-throw-if-not-resolved="false">IndividualEnrollment</xref> response, received from the provisioning service. <pre>
 
     *<code>*{
 
@@ -495,7 +495,7 @@ references:
 
     <p></p>
   syntax:
-    content: public class Enrollment extends Serializable
+    content: public class IndividualEnrollment extends Serializable
 - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group
   parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
   href: com.microsoft.azure.sdk.iot.provisioning.service.configs._enrollment_group.yml
