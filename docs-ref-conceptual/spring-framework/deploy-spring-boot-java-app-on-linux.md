@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework
 
 ms.assetid: 
 ms.service: container-service
@@ -21,11 +20,7 @@ ms.custom: mvc
 
 # Deploy a Spring Boot application on Linux in the Azure Container Service
 
-The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications.
-
-**[Docker]** is open-source solutions that helps developers automate the deployment, scaling, and management of their applications that are running in containers.
-
-This tutorial walks you through using Docker to develop and deploy a Spring Boot application to a Linux host in the [Azure Container Service (AKS)].
+This tutorial walks you through using [Docker] to develop and deploy a [Spring Boot] application to a Linux host in the [Azure Container Service (AKS)].
 
 ## Prerequisites
 

@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework, Maven
 
 ms.assetid: 
 ms.service: multiple
@@ -20,14 +19,14 @@ ms.author: robmcm;kevinzha
 
 # How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app in Azure Container Registry to Azure App Service
 
-The **[Spring Framework]** is a popular open-source framework that helps Java developers create web, mobile, and API applications. This tutorial uses a sample app created using [Spring Boot], a convention-driven approach for using Spring to get started quickly.
-
-This article demonstrates how to deploy a sample Spring Boot application to Azure Container Registry, and then use the Maven Plugin for Azure Web Apps to deploy your application to Azure App Service.
+This article demonstrates how to deploy a sample [Spring Boot] application to Azure Container Registry, and then use the Maven Plugin for Azure Web Apps to deploy your application to Azure App Service.
 
 > [!NOTE]
->
+> 
+> The Maven Plugin for Azure Web Apps for [Apache Maven](http://maven.apache.org/) provides seamless integration of Azure App Service  into Maven projects, and streamlines the process for developers to deploy web apps to Azure App Service.
+> 
 > The Maven Plugin for Azure Web Apps is currently available as a preview. For now, only FTP publishing is supported, although additional features are planned for the future.
->
+> 
 
 ## Prerequisites
 

@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework, Maven
 
 ms.assetid: 
 ms.service: container-service
@@ -16,7 +15,6 @@ ms.devlang: java
 ms.topic: article
 ms.date: 11/01/2017
 ms.author: yuwzho;robmcm
-ms.custom: 
 ---
 
 # Deploy a Spring Boot app using the Fabric8 Maven Plugin

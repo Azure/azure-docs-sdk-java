@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework
 
 ms.assetid: 
 ms.service: multiple
@@ -20,9 +19,7 @@ ms.author: asirveda;robmcm
 
 # Deploy a Spring Boot Application to the Azure App Service
 
-The **[Spring Framework]** is an open-source solution which helps Java developers create enterprise-level applications, and one of the more-popular projects which is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications.
-
-This tutorial will walk you though creating the sample Spring Boot Getting Started web app and deploying it to [Azure App Service].
+This tutorial will walk you though creating a sample [Spring Boot] Getting Started web app and deploying it to [Azure App Service].
 
 ### Prerequisites
 
