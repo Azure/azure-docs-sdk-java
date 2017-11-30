@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: cache-redis
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 11/29/2017
 ms.author: robmcm;zhijzhao;yidon
 ---
 

@@ -8,12 +8,12 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: container-service
+ms.service: multiple
 ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 11/29/2017
 ms.author: yuwzho;robmcm
 ---
 

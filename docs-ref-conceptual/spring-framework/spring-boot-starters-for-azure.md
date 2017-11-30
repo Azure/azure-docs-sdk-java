@@ -13,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 11/15/2017
+ms.date: 11/29/2017
 ms.author: robmcm
 ---
 
@@ -23,15 +23,34 @@ This article describes the various Spring Boot Starters for the [Spring Initiali
 
 ![Azure Spring Boot Starters][spring-boot-starters]
 
+The following Spring Boot Starters are currently available for Azure:
+
+* **[Azure Support](#azure-support)**
+
+   Provides auto-configuration support for Azure Services; e.g. Service Bus, Storage, Active Directory, etc.
+
+* **[Azure Active Directory](#azure-active-directory)**
+
+   Provides integration support for Spring Security with Azure Active Directory for authentication.
+
+* **[Azure Key Vault](#azure-key-vault)**
+
+   Provides Spring value annotation support for integration with Azure Key Vault Secrets.
+
+* **[Azure Storage](#azure-storage)**
+
+   Provides Spring Boot support for Azure Storage services.
+
+<a name="azure-support"></a>
 ## Azure Support
 
 This Spring Boot Starter provides auto-configuration support for Azure Services; for example: Service Bus, Storage, Active Directory, Cosmos DB, Key Vault, etc.
 
 For examples of how to use the various Azure features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples>.
 
-This starter differs from the default Spring Boot starter through the following changes to the *pom.xml* file:
+When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
-* Adds the following property to `<properties>` element:
+* The following property is added to `<properties>` element:
 
    ```xml
    <properties>
@@ -40,7 +59,7 @@ This starter differs from the default Spring Boot starter through the following 
    </properties>
    ```
 
-* Replaces the default `spring-boot-starter` dependency with the following:
+* The default `spring-boot-starter` dependency is replaced with the following:
 
    ```xml
    <dependency>
@@ -49,7 +68,7 @@ This starter differs from the default Spring Boot starter through the following 
    </dependency>
    ```
 
-* Adds the following section:
+* The following section is added to the file:
 
    ```xml
    <dependencyManagement>
@@ -65,15 +84,16 @@ This starter differs from the default Spring Boot starter through the following 
    </dependencyManagement>
    ```
 
+<a name="azure-active-directory"></a>
 ## Azure Active Directory
 
 This Spring Boot Starter provides auto-configuration support for Spring Security in order to provide integration with Azure Active Directory for authentication.
 
 For examples of how to use the Azure Active Directory features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-spring-boot-sample>.
 
-This starter differs from the default Spring Boot starter through the following changes to the *pom.xml* file:
+When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
-* Adds the following property to `<properties>` element:
+* The following property is added to `<properties>` element:
 
    ```xml
    <properties>
@@ -82,7 +102,7 @@ This starter differs from the default Spring Boot starter through the following 
    </properties>
    ```
 
-* Replaces the default `spring-boot-starter` dependency with the following:
+* The default `spring-boot-starter` dependency is replaced with the following:
 
    ```xml
    <dependency>
@@ -91,7 +111,7 @@ This starter differs from the default Spring Boot starter through the following 
    </dependency>
    ```
 
-* Adds the following section:
+* The following section is added to the file:
 
    ```xml
    <dependencyManagement>
@@ -107,15 +127,16 @@ This starter differs from the default Spring Boot starter through the following 
    </dependencyManagement>
    ```
 
+<a name="azure-key-vault"></a>
 ## Azure Key Vault
 
 This Spring Boot Starter provides Spring value annotation support for integration with Azure Key Vault Secrets.
 
 For examples of how to use the Azure Key Vault features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-keyvault-secrets-spring-boot-sample>.
 
-This starter differs from the default Spring Boot starter through the following changes to the *pom.xml* file:
+When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
-* Adds the following property to `<properties>` element:
+* The following property is added to `<properties>` element:
 
    ```xml
    <properties>
@@ -124,7 +145,7 @@ This starter differs from the default Spring Boot starter through the following 
    </properties>
    ```
 
-* Replaces the default `spring-boot-starter` dependency with the following:
+* The default `spring-boot-starter` dependency is replaced with the following:
 
    ```xml
    <dependency>
@@ -133,7 +154,7 @@ This starter differs from the default Spring Boot starter through the following 
    </dependency>
    ```
 
-* Adds the following section:
+* The following section is added to the file:
 
    ```xml
    <dependencyManagement>
@@ -149,15 +170,16 @@ This starter differs from the default Spring Boot starter through the following 
    </dependencyManagement>
    ```
 
+<a name="azure-storage"></a>
 ## Azure Storage
 
-This Spring Boot Starter provides integration support for Azure Storage services.
+This Spring Boot Starter provides Spring Boot integration support for Azure Storage services.
 
 For examples of how to use the Azure Storage features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-storage-spring-boot-sample>.
 
-This starter differs from the default Spring Boot starter through the following changes to the *pom.xml* file:
+When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
-* Adds the following property to `<properties>` element:
+* The following property is added to `<properties>` element:
 
    ```xml
    <properties>
@@ -166,7 +188,7 @@ This starter differs from the default Spring Boot starter through the following 
    </properties>
    ```
 
-* Replaces the default `spring-boot-starter` dependency with the following:
+* The default `spring-boot-starter` dependency is replaced with the following:
 
    ```xml
    <dependency>
@@ -175,7 +197,7 @@ This starter differs from the default Spring Boot starter through the following 
    </dependency>
    ```
 
-* Adds the following section:
+* The following section is added to the file:
 
    ```xml
    <dependencyManagement>
@@ -210,4 +232,4 @@ For help with getting started with your own Spring Boot applications, see the **
 
 <!-- IMG List -->
 
-[spring-boot-starters]: media/spring-boot-starters-for-azure/spring-boot-starters-scaled.png
+[spring-boot-starters]: media/spring-boot-starters-for-azure/spring-boot-starters-cropped.png
