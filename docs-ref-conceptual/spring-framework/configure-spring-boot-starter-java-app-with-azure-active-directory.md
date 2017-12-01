@@ -79,7 +79,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ![Add a new app registration][directory-04]
 
-1. Click **New application registration**, specify your application **Name** and **Sign-on URL**, and then click **Create**.
+1. Click **New application registration**, specify your application **Name**, use http://localhost:8080 for the **Sign-on URL**, and then click **Create**.
 
    ![Create new app registration][directory-05]
 
