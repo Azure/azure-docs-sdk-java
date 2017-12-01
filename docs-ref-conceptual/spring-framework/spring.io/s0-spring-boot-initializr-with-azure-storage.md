@@ -210,6 +210,10 @@ The following prerequisites are required in order to follow the steps in this ar
    https://wingtiptoysstorage.blob.core.windows.net/mycontainer//
    ```
 
+## Summary
+
+In this tutorial you learned how to create a custom application using the **Spring Initializr**, and then to use that application to access Azure storage.
+
 ### Troubleshooting Notes
 
 When you compile your application, you might see the following error message:
@@ -247,13 +251,13 @@ If this happens, you might want to disable the Maven Surefire testing; to do so,
 </plugin>
 ```
 
-## Summary
-
-In this tutorial you learned how to create a custom application using the **Spring Initializr**, and then to use that application to access Azure storage.
-
 ## More information
 
-For more information about additional Azure storage APIs which you can call from your Spring Boot applications, see the following articles:
+For more information about the additional Spring Boot Starters that are available for Microsoft Azure, see [Spring Boot Starters for Azure](https://docs.microsoft.com/java/azure/spring-framework/spring-boot-starters-for-azure).
+
+For additional information about integrating Azure functionality into your Spring-based applications, see [Spring Framework on Azure](https://docs.microsoft.com/java/azure/spring-framework/).
+
+For detailed information about additional Azure storage APIs that you can call from your Spring Boot applications, see the following articles:
 
 | Storage Type | Reference Link |
 |---|---|
