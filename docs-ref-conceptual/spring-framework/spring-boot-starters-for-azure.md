@@ -46,7 +46,9 @@ The following Spring Boot Starters are currently available for Azure:
 
 This Spring Boot Starter provides auto-configuration support for Azure Services; for example: Service Bus, Storage, Active Directory, Cosmos DB, Key Vault, etc.
 
-For examples of how to use the various Azure features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples>.
+For examples of how to use the various Azure features that are provided by this starter, see the following:
+
+* <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples>
 
 When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
@@ -89,7 +91,9 @@ When you add this starter to a Spring Boot project, the following changes are ma
 
 This Spring Boot Starter provides auto-configuration support for Spring Security in order to provide integration with Azure Active Directory for authentication.
 
-For examples of how to use the Azure Active Directory features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-spring-boot-sample>.
+For examples of how to use the Azure Active Directory features that are provided by this starter, see the following:
+
+* <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-spring-boot-sample>
 
 When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
@@ -132,7 +136,9 @@ When you add this starter to a Spring Boot project, the following changes are ma
 
 This Spring Boot Starter provides Spring value annotation support for integration with Azure Key Vault Secrets.
 
-For examples of how to use the Azure Key Vault features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-keyvault-secrets-spring-boot-sample>.
+For examples of how to use the Azure Key Vault features that are provided by this starter, see the following:
+
+* <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-keyvault-secrets-spring-boot-sample>
 
 When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
@@ -175,7 +181,11 @@ When you add this starter to a Spring Boot project, the following changes are ma
 
 This Spring Boot Starter provides Spring Boot integration support for Azure Storage services.
 
-For examples of how to use the Azure Storage features that are provided by this starter, see <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-storage-spring-boot-sample>.
+For examples of how to use the Azure Storage features that are provided by this starter, see the following:
+
+* [How to use the Spring Boot Starter for Azure Storage](configure-spring-boot-starter-java-app-with-azure-storage.md)
+
+* <https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-storage-spring-boot-sample>
 
 When you add this starter to a Spring Boot project, the following changes are made to the *pom.xml* file:
 
