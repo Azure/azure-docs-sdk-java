@@ -13,7 +13,7 @@ ms.workload: storage
 ms.tgt_pltfrm: na
 ms.devlang: java
 ms.topic: article
-ms.date: 11/29/2017
+ms.date: 12/01/2017
 ms.author: yungez;robmcm
 ---
 
@@ -280,10 +280,7 @@ For more information about the additional Spring Boot Starters that are availabl
 For additional information about integrating Azure functionality into your Spring-based applications, see [Spring Framework on Azure](/java/azure/spring-framework/).
 
 For detailed information about additional Azure storage APIs that you can call from your Spring Boot applications, see the following articles:
-
-| Storage Type | Reference Link |
-|---|---|
-| Blob Storage | /azure/storage/blobs/storage-java-how-to-use-blob-storage |
-| Queue Storage | /azure/storage/queues/storage-java-how-to-use-queue-storage |
-| Table Storage | /azure/cosmos-db/table-storage-how-to-use-java |
-| File Storage | /azure/storage/files/storage-java-how-to-use-file-storage |
+* [How to use Azure Blob storage from Java](/azure/storage/blobs/storage-java-how-to-use-blob-storage)
+* [How to use Azure Queue storage from Java](/azure/storage/queues/storage-java-how-to-use-queue-storage)
+* [How to use Azure Table storage from Java](/azure/cosmos-db/table-storage-how-to-use-java)
+* [How to use Azure File storage from Java](/azure/storage/files/storage-java-how-to-use-file-storage)
