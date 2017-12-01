@@ -130,7 +130,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
 
-1. Add the key for your storage account; for example:
+1. Add the key for your storage account using the values from earlier; for example:
 
    ```yaml
    # Specifies your Active Directory Application ID:
@@ -142,6 +142,13 @@ The following prerequisites are required in order to follow the steps in this ar
    # Specifies the list of Active Directory groups to use for authentication:
    azure.activedirectory.activeDirectoryGroups=Users
    ```
+   Where:
+   Parameter | Description
+   ---|---|---
+   `azure.activedirectory.clientId` | Contains your **Application ID** from earlier.
+   `azure.activedirectory.clientSecret` | Contains the key value from your app registration which you completed earlier.
+   `azure.activedirectory.activeDirectoryGroups` | Contains a list of Active Directory groups to use for authentication.
+
 
 1. Save and close the  the *application.properties* file.
 
@@ -222,8 +229,6 @@ The following prerequisites are required in order to follow the steps in this ar
 For more information about using Azure Active Directory, see the following articles:
 
 * [Azure Active Directory Documentation].
-
-* [Azure Cosmos DB: Build a DocumentDB API app with Java and the Azure portal][Build a DocumentDB API app with Java]
 
 For more information about using Spring Boot applications on Azure, see the following articles:
 
