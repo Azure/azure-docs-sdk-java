@@ -1,6 +1,6 @@
 ---
-title: Azure Management libraries for Java usage concepts and patterns
-description: 
+title: Azure management libraries for Java developer's guide
+description: Patterns and concepts for using the Java management libraries for Java to manage your cloud resources in Azure.
 keywords: Azure, Java, SDK, API, Maven, Gradle, authentication, active directory, service principal
 author: rloutlaw
 ms.author: routlaw
@@ -14,7 +14,9 @@ ms.service: multiple
 ms.assetid: f452468b-7aae-4944-abad-0b1aaf19170d
 ---
 
-# Azure management library concepts
+# Patterns and best practices for development with the Azure libraries for Java 
+
+This article lists a series of patterns and best practices when using the Azure libraries for Java in your projects. Develop with these patterns and guidelines to reduce the amount of code to maintain and make it easier to add or configure additional resources in future updates to the management libraries.
 
 ## Build resources through a fluent interface
 
