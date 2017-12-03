@@ -225,7 +225,7 @@ When you add this starter to a Spring Boot project, the following changes are ma
 
 ## Next steps
 
-For more information about using [Spring Boot] applications on Azure, see [Spring Boot Getting Started].
+For more information about using [Spring Boot] applications on Azure, see [Spring on Azure].
 
 For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
 
@@ -233,10 +233,10 @@ For help with getting started with your own Spring Boot applications, see the **
 
 <!-- URL List -->
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Boot Getting Started]: https://github.com/spring-guides/gs-spring-boot
+[Spring on Azure]: https://docs.microsoft.com/java/azure/spring-framework/
 [Spring Framework]: https://spring.io/
 [Spring Initializr]: https://start.spring.io/
 

@@ -207,7 +207,7 @@ For more information about configuring additional settings for your web app, see
 
 [Azure App Service]: https://azure.microsoft.com/services/app-service/
 [Azure Container Service]: https://azure.microsoft.com/services/container-service/
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure Java Developer Center]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [Configure web apps in Azure App Service]: /azure/app-service/web-sites-configure
 [Deploy your app to Azure App Service using FTP/S]: https://docs.microsoft.com/azure/app-service/app-service-deploy-ftp
