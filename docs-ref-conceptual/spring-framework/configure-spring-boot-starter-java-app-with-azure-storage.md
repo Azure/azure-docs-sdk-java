@@ -109,6 +109,21 @@ The following prerequisites are required in order to follow the steps in this ar
    | `name` | Specifies a unique name for your resource group. |
    | `location` | Specifies the [Azure region](https://azure.microsoft.com/regions/) where your resource group will be hosted. |
 
+   The Azure CLI will display the results of your resource group creation; for example:  
+
+   ```json
+   {
+     "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/resourceGroups/wingtiptoysresources",
+     "location": "westus",
+     "managedBy": null,
+     "name": "wingtiptoysresources",
+     "properties": {
+       "provisioningState": "Succeeded"
+     },
+     "tags": null
+   }
+   ```
+
 1. Create an Azure storage account in the in the resource group for your Spring Boot app; for example:
    ```azurecli
    az storage account create --name wingtiptoysstorage --resource-group wingtiptoysresources --location westus --sku Standard_LRS
@@ -186,44 +201,60 @@ The following prerequisites are required in order to follow the steps in this ar
    @SpringBootApplication
    public class WingtiptoysdemoApplication implements CommandLineRunner {
 
-       @Autowired
-       private CloudStorageAccount cloudStorageAccount;
+      @Autowired
+      private CloudStorageAccount cloudStorageAccount;
 
-       final String containerName = "mycontainer";
+      final String containerName = "mycontainer";
 
-       public static void main(String[] args) {
-           SpringApplication.run(WingtiptoysdemoApplication.class, args);
-       }
+      public static void main(String[] args) {
+         SpringApplication.run(WingtiptoysdemoApplication.class, args);
+      }
 
-       public void run(String... var1)
-               throws URISyntaxException, StorageException {
-           // Create a container (if it does not exist).
-           createContainerIfNotExists(containerName);
-           // List the blobs in the container.
-           listBlobInContainer(containerName);
-       }
+      public void run(String... var1)
+             throws URISyntaxException, StorageException {
+          // Create a container (if it does not exist).
+          createContainerIfNotExists(containerName);
+          // Upload a blob to the container.
+          uploadTextBlob(containerName);
+      }
 
-       private void createContainerIfNotExists(String containerName)
-               throws URISyntaxException, StorageException {
-           // Create a blob client.
-           final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
-           // Get a reference to a container. (Name must be lower case.)
-           final CloudBlobContainer container = blobClient.getContainerReference(containerName);
-           // Create the container if it does not exist.
-           container.createIfNotExists();
-       }
+      private void createContainerIfNotExists(String containerName)
+            throws URISyntaxException, StorageException {
+         try
+         {
+            // Create a blob client.
+            final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
+            // Get a reference to a container. (Name must be lower case.)
+            final CloudBlobContainer container = blobClient.getContainerReference(containerName);
+            // Create the container if it does not exist.
+            container.createIfNotExists();
+         }
+         catch (Exception e)
+         {
+            // Output the stack trace.
+            e.printStackTrace();
+         }
+      }
 
-       private void listBlobInContainer(String containerName)
-               throws StorageException, URISyntaxException {
-           // Create a blob client.
-           final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
-           // Retrieve a reference to a previously-created container.
-           final CloudBlobContainer container = blobClient.getContainerReference(containerName);
-           // Loop through blobs within the container and output the URI to each of them.
-           for (final ListBlobItem blobItem : container.listBlobs()) {
-               System.out.println(blobItem.getUri());
-           }
-       }
+      private void uploadTextBlob(String containerName)
+            throws URISyntaxException, StorageException {
+         try
+         {
+            // Create a blob client.
+            final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
+            // Get a reference to a container. (Name must be lower case.)
+            final CloudBlobContainer container = blobClient.getContainerReference(containerName);
+            // Get a blob reference for a text file.
+            CloudBlockBlob blob = container.getBlockBlobReference("test.txt");
+            // Upload some text into the blob.
+            blob.uploadText("Hello World!");
+         }
+         catch (Exception e)
+         {
+            // Output the stack trace.
+            e.printStackTrace();
+         }
+      }
    }
    ```
    > [!NOTE]
@@ -235,10 +266,10 @@ The following prerequisites are required in order to follow the steps in this ar
    ```shell
    mvn clean package spring-boot:run
    ```
-   The URLs for any blobs in the container will be listed to the screen. At the very least, the container itself should be listed; for example:
-   ```
-   https://wingtiptoysstorage.blob.core.windows.net/mycontainer//
-   ```
+   
+   The application will create a container and upload a text file as a blob to the container, which will be listed under your storage account in the [Azure portal](https://portal.azure.com).
+
+   ![List blobs in Azure portal](media/configure-spring-boot-starter-java-app-with-azure-storage/list-blobs-in-portal.png)
 
    > [!NOTE]
    > 
