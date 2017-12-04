@@ -71,7 +71,7 @@ The following prerequisites are required in order to follow the steps in this ar
    [
      {
        "cloudName": "AzureCloud",
-       "id": "11111111-1111-1111-1111-111111111111",
+       "id": "ssssssss-ssss-ssss-ssss-ssssssssssss",
        "isDefault": true,
        "name": "Converted Windows Azure MSDN - Visual Studio Ultimate",
        "state": "Enabled",
@@ -86,7 +86,7 @@ The following prerequisites are required in order to follow the steps in this ar
 1. Specify the GUID for the account you want to use with Azure; for example:
 
    ```azurecli
-   az account set -s 11111111-1111-1111-1111-111111111111
+   az account set -s ssssssss-ssss-ssss-ssss-ssssssssssss
    ```
 
 ## Create and configure a new Azure Key Vault using the Azure CLI
@@ -105,7 +105,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ```json
    {
-     "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/wingtiptoysresources",
+     "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/resourceGroups/wingtiptoysresources",
      "location": "westus",
      "managedBy": null,
      "name": "wingtiptoysresources",
@@ -116,61 +116,24 @@ The following prerequisites are required in order to follow the steps in this ar
    }
    ```
 
-1. Create an application registration for use with your key vault; for example:
-   ```azurecli
-   az ad app create --display-name wingtiptoysapplication --identifier-uris http://localhost --homepage http://localhost --query appId
-   ```
-   Where:
-   | Parameter | Description |
-   |---|---|
-   | `display-name` | Specifies a unique name for your application registration. |
-   | `identifier-uris` | Required but unused in this example. (See <https://docs.microsoft.com/en-us/cli/azure/ad/app>.) |
-   | `homepage` | Required but unused in this example. (See <https://docs.microsoft.com/en-us/cli/azure/ad/app>.) |
-   | `query` | Specifies a value to retrieve from the response, which is the client identifier you will need to complete this tutorial. |
-
-   The Azure CLI will return a GUID for the client identifier, which you will use later; for example:
-
-   ```
-   "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
-   ```
-
 1. Create an Azure service principal from your application registration; for example:
    ```shell
-   az ad sp create --id "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
+   az ad sp create-for-rbac --name "wingtiptoysuser"
    ```
    | Parameter | Description |
    |---|---|
    | `id` | Specifies the GUID from your application registration earlier. |
 
-   The Azure CLI will return a JSON status message; for example:
+   The Azure CLI will return a JSON status message that contains the *appId* and *password*, which you will use later as the client id and client password; for example:
 
    ```json
    {
      "appId": "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii",
-     "displayName": "wingtiptoysapplication",
-     "objectId": "oooooooo-oooo-oooo-oooo-oooooooooooooooo",
-     "objectType": "ServicePrincipal",
-     "servicePrincipalNames": [
-       "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii",
-       "http://localhost"
-     ]
+     "displayName": "wingtiptoysuser",
+     "name": "http://wingtiptoysuser",
+     "password": "pppppppp-pppp-pppp-pppp-pppppppppppp",
+     "tenant": "tttttttt-tttt-tttt-tttt-tttttttttttt"
    }
-   ```
-
-1. Reset the password for the service principal that you just created; for example:
-
-   ```shell
-   az ad sp reset-credentials --name "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii" --query password
-   ```
-   | Parameter | Description |
-   |---|---|
-   | `name` | Specifies the GUID from your application registration earlier. |
-   | `query` | Specifies a value to retrieve from the response, which is the client password you will need to complete this tutorial. |
-
-   The Azure CLI will return a GUID for the client password, which you will use later; for example:
-
-   ```
-   "pppppppp-pppp-pppp-pppp-pppppppppppp"
    ```
 
 1. Create a new key vault in the resource group; for example:
@@ -209,13 +172,13 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ```json
    {
-     "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/wingtiptoysresources/providers/Microsoft.KeyVault/vaults/wingtiptoyskeyvault",
+     "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/...",
      "location": "westus",
      "name": "wingtiptoyskeyvault",
      "properties": {
-       //
-       // A long list of values will be displayed here.
-       //
+       ...
+       ... (A long list of values will be displayed here.)
+       ...
      },
      "resourceGroup": "wingtiptoysresources",
      "tags": {},
@@ -263,7 +226,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
 
-1. Add the values for your key vault; for example:
+1. Add the values for your key vault using values from the steps that you completed earlier in this tutorial; for example:
    ```yaml
    azure.keyvault.uri=https://wingtiptoyskeyvault.vault.azure.net/
    azure.keyvault.client-id=iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii
@@ -272,9 +235,9 @@ The following prerequisites are required in order to follow the steps in this ar
    Where:
    | Parameter | Description |
    |---|---|
-   | `azure.keyvault.uri` | Specifies the URI of your key vault from earlier. |
-   | `azure.keyvault.client-id` | Specifies the GUID from your from your earlier application registration. |
-   | `azure.keyvault.client-key` | Specifies the GUID for your password reset from earlier. |
+   | `azure.keyvault.uri` | Specifies the URI from when you created your key vault. |
+   | `azure.keyvault.client-id` | Specifies the *appId* GUID from when you created your service principal. |
+   | `azure.keyvault.client-key` | Specifies the *password* GUID from when you created your service principal. |
 
 1. Navigate to the main source code file of your project; for example: */src/main/java/com/wingtiptoys/secrets*.
 
