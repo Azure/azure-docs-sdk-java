@@ -33,7 +33,7 @@ The following articles will help you start using the Azure Toolkit for Eclipse:
 
 * [Sign-in instructions for the Azure Toolkit for Eclipse](azure-toolkit-for-eclipse-sign-in-instructions.md)
 
-* [Create a Hello World web app for Azure in Eclipse](/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app)
+* [Create a Hello World web app for Azure in Eclipse](azure-toolkit-for-eclipse-create-hello-world-web-app.md)
 
 ## Use the Azure Toolkit for Eclipse with your Java Projects
 The following articles demonstrate using the Azure Toolkit for Eclipse to add Azure functionality to your Java projects:
