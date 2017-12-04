@@ -89,29 +89,7 @@ The following prerequisites are required in order to follow the steps in this ar
    az account set -s 11111111-1111-1111-1111-111111111111
    ```
 
-## Create an Azure service principal
-
-In this section, you create an Azure service principal that the Maven plugin uses when deploying your web app to Azure.
-
-1. Create an Azure service principal:
-   ```shell
-   az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
-   ```
-   Where `uuuuuuuu` is the user name and `pppppppp` is the password for the service principal.
-
-1. Azure responds with JSON that resembles the following example:
-   ```json
-   {
-      "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
-      "displayName": "uuuuuuuu",
-      "name": "http://uuuuuuuu",
-      "password": "pppppppp",
-      "tenant": "tttttttt-tttt-tttt-tttt-tttttttttttt"
-   }
-   ```
-   Save the `appId` value for later.
-
-## Create and configure a new Azure Key Vault
+## Create and configure a new Azure Key Vault using the Azure CLI
 
 1. Create a resource group for the Azure resources you will use for your key vault; for example:
    ```azurecli
@@ -138,9 +116,66 @@ In this section, you create an Azure service principal that the Maven plugin use
    }
    ```
 
-1. Create a new key vault in the resource group you just created; for example:
+1. Create an application registration for use with your key vault; for example:
    ```azurecli
-   az keyvault create --name wingtiptoyskeyvault --resource-group wingtiptoysresources --location westus --enabled-for-deployment true --enabled-for-disk-encryption true --enabled-for-template-deployment true --sku standard
+   az ad app create --display-name wingtiptoysapplication --identifier-uris http://localhost --homepage http://localhost --query appId
+   ```
+   Where:
+   | Parameter | Description |
+   |---|---|
+   | `display-name` | Specifies a unique name for your application registration. |
+   | `identifier-uris` | Required but unused in this example. (See <https://docs.microsoft.com/en-us/cli/azure/ad/app>.) |
+   | `homepage` | Required but unused in this example. (See <https://docs.microsoft.com/en-us/cli/azure/ad/app>.) |
+   | `query` | Specifies a value to retrieve from the response, which is the client identifier you will need to complete this tutorial. |
+
+   The Azure CLI will return a GUID for the client identifier, which you will use later; for example:
+
+   ```
+   "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
+   ```
+
+1. Create an Azure service principal from your application registration; for example:
+   ```shell
+   az ad sp create --id "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
+   ```
+   | Parameter | Description |
+   |---|---|
+   | `id` | Specifies the GUID from your application registration earlier. |
+
+   The Azure CLI will return a JSON status message; for example:
+
+   ```json
+   {
+     "appId": "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii",
+     "displayName": "wingtiptoysapplication",
+     "objectId": "oooooooo-oooo-oooo-oooo-oooooooooooooooo",
+     "objectType": "ServicePrincipal",
+     "servicePrincipalNames": [
+       "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii",
+       "http://localhost"
+     ]
+   }
+   ```
+
+1. Reset the password for the service principal that you just created; for example:
+
+   ```shell
+   az ad sp reset-credentials --name "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii" --query password
+   ```
+   | Parameter | Description |
+   |---|---|
+   | `name` | Specifies the GUID from your application registration earlier. |
+   | `query` | Specifies a value to retrieve from the response, which is the client password you will need to complete this tutorial. |
+
+   The Azure CLI will return a GUID for the client password, which you will use later; for example:
+
+   ```
+   "pppppppp-pppp-pppp-pppp-pppppppppppp"
+   ```
+
+1. Create a new key vault in the resource group; for example:
+   ```azurecli
+   az keyvault create --name wingtiptoyskeyvault --resource-group wingtiptoysresources --location westus --enabled-for-deployment true --enabled-for-disk-encryption true --enabled-for-template-deployment true --sku standard --query properties.vaultUri
    ```
    Where:
    | Parameter | Description |
@@ -151,44 +186,24 @@ In this section, you create an Azure service principal that the Maven plugin use
    | `enabled-for-disk-encryption` | Specifies the [key vault encryption option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
    | `enabled-for-template-deployment` | Specifies the [key vault encryption option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
    | `sku` | Specifies the [key vault SKU option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
+   | `query` | Specifies a value to retrieve from the response, which is the key vault URI that you will need to complete this tutorial. |
 
-   The Azure CLI will display the results of your key vault creation; for example:  
+   The Azure CLI will display the URI for key vault, which you will use later; for example:  
 
-   ```json
-   {
-     "id": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/wingtiptoysresources/providers/Microsoft.KeyVault/vaults/wingtiptoyskeyvault",
-     "location": "westus",
-     "name": "wingtiptoyskeyvault",
-     "properties": {
-       //
-       // A long list of values will be displayed here.
-       //
-       "enabledForDeployment": true,
-       "enabledForDiskEncryption": true,
-       "enabledForTemplateDeployment": true,
-       "sku": {
-         "name": "standard"
-       },
-       "tenantId": "tttttttt-tttt-tttt-tttt-tttttttttttt",
-       "vaultUri": "https://wingtiptoyskeyvault.vault.azure.net"
-     },
-     "resourceGroup": "wingtiptoysresources",
-     "tags": {},
-     "type": "Microsoft.KeyVault/vaults"
-   }
    ```
-   Save the `vaultUri` value for later.
+   "https://wingtiptoyskeyvault.vault.azure.net"
+   ```
 
 1. Set the access policy for the Azure service principal you created earlier; for example:
    ```azurecli
-   az keyvault set-policy --name wingtiptoyskeyvault --secret-permission backup delete get list purge recover restore set --object-id aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
+   az keyvault set-policy --name wingtiptoyskeyvault --secret-permission set get list delete --object-id "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
    ```
    Where:
    | Parameter | Description |
    |---|---|
    | `name` | Specifies your key vault name from earlier. |
    | `secret-permission` | Specifies the [security policies](https://docs.microsoft.com/en-us/cli/azure/keyvault) for your key vault. |
-   | `object-id` | Specifies your service principal's `appId` from earlier. |
+   | `object-id` | Specifies the GUID for your application registration from earlier. |
 
    The Azure CLI will display the results of your security policy creation; for example:  
 
@@ -201,16 +216,6 @@ In this section, you create an Azure service principal that the Maven plugin use
        //
        // A long list of values will be displayed here.
        //
-       "createMode": null,
-       "enableSoftDelete": null,
-       "enabledForDeployment": true,
-       "enabledForDiskEncryption": true,
-       "enabledForTemplateDeployment": true,
-       "sku": {
-         "name": "standard"
-       },
-       "tenantId": "tttttttt-tttt-tttt-tttt-tttttttttttt",
-       "vaultUri": "https://wingtiptoyskeyvault.vault.azure.net/"
      },
      "resourceGroup": "wingtiptoysresources",
      "tags": {},
@@ -220,14 +225,14 @@ In this section, you create an Azure service principal that the Maven plugin use
 
 1. Store a secret in your new key vault; for example:
    ```azurecli
-   az keyvault secret set --name connection-string --value "jdbc:sqlserver://wingtiptoys.database.windows.net:1433;database=DATABASE;" --vault-name wingtiptoyskeyvault
+   az keyvault secret set --vault-name "wingtiptoyskeyvault" --name "connection-string" --value "jdbc:sqlserver://SERVER.database.windows.net:1433;database=DATABASE;"
    ```
    Where:
    | Parameter | Description |
    |---|---|
+   | `vault-name` | Specifies your key vault name from earlier. |
    | `name` | Specifies the name of your secret. |
    | `value` | Specifies the value of your secret. |
-   | `vault-name` | Specifies your key vault name from earlier. |
 
    The Azure CLI will display the results of your secret creation; for example:  
 
@@ -261,15 +266,15 @@ In this section, you create an Azure service principal that the Maven plugin use
 1. Add the values for your key vault; for example:
    ```yaml
    azure.keyvault.uri=https://wingtiptoyskeyvault.vault.azure.net/
-   azure.keyvault.client-id=aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa
-   azure.keyvault.client-key=put-your-azure-client-key-here
+   azure.keyvault.client-id=iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii
+   azure.keyvault.client-key=pppppppp-pppp-pppp-pppp-pppppppppppp
    ```
    Where:
    | Parameter | Description |
    |---|---|
-   | `azure.keyvault.uri` | Specifies the `vaultUri` of your key vault from earlier. |
-   | `azure.keyvault.client-id` | Specifies the `appId` value from your service principal. |
-   | `azure.keyvault.client-key` | Specifies your key vault name from earlier. |
+   | `azure.keyvault.uri` | Specifies the URI of your key vault from earlier. |
+   | `azure.keyvault.client-id` | Specifies the GUID from your from your earlier application registration. |
+   | `azure.keyvault.client-key` | Specifies the GUID for your password reset from earlier. |
 
 1. Navigate to the main source code file of your project; for example: */src/main/java/com/wingtiptoys/secrets*.
 
@@ -305,10 +310,19 @@ In this section, you create an Azure service principal that the Maven plugin use
 
 1. Navigate to the directory where the *pom.xml* file for your Spring Boot app is located:
 
-1. Build your Spring Boot application with Maven and run it; for example:
+1. Build your Spring Boot application with Maven; for example:
 
-   ```azurecli
+   ```bash
    mvn clean package
+   ```
+
+   Maven will display the results of your build.
+
+   ![Spring Boot application build resets][build-application]
+
+1. Run your Spring Boot application with Maven; for example:
+
+   ```bash
    mvn spring-boot:run
    ```
 
@@ -328,8 +342,6 @@ For more information about using Spring Boot applications on Azure, see the foll
 
 For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
 
-The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications. To help developers get started with Spring Boot, several sample Spring Boot packages are available at <https://github.com/spring-guides/>. In addition to choosing from the list of basic Spring Boot projects, the **[Spring Initializr]** helps developers get started with creating custom Spring Boot applications.
-
 <!-- URL List -->
 
 [Key Vault Documentation]: /azure/key-vault/
@@ -347,3 +359,5 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 [secrets-01]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/secrets-01.png
 [secrets-02]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/secrets-02.png
 [secrets-03]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/secrets-03.png
+
+[build-application]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/build-application.png
