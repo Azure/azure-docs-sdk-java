@@ -1,6 +1,6 @@
 ---
 title: Get started with the Azure libraries for Java
-description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
+description: Learn how to create Azure cloud resources and connect and use them in your Java applications.
 keywords: Azure, Java, SDK, API, authenticate, get-started
 author: rloutlaw
 ms.author: routlaw
@@ -14,9 +14,9 @@ ms.service: multiple
 ms.assetid: b1e10b79-f75e-4605-aecd-eed64873e2d3
 ---
 
-# Get started with the Azure libraries for Java
+# Get started with cloud development using the Azure libraries for Java
 
-This guide walks you through setting up a development environment with an Azure service principal. It also provides you with sample code that creates and uses resources in your Azure subscription using the Azure libraries for Java.
+This guide walks you through setting up a development environment for Azure development in Java. You'll then create some Azure resources and connect them to to perform some basic tasks, like uploading a file or deploying a web application. When you're done, you'll be ready to start using Azure services in your own Java applications.
 
 ## Prerequisites
 
