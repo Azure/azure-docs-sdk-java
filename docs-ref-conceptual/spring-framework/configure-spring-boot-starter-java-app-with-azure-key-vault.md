@@ -21,7 +21,7 @@ ms.author: robmcm
 
 ## Overview
 
-This article demonstrates creating an app with the **[Spring Initializr]** which uses the Spring Boot Starter for Azure Key Vault to store secrets.
+This article demonstrates creating an app with the **[Spring Initializr]** which uses the Spring Boot Starter for Azure Key Vault to retrieve a connection string that is stored as a secret in a key vault.
 
 ## Prerequisites
 
@@ -159,7 +159,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Set the access policy for the Azure service principal you created earlier; for example:
    ```azurecli
-   az keyvault set-policy --name wingtiptoyskeyvault --secret-permission set get list delete --object-id "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
+   az keyvault set-policy --name wingtiptoyskeyvault --secret-permission set get list delete --spn "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
    ```
    Where:
    | Parameter | Description |
@@ -188,7 +188,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Store a secret in your new key vault; for example:
    ```azurecli
-   az keyvault secret set --vault-name "wingtiptoyskeyvault" --name "connection-string" --value "jdbc:sqlserver://SERVER.database.windows.net:1433;database=DATABASE;"
+   az keyvault secret set --vault-name "wingtiptoyskeyvault" --name "connectionString" --value "jdbc:sqlserver://SERVER.database.windows.net:1433;database=DATABASE;"
    ```
    Where:
    | Parameter | Description |
@@ -210,7 +210,7 @@ The following prerequisites are required in order to follow the steps in this ar
        "updated": "2017-12-01T09:00:16+00:00"
      },
      "contentType": null,
-     "id": "https://wingtiptoyskeyvault.vault.azure.net/secrets/connection-string/123456789abcdef123456789abcdef",
+     "id": "https://wingtiptoyskeyvault.vault.azure.net/secrets/connectionString/123456789abcdef123456789abcdef",
      "kid": null,
      "managed": null,
      "tags": {
@@ -254,20 +254,21 @@ The following prerequisites are required in order to follow the steps in this ar
    @SpringBootApplication
    public class SecretsApplication implements CommandLineRunner {
 
-       @Value("${connection-string}")
-       private String connectionString;
+      @Value("${connectionString}")
+      private String connectionString;
 
-       public static void main(String[] args) {
-           SpringApplication.run(SecretsApplication.class, args);
-       }
+      public static void main(String[] args) {
+         SpringApplication.run(SecretsApplication.class, args);
+      }
 
-       public void run(String... varl) throws Exception {
-           System.out.println("Connection String stored in Azure Key Vault: " + connectionString);
-       }
+      public void run(String... varl) throws Exception {
+         System.out.println(String.format("\nConnection String stored in Azure Key Vault:\n%s\n",connectionString));
+      }
    }
    ```
+   This code example retrieves the connection string from the key vault and displays it to the command line.
 
-1. Save and close the main application Java file.
+1. Save and close the Java file.
 
 ## Build and test your app
 
@@ -281,13 +282,15 @@ The following prerequisites are required in order to follow the steps in this ar
 
    Maven will display the results of your build.
 
-   ![Spring Boot application build resets][build-application]
+   ![Spring Boot application build status][build-application-01]
 
-1. Run your Spring Boot application with Maven; for example:
+1. Run your Spring Boot application with Maven; the application will display the connection string from your key vault. For example:
 
    ```bash
    mvn spring-boot:run
    ```
+
+   ![Spring Boot run time message][build-application-02]
 
 ## Next steps
 
@@ -323,4 +326,5 @@ For more information about using Azure with Java, see the [Azure for Java Develo
 [secrets-02]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/secrets-02.png
 [secrets-03]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/secrets-03.png
 
-[build-application]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/build-application.png
+[build-application-01]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/build-application-01.png
+[build-application-02]: media/configure-spring-boot-starter-java-app-with-azure-key-vault/build-application-02.png
