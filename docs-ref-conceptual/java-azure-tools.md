@@ -14,20 +14,6 @@ ms.author: routlaw;asirveda
 
 # Azure tools for Java developers
 
-## Client and management libraries
-
-Connect to services and manage Azure resources from your applications with the Azure libraries for Java. Import the management libraries into your Maven projects by adding this dependency to your project *pom.xml*.
-
-```XML
-<dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure</artifactId>
-    <version>1.3.0</version>
-</dependency>
-```
-
-View the [complete list of libraries](java-sdk-azure-install.md) and [get started](java-sdk-azure-get-started.md) with the Azure libraries for Java.
-
 ## Eclipse and IntelliJ plugins
 
 Manage Azure resources and deploy apps from your IDE with The Azure toolkits for [Eclipse](eclipse/azure-toolkit-for-eclipse.md) and [IntelliJ](intellij/azure-toolkit-for-intellij.md).   
@@ -35,6 +21,14 @@ Manage Azure resources and deploy apps from your IDE with The Azure toolkits for
 ![IntelliJ toolkit showing the Azure Explorer](media/intelliJ-azure-explorer.png)
 
 [Get started with Azure Toolkit for Eclipse](https://docs.microsoft.com/azure/app-service-web/app-service-web-eclipse-create-hello-world-web-app) | [Get started with Azure Toolkit for IntelliJ](https://docs.microsoft.com/azure/app-service-web/app-service-web-intellij-create-hello-world-web-app) 
+
+## Visual Studio Code
+
+VS Code is a lightweight but powerful code editor available for MacOS, Windows, and Linux. VS Code supports a simple, modern Java development workflow through a set of extensions that provide project support, code completion, debugging, linting, and navigation.
+
+[Get Started with VS Code and Java](https://code.visualstudio.com/docs/java)
+[Java extension pack for VS Code](https://code.visualstudio.com/docs/java/extensions)
+
 
 ## Azure CLI 2.0
 
