@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework
 
 ms.assetid: 
 ms.service: multiple
@@ -14,15 +13,13 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 12/01/2017
 ms.author: asirveda;robmcm
 ---
 
 # Deploy a Spring Boot Application to the Azure App Service
 
-The **[Spring Framework]** is an open-source solution which helps Java developers create enterprise-level applications, and one of the more-popular projects which is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications.
-
-This tutorial will walk you though creating the sample Spring Boot Getting Started web app and deploying it to [Azure App Service].
+This tutorial will walk you though creating a sample [Spring Boot] Getting Started web app and deploying it to [Azure App Service].
 
 ### Prerequisites
 
@@ -196,7 +193,7 @@ For more information about using Spring Boot applications on Azure, see the foll
 
 * [Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
-For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
 
 For additional information about depoying web apps to Azure using FTP, see [Deploy your app to Azure App Service using FTP/S].
 
@@ -210,7 +207,7 @@ For more information about configuring additional settings for your web app, see
 
 [Azure App Service]: https://azure.microsoft.com/services/app-service/
 [Azure Container Service]: https://azure.microsoft.com/services/container-service/
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [Configure web apps in Azure App Service]: /azure/app-service/web-sites-configure
 [Deploy your app to Azure App Service using FTP/S]: https://docs.microsoft.com/azure/app-service/app-service-deploy-ftp
