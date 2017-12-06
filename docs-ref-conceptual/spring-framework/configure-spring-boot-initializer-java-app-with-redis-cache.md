@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework, Spring Starter, Redis Cache
 
 ms.assetid:
 ms.service: cache
@@ -14,7 +13,7 @@ ms.workload: na
 ms.tgt_pltfrm: cache-redis
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 12/01/2017
 ms.author: robmcm;zhijzhao;yidon
 ---
 
@@ -22,19 +21,40 @@ ms.author: robmcm;zhijzhao;yidon
 
 ## Overview
 
-The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications. To help developers get started with Spring Boot, several sample Spring Boot packages are available at <https://github.com/spring-guides/>. In addition to choosing from the list of basic Spring Boot projects, the **[Spring Initializr]** helps developers get started with creating custom Spring Boot applications.
-
-This article walks you through creating a Redis cache using the Azure portal, then using the **Spring Initializr** to create a custom application, and then creating a Java web application that stores and retrieves data using your Redis cache.
+This article walks you through creating a Redis cache using the Azure portal, then using the **[Spring Initializr]** to create a custom application, and then creating a Java web application that stores and retrieves data using your Redis cache.
 
 ## Prerequisites
 
 The following prerequisites are required in order to follow the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-
 * A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
-
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
+
+## Create a custom application using the Spring Initializr
+
+1. Browse to <https://start.spring.io/>.
+
+1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
+
+   ![Basic Spring Initializr options][SI01]
+
+   > [!NOTE]
+   >
+   > The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.myazuredemo*.
+   >
+
+1. Scroll down to the **Web** section and check the box for **Web**, then scroll down to the **NoSQL** section and check the box for **Redis**, then scroll to the bottom of the page and click the button to **Generate Project**.
+
+   ![Full Spring Initializr options][SI02]
+
+1. When prompted, download the project to a path on your local computer.
+
+   ![Download custom Spring Boot project][SI03]
+
+1. After you have extracted the files on your local system, your custom Spring Boot application will be ready for editing.
+
+   ![Custom Spring Boot project files][SI04]
 
 ## Create a Redis cache on Azure
 
@@ -68,31 +88,6 @@ The following prerequisites are required in order to follow the steps in this ar
 1. When the page that contains the list of properties for your cache is displayed, click **Access keys** and copy your access keys for your cache.
 
    ![Azure portal][AZ05]
-
-## Create a custom application using the Spring Initializr
-
-1. Browse to <https://start.spring.io/>.
-
-1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
-
-   ![Basic Spring Initializr options][SI01]
-
-   > [!NOTE]
-   >
-   > The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.myazuredemo*.
-   >
-
-1. Scroll down to the **Web** section and check the box for **Web**, then scroll down to the **NoSQL** section and check the box for **Redis**, then scroll to the bottom of the page and click the button to **Generate Project**.
-
-   ![Full Spring Initializr options][SI02]
-
-1. When prompted, download the project to a path on your local computer.
-
-   ![Download custom Spring Boot project][SI03]
-
-1. After you have extracted the files on your local system, your custom Spring Boot application will be ready for editing.
-
-   ![Custom Spring Boot project files][SI04]
 
 ## Configure your custom Spring Boot to use your Redis Cache
 
@@ -203,13 +198,15 @@ For more information about using Spring Boot applications on Azure, see the foll
 
 * [Running a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
-For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
 
 For more information about getting started using Redis Cache with Java on Azure, see [How to use Azure Redis Cache with Java][Redis Cache with Java].
 
+The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications. To help developers get started with Spring Boot, several sample Spring Boot packages are available at <https://github.com/spring-guides/>. In addition to choosing from the list of basic Spring Boot projects, the **[Spring Initializr]** helps developers get started with creating custom Spring Boot applications.
+
 <!-- URL List -->
 
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/

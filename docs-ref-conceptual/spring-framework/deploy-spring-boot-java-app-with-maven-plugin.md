@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework, Maven
 
 ms.assetid:
 ms.service: app-service
@@ -14,20 +13,20 @@ ms.workload: web
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 12/01/2017
 ms.author: robmcm;kevinzha
 ---
 
 # How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app to Azure
 
-The [Maven Plugin for Azure Web Apps](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) for [Apache Maven](http://maven.apache.org/) provides seamless integration of Azure App Service into Maven projects, and streamlines the process for developers to deploy web apps to Azure App Service.
-
 This article demonstrates using the Maven Plugin for Azure Web Apps to deploy a sample Spring Boot application to Azure App Services.
 
 > [!NOTE]
->
+> 
+> The [Maven Plugin for Azure Web Apps](https://github.com/Microsoft/azure-maven-plugins/tree/master/azure-webapp-maven-plugin) for [Apache Maven](http://maven.apache.org/) provides seamless integration of Azure App Service into Maven projects, and streamlines the process for developers to deploy web apps to Azure App Service.
+> 
 > The Maven Plugin for Azure Web Apps is currently available as a preview. For now, only FTP publishing is supported, although additional features are planned for the future.
->
+> 
 
 ## Prerequisites
 
@@ -266,7 +265,7 @@ For more information about the various technologies discussed in this article, s
 <!-- URL List -->
 
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/

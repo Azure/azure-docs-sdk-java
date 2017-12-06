@@ -6,7 +6,6 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-keywords: Spring, Spring Boot, Spring Framework, Kubernetes
 
 ms.assetid: 
 ms.service: multiple
@@ -14,14 +13,12 @@ ms.workload: na
 ms.tgt_pltfrm: multiple
 ms.devlang: java
 ms.topic: article
-ms.date: 11/01/2017
+ms.date: 12/01/2017
 ms.author: asirveda;robmcm
 ms.custom: mvc
 ---
 
 # Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service
-
-The **[Spring Framework]** is a popular open-source framework that helps Java developers create web, mobile, and API applications. This tutorial uses a sample app created using [Spring Boot], a convention-driven approach for using Spring to get started quickly.
 
 **[Kubernetes]** and **[Docker]** are open-source solutions that help developers automate the deployment, scaling, and management of their applications  running in containers.
 
@@ -297,7 +294,7 @@ For more information about using Spring Boot on Azure, see the following article
 * [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
 * [Deploy a Spring Boot application on Linux in the Azure Container Service](deploy-spring-boot-java-app-on-linux.md)
 
-For more information about using Azure with Java, see the [Azure Java Developer Center] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
 
 For more information about the Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].
 
@@ -324,7 +321,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
 [Azure Container Service (AKS)]: https://azure.microsoft.com/services/container-service/
-[Azure Java Developer Center]: https://azure.microsoft.com/develop/java/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
