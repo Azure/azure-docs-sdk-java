@@ -10,7 +10,7 @@ items:
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.isAmqpConnected()
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.messageReceived(AmqpMessage)
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.messageSent()
-  - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.open(String,SSLContext,boolean)
+  - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.open(String,SSLContext,boolean,boolean)
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.ProvisioningAmqpOperations(String,String)
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.sendRegisterMessage(ResponseCallback,Object)
   - com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.sendStatusMessage(String,ResponseCallback,Object)
@@ -27,7 +27,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 18
+    startLine: 19
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   syntax:
     content: public class ProvisioningAmqpOperations extends AmqpDeviceOperations implements AmqpListener
@@ -35,19 +35,18 @@ items:
   - java.lang.Object
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   inheritedMembers:
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.addAmqpLinkProperty(String,String)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.AmqpDeviceOperations()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.amqpLinkAddress
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.API_VERSION_KEY
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.API_VERSION_VALUE
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.CLIENT_VERSION_IDENTIFIER_KEY
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.CLIENT_VERSION_VALUE
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.amqpProperties
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.clearAmqpLinkProperty()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.closeLinks()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.initLink(Link)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.isReceiverLinkTag(String)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.openLinks(Session)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.receiverLink
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.receiverLinkTag
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.ReceiverMessageFromLink(String)
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.receiverMessageFromLink(String)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.senderLink
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.senderLinkTag
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.sendMessage(byte [],byte [],int,int)
@@ -65,7 +64,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 155
+    startLine: 161
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Closes the AMQP connection </p>
   syntax:
@@ -87,7 +86,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 239
+    startLine: 245
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>connectionEstablished Unused </p>
   syntax:
@@ -107,7 +106,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 246
+    startLine: 252
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>connectionLost Unused </p>
   syntax:
@@ -127,14 +126,14 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 100
+    startLine: 103
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Determines if the AMQP connect is up </p>
   syntax:
     content: public boolean isAmqpConnected()
     return:
       type: 4fc6e284
-      description: <p>boolean </p>
+      description: <p>boolean true is connected false otherwise </p>
 - uid: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.messageReceived(AmqpMessage)
   id: messageReceived(AmqpMessage)
   parent: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d
@@ -149,7 +148,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 261
+    startLine: 267
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Function that gets called when amqp gets a message from the amqp endpoint </p>
   syntax:
@@ -173,31 +172,31 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 253
+    startLine: 259
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>messageSent Unused </p>
   syntax:
     content: public void messageSent()
   overridden: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_listener.messageSent()
-- uid: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.open(String,SSLContext,boolean)
-  id: open(String,SSLContext,boolean)
+- uid: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.open(String,SSLContext,boolean,boolean)
+  id: open(String,SSLContext,boolean,boolean)
   parent: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d
   href: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.yml
   langs:
   - java
-  name: open(String registrationId, SSLContext sslContext, boolean isX509Cert)
-  nameWithType: ProvisioningAmqpOperations.open(String registrationId, SSLContext sslContext, boolean isX509Cert)
-  fullName: void com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp.ProvisioningAmqpOperations.open(String registrationId, SSLContext sslContext, boolean isX509Cert)
+  name: open(String registrationId, SSLContext sslContext, boolean isX509Cert, boolean useWebSockets)
+  nameWithType: ProvisioningAmqpOperations.open(String registrationId, SSLContext sslContext, boolean isX509Cert, boolean useWebSockets)
+  fullName: void com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp.ProvisioningAmqpOperations.open(String registrationId, SSLContext sslContext, boolean isX509Cert, boolean useWebSockets)
   overload: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.open*
   type: Method
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 117
+    startLine: 120
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Opens the Amqp connection </p>
   syntax:
-    content: public void open(String registrationId, SSLContext sslContext, boolean isX509Cert)
+    content: public void open(String registrationId, SSLContext sslContext, boolean isX509Cert, boolean useWebSockets)
     parameters:
     - id: registrationId
       type: "26831127"
@@ -208,6 +207,8 @@ items:
     - id: isX509Cert
       type: 4fc6e284
       description: <p>Indicates if using x509 or TPM </p>
+    - id: useWebSockets
+      type: 4fc6e284
   exceptions:
   - type: 1e2d9f84
     description: <p>if connection could not succeed for any reason. </p>
@@ -225,7 +226,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 42
+    startLine: 45
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Constructor for ProvisioningAmqpOperation that handle the AMQP transport for provisioning </p>
   syntax:
@@ -239,6 +240,7 @@ items:
       description: <p>The Provisioning Endpoint </p>
   exceptions:
   - type: 352f005b
+    description: <p>Exception thrown if parameter is not provided </p>
 - uid: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d.sendRegisterMessage(ResponseCallback,Object)
   id: sendRegisterMessage(ResponseCallback,Object)
   parent: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract_1d8ac71d411f7d0071725369987f6619d
@@ -253,7 +255,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 209
+    startLine: 215
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Sends the Registration message to the Amqp Endpoint </p>
   syntax:
@@ -282,7 +284,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-device-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/device/internal/contract/amqp/ProvisioningAmqpOperations.java
-    startLine: 172
+    startLine: 178
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
   summary: <p>Sends the Status message to the Amqp Endpoint </p>
   syntax:
@@ -379,6 +381,20 @@ references:
   nameWithType: ProvisioningAmqpOperations.messageReceived
   fullName: void com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp.ProvisioningAmqpOperations.messageReceived
   package: com.microsoft.azure.sdk.iot.provisioning.device.internal.contract.amqp
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.addAmqpLinkProperty(String,String)
+  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
+  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
+  name: addAmqpLinkProperty(String key, String value)
+  nameWithType: AmqpDeviceOperations.addAmqpLinkProperty(String key, String value)
+  fullName: void com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.addAmqpLinkProperty(String key, String value)
+  type: Method
+  syntax:
+    content: protected void addAmqpLinkProperty(String key, String value)
+    parameters:
+    - id: key
+      type: "26831127"
+    - id: value
+      type: "26831127"
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.AmqpDeviceOperations()
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
@@ -400,50 +416,26 @@ references:
     content: protected String amqpLinkAddress
     return:
       type: "26831127"
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.API_VERSION_KEY
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.amqpProperties
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
-  name: API_VERSION_KEY
-  nameWithType: AmqpDeviceOperations.API_VERSION_KEY
-  fullName: final String com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.API_VERSION_KEY
+  name: amqpProperties
+  nameWithType: AmqpDeviceOperations.amqpProperties
+  fullName: Map<Symbol, Object> com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.amqpProperties
   type: Field
   syntax:
-    content: protected static final String API_VERSION_KEY= "com.microsoft:api-version"
+    content: protected Map<Symbol, Object> amqpProperties= new HashMap<>()
     return:
-      type: 3d93591e
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.API_VERSION_VALUE
+      type: 6bd35e50
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.clearAmqpLinkProperty()
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
-  name: API_VERSION_VALUE
-  nameWithType: AmqpDeviceOperations.API_VERSION_VALUE
-  fullName: final String com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.API_VERSION_VALUE
-  type: Field
+  name: clearAmqpLinkProperty()
+  nameWithType: AmqpDeviceOperations.clearAmqpLinkProperty()
+  fullName: void com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.clearAmqpLinkProperty()
+  type: Method
   syntax:
-    content: protected static final String API_VERSION_VALUE= "2017-11-15"
-    return:
-      type: 3d93591e
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.CLIENT_VERSION_IDENTIFIER_KEY
-  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
-  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
-  name: CLIENT_VERSION_IDENTIFIER_KEY
-  nameWithType: AmqpDeviceOperations.CLIENT_VERSION_IDENTIFIER_KEY
-  fullName: final String com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.CLIENT_VERSION_IDENTIFIER_KEY
-  type: Field
-  syntax:
-    content: protected static final String CLIENT_VERSION_IDENTIFIER_KEY= "com.microsoft:client-version"
-    return:
-      type: 3d93591e
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.CLIENT_VERSION_VALUE
-  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
-  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
-  name: CLIENT_VERSION_VALUE
-  nameWithType: AmqpDeviceOperations.CLIENT_VERSION_VALUE
-  fullName: final String com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.CLIENT_VERSION_VALUE
-  type: Field
-  syntax:
-    content: protected static final String CLIENT_VERSION_VALUE= "com.microsoft.azure.sdk.provisioning-client/0.1.0"
-    return:
-      type: 3d93591e
+    content: protected void clearAmqpLinkProperty()
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.closeLinks()
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
@@ -524,16 +516,16 @@ references:
     content: protected String receiverLinkTag
     return:
       type: "26831127"
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.ReceiverMessageFromLink(String)
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.receiverMessageFromLink(String)
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_device_operations.yml
-  name: ReceiverMessageFromLink(String linkName)
-  nameWithType: AmqpDeviceOperations.ReceiverMessageFromLink(String linkName)
-  fullName: AmqpMessage com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.ReceiverMessageFromLink(String linkName)
+  name: receiverMessageFromLink(String linkName)
+  nameWithType: AmqpDeviceOperations.receiverMessageFromLink(String linkName)
+  fullName: AmqpMessage com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpDeviceOperations.receiverMessageFromLink(String linkName)
   type: Method
   summary: <p>Retrieves a message from a link </p>
   syntax:
-    content: public AmqpMessage ReceiverMessageFromLink(String linkName)
+    content: public AmqpMessage receiverMessageFromLink(String linkName)
     parameters:
     - id: linkName
       type: "26831127"
