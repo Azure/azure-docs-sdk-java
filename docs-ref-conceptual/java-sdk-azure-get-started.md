@@ -131,7 +131,7 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <configuration>
-                <mainClass>com.fabrikam.testAzureApp.AzureApp</mainClass>
+                <mainClass>com.fabrikam.AzureApp</mainClass>
             </configuration>
         </plugin>
     </plugins>
@@ -140,10 +140,10 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
    
 ## Create a Linux virtual machine
 
-Create a new file named `AzureApp.java` in the project's `src/main/java` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
+Create a new file named `AzureApp.java` in the project's `src/main/java/com/fabirkam` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
 
 ```java
-package com.fabrikam.AzureApp;
+package com.fabrikam;
 
 import com.microsoft.azure.management.Azure;
 import com.microsoft.azure.management.compute.VirtualMachine;
