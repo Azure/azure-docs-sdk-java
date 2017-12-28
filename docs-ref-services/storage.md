@@ -158,8 +158,11 @@ for(StorageAccountKey key : storageAccountKeys)    {
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/storage/managementapi)
+> [Explore the Management samples](https://azure.microsoft.com/en-us/resources/samples/?platform=java&term=storage+manage)
 
+## Spring integration
+
+Autowire an Azure Storage account through your app's `application.properties` file using the [Azure Storage starter for Spring Boot](https://docs.microsoft.com/java/azure/spring-framework/configure-spring-boot-starter-java-app-with-azure-storage). 
 
 ## Samples
 
@@ -167,5 +170,3 @@ for(StorageAccountKey key : storageAccountKeys)    {
 [Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blob-java-getting-started)   
 [Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)   
 [Read files from blob storage in a web app](https://github.com/Azure-Samples/app-service-java-manage-storage-connections-for-web-apps-on-linux)
-
-Explore more [sample Java code for Azure Storage](https://azure.microsoft.com/resources/samples/?platform=java&term=storage) you can use in your apps.
