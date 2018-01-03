@@ -1,6 +1,6 @@
 ---
 title: Installing the Azure Toolkit for IntelliJ
-description: Learn how to install the Azure Toolkit for the IntelliJ IDEA.
+description: Learn how to install the Azure Toolkit for IntelliJ plug-in to create and deploy cloud applications to Azure.
 services: ''
 documentationcenter: java
 author: rmcmurray
@@ -20,7 +20,7 @@ ms.author: robmcm
 
 # Installing the Azure Toolkit for IntelliJ
 
-The Azure Toolkit for IntelliJ provides templates and functionality that allow you to easily create, develop, test, and deploy Azure applications using the IntelliJ IDEA development environment.
+The Azure Toolkit for IntelliJ provides templates and functionality that allow you to easily create, develop, test, and deploy cloud application to Azure using the IntelliJ IDEA development environment.
 
 > [!NOTE] 
 > 
