@@ -1,6 +1,6 @@
 ---
-title: Deploy a Spring Boot Application to the Azure App Service
-description: This tutorial will guide developers through the steps to deploy the Spring Boot Getting Started web app to Azure App Service.
+title: Deploy a Spring Boot application to the cloud with Azure App Service
+description: This tutorial will guide developers through the steps to deploy a Spring Boot Getting Started web app to the cloud using Azure App Service.
 services: app-service
 documentationcenter: java
 author: rmcmurray
@@ -17,7 +17,7 @@ ms.date: 12/01/2017
 ms.author: asirveda;robmcm
 ---
 
-# Deploy a Spring Boot Application to the Azure App Service
+# Deploy a Spring Boot application to the cloud with Azure App Service
 
 This tutorial will walk you though creating a sample [Spring Boot] Getting Started web app and deploying it to [Azure App Service].
 

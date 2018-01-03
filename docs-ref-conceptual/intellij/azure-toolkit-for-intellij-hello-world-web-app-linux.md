@@ -1,6 +1,6 @@
 ---
-title: Run a Hello World web app in a Linux container by using the Azure Toolkit for IntelliJ
-description: Learn how to create a basic Hello World web app in a Linux container and publish it to Azure by using the Azure Toolkit for IntelliJ.
+title: Deploy a Hello World web app running in a Linux container in the cloud using the Azure Toolkit for IntelliJ
+description: Run a basic Hello World web app in a Linux container and deploy it to the cloud using the Azure Toolkit for IntelliJ.
 services: app-service\web
 documentationcenter: java
 author: rmcmurray
@@ -18,7 +18,7 @@ ms.author: robmcm
 
 ---
 
-# Run a Hello World web app in a Linux container by using the Azure Toolkit for IntelliJ
+# Deploy a Hello World web app to a Linux container in the cloud using the Azure Toolkit for IntelliJ
 
 [Docker] containers are a widely used method for deploying web applications. By using Docker containers, developers can consolidate all their project files and dependencies into a single package for deployment to a server. The Azure Toolkit for IntelliJ simplifies this process for Java developers by adding features for to deploy containers to Microsoft Azure.
 
