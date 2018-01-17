@@ -8,14 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm
-
+ms.date: 01/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Manage storage accounts by using the Azure Explorer for IntelliJ

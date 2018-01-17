@@ -2,14 +2,18 @@
 title: Get started with Azure for Java using Eclipse
 description: Get started with basic use of the Azure libraries for Java with your own Azure subscription.
 keywords: Azure, Java, SDK, API, authenticate, get-started
+services: ''
+documentationcenter: java
 author: roygara
-ms.author: v-rogara
 manager: timlt
-ms.date: 10/30/2017
-ms.topic: get-started-article
+editor: ''
+
+ms.author: v-rogara
+ms.date: 01/01/2018
+ms.devlang: java
 ms.prod: azure
 ms.technology: azure
-ms.devlang: java
+ms.topic: get-started-article
 ms.service: multiple
 ---
 

@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: cosmos-db
-ms.workload: data-services
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: robmcm;yungez;kevinzha
+ms.date: 01/01/2018
+ms.devlang: java
+ms.service: cosmos-db
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: data-services
 ---
 
 # How to use the Spring Boot Starter with Azure Cosmos DB DocumentDB API

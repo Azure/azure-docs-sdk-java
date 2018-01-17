@@ -8,14 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 115a095d-1b70-41d6-adb4-78f24b2a4451
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm;asirveda
-
+ms.date: 01/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Azure Toolkit for IntelliJ

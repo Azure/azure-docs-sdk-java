@@ -8,24 +8,24 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: active-directory
-ms.workload: identity
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: robmcm
+ms.date: 01/01/2018
+ms.devlang: java
+ms.service: active-directory
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: identity
 ---
 
 # How to use the Spring Boot Starter for Azure Active Directory
 
 ## Overview
 
-This article demonstrates creating an app with the **[Spring Initializr]** which the Spring Boot Starter for Azure Active Directory (Azure AD).
+This article demonstrates creating an app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
 
 ## Prerequisites
 
-The following prerequisites are required in order to follow the steps in this article:
+The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
@@ -141,11 +141,11 @@ The following prerequisites are required in order to follow the steps in this ar
    azure.activedirectory.activeDirectoryGroups=Users
    ```
    Where:
-   Parameter | Description
-   ---|---|---
-   `azure.activedirectory.clientId` | Contains your **Application ID** from earlier.
-   `azure.activedirectory.clientSecret` | Contains the key value from your app registration which you completed earlier.
-   `azure.activedirectory.activeDirectoryGroups` | Contains a list of Active Directory groups to use for authentication.
+   | Parameter | Description |
+   |---|---|
+   | `azure.activedirectory.clientId` | Contains your **Application ID** from earlier. |
+   | `azure.activedirectory.clientSecret` | Contains the key value from your app registration which you completed earlier. |
+   | `azure.activedirectory.activeDirectoryGroups` | Contains a list of Active Directory groups to use for authentication. |
 
 
 1. Save and close the  the *application.properties* file.
@@ -219,7 +219,7 @@ The following prerequisites are required in order to follow the steps in this ar
    mvn clean package
    ```
 
-   ![][build-application]
+   ![Build your application][build-application]
 
 1. Build your Spring Boot application with Maven and run it; for example:
 
@@ -227,8 +227,6 @@ The following prerequisites are required in order to follow the steps in this ar
    mvn clean package
    mvn spring-boot:run
    ```
-
-
 
 1. After your application is built and started by Maven, open <http://localhost:8080> in a web browser.
 

@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: app-service
-ms.workload: web
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: robmcm;kevinzha
+ms.date: 01/01/2018
+ms.devlang: java
+ms.service: app-service
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: web
 ---
 
 # How to use the Maven Plugin for Azure Web Apps to deploy a containerized Spring Boot app to Azure
@@ -102,7 +102,11 @@ In this section, you create an Azure service principal that the Maven plugin use
    ```shell
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   Where `uuuuuuuu` is the user name and `pppppppp` is the password for the service principal.
+   Where:
+   | Parameter | Description |
+   |---|---|
+   | `uuuuuuuu` | Specifies the user name for the service principal. |
+   | `pppppppp` | Specifies the password for the service principal. |
 
 1. Azure responds with JSON that resembles the following example:
    ```json
@@ -146,13 +150,13 @@ In this section, you use the values from your Azure service principal to configu
    </servers>
    ```
    Where:
-   Element | Description
-   ---|---|---
-   `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure.
-   `<client>` | Contains the `appId` value from your service principal.
-   `<tenant>` | Contains the `tenant` value from your service principal.
-   `<key>` | Contains the `password` value from your service principal.
-   `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation)
+   | Element | Description |
+   |---|---|
+   | `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure. |
+   | `<client>` | Contains the `appId` value from your service principal. |
+   | `<tenant>` | Contains the `tenant` value from your service principal. |
+   | `<key>` | Contains the `password` value from your service principal. |
+   | `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation) |
 
 1. Save and close the *settings.xml* file.
 
@@ -215,14 +219,14 @@ Open the `pom.xml` file for your Spring Boot application in a text editor, and t
 
 There are several values that you can modify for the Maven plugin, and a detailed description for each of these elements is available in the [Maven Plugin for Azure Web Apps] documentation. That being said, there are several values that are worth highlighting in this article:
 
-Element | Description
----|---|---
-`<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version.
-`<authentication>` | Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article.
-`<resourceGroup>` | Specifies the target resource group, which is `maven-plugin` in this example. The resource group will be created during deployment if it does not already exist.
-`<appName>` | Specifies the target name for your web app. In this example, the target name is `maven-linux-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict. (The timestamp is optional; you can specify any unique string for the app name.)
-`<region>` | Specifies the target region, which in this example is `westus`. (A full list is in the [Maven Plugin for Azure Web Apps] documentation.)
-`<appSettings>` | Specifies any unique settings for Maven to use when deploying your web app to Azure. In this example, a `<property>` element contains a name/value pair of child elements that specify the port for your app.
+| Element | Description |
+|---|---|
+| `<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version. |
+| `<authentication>` | Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article. |
+| `<resourceGroup>` | Specifies the target resource group, which is `maven-plugin` in this example. The resource group will be created during deployment if it does not already exist. |
+| `<appName>` | Specifies the target name for your web app. In this example, the target name is `maven-linux-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict. (The timestamp is optional; you can specify any unique string for the app name.) |
+| `<region>` | Specifies the target region, which in this example is `westus`. (A full list is in the [Maven Plugin for Azure Web Apps] documentation.) |
+| `<appSettings>` | Specifies any unique settings for Maven to use when deploying your web app to Azure. In this example, a `<property>` element contains a name/value pair of child elements that specify the port for your app. |
 
 > [!NOTE]
 >
