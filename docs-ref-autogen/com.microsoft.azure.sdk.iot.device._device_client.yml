@@ -14,6 +14,7 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,IotHubClientProtocol,String,boolean,String,boolean)
   - com.microsoft.azure.sdk.iot.device._device_client.DeviceClient(String,TransportClient)
   - com.microsoft.azure.sdk.iot.device._device_client.getConfig()
+  - com.microsoft.azure.sdk.iot.device._device_client.getDeviceTwin()
   - com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device._device_client.open()
   - com.microsoft.azure.sdk.iot.device._device_client.RECEIVE_PERIOD_MILLIS
@@ -29,8 +30,10 @@ items:
   - com.microsoft.azure.sdk.iot.device._device_client.SHARED_ACCESS_KEY_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device._device_client.SHARED_ACCESS_TOKEN_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin(IotHubEventCallback,Object,PropertyCallBack,Object)
+  - com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin(IotHubEventCallback,Object,TwinPropertyCallBack,Object)
   - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
   - com.microsoft.azure.sdk.iot.device._device_client.subscribeToDeviceMethod(DeviceMethodCallback,Object,IotHubEventCallback,Object)
+  - com.microsoft.azure.sdk.iot.device._device_client.subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>>)
   - com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
   href: com.microsoft.azure.sdk.iot.device._device_client.yml
   langs:
@@ -241,7 +244,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 730
+    startLine: 833
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClient()
@@ -415,7 +418,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 1090
+    startLine: 1193
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Getter for the device client config.</p>
@@ -426,6 +429,24 @@ items:
     return:
       type: com.microsoft.azure.sdk.iot.device._device_client_config
       description: <p>the value of the config. </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.getDeviceTwin()
+  id: getDeviceTwin()
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: getDeviceTwin()
+  nameWithType: DeviceClient.getDeviceTwin()
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.getDeviceTwin()
+  overload: com.microsoft.azure.sdk.iot.device._device_client.getDeviceTwin*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 600
+  package: com.microsoft.azure.sdk.iot.device
+  syntax:
+    content: public void getDeviceTwin()
 - uid: com.microsoft.azure.sdk.iot.device._device_client.HOSTNAME_ATTRIBUTE
   id: HOSTNAME_ATTRIBUTE
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -594,7 +615,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 1059
+    startLine: 1162
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Registers a callback to be executed whenever the connection to the device is lost or established.</p>
@@ -709,7 +730,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 592
+    startLine: 695
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sends reported properties</p>
@@ -789,7 +810,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 914
+    startLine: 1017
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Sets a runtime option identified by parameter<code>optionName 
@@ -903,7 +924,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 515
+    startLine: 514
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Starts the device twin.</p>
@@ -946,6 +967,63 @@ items:
     description: <p>if called more than once on the same device </p>
   - type: cbf33bbe
     description: <p>if called when client is not opened </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin(IotHubEventCallback,Object,TwinPropertyCallBack,Object)
+  id: startDeviceTwin(IotHubEventCallback,Object,TwinPropertyCallBack,Object)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: startDeviceTwin(IotHubEventCallback deviceTwinStatusCallback, Object deviceTwinStatusCallbackContext, TwinPropertyCallBack genericPropertyCallBack, Object genericPropertyCallBackContext)
+  nameWithType: DeviceClient.startDeviceTwin(IotHubEventCallback deviceTwinStatusCallback, Object deviceTwinStatusCallbackContext, TwinPropertyCallBack genericPropertyCallBack, Object genericPropertyCallBackContext)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.startDeviceTwin(IotHubEventCallback deviceTwinStatusCallback, Object deviceTwinStatusCallbackContext, TwinPropertyCallBack genericPropertyCallBack, Object genericPropertyCallBackContext)
+  overload: com.microsoft.azure.sdk.iot.device._device_client.startDeviceTwin*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 563
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Starts the device twin.</p>
+
+    <p></p>
+  syntax:
+    content: public void startDeviceTwin(IotHubEventCallback deviceTwinStatusCallback, Object deviceTwinStatusCallbackContext, TwinPropertyCallBack genericPropertyCallBack, Object genericPropertyCallBackContext)
+    parameters:
+    - id: deviceTwinStatusCallback
+      type: com.microsoft.azure.sdk.iot.device._iot_hub_event_callback
+      description: >-
+        <p>the <xref uid="com.microsoft.azure.sdk.iot.device._iot_hub_event_callback" data-throw-if-not-resolved="false">IotHubEventCallback</xref> callback for providing the status of Device Twin operations. Cannot be<code>null 
+
+            </code> . </p>
+    - id: deviceTwinStatusCallbackContext
+      type: "79317049"
+      description: >-
+        <p>the context to be passed to the status callback. Can be<code>null 
+
+            </code> . </p>
+    - id: genericPropertyCallBack
+      type: com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back
+      description: >-
+        <p>the TwinPropertyCallBack callback for providing any changes in desired properties. Cannot be<code>null 
+
+            </code> . </p>
+    - id: genericPropertyCallBackContext
+      type: "79317049"
+      description: >-
+        <p>the context to be passed to the property callback. Can be<code>null 
+
+            </code> . *</p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if the callback is<code>null 
+
+          </code></p>
+  - type: b1c38b44
+    description: <p>if called more than once on the same device </p>
+  - type: cbf33bbe
+    description: <p>if called when client is not opened </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
   id: subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -960,7 +1038,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 559
+    startLine: 631
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to desired properties</p>
@@ -992,7 +1070,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 636
+    startLine: 739
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Subscribes to device methods</p>
@@ -1030,6 +1108,38 @@ items:
     description: <p>if called when client is not opened. </p>
   - type: 3c87bd19
     description: <p>if either callback are null. </p>
+- uid: com.microsoft.azure.sdk.iot.device._device_client.subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>>)
+  id: subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>>)
+  parent: com.microsoft.azure.sdk.iot.device._device_client
+  href: com.microsoft.azure.sdk.iot.device._device_client.yml
+  langs:
+  - java
+  name: subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>> onDesiredPropertyChange)
+  nameWithType: DeviceClient.subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>> onDesiredPropertyChange)
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>> onDesiredPropertyChange)
+  overload: com.microsoft.azure.sdk.iot.device._device_client.subscribeToTwinDesiredProperties*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 662
+  package: com.microsoft.azure.sdk.iot.device
+  summary: >-
+    <p>Subscribes to desired properties</p>
+
+    <p></p>
+  syntax:
+    content: public void subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>> onDesiredPropertyChange)
+    parameters:
+    - id: onDesiredPropertyChange
+      type: 6110eba5com.microsoft.azure.sdk.iot.device._device_twin._propertyb33c76fccom.microsoft.azure.sdk.iot.device._device_twin._pair78504a52com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back7ac78387
+      description: >-
+        <p>the Map for desired properties and their corresponding callback and context. Can be<code>null 
+
+            </code> .</p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>if called when client is not opened or called before starting twin. </p>
 - uid: com.microsoft.azure.sdk.iot.device._device_client.uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
   id: uploadToBlobAsync(String,InputStream,long,IotHubEventCallback,Object)
   parent: com.microsoft.azure.sdk.iot.device._device_client
@@ -1044,7 +1154,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 684
+    startLine: 787
   package: com.microsoft.azure.sdk.iot.device
   summary: >-
     <p>Asynchronously upload a stream to the IoT Hub.</p>
@@ -1163,6 +1273,11 @@ references:
   nameWithType: DeviceClient.startDeviceTwin
   fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.startDeviceTwin
   package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device._device_client.getDeviceTwin*
+  name: getDeviceTwin
+  nameWithType: DeviceClient.getDeviceTwin
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.getDeviceTwin
+  package: com.microsoft.azure.sdk.iot.device
 - uid: 6110eba5com.microsoft.azure.sdk.iot.device._device_twin._propertyb33c76fccom.microsoft.azure.sdk.iot.device._device_twin._pair78504a52com.microsoft.azure.sdk.iot.device._device_twin._property_call_back0a3cd938
   spec.java:
   - name: Map<
@@ -1189,6 +1304,33 @@ references:
   name: subscribeToDesiredProperties
   nameWithType: DeviceClient.subscribeToDesiredProperties
   fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.subscribeToDesiredProperties
+  package: com.microsoft.azure.sdk.iot.device
+- uid: 6110eba5com.microsoft.azure.sdk.iot.device._device_twin._propertyb33c76fccom.microsoft.azure.sdk.iot.device._device_twin._pair78504a52com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back7ac78387
+  spec.java:
+  - name: Map<
+    fullName: Map<
+  - uid: com.microsoft.azure.sdk.iot.device._device_twin._property
+    name: Property
+    fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.Property
+    href: com.microsoft.azure.sdk.iot.device._device_twin._property.yml
+  - name: ', '
+    fullName: ', '
+  - uid: com.microsoft.azure.sdk.iot.device._device_twin._pair
+    name: Pair
+    fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.Pair
+    href: com.microsoft.azure.sdk.iot.device._device_twin._pair.yml
+  - name: <
+    fullName: <
+  - uid: com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back
+    name: TwinPropertyCallBack
+    fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.TwinPropertyCallBack
+    href: com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back.yml
+  - name: ', Object>>'
+    fullName: ', Object>>'
+- uid: com.microsoft.azure.sdk.iot.device._device_client.subscribeToTwinDesiredProperties*
+  name: subscribeToTwinDesiredProperties
+  nameWithType: DeviceClient.subscribeToTwinDesiredProperties
+  fullName: void com.microsoft.azure.sdk.iot.device.DeviceClient.subscribeToTwinDesiredProperties
   package: com.microsoft.azure.sdk.iot.device
 - uid: b398a0f1com.microsoft.azure.sdk.iot.device._device_twin._propertya08ddfce
   spec.java:
@@ -1491,6 +1633,15 @@ references:
     typeParameters:
     - type: 5f35c83f
     - type: be713184
+- uid: com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back
+  parent: com.microsoft.azure.sdk.iot.device._device_twin
+  href: com.microsoft.azure.sdk.iot.device._device_twin._twin_property_call_back.yml
+  name: TwinPropertyCallBack
+  nameWithType: TwinPropertyCallBack
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceTwin.TwinPropertyCallBack
+  type: Interface
+  syntax:
+    content: public interface TwinPropertyCallBack
 - uid: com.microsoft.azure.sdk.iot.device._device_twin._property
   parent: com.microsoft.azure.sdk.iot.device._device_twin
   href: com.microsoft.azure.sdk.iot.device._device_twin._property.yml
