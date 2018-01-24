@@ -4,7 +4,7 @@ items:
   id: _amqps_connection
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp
   children:
-  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.AmqpsConnection(String,AmqpDeviceOperations,SSLContext,boolean,boolean)
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.AmqpsConnection(String,AmqpDeviceOperations,SSLContext,SaslHandler,boolean)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.close()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.isConnected()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.onConnectionBound(Event)
@@ -19,6 +19,7 @@ items:
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.onReactorInit(Event)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.onTransportError(Event)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.open()
+  - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.openAmqpAsync()
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.sendAmqpMessage(AmqpMessage)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.setListener(AmqpListener)
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.yml
@@ -41,25 +42,25 @@ items:
   inheritance:
   - java.lang.Object
   - BaseHandler
-- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.AmqpsConnection(String,AmqpDeviceOperations,SSLContext,boolean,boolean)
-  id: AmqpsConnection(String,AmqpDeviceOperations,SSLContext,boolean,boolean)
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.AmqpsConnection(String,AmqpDeviceOperations,SSLContext,SaslHandler,boolean)
+  id: AmqpsConnection(String,AmqpDeviceOperations,SSLContext,SaslHandler,boolean)
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.yml
   langs:
   - java
-  name: AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, boolean useSasl, boolean useWebSockets)
-  nameWithType: AmqpsConnection.AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, boolean useSasl, boolean useWebSockets)
-  fullName: com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, boolean useSasl, boolean useWebSockets)
+  name: AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, SaslHandler saslHandler, boolean useWebSockets)
+  nameWithType: AmqpsConnection.AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, SaslHandler saslHandler, boolean useWebSockets)
+  fullName: com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, SaslHandler saslHandler, boolean useWebSockets)
   overload: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.AmqpsConnection*
   type: Constructor
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 77
+    startLine: 78
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Constructor for the Amqp library </p>
   syntax:
-    content: public AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, boolean useSasl, boolean useWebSockets)
+    content: public AmqpsConnection(String hostName, AmqpDeviceOperations amqpDeviceOperations, SSLContext sslContext, SaslHandler saslHandler, boolean useWebSockets)
     parameters:
     - id: hostName
       type: "26831127"
@@ -70,9 +71,9 @@ items:
     - id: sslContext
       type: 13e89c07
       description: <p>SSL Context to be set over TLS. </p>
-    - id: useSasl
-      type: 4fc6e284
-      description: <p>SASL to be used or disabled </p>
+    - id: saslHandler
+      type: com.microsoft.azure.sdk.iot.deps.transport.amqp._sasl_handler
+      description: <p>The sasl frame handler. This may be null if no sasl frames will be exchanged (When using x509 authentication for example) </p>
     - id: useWebSockets
       type: 4fc6e284
       description: <p>WebSockets to be used or disabled. </p>
@@ -93,7 +94,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 195
+    startLine: 207
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Closes the connection </p>
   syntax:
@@ -115,10 +116,10 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 133
+    startLine: 137
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Returns the status of the connection </p>
-  syntax:
+  syntax: &o1
     content: public boolean isConnected()
     return:
       type: 4fc6e284
@@ -137,7 +138,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 330
+    startLine: 334
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   syntax:
     content: public void onConnectionBound(Event event)
@@ -158,7 +159,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 285
+    startLine: 297
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the connection init event </p>
   syntax:
@@ -181,7 +182,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 364
+    startLine: 368
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   syntax:
     content: public void onConnectionUnbound(Event event)
@@ -202,7 +203,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 475
+    startLine: 484
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the delivery event. This method handles both sending and receiving a message. </p>
   syntax:
@@ -225,7 +226,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 509
+    startLine: 518
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the link flow event. Handles sending a single message. </p>
   syntax:
@@ -248,7 +249,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 376
+    startLine: 380
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the link init event. Sets the proper target address on the link. </p>
   syntax:
@@ -271,7 +272,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 524
+    startLine: 533
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the link remote close event. This triggers reconnection attempts until successful. Both sender and receiver links closing trigger this event, so we only handle one of them, since the other is redundant. </p>
   syntax:
@@ -294,7 +295,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 397
+    startLine: 401
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the link remote open event. This signifies that the <xref uid="" data-throw-if-not-resolved="false">org.apache.qpid.proton.reactor.Reactor</xref> is ready, so we set the connection to OPEN. </p>
   syntax:
@@ -317,7 +318,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 269
+    startLine: 281
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   syntax:
     content: public void onReactorFinal(Event event)
@@ -338,7 +339,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 261
+    startLine: 273
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for reactor init event. </p>
   syntax:
@@ -361,7 +362,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 536
+    startLine: 544
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Event handler for the transport error event. This triggers reconnection attempts until successful. </p>
   syntax:
@@ -384,7 +385,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 142
+    startLine: 151
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Opens the connection. </p>
   syntax:
@@ -392,6 +393,25 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>If connection could not be opened. </p>
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.openAmqpAsync()
+  id: openAmqpAsync()
+  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection
+  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.yml
+  langs:
+  - java
+  name: openAmqpAsync()
+  nameWithType: AmqpsConnection.openAmqpAsync()
+  fullName: void com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.openAmqpAsync()
+  overload: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.openAmqpAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
+    startLine: 188
+  package: com.microsoft.azure.sdk.iot.deps.transport.amqp
+  summary: <p>Spawns another thread that attempts to open the AMQP connection. Use <xref uid="com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.isConnected()" data-throw-if-not-resolved="false">isConnected()</xref> to check when this operation has succeeded. Do not attempt to send messages before this connection has been opened </p>
+  syntax:
+    content: public void openAmqpAsync()
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.sendAmqpMessage(AmqpMessage)
   id: sendAmqpMessage(AmqpMessage)
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection
@@ -406,7 +426,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 425
+    startLine: 429
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Send message to the Amqp Endpoint </p>
   syntax:
@@ -435,7 +455,7 @@ items:
   source:
     remote: *o0
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/transport/amqp/AmqpsConnection.java
-    startLine: 120
+    startLine: 124
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
   summary: <p>Sets the listener for this connection. </p>
   syntax:
@@ -480,6 +500,11 @@ references:
   name: open
   nameWithType: AmqpsConnection.open
   fullName: void com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.open
+  package: com.microsoft.azure.sdk.iot.deps.transport.amqp
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.openAmqpAsync*
+  name: openAmqpAsync
+  nameWithType: AmqpsConnection.openAmqpAsync
+  fullName: void com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.openAmqpAsync
   package: com.microsoft.azure.sdk.iot.deps.transport.amqp
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.close*
   name: close
@@ -559,6 +584,15 @@ references:
   type: Class
   syntax:
     content: public class AmqpDeviceOperations
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._sasl_listener_impl
+  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp
+  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._sasl_listener_impl.yml
+  name: SaslListenerImpl
+  nameWithType: SaslListenerImpl
+  fullName: com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslListenerImpl
+  type: Class
+  syntax:
+    content: public class SaslListenerImpl
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_listener
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_listener.yml
@@ -587,6 +621,25 @@ references:
   type: Class
   syntax:
     content: public class CustomLogger
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._sasl_handler
+  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp
+  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._sasl_handler.yml
+  name: SaslHandler
+  nameWithType: SaslHandler
+  fullName: com.microsoft.azure.sdk.iot.deps.transport.amqp.SaslHandler
+  type: Interface
+  summary: <p>Interface definition for what client events are expected to be handled during Sasl negotiation </p>
+  syntax:
+    content: public interface SaslHandler
+- uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.isConnected()
+  parent: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection
+  href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqps_connection.yml
+  name: isConnected()
+  nameWithType: AmqpsConnection.isConnected()
+  fullName: boolean com.microsoft.azure.sdk.iot.deps.transport.amqp.AmqpsConnection.isConnected()
+  type: Method
+  summary: <p>Returns the status of the connection </p>
+  syntax: *o1
 - uid: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_message
   parent: com.microsoft.azure.sdk.iot.deps.transport.amqp
   href: com.microsoft.azure.sdk.iot.deps.transport.amqp._amqp_message.yml
