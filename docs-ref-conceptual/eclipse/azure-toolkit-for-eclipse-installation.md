@@ -6,19 +6,20 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
+
 ms.assetid: 9e93ff6a-f42b-4d99-b55b-624136b4a730
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm
+ms.date: 01/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Install the Azure Toolkit for Eclipse
 
-The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy cloud  applications to Azure from the Eclipse development environment.
+The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy cloud applications to Azure from the Eclipse development environment.
 
 > [!NOTE] 
 > 

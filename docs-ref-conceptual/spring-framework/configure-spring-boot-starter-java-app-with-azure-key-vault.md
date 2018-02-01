@@ -8,24 +8,24 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: key-vault
-ms.workload: identity
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 11/29/2017
 ms.author: robmcm
+ms.date: 01/01/2018
+ms.devlang: java
+ms.service: key-vault
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: identity
 ---
 
 # How to use the Spring Boot Starter for Azure Key Vault
 
 ## Overview
 
-This article demonstrates creating an app with the **[Spring Initializr]** which uses the Spring Boot Starter for Azure Key Vault to retrieve a connection string that is stored as a secret in a key vault.
+This article demonstrates creating an app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Key Vault to retrieve a connection string that is stored as a secret in a key vault.
 
 ## Prerequisites
 
-The following prerequisites are required in order to follow the steps in this article:
+The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
@@ -121,9 +121,10 @@ The following prerequisites are required in order to follow the steps in this ar
    ```shell
    az ad sp create-for-rbac --name "wingtiptoysuser"
    ```
+   Where:
    | Parameter | Description |
    |---|---|
-   | `id` | Specifies the GUID from your application registration earlier. |
+   | `name` | Specifies the name for your Azure service principal. |
 
    The Azure CLI will return a JSON status message that contains the *appId* and *password*, which you will use later as the client id and client password; for example:
 
@@ -167,7 +168,7 @@ The following prerequisites are required in order to follow the steps in this ar
    |---|---|
    | `name` | Specifies your key vault name from earlier. |
    | `secret-permission` | Specifies the [security policies](https://docs.microsoft.com/en-us/cli/azure/keyvault) for your key vault. |
-   | `object-id` | Specifies the GUID for your application registration from earlier. |
+   | `spn` | Specifies the GUID for your application registration from earlier. |
 
    The Azure CLI will display the results of your security policy creation; for example:  
 

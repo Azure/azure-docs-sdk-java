@@ -8,30 +8,26 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 46ed791f-df59-416a-809e-f52345ad973c
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm;asirveda;martinsawicki
-
+ms.date: 01/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # What's New in the Azure Toolkit for IntelliJ
 
-## Azure Toolkit for IntelliJ Releases
-This article contains information on the various releases and latest updates to the Azure Toolkit for IntelliJ.
+The following web page contains information on the various releases and latest updates to the Azure Toolkit for IntelliJ.
 
-> [!NOTE]
-> See the following web page for the latest information:
-> 
-> <https://github.com/Microsoft/azure-tools-for-java/releases>
+<https://github.com/Microsoft/azure-tools-for-java/releases>
 
-> [!NOTE]
-> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse].
+> [!NOTE] 
+> There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse]. 
 > 
-> 
+
+<!--
 
 ### April 14, 2017
 The Azure Toolkit for IntelliJ - April 2017 release includes the following enhancements:
@@ -70,6 +66,8 @@ The Azure Toolkit for IntelliJ - April 2016 release includes the following enhan
 * **Miscellaneous usability, responsiveness and performance improvements related to Azure Web App support**. A number of performance optimizations in how the Toolkit communicates with Azure result in a more responsive UI.
 * **Ability to delete an existing Web Application container in Azure from within IntelliJ**. The Azure Toolkit for IntelliJ now allows you to delete an existing Azure Web container without leaving IntelliJ.
 
+-->
+
 ## Next steps
 
 [!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
@@ -77,12 +75,9 @@ The Azure Toolkit for IntelliJ - April 2016 release includes the following enhan
 <!-- URL List -->
 
 [Azure Toolkit for Eclipse]: ../eclipse/azure-toolkit-for-eclipse.md
-
 [Azure Sign In Instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 [How to publish a Web App as a Docker Container using the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-publish-as-docker-container.md
 [Managing Storage Accounts using the Azure Explorer for IntelliJ]: ./azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md
 [Managing Virtual Machines using the Azure Explorer for IntelliJ]: ./azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md
-
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure
-
 [HDInsight Tools Plugin for IntelliJ]: /azure/hdinsight/hdinsight-apache-spark-intellij-tool-plugin
