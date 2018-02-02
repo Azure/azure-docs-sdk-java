@@ -8,30 +8,26 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 16b066ea-aae7-4c30-9a12-fa0c3711b93e
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm;asirveda;martinsawicki
-
+ms.date: 02/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # What's new in the Azure Toolkit for Eclipse
 
-## Azure Toolkit for Eclipse Releases
-This article contains information on the various releases and latest updates to the Azure Toolkit for Eclipse.
+The following web page contains information on the various releases and latest updates to the Azure Toolkit for Eclipse.
 
-> [!NOTE]
-> See the following web page for the latest information:
-> 
-> <https://github.com/Microsoft/azure-tools-for-java/releases>
+<https://github.com/Microsoft/azure-tools-for-java/releases>
 
-> [!NOTE]
-> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ].
+> [!NOTE] 
+> There is also an Azure Toolkit for the IntelliJ IDE. For more information, see [Azure Toolkit for IntelliJ]. 
 > 
-> 
+
+<!--
 
 ### April 14, 2017
 The Azure Toolkit for Eclipse - April 2017 release includes the following enhancements:
@@ -312,6 +308,8 @@ Azure Plugin for Eclipse - December 2011 CTP has released. New features include:
 * **Quick context-menu access to role configuration UI**: Just right-click on the role folder, and click **Properties**.
 * **Custom Azure project and role folder icons:** For better visibility and easier navigation within your workspace and project.
 
+-->
+
 ## Next steps
 
 [!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)]
@@ -326,8 +324,9 @@ Azure Plugin for Eclipse - December 2011 CTP has released. New features include:
 [Managing Storage Accounts using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-storage-accounts-using-azure-explorer.md
 [Managing Virtual Machines using the Azure Explorer for Eclipse]: ./azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md
 
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure
+<!-- URL List -->
 
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure
 [Azul Systems web page for the Zulu OpenJDK]: http://go.microsoft.com/fwlink/?LinkId=402457
 [Azure Service Endpoints]: http://go.microsoft.com/fwlink/?LinkID=699526
 [Azure Storage Account List]: http://go.microsoft.com/fwlink/?LinkID=699528

@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: yuwzho;robmcm
+ms.date: 02/01/2018
+ms.devlang: java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Deploy a Spring Boot app using the Fabric8 Maven Plugin
@@ -250,10 +250,12 @@ The following steps walk you through building a Spring Boot web application and 
    ```azurecli
    az acr create --admin-enabled --resource-group wingtiptoys-kubernetes --location westeurope --name wingtiptoysregistry --sku Basic
    ```
-   Where:  
-      * *wingtiptoys-kubernetes* is the name of your resource group from earlier in this article  
-      * *wingtiptoysregistry* is a unique name for your private registry
-      * *westeurope* is an appropriate geographic location for your application  
+   Where:
+   | Parameter | Description |
+   |---|---|
+   | `wingtiptoys-kubernetes` | Specifies the name of your resource group from earlier in this article. |
+   | `wingtiptoysregistry` | Specifies a unique name for your private registry. |
+   | `westeurope` | Specifies an appropriate geographic location for your application. |
 
    The Azure CLI will display the results of your registry creation; for example:  
 
