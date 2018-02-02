@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: storage
-ms.workload: storage
-ms.tgt_pltfrm: na
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: yungez;robmcm
+ms.date: 02/01/2018
+ms.devlang: java
+ms.service: storage
+ms.tgt_pltfrm: na
+ms.topic: article
+ms.workload: storage
 ---
 
 # How to use the Spring Boot Starter for Azure Storage
