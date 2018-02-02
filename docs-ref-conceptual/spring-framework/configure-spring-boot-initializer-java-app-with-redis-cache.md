@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.service: cache
-ms.workload: na
-ms.tgt_pltfrm: cache-redis
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: robmcm;zhijzhao;yidon
+ms.date: 02/01/2018
+ms.devlang: java
+ms.service: cache
+ms.tgt_pltfrm: cache-redis
+ms.topic: article
+ms.workload: na
 ---
 
 # Configure a Spring Boot Initializer app to use Redis in the cloud with Azure Redis Cache
@@ -23,7 +23,7 @@ This article walks you through creating a Redis cache in the cloud using the Azu
 
 ## Prerequisites
 
-The following prerequisites are required in order to follow the steps in this article:
+The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
@@ -56,7 +56,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 ## Create a Redis cache on Azure
 
-1. Browse to the Azure portal at <https://portal.azure.com/> and click the item for **+New**.
+1. Browse to the Azure portal at <https://portal.azure.com/> and click **+New**.
 
    ![Azure portal][AZ01]
 
@@ -110,12 +110,16 @@ The following prerequisites are required in order to follow the steps in this ar
 
    > [!NOTE] 
    > 
-   > If you were using a different Redis client like Jedis that enables SSL, you would specify port 6380 in your *application.properties* file. For example:
+   > If you were using a different Redis client like Jedis that enables SSL, you would specify that you want to use SSL in your *application.properties* file and use port 6380. For example:
    > 
    > ```yaml
+   > # Specify the DNS URI of your Redis cache.
    > spring.redis.host=myspringbootcache.redis.cache.windows.net
+   > # Specify the access key for your Redis cache.
    > spring.redis.password=57686f6120447564652c2049495320526f636b73=
+   > # Specify that you want to use SSL.
    > spring.redis.ssl=true
+   > # Specify the SSL port for your Redis cache.
    > spring.redis.port=6380
    > ```
    > 

@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: multiple
-ms.workload: web
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: robmcm;kevinzha
+ms.date: 02/01/2018
+ms.devlang: java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: web
 ---
 
 # How to use the Maven Plugin for Azure Web Apps to deploy a Spring Boot app in Azure Container Registry to Azure App Service
@@ -110,7 +110,11 @@ In this section, you create an Azure service principal that the Maven plugin use
    ```azurecli
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
-   Where `uuuuuuuu` is the user name and `pppppppp` is the password for the service principal.
+   Where:
+   | Parameter | Description |
+   |---|---|
+   | `uuuuuuuu` | Specifies the user name for the service principal. |
+   | `pppppppp` | Specifies the password for the service principal. |
 
 1. Azure responds with JSON that resembles the following example:
    ```json
@@ -181,11 +185,11 @@ In this section, you create an Azure service principal that the Maven plugin use
    </servers>
    ```
    Where:
-   Element | Description
-   ---|---|---
-   `<id>` | Contains the name of your private Azure container registry.
-   `<username>` | Contains the name of your private Azure container registry.
-   `<password>` | Contains the password you retrieved in the previous section of this article.
+   | Element | Description |
+   |---|---|
+   | `<id>` | Contains the name of your private Azure container registry. |
+   | `<username>` | Contains the name of your private Azure container registry. |
+   | `<password>` | Contains the password you retrieved in the previous section of this article. |
 
 1. Add your Azure service principal settings from an earlier section of this article to the `<servers>` collection in the *settings.xml* file; for example:
 
@@ -203,13 +207,13 @@ In this section, you create an Azure service principal that the Maven plugin use
    </servers>
    ```
    Where:
-   Element | Description
-   ---|---|---
-   `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure.
-   `<client>` | Contains the `appId` value from your service principal.
-   `<tenant>` | Contains the `tenant` value from your service principal.
-   `<key>` | Contains the `password` value from your service principal.
-   `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation)
+   | Element | Description |
+   |---|---|
+   | `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure. |
+   | `<client>` | Contains the `appId` value from your service principal. |
+   | `<tenant>` | Contains the `tenant` value from your service principal. |
+   | `<key>` | Contains the `password` value from your service principal. |
+   | `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation) |
 
 1. Save and close the *settings.xml* file.
 
@@ -228,10 +232,10 @@ In this section, you create an Azure service principal that the Maven plugin use
    </properties>
    ```
    Where:
-   Element | Description
-   ---|---|---
-   `<azure.containerRegistry>` | Specifies the name of your private Azure container registry.
-   `<docker.image.prefix>` | Specifies the URL of your private Azure container registry, which is derived by appending ".azurecr.io" to the name of your private container registry.
+   | Element | Description |
+   |---|---|
+   | `<azure.containerRegistry>` | Specifies the name of your private Azure container registry. |
+   | `<docker.image.prefix>` | Specifies the URL of your private Azure container registry, which is derived by appending ".azurecr.io" to the name of your private container registry. |
 
 1. Verify that `<plugin>` for the Docker plugin in your *pom.xml* file contains the correct properties for the login server address and registry name from the previous step in this tutorial. For example:
 
@@ -256,10 +260,10 @@ In this section, you create an Azure service principal that the Maven plugin use
    </plugin>
    ```
    Where:
-   Element | Description
-   ---|---|---
-   `<serverId>` | Specifies the property which contains name of your private Azure container registry.
-   `<registryUrl>` | Specifies the property which contains the URL of your private Azure container registry.
+   | Element | Description |
+   |---|---|
+   | `<serverId>` | Specifies the property which contains name of your private Azure container registry. |
+   | `<registryUrl>` | Specifies the property which contains the URL of your private Azure container registry. |
 
 1. Navigate to the completed project directory for your Spring Boot application and run the following command to rebuild the application and push the container to your Azure container registry:
 
@@ -304,15 +308,15 @@ Open the `pom.xml` file for your Spring Boot application in a text editor, and t
 
 There are several values that you can modify for the Maven plugin, and a detailed description for each of these elements is available in the [Maven Plugin for Azure Web Apps] documentation. That being said, there are several values that are worth highlighting in this article:
 
-Element | Description
----|---|---
-`<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version.
-`<authentication>` | Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article.
-`<resourceGroup>` | Specifies the target resource group, which is `wingtiptoysresources` in this example. The resource group will be created during deployment if it does not already exist.
-`<appName>` | Specifies the target name for your web app. In this example, the target name is `maven-linux-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict. (The timestamp is optional; you can specify any unique string for the app name.)
-`<region>` | Specifies the target region, which in this example is `westus`. (A full list is in the [Maven Plugin for Azure Web Apps] documentation.)
-`<containerSettings>` | Specifies the properties which contain the name and URL of your container.
-`<appSettings>` | Specifies any unique settings for Maven to use when deploying your web app to Azure. In this example, a `<property>` element contains a name/value pair of child elements that specify the port for your app.
+| Element | Description |
+|---|---|
+| `<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version. |
+| `<authentication>` | Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article. |
+| `<resourceGroup>` | Specifies the target resource group, which is `wingtiptoysresources` in this example. The resource group will be created during deployment if it does not already exist. |
+| `<appName>` | Specifies the target name for your web app. In this example, the target name is `maven-linux-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict. (The timestamp is optional; you can specify any unique string for the app name.) |
+| `<region>` | Specifies the target region, which in this example is `westus`. (A full list is in the [Maven Plugin for Azure Web Apps] documentation.) |
+| `<containerSettings>` | Specifies the properties which contain the name and URL of your container. |
+| `<appSettings>` | Specifies any unique settings for Maven to use when deploying your web app to Azure. In this example, a `<property>` element contains a name/value pair of child elements that specify the port for your app. |
 
 > [!NOTE]
 >

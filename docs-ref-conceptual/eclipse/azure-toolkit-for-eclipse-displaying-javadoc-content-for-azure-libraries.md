@@ -8,14 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 30f8b6a1-1d76-4d1c-861b-1db478c46e6b
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm
-
+ms.date: 02/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Displaying Javadoc Content in Eclipse for the Azure Libraries Package for Java

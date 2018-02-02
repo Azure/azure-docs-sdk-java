@@ -8,14 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: c6817c7b-f28c-4c06-8216-41c7a8117de3
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm
-
+ms.date: 02/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Installing the Azure Toolkit for IntelliJ

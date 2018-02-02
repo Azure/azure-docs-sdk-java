@@ -8,13 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: java
-ms.topic: article
-ms.date: 12/01/2017
 ms.author: asirveda;robmcm
+ms.date: 02/01/2018
+ms.devlang: java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Deploy a Spring Boot application to the cloud with Azure App Service
@@ -174,7 +174,7 @@ The following steps will walk you through the steps to deploy your Spring Boot w
 
 1. After you have deployed your JAR and *web.config* files to your web app, you need to restart your web app using the Azure portal:
 
-   ![][AZ10]
+   ![Restart your web app][AZ10]
 
 1. Test the web app by browsing to your web app's URL using a web browser, or use the syntax like the following example if you have curl available:
    ```

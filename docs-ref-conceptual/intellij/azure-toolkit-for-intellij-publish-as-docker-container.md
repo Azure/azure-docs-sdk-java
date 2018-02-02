@@ -8,14 +8,13 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 
-ms.service: multiple
-ms.workload: na
-ms.tgt_pltfrm: multiple
-ms.devlang: Java
-ms.topic: article
-ms.date: 11/01/2017
 ms.author: robmcm
-
+ms.date: 02/01/2018
+ms.devlang: Java
+ms.service: multiple
+ms.tgt_pltfrm: multiple
+ms.topic: article
+ms.workload: na
 ---
 
 # Publish a web app as a Docker container by using the Azure Toolkit for IntelliJ
@@ -114,10 +113,10 @@ Docker containers are a widely used method for deploying web applications. By us
             
         b. On the **Docker Daemon Access** tab, provide the following information:
 
-         ![Create Docker Host][PUB06]
+          ![Create Docker Host][PUB06]
     
-           * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
-           * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
+             * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
+             * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
                 * **None**: Specifies that your virtual machine does not allow TLS connections.
                 * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS.
                 * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. The directory must contain the following six files: 
