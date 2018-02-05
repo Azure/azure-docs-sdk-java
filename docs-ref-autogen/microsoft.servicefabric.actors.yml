@@ -11,7 +11,6 @@ items:
   - microsoft.servicefabric.actors._actor_dirty_state_handler
   - microsoft.servicefabric.actors._actor_event_proxy
   - microsoft.servicefabric.actors._actor_event_publisher
-  - microsoft.servicefabric.actors._actor_event_publisher_e
   - microsoft.servicefabric.actors._actor_events
   - microsoft.servicefabric.actors._actor_extensions
   - microsoft.servicefabric.actors._actor_garbage_collection
@@ -32,6 +31,7 @@ items:
   - microsoft.servicefabric.actors._actor_reminder
   - microsoft.servicefabric.actors._actor_reminder_attributes
   - microsoft.servicefabric.actors._actor_reminder_collection
+  - microsoft.servicefabric.actors._actor_reminder_settings
   - microsoft.servicefabric.actors._actor_reminder_state
   - microsoft.servicefabric.actors._actor_remoting_exception_handler
   - microsoft.servicefabric.actors._actor_runtime
@@ -50,6 +50,7 @@ items:
   - microsoft.servicefabric.actors._actor_type_information
   - microsoft.servicefabric.actors._continuation_token
   - microsoft.servicefabric.actors._diagnostics_manager
+  - microsoft.servicefabric.actors._duplicate_message_exception
   - microsoft.servicefabric.actors._fabric_actor
   - microsoft.servicefabric.actors._fabric_actor_proxy_factory
   - microsoft.servicefabric.actors._fabric_actor_reference
@@ -64,6 +65,7 @@ items:
   - microsoft.servicefabric.actors._reentrancy_mode
   - microsoft.servicefabric.actors._reentrancy_mode_disallowed_exception
   - microsoft.servicefabric.actors._reentrant
+  - microsoft.servicefabric.actors._reliable_collections_actor_state_provider
   - microsoft.servicefabric.actors._remindable
   - microsoft.servicefabric.actors._reminder_not_found_exception
   - microsoft.servicefabric.actors._state_change_kind
@@ -169,26 +171,16 @@ references:
 - uid: microsoft.servicefabric.actors._actor_event_publisher
   parent: microsoft.servicefabric.actors
   href: microsoft.servicefabric.actors._actor_event_publisher.yml
-  name: ActorEventPublisher
-  nameWithType: ActorEventPublisher
-  fullName: microsoft.servicefabric.actors.ActorEventPublisher
-  type: Interface
-  summary: <p>Represents publisher of actor events. Publishers of actor events must implement this interface </p>
-  syntax:
-    content: public interface ActorEventPublisher
-- uid: microsoft.servicefabric.actors._actor_event_publisher_e
-  parent: microsoft.servicefabric.actors
-  href: microsoft.servicefabric.actors._actor_event_publisher_e.yml
-  name: ActorEventPublisherE<TActorEvents>
-  nameWithType: ActorEventPublisherE<TActorEvents>
-  fullName: microsoft.servicefabric.actors.ActorEventPublisherE<TActorEvents>
+  name: ActorEventPublisher<TActorEvents>
+  nameWithType: ActorEventPublisher<TActorEvents>
+  fullName: microsoft.servicefabric.actors.ActorEventPublisher<TActorEvents>
   type: Interface
   summary: >-
     <p>Represents publisher of actor events. Publishers of actor events must implement this interface</p>
 
     <p></p>
   syntax:
-    content: public interface ActorEventPublisherE<TActorEvents extends ActorEvents> extends ActorEventPublisher
+    content: public interface ActorEventPublisher<TActorEvents extends ActorEvents>
     typeParameters:
     - type: 6e1c167f
       description: >-
@@ -396,6 +388,16 @@ references:
   summary: <p>Captures <xref uid="microsoft.servicefabric.actors._actor_reminder_state" data-throw-if-not-resolved="false">ActorReminderState</xref> for Actors </p>
   syntax:
     content: public interface ActorReminderCollection
+- uid: microsoft.servicefabric.actors._actor_reminder_settings
+  parent: microsoft.servicefabric.actors
+  href: microsoft.servicefabric.actors._actor_reminder_settings.yml
+  name: ActorReminderSettings
+  nameWithType: ActorReminderSettings
+  fullName: microsoft.servicefabric.actors.ActorReminderSettings
+  type: Class
+  summary: <p>This class provides settings to configure the behavior of reminders. </p>
+  syntax:
+    content: public class ActorReminderSettings
 - uid: microsoft.servicefabric.actors._actor_reminder_state
   parent: microsoft.servicefabric.actors
   href: microsoft.servicefabric.actors._actor_reminder_state.yml
@@ -458,7 +460,7 @@ references:
 
     </p>
   syntax:
-    content: public class ActorRemotingExceptionHandler implements ExceptionHandler
+    content: public class ActorRemotingExceptionHandler extends ServiceRemotingExceptionHandler
 - uid: microsoft.servicefabric.actors._actor_runtime
   parent: microsoft.servicefabric.actors
   href: microsoft.servicefabric.actors._actor_runtime.yml
@@ -620,6 +622,16 @@ references:
   type: Interface
   syntax:
     content: public interface DiagnosticsManager
+- uid: microsoft.servicefabric.actors._duplicate_message_exception
+  parent: microsoft.servicefabric.actors
+  href: microsoft.servicefabric.actors._duplicate_message_exception.yml
+  name: DuplicateMessageException
+  nameWithType: DuplicateMessageException
+  fullName: microsoft.servicefabric.actors.DuplicateMessageException
+  type: Class
+  summary: <p>Exception indicates that <xref uid="microsoft.servicefabric.actors._actor" data-throw-if-not-resolved="false">Actor</xref> recieved Duplicate Message </p>
+  syntax:
+    content: public class DuplicateMessageException extends FabricException
 - uid: microsoft.servicefabric.actors._fabric_actor
   parent: microsoft.servicefabric.actors
   href: microsoft.servicefabric.actors._fabric_actor.yml
@@ -774,6 +786,15 @@ references:
   type: Interface
   syntax:
     content: public interface Reentrant
+- uid: microsoft.servicefabric.actors._reliable_collections_actor_state_provider
+  parent: microsoft.servicefabric.actors
+  href: microsoft.servicefabric.actors._reliable_collections_actor_state_provider.yml
+  name: ReliableCollectionsActorStateProvider
+  nameWithType: ReliableCollectionsActorStateProvider
+  fullName: microsoft.servicefabric.actors.ReliableCollectionsActorStateProvider
+  type: Class
+  syntax:
+    content: public class ReliableCollectionsActorStateProvider implements ActorStateProvider
 - uid: microsoft.servicefabric.actors._remindable
   parent: microsoft.servicefabric.actors
   href: microsoft.servicefabric.actors._remindable.yml
@@ -801,7 +822,7 @@ references:
   nameWithType: StateChangeKind
   fullName: microsoft.servicefabric.actors.StateChangeKind
   type: Enum
-  summary: <p>Represents kind of state change for an actor state when <xref uid="" data-throw-if-not-resolved="false">ActorStateProvider#saveStateAsync(ActorId, java.util.List)</xref> saves changes to a set of actor states. </p>
+  summary: <p>Represents kind of state change for an actor state when <xref uid="" data-throw-if-not-resolved="false">ActorStateProvider#saveStateAsync(ActorId, java.util.List, CancellationToken)</xref> saves changes to a set of actor states. </p>
   syntax:
     content: public enum StateChangeKind
 - uid: microsoft.servicefabric.actors._state_persistence

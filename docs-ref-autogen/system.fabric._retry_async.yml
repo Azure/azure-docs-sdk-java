@@ -4,8 +4,8 @@ items:
   id: _retry_async
   parent: system.fabric
   children:
-  - system.fabric._retry_async.executeWithRetry(Supplier<CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>)
-  - system.fabric._retry_async.handleException(Throwable)
+  - system.fabric._retry_async.executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>,CancellationToken)
+  - system.fabric._retry_async.handleException(Throwable,CancellationToken)
   - system.fabric._retry_async.RetryAsync(int,long)
   - system.fabric._retry_async.RetryAsync(long)
   href: system.fabric._retry_async.yml
@@ -21,7 +21,7 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/RetryAsync.java
-    startLine: 10
+    startLine: 8
   package: system.fabric
   syntax:
     content: public class RetryAsync<TResult>
@@ -29,54 +29,58 @@ items:
     - type: 5f1bcb0c
   inheritance:
   - java.lang.Object
-- uid: system.fabric._retry_async.executeWithRetry(Supplier<CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>)
-  id: executeWithRetry(Supplier<CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>)
+- uid: system.fabric._retry_async.executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>,CancellationToken)
+  id: executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>>,Function<Throwable, Boolean>,Function<Throwable, Throwable>,CancellationToken)
   parent: system.fabric._retry_async
   href: system.fabric._retry_async.yml
   langs:
   - java
-  name: executeWithRetry(Supplier<CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException)
-  nameWithType: RetryAsync<TResult>.executeWithRetry(Supplier<CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException)
-  fullName: CompletableFuture<TResult> system.fabric.RetryAsync<TResult>.executeWithRetry(Supplier<CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException)
+  name: executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException, CancellationToken cancellationToken)
+  nameWithType: RetryAsync<TResult>.executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException, CancellationToken cancellationToken)
+  fullName: CompletableFuture<TResult> system.fabric.RetryAsync<TResult>.executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException, CancellationToken cancellationToken)
   overload: system.fabric._retry_async.executeWithRetry*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/RetryAsync.java
-    startLine: 35
+    startLine: 33
   package: system.fabric
   syntax:
-    content: public CompletableFuture<TResult> executeWithRetry(Supplier<CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException)
+    content: public CompletableFuture<TResult> executeWithRetry(Function<CancellationToken, CompletableFuture<TResult>> task, Function<Throwable, Boolean> doRetry, Function<Throwable, Throwable> getRetryException, CancellationToken cancellationToken)
     parameters:
     - id: task
-      type: 99177cbd
+      type: 432ffe41system.fabric._cancellation_token2467f250
     - id: doRetry
       type: 8c3f0c17
     - id: getRetryException
       type: 98c9f4fd
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
     return:
       type: 91cbf258
-- uid: system.fabric._retry_async.handleException(Throwable)
-  id: handleException(Throwable)
+- uid: system.fabric._retry_async.handleException(Throwable,CancellationToken)
+  id: handleException(Throwable,CancellationToken)
   parent: system.fabric._retry_async
   href: system.fabric._retry_async.yml
   langs:
   - java
-  name: handleException(Throwable ex)
-  nameWithType: RetryAsync<TResult>.handleException(Throwable ex)
-  fullName: void system.fabric.RetryAsync<TResult>.handleException(Throwable ex)
+  name: handleException(Throwable ex, CancellationToken cancellationToken)
+  nameWithType: RetryAsync<TResult>.handleException(Throwable ex, CancellationToken cancellationToken)
+  fullName: void system.fabric.RetryAsync<TResult>.handleException(Throwable ex, CancellationToken cancellationToken)
   overload: system.fabric._retry_async.handleException*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/RetryAsync.java
-    startLine: 80
+    startLine: 74
   package: system.fabric
   syntax:
-    content: public void handleException(Throwable ex)
+    content: public void handleException(Throwable ex, CancellationToken cancellationToken)
     parameters:
     - id: ex
       type: a04fafd7
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
 - uid: system.fabric._retry_async.RetryAsync(int,long)
   id: RetryAsync(int,long)
   parent: system.fabric._retry_async
@@ -91,7 +95,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/RetryAsync.java
-    startLine: 21
+    startLine: 19
   package: system.fabric
   syntax:
     content: public RetryAsync(int maxTries, long delay)
@@ -114,7 +118,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/RetryAsync.java
-    startLine: 28
+    startLine: 26
   package: system.fabric
   syntax:
     content: public RetryAsync(long delay)
@@ -139,10 +143,16 @@ references:
   nameWithType: RetryAsync<TResult>.RetryAsync
   fullName: system.fabric.RetryAsync<TResult>.RetryAsync
   package: system.fabric
-- uid: 99177cbd
+- uid: 432ffe41system.fabric._cancellation_token2467f250
   spec.java:
-  - name: Supplier<CompletableFuture<TResult>>
-    fullName: Supplier<CompletableFuture<TResult>>
+  - name: Function<
+    fullName: Function<
+  - uid: system.fabric._cancellation_token
+    name: CancellationToken
+    fullName: system.fabric.CancellationToken
+    href: system.fabric._cancellation_token.yml
+  - name: ', CompletableFuture<TResult>>'
+    fullName: ', CompletableFuture<TResult>>'
 - uid: 8c3f0c17
   spec.java:
   - name: Function<Throwable, Boolean>
@@ -169,3 +179,13 @@ references:
   nameWithType: RetryAsync<TResult>.handleException
   fullName: void system.fabric.RetryAsync<TResult>.handleException
   package: system.fabric
+- uid: system.fabric._cancellation_token
+  parent: system.fabric
+  href: system.fabric._cancellation_token.yml
+  name: CancellationToken
+  nameWithType: CancellationToken
+  fullName: system.fabric.CancellationToken
+  type: Class
+  summary: <p>A <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">CancellationToken</xref> is used to propagate notification that operations should be canceled. You create a cancellation token by instantiating a <xref uid="system.fabric._cancellation_token_source" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource</xref> object, which manages cancellation tokens retrieved from its <xref uid="system.fabric._cancellation_token_source.getToken()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#getToken()</xref> method. You then pass the cancellation token to any number of operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref uid="system.fabric._cancellation_token_source.cancel()" data-throw-if-not-resolved="false">system.fabric.CancellationTokenSource#cancel()</xref>, the cancelled property on the cancellation token is set to true. The objects that receive the notification can respond in whatever manner is appropriate. </p>
+  syntax:
+    content: public class CancellationToken
