@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, Storage
 author: douge
 ms.author: douge
 manager: douge
-ms.date: 05/17/2017
+ms.date: 02/07/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -31,7 +31,7 @@ Use [connection strings](/azure/storage/storage-create-storage-account#manage-yo
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-storage</artifactId>
-    <version>5.3.1</version>
+    <version>7.0.0</version>
 </dependency>
 ```   
 
