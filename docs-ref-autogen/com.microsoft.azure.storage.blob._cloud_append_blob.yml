@@ -134,6 +134,8 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final boolean,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,final BlobRequestOptions)
   - com.microsoft.azure.storage.blob._cloud_blob.streamMinimumReadSizeInBytes
   - com.microsoft.azure.storage.blob._cloud_blob.streamWriteSizeInBytes
+  - com.microsoft.azure.storage.blob._cloud_blob.undelete()
+  - com.microsoft.azure.storage.blob._cloud_blob.undelete(BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.updateEtagAndLastModifiedFromResponse(HttpURLConnection)
   - com.microsoft.azure.storage.blob._cloud_blob.updateLengthFromResponse(HttpURLConnection)
   - com.microsoft.azure.storage.blob._cloud_blob.uploadBlobTierImpl(final String,final BlobRequestOptions)
@@ -1749,6 +1751,8 @@ references:
   summary: >-
     <p>Deletes the blob.</p>
 
+    <p>If a delete retention policy is enabled on the service, the blob will be retained for a specified period of time, before being removed permanently by garbage collection.</p>
+
     <p></p>
   syntax:
     content: public final void delete()
@@ -1762,7 +1766,9 @@ references:
   fullName: final void com.microsoft.azure.storage.blob.CloudBlob.delete(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
-    <p>Deletes the blob using the specified snapshot and request options, and operation context. </p>
+    <p>Deletes the blob using the specified snapshot and request options, and operation context.</p>
+
+    <p>If a delete retention policy is enabled on the service, the blob will be retained for a specified period of time, before being removed permanently by garbage collection.</p>
 
     <p>A blob that has snapshots cannot be deleted unless the snapshots are also deleted. If a blob has snapshots, use the <xref uid="com.microsoft.azure.storage.blob._delete_snapshots_option.DELETE_SNAPSHOTS_ONLY" data-throw-if-not-resolved="false">DeleteSnapshotsOption#DELETE_SNAPSHOTS_ONLY</xref> or <xref uid="com.microsoft.azure.storage.blob._delete_snapshots_option.INCLUDE_SNAPSHOTS" data-throw-if-not-resolved="false">DeleteSnapshotsOption#INCLUDE_SNAPSHOTS</xref> value in the  parameter to specify how the snapshots should be handled when the blob is deleted.</p>
 
@@ -2453,7 +2459,7 @@ references:
 
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000030">
+      <xrefsect id="deprecated_1_deprecated000034">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -2485,7 +2491,7 @@ references:
 
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000031">
+      <xrefsect id="deprecated_1_deprecated000035">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -3065,6 +3071,45 @@ references:
     content: protected int streamWriteSizeInBytes= Constants.DEFAULT_STREAM_WRITE_IN_BYTES
     return:
       type: f75371fa
+- uid: com.microsoft.azure.storage.blob._cloud_blob.undelete()
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: undelete()
+  nameWithType: CloudBlob.undelete()
+  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.undelete()
+  type: Method
+  summary: >-
+    <p>Un-deletes a blob and all its snapshots that have been soft-deleted.</p>
+
+    <p></p>
+  syntax:
+    content: public final void undelete()
+    return:
+      type: 3f6357ce
+- uid: com.microsoft.azure.storage.blob._cloud_blob.undelete(BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: undelete(BlobRequestOptions options, OperationContext opContext)
+  nameWithType: CloudBlob.undelete(BlobRequestOptions options, OperationContext opContext)
+  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.undelete(BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  summary: >-
+    <p>Un-deletes a blob that has been soft-deleted, using the specified request options, and operation context. </p>
+
+    <p>The un-delete Blob operation restores the contents and metadata of soft deleted blob and all its snapshots. Attempting to undelete a blob or snapshot that is not soft deleted will succeed without any changes.</p>
+
+    <p></p>
+  syntax:
+    content: public final void undelete(BlobRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: options
+      type: com.microsoft.azure.storage.blob._blob_request_options
+      description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false">BlobRequestOptions</xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref uid="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false">CloudBlobClient</xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: 3f6357ce
 - uid: com.microsoft.azure.storage.blob._cloud_blob.updateEtagAndLastModifiedFromResponse(HttpURLConnection)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
