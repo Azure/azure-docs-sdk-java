@@ -21,14 +21,14 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 27
+    startLine: 26
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Interface that must be implemented by event processor classes.</p>
 
-    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition.</p>
 
-    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns. </p>
+    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns.</p>
 
     <p>
 
@@ -49,10 +49,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 44
+    startLine: 48
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Called by processor host to indicate that the event processor is being stopped.</p>
+
+    <p>If onClose fails, the exception is reported to the general exception notification handler set via <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref>, if any, but is otherwise ignored.</p>
 
     <p></p>
   syntax: &o4
@@ -66,6 +68,7 @@ items:
       description: <p>Reason why the event processor is being stopped. </p>
   exceptions:
   - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)
   id: onError(PartitionContext,Throwable)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
@@ -80,10 +83,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 69
+    startLine: 73
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
+    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump events, so no action is required from your code. This method is provided for informational purposes.</p>
 
     <p></p>
   syntax: &o1
@@ -101,33 +104,34 @@ items:
   href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
   langs:
   - java
-  name: onEvents(PartitionContext context, Iterable<EventData> messages)
-  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
-  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
+  name: onEvents(PartitionContext context, Iterable<EventData> events)
+  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
   overload: com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 59
+    startLine: 63
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then when a receive times out, onEvents will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: &o3
-    content: public void onEvents(PartitionContext context, Iterable<EventData> messages)
+    content: public void onEvents(PartitionContext context, Iterable<EventData> events)
     parameters:
     - id: context
       type: com.microsoft.azure.eventprocessorhost._partition_context
       description: <p>Information about the partition. </p>
-    - id: messages
+    - id: events
       type: 2a13b5a5com.microsoft.azure.eventhubs._event_dataa08ddfce
       description: <p>The events to be processed. May be empty. </p>
   exceptions:
   - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)
   id: onOpen(PartitionContext)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
@@ -142,10 +146,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
-    startLine: 35
+    startLine: 36
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Called by processor host to initialize the event processor.</p>
+
+    <p>If onOpen fails, this event processor host instance will give up ownership of the partition.</p>
 
     <p></p>
   syntax: &o2
@@ -156,6 +162,7 @@ items:
       description: <p>Information about the partition that this event processor will process events from. </p>
   exceptions:
   - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
 references:
 - uid: 8a99d4b0
   spec.java:
@@ -213,13 +220,22 @@ references:
   type: Enum
   syntax:
     content: public enum CloseReason
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
+  name: EventProcessorOptions
+  nameWithType: EventProcessorOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions
+  type: Class
+  syntax:
+    content: public class EventProcessorOptions
 - uid: com.microsoft.azure.eventhubs._event_data
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._event_data.yml
   name: EventData
   nameWithType: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
-  type: Class
+  type: Interface
   summary: >-
     <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
@@ -235,7 +251,7 @@ references:
 
     </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
-    content: public class EventData
+    content: public interface EventData
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
@@ -245,15 +261,6 @@ references:
   type: Class
   syntax:
     content: public class EventProcessorHost
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
-  name: EventProcessorOptions
-  nameWithType: EventProcessorOptions
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions
-  type: Class
-  syntax:
-    content: public class EventProcessorOptions
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
   href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
@@ -262,7 +269,7 @@ references:
   fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onError(PartitionContext context, Throwable error)
   type: Method
   summary: >-
-    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump messages, so no action is required from your code. This method is provided for informational purposes.</p>
+    <p>Called when the underlying client experiences an error while receiving. <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will take care of recovering from the error and continuing to pump events, so no action is required from your code. This method is provided for informational purposes.</p>
 
     <p></p>
   syntax: *o1
@@ -276,19 +283,21 @@ references:
   summary: >-
     <p>Called by processor host to initialize the event processor.</p>
 
+    <p>If onOpen fails, this event processor host instance will give up ownership of the partition.</p>
+
     <p></p>
   syntax: *o2
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable<EventData>)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
   href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
-  name: onEvents(PartitionContext context, Iterable<EventData> messages)
-  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
-  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
+  name: onEvents(PartitionContext context, Iterable<EventData> events)
+  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
   type: Method
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then when a receive times out, onEvents will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax: *o3
@@ -301,6 +310,8 @@ references:
   type: Method
   summary: >-
     <p>Called by processor host to indicate that the event processor is being stopped.</p>
+
+    <p>If onClose fails, the exception is reported to the general exception notification handler set via <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref>, if any, but is otherwise ignored.</p>
 
     <p></p>
   syntax: *o4

@@ -6,14 +6,14 @@ items:
   children:
   - com.microsoft.azure.eventprocessorhost._event_processor_options.EventProcessorOptions()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getDefaultOptions()
-  - com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialOffsetProvider()
+  - com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialPositionProvider()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getInvokeProcessorAfterReceiveTimeout()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getMaxBatchSize()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getPrefetchCount()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getReceiverRuntimeMetricEnabled()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.getReceiveTimeOut()
   - com.microsoft.azure.eventprocessorhost._event_processor_options.setExceptionNotification(Consumer<ExceptionReceivedEventArgs>)
-  - com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialOffsetProvider(Function<String, Object>)
+  - com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialPositionProvider(Function<String, EventPosition>)
   - com.microsoft.azure.eventprocessorhost._event_processor_options.setInvokeProcessorAfterReceiveTimeout(Boolean)
   - com.microsoft.azure.eventprocessorhost._event_processor_options.setMaxBatchSize(int)
   - com.microsoft.azure.eventprocessorhost._event_processor_options.setPrefetchCount(int)
@@ -32,7 +32,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 13
+    startLine: 16
   package: com.microsoft.azure.eventprocessorhost
   syntax: &o1
     content: public class EventProcessorOptions
@@ -52,7 +52,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 43
+    startLine: 46
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public EventProcessorOptions()
@@ -70,32 +70,32 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 38
+    startLine: 41
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public static EventProcessorOptions getDefaultOptions()
     return:
       type: com.microsoft.azure.eventprocessorhost._event_processor_options
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialOffsetProvider()
-  id: getInitialOffsetProvider()
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialPositionProvider()
+  id: getInitialPositionProvider()
   parent: com.microsoft.azure.eventprocessorhost._event_processor_options
   href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
   langs:
   - java
-  name: getInitialOffsetProvider()
-  nameWithType: EventProcessorOptions.getInitialOffsetProvider()
-  fullName: Function<String, Object> com.microsoft.azure.eventprocessorhost.EventProcessorOptions.getInitialOffsetProvider()
-  overload: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialOffsetProvider*
+  name: getInitialPositionProvider()
+  nameWithType: EventProcessorOptions.getInitialPositionProvider()
+  fullName: Function<String, EventPosition> com.microsoft.azure.eventprocessorhost.EventProcessorOptions.getInitialPositionProvider()
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialPositionProvider*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 130
+    startLine: 136
   package: com.microsoft.azure.eventprocessorhost
   syntax:
-    content: public Function<String, Object> getInitialOffsetProvider()
+    content: public Function<String, EventPosition> getInitialPositionProvider()
     return:
-      type: 852bded3
+      type: 45c59aa5com.microsoft.azure.eventhubs._event_positiona08ddfce
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_options.getInvokeProcessorAfterReceiveTimeout()
   id: getInvokeProcessorAfterReceiveTimeout()
   parent: com.microsoft.azure.eventprocessorhost._event_processor_options
@@ -110,7 +110,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 185
+    startLine: 190
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public Boolean getInvokeProcessorAfterReceiveTimeout()
@@ -130,7 +130,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 67
+    startLine: 73
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Returns the maximum number of events that will be passed to one call to <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">IEventProcessor.onEvents</xref></p>
@@ -155,7 +155,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 107
+    startLine: 113
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public int getPrefetchCount()
@@ -175,12 +175,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 211
+    startLine: 216
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Knob to enable/disable runtime metric of the receiver. If this is set to true, the first parameter <xref uid="" data-throw-if-not-resolved="false">com.microsoft.azure.eventprocessorhost.PartitionContext#runtimeInformation</xref> of <xref uid="" data-throw-if-not-resolved="false">IEventProcessor#onEvents(com.microsoft.azure.eventprocessorhost.PartitionContext, java.lang.Iterable)</xref> will be populated. </p>
 
-    <p>Enabling this knob will add 3 additional properties to all raw AMQP messages received. </p>
+    <p>Enabling this knob will add 3 additional properties to all raw AMQP events received. </p>
   syntax:
     content: public boolean getReceiverRuntimeMetricEnabled()
     return:
@@ -200,7 +200,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 87
+    startLine: 93
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Returns the timeout for receive operations.</p>
@@ -225,12 +225,14 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 57
+    startLine: 63
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Sets a handler which receives notification of general exceptions.</p>
 
     <p>Exceptions which occur while processing events from a particular Event Hub partition are delivered to the onError method of the event processor for that partition. This handler is called on occasions when there is no event processor associated with the throwing activity, or the event processor could not be created.</p>
+
+    <p>The handler is not expected to do anything about the exception. If it is possible to recover, the event processor host instance will recover automatically.</p>
 
     <p></p>
   syntax:
@@ -239,27 +241,27 @@ items:
     - id: notificationHandler
       type: e0918e98com.microsoft.azure.eventprocessorhost._exception_received_event_argsa08ddfce
       description: <p>Handler which is called when an exception occurs. Set to null to stop handling. </p>
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialOffsetProvider(Function<String, Object>)
-  id: setInitialOffsetProvider(Function<String, Object>)
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialPositionProvider(Function<String, EventPosition>)
+  id: setInitialPositionProvider(Function<String, EventPosition>)
   parent: com.microsoft.azure.eventprocessorhost._event_processor_options
   href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
   langs:
   - java
-  name: setInitialOffsetProvider(Function<String, Object> initialOffsetProvider)
-  nameWithType: EventProcessorOptions.setInitialOffsetProvider(Function<String, Object> initialOffsetProvider)
-  fullName: void com.microsoft.azure.eventprocessorhost.EventProcessorOptions.setInitialOffsetProvider(Function<String, Object> initialOffsetProvider)
-  overload: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialOffsetProvider*
+  name: setInitialPositionProvider(Function<String, EventPosition> initialPositionProvider)
+  nameWithType: EventProcessorOptions.setInitialPositionProvider(Function<String, EventPosition> initialPositionProvider)
+  fullName: void com.microsoft.azure.eventprocessorhost.EventProcessorOptions.setInitialPositionProvider(Function<String, EventPosition> initialPositionProvider)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialPositionProvider*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 144
+    startLine: 149
   package: com.microsoft.azure.eventprocessorhost
   syntax:
-    content: public void setInitialOffsetProvider(Function<String, Object> initialOffsetProvider)
+    content: public void setInitialPositionProvider(Function<String, EventPosition> initialPositionProvider)
     parameters:
-    - id: initialOffsetProvider
-      type: 852bded3
+    - id: initialPositionProvider
+      type: 45c59aa5com.microsoft.azure.eventhubs._event_positiona08ddfce
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_options.setInvokeProcessorAfterReceiveTimeout(Boolean)
   id: setInvokeProcessorAfterReceiveTimeout(Boolean)
   parent: com.microsoft.azure.eventprocessorhost._event_processor_options
@@ -274,7 +276,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 198
+    startLine: 203
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Changes whether the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> will call <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">IEventProcessor.onEvents()</xref> with an empty iterable when a receive timeout occurs (true) or not (false).</p>
@@ -302,7 +304,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 77
+    startLine: 83
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Sets the maximum number of events that will be passed to one call to <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">IEventProcessor.onEvents</xref></p>
@@ -328,7 +330,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 119
+    startLine: 125
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public void setPrefetchCount(int prefetchCount)
@@ -349,12 +351,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 224
+    startLine: 229
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Knob to enable/disable runtime metric of the receiver. If this is set to true, the first parameter <xref uid="" data-throw-if-not-resolved="false">com.microsoft.azure.eventprocessorhost.PartitionContext#runtimeInformation</xref> of <xref uid="" data-throw-if-not-resolved="false">IEventProcessor#onEvents(com.microsoft.azure.eventprocessorhost.PartitionContext, java.lang.Iterable)</xref> will be populated. </p>
 
-    <p>Enabling this knob will add 3 additional properties to all raw AMQP messages received. </p>
+    <p>Enabling this knob will add 3 additional properties to all raw AMQP events received. </p>
   syntax:
     content: public void setReceiverRuntimeMetricEnabled(boolean value)
     parameters:
@@ -375,7 +377,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorOptions.java
-    startLine: 97
+    startLine: 103
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Sets the timeout for receive operations.</p>
@@ -451,19 +453,25 @@ references:
   nameWithType: EventProcessorOptions.setPrefetchCount
   fullName: void com.microsoft.azure.eventprocessorhost.EventProcessorOptions.setPrefetchCount
   package: com.microsoft.azure.eventprocessorhost
-- uid: 852bded3
+- uid: 45c59aa5com.microsoft.azure.eventhubs._event_positiona08ddfce
   spec.java:
-  - name: Function<String, Object>
-    fullName: Function<String, Object>
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialOffsetProvider*
-  name: getInitialOffsetProvider
-  nameWithType: EventProcessorOptions.getInitialOffsetProvider
-  fullName: Function<String, Object> com.microsoft.azure.eventprocessorhost.EventProcessorOptions.getInitialOffsetProvider
+  - name: 'Function<String, '
+    fullName: 'Function<String, '
+  - uid: com.microsoft.azure.eventhubs._event_position
+    name: EventPosition
+    fullName: com.microsoft.azure.eventhubs.EventPosition
+    href: com.microsoft.azure.eventhubs._event_position.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.getInitialPositionProvider*
+  name: getInitialPositionProvider
+  nameWithType: EventProcessorOptions.getInitialPositionProvider
+  fullName: Function<String, EventPosition> com.microsoft.azure.eventprocessorhost.EventProcessorOptions.getInitialPositionProvider
   package: com.microsoft.azure.eventprocessorhost
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialOffsetProvider*
-  name: setInitialOffsetProvider
-  nameWithType: EventProcessorOptions.setInitialOffsetProvider
-  fullName: void com.microsoft.azure.eventprocessorhost.EventProcessorOptions.setInitialOffsetProvider
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options.setInitialPositionProvider*
+  name: setInitialPositionProvider
+  nameWithType: EventProcessorOptions.setInitialPositionProvider
+  fullName: void com.microsoft.azure.eventprocessorhost.EventProcessorOptions.setInitialPositionProvider
   package: com.microsoft.azure.eventprocessorhost
 - uid: 866c2227
   spec.java:
@@ -503,18 +511,32 @@ references:
   summary: <p>Passed as an argument to the general exception handler that can be set via <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref>. </p>
   syntax:
     content: public class ExceptionReceivedEventArgs
-- uid: com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: START_OF_STREAM
-  nameWithType: PartitionReceiver.START_OF_STREAM
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.START_OF_STREAM
-  type: Field
-  summary: <p>This is a constant defined to represent the start of a partition stream in EventHub. </p>
+- uid: com.microsoft.azure.eventhubs._event_position
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._event_position.yml
+  name: EventPosition
+  nameWithType: EventPosition
+  fullName: com.microsoft.azure.eventhubs.EventPosition
+  type: Interface
+  summary: <p>Defines a position of an <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> in the event hub partition. The position can be an Offset, Sequence Number, or EnqueuedTime. </p>
   syntax:
-    content: public static final String START_OF_STREAM= "-1"
+    content: public interface EventPosition
+- uid: com.microsoft.azure.eventhubs._event_position.fromStartOfStream()
+  parent: com.microsoft.azure.eventhubs._event_position
+  href: com.microsoft.azure.eventhubs._event_position.yml
+  name: fromStartOfStream()
+  nameWithType: EventPosition.fromStartOfStream()
+  fullName: static EventPosition com.microsoft.azure.eventhubs.EventPosition.fromStartOfStream()
+  type: Method
+  summary: >-
+    <p>Returns the position for the start of a stream. Provide this position in receiver creation to start receiving from the first available event in the partition.</p>
+
+    <p></p>
+  syntax:
+    content: public static EventPosition fromStartOfStream()
     return:
-      type: 3d93591e
+      type: com.microsoft.azure.eventhubs._event_position
+      description: <p>An <xref uid="com.microsoft.azure.eventhubs._event_position" data-throw-if-not-resolved="false">EventPosition</xref> set to the start of an Event Hubs stream. </p>
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_options
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
@@ -526,23 +548,23 @@ references:
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable<EventData>)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor
   href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
-  name: onEvents(PartitionContext context, Iterable<EventData> messages)
-  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
-  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> messages)
+  name: onEvents(PartitionContext context, Iterable<EventData> events)
+  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  fullName: void com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
   type: Method
   summary: >-
     <p>Called by the processor host when a batch of events has arrived.</p>
 
-    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then if a receive times out, it will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
+    <p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance was set up with an <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref> on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then when a receive times out, onEvents will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>
 
     <p></p>
   syntax:
-    content: public void onEvents(PartitionContext context, Iterable<EventData> messages)
+    content: public void onEvents(PartitionContext context, Iterable<EventData> events)
     parameters:
     - id: context
       type: com.microsoft.azure.eventprocessorhost._partition_context
       description: <p>Information about the partition. </p>
-    - id: messages
+    - id: events
       type: 2a13b5a5com.microsoft.azure.eventhubs._event_dataa08ddfce
       description: <p>The events to be processed. May be empty. </p>
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
