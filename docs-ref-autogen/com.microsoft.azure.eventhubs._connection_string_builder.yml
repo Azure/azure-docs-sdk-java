@@ -4,19 +4,22 @@ items:
   id: _connection_string_builder
   parent: com.microsoft.azure.eventhubs
   children:
-  - com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final String,final String,final String,final String)
-  - com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final URI,final String,final String,final String)
-  - com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final URI,final String,final String)
+  - com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder()
   - com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(String)
   - com.microsoft.azure.eventhubs._connection_string_builder.getEndpoint()
-  - com.microsoft.azure.eventhubs._connection_string_builder.getEntityPath()
+  - com.microsoft.azure.eventhubs._connection_string_builder.getEventHubName()
   - com.microsoft.azure.eventhubs._connection_string_builder.getOperationTimeout()
-  - com.microsoft.azure.eventhubs._connection_string_builder.getRetryPolicy()
   - com.microsoft.azure.eventhubs._connection_string_builder.getSasKey()
   - com.microsoft.azure.eventhubs._connection_string_builder.getSasKeyName()
   - com.microsoft.azure.eventhubs._connection_string_builder.getSharedAccessSignature()
+  - com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint(String,String)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint(URI)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setEventHubName(String)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setNamespaceName(String)
   - com.microsoft.azure.eventhubs._connection_string_builder.setOperationTimeout(final Duration)
-  - com.microsoft.azure.eventhubs._connection_string_builder.setRetryPolicy(final RetryPolicy)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setSasKey(String)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setSasKeyName(String)
+  - com.microsoft.azure.eventhubs._connection_string_builder.setSharedAccessSignature(String)
   - com.microsoft.azure.eventhubs._connection_string_builder.toString()
   href: com.microsoft.azure.eventhubs._connection_string_builder.yml
   langs:
@@ -31,115 +34,35 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 37
+    startLine: 48
   package: com.microsoft.azure.eventhubs
-  summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>\r\n<p>Sample Code: <pre><code>    ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(\r\n        \"ServiceBusNamespaceName\",\r\n        \"ServiceBusEntityName\", // eventHubName or QueueName or TopicName\r\n        \"SharedAccessSignatureKeyName\",\r\n        \"SharedAccessSignatureKey\");\r\n    \r\n    String connectionString = connectionStringBuilder.toString();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisted of key-value pair separated by \";\". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>"
+  summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to construct a connection string which can establish communication with Event Hub instances. In addition to constructing a connection string, the <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to modify an existing connection string. </p>\r\n<p>Sample Code: <pre><code>// Construct a new connection string\r\n       ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder()\r\n           .setNamespaceName(\"EventHubsNamespaceName\")\r\n           .setEventHubName(\"EventHubsEntityName\")\r\n           .setSasKeyName(\"SharedAccessSignatureKeyName\")\r\n           .setSasKey(\"SharedAccessSignatureKey\")\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    \r\n    // Modify an existing connection string\r\n    ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(existingConnectionString)\r\n        .setEventHubName(\"SomeOtherEventHubsName\")\r\n        .setOperationTimeout(Duration.ofSeconds(30)\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisting of key-value pairs separated by \";\". The basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the EventHubs namespace </p></listitem><listitem><p>EntityPath - the EventHub name which you are connecting to </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>"
   syntax: &o1
     content: public class ConnectionStringBuilder
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final String,final String,final String,final String)
-  id: ConnectionStringBuilder(final String,final String,final String,final String)
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder()
+  id: ConnectionStringBuilder()
   parent: com.microsoft.azure.eventhubs._connection_string_builder
   href: com.microsoft.azure.eventhubs._connection_string_builder.yml
   langs:
   - java
-  name: ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
+  name: ConnectionStringBuilder()
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder()
+  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder.ConnectionStringBuilder()
   overload: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder*
   type: Constructor
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 125
+    startLine: 88
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Build a connection string consumable by <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">com.microsoft.azure.eventhubs.EventHubClient#createFromConnectionString(String)</xref></p>
+    <p>Creates an empty <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref>. At minimum, a namespace name, an entity path, SAS key name, and SAS key need to be set before a valid connection string can be built.</p>
 
-    <p></p>
+    <p>For advanced users, the following replacements can be done: <itemizedlist><listitem><p>An endpoint can be provided instead of a namespace name. </p></listitem><listitem><p>A SAS token can be provided instead of a SAS key name and SAS key. </p></listitem><listitem><p>Optionally, users can set an operation timeout instead of using the default value. </p></listitem></itemizedlist></p>
   syntax:
-    content: public ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-    parameters:
-    - id: namespaceName
-      type: 3d93591e
-      description: '<p>Namespace name (dns suffix - ex: .servicebus.windows.net is not required) </p>'
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For eventHubs case specify - eventHub name. </p>
-    - id: sharedAccessKeyName
-      type: 3d93591e
-      description: <p>Shared Access Key name </p>
-    - id: sharedAccessKey
-      type: 3d93591e
-      description: <p>Shared Access Key </p>
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final URI,final String,final String,final String)
-  id: ConnectionStringBuilder(final URI,final String,final String,final String)
-  parent: com.microsoft.azure.eventhubs._connection_string_builder
-  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  overload: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 142
-  package: com.microsoft.azure.eventhubs
-  summary: >-
-    <p>Build a connection string consumable by <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">com.microsoft.azure.eventhubs.EventHubClient#createFromConnectionString(String)</xref></p>
-
-    <p></p>
-  syntax:
-    content: public ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-    parameters:
-    - id: endpointAddress
-      type: bac42120
-      description: <p>namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName </p>
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For eventHubs case specify - eventHub name. </p>
-    - id: sharedAccessKeyName
-      type: 3d93591e
-      description: <p>Shared Access Key name </p>
-    - id: sharedAccessKey
-      type: 3d93591e
-      description: <p>Shared Access Key </p>
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(final URI,final String,final String)
-  id: ConnectionStringBuilder(final URI,final String,final String)
-  parent: com.microsoft.azure.eventhubs._connection_string_builder
-  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSignature)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSignature)
-  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSignature)
-  overload: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 157
-  package: com.microsoft.azure.eventhubs
-  summary: >-
-    <p>Build a connection string consumable by <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">com.microsoft.azure.eventhubs.EventHubClient#createFromConnectionString(String)</xref></p>
-
-    <p></p>
-  syntax:
-    content: public ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSignature)
-    parameters:
-    - id: endpointAddress
-      type: bac42120
-      description: <p>namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName </p>
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For eventHubs case specify - eventHub name. </p>
-    - id: sharedAccessSignature
-      type: 3d93591e
-      description: <p>Shared Access Signature </p>
+    content: public ConnectionStringBuilder()
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder(String)
   id: ConnectionStringBuilder(String)
   parent: com.microsoft.azure.eventhubs._connection_string_builder
@@ -154,7 +77,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 171
+    startLine: 97
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>ConnectionString format: Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessKeyName=SHARED_ACCESS_KEY_NAME;SharedAccessKey=SHARED_ACCESS_KEY</p>
@@ -165,7 +88,7 @@ items:
     parameters:
     - id: connectionString
       type: "26831127"
-      description: <p>ServiceBus ConnectionString </p>
+      description: <p>EventHubs ConnectionString </p>
   exceptions:
   - type: com.microsoft.azure.eventhubs._illegal_connection_string_format_exception
     description: <p>when the format of the ConnectionString is not valid </p>
@@ -183,39 +106,39 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 180
+    startLine: 106
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Get the endpoint which can be used to connect to the ServiceBus Namespace</p>
+    <p>Get the endpoint which can be used to connect to the EventHub instance.</p>
 
     <p></p>
   syntax:
     content: public URI getEndpoint()
     return:
       type: "62304784"
-      description: <p>Endpoint </p>
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.getEntityPath()
-  id: getEntityPath()
+      description: <p>The currently set endpoint </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.getEventHubName()
+  id: getEventHubName()
   parent: com.microsoft.azure.eventhubs._connection_string_builder
   href: com.microsoft.azure.eventhubs._connection_string_builder.yml
   langs:
   - java
-  name: getEntityPath()
-  nameWithType: ConnectionStringBuilder.getEntityPath()
-  fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getEntityPath()
-  overload: com.microsoft.azure.eventhubs._connection_string_builder.getEntityPath*
+  name: getEventHubName()
+  nameWithType: ConnectionStringBuilder.getEventHubName()
+  fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getEventHubName()
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.getEventHubName*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 216
+    startLine: 161
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Get the entity path value from the connection string</p>
+    <p>Get the entity path value from the connection string.</p>
 
     <p></p>
   syntax:
-    content: public String getEntityPath()
+    content: public String getEventHubName()
     return:
       type: "26831127"
       description: <p>Entity Path </p>
@@ -233,7 +156,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 225
+    startLine: 241
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>OperationTimeout is applied in erroneous situations to notify the caller about the relevant <xref uid="com.microsoft.azure.eventhubs._event_hub_exception" data-throw-if-not-resolved="false">EventHubException</xref></p>
@@ -244,34 +167,6 @@ items:
     return:
       type: e02a2de0
       description: <p>operationTimeout </p>
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.getRetryPolicy()
-  id: getRetryPolicy()
-  parent: com.microsoft.azure.eventhubs._connection_string_builder
-  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
-  langs:
-  - java
-  name: getRetryPolicy()
-  nameWithType: ConnectionStringBuilder.getRetryPolicy()
-  fullName: RetryPolicy com.microsoft.azure.eventhubs.ConnectionStringBuilder.getRetryPolicy()
-  overload: com.microsoft.azure.eventhubs._connection_string_builder.getRetryPolicy*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 245
-  package: com.microsoft.azure.eventhubs
-  summary: >-
-    <p>Get the retry policy instance that was created as part of this builder's creation.</p>
-
-    <p></p>
-  syntax:
-    content: public RetryPolicy getRetryPolicy()
-    return:
-      type: com.microsoft.azure.eventhubs._retry_policy
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventhubs._retry_policy" data-throw-if-not-resolved="false">RetryPolicy</xref> applied for any operation performed using this ConnectionString </p>
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.getSasKey()
   id: getSasKey()
   parent: com.microsoft.azure.eventhubs._connection_string_builder
@@ -286,7 +181,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 189
+    startLine: 181
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get the shared access policy key value from the connection string</p>
@@ -311,7 +206,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 198
+    startLine: 201
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get the shared access policy owner name from the connection string</p>
@@ -336,7 +231,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 207
+    startLine: 221
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get the shared access signature (also referred as SAS Token) from the connection string</p>
@@ -347,6 +242,125 @@ items:
     return:
       type: "26831127"
       description: <p>Shared Access Signature </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint(String,String)
+  id: setEndpoint(String,String)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setEndpoint(String namespaceName, String domainName)
+  nameWithType: ConnectionStringBuilder.setEndpoint(String namespaceName, String domainName)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setEndpoint(String namespaceName, String domainName)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 134
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set an endpoint which can be used to connect to the EventHub instance.</p>
+
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setEndpoint(String namespaceName, String domainName)
+    parameters:
+    - id: namespaceName
+      type: "26831127"
+      description: <p>the name of the namespace to connect to. </p>
+    - id: domainName
+      type: "26831127"
+      description: <p>identifies the domain the namespace is located in. For non-public and national clouds, the domain will not be "servicebus.windows.net". Available options include:<itemizedlist><listitem><p>"servicebus.usgovcloudapi.net"</p></listitem><listitem><p>"servicebus.cloudapi.de"</p></listitem><listitem><p>"servicebus.chinacloudapi.cn" </p></listitem></itemizedlist></p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint(URI)
+  id: setEndpoint(URI)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setEndpoint(URI endpoint)
+  nameWithType: ConnectionStringBuilder.setEndpoint(URI endpoint)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setEndpoint(URI endpoint)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 118
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set an endpoint which can be used to connect to the EventHub instance.</p>
+
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setEndpoint(URI endpoint)
+    parameters:
+    - id: endpoint
+      type: "62304784"
+      description: '<p>is a combination of the namespace name and domain name. Together, these pieces make a valid endpoint. For example, the default domain name is "servicebus.windows.net", so a sample endpoint would look like this: "sb://namespace_name.servicebus.windows.net". </p>'
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setEventHubName(String)
+  id: setEventHubName(String)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setEventHubName(String eventHubName)
+  nameWithType: ConnectionStringBuilder.setEventHubName(String eventHubName)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setEventHubName(String eventHubName)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setEventHubName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 171
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set the entity path value from the connection string.</p>
+
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setEventHubName(String eventHubName)
+    parameters:
+    - id: eventHubName
+      type: "26831127"
+      description: <p>the name of the Event Hub to connect to. </p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setNamespaceName(String)
+  id: setNamespaceName(String)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setNamespaceName(String namespaceName)
+  nameWithType: ConnectionStringBuilder.setNamespaceName(String namespaceName)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setNamespaceName(String namespaceName)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setNamespaceName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 152
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set a namespace name which will be used to connect to an EventHubs instance. This method adds "servicebus.windows.net" as the default domain name.</p>
+
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setNamespaceName(String namespaceName)
+    parameters:
+    - id: namespaceName
+      type: "26831127"
+      description: <p>the name of the namespace to connect to. </p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.setOperationTimeout(final Duration)
   id: setOperationTimeout(final Duration)
   parent: com.microsoft.azure.eventhubs._connection_string_builder
@@ -355,13 +369,13 @@ items:
   - java
   name: setOperationTimeout(final Duration operationTimeout)
   nameWithType: ConnectionStringBuilder.setOperationTimeout(final Duration operationTimeout)
-  fullName: void com.microsoft.azure.eventhubs.ConnectionStringBuilder.setOperationTimeout(final Duration operationTimeout)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setOperationTimeout(final Duration operationTimeout)
   overload: com.microsoft.azure.eventhubs._connection_string_builder.setOperationTimeout*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 235
+    startLine: 252
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Set the OperationTimeout value in the Connection String. This value will be used by all operations which uses this <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref>, unless explicitly over-ridden. </p>
@@ -370,44 +384,101 @@ items:
 
     <p></p>
   syntax:
-    content: public void setOperationTimeout(final Duration operationTimeout)
+    content: public ConnectionStringBuilder setOperationTimeout(final Duration operationTimeout)
     parameters:
     - id: operationTimeout
       type: 89ac7c4d
       description: <p>Operation Timeout </p>
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.setRetryPolicy(final RetryPolicy)
-  id: setRetryPolicy(final RetryPolicy)
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSasKey(String)
+  id: setSasKey(String)
   parent: com.microsoft.azure.eventhubs._connection_string_builder
   href: com.microsoft.azure.eventhubs._connection_string_builder.yml
   langs:
   - java
-  name: setRetryPolicy(final RetryPolicy retryPolicy)
-  nameWithType: ConnectionStringBuilder.setRetryPolicy(final RetryPolicy retryPolicy)
-  fullName: void com.microsoft.azure.eventhubs.ConnectionStringBuilder.setRetryPolicy(final RetryPolicy retryPolicy)
-  overload: com.microsoft.azure.eventhubs._connection_string_builder.setRetryPolicy*
+  name: setSasKey(String sasKey)
+  nameWithType: ConnectionStringBuilder.setSasKey(String sasKey)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSasKey(String sasKey)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setSasKey*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 256
+    startLine: 191
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Set the retry policy. </p>
-
-    <p>
-
-      <xref uid="com.microsoft.azure.eventhubs._retry_policy" data-throw-if-not-resolved="false">RetryPolicy</xref> is not inter-operable with ServiceBus clients in other platforms.</p>
+    <p>Set the shared access policy key value from the connection string</p>
 
     <p></p>
   syntax:
-    content: public void setRetryPolicy(final RetryPolicy retryPolicy)
+    content: public ConnectionStringBuilder setSasKey(String sasKey)
     parameters:
-    - id: retryPolicy
-      type: 93de0ef9com.microsoft.azure.eventhubs._retry_policy
-      description: >-
-        <p>
+    - id: sasKey
+      type: "26831127"
+      description: <p>the SAS key </p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSasKeyName(String)
+  id: setSasKeyName(String)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setSasKeyName(String sasKeyName)
+  nameWithType: ConnectionStringBuilder.setSasKeyName(String sasKeyName)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSasKeyName(String sasKeyName)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setSasKeyName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 211
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set the shared access policy owner name from the connection string</p>
 
-          <xref uid="com.microsoft.azure.eventhubs._retry_policy" data-throw-if-not-resolved="false">RetryPolicy</xref> applied for any operation performed using this ConnectionString </p>
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setSasKeyName(String sasKeyName)
+    parameters:
+    - id: sasKeyName
+      type: "26831127"
+      description: <p>the SAS key name </p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSharedAccessSignature(String)
+  id: setSharedAccessSignature(String)
+  parent: com.microsoft.azure.eventhubs._connection_string_builder
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  langs:
+  - java
+  name: setSharedAccessSignature(String sharedAccessSignature)
+  nameWithType: ConnectionStringBuilder.setSharedAccessSignature(String sharedAccessSignature)
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSharedAccessSignature(String sharedAccessSignature)
+  overload: com.microsoft.azure.eventhubs._connection_string_builder.setSharedAccessSignature*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
+    startLine: 231
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>Set the shared access signature (also referred as SAS Token) from the connection string</p>
+
+    <p></p>
+  syntax:
+    content: public ConnectionStringBuilder setSharedAccessSignature(String sharedAccessSignature)
+    parameters:
+    - id: sharedAccessSignature
+      type: "26831127"
+      description: <p>the shared access key signature </p>
+    return:
+      type: com.microsoft.azure.eventhubs._connection_string_builder
+      description: <p>the <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> being set. </p>
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.toString()
   id: toString()
   parent: com.microsoft.azure.eventhubs._connection_string_builder
@@ -422,10 +493,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/ConnectionStringBuilder.java
-    startLine: 266
+    startLine: 263
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Returns an inter-operable connection string that can be used to connect to ServiceBus Namespace</p>
+    <p>Returns an inter-operable connection string that can be used to connect to EventHubs instances.</p>
 
     <p></p>
   syntax:
@@ -434,19 +505,11 @@ items:
       type: "26831127"
       description: <p>connection string </p>
 references:
-- uid: 3d93591e
-  spec.java:
-  - name: final String
-    fullName: final String
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.ConnectionStringBuilder*
   name: ConnectionStringBuilder
   nameWithType: ConnectionStringBuilder.ConnectionStringBuilder
   fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder.ConnectionStringBuilder
   package: com.microsoft.azure.eventhubs
-- uid: bac42120
-  spec.java:
-  - name: final URI
-    fullName: final URI
 - uid: "26831127"
   spec.java:
   - name: String
@@ -460,25 +523,55 @@ references:
   nameWithType: ConnectionStringBuilder.getEndpoint
   fullName: URI com.microsoft.azure.eventhubs.ConnectionStringBuilder.getEndpoint
   package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setEndpoint*
+  name: setEndpoint
+  nameWithType: ConnectionStringBuilder.setEndpoint
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setEndpoint
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setNamespaceName*
+  name: setNamespaceName
+  nameWithType: ConnectionStringBuilder.setNamespaceName
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setNamespaceName
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.getEventHubName*
+  name: getEventHubName
+  nameWithType: ConnectionStringBuilder.getEventHubName
+  fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getEventHubName
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setEventHubName*
+  name: setEventHubName
+  nameWithType: ConnectionStringBuilder.setEventHubName
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setEventHubName
+  package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.getSasKey*
   name: getSasKey
   nameWithType: ConnectionStringBuilder.getSasKey
   fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getSasKey
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSasKey*
+  name: setSasKey
+  nameWithType: ConnectionStringBuilder.setSasKey
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSasKey
   package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.getSasKeyName*
   name: getSasKeyName
   nameWithType: ConnectionStringBuilder.getSasKeyName
   fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getSasKeyName
   package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSasKeyName*
+  name: setSasKeyName
+  nameWithType: ConnectionStringBuilder.setSasKeyName
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSasKeyName
+  package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.getSharedAccessSignature*
   name: getSharedAccessSignature
   nameWithType: ConnectionStringBuilder.getSharedAccessSignature
   fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getSharedAccessSignature
   package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.getEntityPath*
-  name: getEntityPath
-  nameWithType: ConnectionStringBuilder.getEntityPath
-  fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.getEntityPath
+- uid: com.microsoft.azure.eventhubs._connection_string_builder.setSharedAccessSignature*
+  name: setSharedAccessSignature
+  nameWithType: ConnectionStringBuilder.setSharedAccessSignature
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setSharedAccessSignature
   package: com.microsoft.azure.eventhubs
 - uid: e02a2de0
   spec.java:
@@ -496,65 +589,22 @@ references:
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.setOperationTimeout*
   name: setOperationTimeout
   nameWithType: ConnectionStringBuilder.setOperationTimeout
-  fullName: void com.microsoft.azure.eventhubs.ConnectionStringBuilder.setOperationTimeout
-  package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.getRetryPolicy*
-  name: getRetryPolicy
-  nameWithType: ConnectionStringBuilder.getRetryPolicy
-  fullName: RetryPolicy com.microsoft.azure.eventhubs.ConnectionStringBuilder.getRetryPolicy
-  package: com.microsoft.azure.eventhubs
-- uid: 93de0ef9com.microsoft.azure.eventhubs._retry_policy
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.azure.eventhubs._retry_policy
-    name: RetryPolicy
-    fullName: com.microsoft.azure.eventhubs.RetryPolicy
-    href: com.microsoft.azure.eventhubs._retry_policy.yml
-- uid: com.microsoft.azure.eventhubs._connection_string_builder.setRetryPolicy*
-  name: setRetryPolicy
-  nameWithType: ConnectionStringBuilder.setRetryPolicy
-  fullName: void com.microsoft.azure.eventhubs.ConnectionStringBuilder.setRetryPolicy
+  fullName: ConnectionStringBuilder com.microsoft.azure.eventhubs.ConnectionStringBuilder.setOperationTimeout
   package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._connection_string_builder.toString*
   name: toString
   nameWithType: ConnectionStringBuilder.toString
   fullName: String com.microsoft.azure.eventhubs.ConnectionStringBuilder.toString
   package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs._retry_policy
+- uid: com.microsoft.azure.eventhubs._connection_string_builder
   parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._retry_policy.yml
-  name: RetryPolicy
-  nameWithType: RetryPolicy
-  fullName: com.microsoft.azure.eventhubs.RetryPolicy
+  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
+  name: ConnectionStringBuilder
+  nameWithType: ConnectionStringBuilder
+  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder
   type: Class
-  syntax:
-    content: public class RetryPolicy
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)
-  parent: com.microsoft.azure.eventhubs._event_hub_client
-  href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createFromConnectionString(final String connectionString)
-  nameWithType: EventHubClient.createFromConnectionString(final String connectionString)
-  fullName: static CompletableFuture<EventHubClient> com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionString(final String connectionString)
-  type: Method
-  summary: >-
-    <p>Factory method to create an instance of <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> using the supplied connectionString. In a normal scenario (when re-direct is not enabled) - one <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> instance maps to one Connection to the Azure ServiceBus EventHubs service. </p>
-
-    <p>The <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> created from this method creates a Sender instance internally, which is used by the <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> methods.</p>
-
-    <p></p>
-  syntax:
-    content: public static CompletableFuture<EventHubClient> createFromConnectionString(final String connectionString)
-    parameters:
-    - id: connectionString
-      type: 3d93591e
-      description: <p>The connection string to be used. See <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
-    return:
-      type: 9cdf14d0com.microsoft.azure.eventhubs._event_hub_clienta08ddfce
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> which can be used to create Senders and Receivers to EventHub </p>
+  summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to construct a connection string which can establish communication with Event Hub instances. In addition to constructing a connection string, the <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to modify an existing connection string. </p>\r\n<p>Sample Code: <pre><code>// Construct a new connection string\r\n       ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder()\r\n           .setNamespaceName(\"EventHubsNamespaceName\")\r\n           .setEventHubName(\"EventHubsEntityName\")\r\n           .setSasKeyName(\"SharedAccessSignatureKeyName\")\r\n           .setSasKey(\"SharedAccessSignatureKey\")\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    \r\n    // Modify an existing connection string\r\n    ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(existingConnectionString)\r\n        .setEventHubName(\"SomeOtherEventHubsName\")\r\n        .setOperationTimeout(Duration.ofSeconds(30)\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisting of key-value pairs separated by \";\". The basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the EventHubs namespace </p></listitem><listitem><p>EntityPath - the EventHub name which you are connecting to </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>"
+  syntax: *o1
 - uid: com.microsoft.azure.eventhubs._illegal_connection_string_format_exception
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._illegal_connection_string_format_exception.yml
@@ -575,12 +625,3 @@ references:
   summary: <p>This is the base exception that service bus will produce for all error cases. </p>
   syntax:
     content: public class EventHubException
-- uid: com.microsoft.azure.eventhubs._connection_string_builder
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._connection_string_builder.yml
-  name: ConnectionStringBuilder
-  nameWithType: ConnectionStringBuilder
-  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder
-  type: Class
-  summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs._connection_string_builder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>\r\n<p>Sample Code: <pre><code>    ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(\r\n        \"ServiceBusNamespaceName\",\r\n        \"ServiceBusEntityName\", // eventHubName or QueueName or TopicName\r\n        \"SharedAccessSignatureKeyName\",\r\n        \"SharedAccessSignatureKey\");\r\n    \r\n    String connectionString = connectionStringBuilder.toString();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisted of key-value pair separated by \";\". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <itemizedlist><listitem><p>Endpoint - the URL that contains the servicebus namespace </p></listitem><listitem><p>EntityPath - the path to the service bus entity (queue/topic/eventhub/subscription/consumergroup/partition) </p></listitem><listitem><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></listitem><listitem><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></listitem></itemizedlist></p>"
-  syntax: *o1

@@ -25,14 +25,14 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 18
+    startLine: 19
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly.</p>
 
-    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the messages in that partition. </p>
+    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
   syntax: &o1
     content: public class Checkpoint
   inheritance:
@@ -51,7 +51,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 53
+    startLine: 56
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Create a checkpoint which is a duplicate of the given checkpoint.</p>
@@ -62,6 +62,7 @@ items:
     parameters:
     - id: source
       type: com.microsoft.azure.eventprocessorhost._checkpoint
+      description: <p>Existing checkpoint to clone. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.Checkpoint(String)
   id: Checkpoint(String)
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -76,10 +77,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 29
+    startLine: 30
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create a checkpoint with offset/sequenceNumber set to the first available message.</p>
+    <p>Create a checkpoint with offset/sequenceNumber set to the start of the stream.</p>
 
     <p></p>
   syntax:
@@ -87,6 +88,7 @@ items:
     parameters:
     - id: partitionId
       type: "26831127"
+      description: <p>Associated partition. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.Checkpoint(String,String,long)
   id: Checkpoint(String,String,long)
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -101,10 +103,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 41
+    startLine: 44
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create a checkpoint with the given offset and sequenceNumber.</p>
+    <p>Create a checkpoint with the given offset and sequenceNumber. It is important that the offset and sequence number refer to the same event in the stream. The safest thing to do is get both values from the system properties of one EventData instance.</p>
 
     <p></p>
   syntax:
@@ -112,10 +114,13 @@ items:
     parameters:
     - id: partitionId
       type: "26831127"
+      description: <p>Associated partition. </p>
     - id: offset
       type: "26831127"
+      description: <p>Offset in the stream. </p>
     - id: sequenceNumber
       type: 0364520f
+      description: <p>Sequence number in the stream. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.getOffset()
   id: getOffset()
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -130,7 +135,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 76
+    startLine: 78
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Return the offset.</p>
@@ -140,7 +145,7 @@ items:
     content: public String getOffset()
     return:
       type: "26831127"
-      description: <p>the current offset string value. </p>
+      description: <p>the current offset value. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.getPartitionId()
   id: getPartitionId()
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -155,7 +160,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 107
+    startLine: 108
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Get the partition id. There is no corresponding setter because the partition id is immutable.</p>
@@ -165,7 +170,7 @@ items:
     content: public String getPartitionId()
     return:
       type: "26831127"
-      description: <p>get the current partition id that the processing is associated with. </p>
+      description: <p>the associated partition id. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.getSequenceNumber()
   id: getSequenceNumber()
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -180,7 +185,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 97
+    startLine: 98
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Get the sequence number.</p>
@@ -205,10 +210,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 66
+    startLine: 68
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Set the offset. Should be paired with setSequenceNumber since the two values are connected in the Event Hub.</p>
+    <p>Set the offset. Remember to also set the sequence number!</p>
 
     <p></p>
   syntax:
@@ -216,7 +221,7 @@ items:
     parameters:
     - id: newOffset
       type: "26831127"
-      description: <p>the new offset to be persisted. </p>
+      description: <p>the new value for offset in the stream. </p>
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint.setSequenceNumber(long)
   id: setSequenceNumber(long)
   parent: com.microsoft.azure.eventprocessorhost._checkpoint
@@ -231,10 +236,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Checkpoint.java
-    startLine: 87
+    startLine: 88
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Set the sequence number. Should be paired with setOffset since the two values are connected in the Event Hub.</p>
+    <p>Set the sequence number. Remember to also set the offset!</p>
 
     <p></p>
   syntax:
@@ -242,7 +247,7 @@ items:
     parameters:
     - id: newSequenceNumber
       type: 0364520f
-      description: <p>the new sequence number to be persisted. </p>
+      description: <p>the new value for sequence number. </p>
 references:
 - uid: "26831127"
   spec.java:
@@ -282,12 +287,12 @@ references:
   nameWithType: Checkpoint.getPartitionId
   fullName: String com.microsoft.azure.eventprocessorhost.Checkpoint.getPartitionId
   package: com.microsoft.azure.eventprocessorhost
-- uid: com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
+- uid: com.microsoft.azure.eventhubs.impl._client_constants.START_OF_STREAM
+  parent: com.microsoft.azure.eventhubs.impl._client_constants
+  href: com.microsoft.azure.eventhubs.impl._client_constants.yml
   name: START_OF_STREAM
-  nameWithType: PartitionReceiver.START_OF_STREAM
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.START_OF_STREAM
+  nameWithType: ClientConstants.START_OF_STREAM
+  fullName: final String com.microsoft.azure.eventhubs.impl.ClientConstants.START_OF_STREAM
   type: Field
   summary: <p>This is a constant defined to represent the start of a partition stream in EventHub. </p>
   syntax:
@@ -304,9 +309,9 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly.</p>
 
-    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the messages in that partition. </p>
+    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
   syntax: *o1
 - uid: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
   parent: com.microsoft.azure.eventprocessorhost

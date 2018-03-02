@@ -6,12 +6,11 @@ items:
   - com.microsoft.azure.eventprocessorhost._azure_storage_partition_manager_options
   - com.microsoft.azure.eventprocessorhost._checkpoint
   - com.microsoft.azure.eventprocessorhost._close_reason
-  - com.microsoft.azure.eventprocessorhost._e_p_h_configuration_exception
   - com.microsoft.azure.eventprocessorhost._event_processor_host
   - com.microsoft.azure.eventprocessorhost._event_processor_host_action_strings
   - com.microsoft.azure.eventprocessorhost._event_processor_options
-  - com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_offset_provider
-  - com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_offset_provider
+  - com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_position_provider
+  - com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_position_provider
   - com.microsoft.azure.eventprocessorhost._exception_received_event_args
   - com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
   - com.microsoft.azure.eventprocessorhost._i_event_processor
@@ -60,9 +59,9 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly.</p>
 
-    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the messages in that partition. </p>
+    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
   syntax:
     content: public class Checkpoint
 - uid: com.microsoft.azure.eventprocessorhost._close_reason
@@ -74,15 +73,6 @@ references:
   type: Enum
   syntax:
     content: public enum CloseReason
-- uid: com.microsoft.azure.eventprocessorhost._e_p_h_configuration_exception
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._e_p_h_configuration_exception.yml
-  name: EPHConfigurationException
-  nameWithType: EPHConfigurationException
-  fullName: com.microsoft.azure.eventprocessorhost.EPHConfigurationException
-  type: Class
-  syntax:
-    content: public class EPHConfigurationException
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
@@ -139,9 +129,9 @@ references:
   summary: >-
     <p>Interface that must be implemented by event processor classes.</p>
 
-    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition.</p>
 
-    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns. </p>
+    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns.</p>
 
     <p>
 
@@ -203,11 +193,11 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly.</p>
 
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide.</p>
 
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax:
     content: public class Lease
 - uid: com.microsoft.azure.eventprocessorhost._lease_lost_exception
@@ -247,21 +237,21 @@ references:
   type: Class
   syntax:
     content: public class PartitionManagerOptions
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_offset_provider
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_position_provider
   parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_offset_provider.yml
-  name: EventProcessorOptions.EndOfStreamInitialOffsetProvider
-  nameWithType: EventProcessorOptions.EndOfStreamInitialOffsetProvider
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions.EndOfStreamInitialOffsetProvider
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options._end_of_stream_initial_position_provider.yml
+  name: EventProcessorOptions.EndOfStreamInitialPositionProvider
+  nameWithType: EventProcessorOptions.EndOfStreamInitialPositionProvider
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions.EndOfStreamInitialPositionProvider
   type: Class
   syntax:
-    content: public class EndOfStreamInitialOffsetProvider
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_offset_provider
+    content: public class EndOfStreamInitialPositionProvider
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_position_provider
   parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_offset_provider.yml
-  name: EventProcessorOptions.StartOfStreamInitialOffsetProvider
-  nameWithType: EventProcessorOptions.StartOfStreamInitialOffsetProvider
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions.StartOfStreamInitialOffsetProvider
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options._start_of_stream_initial_position_provider.yml
+  name: EventProcessorOptions.StartOfStreamInitialPositionProvider
+  nameWithType: EventProcessorOptions.StartOfStreamInitialPositionProvider
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions.StartOfStreamInitialPositionProvider
   type: Class
   syntax:
-    content: public class StartOfStreamInitialOffsetProvider
+    content: public class StartOfStreamInitialPositionProvider
