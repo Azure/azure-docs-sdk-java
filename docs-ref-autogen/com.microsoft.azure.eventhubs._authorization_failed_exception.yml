@@ -18,10 +18,10 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/AuthorizationFailedException.java
-    startLine: 14
+    startLine: 16
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>Authorization failed exception is thrown when error is encountered during authorizing user's permission to run the intended operations. When encountered this exception user should check whether the token/key provided in the connection string (e.g. one passed to <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">com.microsoft.azure.eventhubs.EventHubClient#createFromConnectionString(String)</xref>) is valid, and has correct execution right for the intended operations (e.g. Receive call will need Listen claim associated with the key/token).</p>
+    <p>Authorization failed exception is thrown when error is encountered during authorizing user's permission to run the intended operations. When encountered this exception user should check whether the token/key provided in the connection string (e.g. one passed to <xref uid="com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)" data-throw-if-not-resolved="false">EventHubClient#create(String, Executor)</xref>) is valid, and has correct execution right for the intended operations (e.g. Receive call will need Listen claim associated with the key/token).</p>
 
     <p></p>
   syntax:
@@ -37,6 +37,7 @@ items:
   - com.microsoft.azure.eventhubs._event_hub_exception.getContext()
   - com.microsoft.azure.eventhubs._event_hub_exception.getIsTransient()
   - com.microsoft.azure.eventhubs._event_hub_exception.getMessage()
+  - com.microsoft.azure.eventhubs._event_hub_exception.setContext(ErrorContext)
 - uid: com.microsoft.azure.eventhubs._authorization_failed_exception.AuthorizationFailedException(final String)
   id: AuthorizationFailedException(final String)
   parent: com.microsoft.azure.eventhubs._authorization_failed_exception
@@ -51,7 +52,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/AuthorizationFailedException.java
-    startLine: 26
+    startLine: 28
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Constructor for the exception class</p>
@@ -135,7 +136,10 @@ references:
   nameWithType: EventHubException.getIsTransient()
   fullName: boolean com.microsoft.azure.eventhubs.EventHubException.getIsTransient()
   type: Method
-  summary: <p>A boolean indicating if the exception is a transient error or not. </p>
+  summary: >-
+    <p>A boolean indicating if the exception is a transient error or not.</p>
+
+    <p></p>
   syntax:
     content: public boolean getIsTransient()
     return:
@@ -152,6 +156,18 @@ references:
     content: public String getMessage()
     return:
       type: "26831127"
+- uid: com.microsoft.azure.eventhubs._event_hub_exception.setContext(ErrorContext)
+  parent: com.microsoft.azure.eventhubs._event_hub_exception
+  href: com.microsoft.azure.eventhubs._event_hub_exception.yml
+  name: setContext(ErrorContext errorContext)
+  nameWithType: EventHubException.setContext(ErrorContext errorContext)
+  fullName: void com.microsoft.azure.eventhubs.EventHubException.setContext(ErrorContext errorContext)
+  type: Method
+  syntax:
+    content: public void setContext(ErrorContext errorContext)
+    parameters:
+    - id: errorContext
+      type: com.microsoft.azure.eventhubs._error_context
 - uid: com.microsoft.azure.eventhubs._event_hub_exception
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._event_hub_exception.yml
@@ -162,12 +178,12 @@ references:
   summary: <p>This is the base exception that service bus will produce for all error cases. </p>
   syntax:
     content: public class EventHubException
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)
+- uid: com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createFromConnectionString(final String connectionString)
-  nameWithType: EventHubClient.createFromConnectionString(final String connectionString)
-  fullName: static CompletableFuture<EventHubClient> com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionString(final String connectionString)
+  name: create(final String connectionString, final Executor executor)
+  nameWithType: EventHubClient.create(final String connectionString, final Executor executor)
+  fullName: static CompletableFuture<EventHubClient> com.microsoft.azure.eventhubs.EventHubClient.create(final String connectionString, final Executor executor)
   type: Method
   summary: >-
     <p>Factory method to create an instance of <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> using the supplied connectionString. In a normal scenario (when re-direct is not enabled) - one <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> instance maps to one Connection to the Azure ServiceBus EventHubs service. </p>
@@ -176,14 +192,14 @@ references:
 
     <p></p>
   syntax:
-    content: public static CompletableFuture<EventHubClient> createFromConnectionString(final String connectionString)
+    content: public static CompletableFuture<EventHubClient> create(final String connectionString, final Executor executor)
     parameters:
     - id: connectionString
       type: 3d93591e
       description: <p>The connection string to be used. See <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
+    - id: executor
+      type: 506a8fe9
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">Executor</xref> to run all tasks performed by <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref>. </p>
     return:
       type: 9cdf14d0com.microsoft.azure.eventhubs._event_hub_clienta08ddfce
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> which can be used to create Senders and Receivers to EventHub </p>
+      description: <p>CompletableFuture{ &lt;EventHubClient&gt;} which can be used to create Senders and Receivers to EventHub </p>

@@ -4,37 +4,36 @@ items:
   id: _partition_receiver
   parent: com.microsoft.azure.eventhubs
   children:
-  - com.microsoft.azure.eventhubs._partition_receiver.END_OF_STREAM
-  - com.microsoft.azure.eventhubs._partition_receiver.getDesiredCapabilities()
+  - com.microsoft.azure.eventhubs._partition_receiver.close()
+  - com.microsoft.azure.eventhubs._partition_receiver.closeSync()
+  - com.microsoft.azure.eventhubs._partition_receiver.DEFAULT_PREFETCH_COUNT
   - com.microsoft.azure.eventhubs._partition_receiver.getEpoch()
-  - com.microsoft.azure.eventhubs._partition_receiver.getFilter(final Message)
   - com.microsoft.azure.eventhubs._partition_receiver.getPartitionId()
   - com.microsoft.azure.eventhubs._partition_receiver.getPrefetchCount()
-  - com.microsoft.azure.eventhubs._partition_receiver.getProperties()
   - com.microsoft.azure.eventhubs._partition_receiver.getReceiveTimeout()
   - com.microsoft.azure.eventhubs._partition_receiver.getRuntimeInformation()
-  - com.microsoft.azure.eventhubs._partition_receiver.onClose()
+  - com.microsoft.azure.eventhubs._partition_receiver.MINIMUM_PREFETCH_COUNT
+  - com.microsoft.azure.eventhubs._partition_receiver.NULL_EPOCH
   - com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
   - com.microsoft.azure.eventhubs._partition_receiver.receiveSync(final int)
   - com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
   - com.microsoft.azure.eventhubs._partition_receiver.setReceiveHandler(final PartitionReceiveHandler)
   - com.microsoft.azure.eventhubs._partition_receiver.setReceiveHandler(final PartitionReceiveHandler,final boolean)
   - com.microsoft.azure.eventhubs._partition_receiver.setReceiveTimeout(Duration)
-  - com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM
   href: com.microsoft.azure.eventhubs._partition_receiver.yml
   langs:
   - java
   name: PartitionReceiver
   nameWithType: PartitionReceiver
   fullName: com.microsoft.azure.eventhubs.PartitionReceiver
-  type: Class
+  type: Interface
   source:
     remote: &o0
       path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 42
+    startLine: 24
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>This is a logical representation of receiving from a EventHub partition. </p>
@@ -42,65 +41,70 @@ items:
     <p>A <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> (i.e., <xref uid="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false">PartitionReceiver.getEpoch</xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
 
     <p></p>
-  syntax: &o1
-    content: public class PartitionReceiver extends ClientEntity implements IReceiverSettingsProvider
+  syntax: &o2
+    content: public interface PartitionReceiver
   see:
-  - type: com.microsoft.azure.eventhubs._event_hub_client.createReceiver(final String,final String,final String)
+  - type: com.microsoft.azure.eventhubs._event_hub_client.createReceiver(final String,final String,final EventPosition)
     description: EventHubClient::createReceiver
-  - type: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final String,final long)
+  - type: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final EventPosition,final long)
     description: EventHubClient::createEpochReceiver
-  inheritance:
-  - java.lang.Object
-  - com.microsoft.azure.eventhubs._client_entity
-  inheritedMembers:
-  - com.microsoft.azure.eventhubs._client_entity.ClientEntity(final String,final ClientEntity)
-  - com.microsoft.azure.eventhubs._client_entity.close()
-  - com.microsoft.azure.eventhubs._client_entity.closeSync()
-  - com.microsoft.azure.eventhubs._client_entity.getClientId()
-  - com.microsoft.azure.eventhubs._client_entity.getLastKnownError()
-  - com.microsoft.azure.eventhubs._client_entity.setClosed()
-  - com.microsoft.azure.eventhubs._client_entity.throwIfClosed()
-- uid: com.microsoft.azure.eventhubs._partition_receiver.END_OF_STREAM
-  id: END_OF_STREAM
+- uid: com.microsoft.azure.eventhubs._partition_receiver.close()
+  id: close()
   parent: com.microsoft.azure.eventhubs._partition_receiver
   href: com.microsoft.azure.eventhubs._partition_receiver.yml
   langs:
   - java
-  name: END_OF_STREAM
-  nameWithType: PartitionReceiver.END_OF_STREAM
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.END_OF_STREAM
-  type: Field
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 60
-  package: com.microsoft.azure.eventhubs
-  summary: <p>This is a constant defined to represent the current end of a partition stream in EventHub. This can be used as an offset argument in receiver creation to start receiving from the latest event, instead of a specific offset or point in time. </p>
-  syntax:
-    content: public static final String END_OF_STREAM= "@latest"
-    return:
-      type: 3d93591e
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getDesiredCapabilities()
-  id: getDesiredCapabilities()
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  langs:
-  - java
-  name: getDesiredCapabilities()
-  nameWithType: PartitionReceiver.getDesiredCapabilities()
-  fullName: Symbol [] com.microsoft.azure.eventhubs.PartitionReceiver.getDesiredCapabilities()
-  overload: com.microsoft.azure.eventhubs._partition_receiver.getDesiredCapabilities*
+  name: close()
+  nameWithType: PartitionReceiver.close()
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionReceiver.close()
+  overload: com.microsoft.azure.eventhubs._partition_receiver.close*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 469
+    startLine: 144
   package: com.microsoft.azure.eventhubs
   syntax:
-    content: public Symbol [] getDesiredCapabilities()
+    content: public CompletableFuture<Void> close()
     return:
-      type: ddcc4456
-  overridden: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getDesiredCapabilities()
+      type: db03ee24
+- uid: com.microsoft.azure.eventhubs._partition_receiver.closeSync()
+  id: closeSync()
+  parent: com.microsoft.azure.eventhubs._partition_receiver
+  href: com.microsoft.azure.eventhubs._partition_receiver.yml
+  langs:
+  - java
+  name: closeSync()
+  nameWithType: PartitionReceiver.closeSync()
+  fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.closeSync()
+  overload: com.microsoft.azure.eventhubs._partition_receiver.closeSync*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
+    startLine: 146
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public void closeSync()
+- uid: com.microsoft.azure.eventhubs._partition_receiver.DEFAULT_PREFETCH_COUNT
+  id: DEFAULT_PREFETCH_COUNT
+  parent: com.microsoft.azure.eventhubs._partition_receiver
+  href: com.microsoft.azure.eventhubs._partition_receiver.yml
+  langs:
+  - java
+  name: DEFAULT_PREFETCH_COUNT
+  nameWithType: PartitionReceiver.DEFAULT_PREFETCH_COUNT
+  fullName: int com.microsoft.azure.eventhubs.PartitionReceiver.DEFAULT_PREFETCH_COUNT
+  type: Field
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
+    startLine: 27
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public int DEFAULT_PREFETCH_COUNT= 999
+    return:
+      type: f75371fa
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getEpoch()
   id: getEpoch()
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -109,13 +113,13 @@ items:
   - java
   name: getEpoch()
   nameWithType: PartitionReceiver.getEpoch()
-  fullName: final long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
+  fullName: long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
   overload: com.microsoft.azure.eventhubs._partition_receiver.getEpoch*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 207
+    startLine: 66
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get the epoch value that this receiver is currently using for partition ownership. </p>
@@ -124,34 +128,10 @@ items:
 
     <p></p>
   syntax: &o4
-    content: public final long getEpoch()
+    content: public long getEpoch()
     return:
-      type: 4c60ae65
+      type: 0364520f
       description: <p>the epoch value that this receiver is currently using for partition ownership. </p>
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getFilter(final Message)
-  id: getFilter(final Message)
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  langs:
-  - java
-  name: getFilter(final Message lastReceivedMessage)
-  nameWithType: PartitionReceiver.getFilter(final Message lastReceivedMessage)
-  fullName: Map<Symbol, UnknownDescribedType> com.microsoft.azure.eventhubs.PartitionReceiver.getFilter(final Message lastReceivedMessage)
-  overload: com.microsoft.azure.eventhubs._partition_receiver.getFilter*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 398
-  package: com.microsoft.azure.eventhubs
-  syntax:
-    content: public Map<Symbol, UnknownDescribedType> getFilter(final Message lastReceivedMessage)
-    parameters:
-    - id: lastReceivedMessage
-      type: 8d3e47ad
-    return:
-      type: 39a8ce04
-  overridden: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getFilter(final Message)
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getPartitionId()
   id: getPartitionId()
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -160,22 +140,22 @@ items:
   - java
   name: getPartitionId()
   nameWithType: PartitionReceiver.getPartitionId()
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId()
+  fullName: String com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId()
   overload: com.microsoft.azure.eventhubs._partition_receiver.getPartitionId*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 162
+    startLine: 36
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get EventHubs partition identifier.</p>
 
     <p></p>
   syntax:
-    content: public final String getPartitionId()
+    content: public String getPartitionId()
     return:
-      type: 3d93591e
+      type: "26831127"
       description: <p>The identifier representing the partition from which this receiver is fetching data </p>
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getPrefetchCount()
   id: getPrefetchCount()
@@ -185,47 +165,26 @@ items:
   - java
   name: getPrefetchCount()
   nameWithType: PartitionReceiver.getPrefetchCount()
-  fullName: final int com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount()
+  fullName: int com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount()
   overload: com.microsoft.azure.eventhubs._partition_receiver.getPrefetchCount*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 172
+    startLine: 44
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Get Prefetch Count configured on the Receiver.</p>
 
     <p></p>
   syntax:
-    content: public final int getPrefetchCount()
+    content: public int getPrefetchCount()
     return:
-      type: cd225469
+      type: f75371fa
       description: <p>the upper limit of events this receiver will actively receive regardless of whether a receive operation is pending. </p>
   see:
   - type: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
     description: setPrefetchCount
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getProperties()
-  id: getProperties()
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  langs:
-  - java
-  name: getProperties()
-  nameWithType: PartitionReceiver.getProperties()
-  fullName: Map<Symbol, Object> com.microsoft.azure.eventhubs.PartitionReceiver.getProperties()
-  overload: com.microsoft.azure.eventhubs._partition_receiver.getProperties*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 448
-  package: com.microsoft.azure.eventhubs
-  syntax:
-    content: public Map<Symbol, Object> getProperties()
-    return:
-      type: 6bd35e50
-  overridden: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getProperties()
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getReceiveTimeout()
   id: getReceiveTimeout()
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -234,18 +193,18 @@ items:
   - java
   name: getReceiveTimeout()
   nameWithType: PartitionReceiver.getReceiveTimeout()
-  fullName: final Duration com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout()
+  fullName: Duration com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout()
   overload: com.microsoft.azure.eventhubs._partition_receiver.getReceiveTimeout*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 176
+    startLine: 46
   package: com.microsoft.azure.eventhubs
   syntax:
-    content: public final Duration getReceiveTimeout()
+    content: public Duration getReceiveTimeout()
     return:
-      type: 89ac7c4d
+      type: e02a2de0
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getRuntimeInformation()
   id: getRuntimeInformation()
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -254,43 +213,61 @@ items:
   - java
   name: getRuntimeInformation()
   nameWithType: PartitionReceiver.getRuntimeInformation()
-  fullName: final ReceiverRuntimeInformation com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation()
+  fullName: ReceiverRuntimeInformation com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation()
   overload: com.microsoft.azure.eventhubs._partition_receiver.getRuntimeInformation*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 218
+    startLine: 75
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Gets the temporal <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> for this EventHub partition. In general, this information is a representation of, where this <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s end of stream is, at the time <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information.getRetrievalTime()" data-throw-if-not-resolved="false">ReceiverRuntimeInformation#getRetrievalTime()</xref>.</p>
 
     <p></p>
   syntax:
-    content: public final ReceiverRuntimeInformation getRuntimeInformation()
+    content: public ReceiverRuntimeInformation getRuntimeInformation()
     return:
-      type: 93de0ef9com.microsoft.azure.eventhubs._receiver_runtime_information
+      type: com.microsoft.azure.eventhubs._receiver_runtime_information
       description: <p>receiver runtime information </p>
-- uid: com.microsoft.azure.eventhubs._partition_receiver.onClose()
-  id: onClose()
+- uid: com.microsoft.azure.eventhubs._partition_receiver.MINIMUM_PREFETCH_COUNT
+  id: MINIMUM_PREFETCH_COUNT
   parent: com.microsoft.azure.eventhubs._partition_receiver
   href: com.microsoft.azure.eventhubs._partition_receiver.yml
   langs:
   - java
-  name: onClose()
-  nameWithType: PartitionReceiver.onClose()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionReceiver.onClose()
-  overload: com.microsoft.azure.eventhubs._partition_receiver.onClose*
-  type: Method
+  name: MINIMUM_PREFETCH_COUNT
+  nameWithType: PartitionReceiver.MINIMUM_PREFETCH_COUNT
+  fullName: int com.microsoft.azure.eventhubs.PartitionReceiver.MINIMUM_PREFETCH_COUNT
+  type: Field
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 381
+    startLine: 26
   package: com.microsoft.azure.eventhubs
   syntax:
-    content: public CompletableFuture<Void> onClose()
+    content: public int MINIMUM_PREFETCH_COUNT= 10
     return:
-      type: db03ee24
+      type: f75371fa
+- uid: com.microsoft.azure.eventhubs._partition_receiver.NULL_EPOCH
+  id: NULL_EPOCH
+  parent: com.microsoft.azure.eventhubs._partition_receiver
+  href: com.microsoft.azure.eventhubs._partition_receiver.yml
+  langs:
+  - java
+  name: NULL_EPOCH
+  nameWithType: PartitionReceiver.NULL_EPOCH
+  fullName: long com.microsoft.azure.eventhubs.PartitionReceiver.NULL_EPOCH
+  type: Field
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
+    startLine: 29
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public long NULL_EPOCH= 0
+    return:
+      type: 0364520f
 - uid: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
   id: receive(final int)
   parent: com.microsoft.azure.eventhubs._partition_receiver
@@ -305,12 +282,12 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 290
+    startLine: 121
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from an EventHub partition </p>
 
-    <p>Sample code (sample uses sync version of the api but concept are identical): <pre><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
+    <p>Sample code (sample uses sync version of the api but concept are identical): <pre><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)" data-throw-if-not-resolved="false">EventHubClient.createSync</xref>("__connection__");
 
     <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
 
@@ -380,26 +357,26 @@ items:
   - java
   name: receiveSync(final int maxEventCount)
   nameWithType: PartitionReceiver.receiveSync(final int maxEventCount)
-  fullName: final Iterable<EventData> com.microsoft.azure.eventhubs.PartitionReceiver.receiveSync(final int maxEventCount)
+  fullName: default Iterable<EventData> com.microsoft.azure.eventhubs.PartitionReceiver.receiveSync(final int maxEventCount)
   overload: com.microsoft.azure.eventhubs._partition_receiver.receiveSync*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 230
+    startLine: 84
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._partition_receiver.receive(final int)" data-throw-if-not-resolved="false">receive</xref>.</p>
 
     <p></p>
   syntax:
-    content: public final Iterable<EventData> receiveSync(final int maxEventCount)
+    content: public default Iterable<EventData> receiveSync(final int maxEventCount)
     parameters:
     - id: maxEventCount
       type: cd225469
       description: <p>maximum number of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s that this call should return </p>
     return:
-      type: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
+      type: 6ed053e5com.microsoft.azure.eventhubs._event_dataa08ddfce
       description: <p>Batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is present. </p>
   exceptions:
   - type: com.microsoft.azure.eventhubs._event_hub_exception
@@ -412,13 +389,13 @@ items:
   - java
   name: setPrefetchCount(final int prefetchCount)
   nameWithType: PartitionReceiver.setPrefetchCount(final int prefetchCount)
-  fullName: final void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
+  fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
   overload: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 191
+    startLine: 57
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Set the number of events that can be pre-fetched and cached at the <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
@@ -426,14 +403,12 @@ items:
     <p>By default the value is 300</p>
 
     <p></p>
-  syntax: &o2
-    content: public final void setPrefetchCount(final int prefetchCount)
+  syntax: &o1
+    content: public void setPrefetchCount(final int prefetchCount)
     parameters:
     - id: prefetchCount
       type: cd225469
       description: <p>the number of events to pre-fetch. value must be between 10 and 999. Default is 300. </p>
-    return:
-      type: 3f6357ce
   exceptions:
   - type: com.microsoft.azure.eventhubs._event_hub_exception
     description: <p>if setting prefetchCount encounters error </p>
@@ -451,7 +426,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 326
+    startLine: 131
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Register a receive handler that will be called when an event is available. A <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
@@ -480,7 +455,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 339
+    startLine: 142
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Register a receive handler that will be called when an event is available. A <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
@@ -512,105 +487,73 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 180
+    startLine: 48
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public void setReceiveTimeout(Duration value)
     parameters:
     - id: value
       type: e02a2de0
-- uid: com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM
-  id: START_OF_STREAM
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  langs:
-  - java
-  name: START_OF_STREAM
-  nameWithType: PartitionReceiver.START_OF_STREAM
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.START_OF_STREAM
-  type: Field
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 53
-  package: com.microsoft.azure.eventhubs
-  summary: <p>This is a constant defined to represent the start of a partition stream in EventHub. </p>
-  syntax:
-    content: public static final String START_OF_STREAM= "-1"
-    return:
-      type: 3d93591e
 references:
-- uid: 3d93591e
+- uid: f75371fa
   spec.java:
-  - name: final String
-    fullName: final String
+  - name: int
+    fullName: int
+- uid: 0364520f
+  spec.java:
+  - name: long
+    fullName: long
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getPartitionId*
   name: getPartitionId
   nameWithType: PartitionReceiver.getPartitionId
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId
+  fullName: String com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId
   package: com.microsoft.azure.eventhubs
-- uid: cd225469
-  spec.java:
-  - name: final int
-    fullName: final int
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getPrefetchCount*
   name: getPrefetchCount
   nameWithType: PartitionReceiver.getPrefetchCount
-  fullName: final int com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount
-  package: com.microsoft.azure.eventhubs
-- uid: 89ac7c4d
-  spec.java:
-  - name: final Duration
-    fullName: final Duration
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getReceiveTimeout*
-  name: getReceiveTimeout
-  nameWithType: PartitionReceiver.getReceiveTimeout
-  fullName: final Duration com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout
+  fullName: int com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount
   package: com.microsoft.azure.eventhubs
 - uid: e02a2de0
   spec.java:
   - name: Duration
     fullName: Duration
+- uid: com.microsoft.azure.eventhubs._partition_receiver.getReceiveTimeout*
+  name: getReceiveTimeout
+  nameWithType: PartitionReceiver.getReceiveTimeout
+  fullName: Duration com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout
+  package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._partition_receiver.setReceiveTimeout*
   name: setReceiveTimeout
   nameWithType: PartitionReceiver.setReceiveTimeout
   fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveTimeout
   package: com.microsoft.azure.eventhubs
-- uid: 3f6357ce
+- uid: cd225469
   spec.java:
-  - name: final void
-    fullName: final void
+  - name: final int
+    fullName: final int
 - uid: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount*
   name: setPrefetchCount
   nameWithType: PartitionReceiver.setPrefetchCount
-  fullName: final void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount
+  fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount
   package: com.microsoft.azure.eventhubs
-- uid: 4c60ae65
-  spec.java:
-  - name: final long
-    fullName: final long
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getEpoch*
   name: getEpoch
   nameWithType: PartitionReceiver.getEpoch
-  fullName: final long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch
+  fullName: long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch
   package: com.microsoft.azure.eventhubs
-- uid: 93de0ef9com.microsoft.azure.eventhubs._receiver_runtime_information
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.azure.eventhubs._receiver_runtime_information
-    name: ReceiverRuntimeInformation
-    fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
-    href: com.microsoft.azure.eventhubs._receiver_runtime_information.yml
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getRuntimeInformation*
   name: getRuntimeInformation
   nameWithType: PartitionReceiver.getRuntimeInformation
-  fullName: final ReceiverRuntimeInformation com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation
+  fullName: ReceiverRuntimeInformation com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation
   package: com.microsoft.azure.eventhubs
-- uid: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
+- uid: 6ed053e5com.microsoft.azure.eventhubs._event_dataa08ddfce
   spec.java:
-  - name: final Iterable<
-    fullName: final Iterable<
+  - name: default Iterable<
+    fullName: default Iterable<
   - uid: com.microsoft.azure.eventhubs._event_data
     name: EventData
     fullName: com.microsoft.azure.eventhubs.EventData
@@ -620,7 +563,7 @@ references:
 - uid: com.microsoft.azure.eventhubs._partition_receiver.receiveSync*
   name: receiveSync
   nameWithType: PartitionReceiver.receiveSync
-  fullName: final Iterable<EventData> com.microsoft.azure.eventhubs.PartitionReceiver.receiveSync
+  fullName: default Iterable<EventData> com.microsoft.azure.eventhubs.PartitionReceiver.receiveSync
   package: com.microsoft.azure.eventhubs
 - uid: 5ae8a14ccom.microsoft.azure.eventhubs._event_datae7daa122
   spec.java:
@@ -658,190 +601,31 @@ references:
   spec.java:
   - name: final boolean
     fullName: final boolean
-- uid: com.microsoft.azure.eventhubs._partition_receiver.onClose*
-  name: onClose
-  nameWithType: PartitionReceiver.onClose
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionReceiver.onClose
+- uid: com.microsoft.azure.eventhubs._partition_receiver.close*
+  name: close
+  nameWithType: PartitionReceiver.close
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionReceiver.close
   package: com.microsoft.azure.eventhubs
-- uid: 8d3e47ad
-  spec.java:
-  - name: final Message
-    fullName: final Message
-- uid: 39a8ce04
-  spec.java:
-  - name: Map<Symbol, UnknownDescribedType>
-    fullName: Map<Symbol, UnknownDescribedType>
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getFilter*
-  name: getFilter
-  nameWithType: PartitionReceiver.getFilter
-  fullName: Map<Symbol, UnknownDescribedType> com.microsoft.azure.eventhubs.PartitionReceiver.getFilter
+- uid: com.microsoft.azure.eventhubs._partition_receiver.closeSync*
+  name: closeSync
+  nameWithType: PartitionReceiver.closeSync
+  fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.closeSync
   package: com.microsoft.azure.eventhubs
-- uid: 6bd35e50
-  spec.java:
-  - name: Map<Symbol, Object>
-    fullName: Map<Symbol, Object>
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getProperties*
-  name: getProperties
-  nameWithType: PartitionReceiver.getProperties
-  fullName: Map<Symbol, Object> com.microsoft.azure.eventhubs.PartitionReceiver.getProperties
-  package: com.microsoft.azure.eventhubs
-- uid: ddcc4456
-  spec.java:
-  - name: Symbol []
-    fullName: Symbol []
-- uid: com.microsoft.azure.eventhubs._partition_receiver.getDesiredCapabilities*
-  name: getDesiredCapabilities
-  nameWithType: PartitionReceiver.getDesiredCapabilities
-  fullName: Symbol [] com.microsoft.azure.eventhubs.PartitionReceiver.getDesiredCapabilities
-  package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs._client_entity.ClientEntity(final String,final ClientEntity)
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: ClientEntity(final String clientId, final ClientEntity parent)
-  nameWithType: ClientEntity.ClientEntity(final String clientId, final ClientEntity parent)
-  fullName: com.microsoft.azure.eventhubs.ClientEntity.ClientEntity(final String clientId, final ClientEntity parent)
-  type: Constructor
-  syntax:
-    content: protected ClientEntity(final String clientId, final ClientEntity parent)
-    parameters:
-    - id: clientId
-      type: 3d93591e
-    - id: parent
-      type: 93de0ef9com.microsoft.azure.eventhubs._client_entity
-- uid: com.microsoft.azure.eventhubs._client_entity.close()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: close()
-  nameWithType: ClientEntity.close()
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.ClientEntity.close()
+- uid: com.microsoft.azure.eventhubs.impl._partition_receiver_impl
+- uid: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
+  parent: com.microsoft.azure.eventhubs._partition_receiver
+  href: com.microsoft.azure.eventhubs._partition_receiver.yml
+  name: setPrefetchCount(final int prefetchCount)
+  nameWithType: PartitionReceiver.setPrefetchCount(final int prefetchCount)
+  fullName: void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
   type: Method
-  syntax:
-    content: public final CompletableFuture<Void> close()
-    return:
-      type: fc984e6f
-- uid: com.microsoft.azure.eventhubs._client_entity.closeSync()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: closeSync()
-  nameWithType: ClientEntity.closeSync()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.closeSync()
-  type: Method
-  syntax:
-    content: public final void closeSync()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity.getClientId()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: getClientId()
-  nameWithType: ClientEntity.getClientId()
-  fullName: String com.microsoft.azure.eventhubs.ClientEntity.getClientId()
-  type: Method
-  syntax:
-    content: public String getClientId()
-    return:
-      type: "26831127"
-- uid: com.microsoft.azure.eventhubs._client_entity.getLastKnownError()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: getLastKnownError()
-  nameWithType: ClientEntity.getLastKnownError()
-  fullName: Exception com.microsoft.azure.eventhubs.ClientEntity.getLastKnownError()
-  type: Method
-  syntax:
-    content: protected Exception getLastKnownError()
-    return:
-      type: 8a99d4b0
-- uid: com.microsoft.azure.eventhubs._client_entity.setClosed()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: setClosed()
-  nameWithType: ClientEntity.setClosed()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.setClosed()
-  type: Method
-  syntax:
-    content: protected final void setClosed()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity.throwIfClosed()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: throwIfClosed()
-  nameWithType: ClientEntity.throwIfClosed()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.throwIfClosed()
-  type: Method
-  syntax:
-    content: protected final void throwIfClosed()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: ClientEntity
-  nameWithType: ClientEntity
-  fullName: com.microsoft.azure.eventhubs.ClientEntity
-  type: Class
-  summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
-  syntax:
-    content: public class ClientEntity
-- uid: com.microsoft.azure.eventhubs._i_receiver_settings_provider
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._i_receiver_settings_provider.yml
-  name: IReceiverSettingsProvider
-  nameWithType: IReceiverSettingsProvider
-  fullName: com.microsoft.azure.eventhubs.IReceiverSettingsProvider
-  type: Interface
-  syntax:
-    content: public interface IReceiverSettingsProvider
-- uid: com.microsoft.azure.eventhubs._messaging_factory
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._messaging_factory.yml
-  name: MessagingFactory
-  nameWithType: MessagingFactory
-  fullName: com.microsoft.azure.eventhubs.MessagingFactory
-  type: Class
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
-  syntax:
-    content: public class MessagingFactory extends ClientEntity implements IAmqpConnection,ISessionProvider
-- uid: com.microsoft.azure.eventhubs._message_receiver
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._message_receiver.yml
-  name: MessageReceiver
-  nameWithType: MessageReceiver
-  fullName: com.microsoft.azure.eventhubs.MessageReceiver
-  type: Class
-  summary: <p>Common Receiver that abstracts all amqp related details translates event-driven reactor model into async receive Api </p>
-  syntax:
-    content: public class MessageReceiver extends ClientEntity implements IAmqpReceiver
-- uid: com.microsoft.azure.eventhubs._receive_pump
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._receive_pump.yml
-  name: ReceivePump
-  nameWithType: ReceivePump
-  fullName: com.microsoft.azure.eventhubs.ReceivePump
-  type: Class
-  syntax:
-    content: public class ReceivePump
-- uid: com.microsoft.azure.eventhubs._receiver_options
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._receiver_options.yml
-  name: ReceiverOptions
-  nameWithType: ReceiverOptions
-  fullName: com.microsoft.azure.eventhubs.ReceiverOptions
-  type: Class
-  summary: <p>Represents various optional behaviors which can be turned on or off during the creation of a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
-  syntax:
-    content: public class ReceiverOptions
-- uid: com.microsoft.azure.eventhubs._receiver_runtime_information
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._receiver_runtime_information.yml
-  name: ReceiverRuntimeInformation
-  nameWithType: ReceiverRuntimeInformation
-  fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
-  type: Class
-  summary: <p>Represents the temporal receiver runtime information for a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. Current received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> and <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> can be used to find approximate value of pending events (which are not processed yet). </p>
-  syntax:
-    content: public class ReceiverRuntimeInformation
+  summary: >-
+    <p>Set the number of events that can be pre-fetched and cached at the <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
+
+    <p>By default the value is 300</p>
+
+    <p></p>
+  syntax: *o1
 - uid: com.microsoft.azure.eventhubs._event_hub_exception
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._event_hub_exception.yml
@@ -858,28 +642,24 @@ references:
   name: PartitionReceiver
   nameWithType: PartitionReceiver
   fullName: com.microsoft.azure.eventhubs.PartitionReceiver
-  type: Class
+  type: Interface
   summary: >-
     <p>This is a logical representation of receiving from a EventHub partition. </p>
 
     <p>A <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <itemizedlist><listitem><p>If an epoch based <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> (i.e., <xref uid="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false">PartitionReceiver.getEpoch</xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p></listitem><listitem><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></listitem></itemizedlist></p>
 
     <p></p>
-  syntax: *o1
-- uid: com.microsoft.azure.eventhubs._partition_receiver.setPrefetchCount(final int)
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: setPrefetchCount(final int prefetchCount)
-  nameWithType: PartitionReceiver.setPrefetchCount(final int prefetchCount)
-  fullName: final void com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
-  type: Method
-  summary: >-
-    <p>Set the number of events that can be pre-fetched and cached at the <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
-
-    <p>By default the value is 300</p>
-
-    <p></p>
   syntax: *o2
+- uid: com.microsoft.azure.eventhubs._receiver_runtime_information
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._receiver_runtime_information.yml
+  name: ReceiverRuntimeInformation
+  nameWithType: ReceiverRuntimeInformation
+  fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
+  type: Class
+  summary: <p>Represents the temporal end of stream information of an EventHubs Partition. </p>
+  syntax:
+    content: public class ReceiverRuntimeInformation
 - uid: com.microsoft.azure.eventhubs._receiver_runtime_information.getRetrievalTime()
   parent: com.microsoft.azure.eventhubs._receiver_runtime_information
   href: com.microsoft.azure.eventhubs._receiver_runtime_information.yml
@@ -887,10 +667,7 @@ references:
   nameWithType: ReceiverRuntimeInformation.getRetrievalTime()
   fullName: Instant com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.getRetrievalTime()
   type: Method
-  summary: >-
-    <p>Get the timestamp at which this <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> was constructed.</p>
-
-    <p></p>
+  summary: <p>The value indicating when this information was retrieved from the Event Hubs service </p>
   syntax:
     content: public Instant getRetrievalTime()
     return:
@@ -902,7 +679,7 @@ references:
   name: EventData
   nameWithType: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
-  type: Class
+  type: Interface
   summary: >-
     <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
@@ -918,7 +695,7 @@ references:
 
     </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
-    content: public class EventData
+    content: public interface EventData
 - uid: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
   parent: com.microsoft.azure.eventhubs._partition_receiver
   href: com.microsoft.azure.eventhubs._partition_receiver.yml
@@ -929,7 +706,7 @@ references:
   summary: >-
     <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from an EventHub partition </p>
 
-    <p>Sample code (sample uses sync version of the api but concept are identical): <pre><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
+    <p>Sample code (sample uses sync version of the api but concept are identical): <pre><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)" data-throw-if-not-resolved="false">EventHubClient.createSync</xref>("__connection__");
 
     <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
 
@@ -989,30 +766,33 @@ references:
   name: EventHubClient
   nameWithType: EventHubClient
   fullName: com.microsoft.azure.eventhubs.EventHubClient
-  type: Class
+  type: Interface
   summary: >-
     <p>Anchor class - all EventHub client operations STARTS here.</p>
 
     <p></p>
   syntax:
-    content: public class EventHubClient extends ClientEntity implements IEventHubClient
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)
+    content: public interface EventHubClient
+- uid: com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createFromConnectionStringSync(final String connectionString)
-  nameWithType: EventHubClient.createFromConnectionStringSync(final String connectionString)
-  fullName: static EventHubClient com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionStringSync(final String connectionString)
+  name: createSync(final String connectionString, final Executor executor)
+  nameWithType: EventHubClient.createSync(final String connectionString, final Executor executor)
+  fullName: static EventHubClient com.microsoft.azure.eventhubs.EventHubClient.createSync(final String connectionString, final Executor executor)
   type: Method
   summary: >-
-    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">createFromConnectionString(String)</xref>.</p>
+    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)" data-throw-if-not-resolved="false">create(String, Executor)</xref>.</p>
 
     <p></p>
   syntax:
-    content: public static EventHubClient createFromConnectionStringSync(final String connectionString)
+    content: public static EventHubClient createSync(final String connectionString, final Executor executor)
     parameters:
     - id: connectionString
       type: 3d93591e
       description: <p>The connection string to be used. See <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
+    - id: executor
+      type: 506a8fe9
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">Executor</xref> to run all tasks performed by <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref>. </p>
     return:
       type: com.microsoft.azure.eventhubs._event_hub_client
       description: >-
@@ -1025,55 +805,19 @@ references:
   name: PartitionReceiveHandler
   nameWithType: PartitionReceiveHandler
   fullName: com.microsoft.azure.eventhubs.PartitionReceiveHandler
-  type: Class
+  type: Interface
   summary: >-
-    <p>A handler class for the receive operation. Use any implementation of this abstract class to specify user action when using <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s setReceiveHandler().</p>
+    <p>The handler to invoke after receiving <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s setReceiveHandler().</p>
 
     <p></p>
   syntax:
-    content: public class PartitionReceiveHandler
-- uid: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getFilter(final Message)
-  parent: com.microsoft.azure.eventhubs._i_receiver_settings_provider
-  href: com.microsoft.azure.eventhubs._i_receiver_settings_provider.yml
-  name: getFilter(final Message lastReceivedMessage)
-  nameWithType: IReceiverSettingsProvider.getFilter(final Message lastReceivedMessage)
-  fullName: Map<Symbol, UnknownDescribedType> com.microsoft.azure.eventhubs.IReceiverSettingsProvider.getFilter(final Message lastReceivedMessage)
-  type: Method
-  syntax:
-    content: public Map<Symbol, UnknownDescribedType> getFilter(final Message lastReceivedMessage)
-    parameters:
-    - id: lastReceivedMessage
-      type: 8d3e47ad
-    return:
-      type: 39a8ce04
-- uid: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getProperties()
-  parent: com.microsoft.azure.eventhubs._i_receiver_settings_provider
-  href: com.microsoft.azure.eventhubs._i_receiver_settings_provider.yml
-  name: getProperties()
-  nameWithType: IReceiverSettingsProvider.getProperties()
-  fullName: Map<Symbol, Object> com.microsoft.azure.eventhubs.IReceiverSettingsProvider.getProperties()
-  type: Method
-  syntax:
-    content: public Map<Symbol, Object> getProperties()
-    return:
-      type: 6bd35e50
-- uid: com.microsoft.azure.eventhubs._i_receiver_settings_provider.getDesiredCapabilities()
-  parent: com.microsoft.azure.eventhubs._i_receiver_settings_provider
-  href: com.microsoft.azure.eventhubs._i_receiver_settings_provider.yml
-  name: getDesiredCapabilities()
-  nameWithType: IReceiverSettingsProvider.getDesiredCapabilities()
-  fullName: Symbol [] com.microsoft.azure.eventhubs.IReceiverSettingsProvider.getDesiredCapabilities()
-  type: Method
-  syntax:
-    content: public Symbol [] getDesiredCapabilities()
-    return:
-      type: ddcc4456
+    content: public interface PartitionReceiveHandler
 - uid: com.microsoft.azure.eventhubs._partition_receiver.getEpoch()
   parent: com.microsoft.azure.eventhubs._partition_receiver
   href: com.microsoft.azure.eventhubs._partition_receiver.yml
   name: getEpoch()
   nameWithType: PartitionReceiver.getEpoch()
-  fullName: final long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
+  fullName: long com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
   type: Method
   summary: >-
     <p>Get the epoch value that this receiver is currently using for partition ownership. </p>
@@ -1082,21 +826,19 @@ references:
 
     <p></p>
   syntax: *o4
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createReceiver(final String,final String,final String)
+- uid: com.microsoft.azure.eventhubs._event_hub_client.createReceiver(final String,final String,final EventPosition)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createReceiver(final String consumerGroupName, final String partitionId, final String startingOffset)
-  nameWithType: EventHubClient.createReceiver(final String consumerGroupName, final String partitionId, final String startingOffset)
-  fullName: final CompletableFuture<PartitionReceiver> com.microsoft.azure.eventhubs.EventHubClient.createReceiver(final String consumerGroupName, final String partitionId, final String startingOffset)
+  name: createReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition)
+  nameWithType: EventHubClient.createReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition)
+  fullName: CompletableFuture<PartitionReceiver> com.microsoft.azure.eventhubs.EventHubClient.createReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition)
   type: Method
   summary: >-
-    <p>The receiver is created for a specific EventHub partition from the specific consumer group. </p>
-
-    <p>NOTE: There can be a maximum number of receivers that can run in parallel per ConsumerGroup per Partition. The limit is enforced by the Event Hub service - current limit is 5 receivers in parallel. Having multiple receivers reading from offsets that are far apart on the same consumer group / partition combo will have significant performance Impact.</p>
+    <p>Create the EventHub receiver with given partition id and start receiving from the specified starting offset. The receiver is created for a specific EventHub Partition from the specific consumer group.</p>
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<PartitionReceiver> createReceiver(final String consumerGroupName, final String partitionId, final String startingOffset)
+    content: public CompletableFuture<PartitionReceiver> createReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition)
     parameters:
     - id: consumerGroupName
       type: 3d93591e
@@ -1104,18 +846,18 @@ references:
     - id: partitionId
       type: 3d93591e
       description: <p>the partition Id that the receiver belongs to. All data received will be from this partition only. </p>
-    - id: startingOffset
-      type: 3d93591e
-      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref uid="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false">PartitionReceiver#START_OF_STREAM</xref></p>'
+    - id: eventPosition
+      type: 93de0ef9com.microsoft.azure.eventhubs._event_position
+      description: <p>the position to start receiving the events from. See <xref uid="com.microsoft.azure.eventhubs._event_position" data-throw-if-not-resolved="false">EventPosition</xref></p>
     return:
-      type: 9971d449com.microsoft.azure.eventhubs._partition_receivera08ddfce
+      type: 9cdf14d0com.microsoft.azure.eventhubs._partition_receivera08ddfce
       description: <p>a CompletableFuture that would result in a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> instance when it is completed. </p>
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final String,final long)
+- uid: com.microsoft.azure.eventhubs._event_hub_client.createEpochReceiver(final String,final String,final EventPosition,final long)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createEpochReceiver(final String consumerGroupName, final String partitionId, final String startingOffset, final long epoch)
-  nameWithType: EventHubClient.createEpochReceiver(final String consumerGroupName, final String partitionId, final String startingOffset, final long epoch)
-  fullName: final CompletableFuture<PartitionReceiver> com.microsoft.azure.eventhubs.EventHubClient.createEpochReceiver(final String consumerGroupName, final String partitionId, final String startingOffset, final long epoch)
+  name: createEpochReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition, final long epoch)
+  nameWithType: EventHubClient.createEpochReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition, final long epoch)
+  fullName: CompletableFuture<PartitionReceiver> com.microsoft.azure.eventhubs.EventHubClient.createEpochReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition, final long epoch)
   type: Method
   summary: >-
     <p>Create a Epoch based EventHub receiver with given partition id and start receiving from the beginning of the partition stream. The receiver is created for a specific EventHub Partition from the specific consumer group. </p>
@@ -1124,7 +866,7 @@ references:
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<PartitionReceiver> createEpochReceiver(final String consumerGroupName, final String partitionId, final String startingOffset, final long epoch)
+    content: public CompletableFuture<PartitionReceiver> createEpochReceiver(final String consumerGroupName, final String partitionId, final EventPosition eventPosition, final long epoch)
     parameters:
     - id: consumerGroupName
       type: 3d93591e
@@ -1132,12 +874,12 @@ references:
     - id: partitionId
       type: 3d93591e
       description: <p>the partition Id that the receiver belongs to. All data received will be from this partition only. </p>
-    - id: startingOffset
-      type: 3d93591e
-      description: '<p>the offset to start receiving the events from. To receive from start of the stream use: <xref uid="com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM" data-throw-if-not-resolved="false">PartitionReceiver#START_OF_STREAM</xref></p>'
+    - id: eventPosition
+      type: 93de0ef9com.microsoft.azure.eventhubs._event_position
+      description: <p>the position to start receiving the events from. See <xref uid="com.microsoft.azure.eventhubs._event_position" data-throw-if-not-resolved="false">EventPosition</xref></p>
     - id: epoch
       type: 4c60ae65
       description: <p>an unique identifier (epoch value) that the service uses, to enforce partition/lease ownership. </p>
     return:
-      type: 9971d449com.microsoft.azure.eventhubs._partition_receivera08ddfce
+      type: 9cdf14d0com.microsoft.azure.eventhubs._partition_receivera08ddfce
       description: <p>a CompletableFuture that would result in a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> when it is completed. </p>

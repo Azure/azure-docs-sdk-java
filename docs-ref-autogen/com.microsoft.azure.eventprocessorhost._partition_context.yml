@@ -24,7 +24,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 17
+    startLine: 23
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public class PartitionContext
@@ -38,22 +38,27 @@ items:
   - java
   name: checkpoint()
   nameWithType: PartitionContext.checkpoint()
-  fullName: void com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint()
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint()
   overload: com.microsoft.azure.eventprocessorhost._partition_context.checkpoint*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 147
+    startLine: 171
   package: com.microsoft.azure.eventprocessorhost
-  summary: <p>Writes the current offset and sequenceNumber to the checkpoint store via the checkpoint manager. </p>
+  summary: >-
+    <p>Writes the position of the last event in the current batch to the checkpoint store via the checkpoint manager.</p>
+
+    <p>It is important to check the result in order to detect failures.</p>
+
+    <p>If receiving started from a user-provided EventPosition and no events have been received yet, then this will fail. (This scenario is possible when invoke-after-receive-timeout has been set in <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref>.)</p>
+
+    <p></p>
   syntax:
-    content: public void checkpoint()
-  exceptions:
-  - type: 3c87bd19
-    description: <p>If this.sequenceNumber is less than the last checkpointed value </p>
-  - type: f25e3dc2
-  - type: 8256ba40
+    content: public CompletableFuture<Void> checkpoint()
+    return:
+      type: db03ee24
+      description: <p>CompletableFuture { -&gt;} null when the checkpoint has been persisted successfully, completes exceptionally on error. </p>
 - uid: com.microsoft.azure.eventprocessorhost._partition_context.checkpoint(EventData)
   id: checkpoint(EventData)
   parent: com.microsoft.azure.eventprocessorhost._partition_context
@@ -62,29 +67,29 @@ items:
   - java
   name: checkpoint(EventData event)
   nameWithType: PartitionContext.checkpoint(EventData event)
-  fullName: void com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint(EventData event)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint(EventData event)
   overload: com.microsoft.azure.eventprocessorhost._partition_context.checkpoint*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 168
+    startLine: 195
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Stores the offset and sequenceNumber from the provided received EventData instance, then writes those values to the checkpoint store via the checkpoint manager.</p>
+    <p>Writes the position of the provided EventData instance to the checkpoint store via the checkpoint manager.</p>
+
+    <p>It is important to check the result in order to detect failures.</p>
 
     <p></p>
   syntax:
-    content: public void checkpoint(EventData event)
+    content: public CompletableFuture<Void> checkpoint(EventData event)
     parameters:
     - id: event
       type: com.microsoft.azure.eventhubs._event_data
-      description: <p>A received EventData with valid offset and sequenceNumber </p>
-  exceptions:
-  - type: 3c87bd19
-    description: <p>If the sequenceNumber in the provided event is less than the last checkpointed value </p>
-  - type: f25e3dc2
-  - type: 8256ba40
+      description: <p>A received EventData </p>
+    return:
+      type: db03ee24
+      description: <p>CompletableFuture { -&gt;} null when the checkpoint has been persisted successfully, completes exceptionally on error. </p>
 - uid: com.microsoft.azure.eventprocessorhost._partition_context.getConsumerGroupName()
   id: getConsumerGroupName()
   parent: com.microsoft.azure.eventprocessorhost._partition_context
@@ -99,7 +104,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 41
+    startLine: 48
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public String getConsumerGroupName()
@@ -119,7 +124,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 46
+    startLine: 58
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public String getEventHubPath()
@@ -139,7 +144,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 51
+    startLine: 68
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public String getOwner()
@@ -159,7 +164,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 92
+    startLine: 120
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public String getPartitionId()
@@ -179,7 +184,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/PartitionContext.java
-    startLine: 56
+    startLine: 79
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public ReceiverRuntimeInformation getRuntimeInformation()
@@ -215,32 +220,15 @@ references:
   nameWithType: PartitionContext.getPartitionId
   fullName: String com.microsoft.azure.eventprocessorhost.PartitionContext.getPartitionId
   package: com.microsoft.azure.eventprocessorhost
-- uid: 3c87bd19
+- uid: db03ee24
   spec.java:
-  - name: IllegalArgumentException
-    fullName: IllegalArgumentException
-- uid: f25e3dc2
-  spec.java:
-  - name: ExecutionException
-    fullName: ExecutionException
-- uid: 8256ba40
-  spec.java:
-  - name: InterruptedException
-    fullName: InterruptedException
+  - name: CompletableFuture<Void>
+    fullName: CompletableFuture<Void>
 - uid: com.microsoft.azure.eventprocessorhost._partition_context.checkpoint*
   name: checkpoint
   nameWithType: PartitionContext.checkpoint
-  fullName: void com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.PartitionContext.checkpoint
   package: com.microsoft.azure.eventprocessorhost
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_host
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
-  name: EventProcessorHost
-  nameWithType: EventProcessorHost
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost
-  type: Class
-  syntax:
-    content: public class EventProcessorHost
 - uid: com.microsoft.azure.eventprocessorhost._lease
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._lease.yml
@@ -251,25 +239,13 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly.</p>
 
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide.</p>
 
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax:
     content: public class Lease
-- uid: com.microsoft.azure.eventhubs._partition_receiver.START_OF_STREAM
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: START_OF_STREAM
-  nameWithType: PartitionReceiver.START_OF_STREAM
-  fullName: final String com.microsoft.azure.eventhubs.PartitionReceiver.START_OF_STREAM
-  type: Field
-  summary: <p>This is a constant defined to represent the start of a partition stream in EventHub. </p>
-  syntax:
-    content: public static final String START_OF_STREAM= "-1"
-    return:
-      type: 3d93591e
 - uid: com.microsoft.azure.eventhubs._receiver_runtime_information
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._receiver_runtime_information.yml
@@ -277,7 +253,7 @@ references:
   nameWithType: ReceiverRuntimeInformation
   fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
   type: Class
-  summary: <p>Represents the temporal receiver runtime information for a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. Current received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> and <xref uid="com.microsoft.azure.eventhubs._receiver_runtime_information" data-throw-if-not-resolved="false">ReceiverRuntimeInformation</xref> can be used to find approximate value of pending events (which are not processed yet). </p>
+  summary: <p>Represents the temporal end of stream information of an EventHubs Partition. </p>
   syntax:
     content: public class ReceiverRuntimeInformation
 - uid: com.microsoft.azure.eventhubs._event_data
@@ -286,7 +262,7 @@ references:
   name: EventData
   nameWithType: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
-  type: Class
+  type: Interface
   summary: >-
     <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
@@ -302,7 +278,17 @@ references:
 
     </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
-    content: public class EventData
+    content: public interface EventData
+- uid: com.microsoft.azure.eventhubs._event_position
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._event_position.yml
+  name: EventPosition
+  nameWithType: EventPosition
+  fullName: com.microsoft.azure.eventhubs.EventPosition
+  type: Interface
+  summary: <p>Defines a position of an <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> in the event hub partition. The position can be an Offset, Sequence Number, or EnqueuedTime. </p>
+  syntax:
+    content: public interface EventPosition
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._checkpoint.yml
@@ -313,8 +299,17 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly.</p>
 
-    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the messages in that partition. </p>
+    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
   syntax:
     content: public class Checkpoint
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
+  name: EventProcessorOptions
+  nameWithType: EventProcessorOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions
+  type: Class
+  syntax:
+    content: public class EventProcessorOptions
