@@ -10,6 +10,7 @@ items:
   - com.microsoft.azure.eventprocessorhost._lease.getToken()
   - com.microsoft.azure.eventprocessorhost._lease.incrementEpoch()
   - com.microsoft.azure.eventprocessorhost._lease.isExpired()
+  - com.microsoft.azure.eventprocessorhost._lease.isOwnedBy(String)
   - com.microsoft.azure.eventprocessorhost._lease.Lease()
   - com.microsoft.azure.eventprocessorhost._lease.Lease(Lease)
   - com.microsoft.azure.eventprocessorhost._lease.Lease(String)
@@ -29,16 +30,16 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-event-hubs-java
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 22
+    startLine: 24
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly.</p>
 
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide.</p>
 
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax: &o1
     content: public class Lease
   inheritance:
@@ -57,16 +58,17 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 74
+    startLine: 76
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Epoch is a concept used by Event Hub receivers. Basically, if a receiver is created on a partition with a higher epoch than the existing receiver, the previous receiver is forcibly disconnected. Attempting to create a receiver with a lower epoch that the existing receiver will fail. The <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> carries the epoch around so that when a host steals a lease, it can create a receiver with a higher epoch.</p>
+    <p>Epoch is a concept used by Event Hub receivers. If a receiver is created on a partition with a higher epoch than the existing receiver, the previous receiver is forcibly disconnected. Attempting to create a receiver with a lower epoch that the existing receiver will fail. The <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> carries the epoch around so that when a host instance steals a lease, it can create a receiver with a higher epoch.</p>
 
     <p></p>
   syntax:
     content: public long getEpoch()
     return:
       type: 0364520f
+      description: <p>the epoch of the current receiver </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.getOwner()
   id: getOwner()
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -81,16 +83,17 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 106
+    startLine: 108
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>The owner of a lease is the name of the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> which currently holds the lease.</p>
+    <p>The owner of a lease is the name of the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance which currently holds the lease.</p>
 
     <p></p>
   syntax:
     content: public String getOwner()
     return:
       type: "26831127"
+      description: <p>name of the owning instance </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.getPartitionId()
   id: getPartitionId()
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -105,7 +108,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 126
+    startLine: 144
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Returns the id of the partition that this <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> is for. Immutable so there is no corresponding setter.</p>
@@ -115,6 +118,7 @@ items:
     content: public String getPartitionId()
     return:
       type: "26831127"
+      description: <p>partition id </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.getToken()
   id: getToken()
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -129,16 +133,17 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 138
+    startLine: 156
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>The <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> carries an arbitrary string called the "token". AzureStorageCheckpointLeaseManager uses this to store the blob lease ID used by the Azure Storage API. Other implementations of <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> may use it for anything.</p>
+    <p>The "token" is an arbitrary string whose use is not defined by <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref>. AzureStorageCheckpointLeaseManager uses the token to store the blob lease ID used by the Azure Storage API. Other implementations of <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> may use it for anything.</p>
 
     <p></p>
   syntax:
     content: public String getToken()
     return:
       type: "26831127"
+      description: <p>the current token </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.incrementEpoch()
   id: incrementEpoch()
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -153,7 +158,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 95
+    startLine: 97
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>The most common operation on the epoch value is incrementing it after stealing a lease. This convenience function replaces the get-increment-set that would otherwise be required.</p>
@@ -172,26 +177,52 @@ items:
   - java
   name: isExpired()
   nameWithType: Lease.isExpired()
-  fullName: boolean com.microsoft.azure.eventprocessorhost.Lease.isExpired()
+  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.Lease.isExpired()
   overload: com.microsoft.azure.eventprocessorhost._lease.isExpired*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 160
+    startLine: 177
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>If an implementation of <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> supports the concept of lease expiration, then a class derived from <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> may override this function to inspect the lease and return whether it has expired.</p>
+    <p>A class derived from <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> should override this function to inspect the lease and return whether it has expired. Uses CompletableFuture because determining whether a lease is expired may involve I/O.</p>
 
     <p></p>
   syntax:
-    content: public boolean isExpired()
+    content: public CompletableFuture<Boolean> isExpired()
+    return:
+      type: 7e53ac82
+      description: <p>CompletableFuture { -&gt;} true if the lease is expired, false if it is still valid, completes exceptionally on error. </p>
+- uid: com.microsoft.azure.eventprocessorhost._lease.isOwnedBy(String)
+  id: isOwnedBy(String)
+  parent: com.microsoft.azure.eventprocessorhost._lease
+  href: com.microsoft.azure.eventprocessorhost._lease.yml
+  langs:
+  - java
+  name: isOwnedBy(String possibleOwner)
+  nameWithType: Lease.isOwnedBy(String possibleOwner)
+  fullName: boolean com.microsoft.azure.eventprocessorhost.Lease.isOwnedBy(String possibleOwner)
+  overload: com.microsoft.azure.eventprocessorhost._lease.isOwnedBy*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
+    startLine: 129
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Convenience function for comparing possibleOwner against this.owner</p>
+
+    <p></p>
+  syntax:
+    content: public boolean isOwnedBy(String possibleOwner)
+    parameters:
+    - id: possibleOwner
+      type: "26831127"
+      description: <p>name to check </p>
     return:
       type: 4fc6e284
-      description: <p>true if the lease is expired, false if it is still valid </p>
-  exceptions:
-  - type: 8a99d4b0
-    description: <p>An override which does significant work may need to throw exceptions. </p>
+      description: <p>true if possibleOwner is the same as this.owner, false otherwise </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.Lease()
   id: Lease()
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -206,7 +237,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 33
+    startLine: 35
   package: com.microsoft.azure.eventprocessorhost
   summary: <p>Do not use; added only for GSon deserializer </p>
   syntax:
@@ -225,7 +256,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 57
+    startLine: 59
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> by duplicating the given <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref>.</p>
@@ -236,6 +267,10 @@ items:
     parameters:
     - id: source
       type: com.microsoft.azure.eventprocessorhost._lease
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to clone. </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.Lease(String)
   id: Lease(String)
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -250,7 +285,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 43
+    startLine: 45
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> for the given partition.</p>
@@ -261,6 +296,7 @@ items:
     parameters:
     - id: partitionId
       type: "26831127"
+      description: <p>Partition id for this lease. </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.setEpoch(long)
   id: setEpoch(long)
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -275,10 +311,10 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 84
+    startLine: 86
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Set the epoch value.</p>
+    <p>Set the epoch value. Used to update the lease after creating a new receiver with a higher epoch.</p>
 
     <p></p>
   syntax:
@@ -286,6 +322,7 @@ items:
     parameters:
     - id: epoch
       type: 0364520f
+      description: <p>updated epoch value </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.setOwner(String)
   id: setOwner(String)
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -300,7 +337,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 116
+    startLine: 118
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Set the owner string. Used when a host steals a lease.</p>
@@ -311,6 +348,7 @@ items:
     parameters:
     - id: owner
       type: "26831127"
+      description: <p>name of the new owning instance </p>
 - uid: com.microsoft.azure.eventprocessorhost._lease.setToken(String)
   id: setToken(String)
   parent: com.microsoft.azure.eventprocessorhost._lease
@@ -325,7 +363,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/Lease.java
-    startLine: 148
+    startLine: 166
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Set the token value.</p>
@@ -336,6 +374,7 @@ items:
     parameters:
     - id: token
       type: "26831127"
+      description: <p>new value for the token </p>
 references:
 - uid: com.microsoft.azure.eventprocessorhost._lease.Lease*
   name: Lease
@@ -375,6 +414,15 @@ references:
   nameWithType: Lease.setOwner
   fullName: void com.microsoft.azure.eventprocessorhost.Lease.setOwner
   package: com.microsoft.azure.eventprocessorhost
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.eventprocessorhost._lease.isOwnedBy*
+  name: isOwnedBy
+  nameWithType: Lease.isOwnedBy
+  fullName: boolean com.microsoft.azure.eventprocessorhost.Lease.isOwnedBy
+  package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._lease.getPartitionId*
   name: getPartitionId
   nameWithType: Lease.getPartitionId
@@ -390,18 +438,14 @@ references:
   nameWithType: Lease.setToken
   fullName: void com.microsoft.azure.eventprocessorhost.Lease.setToken
   package: com.microsoft.azure.eventprocessorhost
-- uid: 8a99d4b0
+- uid: 7e53ac82
   spec.java:
-  - name: Exception
-    fullName: Exception
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
+  - name: CompletableFuture<Boolean>
+    fullName: CompletableFuture<Boolean>
 - uid: com.microsoft.azure.eventprocessorhost._lease.isExpired*
   name: isExpired
   nameWithType: Lease.isExpired
-  fullName: boolean com.microsoft.azure.eventprocessorhost.Lease.isExpired
+  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.Lease.isExpired
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._azure_blob_lease
 - uid: com.microsoft.azure.eventprocessorhost._lease
@@ -414,11 +458,11 @@ references:
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly.</p>
 
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide.</p>
 
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The functionality to acquire/renew/release a lease is all on the <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax: *o1
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost

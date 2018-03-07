@@ -4,9 +4,11 @@ items:
   id: _partition_sender
   parent: com.microsoft.azure.eventhubs
   children:
+  - com.microsoft.azure.eventhubs._partition_sender.close()
+  - com.microsoft.azure.eventhubs._partition_sender.closeSync()
   - com.microsoft.azure.eventhubs._partition_sender.createBatch()
   - com.microsoft.azure.eventhubs._partition_sender.createBatch(BatchOptions)
-  - com.microsoft.azure.eventhubs._partition_sender.onClose()
+  - com.microsoft.azure.eventhubs._partition_sender.getPartitionId()
   - com.microsoft.azure.eventhubs._partition_sender.send(EventData)
   - com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)
   - com.microsoft.azure.eventhubs._partition_sender.send(Iterable<EventData>)
@@ -19,7 +21,7 @@ items:
   name: PartitionSender
   nameWithType: PartitionSender
   fullName: com.microsoft.azure.eventhubs.PartitionSender
-  type: Class
+  type: Interface
   source:
     remote: &o0
       path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
@@ -33,23 +35,50 @@ items:
 
     <p></p>
   syntax: &o1
-    content: public class PartitionSender extends ClientEntity
+    content: public interface PartitionSender
   see:
   - type: com.microsoft.azure.eventhubs._event_hub_client.createPartitionSender(final String)
     description: EventHubClient::createPartitionSender(String)
-  - type: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)
-    description: EventHubClient::createFromConnectionString(String)
-  inheritance:
-  - java.lang.Object
-  - com.microsoft.azure.eventhubs._client_entity
-  inheritedMembers:
-  - com.microsoft.azure.eventhubs._client_entity.ClientEntity(final String,final ClientEntity)
-  - com.microsoft.azure.eventhubs._client_entity.close()
-  - com.microsoft.azure.eventhubs._client_entity.closeSync()
-  - com.microsoft.azure.eventhubs._client_entity.getClientId()
-  - com.microsoft.azure.eventhubs._client_entity.getLastKnownError()
-  - com.microsoft.azure.eventhubs._client_entity.setClosed()
-  - com.microsoft.azure.eventhubs._client_entity.throwIfClosed()
+  - type: com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)
+    description: EventHubClient::create(String, Executor)
+- uid: com.microsoft.azure.eventhubs._partition_sender.close()
+  id: close()
+  parent: com.microsoft.azure.eventhubs._partition_sender
+  href: com.microsoft.azure.eventhubs._partition_sender.yml
+  langs:
+  - java
+  name: close()
+  nameWithType: PartitionSender.close()
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.close()
+  overload: com.microsoft.azure.eventhubs._partition_sender.close*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
+    startLine: 159
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public CompletableFuture<Void> close()
+    return:
+      type: db03ee24
+- uid: com.microsoft.azure.eventhubs._partition_sender.closeSync()
+  id: closeSync()
+  parent: com.microsoft.azure.eventhubs._partition_sender
+  href: com.microsoft.azure.eventhubs._partition_sender.yml
+  langs:
+  - java
+  name: closeSync()
+  nameWithType: PartitionSender.closeSync()
+  fullName: void com.microsoft.azure.eventhubs.PartitionSender.closeSync()
+  overload: com.microsoft.azure.eventhubs._partition_sender.closeSync*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
+    startLine: 161
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public void closeSync()
 - uid: com.microsoft.azure.eventhubs._partition_sender.createBatch()
   id: createBatch()
   parent: com.microsoft.azure.eventhubs._partition_sender
@@ -58,22 +87,22 @@ items:
   - java
   name: createBatch()
   nameWithType: PartitionSender.createBatch()
-  fullName: final EventDataBatch com.microsoft.azure.eventhubs.PartitionSender.createBatch()
+  fullName: default EventDataBatch com.microsoft.azure.eventhubs.PartitionSender.createBatch()
   overload: com.microsoft.azure.eventhubs._partition_sender.createBatch*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 89
+    startLine: 42
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Creates an Empty Collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. The same partitionKey must be used while sending these events using <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)" data-throw-if-not-resolved="false">PartitionSender#send(EventDataBatch)</xref>.</p>
 
     <p></p>
   syntax:
-    content: public final EventDataBatch createBatch()
+    content: public default EventDataBatch createBatch()
     return:
-      type: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
+      type: c0f98273com.microsoft.azure.eventhubs._event_data_batch
       description: <p>the empty <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>, after negotiating maximum message size with EventHubs service </p>
 - uid: com.microsoft.azure.eventhubs._partition_sender.createBatch(BatchOptions)
   id: createBatch(BatchOptions)
@@ -89,7 +118,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 63
+    startLine: 34
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Creates an Empty Collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. The same partitionKey must be used while sending these events using <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)" data-throw-if-not-resolved="false">PartitionSender#send(EventDataBatch)</xref>.</p>
@@ -104,26 +133,31 @@ items:
     return:
       type: com.microsoft.azure.eventhubs._event_data_batch
       description: <p>the empty <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>, after negotiating maximum message size with EventHubs service </p>
-- uid: com.microsoft.azure.eventhubs._partition_sender.onClose()
-  id: onClose()
+- uid: com.microsoft.azure.eventhubs._partition_sender.getPartitionId()
+  id: getPartitionId()
   parent: com.microsoft.azure.eventhubs._partition_sender
   href: com.microsoft.azure.eventhubs._partition_sender.yml
   langs:
   - java
-  name: onClose()
-  nameWithType: PartitionSender.onClose()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.onClose()
-  overload: com.microsoft.azure.eventhubs._partition_sender.onClose*
+  name: getPartitionId()
+  nameWithType: PartitionSender.getPartitionId()
+  fullName: String com.microsoft.azure.eventhubs.PartitionSender.getPartitionId()
+  overload: com.microsoft.azure.eventhubs._partition_sender.getPartitionId*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 281
+    startLine: 25
   package: com.microsoft.azure.eventhubs
+  summary: >-
+    <p>The partition id that will receive events from this sender.</p>
+
+    <p></p>
   syntax:
-    content: public CompletableFuture<Void> onClose()
+    content: public String getPartitionId()
     return:
-      type: db03ee24
+      type: "26831127"
+      description: <p>the partition id the <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> is connected to. </p>
 - uid: com.microsoft.azure.eventhubs._partition_sender.send(EventData)
   id: send(EventData)
   parent: com.microsoft.azure.eventhubs._partition_sender
@@ -132,13 +166,13 @@ items:
   - java
   name: send(EventData data)
   nameWithType: PartitionSender.send(EventData data)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventData data)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventData data)
   overload: com.microsoft.azure.eventhubs._partition_sender.send*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 141
+    startLine: 77
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific EventHub partition. The target partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. This send pattern emphasize data correlation over general availability and latency. </p>
@@ -161,13 +195,13 @@ items:
 
     <p></p>
   syntax: &o3
-    content: public final CompletableFuture<Void> send(EventData data)
+    content: public CompletableFuture<Void> send(EventData data)
     parameters:
     - id: data
       type: com.microsoft.azure.eventhubs._event_data
       description: <p>the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to be sent. </p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompletableFuture that can be completed when the send operations is done.. </p>
 - uid: com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)
   id: send(EventDataBatch)
@@ -177,13 +211,13 @@ items:
   - java
   name: send(EventDataBatch eventDatas)
   nameWithType: PartitionSender.send(EventDataBatch eventDatas)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventDataBatch eventDatas)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventDataBatch eventDatas)
   overload: com.microsoft.azure.eventhubs._partition_sender.send*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 266
+    startLine: 157
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to a specific EventHub partition. The targeted partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. A partitionKey cannot be set when using <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> with a <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref>. </p>
@@ -200,7 +234,7 @@ items:
 
     <p></p>
   syntax: &o2
-    content: public final CompletableFuture<Void> send(EventDataBatch eventDatas)
+    content: public CompletableFuture<Void> send(EventDataBatch eventDatas)
     parameters:
     - id: eventDatas
       type: com.microsoft.azure.eventhubs._event_data_batch
@@ -209,11 +243,8 @@ items:
 
           <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to send to EventHub </p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompletableFuture that can be completed when the send operation is done.. </p>
-  exceptions:
-  - type: com.microsoft.azure.eventhubs._event_hub_exception
-    description: <p>if Service Bus service encountered problems during the operation. </p>
   see:
   - type: com.microsoft.azure.eventhubs._event_data_batch
     description: EventDataBatch
@@ -225,13 +256,13 @@ items:
   - java
   name: send(Iterable<EventData> eventDatas)
   nameWithType: PartitionSender.send(Iterable<EventData> eventDatas)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(Iterable<EventData> eventDatas)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(Iterable<EventData> eventDatas)
   overload: com.microsoft.azure.eventhubs._partition_sender.send*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 213
+    startLine: 128
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific EventHub partition. The targeted partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. </p>
@@ -250,7 +281,7 @@ items:
 
     Gson gson = new GsonBuilder().create();
 
-    <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)" data-throw-if-not-resolved="false">EventHubClient.createFromConnectionStringSync</xref>("__connection__");
+    <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)" data-throw-if-not-resolved="false">EventHubClient.createSync</xref>("__connection__");
 
     <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> senderToPartitionOne = client.createPartitionSenderSync("1");</pre></p>
 
@@ -298,19 +329,14 @@ items:
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<Void> send(Iterable<EventData> eventDatas)
+    content: public CompletableFuture<Void> send(Iterable<EventData> eventDatas)
     parameters:
     - id: eventDatas
       type: 2a13b5a5com.microsoft.azure.eventhubs._event_dataa08ddfce
       description: <p>batch of events to send to EventHub </p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompletableFuture that can be completed when the send operations is done.. </p>
-  exceptions:
-  - type: com.microsoft.azure.eventhubs._payload_size_exceeded_exception
-    description: <p>if the total size of the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> exceeds a pre-defined limit set by the service. Default is 256k bytes. </p>
-  - type: com.microsoft.azure.eventhubs._event_hub_exception
-    description: <p>if Service Bus service encountered problems during the operation. </p>
 - uid: com.microsoft.azure.eventhubs._partition_sender.sendSync(final EventData)
   id: sendSync(final EventData)
   parent: com.microsoft.azure.eventhubs._partition_sender
@@ -319,26 +345,26 @@ items:
   - java
   name: sendSync(final EventData data)
   nameWithType: PartitionSender.sendSync(final EventData data)
-  fullName: final void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final EventData data)
+  fullName: default void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final EventData data)
   overload: com.microsoft.azure.eventhubs._partition_sender.sendSync*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 100
+    startLine: 53
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventData)" data-throw-if-not-resolved="false">send(EventData)</xref> Api.</p>
 
     <p></p>
   syntax:
-    content: public final void sendSync(final EventData data)
+    content: public default void sendSync(final EventData data)
     parameters:
     - id: data
       type: 93de0ef9com.microsoft.azure.eventhubs._event_data
       description: <p>the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to be sent. </p>
     return:
-      type: 3f6357ce
+      type: d3846f97
   exceptions:
   - type: com.microsoft.azure.eventhubs._payload_size_exceeded_exception
     description: <p>if the total size of the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> exceeds a pre-defined limit set by the service. Default is 256k bytes. </p>
@@ -352,20 +378,20 @@ items:
   - java
   name: sendSync(final EventDataBatch eventDatas)
   nameWithType: PartitionSender.sendSync(final EventDataBatch eventDatas)
-  fullName: final void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final EventDataBatch eventDatas)
+  fullName: default void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final EventDataBatch eventDatas)
   overload: com.microsoft.azure.eventhubs._partition_sender.sendSync*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 228
+    startLine: 136
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)" data-throw-if-not-resolved="false">send(EventDataBatch)</xref></p>
 
     <p></p>
   syntax:
-    content: public final void sendSync(final EventDataBatch eventDatas)
+    content: public default void sendSync(final EventDataBatch eventDatas)
     parameters:
     - id: eventDatas
       type: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
@@ -374,7 +400,7 @@ items:
 
           <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to send to EventHub </p>
     return:
-      type: 3f6357ce
+      type: d3846f97
   exceptions:
   - type: com.microsoft.azure.eventhubs._event_hub_exception
     description: <p>if Service Bus service encountered problems during the operation. </p>
@@ -386,39 +412,48 @@ items:
   - java
   name: sendSync(final Iterable<EventData> eventDatas)
   nameWithType: PartitionSender.sendSync(final Iterable<EventData> eventDatas)
-  fullName: final void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final Iterable<EventData> eventDatas)
+  fullName: default void com.microsoft.azure.eventhubs.PartitionSender.sendSync(final Iterable<EventData> eventDatas)
   overload: com.microsoft.azure.eventhubs._partition_sender.sendSync*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionSender.java
-    startLine: 151
+    startLine: 85
   package: com.microsoft.azure.eventhubs
   summary: >-
     <p>Synchronous version of <xref uid="" data-throw-if-not-resolved="false">send(Iterable)</xref> .</p>
 
     <p></p>
   syntax:
-    content: public final void sendSync(final Iterable<EventData> eventDatas)
+    content: public default void sendSync(final Iterable<EventData> eventDatas)
     parameters:
     - id: eventDatas
       type: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
       description: <p>batch of events to send to EventHub </p>
     return:
-      type: 3f6357ce
+      type: d3846f97
   exceptions:
   - type: com.microsoft.azure.eventhubs._event_hub_exception
     description: <p>if Service Bus service encountered problems during the operation. </p>
 references:
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.eventhubs._partition_sender.getPartitionId*
+  name: getPartitionId
+  nameWithType: PartitionSender.getPartitionId
+  fullName: String com.microsoft.azure.eventhubs.PartitionSender.getPartitionId
+  package: com.microsoft.azure.eventhubs
 - uid: com.microsoft.azure.eventhubs._partition_sender.createBatch*
   name: createBatch
   nameWithType: PartitionSender.createBatch
   fullName: EventDataBatch com.microsoft.azure.eventhubs.PartitionSender.createBatch
   package: com.microsoft.azure.eventhubs
-- uid: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
+- uid: c0f98273com.microsoft.azure.eventhubs._event_data_batch
   spec.java:
-  - name: 'final '
-    fullName: 'final '
+  - name: 'default '
+    fullName: 'default '
   - uid: com.microsoft.azure.eventhubs._event_data_batch
     name: EventDataBatch
     fullName: com.microsoft.azure.eventhubs.EventDataBatch
@@ -431,23 +466,23 @@ references:
     name: EventData
     fullName: com.microsoft.azure.eventhubs.EventData
     href: com.microsoft.azure.eventhubs._event_data.yml
-- uid: 3f6357ce
+- uid: d3846f97
   spec.java:
-  - name: final void
-    fullName: final void
+  - name: default void
+    fullName: default void
 - uid: com.microsoft.azure.eventhubs._partition_sender.sendSync*
   name: sendSync
   nameWithType: PartitionSender.sendSync
-  fullName: final void com.microsoft.azure.eventhubs.PartitionSender.sendSync
+  fullName: default void com.microsoft.azure.eventhubs.PartitionSender.sendSync
   package: com.microsoft.azure.eventhubs
-- uid: fc984e6f
+- uid: db03ee24
   spec.java:
-  - name: final CompletableFuture<Void>
-    fullName: final CompletableFuture<Void>
+  - name: CompletableFuture<Void>
+    fullName: CompletableFuture<Void>
 - uid: com.microsoft.azure.eventhubs._partition_sender.send*
   name: send
   nameWithType: PartitionSender.send
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send
   package: com.microsoft.azure.eventhubs
 - uid: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
   spec.java:
@@ -469,142 +504,32 @@ references:
     href: com.microsoft.azure.eventhubs._event_data.yml
   - name: '>'
     fullName: '>'
-- uid: db03ee24
+- uid: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
   spec.java:
-  - name: CompletableFuture<Void>
-    fullName: CompletableFuture<Void>
-- uid: com.microsoft.azure.eventhubs._partition_sender.onClose*
-  name: onClose
-  nameWithType: PartitionSender.onClose
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.onClose
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.eventhubs._event_data_batch
+    name: EventDataBatch
+    fullName: com.microsoft.azure.eventhubs.EventDataBatch
+    href: com.microsoft.azure.eventhubs._event_data_batch.yml
+- uid: com.microsoft.azure.eventhubs._partition_sender.close*
+  name: close
+  nameWithType: PartitionSender.close
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.close
   package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs._client_entity.ClientEntity(final String,final ClientEntity)
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: ClientEntity(final String clientId, final ClientEntity parent)
-  nameWithType: ClientEntity.ClientEntity(final String clientId, final ClientEntity parent)
-  fullName: com.microsoft.azure.eventhubs.ClientEntity.ClientEntity(final String clientId, final ClientEntity parent)
-  type: Constructor
-  syntax:
-    content: protected ClientEntity(final String clientId, final ClientEntity parent)
-    parameters:
-    - id: clientId
-      type: 3d93591e
-    - id: parent
-      type: 93de0ef9com.microsoft.azure.eventhubs._client_entity
-- uid: com.microsoft.azure.eventhubs._client_entity.close()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: close()
-  nameWithType: ClientEntity.close()
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.ClientEntity.close()
-  type: Method
-  syntax:
-    content: public final CompletableFuture<Void> close()
-    return:
-      type: fc984e6f
-- uid: com.microsoft.azure.eventhubs._client_entity.closeSync()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: closeSync()
-  nameWithType: ClientEntity.closeSync()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.closeSync()
-  type: Method
-  syntax:
-    content: public final void closeSync()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity.getClientId()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: getClientId()
-  nameWithType: ClientEntity.getClientId()
-  fullName: String com.microsoft.azure.eventhubs.ClientEntity.getClientId()
-  type: Method
-  syntax:
-    content: public String getClientId()
-    return:
-      type: "26831127"
-- uid: com.microsoft.azure.eventhubs._client_entity.getLastKnownError()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: getLastKnownError()
-  nameWithType: ClientEntity.getLastKnownError()
-  fullName: Exception com.microsoft.azure.eventhubs.ClientEntity.getLastKnownError()
-  type: Method
-  syntax:
-    content: protected Exception getLastKnownError()
-    return:
-      type: 8a99d4b0
-- uid: com.microsoft.azure.eventhubs._client_entity.setClosed()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: setClosed()
-  nameWithType: ClientEntity.setClosed()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.setClosed()
-  type: Method
-  syntax:
-    content: protected final void setClosed()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity.throwIfClosed()
-  parent: com.microsoft.azure.eventhubs._client_entity
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: throwIfClosed()
-  nameWithType: ClientEntity.throwIfClosed()
-  fullName: final void com.microsoft.azure.eventhubs.ClientEntity.throwIfClosed()
-  type: Method
-  syntax:
-    content: protected final void throwIfClosed()
-    return:
-      type: 3f6357ce
-- uid: com.microsoft.azure.eventhubs._client_entity
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._client_entity.yml
-  name: ClientEntity
-  nameWithType: ClientEntity
-  fullName: com.microsoft.azure.eventhubs.ClientEntity
-  type: Class
-  summary: '<p>Contract for all client entities with Open-Close/Abort state m/c main-purpose: closeAll related entities Internal-class </p>'
-  syntax:
-    content: public class ClientEntity
-- uid: com.microsoft.azure.eventhubs._messaging_factory
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._messaging_factory.yml
-  name: MessagingFactory
-  nameWithType: MessagingFactory
-  fullName: com.microsoft.azure.eventhubs.MessagingFactory
-  type: Class
-  summary: <p>Abstracts all amqp related details and exposes AmqpConnection object Manages connection life-cycle </p>
-  syntax:
-    content: public class MessagingFactory extends ClientEntity implements IAmqpConnection,ISessionProvider
-- uid: com.microsoft.azure.eventhubs._message_sender
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._message_sender.yml
-  name: MessageSender
-  nameWithType: MessageSender
-  fullName: com.microsoft.azure.eventhubs.MessageSender
-  type: Class
-  summary: <p>Abstracts all amqp related details translates event-driven reactor model into async send Api </p>
-  syntax:
-    content: public class MessageSender extends ClientEntity implements IAmqpSender
-- uid: com.microsoft.azure.eventhubs._event_hub_exception
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._event_hub_exception.yml
-  name: EventHubException
-  nameWithType: EventHubException
-  fullName: com.microsoft.azure.eventhubs.EventHubException
-  type: Class
-  summary: <p>This is the base exception that service bus will produce for all error cases. </p>
-  syntax:
-    content: public class EventHubException
+- uid: com.microsoft.azure.eventhubs._partition_sender.closeSync*
+  name: closeSync
+  nameWithType: PartitionSender.closeSync
+  fullName: void com.microsoft.azure.eventhubs.PartitionSender.closeSync
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs.impl._partition_sender_impl
 - uid: com.microsoft.azure.eventhubs._partition_sender
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._partition_sender.yml
   name: PartitionSender
   nameWithType: PartitionSender
   fullName: com.microsoft.azure.eventhubs.PartitionSender
-  type: Class
+  type: Interface
   summary: >-
     <p>This sender class is a logical representation of sending events to a specific EventHub partition. Do not use this class if you do not care about sending events to specific partitions. Instead, use <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">EventHubClient#send</xref> method.</p>
 
@@ -616,10 +541,10 @@ references:
   name: EventDataBatch
   nameWithType: EventDataBatch
   fullName: com.microsoft.azure.eventhubs.EventDataBatch
-  type: Class
-  summary: <p>Helper class for creating a batch/collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> objects to be used while Sending to EventHubs </p>
+  type: Interface
+  summary: <p>Helper for creating a batch/collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> objects to be used while Sending to EventHubs </p>
   syntax:
-    content: public class EventDataBatch
+    content: public interface EventDataBatch
 - uid: com.microsoft.azure.eventhubs._batch_options
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._batch_options.yml
@@ -636,7 +561,7 @@ references:
   name: EventData
   nameWithType: EventData
   fullName: com.microsoft.azure.eventhubs.EventData
-  type: Class
+  type: Interface
   summary: >-
     <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
 
@@ -652,13 +577,13 @@ references:
 
     </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
-    content: public class EventData
+    content: public interface EventData
 - uid: com.microsoft.azure.eventhubs._partition_sender.send(EventDataBatch)
   parent: com.microsoft.azure.eventhubs._partition_sender
   href: com.microsoft.azure.eventhubs._partition_sender.yml
   name: send(EventDataBatch eventDatas)
   nameWithType: PartitionSender.send(EventDataBatch eventDatas)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventDataBatch eventDatas)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventDataBatch eventDatas)
   type: Method
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to a specific EventHub partition. The targeted partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. A partitionKey cannot be set when using <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> with a <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref>. </p>
@@ -675,12 +600,22 @@ references:
 
     <p></p>
   syntax: *o2
+- uid: com.microsoft.azure.eventhubs._event_hub_exception
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._event_hub_exception.yml
+  name: EventHubException
+  nameWithType: EventHubException
+  fullName: com.microsoft.azure.eventhubs.EventHubException
+  type: Class
+  summary: <p>This is the base exception that service bus will produce for all error cases. </p>
+  syntax:
+    content: public class EventHubException
 - uid: com.microsoft.azure.eventhubs._partition_sender.send(EventData)
   parent: com.microsoft.azure.eventhubs._partition_sender
   href: com.microsoft.azure.eventhubs._partition_sender.yml
   name: send(EventData data)
   nameWithType: PartitionSender.send(EventData data)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventData data)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionSender.send(EventData data)
   type: Method
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific EventHub partition. The target partition is pre-determined when this <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> was created. This send pattern emphasize data correlation over general availability and latency. </p>
@@ -721,7 +656,7 @@ references:
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: send(final EventData data)
   nameWithType: EventHubClient.send(final EventData data)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventData data)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventData data)
   type: Method
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to EventHub. The sent <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> will land on any arbitrarily chosen EventHubs partition. </p>
@@ -748,27 +683,27 @@ references:
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<Void> send(final EventData data)
+    content: public CompletableFuture<Void> send(final EventData data)
     parameters:
     - id: data
       type: 93de0ef9com.microsoft.azure.eventhubs._event_data
       description: <p>the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to be sent. </p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompletableFuture that can be completed when the send operations is done.. </p>
 - uid: com.microsoft.azure.eventhubs._event_hub_client.send(final EventDataBatch)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: send(final EventDataBatch eventDatas)
   nameWithType: EventHubClient.send(final EventDataBatch eventDatas)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventDataBatch eventDatas)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventDataBatch eventDatas)
   type: Method
   summary: >-
     <p>Send <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to EventHub. The sent <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> will land according the partition key set in the <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>. If a partition key is not set, then we will Round-robin the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s to all EventHubs' partitions.</p>
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<Void> send(final EventDataBatch eventDatas)
+    content: public CompletableFuture<Void> send(final EventDataBatch eventDatas)
     parameters:
     - id: eventDatas
       type: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
@@ -777,14 +712,14 @@ references:
 
           <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> to send to EventHub </p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompleteableFuture that can be completed when the send operations are done </p>
 - uid: com.microsoft.azure.eventhubs._event_hub_client.send(final EventData,final String)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: send(final EventData eventData, final String partitionKey)
   nameWithType: EventHubClient.send(final EventData eventData, final String partitionKey)
-  fullName: final CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventData eventData, final String partitionKey)
+  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.EventHubClient.send(final EventData eventData, final String partitionKey)
   type: Method
   summary: >-
     <p>Send an '<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with a partitionKey' to EventHub. All <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s with a partitionKey are guaranteed to land on the same partition. This send pattern emphasize data correlation over general availability and latency. </p>
@@ -809,7 +744,7 @@ references:
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<Void> send(final EventData eventData, final String partitionKey)
+    content: public CompletableFuture<Void> send(final EventData eventData, final String partitionKey)
     parameters:
     - id: eventData
       type: 93de0ef9com.microsoft.azure.eventhubs._event_data
@@ -818,7 +753,7 @@ references:
       type: 3d93591e
       description: <p>the partitionKey will be hash'ed to determine the partitionId to send the eventData to. On the Received message this can be accessed at <xref uid="" data-throw-if-not-resolved="false">EventData.SystemProperties#getPartitionKey()</xref></p>
     return:
-      type: fc984e6f
+      type: db03ee24
       description: <p>a CompletableFuture that can be completed when the send operations is done.. </p>
 - uid: com.microsoft.azure.eventhubs._event_hub_client
   parent: com.microsoft.azure.eventhubs
@@ -826,30 +761,33 @@ references:
   name: EventHubClient
   nameWithType: EventHubClient
   fullName: com.microsoft.azure.eventhubs.EventHubClient
-  type: Class
+  type: Interface
   summary: >-
     <p>Anchor class - all EventHub client operations STARTS here.</p>
 
     <p></p>
   syntax:
-    content: public class EventHubClient extends ClientEntity implements IEventHubClient
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionStringSync(final String)
+    content: public interface EventHubClient
+- uid: com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createFromConnectionStringSync(final String connectionString)
-  nameWithType: EventHubClient.createFromConnectionStringSync(final String connectionString)
-  fullName: static EventHubClient com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionStringSync(final String connectionString)
+  name: createSync(final String connectionString, final Executor executor)
+  nameWithType: EventHubClient.createSync(final String connectionString, final Executor executor)
+  fullName: static EventHubClient com.microsoft.azure.eventhubs.EventHubClient.createSync(final String connectionString, final Executor executor)
   type: Method
   summary: >-
-    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)" data-throw-if-not-resolved="false">createFromConnectionString(String)</xref>.</p>
+    <p>Synchronous version of <xref uid="com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)" data-throw-if-not-resolved="false">create(String, Executor)</xref>.</p>
 
     <p></p>
   syntax:
-    content: public static EventHubClient createFromConnectionStringSync(final String connectionString)
+    content: public static EventHubClient createSync(final String connectionString, final Executor executor)
     parameters:
     - id: connectionString
       type: 3d93591e
       description: <p>The connection string to be used. See <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
+    - id: executor
+      type: 506a8fe9
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">Executor</xref> to run all tasks performed by <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref>. </p>
     return:
       type: com.microsoft.azure.eventhubs._event_hub_client
       description: >-
@@ -861,7 +799,7 @@ references:
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: createPartitionSender(final String partitionId)
   nameWithType: EventHubClient.createPartitionSender(final String partitionId)
-  fullName: final CompletableFuture<PartitionSender> com.microsoft.azure.eventhubs.EventHubClient.createPartitionSender(final String partitionId)
+  fullName: CompletableFuture<PartitionSender> com.microsoft.azure.eventhubs.EventHubClient.createPartitionSender(final String partitionId)
   type: Method
   summary: >-
     <p>Create a <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> which can publish <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s directly to a specific EventHub partition (sender type iii. in the below list). </p>
@@ -876,20 +814,20 @@ references:
 
     <p></p>
   syntax:
-    content: public final CompletableFuture<PartitionSender> createPartitionSender(final String partitionId)
+    content: public CompletableFuture<PartitionSender> createPartitionSender(final String partitionId)
     parameters:
     - id: partitionId
       type: 3d93591e
       description: <p>partitionId of EventHub to send the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s to </p>
     return:
-      type: 9971d449com.microsoft.azure.eventhubs._partition_sendera08ddfce
-      description: <p>a CompletableFuture that would result in a <xref uid="com.microsoft.azure.eventhubs._partition_sender" data-throw-if-not-resolved="false">PartitionSender</xref> when it is completed. </p>
-- uid: com.microsoft.azure.eventhubs._event_hub_client.createFromConnectionString(final String)
+      type: 9cdf14d0com.microsoft.azure.eventhubs._partition_sendera08ddfce
+      description: <p>a CompletableFuture that would result in a PartitionSenderImpl when it is completed. </p>
+- uid: com.microsoft.azure.eventhubs._event_hub_client.create(final String,final Executor)
   parent: com.microsoft.azure.eventhubs._event_hub_client
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
-  name: createFromConnectionString(final String connectionString)
-  nameWithType: EventHubClient.createFromConnectionString(final String connectionString)
-  fullName: static CompletableFuture<EventHubClient> com.microsoft.azure.eventhubs.EventHubClient.createFromConnectionString(final String connectionString)
+  name: create(final String connectionString, final Executor executor)
+  nameWithType: EventHubClient.create(final String connectionString, final Executor executor)
+  fullName: static CompletableFuture<EventHubClient> com.microsoft.azure.eventhubs.EventHubClient.create(final String connectionString, final Executor executor)
   type: Method
   summary: >-
     <p>Factory method to create an instance of <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> using the supplied connectionString. In a normal scenario (when re-direct is not enabled) - one <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> instance maps to one Connection to the Azure ServiceBus EventHubs service. </p>
@@ -898,14 +836,14 @@ references:
 
     <p></p>
   syntax:
-    content: public static CompletableFuture<EventHubClient> createFromConnectionString(final String connectionString)
+    content: public static CompletableFuture<EventHubClient> create(final String connectionString, final Executor executor)
     parameters:
     - id: connectionString
       type: 3d93591e
       description: <p>The connection string to be used. See <xref uid="com.microsoft.azure.eventhubs._connection_string_builder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> to construct a connectionString. </p>
+    - id: executor
+      type: 506a8fe9
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">Executor</xref> to run all tasks performed by <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref>. </p>
     return:
       type: 9cdf14d0com.microsoft.azure.eventhubs._event_hub_clienta08ddfce
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> which can be used to create Senders and Receivers to EventHub </p>
+      description: <p>CompletableFuture{ &lt;EventHubClient&gt;} which can be used to create Senders and Receivers to EventHub </p>

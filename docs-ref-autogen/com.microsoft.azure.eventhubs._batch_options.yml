@@ -40,8 +40,9 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/BatchOptions.java
-    startLine: 51
+    startLine: 62
   package: com.microsoft.azure.eventhubs
+  summary: <p>The maximum size in bytes of <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref> being constructed. This value cannot exceed the maximum size supported by Event Hubs service. <xref uid="com.microsoft.azure.eventhubs._event_data_batch.tryAdd(final EventData)" data-throw-if-not-resolved="false">EventDataBatch#tryAdd(EventData)</xref> API will use this value as the upper limit. </p>
   syntax:
     content: public Integer maxMessageSize= null
     return:
@@ -59,8 +60,9 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/BatchOptions.java
-    startLine: 50
+    startLine: 55
   package: com.microsoft.azure.eventhubs
+  summary: <p>The partitionKey to use for all <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s sent in the current <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>. Setting a PartitionKey will deliver the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to a specific Event Hubs partition. </p>
   syntax:
     content: public String partitionKey= null
     return:
@@ -79,7 +81,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/BatchOptions.java
-    startLine: 53
+    startLine: 64
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public final BatchOptions with(Consumer<BatchOptions> builderFunction)
@@ -120,6 +122,59 @@ references:
   nameWithType: BatchOptions.with
   fullName: final BatchOptions com.microsoft.azure.eventhubs.BatchOptions.with
   package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs._event_data
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._event_data.yml
+  name: EventData
+  nameWithType: EventData
+  fullName: com.microsoft.azure.eventhubs.EventData
+  type: Interface
+  summary: >-
+    <p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
+
+    <p>Serializing a received <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>
+
+    <p>Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <ulink url="http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</ulink><pre>
+
+    i.   <xref uid="com.microsoft.azure.eventhubs._event_data.getProperties()" data-throw-if-not-resolved="false">getProperties()</xref> - AMQPMessage.ApplicationProperties section
+
+    ii.  <xref uid="com.microsoft.azure.eventhubs._event_data.getBytes()" data-throw-if-not-resolved="false">getBytes()</xref> - if AMQPMessage.Body has Data section
+
+    iii. <xref uid="com.microsoft.azure.eventhubs._event_data.getObject()" data-throw-if-not-resolved="false">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+
+    </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
+  syntax:
+    content: public interface EventData
+- uid: com.microsoft.azure.eventhubs._event_data_batch
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._event_data_batch.yml
+  name: EventDataBatch
+  nameWithType: EventDataBatch
+  fullName: com.microsoft.azure.eventhubs.EventDataBatch
+  type: Interface
+  summary: <p>Helper for creating a batch/collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> objects to be used while Sending to EventHubs </p>
+  syntax:
+    content: public interface EventDataBatch
+- uid: com.microsoft.azure.eventhubs._event_data_batch.tryAdd(final EventData)
+  parent: com.microsoft.azure.eventhubs._event_data_batch
+  href: com.microsoft.azure.eventhubs._event_data_batch.yml
+  name: tryAdd(final EventData eventData)
+  nameWithType: EventDataBatch.tryAdd(final EventData eventData)
+  fullName: boolean com.microsoft.azure.eventhubs.EventDataBatch.tryAdd(final EventData eventData)
+  type: Method
+  summary: >-
+    <p>Add's <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>, if permitted by the batch's size limit. This method is not thread-safe.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean tryAdd(final EventData eventData)
+    parameters:
+    - id: eventData
+      type: 93de0ef9com.microsoft.azure.eventhubs._event_data
+      description: <p>The <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> to add. </p>
+    return:
+      type: 4fc6e284
+      description: <p>A boolean value indicating if the <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> addition to this batch/collection was successful or not. </p>
 - uid: com.microsoft.azure.eventhubs._batch_options
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._batch_options.yml
@@ -129,42 +184,32 @@ references:
   type: Class
   summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs._batch_options\" data-throw-if-not-resolved=\"false\">BatchOptions</xref> is used to create <xref uid=\"com.microsoft.azure.eventhubs._event_data_batch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es.</p>\r\n<p>If you're creating <xref uid=\"com.microsoft.azure.eventhubs._event_data_batch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es with <xref uid=\"com.microsoft.azure.eventhubs._event_hub_client\" data-throw-if-not-resolved=\"false\">EventHubClient</xref>, then you can set a partitionKey and maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct <xref uid=\"com.microsoft.azure.eventhubs._batch_options\" data-throw-if-not-resolved=\"false\">BatchOptions</xref> with the void constructor. Default settings:<itemizedlist><listitem><p>partitionKey is null</p></listitem><listitem><p>maxMessageSize is the maximum allowed size</p></listitem></itemizedlist></p>\r\n<p>If you're creating <xref uid=\"com.microsoft.azure.eventhubs._event_data_batch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es with <xref uid=\"com.microsoft.azure.eventhubs._partition_sender\" data-throw-if-not-resolved=\"false\">PartitionSender</xref>, then you can only set a maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct <xref uid=\"com.microsoft.azure.eventhubs._batch_options\" data-throw-if-not-resolved=\"false\">BatchOptions</xref> with the void constructor. Default settings:<itemizedlist><listitem><p>maxMessageSize is the maximum allowed size</p></listitem><listitem><p>Note: if you set a partition key, an <xref uid=\"\" data-throw-if-not-resolved=\"false\">IllegalArgumentException</xref> will be thrown.</p></listitem></itemizedlist></p>\r\n<p>To construct either type of batch, create a <xref uid=\"com.microsoft.azure.eventhubs._batch_options\" data-throw-if-not-resolved=\"false\">BatchOptions</xref> object and pass it into the appropriate createBatch method. If using <xref uid=\"com.microsoft.azure.eventhubs._partition_sender\" data-throw-if-not-resolved=\"false\">PartitionSender</xref>, then use (<xref uid=\"com.microsoft.azure.eventhubs._partition_sender.createBatch(BatchOptions)\" data-throw-if-not-resolved=\"false\">PartitionSender#createBatch(BatchOptions)</xref>. If using <xref uid=\"com.microsoft.azure.eventhubs._event_hub_client\" data-throw-if-not-resolved=\"false\">EventHubClient</xref>, then use <xref uid=\"com.microsoft.azure.eventhubs._event_hub_client.createBatch(BatchOptions)\" data-throw-if-not-resolved=\"false\">EventHubClient#createBatch(BatchOptions)</xref>.</p>\r\n<p>\r\n  <pre>\r\n    <code>// Note: For all examples, 'client' is an instance of EventHubClient. The usage is the same for PartitionSender,\r\n    however, you can NOT set a partition key when using PartitionSender\r\n    \r\n    // Create EventDataBatch with defaults\r\n    EventDataBatch edb1 = client.createBatch();\r\n    \r\n    // Create EventDataBatch with custom partitionKey\r\n    BatchOptions options = new BatchOptions().with( options -&gt; options.partitionKey = \"foo\");\r\n    EventDataBatch edb2 = client.createBatch(options);\r\n    \r\n    // Create EventDataBatch with custom partitionKey and maxMessageSize\r\n    BatchOptions options = new BatchOptions().with ( options -&gt; {\r\n        options.partitionKey = \"foo\";\r\n        options.maxMessageSize = 100 * 1024;\r\n    };\r\n    EventDataBatch edb3 = client.createBatch(options);\r\n    </code>\r\n  </pre>\r\n</p>"
   syntax: *o1
-- uid: com.microsoft.azure.eventhubs._event_data_batch
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._event_data_batch.yml
-  name: EventDataBatch
-  nameWithType: EventDataBatch
-  fullName: com.microsoft.azure.eventhubs.EventDataBatch
-  type: Class
-  summary: <p>Helper class for creating a batch/collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> objects to be used while Sending to EventHubs </p>
-  syntax:
-    content: public class EventDataBatch
 - uid: com.microsoft.azure.eventhubs._event_hub_client
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: EventHubClient
   nameWithType: EventHubClient
   fullName: com.microsoft.azure.eventhubs.EventHubClient
-  type: Class
+  type: Interface
   summary: >-
     <p>Anchor class - all EventHub client operations STARTS here.</p>
 
     <p></p>
   syntax:
-    content: public class EventHubClient
+    content: public interface EventHubClient
 - uid: com.microsoft.azure.eventhubs._partition_sender
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._partition_sender.yml
   name: PartitionSender
   nameWithType: PartitionSender
   fullName: com.microsoft.azure.eventhubs.PartitionSender
-  type: Class
+  type: Interface
   summary: >-
     <p>This sender class is a logical representation of sending events to a specific EventHub partition. Do not use this class if you do not care about sending events to specific partitions. Instead, use <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventData)" data-throw-if-not-resolved="false">EventHubClient#send</xref> method.</p>
 
     <p></p>
   syntax:
-    content: public class PartitionSender
+    content: public interface PartitionSender
 - uid: com.microsoft.azure.eventhubs._partition_sender.createBatch(BatchOptions)
   parent: com.microsoft.azure.eventhubs._partition_sender
   href: com.microsoft.azure.eventhubs._partition_sender.yml
@@ -190,18 +235,18 @@ references:
   href: com.microsoft.azure.eventhubs._event_hub_client.yml
   name: createBatch(BatchOptions options)
   nameWithType: EventHubClient.createBatch(BatchOptions options)
-  fullName: final EventDataBatch com.microsoft.azure.eventhubs.EventHubClient.createBatch(BatchOptions options)
+  fullName: EventDataBatch com.microsoft.azure.eventhubs.EventHubClient.createBatch(BatchOptions options)
   type: Method
   summary: >-
     <p>Creates an Empty Collection of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. The same partitionKey must be used while sending these events using <xref uid="com.microsoft.azure.eventhubs._event_hub_client.send(final EventDataBatch)" data-throw-if-not-resolved="false">EventHubClient#send(EventDataBatch)</xref>.</p>
 
     <p></p>
   syntax:
-    content: public final EventDataBatch createBatch(BatchOptions options)
+    content: public EventDataBatch createBatch(BatchOptions options)
     parameters:
     - id: options
       type: com.microsoft.azure.eventhubs._batch_options
       description: <p>see <xref uid="com.microsoft.azure.eventhubs._batch_options" data-throw-if-not-resolved="false">BatchOptions</xref> for more details </p>
     return:
-      type: 93de0ef9com.microsoft.azure.eventhubs._event_data_batch
+      type: com.microsoft.azure.eventhubs._event_data_batch
       description: <p>the empty <xref uid="com.microsoft.azure.eventhubs._event_data_batch" data-throw-if-not-resolved="false">EventDataBatch</xref>, after negotiating maximum message size with EventHubs service </p>
