@@ -857,13 +857,13 @@ items:
 
         </code> .</p>
 
-    <p>The options that can be set via this API are:<itemizedlist><listitem><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long 
+    <p>The options that can be set via this API are:<ul><li><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long 
 
-        </code> .</p></listitem><listitem><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String 
+        </code> .</p></li><li><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String 
 
-        </code> .</p></listitem><listitem><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time. The value is expected to be of type<code>long 
+        </code> .</p></li><li><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time. The value is expected to be of type<code>long 
 
-        </code> .</p></listitem></itemizedlist></p>
+        </code> .</p></li></ul></p>
 
     <p></p>
   syntax: &o1
@@ -1437,13 +1437,13 @@ references:
 
         </code> .</p>
 
-    <p>The options that can be set via this API are:<itemizedlist><listitem><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long 
+    <p>The options that can be set via this API are:<ul><li><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long 
 
-        </code> .</p></listitem><listitem><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String 
+        </code> .</p></li><li><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String 
 
-        </code> .</p></listitem><listitem><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time. The value is expected to be of type<code>long 
+        </code> .</p></li><li><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time. The value is expected to be of type<code>long 
 
-        </code> .</p></listitem></itemizedlist></p>
+        </code> .</p></li></ul></p>
 
     <p></p>
   syntax: *o1
@@ -1465,67 +1465,9 @@ references:
   fullName: com.microsoft.azure.sdk.iot.device.DeviceIO
   type: Class
   summary: >-
-    <p>Implement the standard I/O interface with the IoTHub. <verbatim>+-------------------------------------+                  +-----------------------------------+
+    <p>Implement the standard I/O interface with the IoTHub.</p>
 
-    |                                     |                  |                                   |
-
-    |             DeviceClient            |------------------+        DeviceClientConfig         |
-
-    |                                     |                  |                                   |
-
-    +-------------------------------------+                  +-----------------------------------+
-
-       |                        |
-
-       |                       \/
-
-       |  +---------------------------------------------------------------------------------------------+
-
-       |  | Services                                                                                    |
-
-       |  |  +-----------+    +------------+    +--------------+                        +------------+  |
-
-       |  |  | Telemetry |    | DeviceTwin |    | DeviceMethod |                        | FileUpload |  |
-
-       |  |  +-----------+    +------------+    +--------------+                        +---------+--+  |
-
-       |  +---------------------------------------------------------------------------------------|-----+
-
-       |                                    |                                                     |
-
-      \/                                   \/                                                     |
-
-    #####################################################################################         |
-
-    # DeviceIO                                                                          #         |
-
-    #  +----------------+    +-------------------------------------+    +------------+  #         |
-
-    #  |                |    |                open                 |    |            |  #         |
-
-    #  | sendEventAsync |    |                   +---------------+ |    |   close    |  #         |
-
-    #  |                |    |                   | taskScheduler | |    |            |  #         |
-
-    #  +--------+-------+    +--+----------------+--+---------+--+-+    +--------+---+  #         |
-
-    ############|###############|###################|#########|##################|#######         |
-
-                |               |                   |         |                  |                |
-
-                |               |                  \/        \/                  |                |
-
-                |               |    +----------------+   +-------------------+  |                |
-
-                |               |    | IoTHubSendTask |   | IoTHubReceiveTask |  |                |
-
-                |               |    |   +--------+   |   |    +---------+    |  |                |
-
-                |               |    |   |   Run  |   |   |    |   Run   |    |  |                |
-
-                |               |    +---+---+----+---+   +----+----+----+----+  |                |
-
-    </verbatim> IotHubTransport | | | | | | +------<mdash></mdash>|------------<mdash></mdash>|---------<mdash></mdash>|-------------------<mdash></mdash>|---------<mdash></mdash>|-----<mdash></mdash>+ +-------------------------------------------<mdash></mdash>+ | \/ \/ \/ \/ \/ | | IoTHubTransportManager | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | | | addMessage | | Open | | sendMessages | | handleMessage | | Close | | | | Open | | Close | | send | | receive | | | +---------<mdash></mdash>+ +---------<mdash></mdash>+ +-----------<mdash></mdash>+ +------------<mdash></mdash>+ +------<mdash></mdash>+ | | +---<mdash></mdash>+ +----<mdash></mdash>+ +---<mdash></mdash>+ +------<mdash></mdash>+ | +-------<mdash></mdash>+-----------------------------<mdash></mdash>+----------------------<mdash></mdash>+----------<mdash></mdash>+ +<mdash></mdash>+---------------------------------------<mdash></mdash>+ | | | | \/ \/ \/ \/ +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +---------------<mdash></mdash>+ +--------------------<mdash></mdash>+ | AmqpsTransport | | MqttTransport | | HttpsTransport | | HttpsTransportManager | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ | AmqpsIotHubConnection | | MqttIotHubConnection | | HttpsIotHubConnection | +----------------------<mdash></mdash>+ +----------------------<mdash></mdash>+ +------------------------------------------<mdash></mdash>+ </p>
+    <p>+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ | | | | | <xref uid="com.microsoft.azure.sdk.iot.device._device_client" data-throw-if-not-resolved="false">DeviceClient</xref> |<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ <xref uid="com.microsoft.azure.sdk.iot.device._device_client_config" data-throw-if-not-resolved="false">DeviceClientConfig</xref> | | | | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ | | | \/ | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | | Services | | | +<mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | | | | Telemetry | | DeviceTwin | | DeviceMethod | | FileUpload | | | | +<mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash>+<ndash></ndash>+ | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>|<mdash></mdash><ndash></ndash>+ | | | \/ \/ | ##################################################################################### | # <xref uid="com.microsoft.azure.sdk.iot.device._device_i_o" data-throw-if-not-resolved="false">DeviceIO</xref> # | # +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ # | # | | | open | | | # | # | sendEventAsync | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | | close | # | # | | | | taskScheduler | | | | # | # +<mdash></mdash><mdash></mdash><ndash></ndash>+<mdash></mdash><mdash></mdash>-+ +<ndash></ndash>+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+<ndash></ndash>+<mdash></mdash><mdash></mdash><mdash></mdash>+<ndash></ndash>+-+ +<mdash></mdash><mdash></mdash><ndash></ndash>+<mdash></mdash>+ # | ############|###############|###################|#########|##################|####### | | | | | | | | | \/ \/ | | | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ | | | | | IoTHubSendTask | | IoTHubReceiveTask | | | | | | +<mdash></mdash><mdash></mdash><ndash></ndash>+ | | +<mdash></mdash><mdash></mdash><mdash></mdash>+ | | | | | | | Run | | | | Run | | | | | | +<mdash></mdash>+<mdash></mdash>+<mdash></mdash>-+<mdash></mdash>+ +<mdash></mdash>-+<mdash></mdash>-+<mdash></mdash>-+<mdash></mdash>-+ | | IotHubTransport | | | | | | +<mdash></mdash><mdash></mdash><mdash></mdash>|<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>|<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>|<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-|<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>|<mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ | \/ \/ \/ \/ \/ | | IoTHubTransportManager | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash>+ | | +<mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash>+ | | | addMessage | | Open | | sendMessages | | handleMessage | | Close | | | | Open | | Close | | send | | receive | | | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash>+ | | +<mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash>+ | +<mdash></mdash><mdash></mdash><mdash></mdash>-+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash>+<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | | | | \/ \/ \/ \/ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ | AmqpsTransport | | MqttTransport | | HttpsTransport | | HttpsTransportManager | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | AmqpsIotHubConnection | | MqttIotHubConnection | | HttpsIotHubConnection | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>-+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ </p>
   syntax:
     content: public class DeviceIO
 - uid: com.microsoft.azure.sdk.iot.device._device_twin._device_twin
