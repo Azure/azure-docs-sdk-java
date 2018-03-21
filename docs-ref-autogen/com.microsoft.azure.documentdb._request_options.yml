@@ -16,6 +16,7 @@ items:
   - com.microsoft.azure.documentdb._request_options.getPreTriggerInclude()
   - com.microsoft.azure.documentdb._request_options.getResourceTokenExpirySeconds()
   - com.microsoft.azure.documentdb._request_options.getSessionToken()
+  - com.microsoft.azure.documentdb._request_options.isPopulatePartitionKeyRangeStatistics()
   - com.microsoft.azure.documentdb._request_options.isPopulateQuotaInfo()
   - com.microsoft.azure.documentdb._request_options.isScriptLoggingEnabled()
   - com.microsoft.azure.documentdb._request_options.setAccessCondition(AccessCondition)
@@ -27,6 +28,7 @@ items:
   - com.microsoft.azure.documentdb._request_options.setOfferType(String)
   - com.microsoft.azure.documentdb._request_options.setPartitionKey(PartitionKey)
   - com.microsoft.azure.documentdb._request_options.setPartitionKeyRengeId(String)
+  - com.microsoft.azure.documentdb._request_options.setPopulatePartitionKeyRangeStatistics(boolean)
   - com.microsoft.azure.documentdb._request_options.setPopulateQuotaInfo(boolean)
   - com.microsoft.azure.documentdb._request_options.setPostTriggerInclude(List<String>)
   - com.microsoft.azure.documentdb._request_options.setPreTriggerInclude(List<String>)
@@ -48,7 +50,7 @@ items:
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
     startLine: 11
   package: com.microsoft.azure.documentdb
-  summary: <p>Encapsulates options that can be specified for a request issued to the Azure DocumentDB database service. </p>
+  summary: <p>Encapsulates options that can be specified for a request issued to the Azure Cosmos DB database service. </p>
   syntax:
     content: public class RequestOptions
   inheritance:
@@ -67,7 +69,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 69
+    startLine: 70
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the conditions associated with the request.</p>
@@ -92,7 +94,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 105
+    startLine: 106
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the consistency level required for the request.</p>
@@ -117,10 +119,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 274
+    startLine: 275
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Gets the disableRUPerMinuteUsage for the current request in the Azure DocumentDB database service.</p>
+    <p>Gets the disableRUPerMinuteUsage for the current request in the Azure Cosmos DB database service.</p>
 
     <p>disableRUPerMinuteUsage is used to enable/disable Request Units(RUs)/minute capacity to serve the request if regular provisioned RUs/second is exhausted. </p>
   syntax:
@@ -142,7 +144,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 87
+    startLine: 88
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the indexing directive (index, do not index etc).</p>
@@ -167,9 +169,9 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 292
+    startLine: 293
   package: com.microsoft.azure.documentdb
-  summary: <p>Gets offerEnableRUPerMinuteThroughput for a collection in the Azure DocumentDB database service. </p>
+  summary: <p>Gets offerEnableRUPerMinuteThroughput for a collection in the Azure Cosmos DB database service. </p>
   syntax:
     content: public boolean getOfferEnableRUPerMinuteThroughput()
     return:
@@ -189,7 +191,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 177
+    startLine: 178
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the throughput in the form of Request Units per second when creating a document collection.</p>
@@ -214,7 +216,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 159
+    startLine: 160
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the offer type when creating a document collection.</p>
@@ -239,7 +241,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 195
+    startLine: 196
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the partition key used to identify the current request's target partition.</p>
@@ -264,7 +266,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 51
+    startLine: 52
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the triggers to be invoked after the operation.</p>
@@ -289,7 +291,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 33
+    startLine: 34
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the triggers to be invoked before the operation.</p>
@@ -314,7 +316,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 141
+    startLine: 142
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the expiry time for resource token. Used when creating, updating, reading permission.</p>
@@ -339,7 +341,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 123
+    startLine: 124
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Gets the token for use with session consistency.</p>
@@ -350,6 +352,28 @@ items:
     return:
       type: "26831127"
       description: <p>the session token. </p>
+- uid: com.microsoft.azure.documentdb._request_options.isPopulatePartitionKeyRangeStatistics()
+  id: isPopulatePartitionKeyRangeStatistics()
+  parent: com.microsoft.azure.documentdb._request_options
+  href: com.microsoft.azure.documentdb._request_options.yml
+  langs:
+  - java
+  name: isPopulatePartitionKeyRangeStatistics()
+  nameWithType: RequestOptions.isPopulatePartitionKeyRangeStatistics()
+  fullName: boolean com.microsoft.azure.documentdb.RequestOptions.isPopulatePartitionKeyRangeStatistics()
+  overload: com.microsoft.azure.documentdb._request_options.isPopulatePartitionKeyRangeStatistics*
+  type: Method
+  source:
+    remote: *o0
+    path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
+    startLine: 309
+  package: com.microsoft.azure.documentdb
+  summary: <p>Gets populatePartitionKeyRangeStatistics for a collection in the Azure Cosmos DB database service. </p>
+  syntax:
+    content: public boolean isPopulatePartitionKeyRangeStatistics()
+    return:
+      type: 4fc6e284
+      description: <p>true if populatePartitionKeyRangeStatistics; otherwise false </p>
 - uid: com.microsoft.azure.documentdb._request_options.isPopulateQuotaInfo()
   id: isPopulateQuotaInfo()
   parent: com.microsoft.azure.documentdb._request_options
@@ -364,10 +388,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 253
+    startLine: 254
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Gets the PopulateQuotaInfo setting for document collection read requests in the Azure DocumentDB database service. PopulateQuotaInfo is used to enable/disable getting document collection quota related stats for document collection read requests.</p>
+    <p>Gets the PopulateQuotaInfo setting for document collection read requests in the Azure Cosmos DB database service. PopulateQuotaInfo is used to enable/disable getting document collection quota related stats for document collection read requests.</p>
 
     <p></p>
   syntax:
@@ -389,10 +413,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 232
+    startLine: 233
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Gets whether Javascript stored procedure logging is enabled for the current request in the Azure DocumentDB database service or not.</p>
+    <p>Gets whether Javascript stored procedure logging is enabled for the current request in the Azure Cosmos DB database service or not.</p>
 
     <p></p>
   syntax:
@@ -414,7 +438,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 78
+    startLine: 79
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the conditions associated with the request.</p>
@@ -440,7 +464,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 114
+    startLine: 115
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the consistency level required for the request.</p>
@@ -466,10 +490,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 284
+    startLine: 285
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Sets the disableRUPerMinuteUsage for the current request in the Azure DocumentDB database service.</p>
+    <p>Sets the disableRUPerMinuteUsage for the current request in the Azure Cosmos DB database service.</p>
 
     <p>disableRUPerMinuteUsage is used to enable/disable Request Units(RUs)/minute capacity to serve the request if regular provisioned RUs/second is exhausted. </p>
   syntax:
@@ -492,7 +516,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 96
+    startLine: 97
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the indexing directive (index, do not index etc).</p>
@@ -518,9 +542,9 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 300
+    startLine: 301
   package: com.microsoft.azure.documentdb
-  summary: <p>Sets offerEnableRUPerMinuteThroughput for a collection in the Azure DocumentDB database service. </p>
+  summary: <p>Sets offerEnableRUPerMinuteThroughput for a collection in the Azure Cosmos DB database service. </p>
   syntax:
     content: public void setOfferEnableRUPerMinuteThroughput(boolean offerEnableRUPerMinuteThroughput)
     parameters:
@@ -541,7 +565,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 186
+    startLine: 187
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the throughput in the form of Request Units per second when creating a document collection.</p>
@@ -567,7 +591,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 168
+    startLine: 169
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the offer type when creating a document collection.</p>
@@ -593,7 +617,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 204
+    startLine: 205
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the partition key used to identify the current request's target partition.</p>
@@ -619,7 +643,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 222
+    startLine: 223
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Internal usage only: Sets the partition key range id used to identify the current request's target partition.</p>
@@ -631,6 +655,29 @@ items:
     - id: partitionKeyRangeId
       type: "26831127"
       description: <p>the partition key range id value. </p>
+- uid: com.microsoft.azure.documentdb._request_options.setPopulatePartitionKeyRangeStatistics(boolean)
+  id: setPopulatePartitionKeyRangeStatistics(boolean)
+  parent: com.microsoft.azure.documentdb._request_options
+  href: com.microsoft.azure.documentdb._request_options.yml
+  langs:
+  - java
+  name: setPopulatePartitionKeyRangeStatistics(boolean populatePartitionKeyRangeStatistics)
+  nameWithType: RequestOptions.setPopulatePartitionKeyRangeStatistics(boolean populatePartitionKeyRangeStatistics)
+  fullName: void com.microsoft.azure.documentdb.RequestOptions.setPopulatePartitionKeyRangeStatistics(boolean populatePartitionKeyRangeStatistics)
+  overload: com.microsoft.azure.documentdb._request_options.setPopulatePartitionKeyRangeStatistics*
+  type: Method
+  source:
+    remote: *o0
+    path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
+    startLine: 317
+  package: com.microsoft.azure.documentdb
+  summary: <p>Sets populatePartitionKeyRangeStatistics for a collection in the Azure Cosmos DB database service. </p>
+  syntax:
+    content: public void setPopulatePartitionKeyRangeStatistics(boolean populatePartitionKeyRangeStatistics)
+    parameters:
+    - id: populatePartitionKeyRangeStatistics
+      type: 4fc6e284
+      description: <p>used to disable or enable populatePartitionKeyRangeStatistics </p>
 - uid: com.microsoft.azure.documentdb._request_options.setPopulateQuotaInfo(boolean)
   id: setPopulateQuotaInfo(boolean)
   parent: com.microsoft.azure.documentdb._request_options
@@ -645,10 +692,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 264
+    startLine: 265
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Sets the PopulateQuotaInfo setting for document collection read requests in the Azure DocumentDB database service. PopulateQuotaInfo is used to enable/disable getting document collection quota related stats for document collection read requests.</p>
+    <p>Sets the PopulateQuotaInfo setting for document collection read requests in the Azure Cosmos DB database service. PopulateQuotaInfo is used to enable/disable getting document collection quota related stats for document collection read requests.</p>
 
     <p></p>
   syntax:
@@ -671,7 +718,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 60
+    startLine: 61
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the triggers to be invoked after the operation.</p>
@@ -697,7 +744,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 42
+    startLine: 43
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the triggers to be invoked before the operation.</p>
@@ -723,7 +770,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 150
+    startLine: 151
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the expiry time for resource token. Used when creating, updating, reading permission.</p>
@@ -749,10 +796,10 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 242
+    startLine: 243
   package: com.microsoft.azure.documentdb
   summary: >-
-    <p>Sets whether Javascript stored procedure logging is enabled for the current request in the Azure DocumentDB database service or not.</p>
+    <p>Sets whether Javascript stored procedure logging is enabled for the current request in the Azure Cosmos DB database service or not.</p>
 
     <p></p>
   syntax:
@@ -775,7 +822,7 @@ items:
   source:
     remote: *o0
     path: DocumentDB/src/main/java/com/microsoft/azure/documentdb/RequestOptions.java
-    startLine: 132
+    startLine: 133
   package: com.microsoft.azure.documentdb
   summary: >-
     <p>Sets the token for use with session consistency.</p>
@@ -944,6 +991,16 @@ references:
   nameWithType: RequestOptions.setOfferEnableRUPerMinuteThroughput
   fullName: void com.microsoft.azure.documentdb.RequestOptions.setOfferEnableRUPerMinuteThroughput
   package: com.microsoft.azure.documentdb
+- uid: com.microsoft.azure.documentdb._request_options.isPopulatePartitionKeyRangeStatistics*
+  name: isPopulatePartitionKeyRangeStatistics
+  nameWithType: RequestOptions.isPopulatePartitionKeyRangeStatistics
+  fullName: boolean com.microsoft.azure.documentdb.RequestOptions.isPopulatePartitionKeyRangeStatistics
+  package: com.microsoft.azure.documentdb
+- uid: com.microsoft.azure.documentdb._request_options.setPopulatePartitionKeyRangeStatistics*
+  name: setPopulatePartitionKeyRangeStatistics
+  nameWithType: RequestOptions.setPopulatePartitionKeyRangeStatistics
+  fullName: void com.microsoft.azure.documentdb.RequestOptions.setPopulatePartitionKeyRangeStatistics
+  package: com.microsoft.azure.documentdb
 - uid: com.microsoft.azure.documentdb._request_options.setPartitionKeyRengeId*
   name: setPartitionKeyRengeId
   nameWithType: RequestOptions.setPartitionKeyRengeId
@@ -956,7 +1013,7 @@ references:
   nameWithType: AccessCondition
   fullName: com.microsoft.azure.documentdb.AccessCondition
   type: Class
-  summary: <p>Represents a set of access conditions to be used for operations against the Azure DocumentDB database service. </p>
+  summary: <p>Represents a set of access conditions to be used for operations against the Azure Cosmos DB database service. </p>
   syntax:
     content: public class AccessCondition
 - uid: com.microsoft.azure.documentdb._indexing_directive
@@ -966,7 +1023,7 @@ references:
   nameWithType: IndexingDirective
   fullName: com.microsoft.azure.documentdb.IndexingDirective
   type: Enum
-  summary: <p>Specifies whether or not the resource is to be indexed in the Azure DocumentDB database service. </p>
+  summary: <p>Specifies whether or not the resource is to be indexed in the Azure Cosmos DB database service. </p>
   syntax:
     content: public enum IndexingDirective
 - uid: com.microsoft.azure.documentdb._consistency_level
@@ -977,7 +1034,7 @@ references:
   fullName: com.microsoft.azure.documentdb.ConsistencyLevel
   type: Enum
   summary: >-
-    <p>Represents the consistency levels supported for DocumentDB client operations in the Azure DocumentDB database service. </p>
+    <p>Represents the consistency levels supported for Azure Cosmos DB client operations in the Azure Cosmos DB database service. </p>
 
     <p>The requested <xref uid="com.microsoft.azure.documentdb._consistency_level" data-throw-if-not-resolved="false">ConsistencyLevel</xref> must match or be weaker than that provisioned for the database account. Consistency levels by order of strength are Strong, BoundedStaleness, Session and Eventual. </p>
   syntax:
@@ -989,6 +1046,6 @@ references:
   nameWithType: PartitionKey
   fullName: com.microsoft.azure.documentdb.PartitionKey
   type: Class
-  summary: <p>Represents a partition key value in the Azure DocumentDB database service. A partition key identifies the partition where the document is stored in. </p>
+  summary: <p>Represents a partition key value in the Azure Cosmos DB database service. A partition key identifies the partition where the document is stored in. </p>
   syntax:
     content: public class PartitionKey
