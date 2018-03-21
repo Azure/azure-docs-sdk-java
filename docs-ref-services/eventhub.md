@@ -50,7 +50,7 @@ ehClient.sendSync(sendEvent);
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/eventhub/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/eventhub/client)
 
 
 ## Samples
