@@ -1,7 +1,7 @@
 ---
 title: Azure Cosmos DB libraries for Java
 description: Reference documentation for the Java client libraries for Azure Cosmos DB
-keywords: Azure, Java, SDK, API, SQL, database, MongoDB, Cosmos DB, NoSQL, DocumentDB 
+keywords: Azure, Java, SDK, API, SQL, database, MongoDB, Cosmos DB, NoSQL 
 author: rloutlaw
 ms.author: routlaw
 manager: douge
@@ -17,13 +17,13 @@ ms.service: cosmosdb
 
 ## Overview
 
-Store and query key-value, JSON document, graph, and columnar data in a globally distributed database with [Cosmos DB](/azure/cosmos-db/introduction).
+Store and query key-value, JSON document, graph, and columnar data in a globally distributed database with [Azure Cosmos DB](/azure/cosmos-db/introduction).
 
-To get started with Cosmos DB, see [Azure Cosmos DB: Build an API app with Java and the Azure portal](/azure/cosmos-db/create-documentdb-java).
+To get started with Azure Cosmos DB, see [Azure Cosmos DB: Build an API app with Java and the Azure portal](/azure/cosmos-db/create-sql-api-java).
 
 ## Client library
 
-Connect to Cosmos DB using the [DocumentDB](/azure/cosmos-db/documentdb-introduction) client library to work with JSON data with [SQL query syntax](/azure/cosmos-db/documentdb-sql-query).
+Connect to Azure Cosmos DB using the [SQL API](/azure/cosmos-db/sql-api-introduction) client library to work with JSON data with [SQL query syntax](/azure/cosmos-db/sql-api-sql-query).
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the Cosmos DB client library in your project.
 
@@ -61,7 +61,7 @@ List<Document> results = client.queryDocuments("dbs/" + DATABASE_ID + "/colls/" 
 
 [Develop a Java app using Azure Cosmos DB MongoDB API][2]   
 [Develop a Java app using Azure Cosmos DB Graph API][3]   
-[Develop a Java app using Azure Cosmos DB DocumentDB API][4]        
+[Develop a Java app using Azure Cosmos DB SQL API][4]        
 
 Explore more [sample Java code for Azure Cosmos DB](https://azure.microsoft.com/resources/samples/?platform=java&term=cosmos) you can use in your apps.
 
