@@ -39,7 +39,7 @@ final String storageConnection = "DefaultEndpointsProtocol=https;"
         + ";EndpointSuffix=core.windows.net";
 ```
 
-Service connection strings are used to authenticate to other Azure services like [DocumentDB](https://docs.microsoft.com/azure/documentdb/documentdb-java-application#a-iduseserviceastep-4-using-the-documentdb-service-in-a-java-application), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues). You can get the connection strings using the Azure portal or the CLI.  You can also use the Azure management libraries for Java to query resources to build connection strings in your code. 
+Service connection strings are used to authenticate to other Azure services like [Azure Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/sql-api-java-application#UseService), [Redis Cache](https://docs.microsoft.com/azure/redis-cache/cache-java-get-started), and [Service Bus](https://docs.microsoft.com/azure/service-bus-messaging/service-bus-java-how-to-use-queues). You can get the connection strings using the Azure portal or the CLI.  You can also use the Azure management libraries for Java to query resources to build connection strings in your code. 
 
 For example, this code uses the management libraries to create a storage account connection string:
 
