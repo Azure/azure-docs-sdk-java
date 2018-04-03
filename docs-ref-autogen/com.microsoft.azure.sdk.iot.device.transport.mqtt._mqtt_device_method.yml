@@ -35,12 +35,11 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.connectionLost(Throwable)
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.deliveryComplete(IMqttDeliveryToken)
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.disconnect()
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.isConnected()
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.messageArrived(String,MqttMessage)
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.Mqtt(MqttConnection,MqttConnectionStateListener)
+  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.Mqtt(MqttConnection,IotHubListener,MqttMessageListener)
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.peekMessage()
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.publish(String,byte [])
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.setDeviceClientConfig(DeviceClientConfig)
+  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.publish(String,Message)
+  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.sendMessageAcknowledgement(int)
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.subscribe(String)
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.MqttDeviceMethod(MqttConnection)
   id: MqttDeviceMethod(MqttConnection)
@@ -71,18 +70,18 @@ items:
   - java
   name: receive()
   nameWithType: MqttDeviceMethod.receive()
-  fullName: Message com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethod.receive()
+  fullName: IotHubTransportMessage com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethod.receive()
   overload: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.receive*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttDeviceMethod.java
-    startLine: 155
+    startLine: 144
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
-    content: public Message receive()
+    content: public IotHubTransportMessage receive()
     return:
-      type: com.microsoft.azure.sdk.iot.device._message
+      type: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.send(final IotHubTransportMessage)
   id: send(final IotHubTransportMessage)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method
@@ -97,13 +96,23 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttDeviceMethod.java
-    startLine: 72
+    startLine: 74
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
+  summary: >-
+    <p>Sends the provided device method message over the mqtt connection</p>
+
+    <p></p>
   syntax:
     content: public void send(final IotHubTransportMessage message)
     parameters:
     - id: message
       type: 93de0ef9com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
+      description: <p>the message to send </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if any exception is encountered while sending the message </p>
+  - type: 3c87bd19
+    description: <p>if the provided message is null or has a null body </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.start()
   id: start()
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method
@@ -118,7 +127,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttDeviceMethod.java
-    startLine: 51
+    startLine: 48
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void start()
@@ -136,7 +145,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/MqttDeviceMethod.java
-    startLine: 62
+    startLine: 57
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
   syntax:
     content: public void stop()
@@ -156,6 +165,14 @@ references:
   nameWithType: MqttDeviceMethod.stop
   fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethod.stop
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
+- uid: 848a9648
+  spec.java:
+  - name: TransportException
+    fullName: TransportException
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
 - uid: 93de0ef9com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
   spec.java:
   - name: 'final '
@@ -172,7 +189,7 @@ references:
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.receive*
   name: receive
   nameWithType: MqttDeviceMethod.receive
-  fullName: Message com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethod.receive
+  fullName: IotHubTransportMessage com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttDeviceMethod.receive
   package: com.microsoft.azure.sdk.iot.device.transport.mqtt
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.connect()
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
@@ -228,17 +245,6 @@ references:
     <p></p>
   syntax:
     content: protected void disconnect()
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.isConnected()
-  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
-  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
-  name: isConnected()
-  nameWithType: Mqtt.isConnected()
-  fullName: boolean com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.isConnected()
-  type: Method
-  syntax:
-    content: protected boolean isConnected()
-    return:
-      type: 4fc6e284
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.messageArrived(String,MqttMessage)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
@@ -256,22 +262,26 @@ references:
     - id: mqttMessage
       type: e1250987
       description: <p>the message arrived on the <xref uid="com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt" data-throw-if-not-resolved="false">Mqtt</xref> broker. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.Mqtt(MqttConnection,MqttConnectionStateListener)
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.Mqtt(MqttConnection,IotHubListener,MqttMessageListener)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
-  name: Mqtt(MqttConnection mqttConnection, MqttConnectionStateListener listener)
-  nameWithType: Mqtt.Mqtt(MqttConnection mqttConnection, MqttConnectionStateListener listener)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.Mqtt(MqttConnection mqttConnection, MqttConnectionStateListener listener)
+  name: Mqtt(MqttConnection mqttConnection, IotHubListener listener, MqttMessageListener messageListener)
+  nameWithType: Mqtt.Mqtt(MqttConnection mqttConnection, IotHubListener listener, MqttMessageListener messageListener)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.Mqtt(MqttConnection mqttConnection, IotHubListener listener, MqttMessageListener messageListener)
   type: Constructor
   summary: <p>Constructor to instantiate mqtt broker connection. </p>
   syntax:
-    content: public Mqtt(MqttConnection mqttConnection, MqttConnectionStateListener listener)
+    content: public Mqtt(MqttConnection mqttConnection, IotHubListener listener, MqttMessageListener messageListener)
     parameters:
     - id: mqttConnection
       type: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection
       description: <p>the connection to use </p>
     - id: listener
-      type: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection_state_listener
+      type: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener
+      description: <p>the listener to be called back upon connection established/lost and upon a message being delivered </p>
+    - id: messageListener
+      type: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_message_listener
+      description: <p>the listener to be called back upon a message arriving </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.peekMessage()
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
@@ -283,40 +293,43 @@ references:
     content: public Pair<String, byte[]> peekMessage()
     return:
       type: 667c7c32
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.publish(String,byte [])
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.publish(String,Message)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
-  name: publish(String publishTopic, byte[] payload)
-  nameWithType: Mqtt.publish(String publishTopic, byte[] payload)
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.publish(String publishTopic, byte[] payload)
+  name: publish(String publishTopic, Message message)
+  nameWithType: Mqtt.publish(String publishTopic, Message message)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.publish(String publishTopic, Message message)
   type: Method
   summary: >-
     <p>Method to publish to mqtt broker connection.</p>
 
     <p></p>
   syntax:
-    content: protected void publish(String publishTopic, byte[] payload)
+    content: protected void publish(String publishTopic, Message message)
     parameters:
     - id: publishTopic
       type: "26831127"
       description: <p>the topic to publish on mqtt broker connection. </p>
-    - id: payload
-      type: ccd9418d
-      description: <p>the payload to publish on publishTopic of mqtt broker connection. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.setDeviceClientConfig(DeviceClientConfig)
+    - id: message
+      type: com.microsoft.azure.sdk.iot.device._message
+      description: <p>the message to publish. </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.sendMessageAcknowledgement(int)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
-  name: setDeviceClientConfig(DeviceClientConfig deviceConfig)
-  nameWithType: Mqtt.setDeviceClientConfig(DeviceClientConfig deviceConfig)
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.setDeviceClientConfig(DeviceClientConfig deviceConfig)
+  name: sendMessageAcknowledgement(int messageId)
+  nameWithType: Mqtt.sendMessageAcknowledgement(int messageId)
+  fullName: boolean com.microsoft.azure.sdk.iot.device.transport.mqtt.Mqtt.sendMessageAcknowledgement(int messageId)
   type: Method
-  summary: <p>Set device client configuration used for SAS token validation. </p>
+  summary: <p>Attempts to send ack for the provided message. If the message does not have a saved messageId in this layer, this function shall return false. </p>
   syntax:
-    content: protected void setDeviceClientConfig(DeviceClientConfig deviceConfig)
+    content: protected boolean sendMessageAcknowledgement(int messageId)
     parameters:
-    - id: deviceConfig
-      type: com.microsoft.azure.sdk.iot.device._device_client_config
-      description: <p>is the device client configuration to be set </p>
+    - id: messageId
+      type: f75371fa
+      description: <p>The message id to send the ack for </p>
+    return:
+      type: 4fc6e284
+      description: <p>true if the ack is sent successfully or false if the message isn't tied to this mqtt client </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.subscribe(String)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
@@ -370,6 +383,15 @@ references:
   type: Class
   syntax:
     content: public class MqttConnection
+- uid: com.microsoft.azure.sdk.iot.device.exceptions._transport_exception
+  parent: com.microsoft.azure.sdk.iot.device.exceptions
+  href: com.microsoft.azure.sdk.iot.device.exceptions._transport_exception.yml
+  name: TransportException
+  nameWithType: TransportException
+  fullName: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
+  type: Class
+  syntax:
+    content: public class TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
   parent: com.microsoft.azure.sdk.iot.device.transport
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message.yml
@@ -380,12 +402,3 @@ references:
   summary: <p>Extends <xref uid="com.microsoft.azure.sdk.iot.device._message" data-throw-if-not-resolved="false">Message</xref>, adding transport artifacts. </p>
   syntax:
     content: public class IotHubTransportMessage extends Message
-- uid: com.microsoft.azure.sdk.iot.device._message
-  parent: com.microsoft.azure.sdk.iot.device
-  href: com.microsoft.azure.sdk.iot.device._message.yml
-  name: Message
-  nameWithType: Message
-  fullName: com.microsoft.azure.sdk.iot.device.Message
-  type: Class
-  syntax:
-    content: public class Message
