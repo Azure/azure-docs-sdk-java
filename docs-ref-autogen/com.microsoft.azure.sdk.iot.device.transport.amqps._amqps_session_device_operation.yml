@@ -23,7 +23,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionDeviceOperation.java
-    startLine: 12
+    startLine: 13
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public class AmqpsSessionDeviceOperation
@@ -43,7 +43,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionDeviceOperation.java
-    startLine: 43
+    startLine: 48
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Create logical device entity to handle all operation.</p>
@@ -58,6 +58,9 @@ items:
     - id: amqpsDeviceAuthentication
       type: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_authentication
       description: <p>the authentication object associated with the device. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if deviceClientConfig or amqpsDeviceAuthentication is null </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation.authenticate()
   id: authenticate()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation
@@ -72,17 +75,17 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionDeviceOperation.java
-    startLine: 108
+    startLine: 113
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
-    <p>Start the authentication process. In SAS case it is nothing to do. In the CBS case start openeing the authentication links and send authentication messages.</p>
+    <p>Start the authentication process. In SAS case it is nothing to do. In the CBS case start opening the authentication links and send authentication messages.</p>
 
     <p></p>
   syntax:
     content: public void authenticate()
   exceptions:
-  - type: cbf33bbe
-    description: <p>throw if Proton operation throws. </p>
+  - type: 848a9648
+    description: <p>if authentication message reply takes too long. </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation.close()
   id: close()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation
@@ -97,7 +100,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionDeviceOperation.java
-    startLine: 89
+    startLine: 94
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: <p>Release all resources and close all links. </p>
   syntax:
@@ -166,7 +169,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionDeviceOperation.java
-    startLine: 151
+    startLine: 154
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Start the token renewal process using CBS authentication.</p>
@@ -175,9 +178,13 @@ items:
   syntax:
     content: public void renewToken()
   exceptions:
-  - type: cbf33bbe
+  - type: 848a9648
     description: <p>throw if Proton operation throws. </p>
 references:
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
 - uid: 93de0ef9com.microsoft.azure.sdk.iot.device._device_client_config
   spec.java:
   - name: 'final '
@@ -196,10 +203,10 @@ references:
   nameWithType: AmqpsSessionDeviceOperation.close
   fullName: void com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionDeviceOperation.close
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-- uid: cbf33bbe
+- uid: 848a9648
   spec.java:
-  - name: IOException
-    fullName: IOException
+  - name: TransportException
+    fullName: TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation.authenticate*
   name: authenticate
   nameWithType: AmqpsSessionDeviceOperation.authenticate
@@ -271,16 +278,6 @@ references:
   type: Class
   syntax:
     content: public class AmqpsDeviceAuthenticationCBSTokenRenewalTask
-- uid: com.microsoft.azure.sdk.iot.device._object_lock
-  parent: com.microsoft.azure.sdk.iot.device
-  href: com.microsoft.azure.sdk.iot.device._object_lock.yml
-  name: ObjectLock
-  nameWithType: ObjectLock
-  fullName: com.microsoft.azure.sdk.iot.device.ObjectLock
-  type: Class
-  summary: <p>This class enables mocking of the base class wait and notify functions </p>
-  syntax:
-    content: public class ObjectLock
 - uid: com.microsoft.azure.sdk.iot.device._custom_logger
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._custom_logger.yml
@@ -290,6 +287,15 @@ references:
   type: Class
   syntax:
     content: public class CustomLogger
+- uid: com.microsoft.azure.sdk.iot.device.exceptions._transport_exception
+  parent: com.microsoft.azure.sdk.iot.device.exceptions
+  href: com.microsoft.azure.sdk.iot.device.exceptions._transport_exception.yml
+  name: TransportException
+  nameWithType: TransportException
+  fullName: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
+  type: Class
+  syntax:
+    content: public class TransportException
 - uid: com.microsoft.azure.sdk.iot.device._message_type
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._message_type.yml
