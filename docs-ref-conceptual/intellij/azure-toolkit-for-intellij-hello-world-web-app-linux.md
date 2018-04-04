@@ -114,7 +114,7 @@ The following steps walk you through using the Azure portal to create an Azure C
 
    * **Resource Group**: Specifies whether you will use an existing or create a new resource group. 
 
-   * **App Service Plan**: Specifies whether you willuse an existing or create a new app service plan. 
+   * **App Service Plan**: Specifies whether you will use an existing or create a new app service plan. 
 
 1. When you have finished configuring the settings listed above, click **Run**.
 
