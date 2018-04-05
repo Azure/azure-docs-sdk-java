@@ -5,12 +5,11 @@ items:
   children:
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection_state_listener
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_twin
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection
+  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_message_listener
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_messaging
-  - com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_transport
   - com.microsoft.azure.sdk.iot.device.transport.mqtt._topic_parser
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt.yml
   langs:
@@ -21,14 +20,19 @@ items:
   type: Namespace
   source:
     remote:
-      path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/Mqtt.java
-      branch: master
-      repo: https://github.com/Azure/azure-iot-sdk-java
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/mqtt/Mqtt.java
-    startLine: 3
+      path: '[generated]'
+    path: '[generated]'
   syntax:
     content: package com.microsoft.azure.sdk.iot.device.transport.mqtt
 references:
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions.yml
+  name: com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions
+  nameWithType: com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions
+  type: Namespace
+  syntax:
+    content: package com.microsoft.azure.sdk.iot.device.transport.mqtt.exceptions
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt.yml
@@ -47,15 +51,6 @@ references:
   type: Class
   syntax:
     content: public class MqttConnection
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection_state_listener
-  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
-  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_connection_state_listener.yml
-  name: MqttConnectionStateListener
-  nameWithType: MqttConnectionStateListener
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttConnectionStateListener
-  type: Interface
-  syntax:
-    content: public interface MqttConnectionStateListener
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_device_method.yml
@@ -82,7 +77,16 @@ references:
   fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
   type: Class
   syntax:
-    content: public class MqttIotHubConnection implements MqttConnectionStateListener
+    content: public class MqttIotHubConnection implements IotHubTransportConnection,MqttMessageListener
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_message_listener
+  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_message_listener.yml
+  name: MqttMessageListener
+  nameWithType: MqttMessageListener
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttMessageListener
+  type: Interface
+  syntax:
+    content: public interface MqttMessageListener
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_messaging
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_messaging.yml
@@ -92,19 +96,6 @@ references:
   type: Class
   syntax:
     content: public class MqttMessaging extends Mqtt
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_transport
-  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
-  href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_transport.yml
-  name: MqttTransport
-  nameWithType: MqttTransport
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttTransport
-  type: Class
-  summary: >-
-    <p>An MQTT transport. Contains functionality for adding messages and sending batched messages to an IoT Hub. Buffers unsent messages until they are received by an IoT Hub. A transport is bound at construction to the following parameters: IoT Hub name, device ID, device key, and message valid seconds. </p>
-
-    <p>The transport can also poll an IoT Hub for messages and invoke a user-defined message callback if a message and callback is found. </p>
-  syntax:
-    content: public class MqttTransport implements IotHubTransport
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._topic_parser
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._topic_parser.yml
