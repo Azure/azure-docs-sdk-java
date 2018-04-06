@@ -16,16 +16,16 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_telemetry
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin
+  - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_exception_translator
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection
+  - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection._reconnection_task
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message._a_c_k___t_y_p_e
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_send_return_value
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_device_operation
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_session_manager
-  - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
   - com.microsoft.azure.sdk.iot.device.transport.amqps._io_t_hub_connection_type
   - com.microsoft.azure.sdk.iot.device.transport.amqps._iot_hub_reactor
-  - com.microsoft.azure.sdk.iot.device.transport.amqps._server_listener
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.yml
   langs:
   - java
@@ -43,6 +43,14 @@ items:
   syntax:
     content: package com.microsoft.azure.sdk.iot.device.transport.amqps
 references:
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions.yml
+  name: com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
+  nameWithType: com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
+  type: Namespace
+  syntax:
+    content: package com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_convert_from_proton_return_value
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_convert_from_proton_return_value.yml
@@ -162,6 +170,15 @@ references:
   type: Class
   syntax:
     content: public class AmqpsDeviceTwin extends AmqpsDeviceOperations
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_exception_translator
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_exception_translator.yml
+  name: AmqpsExceptionTranslator
+  nameWithType: AmqpsExceptionTranslator
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsExceptionTranslator
+  type: Class
+  syntax:
+    content: public class AmqpsExceptionTranslator
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection.yml
@@ -171,7 +188,7 @@ references:
   type: Class
   summary: <p>An AMQPS IotHub connection between a device and an IoTHub. This class contains functionality for sending/receiving a message, and logic to re-establish the connection with the IoTHub in case it gets lost. </p>
   syntax:
-    content: public class AmqpsIotHubConnection
+    content: public class AmqpsIotHubConnection implements IotHubTransportConnection
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message.yml
@@ -210,19 +227,6 @@ references:
   summary: <p>Manage multiple device clients and the authentication mechanism </p>
   syntax:
     content: public class AmqpsSessionManager
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_transport.yml
-  name: AmqpsTransport
-  nameWithType: AmqpsTransport
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsTransport
-  type: Class
-  summary: >-
-    <p>An AMQPS transport. Contains functionality for adding messages and sending messages to an IoT Hub. Buffers unsent messages until they are received by an IoT Hub. A transport is bound at construction to the following parameters: IoT Hub name, device ID and device key. </p>
-
-    <p>The transport also receives messages from IoT Hub and invokes a user-defined message callback if a message and callback are found. </p>
-  syntax:
-    content: public class AmqpsTransport implements IotHubTransport,ServerListener
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._io_t_hub_connection_type
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._io_t_hub_connection_type.yml
@@ -242,16 +246,6 @@ references:
   type: Class
   syntax:
     content: public class IotHubReactor
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._server_listener
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps._server_listener.yml
-  name: ServerListener
-  nameWithType: ServerListener
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.ServerListener
-  type: Interface
-  summary: <p>Defines methods which are triggered by interactions with the IoTHub. </p>
-  syntax:
-    content: public interface ServerListener
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message._a_c_k___t_y_p_e
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_message._a_c_k___t_y_p_e.yml
@@ -261,3 +255,13 @@ references:
   type: Enum
   syntax:
     content: public enum ACK_TYPE
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection._reconnection_task
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection._reconnection_task.yml
+  name: AmqpsIotHubConnection.ReconnectionTask
+  nameWithType: AmqpsIotHubConnection.ReconnectionTask
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.ReconnectionTask
+  type: Class
+  summary: <p>Runnable task to restart the AMQPS connection. Cannot do this work synchronously because the proton reactor can't block and wait for itself to be closed. The thread spawning this thread will close the reactor thread while the spawned thread creates a new reactor once the old reactor closes </p>
+  syntax:
+    content: public class ReconnectionTask
