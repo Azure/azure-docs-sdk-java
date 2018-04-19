@@ -294,6 +294,8 @@ For more information about using Azure Cosmos DB and Java, see the following art
 
 * [Azure Cosmos DB: Create a document database using Java and the Azure portal][Build a SQL API app with Java]
 
+* [Spring Data for Azure Cosmos DB SQL API](https://azure.microsoft.com/blog/spring-data-azure-cosmos-db-nosql-data-access-on-azure/)
+
 For more information about using Spring Boot applications on Azure, see the following articles:
 
 * [Spring Boot DocumenDB Starter for Azure](https://github.com/Microsoft/azure-spring-boot-starters/tree/master/azure-documentdb-spring-boot-starter-sample)
