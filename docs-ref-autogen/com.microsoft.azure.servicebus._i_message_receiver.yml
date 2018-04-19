@@ -1246,7 +1246,7 @@ items:
     startLine: 350
   package: com.microsoft.azure.servicebus
   summary: >-
-    <p>Set the prefetch count of the receiver. Prefetch speeds up the message flow by aiming to have a message readily available for local retrieval when and before the application asks for one using Receive. Setting a non-zero value prefetches PrefetchCount number of messages. Setting the value to zero turns prefetch off. For RECEIVEANDDELETE mode, the default value is 0. For PEEKLOCK mode, the default value is 100. </p>
+    <p>Set the prefetch count of the receiver. Prefetch speeds up the message flow by aiming to have a message readily available for local retrieval when and before the application asks for one using Receive. Setting a non-zero value prefetches PrefetchCount number of messages. Setting the value to zero turns prefetch off. For both PEEKLOCK mode and RECEIVEANDDELETE mode, the default value is 0. </p>
 
     <p>The value cannot be set until the receiver is created.</p>
 
@@ -1731,14 +1731,16 @@ references:
   fullName: UUID com.microsoft.azure.servicebus.Message.getLockToken()
   type: Method
   summary: >-
-    <p>Gets the lock token of this message, if this message is received using <xref uid="com.microsoft.azure.servicebus._receive_mode.PEEKLOCK" data-throw-if-not-resolved="false">ReceiveMode#PEEKLOCK</xref> mode. This token is used to complete or abandon or deadletter or defer this message.</p>
+    <p>Gets the lock token for the current message.</p>
+
+    <p>The lock token is a reference to the lock that is being held by the broker in PEEKLOCK mode. Locks are used to explicitly settle messages as explained in the <a href="https://docs.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement">product documentation in more detail</a>. The token can also be used to pin the lock permanently through the <a href="https://docs.microsoft.com/azure/service-bus-messaging/message-deferral">Deferral API</a> and, with that, take the message out of the regular delivery state flow. This property is read-only.</p>
 
     <p></p>
   syntax:
     content: public UUID getLockToken()
     return:
       type: add9545a
-      description: <p>lock token of this message if this message is received using PEEKLOCK mode. Otherwise it returns a token of all zeroes. </p>
+      description: <p>lock token of this message. </p>
 - uid: com.microsoft.azure.servicebus._i_message
   parent: com.microsoft.azure.servicebus
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1747,7 +1749,7 @@ references:
   fullName: com.microsoft.azure.servicebus.IMessage
   type: Interface
   summary: >-
-    <p>Represents a message that is exchanged between Azure Service Bus and clients.</p>
+    <p>Represents the message that is exchanged between Azure Service Bus and its clients.</p>
 
     <p></p>
   syntax:
@@ -1760,7 +1762,9 @@ references:
   fullName: long com.microsoft.azure.servicebus.Message.getSequenceNumber()
   type: Method
   summary: >-
-    <p>Get the sequence number of this message. Azure Service Bus assigns a unique sequence number to every message enqueued in an entity.</p>
+    <p>Gets the unique number assigned to a message by Service Bus.</p>
+
+    <p>The sequence number is a unique 64-bit integer assigned to a message as it is accepted and stored by the broker and functions as its true identifier. For partitioned entities, the topmost 16 bits reflect the partition identifier. Sequence numbers monotonically increase and are gapless. They roll over to 0 when the 48-64 bit range is exhausted. This property is read-only.</p>
 
     <p></p>
   syntax:

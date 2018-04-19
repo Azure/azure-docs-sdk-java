@@ -21,8 +21,14 @@ items:
       branch: master
       repo: https://msazure.visualstudio.com/One/_git/sf-java
     path: src/prod/src/java/system.fabric/src/system/fabric/FaultType.java
-    startLine: 10
+    startLine: 13
   package: system.fabric
+  summary: >-
+    <p>Indicates the type of fault that a service reports: invalid, transient or permanent. </p>
+
+    <p>
+
+      <b>Remarks : </b> Services can report faults during runtime by using the <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(FaultType)</xref> method to indicate the type of fault. </p>
   syntax:
     content: public enum FaultType
   inheritance:
@@ -42,12 +48,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FaultType.java
-    startLine: 22
+    startLine: 64
   package: system.fabric
+  summary: <p>Gets the <xref uid="" data-throw-if-not-resolved="false">system.fabric.FaultType</xref> value. </p>
   syntax:
     content: public int getValue()
     return:
       type: f75371fa
+      description: <p>Returns an integer representing <xref uid="" data-throw-if-not-resolved="false">system.fabric.FaultType</xref></p>
 - uid: system.fabric._fault_type.Invalid
   id: Invalid
   parent: system.fabric._fault_type
@@ -61,8 +69,9 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FaultType.java
-    startLine: 12
+    startLine: 18
   package: system.fabric
+  summary: <p>The type is invalid. </p>
   syntax:
     content: public Invalid=(0)
 - uid: system.fabric._fault_type.Permanent
@@ -78,8 +87,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FaultType.java
-    startLine: 13
+    startLine: 36
   package: system.fabric
+  summary: >-
+    <p>A permanent fault is a fault that the replica cannot recover from. This type of fault indicates that the replica can make no further progress and should be removed and replaced. </p>
+
+    <p>
+
+      <b>Remarks : </b> An example of a permanent fault would be a persistent stateful service that tries to write information to disk and determines that the disk had been removed or was unusable. Calling <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(system.fabric.FaultType)</xref> and reporting a permanent fault result in the service to be Aborted via <xref uid="system.fabric._stateful_service_replica" data-throw-if-not-resolved="false">StatefulServiceReplica</xref><xref uid="system.fabric._stateful_service_replica.abort()" data-throw-if-not-resolved="false">system.fabric.StatefulServiceReplica#abort()</xref> or <xref uid="system.fabric._stateless_service_instance" data-throw-if-not-resolved="false">StatelessServiceInstance</xref><xref uid="system.fabric._stateless_service_instance.abort()" data-throw-if-not-resolved="false">system.fabric.StatelessServiceInstance#abort()</xref> without a chance to gracefully clean up state or complete operations. Therefore, if any cleanup or other long-running work is necessary, it should be performed before <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(system.fabric.FaultType)</xref> is called. Note that the distinction between permanent and transient faults is useful mainly for persistent stateful services. Other than the call sequence, the effects on other service types are the same: the replica or instance is removed, all state at that replica or instance is lost, and the replica or instance is recreated, potentially in a different location. </p>
   syntax:
     content: public Permanent=(1)
 - uid: system.fabric._fault_type.Transient
@@ -95,8 +110,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/FaultType.java
-    startLine: 14
+    startLine: 51
   package: system.fabric
+  summary: >-
+    <p>A transient fault indicates that there is some temporary condition which prevents the replica from making further progress or from processing further user requests. </p>
+
+    <p>
+
+      <b> Remarks : </b> An example of a transient fault is a service that determines that a portion of its state or some reference file is corrupted, but can be repaired if the service were to be re-initialized. In this case, the service uses the <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(system.fabric.FaultType)</xref> method to report a transient fault. Reporting a transient fault closes the service via <xref uid="system.fabric._stateful_service_replica" data-throw-if-not-resolved="false">StatefulServiceReplica</xref>. <xref uid="system.fabric._stateful_service_replica.closeAsync(CancellationToken)" data-throw-if-not-resolved="false">system.fabric.StatefulServiceReplica#closeAsync(system.fabric.CancellationToken)</xref> or <xref uid="system.fabric._stateless_service_instance" data-throw-if-not-resolved="false">StatelessServiceInstance</xref><xref uid="system.fabric._stateless_service_instance.closeAsync(CancellationToken)" data-throw-if-not-resolved="false">system.fabric.StatelessServiceInstance#closeAsync(system.fabric.CancellationToken)</xref>. Note that for stateless and stateful services, volatile transient faults are not very useful because state is not preserved across the failure. For these services, whether to use transient or permanent faults is dependent on whether the service should be gracefully closed asynchronously with cleanup or ungracefully closed with a synchronous <xref uid="system.fabric._stateful_service_replica" data-throw-if-not-resolved="false">StatefulServiceReplica</xref><xref uid="system.fabric._stateful_service_replica.abort()" data-throw-if-not-resolved="false">system.fabric.StatefulServiceReplica#abort()</xref> or <xref uid="system.fabric._stateless_service_instance" data-throw-if-not-resolved="false">StatelessServiceInstance</xref><xref uid="system.fabric._stateless_service_instance.abort()" data-throw-if-not-resolved="false">system.fabric.StatelessServiceInstance#abort()</xref> method.</p>
   syntax:
     content: public Transient=(2)
 references:
@@ -109,3 +130,123 @@ references:
   nameWithType: FaultType.getValue
   fullName: int system.fabric.FaultType.getValue
   package: system.fabric
+- uid: system.fabric._service_partition.reportFault(FaultType)
+  parent: system.fabric._service_partition
+  href: system.fabric._service_partition.yml
+  name: reportFault(FaultType faultType)
+  nameWithType: ServicePartition.reportFault(FaultType faultType)
+  fullName: void system.fabric.ServicePartition.reportFault(FaultType faultType)
+  type: Method
+  summary: >-
+    <p>Reports the load for a set of load balancing metrics. The load can be reported at any time via the <xref uid="" data-throw-if-not-resolved="false">java.util.Collection</xref> of <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">LoadMetric</xref> method and provides one or more properties of the <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">system.fabric.LoadMetric</xref> method.</p>
+
+    <p>
+
+      <b>Remarks:</b>A fault is typically reported when the service code encounters some issue from which it cannot recover. </p>
+  syntax:
+    content: public void reportFault(FaultType faultType)
+    parameters:
+    - id: faultType
+      type: system.fabric._fault_type
+      description: <p>The <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">system.fabric.LoadMetric</xref> that the service has encountered. </p>
+- uid: system.fabric._stateful_service_replica
+  parent: system.fabric
+  href: system.fabric._stateful_service_replica.yml
+  name: StatefulServiceReplica
+  nameWithType: StatefulServiceReplica
+  fullName: system.fabric.StatefulServiceReplica
+  type: Interface
+  summary: >-
+    <p>Defines behavior that governs the lifecycle of a replica, such as startup, initialization, role changes, and shutdown. </p>
+
+    <p>
+
+      <b>Remarks:</b>Stateful service types must implement this interface. The logic of a stateful service type includes behavior that is invoked on Primary replicas and behavior that is invoked on Secondary replicas. If the service author wants to make use of the provided <xref uid="system.fabric._fabric_replicator" data-throw-if-not-resolved="false">system.fabric.FabricReplicator</xref>, then the service must also implement <xref uid="system.fabric._state_provider" data-throw-if-not-resolved="false">system.fabric.StateProvider</xref> to use the implementation of <xref uid="system.fabric._state_replicator" data-throw-if-not-resolved="false">system.fabric.StateReplicator</xref> that is provided by <xref uid="system.fabric._fabric_replicator" data-throw-if-not-resolved="false">system.fabric.FabricReplicator</xref></p>
+  syntax:
+    content: public interface StatefulServiceReplica
+- uid: system.fabric._stateful_service_replica.abort()
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  name: abort()
+  nameWithType: StatefulServiceReplica.abort()
+  fullName: void system.fabric.StatefulServiceReplica.abort()
+  type: Method
+  summary: >-
+    <p>Ungracefully terminates an instance. </p>
+
+    <p>
+
+      <b>Remarks:</b>Lease loss and, in response to the service, the use of <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(FaultType)</xref> to report a <xref uid="system.fabric._fault_type.Permanent" data-throw-if-not-resolved="false">system.fabric.FaultType#Permanent</xref> fault are examples of ungraceful termination. When this method is invoked, the service instance should immediately release and clean up all references and return. </p>
+  syntax:
+    content: public void abort()
+- uid: system.fabric._stateless_service_instance
+  parent: system.fabric
+  href: system.fabric._stateless_service_instance.yml
+  name: StatelessServiceInstance
+  nameWithType: StatelessServiceInstance
+  fullName: system.fabric.StatelessServiceInstance
+  type: Interface
+  summary: <p>Stateless services are those which have no state that requires management by Service Fabric. Stateless service types must implement this interface. </p>
+  syntax:
+    content: public interface StatelessServiceInstance
+- uid: system.fabric._stateless_service_instance.abort()
+  parent: system.fabric._stateless_service_instance
+  href: system.fabric._stateless_service_instance.yml
+  name: abort()
+  nameWithType: StatelessServiceInstance.abort()
+  fullName: void system.fabric.StatelessServiceInstance.abort()
+  type: Method
+  summary: >-
+    <p>Terminates this instance ungracefully with this synchronous method call. </p>
+
+    <p>
+
+      <b>Remarks:</b>Examples of ungraceful termination are lease loss and, in response to the service, the use of <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(FaultType)</xref> to report a <xref uid="system.fabric._fault_type.Permanent" data-throw-if-not-resolved="false">system.fabric.FaultType#Permanent</xref> fault. When the service instance receives this method, it should immediately release and clean up all references and return. </p>
+  syntax:
+    content: public void abort()
+- uid: system.fabric._stateful_service_replica.closeAsync(CancellationToken)
+  parent: system.fabric._stateful_service_replica
+  href: system.fabric._stateful_service_replica.yml
+  name: closeAsync(CancellationToken cancellationToken)
+  nameWithType: StatefulServiceReplica.closeAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<Void> system.fabric.StatefulServiceReplica.closeAsync(CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Closes the service replica when it is being shut down. Note that cancellation is advisory and that the operation might still be completed even if it is canceled.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Void> closeAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: db03ee24
+      description: <p>Returns <xref uid="" data-throw-if-not-resolved="false">CompletableFuture</xref>. </p>
+- uid: system.fabric._stateless_service_instance.closeAsync(CancellationToken)
+  parent: system.fabric._stateless_service_instance
+  href: system.fabric._stateless_service_instance.yml
+  name: closeAsync(CancellationToken cancellationToken)
+  nameWithType: StatelessServiceInstance.closeAsync(CancellationToken cancellationToken)
+  fullName: CompletableFuture<?> system.fabric.StatelessServiceInstance.closeAsync(CancellationToken cancellationToken)
+  type: Method
+  summary: >-
+    <p>Closes this service instance gracefully when the service instance is being shut down.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<?> closeAsync(CancellationToken cancellationToken)
+    parameters:
+    - id: cancellationToken
+      type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> object to indicate the cancellation status of the operation. </p>
+    return:
+      type: 16409f84
+      description: <p>Returns <xref uid="" data-throw-if-not-resolved="false">CompletableFuture</xref>. </p>
