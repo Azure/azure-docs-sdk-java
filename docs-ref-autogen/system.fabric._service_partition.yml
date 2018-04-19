@@ -41,7 +41,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServicePartition.java
-    startLine: 74
+    startLine: 73
   package: system.fabric
   summary: >-
     <p>Provides access to the <xref uid="system.fabric._service_partition_information" data-throw-if-not-resolved="false">system.fabric.ServicePartitionInformation</xref> of the service, which contains the partition type and ID.</p>
@@ -69,7 +69,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServicePartition.java
-    startLine: 46
+    startLine: 45
   package: system.fabric
   summary: >-
     <p>Reports the load for a set of load balancing metrics. The load can be reported at any time via the <xref uid="" data-throw-if-not-resolved="false">java.util.Collection</xref> of <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">LoadMetric</xref> method and provides one or more properties of the <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">system.fabric.LoadMetric</xref> method.</p>
@@ -100,14 +100,14 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServicePartition.java
-    startLine: 30
+    startLine: 29
   package: system.fabric
   summary: >-
     <p>Reports the load for a set of load balancing metrics. The load can be reported at any time via the <xref uid="" data-throw-if-not-resolved="false">java.util.Collection</xref> of <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">LoadMetric</xref> method and provides one or more properties of the <xref uid="system.fabric._load_metric" data-throw-if-not-resolved="false">system.fabric.LoadMetric</xref> method.</p>
 
     <p>
 
-      <b>Remarks:</b>The reported metrics should correspond to those that are provided in the <xref uid="system.fabric._service_load_metric_description" data-throw-if-not-resolved="false">system.fabric.ServiceLoadMetricDescription</xref> as a part of the <xref uid="system.fabric._service_description" data-throw-if-not-resolved="false">system.fabric.ServiceDescription</xref> that is used to create the service. Load metrics that are not present in the description are ignored. Reporting custom metrics allows Service Fabric to balance services that are based on additional custom information. </p>
+      <b>Remarks:</b>The reported metrics should correspond to those that are provided in the service load metric description as a part of the service description that is used to create the service. Load metrics that are not present in the description are ignored. Reporting custom metrics allows Service Fabric to balance services that are based on additional custom information. </p>
   syntax:
     content: public void reportLoad(Collection<LoadMetric> metrics)
     parameters:
@@ -131,7 +131,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServicePartition.java
-    startLine: 63
+    startLine: 62
   package: system.fabric
   summary: >-
     <p>Reports the move cost for a replica.</p>
@@ -162,7 +162,7 @@ items:
   source:
     remote: *o0
     path: src/prod/src/java/system.fabric/src/system/fabric/ServicePartition.java
-    startLine: 85
+    startLine: 84
   package: system.fabric
   summary: >-
     <p>Reports current partition health.</p>
@@ -250,29 +250,6 @@ references:
   type: Class
   syntax:
     content: public class LoadMetric
-- uid: system.fabric._service_load_metric_description
-  parent: system.fabric
-  href: system.fabric._service_load_metric_description.yml
-  name: ServiceLoadMetricDescription
-  nameWithType: ServiceLoadMetricDescription
-  fullName: system.fabric.ServiceLoadMetricDescription
-  type: Class
-  summary: >-
-    <p>
-
-      <b>Remarks:</b>Note that to provide metrics for services is optional, because Service Fabric uses default metrics. Provide metrics only if the service requires advanced load balancing features, such as balancing that is based on specific node characteristics and resources. </p>
-  syntax:
-    content: public class ServiceLoadMetricDescription
-- uid: system.fabric._service_description
-  parent: system.fabric
-  href: system.fabric._service_description.yml
-  name: ServiceDescription
-  nameWithType: ServiceDescription
-  fullName: system.fabric.ServiceDescription
-  type: Class
-  summary: <p>A <xref uid="system.fabric._service_description" data-throw-if-not-resolved="false">ServiceDescription</xref> contains all of the information necessary to create a service. </p>
-  syntax:
-    content: public class ServiceDescription
 - uid: system.fabric._fault_type
   parent: system.fabric
   href: system.fabric._fault_type.yml
@@ -280,6 +257,12 @@ references:
   nameWithType: FaultType
   fullName: system.fabric.FaultType
   type: Enum
+  summary: >-
+    <p>Indicates the type of fault that a service reports: invalid, transient or permanent. </p>
+
+    <p>
+
+      <b>Remarks : </b> Services can report faults during runtime by using the <xref uid="system.fabric._service_partition.reportFault(FaultType)" data-throw-if-not-resolved="false">system.fabric.ServicePartition#reportFault(FaultType)</xref> method to indicate the type of fault. </p>
   syntax:
     content: public enum FaultType
 - uid: system.fabric._move_cost
@@ -298,6 +281,14 @@ references:
   nameWithType: ServicePartitionInformation
   fullName: system.fabric.ServicePartitionInformation
   type: Class
+  summary: >-
+    <p>Represents the base class for describing partitions. </p>
+
+    <p>
+
+      <b>Remarks:</b>
+
+      <xref uid="system.fabric._int64_range_partition_information" data-throw-if-not-resolved="false">system.fabric.Int64RangePartitionInformation</xref>, <xref uid="system.fabric._named_partition_information" data-throw-if-not-resolved="false">system.fabric.NamedPartitionInformation</xref>, and <xref uid="system.fabric._singleton_partition_information" data-throw-if-not-resolved="false">system.fabric.SingletonPartitionInformation</xref> all derive from this type. </p>
   syntax:
     content: public class ServicePartitionInformation
 - uid: system.fabric.health._health_information

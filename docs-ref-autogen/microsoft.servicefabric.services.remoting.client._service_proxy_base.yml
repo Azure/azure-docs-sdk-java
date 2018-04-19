@@ -11,7 +11,7 @@ items:
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.getResponseMessageBodyValue(Object)
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.getServiceInterfaceType()
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.getServicePartitionClient()
-  - microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize(ServiceProxyGenerator,ServiceRemotingPartitionClientImpl)
+  - microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize(ServiceProxyGenerator,FabricServiceRemotingPartitionClient)
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.invoke(int,int,byte [])
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.invokeAsync(int,int,byte [],CancellationToken)
   - microsoft.servicefabric.services.remoting.client._service_proxy_base.serializeMessage(Object)
@@ -232,29 +232,32 @@ items:
       type: microsoft.servicefabric.services.remoting.client._service_remoting_partition_client
       description: <p>ServicePartitionClient used by the <xref uid="microsoft.servicefabric.services.remoting.client._service_proxy" data-throw-if-not-resolved="false">ServiceProxy</xref>. </p>
   overridden: microsoft.servicefabric.services.remoting.client._service_proxy.getServicePartitionClient()
-- uid: microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize(ServiceProxyGenerator,ServiceRemotingPartitionClientImpl)
-  id: initialize(ServiceProxyGenerator,ServiceRemotingPartitionClientImpl)
+- uid: microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize(ServiceProxyGenerator,FabricServiceRemotingPartitionClient)
+  id: initialize(ServiceProxyGenerator,FabricServiceRemotingPartitionClient)
   parent: microsoft.servicefabric.services.remoting.client._service_proxy_base
   href: microsoft.servicefabric.services.remoting.client._service_proxy_base.yml
   langs:
   - java
-  name: initialize(ServiceProxyGenerator serviceProxyGenerator, ServiceRemotingPartitionClientImpl remotingPartitionClient)
-  nameWithType: ServiceProxyBase.initialize(ServiceProxyGenerator serviceProxyGenerator, ServiceRemotingPartitionClientImpl remotingPartitionClient)
-  fullName: void microsoft.servicefabric.services.remoting.client.ServiceProxyBase.initialize(ServiceProxyGenerator serviceProxyGenerator, ServiceRemotingPartitionClientImpl remotingPartitionClient)
+  name: initialize(ServiceProxyGenerator serviceProxyGenerator, FabricServiceRemotingPartitionClient remotingPartitionClient)
+  nameWithType: ServiceProxyBase.initialize(ServiceProxyGenerator serviceProxyGenerator, FabricServiceRemotingPartitionClient remotingPartitionClient)
+  fullName: void microsoft.servicefabric.services.remoting.client.ServiceProxyBase.initialize(ServiceProxyGenerator serviceProxyGenerator, FabricServiceRemotingPartitionClient remotingPartitionClient)
   overload: microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize*
   type: Method
   source:
     remote: *o0
     path: src/prod/src/java/microsoft.servicefabric.services/src/microsoft/servicefabric/services/remoting/client/ServiceProxyBase.java
-    startLine: 132
+    startLine: 140
   package: microsoft.servicefabric.services.remoting.client
+  summary: <p>Method to Initialize the service proxy instance. This is for internal use. </p>
   syntax:
-    content: public void initialize(ServiceProxyGenerator serviceProxyGenerator, ServiceRemotingPartitionClientImpl remotingPartitionClient)
+    content: public void initialize(ServiceProxyGenerator serviceProxyGenerator, FabricServiceRemotingPartitionClient remotingPartitionClient)
     parameters:
     - id: serviceProxyGenerator
       type: microsoft.servicefabric.services.remoting.builder._service_proxy_generator
+      description: <p>instance of the serviceProxyGenerator </p>
     - id: remotingPartitionClient
-      type: 2d260c2d
+      type: microsoft.servicefabric.services.remoting.client._fabric_service_remoting_partition_client
+      description: <p>remotingPartitionClient used by <xref uid="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false">Service</xref> proxy. </p>
 - uid: microsoft.servicefabric.services.remoting.client._service_proxy_base.invoke(int,int,byte [])
   id: invoke(int,int,byte [])
   parent: microsoft.servicefabric.services.remoting.client._service_proxy_base
@@ -374,10 +377,6 @@ references:
   nameWithType: ServiceProxyBase.getServicePartitionClient
   fullName: ServiceRemotingPartitionClient microsoft.servicefabric.services.remoting.client.ServiceProxyBase.getServicePartitionClient
   package: microsoft.servicefabric.services.remoting.client
-- uid: 2d260c2d
-  spec.java:
-  - name: ServiceRemotingPartitionClientImpl
-    fullName: ServiceRemotingPartitionClientImpl
 - uid: microsoft.servicefabric.services.remoting.client._service_proxy_base.initialize*
   name: initialize
   nameWithType: ServiceProxyBase.initialize
@@ -511,6 +510,10 @@ references:
       description: <p>Request body. </p>
     - id: cancellationToken
       type: system.fabric._cancellation_token
+      description: >-
+        <p>
+
+          <xref uid="system.fabric._cancellation_token" data-throw-if-not-resolved="false">system.fabric.CancellationToken</xref> object to indicate the cancellation status of the operation. </p>
     return:
       type: 55aa5245
       description: <p>A <xref uid="" data-throw-if-not-resolved="false">CompletableFuture</xref> that represents the asynchronous operation async call to remote object. </p>
@@ -541,7 +544,7 @@ references:
   nameWithType: ServiceProxy
   fullName: microsoft.servicefabric.services.remoting.client.ServiceProxy
   type: Interface
-  summary: <p>This is the base Client side interface for Remoting. The framework provides the Remoting infrastructure for all the service contracts inheriting from IService through <xref uid="microsoft.servicefabric.services.remoting._service_remoting_listener" data-throw-if-not-resolved="false">ServiceRemotingListener</xref> and <xref uid="microsoft.servicefabric.services.remoting.client._service_proxy" data-throw-if-not-resolved="false">ServiceProxy</xref>. </p>
+  summary: <p>This is the base Client side interface for Remoting. The framework provides the Remoting infrastructure for all the service contracts inheriting from IService through ServiceRemotingListener and <xref uid="microsoft.servicefabric.services.remoting.client._service_proxy" data-throw-if-not-resolved="false">ServiceProxy</xref>. </p>
   syntax:
     content: public interface ServiceProxy
 - uid: microsoft.servicefabric.services.remoting.client._fabric_service_proxy_factory
@@ -554,6 +557,16 @@ references:
   summary: <p>Specifies the factory that creates proxies for remote communication to the specified service. </p>
   syntax:
     content: public class FabricServiceProxyFactory implements ServiceProxyFactory
+- uid: microsoft.servicefabric.services.remoting.client._fabric_service_remoting_partition_client
+  parent: microsoft.servicefabric.services.remoting.client
+  href: microsoft.servicefabric.services.remoting.client._fabric_service_remoting_partition_client.yml
+  name: FabricServiceRemotingPartitionClient
+  nameWithType: FabricServiceRemotingPartitionClient
+  fullName: microsoft.servicefabric.services.remoting.client.FabricServiceRemotingPartitionClient
+  type: Class
+  summary: <p>Specifies the <xref uid="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false">Service</xref> partition client for Remoting communication </p>
+  syntax:
+    content: public class FabricServiceRemotingPartitionClient extends FabricServicePartitionClient<ServiceRemotingClient> implements ServiceRemotingPartitionClient
 - uid: microsoft.servicefabric.services.remoting.builder._service_proxy_generator
   parent: microsoft.servicefabric.services.remoting.builder
   href: microsoft.servicefabric.services.remoting.builder._service_proxy_generator.yml
@@ -561,6 +574,7 @@ references:
   nameWithType: ServiceProxyGenerator
   fullName: microsoft.servicefabric.services.remoting.builder.ServiceProxyGenerator
   type: Class
+  summary: <p>Used in <xref uid="microsoft.servicefabric.services.remoting._service" data-throw-if-not-resolved="false">Service</xref> code builder to create service proxy base object. For internal use only. </p>
   syntax:
     content: public class ServiceProxyGenerator
 - uid: microsoft.servicefabric.services.remoting._service
@@ -570,7 +584,7 @@ references:
   nameWithType: Service
   fullName: microsoft.servicefabric.services.remoting.Service
   type: Interface
-  summary: <p>This is the marker interface for enabling interface Remoting for services. An <xref uid="microsoft.servicefabric.services.remoting._service_remoting_listener" data-throw-if-not-resolved="false">ServiceRemotingListener</xref> provides remoting for all interfaces implemented by the service that derive from this interface. The remoted interfaces can be accessed via Proxy on the client side. </p>
+  summary: <p>This is the marker interface for enabling interface Remoting for services. An <xref uid="microsoft.servicefabric.services.remoting.runtime._service_remoting_listener" data-throw-if-not-resolved="false">microsoft.servicefabric.services.remoting.runtime.ServiceRemotingListener</xref> provides remoting for all interfaces implemented by the service that derive from this interface. The remoted interfaces can be accessed via Proxy on the client side. </p>
   syntax:
     content: public interface Service
 - uid: microsoft.servicefabric.services.client._service_partition_key
