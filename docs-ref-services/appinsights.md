@@ -47,7 +47,7 @@ Create a new metric entry and record a value for it.
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/appinsights/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/appinsights/client)
 
 ## Samples
 
