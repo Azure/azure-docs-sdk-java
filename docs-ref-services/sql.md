@@ -65,7 +65,7 @@ Create and manage Azure SQL Database resources in your subscription with the man
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/sql/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/sql/management)
 
 ### Example
 

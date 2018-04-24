@@ -55,7 +55,7 @@ blob.uploadFromFile("/Users/raisa/fabrikam.png");
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/storage/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/storage/client)
 
 ## Management API
 
@@ -89,7 +89,7 @@ for(StorageAccountKey key : storageAccountKeys)    {
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/storage/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/storage/management)
 
 
 ## Samples
