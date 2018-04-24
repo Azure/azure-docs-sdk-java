@@ -61,7 +61,7 @@ JobInformation jobInfo = adlaJobClient.getJobOperations().create(accountName, jo
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/datalakeanalytics/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/datalakeanalytics/management)
 
 ## Samples
 

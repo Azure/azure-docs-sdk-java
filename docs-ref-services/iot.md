@@ -48,7 +48,7 @@ Send messages to the cloud and receive messages on devices using the IoT Device 
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/iot/clientlibrary)   
+> [Explore the Client APIs](/java/api/overview/azure/iot/client)   
 
 ## Example
 

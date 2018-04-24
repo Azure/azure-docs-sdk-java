@@ -123,7 +123,7 @@ public class BasicSendReceiveWithQueueClient {
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/servicebus/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/servicebus/client)
 
 ## Management API
 
@@ -140,7 +140,7 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/servicebus/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/servicebus/management)
 
 
 ## Examples

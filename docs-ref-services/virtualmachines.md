@@ -55,7 +55,7 @@ VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/virtualmachines/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/virtualmachines/management)
 
 
 ## Samples

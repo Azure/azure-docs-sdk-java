@@ -58,7 +58,7 @@ for (CdnEndpoint endpoint : profile.endpoints().values()) {
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/cdn/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/cdn/management)
 
 ## Samples
 
