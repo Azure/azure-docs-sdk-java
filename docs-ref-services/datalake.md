@@ -59,7 +59,7 @@ out.close();
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/datalakestore/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/datalakestore/client)
 
 
 ## Management API
@@ -78,7 +78,7 @@ Use the management API to manage Data Lake Store accounts, firewall rules, and t
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/datalakestore/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/datalakestore/management)
 
 ## Samples
 

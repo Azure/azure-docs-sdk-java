@@ -36,7 +36,7 @@ Deploy, scale, and configure applications in Azure App Service with the manageme
 ```   
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure)
+> [Explore the Management APIs](/java/api/overview/azure/appservice/management)
 
 ### Example
 

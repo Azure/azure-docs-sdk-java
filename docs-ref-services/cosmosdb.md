@@ -54,7 +54,7 @@ List<Document> results = client.queryDocuments("dbs/" + DATABASE_ID + "/colls/" 
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/cosmosdb/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/cosmosdb/client)
 
 
 ## Samples
