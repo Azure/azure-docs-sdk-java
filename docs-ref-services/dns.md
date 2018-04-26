@@ -49,7 +49,7 @@ rootDnsZone = rootDnsZone.update()
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/dns/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/dns/management)
 
 ## Samples
 

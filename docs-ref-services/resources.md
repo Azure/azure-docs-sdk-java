@@ -45,7 +45,7 @@ ResourceGroup resourceGroup = azure.resourceGroups().define("myResourceGroup")
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/resources/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/resources/management)
 
 ## Samples
 

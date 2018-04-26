@@ -50,7 +50,7 @@ client.poolOperations().createPool(poolId, poolVMSize, configuration, poolVMCoun
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/batch/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/batch/client)
 
 
 ## Management API
@@ -85,7 +85,7 @@ BatchAccount batchAccount = azure.batchAccounts().define("newBatchAcct")
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/batch/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/batch/management)
 
 
 ## Samples
