@@ -36,19 +36,22 @@ clusters today, even if the attached workloads do not run in the cloud.
 
 Learn more about Service Bus concepts [in the messaging documentation section](https://docs.microsoft.com/azure/service-bus-messaging/) 
 
-For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with 
+For Java developers, Service Bus provides a Microsoft supported native API and Service Bus can also be used with
 AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
-
-The official Service Bus client is available in [source code form on GitHub](https://github.com/azure/azure-service-bus-java) and 
-binaries and packaged sources [are available on Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22). 
-
 
 ## Client library
 
+The official Service Bus client is available in [source code form on GitHub](https://github.com/azure/azure-service-bus-java) and
+binaries and packaged sources [are available on Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22).
+
+**The [sample code repository](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/) contains samples for:**
+* How to use the [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java)
+* How to use the [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java)
+* How to use [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
 
 Add a dependency to your Maven project's `pom.xml` file to use the library in your own project. Specify the version as desired.
 
-[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.   
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
 
 ```XML
 <dependency>
@@ -57,11 +60,6 @@ Add a dependency to your Maven project's `pom.xml` file to use the library in yo
     <version>1.0.0</version>
 </dependency>
 ```
-
-## Examples
-
-The [sample code repository](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/) contains samples for how to [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java) and [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java) and [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
-
 
 ```java
 public class BasicSendReceiveWithQueueClient {
@@ -124,11 +122,18 @@ public class BasicSendReceiveWithQueueClient {
 
 > [!div class="nextstepaction"]
 > [Explore the Client APIs](/java/api/overview/azure/servicebus/client)
+> [Find more examples here (See also above for more details)](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/)
 
 ## Management API
 
 Create and manage namespaces, topics, queues, and subscriptions with the management API.
 
+**Please find some examples here:**
+* [Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features)
+* [Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)
+
+**Use the Management API in your project:**
+\
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
 ```XML
@@ -141,11 +146,5 @@ Create and manage namespaces, topics, queues, and subscriptions with the managem
 
 > [!div class="nextstepaction"]
 > [Explore the Management APIs](/java/api/overview/azure/servicebus/management)
-
-
-## Examples
-
-[Manage Service Bus queues](https://github.com/Azure-Samples/service-bus-java-manage-queue-with-basic-features)
-[Create and subscribe to Service Bus topics](https://github.com/Azure-Samples/service-bus-java-manage-publish-subscribe-with-basic-features)
 
 Explore more [sample Java code for Azure Service Bus](https://azure.microsoft.com/resources/samples/?platform=java&term=bus) you can use in your apps.
