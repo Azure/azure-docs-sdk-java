@@ -95,7 +95,7 @@ When you have completed this tutorial, your application will look similar to the
 
    ![Deploy app service][deploy-app-service]
 
-1. The toolkit will display a **Published** status **Azure Activity Log** when it has successfully deployed your web app, which is a hyperlink for the URL of your deployed web app.
+1. The toolkit will display a **Published** status under the **Azure Activity Log** tab when it has successfully deployed your web app, which is a hyperlink for the URL of your deployed web app.
 
    ![Publish status][publish-status]
 
