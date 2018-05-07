@@ -35,7 +35,7 @@ This article demonstrates the steps that are required to create a basic Hello Wo
 
 ## Create a new web app project
 
-1. Start IntelliJ and sign in to your Azure account using the steps in the [Sign In Instructions for the Azure Toolkit for IntelliJ] article.
+1. Start IntelliJ and sign in to your Azure account using the steps in the [Sign In Instructions for the Azure Toolkit for IntelliJ](https://docs.microsoft.com/java/azure/intellij/azure-toolkit-for-intellij-sign-in-instructions) article.
 
 1. Click the **File** menu, then click **New**, and then click **Project**.
    

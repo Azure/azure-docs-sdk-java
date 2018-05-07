@@ -82,6 +82,7 @@ The following prerequisites are required in order to complete the steps in this 
        }
      }
    ]
+   ```
 
 1. Specify the GUID for the account you want to use with Azure; for example:
 
