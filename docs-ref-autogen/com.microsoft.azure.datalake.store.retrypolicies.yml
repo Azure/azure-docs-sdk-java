@@ -5,6 +5,7 @@ items:
   children:
   - com.microsoft.azure.datalake.store.retrypolicies._exponential_backoff_policy
   - com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy
+  - com.microsoft.azure.datalake.store.retrypolicies._non_idempotent_retry_policy
   - com.microsoft.azure.datalake.store.retrypolicies._retry_policy
   href: com.microsoft.azure.datalake.store.retrypolicies.yml
   langs:
@@ -61,6 +62,19 @@ references:
     </p>
   syntax:
     content: public class ExponentialBackoffPolicy implements RetryPolicy
+- uid: com.microsoft.azure.datalake.store.retrypolicies._non_idempotent_retry_policy
+  parent: com.microsoft.azure.datalake.store.retrypolicies
+  href: com.microsoft.azure.datalake.store.retrypolicies._non_idempotent_retry_policy.yml
+  name: NonIdempotentRetryPolicy
+  nameWithType: NonIdempotentRetryPolicy
+  fullName: com.microsoft.azure.datalake.store.retrypolicies.NonIdempotentRetryPolicy
+  type: Class
+  summary: >-
+    <p>No retry ever. Always returns false, indicating that erequest should not be retried.</p>
+
+    <p>This should be used when retrying is not safe, and user wants at-most-once semantics with the call. This is useful for non-idempotent methods, where the error returned by the last call does not conclusively indicate success or failure of the call. For example, if an append times out but succeeds on the back-end , then retrying it may append the data twice to the file. </p>
+  syntax:
+    content: public class NonIdempotentRetryPolicy implements RetryPolicy
 - uid: com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy
   parent: com.microsoft.azure.datalake.store.retrypolicies
   href: com.microsoft.azure.datalake.store.retrypolicies._no_retry_policy.yml
