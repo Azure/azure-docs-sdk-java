@@ -87,7 +87,7 @@ Azure azure = Azure
 
 The `client`, `tenant` and `key` are the same service principal values used with [file-based authentication](#mgmt-file). The `AzureEnvironment.AZURE` value creates credentials against the Azure public cloud. Change this to a different value if you need to access another cloud (for example, `AzureEnvironment.AZURE_GERMANY`).  
 
- Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis.md). Avoid setting these values as cleartext strings in your code to prevent accidentally exposing credentials in your version control history.   
+ Read the service principal values from environment variables or a secret management store like [Key Vault](/azure/key-vault/key-vault-whatis). Avoid setting these values as cleartext strings in your code to prevent accidentally exposing credentials in your version control history.   
 
 <a name="mgmt-file"></a>
 
