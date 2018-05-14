@@ -88,7 +88,7 @@ If you sign out of Azure when you are using Eclipse, you will need to reconfigur
 
    ![Sign In Dialog Box][A02]
 
-1. When the **Select Authenticated File** dialog box appears, select a credentials file which you created earlier, and then click **Select**.
+1. When the **Select Authenticated File** dialog box appears, select a credentials file which you created earlier, and then click **Open**.
 
    ![Sign In Dialog Box][A08]
 
