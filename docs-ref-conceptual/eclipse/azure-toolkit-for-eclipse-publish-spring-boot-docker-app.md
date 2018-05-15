@@ -199,7 +199,7 @@ The Spring Boot Docker repository contains a completed Maven project, which you 
 
 ## Next steps
 
-For additional resources for Docker, see the official [Docker website].
+For additional resources for Docker, see the official [Docker website](https://www.docker.com/).
 
 [!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)]
 
