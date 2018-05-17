@@ -52,6 +52,7 @@ ehClient.sendSync(sendEvent);
 > [Explore the Client APIs](/java/api/overview/azure/eventhubs/client)
 
 
+
 ## Samples
 
 [Explore Event Hub data-plane API using samples][1]
