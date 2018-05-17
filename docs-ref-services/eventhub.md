@@ -26,40 +26,44 @@ To get started with Azure Event Hubs, see [Receive events from Azure Event Hubs 
 
 Send events to an Azure Event Hub and consume and process events from an Event Hub using the Event Hubs client library.
 
-[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.  
-
-```XML
-<dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-eventhubs</artifactId>
-    <version>0.14.3</version>
-</dependency>
-```   
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the [client library](https://mvnrepository.com/artifact/com.microsoft.azure/azure-eventhubs) in your project.
+ 
 
 ## Example
 
 Send an event to an event hub.
 
 ```java
-ConnectionStringBuilder connStr = new ConnectionStringBuilder(namespaceName, eventHubName,sasKeyName, sasKey);
+final ConnectionStringBuilder connStr = new ConnectionStringBuilder()
+                                            .setNamespaceName(namespaceName)
+                                            .setEventHubName(eventHubName)
+                                            .setSasKeyName(sasKeyName)
+                                            .setSasKey(sasKey);
+final EventHubClient ehClient = EventHubClient.createSync(connStr.toString());
 
-byte[] payloadBytes = "Test AMQP message from JMS".getBytes("UTF-8");
-EventData sendEvent = new EventData(payloadBytes);
-EventHubClient ehClient = EventHubClient.createFromConnectionStringSync(connStr.toString());
+final byte[] payloadBytes = "Test AMQP message".getBytes("UTF-8");
+final EventData sendEvent = new EventData(payloadBytes);
+
 ehClient.sendSync(sendEvent);
 ```
 
+
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/eventhub/client)
+> [Explore the Client APIs](/java/api/overview/azure/eventhubs/client)
+
 
 
 ## Samples
 
-[Write to Event Hub via JMS and read from Apache Storm][1]
-[Read and write from EventHubs using a hybrid .NET/Java topology][2] 
+[Explore Event Hub data-plane API using samples][1]
 
-[1]: https://github.com/Azure-Samples/event-hubs-java-storm-sender-jms-receiver
-[2]: https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub
+[Write to Event Hub via JMS and read from Apache Storm][2]
+
+[Read and write from EventHubs using a hybrid .NET/Java topology][3] 
+
+[1]: https://github.com/Azure/azure-event-hubs/tree/master/samples/Java
+[2]: https://github.com/Azure-Samples/event-hubs-java-storm-sender-jms-receiver
+[3]: https://github.com/Azure-Samples/hdinsight-dotnet-java-storm-eventhub
 
 Explore more [sample Java code for Azure Event Hubs](https://azure.microsoft.com/resources/samples/?platform=java&term=event) you can use in your apps.
 
