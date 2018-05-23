@@ -20,7 +20,7 @@ ms.author: robmcm
 
 Applications that use Azure services (such as Azure Service Bus) need to trust the Baltimore CyberTrust root certificate. This certificate may already be installed on your system, but if it is not, the steps in this tutorial will show you how to use Oracle's **keytool** to add the required certificate authority (CA) root certificate to the Java CA certificate (cacerts) store that you will use for Azure services.
 
-Oracle's keytool utility is a _Key and Certificate Management Tool_, which  allows developers to manage the list of trusted certificates for use with Java. You can use keytool to add the CA certificate before zipping your JDK and adding it to your Azure project's **approot** folder, or you could run an Azure start-up task that uses keytool to add the certificate.
+Oracle's keytool utility is a _Key and Certificate Management Tool_, which allows developers to manage the list of trusted certificates for use with Java. You can use keytool to add the CA certificate before zipping your JDK and adding it to your Azure project's **approot** folder, or you could run an Azure start-up task that uses keytool to add the certificate.
 
 Beginning April 15, 2013, Azure began migrating from the GTE CyberTrust Global root certificate to the Baltimore CyberTrust root certificate. The following steps show you how to use keytool to add the Baltimore CyberTrust root certificate to your Java CA certificate (cacerts) store.
 
@@ -33,7 +33,7 @@ Beginning April 15, 2013, Azure began migrating from the GTE CyberTrust Global r
 
 The Baltimore certificate might already be installed in your cacerts store, so you need to use the following steps to determine if it has already been installed.
 
-1. At an Administrator command prompt, navigate to your JDK's **jdk\jre\lib\security** folder, and then run the following to see which certificates are installed:
+1. At an administrator command prompt, navigate to your JDK's **jdk\jre\lib\security** folder, and then run the following command to list the certificates that are installed on your system:
    
    ```shell
    keytool -list -keystore cacerts
@@ -50,17 +50,17 @@ The Baltimore certificate might already be installed in your cacerts store, so y
 
 ## To add a root certificate to the cacerts store
 
-1. Download the Baltimore CyberTrust root certificate from <https://cacert.omniroot.com/bc2025.crt>, save to a local file with extension **.cer** in your **jdk\jre\lib\security** folder. For this example, assume that you downloaded the Baltimore CyberTrust root certificate file as **bc2025.cer**.
+1. Download the Baltimore CyberTrust root certificate from <https://cacert.omniroot.com/bc2025.crt>, and save to a local file with extension **.cer** in your **jdk\jre\lib\security** folder. For this example, assume that you downloaded the Baltimore CyberTrust root certificate file as **bc2025.cer**.
 
    > [!NOTE]
    > 
-   > The Baltimore CyberTrust root certificate has serial number `02:00:00:b9` and SHA1 thumbprint `d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74`.
+   > The Baltimore CyberTrust root certificate has a serial number of `02:00:00:b9`, and a SHA1 thumbprint of `d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74`.
    > 
 
 1. Import the certificate to the cacerts store by using the following command:
    
    ```shell
-   keytool -keystore cacerts -importcert -alias sampleca -file bc2025.cer
+   keytool -keystore cacerts -importcert -alias bc2025ca -file bc2025.cer
    ```
    Where:
    | Parameter | Description |
