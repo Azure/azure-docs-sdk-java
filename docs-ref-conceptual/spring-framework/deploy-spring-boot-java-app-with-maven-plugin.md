@@ -30,7 +30,7 @@ This article demonstrates using the Maven Plugin for Azure Web Apps to deploy a 
 
 ## Prerequisites
 
-In order to complete the steps in this tutorial, you need to have the following prerequisites:
+In order to complete the steps in this tutorial, you will need to have the following prerequisites:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * The [Azure Command-Line Interface (CLI)].
@@ -40,7 +40,7 @@ In order to complete the steps in this tutorial, you need to have the following 
 
 ## Clone the sample Spring Boot web app
 
-In this section, you clone a completed Spring Boot application and test it locally.
+In this section, you will clone a completed Spring Boot application and test it locally.
 
 1. Open a command prompt or terminal window and create a local directory to hold your Spring Boot application, and change to that directory; for example:
    ```shell
@@ -82,7 +82,7 @@ In this section, you clone a completed Spring Boot application and test it local
 
 ## Create an Azure service principal
 
-In this section, you create an Azure service principal that the Maven plugin uses when deploying your web app to Azure.
+In this section, you will create an Azure service principal that the Maven plugin uses when deploying your web app to Azure.
 
 1. Open a command prompt.
 
@@ -117,9 +117,9 @@ In this section, you create an Azure service principal that the Maven plugin use
 
 ## Configure Maven to use your Azure service principal
 
-In this section, you use the values from your Azure service principal to configure the authentication that Maven uses when deploying your web app to Azure.
+In this section, you will use the values from your Azure service principal to configure the authentication that Maven uses when deploying your web app to Azure.
 
-1. Open your Maven `settings.xml` file in a text editor; this file might be in a path like the following examples:
+1. Open your Maven `settings.xml` file in a text editor. This file may be in a path similar to the following examples:
    * `/etc/maven/settings.xml`
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
@@ -192,7 +192,7 @@ There are several values that you can modify for the Maven plugin, and a detaile
 
 | Element | Description |
 |---|---|
-| `<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. You should check the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version. |
+| `<version>` | Specifies the version of the [Maven Plugin for Azure Web Apps]. Verify the version listed in the [Maven Central Respository](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-webapp-maven-plugin%22) to ensure that you are using the latest version. |
 | `<authentication>` | Specifies the authentication information for Azure, which in this example contains a `<serverId>` element that contains `azure-auth`; Maven uses that value to look up the Azure service principal values in your Maven *settings.xml* file, which you defined in an earlier section of this article. |
 | `<resourceGroup>` | Specifies the target resource group, which is `maven-plugin` in this example. The resource group is created during deployment if it does not already exist. |
 | `<appName>` | Specifies the target name for your web app. In this example, the target name is `maven-web-app-${maven.build.timestamp}`, where the `${maven.build.timestamp}` suffix is appended in this example to avoid conflict. (The timestamp is optional; you can specify any unique string for the app name.) |
