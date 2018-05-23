@@ -36,13 +36,13 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Browse to <https://start.spring.io/>.
 
-1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
+1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Artifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
 
    ![Basic Spring Initializr options](media/configure-spring-boot-starter-java-app-with-azure-storage/spring-initializr-basic.png)
 
    > [!NOTE]
    >
-   > The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
+   > The Spring Initializr will use the **Group** and **Artifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
    >
 
 1. Scroll down to the **Azure** section and check the box for **Azure Storage**.
