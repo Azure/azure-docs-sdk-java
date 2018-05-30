@@ -17,16 +17,21 @@ ms.topic: article
 ms.workload: na
 ---
 
-# Configure a Spring Boot Initializer app to use Application Insights with Azure Application Insights Spring Boot Starter (PUBLIC PREVIEW)
+# Configure a Spring Boot Initializer app to use Application Insights
 
-This article walks you through creating a Spring Boot application using **[Spring Initializr]**, that uses Azure Application Insights Spring Boot Starter for end-to-end monitoring of Java applications on cloud. *Please note this starter is currently in **BETA (public preview)**.*
+This article walks you through creating a Spring Boot application using **[Spring Initializr]**, that uses Azure Application Insights Spring Boot Starter for end-to-end monitoring of Java applications on cloud.
+
+> [!NOTE]
+>
+> *This starter is currently in **BETA (public preview)**.*
+>
 
 ## Prerequisites
 
 The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 and 1.8.
+* A Java Development Kit (JDK), version 1.7 and 1.8.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create a custom application using the Spring Initializr
@@ -67,7 +72,7 @@ The following prerequisites are required in order to complete the steps in this 
    * Specify your **Subscription**, **Resource group** and **Location**.
    * Select Pin to dashboard option, if you would like to pin the resource on your Azure portal.
 
-   When you have specified these options, click **Create** to create your cache.
+   When you have specified these options, click **Create** to create your Application Insights resource.
 
    ![Azure portal][AZ03]
 
@@ -254,7 +259,7 @@ The following prerequisites are required in order to complete the steps in this 
   </Loggers>
 </Configuration>
 ```
-4. Build and run the spring boot application again as shown above. 
+4. Build and run the Spring Boot application again as shown above. 
 
 Within few seconds, you should see all the spring logs being available on Azure Portal. 
 
