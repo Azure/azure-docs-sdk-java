@@ -4,8 +4,8 @@ items:
   id: _iot_hub_listener
   parent: com.microsoft.azure.sdk.iot.device.transport
   children:
-  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionEstablished()
-  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost(Throwable)
+  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionEstablished(String)
+  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost(Throwable,String)
   - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onMessageReceived(IotHubTransportMessage,Throwable)
   - com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onMessageSent(Message,Throwable)
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.yml
@@ -26,48 +26,55 @@ items:
   summary: <p>Callback interface for communicating connection and message status updates from individual protocol clients (mqtt, https, amqps) to the Tranpsort layer that handles queueing of messages and connecting/reconnecting/disconnecting </p>
   syntax:
     content: public interface IotHubListener
-- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionEstablished()
-  id: onConnectionEstablished()
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionEstablished(String)
+  id: onConnectionEstablished(String)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.yml
   langs:
   - java
-  name: onConnectionEstablished()
-  nameWithType: IotHubListener.onConnectionEstablished()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubListener.onConnectionEstablished()
+  name: onConnectionEstablished(String connectionId)
+  nameWithType: IotHubListener.onConnectionEstablished(String connectionId)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubListener.onConnectionEstablished(String connectionId)
   overload: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionEstablished*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/IotHubListener.java
-    startLine: 42
+    startLine: 44
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: <p>Callback to be fired when the connection has been successfully established </p>
   syntax:
-    content: public void onConnectionEstablished()
-- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost(Throwable)
-  id: onConnectionLost(Throwable)
+    content: public void onConnectionEstablished(String connectionId)
+    parameters:
+    - id: connectionId
+      type: "26831127"
+      description: <p>the id of the connection this update is relevant to </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost(Throwable,String)
+  id: onConnectionLost(Throwable,String)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.yml
   langs:
   - java
-  name: onConnectionLost(Throwable e)
-  nameWithType: IotHubListener.onConnectionLost(Throwable e)
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubListener.onConnectionLost(Throwable e)
+  name: onConnectionLost(Throwable e, String connectionId)
+  nameWithType: IotHubListener.onConnectionLost(Throwable e, String connectionId)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubListener.onConnectionLost(Throwable e, String connectionId)
   overload: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/IotHubListener.java
-    startLine: 37
+    startLine: 38
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: <p>Callback to be fired when connection has been lost </p>
   syntax:
-    content: public void onConnectionLost(Throwable e)
+    content: public void onConnectionLost(Throwable e, String connectionId)
     parameters:
     - id: e
       type: a04fafd7
       description: <p>the cause of the connection loss </p>
+    - id: connectionId
+      type: "26831127"
+      description: <p>the id of the connection this update is relevant to </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onMessageReceived(IotHubTransportMessage,Throwable)
   id: onMessageReceived(IotHubTransportMessage,Throwable)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener
@@ -135,6 +142,10 @@ references:
   nameWithType: IotHubListener.onMessageReceived
   fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubListener.onMessageReceived
   package: com.microsoft.azure.sdk.iot.device.transport
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_listener.onConnectionLost*
   name: onConnectionLost
   nameWithType: IotHubListener.onConnectionLost
@@ -208,27 +219,34 @@ references:
   summary: <p>Extends <xref uid="com.microsoft.azure.sdk.iot.device._message" data-throw-if-not-resolved="false">Message</xref>, adding transport artifacts. </p>
   syntax:
     content: public class IotHubTransportMessage
-- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.onConnectionLost(Throwable)
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.onConnectionLost(Throwable,String)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.yml
-  name: onConnectionLost(Throwable e)
-  nameWithType: IotHubTransport.onConnectionLost(Throwable e)
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionLost(Throwable e)
+  name: onConnectionLost(Throwable e, String connectionId)
+  nameWithType: IotHubTransport.onConnectionLost(Throwable e, String connectionId)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionLost(Throwable e, String connectionId)
   type: Method
   summary: <p>Callback to be fired when connection has been lost </p>
   syntax:
-    content: public void onConnectionLost(Throwable e)
+    content: public void onConnectionLost(Throwable e, String connectionId)
     parameters:
     - id: e
       type: a04fafd7
       description: <p>the cause of the connection loss </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.onConnectionEstablished()
+    - id: connectionId
+      type: "26831127"
+      description: <p>the id of the connection this update is relevant to </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.onConnectionEstablished(String)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport.yml
-  name: onConnectionEstablished()
-  nameWithType: IotHubTransport.onConnectionEstablished()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionEstablished()
+  name: onConnectionEstablished(String connectionId)
+  nameWithType: IotHubTransport.onConnectionEstablished(String connectionId)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransport.onConnectionEstablished(String connectionId)
   type: Method
   summary: <p>Callback to be fired when the connection has been successfully established </p>
   syntax:
-    content: public void onConnectionEstablished()
+    content: public void onConnectionEstablished(String connectionId)
+    parameters:
+    - id: connectionId
+      type: "26831127"
+      description: <p>the id of the connection this update is relevant to </p>

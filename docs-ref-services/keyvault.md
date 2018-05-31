@@ -41,12 +41,12 @@ Retrieve a [JSON web key](https://tools.ietf.org/html/draft-ietf-jose-json-web-k
 
 ```java
 KeyVaultClient kvc = new KeyVaultClient(credentials);
-KeyBundle returnedKeyBundle = getKey(vaultUrl, keyName);
+KeyBundle returnedKeyBundle = kvc.getKey(vaultUrl, keyName);
 JsonWebKey jsonKey = returnedKeyBundle.key();
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Client APIs](/java/api/overview/azure/keyvault/clientlibrary)
+> [Explore the Client APIs](/java/api/overview/azure/keyvault/client)
 
 
 ## Management API
@@ -79,7 +79,7 @@ vault1 = vault1.update()
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/keyvault/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/keyvault/management)
 
 
 ## Samples

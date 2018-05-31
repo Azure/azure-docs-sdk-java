@@ -1109,7 +1109,7 @@ items:
       description: <p>A <code>String</code> which represents the container-level access policy. </p>
     - id: ipRange
       type: 93de0ef9com.microsoft.azure.storage._i_p_range
-      description: <p>A <xref uid="com.microsoft.azure.storage._i_p_range" data-throw-if-not-resolved="false">IPRange</xref> object containing the range of allowed IP addresses. </p>
+      description: <p>A <xref uid="com.microsoft.azure.storage.blob._i_p_range" data-throw-if-not-resolved="false">IPRange</xref> object containing the range of allowed IP addresses. </p>
     - id: protocols
       type: 93de0ef9com.microsoft.azure.storage._shared_access_protocols
       description: <p>A <xref uid="com.microsoft.azure.storage._shared_access_protocols" data-throw-if-not-resolved="false">SharedAccessProtocols</xref> representing the allowed Internet protocols.</p>
@@ -2876,7 +2876,7 @@ references:
   nameWithType: StorageCredentials
   fullName: com.microsoft.azure.storage.StorageCredentials
   type: Class
-  summary: <p>Represents a set of credentials used to authenticate access to a Microsoft Azure storage account. This is the base class for the <xref uid="com.microsoft.azure.storage._storage_credentials_account_and_key" data-throw-if-not-resolved="false">StorageCredentialsAccountAndKey</xref> and <xref uid="com.microsoft.azure.storage._storage_credentials_shared_access_signature" data-throw-if-not-resolved="false">StorageCredentialsSharedAccessSignature</xref> classes. </p>
+  summary: <p>Represents a set of credentials used to authenticate access to a Microsoft Azure storage account. This is the base class for the <xref uid="com.microsoft.azure.storage._storage_credentials_account_and_key" data-throw-if-not-resolved="false">StorageCredentialsAccountAndKey</xref>, <xref uid="com.microsoft.azure.storage._storage_credentials_token" data-throw-if-not-resolved="false">StorageCredentialsToken</xref>, and <xref uid="com.microsoft.azure.storage._storage_credentials_shared_access_signature" data-throw-if-not-resolved="false">StorageCredentialsSharedAccessSignature</xref> classes. </p>
   syntax:
     content: public class StorageCredentials
 - uid: com.microsoft.azure.storage.blob._blob_request_options
@@ -2956,6 +2956,16 @@ references:
   summary: <p>Specifies the set of possible permissions for a shared access protocol. </p>
   syntax:
     content: public enum SharedAccessProtocols
+- uid: com.microsoft.azure.storage.blob._i_p_range
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._i_p_range.yml
+  name: IPRange
+  nameWithType: IPRange
+  fullName: com.microsoft.azure.storage.blob.IPRange
+  type: Class
+  summary: <p>This type specifies a continuous range of IP addresses. It is used to limit permissions on SAS tokens. Null may be set if it is not desired to confine the sas permissions to an IP range. Please refer to <xref uid="com.microsoft.azure.storage.blob._account_s_a_s_signature_values" data-throw-if-not-resolved="false">AccountSASSignatureValues</xref> or <xref uid="com.microsoft.azure.storage.blob._service_s_a_s_signature_values" data-throw-if-not-resolved="false">ServiceSASSignatureValues</xref> for more information. </p>
+  syntax:
+    content: public class IPRange
 - uid: com.microsoft.azure.storage.blob._cloud_append_blob
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._cloud_append_blob.yml
@@ -3066,6 +3076,8 @@ references:
     <p>Specifies which items to include when listing a set of blobs. </p>
 
     <p>By default, committed blocks are always returned. Use the values in this enum to include snapshots, metadata, and/or uncommitted blocks. </p>
+
+    <p>This type allows users to specify additional information the service should return with each blob when listing blobs in a container (via a <xref uid="com.microsoft.azure.storage.blob._container_u_r_l" data-throw-if-not-resolved="false">ContainerURL</xref> object). This type is immutable to ensure thread-safety of requests, so changing the details for a different listing operation requires construction of a new object. Null may be passed if none of the options are desirable. </p>
   syntax:
     content: public enum BlobListingDetails
 - uid: com.microsoft.azure.storage._result_segment
@@ -3101,7 +3113,10 @@ references:
   nameWithType: ContainerListingDetails
   fullName: com.microsoft.azure.storage.blob.ContainerListingDetails
   type: Enum
-  summary: <p>Specifies which details to include when listing the containers in this storage account. </p>
+  summary: >-
+    <p>Specifies which details to include when listing the containers in this storage account.</p>
+
+    <p>This type allows users to specify additional information the service should return with each container when listing containers in an account (via a <xref uid="com.microsoft.azure.storage.blob._service_u_r_l" data-throw-if-not-resolved="false">ServiceURL</xref> object). This type is immutable to ensure thread-safety of requests, so changing the details for a different listing operation requires construction of a new object. Null may be passed if none of the options are desirable. </p>
   syntax:
     content: public enum ContainerListingDetails
 - uid: com.microsoft.azure.storage.core._storage_request

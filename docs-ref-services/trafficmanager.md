@@ -52,7 +52,7 @@ TrafficManagerProfile tmProfile = azure.trafficManagerProfiles().define("testTMP
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/trafficmanager/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/trafficmanager/management)
 
 ## Samples
 

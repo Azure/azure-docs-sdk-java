@@ -51,7 +51,7 @@ Network virtualNetwork1 = azure.networks().define(vnetName1)
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/networking/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/networking/management)
 
 ## Samples
 

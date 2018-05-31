@@ -71,7 +71,7 @@ RedisCache cache = azure.redisCaches().define(redisCacheName1)
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/rediscache/managementapi)
+> [Explore the Management APIs](/java/api/overview/azure/rediscache/management)
 
 ## Samples
 

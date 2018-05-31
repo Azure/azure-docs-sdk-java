@@ -294,9 +294,11 @@ For more information about using Azure Cosmos DB and Java, see the following art
 
 * [Azure Cosmos DB: Create a document database using Java and the Azure portal][Build a SQL API app with Java]
 
+* [Spring Data for Azure Cosmos DB SQL API]
+
 For more information about using Spring Boot applications on Azure, see the following articles:
 
-* [Spring Boot DocumenDB Starter for Azure](https://github.com/Microsoft/azure-spring-boot-starters/tree/master/azure-documentdb-spring-boot-starter-sample)
+* [Spring Boot DocumenDB Starter for Azure]
 
 * [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
 
@@ -311,6 +313,8 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 [Azure Cosmos DB Documentation]: /azure/cosmos-db/
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Build a SQL API app with Java]: https://docs.microsoft.com/azure/cosmos-db/create-sql-api-java 
+[Spring Data for Azure Cosmos DB SQL API]: https://azure.microsoft.com/blog/spring-data-azure-cosmos-db-nosql-data-access-on-azure/
+[Spring Boot DocumenDB Starter for Azure]:https://github.com/Microsoft/azure-spring-boot-starters/tree/master/azure-documentdb-spring-boot-starter-sample
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/

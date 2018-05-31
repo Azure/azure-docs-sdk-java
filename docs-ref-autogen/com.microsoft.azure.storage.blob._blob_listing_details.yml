@@ -4,10 +4,16 @@ items:
   id: _blob_listing_details
   parent: com.microsoft.azure.storage.blob
   children:
+  - com.microsoft.azure.storage.blob._blob_listing_details.BlobListingDetails(boolean,boolean,boolean,boolean)
   - com.microsoft.azure.storage.blob._blob_listing_details.BlobListingDetails(final int)
   - com.microsoft.azure.storage.blob._blob_listing_details.COPY
   - com.microsoft.azure.storage.blob._blob_listing_details.DELETED
+  - com.microsoft.azure.storage.blob._blob_listing_details.getCopy()
+  - com.microsoft.azure.storage.blob._blob_listing_details.getMetadata()
+  - com.microsoft.azure.storage.blob._blob_listing_details.getSnapshots()
+  - com.microsoft.azure.storage.blob._blob_listing_details.getUncommittedBlobs()
   - com.microsoft.azure.storage.blob._blob_listing_details.METADATA
+  - com.microsoft.azure.storage.blob._blob_listing_details.NONE
   - com.microsoft.azure.storage.blob._blob_listing_details.SNAPSHOTS
   - com.microsoft.azure.storage.blob._blob_listing_details.UNCOMMITTED_BLOBS
   - com.microsoft.azure.storage.blob._blob_listing_details.value
@@ -30,11 +36,51 @@ items:
     <p>Specifies which items to include when listing a set of blobs. </p>
 
     <p>By default, committed blocks are always returned. Use the values in this enum to include snapshots, metadata, and/or uncommitted blocks. </p>
-  syntax:
+
+    <p>This type allows users to specify additional information the service should return with each blob when listing blobs in a container (via a <xref uid="com.microsoft.azure.storage.blob._container_u_r_l" data-throw-if-not-resolved="false">ContainerURL</xref> object). This type is immutable to ensure thread-safety of requests, so changing the details for a different listing operation requires construction of a new object. Null may be passed if none of the options are desirable. </p>
+  syntax: &o2
     content: public enum BlobListingDetails
   inheritance:
   - java.lang.Object
   - java.lang.Enum<BlobListingDetails>
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.BlobListingDetails(boolean,boolean,boolean,boolean)
+  id: BlobListingDetails(boolean,boolean,boolean,boolean)
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: BlobListingDetails(boolean copy, boolean metadata, boolean snapshots, boolean uncommittedBlobs)
+  nameWithType: BlobListingDetails.BlobListingDetails(boolean copy, boolean metadata, boolean snapshots, boolean uncommittedBlobs)
+  fullName: com.microsoft.azure.storage.blob.BlobListingDetails.BlobListingDetails(boolean copy, boolean metadata, boolean snapshots, boolean uncommittedBlobs)
+  overload: com.microsoft.azure.storage.blob._blob_listing_details.BlobListingDetails*
+  type: Constructor
+  source:
+    remote: &o1
+      path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+      branch: New-Storage-SDK-V10-Preview
+      repo: https://github.com/Azure/azure-storage-java
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 56
+  package: com.microsoft.azure.storage.blob
+  summary: >-
+    <p>A <xref uid="com.microsoft.azure.storage.blob._blob_listing_details" data-throw-if-not-resolved="false">BlobListingDetails</xref> object.</p>
+
+    <p></p>
+  syntax:
+    content: public BlobListingDetails(boolean copy, boolean metadata, boolean snapshots, boolean uncommittedBlobs)
+    parameters:
+    - id: copy
+      type: 4fc6e284
+      description: <p>Whether blob metadata related to any current or previous Copy Blob operation should be included in the response. </p>
+    - id: metadata
+      type: 4fc6e284
+      description: <p>Whether blob metadata should be returned. </p>
+    - id: snapshots
+      type: 4fc6e284
+      description: <p>Whether snapshots should be returned. Snapshots are listed from oldest to newest. </p>
+    - id: uncommittedBlobs
+      type: 4fc6e284
+      description: <p>Whether blobs for which blocks have been uploaded, but which have not been committed using Put Block List, should be included in the response. </p>
 - uid: com.microsoft.azure.storage.blob._blob_listing_details.BlobListingDetails(final int)
   id: BlobListingDetails(final int)
   parent: com.microsoft.azure.storage.blob._blob_listing_details
@@ -97,6 +143,90 @@ items:
   summary: <p>Specifies that soft deleted blobs which are retained by the service should be included in the response. </p>
   syntax:
     content: public DELETED=(16)
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getCopy()
+  id: getCopy()
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: getCopy()
+  nameWithType: BlobListingDetails.getCopy()
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getCopy()
+  overload: com.microsoft.azure.storage.blob._blob_listing_details.getCopy*
+  type: Method
+  source:
+    remote: *o1
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 67
+  package: com.microsoft.azure.storage.blob
+  syntax:
+    content: public boolean getCopy()
+    return:
+      type: 4fc6e284
+      description: <p>Whether blob copies should be returned. </p>
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getMetadata()
+  id: getMetadata()
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: getMetadata()
+  nameWithType: BlobListingDetails.getMetadata()
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getMetadata()
+  overload: com.microsoft.azure.storage.blob._blob_listing_details.getMetadata*
+  type: Method
+  source:
+    remote: *o1
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 75
+  package: com.microsoft.azure.storage.blob
+  syntax:
+    content: public boolean getMetadata()
+    return:
+      type: 4fc6e284
+      description: <p>Whether metadata should be returned. </p>
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getSnapshots()
+  id: getSnapshots()
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: getSnapshots()
+  nameWithType: BlobListingDetails.getSnapshots()
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getSnapshots()
+  overload: com.microsoft.azure.storage.blob._blob_listing_details.getSnapshots*
+  type: Method
+  source:
+    remote: *o1
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 83
+  package: com.microsoft.azure.storage.blob
+  syntax:
+    content: public boolean getSnapshots()
+    return:
+      type: 4fc6e284
+      description: <p>Whether snapshots should be returned. </p>
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getUncommittedBlobs()
+  id: getUncommittedBlobs()
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: getUncommittedBlobs()
+  nameWithType: BlobListingDetails.getUncommittedBlobs()
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getUncommittedBlobs()
+  overload: com.microsoft.azure.storage.blob._blob_listing_details.getUncommittedBlobs*
+  type: Method
+  source:
+    remote: *o1
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 91
+  package: com.microsoft.azure.storage.blob
+  syntax:
+    content: public boolean getUncommittedBlobs()
+    return:
+      type: 4fc6e284
+      description: <p>Whether uncommitted blobs should be returned. </p>
 - uid: com.microsoft.azure.storage.blob._blob_listing_details.METADATA
   id: METADATA
   parent: com.microsoft.azure.storage.blob._blob_listing_details
@@ -115,6 +245,28 @@ items:
   summary: <p>Specifies listing blob metadata for each blob returned in the listing. </p>
   syntax:
     content: public METADATA=(2)
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.NONE
+  id: NONE
+  parent: com.microsoft.azure.storage.blob._blob_listing_details
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  langs:
+  - java
+  name: NONE
+  nameWithType: BlobListingDetails.NONE
+  fullName: final BlobListingDetails com.microsoft.azure.storage.blob.BlobListingDetails.NONE
+  type: Field
+  source:
+    remote: *o1
+    path: src/main/java/com/microsoft/azure/storage/blob/BlobListingDetails.java
+    startLine: 31
+  package: com.microsoft.azure.storage.blob
+  summary: <p>An object representing no listing details. </p>
+  syntax:
+    content: >-
+      public static final BlobListingDetails NONE= new BlobListingDetails(false, false, false,
+                  false)
+    return:
+      type: 93de0ef9com.microsoft.azure.storage.blob._blob_listing_details
 - uid: com.microsoft.azure.storage.blob._blob_listing_details.SNAPSHOTS
   id: SNAPSHOTS
   parent: com.microsoft.azure.storage.blob._blob_listing_details
@@ -176,6 +328,14 @@ references:
   spec.java:
   - name: int
     fullName: int
+- uid: 93de0ef9com.microsoft.azure.storage.blob._blob_listing_details
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.storage.blob._blob_listing_details
+    name: BlobListingDetails
+    fullName: com.microsoft.azure.storage.blob.BlobListingDetails
+    href: com.microsoft.azure.storage.blob._blob_listing_details.yml
 - uid: cd225469
   spec.java:
   - name: final int
@@ -185,3 +345,61 @@ references:
   nameWithType: BlobListingDetails.BlobListingDetails
   fullName: com.microsoft.azure.storage.blob.BlobListingDetails.BlobListingDetails
   package: com.microsoft.azure.storage.blob
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getCopy*
+  name: getCopy
+  nameWithType: BlobListingDetails.getCopy
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getCopy
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getMetadata*
+  name: getMetadata
+  nameWithType: BlobListingDetails.getMetadata
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getMetadata
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getSnapshots*
+  name: getSnapshots
+  nameWithType: BlobListingDetails.getSnapshots
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getSnapshots
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._blob_listing_details.getUncommittedBlobs*
+  name: getUncommittedBlobs
+  nameWithType: BlobListingDetails.getUncommittedBlobs
+  fullName: boolean com.microsoft.azure.storage.blob.BlobListingDetails.getUncommittedBlobs
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._blob_listing_details
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._blob_listing_details.yml
+  name: BlobListingDetails
+  nameWithType: BlobListingDetails
+  fullName: com.microsoft.azure.storage.blob.BlobListingDetails
+  type: Enum
+  summary: >-
+    <p>Specifies which items to include when listing a set of blobs. </p>
+
+    <p>By default, committed blocks are always returned. Use the values in this enum to include snapshots, metadata, and/or uncommitted blocks. </p>
+
+    <p>This type allows users to specify additional information the service should return with each blob when listing blobs in a container (via a <xref uid="com.microsoft.azure.storage.blob._container_u_r_l" data-throw-if-not-resolved="false">ContainerURL</xref> object). This type is immutable to ensure thread-safety of requests, so changing the details for a different listing operation requires construction of a new object. Null may be passed if none of the options are desirable. </p>
+  syntax: *o2
+- uid: com.microsoft.azure.storage.blob.models._list_blobs_include_item
+  parent: com.microsoft.azure.storage.blob.models
+  href: com.microsoft.azure.storage.blob.models._list_blobs_include_item.yml
+  name: ListBlobsIncludeItem
+  nameWithType: ListBlobsIncludeItem
+  fullName: com.microsoft.azure.storage.blob.models.ListBlobsIncludeItem
+  type: Enum
+  summary: <p>Defines values for <xref uid="com.microsoft.azure.storage.blob.models._list_blobs_include_item" data-throw-if-not-resolved="false">ListBlobsIncludeItem</xref>. </p>
+  syntax:
+    content: public enum ListBlobsIncludeItem
+- uid: com.microsoft.azure.storage.blob._container_u_r_l
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._container_u_r_l.yml
+  name: ContainerURL
+  nameWithType: ContainerURL
+  fullName: com.microsoft.azure.storage.blob.ContainerURL
+  type: Class
+  summary: <p>Represents a URL to a container. It may be obtained by direct construction or via the create method on a <xref uid="com.microsoft.azure.storage.blob._service_u_r_l" data-throw-if-not-resolved="false">ServiceURL</xref> object. This class does not hold any state about a particular blob but is instead a convenient way of sending off appropriate requests to the resource on the service. It may also be used to construct URLs to blobs. Please refer to the <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction">Azure Docs</a> for more information on containers. </p>
+  syntax:
+    content: public class ContainerURL

@@ -5,6 +5,7 @@ items:
   parent: com.microsoft.azure.datalake.store.oauth2
   children:
   - com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenFromMsi(int,String)
+  - com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenFromMsi(String,String,boolean)
   - com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenUsingClientCreds(String,String,String)
   - com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenUsingRefreshToken(String,String)
   - com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenUsingUserCreds(String,String,String)
@@ -21,7 +22,7 @@ items:
       branch: master
       repo: https://github.com/azure/azure-data-lake-store-java
     path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
-    startLine: 27
+    startLine: 29
   package: com.microsoft.azure.datalake.store.oauth2
   summary: <p>This class provides convenience methods to obtain AAD tokens. While convenient, it is not necessary to use these methods to obtain the tokens. Customers can use any other method (e.g., using the adal4j client) to obtain tokens. </p>
   syntax:
@@ -42,10 +43,26 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
-    startLine: 73
+    startLine: 80
   package: com.microsoft.azure.datalake.store.oauth2
   summary: >-
     <p>Gets AAD token from the local virtual machine's VM extension. This only works on an Azure VM with MSI extension enabled.</p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000025">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Deprecated, use the other overloads instead. With the change to the way MSI is done in Azure Active Directory, the parameters on this call (localPort) are not relevant anymore.</p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
 
     <p></p>
   syntax:
@@ -69,6 +86,45 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>throws IOException if there is a failure in obtaining the token </p>
+- uid: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenFromMsi(String,String,boolean)
+  id: getTokenFromMsi(String,String,boolean)
+  parent: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator
+  href: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.yml
+  langs:
+  - java
+  name: getTokenFromMsi(String tenantGuid, String clientId, boolean bypassCache)
+  nameWithType: AzureADAuthenticator.getTokenFromMsi(String tenantGuid, String clientId, boolean bypassCache)
+  fullName: static AzureADToken com.microsoft.azure.datalake.store.oauth2.AzureADAuthenticator.getTokenFromMsi(String tenantGuid, String clientId, boolean bypassCache)
+  overload: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenFromMsi*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
+    startLine: 95
+  package: com.microsoft.azure.datalake.store.oauth2
+  summary: >-
+    <p>Gets AAD token from the local virtual machine's VM extension. This only works on an Azure VM with MSI extension enabled.</p>
+
+    <p></p>
+  syntax:
+    content: public static AzureADToken getTokenFromMsi(String tenantGuid, String clientId, boolean bypassCache)
+    parameters:
+    - id: tenantGuid
+      type: "26831127"
+      description: >-
+        <p>(optional) The guid of the AAD tenant. Can be<code>null 
+
+            </code> . </p>
+    - id: clientId
+      type: "26831127"
+      description: >-
+        <p>(optional) The clientId guid of the MSI service principal to use. Can be<code>null 
+
+            </code> . </p>
+    - id: bypassCache
+      type: 4fc6e284
+    return:
+      type: com.microsoft.azure.datalake.store.oauth2._azure_a_d_token
 - uid: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenUsingClientCreds(String,String,String)
   id: getTokenUsingClientCreds(String,String,String)
   parent: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator
@@ -83,7 +139,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
-    startLine: 49
+    startLine: 51
   package: com.microsoft.azure.datalake.store.oauth2
   summary: >-
     <p>gets Azure Active Directory token using the user ID and password of a service principal (that is, Web App in Azure Active Directory). </p>
@@ -126,7 +182,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
-    startLine: 100
+    startLine: 131
   package: com.microsoft.azure.datalake.store.oauth2
   summary: >-
     <p>gets Azure Active Directory token using refresh token</p>
@@ -164,14 +220,26 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/datalake/store/oauth2/AzureADAuthenticator.java
-    startLine: 129
+    startLine: 162
   package: com.microsoft.azure.datalake.store.oauth2
   summary: >-
     <p>gets Azure Active Directory token using the user's username and password. This only works if the identity can be authenticated directly by microsoftonline.com. It will likely not work if the domain is federated and/or multi-factor authentication or other form of strong authentication is configured for the user. </p>
 
-    <p>Due to security concerns with user ID and password,this should only be used in limited test circumstances, and for test/dummy users only. </p>
+    <p>
 
-    <p></p>
+      <xrefsect id="deprecated_1_deprecated000026">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Due to security concerns with user ID and password,this auth method is deprecated. Please use device code authentication instead for interactive user-based authentication. </p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public static AzureADToken getTokenUsingUserCreds(String clientId, String username, String password)
     parameters:
@@ -216,6 +284,10 @@ references:
   nameWithType: AzureADAuthenticator.getTokenFromMsi
   fullName: static AzureADToken com.microsoft.azure.datalake.store.oauth2.AzureADAuthenticator.getTokenFromMsi
   package: com.microsoft.azure.datalake.store.oauth2
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: com.microsoft.azure.datalake.store.oauth2._azure_a_d_authenticator.getTokenUsingRefreshToken*
   name: getTokenUsingRefreshToken
   nameWithType: AzureADAuthenticator.getTokenUsingRefreshToken
