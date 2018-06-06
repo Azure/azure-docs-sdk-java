@@ -92,7 +92,7 @@ The following steps walk you through building a Spring Boot web application and 
    az login
    ```
    Follow the instructions to complete the login process
-   
+
    The Azure CLI will display a list of your accounts; for example:
 
    ```json
@@ -251,6 +251,7 @@ The following steps walk you through building a Spring Boot web application and 
    az acr create --admin-enabled --resource-group wingtiptoys-kubernetes --location westeurope --name wingtiptoysregistry --sku Basic
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `wingtiptoys-kubernetes` | Specifies the name of your resource group from earlier in this article. |
@@ -281,7 +282,7 @@ The following steps walk you through building a Spring Boot web application and 
    }
    ```
 
-1. Retrieve the password for your container registry from the Azure CLI.
+2. Retrieve the password for your container registry from the Azure CLI.
    ```azurecli
    az acr credential show --name wingtiptoysregistry --query passwords[0]
    ```
@@ -295,10 +296,10 @@ The following steps walk you through building a Spring Boot web application and 
    }
    ```
 
-1. Navigate to the configuration directory for your Maven installation (default ~/.m2/ or C:\Users\username\.m2) and open the *settings.xml* file with a text editor.
+3. Navigate to the configuration directory for your Maven installation (default ~/.m2/ or C:\Users\username\.m2) and open the *settings.xml* file with a text editor.
 
-1. Add your Azure Container Registry URL, username and password to a new `<server>` collection in the *settings.xml* file.
-The `id` and `username` are the name of the registry. Use the `password` value from the previous command (without quotes).
+4. Add your Azure Container Registry URL, username and password to a new `<server>` collection in the *settings.xml* file.
+   The `id` and `username` are the name of the registry. Use the `password` value from the previous command (without quotes).
 
    ```xml
    <servers>
@@ -310,9 +311,9 @@ The `id` and `username` are the name of the registry. Use the `password` value f
    </servers>
    ```
 
-1. Navigate to the completed project directory for your Spring Boot application (for example, "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/home/GenaSoto/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
+5. Navigate to the completed project directory for your Spring Boot application (for example, "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/home/GenaSoto/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
 
-1. Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry.
+6. Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry.
 
    ```xml
    <properties>
@@ -321,7 +322,7 @@ The `id` and `username` are the name of the registry. Use the `password` value f
    </properties>
    ```
 
-1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the login server address and registry name for your Azure Container Registry.
+7. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the login server address and registry name for your Azure Container Registry.
 
    ```xml
    <plugin>
@@ -336,7 +337,7 @@ The `id` and `username` are the name of the registry. Use the `password` value f
    </plugin>
    ```
 
-1. Navigate to the completed project directory for your Spring Boot application, and run the following Maven command to build the Docker container and push the image to your registry:
+8. Navigate to the completed project directory for your Spring Boot application, and run the following Maven command to build the Docker container and push the image to your registry:
 
    ```shell
    mvn package dockerfile:build -DpushImage
@@ -481,13 +482,13 @@ The `id` and `username` are the name of the registry. Use the `password` value f
    ```
 
    `kubectl` will display your internal and external IP addresses; for example:
-   
+
    ```shell
    NAME                    CLUSTER-IP   EXTERNAL-IP   PORT(S)        AGE
    kubernetes              10.0.0.1     <none>        443/TCP        19h
    gs-spring-boot-docker   10.0.242.8   13.65.196.3   80:31215/TCP   3m
    ```
-   
+
    You can use the external IP address to open your application in a web browser.
 
    ![Browse sample application externally][SB02]
