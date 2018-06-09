@@ -61,7 +61,7 @@ In this section, you clone a containerized Spring Boot application and test it l
 
 1. Clone the [Spring Boot on Docker Getting Started] sample project into the directory you created; for example:
    ```shell
-   git clone -b private-registry https://github.com/Microsoft/gs-spring-boot-docker
+   git clone -b private-registry https://github.com/spring-guides/gs-spring-boot-docker
    ```
 
 1. Change directory to the completed project; for example:
@@ -100,23 +100,25 @@ In this section, you create an Azure service principal that the Maven plugin use
 
 1. Open a command prompt.
 
-1. Sign into your Azure account by using the Azure CLI:
+2. Sign into your Azure account by using the Azure CLI:
    ```azurecli
    az login
    ```
    Follow the instructions to complete the sign-in process.
 
-1. Create an Azure service principal:
+3. Create an Azure service principal:
    ```azurecli
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
    Where:
-   | Parameter | Description |
-   |---|---|
-   | `uuuuuuuu` | Specifies the user name for the service principal. |
-   | `pppppppp` | Specifies the password for the service principal. |
 
-1. Azure responds with JSON that resembles the following example:
+   | Parameter  |                    Description                     |
+   |------------|----------------------------------------------------|
+   | `uuuuuuuu` | Specifies the user name for the service principal. |
+   | `pppppppp` | Specifies the password for the service principal.  |
+
+
+4. Azure responds with JSON that resembles the following example:
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -173,7 +175,7 @@ In this section, you create an Azure service principal that the Maven plugin use
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. Add your Azure Container Registry access settings from the previous section of this article to the `<servers>` collection in the *settings.xml* file; for example:
+2. Add your Azure Container Registry access settings from the previous section of this article to the `<servers>` collection in the *settings.xml* file; for example:
 
    ```xml
    <servers>
@@ -185,13 +187,15 @@ In this section, you create an Azure service principal that the Maven plugin use
    </servers>
    ```
    Where:
-   | Element | Description |
-   |---|---|
-   | `<id>` | Contains the name of your private Azure container registry. |
-   | `<username>` | Contains the name of your private Azure container registry. |
+
+   |   Element    |                                 Description                                  |
+   |--------------|------------------------------------------------------------------------------|
+   |    `<id>`    |         Contains the name of your private Azure container registry.          |
+   | `<username>` |         Contains the name of your private Azure container registry.          |
    | `<password>` | Contains the password you retrieved in the previous section of this article. |
 
-1. Add your Azure service principal settings from an earlier section of this article to the `<servers>` collection in the *settings.xml* file; for example:
+
+3. Add your Azure service principal settings from an earlier section of this article to the `<servers>` collection in the *settings.xml* file; for example:
 
    ```xml
    <servers>
@@ -207,21 +211,23 @@ In this section, you create an Azure service principal that the Maven plugin use
    </servers>
    ```
    Where:
-   | Element | Description |
-   |---|---|
-   | `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure. |
-   | `<client>` | Contains the `appId` value from your service principal. |
-   | `<tenant>` | Contains the `tenant` value from your service principal. |
-   | `<key>` | Contains the `password` value from your service principal. |
+
+   |     Element     |                                                                                   Description                                                                                   |
+   |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |     `<id>`      |                                Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure.                                |
+   |   `<client>`    |                                                             Contains the `appId` value from your service principal.                                                             |
+   |   `<tenant>`    |                                                            Contains the `tenant` value from your service principal.                                                             |
+   |     `<key>`     |                                                           Contains the `password` value from your service principal.                                                            |
    | `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation) |
 
-1. Save and close the *settings.xml* file.
+
+4. Save and close the *settings.xml* file.
 
 ## Build your Docker container image and push it to your Azure container registry
 
 1. Navigate to the completed project directory for your Spring Boot application, (e.g. "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
 
-1. Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry from the previous section of this tutorial; for example:
+2. Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry from the previous section of this tutorial; for example:
 
    ```xml
    <properties>
@@ -232,12 +238,14 @@ In this section, you create an Azure service principal that the Maven plugin use
    </properties>
    ```
    Where:
-   | Element | Description |
-   |---|---|
-   | `<azure.containerRegistry>` | Specifies the name of your private Azure container registry. |
-   | `<docker.image.prefix>` | Specifies the URL of your private Azure container registry, which is derived by appending ".azurecr.io" to the name of your private container registry. |
 
-1. Verify that `<plugin>` for the Docker plugin in your *pom.xml* file contains the correct properties for the login server address and registry name from the previous step in this tutorial. For example:
+   |           Element           |                                                                       Description                                                                       |
+   |-----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+   | `<azure.containerRegistry>` |                                              Specifies the name of your private Azure container registry.                                               |
+   |   `<docker.image.prefix>`   | Specifies the URL of your private Azure container registry, which is derived by appending ".azurecr.io" to the name of your private container registry. |
+
+
+3. Verify that `<plugin>` for the Docker plugin in your *pom.xml* file contains the correct properties for the login server address and registry name from the previous step in this tutorial. For example:
 
    ```xml
    <plugin>
@@ -260,18 +268,20 @@ In this section, you create an Azure service principal that the Maven plugin use
    </plugin>
    ```
    Where:
-   | Element | Description |
-   |---|---|
-   | `<serverId>` | Specifies the property which contains name of your private Azure container registry. |
+
+   |     Element     |                                       Description                                       |
+   |-----------------|-----------------------------------------------------------------------------------------|
+   |  `<serverId>`   |  Specifies the property which contains name of your private Azure container registry.   |
    | `<registryUrl>` | Specifies the property which contains the URL of your private Azure container registry. |
 
-1. Navigate to the completed project directory for your Spring Boot application and run the following command to rebuild the application and push the container to your Azure container registry:
+
+4. Navigate to the completed project directory for your Spring Boot application and run the following command to rebuild the application and push the container to your Azure container registry:
 
    ```
    mvn package docker:build -DpushImage 
    ```
 
-1. OPTIONAL: Browse to the [Azure portal] and verify that there is Docker container image named **gs-spring-boot-docker** in your container registry.
+5. OPTIONAL: Browse to the [Azure portal] and verify that there is Docker container image named **gs-spring-boot-docker** in your container registry.
 
    ![Verify container in Azure portal][CR01]
 

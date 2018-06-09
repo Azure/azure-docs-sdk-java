@@ -97,6 +97,7 @@ The following prerequisites are required in order to complete the steps in this 
    az group create --name wingtiptoysresources --location westus
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies a unique name for your resource group. |
@@ -117,11 +118,12 @@ The following prerequisites are required in order to complete the steps in this 
    }
    ```
 
-1. Create an Azure service principal from your application registration; for example:
+2. Create an Azure service principal from your application registration; for example:
    ```shell
    az ad sp create-for-rbac --name "wingtiptoysuser"
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies the name for your Azure service principal. |
@@ -138,11 +140,12 @@ The following prerequisites are required in order to complete the steps in this 
    }
    ```
 
-1. Create a new key vault in the resource group; for example:
+3. Create a new key vault in the resource group; for example:
    ```azurecli
    az keyvault create --name wingtiptoyskeyvault --resource-group wingtiptoysresources --location westus --enabled-for-deployment true --enabled-for-disk-encryption true --enabled-for-template-deployment true --sku standard --query properties.vaultUri
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies a unique name for your key vault. |
@@ -159,11 +162,12 @@ The following prerequisites are required in order to complete the steps in this 
    "https://wingtiptoyskeyvault.vault.azure.net"
    ```
 
-1. Set the access policy for the Azure service principal you created earlier; for example:
+4. Set the access policy for the Azure service principal you created earlier; for example:
    ```azurecli
    az keyvault set-policy --name wingtiptoyskeyvault --secret-permission set get list delete --spn "iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii"
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies your key vault name from earlier. |
@@ -188,11 +192,12 @@ The following prerequisites are required in order to complete the steps in this 
    }
    ```
 
-1. Store a secret in your new key vault; for example:
+5. Store a secret in your new key vault; for example:
    ```azurecli
    az keyvault secret set --vault-name "wingtiptoyskeyvault" --name "connectionString" --value "jdbc:sqlserver://SERVER.database.windows.net:1433;database=DATABASE;"
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `vault-name` | Specifies your key vault name from earlier. |
@@ -226,24 +231,26 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. Extract the files from the Spring Boot project archive files that you downloaded earlier into a directory.
 
-1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
+2. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
 
-1. Add the values for your key vault using values from the steps that you completed earlier in this tutorial; for example:
+3. Add the values for your key vault using values from the steps that you completed earlier in this tutorial; for example:
    ```yaml
    azure.keyvault.uri=https://wingtiptoyskeyvault.vault.azure.net/
    azure.keyvault.client-id=iiiiiiii-iiii-iiii-iiii-iiiiiiiiiiii
    azure.keyvault.client-key=pppppppp-pppp-pppp-pppp-pppppppppppp
    ```
    Where:
-   | Parameter | Description |
-   |---|---|
-   | `azure.keyvault.uri` | Specifies the URI from when you created your key vault. |
-   | `azure.keyvault.client-id` | Specifies the *appId* GUID from when you created your service principal. |
+
+   |          Parameter          |                                 Description                                 |
+   |-----------------------------|-----------------------------------------------------------------------------|
+   |    `azure.keyvault.uri`     |           Specifies the URI from when you created your key vault.           |
+   | `azure.keyvault.client-id`  |  Specifies the *appId* GUID from when you created your service principal.   |
    | `azure.keyvault.client-key` | Specifies the *password* GUID from when you created your service principal. |
 
-1. Navigate to the main source code file of your project; for example: */src/main/java/com/wingtiptoys/secrets*.
 
-1. Open the application's main Java file in a file in a text editor; for example: *SecretsApplication.java*, and add the following lines to the file:
+4. Navigate to the main source code file of your project; for example: */src/main/java/com/wingtiptoys/secrets*.
+
+5. Open the application's main Java file in a file in a text editor; for example: *SecretsApplication.java*, and add the following lines to the file:
 
    ```java
    package com.wingtiptoys.secrets;
@@ -270,7 +277,7 @@ The following prerequisites are required in order to complete the steps in this 
    ```
    This code example retrieves the connection string from the key vault and displays it to the command line.
 
-1. Save and close the Java file.
+6. Save and close the Java file.
 
 ## Build and test your app
 

@@ -36,13 +36,13 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Browse to <https://start.spring.io/>.
 
-1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Aritifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
+1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Artifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
 
    ![Basic Spring Initializr options](media/configure-spring-boot-starter-java-app-with-azure-storage/spring-initializr-basic.png)
 
    > [!NOTE]
    >
-   > The Spring Initializr will use the **Group** and **Aritifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
+   > The Spring Initializr will use the **Group** and **Artifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
    >
 
 1. Scroll down to the **Azure** section and check the box for **Azure Storage**.
@@ -105,6 +105,7 @@ The following prerequisites are required in order to follow the steps in this ar
    az group create --name wingtiptoysresources --location westus
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies a unique name for your resource group. |
@@ -125,11 +126,12 @@ The following prerequisites are required in order to follow the steps in this ar
    }
    ```
 
-1. Create an Azure storage account in the in the resource group for your Spring Boot app; for example:
+2. Create an Azure storage account in the in the resource group for your Spring Boot app; for example:
    ```azurecli
    az storage account create --name wingtiptoysstorage --resource-group wingtiptoysresources --location westus --sku Standard_LRS
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `name` | Specifies a unique name for your storage account. |
@@ -138,7 +140,7 @@ The following prerequisites are required in order to follow the steps in this ar
    | `sku` | Specifies one of the following: `Premium_LRS`, `Standard_GRS`, `Standard_LRS`, `Standard_RAGRS`, `Standard_ZRS`. |
 
    Azure will return a long JSON string which contains the provisioning state; for example: |
-   
+
    ```json
    {
      "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/...",
@@ -154,11 +156,12 @@ The following prerequisites are required in order to follow the steps in this ar
    }
    ```
 
-1. Retrieve the connection string for your storage account; for example:
+3. Retrieve the connection string for your storage account; for example:
    ```azurecli
    az storage account show-connection-string --name wingtiptoysstorage --resource-group wingtiptoysresources
    ```
    Where:
+
    | Parameter | Description |
    | ---|---|
    | `name` | Specifies a unique name of the storage account you created in previous steps. |
@@ -267,7 +270,7 @@ The following prerequisites are required in order to follow the steps in this ar
    ```shell
    mvn clean package spring-boot:run
    ```
-   
+
    The application will create a container and upload a text file as a blob to the container, which will be listed under your storage account in the [Azure portal](https://portal.azure.com).
 
    ![List blobs in Azure portal](media/configure-spring-boot-starter-java-app-with-azure-storage/list-blobs-in-portal.png)
