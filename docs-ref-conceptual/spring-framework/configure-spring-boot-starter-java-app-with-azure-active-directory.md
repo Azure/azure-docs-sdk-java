@@ -113,9 +113,9 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. Extract the files from the downloaded project archive into a directory.
 
-1. Navigate to the parent folder in your project and open the *pom.xml* file in a text editor.
+2. Navigate to the parent folder in your project and open the *pom.xml* file in a text editor.
 
-1. Add the dependency for Spring OAuth2 security; for example:
+3. Add the dependency for Spring OAuth2 security; for example:
 
    ```xml
    <dependency>
@@ -124,11 +124,11 @@ The following prerequisites are required in order to complete the steps in this 
    </dependency>
    ```
 
-1. Save and close the  the *pom.xml* file.
+4. Save and close the  the *pom.xml* file.
 
-1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
+5. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
 
-1. Add the key for your storage account using the values from earlier; for example:
+6. Add the key for your storage account using the values from earlier; for example:
 
    ```yaml
    # Specifies your Active Directory Application ID:
@@ -141,6 +141,7 @@ The following prerequisites are required in order to complete the steps in this 
    azure.activedirectory.activeDirectoryGroups=Users
    ```
    Where:
+
    | Parameter | Description |
    |---|---|
    | `azure.activedirectory.clientId` | Contains your **Application ID** from earlier. |
@@ -148,66 +149,66 @@ The following prerequisites are required in order to complete the steps in this 
    | `azure.activedirectory.activeDirectoryGroups` | Contains a list of Active Directory groups to use for authentication. |
 
 
-1. Save and close the  the *application.properties* file.
+7. Save and close the  the *application.properties* file.
 
-1. Create a folder named *controller* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/controller*.
+8. Create a folder named *controller* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/controller*.
 
-1. Create a new Java file named *HelloController.java* in the *controller* folder and open it in a text editor.
+9. Create a new Java file named *HelloController.java* in the *controller* folder and open it in a text editor.
 
-1. Enter the following code, then save and close the file:
+10. Enter the following code, then save and close the file:
 
-   ```java
-   package com.wingtiptoys.security;
-   
-   import org.springframework.web.bind.annotation.RequestMapping;
-   import org.springframework.web.bind.annotation.RestController;
-   import org.springframework.boot.SpringApplication;
-   import org.springframework.boot.autoconfigure.SpringBootApplication;
-   
-   import org.springframework.security.access.prepost.PreAuthorize;
-   import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
-   
-   @RestController
-   public class HelloController {
-      @PreAuthorize("hasRole('Users')")
-      @RequestMapping("/")
-      public String hello() {
-         return "Hello World!";
-      }
-   }
-   ```
+    ```java
+    package com.wingtiptoys.security;
 
-1. Create a folder named *security* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/security*.
+    import org.springframework.web.bind.annotation.RequestMapping;
+    import org.springframework.web.bind.annotation.RestController;
+    import org.springframework.boot.SpringApplication;
+    import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-1. Create a new Java file named *WebSecurityConfig.java* in the *security* folder and open it in a text editor.
+    import org.springframework.security.access.prepost.PreAuthorize;
+    import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 
-1. Enter the following code, then save and close the file:
+    @RestController
+    public class HelloController {
+       @PreAuthorize("hasRole('Users')")
+       @RequestMapping("/")
+       public String hello() {
+          return "Hello World!";
+       }
+    }
+    ```
 
-   ```java
-   package com.wingtiptoys.security;
+11. Create a folder named *security* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/security*.
 
-   import com.microsoft.azure.spring.autoconfigure.aad.AADAuthenticationFilter;
-   import org.springframework.beans.factory.annotation.Autowired;
-   import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
-   import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-   import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-   import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-   import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-   import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
-   
-   @EnableOAuth2Sso
-   @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
-   
-   public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-      @Autowired
-      private AADAuthenticationFilter aadAuthFilter;
-      @Override
-      protected void configure(HttpSecurity http) throws Exception {
-         http.authorizeRequests().anyRequest().permitAll();
-         http.addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
-      }
-   }
-   ```
+12. Create a new Java file named *WebSecurityConfig.java* in the *security* folder and open it in a text editor.
+
+13. Enter the following code, then save and close the file:
+
+    ```java
+    package com.wingtiptoys.security;
+
+    import com.microsoft.azure.spring.autoconfigure.aad.AADAuthenticationFilter;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+    import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+    import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+    import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+    import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+    import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+    @EnableOAuth2Sso
+    @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
+
+    public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+       @Autowired
+       private AADAuthenticationFilter aadAuthFilter;
+       @Override
+       protected void configure(HttpSecurity http) throws Exception {
+          http.authorizeRequests().anyRequest().permitAll();
+          http.addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
+       }
+    }
+    ```
 
 ## Build and test your app
 
