@@ -56,11 +56,11 @@ Docker containers are a widely used method for deploying web applications. By us
    a. In the **Docker image name** box, enter a unique name for your Docker host. (The wizard automatically creates a name, but you can modify it.) 
 
    b. The **Hosts** area displays any Docker hosts that you have already created. Do either of the following: 
-      * If you have an existing Docker host, you can deploy your web app to it.
-      * To create a Docker host, click the green plus sign (**+**).  
-       The **Create Docker Host** dialog box opens. 
+   * If you have an existing Docker host, you can deploy your web app to it.
+   * To create a Docker host, click the green plus sign (**+**).  
+     The **Create Docker Host** dialog box opens. 
 
-      ![Deploy Docker Container on Azure Wizard][PUB04a]
+     ![Deploy Docker Container on Azure Wizard][PUB04a]
 
 4. In the **Configure the new virtual machine** window, provide the following information about your Docker host. (The wizard automatically generates most of the information for you, but you can modify any of them.) 
 
@@ -93,50 +93,50 @@ Docker containers are a widely used method for deploying web applications. By us
 
 6. Select one of the following options:
 
-      * **Import credentials from Azure Key Vault**: Specify a previously saved set of credentials that are stored in your Azure subscription.
+   * **Import credentials from Azure Key Vault**: Specify a previously saved set of credentials that are stored in your Azure subscription.
 
-          > [!NOTE]
-          > An Azure key vault that's created with a specific account or service principal is not automatically accessible by another account or service principal that shares the subscription. To allow another account or service principal to use the key vault, you must use the Azure portal to add the account or service principal.
+       > [!NOTE]
+       > An Azure key vault that's created with a specific account or service principal is not automatically accessible by another account or service principal that shares the subscription. To allow another account or service principal to use the key vault, you must use the Azure portal to add the account or service principal.
 
-      * **New log in credentials**: Create a new set of login credentials. If you select this option, do the following:
+   * **New log in credentials**: Create a new set of login credentials. If you select this option, do the following:
 
-    a. On the **VM Credentials** tab, provide the following information for the virtual-machine login credentials of your Docker host:
+     a. On the **VM Credentials** tab, provide the following information for the virtual-machine login credentials of your Docker host:
 
-    * **Username**: Enter the username for your virtual-machine login credentials.
+     * **Username**: Enter the username for your virtual-machine login credentials.
 
-    * **Password** and **Confirm**: Enter the password for your virtual-machine login credentials.
+     * **Password** and **Confirm**: Enter the password for your virtual-machine login credentials.
 
-    * **SSH**: Enter the Secure Shell (SSH) settings for your Docker host. You can select one of the following options:
+     * **SSH**: Enter the Secure Shell (SSH) settings for your Docker host. You can select one of the following options:
 
-        * **None**: Specifies that your virtual machine does not allow SSH connections.
+     * **None**: Specifies that your virtual machine does not allow SSH connections.
 
-        * **Auto-generate**: Automatically creates the requisite settings for connecting via SSH.
+     * **Auto-generate**: Automatically creates the requisite settings for connecting via SSH.
 
-        * **Import from directory**: Allows you to specify a directory that contains a set of previously saved SSH settings. The directory must contain the following two files:
+     * **Import from directory**: Allows you to specify a directory that contains a set of previously saved SSH settings. The directory must contain the following two files:
 
-            * *id_rsa*: Contains the RSA identification for a user.
+         * *id_rsa*: Contains the RSA identification for a user.
 
-            * *id_rsa.pub*: Contains the RSA public key that is used for authentication.
+         * *id_rsa.pub*: Contains the RSA public key that is used for authentication.
 
-    b. On the **Docker Daemon Access** tab, provide the following information:
+     b. On the **Docker Daemon Access** tab, provide the following information:
 
-    ![Create Docker Host][PUB06]
+     ![Create Docker Host][PUB06]
     
-    * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
+     * **Docker Daemon port**: Enter the unique TCP port for your Docker host.
     
-    * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
+     * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options:
     
-        * **None**: Specifies that your virtual machine does not allow TLS connections.
+     * **None**: Specifies that your virtual machine does not allow TLS connections.
         
-        * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS.
+     * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS.
         
-        * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. The directory must contain the following six files:
+     * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. The directory must contain the following six files:
         
-            * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority.
+         * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority.
             
-            * *cert.pem* and *key.pem*: Contain client certificate and public key which will be used for TLS authentication.
+         * *cert.pem* and *key.pem*: Contain client certificate and public key which will be used for TLS authentication.
             
-            * *server.pem* and *server-key.pem*: Contain the client certificate and public key that is used for TLS authentication.
+         * *server.pem* and *server-key.pem*: Contain the client certificate and public key that is used for TLS authentication.
 
 7. After you have entered the required information, click **Finish**.  
     The **Deploy Docker Container on Azure** wizard reappears.

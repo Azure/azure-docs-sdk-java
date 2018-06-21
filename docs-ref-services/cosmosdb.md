@@ -29,9 +29,9 @@ Connect to Azure Cosmos DB using the [SQL API](/azure/cosmos-db/sql-api-introduc
 
 ```XML
 <dependency>
-	<groupId>com.microsoft.azure</groupId>
-	<artifactId>azure-documentdb</artifactId>
-	<version>1.12.0</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-documentdb</artifactId>
+    <version>1.12.0</version>
 </dependency>
 ```
 
@@ -50,7 +50,6 @@ List<Document> results = client.queryDocuments("dbs/" + DATABASE_ID + "/colls/" 
         null)
     .getQueryIterable()
     .toList();
-
 ```
 
 > [!div class="nextstepaction"]
