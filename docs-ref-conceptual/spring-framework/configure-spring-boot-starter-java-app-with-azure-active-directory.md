@@ -97,7 +97,7 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Specify app registration key parameters][directory-08]
 
-1. From the main page for your app registration, click **Required permissions**.
+1. From the main page for your app registration, click **Settings**, and then click **Required permissions**.
 
    ![App registration required permissions][directory-09]
 
@@ -112,6 +112,14 @@ The following prerequisites are required in order to complete the steps in this 
 1. On the **Required permissions** page, click **Grant Permissions**, and click **Yes** when prompted.
 
    ![Grant access permissions][directory-12]
+
+1. From the main page for your app registration, click **Settings**, and then click **Reply URLs**.
+
+   ![Edit Reply URLs][directory-14]
+
+1. Enter "http://localhost:8080/login/oauth2/code/azure" as a new reply URL, and then click **Save**.
+
+   ![Add new Reply URL][directory-15]
 
 ## Configure and compile your Spring Boot application
 
@@ -301,6 +309,8 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 [directory-11]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-11.png
 [directory-12]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-12.png
 [directory-13]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-13.png
+[directory-14]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-14.png
+[directory-15]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-15.png
 
 [build-application]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/build-application.png
 [application-login]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/application-login.png
