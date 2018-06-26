@@ -30,9 +30,9 @@ Use the management API to manage Data Lake Analytics accounts, jobs, policies, a
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-datalake-analytics</artifactId>
-    <version>1.0.0-beta1.3</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-datalake-analytics</artifactId>
+    <version>1.0.0-beta1.3</version>
 </dependency>
 ```
 
@@ -57,6 +57,7 @@ parameters.setProperties(properties);
 
 // create the job
 JobInformation jobInfo = adlaJobClient.getJobOperations().create(accountName, jobId, parameters).getBody();
+
 ```
 
 > [!div class="nextstepaction"]
