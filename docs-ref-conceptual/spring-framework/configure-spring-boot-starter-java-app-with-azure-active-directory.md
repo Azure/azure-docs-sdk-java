@@ -168,6 +168,11 @@ The following prerequisites are required in order to complete the steps in this 
    | `spring.security.oauth2.client.registration.azure.client-secret` | Contains the **Value** from your app registration key that you completed earlier. |
    | `azure.activedirectory.active-directory-groups` | Contains a list of Active Directory groups to use for authentication. |
 
+   > [!NOTE]
+   > 
+   > For a full list of values that are available in your *application.properties* file, see  the [Azure Active Directory Spring Boot Sample][AAD Spring Boot Sample] on GitHub.
+   >
+
 7. Save and close the *application.properties* file.
 
 8. Create a folder named *controller* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/controller*.
@@ -176,32 +181,57 @@ The following prerequisites are required in order to complete the steps in this 
 
 10. Enter the following code, then save and close the file:
 
-    ```java
-    package com.wingtiptoys.security;
+   ```java
+   package com.wingtiptoys.security;
 
-    import org.springframework.web.bind.annotation.RequestMapping;
-    import org.springframework.web.bind.annotation.RestController;
+   import org.springframework.web.bind.annotation.RequestMapping;
+   import org.springframework.web.bind.annotation.RestController;
+   import org.springframework.beans.factory.annotation.Autowired;
+   import org.springframework.security.access.prepost.PreAuthorize;
+   import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+   import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+   import org.springframework.ui.Model;
 
-    import org.springframework.beans.factory.annotation.Autowired;
-    import org.springframework.security.access.prepost.PreAuthorize;
-    import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-    import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-    import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-    import org.springframework.ui.Model;
+   @RestController
+   public class HelloController {
+      @Autowired
+      @PreAuthorize("hasRole('Users')")
+      @RequestMapping("/")
+      public String helloWorld() {
+         return "Hello World!";
+      }
+   }
+   ```
+   > [!NOTE]
+   > 
+   > The group name that you specify for the `@PreAuthorize("hasRole('')")` method must contain one of the groups that you specified in the `azure.activedirectory.active-directory-groups` field of your *application.properties* file.
+   >
 
-    @RestController
-    public class HelloController {
-
-        @Autowired
-        private OAuth2AuthorizedClientService authorizedClientService;
-
-        @PreAuthorize("hasRole('Users')")
-        @RequestMapping("/")
-        public String hello() {
-            return "Hello World!";
-        }
-    }
-    ```
+   > [!NOTE]
+   > 
+   > You can specify different authorization settings for different request mappings; for example:
+   >
+   > ``` java
+   > public class HelloController {
+   >    @Autowired
+   >    @PreAuthorize("hasRole('Users')")
+   >    @RequestMapping("/")
+   >    public String helloWorld() {
+   >       return "Hello Users!";
+   >    }
+   >    @PreAuthorize("hasRole('Group1')")
+   >    @RequestMapping("/Group1")
+   >    public String groupOne() {
+   >       return "Hello Group 1 Users!";
+   >    }
+   >    @PreAuthorize("hasRole('Group2')")
+   >    @RequestMapping("/Group2")
+   >    public String groupTwo() {
+   >       return "Hello Group 2 Users!";
+   >    }
+   > }
+   > ```
+   >    
 
 11. Create a folder named *security* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/security*.
 
@@ -260,6 +290,11 @@ The following prerequisites are required in order to complete the steps in this 
 1. After you have logged in successfully, you should see the sample "Hello World" text from the controller.
 
    ![Successful login][hello-world]
+
+   > [!NOTE]
+   > 
+   > User accounts which are not authorized will receive an **HTTP 403 Unauthorized** message.
+   >
 
 ## Next steps
 
