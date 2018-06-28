@@ -113,18 +113,18 @@ There are several ways by which you can deploy a Java web application to Azure. 
       
       You can select an existing Resource Group (if you have any) and skip to step g below, or use the following these steps to create a new Resource Group:
       
-      * Click **New...**
-      * The **New Resource Group** dialog box will be displayed:
+   * Click **New...**
+   * The **New Resource Group** dialog box will be displayed:
         
-          ![New Resource Group dialog box][08]
-      * In the the **Name** textbox, specify a name for your new Resource Group.
-      * In the the **Region** drop-down menu, select the appropriate Azure data center location for your Resource Group.
-      * OPTIONAL: By default, a recent distribution of Java 8 will be deployed by Azure automatically to your web app container as your JVM. However, you can specify a different version and distribution of the JVM if your Web App requires it. To specify the JDK for your Web App, click the **JDK** tab, and select one of the following options:
-         * **Deploy the default JDK offered by Azure Web Apps service**: This option will deploy a recent distribution of Java 8.
-         * **Deploy a 3rd party JDK available on Azure**: This option allows you to choose from the list of JDKs which are provided by Microsoft Azure.
-         * **Deploy my own JDK from this download location**: This option allows you to specify your own JDK distribution, which must be packaged as a ZIP file and uploaded to either a publicly available download location or an Azure storage account for which you have access.
+       ![New Resource Group dialog box][08]
+   * In the the **Name** textbox, specify a name for your new Resource Group.
+   * In the the **Region** drop-down menu, select the appropriate Azure data center location for your Resource Group.
+   * OPTIONAL: By default, a recent distribution of Java 8 will be deployed by Azure automatically to your web app container as your JVM. However, you can specify a different version and distribution of the JVM if your Web App requires it. To specify the JDK for your Web App, click the **JDK** tab, and select one of the following options:
+     * **Deploy the default JDK offered by Azure Web Apps service**: This option will deploy a recent distribution of Java 8.
+     * **Deploy a 3rd party JDK available on Azure**: This option allows you to choose from the list of JDKs which are provided by Microsoft Azure.
+     * **Deploy my own JDK from this download location**: This option allows you to specify your own JDK distribution, which must be packaged as a ZIP file and uploaded to either a publicly available download location or an Azure storage account for which you have access.
           
-         ![New Web App Container dialog box][07b]
+       ![New Web App Container dialog box][07b]
 
    g. Click **OK**.
 

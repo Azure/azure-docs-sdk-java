@@ -157,14 +157,14 @@ When you have configured your module settings, you can publish your application 
 
    h. (Optional) By default, a recent distribution of Java 8 will be automatically deployed as your JVM by Azure to your web app container. However, you can select a different version and distribution of the JVM. To do so, use the following steps:
       
-      * Click the **JDK** tab in the **New Web App Container** dialog box.
-      * You can choose from one of the following options:
+   * Click the **JDK** tab in the **New Web App Container** dialog box.
+   * You can choose from one of the following options:
         
-         * Deploy the default JDK which is offered by Azure
-         * Deploy a 3rd party JDK from a drop-down list of additional JDKs which are available on Azure
-         * Deploy a custom JDK, which must be packaged as a ZIP file and either publicly available or in your Azure storage account
+      * Deploy the default JDK which is offered by Azure
+      * Deploy a 3rd party JDK from a drop-down list of additional JDKs which are available on Azure
+      * Deploy a custom JDK, which must be packaged as a ZIP file and either publicly available or in your Azure storage account
         
-      ![New App Container JDK Tab][11b]
+     ![New App Container JDK Tab][11b]
 
    i. Once you have completed all of the above steps, the New Web App Container dialog box should resemble the following illustration:
       
