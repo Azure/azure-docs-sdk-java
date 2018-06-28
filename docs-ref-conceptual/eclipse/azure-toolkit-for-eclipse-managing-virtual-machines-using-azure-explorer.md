@@ -31,17 +31,17 @@ To create a virtual machine by using the Azure Explorer, do the following:
 
 1. Sign in to your Azure account by using the [Sign-in instructions for the Azure Toolkit for Eclipse](https://docs.microsoft.com/java/azure/eclipse/azure-toolkit-for-eclipse-sign-in-instructions).
 
-1. In the **Azure Explorer** view, expand the **Azure** node, right-click **Virtual Machines**, and then click **Create VM**.
+2. In the **Azure Explorer** view, expand the **Azure** node, right-click **Virtual Machines**, and then click **Create VM**.
 
    ![The Create VM command][CR01]  
 
    The **Create new Virtual Machine** wizard opens.
 
-1. In the **Choose a Subscription** window, select your subscription, and then click **Next**.
+3. In the **Choose a Subscription** window, select your subscription, and then click **Next**.
 
    ![The Choose a Subscription window][CR02]
 
-1. In the **Select a Virtual Machine Image** window, enter the following information:
+4. In the **Select a Virtual Machine Image** window, enter the following information:
 
    * **Location**: Specifies where your virtual machine will be created (for example, *West US*).
 
@@ -55,9 +55,9 @@ To create a virtual machine by using the Azure Explorer, do the following:
 
    ![The Select a Virtual Machine Image window][CR03]
 
-1. Click **Next**.
+5. Click **Next**.
 
-1. In the **Virtual Machine Basic Settings** window, enter the following information:
+6. In the **Virtual Machine Basic Settings** window, enter the following information:
 
    * **Virtual Machine Name**: Specifies the name for your new virtual machine, which must start with a letter and contain only letters, numbers, and hyphens.
 
@@ -69,15 +69,15 @@ To create a virtual machine by using the Azure Explorer, do the following:
 
    ![The Virtual Machine Basic Settings window][CR04]
 
-1. Click **Next**.
+7. Click **Next**.
 
-1. In the **Create New Storage Account** window, enter the following information:
+8. In the **Create New Storage Account** window, enter the following information:
 
    * **Resource Group**: Specifies the resource group for your virtual machine. Select one of the following options:
-      * **Create new**: Specifies that you want to create a new resource group.
-      * **Use existing**: Specifies that you want to select a resource group that is already associated with your Azure account.
+     * **Create new**: Specifies that you want to create a new resource group.
+     * **Use existing**: Specifies that you want to select a resource group that is already associated with your Azure account.
 
-      ![The Create New Storage Account dialog box][CR05]
+       ![The Create New Storage Account dialog box][CR05]
 
    * **Storage account**: Specifies the storage account to use for storing your virtual machine. You can use an existing storage account or create a new account.
 
@@ -85,7 +85,7 @@ To create a virtual machine by using the Azure Explorer, do the following:
 
       ![The Create New Virtual Network dialog box][CR06]
 
-1. In the **Associated Resources** window, enter the following information:
+9. In the **Associated Resources** window, enter the following information:
 
    * **Public IP address**: Specifies an external-facing IP address for your virtual machine. You can choose to create a new IP address or, if your virtual machine will not have a public IP address, you can select **(None)**.
 
@@ -95,11 +95,11 @@ To create a virtual machine by using the Azure Explorer, do the following:
 
    ![The Associated Resources window][CR07]
 
-1. Click **Finish**.  
+10. Click **Finish**.  
 
-   Your new virtual machine is displayed in the Azure Explorer tool window.
+    Your new virtual machine is displayed in the Azure Explorer tool window.
 
-   ![New Virtual Machine][CR08]
+    ![New Virtual Machine][CR08]
 
 ## Restart a virtual machine in Eclipse
 

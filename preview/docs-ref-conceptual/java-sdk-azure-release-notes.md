@@ -30,7 +30,7 @@ Some of the APIs that were still in Beta in previous releases are now GA, in par
 - all methods in CDN that were previously in Beta
 - all methods and interfaces in Application Gateways that were previously in Beta
 
- Some parts of the library are still in Preview. Refer to the table below for the current state of the libraries:
+  Some parts of the library are still in Preview. Refer to the table below for the current state of the libraries:
 
 Service or feature | Available as GA | Available as Preview 
 ---------|---------|---------|-

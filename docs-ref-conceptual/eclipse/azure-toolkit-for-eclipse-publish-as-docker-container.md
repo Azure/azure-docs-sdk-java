@@ -31,7 +31,7 @@ Docker containers are a widely used method for deploying web applications. By us
 
 1. Open your web app project in Eclipse.
 
-1. To start the **Publish as Docker Container** wizard, do either of the following:
+2. To start the **Publish as Docker Container** wizard, do either of the following:
 
    * In the **Navigator** view, right-click your project, click **Azure**, and then click **Publish as Docker Container**.
 
@@ -45,7 +45,7 @@ Docker containers are a widely used method for deploying web applications. By us
 
    ![The Deploy Docker Container on Azure wizard][PUB03]
 
-1. In the **Type an image name, select the artifact's path and check a Docker host to be used** window, do the following:
+3. In the **Type an image name, select the artifact's path and check a Docker host to be used** window, do the following:
 
    a. In the **Docker image name** box, enter a unique name for your Docker host. (The wizard automatically creates a name, but you can modify it.)
 
@@ -58,7 +58,7 @@ Docker containers are a widely used method for deploying web applications. By us
 
    ![Deploy Docker Container on Azure Wizard][PUB04a]
 
-1. In the **Configure the new virtual machine** window, specify the following options for your Docker host. (The wizard automatically generates most of the options for you, but you can modify any of them.)
+4. In the **Configure the new virtual machine** window, specify the following options for your Docker host. (The wizard automatically generates most of the options for you, but you can modify any of them.)
 
    a. **Name**: Enter a unique name for the Docker host. (It is not the same as the Docker image name that you specified earlier.)
 
@@ -82,9 +82,9 @@ Docker containers are a widely used method for deploying web applications. By us
    * **New storage account**: Create a new storage account for your host.
    * **Existing storage account**: Enter an existing storage account from your Azure account.
 
-1. Click **Next**.
+5. Click **Next**.
 
-1. In the **Configure log in credentials and port settings** window, select one of the following options:
+6. In the **Configure log in credentials and port settings** window, select one of the following options:
 
    * **Import credentials from Azure Key Vault**: Specifies a previously saved set of credentials that are stored in your Azure subscription. 
 
@@ -94,61 +94,61 @@ Docker containers are a widely used method for deploying web applications. By us
 
    * **New log in credentials**: Creates a new set of login credentials. If you select this option, do the following: 
     
-      * On the **VM Credentials** tab, choose one of the following options for the virtual-machine login credentials of your Docker host: 
+     * On the **VM Credentials** tab, choose one of the following options for the virtual-machine login credentials of your Docker host: 
 
-         * **Username**: Enter the username for your virtual machine login credentials. 
-         * **Password** and **Confirm**: Enter the password for your virtual machine login credentials. 
-         * **SSH**: Enter the Secure Shell (SSH) settings for your Docker host. You can choose from the following options: 
-            * **None**: Specifies that your virtual machine will not allow SSH connections. 
-            * **Auto-generate**: Automatically creates the requisite settings for connecting via SSH. 
-            * **Import from directory**: Specifies a directory that contains a set of previously saved SSH settings. The directory must contain the following two files: 
-               * *id_rsa*: Contains the RSA identification for a user. 
-               * *id_rsa.pub*: Contains the RSA public key that is used for authentication. 
+       * **Username**: Enter the username for your virtual machine login credentials. 
+       * **Password** and **Confirm**: Enter the password for your virtual machine login credentials. 
+       * **SSH**: Enter the Secure Shell (SSH) settings for your Docker host. You can choose from the following options: 
+          * **None**: Specifies that your virtual machine will not allow SSH connections. 
+          * **Auto-generate**: Automatically creates the requisite settings for connecting via SSH. 
+          * **Import from directory**: Specifies a directory that contains a set of previously saved SSH settings. The directory must contain the following two files: 
+             * *id_rsa*: Contains the RSA identification for a user. 
+             * *id_rsa.pub*: Contains the RSA public key that is used for authentication. 
         
          ![Create Docker Host][PUB05]
 
-      * On the **Docker Daemon Credentials** tab, specify the following options: 
+     * On the **Docker Daemon Credentials** tab, specify the following options: 
 
-         * **Docker Daemon port**: Enter the unique TCP port for your Docker host. 
-         * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options: 
-            * **None**: Specifies that your virtual machine will not allow TLS connections. 
-            * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS. 
-            * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. More specifically, the directory must contain the following six files: 
-               * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority. 
-               * *cert.pem* and *key.pem*: Contain the client certificate and public key that is used for TLS authentication. 
-               * *server.pem* and *server-key.pem*: Contain the server certificate and public key for the host. 
+       * **Docker Daemon port**: Enter the unique TCP port for your Docker host. 
+       * **TLS Security**: Enter the Transport Layer Security settings for your Docker host. You can choose from the following options: 
+          * **None**: Specifies that your virtual machine will not allow TLS connections. 
+          * **Auto-generate**: Automatically creates the requisite settings for connecting via TLS. 
+          * **Import from directory**: Specifies a directory that contains a set of previously saved TLS settings. More specifically, the directory must contain the following six files: 
+             * *ca.pem* and *ca-key.pem*: Contain the certificate and public key for the TLS Certificate Authority. 
+             * *cert.pem* and *key.pem*: Contain the client certificate and public key that is used for TLS authentication. 
+             * *server.pem* and *server-key.pem*: Contain the server certificate and public key for the host. 
 
          ![Create Docker Host][PUB06]
 
-1. After you have entered all of the preceding information, click **Finish**.
+7. After you have entered all of the preceding information, click **Finish**.
 
-1. In the **Deploy Docker Container on Azure** wizard, click **Next**.
+8. In the **Deploy Docker Container on Azure** wizard, click **Next**.
 
    ![The Deploy Docker Container on Azure wizard][PUB07]
 
-1. In the **Configure the Docker container to be created** window, do the following:
+9. In the **Configure the Docker container to be created** window, do the following:
 
    a. In the **Docker container name** box, enter a unique name for your Docker container.
 
    b. Choose one of the following Docker images: 
 
-      * **Predefined Docker image**: Specifies a pre-existing Docker image from Azure. 
+   * **Predefined Docker image**: Specifies a pre-existing Docker image from Azure. 
 
-      >[!NOTE]
-      >The list of Docker images in this box consists of several images that the Azure Toolkit has been configured to patch so that your artifact is deployed automatically.
-      >
+     >[!NOTE]
+     >The list of Docker images in this box consists of several images that the Azure Toolkit has been configured to patch so that your artifact is deployed automatically.
+     >
 
-      * **Custom Dockerfile**: Specifies a previously saved Dockerfile from your local computer.
+   * **Custom Dockerfile**: Specifies a previously saved Dockerfile from your local computer.
 
-      >[!NOTE]
-      >This is a more advanced feature for developers who want to deploy their own Dockerfile. However, it is up to developers who use this option to ensure that their Dockerfile is built correctly. The Azure Toolkit does not validate the content in a custom Dockerfile, so the deployment might fail if the Dockerfile has issues. In addition, the Azure Toolkit expects the custom Dockerfile to contain a web app artifact, and it will attempt to open an HTTP connection. If developers publish a different type of artifact, they may receive innocuous errors after deployment.
-      >
+     >[!NOTE]
+     >This is a more advanced feature for developers who want to deploy their own Dockerfile. However, it is up to developers who use this option to ensure that their Dockerfile is built correctly. The Azure Toolkit does not validate the content in a custom Dockerfile, so the deployment might fail if the Dockerfile has issues. In addition, the Azure Toolkit expects the custom Dockerfile to contain a web app artifact, and it will attempt to open an HTTP connection. If developers publish a different type of artifact, they may receive innocuous errors after deployment.
+     >
 
    c. **Port settings**: Enter the unique TCP port binding for your Docker container.
 
       ![The Configure the Docker container to be created window][PUB08]
 
-1. After you have completed all of the preceding steps, click **Finish**.
+10. After you have completed all of the preceding steps, click **Finish**.
 
 The Azure Toolkit begins deploying your web app to Azure in a Docker container. 
 

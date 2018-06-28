@@ -22,9 +22,8 @@ ms.workload: na
 This article walks you through creating a Spring Boot application using **[Spring Initializr]**, that uses Azure Application Insights Spring Boot Starter for end-to-end monitoring of Java applications on cloud.
 
 > [!NOTE]
->
-> *This starter is currently in **BETA (public preview)**.*
->
+> 
+> *This starter is currently in **BETA (public preview)*<em>.</em>
 
 ## Prerequisites
 
@@ -156,12 +155,12 @@ The following prerequisites are required in order to complete the steps in this 
 
             //track a custom dependency
             telemetryClient.trackDependency("SQL", "Insert", new Duration(0, 0, 1, 1, 1), true);
-            
+
             return "hello";
         }
     }
    ```
-   
+
    Where you will need to replace `com.example.demo` with the package name for your project.
 
 1. Save and close the *TestController.java* file.
@@ -184,7 +183,7 @@ The following prerequisites are required in order to complete the steps in this 
    After a few seconds you should see the data on Azure portal. 
 
    ![Azure Portal][AZ05]
-   
+
    You can click on Application Map tile to view high level components and their interaction with each other. This is a recommended place to get a high level overview of entire application. Each Spring Boot Microservice is recognized by the spring application name. Please remember to set it.
 
    ![Azure Portal][AZ08] 
@@ -229,7 +228,6 @@ The following prerequisites are required in order to complete the steps in this 
         <version>2.1.1</version>
     </dependency>
 </dependencies>
-
 ```
 
 2. Save and close the *POM.xml* file.

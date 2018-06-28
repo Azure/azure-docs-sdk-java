@@ -189,11 +189,11 @@ The following steps walk you through using the Azure portal to create an Azure C
 
 1. Browse to the [Azure portal] and sign in.
 
-1. Click the menu icon for **+ New**, then click **Web + Mobile**, and then click **Web App on Linux**.
+2. Click the menu icon for **+ New**, then click **Web + Mobile**, and then click **Web App on Linux**.
    
    ![Create a new web app in the Azure portal][LX01]
 
-1. When the **Web App on Linux** page is displayed, enter the following information:
+3. When the **Web App on Linux** page is displayed, enter the following information:
 
    a. Enter a unique name for the **App name**; for example: "*wingtiptoyslinux*."
 
@@ -203,19 +203,19 @@ The following steps walk you through using the Azure portal to create an Azure C
 
    d. Click **Configure container** and enter the following information:
 
-      * Choose **Private registry**.
+   * Choose **Private registry**.
 
-      * **Image and optional tag**: Specify your container name from earlier; for example: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"
+   * **Image and optional tag**: Specify your container name from earlier; for example: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"
 
-      * **Server URL**: Specify your registry URL from earlier; for example: "*https://wingtiptoysregistry.azurecr.io*"
+   * **Server URL**: Specify your registry URL from earlier; for example: "*<https://wingtiptoysregistry.azurecr.io>*"
 
-      * **Login username** and **Password**: Specify your login credentials from your **Access Keys** that you used in previous steps.
+   * **Login username** and **Password**: Specify your login credentials from your **Access Keys** that you used in previous steps.
    
    e. Once you have entered all of the above information, click **OK**.
 
    ![Configure web app settings][LX02]
 
-1. Click **Create**.
+4. Click **Create**.
 
 > [!NOTE]
 >

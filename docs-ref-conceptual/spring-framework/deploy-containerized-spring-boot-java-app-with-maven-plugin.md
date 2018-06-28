@@ -92,23 +92,25 @@ In this section, you create an Azure service principal that the Maven plugin use
 
 1. Open a command prompt.
 
-1. Sign into your Azure account by using the Azure CLI:
+2. Sign into your Azure account by using the Azure CLI:
    ```shell
    az login
    ```
    Follow the instructions to complete the sign-in process.
 
-1. Create an Azure service principal:
+3. Create an Azure service principal:
    ```shell
    az ad sp create-for-rbac --name "uuuuuuuu" --password "pppppppp"
    ```
    Where:
-   | Parameter | Description |
-   |---|---|
-   | `uuuuuuuu` | Specifies the user name for the service principal. |
-   | `pppppppp` | Specifies the password for the service principal. |
 
-1. Azure responds with JSON that resembles the following example:
+   | Parameter  |                    Description                     |
+   |------------|----------------------------------------------------|
+   | `uuuuuuuu` | Specifies the user name for the service principal. |
+   | `pppppppp` | Specifies the password for the service principal.  |
+
+
+4. Azure responds with JSON that resembles the following example:
    ```json
    {
       "appId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
@@ -134,7 +136,7 @@ In this section, you use the values from your Azure service principal to configu
    * `%ProgramFiles%\apache-maven\3.5.0\conf\settings.xml`
    * `$HOME/.m2/settings.xml`
 
-1. Add your Azure service principal settings from the previous section of this tutorial to the `<servers>` collection in the *settings.xml* file; for example:
+2. Add your Azure service principal settings from the previous section of this tutorial to the `<servers>` collection in the *settings.xml* file; for example:
 
    ```xml
    <servers>
@@ -150,15 +152,17 @@ In this section, you use the values from your Azure service principal to configu
    </servers>
    ```
    Where:
-   | Element | Description |
-   |---|---|
-   | `<id>` | Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure. |
-   | `<client>` | Contains the `appId` value from your service principal. |
-   | `<tenant>` | Contains the `tenant` value from your service principal. |
-   | `<key>` | Contains the `password` value from your service principal. |
+
+   |     Element     |                                                                                   Description                                                                                   |
+   |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+   |     `<id>`      |                                Specifies a unique name which Maven uses to look up your security settings when you deploy your web app to Azure.                                |
+   |   `<client>`    |                                                             Contains the `appId` value from your service principal.                                                             |
+   |   `<tenant>`    |                                                            Contains the `tenant` value from your service principal.                                                             |
+   |     `<key>`     |                                                           Contains the `password` value from your service principal.                                                            |
    | `<environment>` | Defines the target Azure cloud environment, which is `AZURE` in this example. (A full list of environments is available in the [Maven Plugin for Azure Web Apps] documentation) |
 
-1. Save and close the *settings.xml* file.
+
+3. Save and close the *settings.xml* file.
 
 ## OPTIONAL: Deploy your local Docker file to Docker Hub
 
@@ -182,7 +186,7 @@ If you have a Docker account, you can build your Docker container image locally 
       mvn clean package docker:build
       docker push
       ```
-   
+
    * If you have the [Docker plugin for Maven] installed, you can automatically build and your container image to Docker Hub by using the `-DpushImage` parameter:
       ```shell
       mvn clean package docker:build -DpushImage
