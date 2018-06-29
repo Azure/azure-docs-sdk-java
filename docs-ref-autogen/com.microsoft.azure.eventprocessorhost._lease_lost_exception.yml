@@ -55,20 +55,20 @@ references:
   nameWithType: LeaseLostException.getPartitionId
   fullName: String com.microsoft.azure.eventprocessorhost.LeaseLostException.getPartitionId
   package: com.microsoft.azure.eventprocessorhost
-- uid: com.microsoft.azure.eventprocessorhost._lease
+- uid: com.microsoft.azure.eventprocessorhost._base_lease
   parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._lease.yml
-  name: Lease
-  nameWithType: Lease
-  fullName: com.microsoft.azure.eventprocessorhost.Lease
+  href: com.microsoft.azure.eventprocessorhost._base_lease.yml
+  name: BaseLease
+  nameWithType: BaseLease
+  fullName: com.microsoft.azure.eventprocessorhost.BaseLease
   type: Class
   summary: >-
     <p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+      <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
 
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
+    <p>This lightweight base exists to allow <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases()" data-throw-if-not-resolved="false">ILeaseManager.getAllLeases</xref> to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
 
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
   syntax:
-    content: public class Lease
+    content: public class BaseLease
