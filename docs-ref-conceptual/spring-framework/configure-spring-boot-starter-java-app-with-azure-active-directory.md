@@ -89,7 +89,7 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Select your app registration][directory-06]
 
-1. When the page for your app registration, copy your **Application ID** for later use, then click **Settings**, and then click **Keys**.
+1. When the page for your app registration appears, copy your **Application ID** for later use, then click **Settings**, and then click **Keys**.
 
    ![Create app registration keys][directory-07]
 
@@ -121,11 +121,48 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Add new Reply URL][directory-15]
 
+1. From the main page for your app registration, click **Manifest**, then set the value of the `oauth2AllowImplicitFlow` parameter to `true`, and then click **Save**.
+
+   ![Configure app manifest][directory-16]
+
+### Add a user to your directory, and add that user to a group
+
+1. From the **Overview** page of your Active Directory, click **Users**.
+
+   ![Open the Users panel][directory-17]
+
+1. When the **Users** panel is displayed, click **New user**.
+
+   ![Add a new user account][directory-18]
+
+1. When the **User** panel is displayed, enter the **Name** and **User name**.
+
+   ![Enter user account information][directory-19]
+
+   > [!NOTE]
+   > 
+   > You need to specify your directory URL when you enter the user name; for example:
+   >
+   > `wingtipuser@wingtiptoysdirectory.onmicrosoft.com`
+   > 
+
+1. Click **Groups**, then select the groups that you will use for your application, and then click **Select**. (For the purposes of this tutorial, add the user to the _Users_ group.)
+
+   ![Select the user's groups][directory-20]
+
+1. Click **Show password**, and copy the password; you will use this when you log into your application later in this tutorial.
+
+   ![Show the password][directory-21]
+
+1. Click **Create** to add the new user account to your directory.
+
+   ![Create the new user account][directory-22]
+
 ## Configure and compile your Spring Boot application
 
-1. Extract the files from the downloaded project archive into a directory.
+1. Extract the files from the project archive you created and downloaded earlier in this tutorial into a directory.
 
-2. Navigate to the parent folder in your project and open the *pom.xml* file in a text editor.
+2. Navigate to the parent folder for your project, and open the *pom.xml* file in a text editor.
 
 3. Add the dependencies for Spring OAuth2 security; for example:
 
@@ -287,6 +324,13 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Logging into your application][application-login]
 
+   > [!NOTE]
+   > 
+   > You may be prompted to change your password if this is the first login for a new user account.
+   > 
+   > ![Changing your password][update-password]
+   > 
+
 1. After you have logged in successfully, you should see the sample "Hello World" text from the controller.
 
    ![Successful login][hello-world]
@@ -318,7 +362,7 @@ For a more-detailed sample, see the [Azure Active Directory Spring Boot Sample][
 
 [Azure Active Directory Documentation]: /azure/active-directory/
 [Get started with Azure AD]: /azure/active-directory/get-started-azure-ad
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
+[Azure for Java Developers]: /java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
@@ -349,7 +393,15 @@ For a more-detailed sample, see the [Azure Active Directory Spring Boot Sample][
 [directory-13]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-13.png
 [directory-14]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-14.png
 [directory-15]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-15.png
+[directory-16]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-16.png
+[directory-17]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-17.png
+[directory-18]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-18.png
+[directory-19]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-19.png
+[directory-20]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-20.png
+[directory-21]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-21.png
+[directory-22]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-22.png
 
-[build-application]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/build-application.png
 [application-login]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/application-login.png
+[build-application]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/build-application.png
 [hello-world]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/hello-world.png
+[update-password]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/update-password.png
