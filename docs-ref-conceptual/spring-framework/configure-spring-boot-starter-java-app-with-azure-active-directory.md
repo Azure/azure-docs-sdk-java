@@ -125,6 +125,11 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Configure app manifest][directory-16]
 
+   > [!NOTE]
+   > 
+   > For more information about the `oauth2AllowImplicitFlow` parameter and other application settings, see [Azure Active Directory application manifest][AAD app manifest]. 
+   >
+
 ### Add a user to your directory, and add that user to a group
 
 1. From the **Overview** page of your Active Directory, click **Users**.
@@ -361,6 +366,7 @@ For a more-detailed sample, see the [Azure Active Directory Spring Boot Sample][
 <!-- URL List -->
 
 [Azure Active Directory Documentation]: /azure/active-directory/
+[AAD app manifest]: /azure/active-directory/develop/active-directory-application-manifest
 [Get started with Azure AD]: /azure/active-directory/get-started-azure-ad
 [Azure for Java Developers]: /java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
