@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid:
 ms.author: robmcm
-ms.date: 06/20/2018
+ms.date: 07/02/2018
 ms.devlang: java
 ms.service: active-directory
 ms.tgt_pltfrm: multiple
@@ -63,7 +63,7 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Create new Azure Active Directory instance][directory-01]
 
-1. Enter your **Organization name** and your **Initial domain name**, and then click **Create**.
+1. Enter your **Organization name** and your **Initial domain name**. Copy the full URL of your directory; you will use that to add user accounts later in this tutorial. (For example: `wingtiptoysdirectory.onmicrosoft.com`.) When you have finished, click **Create**.
 
    ![Specify Azure Active Directory names][directory-02]
 
@@ -71,7 +71,7 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Choose your Azure Active Directory][directory-03]
 
-1. Select **Azure Active Directory** from the portal menu, click **Properties**, and copy the **Directory ID** - you will use that later in this article.
+1. Select **Azure Active Directory** from the portal menu, click **Properties**, and copy the **Directory ID**; you will use that value to configure your *application.properties* file later in this tutorial.
 
    ![Copy your Azure Active Directory ID][directory-13]
 
@@ -89,11 +89,11 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Select your app registration][directory-06]
 
-1. When the page for your app registration appears, copy your **Application ID** for later use, then click **Settings**, and then click **Keys**.
+1. When the page for your app registration appears, copy your **Application ID**; you will use this value to configure your *application.properties* file later in this tutorial. Click **Settings**, and then click **Keys**.
 
    ![Create app registration keys][directory-07]
 
-1. Add a **Description** and specify the **Duration** for a new key and click **Save**; the value for the key will be automatically filled in when you click the **Save** icon, and you need to copy down the value of the key for later. (You will not be able to retrieve this value later.)
+1. Add a **Description** and specify the **Duration** for a new key and click **Save**; the value for the key will be automatically filled in when you click the **Save** icon, and you need to copy down the value of the key to configure your *application.properties* file later in this tutorial. (You will not be able to retrieve this value later.)
 
    ![Specify app registration key parameters][directory-08]
 
@@ -130,7 +130,7 @@ The following prerequisites are required in order to complete the steps in this 
    > For more information about the `oauth2AllowImplicitFlow` parameter and other application settings, see [Azure Active Directory application manifest][AAD app manifest]. 
    >
 
-### Add a user to your directory, and add that user to a group
+### Add a user account to your directory, and add that account to a group
 
 1. From the **Overview** page of your Active Directory, click **Users**.
 
@@ -146,12 +146,12 @@ The following prerequisites are required in order to complete the steps in this 
 
    > [!NOTE]
    > 
-   > You need to specify your directory URL when you enter the user name; for example:
+   > You need to specify your directory URL from earlier in this tutorial when you enter the user name; for example:
    >
    > `wingtipuser@wingtiptoysdirectory.onmicrosoft.com`
    > 
 
-1. Click **Groups**, then select the groups that you will use for your application, and then click **Select**. (For the purposes of this tutorial, add the user to the _Users_ group.)
+1. Click **Groups**, then select the groups that you will use for authorization in your application, and then click **Select**. (For the purposes of this tutorial, add the account to the _Users_ group.)
 
    ![Select the user's groups][directory-20]
 
@@ -167,9 +167,9 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. Extract the files from the project archive you created and downloaded earlier in this tutorial into a directory.
 
-2. Navigate to the parent folder for your project, and open the *pom.xml* file in a text editor.
+1. Navigate to the parent folder for your project, and open the *pom.xml* file in a text editor.
 
-3. Add the dependencies for Spring OAuth2 security; for example:
+1. Add the dependencies for Spring OAuth2 security; for example:
 
    ```xml
    <dependency>
@@ -182,11 +182,11 @@ The following prerequisites are required in order to complete the steps in this 
    </dependency>
    ```
 
-4. Save and close the *pom.xml* file.
+1. Save and close the *pom.xml* file.
 
-5. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
+1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
 
-6. Add the key for your storage account using the values from earlier; for example:
+1. Specify the settings for your app registration using the values you created earlier; for example:
 
    ```yaml
    # Specifies your Active Directory ID:
@@ -198,7 +198,7 @@ The following prerequisites are required in order to complete the steps in this 
    # Specifies your App Registration's secret key:
    spring.security.oauth2.client.registration.azure.client-secret=AbCdEfGhIjKlMnOpQrStUvWxYz==
 
-   # Specifies the list of Active Directory groups to use for authentication:
+   # Specifies the list of Active Directory groups to use for authorization:
    azure.activedirectory.active-directory-groups=Users
    ```
    Where:
@@ -208,20 +208,20 @@ The following prerequisites are required in order to complete the steps in this 
    | `azure.activedirectory.tenant-id` | Contains your Active Directory's **Directory ID** from earlier. |
    | `spring.security.oauth2.client.registration.azure.client-id` | Contains the **Application ID** from your app registration that you completed earlier. |
    | `spring.security.oauth2.client.registration.azure.client-secret` | Contains the **Value** from your app registration key that you completed earlier. |
-   | `azure.activedirectory.active-directory-groups` | Contains a list of Active Directory groups to use for authentication. |
+   | `azure.activedirectory.active-directory-groups` | Contains a list of Active Directory groups to use for authorization. |
 
    > [!NOTE]
    > 
    > For a full list of values that are available in your *application.properties* file, see  the [Azure Active Directory Spring Boot Sample][AAD Spring Boot Sample] on GitHub.
    >
 
-7. Save and close the *application.properties* file.
+1. Save and close the *application.properties* file.
 
-8. Create a folder named *controller* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/controller*.
+1. Create a folder named *controller* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/controller*.
 
-9. Create a new Java file named *HelloController.java* in the *controller* folder and open it in a text editor.
+1. Create a new Java file named *HelloController.java* in the *controller* folder and open it in a text editor.
 
-10. Enter the following code, then save and close the file:
+1. Enter the following code, then save and close the file:
 
    ```java
    package com.wingtiptoys.security;
@@ -275,11 +275,11 @@ The following prerequisites are required in order to complete the steps in this 
    > ```
    >    
 
-11. Create a folder named *security* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/security*.
+1. Create a folder named *security* in the Java source folder for your application; for example: *src/main/java/com/wingtiptoys/security/security*.
 
-12. Create a new Java file named *WebSecurityConfig.java* in the *security* folder and open it in a text editor.
+1. Create a new Java file named *WebSecurityConfig.java* in the *security* folder and open it in a text editor.
 
-13. Enter the following code, then save and close the file:
+1. Enter the following code, then save and close the file:
 
     ```java
     package com.wingtiptoys.security;
