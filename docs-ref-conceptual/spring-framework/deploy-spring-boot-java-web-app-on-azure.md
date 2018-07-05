@@ -355,7 +355,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Pulling an Image from a Private Registry]: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
 <!-- Newly added -->
-[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks)
+[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks
 [Visual Studio Code Java Tutorials]: https://code.visualstudio.com/docs/java/java-kubernetes
 
 <!-- IMG List -->
