@@ -1,5 +1,5 @@
 ---
-title: Deploy a Spring Boot App on Kubernetes in Azure Container Service
+title: Deploy a Spring Boot App on Kubernetes in Azure Kubernetes Service
 description: This tutorial will walk you though the steps to deploy a Spring Boot application in a Kubernetes cluster on Microsoft Azure.
 services: container-service
 documentationcenter: java
@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid: 
 ms.author: asirveda;robmcm
-ms.date: 02/01/2018
+ms.date: 07/05/2018
 ms.devlang: java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -18,11 +18,11 @@ ms.workload: na
 ms.custom: mvc
 ---
 
-# Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service
+# Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Kubernetes Service
 
-**[Kubernetes]** and **[Docker]** are open-source solutions that help developers automate the deployment, scaling, and management of their applications  running in containers.
+**[Kubernetes]** and **[Docker]** are open-source solutions that help developers automate the deployment, scaling, and management of their applications running in containers.
 
-This tutorial walks you though combining these two popular, open-source technologies to develop and deploy a Spring Boot application to Microsoft Azure. More specifically, you use *[Spring Boot]* for application development, *[Kubernetes]* for container deployment, and the [Azure Container Service (AKS)] to host your application.
+This tutorial walks you through combining these two popular, open-source technologies to develop and deploy a Spring Boot application to Microsoft Azure. More specifically, you use *[Spring Boot]* for application development, *[Kubernetes]* for container deployment, and the [Azure Kubernetes Service (AKS)] to host your application.
 
 ### Prerequisites
 
@@ -87,6 +87,11 @@ The following steps walk you through building a Spring Boot web application and 
    az login
    ```
 
+1. Choose your Azure Subscription:
+   ```azurecli
+   az account set -s <YourSubscriptionID>
+   ```
+
 1. Create a resource group for the Azure resources used in this tutorial.
    ```azurecli
    az group create --name=wingtiptoys-kubernetes --location=eastus
@@ -147,7 +152,11 @@ The `id` and `username` are the name of the registry. Use the `password` value f
       <version>0.4.11</version>
       <configuration>
          <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-         <dockerDirectory>src/main/docker</dockerDirectory>
+         <buildArgs>
+            <JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
+         </buildArgs>
+         <baseImage>java</baseImage>
+         <entryPoint>["java", "-jar", "/${project.build.finalName}.jar"]</entryPoint>
          <resources>
             <resource>
                <targetPath>/</targetPath>
@@ -185,22 +194,24 @@ The `id` and `username` are the name of the registry. Use the `password` value f
 
 ## Create a Kubernetes Cluster on AKS using the Azure CLI
 
-1. Create a Kubernetes cluster in Azure Container Service. The following command creates a *kubernetes* cluster in the *wingtiptoys-kubernetes* resource group, with *wingtiptoys-containerservice* as the cluster name, and *wingtiptoys-kubernetes* as the DNS prefix:
+1. Create a Kubernetes cluster in Azure Kubernetes Service. The following command creates a *kubernetes* cluster in the *wingtiptoys-kubernetes* resource group, with *wingtiptoys-akscluster* as the cluster name, and *wingtiptoys-kubernetes* as the DNS prefix:
    ```azurecli
-   az acs create --orchestrator-type=kubernetes --resource-group=wingtiptoys-kubernetes \ 
-    --name=wingtiptoys-containerservice --dns-prefix=wingtiptoys-kubernetes
+   az aks create --resource-group=wingtiptoys-kubernetes --name=wingtiptoys-akscluster \ 
+    --dns-name-prefix=wingtiptoys-kubernetes --generate-ssh-keys
    ```
    This command may take a while to complete.
 
+1. When you're using Azure Container Registry (ACR) with Azure Kubernetes Service (AKS), an authentication mechanism needs to be established. Follow the steps in [Authenticate with Azure Container Registry from Azure Kubernetes Service] to grant AKS access to ACR.
+
+
 1. Install `kubectl` using the Azure CLI. Linux users may have to prefix this command with `sudo` since it deploys the Kubernetes CLI to `/usr/local/bin`.
    ```azurecli
-   az acs kubernetes install-cli
+   az aks install-cli
    ```
 
 1. Download the cluster configuration information so you can manage your cluster from the Kubernetes web interface and `kubectl`. 
    ```azurecli
-   az acs kubernetes get-credentials --resource-group=wingtiptoys-kubernetes  \ 
-    --name=wingtiptoys-containerservice
+   az aks get-credentials --resource-group=wingtiptoys-kubernetes --name=wingtiptoys-akscluster
    ```
 
 ## Deploy the image to your Kubernetes cluster
@@ -213,16 +224,16 @@ This tutorial deploys the app using `kubectl`, then allow you to explore the dep
 
 1. Open the configuration website for your Kubernetes cluster in your default browser:
    ```
-   az acs kubernetes browse --resource-group=wingtiptoys-kubernetes --name=wingtiptoys-containerservice
+   az aks browse --resource-group=wingtiptoys-kubernetes --name=wingtiptoys-akscluster
    ```
 
 1. When the Kubernetes configuration website opens in your browser, click the link to **deploy a containerized app**:
 
    ![Kubernetes Configuration Website][KB01]
 
-1. When the **Deploy a containerized app** page is displayed, specify the following options:
+1. When the **Resource Creation** page is displayed, specify the following options:
 
-   a. Select **Specify app details below**.
+   a. Select **CREATE AN APP**.
 
    b. Enter your Spring Boot application name for the **App name**; for example: "*gs-spring-boot-docker*".
 
@@ -237,7 +248,7 @@ This tutorial deploys the app using `kubectl`, then allow you to explore the dep
 
 1. Click **Deploy** to deploy the container.
 
-   ![Deploy Container][KB05]
+   ![Kubernetes Deploy][KB05]
 
 1. Once your application has been deployed, you will see your Spring Boot application listed under **Services**.
 
@@ -296,6 +307,9 @@ For more information about using Spring Boot on Azure, see the following article
 
 For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
 
+<!-- Newly added -->
+For more information about deploying a Java application to Kubernetes with Visual Studio Code, see [Visual Studio Code Java Tutorials].
+
 For more information about the Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].
 
 The following links provide additional information about creating Spring Boot applications:
@@ -304,8 +318,7 @@ The following links provide additional information about creating Spring Boot ap
 
 The following links provide additional information about using Kubernetes with Azure:
 
-* [Get started with a Kubernetes cluster in Container Service](https://docs.microsoft.com/azure/container-service/container-service-kubernetes-walkthrough)
-* [Using the Kubernetes web UI with Azure Container Service](https://docs.microsoft.com/azure/container-service/container-service-kubernetes-ui)
+* [Get started with a Kubernetes cluster in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes)
 
 More information about using Kubernetes command-line interface is available in the **kubectl** user guide at <https://kubernetes.io/docs/user-guide/kubectl/>.
 
@@ -320,7 +333,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 <!-- URL List -->
 
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
-[Azure Container Service (AKS)]: https://azure.microsoft.com/services/container-service/
+[Azure Kubernetes Service (AKS)]: https://azure.microsoft.com/services/kubernetes-service/
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
@@ -340,6 +353,10 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Configuring Service Accounts for Pods]: https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/
 [Namespaces]: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
 [Pulling an Image from a Private Registry]: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+<!-- Newly added -->
+[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks/
+[Visual Studio Code Java Tutorials]: https://code.visualstudio.com/docs/java/java-kubernetes/
 
 <!-- IMG List -->
 
