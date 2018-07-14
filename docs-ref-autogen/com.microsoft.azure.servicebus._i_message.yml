@@ -20,6 +20,7 @@ items:
   - com.microsoft.azure.servicebus._i_message.getReplyTo()
   - com.microsoft.azure.servicebus._i_message.getReplyToSessionId()
   - com.microsoft.azure.servicebus._i_message.getScheduledEnqueuedTimeUtc()
+  - com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
   - com.microsoft.azure.servicebus._i_message.getSequenceNumber()
   - com.microsoft.azure.servicebus._i_message.getSessionId()
   - com.microsoft.azure.servicebus._i_message.getTimeToLive()
@@ -34,6 +35,7 @@ items:
   - com.microsoft.azure.servicebus._i_message.setReplyTo(String)
   - com.microsoft.azure.servicebus._i_message.setReplyToSessionId(String)
   - com.microsoft.azure.servicebus._i_message.setScheduledEnqueuedTimeUtc(Instant)
+  - com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
   - com.microsoft.azure.servicebus._i_message.setSessionId(String)
   - com.microsoft.azure.servicebus._i_message.setTimeToLive(Duration)
   - com.microsoft.azure.servicebus._i_message.setTo(String)
@@ -72,13 +74,13 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 191
+    startLine: 216
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>
 
     <p></p>
-  syntax: &o8
+  syntax: &o9
     content: public byte [] getBody()
     return:
       type: ccd9418d
@@ -124,7 +126,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 228
+    startLine: 253
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets a correlation identifier.</p>
@@ -132,7 +134,7 @@ items:
     <p>Allows an application to specify a context for the message for the purposes of correlation, for example reflecting the MessageId of a message that is being replied to.</p>
 
     <p></p>
-  syntax: &o10
+  syntax: &o11
     content: public String getCorrelationId()
     return:
       type: "26831127"
@@ -151,7 +153,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 343
+    startLine: 368
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the name of the queue or subscription that this message was enqueued on, before it was deadlettered.</p>
@@ -259,7 +261,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 285
+    startLine: 310
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the application specific message label.</p>
@@ -267,7 +269,7 @@ items:
     <p>This property enables the application to indicate the purpose of the message to the receiver in a standardized fashion, similar to an email subject line. The mapped AMQP property is "subject".</p>
 
     <p></p>
-  syntax: &o12
+  syntax: &o13
     content: public String getLabel()
     return:
       type: "26831127"
@@ -313,7 +315,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 356
+    startLine: 381
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the lock token for the current message.</p>
@@ -367,7 +369,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 324
+    startLine: 349
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the partition key for sending a message to a partitioned entity.</p>
@@ -375,7 +377,7 @@ items:
     <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._i_message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
 
     <p></p>
-  syntax: &o13
+  syntax: &o14
     content: public String getPartitionKey()
     return:
       type: "26831127"
@@ -394,13 +396,13 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 208
+    startLine: 233
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>
 
     <p></p>
-  syntax: &o9
+  syntax: &o10
     content: public Map<String, String> getProperties()
     return:
       type: 689c8cb5
@@ -419,7 +421,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 267
+    startLine: 292
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the address of an entity to send replies to.</p>
@@ -427,7 +429,7 @@ items:
     <p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>
 
     <p></p>
-  syntax: &o11
+  syntax: &o12
     content: public String getReplyTo()
     return:
       type: "26831127"
@@ -446,7 +448,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 304
+    startLine: 329
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets or sets a session identifier augmenting the <xref uid="com.microsoft.azure.servicebus._i_message.getReplyTo()" data-throw-if-not-resolved="false">ReplyTo</xref> address.</p>
@@ -473,7 +475,48 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 140
+    startLine: 142
+  package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Gets the scheduled enqueue time of this message.</p>
+
+    <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000066">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()" data-throw-if-not-resolved="false">getScheduledEnqueueTimeUtc()</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
+  syntax:
+    content: public Instant getScheduledEnqueuedTimeUtc()
+    return:
+      type: 328f8254
+      description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+- uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
+  id: getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._i_message
+  href: com.microsoft.azure.servicebus._i_message.yml
+  langs:
+  - java
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: IMessage.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.IMessage.getScheduledEnqueueTimeUtc()
+  overload: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 165
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the scheduled enqueue time of this message.</p>
@@ -482,7 +525,7 @@ items:
 
     <p></p>
   syntax: &o6
-    content: public Instant getScheduledEnqueuedTimeUtc()
+    content: public Instant getScheduledEnqueueTimeUtc()
     return:
       type: 328f8254
       description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
@@ -500,7 +543,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 161
+    startLine: 186
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the unique number assigned to a message by Service Bus.</p>
@@ -527,7 +570,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 174
+    startLine: 199
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the session identifier for a session-aware entity.</p>
@@ -535,7 +578,7 @@ items:
     <p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>
 
     <p></p>
-  syntax: &o7
+  syntax: &o8
     content: public String getSessionId()
     return:
       type: "26831127"
@@ -581,7 +624,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 243
+    startLine: 268
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the "to" address.</p>
@@ -606,7 +649,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 199
+    startLine: 224
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the body of this message as a byte array.</p>
@@ -664,7 +707,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 236
+    startLine: 261
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets a correlation identifier.</p>
@@ -693,7 +736,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 293
+    startLine: 318
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets an application specific message label.</p>
@@ -748,7 +791,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 332
+    startLine: 357
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets a partition key for sending a message to a partitioned entity</p>
@@ -777,7 +820,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 217
+    startLine: 242
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the map of user application properties of this message. Client applications can set user properties on the message using this map.</p>
@@ -806,7 +849,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 275
+    startLine: 300
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the address of an entity to send replies to.</p>
@@ -835,7 +878,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 311
+    startLine: 336
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets or sets a session identifier augmenting the <xref uid="com.microsoft.azure.servicebus._i_message.getReplyTo()" data-throw-if-not-resolved="false">ReplyTo</xref> address.</p>
@@ -861,12 +904,26 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 148
+    startLine: 152
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the scheduled enqueue time of this message.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000067">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)" data-throw-if-not-resolved="false">setScheduledEnqueueTimeUtc(Instant)</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public void setScheduledEnqueuedTimeUtc(Instant scheduledEnqueueTimeUtc)
     parameters:
@@ -874,8 +931,37 @@ items:
       type: 328f8254
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
   see:
-  - type: com.microsoft.azure.servicebus._i_message.getScheduledEnqueuedTimeUtc()
-    description: getScheduledEnqueuedTimeUtc()
+  - type: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
+    description: getScheduledEnqueueTimeUtc()
+- uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
+  id: setScheduledEnqueueTimeUtc(Instant)
+  parent: com.microsoft.azure.servicebus._i_message
+  href: com.microsoft.azure.servicebus._i_message.yml
+  langs:
+  - java
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  overload: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 173
+  package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax: &o7
+    content: public void setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+    parameters:
+    - id: scheduledEnqueueTimeUtc
+      type: 328f8254
+      description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
+  see:
+  - type: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
+    description: getScheduledEnqueueTimeUtc()
 - uid: com.microsoft.azure.servicebus._i_message.setSessionId(String)
   id: setSessionId(String)
   parent: com.microsoft.azure.servicebus._i_message
@@ -890,7 +976,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 182
+    startLine: 207
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the session identifier for a session-aware entity.</p>
@@ -948,7 +1034,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 255
+    startLine: 280
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the "to" address.</p>
@@ -1038,6 +1124,16 @@ references:
   name: setScheduledEnqueuedTimeUtc
   nameWithType: IMessage.setScheduledEnqueuedTimeUtc
   fullName: void com.microsoft.azure.servicebus.IMessage.setScheduledEnqueuedTimeUtc
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc*
+  name: getScheduledEnqueueTimeUtc
+  nameWithType: IMessage.getScheduledEnqueueTimeUtc
+  fullName: Instant com.microsoft.azure.servicebus.IMessage.getScheduledEnqueueTimeUtc
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc*
+  name: setScheduledEnqueueTimeUtc
+  nameWithType: IMessage.setScheduledEnqueueTimeUtc
+  fullName: void com.microsoft.azure.servicebus.IMessage.setScheduledEnqueueTimeUtc
   package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._i_message.getSequenceNumber*
   name: getSequenceNumber
@@ -1421,12 +1517,40 @@ references:
 
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000066">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()" data-throw-if-not-resolved="false">getScheduledEnqueueTimeUtc()</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public Instant getScheduledEnqueuedTimeUtc()
     return:
       type: 328f8254
       description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+- uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._i_message
+  href: com.microsoft.azure.servicebus._i_message.yml
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: IMessage.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.IMessage.getScheduledEnqueueTimeUtc()
+  type: Method
+  summary: >-
+    <p>Gets the scheduled enqueue time of this message.</p>
+
+    <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
+
+    <p></p>
+  syntax: *o6
 - uid: com.microsoft.azure.servicebus._message.setScheduledEnqueuedTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1437,19 +1561,45 @@ references:
   summary: >-
     <p>Sets the scheduled enqueue time of this message.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000067">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)" data-throw-if-not-resolved="false">setScheduledEnqueueTimeUtc(Instant)</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public void setScheduledEnqueuedTimeUtc(Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
-- uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueuedTimeUtc()
+- uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
-  name: getScheduledEnqueuedTimeUtc()
-  nameWithType: IMessage.getScheduledEnqueuedTimeUtc()
-  fullName: Instant com.microsoft.azure.servicebus.IMessage.getScheduledEnqueuedTimeUtc()
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  type: Method
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax: *o7
+- uid: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: Message.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.Message.getScheduledEnqueueTimeUtc()
   type: Method
   summary: >-
     <p>Gets the scheduled enqueue time of this message.</p>
@@ -1457,7 +1607,28 @@ references:
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
     <p></p>
-  syntax: *o6
+  syntax:
+    content: public Instant getScheduledEnqueueTimeUtc()
+    return:
+      type: 328f8254
+      description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+- uid: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  type: Method
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax:
+    content: public void setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+    parameters:
+    - id: scheduledEnqueueTimeUtc
+      type: 328f8254
+      description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
 - uid: com.microsoft.azure.servicebus._message.getSequenceNumber()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1524,7 +1695,7 @@ references:
     <p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>
 
     <p></p>
-  syntax: *o7
+  syntax: *o8
 - uid: com.microsoft.azure.servicebus._message.getBody()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1569,7 +1740,7 @@ references:
     <p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>
 
     <p></p>
-  syntax: *o8
+  syntax: *o9
 - uid: com.microsoft.azure.servicebus._message.getProperties()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1614,7 +1785,7 @@ references:
     <p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>
 
     <p></p>
-  syntax: *o9
+  syntax: *o10
 - uid: com.microsoft.azure.servicebus._message.getCorrelationId()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1663,7 +1834,7 @@ references:
     <p>Allows an application to specify a context for the message for the purposes of correlation, for example reflecting the MessageId of a message that is being replied to.</p>
 
     <p></p>
-  syntax: *o10
+  syntax: *o11
 - uid: com.microsoft.azure.servicebus._message.getTo()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1747,7 +1918,7 @@ references:
     <p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>
 
     <p></p>
-  syntax: *o11
+  syntax: *o12
 - uid: com.microsoft.azure.servicebus._message.getLabel()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1796,7 +1967,7 @@ references:
     <p>This property enables the application to indicate the purpose of the message to the receiver in a standardized fashion, similar to an email subject line. The mapped AMQP property is "subject".</p>
 
     <p></p>
-  syntax: *o12
+  syntax: *o13
 - uid: com.microsoft.azure.servicebus._message.getReplyToSessionId()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
@@ -1880,7 +2051,7 @@ references:
     <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._i_message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
 
     <p></p>
-  syntax: *o13
+  syntax: *o14
 - uid: com.microsoft.azure.servicebus._message.getDeadLetterSource()
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml

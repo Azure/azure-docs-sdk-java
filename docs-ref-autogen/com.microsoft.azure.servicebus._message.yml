@@ -20,6 +20,7 @@ items:
   - com.microsoft.azure.servicebus._message.getReplyTo()
   - com.microsoft.azure.servicebus._message.getReplyToSessionId()
   - com.microsoft.azure.servicebus._message.getScheduledEnqueuedTimeUtc()
+  - com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
   - com.microsoft.azure.servicebus._message.getSequenceNumber()
   - com.microsoft.azure.servicebus._message.getSessionId()
   - com.microsoft.azure.servicebus._message.getTimeToLive()
@@ -42,6 +43,7 @@ items:
   - com.microsoft.azure.servicebus._message.setReplyTo(String)
   - com.microsoft.azure.servicebus._message.setReplyToSessionId(String)
   - com.microsoft.azure.servicebus._message.setScheduledEnqueuedTimeUtc(Instant)
+  - com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)
   - com.microsoft.azure.servicebus._message.setSessionId(String)
   - com.microsoft.azure.servicebus._message.setTimeToLive(Duration)
   - com.microsoft.azure.servicebus._message.setTo(String)
@@ -161,7 +163,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 277
+    startLine: 289
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the name of the queue or subscription that this message was enqueued on, before it was deadlettered.</p>
@@ -329,7 +331,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 286
+    startLine: 298
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the lock token for the current message.</p>
@@ -385,7 +387,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 267
+    startLine: 279
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the partition key for sending a message to a partitioned entity.</p>
@@ -393,7 +395,7 @@ items:
     <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
 
     <p></p>
-  syntax: &o13
+  syntax: &o14
     content: public String getPartitionKey()
     return:
       type: "26831127"
@@ -495,7 +497,49 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 257
+    startLine: 258
+  package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Gets the scheduled enqueue time of this message.</p>
+
+    <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000066">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()" data-throw-if-not-resolved="false">getScheduledEnqueueTimeUtc()</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
+  syntax:
+    content: public Instant getScheduledEnqueuedTimeUtc()
+    return:
+      type: 328f8254
+      description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+  overridden: com.microsoft.azure.servicebus._i_message.getScheduledEnqueuedTimeUtc()
+- uid: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
+  id: getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  langs:
+  - java
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: Message.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.Message.getScheduledEnqueueTimeUtc()
+  overload: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
+    startLine: 269
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the scheduled enqueue time of this message.</p>
@@ -504,11 +548,11 @@ items:
 
     <p></p>
   syntax: &o12
-    content: public Instant getScheduledEnqueuedTimeUtc()
+    content: public Instant getScheduledEnqueueTimeUtc()
     return:
       type: 328f8254
       description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
-  overridden: com.microsoft.azure.servicebus._i_message.getScheduledEnqueuedTimeUtc()
+  overridden: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
 - uid: com.microsoft.azure.servicebus._message.getSequenceNumber()
   id: getSequenceNumber()
   parent: com.microsoft.azure.servicebus._message
@@ -957,7 +1001,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 272
+    startLine: 284
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets a partition key for sending a message to a partitioned entity</p>
@@ -1074,12 +1118,26 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
-    startLine: 262
+    startLine: 264
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sets the scheduled enqueue time of this message.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000067">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)" data-throw-if-not-resolved="false">setScheduledEnqueueTimeUtc(Instant)</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public void setScheduledEnqueuedTimeUtc(Instant scheduledEnqueueTimeUtc)
     parameters:
@@ -1088,8 +1146,38 @@ items:
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
   overridden: com.microsoft.azure.servicebus._i_message.setScheduledEnqueuedTimeUtc(Instant)
   see:
-  - type: com.microsoft.azure.servicebus._message.getScheduledEnqueuedTimeUtc()
-    description: getScheduledEnqueuedTimeUtc()
+  - type: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
+    description: getScheduledEnqueueTimeUtc()
+- uid: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)
+  id: setScheduledEnqueueTimeUtc(Instant)
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  langs:
+  - java
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  overload: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/Message.java
+    startLine: 274
+  package: com.microsoft.azure.servicebus
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax: &o13
+    content: public void setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+    parameters:
+    - id: scheduledEnqueueTimeUtc
+      type: 328f8254
+      description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
+  overridden: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
+  see:
+  - type: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
+    description: getScheduledEnqueueTimeUtc()
 - uid: com.microsoft.azure.servicebus._message.setSessionId(String)
   id: setSessionId(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1358,6 +1446,16 @@ references:
   name: setScheduledEnqueuedTimeUtc
   nameWithType: Message.setScheduledEnqueuedTimeUtc
   fullName: void com.microsoft.azure.servicebus.Message.setScheduledEnqueuedTimeUtc
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc*
+  name: getScheduledEnqueueTimeUtc
+  nameWithType: Message.getScheduledEnqueueTimeUtc
+  fullName: Instant com.microsoft.azure.servicebus.Message.getScheduledEnqueueTimeUtc
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc*
+  name: setScheduledEnqueueTimeUtc
+  nameWithType: Message.setScheduledEnqueueTimeUtc
+  fullName: void com.microsoft.azure.servicebus.Message.setScheduledEnqueueTimeUtc
   package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus._message.getPartitionKey*
   name: getPartitionKey
@@ -2026,12 +2124,40 @@ references:
 
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000066">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()" data-throw-if-not-resolved="false">getScheduledEnqueueTimeUtc()</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public Instant getScheduledEnqueuedTimeUtc()
     return:
       type: 328f8254
       description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+- uid: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: Message.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.Message.getScheduledEnqueueTimeUtc()
+  type: Method
+  summary: >-
+    <p>Gets the scheduled enqueue time of this message.</p>
+
+    <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
+
+    <p></p>
+  syntax: *o12
 - uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueuedTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2042,19 +2168,45 @@ references:
   summary: >-
     <p>Sets the scheduled enqueue time of this message.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000067">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>Replaced by <xref uid="com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)" data-throw-if-not-resolved="false">setScheduledEnqueueTimeUtc(Instant)</xref></p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax:
     content: public void setScheduledEnqueuedTimeUtc(Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
-- uid: com.microsoft.azure.servicebus._message.getScheduledEnqueuedTimeUtc()
+- uid: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._message
   href: com.microsoft.azure.servicebus._message.yml
-  name: getScheduledEnqueuedTimeUtc()
-  nameWithType: Message.getScheduledEnqueuedTimeUtc()
-  fullName: Instant com.microsoft.azure.servicebus.Message.getScheduledEnqueuedTimeUtc()
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.Message.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  type: Method
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax: *o13
+- uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
+  parent: com.microsoft.azure.servicebus._i_message
+  href: com.microsoft.azure.servicebus._i_message.yml
+  name: getScheduledEnqueueTimeUtc()
+  nameWithType: IMessage.getScheduledEnqueueTimeUtc()
+  fullName: Instant com.microsoft.azure.servicebus.IMessage.getScheduledEnqueueTimeUtc()
   type: Method
   summary: >-
     <p>Gets the scheduled enqueue time of this message.</p>
@@ -2062,7 +2214,28 @@ references:
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
     <p></p>
-  syntax: *o12
+  syntax:
+    content: public Instant getScheduledEnqueueTimeUtc()
+    return:
+      type: 328f8254
+      description: <p>the instant at which the message will be enqueued in Azure Service Bus </p>
+- uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
+  parent: com.microsoft.azure.servicebus._i_message
+  href: com.microsoft.azure.servicebus._i_message.yml
+  name: setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  nameWithType: IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  fullName: void com.microsoft.azure.servicebus.IMessage.setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+  type: Method
+  summary: >-
+    <p>Sets the scheduled enqueue time of this message.</p>
+
+    <p></p>
+  syntax:
+    content: public void setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
+    parameters:
+    - id: scheduledEnqueueTimeUtc
+      type: 328f8254
+      description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
 - uid: com.microsoft.azure.servicebus._i_message.getPartitionKey()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2111,7 +2284,7 @@ references:
     <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
 
     <p></p>
-  syntax: *o13
+  syntax: *o14
 - uid: com.microsoft.azure.servicebus._i_message.getDeadLetterSource()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
