@@ -87,7 +87,7 @@ items:
     <p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>
 
     <p></p>
-  syntax: &o7
+  syntax:
     content: public byte [] getBody()
     return:
       type: ccd9418d
@@ -115,7 +115,7 @@ items:
     <p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example "application/json".</p>
 
     <p></p>
-  syntax: &o4
+  syntax:
     content: public String getContentType()
     return:
       type: "26831127"
@@ -143,7 +143,7 @@ items:
     <p>Allows an application to specify a context for the message for the purposes of correlation, for example reflecting the MessageId of a message that is being replied to.</p>
 
     <p></p>
-  syntax: &o9
+  syntax:
     content: public String getCorrelationId()
     return:
       type: "26831127"
@@ -199,7 +199,7 @@ items:
     <p>The count is incremented when a message lock expires, or the message is explicitly abandoned by the receiver. This property is read-only.</p>
 
     <p></p>
-  syntax: &o5
+  syntax: &o3
     content: public long getDeliveryCount()
     return:
       type: 0364520f
@@ -227,7 +227,7 @@ items:
     <p>The UTC instant at which the message has been accepted and stored in the entity. For scheduled messages, this reflects the time when the message was activated. This value can be used as an authoritative and neutral arrival time indicator when the receiver does not want to trust the sender's clock. This property is read-only.</p>
 
     <p></p>
-  syntax: &o2
+  syntax: &o1
     content: public Instant getEnqueuedTimeUtc()
     return:
       type: 328f8254
@@ -283,7 +283,7 @@ items:
     <p>This property enables the application to indicate the purpose of the message to the receiver in a standardized fashion, similar to an email subject line. The mapped AMQP property is "subject".</p>
 
     <p></p>
-  syntax: &o11
+  syntax:
     content: public String getLabel()
     return:
       type: "26831127"
@@ -367,7 +367,7 @@ items:
     <p>The message identifier is an application-defined value that uniquely identifies the message and its payload. The identifier is a free-form string and can reflect a GUID or an identifier derived from the application context. If enabled, the <a href="https://docs.microsoft.com/azure/service-bus-messaging/duplicate-detection">duplicate detection</a> feature identifies and removes second and further submissions of messages with the same MessageId.</p>
 
     <p></p>
-  syntax: &o1
+  syntax:
     content: public String getMessageId()
     return:
       type: "26831127"
@@ -395,7 +395,7 @@ items:
     <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
 
     <p></p>
-  syntax: &o14
+  syntax:
     content: public String getPartitionKey()
     return:
       type: "26831127"
@@ -421,7 +421,7 @@ items:
     <p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>
 
     <p></p>
-  syntax: &o8
+  syntax:
     content: public Map<String, String> getProperties()
     return:
       type: 689c8cb5
@@ -449,7 +449,7 @@ items:
     <p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>
 
     <p></p>
-  syntax: &o10
+  syntax: &o4
     content: public String getReplyTo()
     return:
       type: "26831127"
@@ -547,7 +547,7 @@ items:
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
     <p></p>
-  syntax: &o12
+  syntax: &o5
     content: public Instant getScheduledEnqueueTimeUtc()
     return:
       type: 328f8254
@@ -603,7 +603,7 @@ items:
     <p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>
 
     <p></p>
-  syntax: &o6
+  syntax: &o7
     content: public String getSessionId()
     return:
       type: "26831127"
@@ -631,7 +631,7 @@ items:
     <p>This value is the relative duration after which the message expires, starting from the instant the message has been accepted and stored by the broker, as captured in <xref uid="com.microsoft.azure.servicebus._message.getEnqueuedTimeUtc()" data-throw-if-not-resolved="false">getEnqueuedTimeUtc</xref>. When not set explicitly, the assumed value is the DefaultTimeToLive set for the respective queue or topic. A message-level TimeToLive value cannot be longer than the entity's DefaultTimeToLive setting and it is silently adjusted if it does.</p>
 
     <p></p>
-  syntax: &o3
+  syntax: &o2
     content: public Duration getTimeToLive()
     return:
       type: e02a2de0
@@ -846,9 +846,6 @@ items:
       type: ccd9418d
       description: <p>body of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setBody(byte [])
-  see:
-  - type: com.microsoft.azure.servicebus._message.getBody()
-    description: getBody()
 - uid: com.microsoft.azure.servicebus._message.setContentType(String)
   id: setContentType(String)
   parent: com.microsoft.azure.servicebus._message
@@ -876,9 +873,6 @@ items:
       type: "26831127"
       description: <p>content type of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setContentType(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getContentType()
-    description: getContentType()
 - uid: com.microsoft.azure.servicebus._message.setCorrelationId(String)
   id: setCorrelationId(String)
   parent: com.microsoft.azure.servicebus._message
@@ -906,9 +900,6 @@ items:
       type: "26831127"
       description: <p>correlation Id of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setCorrelationId(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getCorrelationId()
-    description: getCorrelationId()
 - uid: com.microsoft.azure.servicebus._message.setLabel(String)
   id: setLabel(String)
   parent: com.microsoft.azure.servicebus._message
@@ -936,9 +927,6 @@ items:
       type: "26831127"
       description: <p>Label property value of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setLabel(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getLabel()
-    description: getLabel()
 - uid: com.microsoft.azure.servicebus._message.setLockedUntilUtc(Instant)
   id: setLockedUntilUtc(Instant)
   parent: com.microsoft.azure.servicebus._message
@@ -984,9 +972,6 @@ items:
       type: "26831127"
       description: <p>Id of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setMessageId(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getMessageId()
-    description: getMessageId()
 - uid: com.microsoft.azure.servicebus._message.setPartitionKey(String)
   id: setPartitionKey(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1014,9 +999,6 @@ items:
       type: "26831127"
       description: <p>partition key of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setPartitionKey(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getPartitionKey()
-    description: getPartitionKey()
 - uid: com.microsoft.azure.servicebus._message.setProperties(Map<String, String>)
   id: setProperties(Map<String, String>)
   parent: com.microsoft.azure.servicebus._message
@@ -1044,9 +1026,6 @@ items:
       type: 689c8cb5
       description: <p>the map of user application properties of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setProperties(Map<String, String>)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getProperties()
-    description: getProperties()
 - uid: com.microsoft.azure.servicebus._message.setReplyTo(String)
   id: setReplyTo(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1074,9 +1053,6 @@ items:
       type: "26831127"
       description: <p>ReplyTo property value of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setReplyTo(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getReplyTo()
-    description: getReplyTo()
 - uid: com.microsoft.azure.servicebus._message.setReplyToSessionId(String)
   id: setReplyToSessionId(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1145,9 +1121,6 @@ items:
       type: 328f8254
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
   overridden: com.microsoft.azure.servicebus._i_message.setScheduledEnqueuedTimeUtc(Instant)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
-    description: getScheduledEnqueueTimeUtc()
 - uid: com.microsoft.azure.servicebus._message.setScheduledEnqueueTimeUtc(Instant)
   id: setScheduledEnqueueTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._message
@@ -1168,16 +1141,13 @@ items:
     <p>Sets the scheduled enqueue time of this message.</p>
 
     <p></p>
-  syntax: &o13
+  syntax: &o6
     content: public void setScheduledEnqueueTimeUtc(Instant scheduledEnqueueTimeUtc)
     parameters:
     - id: scheduledEnqueueTimeUtc
       type: 328f8254
       description: <p>the instant at which this message should be enqueued in Azure Service Bus </p>
   overridden: com.microsoft.azure.servicebus._i_message.setScheduledEnqueueTimeUtc(Instant)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getScheduledEnqueueTimeUtc()
-    description: getScheduledEnqueueTimeUtc()
 - uid: com.microsoft.azure.servicebus._message.setSessionId(String)
   id: setSessionId(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1205,9 +1175,6 @@ items:
       type: "26831127"
       description: <p>session id of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setSessionId(String)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getSessionId()
-    description: getSessionId()
 - uid: com.microsoft.azure.servicebus._message.setTimeToLive(Duration)
   id: setTimeToLive(Duration)
   parent: com.microsoft.azure.servicebus._message
@@ -1235,9 +1202,6 @@ items:
       type: e02a2de0
       description: <p>Time to Live duration of this message </p>
   overridden: com.microsoft.azure.servicebus._i_message.setTimeToLive(Duration)
-  see:
-  - type: com.microsoft.azure.servicebus._message.getTimeToLive()
-    description: getTimeToLive()
 - uid: com.microsoft.azure.servicebus._message.setTo(String)
   id: setTo(String)
   parent: com.microsoft.azure.servicebus._message
@@ -1544,20 +1508,6 @@ references:
     - id: messageId
       type: "26831127"
       description: <p>Id of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getMessageId()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getMessageId()
-  nameWithType: Message.getMessageId()
-  fullName: String com.microsoft.azure.servicebus.Message.getMessageId()
-  type: Method
-  summary: >-
-    <p>Gets the Id of this message.</p>
-
-    <p>The message identifier is an application-defined value that uniquely identifies the message and its payload. The identifier is a free-form string and can reflect a GUID or an identifier derived from the application context. If enabled, the <a href="https://docs.microsoft.com/azure/service-bus-messaging/duplicate-detection">duplicate detection</a> feature identifies and removes second and further submissions of messages with the same MessageId.</p>
-
-    <p></p>
-  syntax: *o1
 - uid: com.microsoft.azure.servicebus._i_message.getTimeToLive()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1589,7 +1539,7 @@ references:
     <p>The UTC instant at which the message has been accepted and stored in the entity. For scheduled messages, this reflects the time when the message was activated. This value can be used as an authoritative and neutral arrival time indicator when the receiver does not want to trust the sender's clock. This property is read-only.</p>
 
     <p></p>
-  syntax: *o2
+  syntax: *o1
 - uid: com.microsoft.azure.servicebus._i_message.setTimeToLive(Duration)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1607,20 +1557,6 @@ references:
     - id: timeToLive
       type: e02a2de0
       description: <p>Time to Live duration of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getTimeToLive()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getTimeToLive()
-  nameWithType: Message.getTimeToLive()
-  fullName: Duration com.microsoft.azure.servicebus.Message.getTimeToLive()
-  type: Method
-  summary: >-
-    <p>Gets the duration before this message expires.</p>
-
-    <p>This value is the relative duration after which the message expires, starting from the instant the message has been accepted and stored by the broker, as captured in <xref uid="com.microsoft.azure.servicebus._message.getEnqueuedTimeUtc()" data-throw-if-not-resolved="false">getEnqueuedTimeUtc</xref>. When not set explicitly, the assumed value is the DefaultTimeToLive set for the respective queue or topic. A message-level TimeToLive value cannot be longer than the entity's DefaultTimeToLive setting and it is silently adjusted if it does.</p>
-
-    <p></p>
-  syntax: *o3
 - uid: com.microsoft.azure.servicebus._i_message.getContentType()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1656,20 +1592,6 @@ references:
     - id: contentType
       type: "26831127"
       description: <p>content type of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getContentType()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getContentType()
-  nameWithType: Message.getContentType()
-  fullName: String com.microsoft.azure.servicebus.Message.getContentType()
-  type: Method
-  summary: >-
-    <p>Gets the content type of this message.</p>
-
-    <p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example "application/json".</p>
-
-    <p></p>
-  syntax: *o4
 - uid: com.microsoft.azure.servicebus._i_message.getExpiresAtUtc()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1688,6 +1610,20 @@ references:
     return:
       type: 328f8254
       description: <p>instant at which this message expires </p>
+- uid: com.microsoft.azure.servicebus._message.getTimeToLive()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: getTimeToLive()
+  nameWithType: Message.getTimeToLive()
+  fullName: Duration com.microsoft.azure.servicebus.Message.getTimeToLive()
+  type: Method
+  summary: >-
+    <p>Gets the duration before this message expires.</p>
+
+    <p>This value is the relative duration after which the message expires, starting from the instant the message has been accepted and stored by the broker, as captured in <xref uid="com.microsoft.azure.servicebus._message.getEnqueuedTimeUtc()" data-throw-if-not-resolved="false">getEnqueuedTimeUtc</xref>. When not set explicitly, the assumed value is the DefaultTimeToLive set for the respective queue or topic. A message-level TimeToLive value cannot be longer than the entity's DefaultTimeToLive setting and it is silently adjusted if it does.</p>
+
+    <p></p>
+  syntax: *o2
 - uid: com.microsoft.azure.servicebus._i_message.getLockedUntilUtc()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1719,7 +1655,7 @@ references:
     <p>The count is incremented when a message lock expires, or the message is explicitly abandoned by the receiver. This property is read-only.</p>
 
     <p></p>
-  syntax: *o5
+  syntax: *o3
 - uid: com.microsoft.azure.servicebus._i_message.getEnqueuedTimeUtc()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1791,20 +1727,6 @@ references:
     - id: sessionId
       type: "26831127"
       description: <p>session id of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getSessionId()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getSessionId()
-  nameWithType: Message.getSessionId()
-  fullName: String com.microsoft.azure.servicebus.Message.getSessionId()
-  type: Method
-  summary: >-
-    <p>Gets the session identifier for a session-aware entity.</p>
-
-    <p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>
-
-    <p></p>
-  syntax: *o6
 - uid: com.microsoft.azure.servicebus._i_message.getBody()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1838,18 +1760,6 @@ references:
     - id: body
       type: ccd9418d
       description: <p>body of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getBody()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getBody()
-  nameWithType: Message.getBody()
-  fullName: byte [] com.microsoft.azure.servicebus.Message.getBody()
-  type: Method
-  summary: >-
-    <p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>
-
-    <p></p>
-  syntax: *o7
 - uid: com.microsoft.azure.servicebus._i_message.getProperties()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1883,18 +1793,6 @@ references:
     - id: properties
       type: 689c8cb5
       description: <p>the map of user application properties of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getProperties()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getProperties()
-  nameWithType: Message.getProperties()
-  fullName: Map<String, String> com.microsoft.azure.servicebus.Message.getProperties()
-  type: Method
-  summary: >-
-    <p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>
-
-    <p></p>
-  syntax: *o8
 - uid: com.microsoft.azure.servicebus._i_message.getCorrelationId()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -1930,20 +1828,6 @@ references:
     - id: correlationId
       type: "26831127"
       description: <p>correlation Id of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getCorrelationId()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getCorrelationId()
-  nameWithType: Message.getCorrelationId()
-  fullName: String com.microsoft.azure.servicebus.Message.getCorrelationId()
-  type: Method
-  summary: >-
-    <p>Gets a correlation identifier.</p>
-
-    <p>Allows an application to specify a context for the message for the purposes of correlation, for example reflecting the MessageId of a message that is being replied to.</p>
-
-    <p></p>
-  syntax: *o9
 - uid: com.microsoft.azure.servicebus._i_message.getTo()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2014,20 +1898,6 @@ references:
     - id: replyTo
       type: "26831127"
       description: <p>ReplyTo property value of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getReplyTo()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getReplyTo()
-  nameWithType: Message.getReplyTo()
-  fullName: String com.microsoft.azure.servicebus.Message.getReplyTo()
-  type: Method
-  summary: >-
-    <p>Gets the address of an entity to send replies to.</p>
-
-    <p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>
-
-    <p></p>
-  syntax: *o10
 - uid: com.microsoft.azure.servicebus._i_message.getLabel()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2063,20 +1933,6 @@ references:
     - id: label
       type: "26831127"
       description: <p>Label property value of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getLabel()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getLabel()
-  nameWithType: Message.getLabel()
-  fullName: String com.microsoft.azure.servicebus.Message.getLabel()
-  type: Method
-  summary: >-
-    <p>Gets the application specific message label.</p>
-
-    <p>This property enables the application to indicate the purpose of the message to the receiver in a standardized fashion, similar to an email subject line. The mapped AMQP property is "subject".</p>
-
-    <p></p>
-  syntax: *o11
 - uid: com.microsoft.azure.servicebus._i_message.getReplyToSessionId()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2095,6 +1951,20 @@ references:
     return:
       type: "26831127"
       description: <p>ReplyToSessionId property value of this message </p>
+- uid: com.microsoft.azure.servicebus._message.getReplyTo()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: getReplyTo()
+  nameWithType: Message.getReplyTo()
+  fullName: String com.microsoft.azure.servicebus.Message.getReplyTo()
+  type: Method
+  summary: >-
+    <p>Gets the address of an entity to send replies to.</p>
+
+    <p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>
+
+    <p></p>
+  syntax: *o4
 - uid: com.microsoft.azure.servicebus._i_message.setReplyToSessionId(String)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2157,7 +2027,7 @@ references:
     <p>This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.</p>
 
     <p></p>
-  syntax: *o12
+  syntax: *o5
 - uid: com.microsoft.azure.servicebus._i_message.setScheduledEnqueuedTimeUtc(Instant)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2200,7 +2070,7 @@ references:
     <p>Sets the scheduled enqueue time of this message.</p>
 
     <p></p>
-  syntax: *o13
+  syntax: *o6
 - uid: com.microsoft.azure.servicebus._i_message.getScheduledEnqueueTimeUtc()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2254,6 +2124,20 @@ references:
     return:
       type: "26831127"
       description: <p>partition key of this message </p>
+- uid: com.microsoft.azure.servicebus._message.getSessionId()
+  parent: com.microsoft.azure.servicebus._message
+  href: com.microsoft.azure.servicebus._message.yml
+  name: getSessionId()
+  nameWithType: Message.getSessionId()
+  fullName: String com.microsoft.azure.servicebus.Message.getSessionId()
+  type: Method
+  summary: >-
+    <p>Gets the session identifier for a session-aware entity.</p>
+
+    <p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>
+
+    <p></p>
+  syntax: *o7
 - uid: com.microsoft.azure.servicebus._i_message.setPartitionKey(String)
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml
@@ -2271,20 +2155,6 @@ references:
     - id: partitionKey
       type: "26831127"
       description: <p>partition key of this message </p>
-- uid: com.microsoft.azure.servicebus._message.getPartitionKey()
-  parent: com.microsoft.azure.servicebus._message
-  href: com.microsoft.azure.servicebus._message.yml
-  name: getPartitionKey()
-  nameWithType: Message.getPartitionKey()
-  fullName: String com.microsoft.azure.servicebus.Message.getPartitionKey()
-  type: Method
-  summary: >-
-    <p>Gets the partition key for sending a message to a partitioned entity.</p>
-
-    <p>For <a href="https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid="com.microsoft.azure.servicebus._message.getSessionId()" data-throw-if-not-resolved="false">SessionId </xref> property overrides this value.</p>
-
-    <p></p>
-  syntax: *o14
 - uid: com.microsoft.azure.servicebus._i_message.getDeadLetterSource()
   parent: com.microsoft.azure.servicebus._i_message
   href: com.microsoft.azure.servicebus._i_message.yml

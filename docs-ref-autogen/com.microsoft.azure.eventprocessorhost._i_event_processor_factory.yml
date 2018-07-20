@@ -30,7 +30,7 @@ items:
     content: public interface IEventProcessorFactory<T extends IEventProcessor>
     typeParameters:
     - type: 8ce1ecb9
-      description: <p>The type of event processor objects produced by this factory, which must implement <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor" data-throw-if-not-resolved="false">IEventProcessor</xref></p>
+      description: <p>The type of event processor objects produced by this factory, which must implement IEventProcessor </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor_factory.createEventProcessor(PartitionContext)
   id: createEventProcessor(PartitionContext)
   parent: com.microsoft.azure.eventprocessorhost._i_event_processor_factory
@@ -89,13 +89,11 @@ references:
   summary: >-
     <p>Interface that must be implemented by event processor classes. </p>
 
-    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A PartitionContext is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
 
-    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns. </p>
+    <p>Although EventProcessorHost is multithreaded, calls to a given instance of an event processor class are serialized, except for onError(). onOpen() is called first, then onEvents() will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, onClose() is called after the last onEvents() call returns. </p>
 
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref> could be called while <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> or <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
+    <p>onError() could be called while onEvents() or onClose() is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
   syntax:
     content: public interface IEventProcessor
 - uid: com.microsoft.azure.eventprocessorhost._partition_context
