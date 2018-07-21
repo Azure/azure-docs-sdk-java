@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid:
 ms.author: robmcm;yungez;kevinzha
-ms.date: 02/01/2018
+ms.date: 07/05/2018
 ms.devlang: java
 ms.service: cosmos-db
 ms.tgt_pltfrm: multiple
@@ -35,7 +35,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 ## Create an Azure Cosmos DB by using the Azure portal
 
-1. Browse to the Azure portal at <https://portal.azure.com/> and click **+New**.
+1. Browse to the Azure portal at <https://portal.azure.com/> and click **+Create a resource**.
 
    ![Azure portal][AZ01]
 
@@ -46,7 +46,7 @@ The following prerequisites are required in order to follow the steps in this ar
 1. On the **Azure Cosmos DB** page, enter the following information:
 
    * Enter a unique **ID**, which you will use as the URI for your database. For example: *wingtiptoysdata.documents.azure.com*.
-   * Choose **SQL (Document DB)** for the API.
+   * Choose **SQL** for the API.
    * Choose the **Subscription** you want to use for your database.
    * Specify whether to create a new **Resource group** for your database, or choose an existing resource group.
    * Specify the **Location** for your database.
@@ -246,7 +246,7 @@ In this section you create two Java classes for storing user data, and then you 
          SpringApplication.run(WingtiptoysApplication.class, args);
       }
 
-      public void run(String... var1) throws Exception {
+      public void run(String... args) throws Exception {
          final User testUser = new User("testId", "testFirstName", "testLastName");
 
          repository.deleteAll();
@@ -274,8 +274,8 @@ In this section you create two Java classes for storing user data, and then you 
 1. Build your Spring Boot application with Maven and run it; for example:
 
    ```shell
-   mvn package
-   java -jar target/wingtiptoys-0.0.1-SNAPSHOT.jar
+   mvn clean package
+   mvn spring-boot:run
    ```
 
 1. Your application will display several runtime messages, and you should see the message `User: testFirstName testLastName` displayed to indicate that values have been successfully stored and retrieved from your database.
