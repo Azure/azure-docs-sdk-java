@@ -4,7 +4,7 @@ items:
   id: _iot_hub_transport_connection
   parent: com.microsoft.azure.sdk.iot.device.transport
   children:
-  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close()
+  - com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close(boolean)
   - com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.getConnectionId()
   - com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.open(Queue<DeviceClientConfig>)
   - com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.sendMessage(Message)
@@ -28,15 +28,15 @@ items:
   summary: <p>Interface of what all a Transport Connection object must do. Serves to decouple the Message Queueing of the Transport layer from the protocol specific details of the Connection layer. </p>
   syntax:
     content: public interface IotHubTransportConnection
-- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close()
-  id: close()
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close(boolean)
+  id: close(boolean)
   parent: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection
   href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.yml
   langs:
   - java
-  name: close()
-  nameWithType: IotHubTransportConnection.close()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close()
+  name: close(boolean isReconnecting)
+  nameWithType: IotHubTransportConnection.close(boolean isReconnecting)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close(boolean isReconnecting)
   overload: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close*
   type: Method
   source:
@@ -46,7 +46,10 @@ items:
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: <p>Closes the transport connection. </p>
   syntax:
-    content: public void close()
+    content: public void close(boolean isReconnecting)
+    parameters:
+    - id: isReconnecting
+      type: 4fc6e284
   exceptions:
   - type: 848a9648
     description: <p>If any exceptions are encountered while closing. </p>
@@ -213,6 +216,10 @@ references:
   nameWithType: IotHubTransportConnection.setListener
   fullName: void com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.setListener
   package: com.microsoft.azure.sdk.iot.device.transport
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.close*
   name: close
   nameWithType: IotHubTransportConnection.close
@@ -223,10 +230,6 @@ references:
   nameWithType: IotHubTransportConnection.sendMessage
   fullName: IotHubStatusCode com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessage
   package: com.microsoft.azure.sdk.iot.device.transport
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
 - uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_connection.sendMessageResult*
   name: sendMessageResult
   nameWithType: IotHubTransportConnection.sendMessageResult
@@ -391,32 +394,38 @@ references:
   summary: <p>Callback interface for communicating connection and message status updates from individual protocol clients (mqtt, https, amqps) to the Tranpsort layer that handles queueing of messages and connecting/reconnecting/disconnecting </p>
   syntax:
     content: public interface IotHubListener
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection.close()
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection.close(boolean)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt._mqtt_iot_hub_connection.yml
-  name: close()
-  nameWithType: MqttIotHubConnection.close()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close()
+  name: close(boolean isReconnecting)
+  nameWithType: MqttIotHubConnection.close(boolean isReconnecting)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close(boolean isReconnecting)
   type: Method
   summary: <p>Closes the connection. After the connection is closed, it is no longer usable. If the connection is already closed, the function shall do nothing. </p>
   syntax:
-    content: public void close()
-- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection.close()
+    content: public void close(boolean isReconnecting)
+    parameters:
+    - id: isReconnecting
+      type: 4fc6e284
+- uid: com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection.close(boolean)
   parent: com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection
   href: com.microsoft.azure.sdk.iot.device.transport.https._https_iot_hub_connection.yml
-  name: close()
-  nameWithType: HttpsIotHubConnection.close()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close()
+  name: close(boolean isReconnecting)
+  nameWithType: HttpsIotHubConnection.close(boolean isReconnecting)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close(boolean isReconnecting)
   type: Method
   summary: <p>Closes the transport connection. </p>
   syntax:
-    content: public void close()
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection.close()
+    content: public void close(boolean isReconnecting)
+    parameters:
+    - id: isReconnecting
+      type: 4fc6e284
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection.close(boolean)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection.yml
-  name: close()
-  nameWithType: AmqpsIotHubConnection.close()
-  fullName: void com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
+  name: close(boolean isReconnecting)
+  nameWithType: AmqpsIotHubConnection.close(boolean isReconnecting)
+  fullName: void com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close(boolean isReconnecting)
   type: Method
   summary: >-
     <p>Closes the <xref uid="com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_iot_hub_connection" data-throw-if-not-resolved="false">AmqpsIotHubConnection</xref>. </p>
@@ -425,7 +434,10 @@ references:
 
     <p></p>
   syntax:
-    content: public void close()
+    content: public void close(boolean isReconnecting)
+    parameters:
+    - id: isReconnecting
+      type: 4fc6e284
 - uid: com.microsoft.azure.sdk.iot.device._iot_hub_status_code
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device._iot_hub_status_code.yml
