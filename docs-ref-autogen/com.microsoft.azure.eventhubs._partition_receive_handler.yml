@@ -23,14 +23,11 @@ items:
     startLine: 12
   package: com.microsoft.azure.eventhubs
   summary: >-
-    <p>The handler to invoke after receiving <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s setReceiveHandler().</p>
+    <p>The handler to invoke after receiving <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using PartitionReceiver's setReceiveHandler().</p>
 
     <p></p>
   syntax: &o1
     content: public interface PartitionReceiveHandler
-  see:
-  - type: com.microsoft.azure.eventhubs._partition_receiver.setReceiveHandler(final PartitionReceiveHandler)
-    description: PartitionReceiver::setReceiveHandler
 - uid: com.microsoft.azure.eventhubs._partition_receive_handler.getMaxEventCount()
   id: getMaxEventCount()
   parent: com.microsoft.azure.eventhubs._partition_receive_handler
@@ -107,10 +104,7 @@ items:
     parameters:
     - id: events
       type: f42d2527com.microsoft.azure.eventhubs._event_dataa08ddfce
-      description: <p>the list of fetched events from the corresponding <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p>
-  see:
-  - type: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
-    description: PartitionReceiver::receive
+      description: <p>the list of fetched events from the corresponding PartitionReceiver. </p>
 references:
 - uid: f75371fa
   spec.java:
@@ -169,93 +163,6 @@ references:
     </pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>. </p>
   syntax:
     content: public interface EventData
-- uid: com.microsoft.azure.eventhubs._partition_receiver
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: PartitionReceiver
-  nameWithType: PartitionReceiver
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver
-  type: Interface
-  summary: >-
-    <p>This is a logical representation of receiving from a EventHub partition. </p>
-
-    <p>A <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <ul><li><p>If an epoch based <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> (i.e., <xref uid="com.microsoft.azure.eventhubs._partition_receiver.getEpoch()" data-throw-if-not-resolved="false">PartitionReceiver.getEpoch</xref> != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>. </p></li><li><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></li></ul></p>
-
-    <p></p>
-  syntax:
-    content: public interface PartitionReceiver
-- uid: com.microsoft.azure.eventhubs._partition_receiver.receive(final int)
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: receive(final int maxEventCount)
-  nameWithType: PartitionReceiver.receive(final int maxEventCount)
-  fullName: CompletableFuture<Iterable<EventData>> com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int maxEventCount)
-  type: Method
-  summary: >-
-    <p>Receive a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from an EventHub partition </p>
-
-    <p>Sample code (sample uses sync version of the api but concept are identical): <pre><xref uid="com.microsoft.azure.eventhubs._event_hub_client" data-throw-if-not-resolved="false">EventHubClient</xref> client = <xref uid="com.microsoft.azure.eventhubs._event_hub_client.createSync(final String,final Executor)" data-throw-if-not-resolved="false">EventHubClient.createSync</xref>("__connection__");
-
-    <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref> receiver = client.createPartitionReceiverSync("ConsumerGroup1", "1");
-
-    Iterable{&lt;}<xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>{&gt;} receivedEvents = receiver.receiveSync();</pre></p>
-
-    <p>
-
-      <pre>while (true)
-
-    {
-
-        int batchSize = 0;
-
-        if (receivedEvents != null)
-
-        {
-
-            for(EventData receivedEvent: receivedEvents)
-
-            {
-
-                System.out.println(String.format("Message Payload: %s", new String(receivedEvent.getBytes(), Charset.defaultCharset())));
-
-                System.out.println(String.format("Offset: %s, SeqNo: %s, EnqueueTime: %s",
-
-                    receivedEvent.getSystemProperties().getOffset(),
-
-                    receivedEvent.getSystemProperties().getSequenceNumber(),
-
-                    receivedEvent.getSystemProperties().getEnqueuedTime()));
-
-                batchSize++;
-
-            }
-
-        }</pre>
-
-    </p>
-
-    <p>
-
-      <pre>    System.out.println(String.format("ReceivedBatch Size: %s", batchSize));
-
-        receivedEvents = receiver.receiveSync();
-
-    }
-
-    </pre>
-
-    </p>
-
-    <p></p>
-  syntax:
-    content: public CompletableFuture<Iterable<EventData>> receive(final int maxEventCount)
-    parameters:
-    - id: maxEventCount
-      type: cd225469
-      description: <p>maximum number of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s that this call should return </p>
-    return:
-      type: 5ae8a14ccom.microsoft.azure.eventhubs._event_datae7daa122
-      description: <p>A completableFuture that will yield a batch of <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>'s from the partition on which this receiver is created. Returns 'null' if no <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref> is present. </p>
 - uid: com.microsoft.azure.eventhubs._partition_receive_handler
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs._partition_receive_handler.yml
@@ -264,27 +171,7 @@ references:
   fullName: com.microsoft.azure.eventhubs.PartitionReceiveHandler
   type: Interface
   summary: >-
-    <p>The handler to invoke after receiving <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using <xref uid="com.microsoft.azure.eventhubs._partition_receiver" data-throw-if-not-resolved="false">PartitionReceiver</xref>'s setReceiveHandler().</p>
+    <p>The handler to invoke after receiving <xref uid="com.microsoft.azure.eventhubs._event_data" data-throw-if-not-resolved="false">EventData</xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using PartitionReceiver's setReceiveHandler().</p>
 
     <p></p>
   syntax: *o1
-- uid: com.microsoft.azure.eventhubs._partition_receiver.setReceiveHandler(final PartitionReceiveHandler)
-  parent: com.microsoft.azure.eventhubs._partition_receiver
-  href: com.microsoft.azure.eventhubs._partition_receiver.yml
-  name: setReceiveHandler(final PartitionReceiveHandler receiveHandler)
-  nameWithType: PartitionReceiver.setReceiveHandler(final PartitionReceiveHandler receiveHandler)
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveHandler(final PartitionReceiveHandler receiveHandler)
-  type: Method
-  summary: >-
-    <p>Register a receive handler that will be called when an event is available. A <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>
-
-    <p></p>
-  syntax:
-    content: public CompletableFuture<Void> setReceiveHandler(final PartitionReceiveHandler receiveHandler)
-    parameters:
-    - id: receiveHandler
-      type: 93de0ef9com.microsoft.azure.eventhubs._partition_receive_handler
-      description: <p>An implementation of <xref uid="com.microsoft.azure.eventhubs._partition_receive_handler" data-throw-if-not-resolved="false">PartitionReceiveHandler</xref>. Setting this handler to <code>null</code> will stop the receive pump. </p>
-    return:
-      type: db03ee24
-      description: <p>A completableFuture which sets receiveHandler </p>

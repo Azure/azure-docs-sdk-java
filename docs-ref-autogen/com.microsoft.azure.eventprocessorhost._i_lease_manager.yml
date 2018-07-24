@@ -50,7 +50,7 @@ items:
     startLine: 107
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Acquire the lease on the desired partition for this <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>. </p>
+    <p>Acquire the lease on the desired partition for this EventProcessorHost. </p>
 
     <p>Note that it is legal to acquire a lease that is currently owned by another host, which is called "stealing". Lease-stealing is how partitions are redistributed when additional hosts are started. </p>
 
@@ -191,14 +191,14 @@ items:
     startLine: 71
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Returns lightweight <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> or its own class derived from <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref>, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref>, we heavily recommend doing that.</p>
+    <p>Returns lightweight BaseLease for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return CompleteLease or its own class derived from CompleteLease, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a BaseLease, we heavily recommend doing that.</p>
 
     <p></p>
   syntax:
     content: public CompletableFuture<List<BaseLease>> getAllLeases()
     return:
       type: 0eb76d20com.microsoft.azure.eventprocessorhost._base_leasee7daa122
-      description: <p>CompletableFuture { -&gt;} list of <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref>, completes exceptionally on error. </p>
+      description: <p>CompletableFuture { -&gt;} list of BaseLease, completes exceptionally on error. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease(String)
   id: getLease(String)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
@@ -558,13 +558,9 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.CompleteLease
   type: Class
   summary: >-
-    <p>
+    <p>CompleteLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
-
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> to a method which needs the lease-manager-specific fields. </p>
+    <p>CompleteLease carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight BaseLease to a method which needs the lease-manager-specific fields. </p>
   syntax:
     content: public class CompleteLease extends BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)
@@ -595,13 +591,11 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.BaseLease
   type: Class
   summary: >-
-    <p>
+    <p>BaseLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+    <p>This lightweight base exists to allow ILeaseManager.getAllLeases to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. BaseLease contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
 
-    <p>This lightweight base exists to allow <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases()" data-throw-if-not-resolved="false">ILeaseManager.getAllLeases</xref> to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
-
-    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on ILeaseManager. </p>
   syntax:
     content: public class BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getAllLeases()
@@ -612,14 +606,14 @@ references:
   fullName: CompletableFuture<List<BaseLease>> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getAllLeases()
   type: Method
   summary: >-
-    <p>Returns lightweight <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> or its own class derived from <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref>, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref>, we heavily recommend doing that.</p>
+    <p>Returns lightweight BaseLease for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return CompleteLease or its own class derived from CompleteLease, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a BaseLease, we heavily recommend doing that.</p>
 
     <p></p>
   syntax:
     content: public CompletableFuture<List<BaseLease>> getAllLeases()
     return:
       type: 0eb76d20com.microsoft.azure.eventprocessorhost._base_leasee7daa122
-      description: <p>CompletableFuture { -&gt;} list of <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref>, completes exceptionally on error. </p>
+      description: <p>CompletableFuture { -&gt;} list of BaseLease, completes exceptionally on error. </p>
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.createAllLeasesIfNotExists(List<String>)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
@@ -668,7 +662,7 @@ references:
   fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.acquireLease(CompleteLease lease)
   type: Method
   summary: >-
-    <p>Acquire the lease on the desired partition for this <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>. </p>
+    <p>Acquire the lease on the desired partition for this EventProcessorHost. </p>
 
     <p>Note that it is legal to acquire a lease that is currently owned by another host, which is called "stealing". Lease-stealing is how partitions are redistributed when additional hosts are started. </p>
 
@@ -684,15 +678,6 @@ references:
     return:
       type: 7e53ac82
       description: <p>CompletableFuture { -&gt;} true if the lease was acquired, false if not, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_host
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
-  name: EventProcessorHost
-  nameWithType: EventProcessorHost
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost
-  type: Class
-  syntax:
-    content: public class EventProcessorHost
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.renewLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
