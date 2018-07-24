@@ -27,13 +27,9 @@ items:
     startLine: 19
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>
+    <p>CompleteLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
-
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> to a method which needs the lease-manager-specific fields. </p>
+    <p>CompleteLease carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight BaseLease to a method which needs the lease-manager-specific fields. </p>
   syntax: &o1
     content: public class CompleteLease extends BaseLease
   inheritance:
@@ -114,7 +110,7 @@ items:
     startLine: 34
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> for the given partition.</p>
+    <p>Create a CompleteLease for the given partition.</p>
 
     <p></p>
   syntax:
@@ -265,7 +261,7 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.BaseLease.BaseLease(String partitionId)
   type: Constructor
   summary: >-
-    <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> for the given partition.</p>
+    <p>Create a BaseLease for the given partition.</p>
 
     <p></p>
   syntax:
@@ -282,7 +278,7 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.BaseLease.BaseLease(String partitionId, String owner, boolean isOwned)
   type: Constructor
   summary: >-
-    <p>Create and populate a <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> for the given partition.</p>
+    <p>Create and populate a BaseLease for the given partition.</p>
 
     <p></p>
   syntax:
@@ -305,7 +301,7 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.BaseLease.BaseLease(BaseLease source)
   type: Constructor
   summary: >-
-    <p>Create a <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> by duplicating the given Lease.</p>
+    <p>Create a BaseLease by duplicating the given Lease.</p>
 
     <p></p>
   syntax:
@@ -313,10 +309,7 @@ references:
     parameters:
     - id: source
       type: com.microsoft.azure.eventprocessorhost._base_lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> to clone. </p>
+      description: <p>BaseLease to clone. </p>
 - uid: com.microsoft.azure.eventprocessorhost._base_lease.compareTo(BaseLease)
   parent: com.microsoft.azure.eventprocessorhost._base_lease
   href: com.microsoft.azure.eventprocessorhost._base_lease.yml
@@ -355,7 +348,7 @@ references:
   fullName: String com.microsoft.azure.eventprocessorhost.BaseLease.getOwner()
   type: Method
   summary: >-
-    <p>The owner of a lease is the name of the <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> instance which currently holds the lease.</p>
+    <p>The owner of a lease is the name of the EventProcessorHost instance which currently holds the lease.</p>
 
     <p></p>
   syntax:
@@ -441,13 +434,11 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.BaseLease
   type: Class
   summary: >-
-    <p>
+    <p>BaseLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
+    <p>This lightweight base exists to allow ILeaseManager.getAllLeases to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. BaseLease contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
 
-    <p>This lightweight base exists to allow <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases()" data-throw-if-not-resolved="false">ILeaseManager.getAllLeases</xref> to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
-
-    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on ILeaseManager. </p>
   syntax:
     content: public class BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._azure_blob_lease
@@ -459,20 +450,7 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.CompleteLease
   type: Class
   summary: >-
-    <p>
+    <p>CompleteLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
-
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._complete_lease" data-throw-if-not-resolved="false">CompleteLease</xref> carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight <xref uid="com.microsoft.azure.eventprocessorhost._base_lease" data-throw-if-not-resolved="false">BaseLease</xref> to a method which needs the lease-manager-specific fields. </p>
+    <p>CompleteLease carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight BaseLease to a method which needs the lease-manager-specific fields. </p>
   syntax: *o1
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
-  name: ILeaseManager
-  nameWithType: ILeaseManager
-  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager
-  type: Interface
-  syntax:
-    content: public interface ILeaseManager
