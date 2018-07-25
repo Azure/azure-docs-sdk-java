@@ -5,10 +5,7 @@ items:
   parent: com.microsoft.azure.storage.blob
   children:
   - com.microsoft.azure.storage.blob._request_retry_options.DEFAULT
-  - com.microsoft.azure.storage.blob._request_retry_options.getMaxTries()
-  - com.microsoft.azure.storage.blob._request_retry_options.getSecondaryHost()
-  - com.microsoft.azure.storage.blob._request_retry_options.getTryTimeout()
-  - com.microsoft.azure.storage.blob._request_retry_options.RequestRetryOptions(RetryPolicyType,int,int,Long,Long,String)
+  - com.microsoft.azure.storage.blob._request_retry_options.RequestRetryOptions(RetryPolicyType,Integer,Integer,Long,Long,String)
   href: com.microsoft.azure.storage.blob._request_retry_options.yml
   langs:
   - java
@@ -22,9 +19,9 @@ items:
       branch: New-Storage-SDK-V10-Preview
       repo: https://github.com/azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 21
+    startLine: 23
   package: com.microsoft.azure.storage.blob
-  summary: <p>Options for configuring the <xref uid="com.microsoft.azure.storage.blob._request_retry_factory" data-throw-if-not-resolved="false">RequestRetryFactory</xref>. Please refer to the Factory for more information. </p>
+  summary: <p>Options for configuring the <xref uid="com.microsoft.azure.storage.blob._request_retry_factory" data-throw-if-not-resolved="false">RequestRetryFactory</xref>. Please refer to the Factory for more information. Note that there is no option for overall operation timeout. This is because Rx object have a timeout field which provides this functionality. </p>
   syntax: &o1
     content: public class RequestRetryOptions
   inheritance:
@@ -37,136 +34,87 @@ items:
   - java
   name: DEFAULT
   nameWithType: RequestRetryOptions.DEFAULT
-  fullName: final RequestRetryOptions com.microsoft.azure.storage.blob.RequestRetryOptions.DEFAULT
+  fullName: com.microsoft.azure.storage.blob.RequestRetryOptions.DEFAULT
   type: Field
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 27
+    startLine: 29
   package: com.microsoft.azure.storage.blob
-  summary: '<p>An object representing default retry values: Exponential backoff, maxTries=4, tryTimeout=30, retryDelayInMs=4, maxRetryDelayInMs=120000, secondaryHost=null. </p>'
+  summary: '<p>An object representing default retry values: Exponential backoff, maxTries=4, tryTimeout=30, retryDelayInMs=4000, maxRetryDelayInMs=120000, secondaryHost=null. </p>'
   syntax:
     content: >-
-      public static final RequestRetryOptions DEFAULT= new RequestRetryOptions(RetryPolicyType.EXPONENTIAL, 0,
-                  0,null, null, null)
+      public static final RequestRetryOptions DEFAULT= new RequestRetryOptions(RetryPolicyType.EXPONENTIAL, null,
+                  null,null, null, null)
     return:
       type: 93de0ef9com.microsoft.azure.storage.blob._request_retry_options
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getMaxTries()
-  id: getMaxTries()
+- uid: com.microsoft.azure.storage.blob._request_retry_options.RequestRetryOptions(RetryPolicyType,Integer,Integer,Long,Long,String)
+  id: RequestRetryOptions(RetryPolicyType,Integer,Integer,Long,Long,String)
   parent: com.microsoft.azure.storage.blob._request_retry_options
   href: com.microsoft.azure.storage.blob._request_retry_options.yml
   langs:
   - java
-  name: getMaxTries()
-  nameWithType: RequestRetryOptions.getMaxTries()
-  fullName: int com.microsoft.azure.storage.blob.RequestRetryOptions.getMaxTries()
-  overload: com.microsoft.azure.storage.blob._request_retry_options.getMaxTries*
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 123
-  package: com.microsoft.azure.storage.blob
-  syntax:
-    content: public int getMaxTries()
-    return:
-      type: f75371fa
-      description: <p>MaxTries specifies the maximum number of attempts an operation will be tried before producing an error (0=default). A value of zero means that you accept our default policy. A value of 1 means 1 try and no retries. </p>
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getSecondaryHost()
-  id: getSecondaryHost()
-  parent: com.microsoft.azure.storage.blob._request_retry_options
-  href: com.microsoft.azure.storage.blob._request_retry_options.yml
-  langs:
-  - java
-  name: getSecondaryHost()
-  nameWithType: RequestRetryOptions.getSecondaryHost()
-  fullName: String com.microsoft.azure.storage.blob.RequestRetryOptions.getSecondaryHost()
-  overload: com.microsoft.azure.storage.blob._request_retry_options.getSecondaryHost*
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 146
-  package: com.microsoft.azure.storage.blob
-  syntax:
-    content: public String getSecondaryHost()
-    return:
-      type: "26831127"
-      description: >-
-        <p>If a secondaryHost is specified, retries will be tried against this host. If secondaryHost is<code>null 
-
-            </code> (the default) then operations are not retried against another host. NOTE: Before setting this field, make sure you understand the issues around reading stale and potentially-inconsistent data at <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-designing-ha-apps-with-ragrs">this webpage</a>. </p>
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getTryTimeout()
-  id: getTryTimeout()
-  parent: com.microsoft.azure.storage.blob._request_retry_options
-  href: com.microsoft.azure.storage.blob._request_retry_options.yml
-  langs:
-  - java
-  name: getTryTimeout()
-  nameWithType: RequestRetryOptions.getTryTimeout()
-  fullName: int com.microsoft.azure.storage.blob.RequestRetryOptions.getTryTimeout()
-  overload: com.microsoft.azure.storage.blob._request_retry_options.getTryTimeout*
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 135
-  package: com.microsoft.azure.storage.blob
-  syntax:
-    content: public int getTryTimeout()
-    return:
-      type: f75371fa
-      description: '<p>tryTimeout indicates the maximum time in seconds allowed for any single try of an HTTP request. A value of zero means that you accept our default timeout. NOTE: When transferring large amounts of data, the default TryTimeout will probably not be sufficient. You should override this value based on the bandwidth available to the host machine and proximity to the Storage service. A good starting point may be something like (60 seconds per MB of anticipated-payload-size). </p>'
-- uid: com.microsoft.azure.storage.blob._request_retry_options.RequestRetryOptions(RetryPolicyType,int,int,Long,Long,String)
-  id: RequestRetryOptions(RetryPolicyType,int,int,Long,Long,String)
-  parent: com.microsoft.azure.storage.blob._request_retry_options
-  href: com.microsoft.azure.storage.blob._request_retry_options.yml
-  langs:
-  - java
-  name: RequestRetryOptions(RetryPolicyType retryPolicyType, int maxTries, int tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
-  nameWithType: RequestRetryOptions.RequestRetryOptions(RetryPolicyType retryPolicyType, int maxTries, int tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
-  fullName: com.microsoft.azure.storage.blob.RequestRetryOptions.RequestRetryOptions(RetryPolicyType retryPolicyType, int maxTries, int tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
+  name: RequestRetryOptions(RetryPolicyType retryPolicyType, Integer maxTries, Integer tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
+  nameWithType: RequestRetryOptions.RequestRetryOptions(RetryPolicyType retryPolicyType, Integer maxTries, Integer tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
+  fullName: com.microsoft.azure.storage.blob.RequestRetryOptions.RequestRetryOptions(RetryPolicyType retryPolicyType, Integer maxTries, Integer tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
   overload: com.microsoft.azure.storage.blob._request_retry_options.RequestRetryOptions*
   type: Constructor
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/RequestRetryOptions.java
-    startLine: 74
+    startLine: 76
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Configures how the <xref uid="" data-throw-if-not-resolved="false">com.microsoft.rest.v2.http.HttpPipeline</xref> should retry requests.</p>
 
     <p></p>
   syntax:
-    content: public RequestRetryOptions(RetryPolicyType retryPolicyType, int maxTries, int tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
+    content: public RequestRetryOptions(RetryPolicyType retryPolicyType, Integer maxTries, Integer tryTimeout, Long retryDelayInMs, Long maxRetryDelayInMs, String secondaryHost)
     parameters:
     - id: retryPolicyType
       type: com.microsoft.azure.storage.blob._retry_policy_type
-      description: <p>A <xref uid="com.microsoft.azure.storage.blob._retry_policy_type" data-throw-if-not-resolved="false">RetryPolicyType</xref> specifying the type of retry pattern to use. </p>
-    - id: maxTries
-      type: f75371fa
       description: >-
-        <p>Specifies the maximum number of attempts an operation will be tried before producing an error (0=default). A value of<code>null 
+        <p>A <xref uid="com.microsoft.azure.storage.blob._retry_policy_type" data-throw-if-not-resolved="false">RetryPolicyType</xref> specifying the type of retry pattern to use. A value of<code>null 
+
+            </code> accepts the default. </p>
+    - id: maxTries
+      type: 08effaa0
+      description: >-
+        <p>Specifies the maximum number of attempts an operation will be tried before producing an error. A value of <code>null 
 
             </code> means that you accept our default policy. A value of 1 means 1 try and no retries. </p>
     - id: tryTimeout
-      type: f75371fa
+      type: 08effaa0
       description: >-
         <p>Indicates the maximum time allowed for any single try of an HTTP request. A value of<code>null 
 
-            </code> means that you accept our default timeout. NOTE: When transferring large amounts of data, the default TryTimeout will probably not be sufficient. You should override this value based on the bandwidth available to the host machine and proximity to the Storage service. A good starting point may be something like (60 seconds per MB of anticipated-payload-size). </p>
+            </code> means that you accept our default. NOTE: When transferring large amounts of data, the default TryTimeout will probably not be sufficient. You should override this value based on the bandwidth available to the host machine and proximity to the Storage service. A good starting point may be something like (60 seconds per MB of anticipated-payload-size). </p>
     - id: retryDelayInMs
       type: 34f09483
-      description: <p>Specifies the amount of delay to use before retrying an operation (0=default). The delay increases (exponentially or linearly) with each retry up to a maximum specified by MaxRetryDelay. If you specify 0, then you must also specify 0 for MaxRetryDelay. </p>
+      description: >-
+        <p>Specifies the amount of delay to use before retrying an operation. A value of<code>null 
+
+            </code> means you accept the default value. The delay increases (exponentially or linearly) with each retry up to a maximum specified by MaxRetryDelay. If you specify<code>null 
+
+            </code> , then you must also specify<code>null 
+
+            </code> for MaxRetryDelay. </p>
     - id: maxRetryDelayInMs
       type: 34f09483
-      description: <p>Specifies the maximum delay allowed before retrying an operation (0=default). If you specify 0, then you must also specify 0 for RetryDelay. </p>
+      description: >-
+        <p>Specifies the maximum delay allowed before retrying an operation. A value of<code>null 
+
+            </code> means you accept the default value. If you specify<code>null 
+
+            </code> , then you must also specify<code>null 
+
+            </code> for RetryDelay. </p>
     - id: secondaryHost
       type: "26831127"
       description: >-
         <p>If a secondaryHost is specified, retries will be tried against this host. If secondaryHost is<code>null 
 
-            </code> (the default) then operations are not retried against another host. NOTE: Before setting this field, make sure you understand the issues around reading stale and potentially-inconsistent data at <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-designing-ha-apps-with-ragrs">this webpage</a> this webpage. </p>
+            </code> (the default) then operations are not retried against another host. NOTE: Before setting this field, make sure you understand the issues around reading stale and potentially-inconsistent data at <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-designing-ha-apps-with-ragrs">this webpage</a> this web page. </p>
 references:
 - uid: 93de0ef9com.microsoft.azure.storage.blob._request_retry_options
   spec.java:
@@ -176,10 +124,10 @@ references:
     name: RequestRetryOptions
     fullName: com.microsoft.azure.storage.blob.RequestRetryOptions
     href: com.microsoft.azure.storage.blob._request_retry_options.yml
-- uid: f75371fa
+- uid: 08effaa0
   spec.java:
-  - name: int
-    fullName: int
+  - name: Integer
+    fullName: Integer
 - uid: 34f09483
   spec.java:
   - name: Long
@@ -193,21 +141,6 @@ references:
   nameWithType: RequestRetryOptions.RequestRetryOptions
   fullName: com.microsoft.azure.storage.blob.RequestRetryOptions.RequestRetryOptions
   package: com.microsoft.azure.storage.blob
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getMaxTries*
-  name: getMaxTries
-  nameWithType: RequestRetryOptions.getMaxTries
-  fullName: int com.microsoft.azure.storage.blob.RequestRetryOptions.getMaxTries
-  package: com.microsoft.azure.storage.blob
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getTryTimeout*
-  name: getTryTimeout
-  nameWithType: RequestRetryOptions.getTryTimeout
-  fullName: int com.microsoft.azure.storage.blob.RequestRetryOptions.getTryTimeout
-  package: com.microsoft.azure.storage.blob
-- uid: com.microsoft.azure.storage.blob._request_retry_options.getSecondaryHost*
-  name: getSecondaryHost
-  nameWithType: RequestRetryOptions.getSecondaryHost
-  fullName: String com.microsoft.azure.storage.blob.RequestRetryOptions.getSecondaryHost
-  package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._request_retry_options
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._request_retry_options.yml
@@ -215,7 +148,7 @@ references:
   nameWithType: RequestRetryOptions
   fullName: com.microsoft.azure.storage.blob.RequestRetryOptions
   type: Class
-  summary: <p>Options for configuring the <xref uid="com.microsoft.azure.storage.blob._request_retry_factory" data-throw-if-not-resolved="false">RequestRetryFactory</xref>. Please refer to the Factory for more information. </p>
+  summary: <p>Options for configuring the <xref uid="com.microsoft.azure.storage.blob._request_retry_factory" data-throw-if-not-resolved="false">RequestRetryFactory</xref>. Please refer to the Factory for more information. Note that there is no option for overall operation timeout. This is because Rx object have a timeout field which provides this functionality. </p>
   syntax: *o1
 - uid: com.microsoft.azure.storage.blob._retry_policy_type.EXPONENTIAL
   parent: com.microsoft.azure.storage.blob._retry_policy_type
