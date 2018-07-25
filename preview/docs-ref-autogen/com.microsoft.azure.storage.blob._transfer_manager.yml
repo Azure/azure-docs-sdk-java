@@ -20,7 +20,7 @@ items:
       branch: New-Storage-SDK-V10-Preview
       repo: https://github.com/azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 20
+    startLine: 38
   package: com.microsoft.azure.storage.blob
   summary: <p>This class contains a collection of methods (and structures associated with those methods) which perform higher-level operations. Whereas operations on the URL types guarantee a single REST request and make no assumptions on desired behavior, these methods will often compose several requests to provide a convenient way of performing more complex operations. Further, we will make our own assumptions and optimizations for common cases that may not be ideal for rarer cases. </p>
   syntax:
@@ -35,20 +35,20 @@ items:
   - java
   name: uploadByteBuffersToBlockBlob(final Iterable<ByteBuffer> data, final BlockBlobURL blockBlobURL, final UploadToBlockBlobOptions options)
   nameWithType: TransferManager.uploadByteBuffersToBlockBlob(final Iterable<ByteBuffer> data, final BlockBlobURL blockBlobURL, final UploadToBlockBlobOptions options)
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadByteBuffersToBlockBlob(final Iterable<ByteBuffer> data, final BlockBlobURL blockBlobURL, final UploadToBlockBlobOptions options)
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadByteBuffersToBlockBlob(final Iterable<ByteBuffer> data, final BlockBlobURL blockBlobURL, final UploadToBlockBlobOptions options)
   overload: com.microsoft.azure.storage.blob._transfer_manager.uploadByteBuffersToBlockBlob*
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 188
+    startLine: 222
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads an iterable of<code>ByteBuffers 
 
-        </code> to a block blob. The data will first data will first be examined to check the size and validate the number of blocks. If the total amount of data in all the buffers is small enough, this method will perform a single upload operation. Otherwise, each<code>ByteBuffer 
+        </code> to a block blob. The data will first data will first be examined to check the size and validate the number of blocks. If the total amount of data in all the buffers is small enough (i.e. less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOB_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOB_BYTES</xref>, this method will perform a single upload operation. Otherwise, each<code>ByteBuffer 
 
-        </code> in the iterable is assumed to be its own discreet block of data for the block blob and will be uploaded as such.</p>
+        </code> in the iterable is assumed to be its own discreet block of data for the block blob and will be uploaded as such. Note that in this case, each ByteBuffer must be less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOCK_BYTES</xref>. Note as well that there can only be up to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS" data-throw-if-not-resolved="false">BlockBlobURL#MAX_BLOCKS</xref> ByteBuffers in the list.</p>
 
     <p></p>
   syntax:
@@ -79,13 +79,13 @@ items:
   - java
   name: uploadByteBufferToBlockBlob(final ByteBuffer data, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
   nameWithType: TransferManager.uploadByteBufferToBlockBlob(final ByteBuffer data, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadByteBufferToBlockBlob(final ByteBuffer data, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadByteBufferToBlockBlob(final ByteBuffer data, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
   overload: com.microsoft.azure.storage.blob._transfer_manager.uploadByteBufferToBlockBlob*
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 146
+    startLine: 176
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads a large ByteBuffer to a block blob in parallel, breaking it up into block-size chunks if necessary.</p>
@@ -122,13 +122,13 @@ items:
   - java
   name: uploadFileToBlockBlob(final FileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
   nameWithType: TransferManager.uploadFileToBlockBlob(final FileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final FileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final FileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
   overload: com.microsoft.azure.storage.blob._transfer_manager.uploadFileToBlockBlob*
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 91
+    startLine: 111
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads the contents of a file to a block blob in parallel, breaking it into block-size chunks if necessary.</p>
@@ -145,7 +145,10 @@ items:
       description: <p>Points to the blob to which the data should be uploaded. </p>
     - id: blockLength
       type: cd225469
-      description: <p>If the data must be broken up into blocks, this value determines what size those blocks will be. This will affect the total number of service requests made. This value will be ignored if the data can be uploaded in a single put-blob operation. </p>
+      description: >-
+        <p>If the data must be broken up into blocks, this value determines what size those blocks will be. This will affect the total number of service requests made. This value will be ignored if the data can be uploaded in a single put-blob operation. Must be between 1 and <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOCK_BYTES</xref>. Note as well that<code>fileLength/blockLength 
+
+            </code> must be less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS" data-throw-if-not-resolved="false">BlockBlobURL#MAX_BLOCKS</xref>. </p>
     - id: options
       type: 01830b28
       description: >-
@@ -191,7 +194,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._transfer_manager.uploadFileToBlockBlob*
   name: uploadFileToBlockBlob
   nameWithType: TransferManager.uploadFileToBlockBlob
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob
   package: com.microsoft.azure.storage.blob
 - uid: d8b5c3b1
   spec.java:
@@ -200,7 +203,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._transfer_manager.uploadByteBufferToBlockBlob*
   name: uploadByteBufferToBlockBlob
   nameWithType: TransferManager.uploadByteBufferToBlockBlob
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadByteBufferToBlockBlob
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadByteBufferToBlockBlob
   package: com.microsoft.azure.storage.blob
 - uid: 0817687c
   spec.java:
@@ -209,7 +212,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._transfer_manager.uploadByteBuffersToBlockBlob*
   name: uploadByteBuffersToBlockBlob
   nameWithType: TransferManager.uploadByteBuffersToBlockBlob
-  fullName: static Single<CommonRestResponse> com.microsoft.azure.storage.blob.TransferManager.uploadByteBuffersToBlockBlob
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadByteBuffersToBlockBlob
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._common_rest_response
   parent: com.microsoft.azure.storage.blob
@@ -231,3 +234,39 @@ references:
   summary: <p>Represents a URL to a block blob. It may be obtained by direct construction or via the create method on a <xref uid="com.microsoft.azure.storage.blob._container_u_r_l" data-throw-if-not-resolved="false">ContainerURL</xref> object. This class does not hold any state about a particular blob but is instead a convenient way of sending off appropriate requests to the resource on the service. Please refer to the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs&amp;ndash;append-blobs&amp;ndash;and-page-blobs">Azure Docs</a> for more information on block blobs. </p>
   syntax:
     content: public class BlockBlobURL extends BlobURL
+- uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES
+  parent: com.microsoft.azure.storage.blob._block_blob_u_r_l
+  href: com.microsoft.azure.storage.blob._block_blob_u_r_l.yml
+  name: MAX_PUT_BLOCK_BYTES
+  nameWithType: BlockBlobURL.MAX_PUT_BLOCK_BYTES
+  fullName: com.microsoft.azure.storage.blob.BlockBlobURL.MAX_PUT_BLOCK_BYTES
+  type: Field
+  summary: <p>Indicates the maximum number of bytes that can be sent in a call to stageBlock. </p>
+  syntax:
+    content: public static final int MAX_PUT_BLOCK_BYTES= 100 * Constants.MB
+    return:
+      type: cd225469
+- uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS
+  parent: com.microsoft.azure.storage.blob._block_blob_u_r_l
+  href: com.microsoft.azure.storage.blob._block_blob_u_r_l.yml
+  name: MAX_BLOCKS
+  nameWithType: BlockBlobURL.MAX_BLOCKS
+  fullName: com.microsoft.azure.storage.blob.BlockBlobURL.MAX_BLOCKS
+  type: Field
+  summary: <p>Indicates the maximum number of blocks allowed in a block blob. </p>
+  syntax:
+    content: public static final int MAX_BLOCKS= 50000
+    return:
+      type: cd225469
+- uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOB_BYTES
+  parent: com.microsoft.azure.storage.blob._block_blob_u_r_l
+  href: com.microsoft.azure.storage.blob._block_blob_u_r_l.yml
+  name: MAX_PUT_BLOB_BYTES
+  nameWithType: BlockBlobURL.MAX_PUT_BLOB_BYTES
+  fullName: com.microsoft.azure.storage.blob.BlockBlobURL.MAX_PUT_BLOB_BYTES
+  type: Field
+  summary: <p>Indicates the maximum number of bytes that can be sent in a call to upload. </p>
+  syntax:
+    content: public static final int MAX_PUT_BLOB_BYTES= 256 * Constants.MB
+    return:
+      type: cd225469
