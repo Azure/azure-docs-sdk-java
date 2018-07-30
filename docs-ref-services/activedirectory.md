@@ -82,14 +82,14 @@ RoleAssignment roleAssignment2 = authenticated.roleAssignments()
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/overview/azure/activedirectory/management)
+> [Explore the Management APIs](/java/api/activedirectory/management)
 
 
 ## Samples
 
-[Manage groups, users, and roles](https://github.com/Azure-Samples/aad-java-browse-graph-and-manage-roles)    
+[Manage groups, users, and roles](https://github.com/Azure-Samples/aad-java-manage-users-groups-and-roles)    
 [Sign-in and sign-out users in a Java web app](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect)    
 [Access an API with Azure AD using a command line app](https://github.com/Azure-Samples/active-directory-java-native-headless)   
-[Call the Active AD Graph API from your Java web app](https://github.com/Azure-Samples/active-directory-java-graphapi-web/)  
+[Call the Active AD Graph API from your Java web app](https://github.com/Azure-Samples/active-directory-java-webapp-openidconnect)  
 
 Explore more [sample Java code for Azure AD](https://azure.microsoft.com/en-us/resources/samples/?term=active+directory&platform=java) you can use in your apps.

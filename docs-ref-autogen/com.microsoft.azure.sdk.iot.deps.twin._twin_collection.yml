@@ -31,7 +31,7 @@ items:
     path: deps/src/main/java/com/microsoft/azure/sdk/iot/deps/twin/TwinCollection.java
     startLine: 95
   package: com.microsoft.azure.sdk.iot.deps.twin
-  summary: "<p>Representation of a single Twin collection.</p>\r\n<p>The <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> can contain up to 5 levels of sub TwinCollections. Once the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is a extension of the<code>HashMap \r\n    </code> , both <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, <xref uid=\"\" data-throw-if-not-resolved=\"false\">get(Object)</xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\">getTwinMetadata(String)</xref> for <b>Color</b> will return the Object <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata\" data-throw-if-not-resolved=\"false\">TwinMetadata</xref> that contain <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdated()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdated()</xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdatedVersion()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdatedVersion()</xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
+  summary: "<p>Representation of a single Twin collection.</p>\r\n<p>The TwinCollection is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A TwinCollection can contain up to 5 levels of sub TwinCollections. Once the TwinCollection is a extension of the<code>HashMap \r\n    </code> , both TwinCollection as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid TwinCollection with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above TwinCollection, <xref uid=\"\" data-throw-if-not-resolved=\"false\">get(Object)</xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\">getTwinMetadata(String)</xref> for <b>Color</b> will return the Object TwinMetadata that contain <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdated()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdated()</xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdatedVersion()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdatedVersion()</xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested TwinCollection, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
   syntax: &o2
     content: public class TwinCollection
   inheritance:
@@ -45,7 +45,7 @@ items:
   - java
   name: createFromRawCollection(Map<? extends String, Object> rawCollection)
   nameWithType: TwinCollection.createFromRawCollection(Map<? extends String, Object> rawCollection)
-  fullName: static TwinCollection com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.createFromRawCollection(Map<? extends String, Object> rawCollection)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.createFromRawCollection(Map<? extends String, Object> rawCollection)
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.createFromRawCollection*
   type: Method
   source:
@@ -58,9 +58,9 @@ items:
 
     <p>This internal constructor is used to the deserialization process.</p>
 
-    <p>During the deserialization process, the GSON will convert both tags and properties to a raw Map, which will includes the $version and $metadata as part of the collection. So, we need to reorganize this map using the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> format. This constructor will do that.</p>
+    <p>During the deserialization process, the GSON will convert both tags and properties to a raw Map, which will includes the $version and $metadata as part of the collection. So, we need to reorganize this map using the TwinCollection format. This constructor will do that.</p>
 
-    <p>For instance, the following JSON is a valid <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> with its metadata. <pre><code>{
+    <p>For instance, the following JSON is a valid TwinCollection with its metadata. <pre><code>{
 
             "Color":"White",
 
@@ -127,7 +127,7 @@ items:
       description: >-
         <p>the<code>Map&lt;? extends String, Object&gt; 
 
-            </code> with contain all <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> information, without any differentiation between each entity is the Twin information and each entity is part of the Twin metadata. </p>
+            </code> with contain all TwinCollection information, without any differentiation between each entity is the Twin information and each entity is part of the Twin metadata. </p>
     return:
       type: com.microsoft.azure.sdk.iot.deps.twin._twin_collection
       description: <p>The instance of the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. </p>
@@ -142,7 +142,7 @@ items:
   - java
   name: getTwinMetadata()
   nameWithType: TwinCollection.getTwinMetadata()
-  fullName: TwinMetadata com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata()
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata*
   type: Method
   source:
@@ -151,7 +151,7 @@ items:
     startLine: 450
   package: com.microsoft.azure.sdk.iot.deps.twin
   summary: >-
-    <p>Getter for the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> metadata</p>
+    <p>Getter for the TwinCollection metadata</p>
 
     <p></p>
   syntax:
@@ -159,7 +159,7 @@ items:
     return:
       type: com.microsoft.azure.sdk.iot.deps.twin._twin_metadata
       description: >-
-        <p>the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_metadata" data-throw-if-not-resolved="false">TwinMetadata</xref> of the Whole <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. It can be<code>null 
+        <p>the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_metadata" data-throw-if-not-resolved="false">TwinMetadata</xref> of the Whole TwinCollection. It can be<code>null 
 
             </code> . </p>
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)
@@ -170,7 +170,7 @@ items:
   - java
   name: getTwinMetadata(String key)
   nameWithType: TwinCollection.getTwinMetadata(String key)
-  fullName: TwinMetadata com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata(String key)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata(String key)
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata*
   type: Method
   source:
@@ -179,7 +179,7 @@ items:
     startLine: 466
   package: com.microsoft.azure.sdk.iot.deps.twin
   summary: >-
-    <p>Getter for the entry metadata in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
+    <p>Getter for the entry metadata in the TwinCollection.</p>
 
     <p></p>
   syntax: &o3
@@ -194,7 +194,7 @@ items:
     return:
       type: com.microsoft.azure.sdk.iot.deps.twin._twin_metadata
       description: >-
-        <p>the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_metadata" data-throw-if-not-resolved="false">TwinMetadata</xref> ot the specific entry in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. It can be<code>null 
+        <p>the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_metadata" data-throw-if-not-resolved="false">TwinMetadata</xref> ot the specific entry in the TwinCollection. It can be<code>null 
 
             </code> . </p>
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getVersion()
@@ -205,7 +205,7 @@ items:
   - java
   name: getVersion()
   nameWithType: TwinCollection.getVersion()
-  fullName: Integer com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getVersion()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getVersion()
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getVersion*
   type: Method
   source:
@@ -235,7 +235,7 @@ items:
   - java
   name: put(String key, Object value)
   nameWithType: TwinCollection.put(String key, Object value)
-  fullName: Object com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put(String key, Object value)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put(String key, Object value)
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.put*
   type: Method
   source:
@@ -244,13 +244,13 @@ items:
     startLine: 214
   package: com.microsoft.azure.sdk.iot.deps.twin
   summary: >-
-    <p>Add a single new entry in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
+    <p>Add a single new entry in the TwinCollection.</p>
 
     <p>Override<code>HashMap.put(String, Object) 
 
         </code> .</p>
 
-    <p>This function will add a single pair key value to the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. By the Twin definition, the<code>Object 
+    <p>This function will add a single pair key value to the TwinCollection. By the Twin definition, the<code>Object 
 
         </code> can contain types of<code>Boolean 
 
@@ -271,7 +271,7 @@ items:
       description: >-
         <p>the<code>String 
 
-            </code> that represent the key of the new entry. It cannot be {#code null} or empty. </p>
+            </code> that represent the key of the new entry. It cannot be {code null} or empty. </p>
     - id: value
       type: "79317049"
       description: >-
@@ -294,7 +294,7 @@ items:
   - java
   name: putAll(Map<? extends String, ?> map)
   nameWithType: TwinCollection.putAll(Map<? extends String, ?> map)
-  fullName: void com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.putAll(Map<? extends String, ?> map)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.putAll(Map<? extends String, ?> map)
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.putAll*
   type: Method
   source:
@@ -303,15 +303,15 @@ items:
     startLine: 184
   package: com.microsoft.azure.sdk.iot.deps.twin
   summary: >-
-    <p>Add all information in the provided Map to the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
+    <p>Add all information in the provided Map to the TwinCollection.</p>
 
     <p>Override<code>HashMap.putAll(Map) 
 
         </code> .</p>
 
-    <p>This function will add all entries in the Map to the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. If the provided key already exists, it will replace the value by the new one. This function will not delete or change the content of the other keys in the Map.</p>
+    <p>This function will add all entries in the Map to the TwinCollection. If the provided key already exists, it will replace the value by the new one. This function will not delete or change the content of the other keys in the Map.</p>
 
-    <p>As defined by the Twin, the value of a entry can be an inner Map. <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> will accept up to 5 levels of inner Maps.</p>
+    <p>As defined by the Twin, the value of a entry can be an inner Map. TwinCollection will accept up to 5 levels of inner Maps.</p>
 
     <p></p>
   syntax:
@@ -322,7 +322,7 @@ items:
       description: >-
         <p>A<code>Map 
 
-            </code> of entries to add to the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. </p>
+            </code> of entries to add to the TwinCollection. </p>
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toJsonElement()
   id: toJsonElement()
   parent: com.microsoft.azure.sdk.iot.deps.twin._twin_collection
@@ -331,7 +331,7 @@ items:
   - java
   name: toJsonElement()
   nameWithType: TwinCollection.toJsonElement()
-  fullName: JsonElement com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElement()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElement()
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toJsonElement*
   type: Method
   source:
@@ -365,7 +365,7 @@ items:
   - java
   name: toJsonElementWithMetadata()
   nameWithType: TwinCollection.toJsonElementWithMetadata()
-  fullName: JsonElement com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElementWithMetadata()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElementWithMetadata()
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toJsonElementWithMetadata*
   type: Method
   source:
@@ -395,7 +395,7 @@ items:
   - java
   name: toString()
   nameWithType: TwinCollection.toString()
-  fullName: String com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toString()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toString()
   overload: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toString*
   type: Method
   source:
@@ -520,7 +520,7 @@ references:
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.putAll*
   name: putAll
   nameWithType: TwinCollection.putAll
-  fullName: void com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.putAll
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.putAll
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: "26831127"
   spec.java:
@@ -533,7 +533,7 @@ references:
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.put*
   name: put
   nameWithType: TwinCollection.put
-  fullName: Object com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: 8585b2e7
   spec.java:
@@ -542,7 +542,7 @@ references:
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toJsonElement*
   name: toJsonElement
   nameWithType: TwinCollection.toJsonElement
-  fullName: JsonElement com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElement
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElement
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: 08effaa0
   spec.java:
@@ -551,17 +551,17 @@ references:
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getVersion*
   name: getVersion
   nameWithType: TwinCollection.getVersion
-  fullName: Integer com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getVersion
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getVersion
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata*
   name: getTwinMetadata
   nameWithType: TwinCollection.getTwinMetadata
-  fullName: TwinMetadata com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toString*
   name: toString
   nameWithType: TwinCollection.toString
-  fullName: String com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toString
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toString
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: 3c87bd19
   spec.java:
@@ -570,12 +570,12 @@ references:
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.createFromRawCollection*
   name: createFromRawCollection
   nameWithType: TwinCollection.createFromRawCollection
-  fullName: static TwinCollection com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.createFromRawCollection
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.createFromRawCollection
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.toJsonElementWithMetadata*
   name: toJsonElementWithMetadata
   nameWithType: TwinCollection.toJsonElementWithMetadata
-  fullName: JsonElement com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElementWithMetadata
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.toJsonElementWithMetadata
   package: com.microsoft.azure.sdk.iot.deps.twin
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_metadata
   parent: com.microsoft.azure.sdk.iot.deps.twin
@@ -591,7 +591,7 @@ references:
 
     <p>This class store the Date and Version for each entity in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
 
-    <p>For instance, the following is a valid <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref> with its metadata. <pre><code>"$metadata":{
+    <p>For instance, the following is a valid TwinCollection with its metadata. <pre><code>"$metadata":{
 
             "$lastUpdated":"2017-09-21T02:07:44.238Z",
 
@@ -633,16 +633,16 @@ references:
   href: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.yml
   name: put(String key, Object value)
   nameWithType: TwinCollection.put(String key, Object value)
-  fullName: Object com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put(String key, Object value)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.put(String key, Object value)
   type: Method
   summary: >-
-    <p>Add a single new entry in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
+    <p>Add a single new entry in the TwinCollection.</p>
 
     <p>Override<code>HashMap.put(String, Object) 
 
         </code> .</p>
 
-    <p>This function will add a single pair key value to the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>. By the Twin definition, the<code>Object 
+    <p>This function will add a single pair key value to the TwinCollection. By the Twin definition, the<code>Object 
 
         </code> can contain types of<code>Boolean 
 
@@ -663,17 +663,17 @@ references:
   nameWithType: TwinCollection
   fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection
   type: Class
-  summary: "<p>Representation of a single Twin collection.</p>\r\n<p>The <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> can contain up to 5 levels of sub TwinCollections. Once the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> is a extension of the<code>HashMap \r\n    </code> , both <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref> with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, <xref uid=\"\" data-throw-if-not-resolved=\"false\">get(Object)</xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\">getTwinMetadata(String)</xref> for <b>Color</b> will return the Object <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata\" data-throw-if-not-resolved=\"false\">TwinMetadata</xref> that contain <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdated()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdated()</xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdatedVersion()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdatedVersion()</xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection\" data-throw-if-not-resolved=\"false\">TwinCollection</xref>, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
+  summary: "<p>Representation of a single Twin collection.</p>\r\n<p>The TwinCollection is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A TwinCollection can contain up to 5 levels of sub TwinCollections. Once the TwinCollection is a extension of the<code>HashMap \r\n    </code> , both TwinCollection as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid TwinCollection with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above TwinCollection, <xref uid=\"\" data-throw-if-not-resolved=\"false\">get(Object)</xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\">getTwinMetadata(String)</xref> for <b>Color</b> will return the Object TwinMetadata that contain <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdated()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdated()</xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.getLastUpdatedVersion()\" data-throw-if-not-resolved=\"false\">TwinMetadata#getLastUpdatedVersion()</xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested TwinCollection, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
   syntax: *o2
 - uid: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.getTwinMetadata(String)
   parent: com.microsoft.azure.sdk.iot.deps.twin._twin_collection
   href: com.microsoft.azure.sdk.iot.deps.twin._twin_collection.yml
   name: getTwinMetadata(String key)
   nameWithType: TwinCollection.getTwinMetadata(String key)
-  fullName: TwinMetadata com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata(String key)
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinCollection.getTwinMetadata(String key)
   type: Method
   summary: >-
-    <p>Getter for the entry metadata in the <xref uid="com.microsoft.azure.sdk.iot.deps.twin._twin_collection" data-throw-if-not-resolved="false">TwinCollection</xref>.</p>
+    <p>Getter for the entry metadata in the TwinCollection.</p>
 
     <p></p>
   syntax: *o3
@@ -682,7 +682,7 @@ references:
   href: com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.yml
   name: getLastUpdated()
   nameWithType: TwinMetadata.getLastUpdated()
-  fullName: Date com.microsoft.azure.sdk.iot.deps.twin.TwinMetadata.getLastUpdated()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinMetadata.getLastUpdated()
   type: Method
   summary: >-
     <p>Getter for the lastUpdated.</p>
@@ -703,7 +703,7 @@ references:
   href: com.microsoft.azure.sdk.iot.deps.twin._twin_metadata.yml
   name: getLastUpdatedVersion()
   nameWithType: TwinMetadata.getLastUpdatedVersion()
-  fullName: Integer com.microsoft.azure.sdk.iot.deps.twin.TwinMetadata.getLastUpdatedVersion()
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.TwinMetadata.getLastUpdatedVersion()
   type: Method
   summary: >-
     <p>Getter for the lastUpdatedVersion.</p>

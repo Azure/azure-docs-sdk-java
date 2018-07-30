@@ -6,20 +6,19 @@ items:
   children:
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.dispose(boolean)
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.FinalResultReceived
+  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getOutputVoiceName()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getParameters()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getSourceLanguage()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getTargetLanguages()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.IntermediateResultReceived
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired()
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired(boolean)
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognitionErrorRaised
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognizeAsync()
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StartContinuousRecognitionAsync()
+  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.recognizeAsync()
+  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startContinuousRecognitionAsync()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startKeywordRecognitionAsync(KeywordRecognitionModel)
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync()
+  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopContinuousRecognitionAsync()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync()
   - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.SynthesisResultReceived
-  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer)
+  - com.microsoft.cognitiveservices.speech.translation._translation_recognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer,AudioInputStream)
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
   langs:
   - java
@@ -29,11 +28,11 @@ items:
   type: Class
   source:
     remote: &o0
-      path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+      path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
       branch: javadocs
       repo: https://msasg.visualstudio.com/DefaultCollection/Skyman/_git/Carbon
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 24
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 25
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>Performs translation on the speech input. </p>
   syntax: &o1
@@ -45,7 +44,8 @@ items:
   inheritedMembers:
   - com.microsoft.cognitiveservices.speech._recognizer.close()
   - com.microsoft.cognitiveservices.speech._recognizer.RecognitionEvent
-  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer()
+  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
+  - com.microsoft.cognitiveservices.speech._recognizer.s_executorService
   - com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStartedHandler
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStoppedHandler
@@ -59,13 +59,13 @@ items:
   - java
   name: dispose(boolean disposing)
   nameWithType: TranslationRecognizer.dispose(boolean disposing)
-  fullName: void com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.dispose(boolean disposing)
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.dispose(boolean disposing)
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.dispose*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 223
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 176
   package: com.microsoft.cognitiveservices.speech.translation
   syntax:
     content: protected void dispose(boolean disposing)
@@ -80,18 +80,40 @@ items:
   - java
   name: FinalResultReceived
   nameWithType: TranslationRecognizer.FinalResultReceived
-  fullName: final EventHandlerImpl<TranslationTextResultEventArgs> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.FinalResultReceived
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.FinalResultReceived
   type: Field
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 34
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 35
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>The event FinalResultReceived signals that a final recognition result is received. </p>
   syntax:
     content: public final EventHandlerImpl<TranslationTextResultEventArgs> FinalResultReceived= new EventHandlerImpl<TranslationTextResultEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech.translation._translation_text_result_event_argsa08ddfce
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getOutputVoiceName()
+  id: getOutputVoiceName()
+  parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
+  href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
+  langs:
+  - java
+  name: getOutputVoiceName()
+  nameWithType: TranslationRecognizer.getOutputVoiceName()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getOutputVoiceName()
+  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getOutputVoiceName*
+  type: Method
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 100
+  package: com.microsoft.cognitiveservices.speech.translation
+  summary: <p>Gets the name of output voice. </p>
+  syntax:
+    content: public String getOutputVoiceName()
+    return:
+      type: "26831127"
+      description: <p>the name of output voice. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getParameters()
   id: getParameters()
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
@@ -100,20 +122,20 @@ items:
   - java
   name: getParameters()
   nameWithType: TranslationRecognizer.getParameters()
-  fullName: ParameterCollection<TranslationRecognizer> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getParameters()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getParameters()
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getParameters*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 109
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 108
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: <p>The collection of parameters and their values defined for this <xref uid="com.microsoft.cognitiveservices.speech.translation._translation_recognizer" data-throw-if-not-resolved="false">TranslationRecognizer</xref>. </p>
+  summary: <p>The collection of parameters and their values defined for this TranslationRecognizer. </p>
   syntax:
     content: public ParameterCollection<TranslationRecognizer> getParameters()
     return:
       type: com.microsoft.cognitiveservices.speech._parameter_collection78504a52com.microsoft.cognitiveservices.speech.translation._translation_recognizera08ddfce
-      description: <p>The collection of parameters and their values defined for this <xref uid="com.microsoft.cognitiveservices.speech.translation._translation_recognizer" data-throw-if-not-resolved="false">TranslationRecognizer</xref>. </p>
+      description: <p>The collection of parameters and their values defined for this TranslationRecognizer. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getSourceLanguage()
   id: getSourceLanguage()
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
@@ -122,13 +144,13 @@ items:
   - java
   name: getSourceLanguage()
   nameWithType: TranslationRecognizer.getSourceLanguage()
-  fullName: String com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getSourceLanguage()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getSourceLanguage()
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getSourceLanguage*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 74
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 82
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>Gets the language name that was set when the recognizer was created. </p>
   syntax:
@@ -144,13 +166,13 @@ items:
   - java
   name: getTargetLanguages()
   nameWithType: TranslationRecognizer.getTargetLanguages()
-  fullName: ArrayList<String> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getTargetLanguages()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getTargetLanguages()
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getTargetLanguages*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 83
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 91
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>Gets target languages for translation that were set when the recognizer was created. The language is specified in BCP-47 format. The translation will provide translated text for each of language. </p>
   syntax:
@@ -166,63 +188,18 @@ items:
   - java
   name: IntermediateResultReceived
   nameWithType: TranslationRecognizer.IntermediateResultReceived
-  fullName: final EventHandlerImpl<TranslationTextResultEventArgs> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.IntermediateResultReceived
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.IntermediateResultReceived
   type: Field
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 29
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 30
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>The event IntermediateResultReceived signals that an intermediate recognition result is received. </p>
   syntax:
     content: public final EventHandlerImpl<TranslationTextResultEventArgs> IntermediateResultReceived= new EventHandlerImpl<TranslationTextResultEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech.translation._translation_text_result_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired()
-  id: isVoiceOutputDesired()
-  parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
-  href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
-  langs:
-  - java
-  name: isVoiceOutputDesired()
-  nameWithType: TranslationRecognizer.isVoiceOutputDesired()
-  fullName: boolean com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.isVoiceOutputDesired()
-  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired*
-  type: Method
-  source:
-    remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 92
-  package: com.microsoft.cognitiveservices.speech.translation
-  summary: <p>Gets a boolean value which indicates whether a voice output of the translated text is desired. </p>
-  syntax:
-    content: public boolean isVoiceOutputDesired()
-    return:
-      type: 4fc6e284
-      description: <p>Gets a boolean value which indicates whether a voice output of the translated text is desired. </p>
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired(boolean)
-  id: isVoiceOutputDesired(boolean)
-  parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
-  href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
-  langs:
-  - java
-  name: isVoiceOutputDesired(boolean value)
-  nameWithType: TranslationRecognizer.isVoiceOutputDesired(boolean value)
-  fullName: void com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.isVoiceOutputDesired(boolean value)
-  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired*
-  type: Method
-  source:
-    remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 100
-  package: com.microsoft.cognitiveservices.speech.translation
-  summary: <p>Sets a boolean value which indicates whether a voice output of the translated text is desired. </p>
-  syntax:
-    content: public void isVoiceOutputDesired(boolean value)
-    parameters:
-    - id: value
-      type: 4fc6e284
-      description: <p>The new value for the voice flag. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognitionErrorRaised
   id: RecognitionErrorRaised
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
@@ -231,61 +208,61 @@ items:
   - java
   name: RecognitionErrorRaised
   nameWithType: TranslationRecognizer.RecognitionErrorRaised
-  fullName: final EventHandlerImpl<RecognitionErrorEventArgs> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.RecognitionErrorRaised
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.RecognitionErrorRaised
   type: Field
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 39
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 40
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>The event RecognitionErrorRaised signals that an error occurred during recognition. </p>
   syntax:
     content: public final EventHandlerImpl<RecognitionErrorEventArgs> RecognitionErrorRaised= new EventHandlerImpl<RecognitionErrorEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_error_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognizeAsync()
-  id: RecognizeAsync()
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.recognizeAsync()
+  id: recognizeAsync()
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
   langs:
   - java
-  name: RecognizeAsync()
-  nameWithType: TranslationRecognizer.RecognizeAsync()
-  fullName: Task<TranslationTextResult> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.RecognizeAsync()
-  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognizeAsync*
+  name: recognizeAsync()
+  nameWithType: TranslationRecognizer.recognizeAsync()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.recognizeAsync()
+  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.recognizeAsync*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
     startLine: 118
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: <p>Starts recognition and translation, and stops after the first utterance is recognized. The task returns the translation text as result. </p>
+  summary: '<p>Starts recognition and translation, and stops after the first utterance is recognized. The task returns the translation text as result. Note: RecognizeAsync() returns when the first utterance has been recognized, so it is suitableonly for single shot recognition like command or query. For long-running recognition, use StartContinuousRecognitionAsync() instead. </p>'
   syntax:
-    content: public Task<TranslationTextResult> RecognizeAsync()
+    content: public Future<TranslationTextResult> recognizeAsync()
     return:
-      type: com.microsoft.cognitiveservices.speech.util._task78504a52com.microsoft.cognitiveservices.speech.translation._translation_text_resulta08ddfce
-      description: <p>A task representing the recognition operation. The task returns a value of <xref uid="com.microsoft.cognitiveservices.speech.translation._translation_text_result" data-throw-if-not-resolved="false">TranslationTextResult</xref>. </p>
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StartContinuousRecognitionAsync()
-  id: StartContinuousRecognitionAsync()
+      type: 9b3030f6com.microsoft.cognitiveservices.speech.translation._translation_text_resulta08ddfce
+      description: <p>A task representing the recognition operation. The task returns a value of TranslationTextResult. </p>
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startContinuousRecognitionAsync()
+  id: startContinuousRecognitionAsync()
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
   langs:
   - java
-  name: StartContinuousRecognitionAsync()
-  nameWithType: TranslationRecognizer.StartContinuousRecognitionAsync()
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.StartContinuousRecognitionAsync()
-  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StartContinuousRecognitionAsync*
+  name: startContinuousRecognitionAsync()
+  nameWithType: TranslationRecognizer.startContinuousRecognitionAsync()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startContinuousRecognitionAsync()
+  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startContinuousRecognitionAsync*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 140
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 129
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: <p>Starts recognition and translation on a continuous audio stream, until <xref uid="com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync()" data-throw-if-not-resolved="false">StopContinuousRecognitionAsync()</xref> is called. User must subscribe to events to receive translation results. </p>
+  summary: <p>Starts recognition and translation on a continuous audio stream, until StopContinuousRecognitionAsync() is called. User must subscribe to events to receive translation results. </p>
   syntax:
-    content: public Task<?> StartContinuousRecognitionAsync()
+    content: public Future<Void> startContinuousRecognitionAsync()
     return:
-      type: com.microsoft.cognitiveservices.speech.util._task7e6ad1eb
+      type: 075d0a89
       description: <p>A task representing the asynchronous operation that starts the recognition. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startKeywordRecognitionAsync(KeywordRecognitionModel)
   id: startKeywordRecognitionAsync(KeywordRecognitionModel)
@@ -295,45 +272,45 @@ items:
   - java
   name: startKeywordRecognitionAsync(KeywordRecognitionModel model)
   nameWithType: TranslationRecognizer.startKeywordRecognitionAsync(KeywordRecognitionModel model)
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startKeywordRecognitionAsync(KeywordRecognitionModel model)
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startKeywordRecognitionAsync(KeywordRecognitionModel model)
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startKeywordRecognitionAsync*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 185
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 154
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: '<p>Starts speech recognition on a continous audio stream with keyword spotting, until <xref uid="com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync()" data-throw-if-not-resolved="false">stopKeywordRecognitionAsync()</xref> is called. User must subscribe to events to receive recognition results. Note: Key word spotting functionality is only available on the Cognitive Services Device SDK. This functionality is currently not included in the SDK itself. </p>'
+  summary: '<p>Starts speech recognition on a continuous audio stream with keyword spotting, until stopKeywordRecognitionAsync() is called. User must subscribe to events to receive recognition results. Note: Key word spotting functionality is only available on the Cognitive Services Device SDK. This functionality is currently not included in the SDK itself. </p>'
   syntax:
-    content: public Task<?> startKeywordRecognitionAsync(KeywordRecognitionModel model)
+    content: public Future<Void> startKeywordRecognitionAsync(KeywordRecognitionModel model)
     parameters:
     - id: model
       type: com.microsoft.cognitiveservices.speech._keyword_recognition_model
       description: <p>The keyword recognition model that specifies the keyword to be recognized. </p>
     return:
-      type: com.microsoft.cognitiveservices.speech.util._task7e6ad1eb
+      type: 075d0a89
       description: <p>A task representing the asynchronous operation that starts the recognition. </p>
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync()
-  id: StopContinuousRecognitionAsync()
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopContinuousRecognitionAsync()
+  id: stopContinuousRecognitionAsync()
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
   langs:
   - java
-  name: StopContinuousRecognitionAsync()
-  nameWithType: TranslationRecognizer.StopContinuousRecognitionAsync()
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.StopContinuousRecognitionAsync()
-  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync*
+  name: stopContinuousRecognitionAsync()
+  nameWithType: TranslationRecognizer.stopContinuousRecognitionAsync()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopContinuousRecognitionAsync()
+  overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopContinuousRecognitionAsync*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 161
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 140
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>Stops continuous recognition and translation. </p>
-  syntax: &o2
-    content: public Task<?> StopContinuousRecognitionAsync()
+  syntax:
+    content: public Future<Void> stopContinuousRecognitionAsync()
     return:
-      type: com.microsoft.cognitiveservices.speech.util._task7e6ad1eb
+      type: 075d0a89
       description: <p>A task representing the asynchronous operation that stops the translation. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync()
   id: stopKeywordRecognitionAsync()
@@ -343,19 +320,19 @@ items:
   - java
   name: stopKeywordRecognitionAsync()
   nameWithType: TranslationRecognizer.stopKeywordRecognitionAsync()
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopKeywordRecognitionAsync()
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopKeywordRecognitionAsync()
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync*
   type: Method
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 206
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 168
   package: com.microsoft.cognitiveservices.speech.translation
   summary: '<p>Stops continuous speech recognition. Note: Key word spotting functionality is only available on the Cognitive Services Device SDK. This functionality is currently not included in the SDK itself. </p>'
-  syntax: &o3
-    content: public Task<?> stopKeywordRecognitionAsync()
+  syntax:
+    content: public Future<Void> stopKeywordRecognitionAsync()
     return:
-      type: com.microsoft.cognitiveservices.speech.util._task7e6ad1eb
+      type: 075d0a89
       description: <p>A task representing the asynchronous operation that stops the recognition. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.SynthesisResultReceived
   id: SynthesisResultReceived
@@ -365,39 +342,44 @@ items:
   - java
   name: SynthesisResultReceived
   nameWithType: TranslationRecognizer.SynthesisResultReceived
-  fullName: final EventHandlerImpl<TranslationSynthesisResultEventArgs> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.SynthesisResultReceived
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.SynthesisResultReceived
   type: Field
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 44
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 45
   package: com.microsoft.cognitiveservices.speech.translation
   summary: <p>The event SynthesisResultReceived signals that a translation synthesis result is received. </p>
   syntax:
     content: public final EventHandlerImpl<TranslationSynthesisResultEventArgs> SynthesisResultReceived= new EventHandlerImpl<TranslationSynthesisResultEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech.translation._translation_synthesis_result_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer)
-  id: TranslationRecognizer)
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer,AudioInputStream)
+  id: TranslationRecognizer,AudioInputStream)
   parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
   langs:
   - java
-  name: TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl)
-  nameWithType: TranslationRecognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl)
-  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl)
+  name: TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl, AudioInputStream ais)
+  nameWithType: TranslationRecognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl, AudioInputStream ais)
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl, AudioInputStream ais)
   overload: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.TranslationRecognizer*
   type: Constructor
   source:
     remote: *o0
-    path: bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
-    startLine: 46
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/TranslationRecognizer.java
+    startLine: 52
   package: com.microsoft.cognitiveservices.speech.translation
+  summary: <p>Initializes an instance of the TranslationRecognizer. </p>
   syntax:
-    content: public TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl)
+    content: public TranslationRecognizer(com.microsoft.cognitiveservices.speech.internal.TranslationRecognizer recoImpl, AudioInputStream ais)
     parameters:
     - id: recoImpl
       type: 2bbfbbeb
+      description: <p>The internal recognizer implementation. </p>
+    - id: ais
+      type: com.microsoft.cognitiveservices.speech._audio_input_stream
+      description: <p>An optional audio input stream associated with the recognizer </p>
 references:
 - uid: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech.translation._translation_text_result_event_argsa08ddfce
   spec.java:
@@ -463,7 +445,7 @@ references:
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getSourceLanguage*
   name: getSourceLanguage
   nameWithType: TranslationRecognizer.getSourceLanguage
-  fullName: String com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getSourceLanguage
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getSourceLanguage
   package: com.microsoft.cognitiveservices.speech.translation
 - uid: a09a0fd7
   spec.java:
@@ -472,16 +454,12 @@ references:
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getTargetLanguages*
   name: getTargetLanguages
   nameWithType: TranslationRecognizer.getTargetLanguages
-  fullName: ArrayList<String> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getTargetLanguages
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getTargetLanguages
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.isVoiceOutputDesired*
-  name: isVoiceOutputDesired
-  nameWithType: TranslationRecognizer.isVoiceOutputDesired
-  fullName: boolean com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.isVoiceOutputDesired
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getOutputVoiceName*
+  name: getOutputVoiceName
+  nameWithType: TranslationRecognizer.getOutputVoiceName
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getOutputVoiceName
   package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech._parameter_collection78504a52com.microsoft.cognitiveservices.speech.translation._translation_recognizera08ddfce
   spec.java:
@@ -500,66 +478,62 @@ references:
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.getParameters*
   name: getParameters
   nameWithType: TranslationRecognizer.getParameters
-  fullName: ParameterCollection<TranslationRecognizer> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getParameters
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.getParameters
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.util._task78504a52com.microsoft.cognitiveservices.speech.translation._translation_text_resulta08ddfce
+- uid: 9b3030f6com.microsoft.cognitiveservices.speech.translation._translation_text_resulta08ddfce
   spec.java:
-  - uid: com.microsoft.cognitiveservices.speech.util._task
-    name: Task
-    fullName: com.microsoft.cognitiveservices.speech.util.Task
-    href: com.microsoft.cognitiveservices.speech.util._task.yml
-  - name: <
-    fullName: <
+  - name: Future<
+    fullName: Future<
   - uid: com.microsoft.cognitiveservices.speech.translation._translation_text_result
     name: TranslationTextResult
     fullName: com.microsoft.cognitiveservices.speech.translation.TranslationTextResult
     href: com.microsoft.cognitiveservices.speech.translation._translation_text_result.yml
   - name: '>'
     fullName: '>'
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.RecognizeAsync*
-  name: RecognizeAsync
-  nameWithType: TranslationRecognizer.RecognizeAsync
-  fullName: Task<TranslationTextResult> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.RecognizeAsync
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.recognizeAsync*
+  name: recognizeAsync
+  nameWithType: TranslationRecognizer.recognizeAsync
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.recognizeAsync
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.util._task7e6ad1eb
+- uid: 075d0a89
   spec.java:
-  - uid: com.microsoft.cognitiveservices.speech.util._task
-    name: Task
-    fullName: com.microsoft.cognitiveservices.speech.util.Task
-    href: com.microsoft.cognitiveservices.speech.util._task.yml
-  - name: <?>
-    fullName: <?>
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StartContinuousRecognitionAsync*
-  name: StartContinuousRecognitionAsync
-  nameWithType: TranslationRecognizer.StartContinuousRecognitionAsync
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.StartContinuousRecognitionAsync
+  - name: Future<Void>
+    fullName: Future<Void>
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startContinuousRecognitionAsync*
+  name: startContinuousRecognitionAsync
+  nameWithType: TranslationRecognizer.startContinuousRecognitionAsync
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startContinuousRecognitionAsync
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync*
-  name: StopContinuousRecognitionAsync
-  nameWithType: TranslationRecognizer.StopContinuousRecognitionAsync
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.StopContinuousRecognitionAsync
+- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopContinuousRecognitionAsync*
+  name: stopContinuousRecognitionAsync
+  nameWithType: TranslationRecognizer.stopContinuousRecognitionAsync
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopContinuousRecognitionAsync
   package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.startKeywordRecognitionAsync*
   name: startKeywordRecognitionAsync
   nameWithType: TranslationRecognizer.startKeywordRecognitionAsync
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startKeywordRecognitionAsync
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.startKeywordRecognitionAsync
   package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync*
   name: stopKeywordRecognitionAsync
   nameWithType: TranslationRecognizer.stopKeywordRecognitionAsync
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopKeywordRecognitionAsync
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopKeywordRecognitionAsync
   package: com.microsoft.cognitiveservices.speech.translation
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.dispose*
   name: dispose
   nameWithType: TranslationRecognizer.dispose
-  fullName: void com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.dispose
+  fullName: com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.dispose
   package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech._recognizer.close()
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: close()
   nameWithType: Recognizer.close()
-  fullName: void com.microsoft.cognitiveservices.speech.Recognizer.close()
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.close()
   type: Method
   summary: <p>Dispose of associated resources. </p>
   syntax:
@@ -569,28 +543,44 @@ references:
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: RecognitionEvent
   nameWithType: Recognizer.RecognitionEvent
-  fullName: final EventHandlerImpl<RecognitionEventArgs> com.microsoft.cognitiveservices.speech.Recognizer.RecognitionEvent
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.RecognitionEvent
   type: Field
   summary: <p>Defines event handler for session events, e.g., SpeechStartDetectedEvent and SpeechEndDetectedEvent. </p>
   syntax:
     content: public final EventHandlerImpl<RecognitionEventArgs> RecognitionEvent= new EventHandlerImpl<RecognitionEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer()
+- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
-  name: Recognizer()
-  nameWithType: Recognizer.Recognizer()
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer()
+  name: Recognizer(AudioInputStream ais)
+  nameWithType: Recognizer.Recognizer(AudioInputStream ais)
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer(AudioInputStream ais)
   type: Constructor
+  summary: <p>Creates and initializes an instance of a Recognizer </p>
   syntax:
-    content: protected Recognizer()
+    content: protected Recognizer(AudioInputStream ais)
+    parameters:
+    - id: ais
+      type: com.microsoft.cognitiveservices.speech._audio_input_stream
+      description: <p>An optional audio input stream associated with the recognizer </p>
+- uid: com.microsoft.cognitiveservices.speech._recognizer.s_executorService
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  name: s_executorService
+  nameWithType: Recognizer.s_executorService
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.s_executorService
+  type: Field
+  syntax:
+    content: protected static ExecutorService s_executorService
+    return:
+      type: ddc463eb
 - uid: com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: SessionEvent
   nameWithType: Recognizer.SessionEvent
-  fullName: final EventHandlerImpl<SessionEventArgs> com.microsoft.cognitiveservices.speech.Recognizer.SessionEvent
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.SessionEvent
   type: Field
   summary: <p>Defines event handler for session events, e.g., SessionStartedEvent and SessionStoppedEvent. </p>
   syntax:
@@ -602,7 +592,7 @@ references:
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: sessionStartedHandler
   nameWithType: Recognizer.sessionStartedHandler
-  fullName: SessionEventHandlerImpl com.microsoft.cognitiveservices.speech.Recognizer.sessionStartedHandler
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStartedHandler
   type: Field
   syntax:
     content: protected SessionEventHandlerImpl sessionStartedHandler
@@ -613,7 +603,7 @@ references:
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: sessionStoppedHandler
   nameWithType: Recognizer.sessionStoppedHandler
-  fullName: SessionEventHandlerImpl com.microsoft.cognitiveservices.speech.Recognizer.sessionStoppedHandler
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStoppedHandler
   type: Field
   syntax:
     content: protected SessionEventHandlerImpl sessionStoppedHandler
@@ -624,7 +614,7 @@ references:
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: speechEndDetectedHandler
   nameWithType: Recognizer.speechEndDetectedHandler
-  fullName: RecognitionEventHandlerImpl com.microsoft.cognitiveservices.speech.Recognizer.speechEndDetectedHandler
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechEndDetectedHandler
   type: Field
   syntax:
     content: protected RecognitionEventHandlerImpl speechEndDetectedHandler
@@ -635,7 +625,7 @@ references:
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   name: speechStartDetectedHandler
   nameWithType: Recognizer.speechStartDetectedHandler
-  fullName: RecognitionEventHandlerImpl com.microsoft.cognitiveservices.speech.Recognizer.speechStartDetectedHandler
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechStartDetectedHandler
   type: Field
   syntax:
     content: protected RecognitionEventHandlerImpl speechStartDetectedHandler
@@ -648,7 +638,7 @@ references:
   nameWithType: Recognizer
   fullName: com.microsoft.cognitiveservices.speech.Recognizer
   type: Class
-  summary: <p>Defines the base class <xref uid="com.microsoft.cognitiveservices.speech._recognizer" data-throw-if-not-resolved="false">Recognizer</xref> which mainly contains common event handlers. </p>
+  summary: <p>Defines the base class Recognizer which mainly contains common event handlers. </p>
   syntax:
     content: public class Recognizer
 - uid: com.microsoft.cognitiveservices.speech.util._event_handler_impl
@@ -658,11 +648,12 @@ references:
   nameWithType: EventHandlerImpl<T>
   fullName: com.microsoft.cognitiveservices.speech.util.EventHandlerImpl<T>
   type: Class
-  summary: <p>Implements the binding between the carbon event handler and java event handling. </p>
+  summary: <p>Implements the binding between the Speech SDK core event handler and Java event handling. </p>
   syntax:
     content: public class EventHandlerImpl<T>
     typeParameters:
-    - type: 8ce1ecb9
+    - id: T
+      type: 8ce1ecb9
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_text_result_event_args
   parent: com.microsoft.cognitiveservices.speech.translation
   href: com.microsoft.cognitiveservices.speech.translation._translation_text_result_event_args.yml
@@ -704,7 +695,8 @@ references:
   syntax:
     content: public class ParameterCollection<OwnerType>
     typeParameters:
-    - type: dfe4eb14
+    - id: OwnerType
+      type: dfe4eb14
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
   parent: com.microsoft.cognitiveservices.speech.translation
   href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
@@ -714,18 +706,16 @@ references:
   type: Class
   summary: <p>Performs translation on the speech input. </p>
   syntax: *o1
-- uid: com.microsoft.cognitiveservices.speech.util._task
-  parent: com.microsoft.cognitiveservices.speech.util
-  href: com.microsoft.cognitiveservices.speech.util._task.yml
-  name: Task<T>
-  nameWithType: Task<T>
-  fullName: com.microsoft.cognitiveservices.speech.util.Task<T>
+- uid: com.microsoft.cognitiveservices.speech._audio_input_stream
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech._audio_input_stream.yml
+  name: AudioInputStream
+  nameWithType: AudioInputStream
+  fullName: com.microsoft.cognitiveservices.speech.AudioInputStream
   type: Class
-  summary: <p>Executes a <xref uid="com.microsoft.cognitiveservices.speech.util._task_runner" data-throw-if-not-resolved="false">TaskRunner</xref>. </p>
+  summary: <p>Defines audio input stream. </p>
   syntax:
-    content: public class Task<T extends Object>
-    typeParameters:
-    - type: 8ce1ecb9
+    content: public class AudioInputStream
 - uid: com.microsoft.cognitiveservices.speech.translation._translation_text_result
   parent: com.microsoft.cognitiveservices.speech.translation
   href: com.microsoft.cognitiveservices.speech.translation._translation_text_result.yml
@@ -736,15 +726,6 @@ references:
   summary: <p>Defines TranslationText result. </p>
   syntax:
     content: public class TranslationTextResult
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.StopContinuousRecognitionAsync()
-  parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
-  href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
-  name: StopContinuousRecognitionAsync()
-  nameWithType: TranslationRecognizer.StopContinuousRecognitionAsync()
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.StopContinuousRecognitionAsync()
-  type: Method
-  summary: <p>Stops continuous recognition and translation. </p>
-  syntax: *o2
 - uid: com.microsoft.cognitiveservices.speech._keyword_recognition_model
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech._keyword_recognition_model.yml
@@ -755,12 +736,3 @@ references:
   summary: <p>Represents language understanding model used for intent recognition. </p>
   syntax:
     content: public class KeywordRecognitionModel
-- uid: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.stopKeywordRecognitionAsync()
-  parent: com.microsoft.cognitiveservices.speech.translation._translation_recognizer
-  href: com.microsoft.cognitiveservices.speech.translation._translation_recognizer.yml
-  name: stopKeywordRecognitionAsync()
-  nameWithType: TranslationRecognizer.stopKeywordRecognitionAsync()
-  fullName: Task<?> com.microsoft.cognitiveservices.speech.translation.TranslationRecognizer.stopKeywordRecognitionAsync()
-  type: Method
-  summary: '<p>Stops continuous speech recognition. Note: Key word spotting functionality is only available on the Cognitive Services Device SDK. This functionality is currently not included in the SDK itself. </p>'
-  syntax: *o3

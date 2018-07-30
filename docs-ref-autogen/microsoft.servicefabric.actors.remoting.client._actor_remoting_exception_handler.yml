@@ -65,7 +65,7 @@ items:
       </ul>
 
     </p>
-  syntax: &o1
+  syntax:
     content: public class ActorRemotingExceptionHandler extends ServiceRemotingExceptionHandler
   inheritance:
   - java.lang.Object
@@ -90,7 +90,7 @@ items:
     startLine: 74
   package: microsoft.servicefabric.actors.remoting.client
   summary: >-
-    <p>Constructs a <xref uid="microsoft.servicefabric.actors.remoting.client._actor_remoting_exception_handler" data-throw-if-not-resolved="false">ActorRemotingExceptionHandler</xref> with a specified trace id.</p>
+    <p>Constructs a ActorRemotingExceptionHandler with a specified trace id.</p>
 
     <p></p>
   syntax:
@@ -107,7 +107,7 @@ items:
   - java
   name: handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
   nameWithType: ActorRemotingExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
-  fullName: ExceptionHandlingResult microsoft.servicefabric.actors.remoting.client.ActorRemotingExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
+  fullName: microsoft.servicefabric.actors.remoting.client.ActorRemotingExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
   overload: microsoft.servicefabric.actors.remoting.client._actor_remoting_exception_handler.handleException*
   type: Method
   source:
@@ -145,7 +145,7 @@ references:
 - uid: microsoft.servicefabric.actors.remoting.client._actor_remoting_exception_handler.handleException*
   name: handleException
   nameWithType: ActorRemotingExceptionHandler.handleException
-  fullName: ExceptionHandlingResult microsoft.servicefabric.actors.remoting.client.ActorRemotingExceptionHandler.handleException
+  fullName: microsoft.servicefabric.actors.remoting.client.ActorRemotingExceptionHandler.handleException
   package: microsoft.servicefabric.actors.remoting.client
 - uid: microsoft.servicefabric.services.remoting.client._service_remoting_exception_handler.ServiceRemotingExceptionHandler(String)
   parent: microsoft.servicefabric.services.remoting.client._service_remoting_exception_handler
@@ -155,7 +155,7 @@ references:
   fullName: microsoft.servicefabric.services.remoting.client.ServiceRemotingExceptionHandler.ServiceRemotingExceptionHandler(String traceId)
   type: Constructor
   summary: >-
-    <p>Constructs a <xref uid="microsoft.servicefabric.services.remoting.client._service_remoting_exception_handler" data-throw-if-not-resolved="false">ServiceRemotingExceptionHandler</xref> with a specified trace id.</p>
+    <p>Constructs a ServiceRemotingExceptionHandler with a specified trace id.</p>
 
     <p></p>
   syntax:
@@ -171,61 +171,9 @@ references:
   nameWithType: ServiceRemotingExceptionHandler
   fullName: microsoft.servicefabric.services.remoting.client.ServiceRemotingExceptionHandler
   type: Class
-  summary: <p>This class provide handling of exceptions encountered in communicating with a service fabric service over remoted interfaces. <xref uid="microsoft.servicefabric.services.remoting.client._service_remoting_exception_handler" data-throw-if-not-resolved="false">ServiceRemotingExceptionHandler</xref></p>
+  summary: <p>This class provide handling of exceptions encountered in communicating with a service fabric service over remoted interfaces. ServiceRemotingExceptionHandler </p>
   syntax:
     content: public class ServiceRemotingExceptionHandler
-- uid: microsoft.servicefabric.actors.remoting.client._actor_remoting_exception_handler
-  parent: microsoft.servicefabric.actors.remoting.client
-  href: microsoft.servicefabric.actors.remoting.client._actor_remoting_exception_handler.yml
-  name: ActorRemotingExceptionHandler
-  nameWithType: ActorRemotingExceptionHandler
-  fullName: microsoft.servicefabric.actors.remoting.client.ActorRemotingExceptionHandler
-  type: Class
-  summary: >-
-    <p>This class provide handling of exceptions encountered in communicating with service fabric actors over remoted actor interfaces.</p>
-
-    <p>
-
-      <b>Remarks:</b> This exception handler handles exceptions related to the following scenarios: </p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>&lt;cite&gt;Duplicate Messages:&lt;/cite&gt; </p>
-
-          <p>Operations performed on the actor are retried from the client based on the exception handling logic. These exceptions represent various error condition including service failover. Therefore it is possible for the actors to receive duplicate messages. If a duplicate message is received while previous message is being processed by the actor, runtime return an internal exception to the client. The client then retries the operation to get the result back from the actor. From the actor's perspective duplicate operation will be performed by the clients and it should handle it in the similar manner as if the operation was already processed and then a duplicate message arrived. </p>
-
-          <p></p>
-
-          <p></p>
-
-        </li>
-
-        <li>
-
-          <p>&lt;cite&gt;<xref uid="microsoft.servicefabric.actors._actor_concurrency_lock_timeout_exception" data-throw-if-not-resolved="false">ActorConcurrencyLockTimeoutException</xref>:&lt;/cite&gt; </p>
-
-          <p>Operations on the actors are performed using a turn based concurrency lock ( <xref uid="" data-throw-if-not-resolved="false">ActorConcurrencySettings</xref>) that supports logical call context based reentrancy. In case of the long running actor operations it is possible for acquisition of this lock to time out. The acquisition of the lock can also time out in case of the deadlock situations (actor A and actor B calling each other almost at the same time). </p>
-
-          <p></p>
-
-          <p>The exception related to concurrency lock timeout is handled by returning <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingRetryResult</xref> from the <xref uid="microsoft.servicefabric.services.communication.client._exception_handler.handleException(ExceptionInformation,OperationRetrySettings)" data-throw-if-not-resolved="false">ExceptionHandler#handleException(ExceptionInformation, OperationRetrySettings)</xref> method if the client performing the operation is not another actor. The <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingRetryResult#isTransient</xref> property of the <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingRetryResult</xref> is set to true, the <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingRetryResult</xref>'s retryDelay property is set to a random value up to <xref uid="" data-throw-if-not-resolved="false">OperationRetrySettings</xref>'s MaxRetryBackoffIntervalOnTransientErrors and <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingRetryResult</xref>'s MaxRetryCount property is set to <xref uid="" data-throw-if-not-resolved="false">Integer#MAX_VALUE</xref>. </p>
-
-          <p></p>
-
-          <p>The exception related to concurrency lock timeout is handled by returning <xref uid="" data-throw-if-not-resolved="false">ExceptionHandlingThrowResult</xref> from the <xref uid="microsoft.servicefabric.services.communication.client._exception_handler.handleException(ExceptionInformation,OperationRetrySettings)" data-throw-if-not-resolved="false">ExceptionHandler#handleException(ExceptionInformation, OperationRetrySettings)</xref> method, if the client performing the operation is another actor. In the deadlock situations this allows the call chain to unwind all the way back to the original client and the operation is then retried from there. </p>
-
-          <p></p>
-
-        </li>
-
-      </ul>
-
-    </p>
-  syntax: *o1
 - uid: microsoft.servicefabric.services.communication.client._exception_handling_result
   parent: microsoft.servicefabric.services.communication.client
   href: microsoft.servicefabric.services.communication.client._exception_handling_result.yml
@@ -241,7 +189,7 @@ references:
   href: microsoft.servicefabric.services.communication.client._exception_handler.yml
   name: handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
   nameWithType: ExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
-  fullName: ExceptionHandlingResult microsoft.servicefabric.services.communication.client.ExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
+  fullName: microsoft.servicefabric.services.communication.client.ExceptionHandler.handleException(ExceptionInformation exceptionInformation, OperationRetrySettings retrySettings)
   type: Method
   summary: >-
     <p>Method that examines the exception and determines how that exception can be handled.</p>

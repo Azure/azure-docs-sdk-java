@@ -12,7 +12,7 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 05/23/2018
+ms.date: 07/02/2018
 ms.author: robmcm
 ---
 
@@ -34,11 +34,11 @@ Beginning April 15, 2013, Azure began migrating from the GTE CyberTrust Global r
 The Baltimore certificate might already be installed in your cacerts store, so you need to use the following steps to determine if it has already been installed.
 
 1. At an administrator command prompt, navigate to your JDK's **jdk\jre\lib\security** folder, and then run the following command to list the certificates that are installed on your system:
-   
+
    ```shell
    keytool -list -keystore cacerts
    ```
-   
+
 1. If you are prompted for the store password, the default password is **changeit**.
 
    > [!NOTE]
@@ -57,23 +57,25 @@ The Baltimore certificate might already be installed in your cacerts store, so y
    > The Baltimore CyberTrust root certificate has a serial number of `02:00:00:b9`, and a SHA1 thumbprint of `d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74`.
    > 
 
-1. Import the certificate to the cacerts store by using the following command:
-   
+2. Import the certificate to the cacerts store by using the following command:
+
    ```shell
    keytool -keystore cacerts -importcert -alias bc2025ca -file bc2025.cer
    ```
    Where:
-   | Parameter | Description |
-   |---|---|
-   | `keystore` | Specifies the certificate store. |
-   | `importcert` | Specifies that you are importing a certificate. |
-   | `alias` | Specifies an alias for the certificate. |
-   | `file` | Specifies the filename of the root certificate that you are importing. |
-   
-1. If you are prompted to trust the certificate, verify the thumbprint as `d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74`, and type **y** if the thumbprint is correct.
 
-1. Run the following command to ensure the CA certificate has been successfully imported:
-   
+   |  Parameter   |                              Description                               |
+   |--------------|------------------------------------------------------------------------|
+   | `keystore`   | Specifies the certificate store.                                       |
+   | `importcert` | Specifies that you are importing a certificate.                        |
+   | `alias`      | Specifies an alias for the certificate.                                |
+   | `file`       | Specifies the filename of the root certificate that you are importing. |
+
+
+3. If you are prompted to trust the certificate, verify the thumbprint as `d4:de:20:d0:5e:66:fc:53:fe:1a:50:88:2c:78:db:28:52:ca:e4:74`, and type **y** if the thumbprint is correct.
+
+4. Run the following command to ensure the CA certificate has been successfully imported:
+
    ```shell
    keytool -list -keystore cacerts
    ```
@@ -84,6 +86,6 @@ After you have successfully added the root certificate to your JDK, you can zip 
 
 For more information about the keytool utility, see <http://docs.oracle.com/javase/7/docs/technotes/tools/windows/keytool.html>.
 
-For more information about the root certificates used by Azure, see [Azure Root Certificate Migration](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx).
-
 For more information about Java, see [Azure for Java developers](/java/azure).
+
+<!-- For more information about the root certificates used by Azure, see [Azure Root Certificate Migration](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx). -->

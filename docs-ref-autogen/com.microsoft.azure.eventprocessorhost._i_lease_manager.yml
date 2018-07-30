@@ -4,18 +4,18 @@ items:
   id: _i_lease_manager
   parent: com.microsoft.azure.eventprocessorhost
   children:
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease(Lease)
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseIfNotExists(String)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease(CompleteLease)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.createAllLeasesIfNotExists(List<String>)
   - com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseStoreIfNotExists()
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease(Lease)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease(CompleteLease)
   - com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLeaseStore()
   - com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases()
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease(String)
   - com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseDurationInMilliseconds()
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseRenewIntervalInMilliseconds()
   - com.microsoft.azure.eventprocessorhost._i_lease_manager.leaseStoreExists()
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease(Lease)
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease(Lease)
-  - com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease(Lease)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease(CompleteLease)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease(CompleteLease)
+  - com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease(CompleteLease)
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
@@ -33,24 +33,24 @@ items:
   package: com.microsoft.azure.eventprocessorhost
   syntax:
     content: public interface ILeaseManager
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease(Lease)
-  id: acquireLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease(CompleteLease)
+  id: acquireLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: acquireLease(Lease lease)
-  nameWithType: ILeaseManager.acquireLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.acquireLease(Lease lease)
+  name: acquireLease(CompleteLease lease)
+  nameWithType: ILeaseManager.acquireLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.acquireLease(CompleteLease lease)
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 105
+    startLine: 107
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Acquire the lease on the desired partition for this <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>. </p>
+    <p>Acquire the lease on the desired partition for this EventProcessorHost. </p>
 
     <p>Note that it is legal to acquire a lease that is currently owned by another host, which is called "stealing". Lease-stealing is how partitions are redistributed when additional hosts are started. </p>
 
@@ -58,46 +58,43 @@ items:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> acquireLease(Lease lease)
+    content: public CompletableFuture<Boolean> acquireLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> info for the desired partition </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease info for the desired partition </p>
     return:
       type: 7e53ac82
       description: <p>CompletableFuture { -&gt;} true if the lease was acquired, false if not, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseIfNotExists(String)
-  id: createLeaseIfNotExists(String)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createAllLeasesIfNotExists(List<String>)
+  id: createAllLeasesIfNotExists(List<String>)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: createLeaseIfNotExists(String partitionId)
-  nameWithType: ILeaseManager.createLeaseIfNotExists(String partitionId)
-  fullName: CompletableFuture<Lease> com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseIfNotExists(String partitionId)
-  overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseIfNotExists*
+  name: createAllLeasesIfNotExists(List<String> partitionIds)
+  nameWithType: ILeaseManager.createAllLeasesIfNotExists(List<String> partitionIds)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.createAllLeasesIfNotExists(List<String> partitionIds)
+  overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.createAllLeasesIfNotExists*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 79
+    startLine: 81
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Create in the store the lease for the given partition, if it does not exist. Do nothing if it exists in the store already.</p>
+    <p>Create in the store a lease for each of the given partitions, if it does not exist. Do nothing for any lease which exists in the store already.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Lease> createLeaseIfNotExists(String partitionId)
+    content: public CompletableFuture<Void> createAllLeasesIfNotExists(List<String> partitionIds)
     parameters:
-    - id: partitionId
-      type: "26831127"
-      description: <p>id of partition to create lease info for </p>
+    - id: partitionIds
+      type: 7d60c20e
+      description: <p>ids of partitions to create lease info for </p>
     return:
-      type: 9cdf14d0com.microsoft.azure.eventprocessorhost._leasea08ddfce
-      description: <p>CompletableFuture { -&gt;} the existing or newly-created lease info for the partition, completes exceptionally on error </p>
+      type: db03ee24
+      description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseStoreIfNotExists()
   id: createLeaseStoreIfNotExists()
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
@@ -106,13 +103,13 @@ items:
   - java
   name: createLeaseStoreIfNotExists()
   nameWithType: ILeaseManager.createLeaseStoreIfNotExists()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseStoreIfNotExists()
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseStoreIfNotExists()
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseStoreIfNotExists*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 56
+    startLine: 46
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Create the lease store if it does not exist, do nothing if it does exist.</p>
@@ -123,31 +120,31 @@ items:
     return:
       type: db03ee24
       description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease(Lease)
-  id: deleteLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease(CompleteLease)
+  id: deleteLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: deleteLease(Lease lease)
-  nameWithType: ILeaseManager.deleteLease(Lease lease)
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLease(Lease lease)
+  name: deleteLease(CompleteLease lease)
+  nameWithType: ILeaseManager.deleteLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLease(CompleteLease lease)
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 88
+    startLine: 90
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Delete the lease info for a partition from the store. If there is no stored lease for the given partition, that is treated as success.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Void> deleteLease(Lease lease)
+    content: public CompletableFuture<Void> deleteLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
       description: <p>the currently existing lease info for the partition </p>
     return:
       type: db03ee24
@@ -160,13 +157,13 @@ items:
   - java
   name: deleteLeaseStore()
   nameWithType: ILeaseManager.deleteLeaseStore()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLeaseStore()
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLeaseStore()
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLeaseStore*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 63
+    startLine: 53
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Deletes the lease store.</p>
@@ -185,23 +182,52 @@ items:
   - java
   name: getAllLeases()
   nameWithType: ILeaseManager.getAllLeases()
-  fullName: CompletableFuture<List<Lease>> com.microsoft.azure.eventprocessorhost.ILeaseManager.getAllLeases()
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getAllLeases()
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 70
+    startLine: 71
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
-    <p>Returns the lease info for all partitions.</p>
+    <p>Returns lightweight BaseLease for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return CompleteLease or its own class derived from CompleteLease, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a BaseLease, we heavily recommend doing that.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<List<Lease>> getAllLeases()
+    content: public CompletableFuture<List<BaseLease>> getAllLeases()
     return:
-      type: 0eb76d20com.microsoft.azure.eventprocessorhost._leasee7daa122
-      description: <p>CompletableFuture { -&gt;} list of Leases, completes exceptionally on error. </p>
+      type: 0eb76d20com.microsoft.azure.eventprocessorhost._base_leasee7daa122
+      description: <p>CompletableFuture { -&gt;} list of BaseLease, completes exceptionally on error. </p>
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease(String)
+  id: getLease(String)
+  parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
+  langs:
+  - java
+  name: getLease(String partitionId)
+  nameWithType: ILeaseManager.getLease(String partitionId)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getLease(String partitionId)
+  overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
+    startLine: 61
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Returns the lease info for the given partition..</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<CompleteLease> getLease(String partitionId)
+    parameters:
+    - id: partitionId
+      type: "26831127"
+      description: <p>Get the lease info for this partition. </p>
+    return:
+      type: 9cdf14d0com.microsoft.azure.eventprocessorhost._complete_leasea08ddfce
+      description: <p>CompletableFuture { -&gt;} Lease, completes exceptionally on error. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseDurationInMilliseconds()
   id: getLeaseDurationInMilliseconds()
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
@@ -210,13 +236,13 @@ items:
   - java
   name: getLeaseDurationInMilliseconds()
   nameWithType: ILeaseManager.getLeaseDurationInMilliseconds()
-  fullName: int com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseDurationInMilliseconds()
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseDurationInMilliseconds()
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseDurationInMilliseconds*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 39
+    startLine: 29
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>The lease duration is mostly internal to the lease manager implementation but may be needed by other parts of the event processor host.</p>
@@ -227,31 +253,6 @@ items:
     return:
       type: f75371fa
       description: <p>Duration of a lease before it expires unless renewed, specified in milliseconds. </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseRenewIntervalInMilliseconds()
-  id: getLeaseRenewIntervalInMilliseconds()
-  parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
-  href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
-  langs:
-  - java
-  name: getLeaseRenewIntervalInMilliseconds()
-  nameWithType: ILeaseManager.getLeaseRenewIntervalInMilliseconds()
-  fullName: int com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseRenewIntervalInMilliseconds()
-  overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseRenewIntervalInMilliseconds*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 31
-  package: com.microsoft.azure.eventprocessorhost
-  summary: >-
-    <p>The lease renew interval is used by PartitionManager to determine how often it should scan leases and renew them. In order to redistribute leases in a timely fashion after a host ceases operating, we recommend a relatively short interval, such as ten seconds. Obviously it should be less than half of the lease length, to prevent accidental expiration.</p>
-
-    <p></p>
-  syntax:
-    content: public int getLeaseRenewIntervalInMilliseconds()
-    return:
-      type: f75371fa
-      description: <p>The sleep interval between scans, specified in milliseconds. </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.leaseStoreExists()
   id: leaseStoreExists()
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
@@ -260,13 +261,13 @@ items:
   - java
   name: leaseStoreExists()
   nameWithType: ILeaseManager.leaseStoreExists()
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.leaseStoreExists()
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.leaseStoreExists()
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.leaseStoreExists*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 49
+    startLine: 39
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Does the lease store exist? </p>
@@ -279,21 +280,21 @@ items:
     return:
       type: 7e53ac82
       description: <p>CompletableFuture { -&gt;} true if it exists, false if not </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease(Lease)
-  id: releaseLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease(CompleteLease)
+  id: releaseLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: releaseLease(Lease lease)
-  nameWithType: ILeaseManager.releaseLease(Lease lease)
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.releaseLease(Lease lease)
+  name: releaseLease(CompleteLease lease)
+  nameWithType: ILeaseManager.releaseLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.releaseLease(CompleteLease lease)
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 129
+    startLine: 131
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Give up a lease currently held by this host. </p>
@@ -302,32 +303,29 @@ items:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Void> releaseLease(Lease lease)
+    content: public CompletableFuture<Void> releaseLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be given up </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease to be given up </p>
     return:
       type: db03ee24
       description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease(Lease)
-  id: renewLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease(CompleteLease)
+  id: renewLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: renewLease(Lease lease)
-  nameWithType: ILeaseManager.renewLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.renewLease(Lease lease)
+  name: renewLease(CompleteLease lease)
+  nameWithType: ILeaseManager.renewLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.renewLease(CompleteLease lease)
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 118
+    startLine: 120
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Renew a lease currently held by this host instance. </p>
@@ -336,44 +334,41 @@ items:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> renewLease(Lease lease)
+    content: public CompletableFuture<Boolean> renewLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be renewed </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease to be renewed </p>
     return:
       type: 7e53ac82
       description: <p>true if the lease was renewed, false as described above, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease(Lease)
-  id: updateLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease(CompleteLease)
+  id: updateLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._i_lease_manager
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
   langs:
   - java
-  name: updateLease(Lease lease)
-  nameWithType: ILeaseManager.updateLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.updateLease(Lease lease)
+  name: updateLease(CompleteLease lease)
+  nameWithType: ILeaseManager.updateLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.updateLease(CompleteLease lease)
   overload: com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease*
   type: Method
   source:
     remote: *o0
     path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/ILeaseManager.java
-    startLine: 141
+    startLine: 143
   package: com.microsoft.azure.eventprocessorhost
   summary: >-
     <p>Update the store with the information in the provided lease. </p>
 
-    <p>It is necessary to currently hold a lease in order to update it. If the lease has been stolen, or expired, or released, it cannot be updated. <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> manager implementations should renew the lease before performing the update to avoid lease expiration during the process.</p>
+    <p>It is necessary to currently hold a lease in order to update it. If the lease has been stolen, or expired, or released, it cannot be updated. Lease manager implementations should renew the lease before performing the update to avoid lease expiration during the process.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> updateLease(Lease lease)
+    content: public CompletableFuture<Boolean> updateLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
       description: <p>New lease info to be stored </p>
     return:
       type: 7e53ac82
@@ -383,15 +378,10 @@ references:
   spec.java:
   - name: int
     fullName: int
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseRenewIntervalInMilliseconds*
-  name: getLeaseRenewIntervalInMilliseconds
-  nameWithType: ILeaseManager.getLeaseRenewIntervalInMilliseconds
-  fullName: int com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseRenewIntervalInMilliseconds
-  package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLeaseDurationInMilliseconds*
   name: getLeaseDurationInMilliseconds
   nameWithType: ILeaseManager.getLeaseDurationInMilliseconds
-  fullName: int com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseDurationInMilliseconds
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getLeaseDurationInMilliseconds
   package: com.microsoft.azure.eventprocessorhost
 - uid: 7e53ac82
   spec.java:
@@ -400,7 +390,7 @@ references:
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.leaseStoreExists*
   name: leaseStoreExists
   nameWithType: ILeaseManager.leaseStoreExists
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.leaseStoreExists
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.leaseStoreExists
   package: com.microsoft.azure.eventprocessorhost
 - uid: db03ee24
   spec.java:
@@ -409,71 +399,80 @@ references:
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseStoreIfNotExists*
   name: createLeaseStoreIfNotExists
   nameWithType: ILeaseManager.createLeaseStoreIfNotExists
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseStoreIfNotExists
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseStoreIfNotExists
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLeaseStore*
   name: deleteLeaseStore
   nameWithType: ILeaseManager.deleteLeaseStore
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLeaseStore
-  package: com.microsoft.azure.eventprocessorhost
-- uid: 0eb76d20com.microsoft.azure.eventprocessorhost._leasee7daa122
-  spec.java:
-  - name: CompletableFuture<List<
-    fullName: CompletableFuture<List<
-  - uid: com.microsoft.azure.eventprocessorhost._lease
-    name: Lease
-    fullName: com.microsoft.azure.eventprocessorhost.Lease
-    href: com.microsoft.azure.eventprocessorhost._lease.yml
-  - name: '>>'
-    fullName: '>>'
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases*
-  name: getAllLeases
-  nameWithType: ILeaseManager.getAllLeases
-  fullName: CompletableFuture<List<Lease>> com.microsoft.azure.eventprocessorhost.ILeaseManager.getAllLeases
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLeaseStore
   package: com.microsoft.azure.eventprocessorhost
 - uid: "26831127"
   spec.java:
   - name: String
     fullName: String
-- uid: 9cdf14d0com.microsoft.azure.eventprocessorhost._leasea08ddfce
+- uid: 9cdf14d0com.microsoft.azure.eventprocessorhost._complete_leasea08ddfce
   spec.java:
   - name: CompletableFuture<
     fullName: CompletableFuture<
-  - uid: com.microsoft.azure.eventprocessorhost._lease
-    name: Lease
-    fullName: com.microsoft.azure.eventprocessorhost.Lease
-    href: com.microsoft.azure.eventprocessorhost._lease.yml
+  - uid: com.microsoft.azure.eventprocessorhost._complete_lease
+    name: CompleteLease
+    fullName: com.microsoft.azure.eventprocessorhost.CompleteLease
+    href: com.microsoft.azure.eventprocessorhost._complete_lease.yml
   - name: '>'
     fullName: '>'
-- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createLeaseIfNotExists*
-  name: createLeaseIfNotExists
-  nameWithType: ILeaseManager.createLeaseIfNotExists
-  fullName: CompletableFuture<Lease> com.microsoft.azure.eventprocessorhost.ILeaseManager.createLeaseIfNotExists
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getLease*
+  name: getLease
+  nameWithType: ILeaseManager.getLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getLease
+  package: com.microsoft.azure.eventprocessorhost
+- uid: 0eb76d20com.microsoft.azure.eventprocessorhost._base_leasee7daa122
+  spec.java:
+  - name: CompletableFuture<List<
+    fullName: CompletableFuture<List<
+  - uid: com.microsoft.azure.eventprocessorhost._base_lease
+    name: BaseLease
+    fullName: com.microsoft.azure.eventprocessorhost.BaseLease
+    href: com.microsoft.azure.eventprocessorhost._base_lease.yml
+  - name: '>>'
+    fullName: '>>'
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.getAllLeases*
+  name: getAllLeases
+  nameWithType: ILeaseManager.getAllLeases
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.getAllLeases
+  package: com.microsoft.azure.eventprocessorhost
+- uid: 7d60c20e
+  spec.java:
+  - name: List<String>
+    fullName: List<String>
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.createAllLeasesIfNotExists*
+  name: createAllLeasesIfNotExists
+  nameWithType: ILeaseManager.createAllLeasesIfNotExists
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.createAllLeasesIfNotExists
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.deleteLease*
   name: deleteLease
   nameWithType: ILeaseManager.deleteLease
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.deleteLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.acquireLease*
   name: acquireLease
   nameWithType: ILeaseManager.acquireLease
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.acquireLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.acquireLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.renewLease*
   name: renewLease
   nameWithType: ILeaseManager.renewLease
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.renewLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.renewLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.releaseLease*
   name: releaseLease
   nameWithType: ILeaseManager.releaseLease
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.ILeaseManager.releaseLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.releaseLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager.updateLease*
   name: updateLease
   nameWithType: ILeaseManager.updateLease
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.ILeaseManager.updateLease
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager.updateLease
   package: com.microsoft.azure.eventprocessorhost
 - uid: com.microsoft.azure.eventprocessorhost._azure_storage_checkpoint_lease_manager
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
@@ -485,28 +484,12 @@ references:
   type: Class
   syntax:
     content: public class InMemoryLeaseManager
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLeaseRenewIntervalInMilliseconds()
-  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
-  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: getLeaseRenewIntervalInMilliseconds()
-  nameWithType: InMemoryLeaseManager.getLeaseRenewIntervalInMilliseconds()
-  fullName: int com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLeaseRenewIntervalInMilliseconds()
-  type: Method
-  summary: >-
-    <p>The lease renew interval is used by PartitionManager to determine how often it should scan leases and renew them. In order to redistribute leases in a timely fashion after a host ceases operating, we recommend a relatively short interval, such as ten seconds. Obviously it should be less than half of the lease length, to prevent accidental expiration.</p>
-
-    <p></p>
-  syntax:
-    content: public int getLeaseRenewIntervalInMilliseconds()
-    return:
-      type: f75371fa
-      description: <p>The sleep interval between scans, specified in milliseconds. </p>
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLeaseDurationInMilliseconds()
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
   name: getLeaseDurationInMilliseconds()
   nameWithType: InMemoryLeaseManager.getLeaseDurationInMilliseconds()
-  fullName: int com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLeaseDurationInMilliseconds()
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLeaseDurationInMilliseconds()
   type: Method
   summary: >-
     <p>The lease duration is mostly internal to the lease manager implementation but may be needed by other parts of the event processor host.</p>
@@ -522,7 +505,7 @@ references:
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
   name: leaseStoreExists()
   nameWithType: InMemoryLeaseManager.leaseStoreExists()
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.leaseStoreExists()
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.leaseStoreExists()
   type: Method
   summary: >-
     <p>Does the lease store exist? </p>
@@ -540,7 +523,7 @@ references:
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
   name: createLeaseStoreIfNotExists()
   nameWithType: InMemoryLeaseManager.createLeaseStoreIfNotExists()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createLeaseStoreIfNotExists()
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createLeaseStoreIfNotExists()
   type: Method
   summary: >-
     <p>Create the lease store if it does not exist, do nothing if it does exist.</p>
@@ -556,7 +539,7 @@ references:
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
   name: deleteLeaseStore()
   nameWithType: InMemoryLeaseManager.deleteLeaseStore()
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLeaseStore()
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLeaseStore()
   type: Method
   summary: >-
     <p>Deletes the lease store.</p>
@@ -567,88 +550,119 @@ references:
     return:
       type: db03ee24
       description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._lease
+- uid: com.microsoft.azure.eventprocessorhost._complete_lease
   parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._lease.yml
-  name: Lease
-  nameWithType: Lease
-  fullName: com.microsoft.azure.eventprocessorhost.Lease
+  href: com.microsoft.azure.eventprocessorhost._complete_lease.yml
+  name: CompleteLease
+  nameWithType: CompleteLease
+  fullName: com.microsoft.azure.eventprocessorhost.CompleteLease
   type: Class
   summary: >-
-    <p>
+    <p>CompleteLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
-
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
-
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
+    <p>CompleteLease carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight BaseLease to a method which needs the lease-manager-specific fields. </p>
   syntax:
-    content: public class Lease
+    content: public class CompleteLease extends BaseLease
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getLease(String)
+  parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
+  href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
+  name: getLease(String partitionId)
+  nameWithType: InMemoryLeaseManager.getLease(String partitionId)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getLease(String partitionId)
+  type: Method
+  summary: >-
+    <p>Returns the lease info for the given partition..</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<CompleteLease> getLease(String partitionId)
+    parameters:
+    - id: partitionId
+      type: "26831127"
+      description: <p>Get the lease info for this partition. </p>
+    return:
+      type: 9cdf14d0com.microsoft.azure.eventprocessorhost._complete_leasea08ddfce
+      description: <p>CompletableFuture { -&gt;} Lease, completes exceptionally on error. </p>
+- uid: com.microsoft.azure.eventprocessorhost._base_lease
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._base_lease.yml
+  name: BaseLease
+  nameWithType: BaseLease
+  fullName: com.microsoft.azure.eventprocessorhost.BaseLease
+  type: Class
+  summary: >-
+    <p>BaseLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
+
+    <p>This lightweight base exists to allow ILeaseManager.getAllLeases to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. BaseLease contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
+
+    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on ILeaseManager. </p>
+  syntax:
+    content: public class BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.getAllLeases()
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
   name: getAllLeases()
   nameWithType: InMemoryLeaseManager.getAllLeases()
-  fullName: CompletableFuture<List<Lease>> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getAllLeases()
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.getAllLeases()
   type: Method
   summary: >-
-    <p>Returns the lease info for all partitions.</p>
+    <p>Returns lightweight BaseLease for all leases, which includes name of owning host and whether lease is expired. An implementation is free to return CompleteLease or its own class derived from CompleteLease, but it is important that getAllLeases run as fast as possible. If it is faster to obtain only the information required for a BaseLease, we heavily recommend doing that.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<List<Lease>> getAllLeases()
+    content: public CompletableFuture<List<BaseLease>> getAllLeases()
     return:
-      type: 0eb76d20com.microsoft.azure.eventprocessorhost._leasee7daa122
-      description: <p>CompletableFuture { -&gt;} list of Leases, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.createLeaseIfNotExists(String)
+      type: 0eb76d20com.microsoft.azure.eventprocessorhost._base_leasee7daa122
+      description: <p>CompletableFuture { -&gt;} list of BaseLease, completes exceptionally on error. </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.createAllLeasesIfNotExists(List<String>)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: createLeaseIfNotExists(String partitionId)
-  nameWithType: InMemoryLeaseManager.createLeaseIfNotExists(String partitionId)
-  fullName: CompletableFuture<Lease> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createLeaseIfNotExists(String partitionId)
+  name: createAllLeasesIfNotExists(List<String> partitionIds)
+  nameWithType: InMemoryLeaseManager.createAllLeasesIfNotExists(List<String> partitionIds)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.createAllLeasesIfNotExists(List<String> partitionIds)
   type: Method
   summary: >-
-    <p>Create in the store the lease for the given partition, if it does not exist. Do nothing if it exists in the store already.</p>
+    <p>Create in the store a lease for each of the given partitions, if it does not exist. Do nothing for any lease which exists in the store already.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Lease> createLeaseIfNotExists(String partitionId)
+    content: public CompletableFuture<Void> createAllLeasesIfNotExists(List<String> partitionIds)
     parameters:
-    - id: partitionId
-      type: "26831127"
-      description: <p>id of partition to create lease info for </p>
+    - id: partitionIds
+      type: 7d60c20e
+      description: <p>ids of partitions to create lease info for </p>
     return:
-      type: 9cdf14d0com.microsoft.azure.eventprocessorhost._leasea08ddfce
-      description: <p>CompletableFuture { -&gt;} the existing or newly-created lease info for the partition, completes exceptionally on error </p>
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.deleteLease(Lease)
+      type: db03ee24
+      description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error </p>
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.deleteLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: deleteLease(Lease lease)
-  nameWithType: InMemoryLeaseManager.deleteLease(Lease lease)
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLease(Lease lease)
+  name: deleteLease(CompleteLease lease)
+  nameWithType: InMemoryLeaseManager.deleteLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.deleteLease(CompleteLease lease)
   type: Method
   summary: >-
     <p>Delete the lease info for a partition from the store. If there is no stored lease for the given partition, that is treated as success.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Void> deleteLease(Lease lease)
+    content: public CompletableFuture<Void> deleteLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
       description: <p>the currently existing lease info for the partition </p>
     return:
       type: db03ee24
       description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.acquireLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.acquireLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: acquireLease(Lease lease)
-  nameWithType: InMemoryLeaseManager.acquireLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.acquireLease(Lease lease)
+  name: acquireLease(CompleteLease lease)
+  nameWithType: InMemoryLeaseManager.acquireLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.acquireLease(CompleteLease lease)
   type: Method
   summary: >-
-    <p>Acquire the lease on the desired partition for this <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref>. </p>
+    <p>Acquire the lease on the desired partition for this EventProcessorHost. </p>
 
     <p>Note that it is legal to acquire a lease that is currently owned by another host, which is called "stealing". Lease-stealing is how partitions are redistributed when additional hosts are started. </p>
 
@@ -656,32 +670,20 @@ references:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> acquireLease(Lease lease)
+    content: public CompletableFuture<Boolean> acquireLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> info for the desired partition </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease info for the desired partition </p>
     return:
       type: 7e53ac82
       description: <p>CompletableFuture { -&gt;} true if the lease was acquired, false if not, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._event_processor_host
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
-  name: EventProcessorHost
-  nameWithType: EventProcessorHost
-  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost
-  type: Class
-  syntax:
-    content: public class EventProcessorHost
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.renewLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.renewLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: renewLease(Lease lease)
-  nameWithType: InMemoryLeaseManager.renewLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.renewLease(Lease lease)
+  name: renewLease(CompleteLease lease)
+  nameWithType: InMemoryLeaseManager.renewLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.renewLease(CompleteLease lease)
   type: Method
   summary: >-
     <p>Renew a lease currently held by this host instance. </p>
@@ -690,23 +692,20 @@ references:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> renewLease(Lease lease)
+    content: public CompletableFuture<Boolean> renewLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be renewed </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease to be renewed </p>
     return:
       type: 7e53ac82
       description: <p>true if the lease was renewed, false as described above, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.releaseLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.releaseLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: releaseLease(Lease lease)
-  nameWithType: InMemoryLeaseManager.releaseLease(Lease lease)
-  fullName: CompletableFuture<Void> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.releaseLease(Lease lease)
+  name: releaseLease(CompleteLease lease)
+  nameWithType: InMemoryLeaseManager.releaseLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.releaseLease(CompleteLease lease)
   type: Method
   summary: >-
     <p>Give up a lease currently held by this host. </p>
@@ -715,35 +714,32 @@ references:
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Void> releaseLease(Lease lease)
+    content: public CompletableFuture<Void> releaseLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> to be given up </p>
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
+      description: <p>Lease to be given up </p>
     return:
       type: db03ee24
       description: <p>CompletableFuture { -&gt;} null on success, completes exceptionally on error. </p>
-- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.updateLease(Lease)
+- uid: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.updateLease(CompleteLease)
   parent: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
   href: com.microsoft.azure.eventprocessorhost._in_memory_lease_manager.yml
-  name: updateLease(Lease lease)
-  nameWithType: InMemoryLeaseManager.updateLease(Lease lease)
-  fullName: CompletableFuture<Boolean> com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.updateLease(Lease lease)
+  name: updateLease(CompleteLease lease)
+  nameWithType: InMemoryLeaseManager.updateLease(CompleteLease lease)
+  fullName: com.microsoft.azure.eventprocessorhost.InMemoryLeaseManager.updateLease(CompleteLease lease)
   type: Method
   summary: >-
     <p>Update the store with the information in the provided lease. </p>
 
-    <p>It is necessary to currently hold a lease in order to update it. If the lease has been stolen, or expired, or released, it cannot be updated. <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> manager implementations should renew the lease before performing the update to avoid lease expiration during the process.</p>
+    <p>It is necessary to currently hold a lease in order to update it. If the lease has been stolen, or expired, or released, it cannot be updated. Lease manager implementations should renew the lease before performing the update to avoid lease expiration during the process.</p>
 
     <p></p>
   syntax:
-    content: public CompletableFuture<Boolean> updateLease(Lease lease)
+    content: public CompletableFuture<Boolean> updateLease(CompleteLease lease)
     parameters:
     - id: lease
-      type: com.microsoft.azure.eventprocessorhost._lease
+      type: com.microsoft.azure.eventprocessorhost._complete_lease
       description: <p>New lease info to be stored </p>
     return:
       type: 7e53ac82

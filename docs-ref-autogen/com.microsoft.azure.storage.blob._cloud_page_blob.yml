@@ -95,6 +95,9 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.deleteIfExists(final DeleteSnapshotsOption,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.download(final OutputStream)
   - com.microsoft.azure.storage.blob._cloud_blob.download(final OutputStream,final AccessCondition,BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInfo()
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInfo(BlobRequestOptions,OperationContext)
+  - com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInformationImpl(final RequestOptions)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadAttributes()
   - com.microsoft.azure.storage.blob._cloud_blob.downloadAttributes(final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.downloadRange(final long,final Long,final OutputStream)
@@ -146,7 +149,7 @@ items:
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI)
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
   - com.microsoft.azure.storage.blob._cloud_blob.startCopy(final URI,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
-  - com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final boolean,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,final BlobRequestOptions)
+  - com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final String,final boolean,final boolean,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,final BlobRequestOptions)
   - com.microsoft.azure.storage.blob._cloud_blob.streamMinimumReadSizeInBytes
   - com.microsoft.azure.storage.blob._cloud_blob.streamWriteSizeInBytes
   - com.microsoft.azure.storage.blob._cloud_blob.undelete()
@@ -170,7 +173,7 @@ items:
   - java
   name: clearPages(final long offset, final long length)
   nameWithType: CloudPageBlob.clearPages(final long offset, final long length)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.clearPages(final long offset, final long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.clearPages(final long offset, final long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.clearPages*
   type: Method
   source:
@@ -194,7 +197,7 @@ items:
       type: 4c60ae65
       description: <p>The length, in bytes, of the data range to be cleared. This value must be a multiple of 512.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.clearPages(final long,final long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: clearPages(final long,final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -204,7 +207,7 @@ items:
   - java
   name: clearPages(final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.clearPages(final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.clearPages(final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.clearPages(final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.clearPages*
   type: Method
   source:
@@ -237,7 +240,7 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object which represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final CloudPageBlob)
   id: CloudPageBlob(final CloudPageBlob)
@@ -264,7 +267,7 @@ items:
     parameters:
     - id: otherBlob
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object which represents the page blob to copy. </p>
+      description: <p>A <code>CloudPageBlob</code> object which represents the page blob to copy. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final StorageUri)
   id: CloudPageBlob(final StorageUri)
   parent: com.microsoft.azure.storage.blob._cloud_page_blob
@@ -292,7 +295,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._storage_uri
       description: <p>A <xref uid="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false">StorageUri</xref> object which represents the absolute URI to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final StorageUri,final StorageCredentials)
   id: CloudPageBlob(final StorageUri,final StorageCredentials)
@@ -311,7 +314,7 @@ items:
     startLine: 129
   package: com.microsoft.azure.storage.blob
   summary: >-
-    <p>Creates an instance of the  class using the specified absolute <xref uid="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false">StorageUri</xref> and credentials.</p>
+    <p>Creates an instance of the  class using the specified absolute StorageUri and credentials.</p>
 
     <p></p>
   syntax:
@@ -324,7 +327,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
       description: <p>A <xref uid="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false">StorageCredentials</xref> object used to authenticate access.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final StorageUri,final String,final StorageCredentials)
   id: CloudPageBlob(final StorageUri,final String,final StorageCredentials)
@@ -343,7 +346,7 @@ items:
     startLine: 146
   package: com.microsoft.azure.storage.blob
   summary: >-
-    <p>Creates an instance of the  class using the specified absolute <xref uid="com.microsoft.azure.storage._storage_uri" data-throw-if-not-resolved="false">StorageUri</xref>, snapshot ID, and credentials.</p>
+    <p>Creates an instance of the  class using the specified absolute StorageUri, snapshot ID, and credentials.</p>
 
     <p></p>
   syntax:
@@ -359,7 +362,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
       description: <p>A <xref uid="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false">StorageCredentials</xref> object used to authenticate access. </p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final URI)
   id: CloudPageBlob(final URI)
@@ -388,7 +391,7 @@ items:
       type: bac42120
       description: <p>A <code>java.net.URI</code> object which represents the absolute URI to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final URI,final StorageCredentials)
   id: CloudPageBlob(final URI,final StorageCredentials)
@@ -420,7 +423,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
       description: <p>A <xref uid="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false">StorageCredentials</xref> object used to authenticate access.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(final URI,final String,final StorageCredentials)
   id: CloudPageBlob(final URI,final String,final StorageCredentials)
@@ -455,7 +458,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage._storage_credentials
       description: <p>A <xref uid="com.microsoft.azure.storage._storage_credentials" data-throw-if-not-resolved="false">StorageCredentials</xref> object used to authenticate access. </p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.CloudPageBlob(String,String,CloudBlobContainer)
   id: CloudPageBlob(String,String,CloudBlobContainer)
@@ -500,7 +503,7 @@ items:
   - java
   name: create(final long length)
   nameWithType: CloudPageBlob.create(final long length)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.create*
   type: Method
   source:
@@ -518,7 +521,7 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>If the length is not a multiple of 512. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: create(final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -528,7 +531,7 @@ items:
   - java
   name: create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.create*
   type: Method
   source:
@@ -558,7 +561,7 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>If the length is not a multiple of 512.</p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
   id: create(final long,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -568,7 +571,7 @@ items:
   - java
   name: create(final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.create(final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.create*
   type: Method
   source:
@@ -601,7 +604,7 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>If the length is not a multiple of 512.</p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges()
   id: downloadPageRanges()
@@ -611,7 +614,7 @@ items:
   - java
   name: downloadPageRanges()
   nameWithType: CloudPageBlob.downloadPageRanges()
-  fullName: ArrayList<PageRange> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges()
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges()
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges*
   type: Method
   source:
@@ -631,7 +634,7 @@ items:
       type: 573b1e0bcom.microsoft.azure.storage.blob._page_rangea08ddfce
       description: <p>An <code>ArrayList</code> object which represents the set of page ranges and their starting and ending byte offsets.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges(final AccessCondition,BlobRequestOptions,OperationContext)
   id: downloadPageRanges(final AccessCondition,BlobRequestOptions,OperationContext)
@@ -641,7 +644,7 @@ items:
   - java
   name: downloadPageRanges(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.downloadPageRanges(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: ArrayList<PageRange> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges*
   type: Method
   source:
@@ -669,7 +672,7 @@ items:
       type: 573b1e0bcom.microsoft.azure.storage.blob._page_rangea08ddfce
       description: <p>An <code>ArrayList</code> object which represents the set of page ranges and their starting and ending byte offsets.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges(final long,final Long)
   id: downloadPageRanges(final long,final Long)
@@ -679,7 +682,7 @@ items:
   - java
   name: downloadPageRanges(final long offset, final Long length)
   nameWithType: CloudPageBlob.downloadPageRanges(final long offset, final Long length)
-  fullName: List<PageRange> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final long offset, final Long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final long offset, final Long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges*
   type: Method
   source:
@@ -704,7 +707,7 @@ items:
       type: 5618da2dcom.microsoft.azure.storage.blob._page_rangea08ddfce
       description: <p>A <code>List</code> object which represents the set of page ranges and their starting and ending byte offsets.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges(final long,final Long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: downloadPageRanges(final long,final Long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -714,7 +717,7 @@ items:
   - java
   name: downloadPageRanges(final long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.downloadPageRanges(final long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: List<PageRange> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges(final long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges*
   type: Method
   source:
@@ -748,7 +751,7 @@ items:
       type: 5618da2dcom.microsoft.azure.storage.blob._page_rangea08ddfce
       description: <p>A <code>List</code> object which represents the set of page ranges and their starting and ending byte offsets.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRangesDiff(final String)
   id: downloadPageRangesDiff(final String)
@@ -758,7 +761,7 @@ items:
   - java
   name: downloadPageRangesDiff(final String previousSnapshot)
   nameWithType: CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot)
-  fullName: List<PageRangeDiff> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRangesDiff*
   type: Method
   source:
@@ -775,12 +778,12 @@ items:
     parameters:
     - id: previousSnapshot
       type: 3d93591e
-      description: <p>A string representing the snapshot to use as the starting point for the diff. If this <xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref> represents a snapshot, the previousSnapshot parameter must be prior to the current snapshot. </p>
+      description: <p>A string representing the snapshot to use as the starting point for the diff. If this CloudPageBlob represents a snapshot, the previousSnapshot parameter must be prior to the current snapshot. </p>
     return:
       type: 5618da2dcom.microsoft.azure.storage.blob._page_range_diffa08ddfce
       description: <p>A <code>List</code> object containing the set of differing page ranges.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRangesDiff(final String,final Long,final Long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: downloadPageRangesDiff(final String,final Long,final Long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -790,7 +793,7 @@ items:
   - java
   name: downloadPageRangesDiff(final String previousSnapshot, final Long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot, final Long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: List<PageRangeDiff> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot, final Long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff(final String previousSnapshot, final Long offset, final Long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRangesDiff*
   type: Method
   source:
@@ -807,7 +810,7 @@ items:
     parameters:
     - id: previousSnapshot
       type: 3d93591e
-      description: <p>A string representing the snapshot timestamp to use as the starting point for the diff. If this <xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref> represents a snapshot, the previousSnapshot parameter must be prior to the current snapshot. </p>
+      description: <p>A string representing the snapshot timestamp to use as the starting point for the diff. If this CloudPageBlob represents a snapshot, the previousSnapshot parameter must be prior to the current snapshot. </p>
     - id: offset
       type: 6c34dcee
       description: <p>The starting offset of the data range over which to list page ranges, in bytes. Must be a multiple of 512. </p>
@@ -827,7 +830,7 @@ items:
       type: 5618da2dcom.microsoft.azure.storage.blob._page_range_diffa08ddfce
       description: <p>A <code>List</code> object containing the set of differing page ranges.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteExisting()
   id: openWriteExisting()
@@ -837,7 +840,7 @@ items:
   - java
   name: openWriteExisting()
   nameWithType: CloudPageBlob.openWriteExisting()
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting()
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting()
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteExisting*
   type: Method
   source:
@@ -855,7 +858,7 @@ items:
       type: com.microsoft.azure.storage.blob._blob_output_stream
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> object used to write data to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteExisting(AccessCondition,BlobRequestOptions,OperationContext)
   id: openWriteExisting(AccessCondition,BlobRequestOptions,OperationContext)
@@ -865,7 +868,7 @@ items:
   - java
   name: openWriteExisting(AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.openWriteExisting(AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting(AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting(AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteExisting*
   type: Method
   source:
@@ -893,7 +896,7 @@ items:
       type: com.microsoft.azure.storage.blob._blob_output_stream
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> object used to write data to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew(final long)
   id: openWriteNew(final long)
@@ -903,7 +906,7 @@ items:
   - java
   name: openWriteNew(final long length)
   nameWithType: CloudPageBlob.openWriteNew(final long length)
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew*
   type: Method
   source:
@@ -927,7 +930,7 @@ items:
       type: com.microsoft.azure.storage.blob._blob_output_stream
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> object used to write data to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew(final long,AccessCondition,BlobRequestOptions,OperationContext)
   id: openWriteNew(final long,AccessCondition,BlobRequestOptions,OperationContext)
@@ -937,7 +940,7 @@ items:
   - java
   name: openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew*
   type: Method
   source:
@@ -970,7 +973,7 @@ items:
       type: com.microsoft.azure.storage.blob._blob_output_stream
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> object used to write data to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew(final long,final PremiumPageBlobTier,AccessCondition,BlobRequestOptions,OperationContext)
   id: openWriteNew(final long,final PremiumPageBlobTier,AccessCondition,BlobRequestOptions,OperationContext)
@@ -980,7 +983,7 @@ items:
   - java
   name: openWriteNew(final long length, final PremiumPageBlobTier premiumBlobTier, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.openWriteNew(final long length, final PremiumPageBlobTier premiumBlobTier, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, final PremiumPageBlobTier premiumBlobTier, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, final PremiumPageBlobTier premiumBlobTier, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew*
   type: Method
   source:
@@ -1016,7 +1019,7 @@ items:
       type: com.microsoft.azure.storage.blob._blob_output_stream
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> object used to write data to the blob.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.resize(long)
   id: resize(long)
@@ -1026,7 +1029,7 @@ items:
   - java
   name: resize(long size)
   nameWithType: CloudPageBlob.resize(long size)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.resize(long size)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.resize(long size)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.resize*
   type: Method
   source:
@@ -1045,7 +1048,7 @@ items:
       type: 0364520f
       description: <p>A <code>long</code> which represents the size of the page blob, in bytes.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.resize(long,AccessCondition,BlobRequestOptions,OperationContext)
   id: resize(long,AccessCondition,BlobRequestOptions,OperationContext)
@@ -1055,7 +1058,7 @@ items:
   - java
   name: resize(long size, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.resize(long size, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.resize(long size, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.resize(long size, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.resize*
   type: Method
   source:
@@ -1083,7 +1086,7 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object which represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.setStreamWriteSizeInBytes(final int)
   id: setStreamWriteSizeInBytes(final int)
@@ -1093,7 +1096,7 @@ items:
   - java
   name: setStreamWriteSizeInBytes(final int streamWriteSizeInBytes)
   nameWithType: CloudPageBlob.setStreamWriteSizeInBytes(final int streamWriteSizeInBytes)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.setStreamWriteSizeInBytes(final int streamWriteSizeInBytes)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.setStreamWriteSizeInBytes(final int streamWriteSizeInBytes)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.setStreamWriteSizeInBytes*
   type: Method
   source:
@@ -1122,7 +1125,7 @@ items:
   - java
   name: startCopy(final CloudPageBlob sourceBlob)
   nameWithType: CloudPageBlob.startCopy(final CloudPageBlob sourceBlob)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy*
   type: Method
   source:
@@ -1139,12 +1142,12 @@ items:
     parameters:
     - id: sourceBlob
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy.</p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy.</p>
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy(final CloudPageBlob,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1155,7 +1158,7 @@ items:
   - java
   name: startCopy(final CloudPageBlob sourceBlob, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy*
   type: Method
   source:
@@ -1172,7 +1175,7 @@ items:
     parameters:
     - id: sourceBlob
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. </p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. </p>
     - id: sourceAccessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
       description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the source blob. </p>
@@ -1189,7 +1192,7 @@ items:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy(final CloudPageBlob,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1200,7 +1203,7 @@ items:
   - java
   name: startCopy(final CloudPageBlob sourceBlob, final PremiumPageBlobTier premiumBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final PremiumPageBlobTier premiumBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final PremiumPageBlobTier premiumBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startCopy(final CloudPageBlob sourceBlob, final PremiumPageBlobTier premiumBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy*
   type: Method
   source:
@@ -1217,7 +1220,7 @@ items:
     parameters:
     - id: sourceBlob
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. </p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. </p>
     - id: premiumBlobTier
       type: 93de0ef9com.microsoft.azure.storage.blob._premium_page_blob_tier
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._premium_page_blob_tier" data-throw-if-not-resolved="false">PremiumPageBlobTier</xref> object which represents the tier of the blob. </p>
@@ -1237,7 +1240,7 @@ items:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob)
@@ -1248,7 +1251,7 @@ items:
   - java
   name: startIncrementalCopy(final CloudPageBlob sourceSnapshot)
   nameWithType: CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy*
   type: Method
   source:
@@ -1265,12 +1268,12 @@ items:
     parameters:
     - id: sourceSnapshot
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. Must be a snapshot.</p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. Must be a snapshot.</p>
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final CloudPageBlob,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1281,7 +1284,7 @@ items:
   - java
   name: startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final CloudPageBlob sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy*
   type: Method
   source:
@@ -1298,7 +1301,7 @@ items:
     parameters:
     - id: sourceSnapshot
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_page_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. Must be a snapshot. </p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. Must be a snapshot. </p>
     - id: destinationAccessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
       description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the destination blob. </p>
@@ -1312,7 +1315,7 @@ items:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI)
@@ -1323,7 +1326,7 @@ items:
   - java
   name: startIncrementalCopy(final URI sourceSnapshot)
   nameWithType: CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy*
   type: Method
   source:
@@ -1340,12 +1343,12 @@ items:
     parameters:
     - id: sourceSnapshot
       type: bac42120
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. Must be a snapshot.</p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. Must be a snapshot.</p>
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy(final URI,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1356,7 +1359,7 @@ items:
   - java
   name: startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy(final URI sourceSnapshot, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy*
   type: Method
   source:
@@ -1373,7 +1376,7 @@ items:
     parameters:
     - id: sourceSnapshot
       type: bac42120
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_page_blob" data-throw-if-not-resolved="false">CloudPageBlob</xref></code> object that represents the source blob to copy. Must be a snapshot. </p>
+      description: <p>A <code>CloudPageBlob</code> object that represents the source blob to copy. Must be a snapshot. </p>
     - id: destinationAccessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
       description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the destination blob. </p>
@@ -1387,7 +1390,7 @@ items:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: "44102508"
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.updateSequenceNumberFromResponse(HttpURLConnection)
@@ -1398,7 +1401,7 @@ items:
   - java
   name: updateSequenceNumberFromResponse(HttpURLConnection request)
   nameWithType: CloudPageBlob.updateSequenceNumberFromResponse(HttpURLConnection request)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.updateSequenceNumberFromResponse(HttpURLConnection request)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.updateSequenceNumberFromResponse(HttpURLConnection request)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.updateSequenceNumberFromResponse*
   type: Method
   source:
@@ -1419,7 +1422,7 @@ items:
   - java
   name: upload(final InputStream sourceStream, final long length)
   nameWithType: CloudPageBlob.upload(final InputStream sourceStream, final long length)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.upload*
   type: Method
   source:
@@ -1443,7 +1446,7 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>If an I/O exception occurred. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.upload(final InputStream,final long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: upload(final InputStream,final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1453,7 +1456,7 @@ items:
   - java
   name: upload(final InputStream sourceStream, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.upload(final InputStream sourceStream, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.upload*
   type: Method
   source:
@@ -1486,7 +1489,7 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>If an I/O exception occurred. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.upload(final InputStream,final long,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
   id: upload(final InputStream,final long,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1496,7 +1499,7 @@ items:
   - java
   name: upload(final InputStream sourceStream, final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.upload(final InputStream sourceStream, final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.upload(final InputStream sourceStream, final long length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.upload*
   type: Method
   source:
@@ -1532,7 +1535,7 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>If an I/O exception occurred. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromByteArray(final byte [],final int,final int,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
   id: uploadFromByteArray(final byte [],final int,final int,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1542,7 +1545,7 @@ items:
   - java
   name: uploadFromByteArray(final byte[] buffer, final int offset, final int length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromByteArray*
   type: Method
   source:
@@ -1579,7 +1582,7 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: cbf33bbe
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromFile(final String,final PremiumPageBlobTier,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1590,7 +1593,7 @@ items:
   - java
   name: uploadFromFile(final String path, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.uploadFromFile(final String path, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromFile(final String path, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromFile(final String path, final PremiumPageBlobTier premiumBlobTier, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromFile*
   type: Method
   source:
@@ -1621,7 +1624,7 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
   - type: cbf33bbe
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPages(final InputStream,final long,final long)
@@ -1632,7 +1635,7 @@ items:
   - java
   name: uploadPages(final InputStream sourceStream, final long offset, final long length)
   nameWithType: CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPages*
   type: Method
   source:
@@ -1661,7 +1664,7 @@ items:
     description: <p>If the offset or length are not multiples of 512, or if the length is greater than 4 MB. </p>
   - type: cbf33bbe
     description: <p>If an I/O exception occurred. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPages(final InputStream,final long,final long,final AccessCondition,BlobRequestOptions,OperationContext)
   id: uploadPages(final InputStream,final long,final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -1671,7 +1674,7 @@ items:
   - java
   name: uploadPages(final InputStream sourceStream, final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages(final InputStream sourceStream, final long offset, final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPages*
   type: Method
   source:
@@ -1709,7 +1712,7 @@ items:
     description: <p>If the offset or length are not multiples of 512, or if the length is greater than 4 MB. </p>
   - type: cbf33bbe
     description: <p>If an I/O exception occurred. </p>
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPremiumPageBlobTier(final PremiumPageBlobTier)
   id: uploadPremiumPageBlobTier(final PremiumPageBlobTier)
@@ -1719,7 +1722,7 @@ items:
   - java
   name: uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier)
   nameWithType: CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPremiumPageBlobTier*
   type: Method
   source:
@@ -1735,7 +1738,7 @@ items:
       type: 93de0ef9com.microsoft.azure.storage.blob._premium_page_blob_tier
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._premium_page_blob_tier" data-throw-if-not-resolved="false">PremiumPageBlobTier</xref> object which represents the tier of the blob. </p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPremiumPageBlobTier(final PremiumPageBlobTier,BlobRequestOptions,OperationContext)
   id: uploadPremiumPageBlobTier(final PremiumPageBlobTier,BlobRequestOptions,OperationContext)
@@ -1745,7 +1748,7 @@ items:
   - java
   name: uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier(final PremiumPageBlobTier premiumBlobTier, BlobRequestOptions options, OperationContext opContext)
   overload: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPremiumPageBlobTier*
   type: Method
   source:
@@ -1767,9 +1770,13 @@ items:
       type: com.microsoft.azure.storage._operation_context
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object which represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation. </p>
   exceptions:
-  - type: com.microsoft.azure.storage._storage_exception
+  - type: ca4f407a
     description: <p>If a storage service error occurred. </p>
 references:
+- uid: ca4f407a
+  spec.java:
+  - name: StorageException
+    fullName: StorageException
 - uid: bac42120
   spec.java:
   - name: final URI
@@ -1814,7 +1821,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startCopy*
   name: startCopy
   nameWithType: CloudPageBlob.startCopy
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startCopy
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startCopy
   package: com.microsoft.azure.storage.blob
 - uid: 93de0ef9com.microsoft.azure.storage._access_condition
   spec.java:
@@ -1835,7 +1842,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.startIncrementalCopy*
   name: startIncrementalCopy
   nameWithType: CloudPageBlob.startIncrementalCopy
-  fullName: final String com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.startIncrementalCopy
   package: com.microsoft.azure.storage.blob
 - uid: 4c60ae65
   spec.java:
@@ -1844,7 +1851,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.clearPages*
   name: clearPages
   nameWithType: CloudPageBlob.clearPages
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.clearPages
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.clearPages
   package: com.microsoft.azure.storage.blob
 - uid: 3c87bd19
   spec.java:
@@ -1853,7 +1860,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.create*
   name: create
   nameWithType: CloudPageBlob.create
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.create
   package: com.microsoft.azure.storage.blob
 - uid: 573b1e0bcom.microsoft.azure.storage.blob._page_rangea08ddfce
   spec.java:
@@ -1868,7 +1875,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRanges*
   name: downloadPageRanges
   nameWithType: CloudPageBlob.downloadPageRanges
-  fullName: ArrayList<PageRange> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRanges
   package: com.microsoft.azure.storage.blob
 - uid: 6c34dcee
   spec.java:
@@ -1897,17 +1904,17 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.downloadPageRangesDiff*
   name: downloadPageRangesDiff
   nameWithType: CloudPageBlob.downloadPageRangesDiff
-  fullName: List<PageRangeDiff> com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.downloadPageRangesDiff
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteExisting*
   name: openWriteExisting
   nameWithType: CloudPageBlob.openWriteExisting
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteExisting
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.openWriteNew*
   name: openWriteNew
   nameWithType: CloudPageBlob.openWriteNew
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew
   package: com.microsoft.azure.storage.blob
 - uid: 0364520f
   spec.java:
@@ -1916,7 +1923,7 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.resize*
   name: resize
   nameWithType: CloudPageBlob.resize
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.resize
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.resize
   package: com.microsoft.azure.storage.blob
 - uid: cbf33bbe
   spec.java:
@@ -1933,12 +1940,12 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromByteArray*
   name: uploadFromByteArray
   nameWithType: CloudPageBlob.uploadFromByteArray
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromByteArray
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromByteArray
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadFromFile*
   name: uploadFromFile
   nameWithType: CloudPageBlob.uploadFromFile
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromFile
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadFromFile
   package: com.microsoft.azure.storage.blob
 - uid: ac354e53
   spec.java:
@@ -1947,22 +1954,22 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.upload*
   name: upload
   nameWithType: CloudPageBlob.upload
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.upload
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.upload
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPages*
   name: uploadPages
   nameWithType: CloudPageBlob.uploadPages
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPages
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.setStreamWriteSizeInBytes*
   name: setStreamWriteSizeInBytes
   nameWithType: CloudPageBlob.setStreamWriteSizeInBytes
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.setStreamWriteSizeInBytes
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.setStreamWriteSizeInBytes
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.uploadPremiumPageBlobTier*
   name: uploadPremiumPageBlobTier
   nameWithType: CloudPageBlob.uploadPremiumPageBlobTier
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.uploadPremiumPageBlobTier
   package: com.microsoft.azure.storage.blob
 - uid: "26831127"
   spec.java:
@@ -1975,14 +1982,14 @@ references:
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.updateSequenceNumberFromResponse*
   name: updateSequenceNumberFromResponse
   nameWithType: CloudPageBlob.updateSequenceNumberFromResponse
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.updateSequenceNumberFromResponse
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.updateSequenceNumberFromResponse
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._cloud_blob.abortCopy(final String)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: abortCopy(final String copyId)
   nameWithType: CloudBlob.abortCopy(final String copyId)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.abortCopy(final String copyId)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.abortCopy(final String copyId)
   type: Method
   summary: >-
     <p>Aborts an ongoing blob copy operation.</p>
@@ -2001,7 +2008,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: abortCopy(final String copyId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.abortCopy(final String copyId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.abortCopy(final String copyId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.abortCopy(final String copyId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Aborts an ongoing blob copy operation.</p>
@@ -2029,7 +2036,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: acquireLease()
   nameWithType: CloudBlob.acquireLease()
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.acquireLease()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.acquireLease()
   type: Method
   summary: >-
     <p>Acquires a new infinite lease on the blob.</p>
@@ -2045,7 +2052,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId)
   nameWithType: CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId)
   type: Method
   summary: >-
     <p>Acquires a new lease on the blob with the specified lease time and proposed lease ID.</p>
@@ -2068,7 +2075,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.acquireLease(final Integer leaseTimeInSeconds, final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Acquires a new lease on the blob with the specified lease time, proposed lease ID, request options, and operation context.</p>
@@ -2100,7 +2107,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: assertCorrectBlobType()
   nameWithType: CloudBlob.assertCorrectBlobType()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.assertCorrectBlobType()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.assertCorrectBlobType()
   type: Method
   summary: >-
     <p>Asserts that the blob has the correct blob type specified in the blob attributes.</p>
@@ -2115,7 +2122,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: assertNoWriteOperationForSnapshot()
   nameWithType: CloudBlob.assertNoWriteOperationForSnapshot()
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.assertNoWriteOperationForSnapshot()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.assertNoWriteOperationForSnapshot()
   type: Method
   summary: <p>Asserts that write operation is not done for snapshot. </p>
   syntax:
@@ -2125,7 +2132,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: blobServiceClient
   nameWithType: CloudBlob.blobServiceClient
-  fullName: CloudBlobClient com.microsoft.azure.storage.blob.CloudBlob.blobServiceClient
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.blobServiceClient
   type: Field
   summary: <p>Represents the blob client. </p>
   syntax:
@@ -2137,7 +2144,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: breakLease(final Integer breakPeriodInSeconds)
   nameWithType: CloudBlob.breakLease(final Integer breakPeriodInSeconds)
-  fullName: final long com.microsoft.azure.storage.blob.CloudBlob.breakLease(final Integer breakPeriodInSeconds)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.breakLease(final Integer breakPeriodInSeconds)
   type: Method
   summary: >-
     <p>Breaks the lease and ensures that another client cannot acquire a new lease until the current lease period has expired.</p>
@@ -2157,7 +2164,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: breakLease(final Integer breakPeriodInSeconds, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.breakLease(final Integer breakPeriodInSeconds, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final long com.microsoft.azure.storage.blob.CloudBlob.breakLease(final Integer breakPeriodInSeconds, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.breakLease(final Integer breakPeriodInSeconds, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Breaks the existing lease, using the specified request options and operation context, and ensures that another client cannot acquire a new lease until the current lease period has expired.</p>
@@ -2186,7 +2193,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: changeLease(final String proposedLeaseId, final AccessCondition accessCondition)
   nameWithType: CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition)
   type: Method
   summary: >-
     <p>Changes the existing lease ID to the proposed lease ID.</p>
@@ -2209,7 +2216,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: changeLease(final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.changeLease(final String proposedLeaseId, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Changes the existing lease ID to the proposed lease Id with the specified access conditions, request options, and operation context.</p>
@@ -2301,13 +2308,13 @@ references:
     parameters:
     - id: otherBlob
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_blob" data-throw-if-not-resolved="false">CloudBlob</xref></code> object that represents the blob to copy. </p>
+      description: <p>A <code>CloudBlob</code> object that represents the blob to copy. </p>
 - uid: com.microsoft.azure.storage.blob._cloud_blob.createSnapshot()
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: createSnapshot()
   nameWithType: CloudBlob.createSnapshot()
-  fullName: final CloudBlob com.microsoft.azure.storage.blob.CloudBlob.createSnapshot()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.createSnapshot()
   type: Method
   summary: >-
     <p>Creates a snapshot of the blob.</p>
@@ -2317,13 +2324,13 @@ references:
     content: public final CloudBlob createSnapshot()
     return:
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_blob" data-throw-if-not-resolved="false">CloudBlob</xref></code> object that represents the snapshot of the blob.</p>
+      description: <p>A <code>CloudBlob</code> object that represents the snapshot of the blob.</p>
 - uid: com.microsoft.azure.storage.blob._cloud_blob.createSnapshot(final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: createSnapshot(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.createSnapshot(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final CloudBlob com.microsoft.azure.storage.blob.CloudBlob.createSnapshot(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.createSnapshot(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Creates a snapshot of the blob using the specified request options and operation context.</p>
@@ -2343,13 +2350,13 @@ references:
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
     return:
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_blob" data-throw-if-not-resolved="false">CloudBlob</xref></code> object that represents the snapshot of the blob.</p>
+      description: <p>A <code>CloudBlob</code> object that represents the snapshot of the blob.</p>
 - uid: com.microsoft.azure.storage.blob._cloud_blob.createSnapshot(final HashMap<String, String>,final AccessCondition,BlobRequestOptions,OperationContext)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final CloudBlob com.microsoft.azure.storage.blob.CloudBlob.createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.createSnapshot(final HashMap<String, String> metadata, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Creates a snapshot of the blob using the specified request options and operation context.</p>
@@ -2372,13 +2379,13 @@ references:
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
     return:
       type: 93de0ef9com.microsoft.azure.storage.blob._cloud_blob
-      description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._cloud_blob" data-throw-if-not-resolved="false">CloudBlob</xref></code> object that represents the snapshot of the blob.</p>
+      description: <p>A <code>CloudBlob</code> object that represents the snapshot of the blob.</p>
 - uid: com.microsoft.azure.storage.blob._cloud_blob.delete()
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: delete()
   nameWithType: CloudBlob.delete()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.delete()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.delete()
   type: Method
   summary: >-
     <p>Deletes the blob.</p>
@@ -2395,7 +2402,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: delete(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.delete(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.delete(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.delete(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Deletes the blob using the specified snapshot and request options, and operation context.</p>
@@ -2427,7 +2434,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: deleteIfExists()
   nameWithType: CloudBlob.deleteIfExists()
-  fullName: final boolean com.microsoft.azure.storage.blob.CloudBlob.deleteIfExists()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.deleteIfExists()
   type: Method
   summary: >-
     <p>Deletes the blob if it exists. </p>
@@ -2448,7 +2455,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: deleteIfExists(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.deleteIfExists(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final boolean com.microsoft.azure.storage.blob.CloudBlob.deleteIfExists(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.deleteIfExists(final DeleteSnapshotsOption deleteSnapshotsOption, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Deletes the blob if it exists, using the specified snapshot and request options, and operation context. </p>
@@ -2482,7 +2489,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: download(final OutputStream outStream)
   nameWithType: CloudBlob.download(final OutputStream outStream)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.download(final OutputStream outStream)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.download(final OutputStream outStream)
   type: Method
   summary: >-
     <p>Downloads the contents of a blob to a stream.</p>
@@ -2501,7 +2508,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: download(final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.download(final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.download(final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.download(final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads the contents of a blob to a stream using the specified request options and operation context.</p>
@@ -2524,12 +2531,65 @@ references:
       description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation. </p>
     return:
       type: 3f6357ce
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInfo()
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: downloadAccountInfo()
+  nameWithType: CloudBlob.downloadAccountInfo()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadAccountInfo()
+  type: Method
+  summary: >-
+    <p>Gets information related to the storage account in which this blob resides.</p>
+
+    <p></p>
+  syntax:
+    content: public AccountInformation downloadAccountInfo()
+    return:
+      type: com.microsoft.azure.storage._account_information
+      description: <p>A <xref uid="com.microsoft.azure.storage._account_information" data-throw-if-not-resolved="false">AccountInformation</xref> object for the given storage account. </p>
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInfo(BlobRequestOptions,OperationContext)
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: downloadAccountInfo(BlobRequestOptions options, OperationContext opContext)
+  nameWithType: CloudBlob.downloadAccountInfo(BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadAccountInfo(BlobRequestOptions options, OperationContext opContext)
+  type: Method
+  summary: >-
+    <p>Gets information related to the storage account in which this blob resides.</p>
+
+    <p></p>
+  syntax:
+    content: public AccountInformation downloadAccountInfo(BlobRequestOptions options, OperationContext opContext)
+    parameters:
+    - id: options
+      type: com.microsoft.azure.storage.blob._blob_request_options
+      description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false">BlobRequestOptions</xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref uid="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false">CloudBlobClient</xref>). </p>
+    - id: opContext
+      type: com.microsoft.azure.storage._operation_context
+      description: <p>An <xref uid="com.microsoft.azure.storage._operation_context" data-throw-if-not-resolved="false">OperationContext</xref> object that represents the context for the current operation. This object is used to track requests to the storage service, and to provide additional runtime information about the operation.</p>
+    return:
+      type: com.microsoft.azure.storage._account_information
+      description: <p>A <xref uid="com.microsoft.azure.storage._account_information" data-throw-if-not-resolved="false">AccountInformation</xref> object for the given storage account.</p>
+- uid: com.microsoft.azure.storage.blob._cloud_blob.downloadAccountInformationImpl(final RequestOptions)
+  parent: com.microsoft.azure.storage.blob._cloud_blob
+  href: com.microsoft.azure.storage.blob._cloud_blob.yml
+  name: downloadAccountInformationImpl(final RequestOptions options)
+  nameWithType: CloudBlob.downloadAccountInformationImpl(final RequestOptions options)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadAccountInformationImpl(final RequestOptions options)
+  type: Method
+  syntax:
+    content: protected StorageRequest<ServiceClient, CloudBlob, AccountInformation> downloadAccountInformationImpl(final RequestOptions options)
+    parameters:
+    - id: options
+      type: 93de0ef9com.microsoft.azure.storage._request_options
+    return:
+      type: com.microsoft.azure.storage.core._storage_request78504a52com.microsoft.azure.storage._service_clientb33c76fccom.microsoft.azure.storage.blob._cloud_blobb33c76fccom.microsoft.azure.storage._account_informationa08ddfce
 - uid: com.microsoft.azure.storage.blob._cloud_blob.downloadAttributes()
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadAttributes()
   nameWithType: CloudBlob.downloadAttributes()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.downloadAttributes()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadAttributes()
   type: Method
   summary: >-
     <p>Populates a blob's properties and metadata. </p>
@@ -2546,7 +2606,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadAttributes(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadAttributes(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.downloadAttributes(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadAttributes(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Populates a blob's properties and metadata using the specified request options and operation context. </p>
@@ -2573,7 +2633,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRange(final long offset, final Long length, final OutputStream outStream)
   nameWithType: CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream)
   type: Method
   summary: >-
     <p>Downloads the contents of a blob to a stream.</p>
@@ -2598,7 +2658,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRange(final long offset, final Long length, final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadRange(final long offset, final Long length, final OutputStream outStream, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads the contents of a blob to a stream using the specified request options and operation context.</p>
@@ -2632,7 +2692,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeInternal(final long blobOffset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadRangeInternal(final long blobOffset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.downloadRangeInternal(final long blobOffset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadRangeInternal(final long blobOffset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads a range of bytes from the blob to the given byte buffer.</p>
@@ -2670,7 +2730,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset)
   nameWithType: CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset)
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset)
   type: Method
   summary: >-
     <p>Downloads a range of bytes from the blob to the given byte buffer.</p>
@@ -2699,7 +2759,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadRangeToByteArray(final long offset, final Long length, final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads a range of bytes from the blob to the given byte buffer, using the specified request options and operation context.</p>
@@ -2737,7 +2797,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToByteArray(final byte[] buffer, final int bufferOffset)
   nameWithType: CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset)
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset)
   type: Method
   summary: >-
     <p>Downloads a range of bytes from the blob to the given byte buffer.</p>
@@ -2759,7 +2819,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadToByteArray(final byte[] buffer, final int bufferOffset, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads a range of bytes from the blob to the given byte buffer, using the specified request options and operation context.</p>
@@ -2790,7 +2850,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToFile(final String path)
   nameWithType: CloudBlob.downloadToFile(final String path)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.downloadToFile(final String path)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadToFile(final String path)
   type: Method
   summary: >-
     <p>Downloads a blob, storing the contents in a file.</p>
@@ -2807,7 +2867,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: downloadToFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.downloadToFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.downloadToFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.downloadToFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Downloads a blob, storing the contents in a file.</p>
@@ -2833,7 +2893,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: exists()
   nameWithType: CloudBlob.exists()
-  fullName: final boolean com.microsoft.azure.storage.blob.CloudBlob.exists()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.exists()
   type: Method
   summary: >-
     <p>Checks to see if the blob exists.</p>
@@ -2852,7 +2912,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: exists(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.exists(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final boolean com.microsoft.azure.storage.blob.CloudBlob.exists(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.exists(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Checks to see if the blob exists, using the specified request options and operation context.</p>
@@ -2881,7 +2941,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final String groupPolicyIdentifier)
   nameWithType: CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final String groupPolicyIdentifier)
-  fullName: String com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final String groupPolicyIdentifier)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final String groupPolicyIdentifier)
   type: Method
   summary: >-
     <p>Returns a shared access signature for the blob using the specified group policy identifier and operation context. Note this does not contain the leading "?".</p>
@@ -2892,7 +2952,7 @@ references:
     parameters:
     - id: policy
       type: 93de0ef9com.microsoft.azure.storage.blob._shared_access_blob_policy
-      description: <p>A <code><xref uid="com.microsoft.azure.storage._shared_access_policy" data-throw-if-not-resolved="false">SharedAccessPolicy</xref></code> object that represents the access policy for the shared access signature. </p>
+      description: <p>A <code>SharedAccessPolicy</code> object that represents the access policy for the shared access signature. </p>
     - id: groupPolicyIdentifier
       type: 3d93591e
       description: <p>A <code>String</code> that represents the container-level access policy.</p>
@@ -2904,7 +2964,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier)
   nameWithType: CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier)
-  fullName: String com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier)
   type: Method
   summary: >-
     <p>Returns a shared access signature for the blob using the specified group policy identifier and operation context. Note this does not contain the leading "?".</p>
@@ -2915,7 +2975,7 @@ references:
     parameters:
     - id: policy
       type: 93de0ef9com.microsoft.azure.storage.blob._shared_access_blob_policy
-      description: <p>A <code><xref uid="com.microsoft.azure.storage._shared_access_policy" data-throw-if-not-resolved="false">SharedAccessPolicy</xref></code> object that represents the access policy for the shared access signature. </p>
+      description: <p>A <code>SharedAccessPolicy</code> object that represents the access policy for the shared access signature. </p>
     - id: headers
       type: 93de0ef9com.microsoft.azure.storage.blob._shared_access_blob_headers
       description: <p>A <code><xref uid="com.microsoft.azure.storage.blob._shared_access_blob_headers" data-throw-if-not-resolved="false">SharedAccessBlobHeaders</xref></code> object that represents the optional header values to set for a blob accessed with this shared access signature. </p>
@@ -2930,7 +2990,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier, final IPRange ipRange, final SharedAccessProtocols protocols)
   nameWithType: CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier, final IPRange ipRange, final SharedAccessProtocols protocols)
-  fullName: String com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier, final IPRange ipRange, final SharedAccessProtocols protocols)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.generateSharedAccessSignature(final SharedAccessBlobPolicy policy, final SharedAccessBlobHeaders headers, final String groupPolicyIdentifier, final IPRange ipRange, final SharedAccessProtocols protocols)
   type: Method
   summary: >-
     <p>Returns a shared access signature for the blob using the specified group policy identifier and operation context. Note this does not contain the leading "?".</p>
@@ -2950,7 +3010,7 @@ references:
       description: <p>A <code>String</code> that represents the container-level access policy. </p>
     - id: ipRange
       type: 93de0ef9com.microsoft.azure.storage._i_p_range
-      description: <p>A <xref uid="com.microsoft.azure.storage.blob._i_p_range" data-throw-if-not-resolved="false">IPRange</xref> object containing the range of allowed IP addresses. </p>
+      description: <p>A <xref uid="com.microsoft.azure.storage._i_p_range" data-throw-if-not-resolved="false">IPRange</xref> object containing the range of allowed IP addresses. </p>
     - id: protocols
       type: 93de0ef9com.microsoft.azure.storage._shared_access_protocols
       description: <p>A <xref uid="com.microsoft.azure.storage._shared_access_protocols" data-throw-if-not-resolved="false">SharedAccessProtocols</xref> representing the allowed Internet protocols.</p>
@@ -2962,7 +3022,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getContainer()
   nameWithType: CloudBlob.getContainer()
-  fullName: final CloudBlobContainer com.microsoft.azure.storage.blob.CloudBlob.getContainer()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getContainer()
   type: Method
   summary: >-
     <p>Returns the blob's container.</p>
@@ -2978,7 +3038,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getCopyState()
   nameWithType: CloudBlob.getCopyState()
-  fullName: CopyState com.microsoft.azure.storage.blob.CloudBlob.getCopyState()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getCopyState()
   type: Method
   summary: >-
     <p>Returns the blob's copy state.</p>
@@ -2994,7 +3054,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getMetadata()
   nameWithType: CloudBlob.getMetadata()
-  fullName: final HashMap<String, String> com.microsoft.azure.storage.blob.CloudBlob.getMetadata()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getMetadata()
   type: Method
   summary: >-
     <p>Returns the metadata for the blob.</p>
@@ -3010,7 +3070,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getName()
   nameWithType: CloudBlob.getName()
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.getName()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getName()
   type: Method
   summary: >-
     <p>Returns the name of the blob.</p>
@@ -3026,7 +3086,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getParent()
   nameWithType: CloudBlob.getParent()
-  fullName: final CloudBlobDirectory com.microsoft.azure.storage.blob.CloudBlob.getParent()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getParent()
   type: Method
   summary: >-
     <p>Returns the blob item's parent.</p>
@@ -3042,7 +3102,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getParentNameFromURI(final StorageUri resourceAddress, final String delimiter, final CloudBlobContainer container)
   nameWithType: CloudBlob.getParentNameFromURI(final StorageUri resourceAddress, final String delimiter, final CloudBlobContainer container)
-  fullName: static String com.microsoft.azure.storage.blob.CloudBlob.getParentNameFromURI(final StorageUri resourceAddress, final String delimiter, final CloudBlobContainer container)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getParentNameFromURI(final StorageUri resourceAddress, final String delimiter, final CloudBlobContainer container)
   type: Method
   summary: >-
     <p>Retrieves the parent name for a blob URI.</p>
@@ -3068,7 +3128,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getProperties()
   nameWithType: CloudBlob.getProperties()
-  fullName: final BlobProperties com.microsoft.azure.storage.blob.CloudBlob.getProperties()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getProperties()
   type: Method
   summary: >-
     <p>Returns the blob's properties.</p>
@@ -3084,14 +3144,14 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getQualifiedStorageUri()
   nameWithType: CloudBlob.getQualifiedStorageUri()
-  fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getQualifiedStorageUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getQualifiedStorageUri()
   type: Method
   summary: >-
     <p>Returns the snapshot and/or shared access signature qualified URI for this blob.</p>
 
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000067">
+      <xrefsect id="deprecated_1_deprecated000069">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -3116,14 +3176,14 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getQualifiedUri()
   nameWithType: CloudBlob.getQualifiedUri()
-  fullName: final URI com.microsoft.azure.storage.blob.CloudBlob.getQualifiedUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getQualifiedUri()
   type: Method
   summary: >-
     <p>Returns the snapshot or shared access signature qualified URI for this blob.</p>
 
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000068">
+      <xrefsect id="deprecated_1_deprecated000070">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -3148,7 +3208,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getServiceClient()
   nameWithType: CloudBlob.getServiceClient()
-  fullName: final CloudBlobClient com.microsoft.azure.storage.blob.CloudBlob.getServiceClient()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getServiceClient()
   type: Method
   summary: >-
     <p>Returns the Blob service client associated with the blob.</p>
@@ -3164,7 +3224,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getSnapshotID()
   nameWithType: CloudBlob.getSnapshotID()
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.getSnapshotID()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getSnapshotID()
   type: Method
   summary: >-
     <p>Gets the Blob Snapshot ID.</p>
@@ -3180,7 +3240,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getSnapshotQualifiedStorageUri()
   nameWithType: CloudBlob.getSnapshotQualifiedStorageUri()
-  fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedStorageUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedStorageUri()
   type: Method
   summary: >-
     <p>Returns the blob's URI for both the primary and secondary locations, including query string information if the blob is a snapshot.</p>
@@ -3196,7 +3256,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getSnapshotQualifiedUri()
   nameWithType: CloudBlob.getSnapshotQualifiedUri()
-  fullName: final URI com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getSnapshotQualifiedUri()
   type: Method
   summary: >-
     <p>Returns the absolute URI to the blob, including query string information if the blob is a snapshot.</p>
@@ -3212,7 +3272,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getStorageUri()
   nameWithType: CloudBlob.getStorageUri()
-  fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getStorageUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getStorageUri()
   type: Method
   summary: >-
     <p>Returns the list of URIs for all locations.</p>
@@ -3228,7 +3288,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getStreamMinimumReadSizeInBytes()
   nameWithType: CloudBlob.getStreamMinimumReadSizeInBytes()
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.getStreamMinimumReadSizeInBytes()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getStreamMinimumReadSizeInBytes()
   type: Method
   summary: >-
     <p>Returns the minimum read size when using a <xref uid="com.microsoft.azure.storage.blob._blob_input_stream" data-throw-if-not-resolved="false">BlobInputStream</xref>.</p>
@@ -3244,7 +3304,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getStreamWriteSizeInBytes()
   nameWithType: CloudBlob.getStreamWriteSizeInBytes()
-  fullName: final int com.microsoft.azure.storage.blob.CloudBlob.getStreamWriteSizeInBytes()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getStreamWriteSizeInBytes()
   type: Method
   summary: >-
     <p>Gets the number of bytes to buffer when writing to a <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> (block and page blobs).</p>
@@ -3260,7 +3320,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getTransformedAddress(final OperationContext opContext)
   nameWithType: CloudBlob.getTransformedAddress(final OperationContext opContext)
-  fullName: final StorageUri com.microsoft.azure.storage.blob.CloudBlob.getTransformedAddress(final OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getTransformedAddress(final OperationContext opContext)
   type: Method
   summary: >-
     <p>Returns the transformed URI for the resource if the given credentials require transformation.</p>
@@ -3280,7 +3340,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: getUri()
   nameWithType: CloudBlob.getUri()
-  fullName: final URI com.microsoft.azure.storage.blob.CloudBlob.getUri()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.getUri()
   type: Method
   summary: >-
     <p>Returns the URI for this blob.</p>
@@ -3296,7 +3356,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: isSnapshot()
   nameWithType: CloudBlob.isSnapshot()
-  fullName: final boolean com.microsoft.azure.storage.blob.CloudBlob.isSnapshot()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.isSnapshot()
   type: Method
   summary: >-
     <p>Indicates whether this blob is a snapshot.</p>
@@ -3315,7 +3375,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: openInputStream()
   nameWithType: CloudBlob.openInputStream()
-  fullName: final BlobInputStream com.microsoft.azure.storage.blob.CloudBlob.openInputStream()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.openInputStream()
   type: Method
   summary: >-
     <p>Opens a blob input stream to download the blob. </p>
@@ -3333,7 +3393,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: openInputStream(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.openInputStream(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final BlobInputStream com.microsoft.azure.storage.blob.CloudBlob.openInputStream(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.openInputStream(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Opens a blob input stream to download the blob using the specified request options and operation context. </p>
@@ -3361,7 +3421,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: parent
   nameWithType: CloudBlob.parent
-  fullName: CloudBlobDirectory com.microsoft.azure.storage.blob.CloudBlob.parent
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.parent
   type: Field
   summary: <p>Represents the blob's directory. </p>
   syntax:
@@ -3373,7 +3433,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: releaseLease(final AccessCondition accessCondition)
   nameWithType: CloudBlob.releaseLease(final AccessCondition accessCondition)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.releaseLease(final AccessCondition accessCondition)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.releaseLease(final AccessCondition accessCondition)
   type: Method
   summary: >-
     <p>Releases the lease on the blob.</p>
@@ -3384,7 +3444,7 @@ references:
     parameters:
     - id: accessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
-      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref>.</p>
+      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the AccessCondition.</p>
     return:
       type: 3f6357ce
 - uid: com.microsoft.azure.storage.blob._cloud_blob.releaseLease(final AccessCondition,BlobRequestOptions,OperationContext)
@@ -3392,7 +3452,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: releaseLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.releaseLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.releaseLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.releaseLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Releases the lease on the blob using the specified request options and operation context.</p>
@@ -3403,7 +3463,7 @@ references:
     parameters:
     - id: accessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
-      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob.The LeaseID is required to be set on the <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref>. </p>
+      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob.The LeaseID is required to be set on the AccessCondition. </p>
     - id: options
       type: com.microsoft.azure.storage.blob._blob_request_options
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false">BlobRequestOptions</xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref uid="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false">CloudBlobClient</xref>). </p>
@@ -3417,7 +3477,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: renewLease(final AccessCondition accessCondition)
   nameWithType: CloudBlob.renewLease(final AccessCondition accessCondition)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.renewLease(final AccessCondition accessCondition)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.renewLease(final AccessCondition accessCondition)
   type: Method
   summary: >-
     <p>Renews an existing lease.</p>
@@ -3428,7 +3488,7 @@ references:
     parameters:
     - id: accessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
-      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref>.</p>
+      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the AccessCondition.</p>
     return:
       type: 3f6357ce
 - uid: com.microsoft.azure.storage.blob._cloud_blob.renewLease(final AccessCondition,BlobRequestOptions,OperationContext)
@@ -3436,7 +3496,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: renewLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.renewLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.renewLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.renewLease(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Renews an existing lease using the specified request options and operation context.</p>
@@ -3447,7 +3507,7 @@ references:
     parameters:
     - id: accessCondition
       type: 93de0ef9com.microsoft.azure.storage._access_condition
-      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref>. </p>
+      description: <p>An <xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref> object that represents the access conditions for the blob. The LeaseID is required to be set on the AccessCondition. </p>
     - id: options
       type: com.microsoft.azure.storage.blob._blob_request_options
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._blob_request_options" data-throw-if-not-resolved="false">BlobRequestOptions</xref> object that specifies any additional options for the request. Specifying <code>null</code> will use the default request options from the associated service client ( <xref uid="com.microsoft.azure.storage.blob._cloud_blob_client" data-throw-if-not-resolved="false">CloudBlobClient</xref>). </p>
@@ -3461,7 +3521,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setContainer(final CloudBlobContainer container)
   nameWithType: CloudBlob.setContainer(final CloudBlobContainer container)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.setContainer(final CloudBlobContainer container)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setContainer(final CloudBlobContainer container)
   type: Method
   summary: >-
     <p>Sets the container for the blob.</p>
@@ -3480,7 +3540,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setMetadata(final HashMap<String, String> metadata)
   nameWithType: CloudBlob.setMetadata(final HashMap<String, String> metadata)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.setMetadata(final HashMap<String, String> metadata)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setMetadata(final HashMap<String, String> metadata)
   type: Method
   summary: >-
     <p>Sets the metadata for the blob.</p>
@@ -3499,7 +3559,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setProperties(final BlobProperties properties)
   nameWithType: CloudBlob.setProperties(final BlobProperties properties)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.setProperties(final BlobProperties properties)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setProperties(final BlobProperties properties)
   type: Method
   summary: >-
     <p>Sets the properties for the blob.</p>
@@ -3518,7 +3578,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setSnapshotID(final String snapshotID)
   nameWithType: CloudBlob.setSnapshotID(final String snapshotID)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.setSnapshotID(final String snapshotID)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setSnapshotID(final String snapshotID)
   type: Method
   summary: >-
     <p>Sets the blob snapshot ID.</p>
@@ -3537,7 +3597,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setStorageUri(final StorageUri storageUri)
   nameWithType: CloudBlob.setStorageUri(final StorageUri storageUri)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.setStorageUri(final StorageUri storageUri)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setStorageUri(final StorageUri storageUri)
   type: Method
   summary: >-
     <p>Sets the list of URIs for all locations.</p>
@@ -3554,7 +3614,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: setStreamMinimumReadSizeInBytes(final int minimumReadSize)
   nameWithType: CloudBlob.setStreamMinimumReadSizeInBytes(final int minimumReadSize)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.setStreamMinimumReadSizeInBytes(final int minimumReadSize)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.setStreamMinimumReadSizeInBytes(final int minimumReadSize)
   type: Method
   summary: >-
     <p>Sets the minimum read size when using a <xref uid="com.microsoft.azure.storage.blob._blob_input_stream" data-throw-if-not-resolved="false">BlobInputStream</xref>.</p>
@@ -3571,7 +3631,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: startCopy(final URI source)
   nameWithType: CloudBlob.startCopy(final URI source)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source)
   type: Method
   summary: >-
     <p>Requests the service to start copying a URI's contents, properties, and metadata to a new blob.</p>
@@ -3591,7 +3651,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: startCopy(final URI source, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.startCopy(final URI source, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Requests the service to start copying a URI's contents, properties, and metadata to a new blob, using the specified access conditions, lease ID, request options, and operation context.</p>
@@ -3623,7 +3683,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: startCopy(final URI source, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.startCopy(final URI source, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final String com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.startCopy(final URI source, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Requests the service to start copying a URI's contents, properties, and metadata to a new blob, using the specified premium page blob tier, access conditions, lease ID, request options, and operation context. </p>
@@ -3655,18 +3715,22 @@ references:
     return:
       type: 3d93591e
       description: <p>A <code>String</code> which represents the copy ID associated with the copy operation.</p>
-- uid: com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final boolean,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,final BlobRequestOptions)
+- uid: com.microsoft.azure.storage.blob._cloud_blob.startCopyImpl(final URI,final String,final boolean,final boolean,final PremiumPageBlobTier,final AccessCondition,final AccessCondition,final BlobRequestOptions)
   parent: com.microsoft.azure.storage.blob._cloud_blob
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
-  name: startCopyImpl(final URI source, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
-  nameWithType: CloudBlob.startCopyImpl(final URI source, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
-  fullName: StorageRequest<CloudBlobClient, CloudBlob, String> com.microsoft.azure.storage.blob.CloudBlob.startCopyImpl(final URI source, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+  name: startCopyImpl(final URI source, final String contentMd5, final boolean syncCopy, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+  nameWithType: CloudBlob.startCopyImpl(final URI source, final String contentMd5, final boolean syncCopy, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.startCopyImpl(final URI source, final String contentMd5, final boolean syncCopy, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
   type: Method
   syntax:
-    content: protected StorageRequest<CloudBlobClient, CloudBlob, String> startCopyImpl(final URI source, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
+    content: protected StorageRequest<CloudBlobClient, CloudBlob, String> startCopyImpl(final URI source, final String contentMd5, final boolean syncCopy, final boolean incrementalCopy, final PremiumPageBlobTier premiumPageBlobTier, final AccessCondition sourceAccessCondition, final AccessCondition destinationAccessCondition, final BlobRequestOptions options)
     parameters:
     - id: source
       type: bac42120
+    - id: contentMd5
+      type: 3d93591e
+    - id: syncCopy
+      type: 4dda0764
     - id: incrementalCopy
       type: 4dda0764
     - id: premiumPageBlobTier
@@ -3684,7 +3748,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: streamMinimumReadSizeInBytes
   nameWithType: CloudBlob.streamMinimumReadSizeInBytes
-  fullName: int com.microsoft.azure.storage.blob.CloudBlob.streamMinimumReadSizeInBytes
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.streamMinimumReadSizeInBytes
   type: Field
   summary: <p>Holds the minimum read size when using a <xref uid="com.microsoft.azure.storage.blob._blob_input_stream" data-throw-if-not-resolved="false">BlobInputStream</xref>. </p>
   syntax:
@@ -3696,7 +3760,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: streamWriteSizeInBytes
   nameWithType: CloudBlob.streamWriteSizeInBytes
-  fullName: int com.microsoft.azure.storage.blob.CloudBlob.streamWriteSizeInBytes
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.streamWriteSizeInBytes
   type: Field
   summary: <p>Holds the number of bytes to buffer when writing to a <xref uid="com.microsoft.azure.storage.blob._blob_output_stream" data-throw-if-not-resolved="false">BlobOutputStream</xref> (block and page blobs). </p>
   syntax:
@@ -3708,7 +3772,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: undelete()
   nameWithType: CloudBlob.undelete()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.undelete()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.undelete()
   type: Method
   summary: >-
     <p>Un-deletes a blob and all its snapshots that have been soft-deleted.</p>
@@ -3723,7 +3787,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: undelete(BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.undelete(BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.undelete(BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.undelete(BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Un-deletes a blob that has been soft-deleted, using the specified request options, and operation context. </p>
@@ -3747,7 +3811,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: updateEtagAndLastModifiedFromResponse(HttpURLConnection request)
   nameWithType: CloudBlob.updateEtagAndLastModifiedFromResponse(HttpURLConnection request)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.updateEtagAndLastModifiedFromResponse(HttpURLConnection request)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.updateEtagAndLastModifiedFromResponse(HttpURLConnection request)
   type: Method
   syntax:
     content: protected void updateEtagAndLastModifiedFromResponse(HttpURLConnection request)
@@ -3759,7 +3823,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: updateLengthFromResponse(HttpURLConnection request)
   nameWithType: CloudBlob.updateLengthFromResponse(HttpURLConnection request)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.updateLengthFromResponse(HttpURLConnection request)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.updateLengthFromResponse(HttpURLConnection request)
   type: Method
   syntax:
     content: protected void updateLengthFromResponse(HttpURLConnection request)
@@ -3771,7 +3835,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadBlobTierImpl(final String blobTierString, final BlobRequestOptions options)
   nameWithType: CloudBlob.uploadBlobTierImpl(final String blobTierString, final BlobRequestOptions options)
-  fullName: StorageRequest<CloudBlobClient, CloudBlob, Void> com.microsoft.azure.storage.blob.CloudBlob.uploadBlobTierImpl(final String blobTierString, final BlobRequestOptions options)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadBlobTierImpl(final String blobTierString, final BlobRequestOptions options)
   type: Method
   syntax:
     content: protected StorageRequest<CloudBlobClient, CloudBlob, Void> uploadBlobTierImpl(final String blobTierString, final BlobRequestOptions options)
@@ -3787,7 +3851,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromByteArray(final byte[] buffer, final int offset, final int length)
   nameWithType: CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length)
   type: Method
   summary: >-
     <p>Uploads a blob from data in a byte array. If the blob already exists on the service, it will be overwritten.</p>
@@ -3810,7 +3874,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadFromByteArray(final byte[] buffer, final int offset, final int length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Uploads a blob from data in a byte array. If the blob already exists on the service, it will be overwritten.</p>
@@ -3842,7 +3906,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromFile(final String path)
   nameWithType: CloudBlob.uploadFromFile(final String path)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.uploadFromFile(final String path)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadFromFile(final String path)
   type: Method
   summary: >-
     <p>Uploads a blob from a file. If the blob already exists on the service, it will be overwritten.</p>
@@ -3859,7 +3923,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadFromFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.uploadFromFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudBlob.uploadFromFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadFromFile(final String path, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Uploads a blob from a file. If the blob already exists on the service, it will be overwritten.</p>
@@ -3885,7 +3949,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadMetadata()
   nameWithType: CloudBlob.uploadMetadata()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.uploadMetadata()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadMetadata()
   type: Method
   summary: >-
     <p>Uploads the blob's metadata to the storage service. </p>
@@ -3902,7 +3966,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadMetadata(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.uploadMetadata(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.uploadMetadata(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadMetadata(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Uploads the blob's metadata to the storage service using the specified lease ID, request options, and operation context. </p>
@@ -3929,7 +3993,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadProperties()
   nameWithType: CloudBlob.uploadProperties()
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.uploadProperties()
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadProperties()
   type: Method
   summary: >-
     <p>Updates the blob's properties to the storage service. </p>
@@ -3946,7 +4010,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_blob.yml
   name: uploadProperties(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudBlob.uploadProperties(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: final void com.microsoft.azure.storage.blob.CloudBlob.uploadProperties(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudBlob.uploadProperties(final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Updates the blob's properties using the specified lease ID, request options, and operation context. </p>
@@ -3988,15 +4052,6 @@ references:
   summary: <p>Represents an exception for the Microsoft Azure storage service. </p>
   syntax:
     content: public class StorageException
-- uid: com.microsoft.azure.storage.blob._cloud_page_blob
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
-  name: CloudPageBlob
-  nameWithType: CloudPageBlob
-  fullName: com.microsoft.azure.storage.blob.CloudPageBlob
-  type: Class
-  summary: <p>Represents a Microsoft Azure page blob. </p>
-  syntax: *o1
 - uid: com.microsoft.azure.storage._storage_uri
   parent: com.microsoft.azure.storage
   href: com.microsoft.azure.storage._storage_uri.yml
@@ -4007,6 +4062,15 @@ references:
   summary: <p>Holds a list of URIs that represents the storage resource. </p>
   syntax:
     content: public class StorageUri
+- uid: com.microsoft.azure.storage.blob._cloud_page_blob
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
+  name: CloudPageBlob
+  nameWithType: CloudPageBlob
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob
+  type: Class
+  summary: <p>Represents a Microsoft Azure page blob. </p>
+  syntax: *o1
 - uid: com.microsoft.azure.storage._storage_credentials
   parent: com.microsoft.azure.storage
   href: com.microsoft.azure.storage._storage_credentials.yml
@@ -4067,7 +4131,7 @@ references:
   nameWithType: PremiumPageBlobTier
   fullName: com.microsoft.azure.storage.blob.PremiumPageBlobTier
   type: Enum
-  summary: <p>The tier of the page blob. Please take a look at <a href="https://docs.microsoft.com/en-us/azure/storage/storage-premium-storage#scalability-and-performance-targets">https://docs.microsoft.com/en-us/azure/storage/storage-premium-storage#scalability-and-performance-targets</a> for detailed information on the corresponding IOPS and throughput per <xref uid="com.microsoft.azure.storage.blob._premium_page_blob_tier" data-throw-if-not-resolved="false">PremiumPageBlobTier</xref>. </p>
+  summary: <p>The tier of the page blob. Please take a look at <a href="https://docs.microsoft.com/en-us/azure/storage/storage-premium-storage#scalability-and-performance-targets">https://docs.microsoft.com/en-us/azure/storage/storage-premium-storage#scalability-and-performance-targets</a> for detailed information on the corresponding IOPS and throughput per PremiumPageBlobTier. </p>
   syntax:
     content: public enum PremiumPageBlobTier
 - uid: com.microsoft.azure.storage.blob._cloud_page_blob.create(final long,final AccessCondition,BlobRequestOptions,OperationContext)
@@ -4075,7 +4139,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
   name: create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: void com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.create(final long length, final AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Creates a page blob using the specified request options and operation context. If the blob already exists, this will replace it. To instead throw an error if the blob already exists, use <xref uid="com.microsoft.azure.storage._access_condition.generateIfNotExistsCondition()" data-throw-if-not-resolved="false">AccessCondition#generateIfNotExistsCondition()</xref>.</p>
@@ -4087,7 +4151,7 @@ references:
   href: com.microsoft.azure.storage._access_condition.yml
   name: generateIfNotExistsCondition()
   nameWithType: AccessCondition.generateIfNotExistsCondition()
-  fullName: static AccessCondition com.microsoft.azure.storage.AccessCondition.generateIfNotExistsCondition()
+  fullName: com.microsoft.azure.storage.AccessCondition.generateIfNotExistsCondition()
   type: Method
   summary: >-
     <p>Returns an access condition such that an operation will be performed only if the resource does not exist on the service. </p>
@@ -4101,7 +4165,7 @@ references:
     content: public static AccessCondition generateIfNotExistsCondition()
     return:
       type: com.microsoft.azure.storage._access_condition
-      description: <p>An <code><xref uid="com.microsoft.azure.storage._access_condition" data-throw-if-not-resolved="false">AccessCondition</xref></code> object that represents the if not exists condition. </p>
+      description: <p>An <code>AccessCondition</code> object that represents the if not exists condition. </p>
 - uid: com.microsoft.azure.storage.blob._page_range
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._page_range.yml
@@ -4136,7 +4200,7 @@ references:
   href: com.microsoft.azure.storage.blob._cloud_page_blob.yml
   name: openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   nameWithType: CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
-  fullName: BlobOutputStream com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
+  fullName: com.microsoft.azure.storage.blob.CloudPageBlob.openWriteNew(final long length, AccessCondition accessCondition, BlobRequestOptions options, OperationContext opContext)
   type: Method
   summary: >-
     <p>Opens an output stream object to write data to the page blob, using the specified lease ID, request options and operation context. The page blob does not need to yet exist and will be created with the length specified.If the blob already exists on the service, it will be overwritten. </p>
@@ -4172,9 +4236,12 @@ references:
   syntax:
     content: public class StorageRequest<C,P,R>
     typeParameters:
-    - type: 37f8610d
+    - id: C
+      type: 37f8610d
       description: <p>The service client type </p>
-    - type: db9ec244
+    - id: P
+      type: db9ec244
       description: <p>The type of the parent object, i.e. CloudBlobContainer for downloadAttributes etc. </p>
-    - type: d4d3e1e1
+    - id: R
+      type: d4d3e1e1
       description: <p>The type of the expected result </p>

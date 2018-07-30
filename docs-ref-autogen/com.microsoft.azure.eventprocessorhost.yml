@@ -4,8 +4,10 @@ items:
   id: eventprocessorhost
   children:
   - com.microsoft.azure.eventprocessorhost._azure_storage_partition_manager_options
+  - com.microsoft.azure.eventprocessorhost._base_lease
   - com.microsoft.azure.eventprocessorhost._checkpoint
   - com.microsoft.azure.eventprocessorhost._close_reason
+  - com.microsoft.azure.eventprocessorhost._complete_lease
   - com.microsoft.azure.eventprocessorhost._event_processor_host
   - com.microsoft.azure.eventprocessorhost._event_processor_host_action_strings
   - com.microsoft.azure.eventprocessorhost._event_processor_options
@@ -18,7 +20,6 @@ items:
   - com.microsoft.azure.eventprocessorhost._i_lease_manager
   - com.microsoft.azure.eventprocessorhost._in_memory_checkpoint_manager
   - com.microsoft.azure.eventprocessorhost._in_memory_lease_manager
-  - com.microsoft.azure.eventprocessorhost._lease
   - com.microsoft.azure.eventprocessorhost._lease_lost_exception
   - com.microsoft.azure.eventprocessorhost._logging_utils
   - com.microsoft.azure.eventprocessorhost._partition_context
@@ -49,6 +50,21 @@ references:
   type: Class
   syntax:
     content: public class AzureStoragePartitionManagerOptions extends PartitionManagerOptions
+- uid: com.microsoft.azure.eventprocessorhost._base_lease
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._base_lease.yml
+  name: BaseLease
+  nameWithType: BaseLease
+  fullName: com.microsoft.azure.eventprocessorhost.BaseLease
+  type: Class
+  summary: >-
+    <p>BaseLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
+
+    <p>This lightweight base exists to allow ILeaseManager.getAllLeases to operate as quickly as possible <ndash></ndash> for some lease manager implementations, loading the entire contents of a lease form the store may be expensive. BaseLease contains only the minimum amount of information required to allow PartitionScanner to operate. </p>
+
+    <p>Note that a Lease object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on ILeaseManager. </p>
+  syntax:
+    content: public class BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._checkpoint
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._checkpoint.yml
@@ -57,11 +73,9 @@ references:
   fullName: com.microsoft.azure.eventprocessorhost.Checkpoint
   type: Class
   summary: >-
-    <p>
+    <p>Checkpoint class is public so that advanced users can implement an ICheckpointManager. Unless you are implementing ICheckpointManager you should not have to deal with objects of this class directly. </p>
 
-      <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_checkpoint_manager" data-throw-if-not-resolved="false">ICheckpointManager</xref> you should not have to deal with objects of this class directly. </p>
-
-    <p>A <xref uid="com.microsoft.azure.eventprocessorhost._checkpoint" data-throw-if-not-resolved="false">Checkpoint</xref> is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
+    <p>A Checkpoint is essentially just a tuple. It has a fixed partition id, set at creation time and immutable thereafter, and associates that with an offset/sequenceNumber pair which indicates a position within the events in that partition. </p>
   syntax:
     content: public class Checkpoint
 - uid: com.microsoft.azure.eventprocessorhost._close_reason
@@ -73,6 +87,19 @@ references:
   type: Enum
   syntax:
     content: public enum CloseReason
+- uid: com.microsoft.azure.eventprocessorhost._complete_lease
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._complete_lease.yml
+  name: CompleteLease
+  nameWithType: CompleteLease
+  fullName: com.microsoft.azure.eventprocessorhost.CompleteLease
+  type: Class
+  summary: >-
+    <p>CompleteLease class is public so that advanced users can implement an ILeaseManager. Unless you are implementing ILeaseManager you should not have to deal with objects of this class or derived classes directly. </p>
+
+    <p>CompleteLease carries around complete information about a lease. By itself, it has the epoch. Any lease manager implementation can derive from this class to add data which the lease manager needs to function <ndash></ndash> see AzureBlobLease for an example. Having two distinct classes allows the code to clearly express which variety of lease any variable holds or a method requires, and avoids the problem of accidentally supplying a lightweight BaseLease to a method which needs the lease-manager-specific fields. </p>
+  syntax:
+    content: public class CompleteLease extends BaseLease
 - uid: com.microsoft.azure.eventprocessorhost._event_processor_host
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
@@ -107,7 +134,7 @@ references:
   nameWithType: ExceptionReceivedEventArgs
   fullName: com.microsoft.azure.eventprocessorhost.ExceptionReceivedEventArgs
   type: Class
-  summary: <p>Passed as an argument to the general exception handler that can be set via <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_options" data-throw-if-not-resolved="false">EventProcessorOptions</xref>. </p>
+  summary: <p>Passed as an argument to the general exception handler that can be set via EventProcessorOptions. </p>
   syntax:
     content: public class ExceptionReceivedEventArgs
 - uid: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
@@ -129,13 +156,11 @@ references:
   summary: >-
     <p>Interface that must be implemented by event processor classes. </p>
 
-    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A <xref uid="com.microsoft.azure.eventprocessorhost._partition_context" data-throw-if-not-resolved="false">PartitionContext</xref> is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A PartitionContext is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
 
-    <p>Although <xref uid="com.microsoft.azure.eventprocessorhost._event_processor_host" data-throw-if-not-resolved="false">EventProcessorHost</xref> is multithreaded, calls to a given instance of an event processor class are serialized, except for <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref>. <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onOpen(PartitionContext)" data-throw-if-not-resolved="false">onOpen()</xref> is called first, then <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is called after the last <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> call returns. </p>
+    <p>Although EventProcessorHost is multithreaded, calls to a given instance of an event processor class are serialized, except for onError(). onOpen() is called first, then onEvents() will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, onClose() is called after the last onEvents() call returns. </p>
 
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onError(PartitionContext,Throwable)" data-throw-if-not-resolved="false">onError()</xref> could be called while <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onEvents(PartitionContext,Iterable&lt;EventData&gt;)" data-throw-if-not-resolved="false">onEvents()</xref> or <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor.onClose(PartitionContext,CloseReason)" data-throw-if-not-resolved="false">onClose()</xref> is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
+    <p>onError() could be called while onEvents() or onClose() is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
   syntax:
     content: public interface IEventProcessor
 - uid: com.microsoft.azure.eventprocessorhost._i_event_processor_factory
@@ -154,8 +179,9 @@ references:
   syntax:
     content: public interface IEventProcessorFactory<T extends IEventProcessor>
     typeParameters:
-    - type: 8ce1ecb9
-      description: <p>The type of event processor objects produced by this factory, which must implement <xref uid="com.microsoft.azure.eventprocessorhost._i_event_processor" data-throw-if-not-resolved="false">IEventProcessor</xref></p>
+    - id: T
+      type: 8ce1ecb9
+      description: <p>The type of event processor objects produced by this factory, which must implement IEventProcessor </p>
 - uid: com.microsoft.azure.eventprocessorhost._i_lease_manager
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
@@ -183,23 +209,6 @@ references:
   type: Class
   syntax:
     content: public class InMemoryLeaseManager implements ILeaseManager
-- uid: com.microsoft.azure.eventprocessorhost._lease
-  parent: com.microsoft.azure.eventprocessorhost
-  href: com.microsoft.azure.eventprocessorhost._lease.yml
-  name: Lease
-  nameWithType: Lease
-  fullName: com.microsoft.azure.eventprocessorhost.Lease
-  type: Class
-  summary: >-
-    <p>
-
-      <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> class is public so that advanced users can implement an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. Unless you are implementing <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> you should not have to deal with objects of this class or derived classes directly. </p>
-
-    <p>When implementing an <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref> it may be necessary to derive from this class to carry around more information and override isExpired. The data fields have been left private instead of protected because they have a full set of getters and setters (except partitionId, which is immutable) which provide equivalent access. When implementing AzureBlobLease, for example, there was no need for more access than the getters and setters provide. </p>
-
-    <p>Note that a <xref uid="com.microsoft.azure.eventprocessorhost._lease" data-throw-if-not-resolved="false">Lease</xref> object just carries information about a partition lease. The APIs to acquire/renew/release a lease are all on <xref uid="com.microsoft.azure.eventprocessorhost._i_lease_manager" data-throw-if-not-resolved="false">ILeaseManager</xref>. </p>
-  syntax:
-    content: public class Lease
 - uid: com.microsoft.azure.eventprocessorhost._lease_lost_exception
   parent: com.microsoft.azure.eventprocessorhost
   href: com.microsoft.azure.eventprocessorhost._lease_lost_exception.yml

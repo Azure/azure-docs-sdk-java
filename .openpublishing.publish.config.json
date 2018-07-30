@@ -1,7 +1,5 @@
 {
   "build_entry_point": "docs",
-  "need_generate_pdf": false,
-  "need_generate_intellisense": false,
   "docsets_to_publish": [
     {
       "docset_name": "AzureJava",
@@ -9,6 +7,7 @@
       "build_output_subfolder": "azure/sdk/java",
       "locale": "en-us",
       "monikers": [],
+      "moniker_ranges": [],
       "open_to_public_contributors": true,
       "type_mapping": {
         "Conceptual": "Content",
@@ -18,12 +17,11 @@
       },
       "build_entry_point": "docs",
       "template_folder": "_themes",
-	  "customized_template_paths": [
-         "_dependentPackages/memberpage.plugins/content"
+      "customized_template_paths": [
+        "_dependentPackages/uref.plugins/content"
       ],
-	  "customized_tasks": {
+      "customized_tasks": {
         "docset_prebuild": [
-          "_dependentPackages/splitToc/tools/run.ps1",
           "_dependentPackages/CommonPlugins/tools/JoinTOC.ps1",
           "_dependentPackages/CommonPlugins/tools/DiffFolder.ps1"
         ]
@@ -33,8 +31,10 @@
   ],
   "notification_subscribers": [],
   "branches_to_filter": [],
+  "git_repository_branch_open_to_public_contributors": "master",
   "skip_source_output_uploading": false,
   "need_preview_pull_request": false,
+  "enable_incremental_build": false,
   "dependent_repositories": [
     {
       "path_to_root": "_themes",
@@ -49,31 +49,33 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "preview/_mavenref",
+      "url": "https://github.com/Microsoft/azure-maven-plugins/",
+      "branch": "master",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "_sample",
       "url": "https://github.com/rickle-msft/azure-storage-java",
       "branch": "async-samplesInDocTest",
       "branch_mapping": {}
     }
   ],
+  "need_generate_pdf_url_template": false,
+  "need_generate_pdf": false,
+  "need_generate_intellisense": false,
   "dependent_packages": [
+    {
+      "id": "opbuild.templates.uref",
+      "nuget_feed": "https://www.myget.org/F/op/api/v2",
+      "path_to_root": "_dependentPackages/uref.plugins",
+      "target_framework": "net45",
+      "version": "latest"
+    },
     {
       "id": "Microsoft.OpenPublishing.CommonPlugins",
       "nuget_feed": "https://www.myget.org/F/op/api/v2",
       "path_to_root": "_dependentPackages/CommonPlugins",
-      "target_framework": "net45",
-      "version": "latest"
-    },
-    {
-      "id": "SplitToc",
-      "nuget_feed": "https://www.myget.org/F/op/api/v2",
-      "path_to_root": "_dependentPackages/splitToc",
-      "target_framework": "net45",
-      "version": "latest"
-    },
-	{
-      "id": "memberpage.plugins",
-      "nuget_feed": "https://www.myget.org/F/docfx/api/v2",
-      "path_to_root": "_dependentPackages/memberpage.plugins",
       "target_framework": "net45",
       "version": "latest"
     }
@@ -83,21 +85,31 @@
       "TopLevelTOC": "docs-ref-mapping/reference.yml",
       "ReferenceTOC": "docs-ref-autogen/toc.yml",
       "ConceptualTOC": "docs-ref-conceptual/toc.yml",
-      "ReferenceTOCUrl": "/java/api/toc.json",
-      "ConceptualTOCUrl": "/java/azure/toc.json",
-      "HideEmptyNode": true,
-      "OutputFolder": "docs-ref-autogen/overview/azure",
+      "ReferenceTOCUrl": "/java/api/azure-java-sdk/toc.json?view=azure-java-stable",
+      "ConceptualTOCUrl": "/java/azure/toc.json?view=azure-java-stable",
+      "OutputFolder": "docs-ref-autogen/overview",
+      "HideEmptyNode": false,
       "ContainerPageMetadata": {
-        "langs": ["java"],
+        "langs": [
+          "java"
+        ],
+        "open_to_public_contributors": false
+      }
+    },
+    {
+      "TopLevelTOC": "preview/docs-ref-mapping/reference.yml",
+      "ReferenceTOC": "preview/docs-ref-autogen/toc.yml",
+      "ConceptualTOC": "preview/docs-ref-conceptual/toc.yml",
+      "ReferenceTOCUrl": "/java/api/azure-java-sdk/toc.json?view=azure-java-preview",
+      "ConceptualTOCUrl": "/java/azure/toc.json?view=azure-java-preview",
+      "OutputFolder": "preview/docs-ref-autogen/overview",
+      "HideEmptyNode": false,
+      "ContainerPageMetadata": {
+        "langs": [
+          "java"
+        ],
         "open_to_public_contributors": false
       }
     }
-  ],
-  "DiffFolder": [
-    "docs-ref-autogen/overview/azure"
-  ],
-  "toc_path_need_to_split": "docs-ref-autogen/toc.yml",
-  "git_repository_branch_open_to_public_contributors": "master",
-  "need_generate_pdf_url_template": false,
-  "enable_incremental_build": false
+  ]
 }
