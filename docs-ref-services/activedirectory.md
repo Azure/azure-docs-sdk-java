@@ -82,7 +82,7 @@ RoleAssignment roleAssignment2 = authenticated.roleAssignments()
 ```
 
 > [!div class="nextstepaction"]
-> [Explore the Management APIs](/java/api/activedirectory/management)
+> [Explore the Management APIs](/java/api/overview/azure/activedirectory/management)
 
 
 ## Samples
