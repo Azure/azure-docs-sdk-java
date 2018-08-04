@@ -161,23 +161,11 @@ For more information about the various technologies discussed in this article, s
 
 <!-- URL List -->
 
-[Azure Container Registry Build]: 
+[Azure Container Registry Build]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-build-overview
 [MicroProfile.io]: https://microprofile.io
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Azure portal]: https://portal.azure.com/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
-[Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [Maven]: http://maven.apache.org/
-[MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
-[Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring Boot Getting Started]: https://github.com/spring-guides/gs-spring-boot
-[Spring Framework]: https://spring.io/
-[Maven Plugin for Azure Web Apps]: https://docs.microsoft.com/java/api/overview/azure/maven/azure-webapp-maven-plugin/readme
-
-<!-- IMG List -->
-
-[AP01]: ./media/deploy-spring-boot-java-app-with-maven-plugin/AP01.png
-[AP02]: ./media/deploy-spring-boot-java-app-with-maven-plugin/AP02.png
