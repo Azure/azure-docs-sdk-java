@@ -149,15 +149,7 @@ Congratulations! You have successfuly built and deployed a MicroProfile applicat
 
 For more information about the various technologies discussed in this article, see the following articles:
 
-* [Maven Plugin for Azure Web Apps]
-
 * [Log in to Azure from the Azure CLI](/azure/xplat-cli-connect)
-
-* [How to use the Maven Plugin for Azure Web Apps to deploy a containerized Spring Boot app to Azure](deploy-containerized-spring-boot-java-app-with-maven-plugin.md)
-
-* [Create an Azure service principal with Azure CLI 2.0](/cli/azure/create-an-azure-service-principal-azure-cli)
-
-* [Maven Settings Reference](https://maven.apache.org/settings.html)
 
 <!-- URL List -->
 
