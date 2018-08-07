@@ -88,7 +88,9 @@ If you're working in a windows environment, add the variable to your system prop
 setx AZURE_AUTH_LOCATION "C:\<fullpath>\azureauth.properties" /m
 ```
 
-## Create a new Maven project
+## Tooling
+
+### Create a new Maven project
 
 > [!NOTE]
 > This guide uses Maven build tool to build and run the sample code, but other build tools such as Gradle also work with the Azure libraries for Java. 
@@ -137,7 +139,27 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
     </plugins>
 </build>
  ```
-   
+
+### Install the Azure Toolkit for Intellij
+
+The [Azure toolkit](intellij/azure-toolkit-for-intellij-installation.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for IntelliJ](intellij/azure-toolkit-for-intellij-installation.md).
+
+Select the **File** menu and then select **Settings...**. 
+
+Select **Browse repositories...** and then search "Azure" and install the **Azure toolkit for Intellij**.
+
+Restart Intellij.
+
+### Install the Azure Toolkit for Eclipse
+
+The [Azure toolkit](eclipse/azure-toolkit-for-eclipse.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for Eclipse](eclipse/azure-toolkit-for-eclipse.md).
+
+Select the **Help** menu and then select **Install New software**.
+
+In the **Work with:** field enter `http://dl.microsoft.com/eclipse` and press enter.
+
+Then, select the checkbox next to **Azure toolkit for Java** and uncheck the checkbox for **Contact all update sites during install to find required software**. Then select next.
+
 ## Create a Linux virtual machine
 
 Create a new file named `AzureApp.java` in the project's `src/main/java/com/fabirkam` directory and paste in the following block of code. Update the `userName` and `sshKey` variables with real values for your machine. The code creates a new Linux VM with name `testLinuxVM` in a resource group `sampleResourceGroup` running in the US East Azure region.
