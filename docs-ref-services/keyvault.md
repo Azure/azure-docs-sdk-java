@@ -84,8 +84,4 @@ vault1 = vault1.update()
 
 ## Samples
 
-[Manage Key Vaults][1]   
-
-[1]: https://github.com/Azure-Samples/key-vault-java-manage-key-vaults
-
 Explore more [sample Java code for Azure Key Vault](https://azure.microsoft.com/resources/samples/?platform=java&term=key+vault) you can use in your apps.
