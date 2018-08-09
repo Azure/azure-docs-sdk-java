@@ -22,7 +22,7 @@ ms.workload: web
 This article demonstrates how to pack a [MicroProfile.io] application in a Docker container and run it on Azure Container Instances.
 
 > [!NOTE]
-> 
+>
 > This procedure works with any implementation of MicroProfile.io as long the Docker container image is self-executable (i.e. includes the runtime).
 
 ## Prerequisites
