@@ -41,16 +41,17 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 222
+    startLine: 237
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads an iterable of<code>ByteBuffers 
 
         </code> to a block blob. The data will first data will first be examined to check the size and validate the number of blocks. If the total amount of data in all the buffers is small enough (i.e. less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOB_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOB_BYTES</xref>, this method will perform a single upload operation. Otherwise, each<code>ByteBuffer 
 
-        </code> in the iterable is assumed to be its own discreet block of data for the block blob and will be uploaded as such. Note that in this case, each ByteBuffer must be less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOCK_BYTES</xref>. Note as well that there can only be up to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS" data-throw-if-not-resolved="false">BlockBlobURL#MAX_BLOCKS</xref> ByteBuffers in the list.</p>
+        </code> in the iterable is assumed to be its own discreet block of data for the block blob and will be uploaded as such. Note that in this case, each ByteBuffer must be less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_STAGE_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_STAGE_BLOCK_BYTES</xref>. Note as well that there can only be up to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS" data-throw-if-not-resolved="false">BlockBlobURL#MAX_BLOCKS</xref> ByteBuffers in the list.</p>
 
     <p></p>
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_buffers \"Sample code for TransferManager.uploadByteBuffersToBlockBlob\")] \r\nFor more samples, please see the [Samples file](<a href=\"https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java</a>)"
   syntax:
     content: public static Single<CommonRestResponse> uploadByteBuffersToBlockBlob(final Iterable<ByteBuffer> data, final BlockBlobURL blockBlobURL, final UploadToBlockBlobOptions options)
     parameters:
@@ -85,12 +86,13 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 176
+    startLine: 186
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads a large ByteBuffer to a block blob in parallel, breaking it up into block-size chunks if necessary.</p>
 
     <p></p>
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_buffer \"Sample code for TransferManager.uploadByteBufferToBlockBlob\")] \r\nFor more samples, please see the [Samples file](<a href=\"https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java</a>)"
   syntax:
     content: public static Single<CommonRestResponse> uploadByteBufferToBlockBlob(final ByteBuffer data, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
     parameters:
@@ -128,12 +130,13 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 111
+    startLine: 116
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Uploads the contents of a file to a block blob in parallel, breaking it into block-size chunks if necessary.</p>
 
     <p></p>
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_file \"Sample code for TransferManager.uploadFileToBlockBlob\")] \r\nFor more samples, please see the [Samples file](<a href=\"https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java</a>)"
   syntax:
     content: public static Single<CommonRestResponse> uploadFileToBlockBlob(final FileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final UploadToBlockBlobOptions options)
     parameters:
@@ -146,7 +149,7 @@ items:
     - id: blockLength
       type: cd225469
       description: >-
-        <p>If the data must be broken up into blocks, this value determines what size those blocks will be. This will affect the total number of service requests made. This value will be ignored if the data can be uploaded in a single put-blob operation. Must be between 1 and <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_PUT_BLOCK_BYTES</xref>. Note as well that<code>fileLength/blockLength 
+        <p>If the data must be broken up into blocks, this value determines what size those blocks will be. This will affect the total number of service requests made. This value will be ignored if the data can be uploaded in a single put-blob operation. Must be between 1 and <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_STAGE_BLOCK_BYTES" data-throw-if-not-resolved="false">BlockBlobURL#MAX_STAGE_BLOCK_BYTES</xref>. Note as well that<code>fileLength/blockLength 
 
             </code> must be less than or equal to <xref uid="com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS" data-throw-if-not-resolved="false">BlockBlobURL#MAX_BLOCKS</xref>. </p>
     - id: options
@@ -234,16 +237,16 @@ references:
   summary: <p>Represents a URL to a block blob. It may be obtained by direct construction or via the create method on a <xref uid="com.microsoft.azure.storage.blob._container_u_r_l" data-throw-if-not-resolved="false">ContainerURL</xref> object. This class does not hold any state about a particular blob but is instead a convenient way of sending off appropriate requests to the resource on the service. Please refer to the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-block-blobs&amp;ndash;append-blobs&amp;ndash;and-page-blobs">Azure Docs</a> for more information on block blobs. </p>
   syntax:
     content: public class BlockBlobURL extends BlobURL
-- uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_PUT_BLOCK_BYTES
+- uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_STAGE_BLOCK_BYTES
   parent: com.microsoft.azure.storage.blob._block_blob_u_r_l
   href: com.microsoft.azure.storage.blob._block_blob_u_r_l.yml
-  name: MAX_PUT_BLOCK_BYTES
-  nameWithType: BlockBlobURL.MAX_PUT_BLOCK_BYTES
-  fullName: com.microsoft.azure.storage.blob.BlockBlobURL.MAX_PUT_BLOCK_BYTES
+  name: MAX_STAGE_BLOCK_BYTES
+  nameWithType: BlockBlobURL.MAX_STAGE_BLOCK_BYTES
+  fullName: com.microsoft.azure.storage.blob.BlockBlobURL.MAX_STAGE_BLOCK_BYTES
   type: Field
   summary: <p>Indicates the maximum number of bytes that can be sent in a call to stageBlock. </p>
   syntax:
-    content: public static final int MAX_PUT_BLOCK_BYTES= 100 * Constants.MB
+    content: public static final int MAX_STAGE_BLOCK_BYTES= 100 * Constants.MB
     return:
       type: cd225469
 - uid: com.microsoft.azure.storage.blob._block_blob_u_r_l.MAX_BLOCKS
