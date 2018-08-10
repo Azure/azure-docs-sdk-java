@@ -159,9 +159,11 @@ With these settings, your Maven project is now ready for live deployment to Azur
 The simplest and easiest way to get the Maven Plugin deploying your Spring Boot application is by using [Azure CLI](https://docs.microsoft.com/cli/azure/). Make sure you have it installed.
 
 1. Sign into your Azure account by using the Azure CLI:
+   
    ```shell
    az login
    ```
+   
    Follow the instructions to complete the sign-in process.
 
 ## Optionally, customize pom.xml before deploying
