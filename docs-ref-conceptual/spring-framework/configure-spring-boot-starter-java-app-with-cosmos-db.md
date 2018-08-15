@@ -125,7 +125,7 @@ The following prerequisites are required in order to follow the steps in this ar
    > </dependency>
    > ```
 
-1. Verify that the Spring Boot version is one of the 2.0.n versions; for example:
+1. Verify that the Spring Boot version is the version that you chose when you created your application with the Spring Initializr; for example:
 
    ```xml
    <parent>
@@ -136,18 +136,10 @@ The following prerequisites are required in order to follow the steps in this ar
    </parent>
    ```
 
-   > [!IMPORTANT]
+   > [!NOTE]
    >
-   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to verify the correct version; for example:
+   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to verify the correct version; for example: `<version>1.5.14.RELEASE</version>`.
    >
-   > ```xml
-   > <parent>
-   >   <groupId>org.springframework.boot</groupId>
-   >   <artifactId>spring-boot-starter-parent</artifactId>
-   >   <version>1.5.14.RELEASE</version>
-   >   <relativePath/>
-   > </parent>
-   > ```
 
 1. Save and close the *pom.xml* file.
 
