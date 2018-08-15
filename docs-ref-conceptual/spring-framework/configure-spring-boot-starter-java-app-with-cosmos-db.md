@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid:
 ms.author: robmcm;yungez;kevinzha
-ms.date: 07/05/2018
+ms.date: 08/10/2018
 ms.devlang: java
 ms.service: cosmos-db
 ms.tgt_pltfrm: multiple
@@ -71,7 +71,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    > [!IMPORTANT]
    >
-   > There were several breaking changes to the APIs in Spring Boot version 2.0.n, as a result, you will need to one of the Spring Boot 1.5.n versions to complete the steps in this tutorial.
+   > There were several breaking changes to the APIs in Spring Boot version 2.0.n, which will be used to complete the steps in this article. You can still use one of the Spring Boot 1.5.n versions to complete the steps in this tutorial, and the differences will be highlighted when necessary.
    >
 
    ![Basic Spring Initializr options][SI01]
@@ -107,22 +107,47 @@ The following prerequisites are required in order to follow the steps in this ar
    <dependency>
       <groupId>com.microsoft.azure</groupId>
       <artifactId>azure-documentdb-spring-boot-starter</artifactId>
-      <version>0.1.4</version>
+      <version>2.0.4</version>
    </dependency>
    ```
 
    ![Editing the pom.xml file][PM02]
 
-1. Verify that the Spring Boot version is one of the 1.5.n versions; for example:
+   > [!IMPORTANT]
+   >
+   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to specify the older version of the Azure Cosmos DB starter; for example:
+   >
+   > ```xml
+   > <dependency>
+   >   <groupId>com.microsoft.azure</groupId>
+   >   <artifactId>azure-documentdb-spring-boot-starter</artifactId>
+   >   <version>0.1.4</version>
+   > </dependency>
+   > ```
+
+1. Verify that the Spring Boot version is one of the 2.0.n versions; for example:
 
    ```xml
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
-      <version>1.5.14.RELEASE</version>
+      <version>2.0.1.RELEASE</version>
       <relativePath/>
    </parent>
    ```
+
+   > [!IMPORTANT]
+   >
+   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to verify the correct version; for example:
+   >
+   > ```xml
+   > <parent>
+   >   <groupId>org.springframework.boot</groupId>
+   >   <artifactId>spring-boot-starter-parent</artifactId>
+   >   <version>1.5.14.RELEASE</version>
+   >   <relativePath/>
+   > </parent>
+   > ```
 
 1. Save and close the *pom.xml* file.
 
@@ -173,6 +198,9 @@ In this section you create two Java classes for storing user data, and then you 
       private String id;
       private String firstName;
       private String lastName;
+   
+      public User() {
+      }
    
       public User(String id, String firstName, String lastName) {
          this.id = id;
@@ -247,50 +275,57 @@ In this section you create two Java classes for storing user data, and then you 
 
    ```java
    package com.example.wingtiptoysdata;
-   
+
    // These imports are required for the application.
    import org.springframework.boot.SpringApplication;
    import org.springframework.boot.autoconfigure.SpringBootApplication;
    import org.springframework.beans.factory.annotation.Autowired;
    import org.springframework.boot.CommandLineRunner;
-   
+
    // These imports are only used to create an ID for this example.
    import java.util.Date;
    import java.text.SimpleDateFormat;
-   
+
    @SpringBootApplication
    public class wingtiptoysdataApplication implements CommandLineRunner {
-   
+
       @Autowired
       private UserRepository repository;
-   
+
       public static void main(String[] args) {
          // Execute the command line runner.
          SpringApplication.run(wingtiptoysdataApplication.class, args);
+         System.exit(0);
       }
-   
+
       public void run(String... args) throws Exception {
          // Create a simple date/time ID.
          SimpleDateFormat userId = new SimpleDateFormat("yyyyMMddHHmmssSSS");
          Date currentDate = new Date();
-   
+
          // Create a new User class.
          final User testUser = new User(userId.format(currentDate), "Gena", "Soto");
-   
+
          // For this example, remove all of the existing records.
          repository.deleteAll();
-   
+
          // Save the User class to the Azure database.
          repository.save(testUser);
-         
+      
          // Retrieve the database record for the User class you just saved by ID.
-         final User result = repository.findOne(testUser.getId());
-   
+         // final User result = repository.findOne(testUser.getId());
+         final User result = repository.findById(testUser.getId()).get();
+
          // Display the results of the database record retrieval.
          System.out.printf("\n\n%s\n\n",result.toString());
       }
    }
    ```
+
+   > [!IMPORTANT]
+   >
+   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to replace the `final User result = repository.findById(testUser.getId()).get();` syntax with `final User result = repository.findOne(testUser.getId());`.
+   >
 
 1. Save and close the main application Java file.
 
@@ -311,7 +346,11 @@ In this section you create two Java classes for storing user data, and then you 
    mvn spring-boot:run
    ```
 
-1. Your application will display several runtime messages, and you should see the message `User: testFirstName testLastName` displayed to indicate that values have been successfully stored and retrieved from your database.
+1. Your application will display several runtime messages, and it will display a message like the following examples to indicate that values have been successfully stored and retrieved from your database.
+
+   ```
+   User: 20170724025215132 Gena Soto
+   ```
 
    ![Successful output from the application][JV02]
 
