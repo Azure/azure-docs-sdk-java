@@ -8,7 +8,7 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.author: robmcm;yungez;kevinzha
+ms.author: robmcm
 ms.date: 08/10/2018
 ms.devlang: java
 ms.service: cosmos-db
