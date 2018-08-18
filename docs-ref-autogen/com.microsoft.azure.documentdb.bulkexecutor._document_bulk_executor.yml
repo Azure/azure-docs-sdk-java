@@ -1,0 +1,353 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  id: _document_bulk_executor
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  children:
+  - com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.builder()
+  - com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.close()
+  - com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.importAll(Collection<String>,boolean,boolean,Integer)
+  - com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.mergeAll(Collection<Document>,Integer)
+  - com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.updateAll(Collection<UpdateItem>,Integer)
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: DocumentBulkExecutor
+  nameWithType: DocumentBulkExecutor
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor
+  type: Class
+  source:
+    remote: &o0
+      path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+      branch: master
+      repo: https://github.com/Azure/azure-cosmosdb-bulkexecutor-java-source
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 72
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  syntax: &o1
+    content: public class DocumentBulkExecutor
+  inheritance:
+  - java.lang.Object
+  - AutoCloseable
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.builder()
+  id: builder()
+  parent: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: builder()
+  nameWithType: DocumentBulkExecutor.builder()
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.builder()
+  overload: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.builder*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 188
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  summary: <p>Creates a new <xref uid="" data-throw-if-not-resolved="false">DocumentBulkExecutor.Builder</xref> instance </p>
+  syntax:
+    content: public static DocumentBulkExecutor.Builder builder()
+    return:
+      type: 8d66f226
+      description: <p>an instance of <xref uid="" data-throw-if-not-resolved="false">DocumentBulkExecutor.Builder</xref></p>
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.close()
+  id: close()
+  parent: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: close()
+  nameWithType: DocumentBulkExecutor.close()
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.close()
+  overload: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.close*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 349
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  summary: <p>Releases any internal resources. It is responsibility of the caller to close <xref uid="com.microsoft.azure.documentdb._document_client" data-throw-if-not-resolved="false">DocumentClient</xref>. </p>
+  syntax:
+    content: public void close()
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.importAll(Collection<String>,boolean,boolean,Integer)
+  id: importAll(Collection<String>,boolean,boolean,Integer)
+  parent: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: importAll(Collection<String> documents, boolean isUpsert, boolean disableAutomaticIdGeneration, Integer maxConcurrencyPerPartitionRange)
+  nameWithType: DocumentBulkExecutor.importAll(Collection<String> documents, boolean isUpsert, boolean disableAutomaticIdGeneration, Integer maxConcurrencyPerPartitionRange)
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.importAll(Collection<String> documents, boolean isUpsert, boolean disableAutomaticIdGeneration, Integer maxConcurrencyPerPartitionRange)
+  overload: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.importAll*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 447
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  summary: "<p>Executes a bulk import in the Azure Cosmos DB database service. <blockquote><p><pre><code>ConnectionPolicy connectionPolicy = new ConnectionPolicy();\r\n    RetryOptions retryOptions = new RetryOptions();\r\n    \r\n    // Set client's retry options high for initialization\r\n    retryOptions.setMaxRetryWaitTimeInSeconds(120);\r\n    retryOptions.setMaxRetryAttemptsOnThrottledRequests(100);\r\n    connectionPolicy.setRetryOptions(retryOptions);\r\n    connectionPolicy.setMaxPoolSize(1000);\r\n    \r\n    DocumentClient client = new DocumentClient(HOST, MASTER_KEY, connectionPolicy, null);\r\n    \r\n    String collectionLink = String.format(\"/dbs/%s/colls/%s\", \"mydb\", \"mycol\");\r\n    DocumentCollection collection = client.readCollection(collectionLink, null).getResource();\r\n    \r\n    DocumentBulkExecutor executor = DocumentBulkExecutor.builder().from(client, collection,\r\n        collection.getPartitionKey(), collectionOfferThroughput).build();\r\n    \r\n    // Set retries to 0 to pass control to bulk executor\r\n    client.getConnectionPolicy().getRetryOptions().setMaxRetryWaitTimeInSeconds(0);\r\n    client.getConnectionPolicy().getRetryOptions().setMaxRetryAttemptsOnThrottledRequests(0);\r\n    \r\n    for(int i = 0; i &lt; 10; i++) {\r\n      List&lt;String&gt; documents = documentSource.getMoreDocuments();\r\n    \r\n      BulkImportResponse bulkImportResponse = executor.importAll(documents, false, true, 40);\r\n    \r\n      // Validate that all documents inserted to ensure no failure.\r\n      if (bulkImportResponse.getNumberOfDocumentsImported() &lt; documents.size()) {\r\n         for(Exception e: bulkImportResponse.getErrors()) {\r\n             // Validate why there were some failures.\r\n             e.printStackTrace();\r\n         }\r\n         break;\r\n      }\r\n    }\r\n    \r\n    executor.close();\r\n    client.close();\r\n    </code></pre></p></blockquote></p>\r\n<p></p>"
+  syntax:
+    content: public BulkImportResponse importAll(Collection<String> documents, boolean isUpsert, boolean disableAutomaticIdGeneration, Integer maxConcurrencyPerPartitionRange)
+    parameters:
+    - id: documents
+      type: 0248867e
+      description: <p>specifies the collection of JSON-serialized documents to import </p>
+    - id: isUpsert
+      type: 4fc6e284
+      description: <p>indicates whether a document in the supplied collection needs to be overwritten if the id already exists </p>
+    - id: disableAutomaticIdGeneration
+      type: 4fc6e284
+      description: <p>indicates whether the id has to be automatically generated for a document if absent in the supplied collection </p>
+    - id: maxConcurrencyPerPartitionRange
+      type: 08effaa0
+      description: <p>specifies the maximum degree of concurrency per partition key range (default value is 20 if set to null) </p>
+    return:
+      type: com.microsoft.azure.documentdb.bulkexecutor._bulk_import_response
+      description: <p>an instance of <xref uid="com.microsoft.azure.documentdb.bulkexecutor._bulk_import_response" data-throw-if-not-resolved="false">BulkImportResponse</xref></p>
+  exceptions:
+  - type: deb9d423
+    description: <p>if any failure happens </p>
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.mergeAll(Collection<Document>,Integer)
+  id: mergeAll(Collection<Document>,Integer)
+  parent: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: mergeAll(Collection<Document> patchDocuments, Integer maxConcurrencyPerPartitionRange)
+  nameWithType: DocumentBulkExecutor.mergeAll(Collection<Document> patchDocuments, Integer maxConcurrencyPerPartitionRange)
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.mergeAll(Collection<Document> patchDocuments, Integer maxConcurrencyPerPartitionRange)
+  overload: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.mergeAll*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 479
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  summary: >-
+    <p>Executes a bulk update in the Azure Cosmos DB database service with given set of patch documents.</p>
+
+    <p></p>
+  syntax:
+    content: public BulkUpdateResponse mergeAll(Collection<Document> patchDocuments, Integer maxConcurrencyPerPartitionRange)
+    parameters:
+    - id: patchDocuments
+      type: 12ebb11acom.microsoft.azure.documentdb._documenta08ddfce
+      description: <p>which are documents comprising id, partition key values and fields to set with the corresponding values </p>
+    - id: maxConcurrencyPerPartitionRange
+      type: 08effaa0
+      description: <p>specifies the maximum degree of concurrency per partition key range (default value is 20 if set to null) </p>
+    return:
+      type: com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response
+      description: <p>an instance of <xref uid="com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response" data-throw-if-not-resolved="false">BulkUpdateResponse</xref></p>
+  exceptions:
+  - type: deb9d423
+    description: <p>if any failure happens </p>
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.updateAll(Collection<UpdateItem>,Integer)
+  id: updateAll(Collection<UpdateItem>,Integer)
+  parent: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  langs:
+  - java
+  name: updateAll(Collection<UpdateItem> updateItems, Integer maxConcurrencyPerPartitionRange)
+  nameWithType: DocumentBulkExecutor.updateAll(Collection<UpdateItem> updateItems, Integer maxConcurrencyPerPartitionRange)
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.updateAll(Collection<UpdateItem> updateItems, Integer maxConcurrencyPerPartitionRange)
+  overload: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.updateAll*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/documentdb/bulkexecutor/DocumentBulkExecutor.java
+    startLine: 466
+  package: com.microsoft.azure.documentdb.bulkexecutor
+  summary: >-
+    <p>Executes a bulk update in the Azure Cosmos DB database service.</p>
+
+    <p></p>
+  syntax:
+    content: public BulkUpdateResponse updateAll(Collection<UpdateItem> updateItems, Integer maxConcurrencyPerPartitionRange)
+    parameters:
+    - id: updateItems
+      type: 12ebb11acom.microsoft.azure.documentdb.bulkexecutor._update_itema08ddfce
+      description: <p>specifies the collection of update items each of which comprises the list of field update operations to be performed on a document identified by an id and partition key value. </p>
+    - id: maxConcurrencyPerPartitionRange
+      type: 08effaa0
+      description: <p>specifies the maximum degree of concurrency per partition key range (default value is 20 if set to null) </p>
+    return:
+      type: com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response
+      description: <p>an instance of <xref uid="com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response" data-throw-if-not-resolved="false">BulkUpdateResponse</xref></p>
+  exceptions:
+  - type: deb9d423
+    description: <p>if any failure happens </p>
+references:
+- uid: 8d66f226
+  spec.java:
+  - name: DocumentBulkExecutor.Builder
+    fullName: DocumentBulkExecutor.Builder
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.builder*
+  name: builder
+  nameWithType: DocumentBulkExecutor.builder
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.builder
+  package: com.microsoft.azure.documentdb.bulkexecutor
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.close*
+  name: close
+  nameWithType: DocumentBulkExecutor.close
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.close
+  package: com.microsoft.azure.documentdb.bulkexecutor
+- uid: deb9d423
+  spec.java:
+  - name: DocumentClientException
+    fullName: DocumentClientException
+- uid: 0248867e
+  spec.java:
+  - name: Collection<String>
+    fullName: Collection<String>
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: 08effaa0
+  spec.java:
+  - name: Integer
+    fullName: Integer
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.importAll*
+  name: importAll
+  nameWithType: DocumentBulkExecutor.importAll
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.importAll
+  package: com.microsoft.azure.documentdb.bulkexecutor
+- uid: 12ebb11acom.microsoft.azure.documentdb.bulkexecutor._update_itema08ddfce
+  spec.java:
+  - name: Collection<
+    fullName: Collection<
+  - uid: com.microsoft.azure.documentdb.bulkexecutor._update_item
+    name: UpdateItem
+    fullName: com.microsoft.azure.documentdb.bulkexecutor.UpdateItem
+    href: com.microsoft.azure.documentdb.bulkexecutor._update_item.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.updateAll*
+  name: updateAll
+  nameWithType: DocumentBulkExecutor.updateAll
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.updateAll
+  package: com.microsoft.azure.documentdb.bulkexecutor
+- uid: 12ebb11acom.microsoft.azure.documentdb._documenta08ddfce
+  spec.java:
+  - name: Collection<
+    fullName: Collection<
+  - uid: com.microsoft.azure.documentdb._document
+    name: Document
+    fullName: com.microsoft.azure.documentdb.Document
+    href: com.microsoft.azure.documentdb._document.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.mergeAll*
+  name: mergeAll
+  nameWithType: DocumentBulkExecutor.mergeAll
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor.mergeAll
+  package: com.microsoft.azure.documentdb.bulkexecutor
+- uid: com.microsoft.azure.documentdb._document_client
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document_client.yml
+  name: DocumentClient
+  nameWithType: DocumentClient
+  fullName: com.microsoft.azure.documentdb.DocumentClient
+  type: Class
+  summary: >-
+    <p>Provides a client-side logical representation of the Azure Cosmos DB service. This client is used to configure and execute requests against the service. </p>
+
+    <p>The service client encapsulates the endpoint and credentials used to access the Azure Cosmos DB service. </p>
+  syntax:
+    content: public class DocumentClient
+- uid: com.microsoft.azure.documentdb._partition_key_definition
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._partition_key_definition.yml
+  name: PartitionKeyDefinition
+  nameWithType: PartitionKeyDefinition
+  fullName: com.microsoft.azure.documentdb.PartitionKeyDefinition
+  type: Class
+  summary: <p>Represents a partition key definition in the Azure Cosmos DB database service. A partition key definition specifies which document property is used as the partition key in a collection that has multiple partitions. </p>
+  syntax:
+    content: public class PartitionKeyDefinition
+- uid: com.microsoft.azure.documentdb._retry_options
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._retry_options.yml
+  name: RetryOptions
+  nameWithType: RetryOptions
+  fullName: com.microsoft.azure.documentdb.RetryOptions
+  type: Class
+  summary: <p>Encapsulates retry options in the Azure Cosmos DB database service. </p>
+  syntax:
+    content: public class RetryOptions
+- uid: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  href: com.microsoft.azure.documentdb.bulkexecutor._document_bulk_executor.yml
+  name: DocumentBulkExecutor
+  nameWithType: DocumentBulkExecutor
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.DocumentBulkExecutor
+  type: Class
+  syntax: *o1
+- uid: com.microsoft.azure.documentdb._document_client_exception
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document_client_exception.yml
+  name: DocumentClientException
+  nameWithType: DocumentClientException
+  fullName: com.microsoft.azure.documentdb.DocumentClientException
+  type: Class
+  summary: >-
+    <p>This class defines a custom exception type for all operations on DocumentClient in the Azure Cosmos DB database service. Applications are expected to catch DocumentClientException and handle errors as appropriate when calling methods on DocumentClient. </p>
+
+    <p>Errors coming from the service during normal execution are converted to DocumentClientException before returning to the application with the following exception: </p>
+
+    <p>When a BE error is encountered during a QueryIterable&lt;T&gt; iteration, an IllegalStateException is thrown instead of DocumentClientException. </p>
+
+    <p>When a transport level error happens that request is not able to reach the service, an IllegalStateException is thrown instead of DocumentClientException. </p>
+  syntax:
+    content: public class DocumentClientException
+- uid: com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  href: com.microsoft.azure.documentdb.bulkexecutor._bulk_update_response.yml
+  name: BulkUpdateResponse
+  nameWithType: BulkUpdateResponse
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.BulkUpdateResponse
+  type: Class
+  syntax:
+    content: public class BulkUpdateResponse
+- uid: com.microsoft.azure.documentdb.bulkexecutor._update_operation_base
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  href: com.microsoft.azure.documentdb.bulkexecutor._update_operation_base.yml
+  name: UpdateOperationBase
+  nameWithType: UpdateOperationBase
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.UpdateOperationBase
+  type: Class
+  syntax:
+    content: public class UpdateOperationBase
+- uid: com.microsoft.azure.documentdb.bulkexecutor._bulk_import_response
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  href: com.microsoft.azure.documentdb.bulkexecutor._bulk_import_response.yml
+  name: BulkImportResponse
+  nameWithType: BulkImportResponse
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.BulkImportResponse
+  type: Class
+  syntax:
+    content: public class BulkImportResponse
+- uid: com.microsoft.azure.documentdb.bulkexecutor._update_item
+  parent: com.microsoft.azure.documentdb.bulkexecutor
+  href: com.microsoft.azure.documentdb.bulkexecutor._update_item.yml
+  name: UpdateItem
+  nameWithType: UpdateItem
+  fullName: com.microsoft.azure.documentdb.bulkexecutor.UpdateItem
+  type: Class
+  syntax:
+    content: public class UpdateItem
+- uid: com.microsoft.azure.documentdb._document
+  parent: com.microsoft.azure.documentdb
+  href: com.microsoft.azure.documentdb._document.yml
+  name: Document
+  nameWithType: Document
+  fullName: com.microsoft.azure.documentdb.Document
+  type: Class
+  summary: >-
+    <p>Represents a document in the Azure Cosmos DB database service. </p>
+
+    <p>A document is a structured JSON document. There is no set schema for the JSON documents, and a document may contain any number of custom properties as well as an optional list of attachments. Document is an application resource and can be authorized using the master key or resource keys. </p>
+  syntax:
+    content: public class Document extends Resource

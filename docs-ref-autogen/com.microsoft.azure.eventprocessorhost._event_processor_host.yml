@@ -1,0 +1,803 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host
+  id: _event_processor_host
+  parent: com.microsoft.azure.eventprocessorhost
+  children:
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.createHostName(String)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final String)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager,ScheduledExecutorService,RetryPolicy)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.getHostName()
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.getPartitionManagerOptions()
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor(Class<T>)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor(Class<T>,EventProcessorOptions)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory(IEventProcessorFactory<?>)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory(IEventProcessorFactory<?>,EventProcessorOptions)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.safeCreateUUID()
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.setPartitionManagerOptions(PartitionManagerOptions)
+  - com.microsoft.azure.eventprocessorhost._event_processor_host.unregisterEventProcessor()
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost
+  nameWithType: EventProcessorHost
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost
+  type: Class
+  source:
+    remote: &o0
+      path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+      branch: master
+      repo: https://github.com/Azure/azure-event-hubs-java
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 21
+  package: com.microsoft.azure.eventprocessorhost
+  syntax:
+    content: public class EventProcessorHost
+  inheritance:
+  - java.lang.Object
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.createHostName(String)
+  id: createHostName(String)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: createHostName(String prefix)
+  nameWithType: EventProcessorHost.createHostName(String prefix)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.createHostName(String prefix)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.createHostName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 303
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Convenience method for generating unique host names, safe to pass to the EventProcessorHost constructors that take a hostName argument. </p>
+
+    <p>If a prefix is supplied, the constructed name begins with that string. If the prefix argument is null or an empty string, the constructed name begins with "javahost". Then a dash '-' and a UUID are appended to create a unique name.</p>
+
+    <p></p>
+  syntax:
+    content: public static String createHostName(String prefix)
+    parameters:
+    - id: prefix
+      type: "26831127"
+      description: <p>String to use as the beginning of the name. If null or empty, a default is used. </p>
+    return:
+      type: "26831127"
+      description: <p>A unique host name to pass to EventProcessorHost constructors. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String)
+  id: EventProcessorHost(final String,final String,final String,final String,final String,final String)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 61
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host instance to process events from an Event Hub. </p>
+
+    <p>Since Event Hubs are generally used for scale-out, high-traffic scenarios, in most scenarios there will be only one host instances per process, and the processes will be run on separate machines. Besides scale, this also provides isolation: one process or machine crashing will not take out multiple host instances. However, it is supported to run multiple host instances on one machine, or even within one process, for development and testing. </p>
+
+    <p>The hostName parameter is a name for this event processor host, which must be unique among all event processor host instances receiving from this event hub+consumer group combination: the unique name is used to distinguish which event processor host instance owns the lease for a given partition. An easy way to generate a unique hostName which also includes other information is to call EventProcessorHost.createHostName("mystring"). </p>
+
+    <p>This overload of the constructor uses the built-in lease and checkpoint managers. The Azure Storage account specified by the storageConnectionString parameter is used by the built-in managers to record leases and checkpoints, in the specified container. </p>
+
+    <p>The Event Hub connection string may be conveniently constructed using the ConnectionStringBuilder class from the Java Event Hub client.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: storageConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Azure Storage account to use for persisting leases and checkpoints. </p>
+    - id: storageContainerName
+      type: 3d93591e
+      description: <p>Azure Storage container name for use by built-in lease and checkpoint manager. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  id: EventProcessorHost(final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final ScheduledExecutorService executorService)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final ScheduledExecutorService executorService)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final ScheduledExecutorService executorService)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 88
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host to process events from an Event Hub. </p>
+
+    <p>This overload adds an argument to specify a user-provided thread pool. The number of partitions in the target event hub and the number of host instances should be considered when choosing the size of the thread pool: how many partitions is one instance expected to own under normal circumstances? One thread per partition should provide good performance, while being able to support more partitions adequately if a host instance fails and its partitions must be redistributed.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final ScheduledExecutorService executorService)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: storageConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Azure Storage account to use for persisting leases and checkpoints. </p>
+    - id: storageContainerName
+      type: 3d93591e
+      description: <p>Azure Storage container name for use by built-in lease and checkpoint manager. </p>
+    - id: executorService
+      type: 9815bf42
+      description: <p>User-supplied thread executor, or null to use EventProcessorHost-internal executor. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final String)
+  id: EventProcessorHost(final String,final String,final String,final String,final String,final String,final String)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 112
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host to process events from an Event Hub. </p>
+
+    <p>This overload adds an argument to specify a prefix used by the built-in lease manager when naming blobs in Azure Storage.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: storageConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Azure Storage account to use for persisting leases and checkpoints. </p>
+    - id: storageContainerName
+      type: 3d93591e
+      description: <p>Azure Storage container name for use by built-in lease and checkpoint manager. </p>
+    - id: storageBlobPrefix
+      type: 3d93591e
+      description: <p>Prefix used when naming blobs within the storage container. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  id: EventProcessorHost(final String,final String,final String,final String,final String,final String,final String,final ScheduledExecutorService)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix, final ScheduledExecutorService executorService)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix, final ScheduledExecutorService executorService)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix, final ScheduledExecutorService executorService)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 139
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host to process events from an Event Hub. </p>
+
+    <p>This overload allows the caller to specify both a user-supplied thread pool and a prefix used by the built-in lease manager when naming blobs in Azure Storage.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, final String storageConnectionString, final String storageContainerName, final String storageBlobPrefix, final ScheduledExecutorService executorService)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: storageConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Azure Storage account to use for persisting leases and checkpoints. </p>
+    - id: storageContainerName
+      type: 3d93591e
+      description: <p>Azure Storage container name for use by built-in lease and checkpoint manager. </p>
+    - id: storageBlobPrefix
+      type: 3d93591e
+      description: <p>Prefix used when naming blobs within the storage container. </p>
+    - id: executorService
+      type: 9815bf42
+      description: <p>User-supplied thread executor, or null to use EventProcessorHost-internal executor. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager)
+  id: EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 181
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host to process events from an Event Hub. </p>
+
+    <p>This overload allows the caller to provide their own lease and checkpoint managers to replace the built-in ones based on Azure Storage.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: checkpointManager
+      type: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
+      description: <p>Implementation of ICheckpointManager, to be replacement checkpoint manager. </p>
+    - id: leaseManager
+      type: com.microsoft.azure.eventprocessorhost._i_lease_manager
+      description: <p>Implementation of ILeaseManager, to be replacement lease manager. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager,ScheduledExecutorService,RetryPolicy)
+  id: EventProcessorHost(final String,final String,final String,final String,ICheckpointManager,ILeaseManager,ScheduledExecutorService,RetryPolicy)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager, ScheduledExecutorService executorService, RetryPolicy retryPolicy)
+  nameWithType: EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager, ScheduledExecutorService executorService, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager, ScheduledExecutorService executorService, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  type: Constructor
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 206
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Create a new host to process events from an Event Hub. </p>
+
+    <p>This overload allows the caller to provide their own lease and checkpoint managers to replace the built-in ones based on Azure Storage, and to provide an executor service and a retry policy for communications with the event hub.</p>
+
+    <p></p>
+  syntax:
+    content: public EventProcessorHost(final String hostName, final String eventHubPath, final String consumerGroupName, final String eventHubConnectionString, ICheckpointManager checkpointManager, ILeaseManager leaseManager, ScheduledExecutorService executorService, RetryPolicy retryPolicy)
+    parameters:
+    - id: hostName
+      type: 3d93591e
+      description: <p>A name for this event processor host. See method notes. </p>
+    - id: eventHubPath
+      type: 3d93591e
+      description: <p>Specifies the Event Hub to receive events from. </p>
+    - id: consumerGroupName
+      type: 3d93591e
+      description: <p>The name of the consumer group to use when receiving from the Event Hub. </p>
+    - id: eventHubConnectionString
+      type: 3d93591e
+      description: <p>Connection string for the Event Hub to receive from. </p>
+    - id: checkpointManager
+      type: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
+      description: <p>Implementation of ICheckpointManager, to be replacement checkpoint manager. </p>
+    - id: leaseManager
+      type: com.microsoft.azure.eventprocessorhost._i_lease_manager
+      description: <p>Implementation of ILeaseManager, to be replacement lease manager. </p>
+    - id: executorService
+      type: cd415bf4
+      description: <p>User-supplied thread executor, or null to use EventProcessorHost-internal executor. </p>
+    - id: retryPolicy
+      type: com.microsoft.azure.eventhubs._retry_policy
+      description: <p>Retry policy governing communications with the event hub. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.getHostName()
+  id: getHostName()
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: getHostName()
+  nameWithType: EventProcessorHost.getHostName()
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.getHostName()
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.getHostName*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 337
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>The processor host name is supplied by the user at constructor time, but being able to get it is useful because it means not having to carry both the host object and the name around. As long as you have the host object, you can get the name back, such as for logging.</p>
+
+    <p></p>
+  syntax:
+    content: public String getHostName()
+    return:
+      type: "26831127"
+      description: <p>The processor host name </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.getPartitionManagerOptions()
+  id: getPartitionManagerOptions()
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: getPartitionManagerOptions()
+  nameWithType: EventProcessorHost.getPartitionManagerOptions()
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.getPartitionManagerOptions()
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.getPartitionManagerOptions*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 357
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Returns the existing partition manager options object. Unless you are providing implementations of ILeaseManager and ICheckpointMananger, to change partition manager options, call this method to get the existing object and call setters on it to adjust the values.</p>
+
+    <p></p>
+  syntax:
+    content: public PartitionManagerOptions getPartitionManagerOptions()
+    return:
+      type: com.microsoft.azure.eventprocessorhost._partition_manager_options
+      description: <p>the internally-created PartitionManangerObjects object or any replacement object set with setPartitionManangerOptions </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor(Class<T>)
+  id: registerEventProcessor(Class<T>)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: registerEventProcessor(Class<T> eventProcessorType)
+  nameWithType: EventProcessorHost.registerEventProcessor(Class<T> eventProcessorType)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessor(Class<T> eventProcessorType)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 395
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Register class for event processor and start processing. </p>
+
+    <p>This overload uses the default event processor factory, which simply creates new instances of the registered event processor class, and uses all the default options. </p>
+
+    <p>The returned CompletableFuture completes when host initialization is finished. Initialization failures are reported by completing the future with an exception, so it is important to call get() on the future and handle any exceptions thrown. <pre>
+
+    class MyEventProcessor implements IEventProcessor { ... }
+
+    EventProcessorHost host = new EventProcessorHost(...);
+
+    { CompletableFuture&lt;Void&gt;} foo = host.registerEventProcessor(MyEventProcessor.class);
+
+    foo.get();
+
+    </pre></p>
+
+    <p></p>
+  syntax:
+    content: public <T extends IEventProcessor> CompletableFuture<Void> registerEventProcessor(Class<T> eventProcessorType)
+    parameters:
+    - id: eventProcessorType
+      type: ffb09d2d
+      description: <p>Class that implements IEventProcessor. </p>
+    return:
+      type: 36136266com.microsoft.azure.eventprocessorhost._i_event_processor972b7e34
+      description: <p>Future that completes when initialization is finished. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor(Class<T>,EventProcessorOptions)
+  id: registerEventProcessor(Class<T>,EventProcessorOptions)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: registerEventProcessor(Class<T> eventProcessorType, EventProcessorOptions processorOptions)
+  nameWithType: EventProcessorHost.registerEventProcessor(Class<T> eventProcessorType, EventProcessorOptions processorOptions)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessor(Class<T> eventProcessorType, EventProcessorOptions processorOptions)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 416
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Register class for event processor and start processing. </p>
+
+    <p>This overload uses the default event processor factory, which simply creates new instances of the registered event processor class, but takes user-specified options. </p>
+
+    <p>The returned CompletableFuture completes when host initialization is finished. Initialization failures are reported by completing the future with an exception, so it is important to call get() on the future and handle any exceptions thrown.</p>
+
+    <p></p>
+  syntax:
+    content: public <T extends IEventProcessor> CompletableFuture<Void> registerEventProcessor(Class<T> eventProcessorType, EventProcessorOptions processorOptions)
+    parameters:
+    - id: eventProcessorType
+      type: ffb09d2d
+      description: <p>Class that implements IEventProcessor. </p>
+    - id: processorOptions
+      type: com.microsoft.azure.eventprocessorhost._event_processor_options
+      description: <p>Options for the processor host and event processor(s). </p>
+    return:
+      type: 36136266com.microsoft.azure.eventprocessorhost._i_event_processor972b7e34
+      description: <p>Future that completes when initialization is finished. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory(IEventProcessorFactory<?>)
+  id: registerEventProcessorFactory(IEventProcessorFactory<?>)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: registerEventProcessorFactory(IEventProcessorFactory<?> factory)
+  nameWithType: EventProcessorHost.registerEventProcessorFactory(IEventProcessorFactory<?> factory)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessorFactory(IEventProcessorFactory<?> factory)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 438
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Register a user-supplied event processor factory and start processing. </p>
+
+    <p>If creating a new event processor requires more work than just new'ing an objects, the user must create an object that implements IEventProcessorFactory and pass it to this method, instead of calling registerEventProcessor. </p>
+
+    <p>This overload uses default options for the processor host and event processor(s). </p>
+
+    <p>The returned CompletableFuture completes when host initialization is finished. Initialization failures are reported by completing the future with an exception, so it is important to call get() on the future and handle any exceptions thrown.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Void> registerEventProcessorFactory(IEventProcessorFactory<?> factory)
+    parameters:
+    - id: factory
+      type: com.microsoft.azure.eventprocessorhost._i_event_processor_factory7e6ad1eb
+      description: <p>User-supplied event processor factory object. </p>
+    return:
+      type: db03ee24
+      description: <p>Future that completes when initialization is finished. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory(IEventProcessorFactory<?>,EventProcessorOptions)
+  id: registerEventProcessorFactory(IEventProcessorFactory<?>,EventProcessorOptions)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: registerEventProcessorFactory(IEventProcessorFactory<?> factory, EventProcessorOptions processorOptions)
+  nameWithType: EventProcessorHost.registerEventProcessorFactory(IEventProcessorFactory<?> factory, EventProcessorOptions processorOptions)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessorFactory(IEventProcessorFactory<?> factory, EventProcessorOptions processorOptions)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 455
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Register user-supplied event processor factory and start processing. </p>
+
+    <p>This overload takes user-specified options. </p>
+
+    <p>The returned CompletableFuture completes when host initialization is finished. Initialization failures are reported by completing the future with an exception, so it is important to call get() on the future and handle any exceptions thrown.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Void> registerEventProcessorFactory(IEventProcessorFactory<?> factory, EventProcessorOptions processorOptions)
+    parameters:
+    - id: factory
+      type: com.microsoft.azure.eventprocessorhost._i_event_processor_factory7e6ad1eb
+      description: <p>User-supplied event processor factory object. </p>
+    - id: processorOptions
+      type: com.microsoft.azure.eventprocessorhost._event_processor_options
+      description: <p>Options for the processor host and event processor(s). </p>
+    return:
+      type: db03ee24
+      description: <p>Future that completes when initialization is finished. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.safeCreateUUID()
+  id: safeCreateUUID()
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: safeCreateUUID()
+  nameWithType: EventProcessorHost.safeCreateUUID()
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.safeCreateUUID()
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.safeCreateUUID*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 323
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Synchronized string UUID generation convenience method. </p>
+
+    <p>We saw null and empty strings returned from UUID.randomUUID().toString() when used from multiple threads and there is no clear answer on the net about whether it is really thread-safe or not. </p>
+
+    <p>One of the major users of UUIDs is the built-in lease and checkpoint manager, which can be replaced by user implementations. This UUID generation method is public so user implementations can use it as well and avoid the problems.</p>
+
+    <p></p>
+  syntax:
+    content: public static String safeCreateUUID()
+    return:
+      type: "26831127"
+      description: <p>A string UUID with dashes but no curly brackets. </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.setPartitionManagerOptions(PartitionManagerOptions)
+  id: setPartitionManagerOptions(PartitionManagerOptions)
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: setPartitionManagerOptions(PartitionManagerOptions options)
+  nameWithType: EventProcessorHost.setPartitionManagerOptions(PartitionManagerOptions options)
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.setPartitionManagerOptions(PartitionManagerOptions options)
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.setPartitionManagerOptions*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 371
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Set the partition manager options all at once. Normally this method is used only when providing user implementations of ILeaseManager and ICheckpointManager, because it allows passing an object of a class derived from PartitionManagerOptions, which could contain options specific to the user-implemented ILeaseManager or ICheckpointMananger. When using the default, Azure Storage-based implementation, the recommendation is to call getPartitionManangerOptions to return the existing options object, then call setters on that object to adjust the values.</p>
+
+    <p></p>
+  syntax:
+    content: public void setPartitionManagerOptions(PartitionManagerOptions options)
+    parameters:
+    - id: options
+      type: com.microsoft.azure.eventprocessorhost._partition_manager_options
+      description: <p>- a PartitionManangerOptions object (or derived object) representing the desired options </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.unregisterEventProcessor()
+  id: unregisterEventProcessor()
+  parent: com.microsoft.azure.eventprocessorhost._event_processor_host
+  href: com.microsoft.azure.eventprocessorhost._event_processor_host.yml
+  langs:
+  - java
+  name: unregisterEventProcessor()
+  nameWithType: EventProcessorHost.unregisterEventProcessor()
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.unregisterEventProcessor()
+  overload: com.microsoft.azure.eventprocessorhost._event_processor_host.unregisterEventProcessor*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/EventProcessorHost.java
+    startLine: 490
+  package: com.microsoft.azure.eventprocessorhost
+  summary: >-
+    <p>Stop processing events and shut down this host instance.</p>
+
+    <p></p>
+  syntax:
+    content: public CompletableFuture<Void> unregisterEventProcessor()
+    return:
+      type: db03ee24
+      description: <p>A CompletableFuture that completes when shutdown is finished. </p>
+references:
+- uid: 3d93591e
+  spec.java:
+  - name: final String
+    fullName: final String
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.EventProcessorHost*
+  name: EventProcessorHost
+  nameWithType: EventProcessorHost.EventProcessorHost
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.EventProcessorHost
+  package: com.microsoft.azure.eventprocessorhost
+- uid: 9815bf42
+  spec.java:
+  - name: final ScheduledExecutorService
+    fullName: final ScheduledExecutorService
+- uid: cd415bf4
+  spec.java:
+  - name: ScheduledExecutorService
+    fullName: ScheduledExecutorService
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.getHostName*
+  name: getHostName
+  nameWithType: EventProcessorHost.getHostName
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.getHostName
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.getPartitionManagerOptions*
+  name: getPartitionManagerOptions
+  nameWithType: EventProcessorHost.getPartitionManagerOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.getPartitionManagerOptions
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.setPartitionManagerOptions*
+  name: setPartitionManagerOptions
+  nameWithType: EventProcessorHost.setPartitionManagerOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.setPartitionManagerOptions
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._i_event_processor_factory7e6ad1eb
+  spec.java:
+  - uid: com.microsoft.azure.eventprocessorhost._i_event_processor_factory
+    name: IEventProcessorFactory
+    fullName: com.microsoft.azure.eventprocessorhost.IEventProcessorFactory
+    href: com.microsoft.azure.eventprocessorhost._i_event_processor_factory.yml
+  - name: <?>
+    fullName: <?>
+- uid: db03ee24
+  spec.java:
+  - name: CompletableFuture<Void>
+    fullName: CompletableFuture<Void>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessorFactory*
+  name: registerEventProcessorFactory
+  nameWithType: EventProcessorHost.registerEventProcessorFactory
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessorFactory
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.unregisterEventProcessor*
+  name: unregisterEventProcessor
+  nameWithType: EventProcessorHost.unregisterEventProcessor
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.unregisterEventProcessor
+  package: com.microsoft.azure.eventprocessorhost
+- uid: ffb09d2d
+  spec.java:
+  - name: Class<T>
+    fullName: Class<T>
+- uid: 36136266com.microsoft.azure.eventprocessorhost._i_event_processor972b7e34
+  spec.java:
+  - name: '<T extends '
+    fullName: '<T extends '
+  - uid: com.microsoft.azure.eventprocessorhost._i_event_processor
+    name: IEventProcessor
+    fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor
+    href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
+  - name: '> CompletableFuture<Void>'
+    fullName: '> CompletableFuture<Void>'
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.registerEventProcessor*
+  name: registerEventProcessor
+  nameWithType: EventProcessorHost.registerEventProcessor
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.registerEventProcessor
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.createHostName*
+  name: createHostName
+  nameWithType: EventProcessorHost.createHostName
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.createHostName
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_host.safeCreateUUID*
+  name: safeCreateUUID
+  nameWithType: EventProcessorHost.safeCreateUUID
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorHost.safeCreateUUID
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost._partition_manager_options
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._partition_manager_options.yml
+  name: PartitionManagerOptions
+  nameWithType: PartitionManagerOptions
+  fullName: com.microsoft.azure.eventprocessorhost.PartitionManagerOptions
+  type: Class
+  syntax:
+    content: public class PartitionManagerOptions
+- uid: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._i_checkpoint_manager.yml
+  name: ICheckpointManager
+  nameWithType: ICheckpointManager
+  fullName: com.microsoft.azure.eventprocessorhost.ICheckpointManager
+  type: Interface
+  syntax:
+    content: public interface ICheckpointManager
+- uid: com.microsoft.azure.eventprocessorhost._i_lease_manager
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._i_lease_manager.yml
+  name: ILeaseManager
+  nameWithType: ILeaseManager
+  fullName: com.microsoft.azure.eventprocessorhost.ILeaseManager
+  type: Interface
+  syntax:
+    content: public interface ILeaseManager
+- uid: com.microsoft.azure.eventhubs._retry_policy
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs._retry_policy.yml
+  name: RetryPolicy
+  nameWithType: RetryPolicy
+  fullName: com.microsoft.azure.eventhubs.RetryPolicy
+  type: Class
+  syntax:
+    content: public class RetryPolicy
+- uid: com.microsoft.azure.eventprocessorhost._i_event_processor_factory
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._i_event_processor_factory.yml
+  name: IEventProcessorFactory<T>
+  nameWithType: IEventProcessorFactory<T>
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessorFactory<T>
+  type: Interface
+  summary: >-
+    <p>Interface that must be implemented by an event processor factory class. </p>
+
+    <p>User-provided factories are needed if creating an event processor object requires more work than just a new with a parameterless constructor.</p>
+
+    <p></p>
+  syntax:
+    content: public interface IEventProcessorFactory<T extends IEventProcessor>
+    typeParameters:
+    - id: T
+      type: 8ce1ecb9
+      description: <p>The type of event processor objects produced by this factory, which must implement IEventProcessor </p>
+- uid: com.microsoft.azure.eventprocessorhost._event_processor_options
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._event_processor_options.yml
+  name: EventProcessorOptions
+  nameWithType: EventProcessorOptions
+  fullName: com.microsoft.azure.eventprocessorhost.EventProcessorOptions
+  type: Class
+  syntax:
+    content: public class EventProcessorOptions
+- uid: com.microsoft.azure.eventprocessorhost._i_event_processor
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost._i_event_processor.yml
+  name: IEventProcessor
+  nameWithType: IEventProcessor
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  type: Interface
+  summary: >-
+    <p>Interface that must be implemented by event processor classes. </p>
+
+    <p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A PartitionContext is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>
+
+    <p>Although EventProcessorHost is multithreaded, calls to a given instance of an event processor class are serialized, except for onError(). onOpen() is called first, then onEvents() will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, onClose() is called after the last onEvents() call returns. </p>
+
+    <p>onError() could be called while onEvents() or onClose() is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>
+  syntax:
+    content: public interface IEventProcessor
