@@ -24,7 +24,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 20
+    startLine: 23
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public class AmqpsDeviceTelemetry extends AmqpsDeviceOperations
@@ -39,6 +39,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.closeLinks()
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.initLink(Link)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.INPUT_NAME_PROPERTY_KEY
+  - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.iotHubMessageToProtonMessage(Message)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.openLinks(Session)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.operationLinksOpened()
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.receiverLink
@@ -66,7 +67,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 171
+    startLine: 174
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Convert Proton message to IoTHubMessage if the message type is telemetry</p>
@@ -98,7 +99,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 203
+    startLine: 206
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Convert IoTHubMessage to Proton message Set the message type to telemetry</p>
@@ -127,7 +128,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 148
+    startLine: 151
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Read the message from Proton if the link name matches Set the message type to telemetry</p>
@@ -161,7 +162,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 308
+    startLine: 250
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: <p>Creates a proton message from the IoTHub message. </p>
   syntax:
@@ -173,6 +174,9 @@ items:
     return:
       type: c04bb214
       description: <p>the proton message. </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_telemetry.isLinkFound(String)
   id: isLinkFound(String)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_telemetry
@@ -187,7 +191,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 92
+    startLine: 95
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Identify if the given link is owned by the operation</p>
@@ -215,21 +219,24 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 231
+    startLine: 234
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Converts an AMQPS message to a corresponding IoT Hub message.</p>
 
     <p></p>
   syntax:
-    content: protected Message protonMessageToIoTHubMessage(MessageImpl protonMsg)
+    content: protected IotHubTransportMessage protonMessageToIoTHubMessage(MessageImpl protonMsg)
     parameters:
     - id: protonMsg
       type: c04bb214
-      description: <p>the AMQPS message.</p>
+      description: <p>the AMQPS message. </p>
     return:
-      type: com.microsoft.azure.sdk.iot.device._message
+      type: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
       description: <p>the corresponding IoT Hub message. </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_telemetry.sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
   id: sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_telemetry
@@ -244,7 +251,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTelemetry.java
-    startLine: 124
+    startLine: 127
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Sends the given message and returns with the delivery hash if the message type is telemetry</p>
@@ -424,6 +431,23 @@ references:
     content: protected static final String INPUT_NAME_PROPERTY_KEY= "x-opt-input-name"
     return:
       type: 3d93591e
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.iotHubMessageToProtonMessage(Message)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.yml
+  name: iotHubMessageToProtonMessage(Message message)
+  nameWithType: AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message message)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message message)
+  type: Method
+  summary: <p>Converts an iothub message to a proton message </p>
+  syntax:
+    content: protected MessageImpl iotHubMessageToProtonMessage(Message message)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.sdk.iot.device._message
+      description: <p>The IoTHubMessage to convert </p>
+    return:
+      type: c04bb214
+      description: <p>the converted message </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.openLinks(Session)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.yml
@@ -658,3 +682,13 @@ references:
   type: Class
   syntax:
     content: public class Message
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
+  parent: com.microsoft.azure.sdk.iot.device.transport
+  href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message.yml
+  name: IotHubTransportMessage
+  nameWithType: IotHubTransportMessage
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
+  type: Class
+  summary: <p>Extends Message, adding transport artifacts. </p>
+  syntax:
+    content: public class IotHubTransportMessage
