@@ -39,6 +39,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.closeLinks()
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.initLink(Link)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.INPUT_NAME_PROPERTY_KEY
+  - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.iotHubMessageToProtonMessage(Message)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.openLinks(Session)
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.operationLinksOpened()
   - com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.receiverLink
@@ -66,7 +67,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTwin.java
-    startLine: 194
+    startLine: 195
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Convert Proton message to IoTHubMessage if the message type is twin</p>
@@ -84,6 +85,9 @@ items:
     return:
       type: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_convert_from_proton_return_value
       description: <p>the converted message </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin.convertToProton(Message)
   id: convertToProton(Message)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin
@@ -98,7 +102,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTwin.java
-    startLine: 224
+    startLine: 226
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Convert IoTHubMessage to Proton message Set the message type to twin</p>
@@ -113,6 +117,9 @@ items:
     return:
       type: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_convert_to_proton_return_value
       description: <p>the converted message </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin.getMessageFromReceiverLink(String)
   id: getMessageFromReceiverLink(String)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin
@@ -161,7 +168,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTwin.java
-    startLine: 389
+    startLine: 340
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: <p>Creates a proton message from the IoTHub message. </p>
   syntax:
@@ -173,6 +180,9 @@ items:
     return:
       type: c04bb214
       description: <p>the proton message. </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin.isLinkFound(String)
   id: isLinkFound(String)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin
@@ -215,21 +225,24 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceTwin.java
-    startLine: 250
+    startLine: 252
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: >-
     <p>Converts an AMQPS message to a corresponding IoT Hub message.</p>
 
     <p></p>
   syntax:
-    content: protected Message protonMessageToIoTHubMessage(MessageImpl protonMsg)
+    content: protected IotHubTransportMessage protonMessageToIoTHubMessage(MessageImpl protonMsg)
     parameters:
     - id: protonMsg
       type: c04bb214
-      description: <p>the AMQPS message.</p>
+      description: <p>the AMQPS message. </p>
     return:
-      type: com.microsoft.azure.sdk.iot.device._message
+      type: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
       description: <p>the corresponding IoT Hub message. </p>
+  exceptions:
+  - type: 848a9648
+    description: <p>if the conversion fails </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin.sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
   id: sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_twin
@@ -424,6 +437,23 @@ references:
     content: protected static final String INPUT_NAME_PROPERTY_KEY= "x-opt-input-name"
     return:
       type: 3d93591e
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.iotHubMessageToProtonMessage(Message)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.yml
+  name: iotHubMessageToProtonMessage(Message message)
+  nameWithType: AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message message)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message message)
+  type: Method
+  summary: <p>Converts an iothub message to a proton message </p>
+  syntax:
+    content: protected MessageImpl iotHubMessageToProtonMessage(Message message)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.sdk.iot.device._message
+      description: <p>The IoTHubMessage to convert </p>
+    return:
+      type: c04bb214
+      description: <p>the converted message </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.openLinks(Session)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps._amqps_device_operations.yml
@@ -667,3 +697,13 @@ references:
   type: Class
   syntax:
     content: public class Message
+- uid: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message
+  parent: com.microsoft.azure.sdk.iot.device.transport
+  href: com.microsoft.azure.sdk.iot.device.transport._iot_hub_transport_message.yml
+  name: IotHubTransportMessage
+  nameWithType: IotHubTransportMessage
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
+  type: Class
+  summary: <p>Extends Message, adding transport artifacts. </p>
+  syntax:
+    content: public class IotHubTransportMessage
