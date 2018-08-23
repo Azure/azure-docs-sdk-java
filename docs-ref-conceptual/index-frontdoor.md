@@ -2,8 +2,9 @@
 layout: HubPage
 hide_bc: true
 title: Java Documentation
-description: Learn how to use Java to create web, mobile, desktop, or IoT applications using Microsoft APIs. Browse API and SDK reference, sample code, tutorials, and more.
+description: Learn how to use Java to create web, mobile, desktop, or IoT applications using Microsoft APIs.
 ---
+
 <div id="main" class="v2">
     <div class="container">
         <ul class="cardsY panelContent featuredContent">
