@@ -45,7 +45,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-batch-sdk-for-java
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 41
+    startLine: 39
   package: com.microsoft.azure.batch.protocol.models
   summary: <p>Specifies details of a Job Manager task. The Job Manager task is automatically started when the job is created. The Batch service tries to schedule the Job Manager task before any other tasks in the job. When shrinking a pool, the Batch service tries to preserve compute nodes where Job Manager tasks are running for as long as possible (that is, nodes running 'normal' tasks are removed before nodes running Job Manager tasks). When a Job Manager task fails and needs to be restarted, the system tries to schedule it at the highest priority. If there are no idle nodes available, the system may terminate one of the running tasks in the pool and return it to the queue in order to make room for the Job Manager task to restart. Note that a Job Manager task in one job does not have priority over tasks in other jobs. Across jobs, only job level priorities are observed. For example, if a Job Manager in a priority 0 job needs to be restarted, it will not displace tasks of a priority 1 job. Batch will retry tasks when a recovery operation is triggered on a compute node. Examples of recovery operations include (but are not limited to) when an unhealthy compute node is rebooted or a compute node disappeared due to host failure. Retries due to recovery operations are independent of and are not counted against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal retry due to a recovery operation may occur. Because of this, all tasks should be idempotent. This means tasks need to tolerate being interrupted and restarted without causing any corruption or duplicate data. The best practice for long running tasks is to use some form of checkpointing. </p>
   syntax: &o1
@@ -66,10 +66,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 455
+    startLine: 457
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the allowLowPriorityNode value.</p>
+    <p>Get the default value is true.</p>
 
     <p></p>
   syntax:
@@ -91,10 +91,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 415
+    startLine: 417
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the applicationPackageReferences value.</p>
+    <p>Get application packages are downloaded and deployed to a shared directory, not the task working directory. Therefore, if a referenced package is already on the compute node, and is up to date, then it is not re-downloaded; the existing copy on the compute node is used. If a referenced application package cannot be installed, for example because the package has been deleted or because download failed, the task fails.</p>
 
     <p></p>
   syntax:
@@ -116,10 +116,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 435
+    startLine: 437
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the authenticationTokenSettings value.</p>
+    <p>Get if this property is set, the Batch service provides the task with an authentication token which can be used to authenticate Batch service operations without requiring an account access key. The token is provided via the AZ_BATCH_AUTHENTICATION_TOKEN environment variable. The operations that the task can carry out using the token depend on the settings. For example, a task can request job permissions in order to add other tasks to the job, or check the status of the job or of other tasks under the job.</p>
 
     <p></p>
   syntax:
@@ -141,10 +141,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 235
+    startLine: 237
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the commandLine value.</p>
+    <p>Get the command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to file paths, it should use a relative path (relative to the task working directory), or use the Batch provided environment variable (<a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a>).</p>
 
     <p></p>
   syntax:
@@ -166,7 +166,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 335
+    startLine: 337
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Get the constraints value.</p>
@@ -191,10 +191,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 255
+    startLine: 257
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the containerSettings value.</p>
+    <p>Get if the pool that will run this task has containerConfiguration set, this must be set as well. If the pool that will run this task doesn't have containerConfiguration set, this must not be set. When this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all task environment variables are mapped into the container, and the task command line is executed in the container.</p>
 
     <p></p>
   syntax:
@@ -216,10 +216,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 215
+    startLine: 217
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the displayName value.</p>
+    <p>Get it need not be unique and can contain any Unicode characters up to a maximum length of 1024.</p>
 
     <p></p>
   syntax:
@@ -241,7 +241,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 315
+    startLine: 317
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Get the environmentSettings value.</p>
@@ -266,10 +266,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 195
+    startLine: 197
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the id value.</p>
+    <p>Get the ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters.</p>
 
     <p></p>
   syntax:
@@ -291,10 +291,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 355
+    startLine: 357
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the killJobOnCompletion value.</p>
+    <p>Get if true, when the Job Manager task completes, the Batch service marks the job as complete. If any tasks are still running at this time (other than Job Release), those tasks are terminated. If false, the completion of the Job Manager task does not affect the job status. In this case, you should either use the onAllTasksComplete attribute to terminate the job, or have a client or user terminate the job explicitly. An example of this is if the Job Manager creates a set of tasks but then takes no further role in their execution. The default value is true. If you are using the onAllTasksComplete and onTaskFailure attributes to control job lifetime, and using the Job Manager task only to create the tasks for the job (not to monitor progress), then it is important to set killJobOnCompletion to false.</p>
 
     <p></p>
   syntax:
@@ -316,10 +316,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 295
+    startLine: 297
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the outputFiles value.</p>
+    <p>Get for multi-instance tasks, the files will only be uploaded from the compute node on which the primary task is executed.</p>
 
     <p></p>
   syntax:
@@ -341,10 +341,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 275
+    startLine: 277
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the resourceFiles value.</p>
+    <p>Get files listed under this element are located in the task's working directory. There is a maximum size for the list of resource files. When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers.</p>
 
     <p></p>
   syntax:
@@ -366,10 +366,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 395
+    startLine: 397
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the runExclusive value.</p>
+    <p>Get if true, no other tasks will run on the same compute node for as long as the Job Manager is running. If false, other tasks can run simultaneously with the Job Manager on a compute node. The Job Manager task counts normally against the node's concurrent task limit, so this is only relevant if the node allows multiple concurrent tasks. The default value is true.</p>
 
     <p></p>
   syntax:
@@ -391,10 +391,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 375
+    startLine: 377
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the userIdentity value.</p>
+    <p>Get if omitted, the task runs as a non-administrative user unique to the task.</p>
 
     <p></p>
   syntax:
@@ -416,10 +416,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 465
+    startLine: 467
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the allowLowPriorityNode value.</p>
+    <p>Set the default value is true.</p>
 
     <p></p>
   syntax:
@@ -445,10 +445,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 425
+    startLine: 427
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the applicationPackageReferences value.</p>
+    <p>Set application packages are downloaded and deployed to a shared directory, not the task working directory. Therefore, if a referenced package is already on the compute node, and is up to date, then it is not re-downloaded; the existing copy on the compute node is used. If a referenced application package cannot be installed, for example because the package has been deleted or because download failed, the task fails.</p>
 
     <p></p>
   syntax:
@@ -474,10 +474,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 445
+    startLine: 447
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the authenticationTokenSettings value.</p>
+    <p>Set if this property is set, the Batch service provides the task with an authentication token which can be used to authenticate Batch service operations without requiring an account access key. The token is provided via the AZ_BATCH_AUTHENTICATION_TOKEN environment variable. The operations that the task can carry out using the token depend on the settings. For example, a task can request job permissions in order to add other tasks to the job, or check the status of the job or of other tasks under the job.</p>
 
     <p></p>
   syntax:
@@ -503,10 +503,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 245
+    startLine: 247
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the commandLine value.</p>
+    <p>Set the command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to file paths, it should use a relative path (relative to the task working directory), or use the Batch provided environment variable (<a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a>).</p>
 
     <p></p>
   syntax:
@@ -532,7 +532,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 345
+    startLine: 347
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Set the constraints value.</p>
@@ -561,10 +561,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 265
+    startLine: 267
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the containerSettings value.</p>
+    <p>Set if the pool that will run this task has containerConfiguration set, this must be set as well. If the pool that will run this task doesn't have containerConfiguration set, this must not be set. When this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all task environment variables are mapped into the container, and the task command line is executed in the container.</p>
 
     <p></p>
   syntax:
@@ -590,10 +590,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 225
+    startLine: 227
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the displayName value.</p>
+    <p>Set it need not be unique and can contain any Unicode characters up to a maximum length of 1024.</p>
 
     <p></p>
   syntax:
@@ -619,7 +619,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 325
+    startLine: 327
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Set the environmentSettings value.</p>
@@ -648,10 +648,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 205
+    startLine: 207
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the id value.</p>
+    <p>Set the ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters.</p>
 
     <p></p>
   syntax:
@@ -677,10 +677,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 365
+    startLine: 367
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the killJobOnCompletion value.</p>
+    <p>Set if true, when the Job Manager task completes, the Batch service marks the job as complete. If any tasks are still running at this time (other than Job Release), those tasks are terminated. If false, the completion of the Job Manager task does not affect the job status. In this case, you should either use the onAllTasksComplete attribute to terminate the job, or have a client or user terminate the job explicitly. An example of this is if the Job Manager creates a set of tasks but then takes no further role in their execution. The default value is true. If you are using the onAllTasksComplete and onTaskFailure attributes to control job lifetime, and using the Job Manager task only to create the tasks for the job (not to monitor progress), then it is important to set killJobOnCompletion to false.</p>
 
     <p></p>
   syntax:
@@ -706,10 +706,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 305
+    startLine: 307
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the outputFiles value.</p>
+    <p>Set for multi-instance tasks, the files will only be uploaded from the compute node on which the primary task is executed.</p>
 
     <p></p>
   syntax:
@@ -735,10 +735,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 285
+    startLine: 287
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the resourceFiles value.</p>
+    <p>Set files listed under this element are located in the task's working directory. There is a maximum size for the list of resource files. When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers.</p>
 
     <p></p>
   syntax:
@@ -764,10 +764,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 405
+    startLine: 407
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the runExclusive value.</p>
+    <p>Set if true, no other tasks will run on the same compute node for as long as the Job Manager is running. If false, other tasks can run simultaneously with the Job Manager on a compute node. The Job Manager task counts normally against the node's concurrent task limit, so this is only relevant if the node allows multiple concurrent tasks. The default value is true.</p>
 
     <p></p>
   syntax:
@@ -793,10 +793,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobManagerTask.java
-    startLine: 385
+    startLine: 387
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the userIdentity value.</p>
+    <p>Set if omitted, the task runs as a non-administrative user unique to the task.</p>
 
     <p></p>
   syntax:
