@@ -4,27 +4,34 @@ items:
   id: _kubernetes_cluster_impl
   parent: com.microsoft.azure.management.containerservice.implementation
   children:
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.addonProfiles()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.adminKubeConfigContent()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.agentPools()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.createResourceAsync()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.defineAgentPool(String)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.defineNetworkProfile()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.dnsPrefix()
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.enableRBAC()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.fqdn()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.getInnerAsync()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.KubernetesClusterImpl(String,ManagedClusterInner,ContainerServiceManager)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.linuxRootUsername()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.networkProfile()
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.nodeResourceGroup()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.provisioningState()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.servicePrincipalClientId()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.servicePrincipalSecret()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.sshKey()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.userKubeConfigContent()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.version()
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAddOnProfiles(Map<String, ManagedClusterAddonProfile>)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAgentPoolVirtualMachineCount(int)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAgentPoolVirtualMachineCount(String,int)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withDnsPrefix(String)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withLatestVersion()
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withNetworkProfile(ContainerServiceNetworkProfile)
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACDisabled()
+  - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACEnabled()
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRootUsername(String)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withServicePrincipalClientId(String)
   - com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withServicePrincipalSecret(String)
@@ -44,7 +51,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-libraries-for-java
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 30
+    startLine: 31
   package: com.microsoft.azure.management.containerservice.implementation
   summary: <p>The implementation for KubernetesCluster and its create and update interfaces. </p>
   syntax: &o1
@@ -79,6 +86,28 @@ items:
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withTag(String,String)
   - com.microsoft.azure.management.resources.fluentcore.arm.models.720b3efb4062edecc50de4ad58dc1c09.withTags(Map<String, String>)
   - com.microsoft.azure.management.resources.fluentcore.arm.models._resource._update_with_tags.withTags(Map<String, String>)
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.addonProfiles()
+  id: addonProfiles()
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: addonProfiles()
+  nameWithType: KubernetesClusterImpl.addonProfiles()
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.addonProfiles()
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.addonProfiles*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 150
+  package: com.microsoft.azure.management.containerservice.implementation
+  syntax:
+    content: public Map<String, ManagedClusterAddonProfile> addonProfiles()
+    return:
+      type: 2108f1f4com.microsoft.azure.management.containerservice._managed_cluster_addon_profilea08ddfce
+      description: <p>the cluster's add-on's profiles </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.addonProfiles()
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.adminKubeConfigContent()
   id: adminKubeConfigContent()
   parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
@@ -93,7 +122,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 75
+    startLine: 76
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public byte [] adminKubeConfigContent()
@@ -115,7 +144,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 132
+    startLine: 133
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public Map<String, KubernetesClusterAgentPool> agentPools()
@@ -137,7 +166,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 194
+    startLine: 210
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public Observable<KubernetesCluster> createResourceAsync()
@@ -157,7 +186,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 283
+    startLine: 299
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Begins the definition of an agent pool profile to be attached to the Kubernetes cluster.</p>
@@ -187,7 +216,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 313
+    startLine: 329
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Begins the definition of a network profile to be attached to the Kubernetes cluster.</p>
@@ -213,7 +242,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 60
+    startLine: 61
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String dnsPrefix()
@@ -221,6 +250,28 @@ items:
       type: "26831127"
       description: <p>the DNS prefix which was specified at creation time </p>
   overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.dnsPrefix()
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.enableRBAC()
+  id: enableRBAC()
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: enableRBAC()
+  nameWithType: KubernetesClusterImpl.enableRBAC()
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.enableRBAC()
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.enableRBAC*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 160
+  package: com.microsoft.azure.management.containerservice.implementation
+  syntax:
+    content: public boolean enableRBAC()
+    return:
+      type: 4fc6e284
+      description: <p>true if Kubernetes Role-Based Access Control is enabled </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.enableRBAC()
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.fqdn()
   id: fqdn()
   parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
@@ -235,7 +286,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 65
+    startLine: 66
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String fqdn()
@@ -257,7 +308,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 174
+    startLine: 190
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: protected Observable<ManagedClusterInner> getInnerAsync()
@@ -277,7 +328,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 44
+    startLine: 45
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: protected KubernetesClusterImpl(String name, ManagedClusterInner innerObject, ContainerServiceManager manager)
@@ -302,7 +353,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 111
+    startLine: 112
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String linuxRootUsername()
@@ -324,14 +375,36 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 144
+    startLine: 145
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public ContainerServiceNetworkProfile networkProfile()
     return:
       type: com.microsoft.azure.management.containerservice._container_service_network_profile
-      description: <p>the Linux SSH key </p>
+      description: <p>the network profile settings for the cluster </p>
   overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.networkProfile()
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.nodeResourceGroup()
+  id: nodeResourceGroup()
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: nodeResourceGroup()
+  nameWithType: KubernetesClusterImpl.nodeResourceGroup()
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.nodeResourceGroup()
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.nodeResourceGroup*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 155
+  package: com.microsoft.azure.management.containerservice.implementation
+  syntax:
+    content: public String nodeResourceGroup()
+    return:
+      type: "26831127"
+      description: <p>the name of the resource group containing agent pool nodes </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.nodeResourceGroup()
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.provisioningState()
   id: provisioningState()
   parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
@@ -346,7 +419,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 55
+    startLine: 56
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String provisioningState()
@@ -368,7 +441,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 93
+    startLine: 94
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String servicePrincipalClientId()
@@ -390,7 +463,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 102
+    startLine: 103
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String servicePrincipalSecret()
@@ -412,7 +485,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 120
+    startLine: 121
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public String sshKey()
@@ -434,7 +507,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 84
+    startLine: 85
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public byte [] userKubeConfigContent()
@@ -456,7 +529,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 70
+    startLine: 71
   package: com.microsoft.azure.management.containerservice.implementation
   syntax:
     content: public KubernetesVersion version()
@@ -464,6 +537,36 @@ items:
       type: com.microsoft.azure.management.containerservice._kubernetes_version
       description: <p>the Kubernetes version </p>
   overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster.version()
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAddOnProfiles(Map<String, ManagedClusterAddonProfile>)
+  id: withAddOnProfiles(Map<String, ManagedClusterAddonProfile>)
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  nameWithType: KubernetesClusterImpl.withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAddOnProfiles*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 334
+  package: com.microsoft.azure.management.containerservice.implementation
+  summary: >-
+    <p>Updates the cluster's add-on's profiles.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesClusterImpl withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+    parameters:
+    - id: addOnProfileMap
+      type: 2108f1f4com.microsoft.azure.management.containerservice._managed_cluster_addon_profilea08ddfce
+      description: <p>the cluster's add-on's profiles </p>
+    return:
+      type: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+      description: <p>the next stage of the update </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster._257da89a41cc94027e3c7ae32ab5d323.withAddOnProfiles(Map<String, ManagedClusterAddonProfile>)
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAgentPoolVirtualMachineCount(int)
   id: withAgentPoolVirtualMachineCount(int)
   parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
@@ -478,7 +581,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 303
+    startLine: 319
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Updates all the agent pools virtual machine count.</p>
@@ -508,7 +611,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 290
+    startLine: 306
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Updates the agent pool virtual machine count.</p>
@@ -541,7 +644,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 277
+    startLine: 293
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Specifies the DNS prefix to be used to create the FQDN for the master pool.</p>
@@ -571,7 +674,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 237
+    startLine: 253
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Uses the latest version for the Kubernetes cluster.</p>
@@ -583,6 +686,88 @@ items:
       type: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
       description: <p>the next stage of the definition </p>
   overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster._10ec87ac4fd20de55bead90935935c0f.withLatestVersion()
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withNetworkProfile(ContainerServiceNetworkProfile)
+  id: withNetworkProfile(ContainerServiceNetworkProfile)
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  nameWithType: KubernetesClusterImpl.withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withNetworkProfile*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 340
+  package: com.microsoft.azure.management.containerservice.implementation
+  summary: >-
+    <p>Updates the cluster's network profile.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesClusterImpl withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+    parameters:
+    - id: networkProfile
+      type: com.microsoft.azure.management.containerservice._container_service_network_profile
+      description: <p>the cluster's networkProfile </p>
+    return:
+      type: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+      description: <p>the next stage of the update </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster._b58a6d1c918b8927179df3045c3fbe7d.withNetworkProfile(ContainerServiceNetworkProfile)
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACDisabled()
+  id: withRBACDisabled()
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: withRBACDisabled()
+  nameWithType: KubernetesClusterImpl.withRBACDisabled()
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withRBACDisabled()
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACDisabled*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 352
+  package: com.microsoft.azure.management.containerservice.implementation
+  summary: >-
+    <p>Updates the cluster to specify the Kubernetes Role-Based Access Control is disabled.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesClusterImpl withRBACDisabled()
+    return:
+      type: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+      description: <p>the next stage of the update </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.withRBACDisabled()
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACEnabled()
+  id: withRBACEnabled()
+  parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+  href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
+  langs:
+  - java
+  name: withRBACEnabled()
+  nameWithType: KubernetesClusterImpl.withRBACEnabled()
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withRBACEnabled()
+  overload: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACEnabled*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
+    startLine: 346
+  package: com.microsoft.azure.management.containerservice.implementation
+  summary: >-
+    <p>Updates the cluster to specify the Kubernetes Role-Based Access Control is enabled.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesClusterImpl withRBACEnabled()
+    return:
+      type: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
+      description: <p>the next stage of the update </p>
+  overridden: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.withRBACEnabled()
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRootUsername(String)
   id: withRootUsername(String)
   parent: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
@@ -597,7 +782,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 243
+    startLine: 259
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Begins the definition to specify Linux root username.</p>
@@ -627,7 +812,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 265
+    startLine: 281
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Properties for Kubernetes cluster service principal.</p>
@@ -657,7 +842,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 271
+    startLine: 287
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Properties for service principal.</p>
@@ -687,7 +872,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 253
+    startLine: 269
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Begins the definition to specify Linux ssh key.</p>
@@ -717,7 +902,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 225
+    startLine: 241
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Specifies the version for the Kubernetes cluster.</p>
@@ -747,7 +932,7 @@ items:
   source:
     remote: *o0
     path: azure-mgmt-containerservice/src/main/java/com/microsoft/azure/management/containerservice/implementation/KubernetesClusterImpl.java
-    startLine: 231
+    startLine: 247
   package: com.microsoft.azure.management.containerservice.implementation
   summary: >-
     <p>Specifies the version for the Kubernetes cluster.</p>
@@ -862,6 +1047,35 @@ references:
   nameWithType: KubernetesClusterImpl.networkProfile
   fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.networkProfile
   package: com.microsoft.azure.management.containerservice.implementation
+- uid: 2108f1f4com.microsoft.azure.management.containerservice._managed_cluster_addon_profilea08ddfce
+  spec.java:
+  - name: 'Map<String, '
+    fullName: 'Map<String, '
+  - uid: com.microsoft.azure.management.containerservice._managed_cluster_addon_profile
+    name: ManagedClusterAddonProfile
+    fullName: com.microsoft.azure.management.containerservice.ManagedClusterAddonProfile
+    href: com.microsoft.azure.management.containerservice._managed_cluster_addon_profile.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.addonProfiles*
+  name: addonProfiles
+  nameWithType: KubernetesClusterImpl.addonProfiles
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.addonProfiles
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.nodeResourceGroup*
+  name: nodeResourceGroup
+  nameWithType: KubernetesClusterImpl.nodeResourceGroup
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.nodeResourceGroup
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.enableRBAC*
+  name: enableRBAC
+  nameWithType: KubernetesClusterImpl.enableRBAC
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.enableRBAC
+  package: com.microsoft.azure.management.containerservice.implementation
 - uid: c2d0e8c6com.microsoft.azure.management.containerservice._kubernetes_clustera08ddfce
   spec.java:
   - name: Observable<
@@ -934,6 +1148,26 @@ references:
   name: defineNetworkProfile
   nameWithType: KubernetesClusterImpl.defineNetworkProfile
   fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.defineNetworkProfile
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withAddOnProfiles*
+  name: withAddOnProfiles
+  nameWithType: KubernetesClusterImpl.withAddOnProfiles
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withAddOnProfiles
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withNetworkProfile*
+  name: withNetworkProfile
+  nameWithType: KubernetesClusterImpl.withNetworkProfile
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withNetworkProfile
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACEnabled*
+  name: withRBACEnabled
+  nameWithType: KubernetesClusterImpl.withRBACEnabled
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withRBACEnabled
+  package: com.microsoft.azure.management.containerservice.implementation
+- uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.withRBACDisabled*
+  name: withRBACDisabled
+  nameWithType: KubernetesClusterImpl.withRBACDisabled
+  fullName: com.microsoft.azure.management.containerservice.implementation.KubernetesClusterImpl.withRBACDisabled
   package: com.microsoft.azure.management.containerservice.implementation
 - uid: com.microsoft.azure.management.resources.fluentcore.model._appliable.apply()
   parent: com.microsoft.azure.management.resources.fluentcore.model._appliable
@@ -1353,7 +1587,7 @@ references:
   type: Interface
   summary: <p>Interface for all the definitions related to a Kubernetes cluster. </p>
   syntax:
-    content: public interface Definition extends KubernetesCluster.DefinitionStages.Blank,KubernetesCluster.DefinitionStages.WithGroup,KubernetesCluster.DefinitionStages.WithVersion,KubernetesCluster.DefinitionStages.WithLinuxRootUsername,KubernetesCluster.DefinitionStages.WithLinuxSshKey,KubernetesCluster.DefinitionStages.WithServicePrincipalClientId,KubernetesCluster.DefinitionStages.WithServicePrincipalProfile,KubernetesCluster.DefinitionStages.WithDnsPrefix,KubernetesCluster.DefinitionStages.WithAgentPool,KubernetesCluster.DefinitionStages.WithNetworkProfile,KubernetesCluster.DefinitionStages.WithCreate
+    content: public interface Definition extends KubernetesCluster.DefinitionStages.Blank,KubernetesCluster.DefinitionStages.WithGroup,KubernetesCluster.DefinitionStages.WithVersion,KubernetesCluster.DefinitionStages.WithLinuxRootUsername,KubernetesCluster.DefinitionStages.WithLinuxSshKey,KubernetesCluster.DefinitionStages.WithServicePrincipalClientId,KubernetesCluster.DefinitionStages.WithServicePrincipalProfile,KubernetesCluster.DefinitionStages.WithDnsPrefix,KubernetesCluster.DefinitionStages.WithAgentPool,KubernetesCluster.DefinitionStages.WithNetworkProfile,KubernetesCluster.DefinitionStages.WithAddOnProfiles,KubernetesCluster.DefinitionStages.WithCreate
 - uid: com.microsoft.azure.management.containerservice._kubernetes_cluster._update
   parent: com.microsoft.azure.management.containerservice
   href: com.microsoft.azure.management.containerservice._kubernetes_cluster._update.yml
@@ -1557,7 +1791,53 @@ references:
     content: public ContainerServiceNetworkProfile networkProfile()
     return:
       type: com.microsoft.azure.management.containerservice._container_service_network_profile
-      description: <p>the Linux SSH key </p>
+      description: <p>the network profile settings for the cluster </p>
+- uid: com.microsoft.azure.management.containerservice._managed_cluster_addon_profile
+  parent: com.microsoft.azure.management.containerservice
+  href: com.microsoft.azure.management.containerservice._managed_cluster_addon_profile.yml
+  name: ManagedClusterAddonProfile
+  nameWithType: ManagedClusterAddonProfile
+  fullName: com.microsoft.azure.management.containerservice.ManagedClusterAddonProfile
+  type: Class
+  summary: <p>A Kubernetes add-on profile for a managed cluster. </p>
+  syntax:
+    content: public class ManagedClusterAddonProfile
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster.addonProfiles()
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster.yml
+  name: addonProfiles()
+  nameWithType: KubernetesCluster.addonProfiles()
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.addonProfiles()
+  type: Method
+  syntax:
+    content: public Map<String, ManagedClusterAddonProfile> addonProfiles()
+    return:
+      type: 2108f1f4com.microsoft.azure.management.containerservice._managed_cluster_addon_profilea08ddfce
+      description: <p>the cluster's add-on's profiles </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster.nodeResourceGroup()
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster.yml
+  name: nodeResourceGroup()
+  nameWithType: KubernetesCluster.nodeResourceGroup()
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.nodeResourceGroup()
+  type: Method
+  syntax:
+    content: public String nodeResourceGroup()
+    return:
+      type: "26831127"
+      description: <p>the name of the resource group containing agent pool nodes </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster.enableRBAC()
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster.yml
+  name: enableRBAC()
+  nameWithType: KubernetesCluster.enableRBAC()
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.enableRBAC()
+  type: Method
+  syntax:
+    content: public boolean enableRBAC()
+    return:
+      type: 4fc6e284
+      description: <p>true if Kubernetes Role-Based Access Control is enabled </p>
 - uid: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl
   parent: com.microsoft.azure.management.containerservice.implementation
   href: com.microsoft.azure.management.containerservice.implementation._kubernetes_cluster_impl.yml
@@ -1812,3 +2092,75 @@ references:
     return:
       type: a0207f3c
       description: <p>the stage representing configuration for the network profile </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster._257da89a41cc94027e3c7ae32ab5d323.withAddOnProfiles(Map<String, ManagedClusterAddonProfile>)
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster._257da89a41cc94027e3c7ae32ab5d323
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster._257da89a41cc94027e3c7ae32ab5d323.yml
+  name: withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  nameWithType: KubernetesCluster.DefinitionStages.WithAddOnProfiles.withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.DefinitionStages.WithAddOnProfiles.withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+  type: Method
+  summary: >-
+    <p>Updates the cluster's add-on's profiles.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesCluster.Update withAddOnProfiles(Map<String, ManagedClusterAddonProfile> addOnProfileMap)
+    parameters:
+    - id: addOnProfileMap
+      type: 2108f1f4com.microsoft.azure.management.containerservice._managed_cluster_addon_profilea08ddfce
+      description: <p>the cluster's add-on's profiles </p>
+    return:
+      type: 685df31f
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster._b58a6d1c918b8927179df3045c3fbe7d.withNetworkProfile(ContainerServiceNetworkProfile)
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster._b58a6d1c918b8927179df3045c3fbe7d
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster._b58a6d1c918b8927179df3045c3fbe7d.yml
+  name: withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  nameWithType: KubernetesCluster.UpdateStages.WithNetworkProfile.withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.UpdateStages.WithNetworkProfile.withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+  type: Method
+  summary: >-
+    <p>Updates the cluster's network profile.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesCluster.Update withNetworkProfile(ContainerServiceNetworkProfile networkProfile)
+    parameters:
+    - id: networkProfile
+      type: com.microsoft.azure.management.containerservice._container_service_network_profile
+      description: <p>the cluster's networkProfile </p>
+    return:
+      type: 685df31f
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.withRBACEnabled()
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.yml
+  name: withRBACEnabled()
+  nameWithType: KubernetesCluster.UpdateStages.WithRBAC.withRBACEnabled()
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.UpdateStages.WithRBAC.withRBACEnabled()
+  type: Method
+  summary: >-
+    <p>Updates the cluster to specify the Kubernetes Role-Based Access Control is enabled.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesCluster.Update withRBACEnabled()
+    return:
+      type: 685df31f
+      description: <p>the next stage of the update </p>
+- uid: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.withRBACDisabled()
+  parent: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c
+  href: com.microsoft.azure.management.containerservice._kubernetes_cluster._update_stages._with_r_b_a_c.yml
+  name: withRBACDisabled()
+  nameWithType: KubernetesCluster.UpdateStages.WithRBAC.withRBACDisabled()
+  fullName: com.microsoft.azure.management.containerservice.KubernetesCluster.UpdateStages.WithRBAC.withRBACDisabled()
+  type: Method
+  summary: >-
+    <p>Updates the cluster to specify the Kubernetes Role-Based Access Control is disabled.</p>
+
+    <p></p>
+  syntax:
+    content: public KubernetesCluster.Update withRBACDisabled()
+    return:
+      type: 685df31f
+      description: <p>the next stage of the update </p>
