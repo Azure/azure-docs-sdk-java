@@ -2,14 +2,14 @@
 layout: HubPage
 hide_bc: true
 title: Java Documentation
-description: Learn how to use Java to create web, mobile, desktop, or IoT applications using Microsoft APIs.
+description: Learn how to use Java to create web, mobile, desktop, or IoT applications integrated with Microsoft technologies and Cloud services on Azure.
 ---
 
 <div id="main" class="v2">
     <div class="container">
         <ul class="cardsY panelContent featuredContent">
             <li>
-                <a href="/dotnet/csharp/quick-starts">
+                <a href="https://code.visualstudio.com/docs/languages/java">
                     <div class="cardSize">
                         <div class="cardPadding">
                             <div class="card">
@@ -19,7 +19,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                     </div>
                                 </div>
                                 <div class="cardText">
-                                    <h3>Java development with Visual Studio Code</h3>
+                                    <h3>Java in Visual Studio Code</h3>
                                 </div>
                             </div>
                         </div>
@@ -27,7 +27,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                 </a>
             </li>
             <li>
-                <a href="/dotnet/api/?view=netcore-2.0">
+                <a href="/java/azure">
                     <div class="cardSize">
                         <div class="cardPadding">
                             <div class="card">
@@ -37,7 +37,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                     </div>
                                 </div>
                                 <div class="cardText">
-                                    <h3>Get started with Azure</h3>
+                                    <h3>Azure for Java</h3>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                 </a>
             </li>
             <li>
-                <a href="/dotnet/api/?view=netframework-4.7.1">
+                <a href="/java/api">
                     <div class="cardSize">
                         <div class="cardPadding">
                             <div class="card">
@@ -55,7 +55,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                     </div>
                                 </div>
                                 <div class="cardText">
-                                    <h3>Java API reference</h3>
+                                    <h3>Java Reference APIs</h3>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
         </ul>
     </div>
     <div class="container">
-        <h1>Java at Microsoft</h1>
+        <p><h1>Java at Microsoft</h1></p>
         <ul class="pivots">
             <li>
                 <a data-default="true" href="#docs">Docs</a>
@@ -83,10 +83,10 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3><a href="https://code.visualstudio.com/docs/languages/java">Visual Studio Code</a></h3>
-                                                <p><a href="https://code.visualstudio.com/docs/java/java-tutorial">Get Started</a></p>
-                                                <p><a href="https://code.visualstudio.com/docs/java/extensions">Get extensions</a></p>
-                                                <p><a href="https://code.visualstudio.com/docs/java/java-debugging">Debug code</a></p>
+                                                <h3><a href="https://code.visualstudio.com/">Visual Studio Code</a></h3>
+                                                <p><a href="https://code.visualstudio.com/docs/languages/java">Get Started</a></p>
+                                                <p><a href="https://code.visualstudio.com/docs/java/extensions">Java Extensions</a></p>
+                                                <p><a href="https://code.visualstudio.com/docs/java/java-debugging">Debug Applications</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -102,12 +102,12 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3><a href="/java/azure">Azure</a></h3>
-                                                <p><a href="/dotnet/core/get-started">Get started</a></p>
-                                                <p><a href="/dotnet/core/tutorials">Deploy to VMs</a></p>
-                                                <p><a href="/dotnet/core/porting">Deploy Docker containers</a></p>
-                                                <p><a href="/aspnet/core/getting-started">Serverless apps</a></p>
-                                                <p><a href="/dotnet/core/porting">Azure Toolkit for IntelliJ</a></p>
+                                                <h3><a href="/java/azure/">Azure for Java Developers</a></h3>
+                                                <p><a href="/java/azure/java-sdk-azure-get-started">Get Started</a></p>
+                                                <p><a href="/azure/app-service/containers/quickstart-java?toc=%2Fjava%2Fazure%2Ftoc.json&bc=%2Fjava%2Fbreadcrumb%2Ftoc.json">Deploy Java Web Apps</a></p>
+                                                <p><a href="/java/azure/spring-framework/deploy-spring-boot-java-app-using-fabric8-maven-plugin?toc=%2Fjava%2Fazure%2Ftoc.json&bc=%2Fjava%2Fbreadcrumb%2Ftoc.json">Deploy Java Docker Apps to Kubernetes</a></p>
+                                                <p><a href="/azure/azure-functions/functions-create-first-java-maven?toc=%2Fjava%2Fazure%2Ftoc.json&bc=%2Fjava%2Fbreadcrumb%2Ftoc.json">Serverless Java Functions</a></p>
+                                                <p><a href="/java/azure/java-azure-tools">IDE Toolkits & Maven Plugins</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -123,11 +123,12 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3><a href="/dotnet/framework/">DevOps</a></h3>
-                                                <p><a href="/dotnet/framework/get-started/">Get Started</a></p>
-                                                <p><a href="/dotnet/framework/development-guide">Jenkins</a></p>
-                                                <p><a href="/dotnet/framework/development-guide">Ansible</a></p>
-                                                <p><a href="/dotnet/framework/develop-client-apps">Visual Studio Team Services</a></p>
+                                                <h3><a href="/azure/devops/learn/">Cloud DevOps</a></h3>
+                                                <p><a href="/azure/devops-project/azure-devops-project-java?toc=%2Fjava%2Fazure%2Ftoc.json&bc=%2Fjava%2Fbreadcrumb%2Ftoc.json">Create a DevOps Project</a></p>
+                                                <p><a href="/vsts/java/?view=vsts">Visual Studio Team Services</a></p>
+                                                <p><a href="/azure/jenkins/">Jenkins on Azure</a></p>
+                                                <p><a href="/azure/ansible/">Ansible</a></p>
+                                                <p><a href="/azure/terraform/">Terraform</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +146,6 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                             <div class="cardText">
                                                 <h3><a href="https://developer.xamarin.com/guides/android/advanced_topics/xamarin-for-java/">Mobile</a></h3>
                                                 <p><a href="https://developer.xamarin.com/get-started-droid/">Get started</a></p>
-                                                <p><a href="https://github.com/microsoftgraph/android-java-connect-sample">Send push notifications</a></p>
                                                 <p><a href="https://www.visualstudio.com/app-center/">Visual Studio App Center</a></p>
                                             </div>
                                         </div>
@@ -162,11 +162,11 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3><a href="/dotnet/csharp">Spring</a></h3>
-                                                <p><a href="/dotnet/csharp/quick-starts">Get started</a></p>
-                                                <p><a href="/dotnet/csharp/getting-started">Azure Storage</a></p>
-                                                <p><a href="/dotnet/csharp/tour-of-csharp">Azure Active Directory</a></p>
-                                                <p><a href="/dotnet/csharp/language-reference">VSCode extensions</a></p>
+                                                <h3><a href="/java/azure/spring-framework/">Spring on Azure</a></h3>
+                                                <p><a href="/java/azure/spring-framework/spring-boot-starters-for-azure">Spring Starters</a></p>
+                                                <p><a href="/java/azure/spring-framework/configure-spring-boot-starter-java-app-with-azure-storage">Consume Azure Storage</a></p>
+                                                <p><a href="/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin">Deploy to Azure App Service</a></p>
+                                                <p><a href="https://code.visualstudio.com/docs/java/java-spring-boot">VS Code Extensions</a></p>
                                             </div>
                                         </div>
                                     </div>
@@ -182,10 +182,11 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <h3><a href="https://developer.microsoft.com/en-us/graph/docs/concepts/overview">Microsoft Graph</a></h3>
-                                                <p><a href="https://developer.microsoft.com/en-us/graph/quick-start">Get Started</a></p>
+                                                <h3><a href="https://developer.microsoft.com/graph/docs/concepts/overview">Microsoft Graph</a></h3>
+                                                <p><a href="https://developer.microsoft.com/graph/quick-start">Get Started</a></p>
                                                 <p><a href="https://github.com/microsoftgraph/msgraph-sdk-java">Microsoft Graph SDK for Java</a></p>
-                                                <p><a href="https://developer.microsoft.com/en-us/graph/docs/api-reference/v1.0/resources/users">Reference</a></p>                                            </div>
+                                                <p><a href="https://github.com/microsoftgraph/msgraph-sdk-java/wiki/Overview">DJava SDK Documentation</a></p>
+                                             </div>
                                         </div>
                                     </div>
                                 </div>
@@ -205,7 +206,7 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                 </div>
                                             </div>
                                             <div class="cardText">
-                                                <a href="https://docs.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-java-mysql">
+                                                <a href="https://docs.microsoft.com/azure/app-service/app-service-web-tutorial-java-mysql">
                                                     <h3>Build your first web app</h3>
                                                     <p>Learn how to build a Java web app with Spring and MySQL.</p>
                                                 </a>
@@ -367,238 +368,6 @@ description: Learn how to use Java to create web, mobile, desktop, or IoT applic
                                                     <h3>Azure Storage</h3>
                                                     <p>Learn about Azure Storage, and how to create applications using Azure
                                                         blobs, tables, queues, and files.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#mobile">Mobile</a>
-                        <ul id="mobile" class="cardsC">
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-mobile-1.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://developer.xamarin.com/guides/ios/getting_started/">
-                                                    <h3>Xamarin.iOS</h3>
-                                                    <p>Create native iOS apps using C# and F# with Xamarin.iOS.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-mobile-2.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://developer.xamarin.com/guides/android/getting_started">
-                                                    <h3>Xamarin.Android</h3>
-                                                    <p>Create native Android apps using C# and F# with Xamarin.Android.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-mobile-3.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://developer.xamarin.com/guides/xamarin-forms">
-                                                    <h3>Xamarin.Forms</h3>
-                                                    <p>Create cross-platform mobile UIs using C# and F# with Xamarin.Forms.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#desktop">Desktop</a>
-                        <ul id="desktop" class="cardsC">
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-desktop-1.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://msdn.microsoft.com/library/windows/apps/dn609832.aspx">
-                                                    <h3>Universal Windows Apps</h3>
-                                                    <p>Learn how you create Universal Windows apps that run on all Windows 10
-                                                        devices.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-desktop-2.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="/dotnet/framework/wpf/index">
-                                                    <h3>Windows Presentation Foundation (WPF)</h3>
-                                                    <p>WPF provides developers with a XAML-based model for building desktop
-                                                        applications on Windows.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-desktop-3.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="/dotnet/framework/winforms/index">
-                                                    <h3>Windows Forms</h3>
-                                                    <p>Rapidly develop Line of Business apps for the Windows desktop.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-desktop-4.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://developer.xamarin.com/guides/mac/getting_started">
-                                                    <h3>Xamarin for macOS</h3>
-                                                    <p>Create apps for macOS using C# and F# with Xamarin.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="#gaming">Gaming</a>
-                        <ul id="gaming" class="cardsC">
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-gaming-1.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://www.visualstudio.com/vs/game-development">
-                                                    <h3>Game Development with Visual Studio</h3>
-                                                    <p>Write and debug your games using your game engine of choice with Visual
-                                                        Studio.
-                                                    </p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-gaming-2.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="http://docs.cryengine.com/display/CEPROG/C%23+Programming">
-                                                <h3>CRYENGINE</h3>
-                                                <p>Learn how to use CRYENGINE to build games with C#.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-gaming-3.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="http://www.monogame.net/documentation/?page=main">
-                                                    <h3>MonoGame</h3>
-                                                    <p>Build games with C# through tutorials and setup instructions at the MonoGame
-                                                        library documenation hub.</p>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cardSize">
-                                    <div class="cardPadding">
-                                        <div class="card">
-                                            <div class="cardImageOuter">
-                                                <div class="cardImage bgdAccent1">
-                                                    <img src="/dotnet/images/hub/net-docs-gaming-4.svg" alt="" />
-                                                </div>
-                                            </div>
-                                            <div class="cardText">
-                                                <a href="https://docs.unity3d.com/Manual/index.html">
-                                                    <h3>Unity</h3>
-                                                    <p>Learn how to use Unity to build 2D and 3D games with C# with the Unity
-                                                        Manual.
-                                                    </p>
                                                 </a>
                                             </div>
                                         </div>
