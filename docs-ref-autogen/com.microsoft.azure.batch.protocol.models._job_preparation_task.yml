@@ -35,7 +35,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-batch-sdk-for-java
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 46
+    startLine: 44
   package: com.microsoft.azure.batch.protocol.models
   summary: '<p>A Job Preparation task to run before any tasks of the job on any given compute node. You can use Job Preparation to prepare a compute node to run tasks for the job. Activities commonly performed in Job Preparation include: Downloading common resource files used by all the tasks in the job. The Job Preparation task can download these common resource files to the shared location on the compute node. (AZ_BATCH_NODE_ROOT_DIR), or starting a local service on the compute node so that all tasks of that job can communicate with it. If the Job Preparation task fails (that is, exhausts its retry count before exiting with exit code 0), Batch will not run tasks of this job on the compute node. The node remains ineligible to run tasks of this job until it is reimaged. The node remains active and can be used for other jobs. The Job Preparation task can run multiple times on the same compute node. Therefore, you should write the Job Preparation task to handle re-execution. If the compute node is rebooted, the Job Preparation task is run again on the node before scheduling any other task of the job, if rerunOnNodeRebootAfterSuccess is true or if the Job Preparation task did not previously complete. If the compute node is reimaged, the Job Preparation task is run again before scheduling any task of the job. Batch will retry tasks when a recovery operation is triggered on a compute node. Examples of recovery operations include (but are not limited to) when an unhealthy compute node is rebooted or a compute node disappeared due to host failure. Retries due to recovery operations are independent of and are not counted against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal retry due to a recovery operation may occur. Because of this, all tasks should be idempotent. This means tasks need to tolerate being interrupted and restarted without causing any corruption or duplicate data. The best practice for long running tasks is to use some form of checkpointing. </p>'
   syntax: &o1
@@ -56,10 +56,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 175
+    startLine: 177
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the commandLine value.</p>
+    <p>Get the command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to file paths, it should use a relative path (relative to the task working directory), or use the Batch provided environment variable (<a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a>).</p>
 
     <p></p>
   syntax:
@@ -81,7 +81,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 255
+    startLine: 257
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Get the constraints value.</p>
@@ -106,10 +106,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 195
+    startLine: 197
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the containerSettings value.</p>
+    <p>Get when this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all task environment variables are mapped into the container, and the task command line is executed in the container.</p>
 
     <p></p>
   syntax:
@@ -131,7 +131,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 235
+    startLine: 237
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Get the environmentSettings value.</p>
@@ -156,10 +156,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 155
+    startLine: 157
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the id value.</p>
+    <p>Get the ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters. If you do not specify this property, the Batch service assigns a default value of 'jobpreparation'. No other task in the job can have the same ID as the Job Preparation task. If you try to submit a task with the same id, the Batch service rejects the request with error code TaskIdSameAsJobPreparationTask; if you are calling the REST API directly, the HTTP status code is 409 (Conflict).</p>
 
     <p></p>
   syntax:
@@ -181,10 +181,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 315
+    startLine: 317
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the rerunOnNodeRebootAfterSuccess value.</p>
+    <p>Get the Job Preparation task is always rerun if a compute node is reimaged, or if the Job Preparation task did not complete (e.g. because the reboot occurred while the task was running). Therefore, you should always write a Job Preparation task to be idempotent and to behave correctly if run multiple times. The default value is true.</p>
 
     <p></p>
   syntax:
@@ -206,10 +206,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 215
+    startLine: 217
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the resourceFiles value.</p>
+    <p>Get files listed under this element are located in the task's working directory. There is a maximum size for the list of resource files. When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers.</p>
 
     <p></p>
   syntax:
@@ -231,10 +231,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 295
+    startLine: 297
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the userIdentity value.</p>
+    <p>Get if omitted, the task runs as a non-administrative user unique to the task on Windows nodes, or a a non-administrative user unique to the pool on Linux nodes.</p>
 
     <p></p>
   syntax:
@@ -256,10 +256,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 275
+    startLine: 277
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Get the waitForSuccess value.</p>
+    <p>Get if true and the Job Preparation task fails on a compute node, the Batch service retries the Job Preparation task up to its maximum retry count (as specified in the constraints element). If the task has still not completed successfully after all retries, then the Batch service will not schedule tasks of the job to the compute node. The compute node remains active and eligible to run tasks of other jobs. If false, the Batch service will not wait for the Job Preparation task to complete. In this case, other tasks of the job can start executing on the compute node while the Job Preparation task is still running; and even if the Job Preparation task fails, new tasks will continue to be scheduled on the node. The default value is true.</p>
 
     <p></p>
   syntax:
@@ -281,10 +281,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 185
+    startLine: 187
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the commandLine value.</p>
+    <p>Set the command line does not run under a shell, and therefore cannot take advantage of shell features such as environment variable expansion. If you want to take advantage of such features, you should invoke the shell in the command line, for example using "cmd /c MyCommand" in Windows or "/bin/sh -c MyCommand" in Linux. If the command line refers to file paths, it should use a relative path (relative to the task working directory), or use the Batch provided environment variable (<a href="https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables">https://docs.microsoft.com/en-us/azure/batch/batch-compute-node-environment-variables</a>).</p>
 
     <p></p>
   syntax:
@@ -310,7 +310,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 265
+    startLine: 267
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Set the constraints value.</p>
@@ -339,10 +339,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 205
+    startLine: 207
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the containerSettings value.</p>
+    <p>Set when this is specified, all directories recursively below the AZ_BATCH_NODE_ROOT_DIR (the root of Azure Batch directories on the node) are mapped into the container, all task environment variables are mapped into the container, and the task command line is executed in the container.</p>
 
     <p></p>
   syntax:
@@ -368,7 +368,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 245
+    startLine: 247
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
     <p>Set the environmentSettings value.</p>
@@ -397,10 +397,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 165
+    startLine: 167
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the id value.</p>
+    <p>Set the ID can contain any combination of alphanumeric characters including hyphens and underscores and cannot contain more than 64 characters. If you do not specify this property, the Batch service assigns a default value of 'jobpreparation'. No other task in the job can have the same ID as the Job Preparation task. If you try to submit a task with the same id, the Batch service rejects the request with error code TaskIdSameAsJobPreparationTask; if you are calling the REST API directly, the HTTP status code is 409 (Conflict).</p>
 
     <p></p>
   syntax:
@@ -426,10 +426,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 325
+    startLine: 327
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the rerunOnNodeRebootAfterSuccess value.</p>
+    <p>Set the Job Preparation task is always rerun if a compute node is reimaged, or if the Job Preparation task did not complete (e.g. because the reboot occurred while the task was running). Therefore, you should always write a Job Preparation task to be idempotent and to behave correctly if run multiple times. The default value is true.</p>
 
     <p></p>
   syntax:
@@ -455,10 +455,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 225
+    startLine: 227
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the resourceFiles value.</p>
+    <p>Set files listed under this element are located in the task's working directory. There is a maximum size for the list of resource files. When the max size is exceeded, the request will fail and the response error code will be RequestEntityTooLarge. If this occurs, the collection of ResourceFiles must be reduced in size. This can be achieved using .zip files, Application Packages, or Docker Containers.</p>
 
     <p></p>
   syntax:
@@ -484,10 +484,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 305
+    startLine: 307
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the userIdentity value.</p>
+    <p>Set if omitted, the task runs as a non-administrative user unique to the task on Windows nodes, or a a non-administrative user unique to the pool on Linux nodes.</p>
 
     <p></p>
   syntax:
@@ -513,10 +513,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/JobPreparationTask.java
-    startLine: 285
+    startLine: 287
   package: com.microsoft.azure.batch.protocol.models
   summary: >-
-    <p>Set the waitForSuccess value.</p>
+    <p>Set if true and the Job Preparation task fails on a compute node, the Batch service retries the Job Preparation task up to its maximum retry count (as specified in the constraints element). If the task has still not completed successfully after all retries, then the Batch service will not schedule tasks of the job to the compute node. The compute node remains active and eligible to run tasks of other jobs. If false, the Batch service will not wait for the Job Preparation task to complete. In this case, other tasks of the job can start executing on the compute node while the Job Preparation task is still running; and even if the Job Preparation task fails, new tasks will continue to be scheduled on the node. The default value is true.</p>
 
     <p></p>
   syntax:
