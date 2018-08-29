@@ -3,9 +3,9 @@ title: Deploy a Java-based MicroProfile service to Azure Web App for Containers
 description: Learn how to deploy a MicroProfile service using Docker and Azure Web App for Containers
 services: container-registry;app-service
 documentationcenter: java
-author: jogiles
+author: jonathangiles
 manager: routlaw
-editor: jogiles
+editor: jonathangiles
 
 ms.assetid:
 ms.author: jogiles
@@ -62,8 +62,8 @@ Now that this is complete, we can move on with building and running our MicroPro
 
 This example is based on a sample application available on GitHub, so we will clone that and then step through the code. Follow the steps below to get the code cloned onto your machine:
 
-1. `git clone https://github.com/JonathanGiles/microprofile-on-azure.git`
-1. `cd docker-helloworld`
+1. `git clone https://github.com/Azure-Samples/microprofile-docker-helloworld.git`
+1. `cd microprofile-docker-helloworld`
 
 In this directory there is a `pom.xml` file that is used to specify the project in the format used by the Maven build tool. This file can be edited to suit your own needs. In particular, the `docker.registry` and `docker.name` properties should be changed to the `docker.registry` and `docker.name` created when the Azure Container Registry was setup.
 
@@ -83,7 +83,7 @@ This Dockerfile simply creates a new Docker container based on the Payara Micro 
 Diving into the `src` directory, we will eventually discover the `Application` class reproduced below:
 
 ```java
-package net.jonathangiles.microprofile.docker.helloworld;
+package com.microsoft.azure.samples.microprofile.docker.helloworld;
 
 import javax.ws.rs.ApplicationPath;
 
@@ -96,7 +96,7 @@ The `@ApplicationPath("/api")` annotation specifies the base endpoint for this m
 Inside the `api` package is a class named `API`, which contains the following code:
 
 ```java
-package net.jonathangiles.microprofile.docker.helloworld.api;
+package com.microsoft.azure.samples.microprofile.docker.helloworld.api;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.GET;

@@ -36,9 +36,12 @@ items:
       branch: master
       repo: https://github.com/Microsoft/ApplicationInsights-Java
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 32
+    startLine: 38
   package: com.microsoft.applicationinsights.telemetry
-  summary: <p>Telemetry type used to track metrics sent to Azure Application Insights. </p>
+  summary: >-
+    <p>Telemetry type used to track metrics sent to Azure Application Insights. </p>
+
+    <p>This represents a Measurement, if only Name and Value are set. If Count, Min, Max or Standard Deviation are set, this represents an Aggregation; a sampled set of points summarized by these statistic fields. In an Aggregation metric, the value, i.e. <xref uid="com.microsoft.applicationinsights.telemetry._metric_telemetry.getValue()" data-throw-if-not-resolved="false">getValue()</xref>, represents the sum of sampled data points. </p>
   syntax:
     content: public class MetricTelemetry extends BaseTelemetry<MetricData>
   inheritance:
@@ -71,7 +74,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 178
+    startLine: 187
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected void additionalSanitize()
@@ -89,7 +92,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 208
+    startLine: 213
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getBaseTypeName()
@@ -109,7 +112,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 116
+    startLine: 125
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the number of samples for this metric. </p>
   syntax:
@@ -131,7 +134,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 183
+    startLine: 192
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected MetricData getData()
@@ -151,7 +154,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 203
+    startLine: 208
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getEnvelopName()
@@ -171,7 +174,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 148
+    startLine: 157
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the max value of this metric across samples. </p>
   syntax:
@@ -193,7 +196,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 132
+    startLine: 141
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the min value of this metric across samples. </p>
   syntax:
@@ -215,7 +218,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 80
+    startLine: 88
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the name of the metric. </p>
   syntax:
@@ -237,7 +240,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 164
+    startLine: 173
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the standard deviation of this metric across samples. </p>
   syntax:
@@ -259,10 +262,10 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 100
+    startLine: 109
   package: com.microsoft.applicationinsights.telemetry
-  summary: <p>Gets The value of the metric. </p>
-  syntax:
+  summary: <p>Gets The value of the metric. Represents the sum of data points if this metric is an Aggregation </p>
+  syntax: &o1
     content: public double getValue()
     return:
       type: a07dcde8
@@ -281,9 +284,9 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 72
+    startLine: 80
   package: com.microsoft.applicationinsights.telemetry
-  summary: <p>indicate that this metric is a custom performance counter and should be sent to the performance counters table </p>
+  summary: <p>Indicate that this metric is a custom performance counter and should be sent to the performance counters table. This sets 'CustomPerfCounter'='true' key/value pair in this metric's properties. </p>
   syntax:
     content: public void markAsCustomPerfCounter()
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.MetricTelemetry()
@@ -300,7 +303,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 50
+    startLine: 56
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Default constructor </p>
   syntax:
@@ -319,7 +322,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 63
+    startLine: 70
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes the instance with a name and value </p>
   syntax:
@@ -331,6 +334,9 @@ items:
     - id: value
       type: a07dcde8
       description: <p>The value of the metric. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if name is null or empty </p>
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.setCount(Integer)
   id: setCount(Integer)
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -345,7 +351,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 124
+    startLine: 133
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the number of samples for this metric. </p>
   syntax:
@@ -368,7 +374,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 156
+    startLine: 165
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the max value of this metric across samples. </p>
   syntax:
@@ -391,7 +397,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 140
+    startLine: 149
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the min value of this metric across samples. </p>
   syntax:
@@ -414,7 +420,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 88
+    startLine: 97
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the name of the metric. Length 1-150 characters. </p>
   syntax:
@@ -423,6 +429,9 @@ items:
     - id: name
       type: "26831127"
       description: <p>The name of the metric. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: <p>if the name is null or empty. </p>
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.setStandardDeviation(Double)
   id: setStandardDeviation(Double)
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -437,7 +446,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 172
+    startLine: 181
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the standard deviation of this metric across samples. </p>
   syntax:
@@ -460,7 +469,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 108
+    startLine: 117
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets The value of the metric. </p>
   syntax:
@@ -475,6 +484,10 @@ references:
   nameWithType: MetricTelemetry.MetricTelemetry
   fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.MetricTelemetry
   package: com.microsoft.applicationinsights.telemetry
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
 - uid: "26831127"
   spec.java:
   - name: String
@@ -784,3 +797,12 @@ references:
     typeParameters:
     - id: T
       type: 8ce1ecb9
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getValue()
+  parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
+  href: com.microsoft.applicationinsights.telemetry._metric_telemetry.yml
+  name: getValue()
+  nameWithType: MetricTelemetry.getValue()
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getValue()
+  type: Method
+  summary: <p>Gets The value of the metric. Represents the sum of data points if this metric is an Aggregation </p>
+  syntax: *o1
