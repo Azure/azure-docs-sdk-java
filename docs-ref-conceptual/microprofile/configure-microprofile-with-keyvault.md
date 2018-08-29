@@ -3,9 +3,9 @@ title: Configure MicroProfile with Azure Key Vault
 description: Learn how to inject secrets into a MicroProfile web service with Azure Key Vault
 services: key-vault
 documentationcenter: java
-author: jogiles
+author: jonathangiles
 manager: routlaw
-editor: jogiles
+editor: jonathangiles
 
 ms.assetid:
 ms.author: jogiles
@@ -130,7 +130,3 @@ This example is based on a sample application available on GitHub, so we will cl
 ## Summary
 
 This sample application bakes together the MicroProfile Config API, Azure Key Vault, and the free and open source [microprofile-config-keyvault](https://github.com/Azure/azure-microprofile/tree/master/microprofile-config-keyvault) library to enable easy injection of configuration data and secrets into our MicroProfile web services.
-
-## Links
-
-* Learn how to dockerize your MicroProfile application in the '[Deploy a Java-based MicroProfile service to Azure Web App for Containers](https://github.com/azure-samples/microprofile-docker-helloworld)' tutorial.
