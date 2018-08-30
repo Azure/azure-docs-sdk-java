@@ -125,6 +125,7 @@ Now open the class `Application`, hopefully after your IDE has already picked up
 		   return application.sources(Application.class);
 	   }
    ```
+1. Organize your imports to ensure `SpringApplicationBuilder` and `SpringBootServletInitializer` are properly imported.
 
 Your application is now ready to be deployed to Tomcat and any other Servlet runtime (e.g. Jetty).
 
