@@ -31,7 +31,7 @@ Create, update, and delete keys and secrets in Azure Key Vault with the client l
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-keyvault</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
 </dependency>
 ```   
 
@@ -59,7 +59,7 @@ Use the Azure Key Vault management libraries to create key vaults, authorize app
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-keyvault</artifactId>
-    <version>1.3.0</version>
+    <version>1.15.0</version>
 </dependency>
 ```
 
