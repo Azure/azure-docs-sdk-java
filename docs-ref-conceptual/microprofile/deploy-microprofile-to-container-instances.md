@@ -3,9 +3,9 @@ title: Deploy a MicroProfile app to the cloud with Docker and Azure
 description: Learn how to deploy a MicroProfile app to the cloud using Docker and Azure Container Instances.
 services: container-instances;container-retistry
 documentationcenter: java
-author: brborges
+author: brunoborges
 manager: routlaw
-editor: brborges
+editor: brunoborges
 
 ms.assetid:
 ms.author: brborges
@@ -153,7 +153,7 @@ For more information about the various technologies discussed in this article, s
 
 <!-- URL List -->
 
-[Azure Container Registry Build]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-build-overview
+[Azure Container Registry Build]: https://docs.microsoft.com/azure/container-registry/container-registry-build-overview
 [MicroProfile.io]: https://microprofile.io
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure/
@@ -161,3 +161,6 @@ For more information about the various technologies discussed in this article, s
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
 [Maven]: http://maven.apache.org/
+[Java Development Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[Azure Container Instances]: https://docs.microsoft.com/azure/container-instances/
+[Azure Container Registry]:  https://docs.microsoft.com/azure/container-registry
