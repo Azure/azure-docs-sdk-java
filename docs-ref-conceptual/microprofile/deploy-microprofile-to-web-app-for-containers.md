@@ -133,7 +133,7 @@ We have now covered all the code required to create a microservice using MicroPr
 Now that we have successfully built and run our MicroProfile application on our local machine, the next step is to push this container into our container registry. In this tutorial we are using the Azure Container Registry, but any container registry will work (as long as the `pom.xml` file is edited to point to the relevant location).
 
 1. Run `mvn clean package` to clean, compile, and create a local docker image.
-2. Run `mvn dockerfile:push` to push to the Azure Container Repository.
+2. Run `mvn dockerfile:push` to push to the Azure Container Registry.
 
 At this stage you now have your docker container image uploaded to the Azure Container Registry, but it is not yet
 running as we now have to deploy it into an Azure Web App for Containers instance. We will now do that.
