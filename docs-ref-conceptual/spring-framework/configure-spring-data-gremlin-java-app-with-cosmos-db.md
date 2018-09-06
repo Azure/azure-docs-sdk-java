@@ -8,7 +8,6 @@ manager: mbaldwin
 editor: ''
 
 ms.assetid:
-ms.author: robmcm
 ms.date: 08/20/2018
 ms.devlang: java
 ms.service: cosmos-db
@@ -81,7 +80,7 @@ The following prerequisites are required in order to follow the steps in this ar
    * Specify a unique **Database id** for your database.
    * Specify a unique **Graph id** for your graph.
    * You can choose to specify your **Storage capacity**, or you can accept the default.
-   * Specify your **Throughout**, and for this example you can choose 400 Request Units (RUs).
+   * Specify your **Throughput**, and for this example you can choose 400 Request Units (RUs).
    
    When you have specified these options, click **OK** to create your graph.
 
