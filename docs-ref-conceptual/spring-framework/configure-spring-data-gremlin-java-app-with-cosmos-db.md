@@ -163,7 +163,7 @@ The following prerequisites are required in order to follow the steps in this ar
    Where:
    
    | Field | Description |
-   | ---|---|
+   |---|---|
    | `endpoint` | Specifies the Gremlin URI for your database, which is derived from the unique **ID** that you specified when you created your Azure Cosmos DB earlier in this tutorial. |
    | `port` | Specifies the TCP/IP port, which should be **443** for HTTPS. |
    | `username` | Specifies the unique **Database id** and **Graph id** that you used when you added your graph earlier in this tutorial; this must be entered using the following syntax: "/dbs/**{Database id}**/colls/**{Graph id}**". |
