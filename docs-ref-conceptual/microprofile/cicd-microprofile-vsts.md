@@ -99,7 +99,7 @@ The release pipeline in Azure DevOps automatically triggers the deployment of bu
 5. Click on the **+ Add** button in the Artifacts section.  This will link artifacts from the build definition to this release definition.  
 6. Use the drop-down menu for the **Source (build pipeline)** to select your build definition. Then click the **Add** button to continue.
 
-
+<img src="media/VSTS/add-artifact9.png">
  
 7. Click on the **Tasks** tab on the pipeline.  Then, select your stage name.
  
