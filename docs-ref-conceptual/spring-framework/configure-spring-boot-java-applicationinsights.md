@@ -275,7 +275,7 @@ For more information about using Spring Boot applications on Azure, see the foll
 
 * [Running a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
-Application Insights supports automatic collection of external dependencies and its correlation with incoming requests. Currently we support autocollection of Oracle, MsSQL, MySQL and Redis. For more details on enabling autocollection please follow the article [how to use Application Insights Java agent](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-java-agent).
+Application Insights supports automatic collection of external dependencies and its correlation with incoming requests. Currently we support autocollection of Oracle, MsSQL, MySQL and Redis. For more details on enabling autocollection please follow the article [how to use Application Insights Java agent](https://docs.microsoft.com/azure/application-insights/app-insights-java-agent).
 
 For more information about Azure Application Insights, and it's monitoring capabilities, see the **[Application Insights]** home page.
 
@@ -297,7 +297,7 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 [Spring Boot Profile Specific Properties]: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties
 [Spring Initializr]: https://start.spring.io/
 [Spring Framework]: https://spring.io/
-[Application Insights]: https://docs.microsoft.com/en-us/azure/application-insights/
+[Application Insights]: https://docs.microsoft.com/azure/application-insights/
 
 <!-- IMG List -->
 
