@@ -150,7 +150,7 @@ The following prerequisites are required in order to follow the steps in this ar
    cd /users/example/home/eventhub/src/main/resources
    ```
 
-1. Log in to your Azure account:
+1. Sign in to your Azure account:
 
    ```azurecli
    az login
