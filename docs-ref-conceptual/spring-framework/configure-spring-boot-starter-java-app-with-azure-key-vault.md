@@ -150,10 +150,10 @@ The following prerequisites are required in order to complete the steps in this 
    |---|---|
    | `name` | Specifies a unique name for your key vault. |
    | `location` | Specifies the [Azure region](https://azure.microsoft.com/regions/) where your resource group will be hosted. |
-   | `enabled-for-deployment` | Specifies the [key vault deployment option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
-   | `enabled-for-disk-encryption` | Specifies the [key vault encryption option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
-   | `enabled-for-template-deployment` | Specifies the [key vault encryption option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
-   | `sku` | Specifies the [key vault SKU option](https://docs.microsoft.com/en-us/cli/azure/keyvault). |
+   | `enabled-for-deployment` | Specifies the [key vault deployment option](https://docs.microsoft.com/cli/azure/keyvault). |
+   | `enabled-for-disk-encryption` | Specifies the [key vault encryption option](https://docs.microsoft.com/cli/azure/keyvault). |
+   | `enabled-for-template-deployment` | Specifies the [key vault encryption option](https://docs.microsoft.com/cli/azure/keyvault). |
+   | `sku` | Specifies the [key vault SKU option](https://docs.microsoft.com/cli/azure/keyvault). |
    | `query` | Specifies a value to retrieve from the response, which is the key vault URI that you will need to complete this tutorial. |
 
    The Azure CLI will display the URI for key vault, which you will use later; for example:  
@@ -171,7 +171,7 @@ The following prerequisites are required in order to complete the steps in this 
    | Parameter | Description |
    |---|---|
    | `name` | Specifies your key vault name from earlier. |
-   | `secret-permission` | Specifies the [security policies](https://docs.microsoft.com/en-us/cli/azure/keyvault) for your key vault. |
+   | `secret-permission` | Specifies the [security policies](https://docs.microsoft.com/cli/azure/keyvault) for your key vault. |
    | `spn` | Specifies the GUID for your application registration from earlier. |
 
    The Azure CLI will display the results of your security policy creation; for example:  

@@ -318,7 +318,7 @@ The following links provide additional information about creating Spring Boot ap
 
 The following links provide additional information about using Kubernetes with Azure:
 
-* [Get started with a Kubernetes cluster in Azure Kubernetes Service](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes)
+* [Get started with a Kubernetes cluster in Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/intro-kubernetes)
 
 More information about using Kubernetes command-line interface is available in the **kubectl** user guide at <https://kubernetes.io/docs/user-guide/kubectl/>.
 
@@ -355,7 +355,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Pulling an Image from a Private Registry]: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 
 <!-- Newly added -->
-[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-auth-aks/
+[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks/
 [Visual Studio Code Java Tutorials]: https://code.visualstudio.com/docs/java/java-kubernetes/
 
 <!-- IMG List -->
