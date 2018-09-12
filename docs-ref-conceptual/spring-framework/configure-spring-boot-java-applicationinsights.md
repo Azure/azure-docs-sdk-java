@@ -87,7 +87,7 @@ The following prerequisites are required in order to complete the steps in this 
  <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-spring-boot-starter</artifactId>
-    <version>1.0.0-BETA</version>
+    <version>1.0.1-BETA</version>
 </dependency>
 ```
 
