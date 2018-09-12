@@ -146,8 +146,10 @@ For example:
  
 3. Click on the **Save** button, then the **OK** button 
 4. Click on the **+ Release** drop-down menu, then select **Create a release** link
-5. Click on the release number.  Then hover your mouse cursor over the stage name and click on the **Deploy** button
-6. The click on the **Deploy** button on the pop-up window to start the deployment process to Azure
+5. Use the **Stages for a trigger change from automated to manual** drop-down menu to select the checkbox for your stage name
+6. Click the **Create** button to continue
+7. Click on the release number.  Then hover your mouse cursor over the stage name and click on the **Deploy** button
+8. The click on the **Deploy** button on the pop-up window to start the deployment process to Azure
 
 
 ## Test the Java Web Application
