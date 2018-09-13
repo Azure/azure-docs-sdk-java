@@ -5,15 +5,19 @@ items:
   parent: com.microsoft.applicationinsights.telemetry
   children:
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.additionalSanitize()
+  - com.microsoft.applicationinsights.telemetry._metric_telemetry.BASE_TYPE
+  - com.microsoft.applicationinsights.telemetry._metric_telemetry.ENVELOPE_NAME
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getBaseTypeName()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getCount()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getData()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getEnvelopName()
+  - com.microsoft.applicationinsights.telemetry._metric_telemetry.getKind()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getMax()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getMin()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getName()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getStandardDeviation()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.getValue()
+  - com.microsoft.applicationinsights.telemetry._metric_telemetry.getVer()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.markAsCustomPerfCounter()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.MetricTelemetry()
   - com.microsoft.applicationinsights.telemetry._metric_telemetry.MetricTelemetry(String,double)
@@ -52,14 +56,18 @@ items:
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.initialize(ConcurrentMap<String, String>)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.sanitize()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.serialize(JsonTelemetryDataSerializer)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSampleRate(Envelope)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSequence(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setTimestamp(Date)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.additionalSanitize()
   id: additionalSanitize()
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -74,10 +82,50 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 187
+    startLine: 192
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected void additionalSanitize()
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.BASE_TYPE
+  id: BASE_TYPE
+  parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
+  href: com.microsoft.applicationinsights.telemetry._metric_telemetry.yml
+  langs:
+  - java
+  name: BASE_TYPE
+  nameWithType: MetricTelemetry.BASE_TYPE
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.BASE_TYPE
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
+    startLine: 51
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Base Type for this telemetry. </p>
+  syntax:
+    content: public static final String BASE_TYPE= "MetricData"
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.ENVELOPE_NAME
+  id: ENVELOPE_NAME
+  parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
+  href: com.microsoft.applicationinsights.telemetry._metric_telemetry.yml
+  langs:
+  - java
+  name: ENVELOPE_NAME
+  nameWithType: MetricTelemetry.ENVELOPE_NAME
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.ENVELOPE_NAME
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
+    startLine: 45
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Envelope Name for this telemetry. </p>
+  syntax:
+    content: public static final String ENVELOPE_NAME= "Metric"
+    return:
+      type: 3d93591e
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getBaseTypeName()
   id: getBaseTypeName()
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -92,7 +140,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 213
+    startLine: 218
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getBaseTypeName()
@@ -112,7 +160,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 125
+    startLine: 130
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the number of samples for this metric. </p>
   syntax:
@@ -134,7 +182,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 192
+    startLine: 197
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected MetricData getData()
@@ -154,12 +202,32 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 208
+    startLine: 213
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getEnvelopName()
     return:
       type: "26831127"
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getKind()
+  id: getKind()
+  parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
+  href: com.microsoft.applicationinsights.telemetry._metric_telemetry.yml
+  langs:
+  - java
+  name: getKind()
+  nameWithType: MetricTelemetry.getKind()
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getKind()
+  overload: com.microsoft.applicationinsights.telemetry._metric_telemetry.getKind*
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
+    startLine: 222
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public DataPointType getKind()
+    return:
+      type: 0462c659
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getMax()
   id: getMax()
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -174,7 +242,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 157
+    startLine: 162
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the max value of this metric across samples. </p>
   syntax:
@@ -196,7 +264,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 141
+    startLine: 146
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the min value of this metric across samples. </p>
   syntax:
@@ -218,7 +286,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 88
+    startLine: 93
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the name of the metric. </p>
   syntax:
@@ -240,7 +308,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 173
+    startLine: 178
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the standard deviation of this metric across samples. </p>
   syntax:
@@ -262,7 +330,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 109
+    startLine: 114
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets The value of the metric. Represents the sum of data points if this metric is an Aggregation </p>
   syntax: &o1
@@ -270,6 +338,26 @@ items:
     return:
       type: a07dcde8
       description: <p>The value of the metric. </p>
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getVer()
+  id: getVer()
+  parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
+  href: com.microsoft.applicationinsights.telemetry._metric_telemetry.yml
+  langs:
+  - java
+  name: getVer()
+  nameWithType: MetricTelemetry.getVer()
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getVer()
+  overload: com.microsoft.applicationinsights.telemetry._metric_telemetry.getVer*
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
+    startLine: 65
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public int getVer()
+    return:
+      type: f75371fa
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.markAsCustomPerfCounter()
   id: markAsCustomPerfCounter()
   parent: com.microsoft.applicationinsights.telemetry._metric_telemetry
@@ -284,7 +372,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 80
+    startLine: 85
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Indicate that this metric is a custom performance counter and should be sent to the performance counters table. This sets 'CustomPerfCounter'='true' key/value pair in this metric's properties. </p>
   syntax:
@@ -322,7 +410,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 70
+    startLine: 75
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes the instance with a name and value </p>
   syntax:
@@ -351,7 +439,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 133
+    startLine: 138
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the number of samples for this metric. </p>
   syntax:
@@ -374,7 +462,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 165
+    startLine: 170
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the max value of this metric across samples. </p>
   syntax:
@@ -397,7 +485,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 149
+    startLine: 154
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the min value of this metric across samples. </p>
   syntax:
@@ -420,7 +508,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 97
+    startLine: 102
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the name of the metric. Length 1-150 characters. </p>
   syntax:
@@ -446,7 +534,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 181
+    startLine: 186
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the standard deviation of this metric across samples. </p>
   syntax:
@@ -469,7 +557,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/MetricTelemetry.java
-    startLine: 117
+    startLine: 122
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets The value of the metric. </p>
   syntax:
@@ -479,10 +567,23 @@ items:
       type: a07dcde8
       description: <p>The value of the metric. </p>
 references:
+- uid: 3d93591e
+  spec.java:
+  - name: final String
+    fullName: final String
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.MetricTelemetry*
   name: MetricTelemetry
   nameWithType: MetricTelemetry.MetricTelemetry
   fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.MetricTelemetry
+  package: com.microsoft.applicationinsights.telemetry
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getVer*
+  name: getVer
+  nameWithType: MetricTelemetry.getVer
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getVer
   package: com.microsoft.applicationinsights.telemetry
 - uid: 3c87bd19
   spec.java:
@@ -579,6 +680,15 @@ references:
   nameWithType: MetricTelemetry.getBaseTypeName
   fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getBaseTypeName
   package: com.microsoft.applicationinsights.telemetry
+- uid: 0462c659
+  spec.java:
+  - name: DataPointType
+    fullName: DataPointType
+- uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.getKind*
+  name: getKind
+  nameWithType: MetricTelemetry.getKind
+  fullName: com.microsoft.applicationinsights.telemetry.MetricTelemetry.getKind
+  package: com.microsoft.applicationinsights.telemetry
 - uid: com.microsoft.applicationinsights.telemetry._metric_telemetry.additionalSanitize*
   name: additionalSanitize
   nameWithType: MetricTelemetry.additionalSanitize
@@ -654,6 +764,22 @@ references:
     return:
       type: "26831127"
       description: <p>The sequence of the Telemetry. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  nameWithType: BaseTelemetry<T>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  type: Method
+  syntax:
+    content: public static String getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+    parameters:
+    - id: normalizedInstrumentationKey
+      type: "26831127"
+    - id: envelopType
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -687,6 +813,20 @@ references:
     - id: properties
       type: bc7a2f3a
       description: <p>The context properties </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: normalizeInstrumentationKey(String instrumentationKey)
+  nameWithType: BaseTelemetry<T>.normalizeInstrumentationKey(String instrumentationKey)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.normalizeInstrumentationKey(String instrumentationKey)
+  type: Method
+  syntax:
+    content: public static String normalizeInstrumentationKey(String instrumentationKey)
+    parameters:
+    - id: instrumentationKey
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -706,7 +846,7 @@ references:
   summary: >-
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000001">
+      <xrefsect id="deprecated_1_deprecated000007">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -784,6 +924,33 @@ references:
     - id: date
       type: "12977444"
       description: <p>The timestamp as Date. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: TELEMETRY_NAME_PREFIX
+  nameWithType: BaseTelemetry<T>.TELEMETRY_NAME_PREFIX
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.TELEMETRY_NAME_PREFIX
+  type: Field
+  syntax:
+    content: public static final String TELEMETRY_NAME_PREFIX= "Microsoft.ApplicationInsights."
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: toString()
+  nameWithType: BaseTelemetry<T>.toString()
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.toString()
+  type: Method
+  summary: >-
+    <p>THIS IS FOR DEBUGGING AND TESTING ONLY! DON'T USE THIS IN HAPPY-PATH, PRODUCTION CODE.</p>
+
+    <p></p>
+  syntax:
+    content: public String toString()
+    return:
+      type: "26831127"
+      description: <p>Json representation of this telemetry item. </p>
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
