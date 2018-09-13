@@ -5,6 +5,8 @@ items:
   parent: com.microsoft.applicationinsights.telemetry
   children:
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.additionalSanitize()
+  - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.BASE_TYPE
+  - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.ENVELOPE_NAME
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getBaseTypeName()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getCategoryName()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getCounterName()
@@ -12,6 +14,7 @@ items:
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getEnvelopName()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getInstanceName()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getValue()
+  - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getVer()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.PerformanceCounterTelemetry()
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.PerformanceCounterTelemetry(String,String,String,double)
   - com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.setCategoryName(String)
@@ -31,7 +34,7 @@ items:
       branch: master
       repo: https://github.com/Microsoft/ApplicationInsights-Java
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 30
+    startLine: 31
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>The class that represents information about performance counters. </p>
   syntax:
@@ -44,14 +47,18 @@ items:
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.initialize(ConcurrentMap<String, String>)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.sanitize()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.serialize(JsonTelemetryDataSerializer)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSampleRate(Envelope)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSequence(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setTimestamp(Date)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.additionalSanitize()
   id: additionalSanitize()
   parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
@@ -66,10 +73,50 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 136
+    startLine: 142
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected void additionalSanitize()
+- uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.BASE_TYPE
+  id: BASE_TYPE
+  parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
+  href: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.yml
+  langs:
+  - java
+  name: BASE_TYPE
+  nameWithType: PerformanceCounterTelemetry.BASE_TYPE
+  fullName: com.microsoft.applicationinsights.telemetry.PerformanceCounterTelemetry.BASE_TYPE
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
+    startLine: 43
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Base Type for this telemetry. </p>
+  syntax:
+    content: public static final String BASE_TYPE= "PerformanceCounterData"
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.ENVELOPE_NAME
+  id: ENVELOPE_NAME
+  parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
+  href: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.yml
+  langs:
+  - java
+  name: ENVELOPE_NAME
+  nameWithType: PerformanceCounterTelemetry.ENVELOPE_NAME
+  fullName: com.microsoft.applicationinsights.telemetry.PerformanceCounterTelemetry.ENVELOPE_NAME
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
+    startLine: 37
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Envelope Name for this telemetry. </p>
+  syntax:
+    content: public static final String ENVELOPE_NAME= "PerformanceCounter"
+    return:
+      type: 3d93591e
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getBaseTypeName()
   id: getBaseTypeName()
   parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
@@ -84,7 +131,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 151
+    startLine: 157
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getBaseTypeName()
@@ -104,7 +151,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 82
+    startLine: 88
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the category name of the performance counter. </p>
   syntax:
@@ -126,7 +173,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 98
+    startLine: 104
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the counter name of the performance counter. </p>
   syntax:
@@ -148,7 +195,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 141
+    startLine: 147
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected PerformanceCounterData getData()
@@ -168,7 +215,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 146
+    startLine: 152
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getEnvelopName()
@@ -188,7 +235,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 114
+    startLine: 120
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the instance name of the performance counter. </p>
   syntax:
@@ -210,7 +257,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 130
+    startLine: 136
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the value of the performance counter. </p>
   syntax:
@@ -218,6 +265,26 @@ items:
     return:
       type: a07dcde8
       description: <p>The value. </p>
+- uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getVer()
+  id: getVer()
+  parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
+  href: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.yml
+  langs:
+  - java
+  name: getVer()
+  nameWithType: PerformanceCounterTelemetry.getVer()
+  fullName: com.microsoft.applicationinsights.telemetry.PerformanceCounterTelemetry.getVer()
+  overload: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getVer*
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
+    startLine: 72
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public int getVer()
+    return:
+      type: f75371fa
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.PerformanceCounterTelemetry()
   id: PerformanceCounterTelemetry()
   parent: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry
@@ -232,7 +299,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 45
+    startLine: 46
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public PerformanceCounterTelemetry()
@@ -250,7 +317,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 57
+    startLine: 58
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes the instance with all the needed data. </p>
   syntax:
@@ -282,7 +349,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 74
+    startLine: 80
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the category name of the performance counter. </p>
   syntax:
@@ -305,7 +372,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 90
+    startLine: 96
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the counter name of the performance counter. </p>
   syntax:
@@ -328,7 +395,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 106
+    startLine: 112
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the instance name of the performance counter. </p>
   syntax:
@@ -351,7 +418,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/PerformanceCounterTelemetry.java
-    startLine: 122
+    startLine: 128
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the value of the performance counter. </p>
   syntax:
@@ -361,6 +428,10 @@ items:
       type: a07dcde8
       description: <p>The value. </p>
 references:
+- uid: 3d93591e
+  spec.java:
+  - name: final String
+    fullName: final String
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.PerformanceCounterTelemetry*
   name: PerformanceCounterTelemetry
   nameWithType: PerformanceCounterTelemetry.PerformanceCounterTelemetry
@@ -374,6 +445,15 @@ references:
   spec.java:
   - name: double
     fullName: double
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.getVer*
+  name: getVer
+  nameWithType: PerformanceCounterTelemetry.getVer
+  fullName: com.microsoft.applicationinsights.telemetry.PerformanceCounterTelemetry.getVer
+  package: com.microsoft.applicationinsights.telemetry
 - uid: com.microsoft.applicationinsights.telemetry._performance_counter_telemetry.setCategoryName*
   name: setCategoryName
   nameWithType: PerformanceCounterTelemetry.setCategoryName
@@ -499,6 +579,22 @@ references:
     return:
       type: "26831127"
       description: <p>The sequence of the Telemetry. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  nameWithType: BaseTelemetry<T>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  type: Method
+  syntax:
+    content: public static String getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+    parameters:
+    - id: normalizedInstrumentationKey
+      type: "26831127"
+    - id: envelopType
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -532,6 +628,20 @@ references:
     - id: properties
       type: bc7a2f3a
       description: <p>The context properties </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: normalizeInstrumentationKey(String instrumentationKey)
+  nameWithType: BaseTelemetry<T>.normalizeInstrumentationKey(String instrumentationKey)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.normalizeInstrumentationKey(String instrumentationKey)
+  type: Method
+  syntax:
+    content: public static String normalizeInstrumentationKey(String instrumentationKey)
+    parameters:
+    - id: instrumentationKey
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -551,7 +661,7 @@ references:
   summary: >-
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000001">
+      <xrefsect id="deprecated_1_deprecated000007">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -629,6 +739,33 @@ references:
     - id: date
       type: "12977444"
       description: <p>The timestamp as Date. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: TELEMETRY_NAME_PREFIX
+  nameWithType: BaseTelemetry<T>.TELEMETRY_NAME_PREFIX
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.TELEMETRY_NAME_PREFIX
+  type: Field
+  syntax:
+    content: public static final String TELEMETRY_NAME_PREFIX= "Microsoft.ApplicationInsights."
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: toString()
+  nameWithType: BaseTelemetry<T>.toString()
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.toString()
+  type: Method
+  summary: >-
+    <p>THIS IS FOR DEBUGGING AND TESTING ONLY! DON'T USE THIS IN HAPPY-PATH, PRODUCTION CODE.</p>
+
+    <p></p>
+  syntax:
+    content: public String toString()
+    return:
+      type: "26831127"
+      description: <p>Json representation of this telemetry item. </p>
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
