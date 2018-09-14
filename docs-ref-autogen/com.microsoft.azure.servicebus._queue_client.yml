@@ -29,9 +29,13 @@ items:
   - com.microsoft.azure.servicebus._queue_client.QueueClient(String,String,ClientSettings,ReceiveMode)
   - com.microsoft.azure.servicebus._queue_client.QueueClient(URI,String,ClientSettings,ReceiveMode)
   - com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler)
+  - com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,ExecutorService)
   - com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,MessageHandlerOptions)
+  - com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,MessageHandlerOptions,ExecutorService)
   - com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler)
+  - com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,ExecutorService)
   - com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,SessionHandlerOptions)
+  - com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,SessionHandlerOptions,ExecutorService)
   - com.microsoft.azure.servicebus._queue_client.scheduleMessage(IMessage,Instant)
   - com.microsoft.azure.servicebus._queue_client.scheduleMessageAsync(IMessage,Instant)
   - com.microsoft.azure.servicebus._queue_client.send(IMessage)
@@ -52,7 +56,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 25
+    startLine: 26
   package: com.microsoft.azure.servicebus
   syntax:
     content: public class QueueClient implements IQueueClient
@@ -87,7 +91,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 255
+    startLine: 280
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void abandon(UUID lockToken)
@@ -108,7 +112,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 260
+    startLine: 285
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void abandon(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -131,7 +135,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 265
+    startLine: 290
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> abandonAsync(UUID lockToken)
@@ -154,7 +158,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 270
+    startLine: 295
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -179,7 +183,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 194
+    startLine: 195
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods.</p>
@@ -211,7 +215,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 181
+    startLine: 182
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Cancels the enqueuing of an already sent scheduled message, if it was not already enqueued. This is an asynchronous method returning a CompletableFuture which completes when the message is cancelled.</p>
@@ -241,7 +245,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 275
+    startLine: 300
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void complete(UUID lockToken)
@@ -262,7 +266,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 280
+    startLine: 305
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> completeAsync(UUID lockToken)
@@ -285,7 +289,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 305
+    startLine: 330
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deadLetter(UUID lockToken)
@@ -306,7 +310,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 310
+    startLine: 335
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deadLetter(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -329,7 +333,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 315
+    startLine: 340
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
@@ -354,7 +358,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 320
+    startLine: 345
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
@@ -381,7 +385,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 325
+    startLine: 350
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken)
@@ -404,7 +408,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 330
+    startLine: 355
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify)
@@ -429,7 +433,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 335
+    startLine: 360
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription)
@@ -456,7 +460,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 340
+    startLine: 365
   package: com.microsoft.azure.servicebus
   syntax:
     content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
@@ -485,7 +489,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 199
+    startLine: 200
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the path of the entity this client is sending messages to or receiving messages from.</p>
@@ -511,7 +515,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 345
+    startLine: 370
   package: com.microsoft.azure.servicebus
   syntax:
     content: public int getPrefetchCount()
@@ -531,7 +535,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 355
+    startLine: 380
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the name of the queue.</p>
@@ -557,7 +561,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 142
+    startLine: 143
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Gets the <xref uid="com.microsoft.azure.servicebus._receive_mode" data-throw-if-not-resolved="false">ReceiveMode</xref> of the current receiver</p>
@@ -583,7 +587,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 230
+    startLine: 255
   package: com.microsoft.azure.servicebus
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -603,7 +607,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 45
+    startLine: 46
   package: com.microsoft.azure.servicebus
   syntax:
     content: public QueueClient(ConnectionStringBuilder amqpConnectionStringBuilder, ReceiveMode receiveMode)
@@ -626,7 +630,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 54
+    startLine: 55
   package: com.microsoft.azure.servicebus
   syntax:
     content: public QueueClient(String namespace, String queuePath, ClientSettings clientSettings, ReceiveMode receiveMode)
@@ -653,7 +657,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 59
+    startLine: 60
   package: com.microsoft.azure.servicebus
   syntax:
     content: public QueueClient(URI namespaceEndpointURI, String queuePath, ClientSettings clientSettings, ReceiveMode receiveMode)
@@ -680,13 +684,36 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 204
+    startLine: 206
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerMessageHandler(IMessageHandler handler)
     parameters:
     - id: handler
       type: com.microsoft.azure.servicebus._i_message_handler
+- uid: com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,ExecutorService)
+  id: registerMessageHandler(IMessageHandler,ExecutorService)
+  parent: com.microsoft.azure.servicebus._queue_client
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  langs:
+  - java
+  name: registerMessageHandler(IMessageHandler handler, ExecutorService executorService)
+  nameWithType: QueueClient.registerMessageHandler(IMessageHandler handler, ExecutorService executorService)
+  fullName: com.microsoft.azure.servicebus.QueueClient.registerMessageHandler(IMessageHandler handler, ExecutorService executorService)
+  overload: com.microsoft.azure.servicebus._queue_client.registerMessageHandler*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
+    startLine: 229
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public void registerMessageHandler(IMessageHandler handler, ExecutorService executorService)
+    parameters:
+    - id: handler
+      type: com.microsoft.azure.servicebus._i_message_handler
+    - id: executorService
+      type: ddc463eb
 - uid: com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,MessageHandlerOptions)
   id: registerMessageHandler(IMessageHandler,MessageHandlerOptions)
   parent: com.microsoft.azure.servicebus._queue_client
@@ -701,7 +728,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 209
+    startLine: 212
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerMessageHandler(IMessageHandler handler, MessageHandlerOptions handlerOptions)
@@ -710,6 +737,31 @@ items:
       type: com.microsoft.azure.servicebus._i_message_handler
     - id: handlerOptions
       type: com.microsoft.azure.servicebus._message_handler_options
+- uid: com.microsoft.azure.servicebus._queue_client.registerMessageHandler(IMessageHandler,MessageHandlerOptions,ExecutorService)
+  id: registerMessageHandler(IMessageHandler,MessageHandlerOptions,ExecutorService)
+  parent: com.microsoft.azure.servicebus._queue_client
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  langs:
+  - java
+  name: registerMessageHandler(IMessageHandler handler, MessageHandlerOptions handlerOptions, ExecutorService executorService)
+  nameWithType: QueueClient.registerMessageHandler(IMessageHandler handler, MessageHandlerOptions handlerOptions, ExecutorService executorService)
+  fullName: com.microsoft.azure.servicebus.QueueClient.registerMessageHandler(IMessageHandler handler, MessageHandlerOptions handlerOptions, ExecutorService executorService)
+  overload: com.microsoft.azure.servicebus._queue_client.registerMessageHandler*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
+    startLine: 234
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public void registerMessageHandler(IMessageHandler handler, MessageHandlerOptions handlerOptions, ExecutorService executorService)
+    parameters:
+    - id: handler
+      type: com.microsoft.azure.servicebus._i_message_handler
+    - id: handlerOptions
+      type: com.microsoft.azure.servicebus._message_handler_options
+    - id: executorService
+      type: ddc463eb
 - uid: com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler)
   id: registerSessionHandler(ISessionHandler)
   parent: com.microsoft.azure.servicebus._queue_client
@@ -724,13 +776,36 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 214
+    startLine: 218
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerSessionHandler(ISessionHandler handler)
     parameters:
     - id: handler
       type: com.microsoft.azure.servicebus._i_session_handler
+- uid: com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,ExecutorService)
+  id: registerSessionHandler(ISessionHandler,ExecutorService)
+  parent: com.microsoft.azure.servicebus._queue_client
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  langs:
+  - java
+  name: registerSessionHandler(ISessionHandler handler, ExecutorService executorService)
+  nameWithType: QueueClient.registerSessionHandler(ISessionHandler handler, ExecutorService executorService)
+  fullName: com.microsoft.azure.servicebus.QueueClient.registerSessionHandler(ISessionHandler handler, ExecutorService executorService)
+  overload: com.microsoft.azure.servicebus._queue_client.registerSessionHandler*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
+    startLine: 239
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public void registerSessionHandler(ISessionHandler handler, ExecutorService executorService)
+    parameters:
+    - id: handler
+      type: com.microsoft.azure.servicebus._i_session_handler
+    - id: executorService
+      type: ddc463eb
 - uid: com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,SessionHandlerOptions)
   id: registerSessionHandler(ISessionHandler,SessionHandlerOptions)
   parent: com.microsoft.azure.servicebus._queue_client
@@ -745,7 +820,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 219
+    startLine: 224
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void registerSessionHandler(ISessionHandler handler, SessionHandlerOptions handlerOptions)
@@ -754,6 +829,31 @@ items:
       type: com.microsoft.azure.servicebus._i_session_handler
     - id: handlerOptions
       type: com.microsoft.azure.servicebus._session_handler_options
+- uid: com.microsoft.azure.servicebus._queue_client.registerSessionHandler(ISessionHandler,SessionHandlerOptions,ExecutorService)
+  id: registerSessionHandler(ISessionHandler,SessionHandlerOptions,ExecutorService)
+  parent: com.microsoft.azure.servicebus._queue_client
+  href: com.microsoft.azure.servicebus._queue_client.yml
+  langs:
+  - java
+  name: registerSessionHandler(ISessionHandler handler, SessionHandlerOptions handlerOptions, ExecutorService executorService)
+  nameWithType: QueueClient.registerSessionHandler(ISessionHandler handler, SessionHandlerOptions handlerOptions, ExecutorService executorService)
+  fullName: com.microsoft.azure.servicebus.QueueClient.registerSessionHandler(ISessionHandler handler, SessionHandlerOptions handlerOptions, ExecutorService executorService)
+  overload: com.microsoft.azure.servicebus._queue_client.registerSessionHandler*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
+    startLine: 244
+  package: com.microsoft.azure.servicebus
+  syntax:
+    content: public void registerSessionHandler(ISessionHandler handler, SessionHandlerOptions handlerOptions, ExecutorService executorService)
+    parameters:
+    - id: handler
+      type: com.microsoft.azure.servicebus._i_session_handler
+    - id: handlerOptions
+      type: com.microsoft.azure.servicebus._session_handler_options
+    - id: executorService
+      type: ddc463eb
 - uid: com.microsoft.azure.servicebus._queue_client.scheduleMessage(IMessage,Instant)
   id: scheduleMessage(IMessage,Instant)
   parent: com.microsoft.azure.servicebus._queue_client
@@ -768,7 +868,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 189
+    startLine: 190
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods.</p>
@@ -806,7 +906,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 173
+    startLine: 174
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a scheduled message to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity. The CompletableFuture, on completion, returns the sequence number of the scheduled message which can be used to cancel the scheduling of the message.</p>
@@ -839,7 +939,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 147
+    startLine: 148
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a message to the Azure Service Bus entity this sender is connected to. This method blocks until the message is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods.</p>
@@ -871,7 +971,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 157
+    startLine: 158
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a message to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the message is sent to the entity.</p>
@@ -901,7 +1001,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 152
+    startLine: 153
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This method blocks until the batch is sent to the entity. Calling this method is equivalent to calling . For better performance, use async methods.</p>
@@ -933,7 +1033,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 165
+    startLine: 166
   package: com.microsoft.azure.servicebus
   summary: >-
     <p>Sends a batch of messages to the Azure Service Bus entity this sender is connected to. This is an asynchronous method returning a CompletableFuture which completes when the batch is sent to the entity.</p>
@@ -963,7 +1063,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/QueueClient.java
-    startLine: 350
+    startLine: 375
   package: com.microsoft.azure.servicebus
   syntax:
     content: public void setPrefetchCount(int prefetchCount)
@@ -1078,6 +1178,10 @@ references:
   nameWithType: QueueClient.registerSessionHandler
   fullName: com.microsoft.azure.servicebus.QueueClient.registerSessionHandler
   package: com.microsoft.azure.servicebus
+- uid: ddc463eb
+  spec.java:
+  - name: ExecutorService
+    fullName: ExecutorService
 - uid: add9545a
   spec.java:
   - name: UUID
