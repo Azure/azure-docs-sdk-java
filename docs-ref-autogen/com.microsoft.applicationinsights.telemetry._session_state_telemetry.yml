@@ -5,10 +5,13 @@ items:
   parent: com.microsoft.applicationinsights.telemetry
   children:
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.additionalSanitize()
+  - com.microsoft.applicationinsights.telemetry._session_state_telemetry.BASE_TYPE
+  - com.microsoft.applicationinsights.telemetry._session_state_telemetry.ENVELOPE_NAME
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.getBaseTypeName()
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.getData()
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.getEnvelopName()
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.getSessionState()
+  - com.microsoft.applicationinsights.telemetry._session_state_telemetry.getVer()
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.SessionStateTelemetry()
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.SessionStateTelemetry(SessionState)
   - com.microsoft.applicationinsights.telemetry._session_state_telemetry.setSessionState(SessionState)
@@ -25,7 +28,7 @@ items:
       branch: master
       repo: https://github.com/Microsoft/ApplicationInsights-Java
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 30
+    startLine: 31
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Telemetry type used to track user sessions in Azure Application Insights. </p>
   syntax:
@@ -38,14 +41,18 @@ items:
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getContext()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getProperties()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getSequence()
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.initialize(ConcurrentMap<String, String>)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.sanitize()
   - com.microsoft.applicationinsights.telemetry._base_telemetry.serialize(JsonTelemetryDataSerializer)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSampleRate(Envelope)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setSequence(String)
   - com.microsoft.applicationinsights.telemetry._base_telemetry.setTimestamp(Date)
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  - com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
 - uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.additionalSanitize()
   id: additionalSanitize()
   parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
@@ -60,10 +67,50 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 78
+    startLine: 84
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected void additionalSanitize()
+- uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.BASE_TYPE
+  id: BASE_TYPE
+  parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
+  href: com.microsoft.applicationinsights.telemetry._session_state_telemetry.yml
+  langs:
+  - java
+  name: BASE_TYPE
+  nameWithType: SessionStateTelemetry.BASE_TYPE
+  fullName: com.microsoft.applicationinsights.telemetry.SessionStateTelemetry.BASE_TYPE
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
+    startLine: 43
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Base Type for this telemetry. </p>
+  syntax:
+    content: public static final String BASE_TYPE= "SessionStateData"
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.ENVELOPE_NAME
+  id: ENVELOPE_NAME
+  parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
+  href: com.microsoft.applicationinsights.telemetry._session_state_telemetry.yml
+  langs:
+  - java
+  name: ENVELOPE_NAME
+  nameWithType: SessionStateTelemetry.ENVELOPE_NAME
+  fullName: com.microsoft.applicationinsights.telemetry.SessionStateTelemetry.ENVELOPE_NAME
+  type: Field
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
+    startLine: 37
+  package: com.microsoft.applicationinsights.telemetry
+  summary: <p>Envelope Name for this telemetry. </p>
+  syntax:
+    content: public static final String ENVELOPE_NAME= "SessionState"
+    return:
+      type: 3d93591e
 - uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.getBaseTypeName()
   id: getBaseTypeName()
   parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
@@ -78,7 +125,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 92
+    startLine: 98
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getBaseTypeName()
@@ -98,7 +145,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 82
+    startLine: 88
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: protected SessionStateData getData()
@@ -118,7 +165,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 87
+    startLine: 93
   package: com.microsoft.applicationinsights.telemetry
   syntax:
     content: public String getEnvelopName()
@@ -138,7 +185,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 65
+    startLine: 71
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Gets the session state. </p>
   syntax:
@@ -146,6 +193,26 @@ items:
     return:
       type: com.microsoft.applicationinsights.telemetry._session_state
       description: <p>session state. </p>
+- uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.getVer()
+  id: getVer()
+  parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
+  href: com.microsoft.applicationinsights.telemetry._session_state_telemetry.yml
+  langs:
+  - java
+  name: getVer()
+  nameWithType: SessionStateTelemetry.getVer()
+  fullName: com.microsoft.applicationinsights.telemetry.SessionStateTelemetry.getVer()
+  overload: com.microsoft.applicationinsights.telemetry._session_state_telemetry.getVer*
+  type: Method
+  source:
+    remote: *o0
+    path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
+    startLine: 63
+  package: com.microsoft.applicationinsights.telemetry
+  syntax:
+    content: public int getVer()
+    return:
+      type: f75371fa
 - uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.SessionStateTelemetry()
   id: SessionStateTelemetry()
   parent: com.microsoft.applicationinsights.telemetry._session_state_telemetry
@@ -160,7 +227,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 47
+    startLine: 48
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Default initialization of a new instance of the class. The session state will be set to 'Start' </p>
   syntax:
@@ -179,7 +246,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 55
+    startLine: 56
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Initializes a new instance of the class with the specified </p>
   syntax:
@@ -202,7 +269,7 @@ items:
   source:
     remote: *o0
     path: core/src/main/java/com/microsoft/applicationinsights/telemetry/SessionStateTelemetry.java
-    startLine: 73
+    startLine: 79
   package: com.microsoft.applicationinsights.telemetry
   summary: <p>Sets the session state. </p>
   syntax:
@@ -212,10 +279,23 @@ items:
       type: com.microsoft.applicationinsights.telemetry._session_state
       description: <p>the session state. </p>
 references:
+- uid: 3d93591e
+  spec.java:
+  - name: final String
+    fullName: final String
 - uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.SessionStateTelemetry*
   name: SessionStateTelemetry
   nameWithType: SessionStateTelemetry.SessionStateTelemetry
   fullName: com.microsoft.applicationinsights.telemetry.SessionStateTelemetry.SessionStateTelemetry
+  package: com.microsoft.applicationinsights.telemetry
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.getVer*
+  name: getVer
+  nameWithType: SessionStateTelemetry.getVer
+  fullName: com.microsoft.applicationinsights.telemetry.SessionStateTelemetry.getVer
   package: com.microsoft.applicationinsights.telemetry
 - uid: com.microsoft.applicationinsights.telemetry._session_state_telemetry.getSessionState*
   name: getSessionState
@@ -316,6 +396,22 @@ references:
     return:
       type: "26831127"
       description: <p>The sequence of the Telemetry. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTelemetryName(String,String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  nameWithType: BaseTelemetry<T>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+  type: Method
+  syntax:
+    content: public static String getTelemetryName(String normalizedInstrumentationKey, String envelopType)
+    parameters:
+    - id: normalizedInstrumentationKey
+      type: "26831127"
+    - id: envelopType
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.getTimestamp()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -349,6 +445,20 @@ references:
     - id: properties
       type: bc7a2f3a
       description: <p>The context properties </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.normalizeInstrumentationKey(String)
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: normalizeInstrumentationKey(String instrumentationKey)
+  nameWithType: BaseTelemetry<T>.normalizeInstrumentationKey(String instrumentationKey)
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.normalizeInstrumentationKey(String instrumentationKey)
+  type: Method
+  syntax:
+    content: public static String normalizeInstrumentationKey(String instrumentationKey)
+    parameters:
+    - id: instrumentationKey
+      type: "26831127"
+    return:
+      type: "26831127"
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry.reset()
   parent: com.microsoft.applicationinsights.telemetry._base_telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
@@ -368,7 +478,7 @@ references:
   summary: >-
     <p>
 
-      <xrefsect id="deprecated_1_deprecated000001">
+      <xrefsect id="deprecated_1_deprecated000007">
 
         <xreftitle>Deprecated</xreftitle>
 
@@ -446,6 +556,33 @@ references:
     - id: date
       type: "12977444"
       description: <p>The timestamp as Date. </p>
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.TELEMETRY_NAME_PREFIX
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: TELEMETRY_NAME_PREFIX
+  nameWithType: BaseTelemetry<T>.TELEMETRY_NAME_PREFIX
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.TELEMETRY_NAME_PREFIX
+  type: Field
+  syntax:
+    content: public static final String TELEMETRY_NAME_PREFIX= "Microsoft.ApplicationInsights."
+    return:
+      type: 3d93591e
+- uid: com.microsoft.applicationinsights.telemetry._base_telemetry.toString()
+  parent: com.microsoft.applicationinsights.telemetry._base_telemetry
+  href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
+  name: toString()
+  nameWithType: BaseTelemetry<T>.toString()
+  fullName: com.microsoft.applicationinsights.telemetry.BaseTelemetry<T extends Domain>.toString()
+  type: Method
+  summary: >-
+    <p>THIS IS FOR DEBUGGING AND TESTING ONLY! DON'T USE THIS IN HAPPY-PATH, PRODUCTION CODE.</p>
+
+    <p></p>
+  syntax:
+    content: public String toString()
+    return:
+      type: "26831127"
+      description: <p>Json representation of this telemetry item. </p>
 - uid: com.microsoft.applicationinsights.telemetry._base_telemetry
   parent: com.microsoft.applicationinsights.telemetry
   href: com.microsoft.applicationinsights.telemetry._base_telemetry.yml
