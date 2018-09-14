@@ -1,3 +1,22 @@
+---
+title: CI/CD for MicroProfile applications using Azure DevOps
+description: Learn how to setup a CI/CD release cycle to deploy a MicroProfile application to an Azure Web App for Containers instance using Azure DevOps
+services: Azure DevOps
+documentationcenter: MicroProfile
+author: ruyakubu
+manager: brunoborges
+editor: ruyakubu
+
+ms.assetid:
+ms.author: ruyakubu
+ms.date: 09/14/2018
+ms.devlang: Java
+ms.service: Azure DevOps
+ms.tgt_pltfrm: multiple
+ms.topic: tutorial
+ms.workload: web
+---
+
 # CI/CD for MicroProfile applications using Azure DevOps
 
 This tutorial will show how Java EE developers can easily setup a CI/CD release cycle to deploy their [MicroProfile](http://microprofile.io) applications to an Azure Web App for Containers using Azure DevOps (formally known as VSTS).  In this example, we’ll be using a MicroProfile application that uses a [Payara Micro](https://www.payara.fish/payara_micro) as a base image.   
