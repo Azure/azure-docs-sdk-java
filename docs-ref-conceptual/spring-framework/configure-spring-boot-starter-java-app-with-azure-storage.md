@@ -329,11 +329,15 @@ In this section, you create the necessary Java classes for storing a blob in you
       curl -X POST -H "Content-Type: text/plain" -d "Hello World" http://localhost:8080/
       ```
 
+      You should see a response that the file was updated.
+
    b. Send a GET request to verify the file's contents:
 
       ```shell
       curl -X GET http://localhost:8080/
       ```
+
+     You should see the "Hello World" text that you posted.
 
 ## Next steps
 
