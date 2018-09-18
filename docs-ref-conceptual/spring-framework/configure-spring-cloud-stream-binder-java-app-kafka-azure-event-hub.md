@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid:
 ms.author: robmcm
-ms.date: 08/30/2018
+ms.date: 09/10/2018
 ms.devlang: java
 ms.service: event-hubs
 ms.tgt_pltfrm: na
@@ -105,7 +105,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. After you have extracted the files on your local system, your simple Spring Boot application will be ready for editing.
 
-## Configure your Spring Boot app to use the Spring Event Hub Starter
+## Configure your Spring Boot app to use the Spring Cloud Kafka Stream and Azure Event Hub starters
 
 1. Locate the *pom.xml* file in the root directory of your app; for example:
 
@@ -126,7 +126,7 @@ The following prerequisites are required in order to follow the steps in this ar
    <dependency>
       <groupId>com.microsoft.azure</groupId>
       <artifactId>spring-cloud-azure-starter-eventhub</artifactId>
-      <version>1.0.0.M1</version>
+      <version>1.0.0.M2</version>
    </dependency>
    ```
 
@@ -334,7 +334,7 @@ In this section, you create the necessary Java classes for sending events to you
 
 1. Save and close the *KafkaSink.java* file.
 
-## Build and test your app
+## Build and test your application
 
 1. Open a command prompt and change directory to the folder where your *pom.xml* file is located; for example:
 
@@ -351,7 +351,7 @@ In this section, you create the necessary Java classes for sending events to you
    mvn spring-boot:run
    ```
 
-1. Once your application is running, you can use *curl*  to test your application; for example:
+1. Once your application is running, you can use *curl* to test your application; for example:
 
    ```shell
    curl -X POST -H "Content-Type: text/plain" -d "hello" http://localhost:8080/messages

@@ -8,8 +8,8 @@ manager: routlaw
 editor: ''
 
 ms.assetid:
-ms.author: yungez;robmcm
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 09/10/2018
 ms.devlang: java
 ms.service: storage
 ms.tgt_pltfrm: na
@@ -21,7 +21,7 @@ ms.workload: storage
 
 ## Overview
 
-This article walks you through creating a custom application using the **Spring Initializr**, and then using that application to access Azure storage.
+This article walks you through creating a custom application using the **Spring Initializr**, then adding the Azure storage starter to your application, and then using your application to upload a blob to your Azure storage account.
 
 ## Prerequisites
 
@@ -32,41 +32,102 @@ The following prerequisites are required in order to follow the steps in this ar
 * An up-to-date [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
 * Apache's [Maven](http://maven.apache.org/), version 3.0 or later.
 
-## Create a custom application using the Spring Initializr
+> [!IMPORTANT]
+>
+> Spring Boot version 2.0 or greater is required to complete the steps in this article.
+>
+
+## Create an Azure Storage Account for your application
+
+1. Browse to the Azure portal at <https://portal.azure.com/> and sign in.
+
+1. Click **+Create a resource**, then **Storage**, and then click **Storage Account**.
+
+   ![Create Azure Storage Account][IMG01]
+
+1. On the **Create Namespace** page, enter the following information:
+
+   * Enter a unique **Name**, which will become part of the URI for your storage account. For example: if you entered **wingtiptoysstorage** for the **Name**, the URI would be *wingtiptoysstorage.core.windows.net*.
+   * Choose **Blob storage** for the **Account kind**.
+   * Specify the **Location** for your storage account.
+   * Choose the **Subscription** you want to use for your storage account.
+   * Specify whether to create a new **Resource group** for your storage account, or choose an existing resource group.
+   
+   ![Specify Azure Storage Account options][IMG02]
+
+1. When you have specified the options listed above, click **Create** to create your storage account.
+
+## Create a simple Spring Boot application with the Spring Initializr
 
 1. Browse to <https://start.spring.io/>.
 
-1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Artifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
+1. Specify the following options:
 
-   ![Basic Spring Initializr options](media/configure-spring-boot-starter-java-app-with-azure-storage/spring-initializr-basic.png)
+   * Generate a **Maven** project with **Java**.
+   * Specify a **Spring Boot** version that is equal to or greater than 2.0.
+   * Specify the **Group** and **Artifact** names for your application.
+   * Add the **Web** dependency.
+
+      ![Basic Spring Initializr options][SI01]
 
    > [!NOTE]
    >
-   > The Spring Initializr will use the **Group** and **Artifact** names to create the package name; for example: *com.contoso.wingtiptoysdemo*.
+   > The Spring Initializr uses the **Group** and **Artifact** names to create the package name; for example: *com.wingtiptoys.storage*.
    >
 
-1. Scroll down to the **Azure** section and check the box for **Azure Storage**.
-
-   ![Full Spring Initializr options](media/configure-spring-boot-starter-java-app-with-azure-storage/spring-initializr-advanced.png)
-
-1. Scroll to the bottom of the page and click the button to **Generate Project**.
-
-   ![Full Spring Initializr options](media/configure-spring-boot-starter-java-app-with-azure-storage/spring-initializr-generate.png)
+1. When you have specified the options listed above, click **Generate Project**.
 
 1. When prompted, download the project to a path on your local computer.
 
-   ![Download custom Spring Boot project](media/configure-spring-boot-starter-java-app-with-azure-storage/download-app.png)
+   ![Download Spring project][SI02]
 
-## Sign into Azure and select the subscription to use
+1. After you have extracted the files on your local system, your simple Spring Boot application will be ready for editing.
+
+## Configure your Spring Boot app to use the Azure Storage starter
+
+1. Locate the *pom.xml* file in the root directory of your app; for example:
+
+   `C:\SpringBoot\storage\pom.xml`
+
+   -or-
+
+   `/users/example/home/storage/pom.xml`
+
+1. Open the *pom.xml* file in a text editor, and add the Spring Cloud Azure Storage starter to the list of `<dependencies>`:
+
+   ```xml
+   <dependency>
+      <groupId>com.microsoft.azure</groupId>
+      <artifactId>spring-azure-starter-storage</artifactId>
+      <version>1.0.0.M2</version>
+   </dependency>
+   ```
+
+   ![Edit pom.xml file][SI03]
+
+1. Save and close the *pom.xml* file.
+
+## Create an Azure Credential File
 
 1. Open a command prompt.
 
-1. Sign into your Azure account by using the Azure CLI:
+1. Navigate to the *resources* directory of your Spring Boot app; for example:
+
+   ```shell
+   cd C:\SpringBoot\storage\src\main\resources
+   ```
+
+   -or-
+
+   ```shell
+   cd /users/example/home/storage/src/main/resources
+   ```
+
+1. Sign in to your Azure account:
 
    ```azurecli
    az login
    ```
-   Follow the instructions to complete the sign-in process.
 
 1. List your subscriptions:
 
@@ -79,238 +140,188 @@ The following prerequisites are required in order to follow the steps in this ar
    [
      {
        "cloudName": "AzureCloud",
-       "id": "ssssssss-ssss-ssss-ssss-ssssssssssss",
+       "id": "11111111-1111-1111-1111-111111111111",
        "isDefault": true,
        "name": "Converted Windows Azure MSDN - Visual Studio Ultimate",
        "state": "Enabled",
-       "tenantId": "tttttttt-tttt-tttt-tttt-tttttttttttt",
+       "tenantId": "22222222-2222-2222-2222-222222222222",
        "user": {
-         "name": "contoso@microsoft.com",
+         "name": "gena.soto@wingtiptoys.com",
          "type": "user"
        }
      }
    ]
-   ```
 
-1. Specify the GUID for the account you want to use with Azure; for example:
+1. Specify the GUID for the subscription you want to use with Azure; for example:
 
    ```azurecli
-   az account set -s ssssssss-ssss-ssss-ssss-ssssssssssss
+   az account set -s 11111111-1111-1111-1111-111111111111
    ```
 
-## Create an Azure Storage account
+1. Create your Azure Credential file:
 
-1. Create a resource group for the Azure resources you will use in this article; for example:
    ```azurecli
-   az group create --name wingtiptoysresources --location westus
+   az ad sp create-for-rbac --sdk-auth > my.azureauth
    ```
-   Where:
 
-   | Parameter | Description |
-   |---|---|
-   | `name` | Specifies a unique name for your resource group. |
-   | `location` | Specifies the [Azure region](https://azure.microsoft.com/regions/) where your resource group will be hosted. |
-
-   The Azure CLI will display the results of your resource group creation; for example:  
+   This command will create a *my.azureauth* file in your *resources* directory with contents that resemble the following example:
 
    ```json
    {
-     "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/resourceGroups/wingtiptoysresources",
-     "location": "westus",
-     "managedBy": null,
-     "name": "wingtiptoysresources",
-     "properties": {
-       "provisioningState": "Succeeded"
-     },
-     "tags": null
+     "clientId": "33333333-3333-3333-3333-333333333333",
+     "clientSecret": "44444444-4444-4444-4444-444444444444",
+     "subscriptionId": "11111111-1111-1111-1111-111111111111",
+     "tenantId": "22222222-2222-2222-2222-222222222222",
+     "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+     "resourceManagerEndpointUrl": "https://management.azure.com/",
+     "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+     "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+     "galleryEndpointUrl": "https://gallery.azure.com/",
+     "managementEndpointUrl": "https://management.core.windows.net/"
    }
    ```
 
-2. Create an Azure storage account in the in the resource group for your Spring Boot app; for example:
-   ```azurecli
-   az storage account create --name wingtiptoysstorage --resource-group wingtiptoysresources --location westus --sku Standard_LRS
-   ```
-   Where:
+## Configure your Spring Boot app to use your Azure Storage account
 
-   | Parameter | Description |
-   |---|---|
-   | `name` | Specifies a unique name for your storage account. |
-   | `resource-group` | Specifies the name of the resource group group you created in the previous step. |
-   | `location` | Specifies the [Azure region](https://azure.microsoft.com/regions/) where your storage account will be hosted. |
-   | `sku` | Specifies one of the following: `Premium_LRS`, `Standard_GRS`, `Standard_LRS`, `Standard_RAGRS`, `Standard_ZRS`. |
+1. Locate the *application.properties* in the *resources* directory of your app; for example:
 
-   Azure will return a long JSON string which contains the provisioning state; for example: |
+   `C:\SpringBoot\storage\src\main\resources\application.properties`
 
-   ```json
-   {
-     "id": "/subscriptions/ssssssss-ssss-ssss-ssss-ssssssssssss/...",
-     "identity": null,
-     "kind": "Storage"
-       ...
-       ... (A long list of values will be displayed here.)
-       ...
-     "statusOfPrimary": "available",
-     "statusOfSecondary": null,
-     "tags": {},
-     "type": "Microsoft.Storage/storageAccounts"
-   }
-   ```
+   -or-
 
-3. Retrieve the connection string for your storage account; for example:
-   ```azurecli
-   az storage account show-connection-string --name wingtiptoysstorage --resource-group wingtiptoysresources
-   ```
-   Where:
+   `/users/example/home/storage/src/main/resources/application.properties`
 
-   | Parameter | Description |
-   | ---|---|
-   | `name` | Specifies a unique name of the storage account you created in previous steps. |
-   | `resource-group` | Specifies the name of the resource group you created in previous steps. |
+1.  Open the *application.properties* file in a text editor, add the following lines, and then replace the sample values with the appropriate properties for your storage account:
 
-   Azure will return a JSON string which contains the connection string for your storage account; for example:
-
-   ```json
-   {
-     "connectionString": "DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=wingtiptoysstorage;AccountKey=AbCdEfGhIjKlMnOpQrStUvWxYz=="
-   }
-   ```
-
-## Configure and compile your Spring Boot application
-
-1. Extract the files from the downloaded project archive into a directory.
-
-1. Navigate to the *src/main/resources* folder in your project and open the *application.properties* file in a text editor.
-
-1. Add the key for your storage account; for example:
    ```yaml
-   azure.storage.connection-string=DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;AccountName=wingtiptoysstorage;AccountKey=AbCdEfGhIjKlMnOpQrStUvWxYz==
+   spring.cloud.azure.credential-file-path=my.azureauth
+   spring.cloud.azure.resource-group=wingtiptoysresources
+   spring.cloud.azure.region=West US
+   spring.cloud.azure.storage.account=wingtiptoysstorage
    ```
+   Where:
+   | Field | Description |
+   | ---|---|
+   | `spring.cloud.azure.credential-file-path` | Specifies Azure credential file that you created earlier in this tutorial. |
+   | `spring.cloud.azure.resource-group` | Specifies the Azure Resource Group that contains your Azure Storage account. |
+   | `spring.cloud.azure.region` | Specifies the geographical region that you specified when you created your Azure Storage account. |
+   | `spring.cloud.azure.storage.account` | Specifies Azure Storage account that you created earlier in this tutorial.
 
-1. Navigate to the */src/main/java/com/example/wingtiptoysdemo* folder in your project and open the *WingtiptoysdemoApplication.java* file in a text editor.
+1. Save and close the *application.properties* file.
 
-1. Replace the existing Java code with the following example that lists the blobs in a container:
+## Add sample code to implement basic Azure storage functionality
+
+In this section, you create the necessary Java classes for storing a blob in your Azure storage account.
+
+### Modify the main application class
+
+1. Locate the main application Java file in the package directory of your app; for example:
+
+   `C:\SpringBoot\storage\src\main\java\com\wingtiptoys\storage\StorageApplication.java`
+
+   -or-
+
+   `/users/example/home/storage/src/main/java/com/wingtiptoys/storage/StorageApplication.java`
+
+1. Open the main application Java file in a text editor, and add the following lines to the file:
 
    ```java
-   package com.example.wingtiptoysdemo;
-
-   import com.microsoft.azure.storage.*;
-   import com.microsoft.azure.storage.blob.*;
-   import org.springframework.beans.factory.annotation.Autowired;
-   import org.springframework.boot.CommandLineRunner;
+   package com.wingtiptoys.storage;
+   
    import org.springframework.boot.SpringApplication;
    import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-   import java.net.URISyntaxException;
-
+   
    @SpringBootApplication
-   public class WingtiptoysdemoApplication implements CommandLineRunner {
-
-      @Autowired
-      private CloudStorageAccount cloudStorageAccount;
-
-      final String containerName = "mycontainer";
-
+   public class StorageApplication {
       public static void main(String[] args) {
-         SpringApplication.run(WingtiptoysdemoApplication.class, args);
-      }
-
-      public void run(String... var1)
-             throws URISyntaxException, StorageException {
-          // Create a container (if it does not exist).
-          createContainerIfNotExists(containerName);
-          // Upload a blob to the container.
-          uploadTextBlob(containerName);
-      }
-
-      private void createContainerIfNotExists(String containerName)
-            throws URISyntaxException, StorageException {
-         try
-         {
-            // Create a blob client.
-            final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
-            // Get a reference to a container. (Name must be lower case.)
-            final CloudBlobContainer container = blobClient.getContainerReference(containerName);
-            // Create the container if it does not exist.
-            container.createIfNotExists();
-         }
-         catch (Exception e)
-         {
-            // Output the stack trace.
-            e.printStackTrace();
-         }
-      }
-
-      private void uploadTextBlob(String containerName)
-            throws URISyntaxException, StorageException {
-         try
-         {
-            // Create a blob client.
-            final CloudBlobClient blobClient = cloudStorageAccount.createCloudBlobClient();
-            // Get a reference to a container. (Name must be lower case.)
-            final CloudBlobContainer container = blobClient.getContainerReference(containerName);
-            // Get a blob reference for a text file.
-            CloudBlockBlob blob = container.getBlockBlobReference("test.txt");
-            // Upload some text into the blob.
-            blob.uploadText("Hello World!");
-         }
-         catch (Exception e)
-         {
-            // Output the stack trace.
-            e.printStackTrace();
-         }
+         SpringApplication.run(StorageApplication.class, args);
       }
    }
    ```
-   > [!NOTE]
-   >
-   > The above example autowires the storage account settings that you defined in the *application.properties* file.
-   >
 
-1. Compile and run the application:
-   ```shell
-   mvn clean package spring-boot:run
+1. Save and close the main application Java file.
+
+### Add a web controller class
+
+1. Create a new Java file named *WebController.java* in the package directory of your app; for example:
+
+   `C:\SpringBoot\storage\src\main\java\com\wingtiptoys\storage\WebController.java`
+
+   -or-
+
+   `/users/example/home/storage/src/main/java/com/wingtiptoys/storage/WebController.java`
+
+1. Open the web controller Java file in a text editor, and add the following lines to the file:
+
+   ```java
+   package com.wingtiptoys.storage;
+   
+   import org.springframework.beans.factory.annotation.Value;
+   import org.springframework.core.io.Resource;
+   import org.springframework.core.io.WritableResource;
+   import org.springframework.util.StreamUtils;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.PostMapping;
+   import org.springframework.web.bind.annotation.RequestBody;
+   import org.springframework.web.bind.annotation.RestController;
+   
+   import java.io.IOException;
+   import java.io.OutputStream;
+   import java.nio.charset.Charset;
+   
+   @RestController
+   public class WebController {
+   
+      @Value("blob://{containerName}/{blobName}")
+      private Resource blobFile;
+
+      @GetMapping(value = "/")
+      public String readBlobFile() throws IOException {
+         return StreamUtils.copyToString(
+            this.blobFile.getInputStream(),
+            Charset.defaultCharset()) + "\n";
+      }
+   
+      @PostMapping(value = "/")
+      public String writeBlobFile(@RequestBody String data) throws IOException {
+         try (OutputStream os = ((WritableResource) this.blobFile).getOutputStream()) {
+            os.write(data.getBytes());
+         }
+         return "File was updated.\n";
+      }
+   }
    ```
 
-   The application will create a container and upload a text file as a blob to the container, which will be listed under your storage account in the [Azure portal](https://portal.azure.com).
+1. Save and close the web controller Java file.
 
-   ![List blobs in Azure portal](media/configure-spring-boot-starter-java-app-with-azure-storage/list-blobs-in-portal.png)
+1. Open a command prompt and change directory to the folder where your *pom.xml* file is located; for example:
 
-   > [!NOTE]
-   > 
-   > When you compile your application, you might see the following error message:
-   > 
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[INFO] BUILD FAILURE`<br/>
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[INFO] Total time: 2.616 s`<br/>
-   > `[INFO] Finished at: 2017-11-11T13:14:15Z`<br/>
-   > `[INFO] Final Memory: 26M/213M`<br/>
-   > `[INFO] ------------------------------------------------------------------------`<br/>
-   > `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:2`<br/>
-   > `.18.1:test (default-test) on project wingtiptoysdemo: Execution default-test of`<br/>
-   > `goal org.apache.maven.plugins:maven-surefire-plugin:2.18.1:test failed: The for`<br/>
-   > `ked VM terminated without properly saying goodbye. VM crash or System.exit called?`<br/>
-   > `[ERROR] Command was /bin/sh -c cd /home/robert/SpringBoot/wingtiptoysdemo && /u`<br/>
-   > `sr/lib/jvm/java-8-openjdk-amd64/jre/bin/java -jar /home/robert/SpringBoot/wingt`<br/>
-   > `iptoysdemo/target/surefire/surefirebooter6371623993063346766.jar /home/robert/S`<br/>
-   > `pringBoot/wingtiptoysdemo/target/surefire/surefire5107893623933537917tmp /home/`<br/>
-   > `robert/SpringBoot/wingtiptoysdemo/target/surefire/surefire_01414159391084128068tmp`<br/>
-   > `[ERROR] -> [Help 1]`<br/>
-   > 
-   > If this happens, you might want to disable the Maven Surefire testing; to do so,
-   > add the following plugin entry in your *pom.xml* file:
-   > 
-   > ```xml
-   > <plugin>
-   >   <groupId>org.apache.maven.plugins</groupId>
-   >   <artifactId>maven-surefire-plugin</artifactId>
-   >   <version>2.20.1</version>
-   >   <configuration>
-   >     <skipTests>true</skipTests>
-   >   </configuration>
-   > </plugin>
-   > ```
-   > 
+   `cd C:\SpringBoot\storage`
+
+   -or-
+
+   `cd /users/example/home/storage`
+
+1. Build your Spring Boot application with Maven and run it; for example:
+
+   ```shell
+   mvn clean package
+   mvn spring-boot:run
+   ```
+
+1. Once your application is running, you can use *curl* to test your application; for example:
+
+   a. Send a POST request to update a file's contents:
+
+      ```shell
+      curl -X POST -H "Content-Type: text/plain" -d "Hello World" http://localhost:8080/
+      ```
+
+   b. Send a GET request to verify the file's contents:
+
+      ```shell
+      curl -X GET http://localhost:8080/
+      ```
 
 ## Next steps
 
@@ -323,3 +334,12 @@ For detailed information about additional Azure storage APIs that you can call f
 * [How to use Azure Queue storage from Java](/azure/storage/queues/storage-java-how-to-use-queue-storage)
 * [How to use Azure Table storage from Java](/azure/cosmos-db/table-storage-how-to-use-java)
 * [How to use Azure File storage from Java](/azure/storage/files/storage-java-how-to-use-file-storage)
+
+<!-- IMG List -->
+
+[IMG01]: ./media/configure-spring-boot-starter-java-app-with-azure-storage/create-storage-account-01.png
+[IMG02]: ./media/configure-spring-boot-starter-java-app-with-azure-storage/create-storage-account-02.png
+
+[SI01]: ./media/configure-spring-boot-starter-java-app-with-azure-storage/create-project-01.png
+[SI02]: ./media/configure-spring-boot-starter-java-app-with-azure-storage/create-project-02.png
+[SI03]: ./media/configure-spring-boot-starter-java-app-with-azure-storage/create-project-03.png
