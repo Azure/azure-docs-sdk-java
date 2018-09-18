@@ -16,6 +16,7 @@ items:
   - com.microsoft.azure.servicebus.primitives._messaging_factory.getClientSetttings()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.getOperationTimeout()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.getRetryPolicy()
+  - com.microsoft.azure.servicebus.primitives._messaging_factory.INTERNAL_THREAD_POOL
   - com.microsoft.azure.servicebus.primitives._messaging_factory.onClose()
   - com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionError(ErrorCondition)
   - com.microsoft.azure.servicebus.primitives._messaging_factory.onConnectionOpen()
@@ -33,7 +34,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 47
+    startLine: 49
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>
   syntax: &o1
@@ -65,7 +66,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 254
+    startLine: 257
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Creates an instance of MessagingFactory from the given connection string. This method blocks for a connection to the namespace to be established. </p>
   syntax:
@@ -96,7 +97,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 229
+    startLine: 232
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Creates an instance of MessagingFactory from the given connection string. This is a non-blocking method. </p>
   syntax:
@@ -122,7 +123,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 242
+    startLine: 245
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Creates an instance of MessagingFactory from the given connection string builder. This method blocks for a connection to the namespace to be established. </p>
   syntax:
@@ -153,7 +154,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 213
+    startLine: 216
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Creates an instance of MessagingFactory from the given connection string builder. This is a non-blocking method. </p>
   syntax:
@@ -179,7 +180,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 202
+    startLine: 205
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static MessagingFactory createFromNamespaceEndpointURI(URI namespaceEndpointURI, ClientSettings clientSettings)
@@ -204,7 +205,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 179
+    startLine: 182
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromNamespaceEndpointURIAsyc(URI namespaceEndpointURI, ClientSettings clientSettings)
@@ -229,7 +230,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 197
+    startLine: 200
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static MessagingFactory createFromNamespaceName(String sbNamespaceName, ClientSettings clientSettings)
@@ -254,7 +255,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 174
+    startLine: 177
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromNamespaceNameAsyc(String sbNamespaceName, ClientSettings clientSettings)
@@ -279,7 +280,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 537
+    startLine: 540
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
@@ -301,7 +302,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 169
+    startLine: 172
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public ClientSettings getClientSetttings()
@@ -321,7 +322,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 155
+    startLine: 158
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Gets the operation timeout from the connections string. </p>
   syntax:
@@ -343,7 +344,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 164
+    startLine: 167
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Gets the retry policy from the connection string. </p>
   syntax:
@@ -351,6 +352,25 @@ items:
     return:
       type: com.microsoft.azure.servicebus.primitives._retry_policy
       description: <p>retry policy specified in the connection string </p>
+- uid: com.microsoft.azure.servicebus.primitives._messaging_factory.INTERNAL_THREAD_POOL
+  id: INTERNAL_THREAD_POOL
+  parent: com.microsoft.azure.servicebus.primitives._messaging_factory
+  href: com.microsoft.azure.servicebus.primitives._messaging_factory.yml
+  langs:
+  - java
+  name: INTERNAL_THREAD_POOL
+  nameWithType: MessagingFactory.INTERNAL_THREAD_POOL
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.INTERNAL_THREAD_POOL
+  type: Field
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
+    startLine: 52
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: public static final ExecutorService INTERNAL_THREAD_POOL= Executors.newCachedThreadPool()
+    return:
+      type: ebf10a33
 - uid: com.microsoft.azure.servicebus.primitives._messaging_factory.onClose()
   id: onClose()
   parent: com.microsoft.azure.servicebus.primitives._messaging_factory
@@ -365,7 +385,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 384
+    startLine: 387
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -385,7 +405,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 283
+    startLine: 286
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
@@ -407,7 +427,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 263
+    startLine: 266
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
@@ -426,7 +446,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 525
+    startLine: 528
   package: com.microsoft.azure.servicebus.primitives
   summary: <p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>
   syntax:
@@ -435,6 +455,10 @@ items:
     - id: link
       type: a7c9e797
 references:
+- uid: ebf10a33
+  spec.java:
+  - name: final ExecutorService
+    fullName: final ExecutorService
 - uid: e02a2de0
   spec.java:
   - name: Duration
