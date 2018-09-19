@@ -303,6 +303,7 @@ In this section, you create the necessary Java classes for storing a blob in you
       }
    }
    ```
+   Where the `@Value("blob://[container]/[blob]")` syntax respectively defines the names of the container and blob where you want to store the data.
 
 1. Save and close the web controller Java file.
 
