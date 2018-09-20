@@ -239,7 +239,7 @@ client.clusters.list();
 client.clusters.listByResourceGroup("<Resource Group Name>");
 ```
 > [!NOTE]
-> Both `List()` and `ListByResourceGroup()` return a `PagedList<ClusterInner>` object. Calling `loadNext()` returns the a list of clusters on that page and advances the `ClusterPaged` object to the next page. This can be repeated until a `hasNextPage()` return `false`, indicating that there are no more pages.
+> Both `List()` and `ListByResourceGroup()` return a `PagedList<ClusterInner>` object. Calling `loadNext()` returns a list of clusters on that page and advances the `ClusterPaged` object to the next page. This can be repeated until a `hasNextPage()` return `false`, indicating that there are no more pages.
 
 #### Example
 The following example prints the properties of all clusters for the current subscription:
@@ -343,7 +343,7 @@ client.scriptActions().delete("<Resource Group Name>", "<Cluster Name>", "<Scrip
 ### List Persisted Script Actions
 
 > [!NOTE]
-> `ListPersistedScripts()` and `List()` return an `IPage<RuntimeScriptActionDetail>` object. To get the next page, you can call `client.ScriptActions.ListPersistedScriptsNext("Next Page Link")` or `client.ScriptExecutionHistory.ListNext("Next Page Link")`. This can be repeated until `NextPageLink` is `null`, as shown in the examples below.
+> Both `listByCluster()` returns a `PagedList<RuntimeScriptActionDetailInner>` object. Calling `currentPage().items()` returns a list of `RuntimeScriptActionDetailInner`, and `loadNextPage()` advances to the next page. This can be repeated until a `hasNextPage()` return `false`, indicating that there are no more pages.
 
 To list all persisted script actions for the specified cluster:
 ```java
