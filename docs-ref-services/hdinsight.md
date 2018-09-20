@@ -41,6 +41,7 @@ You will also need to add the following dependencies to your pom.xml:
 
 * [Azure Client Authentication Library:](https://mvnrepository.com/artifact/com.microsoft.azure/azure-client-authentication/1.6.2)
 ```
+<dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-client-authentication</artifactId>
     <version>1.6.2</version>
