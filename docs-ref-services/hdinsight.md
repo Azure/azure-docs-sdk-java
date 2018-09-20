@@ -347,7 +347,7 @@ client.scriptActions().delete("<Resource Group Name>", "<Cluster Name>", "<Scrip
 
 To list all persisted script actions for the specified cluster:
 ```java
-client.ScriptActions.ListPersistedScripts("<Resource Group Name>", "<Cluster Name>");
+client.scriptActions().listByCluster("<Resource Group Name>", "<Cluster Name>");
 ```
 
 #### Example
