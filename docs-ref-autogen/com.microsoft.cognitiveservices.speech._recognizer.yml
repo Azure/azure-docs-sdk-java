@@ -6,13 +6,15 @@ items:
   children:
   - com.microsoft.cognitiveservices.speech._recognizer.close()
   - com.microsoft.cognitiveservices.speech._recognizer.dispose(boolean)
-  - com.microsoft.cognitiveservices.speech._recognizer.RecognitionEvent
-  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
+  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioConfig)
   - com.microsoft.cognitiveservices.speech._recognizer.s_executorService
-  - com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
+  - com.microsoft.cognitiveservices.speech._recognizer.sessionStarted
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStartedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.sessionStopped
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStoppedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.speechEndDetected
   - com.microsoft.cognitiveservices.speech._recognizer.speechEndDetectedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.speechStartDetected
   - com.microsoft.cognitiveservices.speech._recognizer.speechStartDetectedHandler
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   langs:
@@ -24,10 +26,10 @@ items:
   source:
     remote: &o0
       path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-      branch: javadocs
+      branch: javadocs201809
       repo: https://msasg.visualstudio.com/DefaultCollection/Skyman/_git/Carbon
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 16
+    startLine: 17
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Defines the base class Recognizer which mainly contains common event handlers. </p>
   syntax:
@@ -49,7 +51,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 51
+    startLine: 64
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Dispose of associated resources. </p>
   syntax:
@@ -68,7 +70,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 61
+    startLine: 74
   package: com.microsoft.cognitiveservices.speech
   summary: <p>This method performs cleanup of resources. The Boolean parameter disposing indicates whether the method is called from Dispose (if disposing is true) or from the finalizer (if disposing is false). Derived classes should override this method to dispose resource if needed. </p>
   syntax:
@@ -77,49 +79,29 @@ items:
     - id: disposing
       type: 4fc6e284
       description: <p>Flag to request disposal. </p>
-- uid: com.microsoft.cognitiveservices.speech._recognizer.RecognitionEvent
-  id: RecognitionEvent
+- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioConfig)
+  id: Recognizer(AudioConfig)
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   langs:
   - java
-  name: RecognitionEvent
-  nameWithType: Recognizer.RecognitionEvent
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.RecognitionEvent
-  type: Field
-  source:
-    remote: *o0
-    path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 31
-  package: com.microsoft.cognitiveservices.speech
-  summary: <p>Defines event handler for session events, e.g., SpeechStartDetectedEvent and SpeechEndDetectedEvent. </p>
-  syntax:
-    content: public final EventHandlerImpl<RecognitionEventArgs> RecognitionEvent= new EventHandlerImpl<RecognitionEventArgs>()
-    return:
-      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
-  id: Recognizer(AudioInputStream)
-  parent: com.microsoft.cognitiveservices.speech._recognizer
-  href: com.microsoft.cognitiveservices.speech._recognizer.yml
-  langs:
-  - java
-  name: Recognizer(AudioInputStream ais)
-  nameWithType: Recognizer.Recognizer(AudioInputStream ais)
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer(AudioInputStream ais)
+  name: Recognizer(AudioConfig audioInput)
+  nameWithType: Recognizer.Recognizer(AudioConfig audioInput)
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer(AudioConfig audioInput)
   overload: com.microsoft.cognitiveservices.speech._recognizer.Recognizer*
   type: Constructor
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 39
+    startLine: 51
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Creates and initializes an instance of a Recognizer </p>
   syntax:
-    content: protected Recognizer(AudioInputStream ais)
+    content: protected Recognizer(AudioConfig audioInput)
     parameters:
-    - id: ais
-      type: com.microsoft.cognitiveservices.speech._audio_input_stream
-      description: <p>An optional audio input stream associated with the recognizer </p>
+    - id: audioInput
+      type: com.microsoft.cognitiveservices.speech.audio._audio_config
+      description: <p>An optional audio input configuration associated with the recognizer </p>
 - uid: com.microsoft.cognitiveservices.speech._recognizer.s_executorService
   id: s_executorService
   parent: com.microsoft.cognitiveservices.speech._recognizer
@@ -133,30 +115,30 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 18
+    startLine: 19
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected static ExecutorService s_executorService
     return:
       type: ddc463eb
-- uid: com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
-  id: SessionEvent
+- uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStarted
+  id: sessionStarted
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
   langs:
   - java
-  name: SessionEvent
-  nameWithType: Recognizer.SessionEvent
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.SessionEvent
+  name: sessionStarted
+  nameWithType: Recognizer.sessionStarted
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStarted
   type: Field
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 26
+    startLine: 27
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>Defines event handler for session events, e.g., SessionStartedEvent and SessionStoppedEvent. </p>
+  summary: <p>Defines event handler for session started event. </p>
   syntax:
-    content: public final EventHandlerImpl<SessionEventArgs> SessionEvent= new EventHandlerImpl<SessionEventArgs>()
+    content: public final EventHandlerImpl<SessionEventArgs> sessionStarted= new EventHandlerImpl<SessionEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._session_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStartedHandler
@@ -172,12 +154,32 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 77
+    startLine: 90
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected SessionEventHandlerImpl sessionStartedHandler
     return:
       type: 7449d9c1
+- uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStopped
+  id: sessionStopped
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  langs:
+  - java
+  name: sessionStopped
+  nameWithType: Recognizer.sessionStopped
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStopped
+  type: Field
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
+    startLine: 32
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>Defines event handler for session stopped event. </p>
+  syntax:
+    content: public final EventHandlerImpl<SessionEventArgs> sessionStopped= new EventHandlerImpl<SessionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._session_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStoppedHandler
   id: sessionStoppedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
@@ -191,12 +193,32 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 78
+    startLine: 91
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected SessionEventHandlerImpl sessionStoppedHandler
     return:
       type: 7449d9c1
+- uid: com.microsoft.cognitiveservices.speech._recognizer.speechEndDetected
+  id: speechEndDetected
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  langs:
+  - java
+  name: speechEndDetected
+  nameWithType: Recognizer.speechEndDetected
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechEndDetected
+  type: Field
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
+    startLine: 42
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>Defines event handler for speech end detected event. </p>
+  syntax:
+    content: public final EventHandlerImpl<RecognitionEventArgs> speechEndDetected= new EventHandlerImpl<RecognitionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.speechEndDetectedHandler
   id: speechEndDetectedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
@@ -210,12 +232,32 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 80
+    startLine: 93
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected RecognitionEventHandlerImpl speechEndDetectedHandler
     return:
       type: ddbbabdc
+- uid: com.microsoft.cognitiveservices.speech._recognizer.speechStartDetected
+  id: speechStartDetected
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  langs:
+  - java
+  name: speechStartDetected
+  nameWithType: Recognizer.speechStartDetected
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechStartDetected
+  type: Field
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
+    startLine: 37
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>Defines event handler for speech start detected event. </p>
+  syntax:
+    content: public final EventHandlerImpl<RecognitionEventArgs> speechStartDetected= new EventHandlerImpl<RecognitionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.speechStartDetectedHandler
   id: speechStartDetectedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
@@ -229,7 +271,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Recognizer.java
-    startLine: 79
+    startLine: 92
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected RecognitionEventHandlerImpl speechStartDetectedHandler
@@ -306,7 +348,7 @@ references:
   nameWithType: IntentRecognizer
   fullName: com.microsoft.cognitiveservices.speech.intent.IntentRecognizer
   type: Class
-  summary: <p>Perform intent recognition on the speech input. It returns both recognized text and recognized intent. </p>
+  summary: <p>Performs intent recognition on the speech input. It returns both recognized text and recognized intent. </p>
   syntax:
     content: public class IntentRecognizer extends Recognizer
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer
@@ -349,7 +391,7 @@ references:
   nameWithType: SessionEventArgs
   fullName: com.microsoft.cognitiveservices.speech.SessionEventArgs
   type: Class
-  summary: <p>Defines content for session events like SessionStarted/Stopped, SoundStarted/Stopped. </p>
+  summary: <p>Defines payload for SessionStarted/Stopped events. </p>
   syntax:
     content: public class SessionEventArgs
 - uid: com.microsoft.cognitiveservices.speech._recognition_event_args
@@ -361,14 +403,14 @@ references:
   type: Class
   summary: <p>Defines payload for session events like Speech Start/End Detected </p>
   syntax:
-    content: public class RecognitionEventArgs
-- uid: com.microsoft.cognitiveservices.speech._audio_input_stream
-  parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._audio_input_stream.yml
-  name: AudioInputStream
-  nameWithType: AudioInputStream
-  fullName: com.microsoft.cognitiveservices.speech.AudioInputStream
+    content: public class RecognitionEventArgs extends SessionEventArgs
+- uid: com.microsoft.cognitiveservices.speech.audio._audio_config
+  parent: com.microsoft.cognitiveservices.speech.audio
+  href: com.microsoft.cognitiveservices.speech.audio._audio_config.yml
+  name: AudioConfig
+  nameWithType: AudioConfig
+  fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig
   type: Class
-  summary: <p>Defines audio input stream. </p>
+  summary: <p>Represents audio input configuration used for specifying what type of input to use (microphone, file, stream). </p>
   syntax:
-    content: public class AudioInputStream
+    content: public class AudioConfig
