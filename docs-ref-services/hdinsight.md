@@ -14,29 +14,58 @@ ms.service: hdinsight
 ---
 
 # HDInsight Java Management SDK Preview
+
 ## Overview
+
 The HDInsight Java SDK provides classes and methods that allow you to manage your HDInsight clusters. It includes operations to create, delete, update, list, scale, execute script actions, monitor, get properties of HDInsight clusters, and more.
 
 ## Prerequisites
+
 * An Azure account. If you don't have one, [get a free trial](https://azure.microsoft.com/free/).
 * [Java JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Maven](https://maven.apache.org/install.html)
 
 ## SDK Installation
-The HDInsight Java SDK is available through Maven [here](https://mvnrepository.com/artifact/com.microsoft.azure.hdinsight.v2018_06_01_preview/azure-mgmt-hdinsight). Add the dependency to your pom.xml.
+
+The HDInsight Java SDK is available through Maven [here](https://mvnrepository.com/artifact/com.microsoft.azure.hdinsight.v2018_06_01_preview/azure-mgmt-hdinsight). Add the following dependency to your pom.xml:
+
+```
+<dependency>
+    <groupId>com.microsoft.azure.hdinsight.v2018_06_01_preview</groupId>
+    <artifactId>azure-mgmt-hdinsight</artifactId>
+    <version>1.0.0-beta-1</version>
+</dependency>
+```
 
 You will also need to add the following dependencies to your pom.xml:
 
-* [Azure Client Authentication Library](https://mvnrepository.com/artifact/com.microsoft.azure/azure-client-authentication/1.6.2)
-* [Azure Java Client Runtime For ARM](https://mvnrepository.com/artifact/com.microsoft.azure/azure-arm-client-runtime/1.6.2)
+* [Azure Client Authentication Library:](https://mvnrepository.com/artifact/com.microsoft.azure/azure-client-authentication/1.6.2)
+```
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-client-authentication</artifactId>
+    <version>1.6.2</version>
+    <scope>test</scope>
+</dependency>
+```
+
+* [Azure Java Client Runtime For ARM:](https://mvnrepository.com/artifact/com.microsoft.azure/azure-arm-client-runtime/1.6.2)
+```
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-arm-client-runtime</artifactId>
+    <version>1.6.2</version>
+</dependency>
+```
 
 ## Authentication
+
 The SDK first needs to be authenticated with your Azure subscription.  Follow the example below to create a service principal and use it to authenticate. After this is done, you will have an instance of an `HDInsightManagementClientImpl`, which contains many methods (outlined in below sections) that can be used to perform management operations.
 
 > [!NOTE]
 > There are other ways to authenticate besides the below example that could potentially be better suited for your needs. All methods are outlined here: [Authenticate with the Azure management libraries for Java](https://docs.microsoft.com/en-us/java/azure/java-sdk-azure-authenticate?view=azure-java-stable)
 
 ### Authentication Example Using a Service Principal
+
 First, login to [Azure Cloud Shell](https://shell.azure.com/bash). Verify you are currently using the subscription in which you want the service principal created. 
 
 ```azurecli-interactive
@@ -123,24 +152,29 @@ public class Main {
 
 
 ## Cluster Management
+
 > [!NOTE]
 > This section assumes you have already authenticated and constructed an `HDInsightManagementClientImpl` instance and store it in a variable called `client`. Instructions for authenticating and obtaining an `HDInsightManagementClientImpl` can be found in the Authentication section above.
 
 ### Create a Cluster
+
 A new cluster can be created by calling `client.clusters().create()`.
 
 #### Example
+
 This example demonstrates how to create a Spark cluster with 2 head nodes and 1 worker node.
 
 > [!NOTE]
 > You first need to create a Resource Group and Storage Account, as explained below. If you have already created these, you can skip these steps.
 
 ##### Creating a Resource Group
+
 You can create a resource group using the [Azure Cloud Shell](https://shell.azure.com/bash) by running
 ```azurecli-interactive
 az group create -l <Region Name (i.e. eastus)> --n <Resource Group Name>
 ```
 ##### Creating a Storage Account
+
 You can create a storage account using the [Azure Cloud Shell](https://shell.azure.com/bash) by running:
 ```azurecli-interactive
 az storage account create -n <Storage Account Name> -g <Existing Resource Group Name> -l <Region Name (i.e. eastus)> --sku <SKU i.e. Standard_LRS>
@@ -231,10 +265,12 @@ HashMap<String, HashMap<String, String>> configurations = new HashMap<String, Ha
 ### List Clusters
 
 #### List Clusters Under The Subscription
+
 ```java
 client.clusters.list();
 ```
 #### List Clusters By Resource Group
+
 ```java
 client.clusters.listByResourceGroup("<Resource Group Name>");
 ```
@@ -242,6 +278,7 @@ client.clusters.listByResourceGroup("<Resource Group Name>");
 > Both `List()` and `ListByResourceGroup()` return a `PagedList<ClusterInner>` object. Calling `loadNext()` returns a list of clusters on that page and advances the `ClusterPaged` object to the next page. This can be repeated until `hasNextPage()` return `false`, indicating that there are no more pages.
 
 #### Example
+
 The following example prints the properties of all clusters for the current subscription:
 
 ```java
@@ -259,6 +296,7 @@ while (true) {
 ```
 
 ### Get Cluster Details
+
 To get properties for a given cluster:
 
 ```java
@@ -266,6 +304,7 @@ client.clusters.getByResourceGroup("<Resource Group Name>", "<Cluster Name>");
 ```
 
 ### Delete a Cluster
+
 To delete a cluster:
 
 ```java
@@ -273,6 +312,7 @@ client.clusters.delete("<Resource Group Name>", "<Cluster Name>");
 ```
 
 ### Update Cluster Tags
+
 You can update the tags of a given cluster like so:
 
 ```java
@@ -280,6 +320,7 @@ client.clusters.update("<Resource Group Name>", "<Cluster Name>", <Map<String,St
 ```
 
 ### Scale Cluster
+
 You can scale a given cluster's number of worker nodes by specifying a new size like so:
 
 ```java
@@ -287,6 +328,7 @@ client.clusters.resize("<Resource Group Name>", "<Cluster Name>", <Num of Worker
 ```
 
 ## Cluster Monitoring
+
 The HDInsight Management SDK can also be used to manage monitoring on your clusters via the Operations Management Suite (OMS).
 
 ### Enable OMS Monitoring
@@ -301,6 +343,7 @@ client.extensions().enableMonitoring("<Resource Group Name", "<Cluster Name>", n
 ```
 
 ### View Status Of OMS Monitoring
+
 To get the status of OMS on your cluster:
 
 ```java
@@ -308,6 +351,7 @@ client.extensions().getMonitoringStatus("<Resource Group Name", "Cluster Name");
 ```
 
 ### Disable OMS Monitoring
+
 To disable OMS on your cluster:
 
 ```java
@@ -315,11 +359,13 @@ client.extensions().disableMonitoring("<Resource Group Name>", "<Cluster Name>")
 ```
 
 ## Script Actions
+
 HDInsight provides a configuration method called script actions that invokes custom scripts to customize the cluster.
 > [!NOTE]
 > More information on how to use script actions can be found here: [Customize Linux-based HDInsight clusters using script actions](https://docs.microsoft.com/en-us/azure/hdinsight/hdinsight-hadoop-customize-cluster-linux)
 
 ### Execute Script Actions
+
 You can execute script actions on a given cluster like so:
 
 ```java
@@ -334,6 +380,7 @@ client.clusters().executeScriptActions(
 ```
 
 ### Delete Script Action
+
 To delete a specified persisted script action on a given cluster:
 
 ```java
@@ -367,6 +414,7 @@ while (true) {
 ```
 
 ### List All Scripts' Execution History
+
 To list all scripts' execution history for the specified cluster:
 
 ```java
@@ -374,6 +422,7 @@ client.scriptExecutionHistorys().listByCluster("<Resource Group Name>", "<Cluste
 ```
 
 #### Example
+
 This example prints all the details for all past script executions.
 
 ```java
