@@ -124,7 +124,7 @@ public class Main {
 
 ## Cluster Management
 > [!NOTE]
-> This section assumes you have already authenticated and constructed an `HDInsightManagementClientImpl` instance and store it in a variable called `client`. Instructions for authenticating and obtaining an `HDInsightManagementClient` can be found in the Authentication section above.
+> This section assumes you have already authenticated and constructed an `HDInsightManagementClientImpl` instance and store it in a variable called `client`. Instructions for authenticating and obtaining an `HDInsightManagementClientImpl` can be found in the Authentication section above.
 
 ### Create a Cluster
 A new cluster can be created by calling `client.clusters().create()`.
@@ -239,7 +239,7 @@ client.clusters.list();
 client.clusters.listByResourceGroup("<Resource Group Name>");
 ```
 > [!NOTE]
-> Both `List()` and `ListByResourceGroup()` return a `PagedList<ClusterInner>` object. Calling `loadNext()` returns a list of clusters on that page and advances the `ClusterPaged` object to the next page. This can be repeated until a `hasNextPage()` return `false`, indicating that there are no more pages.
+> Both `List()` and `ListByResourceGroup()` return a `PagedList<ClusterInner>` object. Calling `loadNext()` returns a list of clusters on that page and advances the `ClusterPaged` object to the next page. This can be repeated until `hasNextPage()` return `false`, indicating that there are no more pages.
 
 #### Example
 The following example prints the properties of all clusters for the current subscription:
