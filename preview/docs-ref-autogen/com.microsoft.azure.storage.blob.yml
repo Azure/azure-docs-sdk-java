@@ -11,7 +11,6 @@ items:
   - com.microsoft.azure.storage.blob._append_blob_access_conditions
   - com.microsoft.azure.storage.blob._append_blob_u_r_l
   - com.microsoft.azure.storage.blob._blob_access_conditions
-  - com.microsoft.azure.storage.blob._blob_h_t_t_p_headers
   - com.microsoft.azure.storage.blob._blob_listing_details
   - com.microsoft.azure.storage.blob._blob_range
   - com.microsoft.azure.storage.blob._blob_s_a_s_permission
@@ -24,12 +23,10 @@ items:
   - com.microsoft.azure.storage.blob._container_s_a_s_permission
   - com.microsoft.azure.storage.blob._container_u_r_l
   - com.microsoft.azure.storage.blob._download_response
-  - com.microsoft.azure.storage.blob._e_tag
-  - com.microsoft.azure.storage.blob._h_t_t_p_access_conditions
+  - com.microsoft.azure.storage.blob._h_t_t_p_getter_info
   - com.microsoft.azure.storage.blob._i_credentials
   - com.microsoft.azure.storage.blob._i_p_range
   - com.microsoft.azure.storage.blob._i_progress_receiver
-  - com.microsoft.azure.storage.blob._lease_access_conditions
   - com.microsoft.azure.storage.blob._list_blobs_options
   - com.microsoft.azure.storage.blob._list_containers_options
   - com.microsoft.azure.storage.blob._logging_factory
@@ -38,13 +35,11 @@ items:
   - com.microsoft.azure.storage.blob._page_blob_access_conditions
   - com.microsoft.azure.storage.blob._page_blob_u_r_l
   - com.microsoft.azure.storage.blob._pipeline_options
+  - com.microsoft.azure.storage.blob._reliable_download_options
   - com.microsoft.azure.storage.blob._request_i_d_factory
   - com.microsoft.azure.storage.blob._request_retry_factory
   - com.microsoft.azure.storage.blob._request_retry_options
   - com.microsoft.azure.storage.blob._retry_policy_type
-  - com.microsoft.azure.storage.blob._retry_reader
-  - com.microsoft.azure.storage.blob._retry_reader._h_t_t_p_getter_info
-  - com.microsoft.azure.storage.blob._retry_reader_options
   - com.microsoft.azure.storage.blob._s_a_s_protocol
   - com.microsoft.azure.storage.blob._s_a_s_query_parameters
   - com.microsoft.azure.storage.blob._service_s_a_s_signature_values
@@ -56,7 +51,8 @@ items:
   - com.microsoft.azure.storage.blob._telemetry_options
   - com.microsoft.azure.storage.blob._token_credentials
   - com.microsoft.azure.storage.blob._transfer_manager
-  - com.microsoft.azure.storage.blob._transfer_manager._upload_to_block_blob_options
+  - com.microsoft.azure.storage.blob._transfer_manager_download_from_blob_options
+  - com.microsoft.azure.storage.blob._transfer_manager_upload_to_block_blob_options
   - com.microsoft.azure.storage.blob._u_r_l_parser
   href: com.microsoft.azure.storage.blob.yml
   langs:
@@ -68,7 +64,7 @@ items:
   source:
     remote:
       path: src/main/java/com/microsoft/azure/storage/blob/AccountSASPermission.java
-      branch: New-Storage-SDK-V10-Preview
+      branch: vNext
       repo: https://github.com/azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/AccountSASPermission.java
     startLine: 14
@@ -152,7 +148,7 @@ references:
   fullName: com.microsoft.azure.storage.blob.AppendBlobAccessConditions
   type: Class
   summary: >-
-    <p>This class contains values that restrict the successful completion of AppendBlock operations to certain conditions. An instance of this class is set as a member of <xref uid="com.microsoft.azure.storage.blob._blob_access_conditions" data-throw-if-not-resolved="false">BlobAccessConditions</xref> when needed. Any field may be set to null if no access conditions are desired.</p>
+    <p>This class contains values that restrict the successful completion of AppendBlock operations to certain conditions. Any field may be set to null if no access conditions are desired.</p>
 
     <p>Please refer to the request header section <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/append-block">here</a> for more conceptual information. </p>
   syntax:
@@ -177,16 +173,6 @@ references:
   summary: <p>This class contains values which will restrict the successful operation of a variety of requests to the conditions present. These conditions are entirely optional. The entire object or any of its properties may be set to null when passed to a method to indicate that those conditions are not desired. Please refer to the type of each field for more information on those particular access conditions. </p>
   syntax:
     content: public class BlobAccessConditions
-- uid: com.microsoft.azure.storage.blob._blob_h_t_t_p_headers
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._blob_h_t_t_p_headers.yml
-  name: BlobHTTPHeaders
-  nameWithType: BlobHTTPHeaders
-  fullName: com.microsoft.azure.storage.blob.BlobHTTPHeaders
-  type: Class
-  summary: <p>Most often used when creating a blob or setting its properties, this class contains fields for typical HTTP properties, which, if specified, will be attached to the target blob. Null may be passed to any API which takes this type to indicate that no properties should be set. </p>
-  syntax:
-    content: public class BlobHTTPHeaders
 - uid: com.microsoft.azure.storage.blob._blob_listing_details
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._blob_listing_details.yml
@@ -312,29 +298,23 @@ references:
 
       <code>DownloadResponse 
 
-        </code> wraps the protocol-layer response from <xref uid="" data-throw-if-not-resolved="false">BlobAccessConditions, boolean)</xref> to help provide information for retrying. </p>
+        </code> wraps the protocol-layer response from <xref uid="" data-throw-if-not-resolved="false">BlobAccessConditions, boolean, com.microsoft.rest.v2.Context)</xref> to automatically retry failed reads from the body as appropriate. If the download is interrupted, the<code>DownloadResponse 
+
+        </code> will make a request to resume the download from where it left off, allowing the user to consume the data as one continuous stream, for any interruptions are hidden. The retry behavior is defined by the options passed to the <xref uid="com.microsoft.azure.storage.blob._download_response.body(ReliableDownloadOptions)" data-throw-if-not-resolved="false">body(ReliableDownloadOptions)</xref>. The download will also lock on the blob's etag to ensure consistency. </p>
+
+    <p>Note that the retries performed as a part of this reader are composed with those of any retries in an <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> used in conjunction with this reader. That is, if this object issues a request to resume a download, an underlying pipeline may issue several retries as a part of that request. Furthermore, this reader only retries on network errors; timeouts and unexpected status codes are not retried. Therefore, the behavior of this reader is entirely independent of and in no way coupled to an <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref>'s retry mechanism. </p>
   syntax:
     content: public class DownloadResponse
-- uid: com.microsoft.azure.storage.blob._e_tag
+- uid: com.microsoft.azure.storage.blob._h_t_t_p_getter_info
   parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._e_tag.yml
-  name: ETag
-  nameWithType: ETag
-  fullName: com.microsoft.azure.storage.blob.ETag
+  href: com.microsoft.azure.storage.blob._h_t_t_p_getter_info.yml
+  name: HTTPGetterInfo
+  nameWithType: HTTPGetterInfo
+  fullName: com.microsoft.azure.storage.blob.HTTPGetterInfo
   type: Class
-  summary: <p>An HTTP ETag. An object of this type may be set as a field on an <xref uid="com.microsoft.azure.storage.blob._h_t_t_p_access_conditions" data-throw-if-not-resolved="false">HTTPAccessConditions</xref> object to specify that a request should use ETag conditions. Null may be passed if no ETag condition is required. </p>
+  summary: <p>HTTPGetterInfo is a passed to the getter function of a reliable download to specify parameters needed for the GET request. </p>
   syntax:
-    content: public class ETag
-- uid: com.microsoft.azure.storage.blob._h_t_t_p_access_conditions
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._h_t_t_p_access_conditions.yml
-  name: HTTPAccessConditions
-  nameWithType: HTTPAccessConditions
-  fullName: com.microsoft.azure.storage.blob.HTTPAccessConditions
-  type: Class
-  summary: <p>This type contains standard HTTP Access Conditions. Some methods do take this structure on its own, but it is most commonly used as a member of <xref uid="com.microsoft.azure.storage.blob._blob_access_conditions" data-throw-if-not-resolved="false">BlobAccessConditions</xref> or <xref uid="com.microsoft.azure.storage.blob._container_access_conditions" data-throw-if-not-resolved="false">ContainerAccessConditions</xref>. Specifying these conditions is entirely optional, and null may be passed for this structure or any individual field to indicate that none of the conditions should be set. Please refer to the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/Specifying-Conditional-Headers-for-Blob-Service-Operations?redirectedfrom=MSDN">Azure Docs</a> for more information. </p>
-  syntax:
-    content: public class HTTPAccessConditions
+    content: public class HTTPGetterInfo
 - uid: com.microsoft.azure.storage.blob._i_credentials
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._i_credentials.yml
@@ -362,18 +342,14 @@ references:
   nameWithType: IProgressReceiver
   fullName: com.microsoft.azure.storage.blob.IProgressReceiver
   type: Interface
+  summary: >-
+    <p>An<code>IProgressReceiver 
+
+        </code> is an object that can be used to report progress on network transfers. When specified on transfer operations, the<code>reportProgress 
+
+        </code> method will be called periodically with the total number of bytes transferred. The user may configure this method to report progress in whatever format desired. </p>
   syntax:
     content: public interface IProgressReceiver
-- uid: com.microsoft.azure.storage.blob._lease_access_conditions
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._lease_access_conditions.yml
-  name: LeaseAccessConditions
-  nameWithType: LeaseAccessConditions
-  fullName: com.microsoft.azure.storage.blob.LeaseAccessConditions
-  type: Class
-  summary: <p>By specifying a leaseID as a member of this class, operations on storage resources will only succeed if the active lease on the blob matches the string contained here. Some methods do take this structure on its own, but it is most commonly used as a member of <xref uid="com.microsoft.azure.storage.blob._blob_access_conditions" data-throw-if-not-resolved="false">BlobAccessConditions</xref> or <xref uid="com.microsoft.azure.storage.blob._container_access_conditions" data-throw-if-not-resolved="false">ContainerAccessConditions</xref>. Specifying these conditions is entirely optional, and null may be passed for this structure or any individual field to indicate that none of the conditions should be set. Please refer to the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob">Azure Docs</a> for more information. </p>
-  syntax:
-    content: public class LeaseAccessConditions
 - uid: com.microsoft.azure.storage.blob._list_blobs_options
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._list_blobs_options.yml
@@ -432,7 +408,7 @@ references:
   fullName: com.microsoft.azure.storage.blob.PageBlobAccessConditions
   type: Class
   summary: >-
-    <p>This class contains values that restrict the successful completion of PageBlob operations to certain conditions. An instance of this class is set as a member of <xref uid="com.microsoft.azure.storage.blob._blob_access_conditions" data-throw-if-not-resolved="false">BlobAccessConditions</xref> when needed. It may also be set to null if no access conditions are desired.</p>
+    <p>This class contains values that restrict the successful completion of PageBlob operations to certain conditions. It may be set to null if no access conditions are desired.</p>
 
     <p>Please refer to the request header section <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/put-page">here</a> for more conceptual information. </p>
   syntax:
@@ -457,6 +433,23 @@ references:
   summary: <p>This type encapsulates all the possible configuration for the default pipeline. It may be passed to the createPipeline method on <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l" data-throw-if-not-resolved="false">StorageURL</xref>. All the options fields have default values if nothing is passed, and no logger will be used if it is not set. An HttpClient must be set, however. </p>
   syntax:
     content: public class PipelineOptions
+- uid: com.microsoft.azure.storage.blob._reliable_download_options
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._reliable_download_options.yml
+  name: ReliableDownloadOptions
+  nameWithType: ReliableDownloadOptions
+  fullName: com.microsoft.azure.storage.blob.ReliableDownloadOptions
+  type: Class
+  summary: >-
+    <p>
+
+      <code>ReliableDownloadOptions 
+
+        </code> contains properties which help the<code>Flowable 
+
+        </code> returned from <xref uid="com.microsoft.azure.storage.blob._download_response.body(ReliableDownloadOptions)" data-throw-if-not-resolved="false">DownloadResponse#body(ReliableDownloadOptions)</xref> determine when to retry. </p>
+  syntax:
+    content: public class ReliableDownloadOptions
 - uid: com.microsoft.azure.storage.blob._request_i_d_factory
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._request_i_d_factory.yml
@@ -497,40 +490,6 @@ references:
   summary: <p>This type holds possible options for retry backoff algorithms. They may be used with <xref uid="com.microsoft.azure.storage.blob._request_retry_options" data-throw-if-not-resolved="false">RequestRetryOptions</xref>. </p>
   syntax:
     content: public enum RetryPolicyType
-- uid: com.microsoft.azure.storage.blob._retry_reader
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._retry_reader.yml
-  name: RetryReader
-  nameWithType: RetryReader
-  fullName: com.microsoft.azure.storage.blob.RetryReader
-  type: Class
-  summary: >-
-    <p>
-
-      <code>RetryReader 
-
-        </code> is used to wrap a download request and automatically retry failed reads as appropriate. If the download is interrupted, the RetryReader will make a request to resume the download from where it left off, allowing the user to consume the data as one continuous stream, for any interruptions are hidden. The retry behavior is defined by the passed options, and the download will resume according to the provided getter function. </p>
-
-    <p>This type is closely integrated into the <xref uid="com.microsoft.azure.storage.blob._blob_u_r_l.download(BlobRange,BlobAccessConditions,boolean)" data-throw-if-not-resolved="false">BlobURL#download(BlobRange, BlobAccessConditions, boolean)</xref> API. The <xref uid="com.microsoft.azure.storage.blob._download_response" data-throw-if-not-resolved="false">DownloadResponse</xref> emitted by the returned Single if the call to <xref uid="com.microsoft.azure.storage.blob._download_response.body(RetryReaderOptions)" data-throw-if-not-resolved="false">DownloadResponse#body(RetryReaderOptions)</xref> is called by passing non null options. </p>
-
-    <p>Note that the retries performed as a part of this reader are composed with those of any retries in an <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> used in conjunction with this reader. That is, if the reader issues a request to resume a download, an underlying pipeline may issue several retries as a part of that request. Furthermore, this reader only retries on network errors; timeouts and unexpected status codes are not retried. Therefore, the behavior of this reader is entirely independent of and in no way coupled to an <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref>'s retry mechanism. </p>
-  syntax:
-    content: public class RetryReader
-- uid: com.microsoft.azure.storage.blob._retry_reader_options
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._retry_reader_options.yml
-  name: RetryReaderOptions
-  nameWithType: RetryReaderOptions
-  fullName: com.microsoft.azure.storage.blob.RetryReaderOptions
-  type: Class
-  summary: >-
-    <p>
-
-      <code>RetryReaderOptions 
-
-        </code> contains properties which help a <xref uid="com.microsoft.azure.storage.blob._retry_reader" data-throw-if-not-resolved="false">RetryReader</xref> determine when to retry. </p>
-  syntax:
-    content: public class RetryReaderOptions
 - uid: com.microsoft.azure.storage.blob._s_a_s_protocol
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._s_a_s_protocol.yml
@@ -658,6 +617,32 @@ references:
   summary: <p>This class contains a collection of methods (and structures associated with those methods) which perform higher-level operations. Whereas operations on the URL types guarantee a single REST request and make no assumptions on desired behavior, these methods will often compose several requests to provide a convenient way of performing more complex operations. Further, we will make our own assumptions and optimizations for common cases that may not be ideal for rarer cases. </p>
   syntax:
     content: public class TransferManager
+- uid: com.microsoft.azure.storage.blob._transfer_manager_download_from_blob_options
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._transfer_manager_download_from_blob_options.yml
+  name: TransferManagerDownloadFromBlobOptions
+  nameWithType: TransferManagerDownloadFromBlobOptions
+  fullName: com.microsoft.azure.storage.blob.TransferManagerDownloadFromBlobOptions
+  type: Class
+  summary: >-
+    <p>Configures the parallel download behavior for methods on the<code>TransferManager 
+
+        </code> . </p>
+  syntax:
+    content: public class TransferManagerDownloadFromBlobOptions
+- uid: com.microsoft.azure.storage.blob._transfer_manager_upload_to_block_blob_options
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._transfer_manager_upload_to_block_blob_options.yml
+  name: TransferManagerUploadToBlockBlobOptions
+  nameWithType: TransferManagerUploadToBlockBlobOptions
+  fullName: com.microsoft.azure.storage.blob.TransferManagerUploadToBlockBlobOptions
+  type: Class
+  summary: >-
+    <p>Configures the parallel upload behavior for methods on the<code>TransferManager 
+
+        </code> . </p>
+  syntax:
+    content: public class TransferManagerUploadToBlockBlobOptions
 - uid: com.microsoft.azure.storage.blob._u_r_l_parser
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._u_r_l_parser.yml
@@ -668,22 +653,3 @@ references:
   summary: <p>A class used to conveniently parse URLs into <xref uid="com.microsoft.azure.storage.blob._blob_u_r_l_parts" data-throw-if-not-resolved="false">BlobURLParts</xref> to modify the components of the URL. </p>
   syntax:
     content: public class URLParser
-- uid: com.microsoft.azure.storage.blob._retry_reader._h_t_t_p_getter_info
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._retry_reader._h_t_t_p_getter_info.yml
-  name: RetryReader.HTTPGetterInfo
-  nameWithType: RetryReader.HTTPGetterInfo
-  fullName: com.microsoft.azure.storage.blob.RetryReader.HTTPGetterInfo
-  type: Class
-  summary: <p>HTTPGetterInfo is a passed to the getter function of a RetryReader to specify parameters needed for the GET request. </p>
-  syntax:
-    content: public class HTTPGetterInfo
-- uid: com.microsoft.azure.storage.blob._transfer_manager._upload_to_block_blob_options
-  parent: com.microsoft.azure.storage.blob
-  href: com.microsoft.azure.storage.blob._transfer_manager._upload_to_block_blob_options.yml
-  name: TransferManager.UploadToBlockBlobOptions
-  nameWithType: TransferManager.UploadToBlockBlobOptions
-  fullName: com.microsoft.azure.storage.blob.TransferManager.UploadToBlockBlobOptions
-  type: Class
-  syntax:
-    content: public class UploadToBlockBlobOptions
