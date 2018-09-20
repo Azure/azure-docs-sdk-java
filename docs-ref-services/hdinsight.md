@@ -343,7 +343,7 @@ client.scriptActions().delete("<Resource Group Name>", "<Cluster Name>", "<Scrip
 ### List Persisted Script Actions
 
 > [!NOTE]
-> Both `listByCluster()` returns a `PagedList<RuntimeScriptActionDetailInner>` object. Calling `currentPage().items()` returns a list of `RuntimeScriptActionDetailInner`, and `loadNextPage()` advances to the next page. This can be repeated until a `hasNextPage()` return `false`, indicating that there are no more pages.
+> Both `listByCluster()` returns a `PagedList<RuntimeScriptActionDetailInner>` object. Calling `currentPage().items()` returns a list of `RuntimeScriptActionDetailInner`, and `loadNextPage()` advances to the next page. This can be repeated until `hasNextPage()` returns `false`, indicating that there are no more pages.
 
 To list all persisted script actions for the specified cluster:
 ```java
