@@ -4,12 +4,17 @@ items:
   id: _pipeline_options
   parent: com.microsoft.azure.storage.blob
   children:
-  - com.microsoft.azure.storage.blob._pipeline_options.client
-  - com.microsoft.azure.storage.blob._pipeline_options.logger
-  - com.microsoft.azure.storage.blob._pipeline_options.loggingOptions
+  - com.microsoft.azure.storage.blob._pipeline_options.client()
+  - com.microsoft.azure.storage.blob._pipeline_options.logger()
+  - com.microsoft.azure.storage.blob._pipeline_options.loggingOptions()
   - com.microsoft.azure.storage.blob._pipeline_options.PipelineOptions()
-  - com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions
-  - com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions
+  - com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions()
+  - com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions()
+  - com.microsoft.azure.storage.blob._pipeline_options.withClient(HttpClient)
+  - com.microsoft.azure.storage.blob._pipeline_options.withLogger(HttpPipelineLogger)
+  - com.microsoft.azure.storage.blob._pipeline_options.withLoggingOptions(LoggingOptions)
+  - com.microsoft.azure.storage.blob._pipeline_options.withRequestRetryOptions(RequestRetryOptions)
+  - com.microsoft.azure.storage.blob._pipeline_options.withTelemetryOptions(TelemetryOptions)
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
@@ -20,74 +25,77 @@ items:
   source:
     remote: &o0
       path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-      branch: New-Storage-SDK-V10-Preview
+      branch: vNext
       repo: https://github.com/azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
     startLine: 31
   package: com.microsoft.azure.storage.blob
   summary: <p>This type encapsulates all the possible configuration for the default pipeline. It may be passed to the createPipeline method on <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l" data-throw-if-not-resolved="false">StorageURL</xref>. All the options fields have default values if nothing is passed, and no logger will be used if it is not set. An HttpClient must be set, however. </p>
-  syntax:
+  syntax: &o1
     content: public class PipelineOptions
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.storage.blob._pipeline_options.client
-  id: client
+- uid: com.microsoft.azure.storage.blob._pipeline_options.client()
+  id: client()
   parent: com.microsoft.azure.storage.blob._pipeline_options
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
-  name: client
-  nameWithType: PipelineOptions.client
-  fullName: com.microsoft.azure.storage.blob.PipelineOptions.client
-  type: Field
+  name: client()
+  nameWithType: PipelineOptions.client()
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.client()
+  overload: com.microsoft.azure.storage.blob._pipeline_options.client*
+  type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 41
+    startLine: 51
   package: com.microsoft.azure.storage.blob
   summary: <p>Specifies which HttpClient to use to send the requests. </p>
   syntax:
-    content: public HttpClient client
+    content: public HttpClient client()
     return:
       type: e0c3d602
-- uid: com.microsoft.azure.storage.blob._pipeline_options.logger
-  id: logger
+- uid: com.microsoft.azure.storage.blob._pipeline_options.logger()
+  id: logger()
   parent: com.microsoft.azure.storage.blob._pipeline_options
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
-  name: logger
-  nameWithType: PipelineOptions.logger
-  fullName: com.microsoft.azure.storage.blob.PipelineOptions.logger
-  type: Field
+  name: logger()
+  nameWithType: PipelineOptions.logger()
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.logger()
+  overload: com.microsoft.azure.storage.blob._pipeline_options.logger*
+  type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 46
+    startLine: 66
   package: com.microsoft.azure.storage.blob
   summary: <p>Specifies the logger for the pipeline. </p>
   syntax:
-    content: public HttpPipelineLogger logger
+    content: public HttpPipelineLogger logger()
     return:
       type: 259e208b
-- uid: com.microsoft.azure.storage.blob._pipeline_options.loggingOptions
-  id: loggingOptions
+- uid: com.microsoft.azure.storage.blob._pipeline_options.loggingOptions()
+  id: loggingOptions()
   parent: com.microsoft.azure.storage.blob._pipeline_options
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
-  name: loggingOptions
-  nameWithType: PipelineOptions.loggingOptions
-  fullName: com.microsoft.azure.storage.blob.PipelineOptions.loggingOptions
-  type: Field
+  name: loggingOptions()
+  nameWithType: PipelineOptions.loggingOptions()
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.loggingOptions()
+  overload: com.microsoft.azure.storage.blob._pipeline_options.loggingOptions*
+  type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 56
+    startLine: 96
   package: com.microsoft.azure.storage.blob
   summary: <p>Configures the built-in request logging policy. </p>
   syntax:
-    content: public LoggingOptions loggingOptions= LoggingOptions.DEFAULT
+    content: public LoggingOptions loggingOptions()
     return:
       type: com.microsoft.azure.storage.blob._logging_options
 - uid: com.microsoft.azure.storage.blob._pipeline_options.PipelineOptions()
@@ -104,7 +112,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 72
+    startLine: 132
   package: com.microsoft.azure.storage.blob
   summary: >-
     <p>Returns a<code>PipelineOptions 
@@ -112,58 +120,230 @@ items:
         </code> object with default values for each of the options fields. An <xref uid="" data-throw-if-not-resolved="false">HttpClient</xref> must still be set explicitly, however.</p>
 
     <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=pipeline_options \"Sample code for PipelineOptions constructor\")] \r\nFor more samples, please see the [Samples file](<a href=\"https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java</a>) "
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=pipeline_options \"Sample code for PipelineOptions constructor\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public PipelineOptions()
-- uid: com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions
-  id: requestRetryOptions
+- uid: com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions()
+  id: requestRetryOptions()
   parent: com.microsoft.azure.storage.blob._pipeline_options
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
-  name: requestRetryOptions
-  nameWithType: PipelineOptions.requestRetryOptions
-  fullName: com.microsoft.azure.storage.blob.PipelineOptions.requestRetryOptions
-  type: Field
+  name: requestRetryOptions()
+  nameWithType: PipelineOptions.requestRetryOptions()
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.requestRetryOptions()
+  overload: com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions*
+  type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 51
+    startLine: 81
   package: com.microsoft.azure.storage.blob
   summary: <p>Configures the retry policy's behavior. </p>
   syntax:
-    content: public RequestRetryOptions requestRetryOptions= RequestRetryOptions.DEFAULT
+    content: public RequestRetryOptions requestRetryOptions()
     return:
       type: com.microsoft.azure.storage.blob._request_retry_options
-- uid: com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions
-  id: telemetryOptions
+- uid: com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions()
+  id: telemetryOptions()
   parent: com.microsoft.azure.storage.blob._pipeline_options
   href: com.microsoft.azure.storage.blob._pipeline_options.yml
   langs:
   - java
-  name: telemetryOptions
-  nameWithType: PipelineOptions.telemetryOptions
-  fullName: com.microsoft.azure.storage.blob.PipelineOptions.telemetryOptions
-  type: Field
+  name: telemetryOptions()
+  nameWithType: PipelineOptions.telemetryOptions()
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.telemetryOptions()
+  overload: com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions*
+  type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
-    startLine: 61
+    startLine: 111
   package: com.microsoft.azure.storage.blob
   summary: <p>Configures the built-in telemetry policy behavior. </p>
   syntax:
-    content: public TelemetryOptions telemetryOptions= TelemetryOptions.DEFAULT
+    content: public TelemetryOptions telemetryOptions()
     return:
       type: com.microsoft.azure.storage.blob._telemetry_options
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withClient(HttpClient)
+  id: withClient(HttpClient)
+  parent: com.microsoft.azure.storage.blob._pipeline_options
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  langs:
+  - java
+  name: withClient(HttpClient client)
+  nameWithType: PipelineOptions.withClient(HttpClient client)
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withClient(HttpClient client)
+  overload: com.microsoft.azure.storage.blob._pipeline_options.withClient*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
+    startLine: 58
+  package: com.microsoft.azure.storage.blob
+  summary: <p>Specifies which HttpClient to use to send the requests. </p>
+  syntax:
+    content: public PipelineOptions withClient(HttpClient client)
+    parameters:
+    - id: client
+      type: e0c3d602
+    return:
+      type: com.microsoft.azure.storage.blob._pipeline_options
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withLogger(HttpPipelineLogger)
+  id: withLogger(HttpPipelineLogger)
+  parent: com.microsoft.azure.storage.blob._pipeline_options
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  langs:
+  - java
+  name: withLogger(HttpPipelineLogger logger)
+  nameWithType: PipelineOptions.withLogger(HttpPipelineLogger logger)
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withLogger(HttpPipelineLogger logger)
+  overload: com.microsoft.azure.storage.blob._pipeline_options.withLogger*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
+    startLine: 73
+  package: com.microsoft.azure.storage.blob
+  summary: <p>Specifies the logger for the pipeline. </p>
+  syntax:
+    content: public PipelineOptions withLogger(HttpPipelineLogger logger)
+    parameters:
+    - id: logger
+      type: 259e208b
+    return:
+      type: com.microsoft.azure.storage.blob._pipeline_options
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withLoggingOptions(LoggingOptions)
+  id: withLoggingOptions(LoggingOptions)
+  parent: com.microsoft.azure.storage.blob._pipeline_options
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  langs:
+  - java
+  name: withLoggingOptions(LoggingOptions loggingOptions)
+  nameWithType: PipelineOptions.withLoggingOptions(LoggingOptions loggingOptions)
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withLoggingOptions(LoggingOptions loggingOptions)
+  overload: com.microsoft.azure.storage.blob._pipeline_options.withLoggingOptions*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
+    startLine: 103
+  package: com.microsoft.azure.storage.blob
+  summary: <p>Configures the built-in request logging policy. </p>
+  syntax:
+    content: public PipelineOptions withLoggingOptions(LoggingOptions loggingOptions)
+    parameters:
+    - id: loggingOptions
+      type: com.microsoft.azure.storage.blob._logging_options
+    return:
+      type: com.microsoft.azure.storage.blob._pipeline_options
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withRequestRetryOptions(RequestRetryOptions)
+  id: withRequestRetryOptions(RequestRetryOptions)
+  parent: com.microsoft.azure.storage.blob._pipeline_options
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  langs:
+  - java
+  name: withRequestRetryOptions(RequestRetryOptions requestRetryOptions)
+  nameWithType: PipelineOptions.withRequestRetryOptions(RequestRetryOptions requestRetryOptions)
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withRequestRetryOptions(RequestRetryOptions requestRetryOptions)
+  overload: com.microsoft.azure.storage.blob._pipeline_options.withRequestRetryOptions*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
+    startLine: 88
+  package: com.microsoft.azure.storage.blob
+  summary: <p>Configures the retry policy's behavior. </p>
+  syntax:
+    content: public PipelineOptions withRequestRetryOptions(RequestRetryOptions requestRetryOptions)
+    parameters:
+    - id: requestRetryOptions
+      type: com.microsoft.azure.storage.blob._request_retry_options
+    return:
+      type: com.microsoft.azure.storage.blob._pipeline_options
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withTelemetryOptions(TelemetryOptions)
+  id: withTelemetryOptions(TelemetryOptions)
+  parent: com.microsoft.azure.storage.blob._pipeline_options
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  langs:
+  - java
+  name: withTelemetryOptions(TelemetryOptions telemetryOptions)
+  nameWithType: PipelineOptions.withTelemetryOptions(TelemetryOptions telemetryOptions)
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withTelemetryOptions(TelemetryOptions telemetryOptions)
+  overload: com.microsoft.azure.storage.blob._pipeline_options.withTelemetryOptions*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/PipelineOptions.java
+    startLine: 118
+  package: com.microsoft.azure.storage.blob
+  summary: <p>Configures the built-in telemetry policy behavior. </p>
+  syntax:
+    content: public PipelineOptions withTelemetryOptions(TelemetryOptions telemetryOptions)
+    parameters:
+    - id: telemetryOptions
+      type: com.microsoft.azure.storage.blob._telemetry_options
+    return:
+      type: com.microsoft.azure.storage.blob._pipeline_options
 references:
 - uid: e0c3d602
   spec.java:
   - name: HttpClient
     fullName: HttpClient
+- uid: com.microsoft.azure.storage.blob._pipeline_options.client*
+  name: client
+  nameWithType: PipelineOptions.client
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.client
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withClient*
+  name: withClient
+  nameWithType: PipelineOptions.withClient
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withClient
+  package: com.microsoft.azure.storage.blob
 - uid: 259e208b
   spec.java:
   - name: HttpPipelineLogger
     fullName: HttpPipelineLogger
+- uid: com.microsoft.azure.storage.blob._pipeline_options.logger*
+  name: logger
+  nameWithType: PipelineOptions.logger
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.logger
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withLogger*
+  name: withLogger
+  nameWithType: PipelineOptions.withLogger
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withLogger
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.requestRetryOptions*
+  name: requestRetryOptions
+  nameWithType: PipelineOptions.requestRetryOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.requestRetryOptions
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withRequestRetryOptions*
+  name: withRequestRetryOptions
+  nameWithType: PipelineOptions.withRequestRetryOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withRequestRetryOptions
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.loggingOptions*
+  name: loggingOptions
+  nameWithType: PipelineOptions.loggingOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.loggingOptions
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withLoggingOptions*
+  name: withLoggingOptions
+  nameWithType: PipelineOptions.withLoggingOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withLoggingOptions
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.telemetryOptions*
+  name: telemetryOptions
+  nameWithType: PipelineOptions.telemetryOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.telemetryOptions
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob._pipeline_options.withTelemetryOptions*
+  name: withTelemetryOptions
+  nameWithType: PipelineOptions.withTelemetryOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions.withTelemetryOptions
+  package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob._pipeline_options.PipelineOptions*
   name: PipelineOptions
   nameWithType: PipelineOptions.PipelineOptions
@@ -228,6 +408,15 @@ references:
   summary: <p>Options for configuring the <xref uid="com.microsoft.azure.storage.blob._telemetry_factory" data-throw-if-not-resolved="false">TelemetryFactory</xref>. Please refer to the Factory for more information. </p>
   syntax:
     content: public class TelemetryOptions
+- uid: com.microsoft.azure.storage.blob._pipeline_options
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._pipeline_options.yml
+  name: PipelineOptions
+  nameWithType: PipelineOptions
+  fullName: com.microsoft.azure.storage.blob.PipelineOptions
+  type: Class
+  summary: <p>This type encapsulates all the possible configuration for the default pipeline. It may be passed to the createPipeline method on <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l" data-throw-if-not-resolved="false">StorageURL</xref>. All the options fields have default values if nothing is passed, and no logger will be used if it is not set. An HttpClient must be set, however. </p>
+  syntax: *o1
 - uid: com.microsoft.azure.storage.blob._storage_u_r_l
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
