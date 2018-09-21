@@ -4,17 +4,19 @@ items:
   id: _speech_recognizer
   parent: com.microsoft.cognitiveservices.speech
   children:
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.canceled
   - com.microsoft.cognitiveservices.speech._speech_recognizer.dispose(boolean)
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.FinalResultReceived
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.getDeploymentId()
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.getLanguage()
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.getAuthorizationToken()
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.getEndpointId()
   - com.microsoft.cognitiveservices.speech._speech_recognizer.getOutputFormat()
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.getParameters()
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.IntermediateResultReceived
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.RecognitionErrorRaised
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeAsync()
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.setDeploymentId(String)
-  - com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer,AudioInputStream)
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.getProperties()
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.getSpeechRecognitionLanguage()
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.recognized
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeOnceAsync()
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.recognizing
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.setAuthorizationToken(String)
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(SpeechConfig)
+  - com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(SpeechConfig,AudioConfig)
   - com.microsoft.cognitiveservices.speech._speech_recognizer.startContinuousRecognitionAsync()
   - com.microsoft.cognitiveservices.speech._speech_recognizer.startKeywordRecognitionAsync(KeywordRecognitionModel)
   - com.microsoft.cognitiveservices.speech._speech_recognizer.stopContinuousRecognitionAsync()
@@ -29,13 +31,13 @@ items:
   source:
     remote: &o0
       path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-      branch: javadocs
+      branch: javadocs201809
       repo: https://msasg.visualstudio.com/DefaultCollection/Skyman/_git/Carbon
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 15
+    startLine: 20
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Performs speech recognition from microphone, file, or other audio input streams, and gets transcribed text as result. </p>
-  syntax: &o1
+  syntax:
     content: public class SpeechRecognizer extends Recognizer
   inheritance:
   - java.lang.Object
@@ -43,14 +45,36 @@ items:
   - com.microsoft.cognitiveservices.speech._recognizer
   inheritedMembers:
   - com.microsoft.cognitiveservices.speech._recognizer.close()
-  - com.microsoft.cognitiveservices.speech._recognizer.RecognitionEvent
-  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
+  - com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioConfig)
   - com.microsoft.cognitiveservices.speech._recognizer.s_executorService
-  - com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
+  - com.microsoft.cognitiveservices.speech._recognizer.sessionStarted
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStartedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.sessionStopped
   - com.microsoft.cognitiveservices.speech._recognizer.sessionStoppedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.speechEndDetected
   - com.microsoft.cognitiveservices.speech._recognizer.speechEndDetectedHandler
+  - com.microsoft.cognitiveservices.speech._recognizer.speechStartDetected
   - com.microsoft.cognitiveservices.speech._recognizer.speechStartDetectedHandler
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.canceled
+  id: canceled
+  parent: com.microsoft.cognitiveservices.speech._speech_recognizer
+  href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
+  langs:
+  - java
+  name: canceled
+  nameWithType: SpeechRecognizer.canceled
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.canceled
+  type: Field
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
+    startLine: 35
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>The event canceled signals that the recognition was canceled. </p>
+  syntax:
+    content: public final EventHandlerImpl<SpeechRecognitionCanceledEventArgs> canceled= new EventHandlerImpl<SpeechRecognitionCanceledEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer.dispose(boolean)
   id: dispose(boolean)
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
@@ -65,77 +89,57 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 170
+    startLine: 208
   package: com.microsoft.cognitiveservices.speech
   syntax:
     content: protected void dispose(boolean disposing)
     parameters:
     - id: disposing
       type: 4fc6e284
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.FinalResultReceived
-  id: FinalResultReceived
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getAuthorizationToken()
+  id: getAuthorizationToken()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: FinalResultReceived
-  nameWithType: SpeechRecognizer.FinalResultReceived
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.FinalResultReceived
-  type: Field
-  source:
-    remote: *o0
-    path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 25
-  package: com.microsoft.cognitiveservices.speech
-  summary: <p>The event FinalResultReceived signals that a final recognition result is received. </p>
-  syntax:
-    content: public final EventHandlerImpl<SpeechRecognitionResultEventArgs> FinalResultReceived= new EventHandlerImpl<SpeechRecognitionResultEventArgs>()
-    return:
-      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_result_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getDeploymentId()
-  id: getDeploymentId()
-  parent: com.microsoft.cognitiveservices.speech._speech_recognizer
-  href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
-  langs:
-  - java
-  name: getDeploymentId()
-  nameWithType: SpeechRecognizer.getDeploymentId()
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getDeploymentId()
-  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getDeploymentId*
+  name: getAuthorizationToken()
+  nameWithType: SpeechRecognizer.getAuthorizationToken()
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getAuthorizationToken()
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getAuthorizationToken*
   type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 64
+    startLine: 111
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>Gets the deployment id of a customized speech model that is used for speech recognition. </p>
+  summary: <p>Gets the authorization token used to communicate with the service. </p>
   syntax:
-    content: public String getDeploymentId()
+    content: public String getAuthorizationToken()
     return:
       type: "26831127"
-      description: <p>the deployment id of a customized speech model that is used for speech recognition. </p>
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getLanguage()
-  id: getLanguage()
+      description: <p>Authorization token. </p>
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getEndpointId()
+  id: getEndpointId()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: getLanguage()
-  nameWithType: SpeechRecognizer.getLanguage()
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getLanguage()
-  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getLanguage*
+  name: getEndpointId()
+  nameWithType: SpeechRecognizer.getEndpointId()
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getEndpointId()
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getEndpointId*
   type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 82
+    startLine: 94
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>Gets the spoken language of recognition. </p>
+  summary: <p>Gets the endpoint ID of a customized speech model that is used for speech recognition. </p>
   syntax:
-    content: public String getLanguage()
+    content: public String getEndpointId()
     return:
       type: "26831127"
-      description: <p>The spoken language of recognition. </p>
+      description: <p>the endpoint ID of a customized speech model that is used for speech recognition. </p>
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getOutputFormat()
   id: getOutputFormat()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
@@ -150,7 +154,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 90
+    startLine: 127
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Gets the output format of recognition. </p>
   syntax:
@@ -158,139 +162,184 @@ items:
     return:
       type: com.microsoft.cognitiveservices.speech._output_format
       description: <p>The output format of recognition. </p>
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getParameters()
-  id: getParameters()
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getProperties()
+  id: getProperties()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: getParameters()
-  nameWithType: SpeechRecognizer.getParameters()
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getParameters()
-  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getParameters*
+  name: getProperties()
+  nameWithType: SpeechRecognizer.getProperties()
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getProperties()
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getProperties*
   type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 102
+    startLine: 139
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>The collection of parameters and their values defined for this SpeechRecognizer. </p>
+  summary: <p>The collection or properties and their values defined for this SpeechRecognizer. </p>
   syntax:
-    content: public ParameterCollection<SpeechRecognizer> getParameters()
+    content: public PropertyCollection getProperties()
     return:
-      type: com.microsoft.cognitiveservices.speech._parameter_collection78504a52com.microsoft.cognitiveservices.speech._speech_recognizera08ddfce
-      description: <p>The collection of parameters and their values defined for this SpeechRecognizer. </p>
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.IntermediateResultReceived
-  id: IntermediateResultReceived
+      type: com.microsoft.cognitiveservices.speech._property_collection
+      description: <p>The collection or properties and their values defined for this SpeechRecognizer. </p>
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getSpeechRecognitionLanguage()
+  id: getSpeechRecognitionLanguage()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: IntermediateResultReceived
-  nameWithType: SpeechRecognizer.IntermediateResultReceived
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.IntermediateResultReceived
-  type: Field
+  name: getSpeechRecognitionLanguage()
+  nameWithType: SpeechRecognizer.getSpeechRecognitionLanguage()
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getSpeechRecognitionLanguage()
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.getSpeechRecognitionLanguage*
+  type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 20
+    startLine: 119
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>The event IntermediateResultReceived signals that an intermediate recognition result is received. </p>
+  summary: <p>Gets the spoken language of recognition. </p>
   syntax:
-    content: public final EventHandlerImpl<SpeechRecognitionResultEventArgs> IntermediateResultReceived= new EventHandlerImpl<SpeechRecognitionResultEventArgs>()
+    content: public String getSpeechRecognitionLanguage()
     return:
-      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_result_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.RecognitionErrorRaised
-  id: RecognitionErrorRaised
+      type: "26831127"
+      description: <p>The spoken language of recognition. </p>
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognized
+  id: recognized
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: RecognitionErrorRaised
-  nameWithType: SpeechRecognizer.RecognitionErrorRaised
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.RecognitionErrorRaised
+  name: recognized
+  nameWithType: SpeechRecognizer.recognized
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognized
   type: Field
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
     startLine: 30
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>The event RecognitionErrorRaised signals that an error occurred during recognition. </p>
+  summary: <p>The event recognized signals that a final recognition result is received. </p>
   syntax:
-    content: public final EventHandlerImpl<RecognitionErrorEventArgs> RecognitionErrorRaised= new EventHandlerImpl<RecognitionErrorEventArgs>()
+    content: public final EventHandlerImpl<SpeechRecognitionEventArgs> recognized= new EventHandlerImpl<SpeechRecognitionEventArgs>()
     return:
-      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_error_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeAsync()
-  id: recognizeAsync()
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_event_argsa08ddfce
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeOnceAsync()
+  id: recognizeOnceAsync()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: recognizeAsync()
-  nameWithType: SpeechRecognizer.recognizeAsync()
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognizeAsync()
-  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeAsync*
+  name: recognizeOnceAsync()
+  nameWithType: SpeechRecognizer.recognizeOnceAsync()
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognizeOnceAsync()
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeOnceAsync*
   type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 112
+    startLine: 150
   package: com.microsoft.cognitiveservices.speech
-  summary: '<p>Starts speech recognition, and stops after the first utterance is recognized. The task returns the recognition text as result. Note: RecognizeAsync() returns when the first utterance has been recognized, so it is suitable only for single shot recognition like command or query. For long-running recognition, use StartContinuousRecognitionAsync() instead. </p>'
+  summary: '<p>Starts speech recognition, and stops after the first utterance is recognized. The task returns the recognition text as result. Note: RecognizeOnceAsync() returns when the first utterance has been recognized, so it is suitable only for single shot recognition like command or query. For long-running recognition, use StartContinuousRecognitionAsync() instead. </p>'
   syntax:
-    content: public Future<SpeechRecognitionResult> recognizeAsync()
+    content: public Future<SpeechRecognitionResult> recognizeOnceAsync()
     return:
       type: 9b3030f6com.microsoft.cognitiveservices.speech._speech_recognition_resulta08ddfce
       description: <p>A task representing the recognition operation. The task returns a value of SpeechRecognitionResult </p>
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.setDeploymentId(String)
-  id: setDeploymentId(String)
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizing
+  id: recognizing
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: setDeploymentId(String value)
-  nameWithType: SpeechRecognizer.setDeploymentId(String value)
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.setDeploymentId(String value)
-  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.setDeploymentId*
+  name: recognizing
+  nameWithType: SpeechRecognizer.recognizing
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognizing
+  type: Field
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
+    startLine: 25
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>The event recognizing signals that an intermediate recognition result is received. </p>
+  syntax:
+    content: public final EventHandlerImpl<SpeechRecognitionEventArgs> recognizing= new EventHandlerImpl<SpeechRecognitionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_event_argsa08ddfce
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.setAuthorizationToken(String)
+  id: setAuthorizationToken(String)
+  parent: com.microsoft.cognitiveservices.speech._speech_recognizer
+  href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
+  langs:
+  - java
+  name: setAuthorizationToken(String token)
+  nameWithType: SpeechRecognizer.setAuthorizationToken(String token)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.setAuthorizationToken(String token)
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.setAuthorizationToken*
   type: Method
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 72
+    startLine: 102
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>Sets the deployment id of a customized speech model that is used for speech recognition. </p>
+  summary: <p>Sets the authorization token used to communicate with the service. </p>
   syntax:
-    content: public void setDeploymentId(String value)
+    content: public void setAuthorizationToken(String token)
     parameters:
-    - id: value
+    - id: token
       type: "26831127"
-      description: <p>The deployment id of a customized speech model that is used for speech recognition. </p>
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer,AudioInputStream)
-  id: SpeechRecognizer,AudioInputStream)
+      description: <p>Authorization token. </p>
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(SpeechConfig)
+  id: SpeechRecognizer(SpeechConfig)
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
   href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
   langs:
   - java
-  name: SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer recoImpl, AudioInputStream ais)
-  nameWithType: SpeechRecognizer.SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer recoImpl, AudioInputStream ais)
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer recoImpl, AudioInputStream ais)
+  name: SpeechRecognizer(SpeechConfig speechConfig)
+  nameWithType: SpeechRecognizer.SpeechRecognizer(SpeechConfig speechConfig)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.SpeechRecognizer(SpeechConfig speechConfig)
   overload: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer*
   type: Constructor
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 37
+    startLine: 75
   package: com.microsoft.cognitiveservices.speech
-  summary: <p>SpeechRecognizer constructor. </p>
+  summary: <p>Initializes a new instance of Speech Recognizer. </p>
   syntax:
-    content: public SpeechRecognizer(com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer recoImpl, AudioInputStream ais)
+    content: public SpeechRecognizer(SpeechConfig speechConfig)
     parameters:
-    - id: recoImpl
-      type: 946b065e
-      description: <p>The recognizer implementation </p>
-    - id: ais
-      type: com.microsoft.cognitiveservices.speech._audio_input_stream
-      description: <p>An optional audio input stream associated with the recognizer </p>
+    - id: speechConfig
+      type: com.microsoft.cognitiveservices.speech._speech_config
+      description: <p>speech configuration. </p>
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer(SpeechConfig,AudioConfig)
+  id: SpeechRecognizer(SpeechConfig,AudioConfig)
+  parent: com.microsoft.cognitiveservices.speech._speech_recognizer
+  href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
+  langs:
+  - java
+  name: SpeechRecognizer(SpeechConfig speechConfig, AudioConfig audioConfig)
+  nameWithType: SpeechRecognizer.SpeechRecognizer(SpeechConfig speechConfig, AudioConfig audioConfig)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.SpeechRecognizer(SpeechConfig speechConfig, AudioConfig audioConfig)
+  overload: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer*
+  type: Constructor
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
+    startLine: 85
+  package: com.microsoft.cognitiveservices.speech
+  summary: <p>Initializes a new instance of Speech Recognizer. </p>
+  syntax:
+    content: public SpeechRecognizer(SpeechConfig speechConfig, AudioConfig audioConfig)
+    parameters:
+    - id: speechConfig
+      type: com.microsoft.cognitiveservices.speech._speech_config
+      description: <p>speech configuration. </p>
+    - id: audioConfig
+      type: com.microsoft.cognitiveservices.speech.audio._audio_config
+      description: <p>audio configuration. </p>
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer.startContinuousRecognitionAsync()
   id: startContinuousRecognitionAsync()
   parent: com.microsoft.cognitiveservices.speech._speech_recognizer
@@ -305,7 +354,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 123
+    startLine: 161
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Starts speech recognition on a continuous audio stream, until stopContinuousRecognitionAsync() is called. User must subscribe to events to receive recognition results. </p>
   syntax:
@@ -327,7 +376,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 148
+    startLine: 186
   package: com.microsoft.cognitiveservices.speech
   summary: '<p>Starts speech recognition on a continuous audio stream with keyword spotting, until stopKeywordRecognitionAsync() is called. User must subscribe to events to receive recognition results. Note: Key word spotting functionality is only available on the Speech Devices SDK. This functionality is currently not included in the SDK itself. </p>'
   syntax:
@@ -353,7 +402,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 134
+    startLine: 172
   package: com.microsoft.cognitiveservices.speech
   summary: <p>Stops continuous speech recognition. </p>
   syntax:
@@ -375,7 +424,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/SpeechRecognizer.java
-    startLine: 162
+    startLine: 200
   package: com.microsoft.cognitiveservices.speech
   summary: '<p>Stops continuous speech recognition. Note: Key word spotting functionality is only available on the Speech Devices SDK. This functionality is currently not included in the SDK itself. </p>'
   syntax:
@@ -384,7 +433,7 @@ items:
       type: 075d0a89
       description: <p>A task representing the asynchronous operation that stops the recognition. </p>
 references:
-- uid: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_result_event_argsa08ddfce
+- uid: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_event_argsa08ddfce
   spec.java:
   - name: 'final '
     fullName: 'final '
@@ -394,13 +443,13 @@ references:
     href: com.microsoft.cognitiveservices.speech.util._event_handler_impl.yml
   - name: <
     fullName: <
-  - uid: com.microsoft.cognitiveservices.speech._speech_recognition_result_event_args
-    name: SpeechRecognitionResultEventArgs
-    fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionResultEventArgs
-    href: com.microsoft.cognitiveservices.speech._speech_recognition_result_event_args.yml
+  - uid: com.microsoft.cognitiveservices.speech._speech_recognition_event_args
+    name: SpeechRecognitionEventArgs
+    fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionEventArgs
+    href: com.microsoft.cognitiveservices.speech._speech_recognition_event_args.yml
   - name: '>'
     fullName: '>'
-- uid: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_error_event_argsa08ddfce
+- uid: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_argsa08ddfce
   spec.java:
   - name: 'final '
     fullName: 'final '
@@ -410,16 +459,12 @@ references:
     href: com.microsoft.cognitiveservices.speech.util._event_handler_impl.yml
   - name: <
     fullName: <
-  - uid: com.microsoft.cognitiveservices.speech._recognition_error_event_args
-    name: RecognitionErrorEventArgs
-    fullName: com.microsoft.cognitiveservices.speech.RecognitionErrorEventArgs
-    href: com.microsoft.cognitiveservices.speech._recognition_error_event_args.yml
+  - uid: com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_args
+    name: SpeechRecognitionCanceledEventArgs
+    fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionCanceledEventArgs
+    href: com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_args.yml
   - name: '>'
     fullName: '>'
-- uid: 946b065e
-  spec.java:
-  - name: com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer
-    fullName: com.microsoft.cognitiveservices.speech.internal.SpeechRecognizer
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer.SpeechRecognizer*
   name: SpeechRecognizer
   nameWithType: SpeechRecognizer.SpeechRecognizer
@@ -429,44 +474,35 @@ references:
   spec.java:
   - name: String
     fullName: String
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getDeploymentId*
-  name: getDeploymentId
-  nameWithType: SpeechRecognizer.getDeploymentId
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getDeploymentId
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getEndpointId*
+  name: getEndpointId
+  nameWithType: SpeechRecognizer.getEndpointId
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getEndpointId
   package: com.microsoft.cognitiveservices.speech
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.setDeploymentId*
-  name: setDeploymentId
-  nameWithType: SpeechRecognizer.setDeploymentId
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.setDeploymentId
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.setAuthorizationToken*
+  name: setAuthorizationToken
+  nameWithType: SpeechRecognizer.setAuthorizationToken
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.setAuthorizationToken
   package: com.microsoft.cognitiveservices.speech
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getLanguage*
-  name: getLanguage
-  nameWithType: SpeechRecognizer.getLanguage
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getLanguage
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getAuthorizationToken*
+  name: getAuthorizationToken
+  nameWithType: SpeechRecognizer.getAuthorizationToken
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getAuthorizationToken
+  package: com.microsoft.cognitiveservices.speech
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getSpeechRecognitionLanguage*
+  name: getSpeechRecognitionLanguage
+  nameWithType: SpeechRecognizer.getSpeechRecognitionLanguage
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getSpeechRecognitionLanguage
   package: com.microsoft.cognitiveservices.speech
 - uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getOutputFormat*
   name: getOutputFormat
   nameWithType: SpeechRecognizer.getOutputFormat
   fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getOutputFormat
   package: com.microsoft.cognitiveservices.speech
-- uid: com.microsoft.cognitiveservices.speech._parameter_collection78504a52com.microsoft.cognitiveservices.speech._speech_recognizera08ddfce
-  spec.java:
-  - uid: com.microsoft.cognitiveservices.speech._parameter_collection
-    name: ParameterCollection
-    fullName: com.microsoft.cognitiveservices.speech.ParameterCollection
-    href: com.microsoft.cognitiveservices.speech._parameter_collection.yml
-  - name: <
-    fullName: <
-  - uid: com.microsoft.cognitiveservices.speech._speech_recognizer
-    name: SpeechRecognizer
-    fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer
-    href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
-  - name: '>'
-    fullName: '>'
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getParameters*
-  name: getParameters
-  nameWithType: SpeechRecognizer.getParameters
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getParameters
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.getProperties*
+  name: getProperties
+  nameWithType: SpeechRecognizer.getProperties
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.getProperties
   package: com.microsoft.cognitiveservices.speech
 - uid: 9b3030f6com.microsoft.cognitiveservices.speech._speech_recognition_resulta08ddfce
   spec.java:
@@ -478,10 +514,10 @@ references:
     href: com.microsoft.cognitiveservices.speech._speech_recognition_result.yml
   - name: '>'
     fullName: '>'
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeAsync*
-  name: recognizeAsync
-  nameWithType: SpeechRecognizer.recognizeAsync
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognizeAsync
+- uid: com.microsoft.cognitiveservices.speech._speech_recognizer.recognizeOnceAsync*
+  name: recognizeOnceAsync
+  nameWithType: SpeechRecognizer.recognizeOnceAsync
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer.recognizeOnceAsync
   package: com.microsoft.cognitiveservices.speech
 - uid: 075d0a89
   spec.java:
@@ -526,32 +562,20 @@ references:
   summary: <p>Dispose of associated resources. </p>
   syntax:
     content: public void close()
-- uid: com.microsoft.cognitiveservices.speech._recognizer.RecognitionEvent
+- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioConfig)
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
-  name: RecognitionEvent
-  nameWithType: Recognizer.RecognitionEvent
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.RecognitionEvent
-  type: Field
-  summary: <p>Defines event handler for session events, e.g., SpeechStartDetectedEvent and SpeechEndDetectedEvent. </p>
-  syntax:
-    content: public final EventHandlerImpl<RecognitionEventArgs> RecognitionEvent= new EventHandlerImpl<RecognitionEventArgs>()
-    return:
-      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
-- uid: com.microsoft.cognitiveservices.speech._recognizer.Recognizer(AudioInputStream)
-  parent: com.microsoft.cognitiveservices.speech._recognizer
-  href: com.microsoft.cognitiveservices.speech._recognizer.yml
-  name: Recognizer(AudioInputStream ais)
-  nameWithType: Recognizer.Recognizer(AudioInputStream ais)
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer(AudioInputStream ais)
+  name: Recognizer(AudioConfig audioInput)
+  nameWithType: Recognizer.Recognizer(AudioConfig audioInput)
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.Recognizer(AudioConfig audioInput)
   type: Constructor
   summary: <p>Creates and initializes an instance of a Recognizer </p>
   syntax:
-    content: protected Recognizer(AudioInputStream ais)
+    content: protected Recognizer(AudioConfig audioInput)
     parameters:
-    - id: ais
-      type: com.microsoft.cognitiveservices.speech._audio_input_stream
-      description: <p>An optional audio input stream associated with the recognizer </p>
+    - id: audioInput
+      type: com.microsoft.cognitiveservices.speech.audio._audio_config
+      description: <p>An optional audio input configuration associated with the recognizer </p>
 - uid: com.microsoft.cognitiveservices.speech._recognizer.s_executorService
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
@@ -563,16 +587,16 @@ references:
     content: protected static ExecutorService s_executorService
     return:
       type: ddc463eb
-- uid: com.microsoft.cognitiveservices.speech._recognizer.SessionEvent
+- uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStarted
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
-  name: SessionEvent
-  nameWithType: Recognizer.SessionEvent
-  fullName: com.microsoft.cognitiveservices.speech.Recognizer.SessionEvent
+  name: sessionStarted
+  nameWithType: Recognizer.sessionStarted
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStarted
   type: Field
-  summary: <p>Defines event handler for session events, e.g., SessionStartedEvent and SessionStoppedEvent. </p>
+  summary: <p>Defines event handler for session started event. </p>
   syntax:
-    content: public final EventHandlerImpl<SessionEventArgs> SessionEvent= new EventHandlerImpl<SessionEventArgs>()
+    content: public final EventHandlerImpl<SessionEventArgs> sessionStarted= new EventHandlerImpl<SessionEventArgs>()
     return:
       type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._session_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStartedHandler
@@ -586,6 +610,18 @@ references:
     content: protected SessionEventHandlerImpl sessionStartedHandler
     return:
       type: 7449d9c1
+- uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStopped
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  name: sessionStopped
+  nameWithType: Recognizer.sessionStopped
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.sessionStopped
+  type: Field
+  summary: <p>Defines event handler for session stopped event. </p>
+  syntax:
+    content: public final EventHandlerImpl<SessionEventArgs> sessionStopped= new EventHandlerImpl<SessionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._session_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.sessionStoppedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
@@ -597,6 +633,18 @@ references:
     content: protected SessionEventHandlerImpl sessionStoppedHandler
     return:
       type: 7449d9c1
+- uid: com.microsoft.cognitiveservices.speech._recognizer.speechEndDetected
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  name: speechEndDetected
+  nameWithType: Recognizer.speechEndDetected
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechEndDetected
+  type: Field
+  summary: <p>Defines event handler for speech end detected event. </p>
+  syntax:
+    content: public final EventHandlerImpl<RecognitionEventArgs> speechEndDetected= new EventHandlerImpl<RecognitionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.speechEndDetectedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
@@ -608,6 +656,18 @@ references:
     content: protected RecognitionEventHandlerImpl speechEndDetectedHandler
     return:
       type: ddbbabdc
+- uid: com.microsoft.cognitiveservices.speech._recognizer.speechStartDetected
+  parent: com.microsoft.cognitiveservices.speech._recognizer
+  href: com.microsoft.cognitiveservices.speech._recognizer.yml
+  name: speechStartDetected
+  nameWithType: Recognizer.speechStartDetected
+  fullName: com.microsoft.cognitiveservices.speech.Recognizer.speechStartDetected
+  type: Field
+  summary: <p>Defines event handler for speech start detected event. </p>
+  syntax:
+    content: public final EventHandlerImpl<RecognitionEventArgs> speechStartDetected= new EventHandlerImpl<RecognitionEventArgs>()
+    return:
+      type: 93de0ef9com.microsoft.cognitiveservices.speech.util._event_handler_impl78504a52com.microsoft.cognitiveservices.speech._recognition_event_argsa08ddfce
 - uid: com.microsoft.cognitiveservices.speech._recognizer.speechStartDetectedHandler
   parent: com.microsoft.cognitiveservices.speech._recognizer
   href: com.microsoft.cognitiveservices.speech._recognizer.yml
@@ -642,58 +702,56 @@ references:
     typeParameters:
     - id: T
       type: 8ce1ecb9
-- uid: com.microsoft.cognitiveservices.speech._speech_recognition_result_event_args
+- uid: com.microsoft.cognitiveservices.speech._speech_recognition_event_args
   parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._speech_recognition_result_event_args.yml
-  name: SpeechRecognitionResultEventArgs
-  nameWithType: SpeechRecognitionResultEventArgs
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionResultEventArgs
+  href: com.microsoft.cognitiveservices.speech._speech_recognition_event_args.yml
+  name: SpeechRecognitionEventArgs
+  nameWithType: SpeechRecognitionEventArgs
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionEventArgs
   type: Class
-  summary: <p>Defines contents of speech intermediate/final result event. </p>
+  summary: <p>Defines contents of speech recognizing/recognized event. </p>
   syntax:
-    content: public class SpeechRecognitionResultEventArgs
-- uid: com.microsoft.cognitiveservices.speech._recognition_error_event_args
+    content: public class SpeechRecognitionEventArgs extends RecognitionEventArgs
+- uid: com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_args
   parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._recognition_error_event_args.yml
-  name: RecognitionErrorEventArgs
-  nameWithType: RecognitionErrorEventArgs
-  fullName: com.microsoft.cognitiveservices.speech.RecognitionErrorEventArgs
+  href: com.microsoft.cognitiveservices.speech._speech_recognition_canceled_event_args.yml
+  name: SpeechRecognitionCanceledEventArgs
+  nameWithType: SpeechRecognitionCanceledEventArgs
+  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognitionCanceledEventArgs
   type: Class
-  summary: <p>Defines content of a RecognitionErrorEvent. </p>
+  summary: <p>Defines payload of speech recognition canceled events. </p>
   syntax:
-    content: public class RecognitionErrorEventArgs
-- uid: com.microsoft.cognitiveservices.speech._parameter_collection
+    content: public class SpeechRecognitionCanceledEventArgs extends SpeechRecognitionEventArgs
+- uid: com.microsoft.cognitiveservices.speech._property_collection
   parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._parameter_collection.yml
-  name: ParameterCollection<OwnerType>
-  nameWithType: ParameterCollection<OwnerType>
-  fullName: com.microsoft.cognitiveservices.speech.ParameterCollection<OwnerType>
+  href: com.microsoft.cognitiveservices.speech._property_collection.yml
+  name: PropertyCollection
+  nameWithType: PropertyCollection
+  fullName: com.microsoft.cognitiveservices.speech.PropertyCollection
   type: Class
-  summary: <p>Represents collection of parameters and their values. </p>
+  summary: <p>Represents collection or properties and their values. </p>
   syntax:
-    content: public class ParameterCollection<OwnerType>
-    typeParameters:
-    - id: OwnerType
-      type: dfe4eb14
-- uid: com.microsoft.cognitiveservices.speech._speech_recognizer
-  parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._speech_recognizer.yml
-  name: SpeechRecognizer
-  nameWithType: SpeechRecognizer
-  fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer
+    content: public class PropertyCollection
+- uid: com.microsoft.cognitiveservices.speech.audio._audio_config
+  parent: com.microsoft.cognitiveservices.speech.audio
+  href: com.microsoft.cognitiveservices.speech.audio._audio_config.yml
+  name: AudioConfig
+  nameWithType: AudioConfig
+  fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig
   type: Class
-  summary: <p>Performs speech recognition from microphone, file, or other audio input streams, and gets transcribed text as result. </p>
-  syntax: *o1
-- uid: com.microsoft.cognitiveservices.speech._audio_input_stream
-  parent: com.microsoft.cognitiveservices.speech
-  href: com.microsoft.cognitiveservices.speech._audio_input_stream.yml
-  name: AudioInputStream
-  nameWithType: AudioInputStream
-  fullName: com.microsoft.cognitiveservices.speech.AudioInputStream
-  type: Class
-  summary: <p>Defines audio input stream. </p>
+  summary: <p>Represents audio input configuration used for specifying what type of input to use (microphone, file, stream). </p>
   syntax:
-    content: public class AudioInputStream
+    content: public class AudioConfig
+- uid: com.microsoft.cognitiveservices.speech._speech_config
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech._speech_config.yml
+  name: SpeechConfig
+  nameWithType: SpeechConfig
+  fullName: com.microsoft.cognitiveservices.speech.SpeechConfig
+  type: Class
+  summary: <p>Speech configuration. </p>
+  syntax:
+    content: public class SpeechConfig
 - uid: com.microsoft.cognitiveservices.speech._output_format
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech._output_format.yml
@@ -713,7 +771,7 @@ references:
   type: Class
   summary: <p>Defines result of speech recognition. </p>
   syntax:
-    content: public class SpeechRecognitionResult
+    content: public class SpeechRecognitionResult extends RecognitionResult
 - uid: com.microsoft.cognitiveservices.speech._keyword_recognition_model
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech._keyword_recognition_model.yml
