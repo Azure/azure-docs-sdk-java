@@ -263,6 +263,32 @@ HashMap<String, HashMap<String, String>> configurations = new HashMap<String, Ha
             );
         client.clusters().create(resourceGroupName, clusterName, parameters);
 ```
+
+### Get Cluster Details
+
+To get properties for a given cluster:
+
+```java
+client.clusters.getByResourceGroup("<Resource Group Name>", "<Cluster Name>");
+```
+
+#### Example
+
+You can use `get` to confirm that you have successfully created your cluster.
+
+```java
+ClusterInner cluster = client.clusters().getByResourceGroup("<Resource Group Name>", "<Cluster Name>");
+System.out.println(cluster.name()); //Prints the name of the cluster
+System.out.println(cluster.id()); //Prints the resource Id of the cluster
+```
+
+The output should look like:
+
+```
+<Cluster Name>
+/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/resourceGroups/<Resource Group Name>/providers/Microsoft.HDInsight/clusters/<Cluster Name>
+```
+
 ### List Clusters
 
 #### List Clusters Under The Subscription
@@ -294,14 +320,6 @@ while (true) {
         break;
     }
 }
-```
-
-### Get Cluster Details
-
-To get properties for a given cluster:
-
-```java
-client.clusters.getByResourceGroup("<Resource Group Name>", "<Cluster Name>");
 ```
 
 ### Delete a Cluster
