@@ -10,6 +10,8 @@ items:
   - com.microsoft.azure.eventgrid.models._container_registry_event_target
   - com.microsoft.azure.eventgrid.models._container_registry_image_deleted_event_data
   - com.microsoft.azure.eventgrid.models._container_registry_image_pushed_event_data
+  - com.microsoft.azure.eventgrid.models._device_connection_state_event_info
+  - com.microsoft.azure.eventgrid.models._device_connection_state_event_properties
   - com.microsoft.azure.eventgrid.models._device_life_cycle_event_properties
   - com.microsoft.azure.eventgrid.models._device_twin_info
   - com.microsoft.azure.eventgrid.models._device_twin_info_properties
@@ -18,8 +20,15 @@ items:
   - com.microsoft.azure.eventgrid.models._device_twin_properties
   - com.microsoft.azure.eventgrid.models._event_grid_event
   - com.microsoft.azure.eventgrid.models._event_hub_capture_file_created_event_data
+  - com.microsoft.azure.eventgrid.models._iot_hub_device_connected_event_data
   - com.microsoft.azure.eventgrid.models._iot_hub_device_created_event_data
   - com.microsoft.azure.eventgrid.models._iot_hub_device_deleted_event_data
+  - com.microsoft.azure.eventgrid.models._iot_hub_device_disconnected_event_data
+  - com.microsoft.azure.eventgrid.models._job_state
+  - com.microsoft.azure.eventgrid.models._media_job_state_change_event_data
+  - com.microsoft.azure.eventgrid.models._resource_action_cancel_data
+  - com.microsoft.azure.eventgrid.models._resource_action_failure_data
+  - com.microsoft.azure.eventgrid.models._resource_action_success_data
   - com.microsoft.azure.eventgrid.models._resource_delete_cancel_data
   - com.microsoft.azure.eventgrid.models._resource_delete_failure_data
   - com.microsoft.azure.eventgrid.models._resource_delete_success_data
@@ -30,6 +39,9 @@ items:
   - com.microsoft.azure.eventgrid.models._service_bus_deadletter_messages_availa88b7d449ab682452e390a157fa61f631
   - com.microsoft.azure.eventgrid.models._storage_blob_created_event_data
   - com.microsoft.azure.eventgrid.models._storage_blob_deleted_event_data
+  - com.microsoft.azure.eventgrid.models._subscription_deleted_event_data
+  - com.microsoft.azure.eventgrid.models._subscription_validation_event_data
+  - com.microsoft.azure.eventgrid.models._subscription_validation_response
   href: com.microsoft.azure.eventgrid.models.yml
   langs:
   - java
@@ -118,6 +130,26 @@ references:
   summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.ContainerRegistry.ImagePushed event. </p>
   syntax:
     content: public class ContainerRegistryImagePushedEventData extends ContainerRegistryEventData
+- uid: com.microsoft.azure.eventgrid.models._device_connection_state_event_info
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._device_connection_state_event_info.yml
+  name: DeviceConnectionStateEventInfo
+  nameWithType: DeviceConnectionStateEventInfo
+  fullName: com.microsoft.azure.eventgrid.models.DeviceConnectionStateEventInfo
+  type: Class
+  summary: <p>Information about the device connection state event. </p>
+  syntax:
+    content: public class DeviceConnectionStateEventInfo
+- uid: com.microsoft.azure.eventgrid.models._device_connection_state_event_properties
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._device_connection_state_event_properties.yml
+  name: DeviceConnectionStateEventProperties
+  nameWithType: DeviceConnectionStateEventProperties
+  fullName: com.microsoft.azure.eventgrid.models.DeviceConnectionStateEventProperties
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a device connection state event (DeviceConnected, DeviceDisconnected). </p>
+  syntax:
+    content: public class DeviceConnectionStateEventProperties
 - uid: com.microsoft.azure.eventgrid.models._device_life_cycle_event_properties
   parent: com.microsoft.azure.eventgrid.models
   href: com.microsoft.azure.eventgrid.models._device_life_cycle_event_properties.yml
@@ -135,7 +167,7 @@ references:
   nameWithType: DeviceTwinInfo
   fullName: com.microsoft.azure.eventgrid.models.DeviceTwinInfo
   type: Class
-  summary: <p>Information about the device twin, which is the cloud represenation of application device metadata. </p>
+  summary: <p>Information about the device twin, which is the cloud representation of application device metadata. </p>
   syntax:
     content: public class DeviceTwinInfo
 - uid: com.microsoft.azure.eventgrid.models._device_twin_info_properties
@@ -198,6 +230,16 @@ references:
   summary: <p>Schema of the Data property of an EventGridEvent for an Microsoft.EventHub.CaptureFileCreated event. </p>
   syntax:
     content: public class EventHubCaptureFileCreatedEventData
+- uid: com.microsoft.azure.eventgrid.models._iot_hub_device_connected_event_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._iot_hub_device_connected_event_data.yml
+  name: IotHubDeviceConnectedEventData
+  nameWithType: IotHubDeviceConnectedEventData
+  fullName: com.microsoft.azure.eventgrid.models.IotHubDeviceConnectedEventData
+  type: Class
+  summary: <p>Event data for Microsoft.Devices.DeviceConnected event. </p>
+  syntax:
+    content: public class IotHubDeviceConnectedEventData extends DeviceConnectionStateEventProperties
 - uid: com.microsoft.azure.eventgrid.models._iot_hub_device_created_event_data
   parent: com.microsoft.azure.eventgrid.models
   href: com.microsoft.azure.eventgrid.models._iot_hub_device_created_event_data.yml
@@ -218,6 +260,66 @@ references:
   summary: <p>Event data for Microsoft.Devices.DeviceDeleted event. </p>
   syntax:
     content: public class IotHubDeviceDeletedEventData extends DeviceLifeCycleEventProperties
+- uid: com.microsoft.azure.eventgrid.models._iot_hub_device_disconnected_event_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._iot_hub_device_disconnected_event_data.yml
+  name: IotHubDeviceDisconnectedEventData
+  nameWithType: IotHubDeviceDisconnectedEventData
+  fullName: com.microsoft.azure.eventgrid.models.IotHubDeviceDisconnectedEventData
+  type: Class
+  summary: <p>Event data for Microsoft.Devices.DeviceDisconnected event. </p>
+  syntax:
+    content: public class IotHubDeviceDisconnectedEventData extends DeviceConnectionStateEventProperties
+- uid: com.microsoft.azure.eventgrid.models._job_state
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._job_state.yml
+  name: JobState
+  nameWithType: JobState
+  fullName: com.microsoft.azure.eventgrid.models.JobState
+  type: Enum
+  summary: <p>Defines values for JobState. </p>
+  syntax:
+    content: public enum JobState
+- uid: com.microsoft.azure.eventgrid.models._media_job_state_change_event_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._media_job_state_change_event_data.yml
+  name: MediaJobStateChangeEventData
+  nameWithType: MediaJobStateChangeEventData
+  fullName: com.microsoft.azure.eventgrid.models.MediaJobStateChangeEventData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.Media.JobStateChange event. </p>
+  syntax:
+    content: public class MediaJobStateChangeEventData
+- uid: com.microsoft.azure.eventgrid.models._resource_action_cancel_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._resource_action_cancel_data.yml
+  name: ResourceActionCancelData
+  nameWithType: ResourceActionCancelData
+  fullName: com.microsoft.azure.eventgrid.models.ResourceActionCancelData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for an Microsoft.Resources.ResourceActionCancel event. This is raised when a resource action operation is canceled. </p>
+  syntax:
+    content: public class ResourceActionCancelData
+- uid: com.microsoft.azure.eventgrid.models._resource_action_failure_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._resource_action_failure_data.yml
+  name: ResourceActionFailureData
+  nameWithType: ResourceActionFailureData
+  fullName: com.microsoft.azure.eventgrid.models.ResourceActionFailureData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.Resources.ResourceActionFailure event. This is raised when a resource action operation fails. </p>
+  syntax:
+    content: public class ResourceActionFailureData
+- uid: com.microsoft.azure.eventgrid.models._resource_action_success_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._resource_action_success_data.yml
+  name: ResourceActionSuccessData
+  nameWithType: ResourceActionSuccessData
+  fullName: com.microsoft.azure.eventgrid.models.ResourceActionSuccessData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.Resources.ResourceActionSuccess event. This is raised when a resource action operation succeeds. </p>
+  syntax:
+    content: public class ResourceActionSuccessData
 - uid: com.microsoft.azure.eventgrid.models._resource_delete_cancel_data
   parent: com.microsoft.azure.eventgrid.models
   href: com.microsoft.azure.eventgrid.models._resource_delete_cancel_data.yml
@@ -318,3 +420,33 @@ references:
   summary: <p>Schema of the Data property of an EventGridEvent for an Microsoft.Storage.BlobDeleted event. </p>
   syntax:
     content: public class StorageBlobDeletedEventData
+- uid: com.microsoft.azure.eventgrid.models._subscription_deleted_event_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._subscription_deleted_event_data.yml
+  name: SubscriptionDeletedEventData
+  nameWithType: SubscriptionDeletedEventData
+  fullName: com.microsoft.azure.eventgrid.models.SubscriptionDeletedEventData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.EventGrid.SubscriptionDeletedEvent. </p>
+  syntax:
+    content: public class SubscriptionDeletedEventData
+- uid: com.microsoft.azure.eventgrid.models._subscription_validation_event_data
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._subscription_validation_event_data.yml
+  name: SubscriptionValidationEventData
+  nameWithType: SubscriptionValidationEventData
+  fullName: com.microsoft.azure.eventgrid.models.SubscriptionValidationEventData
+  type: Class
+  summary: <p>Schema of the Data property of an EventGridEvent for a Microsoft.EventGrid.SubscriptionValidationEvent. </p>
+  syntax:
+    content: public class SubscriptionValidationEventData
+- uid: com.microsoft.azure.eventgrid.models._subscription_validation_response
+  parent: com.microsoft.azure.eventgrid.models
+  href: com.microsoft.azure.eventgrid.models._subscription_validation_response.yml
+  name: SubscriptionValidationResponse
+  nameWithType: SubscriptionValidationResponse
+  fullName: com.microsoft.azure.eventgrid.models.SubscriptionValidationResponse
+  type: Class
+  summary: <p>To complete an event subscription validation handshake, a subscriber can use either the validationCode or the validationUrl received in a SubscriptionValidationEvent. When the validationCode is used, the SubscriptionValidationResponse can be used to build the response. </p>
+  syntax:
+    content: public class SubscriptionValidationResponse
