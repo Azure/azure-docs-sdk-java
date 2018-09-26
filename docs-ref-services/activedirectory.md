@@ -10,7 +10,6 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: active-directory
 ---
 
 # Azure Active Directory libraries for Java
