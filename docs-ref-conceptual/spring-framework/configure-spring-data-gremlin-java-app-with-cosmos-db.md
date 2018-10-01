@@ -149,7 +149,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ![Create the application.yml file][RE01]
 
-1.  Open the *application.yml* file in a text editor, and add the following lines to the file, and replace the sample values with the appropriate properties for your database:
+1. Open the *application.yml* file in a text editor, and add the following lines to the file, and replace the sample values with the appropriate properties for your database:
 
    ```yaml
    gremlin:
