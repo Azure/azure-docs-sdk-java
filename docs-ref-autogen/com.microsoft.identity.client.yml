@@ -1,0 +1,303 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.identity.client
+  id: client
+  children:
+  - com.microsoft.identity.client._authentication_activity
+  - com.microsoft.identity.client._authentication_callback
+  - com.microsoft.identity.client._authentication_result
+  - com.microsoft.identity.client._browser_tab_activity
+  - com.microsoft.identity.client._i_logger_callback
+  - com.microsoft.identity.client._logger
+  - com.microsoft.identity.client._logger._log_level
+  - com.microsoft.identity.client._msal_client_exception
+  - com.microsoft.identity.client._msal_exception
+  - com.microsoft.identity.client._msal_service_exception
+  - com.microsoft.identity.client._msal_ui_required_exception
+  - com.microsoft.identity.client._public_client_application
+  - com.microsoft.identity.client._ui_behavior
+  - com.microsoft.identity.client._user
+  href: com.microsoft.identity.client.yml
+  langs:
+  - java
+  name: com.microsoft.identity.client
+  nameWithType: com.microsoft.identity.client
+  fullName: com.microsoft.identity.client
+  type: Namespace
+  source:
+    remote:
+      path: msal/src/main/java/com/microsoft/identity/client/AuthenticationActivity.java
+      branch: master
+      repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
+    path: msal/src/main/java/com/microsoft/identity/client/AuthenticationActivity.java
+    startLine: 23
+  summary: >-
+    <p>Provides the classes necessary to create a client for Azure Active Directory to get tokens.</p>
+
+    <p></p>
+  syntax:
+    content: package com.microsoft.identity.client
+references:
+- uid: com.microsoft.identity.client._authentication_activity
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._authentication_activity.yml
+  name: AuthenticationActivity
+  nameWithType: AuthenticationActivity
+  fullName: com.microsoft.identity.client.AuthenticationActivity
+  type: Class
+  summary: <p>Custom tab requires the device to have a browser with custom tab support, chrome with version&gt;= 45 comes with the support and is available on all devices with API version&gt;= 16 . The sdk use chrome custom tab, and before launching chrome custom tab, we need to check if chrome package is in the device. If it is, it's safe to launch the chrome custom tab; Otherwise the sdk will launch chrome. AuthenticationActivity will be responsible for checking if it's safe to launch chrome custom tab, if not, will go with chrome browser, if chrome is not installed, we throw error back. </p>
+  syntax:
+    content: public class AuthenticationActivity
+- uid: com.microsoft.identity.client._authentication_callback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._authentication_callback.yml
+  name: AuthenticationCallback
+  nameWithType: AuthenticationCallback
+  fullName: com.microsoft.identity.client.AuthenticationCallback
+  type: Interface
+  summary: <p>Callback passed with token acquisition. <xref uid="com.microsoft.identity.client._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> or <xref uid="com.microsoft.identity.client._msal_exception" data-throw-if-not-resolved="false">MsalException</xref> will be returned back via callback. </p>
+  syntax:
+    content: public interface AuthenticationCallback
+- uid: com.microsoft.identity.client._authentication_result
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._authentication_result.yml
+  name: AuthenticationResult
+  nameWithType: AuthenticationResult
+  fullName: com.microsoft.identity.client.AuthenticationResult
+  type: Class
+  summary: <p>MSAL successful authentication result. When auth succeeds, token will be wrapped into the <xref uid="com.microsoft.identity.client._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> and passed back through the <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref>. </p>
+  syntax:
+    content: public class AuthenticationResult
+- uid: com.microsoft.identity.client._browser_tab_activity
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._browser_tab_activity.yml
+  name: BrowserTabActivity
+  nameWithType: BrowserTabActivity
+  fullName: com.microsoft.identity.client.BrowserTabActivity
+  type: Class
+  summary: >-
+    <p>MSAL activity class (needs to be public in order to be discoverable by the os) to get the browser redirect with auth code from authorize endpoint. This activity has to be exposed by "android:exported=true", and intent filter has to be declared in the manifest for the activity. </p>
+
+    <p>When chrome custom tab is launched, and we're redirected back with the redirect uri (the redirect must be unique across apps on a device), the os will fire an intent with the redirect, and the BrowserTabActivity will be launched. <pre>
+
+    &lt;intent-filter&gt;
+
+        &lt;action android:name="android.intent.action.VIEW" /&gt;</pre></p>
+
+    <p>
+
+      <pre>    To receive implicit intents, have to put the activity in the category of default.
+
+        &lt;category android:name="android.intent.category.DEFAULT" /&gt;</pre>
+
+    </p>
+
+    <p>
+
+      <pre>    The target activity allows itself to be started by a web browser to display data.
+
+        &lt;category android:name="android.intent.category.BROWSABLE" /&gt;</pre>
+
+    </p>
+
+    <p>
+
+      <pre>    BrowserTabActivity will be launched when matching the custom url scheme.
+
+        &lt;data android:scheme="msalclientid" android:host="auth" /&gt;
+
+    &lt;/intent-filter&gt;
+
+    </pre>
+
+    </p>
+  syntax:
+    content: public class BrowserTabActivity
+- uid: com.microsoft.identity.client._i_logger_callback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._i_logger_callback.yml
+  name: ILoggerCallback
+  nameWithType: ILoggerCallback
+  fullName: com.microsoft.identity.client.ILoggerCallback
+  type: Interface
+  summary: <p>Interface for apps to configure the external logging and implement the callback to designate the output of the log messages. </p>
+  syntax:
+    content: public interface ILoggerCallback
+- uid: com.microsoft.identity.client._logger
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._logger.yml
+  name: Logger
+  nameWithType: Logger
+  fullName: com.microsoft.identity.client.Logger
+  type: Class
+  summary: >-
+    <p>Override public void log(String tag, Logger.LogLevel logLevel, String message, String additionalMessage) { } });   Loglevel can be specified at <xref uid="com.microsoft.identity.client._logger._log_level.ERROR" data-throw-if-not-resolved="false">LogLevel#ERROR</xref>, <xref uid="com.microsoft.identity.client._logger._log_level.WARNING" data-throw-if-not-resolved="false">LogLevel#WARNING</xref>, <xref uid="com.microsoft.identity.client._logger._log_level.INFO" data-throw-if-not-resolved="false">LogLevel#INFO</xref> and <xref uid="com.microsoft.identity.client._logger._log_level.VERBOSE" data-throw-if-not-resolved="false">LogLevel#VERBOSE</xref>. The sdk enables the verbose level logging by default, to set different level logging: <pre><code>Logger.getInstance().setLogLevel(Loglevel)
+
+        </code></pre> By default, the sdk doesn't send any log messages that contain PII (personal identifiable information) info. To enable PII logging: <pre><code>Logger.getInstance().setEnablePII(true);
+
+        </code></pre></p>
+  syntax:
+    content: public class Logger
+- uid: com.microsoft.identity.client._msal_client_exception
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._msal_client_exception.yml
+  name: MsalClientException
+  nameWithType: MsalClientException
+  fullName: com.microsoft.identity.client.MsalClientException
+  type: Class
+  summary: >-
+    <p>This exception class represents general errors that are local to the library. Below is the table of proposed codes and a short description of each. </p>
+
+    <p>Set of error codes that could be returned from this exception: <ul><li><p>multiple_matching_tokens_detected: There are multiple cache entries found and the sdk cannot identify the correct access or refresh token from the cache. This usually indicates a bug in the sdk for storing tokens or the authority is not provided in the silent request and multiple matching tokens found.  </p></li><li><p>device_network_not_available: No active network is available on the device.  </p></li><li><p>json_parse_failure: The sdk failed to parse the JSON format. </p></li><li><p>io_error: IOException happened, could be the device/network errors.  </p></li><li><p>malformed_url: The url is malformed. Likely caused when constructing the auth request, authority, or redirect URI.  </p></li><li><p>unsupported_encoding: The encoding is not supported by the device.  </p></li><li><p>no_such_algorithm: The algorithm used to generate pkce challenge is not supported.  </p></li><li><p>invalid_jwt: JWT returned by the server is not valid, empty or malformed.  </p></li><li><p>state_mismatch: State from authorization response did not match the state in the authorization request. For authorization requests, the sdk will verify the state returned from redirect and the one sent in the request.  </p></li><li><p>unresolvable_intent: The intent to launch <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref> is not resolvable by the OS or the intent doesn't contain the required data.  </p></li><li><p>unsupported_url: Unsupported url, cannot perform ADFS authority validation.  </p></li><li><p>authority_validation_not_supported: The authority is not supported for authority validation. The sdk supports b2c authorities, but doesn't support b2c authority validation. Only well-known host will be supported.  </p></li><li><p>chrome_not_installed: Chrome is not installed on the device. The sdk uses chrome custom tab for authorization requests if available, and will fall back to chrome browser.  </p></li><li><p>user_mismatch: The user provided in the acquire token request doesn't match the user returned from server. </p></li></ul></p>
+  syntax:
+    content: public class MsalClientException extends MsalException
+- uid: com.microsoft.identity.client._msal_exception
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._msal_exception.yml
+  name: MsalException
+  nameWithType: MsalException
+  fullName: com.microsoft.identity.client.MsalException
+  type: Class
+  summary: >-
+    <p>
+
+      <xref uid="com.microsoft.identity.client._msal_exception" data-throw-if-not-resolved="false">MsalException</xref> thrown or sent back via callback, representing the detailed exception thrown by the sdk. It will contain the error code, error description (could be null) or throwable (could be null). </p>
+  syntax:
+    content: public class MsalException
+- uid: com.microsoft.identity.client._msal_service_exception
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._msal_service_exception.yml
+  name: MsalServiceException
+  nameWithType: MsalServiceException
+  fullName: com.microsoft.identity.client.MsalServiceException
+  type: Class
+  summary: >-
+    <p>This exception class represents errors when communicating to the service, can be from the authorize or token endpoints. MSAL reads the error and error_description from the server response. Generally, these errors are resolved by fixing app configurations either in code or in the app registration portal. </p>
+
+    <p>Set of error codes that could be returned from this exception: <ul><li><p>invalid_request: This request is missing a required parameter, includes an invalid parameter, includes a parameter more than once, or is otherwise malformed. </p></li><li><p>unauthorized_client: The client is not authorized to request an authorization code.  </p></li><li><p>access_denied: The resource owner or authorization server denied the request. </p></li><li><p>invalid_scope: The request scope is invalid, unknown or malformed.  </p></li><li><p>service_not_available: Represents 500/503/504 error codes.  </p></li><li><p>request_timeout: Represents <xref uid="" data-throw-if-not-resolved="false">java.net.SocketTimeoutException</xref>.  </p></li><li><p>invalid_instance: Authority validation failed.  </p></li><li><p>unknown_error: Request to server failed, but no error and error_description was returned from the service.  </p></li></ul></p>
+
+    <p>Note: <xref uid="com.microsoft.identity.client._msal_service_exception" data-throw-if-not-resolved="false">MsalServiceException</xref> provides one extra API: </p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>
+
+            <xref uid="com.microsoft.identity.client._msal_service_exception.getHttpStatusCode()" data-throw-if-not-resolved="false">MsalServiceException#getHttpStatusCode()</xref> : indicates the http status code for the failed request.  </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+  syntax:
+    content: public class MsalServiceException extends MsalException
+- uid: com.microsoft.identity.client._msal_ui_required_exception
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._msal_ui_required_exception.yml
+  name: MsalUiRequiredException
+  nameWithType: MsalUiRequiredException
+  fullName: com.microsoft.identity.client.MsalUiRequiredException
+  type: Class
+  summary: >-
+    <p>This exception indicates that UI is required for authentication to succeed. </p>
+
+    <p>Error codes that can be returned from this exception: <ul><li><p>invalid_grant: The refresh token used to redeem access token is invalid, expired or revoked.  </p></li><li><p>no_tokens_found: Access token doesn't exist and no refresh token can be found to redeem access token.  </p></li></ul></p>
+  syntax:
+    content: public class MsalUiRequiredException extends MsalException
+- uid: com.microsoft.identity.client._public_client_application
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._public_client_application.yml
+  name: PublicClientApplication
+  nameWithType: PublicClientApplication
+  fullName: com.microsoft.identity.client.PublicClientApplication
+  type: Class
+  summary: >-
+    <p>This is the entry point for developer to create public native applications and make API calls to acquire tokens. </p>
+
+    <p>
+
+      <b>Client ID:</b> The clientID of your application is a unique identifier which can be obtained from the app registration portal.</p>
+
+    <p>
+
+      <b>Authority:</b> A URL indicating a directory that MSAL can use to obtain tokens. In Azure AD it is of the form <a href="https://">https://</a>&lt;[nstance]/[tenant], where [instance] is the directory host (e.g. <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>) and [tenant] is an identifier within the directory itself (e.g. a domain associated to the tenant, such as contoso.onmicrosoft.com, or the GUID representing the TenantID property of the directory) For B2C, it is of the form <a href="https://">https://</a>[instance]/tfp/[tenant]/[policy] where instance and tenant are same as Azure AD, and [policy] is a string like signup</p>
+
+    <p>MSAL <xref uid="com.microsoft.identity.client._public_client_application" data-throw-if-not-resolved="false">PublicClientApplication</xref> provides three constructors allowing the client id to be set either via AndroidManifest.xml metadata or using constructor parameters. Similarly, if developer chooses not to use the default authority <a href="https://login.microsoftonline.com,">https://login.microsoftonline.com,</a> an alternate can also be configured using the manifest, constructor parameters, or in acquire token calls. </p>
+
+    <p>Redirect is auto-generated in the library in the format of msal&lt;client-id&gt;://auth, and it cannot be overridden. </p>
+
+    <p>Developer <b>MUST</b> have <xref uid="com.microsoft.identity.client._browser_tab_activity" data-throw-if-not-resolved="false">BrowserTabActivity</xref> declared in their manifest, which must have the correct intent-filter configured. If the wrong scheme and host is provided, the sdk will fail the <xref uid="com.microsoft.identity.client._public_client_application" data-throw-if-not-resolved="false">PublicClientApplication</xref> creation. </p>
+
+    <p>Expected format will be: <pre>
+
+    &lt;activity
+
+        android:name="com.microsoft.identity.client.BrowserTabActivity"&gt;
+
+        &lt;intent-filter&gt;
+
+            &lt;action android:name="android.intent.action.VIEW" /&gt;
+
+            &lt;category android:name="android.intent.category.DEFAULT" /&gt;
+
+            &lt;category android:name="android.intent.category.BROWSABLE" /&gt;
+
+            &lt;data android:scheme="msal&amp;lt;AppClientId&amp;gt;"
+
+                 android:host="auth" /&gt;
+
+        &lt;/intent-filter&gt;
+
+    &lt;/activity&gt;
+
+    </pre></p>
+
+    <p>Other Terminology:</p>
+
+    <p>
+
+      <b>Scopes:</b>Permissions that the developers wants included in the access token received . Not all scopes are guaranteed to be included in the access token returned. </p>
+
+    <p>
+
+      <b>Login Hint:</b> Usually an email, to pass to the service at the beginning of the interactive authentication flow. </p>
+
+    <p>
+
+      <b>Extra Scopes to Consent:</b> Permissions you want the user to consent to in the same authentication flow, but won't be included in the returned access token. </p>
+  syntax:
+    content: public class PublicClientApplication
+- uid: com.microsoft.identity.client._ui_behavior
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._ui_behavior.yml
+  name: UiBehavior
+  nameWithType: UiBehavior
+  fullName: com.microsoft.identity.client.UiBehavior
+  type: Enum
+  summary: <p>The UI options that developer can pass during interactive token acquisition requests. </p>
+  syntax:
+    content: public enum UiBehavior
+- uid: com.microsoft.identity.client._user
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._user.yml
+  name: User
+  nameWithType: User
+  fullName: com.microsoft.identity.client.User
+  type: Class
+  summary: <p>Contains the detailed info to identify a user. Sign out functionality is provided at the <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> level. </p>
+  syntax:
+    content: public class User
+- uid: com.microsoft.identity.client._logger._log_level
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._logger._log_level.yml
+  name: Logger.LogLevel
+  nameWithType: Logger.LogLevel
+  fullName: com.microsoft.identity.client.Logger.LogLevel
+  type: Enum
+  summary: <p>Enum class for LogLevel that the sdk recognizes. </p>
+  syntax:
+    content: public enum LogLevel
