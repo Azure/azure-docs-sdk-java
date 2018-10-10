@@ -5,24 +5,23 @@ items:
   parent: com.microsoft.identity.client
   children:
   - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,final String,final boolean,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@Nullable final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,@Nullable final List<Pair<String, String>>,final String [],final String,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@Nullable final String,final boolean,@NonNull final AuthenticationCallback)
+  - com.microsoft.identity.client._public_client_application.getAccount(final String)
+  - com.microsoft.identity.client._public_client_application.getAccounts()
+  - com.microsoft.identity.client._public_client_application.getConfiguration()
   - com.microsoft.identity.client._public_client_application.getSdkVersion()
-  - com.microsoft.identity.client._public_client_application.getUser(final String)
-  - com.microsoft.identity.client._public_client_application.getUsers()
-  - com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)
+  - com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)
   - com.microsoft.identity.client._public_client_application.PublicClientApplication(@NonNull final Context)
   - com.microsoft.identity.client._public_client_application.PublicClientApplication(@NonNull final Context,@NonNull final String)
   - com.microsoft.identity.client._public_client_application.PublicClientApplication(@NonNull final Context,@NonNull final String,@NonNull final String)
-  - com.microsoft.identity.client._public_client_application.remove(final User)
-  - com.microsoft.identity.client._public_client_application.setComponent(final String)
-  - com.microsoft.identity.client._public_client_application.setSliceParameters(final String)
-  - com.microsoft.identity.client._public_client_application.setValidateAuthority(final boolean)
+  - com.microsoft.identity.client._public_client_application.PublicClientApplication(@NonNull final Context,final int)
+  - com.microsoft.identity.client._public_client_application.removeAccount(final IAccount)
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
@@ -36,7 +35,7 @@ items:
       branch: master
       repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 94
+    startLine: 130
   package: com.microsoft.identity.client
   summary: >-
     <p>This is the entry point for developer to create public native applications and make API calls to acquire tokens. </p>
@@ -47,7 +46,7 @@ items:
 
     <p>
 
-      <b>Authority:</b> A URL indicating a directory that MSAL can use to obtain tokens. In Azure AD it is of the form <a href="https://">https://</a>&lt;[nstance]/[tenant], where [instance] is the directory host (e.g. <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>) and [tenant] is an identifier within the directory itself (e.g. a domain associated to the tenant, such as contoso.onmicrosoft.com, or the GUID representing the TenantID property of the directory) For B2C, it is of the form <a href="https://">https://</a>[instance]/tfp/[tenant]/[policy] where instance and tenant are same as Azure AD, and [policy] is a string like signup</p>
+      <b>AuthorityMetadata:</b> A URL indicating a directory that MSAL can use to obtain tokens. In Azure AD it is of the form <a href="https://">https://</a>&lt;[nstance]/[tenant], where [instance] is the directory host (e.g. <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>) and [tenant] is an identifier within the directory itself (e.g. a domain associated to the tenant, such as contoso.onmicrosoft.com, or the GUID representing the TenantID property of the directory) For B2C, it is of the form <a href="https://">https://</a>[instance]/tfp/[tenant]/[policy] where instance and tenant are same as Azure AD, and [policy] is a string like signup</p>
 
     <p>MSAL <xref uid="com.microsoft.identity.client._public_client_application" data-throw-if-not-resolved="false">PublicClientApplication</xref> provides three constructors allowing the client id to be set either via AndroidManifest.xml metadata or using constructor parameters. Similarly, if developer chooses not to use the default authority <a href="https://login.microsoftonline.com,">https://login.microsoftonline.com,</a> an alternate can also be configured using the manifest, constructor parameters, or in acquire token calls. </p>
 
@@ -110,7 +109,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 349
+    startLine: 432
   package: com.microsoft.identity.client
   summary: >-
     <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
@@ -121,74 +120,203 @@ items:
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All apps doing an interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All apps doing an interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
     - id: callback
       type: d6b37550com.microsoft.identity.client._authentication_callback
       description: <p>The <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,@NonNull final AuthenticationCallback)
-  id: acquireToken(@NonNull final Activity,@NonNull final String [],final String,@NonNull final AuthenticationCallback)
+- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
+  id: acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, @NonNull final AuthenticationCallback callback)
+  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
   overload: com.microsoft.identity.client._public_client_application.acquireToken*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 377
+    startLine: 575
   package: com.microsoft.identity.client
   summary: >-
     <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
 
     <p></p>
   syntax:
-    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, @NonNull final AuthenticationCallback callback)
+    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+    - id: scopes
+      type: e5895f1f
+      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
+    - id: account
+      type: 9a7d2fbdcom.microsoft.identity.client._i_account
+      description: <p>Optional. If provided, will be used to force the session continuation. If user tries to sign in with a different user, error will be returned. </p>
+    - id: uiBehavior
+      type: d6b37550com.microsoft.identity.client._ui_behavior
+      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
+    - id: extraQueryParameters
+      type: 49327aac
+      description: <p>Optional. The extra query parameter sent to authorize endpoint. </p>
+    - id: callback
+      type: d6b37550com.microsoft.identity.client._authentication_callback
+      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
+- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@Nullable final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  id: acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@Nullable final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback)
+  overload: com.microsoft.identity.client._public_client_application.acquireToken*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 689
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback)
+    parameters:
+    - id: activity
+      type: "97576948"
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+    - id: scopes
+      type: e5895f1f
+      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
+    - id: account
+      type: 9a7d2fbdcom.microsoft.identity.client._i_account
+      description: <p>Optional. If provided, will be used to force the session continuation. If user tries to sign in with a different user, error will be returned. </p>
+    - id: uiBehavior
+      type: d6b37550com.microsoft.identity.client._ui_behavior
+      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
+    - id: extraQueryParameters
+      type: 49327aac
+      description: <p>Optional. The extra query parameter sent to authorize endpoint. </p>
+    - id: extraScopesToConsent
+      type: 9aad4ff7
+      description: <p>Optional. The extra scopes to request consent. </p>
+    - id: authority
+      type: b868e8dd
+      description: <p>Optional. Can be passed to override the configured authority. </p>
+    - id: callback
+      type: d6b37550com.microsoft.identity.client._authentication_callback
+      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
+- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  id: acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final AuthenticationCallback)
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
+  overload: com.microsoft.identity.client._public_client_application.acquireToken*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 477
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
+    parameters:
+    - id: activity
+      type: "97576948"
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
     - id: loginHint
-      type: 3d93591e
+      type: b868e8dd
       description: <p>Optional. If provided, will be used as the query parameter sent for authenticating the user, which will have the UPN pre-populated. </p>
     - id: callback
       type: d6b37550com.microsoft.identity.client._authentication_callback
       description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,@NonNull final AuthenticationCallback)
-  id: acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,@NonNull final AuthenticationCallback)
+- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
+  id: acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final String,@NonNull final UiBehavior,@Nullable final List<Pair<String, String>>,@NonNull final AuthenticationCallback)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParameters, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParameters, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParameters, @NonNull final AuthenticationCallback callback)
+  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
   overload: com.microsoft.identity.client._public_client_application.acquireToken*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 408
+    startLine: 525
   package: com.microsoft.identity.client
   summary: >-
     <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
 
     <p></p>
   syntax:
-    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParameters, @NonNull final AuthenticationCallback callback)
+    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @NonNull final AuthenticationCallback callback)
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
+    - id: scopes
+      type: e5895f1f
+      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
+    - id: loginHint
+      type: b868e8dd
+      description: <p>Optional. If provided, will be used as the query parameter sent for authenticating the user, which will have the UPN pre-populated. </p>
+    - id: uiBehavior
+      type: d6b37550com.microsoft.identity.client._ui_behavior
+      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
+    - id: extraQueryParameters
+      type: 49327aac
+      description: <p>Optional. The extra query parameters sent to authorize endpoint. </p>
+    - id: callback
+      type: d6b37550com.microsoft.identity.client._authentication_callback
+      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
+- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,@Nullable final List<Pair<String, String>>,final String [],final String,@NonNull final AuthenticationCallback)
+  id: acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,@Nullable final List<Pair<String, String>>,final String [],final String,@NonNull final AuthenticationCallback)
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
+  overload: com.microsoft.identity.client._public_client_application.acquireToken*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 635
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
+
+    <p></p>
+  syntax:
+    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
+    parameters:
+    - id: activity
+      type: "97576948"
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
@@ -199,48 +327,7 @@ items:
       type: 93de0ef9com.microsoft.identity.client._ui_behavior
       description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
     - id: extraQueryParameters
-      type: 3d93591e
-      description: <p>Optional. The extra query parameters sent to authorize endpoint. </p>
-    - id: callback
-      type: d6b37550com.microsoft.identity.client._authentication_callback
-      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  id: acquireToken(@NonNull final Activity,@NonNull final String [],final String,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  overload: com.microsoft.identity.client._public_client_application.acquireToken*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 472
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
-
-    <p></p>
-  syntax:
-    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final String loginHint, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-    parameters:
-    - id: activity
-      type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
-    - id: scopes
-      type: e5895f1f
-      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: loginHint
-      type: 3d93591e
-      description: <p>Optional. If provided, will be used as the query parameter sent for authenticating the user, which will have the UPN pre-populated. </p>
-    - id: uiBehavior
-      type: 93de0ef9com.microsoft.identity.client._ui_behavior
-      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
-    - id: extraQueryParams
-      type: 3d93591e
+      type: 49327aac
       description: <p>Optional. The extra query parameter sent to authorize endpoint. </p>
     - id: extraScopesToConsent
       type: 3e8f7ba4
@@ -251,166 +338,78 @@ items:
     - id: callback
       type: d6b37550com.microsoft.identity.client._authentication_callback
       description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,@NonNull final AuthenticationCallback)
-  id: acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,@NonNull final AuthenticationCallback)
+- uid: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@NonNull final AuthenticationCallback)
+  id: acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@NonNull final AuthenticationCallback)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParameter, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParameter, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParameter, @NonNull final AuthenticationCallback callback)
-  overload: com.microsoft.identity.client._public_client_application.acquireToken*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 439
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
-
-    <p></p>
-  syntax:
-    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParameter, @NonNull final AuthenticationCallback callback)
-    parameters:
-    - id: activity
-      type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
-    - id: scopes
-      type: e5895f1f
-      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: user
-      type: 93de0ef9com.microsoft.identity.client._user
-      description: <p>Optional. If provided, will be used to force the session continuation. If user tries to sign in with a different user, error will be returned. </p>
-    - id: uiBehavior
-      type: 93de0ef9com.microsoft.identity.client._ui_behavior
-      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
-    - id: extraQueryParameter
-      type: 3d93591e
-      description: <p>Optional. The extra query parameter sent to authorize endpoint. </p>
-    - id: callback
-      type: d6b37550com.microsoft.identity.client._authentication_callback
-      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  id: acquireToken(@NonNull final Activity,@NonNull final String [],final User,final UiBehavior,final String,final String [],final String,@NonNull final AuthenticationCallback)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-  overload: com.microsoft.identity.client._public_client_application.acquireToken*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 506
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> is <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>.</p>
-
-    <p></p>
-  syntax:
-    content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, final User user, final UiBehavior uiBehavior, final String extraQueryParams, final String[] extraScopesToConsent, final String authority, @NonNull final AuthenticationCallback callback)
-    parameters:
-    - id: activity
-      type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that will be used as the parent activity for launching the <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. All the apps doing interactive request are required to call the <xref uid="com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)" data-throw-if-not-resolved="false">PublicClientApplication#handleInteractiveRequestRedirect(int, int, Intent)</xref> within the calling activity <xref uid="" data-throw-if-not-resolved="false">Activity#onActivityResult(int, int, Intent)</xref>. </p>
-    - id: scopes
-      type: e5895f1f
-      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: user
-      type: 93de0ef9com.microsoft.identity.client._user
-      description: <p>Optional. If provided, will be used to force the session continuation. If user tries to sign in with a different user, error will be returned. </p>
-    - id: uiBehavior
-      type: 93de0ef9com.microsoft.identity.client._ui_behavior
-      description: <p>The <xref uid="com.microsoft.identity.client._ui_behavior" data-throw-if-not-resolved="false">UiBehavior</xref> for prompting behavior. By default, the sdk use <xref uid="com.microsoft.identity.client._ui_behavior.SELECT_ACCOUNT" data-throw-if-not-resolved="false">UiBehavior#SELECT_ACCOUNT</xref>. </p>
-    - id: extraQueryParams
-      type: 3d93591e
-      description: <p>Optional. The extra query parameter sent to authorize endpoint. </p>
-    - id: extraScopesToConsent
-      type: 3e8f7ba4
-      description: <p>Optional. The extra scopes to request consent. </p>
-    - id: authority
-      type: 3d93591e
-      description: <p>Optional. Can be passed to override the configured authority. </p>
-    - id: callback
-      type: d6b37550com.microsoft.identity.client._authentication_callback
-      description: <p>The Non-null <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,@NonNull final AuthenticationCallback)
-  id: acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,@NonNull final AuthenticationCallback)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, @NonNull final AuthenticationCallback callback)
+  name: acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final AuthenticationCallback callback)
   overload: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 531
+    startLine: 738
   package: com.microsoft.identity.client
   summary: >-
     <p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>
 
     <p></p>
   syntax:
-    content: public void acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, @NonNull final AuthenticationCallback callback)
+    content: public void acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final AuthenticationCallback callback)
     parameters:
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: user
-      type: d6b37550com.microsoft.identity.client._user
+    - id: account
+      type: d6b37550com.microsoft.identity.client._i_account
       description: >-
         <p>
 
-          <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> represents the user to silently request tokens. </p>
+          <xref uid="com.microsoft.identity.client._i_account" data-throw-if-not-resolved="false">IAccount</xref> represents the account to silently request tokens. </p>
     - id: callback
       type: d6b37550com.microsoft.identity.client._authentication_callback
       description: >-
         <p>
 
           <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> that is used to send the result back. The success result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref>. Failure case will be sent back via { <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">}. </xref></p>
-- uid: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,final String,final boolean,@NonNull final AuthenticationCallback)
-  id: acquireTokenSilentAsync(@NonNull final String [],@NonNull final User,final String,final boolean,@NonNull final AuthenticationCallback)
+- uid: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@Nullable final String,final boolean,@NonNull final AuthenticationCallback)
+  id: acquireTokenSilentAsync(@NonNull final String [],@NonNull final IAccount,@Nullable final String,final boolean,@NonNull final AuthenticationCallback)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
+  name: acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @Nullable final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
+  nameWithType: PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @Nullable final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @Nullable final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
   overload: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 554
+    startLine: 779
   package: com.microsoft.identity.client
   summary: >-
     <p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>
 
     <p></p>
   syntax:
-    content: public void acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final User user, final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
+    content: public void acquireTokenSilentAsync(@NonNull final String[] scopes, @NonNull final IAccount account, @Nullable final String authority, final boolean forceRefresh, @NonNull final AuthenticationCallback callback)
     parameters:
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: user
-      type: d6b37550com.microsoft.identity.client._user
+    - id: account
+      type: d6b37550com.microsoft.identity.client._i_account
       description: >-
         <p>
 
-          <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> represents the user to silently request tokens. </p>
+          <xref uid="com.microsoft.identity.client._i_account" data-throw-if-not-resolved="false">IAccount</xref> represents the account to silently request tokens. </p>
     - id: authority
-      type: 3d93591e
+      type: b868e8dd
       description: <p>Optional. Can be passed to override the configured authority. </p>
     - id: forceRefresh
       type: 4dda0764
@@ -421,6 +420,84 @@ items:
         <p>
 
           <xref uid="com.microsoft.identity.client._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> that is used to send the result back. The success result will be sent back via <xref uid="com.microsoft.identity.client._authentication_callback.onSuccess(final AuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(AuthenticationResult)</xref>. Failure case will be sent back via { <xref uid="com.microsoft.identity.client._authentication_callback.onError(final MsalException)" data-throw-if-not-resolved="false">}. </xref></p>
+- uid: com.microsoft.identity.client._public_client_application.getAccount(final String)
+  id: getAccount(final String)
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: getAccount(final String homeAccountIdentifier)
+  nameWithType: PublicClientApplication.getAccount(final String homeAccountIdentifier)
+  fullName: com.microsoft.identity.client.PublicClientApplication.getAccount(final String homeAccountIdentifier)
+  overload: com.microsoft.identity.client._public_client_application.getAccount*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 348
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Returns the IAccount object matching the supplied home_account_id.</p>
+
+    <p></p>
+  syntax:
+    content: public IAccount getAccount(final String homeAccountIdentifier)
+    parameters:
+    - id: homeAccountIdentifier
+      type: 3d93591e
+      description: <p>The home_account_id of the sought IAccount. </p>
+    return:
+      type: com.microsoft.identity.client._i_account
+      description: <p>The IAccount stored in the cache or null, if no such matching entry exists. </p>
+- uid: com.microsoft.identity.client._public_client_application.getAccounts()
+  id: getAccounts()
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: getAccounts()
+  nameWithType: PublicClientApplication.getAccounts()
+  fullName: com.microsoft.identity.client.PublicClientApplication.getAccounts()
+  overload: com.microsoft.identity.client._public_client_application.getAccounts*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 324
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Returns a List of <xref uid="com.microsoft.identity.client._i_account" data-throw-if-not-resolved="false">IAccount</xref> objects for which this application has RefreshTokens.</p>
+
+    <p></p>
+  syntax:
+    content: public List<IAccount> getAccounts()
+    return:
+      type: 5618da2dcom.microsoft.identity.client._i_accounta08ddfce
+      description: <p>An immutable List of IAccount objects - empty if no IAccounts exist. </p>
+- uid: com.microsoft.identity.client._public_client_application.getConfiguration()
+  id: getConfiguration()
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: getConfiguration()
+  nameWithType: PublicClientApplication.getConfiguration()
+  fullName: com.microsoft.identity.client.PublicClientApplication.getConfiguration()
+  overload: com.microsoft.identity.client._public_client_application.getConfiguration*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 315
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>Returns the PublicClientConfiguration for this instance of PublicClientApplication Configuration is based on the defaults established for MSAl and can be overridden by creating the PublicClientApplication using <xref uid="" data-throw-if-not-resolved="false">PublicClientApplication#PublicClientApplication(Context, int)</xref></p>
+
+    <p></p>
+  syntax:
+    content: public PublicClientApplicationConfiguration getConfiguration()
+    return:
+      type: com.microsoft.identity.client._public_client_application_configuration
 - uid: com.microsoft.identity.client._public_client_application.getSdkVersion()
   id: getSdkVersion()
   parent: com.microsoft.identity.client._public_client_application
@@ -435,101 +512,41 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 238
+    startLine: 304
   package: com.microsoft.identity.client
   syntax:
     content: public static String getSdkVersion()
     return:
       type: "26831127"
       description: <p>The current version for the sdk. </p>
-- uid: com.microsoft.identity.client._public_client_application.getUser(final String)
-  id: getUser(final String)
+- uid: com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)
+  id: handleInteractiveRequestRedirect(final int,final int,final Intent)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: getUser(final String userIdentifier)
-  nameWithType: PublicClientApplication.getUser(final String userIdentifier)
-  fullName: com.microsoft.identity.client.PublicClientApplication.getUser(final String userIdentifier)
-  overload: com.microsoft.identity.client._public_client_application.getUser*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 302
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Returns the <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> that is matching the provided user identifier.</p>
-
-    <p></p>
-  syntax:
-    content: public User getUser(final String userIdentifier)
-    parameters:
-    - id: userIdentifier
-      type: 3d93591e
-      description: <p>The unique identifier for a <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> across tenant. </p>
-    return:
-      type: com.microsoft.identity.client._user
-      description: <p>The <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> matching the provided user identifier. </p>
-  exceptions:
-  - type: dfc6533b
-    description: <p>If failed to retrieve users from the cache. </p>
-- uid: com.microsoft.identity.client._public_client_application.getUsers()
-  id: getUsers()
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: getUsers()
-  nameWithType: PublicClientApplication.getUsers()
-  fullName: com.microsoft.identity.client.PublicClientApplication.getUsers()
-  overload: com.microsoft.identity.client._public_client_application.getUsers*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 281
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Returns the list of <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref>s we have tokens in the cache.</p>
-
-    <p></p>
-  syntax:
-    content: public List<User> getUsers()
-    return:
-      type: 5618da2dcom.microsoft.identity.client._usera08ddfce
-      description: <p>Immutable List of <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref>. </p>
-  exceptions:
-  - type: dfc6533b
-    description: <p>If failed to retrieve users from the cache. </p>
-- uid: com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)
-  id: handleInteractiveRequestRedirect(int,int,final Intent)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
-  nameWithType: PublicClientApplication.handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
-  fullName: com.microsoft.identity.client.PublicClientApplication.handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
+  name: handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
+  nameWithType: PublicClientApplication.handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
+  fullName: com.microsoft.identity.client.PublicClientApplication.handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
   overload: com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 325
+    startLine: 408
   package: com.microsoft.identity.client
   summary: >-
     <p>MSAL requires the calling app to pass an <xref uid="" data-throw-if-not-resolved="false">Activity</xref> which <b> MUST </b> call this method to get the auth code passed back correctly.</p>
 
     <p></p>
-  syntax: &o3
-    content: public void handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
+  syntax: &o2
+    content: public void handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
     parameters:
     - id: requestCode
-      type: f75371fa
+      type: cd225469
       description: <p>The request code for interactive request. </p>
     - id: resultCode
-      type: f75371fa
+      type: cd225469
       description: <p>The result code for the request to get auth code. </p>
     - id: data
       type: afc0a73e
@@ -551,9 +568,33 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 155
+    startLine: 183
   package: com.microsoft.identity.client
   summary: >-
+    <p>
+
+    Note: The <xref uid="" data-throw-if-not-resolved="false">Context</xref> should be the application context instead of the running activity's context, which could potentially make the sdk hold a strong reference to the activity, thus preventing correct garbage collection and causing bugs. </p>
+
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000025">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>This constructor has been replaced with one that leverages a configuration file. </p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
+
+    <p>Use <xref uid="" data-throw-if-not-resolved="false">PublicClientApplication#PublicClientApplication(Context, int)</xref></p>
+
+    <p>instead. </p>
+
     <p>
 
       <xref uid="" data-throw-if-not-resolved="false">PublicClientApplication#PublicClientApplication(Context)</xref> will read the client id (which must be set) from manifest, and if authority is not set, default authority(<a href="https://login.microsoftonline.com/common">https://login.microsoftonline.com/common</a>) will be used. </p>
@@ -562,11 +603,7 @@ items:
 
     <p>Redirect uri <b>MUST</b> be set in the manifest as the meta data(<xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref> will be thrown if client id is not provided), name for redirect uri in metadata is: "com.microsoft.identity.client.RedirectUri". </p>
 
-    <p>Authority can be set in the meta data, if not provided, the sdk will use the default authority <a href="https://login.microsoftonline.com/common">https://login.microsoftonline.com/common</a>. </p>
-
-    <p>
-
-    Note: The <xref uid="" data-throw-if-not-resolved="false">Context</xref> should be the application context instead of the running activity's context, which could potentially make the sdk hold a strong reference to the activity, thus preventing correct garbage collection and causing bugs. </p>
+    <p>AuthorityMetadata can be set in the meta data, if not provided, the sdk will use the default authority <a href="https://login.microsoftonline.com/common">https://login.microsoftonline.com/common</a>. </p>
   syntax:
     content: public PublicClientApplication(@NonNull final Context context)
     parameters:
@@ -587,7 +624,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 180
+    startLine: 239
   package: com.microsoft.identity.client
   summary: >-
     <p>
@@ -622,7 +659,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 210
+    startLine: 270
   package: com.microsoft.identity.client
   summary: >-
     <p>
@@ -646,113 +683,74 @@ items:
     - id: authority
       type: 8789feb4
       description: <p>The default authority to be used for the authority. </p>
-- uid: com.microsoft.identity.client._public_client_application.remove(final User)
-  id: remove(final User)
+- uid: com.microsoft.identity.client._public_client_application.PublicClientApplication(@NonNull final Context,final int)
+  id: PublicClientApplication(@NonNull final Context,final int)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
   langs:
   - java
-  name: remove(final User user)
-  nameWithType: PublicClientApplication.remove(final User user)
-  fullName: com.microsoft.identity.client.PublicClientApplication.remove(final User user)
-  overload: com.microsoft.identity.client._public_client_application.remove*
+  name: PublicClientApplication(@NonNull final Context context, final int configFileResourceId)
+  nameWithType: PublicClientApplication.PublicClientApplication(@NonNull final Context context, final int configFileResourceId)
+  fullName: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final Context context, final int configFileResourceId)
+  overload: com.microsoft.identity.client._public_client_application.PublicClientApplication*
+  type: Constructor
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
+    startLine: 216
+  package: com.microsoft.identity.client
+  summary: >-
+    <p>
+
+      <xref uid="" data-throw-if-not-resolved="false">PublicClientApplication#PublicClientApplication(Context, int)</xref> will read the client id and other configuration settings from the file included in your applications resources. </p>
+
+    <p>For more information on adding configuration files to your applications resources please</p>
+
+    <p>
+
+    Note: The <xref uid="" data-throw-if-not-resolved="false">Context</xref> should be the application context instead of the running activity's context, which could potentially make the sdk hold a strong reference to the activity, thus preventing correct garbage collection and causing bugs. </p>
+
+    <p>
+
+    For more information on the schema of the MSAL config json please </p>
+  syntax:
+    content: public PublicClientApplication(@NonNull final Context context, final int configFileResourceId)
+    parameters:
+    - id: context
+      type: 3c9b8ebf
+      description: <p>Application's <xref uid="" data-throw-if-not-resolved="false">Context</xref>. The sdk requires the application context to be passed in <xref uid="com.microsoft.identity.client._public_client_application" data-throw-if-not-resolved="false">PublicClientApplication</xref>. Cannot be null. </p>
+    - id: configFileResourceId
+      type: cd225469
+      description: <p>The resource ID of the raw file containing the JSON configuration for the PublicClientApplication </p>
+- uid: com.microsoft.identity.client._public_client_application.removeAccount(final IAccount)
+  id: removeAccount(final IAccount)
+  parent: com.microsoft.identity.client._public_client_application
+  href: com.microsoft.identity.client._public_client_application.yml
+  langs:
+  - java
+  name: removeAccount(final IAccount account)
+  nameWithType: PublicClientApplication.removeAccount(final IAccount account)
+  fullName: com.microsoft.identity.client.PublicClientApplication.removeAccount(final IAccount account)
+  overload: com.microsoft.identity.client._public_client_application.removeAccount*
   type: Method
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 569
+    startLine: 380
   package: com.microsoft.identity.client
   summary: >-
-    <p>Deletes all matching tokens (access &amp; refresh tokens) for the <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> instance from the application cache.</p>
+    <p>Removes the Account and Credentials (tokens) for the supplied IAccount.</p>
 
     <p></p>
   syntax:
-    content: public void remove(final User user)
+    content: public boolean removeAccount(final IAccount account)
     parameters:
-    - id: user
-      type: 93de0ef9com.microsoft.identity.client._user
-      description: >-
-        <p>
-
-          <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> whose tokens should be deleted. </p>
-- uid: com.microsoft.identity.client._public_client_application.setComponent(final String)
-  id: setComponent(final String)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: setComponent(final String component)
-  nameWithType: PublicClientApplication.setComponent(final String component)
-  fullName: com.microsoft.identity.client.PublicClientApplication.setComponent(final String component)
-  overload: com.microsoft.identity.client._public_client_application.setComponent*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 261
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Specify the string identifier to identify the component that consumes MSAL. This is intended for libraries that consume MSAL which are embedded in apps that might also be using MSAL as well. This allows logging, telemetry apps, or library developers to differentiate MSAL usage from the app to MSAL usage by component libraries.</p>
-
-    <p></p>
-  syntax:
-    content: public void setComponent(final String component)
-    parameters:
-    - id: component
-      type: 3d93591e
-      description: <p>The component identifier string passed into MSAL when creating the application object </p>
-- uid: com.microsoft.identity.client._public_client_application.setSliceParameters(final String)
-  id: setSliceParameters(final String)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: setSliceParameters(final String sliceParameters)
-  nameWithType: PublicClientApplication.setSliceParameters(final String sliceParameters)
-  fullName: com.microsoft.identity.client.PublicClientApplication.setSliceParameters(final String sliceParameters)
-  overload: com.microsoft.identity.client._public_client_application.setSliceParameters*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 271
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>Custom query parameters which maybe sent to the STS for dogfood testing. This parameter should not be set by developers as it may have adverse effect on the application.</p>
-
-    <p></p>
-  syntax:
-    content: public void setSliceParameters(final String sliceParameters)
-    parameters:
-    - id: sliceParameters
-      type: 3d93591e
-      description: <p>The custom query parameters(for dogfood testing) sent to token and authorize endpoint. </p>
-- uid: com.microsoft.identity.client._public_client_application.setValidateAuthority(final boolean)
-  id: setValidateAuthority(final boolean)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  langs:
-  - java
-  name: setValidateAuthority(final boolean validateAuthority)
-  nameWithType: PublicClientApplication.setValidateAuthority(final boolean validateAuthority)
-  fullName: com.microsoft.identity.client.PublicClientApplication.setValidateAuthority(final boolean validateAuthority)
-  overload: com.microsoft.identity.client._public_client_application.setValidateAuthority*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/PublicClientApplication.java
-    startLine: 249
-  package: com.microsoft.identity.client
-  summary: >-
-    <p>By Default, authority validation is turned on. To turn on authority validation, set <xref uid="com.microsoft.identity.client._public_client_application.setValidateAuthority(final boolean)" data-throw-if-not-resolved="false">PublicClientApplication#setValidateAuthority(boolean)</xref> to false.</p>
-
-    <p></p>
-  syntax: &o2
-    content: public void setValidateAuthority(final boolean validateAuthority)
-    parameters:
-    - id: validateAuthority
-      type: 4dda0764
-      description: <p>True if authority validation is on, false otherwise. By default, authority validation is turned on. </p>
+    - id: account
+      type: 93de0ef9com.microsoft.identity.client._i_account
+      description: <p>The IAccount whose entry and associated tokens should be removed. </p>
+    return:
+      type: 4fc6e284
+      description: <p>True, if the account was removed. False otherwise. </p>
 references:
 - uid: 3c9b8ebf
   spec.java:
@@ -763,61 +761,60 @@ references:
   nameWithType: PublicClientApplication.PublicClientApplication
   fullName: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication
   package: com.microsoft.identity.client
+- uid: cd225469
+  spec.java:
+  - name: final int
+    fullName: final int
 - uid: 8789feb4
   spec.java:
   - name: '@NonNull final String'
     fullName: '@NonNull final String'
-- uid: 4dda0764
+- uid: com.microsoft.identity.client._public_client_application.getConfiguration*
+  name: getConfiguration
+  nameWithType: PublicClientApplication.getConfiguration
+  fullName: com.microsoft.identity.client.PublicClientApplication.getConfiguration
+  package: com.microsoft.identity.client
+- uid: 5618da2dcom.microsoft.identity.client._i_accounta08ddfce
   spec.java:
-  - name: final boolean
-    fullName: final boolean
-- uid: com.microsoft.identity.client._public_client_application.setValidateAuthority*
-  name: setValidateAuthority
-  nameWithType: PublicClientApplication.setValidateAuthority
-  fullName: com.microsoft.identity.client.PublicClientApplication.setValidateAuthority
+  - name: List<
+    fullName: List<
+  - uid: com.microsoft.identity.client._i_account
+    name: IAccount
+    fullName: com.microsoft.identity.client.IAccount
+    href: com.microsoft.identity.client._i_account.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.identity.client._public_client_application.getAccounts*
+  name: getAccounts
+  nameWithType: PublicClientApplication.getAccounts
+  fullName: com.microsoft.identity.client.PublicClientApplication.getAccounts
   package: com.microsoft.identity.client
 - uid: 3d93591e
   spec.java:
   - name: final String
     fullName: final String
-- uid: com.microsoft.identity.client._public_client_application.setComponent*
-  name: setComponent
-  nameWithType: PublicClientApplication.setComponent
-  fullName: com.microsoft.identity.client.PublicClientApplication.setComponent
+- uid: com.microsoft.identity.client._public_client_application.getAccount*
+  name: getAccount
+  nameWithType: PublicClientApplication.getAccount
+  fullName: com.microsoft.identity.client.PublicClientApplication.getAccount
   package: com.microsoft.identity.client
-- uid: com.microsoft.identity.client._public_client_application.setSliceParameters*
-  name: setSliceParameters
-  nameWithType: PublicClientApplication.setSliceParameters
-  fullName: com.microsoft.identity.client.PublicClientApplication.setSliceParameters
-  package: com.microsoft.identity.client
-- uid: dfc6533b
+- uid: 93de0ef9com.microsoft.identity.client._i_account
   spec.java:
-  - name: MsalClientException
-    fullName: MsalClientException
-- uid: 5618da2dcom.microsoft.identity.client._usera08ddfce
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.identity.client._i_account
+    name: IAccount
+    fullName: com.microsoft.identity.client.IAccount
+    href: com.microsoft.identity.client._i_account.yml
+- uid: 4fc6e284
   spec.java:
-  - name: List<
-    fullName: List<
-  - uid: com.microsoft.identity.client._user
-    name: User
-    fullName: com.microsoft.identity.client.User
-    href: com.microsoft.identity.client._user.yml
-  - name: '>'
-    fullName: '>'
-- uid: com.microsoft.identity.client._public_client_application.getUsers*
-  name: getUsers
-  nameWithType: PublicClientApplication.getUsers
-  fullName: com.microsoft.identity.client.PublicClientApplication.getUsers
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.identity.client._public_client_application.removeAccount*
+  name: removeAccount
+  nameWithType: PublicClientApplication.removeAccount
+  fullName: com.microsoft.identity.client.PublicClientApplication.removeAccount
   package: com.microsoft.identity.client
-- uid: com.microsoft.identity.client._public_client_application.getUser*
-  name: getUser
-  nameWithType: PublicClientApplication.getUser
-  fullName: com.microsoft.identity.client.PublicClientApplication.getUser
-  package: com.microsoft.identity.client
-- uid: f75371fa
-  spec.java:
-  - name: int
-    fullName: int
 - uid: afc0a73e
   spec.java:
   - name: final Intent
@@ -848,6 +845,30 @@ references:
   nameWithType: PublicClientApplication.acquireToken
   fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken
   package: com.microsoft.identity.client
+- uid: b868e8dd
+  spec.java:
+  - name: '@Nullable final String'
+    fullName: '@Nullable final String'
+- uid: d6b37550com.microsoft.identity.client._ui_behavior
+  spec.java:
+  - name: '@NonNull final '
+    fullName: '@NonNull final '
+  - uid: com.microsoft.identity.client._ui_behavior
+    name: UiBehavior
+    fullName: com.microsoft.identity.client.UiBehavior
+    href: com.microsoft.identity.client._ui_behavior.yml
+- uid: 49327aac
+  spec.java:
+  - name: '@Nullable final List<Pair<String, String>>'
+    fullName: '@Nullable final List<Pair<String, String>>'
+- uid: 9a7d2fbdcom.microsoft.identity.client._i_account
+  spec.java:
+  - name: '@Nullable final '
+    fullName: '@Nullable final '
+  - uid: com.microsoft.identity.client._i_account
+    name: IAccount
+    fullName: com.microsoft.identity.client.IAccount
+    href: com.microsoft.identity.client._i_account.yml
 - uid: 93de0ef9com.microsoft.identity.client._ui_behavior
   spec.java:
   - name: 'final '
@@ -856,36 +877,31 @@ references:
     name: UiBehavior
     fullName: com.microsoft.identity.client.UiBehavior
     href: com.microsoft.identity.client._ui_behavior.yml
-- uid: 93de0ef9com.microsoft.identity.client._user
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.identity.client._user
-    name: User
-    fullName: com.microsoft.identity.client.User
-    href: com.microsoft.identity.client._user.yml
 - uid: 3e8f7ba4
   spec.java:
   - name: final String []
     fullName: final String []
-- uid: d6b37550com.microsoft.identity.client._user
+- uid: 9aad4ff7
+  spec.java:
+  - name: '@Nullable final String []'
+    fullName: '@Nullable final String []'
+- uid: d6b37550com.microsoft.identity.client._i_account
   spec.java:
   - name: '@NonNull final '
     fullName: '@NonNull final '
-  - uid: com.microsoft.identity.client._user
-    name: User
-    fullName: com.microsoft.identity.client.User
-    href: com.microsoft.identity.client._user.yml
+  - uid: com.microsoft.identity.client._i_account
+    name: IAccount
+    fullName: com.microsoft.identity.client.IAccount
+    href: com.microsoft.identity.client._i_account.yml
 - uid: com.microsoft.identity.client._public_client_application.acquireTokenSilentAsync*
   name: acquireTokenSilentAsync
   nameWithType: PublicClientApplication.acquireTokenSilentAsync
   fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync
   package: com.microsoft.identity.client
-- uid: com.microsoft.identity.client._public_client_application.remove*
-  name: remove
-  nameWithType: PublicClientApplication.remove
-  fullName: com.microsoft.identity.client.PublicClientApplication.remove
-  package: com.microsoft.identity.client
+- uid: 4dda0764
+  spec.java:
+  - name: final boolean
+    fullName: final boolean
 - uid: "26831127"
   spec.java:
   - name: String
@@ -895,6 +911,15 @@ references:
   nameWithType: PublicClientApplication.getSdkVersion
   fullName: com.microsoft.identity.client.PublicClientApplication.getSdkVersion
   package: com.microsoft.identity.client
+- uid: com.microsoft.identity.client._public_client_application_configuration
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client._public_client_application_configuration.yml
+  name: PublicClientApplicationConfiguration
+  nameWithType: PublicClientApplicationConfiguration
+  fullName: com.microsoft.identity.client.PublicClientApplicationConfiguration
+  type: Class
+  syntax:
+    content: public class PublicClientApplicationConfiguration
 - uid: com.microsoft.identity.client._public_client_application
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client._public_client_application.yml
@@ -911,7 +936,7 @@ references:
 
     <p>
 
-      <b>Authority:</b> A URL indicating a directory that MSAL can use to obtain tokens. In Azure AD it is of the form <a href="https://">https://</a>&lt;[nstance]/[tenant], where [instance] is the directory host (e.g. <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>) and [tenant] is an identifier within the directory itself (e.g. a domain associated to the tenant, such as contoso.onmicrosoft.com, or the GUID representing the TenantID property of the directory) For B2C, it is of the form <a href="https://">https://</a>[instance]/tfp/[tenant]/[policy] where instance and tenant are same as Azure AD, and [policy] is a string like signup</p>
+      <b>AuthorityMetadata:</b> A URL indicating a directory that MSAL can use to obtain tokens. In Azure AD it is of the form <a href="https://">https://</a>&lt;[nstance]/[tenant], where [instance] is the directory host (e.g. <a href="https://login.microsoftonline.com">https://login.microsoftonline.com</a>) and [tenant] is an identifier within the directory itself (e.g. a domain associated to the tenant, such as contoso.onmicrosoft.com, or the GUID representing the TenantID property of the directory) For B2C, it is of the form <a href="https://">https://</a>[instance]/tfp/[tenant]/[policy] where instance and tenant are same as Azure AD, and [policy] is a string like signup</p>
 
     <p>MSAL <xref uid="com.microsoft.identity.client._public_client_application" data-throw-if-not-resolved="false">PublicClientApplication</xref> provides three constructors allowing the client id to be set either via AndroidManifest.xml metadata or using constructor parameters. Similarly, if developer chooses not to use the default authority <a href="https://login.microsoftonline.com,">https://login.microsoftonline.com,</a> an alternate can also be configured using the manifest, constructor parameters, or in acquire token calls. </p>
 
@@ -957,41 +982,16 @@ references:
 
       <b>Extra Scopes to Consent:</b> Permissions you want the user to consent to in the same authentication flow, but won't be included in the returned access token. </p>
   syntax: *o1
-- uid: com.microsoft.identity.client._public_client_application.setValidateAuthority(final boolean)
-  parent: com.microsoft.identity.client._public_client_application
-  href: com.microsoft.identity.client._public_client_application.yml
-  name: setValidateAuthority(final boolean validateAuthority)
-  nameWithType: PublicClientApplication.setValidateAuthority(final boolean validateAuthority)
-  fullName: com.microsoft.identity.client.PublicClientApplication.setValidateAuthority(final boolean validateAuthority)
-  type: Method
-  summary: >-
-    <p>By Default, authority validation is turned on. To turn on authority validation, set <xref uid="com.microsoft.identity.client._public_client_application.setValidateAuthority(final boolean)" data-throw-if-not-resolved="false">PublicClientApplication#setValidateAuthority(boolean)</xref> to false.</p>
-
-    <p></p>
-  syntax: *o2
-- uid: com.microsoft.identity.client._user
+- uid: com.microsoft.identity.client._i_account
   parent: com.microsoft.identity.client
-  href: com.microsoft.identity.client._user.yml
-  name: User
-  nameWithType: User
-  fullName: com.microsoft.identity.client.User
-  type: Class
-  summary: <p>Contains the detailed info to identify a user. Sign out functionality is provided at the <xref uid="com.microsoft.identity.client._user" data-throw-if-not-resolved="false">User</xref> level. </p>
+  href: com.microsoft.identity.client._i_account.yml
+  name: IAccount
+  nameWithType: IAccount
+  fullName: com.microsoft.identity.client.IAccount
+  type: Interface
+  summary: <p>Interface describing MSAL's externally-exposed Account representation. </p>
   syntax:
-    content: public class User
-- uid: com.microsoft.identity.client._msal_client_exception
-  parent: com.microsoft.identity.client
-  href: com.microsoft.identity.client._msal_client_exception.yml
-  name: MsalClientException
-  nameWithType: MsalClientException
-  fullName: com.microsoft.identity.client.MsalClientException
-  type: Class
-  summary: >-
-    <p>This exception class represents general errors that are local to the library. Below is the table of proposed codes and a short description of each. </p>
-
-    <p>Set of error codes that could be returned from this exception: <ul><li><p>multiple_matching_tokens_detected: There are multiple cache entries found and the sdk cannot identify the correct access or refresh token from the cache. This usually indicates a bug in the sdk for storing tokens or the authority is not provided in the silent request and multiple matching tokens found.  </p></li><li><p>device_network_not_available: No active network is available on the device.  </p></li><li><p>json_parse_failure: The sdk failed to parse the JSON format. </p></li><li><p>io_error: IOException happened, could be the device/network errors.  </p></li><li><p>malformed_url: The url is malformed. Likely caused when constructing the auth request, authority, or redirect URI.  </p></li><li><p>unsupported_encoding: The encoding is not supported by the device.  </p></li><li><p>no_such_algorithm: The algorithm used to generate pkce challenge is not supported.  </p></li><li><p>invalid_jwt: JWT returned by the server is not valid, empty or malformed.  </p></li><li><p>state_mismatch: State from authorization response did not match the state in the authorization request. For authorization requests, the sdk will verify the state returned from redirect and the one sent in the request.  </p></li><li><p>unresolvable_intent: The intent to launch <xref uid="com.microsoft.identity.client._authentication_activity" data-throw-if-not-resolved="false">AuthenticationActivity</xref> is not resolvable by the OS or the intent doesn't contain the required data.  </p></li><li><p>unsupported_url: Unsupported url, cannot perform ADFS authority validation.  </p></li><li><p>authority_validation_not_supported: The authority is not supported for authority validation. The sdk supports b2c authorities, but doesn't support b2c authority validation. Only well-known host will be supported.  </p></li><li><p>chrome_not_installed: Chrome is not installed on the device. The sdk uses chrome custom tab for authorization requests if available, and will fall back to chrome browser.  </p></li><li><p>user_mismatch: The user provided in the acquire token request doesn't match the user returned from server. </p></li></ul></p>
-  syntax:
-    content: public class MsalClientException extends MsalException
+    content: public interface IAccount
 - uid: com.microsoft.identity.client._authentication_callback
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client._authentication_callback.yml
@@ -999,7 +999,7 @@ references:
   nameWithType: AuthenticationCallback
   fullName: com.microsoft.identity.client.AuthenticationCallback
   type: Interface
-  summary: <p>Callback passed with token acquisition. <xref uid="com.microsoft.identity.client._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> or <xref uid="com.microsoft.identity.client._msal_exception" data-throw-if-not-resolved="false">MsalException</xref> will be returned back via callback. </p>
+  summary: <p>Callback passed with token acquisition. <xref uid="com.microsoft.identity.client._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> or <xref uid="" data-throw-if-not-resolved="false">MsalException</xref> will be returned back via callback. </p>
   syntax:
     content: public interface AuthenticationCallback
 - uid: com.microsoft.identity.client._ui_behavior
@@ -1019,7 +1019,7 @@ references:
   nameWithType: UiBehavior.SELECT_ACCOUNT
   fullName: com.microsoft.identity.client.UiBehavior.SELECT_ACCOUNT
   type: Field
-  summary: <p>AcquireToken will send prompt=select_account to the authorize endpoint. Shows a list of users from which can be selected for authentication. </p>
+  summary: <p>acquireToken will send prompt=select_account to the authorize endpoint. Shows a list of users from which can be selected for authentication. </p>
   syntax:
     content: public SELECT_ACCOUNT
 - uid: com.microsoft.identity.client._authentication_activity
@@ -1032,18 +1032,18 @@ references:
   summary: <p>Custom tab requires the device to have a browser with custom tab support, chrome with version&gt;= 45 comes with the support and is available on all devices with API version&gt;= 16 . The sdk use chrome custom tab, and before launching chrome custom tab, we need to check if chrome package is in the device. If it is, it's safe to launch the chrome custom tab; Otherwise the sdk will launch chrome. AuthenticationActivity will be responsible for checking if it's safe to launch chrome custom tab, if not, will go with chrome browser, if chrome is not installed, we throw error back. </p>
   syntax:
     content: public class AuthenticationActivity
-- uid: com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(int,int,final Intent)
+- uid: com.microsoft.identity.client._public_client_application.handleInteractiveRequestRedirect(final int,final int,final Intent)
   parent: com.microsoft.identity.client._public_client_application
   href: com.microsoft.identity.client._public_client_application.yml
-  name: handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
-  nameWithType: PublicClientApplication.handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
-  fullName: com.microsoft.identity.client.PublicClientApplication.handleInteractiveRequestRedirect(int requestCode, int resultCode, final Intent data)
+  name: handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
+  nameWithType: PublicClientApplication.handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
+  fullName: com.microsoft.identity.client.PublicClientApplication.handleInteractiveRequestRedirect(final int requestCode, final int resultCode, final Intent data)
   type: Method
   summary: >-
     <p>MSAL requires the calling app to pass an <xref uid="" data-throw-if-not-resolved="false">Activity</xref> which <b> MUST </b> call this method to get the auth code passed back correctly.</p>
 
     <p></p>
-  syntax: *o3
+  syntax: *o2
 - uid: com.microsoft.identity.client._authentication_callback.onCancel()
   parent: com.microsoft.identity.client._authentication_callback
   href: com.microsoft.identity.client._authentication_callback.yml
@@ -1089,8 +1089,26 @@ references:
     content: public void onError(final MsalException exception)
     parameters:
     - id: exception
-      type: 93de0ef9com.microsoft.identity.client._msal_exception
-      description: <p>The <xref uid="com.microsoft.identity.client._msal_exception" data-throw-if-not-resolved="false">MsalException</xref> contains the error code, error message and cause if applicable. The exception returned in the callback could be <xref uid="com.microsoft.identity.client._msal_client_exception" data-throw-if-not-resolved="false">MsalClientException</xref>, <xref uid="com.microsoft.identity.client._msal_service_exception" data-throw-if-not-resolved="false">MsalServiceException</xref> or <xref uid="com.microsoft.identity.client._msal_ui_required_exception" data-throw-if-not-resolved="false">MsalUiRequiredException</xref>. </p>
+      type: 93de0ef9com.microsoft.identity.client.exception._msal_exception
+      description: <p>The <xref uid="" data-throw-if-not-resolved="false">MsalException</xref> contains the error code, error message and cause if applicable. The exception returned in the callback could be <xref uid="" data-throw-if-not-resolved="false">MsalClientException</xref>, <xref uid="" data-throw-if-not-resolved="false">MsalServiceException</xref> or <xref uid="" data-throw-if-not-resolved="false">MsalUiRequiredException</xref>. </p>
+- uid: com.microsoft.identity.client.internal.controllers._m_s_a_l_acquire_token_silent_operation_parameters
+  parent: com.microsoft.identity.client.internal.controllers
+  href: com.microsoft.identity.client.internal.controllers._m_s_a_l_acquire_token_silent_operation_parameters.yml
+  name: MSALAcquireTokenSilentOperationParameters
+  nameWithType: MSALAcquireTokenSilentOperationParameters
+  fullName: com.microsoft.identity.client.internal.controllers.MSALAcquireTokenSilentOperationParameters
+  type: Class
+  syntax:
+    content: public class MSALAcquireTokenSilentOperationParameters extends MSALOperationParameters
+- uid: com.microsoft.identity.client.internal.controllers._m_s_a_l_acquire_token_operation_parameters
+  parent: com.microsoft.identity.client.internal.controllers
+  href: com.microsoft.identity.client.internal.controllers._m_s_a_l_acquire_token_operation_parameters.yml
+  name: MSALAcquireTokenOperationParameters
+  nameWithType: MSALAcquireTokenOperationParameters
+  fullName: com.microsoft.identity.client.internal.controllers.MSALAcquireTokenOperationParameters
+  type: Class
+  syntax:
+    content: public class MSALAcquireTokenOperationParameters extends MSALOperationParameters
 - uid: com.microsoft.identity.client._browser_tab_activity
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client._browser_tab_activity.yml
