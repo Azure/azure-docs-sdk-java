@@ -59,9 +59,9 @@ In this section, you clone a containerized Spring Boot application and test it l
    cd /users/robert/SpringBoot
    ```
 
-1. Clone the [Spring Boot on Docker Getting Started] sample project into the directory you created; for example:
+1. Clone the [Spring Boot on Docker Getting Started](https://github.com/Microsoft/gs-spring-boot-docker/tree/private-registry) sample project into the directory you created; for example:
    ```shell
-   git clone -b private-registry https://github.com/spring-guides/gs-spring-boot-docker
+   git clone -b private-registry https://github.com/Microsoft/gs-spring-boot-docker.git
    ```
 
 1. Change directory to the completed project; for example:
