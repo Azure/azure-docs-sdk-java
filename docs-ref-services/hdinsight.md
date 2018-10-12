@@ -14,7 +14,7 @@ ms.date: 9/20/2018
 
 ## Overview
 
-The HDInsight Java SDK provides classes and methods that allow you to manage your HDInsight clusters. It includes operations to create, delete, update, list, scale, execute script actions, monitor, get properties of HDInsight clusters, and more.
+The HDInsight Java SDK provides classes and methods that allow you to manage your HDInsight clusters. It includes operations to create, delete, update, list, resize, execute script actions, monitor, get properties of HDInsight clusters, and more.
 
 ## Prerequisites
 
@@ -335,9 +335,9 @@ You can update the tags of a given cluster like so:
 client.clusters.update("<Resource Group Name>", "<Cluster Name>", <Map<String,String> of Tags>);
 ```
 
-### Scale Cluster
+### Resize Cluster
 
-You can scale a given cluster's number of worker nodes by specifying a new size like so:
+You can resize a given cluster's number of worker nodes by specifying a new size like so:
 
 ```java
 client.clusters.resize("<Resource Group Name>", "<Cluster Name>", <Num of Worker Nodes (int)>)
