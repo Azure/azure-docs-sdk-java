@@ -152,23 +152,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.HttpTrigger
   type: Interface
   summary: >-
-    <p>HttpTrigger(name = "req", methods = {"get"}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request) { .... }</p>
-
-    <p>In this code snippet you will observe that we have a function annotated with<code>@FunctionName("hello") 
-
-        </code> , which indicates that this function will be available at the endpoint /api/hello. The name of the method itself, in this case<code>helloFunction 
-
-        </code> is irrelevant for all intents and purposes related to Azure Functions. Note however that the method return type is <xref uid="com.microsoft.azure.functions._http_response_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpResponseMessage</xref>, and that the first argument into the function is an <xref uid="com.microsoft.azure.functions._http_request_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpRequestMessage</xref> with generic type<code>Optional&lt;String&gt; 
-
-        </code> . This indicates that the body of the request will potentially contain a String value.</p>
-
-    <p>Most important of all however is the<code>@HttpTrigger 
-
-        </code> annotation that has been applied to this argument. In this annotation you'll note that it has been given a name, as well as told what type of requests it supports (in this case, only HTTP GET requests), and that the <xref uid="com.microsoft.azure.functions.annotation._authorization_level" data-throw-if-not-resolved="false">AuthorizationLevel</xref> is anonymous, allowing access to anyone who can call the endpoint.</p>
-
-    <p>The<code>HttpTrigger 
-
-        </code> can be further customised by providing a custom <xref uid="com.microsoft.azure.functions.annotation._http_trigger.route()" data-throw-if-not-resolved="false">route()</xref>, which allows for custom endpoints to be specified, and for these endpoints to be parameterized with arguments being bound to arguments provided to the function at runtime.</p>
+    <p>HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request ) { String name = request.getBody().orElseGet(() -&gt; request.getQueryParameters().get("name")); return name == null ? "Please pass a name on the query string or in the request body" : "Hello " + name; }</p>
 
     <p></p>
   syntax:

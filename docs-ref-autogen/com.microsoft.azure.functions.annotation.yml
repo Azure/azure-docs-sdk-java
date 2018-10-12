@@ -10,6 +10,7 @@ items:
   - com.microsoft.azure.functions.annotation._blob_input
   - com.microsoft.azure.functions.annotation._blob_output
   - com.microsoft.azure.functions.annotation._blob_trigger
+  - com.microsoft.azure.functions.annotation._cardinality
   - com.microsoft.azure.functions.annotation._cosmos_d_b_input
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output
   - com.microsoft.azure.functions.annotation._cosmos_d_b_trigger
@@ -59,6 +60,10 @@ references:
   nameWithType: AccessRights
   fullName: com.microsoft.azure.functions.annotation.AccessRights
   type: Enum
+  summary: >-
+    <p>Azure Service Bus permission.</p>
+
+    <p></p>
   syntax:
     content: public enum AccessRights
 - uid: com.microsoft.azure.functions.annotation._authorization_level
@@ -68,6 +73,10 @@ references:
   nameWithType: AuthorizationLevel
   fullName: com.microsoft.azure.functions.annotation.AuthorizationLevel
   type: Enum
+  summary: >-
+    <p>Azure HTTP authorization level, Determines what keys, if any, need to be present on the request in order to invoke the function.</p>
+
+    <p></p>
   syntax:
     content: public enum AuthorizationLevel
 - uid: com.microsoft.azure.functions.annotation._binding_name
@@ -77,6 +86,10 @@ references:
   nameWithType: BindingName
   fullName: com.microsoft.azure.functions.annotation.BindingName
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would come from Azure Functions runtime. Use this annotation when you want to get the value of trigger metadata, or when you defined your own bindings in function.json manually.</p>
+
+    <p></p>
   syntax:
     content: public interface BindingName
 - uid: com.microsoft.azure.functions.annotation._binding_test
@@ -96,6 +109,10 @@ references:
   nameWithType: BlobInput
   fullName: com.microsoft.azure.functions.annotation.BlobInput
   type: Interface
+  summary: >-
+    <p>BlobInput(name = "file", dataType = "binary", path = "samples-workitems/{queueTrigger}") byte[] content, final ExecutionContext context ) { context.getLogger().info("The size of \"" + filename + "" is: " + content.length + " bytes"); }</p>
+
+    <p></p>
   syntax:
     content: public interface BlobInput
 - uid: com.microsoft.azure.functions.annotation._blob_output
@@ -105,6 +122,10 @@ references:
   nameWithType: BlobOutput
   fullName: com.microsoft.azure.functions.annotation.BlobOutput
   type: Interface
+  summary: >-
+    <p>BlobInput(name = "source", path = "samples-workitems/{queueTrigger}") String content ) { return content; }</p>
+
+    <p></p>
   syntax:
     content: public interface BlobOutput
 - uid: com.microsoft.azure.functions.annotation._blob_trigger
@@ -115,11 +136,24 @@ references:
   fullName: com.microsoft.azure.functions.annotation.BlobTrigger
   type: Interface
   summary: >-
-    <p>BindingName("name") String filename, final ExecutionContext context ) { context.getLogger().info("Name: " + name + " Size: " + content.length + " bytes"); }</p>
+    <p>BindingName("name") String filename, final ExecutionContext context ) { context.getLogger().info("Name: " + filename + ", Size: " + content.length + " bytes"); }</p>
 
     <p></p>
   syntax:
     content: public interface BlobTrigger
+- uid: com.microsoft.azure.functions.annotation._cardinality
+  parent: com.microsoft.azure.functions.annotation
+  href: com.microsoft.azure.functions.annotation._cardinality.yml
+  name: Cardinality
+  nameWithType: Cardinality
+  fullName: com.microsoft.azure.functions.annotation.Cardinality
+  type: Enum
+  summary: >-
+    <p>Cardinality of the EventHubTrigger input. Choose 'ONE' if the input is a single message or 'Many' if the input is an array of messages. 'Many' is the default if unspecified</p>
+
+    <p></p>
+  syntax:
+    content: public enum Cardinality
 - uid: com.microsoft.azure.functions.annotation._cosmos_d_b_input
   parent: com.microsoft.azure.functions.annotation
   href: com.microsoft.azure.functions.annotation._cosmos_d_b_input.yml
@@ -127,6 +161,36 @@ references:
   nameWithType: CosmosDBInput
   fullName: com.microsoft.azure.functions.annotation.CosmosDBInput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would come from CosmosDB. The parameter type can be one of the following:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Nullable values using Optional&lt;T&gt; </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface CosmosDBInput
 - uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output
@@ -136,6 +200,30 @@ references:
   nameWithType: CosmosDBOutput
   fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to CosmosDB. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface CosmosDBOutput
 - uid: com.microsoft.azure.functions.annotation._cosmos_d_b_trigger
@@ -171,6 +259,10 @@ references:
   nameWithType: EventHubOutput
   fullName: com.microsoft.azure.functions.annotation.EventHubOutput
   type: Interface
+  summary: >-
+    <p>TimerTrigger(name = "sendTimeTrigger", schedule = "0 *&amp;#47;5 * * * *") String timerInfo ) { return LocalDateTime.now().toString(); }</p>
+
+    <p></p>
   syntax:
     content: public interface EventHubOutput
 - uid: com.microsoft.azure.functions.annotation._event_hub_trigger
@@ -181,7 +273,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.EventHubTrigger
   type: Interface
   summary: >-
-    <p>EventHubTrigger(name = "msg", eventHubName = "myeventhubname", connection = "myconnvarname") String message, final ExecutionContext context ) { context.getLogger().info(message); }</p>
+    <p>EventHubTrigger(name = "event", eventHubName = "samples-workitems", connection = "AzureEventHubConnection") String message, final ExecutionContext context ) { context.getLogger().info("Event hub message received: " + message); }</p>
 
     <p></p>
   syntax:
@@ -206,6 +298,40 @@ references:
   nameWithType: HttpOutput
   fullName: com.microsoft.azure.functions.annotation.HttpOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be send back to the user as an HTTP response. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>
+
+            <xref uid="com.microsoft.azure.functions._http_response_message" data-throw-if-not-resolved="false">HttpResponseMessage</xref>
+
+          </p>
+
+        </li>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface HttpOutput
 - uid: com.microsoft.azure.functions.annotation._http_trigger
@@ -216,23 +342,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.HttpTrigger
   type: Interface
   summary: >-
-    <p>HttpTrigger(name = "req", methods = {"get"}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request) { .... }</p>
-
-    <p>In this code snippet you will observe that we have a function annotated with<code>@FunctionName("hello") 
-
-        </code> , which indicates that this function will be available at the endpoint /api/hello. The name of the method itself, in this case<code>helloFunction 
-
-        </code> is irrelevant for all intents and purposes related to Azure Functions. Note however that the method return type is <xref uid="com.microsoft.azure.functions._http_response_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpResponseMessage</xref>, and that the first argument into the function is an <xref uid="com.microsoft.azure.functions._http_request_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpRequestMessage</xref> with generic type<code>Optional&lt;String&gt; 
-
-        </code> . This indicates that the body of the request will potentially contain a String value.</p>
-
-    <p>Most important of all however is the<code>@HttpTrigger 
-
-        </code> annotation that has been applied to this argument. In this annotation you'll note that it has been given a name, as well as told what type of requests it supports (in this case, only HTTP GET requests), and that the <xref uid="com.microsoft.azure.functions.annotation._authorization_level" data-throw-if-not-resolved="false">AuthorizationLevel</xref> is anonymous, allowing access to anyone who can call the endpoint.</p>
-
-    <p>The<code>HttpTrigger 
-
-        </code> can be further customised by providing a custom <xref uid="com.microsoft.azure.functions.annotation._http_trigger.route()" data-throw-if-not-resolved="false">route()</xref>, which allows for custom endpoints to be specified, and for these endpoints to be parameterized with arguments being bound to arguments provided to the function at runtime.</p>
+    <p>HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request ) { String name = request.getBody().orElseGet(() -&gt; request.getQueryParameters().get("name")); return name == null ? "Please pass a name on the query string or in the request body" : "Hello " + name; }</p>
 
     <p></p>
   syntax:
@@ -244,6 +354,36 @@ references:
   nameWithType: MobileTableInput
   fullName: com.microsoft.azure.functions.annotation.MobileTableInput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would come from mobile table. The parameter type can be one of the following:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Nullable values using Optional&lt;T&gt; </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface MobileTableInput
 - uid: com.microsoft.azure.functions.annotation._mobile_table_output
@@ -253,6 +393,30 @@ references:
   nameWithType: MobileTableOutput
   fullName: com.microsoft.azure.functions.annotation.MobileTableOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to mobile table. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface MobileTableOutput
 - uid: com.microsoft.azure.functions.annotation._notification_hub_output
@@ -262,6 +426,30 @@ references:
   nameWithType: NotificationHubOutput
   fullName: com.microsoft.azure.functions.annotation.NotificationHubOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to notification hub. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface NotificationHubOutput
 - uid: com.microsoft.azure.functions.annotation._queue_output
@@ -271,6 +459,10 @@ references:
   nameWithType: QueueOutput
   fullName: com.microsoft.azure.functions.annotation.QueueOutput
   type: Interface
+  summary: >-
+    <p>HttpOutput(name = "response") final OutputBinding&lt;String&gt; result ) { result.setValue(message + " has been added."); return message; }</p>
+
+    <p></p>
   syntax:
     content: public interface QueueOutput
 - uid: com.microsoft.azure.functions.annotation._queue_trigger
@@ -281,7 +473,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.QueueTrigger
   type: Interface
   summary: >-
-    <p>QueueTrigger(name = "msg", queueName = "myqueuename", connection = "myconnvarname") String message, final ExecutionContext context ) { context.getLogger().info(message); }</p>
+    <p>QueueTrigger(name = "msg", queueName = "myqueue-items", connection = "AzureWebJobsStorage") String message, final ExecutionContext context ) { context.getLogger().info("Queue message processed: " + message); }</p>
 
     <p></p>
   syntax:
@@ -293,6 +485,30 @@ references:
   nameWithType: SendGridOutput
   fullName: com.microsoft.azure.functions.annotation.SendGridOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to SendGrid. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface SendGridOutput
 - uid: com.microsoft.azure.functions.annotation._service_bus_queue_output
@@ -302,6 +518,10 @@ references:
   nameWithType: ServiceBusQueueOutput
   fullName: com.microsoft.azure.functions.annotation.ServiceBusQueueOutput
   type: Interface
+  summary: >-
+    <p>HttpOutput(name = "response") final OutputBinding&lt;String&gt; result ) { result.setValue(message + " has been sent."); return message; }</p>
+
+    <p></p>
   syntax:
     content: public interface ServiceBusQueueOutput
 - uid: com.microsoft.azure.functions.annotation._service_bus_queue_trigger
@@ -312,7 +532,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.ServiceBusQueueTrigger
   type: Interface
   summary: >-
-    <p>ServiceBusQueueTrigger(name = "msg", queueName = "myqueuename", connection = "myconnvarname") String message, final ExecutionContext context ) { context.getLogger().info(message); }</p>
+    <p>ServiceBusQueueTrigger(name = "msg", queueName = "myqueue", connection = "AzureServiceBusConnection") final String message, final ExecutionContext context ) { context.getLogger().info("Message is received: " + message); }</p>
 
     <p></p>
   syntax:
@@ -324,6 +544,30 @@ references:
   nameWithType: ServiceBusTopicOutput
   fullName: com.microsoft.azure.functions.annotation.ServiceBusTopicOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to a service bus topic. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface ServiceBusTopicOutput
 - uid: com.microsoft.azure.functions.annotation._service_bus_topic_trigger
@@ -346,6 +590,10 @@ references:
   nameWithType: StorageAccount
   fullName: com.microsoft.azure.functions.annotation.StorageAccount
   type: Interface
+  summary: >-
+    <p>Apply this annotation to a method if you have multiple Azure Storage triggers/input/output in that method which share the same app setting name of Azure Storage connection string.</p>
+
+    <p></p>
   syntax:
     content: public interface StorageAccount
 - uid: com.microsoft.azure.functions.annotation._table_input
@@ -368,6 +616,30 @@ references:
   nameWithType: TableOutput
   fullName: com.microsoft.azure.functions.annotation.TableOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be written to a storage table. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface TableOutput
 - uid: com.microsoft.azure.functions.annotation._timer_trigger
@@ -378,7 +650,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.TimerTrigger
   type: Interface
   summary: >-
-    <p>FunctionName("keepAlive") public void keepAlive((name = "keepAliveTrigger", schedule = "0 *&amp;#47;4 * * * *") String timerInfo) { .. } </p>
+    <p>TimerTrigger(name = "keepAliveTrigger", schedule = "0 *&amp;#47;5 * * * *") String timerInfo, ExecutionContext context ) { // timeInfo is a JSON string, you can deserialize it to an object using your favorite JSON library context.getLogger().info("Timer is triggered: " + timerInfo); }</p>
 
     <p></p>
   syntax:
@@ -390,5 +662,29 @@ references:
   nameWithType: TwilioSmsOutput
   fullName: com.microsoft.azure.functions.annotation.TwilioSmsOutput
   type: Interface
+  summary: >-
+    <p>Place this on a parameter whose value would be sent through twilio SMS. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>Any native Java types such as int, String, byte[] </p>
+
+        </li>
+
+        <li>
+
+          <p>Any POJO type </p>
+
+        </li>
+
+      </ul>
+
+    </p>
+
+    <p></p>
   syntax:
     content: public interface TwilioSmsOutput

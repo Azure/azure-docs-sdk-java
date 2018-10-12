@@ -9,7 +9,6 @@ items:
   - com.microsoft.azure.functions.annotation._http_trigger.methods()
   - com.microsoft.azure.functions.annotation._http_trigger.name()
   - com.microsoft.azure.functions.annotation._http_trigger.route()
-  - com.microsoft.azure.functions.annotation._http_trigger.webHookType()
   href: com.microsoft.azure.functions.annotation._http_trigger.yml
   langs:
   - java
@@ -23,26 +22,10 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-functions-java-library
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 62
+    startLine: 78
   package: com.microsoft.azure.functions.annotation
   summary: >-
-    <p>HttpTrigger(name = "req", methods = {"get"}, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request) { .... }</p>
-
-    <p>In this code snippet you will observe that we have a function annotated with<code>@FunctionName("hello") 
-
-        </code> , which indicates that this function will be available at the endpoint /api/hello. The name of the method itself, in this case<code>helloFunction 
-
-        </code> is irrelevant for all intents and purposes related to Azure Functions. Note however that the method return type is <xref uid="com.microsoft.azure.functions._http_response_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpResponseMessage</xref>, and that the first argument into the function is an <xref uid="com.microsoft.azure.functions._http_request_message" data-throw-if-not-resolved="false">com.microsoft.azure.functions.HttpRequestMessage</xref> with generic type<code>Optional&lt;String&gt; 
-
-        </code> . This indicates that the body of the request will potentially contain a String value.</p>
-
-    <p>Most important of all however is the<code>@HttpTrigger 
-
-        </code> annotation that has been applied to this argument. In this annotation you'll note that it has been given a name, as well as told what type of requests it supports (in this case, only HTTP GET requests), and that the <xref uid="com.microsoft.azure.functions.annotation._authorization_level" data-throw-if-not-resolved="false">AuthorizationLevel</xref> is anonymous, allowing access to anyone who can call the endpoint.</p>
-
-    <p>The<code>HttpTrigger 
-
-        </code> can be further customised by providing a custom <xref uid="com.microsoft.azure.functions.annotation._http_trigger.route()" data-throw-if-not-resolved="false">route()</xref>, which allows for custom endpoints to be specified, and for these endpoints to be parameterized with arguments being bound to arguments provided to the function at runtime.</p>
+    <p>HttpTrigger(name = "req", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request ) { String name = request.getBody().orElseGet(() -&gt; request.getQueryParameters().get("name")); return name == null ? "Please pass a name on the query string or in the request body" : "Hello " + name; }</p>
 
     <p></p>
   syntax:
@@ -61,7 +44,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 132
+    startLine: 158
   package: com.microsoft.azure.functions.annotation
   summary: >-
     <p>Determines what keys, if any, need to be present on the request in order to invoke the function. The authorization level can be one of the following values:</p>
@@ -120,12 +103,41 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 69
+    startLine: 94
   package: com.microsoft.azure.functions.annotation
+  summary: >-
+    <p>Defines how Functions runtime should treat the parameter value. Possible values are:</p>
+
+    <p>
+
+      <ul>
+
+        <li>
+
+          <p>"": get the value as a string, and try to deserialize to actual parameter type like POJO </p>
+
+        </li>
+
+        <li>
+
+          <p>string: always get the value as a string </p>
+
+        </li>
+
+        <li>
+
+          <p>binary: get the value as a binary data, and try to deserialize to actual parameter type byte[] </p>
+
+        </li>
+
+      </ul>
+
+    </p>
   syntax:
     content: public String dataType() default ""
     return:
       type: "26831127"
+      description: <p>The dataType which will be used by the Functions runtime. </p>
 - uid: com.microsoft.azure.functions.annotation._http_trigger.methods()
   id: methods()
   parent: com.microsoft.azure.functions.annotation._http_trigger
@@ -140,7 +152,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 115
+    startLine: 141
   package: com.microsoft.azure.functions.annotation
   summary: >-
     <p>An array of the HTTP methods to which the function responds. If not specified, the function responds to all HTTP methods.</p>
@@ -165,7 +177,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 67
+    startLine: 83
   package: com.microsoft.azure.functions.annotation
   summary: <p>The variable name used in function code for the request or request body. </p>
   syntax:
@@ -187,44 +199,19 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 107
+    startLine: 133
   package: com.microsoft.azure.functions.annotation
   summary: >-
-    <p>BindingName("id") int id, final ExecutionContext context) { .... context.getLogger().info("We have " + category + " with id " + id); .... } </p>
+    <p>BindingName("id") int id, final ExecutionContext context ) { .... context.getLogger().info("We have " + category + " with id " + id); .... } </p>
 
     <p>For more details on the route syntax, refer to the <a href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints">online documentation</a>.</p>
 
     <p></p>
-  syntax: &o1
+  syntax:
     content: public String route() default ""
     return:
       type: "26831127"
       description: <p>The route template to use for the annotated function. </p>
-- uid: com.microsoft.azure.functions.annotation._http_trigger.webHookType()
-  id: webHookType()
-  parent: com.microsoft.azure.functions.annotation._http_trigger
-  href: com.microsoft.azure.functions.annotation._http_trigger.yml
-  langs:
-  - java
-  name: webHookType()
-  nameWithType: HttpTrigger.webHookType()
-  fullName: com.microsoft.azure.functions.annotation.HttpTrigger.webHookType()
-  overload: com.microsoft.azure.functions.annotation._http_trigger.webHookType*
-  type: Method
-  source:
-    remote: *o0
-    path: src/main/java/com/microsoft/azure/functions/annotation/HttpTrigger.java
-    startLine: 139
-  package: com.microsoft.azure.functions.annotation
-  summary: >-
-    <p>Defines the WebHook type for this HttpTrigger</p>
-
-    <p></p>
-  syntax:
-    content: public WebHookType webHookType() default WebHookType.NONE
-    return:
-      type: com.microsoft.azure.functions._web_hook_type
-      description: <p>A webhook type. </p>
 references:
 - uid: "26831127"
   spec.java:
@@ -263,11 +250,6 @@ references:
   nameWithType: HttpTrigger.authLevel
   fullName: com.microsoft.azure.functions.annotation.HttpTrigger.authLevel
   package: com.microsoft.azure.functions.annotation
-- uid: com.microsoft.azure.functions.annotation._http_trigger.webHookType*
-  name: webHookType
-  nameWithType: HttpTrigger.webHookType
-  fullName: com.microsoft.azure.functions.annotation.HttpTrigger.webHookType
-  package: com.microsoft.azure.functions.annotation
 - uid: com.microsoft.azure.functions._http_method
   parent: com.microsoft.azure.functions
   href: com.microsoft.azure.functions._http_method.yml
@@ -288,100 +270,9 @@ references:
   nameWithType: AuthorizationLevel
   fullName: com.microsoft.azure.functions.annotation.AuthorizationLevel
   type: Enum
+  summary: >-
+    <p>Azure HTTP authorization level, Determines what keys, if any, need to be present on the request in order to invoke the function.</p>
+
+    <p></p>
   syntax:
     content: public enum AuthorizationLevel
-- uid: com.microsoft.azure.functions._web_hook_type
-  parent: com.microsoft.azure.functions
-  href: com.microsoft.azure.functions._web_hook_type.yml
-  name: WebHookType
-  nameWithType: WebHookType
-  fullName: com.microsoft.azure.functions.WebHookType
-  type: Enum
-  summary: >-
-    <p>List of supported WebHooks for HttpTrigger.</p>
-
-    <p>Configures the HTTP trigger to act as a webhook receiver for the specified provider. Don't set the methods property if you set this property. The webhook type can be one of the following values: </p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>
-
-            <b>genericJson</b>: A general-purpose webhook endpoint without logic for a specific provider. This setting restricts requests to only those using HTTP POST and with the<code>application/json 
-
-        </code> content type. </p>
-
-        </li>
-
-        <li>
-
-          <p>
-
-            <b>github</b>: The function responds to <a href="https://developer.github.com/webhooks/">GitHub webhooks</a>. Do not use the<code>com.microsoft.azure.functions.annotation.HttpTrigger.authLevel() 
-
-        </code> property with GitHub webhooks. </p>
-
-        </li>
-
-        <li>
-
-          <p>
-
-            <b>slack</b>: The function responds to <a href="https://api.slack.com/outgoing-webhooks">Slack webhooks</a>. Do not use the<code>com.microsoft.azure.functions.annotation.HttpTrigger.authLevel() 
-
-        </code> property with Slack webhooks. </p>
-
-        </li>
-
-      </ul>
-
-    </p>
-  syntax:
-    content: public enum WebHookType
-- uid: com.microsoft.azure.functions._http_response_message
-  parent: com.microsoft.azure.functions
-  href: com.microsoft.azure.functions._http_response_message.yml
-  name: HttpResponseMessage
-  nameWithType: HttpResponseMessage
-  fullName: com.microsoft.azure.functions.HttpResponseMessage
-  type: Interface
-  summary: >-
-    <p>An HttpResponseMessage instance is returned by Azure Functions methods that are triggered by an <xref uid="com.microsoft.azure.functions.annotation._http_trigger" data-throw-if-not-resolved="false">com.microsoft.azure.functions.annotation.HttpTrigger</xref>.</p>
-
-    <p></p>
-  syntax:
-    content: public interface HttpResponseMessage
-- uid: com.microsoft.azure.functions._http_request_message
-  parent: com.microsoft.azure.functions
-  href: com.microsoft.azure.functions._http_request_message.yml
-  name: HttpRequestMessage<T>
-  nameWithType: HttpRequestMessage<T>
-  fullName: com.microsoft.azure.functions.HttpRequestMessage<T>
-  type: Interface
-  summary: >-
-    <p>An HttpRequestMessage instance is provided to Azure functions that use <xref uid="com.microsoft.azure.functions.annotation._http_trigger" data-throw-if-not-resolved="false">HTTP Triggers</xref>. For an example of how to use the http functionality of Azure Functions, refer to the example in the <xref uid="com.microsoft.azure.functions.annotation._http_trigger" data-throw-if-not-resolved="false">com.microsoft.azure.functions.annotation.HttpTrigger</xref></p>
-
-    <p></p>
-  syntax:
-    content: public interface HttpRequestMessage<T>
-    typeParameters:
-    - id: T
-      type: 8ce1ecb9
-      description: <p>The type of the body content that is expected to be received as part of this HTTP request. </p>
-- uid: com.microsoft.azure.functions.annotation._http_trigger.route()
-  parent: com.microsoft.azure.functions.annotation._http_trigger
-  href: com.microsoft.azure.functions.annotation._http_trigger.yml
-  name: route()
-  nameWithType: HttpTrigger.route()
-  fullName: com.microsoft.azure.functions.annotation.HttpTrigger.route()
-  type: Method
-  summary: >-
-    <p>BindingName("id") int id, final ExecutionContext context) { .... context.getLogger().info("We have " + category + " with id " + id); .... } </p>
-
-    <p>For more details on the route syntax, refer to the <a href="https://docs.microsoft.com/en-us/aspnet/web-api/overview/web-api-routing-and-actions/attribute-routing-in-web-api-2#constraints">online documentation</a>.</p>
-
-    <p></p>
-  syntax: *o1
