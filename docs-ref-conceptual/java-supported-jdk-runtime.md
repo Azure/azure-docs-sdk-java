@@ -15,12 +15,12 @@ Java developers on Azure and Azure Stack can build and run production Java appli
 
 ## Supported Java versions and update schedule
 
-Azul Systems will provide fully-supported [Zulu Enterprise builds of OpenJDK for Microsoft Azure]((https://www.azul.com/downloads/azure-only/zulu/) for all long-term support (LTS) versions of Java, starting with Java SE 7, 8, and 11. More information can be found in the [Azul press release](https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack).
+Azul Systems will provide fully-supported [Zulu Enterprise builds of OpenJDK for Microsoft Azure](https://www.azul.com/downloads/azure-only/zulu/) for all long-term support (LTS) versions of Java, starting with Java SE 7, 8, and 11. More information can be found in the [Azul press release](https://www.azul.com/press_release/free-java-production-support-for-microsoft-azure-azure-stack).
 
 
 These JDK releases will have quarterly security updates and bug fixes as well as critical out-of-band updates and patches as needed.  This support includes back porting of security updates and bug fixes to Java 7 and 8 reported in newer versions of Java such as Java 11, and ensures the continued stability and security of older versions of Java.  Azure customers are entitled to these security updates and platform bug fixes without incurring any unplanned Java SE subscription fees. The dates of support for each version of Java SE are highlighted in the image below.
 
-[JDK support timeline for Azure](media/azure-jdk-support.png)
+![JDK support timeline for Azure](media/azure-jdk-support.png)
 
 Azul Systems maintains a [Java SE roadmap](https://www.azul.com/products/azul_support_roadmap/) for these releases.
 
