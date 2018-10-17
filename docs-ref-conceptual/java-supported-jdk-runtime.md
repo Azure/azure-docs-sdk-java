@@ -11,7 +11,7 @@ ms.author: routlaw
 
 # Get Java JDK downloads and support when developing for Azure
 
-Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Systems Zulu Enterprise builds of OpenJDK](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. If you’re currently running Java apps with other JDKs, consider migrating to Zulu on Azure for free support and maintenance. 
+Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Systems Zulu Enterprise builds of OpenJDK](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft with a  [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
 
 ## Supported Java versions and update schedule
 
@@ -38,4 +38,4 @@ Example Dockerfiles using the images are available in the [Microsoft Java GitHub
 
 ## Azure service runtime support
 
-Azure platform services such as [App Service](/azure/app-service/containers/), [Functions](azure/azure-functions/functions-create-first-java-maven), [Service Fabric](/azure/service-fabric/) and [HDInsight](/azure/hdinsight/)  use Zulu Enterprise builds of OpenJDK with built-in auto-patching of minor releases of Java with security patches and bug fixes.
+Azure platform services such as [App Service](/azure/app-service/containers/), [Functions](/azure/azure-functions/functions-create-first-java-maven), [Service Fabric](/azure/service-fabric/) and [HDInsight](/azure/hdinsight/)  use Zulu Enterprise builds of OpenJDK with built-in auto-patching of minor releases of Java with security patches and bug fixes.
