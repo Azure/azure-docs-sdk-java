@@ -37,23 +37,23 @@ The HDInsight Java SDK is available through Maven [here](https://mvnrepository.c
 You will also need to add the following dependencies to your pom.xml:
 
 * [Azure Client Authentication Library:](https://mvnrepository.com/artifact/com.microsoft.azure/azure-client-authentication/1.6.2)
-```
-<dependency>
+  ```
+  <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-client-authentication</artifactId>
     <version>1.6.2</version>
     <scope>test</scope>
-</dependency>
-```
+  </dependency>
+  ```
 
 * [Azure Java Client Runtime For ARM:](https://mvnrepository.com/artifact/com.microsoft.azure/azure-arm-client-runtime/1.6.2)
-```
-<dependency>
+  ```
+  <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-arm-client-runtime</artifactId>
     <version>1.6.2</version>
-</dependency>
-```
+  </dependency>
+  ```
 
 ## Authentication
 

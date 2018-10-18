@@ -78,10 +78,10 @@ In this section, you will configure the the Spring Boot project `pom.xml` so tha
 
 1. Open `pom.xml` in a code editor.
 
-1. In the `<build>` section of the pom.xml, add the following `<plugin>` entry inside the `<plugins>` tag.
+2. In the `<build>` section of the pom.xml, add the following `<plugin>` entry inside the `<plugins>` tag.
 
    ```xml
-  <plugin>
+   <plugin>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
     <version>1.4.0</version>
@@ -104,10 +104,10 @@ In this section, you will configure the the Spring Boot project `pom.xml` so tha
       <!-- Java Runtime Stack for Web App on Linux-->
       <linuxRuntime>jre8</linuxRuntime>
     </configuration>
-  </plugin>
-  ```
+   </plugin>
+   ```
 
-1. Update the following placeholders in the plugin configuration:
+3. Update the following placeholders in the plugin configuration:
 
 | Placeholder | Description |
 | ----------- | ----------- |
