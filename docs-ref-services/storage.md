@@ -27,13 +27,24 @@ Use a Shared Key, SAS token or an OAuth token from the Azure Active Directory to
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.   
 
+**Dependency for Blob service**:
 ```XML
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
     <version>10.1.0</version>
 </dependency>
-```   
+```
+
+**Dependency for Queue service**:
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-storage-queue</artifactId>
+    <version>10.0.0-Preview</version>
+</dependency>
+```
+
 
 ### Example
 
@@ -98,9 +109,6 @@ for(StorageAccountKey key : storageAccountKeys)    {
 
 ## Samples
 
-[Manage Azure Storage accounts](../docs-ref-conceptual/java-sdk-manage-storage-accounts.md)    
+[Azure Storage SDK for Java](https://github.com/azure/azure-storage-java)
 [Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blobs-java-v10-quickstart)   
 [Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)   
-[Read files from blob storage in a web app](https://github.com/Azure-Samples/app-service-java-manage-storage-connections-for-web-apps-on-linux)
-
-Explore more [sample Java code for Azure Storage in the SDK repository](https://github.com/azure/azure-storage-java).
