@@ -71,9 +71,9 @@ Use the management API to manage Data Lake Store accounts, firewall rules, and t
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-datalake-store</artifactId>
-    <version>1.0.0-beta1.3</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-datalake-store</artifactId>
+    <version>1.0.0-beta1.3</version>
 </dependency>
 ```
 

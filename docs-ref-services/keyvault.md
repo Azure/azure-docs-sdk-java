@@ -29,9 +29,9 @@ Create, update, and delete keys and secrets in Azure Key Vault with the client l
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-keyvault</artifactId>
-    <version>1.1.0</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-keyvault</artifactId>
+    <version>1.1.0</version>
 </dependency>
 ```   
 
@@ -57,9 +57,9 @@ Use the Azure Key Vault management libraries to create key vaults, authorize app
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-keyvault</artifactId>
-    <version>1.15.0</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-keyvault</artifactId>
+    <version>1.15.0</version>
 </dependency>
 ```
 

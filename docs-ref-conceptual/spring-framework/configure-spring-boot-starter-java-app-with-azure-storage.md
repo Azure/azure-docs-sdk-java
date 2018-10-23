@@ -52,7 +52,7 @@ The following prerequisites are required in order to follow the steps in this ar
    * Specify the **Location** for your storage account.
    * Choose the **Subscription** you want to use for your storage account.
    * Specify whether to create a new **Resource group** for your storage account, or choose an existing resource group.
-   
+
    ![Specify Azure Storage Account options][IMG02]
 
 1. When you have specified the options listed above, click **Create** to create your storage account.
@@ -203,7 +203,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    `/users/example/home/storage/src/main/resources/application.properties`
 
-1.  Open the *application.properties* file in a text editor, add the following lines, and then replace the sample values with the appropriate properties for your storage account:
+2. Open the *application.properties* file in a text editor, add the following lines, and then replace the sample values with the appropriate properties for your storage account:
 
    ```yaml
    spring.cloud.azure.credential-file-path=my.azureauth
@@ -212,14 +212,16 @@ The following prerequisites are required in order to follow the steps in this ar
    spring.cloud.azure.storage.account=wingtiptoysstorage
    ```
    Where:
-   | Field | Description |
-   | ---|---|
-   | `spring.cloud.azure.credential-file-path` | Specifies Azure credential file that you created earlier in this tutorial. |
-   | `spring.cloud.azure.resource-group` | Specifies the Azure Resource Group that contains your Azure Storage account. |
-   | `spring.cloud.azure.region` | Specifies the geographical region that you specified when you created your Azure Storage account. |
-   | `spring.cloud.azure.storage.account` | Specifies Azure Storage account that you created earlier in this tutorial.
 
-1. Save and close the *application.properties* file.
+   |                   Field                   |                                            Description                                            |
+   |-------------------------------------------|---------------------------------------------------------------------------------------------------|
+   | `spring.cloud.azure.credential-file-path` |            Specifies Azure credential file that you created earlier in this tutorial.             |
+   |    `spring.cloud.azure.resource-group`    |           Specifies the Azure Resource Group that contains your Azure Storage account.            |
+   |        `spring.cloud.azure.region`        | Specifies the geographical region that you specified when you created your Azure Storage account. |
+   |   `spring.cloud.azure.storage.account`    |            Specifies Azure Storage account that you created earlier in this tutorial.             |
+
+
+3. Save and close the *application.properties* file.
 
 ## Add sample code to implement basic Azure storage functionality
 
@@ -239,10 +241,10 @@ In this section, you create the necessary Java classes for storing a blob in you
 
    ```java
    package com.wingtiptoys.storage;
-   
+
    import org.springframework.boot.SpringApplication;
    import org.springframework.boot.autoconfigure.SpringBootApplication;
-   
+
    @SpringBootApplication
    public class StorageApplication {
       public static void main(String[] args) {
@@ -267,7 +269,7 @@ In this section, you create the necessary Java classes for storing a blob in you
 
    ```java
    package com.wingtiptoys.storage;
-   
+
    import org.springframework.beans.factory.annotation.Value;
    import org.springframework.core.io.Resource;
    import org.springframework.core.io.WritableResource;
@@ -276,14 +278,14 @@ In this section, you create the necessary Java classes for storing a blob in you
    import org.springframework.web.bind.annotation.PostMapping;
    import org.springframework.web.bind.annotation.RequestBody;
    import org.springframework.web.bind.annotation.RestController;
-   
+
    import java.io.IOException;
    import java.io.OutputStream;
    import java.nio.charset.Charset;
-   
+
    @RestController
    public class WebController {
-   
+
       @Value("blob://test/myfile.txt")
       private Resource blobFile;
 
@@ -293,7 +295,7 @@ In this section, you create the necessary Java classes for storing a blob in you
             this.blobFile.getInputStream(),
             Charset.defaultCharset()) + "\n";
       }
-   
+
       @PostMapping(value = "/")
       public String writeBlobFile(@RequestBody String data) throws IOException {
          try (OutputStream os = ((WritableResource) this.blobFile).getOutputStream()) {
@@ -303,7 +305,7 @@ In this section, you create the necessary Java classes for storing a blob in you
       }
    }
    ```
-   
+
    Where the `@Value("blob://[container]/[blob]")` syntax respectively defines the names of the container and blob where you want to store the data.
 
 1. Save and close the web controller Java file.
