@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, Storage
 author: douge
 ms.author: douge
 manager: douge
-ms.date: 02/07/2018
+ms.date: 10/19/2018
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -17,41 +17,56 @@ ms.service: storage
 
 ## Overview
 
-Read and write files, blob (object) data, key-value pairs, and messages from your Java applications with [Azure Storage](/azure/storage/storage-introduction).
+Read and write blob (object) data, files, and messages from your Java applications with [Azure Storage](/azure/storage/storage-introduction).
 
-To get started with Azure Storage, see [How to use Blob storage from Java](/azure/storage/storage-java-how-to-use-blob-storage).
+To get started with Azure Storage, see [How to use Blob storage from Java](/azure/storage/blobs/storage-quickstart-blobs-java-v10).
 
 ## Client library
 
-Use [connection strings](/azure/storage/storage-create-storage-account#manage-your-storage-account) to connect to an Azure Storage account, then use the client libraries' classes and methods to work with blob, table, file, or queue storage. 
+Use a Shared Key, SAS token or an OAuth token from the Azure Active Directory to authorize with Azure Storage services. Then use the client libraries' classes and methods to work with blob, file, or queue storage. 
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.   
 
+**Dependency for Blob service**:
 ```XML
 <dependency>
     <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-storage</artifactId>
-    <version>7.0.0</version>
+    <artifactId>azure-storage-blob</artifactId>
+    <version>10.1.0</version>
 </dependency>
-```   
+```
+
+**Dependency for Queue service**:
+```XML
+<dependency>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-storage-queue</artifactId>
+    <version>10.0.0-Preview</version>
+</dependency>
+```
+
 
 ### Example
 
-Write a image file from the local file system into a new blob in an existing Azure Storage blob container.
+Write an image file from the local file system into a new blob in an existing Azure Storage blob container.
 
 
 ```java
-String storageConnectionString = "DefaultEndpointsProtocol=https;" + 
-"AccountName=fabrikamblobstorage;" + 
-"AccountKey=keyvalue;EndpointSuffix=core.windows.net";
+// Retrieve the credentials and initialize SharedKeyCredentials
+String accountName = System.getenv("AZURE_STORAGE_ACCOUNT");
+String accountKey = System.getenv("AZURE_STORAGE_ACCESS_KEY");
 
-CloudStorageAccount account = CloudStorageAccount.parse(storageConnectionString);
-CloudBlobClient serviceClient = account.createCloudBlobClient();
-CloudBlobContainer container = serviceClient.getContainerReference(blobContainer);
+// Create a BlockBlobURL to run operations on Block Blobs. Alternatively create a ServiceURL, or ContainerURL for operations on Blob service, and Blob containers
+SharedKeyCredentials creds = new SharedKeyCredentials(accountName, accountKey);
 
-// write a blob from a local filesystem path to the container as logo.png
-CloudBlockBlob blob = container.getBlockBlobReference("logo.png");
-blob.uploadFromFile("/Users/raisa/fabrikam.png");
+// We are using a default pipeline here, you can learn more about it at https://github.com/Azure/azure-storage-java/wiki/Azure-Storage-Java-V10-Overview
+final BlockBlobURL blobURL = new BlockBlobURL(
+    new URL("https://" + accountName + ".blob.core.windows.net/mycontainer/myimage.jpg"), 
+        StorageURL.createPipeline(creds, new PipelineOptions())
+);
+
+AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(Paths.get("myimage.jpg"));
+TransferManager.uploadFileToBlockBlob(fileChannel, blobURL,0, null).blockingGet();
 ```
 
 > [!div class="nextstepaction"]
@@ -65,9 +80,9 @@ Crete and manage Azure Storage accounts and connection keys with the management 
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-storage</artifactId>
-    <version>1.3.0</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-storage</artifactId>
+    <version>1.3.0</version>
 </dependency
 ```   
 
@@ -94,9 +109,6 @@ for(StorageAccountKey key : storageAccountKeys)    {
 
 ## Samples
 
-[Manage Azure Storage accounts](../docs-ref-conceptual/java-sdk-manage-storage-accounts.md)    
-[Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blob-java-getting-started)   
+[Azure Storage SDK for Java](https://github.com/azure/azure-storage-java)
+[Read and write objects to blob storage](https://github.com/Azure-Samples/storage-blobs-java-v10-quickstart)   
 [Read and write messages with queues](https://github.com/Azure-Samples/storage-queue-java-getting-started)   
-[Read files from blob storage in a web app](https://github.com/Azure-Samples/app-service-java-manage-storage-connections-for-web-apps-on-linux)
-
-Explore more [sample Java code for Azure Storage](https://azure.microsoft.com/resources/samples/?platform=java&term=storage) you can use in your apps.
