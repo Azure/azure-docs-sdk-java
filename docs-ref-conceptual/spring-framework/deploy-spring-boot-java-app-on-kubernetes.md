@@ -69,7 +69,7 @@ The following steps walk you through building a Spring Boot web application and 
    mvn package spring-boot:run
    ```
 
-1. Test the web app by browsing to http://localhost:8080, or with the following `curl` command:
+1. Test the web app by browsing to `http://localhost:8080`, or with the following `curl` command:
    ```
    curl http://localhost:8080
    ```
