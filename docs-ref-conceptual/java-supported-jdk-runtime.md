@@ -32,9 +32,13 @@ Product support for the Azure-supported Azul Zulu JDK is available through when 
 
 ## Use in Docker containers
 
-You can build unlimited Docker images using Zulu Enterprise builds of OpenJDK on any distros of your choice. Zulu Docker images based off the Azul Zulu Enterprise for Azure JDKs are available on [Microsoft's Container Registry](http://mcr.microsoft.com/). The entries to these images are also published to Docker Hub , and a complete list can be found on [Azul Systems' website](https://www.azul.com/downloads/azure-only/zulu/#docker).
+You can build unlimited Docker images using Zulu Enterprise builds of OpenJDK on any distros of your choice. Zulu Docker images based off the Azul Zulu Enterprise for Azure JDKs are available on [Microsoft's public Docker repository](https://hub.docker.com/r/microsoft/java-jdk/). The  Dockerfiles that used to build these images are available on [Microsoft's Java GitHub repo](https://github.com/Microsoft/java/tree/master/docker).
 
-Example Dockerfiles using the images are available in the [Microsoft Java GitHub repository](https://github.com/Microsoft/java/tree/master/docker).
+To containerize your apps using these images, you will need to set a `FROM` statement in your Dockerfile and then configure the container with your application's dependencies.
+
+```Dockerfile
+FROM  microsoft/java-jdk:<tag>
+```
 
 ## Azure service runtime support
 
