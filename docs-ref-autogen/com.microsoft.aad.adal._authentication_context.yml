@@ -17,9 +17,11 @@ items:
   - com.microsoft.aad.adal._authentication_context.acquireTokenByRefreshToken(String,String,AuthenticationCallback<AuthenticationResult>)
   - com.microsoft.aad.adal._authentication_context.acquireTokenByRefreshToken(String,String,String,AuthenticationCallback<AuthenticationResult>)
   - com.microsoft.aad.adal._authentication_context.acquireTokenSilent(String,String,String,final AuthenticationCallback<AuthenticationResult>)
+  - com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync(String,String,String,@Nullable String,AuthenticationCallback<AuthenticationResult>)
   - com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync(String,String,String,AuthenticationCallback<AuthenticationResult>)
   - com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync(String,String,String,boolean,AuthenticationCallback<AuthenticationResult>)
   - com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync(String,String,String)
+  - com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync(String,String,String,@Nullable String)
   - com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync(String,String,String,boolean)
   - com.microsoft.aad.adal._authentication_context.AuthenticationContext(Context,String,boolean)
   - com.microsoft.aad.adal._authentication_context.AuthenticationContext(Context,String,boolean,ITokenCacheStore)
@@ -29,12 +31,14 @@ items:
   - com.microsoft.aad.adal._authentication_context.getBrokerUser()
   - com.microsoft.aad.adal._authentication_context.getBrokerUsers()
   - com.microsoft.aad.adal._authentication_context.getCache()
+  - com.microsoft.aad.adal._authentication_context.getClientCapabilites()
   - com.microsoft.aad.adal._authentication_context.getExtendedLifetimeEnabled()
   - com.microsoft.aad.adal._authentication_context.getRedirectUriForBroker()
   - com.microsoft.aad.adal._authentication_context.getRequestCorrelationId()
   - com.microsoft.aad.adal._authentication_context.getValidateAuthority()
   - com.microsoft.aad.adal._authentication_context.getVersionName()
   - com.microsoft.aad.adal._authentication_context.onActivityResult(final int,final int,final Intent)
+  - com.microsoft.aad.adal._authentication_context.setClientCapabilites(List<String>)
   - com.microsoft.aad.adal._authentication_context.setExtendedLifetimeEnabled(final boolean)
   - com.microsoft.aad.adal._authentication_context.setRequestCorrelationId(final UUID)
   href: com.microsoft.aad.adal._authentication_context.yml
@@ -50,7 +54,7 @@ items:
       branch: master
       repo: https://github.com/AzureAD/azure-activedirectory-library-for-android
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 55
+    startLine: 63
   package: com.microsoft.aad.adal
   summary: <p>ADAL context to get access token, refresh token, and lookup from cache. </p>
   syntax:
@@ -71,7 +75,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 378
+    startLine: 351
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, behavior will depend on options. If promptbehavior is AUTO, it will remove this refresh token from cache and fall back on the UI if activitycontext is not null. Default is AUTO.</p>
@@ -115,7 +119,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 340
+    startLine: 325
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, behavior will depend on options. If <xref uid="com.microsoft.aad.adal._prompt_behavior" data-throw-if-not-resolved="false">PromptBehavior</xref> is AUTO, it will remove this refresh token from cache and fall back on the UI. Default is AUTO. if <xref uid="com.microsoft.aad.adal._prompt_behavior" data-throw-if-not-resolved="false">PromptBehavior</xref> is Always, it will display prompt screen.</p>
@@ -156,7 +160,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 419
+    startLine: 378
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, behavior will depend on options. If promptbehavior is AUTO, it will remove this refresh token from cache and fall back on the UI if activitycontext is not null. Default is AUTO.</p>
@@ -203,7 +207,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 302
+    startLine: 299
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use the refresh token if available. If it fails to get token with refresh token, it will remove this refresh token from cache and fall back on the UI.</p>
@@ -247,7 +251,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 261
+    startLine: 270
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, it will remove this refresh token from cache and start authentication.</p>
@@ -288,7 +292,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 458
+    startLine: 404
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start an interactive auth flow to acquire new tokens with the requested claims. Bypasses token cache if promptbehavior is not AUTO or claims are passed.</p>
@@ -338,7 +342,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 538
+    startLine: 458
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquireToken will start an interactive auth flow to acquire new tokens with the requested claims. Bypasses token cache if promptbehavior is not AUTO or claims are passed.</p>
@@ -388,12 +392,9 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 620
+    startLine: 520
   package: com.microsoft.aad.adal
-  summary: >-
-    <p>acquireToken will start an interactive auth flow to acquire new tokens with the requested claims. Bypasses token cache if promptbehavior is not AUTO or claims are passed. This overload uses new dialog based prompt. It will create a handler to run the dialog related code.</p>
-
-    <p></p>
+  summary: <p>acquireToken will authorize an end user to call the specified resource. The access token returned from the STS will be sent to the <xref uid="com.microsoft.aad.adal._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> and can be used to call the specified protected resource. Bypasses token cache if </p>
   syntax:
     content: public void acquireToken(final String resource, final String clientId, @Nullable String redirectUri, @Nullable final String loginHint, @Nullable final PromptBehavior prompt, @Nullable String extraQueryParameters, @Nullable final String claims, final AuthenticationCallback<AuthenticationResult> callback)
     parameters:
@@ -411,7 +412,7 @@ items:
       description: <p>Optional if validateAuthority == null. It is used for cache and as a loginhint at authentication. </p>
     - id: prompt
       type: 9a7d2fbdcom.microsoft.aad.adal._prompt_behavior
-      description: <p>Optional. added as query parameter to authorization url </p>
+      description: <p>is not AUTO or claims are passed. This overload uses an [AlertDialog](<a href="https://developer.android.com/guide/topics/ui/dialogs">https://developer.android.com/guide/topics/ui/dialogs</a>) when user interaction is required. This overload does not support any flow requiring a [token broker](<a href="https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/Broker">https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/Broker</a>).</p>
     - id: extraQueryParameters
       type: 8766ae01
       description: <p>Optional. added to authorization url </p>
@@ -435,7 +436,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 499
+    startLine: 431
   package: com.microsoft.aad.adal
   summary: >-
     <p>It will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, behavior will depend on options. If promptbehavior is AUTO, it will remove this refresh token from cache and fall back on the UI. Default is AUTO.</p>
@@ -482,12 +483,9 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 580
+    startLine: 488
   package: com.microsoft.aad.adal
-  summary: >-
-    <p>This uses new dialog based prompt. It will create a handler to run the dialog related code. It will start interactive flow if needed. It checks the cache to return existing result if not expired. It tries to use refresh token if available. If it fails to get token with refresh token, behavior will depend on options. If promptbehavior is AUTO, it will remove this refresh token from cache and fall back on the UI. Default is AUTO.</p>
-
-    <p></p>
+  summary: <p>acquireToken will authorize an end user to call the specified resource. The access token returned from the STS will be sent to the <xref uid="com.microsoft.aad.adal._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> and can be used to call the specified protected resource. By default, acquireToken will attempt to fulfill the request silently, and perform an interactive login if needed or explicitly specified in the request. This overload uses an [AlertDialog](<a href="https://developer.android.com/guide/topics/ui/dialogs">https://developer.android.com/guide/topics/ui/dialogs</a>) when user interaction is required. This overload does not support any flow requiring a [token broker](<a href="https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/Broker">https://github.com/AzureAD/azure-activedirectory-library-for-android/wiki/Broker</a>). </p>
   syntax:
     content: public void acquireToken(String resource, String clientId, @Nullable String redirectUri, @Nullable String loginHint, @Nullable PromptBehavior prompt, @Nullable String extraQueryParameters, AuthenticationCallback<AuthenticationResult> callback)
     parameters:
@@ -526,7 +524,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 925
+    startLine: 921
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquire token using refresh token if cache is not used. Otherwise, use acquireToken to let the ADAL handle the cache lookup and refresh token request.</p>
@@ -574,7 +572,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 976
+    startLine: 972
   package: com.microsoft.aad.adal
   summary: >-
     <p>acquire token using refresh token if cache is not used. Otherwise, use acquireToken to let the ADAL handle the cache lookup and refresh token request.</p>
@@ -625,7 +623,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 777
+    startLine: 739
   package: com.microsoft.aad.adal
   summary: >-
     <p>The function will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
@@ -663,6 +661,44 @@ items:
     return:
       type: 9b3030f6com.microsoft.aad.adal._authentication_resulta08ddfce
       description: <p>A <xref uid="" data-throw-if-not-resolved="false">Future</xref> object representing the <xref uid="com.microsoft.aad.adal._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> of the call. It contains Access Token,the Access Token's expiration time, Refresh token, and <xref uid="com.microsoft.aad.adal._user_info" data-throw-if-not-resolved="false">UserInfo</xref>. </p>
+- uid: com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync(String,String,String,@Nullable String,AuthenticationCallback<AuthenticationResult>)
+  id: acquireTokenSilentAsync(String,String,String,@Nullable String,AuthenticationCallback<AuthenticationResult>)
+  parent: com.microsoft.aad.adal._authentication_context
+  href: com.microsoft.aad.adal._authentication_context.yml
+  langs:
+  - java
+  name: acquireTokenSilentAsync(String resource, String clientId, String userId, @Nullable String claims, AuthenticationCallback<AuthenticationResult> callback)
+  nameWithType: AuthenticationContext.acquireTokenSilentAsync(String resource, String clientId, String userId, @Nullable String claims, AuthenticationCallback<AuthenticationResult> callback)
+  fullName: com.microsoft.aad.adal.AuthenticationContext.acquireTokenSilentAsync(String resource, String clientId, String userId, @Nullable String claims, AuthenticationCallback<AuthenticationResult> callback)
+  overload: com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
+    startLine: 860
+  package: com.microsoft.aad.adal
+  summary: >-
+    <p>The function will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
+
+    <p></p>
+  syntax:
+    content: public void acquireTokenSilentAsync(String resource, String clientId, String userId, @Nullable String claims, AuthenticationCallback<AuthenticationResult> callback)
+    parameters:
+    - id: resource
+      type: "26831127"
+      description: <p>required resource identifier. </p>
+    - id: clientId
+      type: "26831127"
+      description: <p>required client identifier. </p>
+    - id: userId
+      type: "26831127"
+      description: <p>UserId obtained from <xref uid="com.microsoft.aad.adal._user_info" data-throw-if-not-resolved="false">UserInfo</xref> inside <xref uid="com.microsoft.aad.adal._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref></p>
+    - id: claims
+      type: 8766ae01
+      description: <p>Optional. The claims challenge returned from middle tier service, will be added as query string to authorize endpoint. </p>
+    - id: callback
+      type: com.microsoft.aad.adal._authentication_callback78504a52com.microsoft.aad.adal._authentication_resulta08ddfce
+      description: <p>required <xref uid="com.microsoft.aad.adal._authentication_callback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> object for async call. </p>
 - uid: com.microsoft.aad.adal._authentication_context.acquireTokenSilentAsync(String,String,String,AuthenticationCallback<AuthenticationResult>)
   id: acquireTokenSilentAsync(String,String,String,AuthenticationCallback<AuthenticationResult>)
   parent: com.microsoft.aad.adal._authentication_context
@@ -677,7 +713,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 851
+    startLine: 814
   package: com.microsoft.aad.adal
   summary: >-
     <p>The function will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
@@ -712,7 +748,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 873
+    startLine: 836
   package: com.microsoft.aad.adal
   summary: >-
     <p>The function will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
@@ -750,7 +786,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 660
+    startLine: 584
   package: com.microsoft.aad.adal
   summary: >-
     <p>This is sync function. It will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
@@ -776,6 +812,49 @@ items:
     description: <p>If silent request fails to get the token back. </p>
   - type: 8256ba40
     description: <p>If the main thread is interrupted before or during the activity. </p>
+- uid: com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync(String,String,String,@Nullable String)
+  id: acquireTokenSilentSync(String,String,String,@Nullable String)
+  parent: com.microsoft.aad.adal._authentication_context
+  href: com.microsoft.aad.adal._authentication_context.yml
+  langs:
+  - java
+  name: acquireTokenSilentSync(String resource, String clientId, String userId, @Nullable String claims)
+  nameWithType: AuthenticationContext.acquireTokenSilentSync(String resource, String clientId, String userId, @Nullable String claims)
+  fullName: com.microsoft.aad.adal.AuthenticationContext.acquireTokenSilentSync(String resource, String clientId, String userId, @Nullable String claims)
+  overload: com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync*
+  type: Method
+  source:
+    remote: *o0
+    path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
+    startLine: 609
+  package: com.microsoft.aad.adal
+  summary: >-
+    <p>This is sync function. It will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
+
+    <p></p>
+  syntax:
+    content: public AuthenticationResult acquireTokenSilentSync(String resource, String clientId, String userId, @Nullable String claims)
+    parameters:
+    - id: resource
+      type: "26831127"
+      description: <p>required resource identifier. </p>
+    - id: clientId
+      type: "26831127"
+      description: <p>required client identifier. </p>
+    - id: userId
+      type: "26831127"
+      description: <p>UserID obtained from <xref uid="com.microsoft.aad.adal._authentication_result" data-throw-if-not-resolved="false">#getUserInfo()</xref></p>
+    - id: claims
+      type: 8766ae01
+      description: <p>Optional. The claims challenge returned from middle tier service, will be added as query string to authorize endpoint. </p>
+    return:
+      type: com.microsoft.aad.adal._authentication_result
+      description: <p>A <xref uid="" data-throw-if-not-resolved="false">Future</xref> object representing the <xref uid="com.microsoft.aad.adal._authentication_result" data-throw-if-not-resolved="false">AuthenticationResult</xref> of the call. It contains Access Token,the Access Token's expiration time, Refresh token, and <xref uid="com.microsoft.aad.adal._user_info" data-throw-if-not-resolved="false">UserInfo</xref>. </p>
+  exceptions:
+  - type: 405643ff
+    description: <p>If silent request fails to get the token back. </p>
+  - type: 8256ba40
+    description: <p>If the main thread is interrupted before or during the activity. </p>
 - uid: com.microsoft.aad.adal._authentication_context.acquireTokenSilentSync(String,String,String,boolean)
   id: acquireTokenSilentSync(String,String,String,boolean)
   parent: com.microsoft.aad.adal._authentication_context
@@ -790,7 +869,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 684
+    startLine: 633
   package: com.microsoft.aad.adal
   summary: >-
     <p>This is sync function. It will first look at the cache and automatically checks for the token expiration. Additionally, if no suitable access token is found in the cache, but refresh token is available, the function will use the refresh token automatically. This method will not show UI for the user. If prompt is needed, the method will return an exception</p>
@@ -833,7 +912,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 98
+    startLine: 107
   package: com.microsoft.aad.adal
   summary: >-
     <p>Constructs context to use with known authority to get the token. It uses default cache that stores encrypted tokens.</p>
@@ -865,7 +944,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 115
+    startLine: 124
   package: com.microsoft.aad.adal
   summary: >-
     <p>Constructs context to use with known authority to get the token. It uses provided cache.</p>
@@ -905,7 +984,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 129
+    startLine: 138
   package: com.microsoft.aad.adal
   summary: >-
     <p>It will verify the authority and use the given cache. If cache is null, it will not use cache.</p>
@@ -942,7 +1021,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 1065
+    startLine: 1061
   package: com.microsoft.aad.adal
   summary: >-
     <p>Active authentication activity can be cancelled if it exists. It may not be cancelled if activity is not launched yet. RequestId is the hashcode of your AuthenticationCallback.</p>
@@ -974,7 +1053,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 188
+    startLine: 197
   package: com.microsoft.aad.adal
   summary: >-
     <p>Gets authority that is used for this object of AuthenticationContext.</p>
@@ -999,7 +1078,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 204
+    startLine: 213
   package: com.microsoft.aad.adal
   summary: >-
     <p>Gets username for current broker user.</p>
@@ -1024,7 +1103,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 222
+    startLine: 231
   package: com.microsoft.aad.adal
   summary: >-
     <p>Gets user info from broker. This should not be called on main thread.</p>
@@ -1056,7 +1135,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 159
+    startLine: 168
   package: com.microsoft.aad.adal
   summary: >-
     <p>Returns referenced cache. You can use default cache, which uses SharedPreferencesFileManager and handles synchronization by itself.</p>
@@ -1067,6 +1146,26 @@ items:
     return:
       type: com.microsoft.aad.adal._i_token_cache_store
       description: <p>ITokenCacheStore Current cache used </p>
+- uid: com.microsoft.aad.adal._authentication_context.getClientCapabilites()
+  id: getClientCapabilites()
+  parent: com.microsoft.aad.adal._authentication_context
+  href: com.microsoft.aad.adal._authentication_context.yml
+  langs:
+  - java
+  name: getClientCapabilites()
+  nameWithType: AuthenticationContext.getClientCapabilites()
+  fullName: com.microsoft.aad.adal.AuthenticationContext.getClientCapabilites()
+  overload: com.microsoft.aad.adal._authentication_context.getClientCapabilites*
+  type: Method
+  source:
+    remote: *o0
+    path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
+    startLine: 1513
+  package: com.microsoft.aad.adal
+  syntax:
+    content: public List<String> getClientCapabilites()
+    return:
+      type: 7d60c20e
 - uid: com.microsoft.aad.adal._authentication_context.getExtendedLifetimeEnabled()
   id: getExtendedLifetimeEnabled()
   parent: com.microsoft.aad.adal._authentication_context
@@ -1081,7 +1180,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 168
+    startLine: 177
   package: com.microsoft.aad.adal
   summary: >-
     <p>Gets if the ExtendedLifetime mode is enabled.</p>
@@ -1106,7 +1205,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 233
+    startLine: 242
   package: com.microsoft.aad.adal
   summary: >-
     <p>Get expected redirect Uri for your app to use in broker. You need to register this redirectUri in order to get token from Broker.</p>
@@ -1131,7 +1230,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 1115
+    startLine: 1111
   package: com.microsoft.aad.adal
   summary: >-
     <p>Get the CorrelationId set by user.</p>
@@ -1156,7 +1255,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 195
+    startLine: 204
   package: com.microsoft.aad.adal
   syntax:
     content: public boolean getValidateAuthority()
@@ -1177,7 +1276,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 1420
+    startLine: 1506
   package: com.microsoft.aad.adal
   summary: >-
     <p>Version name for ADAL not for the app itself.</p>
@@ -1202,7 +1301,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 1020
+    startLine: 1016
   package: com.microsoft.aad.adal
   summary: >-
     <p>This method wraps the implementation for onActivityResult at the related Activity class. This method is called at UI thread.</p>
@@ -1225,6 +1324,27 @@ items:
           <xref uid="" data-throw-if-not-resolved="false">Intent</xref>
 
         </p>
+- uid: com.microsoft.aad.adal._authentication_context.setClientCapabilites(List<String>)
+  id: setClientCapabilites(List<String>)
+  parent: com.microsoft.aad.adal._authentication_context
+  href: com.microsoft.aad.adal._authentication_context.yml
+  langs:
+  - java
+  name: setClientCapabilites(List<String> clientCapabilites)
+  nameWithType: AuthenticationContext.setClientCapabilites(List<String> clientCapabilites)
+  fullName: com.microsoft.aad.adal.AuthenticationContext.setClientCapabilites(List<String> clientCapabilites)
+  overload: com.microsoft.aad.adal._authentication_context.setClientCapabilites*
+  type: Method
+  source:
+    remote: *o0
+    path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
+    startLine: 1517
+  package: com.microsoft.aad.adal
+  syntax:
+    content: public void setClientCapabilites(List<String> clientCapabilites)
+    parameters:
+    - id: clientCapabilites
+      type: 7d60c20e
 - uid: com.microsoft.aad.adal._authentication_context.setExtendedLifetimeEnabled(final boolean)
   id: setExtendedLifetimeEnabled(final boolean)
   parent: com.microsoft.aad.adal._authentication_context
@@ -1239,7 +1359,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 179
+    startLine: 188
   package: com.microsoft.aad.adal
   summary: >-
     <p>The client need to set the flag to true explicitly to enable the ExtendedLifetime mode The default value of flag is false. ADAL will return the stale token when ExtendedLifetime mode is enabled and the server is down</p>
@@ -1265,7 +1385,7 @@ items:
   source:
     remote: *o0
     path: adal/src/main/java/com/microsoft/aad/adal/AuthenticationContext.java
-    startLine: 1128
+    startLine: 1124
   package: com.microsoft.aad.adal
   summary: >-
     <p>Set CorrelationId to requests.</p>
@@ -1511,6 +1631,20 @@ references:
   name: setRequestCorrelationId
   nameWithType: AuthenticationContext.setRequestCorrelationId
   fullName: com.microsoft.aad.adal.AuthenticationContext.setRequestCorrelationId
+  package: com.microsoft.aad.adal
+- uid: 7d60c20e
+  spec.java:
+  - name: List<String>
+    fullName: List<String>
+- uid: com.microsoft.aad.adal._authentication_context.getClientCapabilites*
+  name: getClientCapabilites
+  nameWithType: AuthenticationContext.getClientCapabilites
+  fullName: com.microsoft.aad.adal.AuthenticationContext.getClientCapabilites
+  package: com.microsoft.aad.adal
+- uid: com.microsoft.aad.adal._authentication_context.setClientCapabilites*
+  name: setClientCapabilites
+  nameWithType: AuthenticationContext.setClientCapabilites
+  fullName: com.microsoft.aad.adal.AuthenticationContext.setClientCapabilites
   package: com.microsoft.aad.adal
 - uid: com.microsoft.aad.adal._authentication_context.getVersionName*
   name: getVersionName

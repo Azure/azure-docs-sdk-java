@@ -5,11 +5,15 @@ items:
   parent: com.microsoft.azure.functions.annotation
   children:
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.collectionName()
+  - com.microsoft.azure.functions.annotation._cosmos_d_b_output.collectionThroughput()
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.connectionStringSetting()
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.createIfNotExists()
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.databaseName()
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.dataType()
   - com.microsoft.azure.functions.annotation._cosmos_d_b_output.name()
+  - com.microsoft.azure.functions.annotation._cosmos_d_b_output.partitionKey()
+  - com.microsoft.azure.functions.annotation._cosmos_d_b_output.preferredLocations()
+  - com.microsoft.azure.functions.annotation._cosmos_d_b_output.useMultipleWriteLocations()
   href: com.microsoft.azure.functions.annotation._cosmos_d_b_output.yml
   langs:
   - java
@@ -23,30 +27,10 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-functions-java-library
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 27
+    startLine: 43
   package: com.microsoft.azure.functions.annotation
   summary: >-
-    <p>Place this on a parameter whose value would be written to CosmosDB. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>Any native Java types such as int, String, byte[] </p>
-
-        </li>
-
-        <li>
-
-          <p>Any POJO type </p>
-
-        </li>
-
-      </ul>
-
-    </p>
+    <p>HttpTrigger(name = "request", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final String message ) { return "{ \"id": "" + System.currentTimeMillis() + "", "description": "" + message + "" }"; } </p>
 
     <p></p>
   syntax:
@@ -65,14 +49,42 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 54
+    startLine: 79
   package: com.microsoft.azure.functions.annotation
-  summary: <p>Defines the collection name of the CosmosDB to which to write. </p>
+  summary: >-
+    <p>Defines the collection name of the CosmosDB to which to write.</p>
+
+    <p></p>
   syntax:
     content: public String collectionName()
     return:
       type: "26831127"
       description: <p>The collection name string. </p>
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.collectionThroughput()
+  id: collectionThroughput()
+  parent: com.microsoft.azure.functions.annotation._cosmos_d_b_output
+  href: com.microsoft.azure.functions.annotation._cosmos_d_b_output.yml
+  langs:
+  - java
+  name: collectionThroughput()
+  nameWithType: CosmosDBOutput.collectionThroughput()
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.collectionThroughput()
+  overload: com.microsoft.azure.functions.annotation._cosmos_d_b_output.collectionThroughput*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
+    startLine: 109
+  package: com.microsoft.azure.functions.annotation
+  summary: >-
+    <p>If CreateIfNotExists is true, defines the throughput of the created collection.</p>
+
+    <p></p>
+  syntax:
+    content: public int collectionThroughput() default -1
+    return:
+      type: f75371fa
+      description: <p>Throughput of the created collection. </p>
 - uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.connectionStringSetting()
   id: connectionStringSetting()
   parent: com.microsoft.azure.functions.annotation._cosmos_d_b_output
@@ -87,9 +99,12 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 66
+    startLine: 93
   package: com.microsoft.azure.functions.annotation
-  summary: <p>Defines the app setting name that contains the CosmosDB connection string. </p>
+  summary: >-
+    <p>Defines the app setting name that contains the CosmosDB connection string.</p>
+
+    <p></p>
   syntax:
     content: public String connectionStringSetting()
     return:
@@ -109,9 +124,12 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 60
+    startLine: 86
   package: com.microsoft.azure.functions.annotation
-  summary: <p>Defines the ID of the CosmosDB to which to write. </p>
+  summary: >-
+    <p>Defines the ID of the CosmosDB to which to write.</p>
+
+    <p></p>
   syntax:
     content: public boolean createIfNotExists() default false
     return:
@@ -131,9 +149,12 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 48
+    startLine: 72
   package: com.microsoft.azure.functions.annotation
-  summary: <p>Defines the database name of the CosmosDB to which to write. </p>
+  summary: >-
+    <p>Defines the database name of the CosmosDB to which to write.</p>
+
+    <p></p>
   syntax:
     content: public String databaseName()
     return:
@@ -153,10 +174,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 42
+    startLine: 65
   package: com.microsoft.azure.functions.annotation
   summary: >-
-    <p>Defines how Functions runtime should treat the parameter value. Possible values are:</p>
+    <p>Defines how Functions runtime should treat the parameter value. Possible values are: </p>
 
     <p>
 
@@ -177,6 +198,8 @@ items:
       </ul>
 
     </p>
+
+    <p></p>
   syntax:
     content: public String dataType() default ""
     return:
@@ -196,14 +219,92 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
-    startLine: 32
+    startLine: 49
   package: com.microsoft.azure.functions.annotation
-  summary: <p>The variable name used in function.json. </p>
+  summary: >-
+    <p>The variable name used in function.json.</p>
+
+    <p></p>
   syntax:
     content: public String name()
     return:
       type: "26831127"
       description: <p>The variable name used in function.json. </p>
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.partitionKey()
+  id: partitionKey()
+  parent: com.microsoft.azure.functions.annotation._cosmos_d_b_output
+  href: com.microsoft.azure.functions.annotation._cosmos_d_b_output.yml
+  langs:
+  - java
+  name: partitionKey()
+  nameWithType: CosmosDBOutput.partitionKey()
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.partitionKey()
+  overload: com.microsoft.azure.functions.annotation._cosmos_d_b_output.partitionKey*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
+    startLine: 101
+  package: com.microsoft.azure.functions.annotation
+  summary: >-
+    <p>Defines the partition key path for the created collection when createIfNotExists is set to true. May include binding parameters.</p>
+
+    <p></p>
+  syntax:
+    content: public String partitionKey() default ""
+    return:
+      type: "26831127"
+      description: <p>partitionKey of the created collection. </p>
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.preferredLocations()
+  id: preferredLocations()
+  parent: com.microsoft.azure.functions.annotation._cosmos_d_b_output
+  href: com.microsoft.azure.functions.annotation._cosmos_d_b_output.yml
+  langs:
+  - java
+  name: preferredLocations()
+  nameWithType: CosmosDBOutput.preferredLocations()
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.preferredLocations()
+  overload: com.microsoft.azure.functions.annotation._cosmos_d_b_output.preferredLocations*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
+    startLine: 125
+  package: com.microsoft.azure.functions.annotation
+  summary: >-
+    <p>Defines preferred locations (regions) for geo-replicated database accounts in the Azure Cosmos DB service. Values should be comma-separated. example, PreferredLocations = "East US,South Central US,North Europe"</p>
+
+    <p></p>
+  syntax:
+    content: public String preferredLocations() default ""
+    return:
+      type: "26831127"
+      description: <p>PreferredLocations for geo-replicated database accounts </p>
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.useMultipleWriteLocations()
+  id: useMultipleWriteLocations()
+  parent: com.microsoft.azure.functions.annotation._cosmos_d_b_output
+  href: com.microsoft.azure.functions.annotation._cosmos_d_b_output.yml
+  langs:
+  - java
+  name: useMultipleWriteLocations()
+  nameWithType: CosmosDBOutput.useMultipleWriteLocations()
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.useMultipleWriteLocations()
+  overload: com.microsoft.azure.functions.annotation._cosmos_d_b_output.useMultipleWriteLocations*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/functions/annotation/CosmosDBOutput.java
+    startLine: 116
+  package: com.microsoft.azure.functions.annotation
+  summary: >-
+    <p>Enable to use with Multi Master accounts.</p>
+
+    <p></p>
+  syntax:
+    content: public boolean useMultipleWriteLocations() default false
+    return:
+      type: 4fc6e284
+      description: <p>whether to Multi Master accounts </p>
 references:
 - uid: "26831127"
   spec.java:
@@ -242,4 +343,28 @@ references:
   name: connectionStringSetting
   nameWithType: CosmosDBOutput.connectionStringSetting
   fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.connectionStringSetting
+  package: com.microsoft.azure.functions.annotation
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.partitionKey*
+  name: partitionKey
+  nameWithType: CosmosDBOutput.partitionKey
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.partitionKey
+  package: com.microsoft.azure.functions.annotation
+- uid: f75371fa
+  spec.java:
+  - name: int
+    fullName: int
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.collectionThroughput*
+  name: collectionThroughput
+  nameWithType: CosmosDBOutput.collectionThroughput
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.collectionThroughput
+  package: com.microsoft.azure.functions.annotation
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.useMultipleWriteLocations*
+  name: useMultipleWriteLocations
+  nameWithType: CosmosDBOutput.useMultipleWriteLocations
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.useMultipleWriteLocations
+  package: com.microsoft.azure.functions.annotation
+- uid: com.microsoft.azure.functions.annotation._cosmos_d_b_output.preferredLocations*
+  name: preferredLocations
+  nameWithType: CosmosDBOutput.preferredLocations
+  fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput.preferredLocations
   package: com.microsoft.azure.functions.annotation
