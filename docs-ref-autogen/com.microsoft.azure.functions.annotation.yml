@@ -22,7 +22,6 @@ items:
   - com.microsoft.azure.functions.annotation._http_trigger
   - com.microsoft.azure.functions.annotation._mobile_table_input
   - com.microsoft.azure.functions.annotation._mobile_table_output
-  - com.microsoft.azure.functions.annotation._notification_hub_output
   - com.microsoft.azure.functions.annotation._queue_output
   - com.microsoft.azure.functions.annotation._queue_trigger
   - com.microsoft.azure.functions.annotation._send_grid_output
@@ -162,33 +161,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.CosmosDBInput
   type: Interface
   summary: >-
-    <p>Place this on a parameter whose value would come from CosmosDB. The parameter type can be one of the following:</p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>Any native Java types such as int, String, byte[] </p>
-
-        </li>
-
-        <li>
-
-          <p>Nullable values using Optional&lt;T&gt; </p>
-
-        </li>
-
-        <li>
-
-          <p>Any POJO type </p>
-
-        </li>
-
-      </ul>
-
-    </p>
+    <p>CosmosDBInput(name = "database", databaseName = "ToDoList", collectionName = "Items", id = "{Query.id}", connectionStringSetting = "AzureCosmosDBConnection") Optional&lt;String&gt; item ) { return item.orElse("Not found"); } </p>
 
     <p></p>
   syntax:
@@ -201,27 +174,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.CosmosDBOutput
   type: Interface
   summary: >-
-    <p>Place this on a parameter whose value would be written to CosmosDB. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>Any native Java types such as int, String, byte[] </p>
-
-        </li>
-
-        <li>
-
-          <p>Any POJO type </p>
-
-        </li>
-
-      </ul>
-
-    </p>
+    <p>HttpTrigger(name = "request", methods = {HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final String message ) { return "{ \"id": "" + System.currentTimeMillis() + "", "description": "" + message + "" }"; } </p>
 
     <p></p>
   syntax:
@@ -234,7 +187,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.CosmosDBTrigger
   type: Interface
   summary: >-
-    <p>CosmosDBTrigger(name = "items", databaseName = "mydbname", collectionName = "mycollname", leaseCollectionName = "", connectionStringSetting = "myconnvarname") MyDataItem[] items, final ExecutionContext context ) { context.getLogger().info(items.length); }</p>
+    <p>CosmosDBTrigger(name = "database", databaseName = "ToDoList", collectionName = "Items", leaseCollectionName = "leases", createLeaseCollectionIfNotExists = true, connectionStringSetting = "AzureCosmosDBConnection") List&lt;Map&lt;String, String&gt;&gt; items, final ExecutionContext context ) { context.getLogger().info(items.size() + " item(s) is/are inserted."); if (!items.isEmpty()) { context.getLogger().info("The ID of the first item is: " + items.get(0).get("id")); } } </p>
 
     <p></p>
   syntax:
@@ -247,7 +200,7 @@ references:
   fullName: com.microsoft.azure.functions.annotation.EventGridTrigger
   type: Interface
   summary: >-
-    <p>EventGridTrigger(name = "obj") MyModel obj, final ExecutionContext context ) { context.getLogger().info(obj.toString()); }</p>
+    <p>EventGridTrigger(name = "event") String content, final ExecutionContext context ) { context.getLogger().info(content); }</p>
 
     <p></p>
   syntax:
@@ -419,39 +372,6 @@ references:
     <p></p>
   syntax:
     content: public interface MobileTableOutput
-- uid: com.microsoft.azure.functions.annotation._notification_hub_output
-  parent: com.microsoft.azure.functions.annotation
-  href: com.microsoft.azure.functions.annotation._notification_hub_output.yml
-  name: NotificationHubOutput
-  nameWithType: NotificationHubOutput
-  fullName: com.microsoft.azure.functions.annotation.NotificationHubOutput
-  type: Interface
-  summary: >-
-    <p>Place this on a parameter whose value would be written to notification hub. The parameter type should be OutputBinding&lt;T&gt;, where T could be one of:</p>
-
-    <p>
-
-      <ul>
-
-        <li>
-
-          <p>Any native Java types such as int, String, byte[] </p>
-
-        </li>
-
-        <li>
-
-          <p>Any POJO type </p>
-
-        </li>
-
-      </ul>
-
-    </p>
-
-    <p></p>
-  syntax:
-    content: public interface NotificationHubOutput
 - uid: com.microsoft.azure.functions.annotation._queue_output
   parent: com.microsoft.azure.functions.annotation
   href: com.microsoft.azure.functions.annotation._queue_output.yml
