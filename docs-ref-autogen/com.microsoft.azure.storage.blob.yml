@@ -35,6 +35,7 @@ items:
   - com.microsoft.azure.storage.blob._page_blob_access_conditions
   - com.microsoft.azure.storage.blob._page_blob_u_r_l
   - com.microsoft.azure.storage.blob._pipeline_options
+  - com.microsoft.azure.storage.blob._progress_reporter
   - com.microsoft.azure.storage.blob._reliable_download_options
   - com.microsoft.azure.storage.blob._request_i_d_factory
   - com.microsoft.azure.storage.blob._request_retry_factory
@@ -68,6 +69,7 @@ items:
       repo: https://github.com/Azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/AccountSASPermission.java
     startLine: 14
+  summary: "<p>This package contains the core types for interacting with Azure Storage; start here.</p>"
   syntax:
     content: package com.microsoft.azure.storage.blob
 references:
@@ -121,9 +123,9 @@ references:
   fullName: com.microsoft.azure.storage.blob.AccountSASSignatureValues
   type: Class
   summary: >-
-    <p>AccountSASSignatureValues is used to generate a Shared Access Signature (SAS) for an Azure Storage account. Once all the values here are set appropriately, call generateSASQueryParameters to obtain a representation of the SAS which can actually be applied to blob urls. Note: that both this class and <xref uid="com.microsoft.azure.storage.blob._s_a_s_query_parameters" data-throw-if-not-resolved="false">SASQueryParameters</xref> exist because the former is mutable and a logical representation while the latter is immutable and used to generate actual REST requests.</p>
+    <p>AccountSASSignatureValues is used to generate a Shared Access Signature (SAS) for an Azure Storage account. Once all the values here are set appropriately, call generateSASQueryParameters to obtain a representation of the SAS which can actually be applied to blob urls. Note: that both this class and <xref uid="com.microsoft.azure.storage.blob._s_a_s_query_parameters" data-throw-if-not-resolved="false">SASQueryParameters</xref> exist because the former is mutable and a logical representation while the latter is immutable and used to generate actual REST requests. </p>
 
-    <p>Please see <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1">here</a> for more conceptual information on SAS:</p>
+    <p>Please see <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1">here</a> for more conceptual information on SAS: </p>
 
     <p>Please see <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-an-account-sas">here</a> for further descriptions of the parameters, including which are required:</p>
 
@@ -148,7 +150,7 @@ references:
   fullName: com.microsoft.azure.storage.blob.AppendBlobAccessConditions
   type: Class
   summary: >-
-    <p>This class contains values that restrict the successful completion of AppendBlock operations to certain conditions. Any field may be set to null if no access conditions are desired.</p>
+    <p>This class contains values that restrict the successful completion of AppendBlock operations to certain conditions. Any field may be set to null if no access conditions are desired. </p>
 
     <p>Please refer to the request header section <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/append-block">here</a> for more conceptual information. </p>
   syntax:
@@ -347,7 +349,7 @@ references:
 
         </code> is an object that can be used to report progress on network transfers. When specified on transfer operations, the<code>reportProgress 
 
-        </code> method will be called periodically with the total number of bytes transferred. The user may configure this method to report progress in whatever format desired. </p>
+        </code> method will be called periodically with the total number of bytes transferred. The user may configure this method to report progress in whatever format desired. It is recommended that this type be used in conjunction with <xref uid="" data-throw-if-not-resolved="false">ProgressReporter#addProgressReporting(Flowable, IProgressReceiver)</xref>. </p>
   syntax:
     content: public interface IProgressReceiver
 - uid: com.microsoft.azure.storage.blob._list_blobs_options
@@ -408,7 +410,7 @@ references:
   fullName: com.microsoft.azure.storage.blob.PageBlobAccessConditions
   type: Class
   summary: >-
-    <p>This class contains values that restrict the successful completion of PageBlob operations to certain conditions. It may be set to null if no access conditions are desired.</p>
+    <p>This class contains values that restrict the successful completion of PageBlob operations to certain conditions. It may be set to null if no access conditions are desired. </p>
 
     <p>Please refer to the request header section <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/put-page">here</a> for more conceptual information. </p>
   syntax:
@@ -433,6 +435,21 @@ references:
   summary: <p>This type encapsulates all the possible configuration for the default pipeline. It may be passed to the createPipeline method on <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l" data-throw-if-not-resolved="false">StorageURL</xref>. All the options fields have default values if nothing is passed, and no logger will be used if it is not set. An HttpClient must be set, however. </p>
   syntax:
     content: public class PipelineOptions
+- uid: com.microsoft.azure.storage.blob._progress_reporter
+  parent: com.microsoft.azure.storage.blob
+  href: com.microsoft.azure.storage.blob._progress_reporter.yml
+  name: ProgressReporter
+  nameWithType: ProgressReporter
+  fullName: com.microsoft.azure.storage.blob.ProgressReporter
+  type: Class
+  summary: >-
+    <p>
+
+      <code>ProgressReporterImpl 
+
+        </code> offers a convenient way to add progress tracking to a given Flowable. </p>
+  syntax:
+    content: public class ProgressReporter
 - uid: com.microsoft.azure.storage.blob._reliable_download_options
   parent: com.microsoft.azure.storage.blob
   href: com.microsoft.azure.storage.blob._reliable_download_options.yml
@@ -521,9 +538,9 @@ references:
   fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
   type: Class
   summary: >-
-    <p>ServiceSASSignatureValues is used to generate a Shared Access Signature (SAS) for an Azure Storage service. Once all the values here are set appropriately, call generateSASQueryParameters to obtain a representation of the SAS which can actually be applied to blob urls. Note: that both this class and <xref uid="com.microsoft.azure.storage.blob._s_a_s_query_parameters" data-throw-if-not-resolved="false">SASQueryParameters</xref> exist because the former is mutable and a logical representation while the latter is immutable and used to generate actual REST requests.</p>
+    <p>ServiceSASSignatureValues is used to generate a Shared Access Signature (SAS) for an Azure Storage service. Once all the values here are set appropriately, call generateSASQueryParameters to obtain a representation of the SAS which can actually be applied to blob urls. Note: that both this class and <xref uid="com.microsoft.azure.storage.blob._s_a_s_query_parameters" data-throw-if-not-resolved="false">SASQueryParameters</xref> exist because the former is mutable and a logical representation while the latter is immutable and used to generate actual REST requests. </p>
 
-    <p>Please see <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1">here</a> for more conceptual information on SAS.</p>
+    <p>Please see <a href="https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1">here</a> for more conceptual information on SAS. </p>
 
     <p>Please see <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas">here </a> for more details on each value, including which are required.</p>
 
@@ -624,10 +641,7 @@ references:
   nameWithType: TransferManagerDownloadFromBlobOptions
   fullName: com.microsoft.azure.storage.blob.TransferManagerDownloadFromBlobOptions
   type: Class
-  summary: >-
-    <p>Configures the parallel download behavior for methods on the<code>TransferManager 
-
-        </code> . </p>
+  summary: <p>Configures the parallel download behavior for methods on the <xref uid="com.microsoft.azure.storage.blob._transfer_manager" data-throw-if-not-resolved="false">TransferManager</xref>. </p>
   syntax:
     content: public class TransferManagerDownloadFromBlobOptions
 - uid: com.microsoft.azure.storage.blob._transfer_manager_upload_to_block_blob_options
@@ -637,10 +651,7 @@ references:
   nameWithType: TransferManagerUploadToBlockBlobOptions
   fullName: com.microsoft.azure.storage.blob.TransferManagerUploadToBlockBlobOptions
   type: Class
-  summary: >-
-    <p>Configures the parallel upload behavior for methods on the<code>TransferManager 
-
-        </code> . </p>
+  summary: <p>Configures the parallel upload behavior for methods on the <xref uid="com.microsoft.azure.storage.blob._transfer_manager" data-throw-if-not-resolved="false">TransferManager</xref>. </p>
   syntax:
     content: public class TransferManagerUploadToBlockBlobOptions
 - uid: com.microsoft.azure.storage.blob._u_r_l_parser

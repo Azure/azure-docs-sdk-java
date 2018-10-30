@@ -5,11 +5,16 @@ items:
   parent: com.microsoft.azure.storage.blob
   children:
   - com.microsoft.azure.storage.blob._service_u_r_l.createContainerURL(String)
+  - com.microsoft.azure.storage.blob._service_u_r_l.getAccountInfo()
   - com.microsoft.azure.storage.blob._service_u_r_l.getAccountInfo(Context)
+  - com.microsoft.azure.storage.blob._service_u_r_l.getProperties()
   - com.microsoft.azure.storage.blob._service_u_r_l.getProperties(Context)
+  - com.microsoft.azure.storage.blob._service_u_r_l.getStatistics()
   - com.microsoft.azure.storage.blob._service_u_r_l.getStatistics(Context)
+  - com.microsoft.azure.storage.blob._service_u_r_l.listContainersSegment(String,ListContainersOptions)
   - com.microsoft.azure.storage.blob._service_u_r_l.listContainersSegment(String,ListContainersOptions,Context)
   - com.microsoft.azure.storage.blob._service_u_r_l.ServiceURL(URL,HttpPipeline)
+  - com.microsoft.azure.storage.blob._service_u_r_l.setProperties(StorageServiceProperties)
   - com.microsoft.azure.storage.blob._service_u_r_l.setProperties(StorageServiceProperties,Context)
   - com.microsoft.azure.storage.blob._service_u_r_l.withPipeline(HttpPipeline)
   href: com.microsoft.azure.storage.blob._service_u_r_l.yml
@@ -27,7 +32,7 @@ items:
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
     startLine: 33
   package: com.microsoft.azure.storage.blob
-  summary: <p>Represents a URL to a blob service. This class does not hold any state about a particular storage account but is instead a convenient way of sending off appropriate requests to the resource on the service. It may also be used to construct URLs to blobs and containers. Please see <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction">here</a> for more information on containers. </p>
+  summary: "<p>Represents a URL to a blob service. This class does not hold any state about a particular storage account but is instead a convenient way of sending off appropriate requests to the resource on the service. It may also be used to construct URLs to blobs and containers. Please see <a href=\"https://docs.microsoft.com/en-us/azure/storage/blobs/storage-blobs-introduction\">here</a> for more information on containers. </p>"
   syntax: &o1
     content: public class ServiceURL extends StorageURL
   inheritance:
@@ -35,6 +40,9 @@ items:
   - com.microsoft.azure.storage.blob._storage_u_r_l
   inheritedMembers:
   - com.microsoft.azure.storage.blob._storage_u_r_l.appendToURLPath(URL,String)
+  - com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline()
+  - com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(ICredentials)
+  - com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(PipelineOptions)
   - com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(ICredentials,PipelineOptions)
   - com.microsoft.azure.storage.blob._storage_u_r_l.storageClient
   - com.microsoft.azure.storage.blob._storage_u_r_l.StorageURL(URL,HttpPipeline)
@@ -54,7 +62,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 54
+    startLine: 53
   package: com.microsoft.azure.storage.blob
   syntax:
     content: public ContainerURL createContainerURL(String containerName)
@@ -63,6 +71,29 @@ items:
       type: "26831127"
     return:
       type: com.microsoft.azure.storage.blob._container_u_r_l
+- uid: com.microsoft.azure.storage.blob._service_u_r_l.getAccountInfo()
+  id: getAccountInfo()
+  parent: com.microsoft.azure.storage.blob._service_u_r_l
+  href: com.microsoft.azure.storage.blob._service_u_r_l.yml
+  langs:
+  - java
+  name: getAccountInfo()
+  nameWithType: ServiceURL.getAccountInfo()
+  fullName: com.microsoft.azure.storage.blob.ServiceURL.getAccountInfo()
+  overload: com.microsoft.azure.storage.blob._service_u_r_l.getAccountInfo*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
+    startLine: 279
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Returns the sku name and account kind for the account. For more information, please see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=account_info \"Sample code for ServiceURL.getAccountInfo\")] \r\nFor more samples, please see the [Samples file] (<a href=\"https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java</a>) "
+  syntax:
+    content: public Single<ServiceGetAccountInfoResponse> getAccountInfo()
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models._service_get_account_info_responsea08ddfce
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.getAccountInfo(Context)
   id: getAccountInfo(Context)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -77,13 +108,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 218
+    startLine: 300
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Returns the sku name and account kind for the account. For more information, please see the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information">Azure Docs</a>.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=account_info \"Sample code for ServiceURL.getAccountInfo\")] \r\nFor more samples, please see the [Samples file] (<a href=\"https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java</a>)"
+  summary: "<p>Returns the sku name and account kind for the account. For more information, please see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=account_info \"Sample code for ServiceURL.getAccountInfo\")] \r\nFor more samples, please see the [Samples file] (<a href=\"https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java\">https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java</a>) "
   syntax:
     content: public Single<ServiceGetAccountInfoResponse> getAccountInfo(Context context)
     parameters:
@@ -102,10 +130,33 @@ items:
 
             </code> with data method creates a new<code>Context 
 
-            </code> object that refers to its parent, forming a linked list. </p>
+            </code> object that refers to its parent, forming a linked list.</p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.models._service_get_account_info_responsea08ddfce
-      description: <p>Emits the successful response. </p>
+      description: <p>Emits the successful response.</p>
+- uid: com.microsoft.azure.storage.blob._service_u_r_l.getProperties()
+  id: getProperties()
+  parent: com.microsoft.azure.storage.blob._service_u_r_l
+  href: com.microsoft.azure.storage.blob._service_u_r_l.yml
+  langs:
+  - java
+  name: getProperties()
+  nameWithType: ServiceURL.getProperties()
+  fullName: com.microsoft.azure.storage.blob.ServiceURL.getProperties()
+  overload: com.microsoft.azure.storage.blob._service_u_r_l.getProperties*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
+    startLine: 151
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Gets the properties of a storage account’s Blob service. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.getProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
+  syntax:
+    content: public Single<ServiceGetPropertiesResponse> getProperties()
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models._service_get_properties_responsea08ddfce
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.getProperties(Context)
   id: getProperties(Context)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -120,13 +171,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 136
+    startLine: 172
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Gets the properties of a storage account’s Blob service. For more information, see the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties">Azure Docs</a>.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.getProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java)"
+  summary: "<p>Gets the properties of a storage account’s Blob service. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-properties\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.getProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public Single<ServiceGetPropertiesResponse> getProperties(Context context)
     parameters:
@@ -145,10 +193,33 @@ items:
 
             </code> with data method creates a new<code>Context 
 
-            </code> object that refers to its parent, forming a linked list. </p>
+            </code> object that refers to its parent, forming a linked list.</p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.models._service_get_properties_responsea08ddfce
-      description: <p>Emits the successful response. </p>
+      description: <p>Emits the successful response.</p>
+- uid: com.microsoft.azure.storage.blob._service_u_r_l.getStatistics()
+  id: getStatistics()
+  parent: com.microsoft.azure.storage.blob._service_u_r_l
+  href: com.microsoft.azure.storage.blob._service_u_r_l.yml
+  langs:
+  - java
+  name: getStatistics()
+  nameWithType: ServiceURL.getStatistics()
+  fullName: com.microsoft.azure.storage.blob.ServiceURL.getStatistics()
+  overload: com.microsoft.azure.storage.blob._service_u_r_l.getStatistics*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
+    startLine: 239
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Retrieves statistics related to replication for the Blob service. It is only available on the secondary location endpoint when read-access geo-redundant replication is enabled for the storage account. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-stats\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_stats \"Sample code for ServiceURL.getStats\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
+  syntax:
+    content: public Single<ServiceGetStatisticsResponse> getStatistics()
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models._service_get_statistics_responsea08ddfce
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.getStatistics(Context)
   id: getStatistics(Context)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -163,13 +234,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 193
+    startLine: 262
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Retrieves statistics related to replication for the Blob service. It is only available on the secondary location endpoint when read-access geo-redundant replication is enabled for the storage account. For more information, see the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-stats">Azure Docs</a>.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_stats \"Sample code for ServiceURL.getStats\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java)"
+  summary: "<p>Retrieves statistics related to replication for the Blob service. It is only available on the secondary location endpoint when read-access geo-redundant replication is enabled for the storage account. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-service-stats\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_stats \"Sample code for ServiceURL.getStats\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public Single<ServiceGetStatisticsResponse> getStatistics(Context context)
     parameters:
@@ -188,10 +256,40 @@ items:
 
             </code> with data method creates a new<code>Context 
 
-            </code> object that refers to its parent, forming a linked list. </p>
+            </code> object that refers to its parent, forming a linked list.</p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.models._service_get_statistics_responsea08ddfce
-      description: <p>Emits the successful response. </p>
+      description: <p>Emits the successful response.</p>
+- uid: com.microsoft.azure.storage.blob._service_u_r_l.listContainersSegment(String,ListContainersOptions)
+  id: listContainersSegment(String,ListContainersOptions)
+  parent: com.microsoft.azure.storage.blob._service_u_r_l
+  href: com.microsoft.azure.storage.blob._service_u_r_l.yml
+  langs:
+  - java
+  name: listContainersSegment(String marker, ListContainersOptions options)
+  nameWithType: ServiceURL.listContainersSegment(String marker, ListContainersOptions options)
+  fullName: com.microsoft.azure.storage.blob.ServiceURL.listContainersSegment(String marker, ListContainersOptions options)
+  overload: com.microsoft.azure.storage.blob._service_u_r_l.listContainersSegment*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
+    startLine: 99
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Returns a single segment of containers starting from the specified Marker. Use an empty marker to start enumeration from the beginning. Container names are returned in lexicographic order. After getting a segment, process it, and then call ListContainers again (passing the the previously-returned Marker) to get the next segment. For more information, see the <a href=\"https://docs.microsoft.com/rest/api/storageservices/list-containers2\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list \"Sample code for ServiceURL.listContainersSegment\")] \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list_helper \"Helper code for ServiceURL.listContainersSegment\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
+  syntax:
+    content: public Single<ServiceListContainersSegmentResponse> listContainersSegment(String marker, ListContainersOptions options)
+    parameters:
+    - id: marker
+      type: "26831127"
+      description: <p>Identifies the portion of the list to be returned with the next list operation. This value is returned in the response of a previous list operation as the ListContainersSegmentResponse.body().nextMarker(). Set to null to list the first segment. </p>
+    - id: options
+      type: com.microsoft.azure.storage.blob._list_containers_options
+      description: <p>A <xref uid="com.microsoft.azure.storage.blob._list_containers_options" data-throw-if-not-resolved="false">ListContainersOptions</xref> which specifies what data should be returned by the service.</p>
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models._service_list_containers_segment_responsea08ddfce
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.listContainersSegment(String,ListContainersOptions,Context)
   id: listContainersSegment(String,ListContainersOptions,Context)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -206,13 +304,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 108
+    startLine: 131
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Returns a single segment of containers starting from the specified Marker. Use an empty marker to start enumeration from the beginning. Container names are returned in lexicographic order. After getting a segment, process it, and then call ListContainers again (passing the the previously-returned Marker) to get the next segment. For more information, see the <a href="https://docs.microsoft.com/rest/api/storageservices/list-containers2">Azure Docs</a>.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list \"Sample code for ServiceURL.listContainersSegment\")] \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list_helper \"Helper code for ServiceURL.listContainersSegment\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java)"
+  summary: "<p>Returns a single segment of containers starting from the specified Marker. Use an empty marker to start enumeration from the beginning. Container names are returned in lexicographic order. After getting a segment, process it, and then call ListContainers again (passing the the previously-returned Marker) to get the next segment. For more information, see the <a href=\"https://docs.microsoft.com/rest/api/storageservices/list-containers2\">Azure Docs</a>.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list \"Sample code for ServiceURL.listContainersSegment\")] \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_list_helper \"Helper code for ServiceURL.listContainersSegment\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public Single<ServiceListContainersSegmentResponse> listContainersSegment(String marker, ListContainersOptions options, Context context)
     parameters:
@@ -237,10 +332,10 @@ items:
 
             </code> with data method creates a new<code>Context 
 
-            </code> object that refers to its parent, forming a linked list. </p>
+            </code> object that refers to its parent, forming a linked list.</p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.models._service_list_containers_segment_responsea08ddfce
-      description: <p>Emits the successful response. </p>
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.ServiceURL(URL,HttpPipeline)
   id: ServiceURL(URL,HttpPipeline)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -255,15 +350,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 50
+    startLine: 49
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Creates a<code>ServiceURL 
-
-        </code> object pointing to the account specified by the URL and using the provided pipeline to make HTTP requests.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_url \"Sample code for ServiceURL constructor\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java)"
+  summary: "<p>Creates a<code>ServiceURL \r\n    </code> object pointing to the account specified by the URL and using the provided pipeline to make HTTP requests.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_url \"Sample code for ServiceURL constructor\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public ServiceURL(URL url, HttpPipeline pipeline)
     parameters:
@@ -272,7 +362,37 @@ items:
       description: <p>A url to an Azure Storage account. </p>
     - id: pipeline
       type: 6fbf082c
-      description: <p>A pipeline which configures the behavior of HTTP exchanges. Please refer to the createPipeline method on <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l" data-throw-if-not-resolved="false">StorageURL</xref> for more information. </p>
+      description: >-
+        <p>A<code>HttpPipeline 
+
+            </code> which configures the behavior of HTTP exchanges. Please refer to <xref uid="com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(ICredentials,PipelineOptions)" data-throw-if-not-resolved="false">StorageURL#createPipeline(ICredentials, PipelineOptions)</xref> for more information.</p>
+- uid: com.microsoft.azure.storage.blob._service_u_r_l.setProperties(StorageServiceProperties)
+  id: setProperties(StorageServiceProperties)
+  parent: com.microsoft.azure.storage.blob._service_u_r_l
+  href: com.microsoft.azure.storage.blob._service_u_r_l.yml
+  langs:
+  - java
+  name: setProperties(StorageServiceProperties properties)
+  nameWithType: ServiceURL.setProperties(StorageServiceProperties properties)
+  fullName: com.microsoft.azure.storage.blob.ServiceURL.setProperties(StorageServiceProperties properties)
+  overload: com.microsoft.azure.storage.blob._service_u_r_l.setProperties*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
+    startLine: 194
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Sets properties for a storage account's Blob service endpoint. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-service-properties\">Azure Docs</a>. Note that setting the default service version has no effect when using this client because this client explicitly sets the version header on each request, overriding the default.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.setProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
+  syntax:
+    content: public Single<ServiceSetPropertiesResponse> setProperties(StorageServiceProperties properties)
+    parameters:
+    - id: properties
+      type: com.microsoft.azure.storage.blob.models._storage_service_properties
+      description: <p>Configures the service.</p>
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models._service_set_properties_responsea08ddfce
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.setProperties(StorageServiceProperties,Context)
   id: setProperties(StorageServiceProperties,Context)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -287,13 +407,10 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 165
+    startLine: 219
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Sets properties for a storage account's Blob service endpoint. For more information, see the <a href="https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-service-properties">Azure Docs</a>. Note that setting the default service version has no effect when using this client because this client explicitly sets the version header on each request, overriding the default.</p>
-
-    <p></p>
-  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.setProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/New-Storage-SDK-V10-Preview/src/test/java/com/microsoft/azure/storage/Samples.java)"
+  summary: "<p>Sets properties for a storage account's Blob service endpoint. For more information, see the <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-service-properties\">Azure Docs</a>. Note that setting the default service version has no effect when using this client because this client explicitly sets the version header on each request, overriding the default.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_getsetprops \"Sample code for ServiceURL.setProperties\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
   syntax:
     content: public Single<ServiceSetPropertiesResponse> setProperties(StorageServiceProperties properties, Context context)
     parameters:
@@ -315,10 +432,10 @@ items:
 
             </code> with data method creates a new<code>Context 
 
-            </code> object that refers to its parent, forming a linked list. </p>
+            </code> object that refers to its parent, forming a linked list.</p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.models._service_set_properties_responsea08ddfce
-      description: <p>Emits the successful response. </p>
+      description: <p>Emits the successful response.</p>
 - uid: com.microsoft.azure.storage.blob._service_u_r_l.withPipeline(HttpPipeline)
   id: withPipeline(HttpPipeline)
   parent: com.microsoft.azure.storage.blob._service_u_r_l
@@ -333,18 +450,15 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/ServiceURL.java
-    startLine: 71
+    startLine: 70
   package: com.microsoft.azure.storage.blob
-  summary: >-
-    <p>Creates a new <xref uid="com.microsoft.azure.storage.blob._service_u_r_l" data-throw-if-not-resolved="false">ServiceURL</xref> with the given pipeline.</p>
-
-    <p></p>
+  summary: "<p>Creates a new <xref uid=\"com.microsoft.azure.storage.blob._service_u_r_l\" data-throw-if-not-resolved=\"false\">ServiceURL</xref> with the given pipeline.</p>\r\n<p></p>"
   syntax:
     content: public ServiceURL withPipeline(HttpPipeline pipeline)
     parameters:
     - id: pipeline
       type: 6fbf082c
-      description: <p>An <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> object to set. </p>
+      description: <p>An <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> object to set.</p>
     return:
       type: com.microsoft.azure.storage.blob._service_u_r_l
       description: <p>A <xref uid="com.microsoft.azure.storage.blob._service_u_r_l" data-throw-if-not-resolved="false">ServiceURL</xref> object with the given pipeline. </p>
@@ -376,10 +490,6 @@ references:
   nameWithType: ServiceURL.withPipeline
   fullName: com.microsoft.azure.storage.blob.ServiceURL.withPipeline
   package: com.microsoft.azure.storage.blob
-- uid: 64204ead
-  spec.java:
-  - name: Context
-    fullName: Context
 - uid: 449e6419com.microsoft.azure.storage.blob.models._service_list_containers_segment_responsea08ddfce
   spec.java:
   - name: Single<
@@ -395,6 +505,10 @@ references:
   nameWithType: ServiceURL.listContainersSegment
   fullName: com.microsoft.azure.storage.blob.ServiceURL.listContainersSegment
   package: com.microsoft.azure.storage.blob
+- uid: 64204ead
+  spec.java:
+  - name: Context
+    fullName: Context
 - uid: 449e6419com.microsoft.azure.storage.blob.models._service_get_properties_responsea08ddfce
   spec.java:
   - name: Single<
@@ -462,7 +576,10 @@ references:
   nameWithType: StorageURL.appendToURLPath(URL baseURL, String name)
   fullName: com.microsoft.azure.storage.blob.StorageURL.appendToURLPath(URL baseURL, String name)
   type: Method
-  summary: <p>Appends a string to the end of a URL's path (prefixing the string with a '/' if required). </p>
+  summary: >-
+    <p>Appends a string to the end of a URL's path (prefixing the string with a '/' if required).</p>
+
+    <p></p>
   syntax:
     content: protected static URL appendToURLPath(URL baseURL, String name)
     parameters:
@@ -471,10 +588,66 @@ references:
       description: <p>The url to which the name should be appended. </p>
     - id: name
       type: "26831127"
-      description: <p>The name to be appended. </p>
+      description: <p>The name to be appended.</p>
     return:
       type: a891b3e6
-      description: <p>A url with the name appended. </p>
+      description: <p>A url with the name appended.</p>
+- uid: com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline()
+  parent: com.microsoft.azure.storage.blob._storage_u_r_l
+  href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
+  name: createPipeline()
+  nameWithType: StorageURL.createPipeline()
+  fullName: com.microsoft.azure.storage.blob.StorageURL.createPipeline()
+  type: Method
+  summary: >-
+    <p>Creates an pipeline to process the HTTP requests and Responses.</p>
+
+    <p></p>
+  syntax:
+    content: public static HttpPipeline createPipeline()
+    return:
+      type: 6fbf082c
+      description: <p>The pipeline. </p>
+- uid: com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(ICredentials)
+  parent: com.microsoft.azure.storage.blob._storage_u_r_l
+  href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
+  name: createPipeline(ICredentials credentials)
+  nameWithType: StorageURL.createPipeline(ICredentials credentials)
+  fullName: com.microsoft.azure.storage.blob.StorageURL.createPipeline(ICredentials credentials)
+  type: Method
+  summary: >-
+    <p>Creates an pipeline to process the HTTP requests and Responses.</p>
+
+    <p></p>
+  syntax:
+    content: public static HttpPipeline createPipeline(ICredentials credentials)
+    parameters:
+    - id: credentials
+      type: com.microsoft.azure.storage.blob._i_credentials
+      description: <p>The credentials the pipeline will use to authenticate the requests.</p>
+    return:
+      type: 6fbf082c
+      description: <p>The pipeline. </p>
+- uid: com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(PipelineOptions)
+  parent: com.microsoft.azure.storage.blob._storage_u_r_l
+  href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
+  name: createPipeline(PipelineOptions pipelineOptions)
+  nameWithType: StorageURL.createPipeline(PipelineOptions pipelineOptions)
+  fullName: com.microsoft.azure.storage.blob.StorageURL.createPipeline(PipelineOptions pipelineOptions)
+  type: Method
+  summary: >-
+    <p>Creates an pipeline to process the HTTP requests and Responses.</p>
+
+    <p></p>
+  syntax:
+    content: public static HttpPipeline createPipeline(PipelineOptions pipelineOptions)
+    parameters:
+    - id: pipelineOptions
+      type: com.microsoft.azure.storage.blob._pipeline_options
+      description: <p>Configurations for each policy in the pipeline. </p>
+    return:
+      type: 6fbf082c
+      description: <p>The pipeline. </p>
 - uid: com.microsoft.azure.storage.blob._storage_u_r_l.createPipeline(ICredentials,PipelineOptions)
   parent: com.microsoft.azure.storage.blob._storage_u_r_l
   href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
@@ -494,10 +667,10 @@ references:
       description: <p>The credentials the pipeline will use to authenticate the requests. </p>
     - id: pipelineOptions
       type: com.microsoft.azure.storage.blob._pipeline_options
-      description: <p>Configurations for each policy in the pipeline. </p>
+      description: <p>Configurations for each policy in the pipeline.</p>
     return:
       type: 6fbf082c
-      description: <p>The pipeline. </p>
+      description: <p>The pipeline.</p>
 - uid: com.microsoft.azure.storage.blob._storage_u_r_l.storageClient
   parent: com.microsoft.azure.storage.blob._storage_u_r_l
   href: com.microsoft.azure.storage.blob._storage_u_r_l.yml
