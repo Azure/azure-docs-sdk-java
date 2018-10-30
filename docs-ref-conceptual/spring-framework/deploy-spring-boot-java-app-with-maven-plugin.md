@@ -6,8 +6,8 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: brborges
-ms.author: robmcm;kevinzha;brborges
-ms.date: 10/04/2018
+ms.author: robmcm
+ms.date: 10/18/2018
 ms.devlang: java
 ms.service: app-service
 ms.topic: article
@@ -16,7 +16,7 @@ ms.topic: article
 
 # Deploy a Spring Boot JAR file web app to Azure App Service on Linux
 
-This article demonstrates using the [Maven Plugin for Azure App Service Web Apps](https://docs.microsoft.com/java/api/overview/azure/maven/azure-webapp-maven-plugin/readme) to deploy a Spring Boot application packaged as a Java SE JAR to [Azure App Service on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/). Choose Java SE deployment over [Tomcat and WAR files](/azure/app-service/containers/quickstart-java) when you want to consolidate your app's depedencies, runtime, and configuration into a single deployable artifact.
+This article demonstrates using the [Maven Plugin for Azure App Service Web Apps](https://docs.microsoft.com/java/api/overview/azure/maven/azure-webapp-maven-plugin/readme) to deploy a Spring Boot application packaged as a Java SE JAR to [Azure App Service on Linux](https://docs.microsoft.com/en-us/azure/app-service/containers/). Choose Java SE deployment over [Tomcat and WAR files](/azure/app-service/containers/quickstart-java) when you want to consolidate your app's dependencies, runtime, and configuration into a single deployable artifact.
 
 
 If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
@@ -29,6 +29,18 @@ To complete the steps in this tutorial, you'll need to have the following instal
 * [Java Development Kit (JDK)](https://www.azul.com/downloads/azure-only/zulu/), version 1.7 or later.
 * Apache's [Maven](https://maven.apache.org/), Version 3).
 * A [Git](https://git-scm.com/downloads) client.
+
+## Install and sign in to Azure CLI
+
+The simplest and easiest way to get the Maven Plugin deploying your Spring Boot application is by using [Azure CLI](https://docs.microsoft.com/cli/azure/).
+
+Sign into your Azure account by using the Azure CLI:
+   
+   ```shell
+   az login
+   ```
+   
+Follow the instructions to complete the sign-in process.
 
 ## Clone the sample app
 
@@ -74,14 +86,14 @@ In this section, you will clone a completed Spring Boot application and test it 
 
 ## Configure Maven Plugin for Azure App Service
 
-In this section, you will configure the the Spring Boot project `pom.xml` so that Maven can deploy the app to Azure App Service on Linux.
+In this section, you will configure the Spring Boot project `pom.xml` so that Maven can deploy the app to Azure App Service on Linux.
 
 1. Open `pom.xml` in a code editor.
 
-1. In the `<build>` section of the pom.xml, add the following `<plugin>` entry inside the `<plugins>` tag.
+2. In the `<build>` section of the pom.xml, add the following `<plugin>` entry inside the `<plugins>` tag.
 
    ```xml
-  <plugin>
+   <plugin>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
     <version>1.4.0</version>
@@ -104,10 +116,10 @@ In this section, you will configure the the Spring Boot project `pom.xml` so tha
       <!-- Java Runtime Stack for Web App on Linux-->
       <linuxRuntime>jre8</linuxRuntime>
     </configuration>
-  </plugin>
-  ```
+   </plugin>
+   ```
 
-1. Update the following placeholders in the plugin configuration:
+3. Update the following placeholders in the plugin configuration:
 
 | Placeholder | Description |
 | ----------- | ----------- |
@@ -116,18 +128,6 @@ In this section, you will configure the the Spring Boot project `pom.xml` so tha
 | `REGION` | An Azure region where the web app is hosted, for example `westus2`. You can get a list of regions from the Cloud Shell or CLI using the `az account list-locations` command. |
 
 A full list of configuration options can be found in the [Maven plugin reference on GitHub](https://github.com/Microsoft/azure-maven-plugins/tree/develop/azure-webapp-maven-plugin).
-
-## Install and log in to Azure CLI
-
-The simplest and easiest way to get the Maven Plugin deploying your Spring Boot application is by using [Azure CLI](https://docs.microsoft.com/cli/azure/).
-
-1. Sign into your Azure account by using the Azure CLI:
-   
-   ```shell
-   az login
-   ```
-   
-   Follow the instructions to complete the sign-in process.
 
 ## Deploy the app to Azure
 

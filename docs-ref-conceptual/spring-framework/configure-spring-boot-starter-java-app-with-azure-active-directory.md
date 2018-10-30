@@ -81,54 +81,54 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Add a new app registration][directory-04]
 
-1. Click **New application registration**, specify your application **Name**, use http://localhost:8080 for the **Sign-on URL**, and then click **Create**.
+2. Click **New application registration**, specify your application **Name**, use http://localhost:8080 for the **Sign-on URL**, and then click **Create**.
 
    ![Create new app registration][directory-05]
 
-1. Click your application registration after it has been created.
+3. Click your application registration after it has been created.
 
    ![Select your app registration][directory-06]
 
-1. When the page for your app registration appears, copy your **Application ID**; you will use this value to configure your *application.properties* file later in this tutorial. Click **Settings**, and then click **Keys**.
+4. When the page for your app registration appears, copy your **Application ID**; you will use this value to configure your *application.properties* file later in this tutorial. Click **Settings**, and then click **Keys**.
 
    ![Create app registration keys][directory-07]
 
-1. Add a **Description** and specify the **Duration** for a new key and click **Save**; the value for the key will be automatically filled in when you click the **Save** icon, and you need to copy down the value of the key to configure your *application.properties* file later in this tutorial. (You will not be able to retrieve this value later.)
+5. Add a **Description** and specify the **Duration** for a new key and click **Save**; the value for the key will be automatically filled in when you click the **Save** icon, and you need to copy down the value of the key to configure your *application.properties* file later in this tutorial. (You will not be able to retrieve this value later.)
 
    ![Specify app registration key parameters][directory-08]
 
-1. From the main page for your app registration, click **Settings**, and then click **Required permissions**.
+6. From the main page for your app registration, click **Settings**, and then click **Required permissions**.
 
    ![App registration required permissions][directory-09]
 
-1. Click **Windows Azure Active Directory**.
+7. Click **Windows Azure Active Directory**.
 
    ![Select Windows Azure Active Directory][directory-10]
 
-1. Check the boxes for **Access the directory as the signed-in user** and **Sign in and read user profile**, and then click **Save**.
+8. Check the boxes for **Access the directory as the signed-in user** and **Sign in and read user profile**, and then click **Save**.
 
    ![Enable access permissions][directory-11]
 
-1. On the **Required permissions** page, click **Grant Permissions**, and click **Yes** when prompted.
+9. On the **Required permissions** page, click **Grant Permissions**, and click **Yes** when prompted.
 
    ![Grant access permissions][directory-12]
 
-1. From the main page for your app registration, click **Settings**, and then click **Reply URLs**.
+10. From the main page for your app registration, click **Settings**, and then click **Reply URLs**.
 
-   ![Edit Reply URLs][directory-14]
+    ![Edit Reply URLs][directory-14]
 
-1. Enter "http://localhost:8080/login/oauth2/code/azure" as a new reply URL, and then click **Save**.
+11. Enter "<http://localhost:8080/login/oauth2/code/azure>" as a new reply URL, and then click **Save**.
 
-   ![Add new Reply URL][directory-15]
+    ![Add new Reply URL][directory-15]
 
-1. From the main page for your app registration, click **Manifest**, then set the value of the `oauth2AllowImplicitFlow` parameter to `true`, and then click **Save**.
+12. From the main page for your app registration, click **Manifest**, then set the value of the `oauth2AllowImplicitFlow` parameter to `true`, and then click **Save**.
 
-   ![Configure app manifest][directory-16]
+    ![Configure app manifest][directory-16]
 
-   > [!NOTE]
-   > 
-   > For more information about the `oauth2AllowImplicitFlow` parameter and other application settings, see [Azure Active Directory application manifest][AAD app manifest]. 
-   >
+    > [!NOTE]
+    > 
+    > For more information about the `oauth2AllowImplicitFlow` parameter and other application settings, see [Azure Active Directory application manifest][AAD app manifest]. 
+    >
 
 ### Add a user account to your directory, and add that account to a group
 

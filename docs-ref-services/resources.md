@@ -28,9 +28,9 @@ Use the management API to create resource groups and deploy resources from templ
 
 ```XML
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-mgmt-resources</artifactId>
-    <version>1.3.0</version>
+    <groupId>com.microsoft.azure</groupId>
+    <artifactId>azure-mgmt-resources</artifactId>
+    <version>1.3.0</version>
 </dependency>
 ```
 
