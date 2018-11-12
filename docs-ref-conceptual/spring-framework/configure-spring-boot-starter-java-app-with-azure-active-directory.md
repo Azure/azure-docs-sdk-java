@@ -17,21 +17,30 @@ ms.topic: article
 ms.workload: identity
 ---
 
-# How to use the Spring Boot Starter for Azure Active Directory
+# Tutorial: Secure a Java web app using the Spring Boot Starter for Azure Active Directory
 
 ## Overview
 
 This article demonstrates creating an app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
 
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Create a Java application using the Spring Initializr
+> * Configure Azure Active Directory
+> * Secure the application with Spring Boot classes and annotations
+> * Build and test your Java application
+
+If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+
 ## Prerequisites
 
 The following prerequisites are required in order to complete the steps in this article:
 
-* An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
+* A [Java Development Kit (JDK)](https://aka.ms/azure-jdks), version 1.7 or later.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
-## Create a custom application using the Spring Initializr
+## Create an application using the Spring Initializr
 
 1. Browse to <https://start.spring.io/>.
 
@@ -347,21 +356,10 @@ The following prerequisites are required in order to complete the steps in this 
 
 ## Next steps
 
-For more information about using Azure Active Directory, see the following articles:
+In this tutorial, you created a new Java web application using the Azure Active Directory starter, configured a new Azure AD tenant and registered a new application in it, and then configured your application to use the Spring annotations and classes to protect the web app. To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
 
-* [Azure Active Directory Documentation].
-
-For more information about using Spring Boot applications on Azure, see the following articles:
-
-* [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
-
-* [Running a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
-
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
-
-The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications. To help developers get started with Spring Boot, several sample Spring Boot packages are available at <https://github.com/spring-guides/>. In addition to choosing from the list of basic Spring Boot projects, the **[Spring Initializr]** helps developers get started with creating custom Spring Boot applications.
-
-For a more-detailed sample, see the [Azure Active Directory Spring Boot Sample][AAD Spring Boot Sample] on GitHub.
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
 
 <!-- URL List -->
 
