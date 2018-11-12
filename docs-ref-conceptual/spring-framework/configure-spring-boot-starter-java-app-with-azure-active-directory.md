@@ -176,9 +176,9 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. Extract the files from the project archive you created and downloaded earlier in this tutorial into a directory.
 
-1. Navigate to the parent folder for your project, and open the *pom.xml* file in a text editor.
+1. Navigate to the parent folder for your project, and open the `pom.xml` Maven project file in a text editor.
 
-1. Add the dependencies for Spring OAuth2 security; for example:
+1. Add the dependencies for Spring OAuth2 security to the `pom.xml`:
 
    ```xml
    <dependency>
