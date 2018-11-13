@@ -122,6 +122,7 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [Apache Tomcat]: http://tomcat.apache.org/
 [Jetty]: http://www.eclipse.org/jetty/
 [Legacy Version]: azure-toolkit-for-eclipse-create-hello-world-web-app-legacy-version.md
+[eclipse-sign-in-instructions]:https://docs.microsoft.com/en-us/java/azure/eclipse/azure-toolkit-for-eclipse-sign-in-instructions?view=azure-java-stable
 
 <!-- IMG List -->
 
