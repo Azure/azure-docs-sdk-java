@@ -3,13 +3,13 @@ title: # Create a Hello World web app for Azure using the legacy toolkit for Ecl
 description: This tutorial shows you how to use version 3.0.6 (or earlier) of the Azure Toolkit for Eclipse to create a Hello World Web App for Azure.
 services: app-service
 documentationcenter: java
-author: selvasingh
-manager: routlaw
+author: rmcmurray
+manager: mbaldwin
 editor: ''
 
 ms.assetid: 
-ms.author: robmcm;asirveda
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: app-service
 ms.tgt_pltfrm: multiple
@@ -105,7 +105,7 @@ There are several ways by which you can deploy a Java web application to Azure. 
 
    d. In the **Web Container** drop-down menu, select the appropriate software for your application.
       
-      Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
+      Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of the JDK provided by Azure.
 
    e. In the **Subscription** drop-down menu, select the subscription you want to use for this deployment.
 
@@ -120,7 +120,7 @@ There are several ways by which you can deploy a Java web application to Azure. 
    * In the the **Name** textbox, specify a name for your new Resource Group.
    * In the the **Region** drop-down menu, select the appropriate Azure data center location for your Resource Group.
    * OPTIONAL: By default, a recent distribution of Java 8 will be deployed by Azure automatically to your web app container as your JVM. However, you can specify a different version and distribution of the JVM if your Web App requires it. To specify the JDK for your Web App, click the **JDK** tab, and select one of the following options:
-     * **Deploy the default JDK offered by Azure Web Apps service**: This option will deploy a recent distribution of Java 8.
+     * **Deploy the default JDK offered by Azure Web Apps service**: This option will deploy a recent distribution of Java.
      * **Deploy a 3rd party JDK available on Azure**: This option allows you to choose from the list of JDKs which are provided by Microsoft Azure.
      * **Deploy my own JDK from this download location**: This option allows you to specify your own JDK distribution, which must be packaged as a ZIP file and uploaded to either a publicly available download location or an Azure storage account for which you have access.
           

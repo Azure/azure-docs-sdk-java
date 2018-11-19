@@ -4,10 +4,10 @@ description: Learn how to deploy a Spring Boot app to the cloud using the Maven 
 services: app-service
 documentationcenter: java
 author: rmcmurray
-manager: routlaw
+manager: mbaldwin
 editor: brborges
 ms.author: robmcm
-ms.date: 10/18/2018
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: app-service
 ms.topic: article
@@ -26,7 +26,7 @@ If you don’t have an Azure subscription, create a [free account](https://azure
 To complete the steps in this tutorial, you'll need to have the following installed and configured:
 
 * The [Azure CLI](/cli/azure/), either locally or through [Azure Cloud Shell](https://shell.azure.com).
-* [Java Development Kit (JDK)](https://www.azul.com/downloads/azure-only/zulu/), version 1.7 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * Apache's [Maven](https://maven.apache.org/), Version 3).
 * A [Git](https://git-scm.com/downloads) client.
 

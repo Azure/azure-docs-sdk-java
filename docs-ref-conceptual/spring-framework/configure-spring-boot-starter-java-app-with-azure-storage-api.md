@@ -4,12 +4,12 @@ description: Learn how to configure a Spring Boot Initializer app with the Azure
 services: storage
 documentationcenter: java
 author: rmcmurray
-manager: routlaw
+manager: mbaldwin
 editor: ''
 
 ms.assetid:
 ms.author: robmcm
-ms.date: 09/10/2018
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: storage
 ms.tgt_pltfrm: na
@@ -29,7 +29,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free Azure account](https://azure.microsoft.com/pricing/free-trial/).
 * The [Azure Command-Line Interface (CLI)](http://docs.microsoft.com/cli/azure/overview).
-* An up-to-date [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * Apache's [Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create a custom application using the Spring Initializr

@@ -9,7 +9,7 @@ editor: ''
 
 ms.assetid:
 ms.author: robmcm
-ms.date: 07/02/2018
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: active-directory
 ms.tgt_pltfrm: multiple
@@ -37,7 +37,7 @@ If you don’t have an Azure subscription, create a [free account](https://azure
 
 The following prerequisites are required in order to complete the steps in this article:
 
-* A [Java Development Kit (JDK)](https://aka.ms/azure-jdks), version 1.7 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create an application using the Spring Initializr

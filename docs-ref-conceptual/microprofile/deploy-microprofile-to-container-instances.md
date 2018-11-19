@@ -9,7 +9,7 @@ editor: brunoborges
 
 ms.assetid:
 ms.author: brborges
-ms.date: 07/30/2018
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: container-instances
 ms.tgt_pltfrm: multiple
@@ -31,7 +31,7 @@ In order to complete the steps in this tutorial, you will need to have the follo
 
 * An Azure subscription; if you don't already have an Azure subscription, you can sign up for a [free Azure account].
 * The [Azure Command-Line Interface (CLI)].
-* An up-to-date [Java Development Kit (JDK)], version 1.8 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * Apache's [Maven] build tool (version 3+).
 * A [Git] client.
 
