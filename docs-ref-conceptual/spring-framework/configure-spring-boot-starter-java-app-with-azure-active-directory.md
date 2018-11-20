@@ -31,7 +31,7 @@ In this tutorial, you learn how to:
 > * Secure the application with Spring Boot classes and annotations
 > * Build and test your Java application
 
-If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ## Prerequisites
 
@@ -339,9 +339,13 @@ The following prerequisites are required in order to complete the steps in this 
    > User accounts which are not authorized will receive an **HTTP 403 Unauthorized** message.
    >
 
+## Summary
+
+In this tutorial, you created a new Java web application using the Azure Active Directory starter, configured a new Azure AD tenant and registered a new application in it, and then configured your application to use the Spring annotations and classes to protect the web app.
+
 ## Next steps
 
-In this tutorial, you created a new Java web application using the Azure Active Directory starter, configured a new Azure AD tenant and registered a new application in it, and then configured your application to use the Spring annotations and classes to protect the web app. To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
 
 > [!div class="nextstepaction"]
 > [Spring on Azure](/java/azure/spring-framework)
