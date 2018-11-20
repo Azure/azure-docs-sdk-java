@@ -3,13 +3,13 @@ title: Create a Hello World web app for Azure using the legacy toolkit for Intel
 description: This tutorial shows you how to use version 3.0.6 (or earlier) of the Azure Toolkit for IntelliJ to create a Hello World Web App for Azure.
 services: app-service
 documentationcenter: java
-author: selvasingh
-manager: routlaw
+author: rmcmurray
+manager: mbaldwin
 editor: ''
 
 ms.assetid: 
-ms.author: robmcm;asirveda
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: app-service
 ms.tgt_pltfrm: multiple
@@ -123,7 +123,7 @@ When you have configured your module settings, you can publish your application 
 
    d. In the **Web Container** drop-down menu, select the appropriate software for your application.
       
-      Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of JDK 8 created by Oracle and provided by Azure.
+      Currently, you can choose from Tomcat 8, Tomcat 7 or Jetty 9. A recent distribution of the selected software will be provided by Azure, and it will run on a recent distribution of the JDK provided by Azure.
 
    e. In the **Subscription** drop-down menu, select the subscription you want to use for this deployment.
 

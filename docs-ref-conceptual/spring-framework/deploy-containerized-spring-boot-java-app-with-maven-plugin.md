@@ -4,12 +4,12 @@ description: Learn how to use the Maven Plugin for Azure Web Apps to deploy a Sp
 services: app-service
 documentationcenter: java
 author: rmcmurray
-manager: routlaw
+manager: mbaldwin
 editor: ''
 
 ms.assetid:
-ms.author: robmcm;kevinzha
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: app-service
 ms.tgt_pltfrm: multiple
@@ -34,7 +34,7 @@ In order to complete the steps in this tutorial, you need to have the following 
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * The [Azure Command-Line Interface (CLI)].
-* An up-to-date [Java Development Kit (JDK)], version 1.7 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * Apache's [Maven] build tool (Version 3).
 * A [Git] client.
 * A [Docker] client.

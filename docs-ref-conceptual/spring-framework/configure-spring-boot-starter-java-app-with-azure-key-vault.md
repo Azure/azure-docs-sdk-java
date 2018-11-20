@@ -4,12 +4,12 @@ description: Learn how to configure a Spring Boot Initializer app with the Azure
 services: key-vault
 documentationcenter: java
 author: rmcmurray
-manager: routlaw
+manager: mbaldwin
 editor: ''
 
 ms.assetid:
 ms.author: robmcm
-ms.date: 02/01/2018
+ms.date: 11/13/2018
 ms.devlang: java
 ms.service: key-vault
 ms.tgt_pltfrm: multiple
@@ -28,10 +28,10 @@ This article demonstrates creating an app with the **[Spring Initializr]** that 
 The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
+* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
-## Create an app using the Spring Initialzr
+## Create an app using Spring Initializr
 
 1. Browse to <https://start.spring.io/>.
 
@@ -49,7 +49,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. When prompted, download the project to a path on your local computer.
 
-## Sign into Azure and select the subscription to use
+## Sign into Azure
 
 1. Open a command prompt.
 
@@ -90,7 +90,7 @@ The following prerequisites are required in order to complete the steps in this 
    az account set -s ssssssss-ssss-ssss-ssss-ssssssssssss
    ```
 
-## Create and configure a new Azure Key Vault using the Azure CLI
+## Create a new Azure Key Vault
 
 1. Create a resource group for the Azure resources you will use for your key vault; for example:
    ```azurecli
@@ -227,7 +227,7 @@ The following prerequisites are required in order to complete the steps in this 
    }
    ```
 
-## Configure and compile your Spring Boot application
+## Configure and compile your app
 
 1. Extract the files from the Spring Boot project archive files that you downloaded earlier into a directory.
 
@@ -301,7 +301,9 @@ The following prerequisites are required in order to complete the steps in this 
 
    ![Spring Boot run time message][build-application-02]
 
-## Next steps
+## Summary
+
+In this tutorial, you created a new Java web application using the **[Spring Initializr]**, created ab Azure Key Vault to store sensitive information, and then configured your application to retrieve information from your key vault.
 
 For more information about using Azure Key Vaults, see the following articles:
 
@@ -316,6 +318,13 @@ For more information about using Spring Boot applications on Azure, see the foll
 * [Running a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
 For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
+
+## Next steps
+
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
 
 <!-- URL List -->
 
