@@ -6,10 +6,9 @@ documentationcenter: java
 author: rmcmurray
 manager: mbaldwin
 editor: ''
-
 ms.assetid:
 ms.author: robmcm
-ms.date: 11/13/2018
+ms.date: 11/21/2018
 ms.devlang: java
 ms.service: key-vault
 ms.tgt_pltfrm: multiple
@@ -28,7 +27,7 @@ This article demonstrates creating an app with the **[Spring Initializr]** that 
 The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
+* A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create an app using Spring Initializr

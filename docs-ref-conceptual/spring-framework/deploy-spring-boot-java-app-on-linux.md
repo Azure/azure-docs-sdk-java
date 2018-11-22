@@ -6,10 +6,9 @@ documentationcenter: java
 author: rmcmurray
 manager: mbaldwin
 editor: ''
-
 ms.assetid: 
 ms.author: robmcm
-ms.date: 11/13/2018
+ms.date: 11/21/2018
 ms.devlang: java
 ms.service: container-service
 ms.tgt_pltfrm: multiple
@@ -28,7 +27,7 @@ In order to complete the steps in this tutorial, you need to have the following 
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * The [Azure Command-Line Interface (CLI)].
-* A supported Java Developer Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
+* A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * Apache's [Maven] build tool (Version 3).
 * A [Git] client.
 * A [Docker] client.
@@ -285,13 +284,15 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Docker]: https://www.docker.com/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
-[Java Developer Kit (JDK)]: http://www.oracle.com/technetwork/java/javase/downloads/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [Maven]: http://maven.apache.org/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Boot on Docker Getting Started]: https://github.com/spring-guides/gs-spring-boot-docker
 [Spring Framework]: https://spring.io/
+
+[Java Development Kit (JDK)]: https://aka.ms/azure-jdks
+<!-- http://www.oracle.com/technetwork/java/javase/downloads/ -->
 
 <!-- IMG List -->
 
