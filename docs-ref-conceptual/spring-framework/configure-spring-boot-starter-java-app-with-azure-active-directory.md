@@ -6,10 +6,9 @@ documentationcenter: java
 author: rmcmurray
 manager: mbaldwin
 editor: ''
-
 ms.assetid:
 ms.author: robmcm
-ms.date: 07/02/2018
+ms.date: 11/21/2018
 ms.devlang: java
 ms.service: active-directory
 ms.tgt_pltfrm: multiple
@@ -21,7 +20,7 @@ ms.workload: identity
 
 ## Overview
 
-This article demonstrates creating an app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
+This article demonstrates creating a Java app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
 
 In this tutorial, you learn how to:
 
@@ -31,108 +30,104 @@ In this tutorial, you learn how to:
 > * Secure the application with Spring Boot classes and annotations
 > * Build and test your Java application
 
-If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
 
 ## Prerequisites
 
 The following prerequisites are required in order to complete the steps in this article:
 
-* A [Java Development Kit (JDK)](https://aka.ms/azure-jdks), version 1.7 or later.
+* A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
-## Create an application using the Spring Initializr
+## Create an app using Spring Initializr
 
 1. Browse to <https://start.spring.io/>.
 
 1. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Artifact** names for your application, and then click the link to **Switch to the full version** of the Spring Initializr.
 
-   ![Specify Group and Aritifact names][security-01]
+   ![Specify Group and Aritifact names][create-spring-app-01]
 
-1. Scroll down to the **Core** section and check the box for **Security**, and in the **Web** section check the box for **Web**.
+1. Scroll down to the **Core** section and check the box for **Security**, and in the **Web** section check the box for **Web**, then scroll down to the **Azure** section and check the box for **Azure Active Directory**.
 
-   ![Select Security and Web starters][security-02]
+   ![Select Security, Web and Azure Active Directory starters][create-spring-app-02]
 
-1. Scroll down to the **Azure** section and check the box for **Azure Active Directory**.
+1. Scroll to the top or bottom of the page and click the button to **Generate Project**.
 
-   ![Select Azure Active Directory starter][security-03]
-
-1. Scroll to the bottom of the page and click the button to **Generate Project**.
-
-   ![Generate Spring Boot project][security-04]
+   ![Generate Spring Boot project][create-spring-app-03]
 
 1. When prompted, download the project to a path on your local computer.
 
-## Create and configure a new Azure Active Directory instance
+## Create Azure Active Directory instance
 
 ### Create the Active Directory instance
 
 1. Log into <https://portal.azure.com>.
 
-1. Click **+New**, then **Security + Identity**, and then **Azure Active Directory**.
+1. Click **+Create a resource**, then **Identity**, and then **Azure Active Directory**.
 
-   ![Create new Azure Active Directory instance][directory-01]
+   ![Create new Azure Active Directory instance][create-directory-01]
 
 1. Enter your **Organization name** and your **Initial domain name**. Copy the full URL of your directory; you will use that to add user accounts later in this tutorial. (For example: `wingtiptoysdirectory.onmicrosoft.com`.) When you have finished, click **Create**.
 
-   ![Specify Azure Active Directory names][directory-02]
+   ![Specify Azure Active Directory names][create-directory-02]
 
-1. Select your new Azure Active Directory from the drop-down menu on the top toolbar of the Azure portal.
+1. Select your account name on the top-right of the Azure portal toolbar, then click **Switch directory**.
 
-   ![Choose your Azure Active Directory][directory-03]
+   ![Select your Azure account name][create-directory-03]
+
+1. Select your new Azure Active Directory from the drop-down menu.
+
+   ![Choose your Azure Active Directory][create-directory-04]
 
 1. Select **Azure Active Directory** from the portal menu, click **Properties**, and copy the **Directory ID**; you will use that value to configure your *application.properties* file later in this tutorial.
 
-   ![Copy your Azure Active Directory ID][directory-13]
+   ![Copy your Azure Active Directory ID][create-directory-05]
 
 ### Add an application registration for your Spring Boot app
 
-1. Select **Azure Active Directory** from the portal menu, click **Overview**, and then click **App registrations**.
+1. Select **Azure Active Directory** from the portal menu, click **App registrations**, and then click **New application registration**, .
 
-   ![Add a new app registration][directory-04]
+   ![Add a new app registration][create-app-registration-01]
 
-2. Click **New application registration**, specify your application **Name**, use http://localhost:8080 for the **Sign-on URL**, and then click **Create**.
+2. Specify your application **Name**, use http://localhost:8080 for the **Sign-on URL**, and then click **Create**.
 
-   ![Create new app registration][directory-05]
-
-3. Click your application registration after it has been created.
-
-   ![Select your app registration][directory-06]
+   ![Create new app registration][create-app-registration-02]
 
 4. When the page for your app registration appears, copy your **Application ID**; you will use this value to configure your *application.properties* file later in this tutorial. Click **Settings**, and then click **Keys**.
 
-   ![Create app registration keys][directory-07]
+   ![Create app registration keys][create-app-registration-03]
 
 5. Add a **Description** and specify the **Duration** for a new key and click **Save**; the value for the key will be automatically filled in when you click the **Save** icon, and you need to copy down the value of the key to configure your *application.properties* file later in this tutorial. (You will not be able to retrieve this value later.)
 
-   ![Specify app registration key parameters][directory-08]
+   ![Specify app registration key parameters][create-app-registration-04]
 
 6. From the main page for your app registration, click **Settings**, and then click **Required permissions**.
 
-   ![App registration required permissions][directory-09]
+   ![App registration required permissions][create-app-registration-05]
 
 7. Click **Windows Azure Active Directory**.
 
-   ![Select Windows Azure Active Directory][directory-10]
+   ![Select Windows Azure Active Directory][create-app-registration-06]
 
 8. Check the boxes for **Access the directory as the signed-in user** and **Sign in and read user profile**, and then click **Save**.
 
-   ![Enable access permissions][directory-11]
+   ![Enable access permissions][create-app-registration-07]
 
 9. On the **Required permissions** page, click **Grant Permissions**, and click **Yes** when prompted.
 
-   ![Grant access permissions][directory-12]
+   ![Grant access permissions][create-app-registration-08]
 
 10. From the main page for your app registration, click **Settings**, and then click **Reply URLs**.
 
-    ![Edit Reply URLs][directory-14]
+    ![Edit Reply URLs][create-app-registration-09]
 
 11. Enter "<http://localhost:8080/login/oauth2/code/azure>" as a new reply URL, and then click **Save**.
 
-    ![Add new Reply URL][directory-15]
+    ![Add new Reply URL][create-app-registration-10]
 
 12. From the main page for your app registration, click **Manifest**, then set the value of the `oauth2AllowImplicitFlow` parameter to `true`, and then click **Save**.
 
-    ![Configure app manifest][directory-16]
+    ![Configure app manifest][create-app-registration-11]
 
     > [!NOTE]
     > 
@@ -141,17 +136,13 @@ The following prerequisites are required in order to complete the steps in this 
 
 ### Add a user account to your directory, and add that account to a group
 
-1. From the **Overview** page of your Active Directory, click **Users**.
+1. From the **Overview** page of your Active Directory, click **All Users**, and then click **New user**.
 
-   ![Open the Users panel][directory-17]
-
-1. When the **Users** panel is displayed, click **New user**.
-
-   ![Add a new user account][directory-18]
+   ![Add a new user account][create-user-01]
 
 1. When the **User** panel is displayed, enter the **Name** and **User name**.
 
-   ![Enter user account information][directory-19]
+   ![Enter user account information][create-user-02]
 
    > [!NOTE]
    > 
@@ -162,17 +153,13 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. Click **Groups**, then select the groups that you will use for authorization in your application, and then click **Select**. (For the purposes of this tutorial, add the account to the _Users_ group.)
 
-   ![Select the user's groups][directory-20]
+   ![Select the user's groups][create-user-03]
 
-1. Click **Show password**, and copy the password; you will use this when you log into your application later in this tutorial.
+1. Click **Show password**, and copy the password; you will use this when you log into your application later in this tutorial. When you have copied the password, click **Create** to add the new user account to your directory.
 
-   ![Show the password][directory-21]
+   ![Show the password][create-user-04]
 
-1. Click **Create** to add the new user account to your directory.
-
-   ![Create the new user account][directory-22]
-
-## Configure and compile your Spring Boot application
+## Configure and compile your app
 
 1. Extract the files from the project archive you created and downloaded earlier in this tutorial into a directory.
 
@@ -256,11 +243,8 @@ The following prerequisites are required in order to complete the steps in this 
    > [!NOTE]
    > 
    > The group name that you specify for the `@PreAuthorize("hasRole('')")` method must contain one of the groups that you specified in the `azure.activedirectory.active-directory-groups` field of your *application.properties* file.
-   >
-
-   > [!NOTE]
    > 
-   > You can specify different authorization settings for different request mappings; for example:
+   > You can also specify different authorization settings for different request mappings; for example:
    >
    > ``` java
    > public class HelloController {
@@ -354,9 +338,13 @@ The following prerequisites are required in order to complete the steps in this 
    > User accounts which are not authorized will receive an **HTTP 403 Unauthorized** message.
    >
 
+## Summary
+
+In this tutorial, you created a new Java web application using the Azure Active Directory starter, configured a new Azure AD tenant and registered a new application in it, and then configured your application to use the Spring annotations and classes to protect the web app.
+
 ## Next steps
 
-In this tutorial, you created a new Java web application using the Azure Active Directory starter, configured a new Azure AD tenant and registered a new application in it, and then configured your application to use the Spring annotations and classes to protect the web app. To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
 
 > [!div class="nextstepaction"]
 > [Spring on Azure](/java/azure/spring-framework)
@@ -377,33 +365,32 @@ In this tutorial, you created a new Java web application using the Azure Active 
 
 <!-- IMG List -->
 
-[security-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/security-01.png
-[security-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/security-02.png
-[security-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/security-03.png
-[security-04]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/security-04.png
+[create-spring-app-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-spring-app-01.png
+[create-spring-app-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-spring-app-02.png
+[create-spring-app-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-spring-app-03.png
 
-[directory-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-01.png
-[directory-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-02.png
-[directory-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-03.png
-[directory-04]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-04.png
-[directory-05]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-05.png
-[directory-06]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-06.png
-[directory-07]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-07.png
-[directory-08]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-08.png
-[directory-09]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-09.png
-[directory-10]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-10.png
-[directory-11]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-11.png
-[directory-12]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-12.png
-[directory-13]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-13.png
-[directory-14]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-14.png
-[directory-15]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-15.png
-[directory-16]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-16.png
-[directory-17]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-17.png
-[directory-18]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-18.png
-[directory-19]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-19.png
-[directory-20]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-20.png
-[directory-21]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-21.png
-[directory-22]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/directory-22.png
+[create-directory-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-directory-01.png
+[create-directory-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-directory-02.png
+[create-directory-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-directory-03.png
+[create-directory-04]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-directory-04.png
+[create-directory-05]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-directory-05.png
+
+[create-app-registration-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-01.png
+[create-app-registration-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-02.png
+[create-app-registration-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-03.png
+[create-app-registration-04]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-04.png
+[create-app-registration-05]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-05.png
+[create-app-registration-06]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-06.png
+[create-app-registration-07]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-07.png
+[create-app-registration-08]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-08.png
+[create-app-registration-09]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-09.png
+[create-app-registration-10]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-10.png
+[create-app-registration-11]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-app-registration-11.png
+
+[create-user-01]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-user-01.png
+[create-user-02]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-user-02.png
+[create-user-03]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-user-03.png
+[create-user-04]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/create-user-04.png
 
 [application-login]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/application-login.png
 [build-application]: media/configure-spring-boot-starter-java-app-with-azure-active-directory/build-application.png

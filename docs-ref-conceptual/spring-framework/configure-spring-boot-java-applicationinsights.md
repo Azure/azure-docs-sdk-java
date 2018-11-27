@@ -6,10 +6,9 @@ documentationcenter: java
 author: dhaval24
 manager: alexklim
 editor: ''
-
 ms.assetid:
 ms.author: dhdoshi
-ms.date: 05/19/2018
+ms.date: 11/21/2018
 ms.devlang: java
 ms.service: Azure Monitor
 ms.tgt_pltfrm: application-insights
@@ -30,7 +29,7 @@ This article walks you through creating a Spring Boot application using **[Sprin
 The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A Java Development Kit (JDK), version 1.7 and 1.8.
+* A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create a custom application using the Spring Initializr

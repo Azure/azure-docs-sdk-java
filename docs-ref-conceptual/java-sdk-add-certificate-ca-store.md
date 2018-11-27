@@ -12,7 +12,7 @@ ms.workload: na
 ms.tgt_pltfrm: na
 ms.devlang: Java
 ms.topic: article
-ms.date: 07/02/2018
+ms.date: 11/13/2018
 ms.author: robmcm
 ---
 
@@ -89,3 +89,5 @@ For more information about the keytool utility, see <http://docs.oracle.com/java
 For more information about Java, see [Azure for Java developers](/java/azure).
 
 <!-- For more information about the root certificates used by Azure, see [Azure Root Certificate Migration](http://blogs.msdn.com/b/windowsazure/archive/2013/03/15/windows-azure-root-certificate-migration.aspx). -->
+
+For more information about the supported JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.

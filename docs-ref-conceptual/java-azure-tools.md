@@ -8,8 +8,8 @@ ms.devlang: java
 ms.topic: article
 ms.service: Azure
 ms.technology: Azure
-ms.date: 4/10/2017
-ms.author: routlaw;asirveda
+ms.date: 11/13/2018
+ms.author: routlaw
 ---
 
 # Azure tools for Java developers
@@ -18,7 +18,7 @@ ms.author: routlaw;asirveda
 
 Java developers on Azure and Azure Stack can build and run production Java 7,8, and 11 applications using [Azul Systems Zulu Enterprise builds of OpenJDK](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. If you’re currently running Java apps with other JDKs, consider migrating to Zulu on Azure for free support and maintenance. 
 
-[Learn more](java-supported-jdk-runtime.md) about Azure supported Java runtimes.
+For more information about the supported JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 
 ## Eclipse and IntelliJ plugins
 

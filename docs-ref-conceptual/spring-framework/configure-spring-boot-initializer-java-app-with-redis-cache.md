@@ -4,12 +4,11 @@ description: Configure a Spring Boot application created with the Spring Initial
 services: redis-cache
 documentationcenter: java
 author: rmcmurray
-manager: routlaw
+manager: mbaldwin
 editor: ''
-
 ms.assetid:
-ms.author: robmcm;zhijzhao;yidon
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 11/21/2018
 ms.devlang: java
 ms.service: cache
 ms.tgt_pltfrm: cache-redis
@@ -26,7 +25,7 @@ This article walks you through creating a Redis cache in the cloud using the Azu
 The following prerequisites are required in order to complete the steps in this article:
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
-* A [Java Development Kit (JDK)](http://www.oracle.com/technetwork/java/javase/downloads/), version 1.7 or later.
+* A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create a custom application using the Spring Initializr
