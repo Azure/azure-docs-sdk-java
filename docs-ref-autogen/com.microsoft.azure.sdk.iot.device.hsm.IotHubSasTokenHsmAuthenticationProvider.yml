@@ -41,7 +41,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.getIotHubTrustedCert()
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.getModuleId()
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.getPathToIotHubTrustedCert()
-  - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken()
+  - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken(boolean)
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.getSSLContext()
   - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.getTokenValidSecs()
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.hostname
@@ -60,7 +60,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.setIotHubTrustedCert(String)
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.setPathToIotHubTrustedCert(String)
   - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.setTokenValidSecs(long)
-  - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken()
+  - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken(boolean)
   - com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.sslContextNeedsUpdate
   - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.timeBufferPercentage
   - com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.tokenValidSecs
@@ -328,16 +328,19 @@ references:
     content: public String getPathToIotHubTrustedCert()
     return:
       type: "26831127"
-- uid: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken()
+- uid: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken(boolean)
   parent: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider
   href: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.yml
-  name: getRenewedSasToken()
-  nameWithType: IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken()
-  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken()
+  name: getRenewedSasToken(boolean proactivelyRenew)
+  nameWithType: IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken(boolean proactivelyRenew)
+  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenWithRefreshAuthenticationProvider.getRenewedSasToken(boolean proactivelyRenew)
   type: Method
   summary: "<p>Check if sas token should be renewed at all, and then renew it if necessary </p>"
   syntax:
-    content: public String getRenewedSasToken()
+    content: public String getRenewedSasToken(boolean proactivelyRenew)
+    parameters:
+    - id: proactivelyRenew
+      type: 4fc6e284
     return:
       type: "26831127"
       description: <p>the renewed token, or the old token if it did not need to be renewed </p>
@@ -594,17 +597,23 @@ references:
     parameters:
     - id: tokenValidSecs
       type: 0364520f
-- uid: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken()
+- uid: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken(boolean)
   parent: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider
   href: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.yml
-  name: shouldRefreshToken()
-  nameWithType: IotHubSasTokenAuthenticationProvider.shouldRefreshToken()
-  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken()
+  name: shouldRefreshToken(boolean proactivelyRenew)
+  nameWithType: IotHubSasTokenAuthenticationProvider.shouldRefreshToken(boolean proactivelyRenew)
+  fullName: com.microsoft.azure.sdk.iot.device.auth.IotHubSasTokenAuthenticationProvider.shouldRefreshToken(boolean proactivelyRenew)
   type: Method
+  summary: "<p>Returns true if the saved token should be refreshed</p>\r\n<p></p>"
   syntax:
-    content: public boolean shouldRefreshToken()
+    content: public boolean shouldRefreshToken(boolean proactivelyRenew)
+    parameters:
+    - id: proactivelyRenew
+      type: 4fc6e284
+      description: <p>if true, this function will return true even if the saved token has not expired, but only if the token has lived beyond its time buffer percentage </p>
     return:
       type: 4fc6e284
+      description: <p>true if the caller should refresh the saved sas token </p>
 - uid: com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.sslContextNeedsUpdate
   parent: com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider
   href: com.microsoft.azure.sdk.iot.device.auth.IotHubAuthenticationProvider.yml
