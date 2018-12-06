@@ -403,8 +403,7 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 
 <!-- URL List -->
 
-<!-- missing URL for [Azure for Java Developers] used at line 400 -->
-
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
