@@ -191,7 +191,7 @@ The following prerequisites are required in order to follow the steps in this ar
        }
      }
    ]
-
+   ```
 1. Specify the GUID for the subscription you want to use with Azure; for example:
 
    ```azurecli
