@@ -295,7 +295,7 @@ In this section you create two Java classes for storing user data, and then you 
          Date currentDate = new Date();
 
          // Create a new User class.
-         final User testUser = new User(userId.format(currentDate), "Gena", "Soto");
+         final User testUser = new User(userId.format(currentDate), "Gina", "Soto");
 
          // For this example, remove all of the existing records.
          repository.deleteAll();
@@ -340,7 +340,7 @@ In this section you create two Java classes for storing user data, and then you 
 1. Your application will display several runtime messages, and it will display a message like the following examples to indicate that values have been successfully stored and retrieved from your database.
 
    ```
-   User: 20170724025215132 Gena Soto
+   User: 20170724025215132 Gina Soto
    ```
 
    ![Successful output from the application][JV02]
