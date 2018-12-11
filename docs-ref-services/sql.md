@@ -7,10 +7,9 @@ ms.author: routlaw
 manager: douge
 ms.date: 07/05/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
 ms.service: sql-database
+ms.subservice: development
 ---
 
 # Azure SQL Database libraries for Java
