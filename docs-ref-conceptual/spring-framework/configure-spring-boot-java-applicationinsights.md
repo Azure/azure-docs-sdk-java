@@ -20,10 +20,6 @@ ms.workload: na
 
 This article walks you through creating a Spring Boot application using **[Spring Initializr]**, that uses Azure Application Insights Spring Boot Starter for end-to-end monitoring of Java applications on cloud.
 
-> [!NOTE]
-> 
-> *This starter is currently in **BETA (public preview)*<em>.</em>
-
 ## Prerequisites
 
 The following prerequisites are required in order to complete the steps in this article:
@@ -86,7 +82,7 @@ The following prerequisites are required in order to complete the steps in this 
  <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-spring-boot-starter</artifactId>
-    <version>1.0.1-BETA</version>
+    <version>1.1.1</version>
 </dependency>
 ```
 
@@ -218,7 +214,7 @@ The following prerequisites are required in order to complete the steps in this 
     <dependency>
         <groupId>com.microsoft.azure</groupId>
         <artifactId>applicationinsights-spring-boot-starter</artifactId>
-        <version>1.0.1-BETA</version>
+        <version>1.1.1</version>
     </dependency>
 
     <dependency>
