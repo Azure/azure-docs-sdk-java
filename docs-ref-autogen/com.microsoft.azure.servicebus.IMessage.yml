@@ -14,6 +14,7 @@ items:
   - com.microsoft.azure.servicebus.IMessage.getLabel()
   - com.microsoft.azure.servicebus.IMessage.getLockedUntilUtc()
   - com.microsoft.azure.servicebus.IMessage.getLockToken()
+  - com.microsoft.azure.servicebus.IMessage.getMessageBody()
   - com.microsoft.azure.servicebus.IMessage.getMessageId()
   - com.microsoft.azure.servicebus.IMessage.getPartitionKey()
   - com.microsoft.azure.servicebus.IMessage.getProperties()
@@ -29,6 +30,7 @@ items:
   - com.microsoft.azure.servicebus.IMessage.setContentType(String)
   - com.microsoft.azure.servicebus.IMessage.setCorrelationId(String)
   - com.microsoft.azure.servicebus.IMessage.setLabel(String)
+  - com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody)
   - com.microsoft.azure.servicebus.IMessage.setMessageId(String)
   - com.microsoft.azure.servicebus.IMessage.setPartitionKey(String)
   - com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, String>)
@@ -71,9 +73,9 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 216
+    startLine: 218
   package: com.microsoft.azure.servicebus
-  summary: "<p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>\r\n<p></p>"
+  summary: "<p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000103\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>Message body need not just a byte array. Replaced by <xref uid=\"com.microsoft.azure.servicebus.IMessage.getMessageBody()\" data-throw-if-not-resolved=\"false\">getMessageBody()</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
     content: public byte [] getBody()
     return:
@@ -95,7 +97,7 @@ items:
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
     startLine: 81
   package: com.microsoft.azure.servicebus
-  summary: "<p>Gets the content type of this message.</p>\r\n<p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example \"application/json\".</p>\r\n<p></p>"
+  summary: "<p>Gets the content type of this message.</p>\r\n<p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example \"application/json\". Note that content type is not same as message body type.</p>\r\n<p></p>"
   syntax:
     content: public String getContentType()
     return:
@@ -115,7 +117,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 253
+    startLine: 274
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets a correlation identifier.</p>\r\n<p>Allows an application to specify a context for the message for the purposes of correlation, for example reflecting the MessageId of a message that is being replied to.</p>\r\n<p></p>"
   syntax:
@@ -137,7 +139,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 368
+    startLine: 389
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the name of the queue or subscription that this message was enqueued on, before it was deadlettered.</p>\r\n<p>This value is only set in messages that have been dead-lettered and subsequently auto-forwarded from the dead-letter queue to another entity. Indicates the entity in which the message was dead-lettered. This property is read-only.</p>\r\n<p></p>"
   syntax:
@@ -225,7 +227,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 310
+    startLine: 331
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the application specific message label.</p>\r\n<p>This property enables the application to indicate the purpose of the message to the receiver in a standardized fashion, similar to an email subject line. The mapped AMQP property is \"subject\".</p>\r\n<p></p>"
   syntax:
@@ -269,7 +271,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 381
+    startLine: 402
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the lock token for the current message.</p>\r\n<p>The lock token is a reference to the lock that is being held by the broker in PEEKLOCK mode. Locks are used to explicitly settle messages as explained in the <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement\">product documentation in more detail</a>. The token can also be used to pin the lock permanently through the <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/message-deferral\">Deferral API</a> and, with that, take the message out of the regular delivery state flow. This property is read-only.</p>\r\n<p></p>"
   syntax:
@@ -277,6 +279,28 @@ items:
     return:
       type: add9545a
       description: <p>lock token of this message. </p>
+- uid: com.microsoft.azure.servicebus.IMessage.getMessageBody()
+  id: getMessageBody()
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  langs:
+  - java
+  name: getMessageBody()
+  nameWithType: IMessage.getMessageBody()
+  fullName: com.microsoft.azure.servicebus.IMessage.getMessageBody()
+  overload: com.microsoft.azure.servicebus.IMessage.getMessageBody*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 236
+  package: com.microsoft.azure.servicebus
+  summary: "<p>Gets the body of this message. Client applications should extract message content based on body type.</p>\r\n<p></p>"
+  syntax: &o6
+    content: public MessageBody getMessageBody()
+    return:
+      type: com.microsoft.azure.servicebus.MessageBody
+      description: <p>body of this message </p>
 - uid: com.microsoft.azure.servicebus.IMessage.getMessageId()
   id: getMessageId()
   parent: com.microsoft.azure.servicebus.IMessage
@@ -313,7 +337,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 349
+    startLine: 370
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the partition key for sending a message to a partitioned entity.</p>\r\n<p>For <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning\">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid=\"com.microsoft.azure.servicebus.IMessage.getSessionId()\" data-throw-if-not-resolved=\"false\">SessionId </xref> property overrides this value.</p>\r\n<p></p>"
   syntax:
@@ -335,7 +359,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 233
+    startLine: 254
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>\r\n<p></p>"
   syntax:
@@ -357,10 +381,10 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 292
+    startLine: 313
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the address of an entity to send replies to.</p>\r\n<p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>\r\n<p></p>"
-  syntax: &o6
+  syntax: &o8
     content: public String getReplyTo()
     return:
       type: "26831127"
@@ -379,7 +403,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 329
+    startLine: 350
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets or sets a session identifier augmenting the <xref uid=\"com.microsoft.azure.servicebus.IMessage.getReplyTo()\" data-throw-if-not-resolved=\"false\">ReplyTo</xref> address.</p>\r\n<p>This value augments the ReplyTo information and specifies which SessionId should be set for the reply when sent to the reply entity.</p>\r\n<p></p>"
   syntax:
@@ -470,7 +494,7 @@ items:
     startLine: 199
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the session identifier for a session-aware entity.</p>\r\n<p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>\r\n<p></p>"
-  syntax: &o7
+  syntax: &o9
     content: public String getSessionId()
     return:
       type: "26831127"
@@ -511,7 +535,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 268
+    startLine: 289
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the \"to\" address.</p>\r\n<p></p>"
   syntax:
@@ -533,9 +557,9 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 224
+    startLine: 228
   package: com.microsoft.azure.servicebus
-  summary: "<p>Sets the body of this message as a byte array.</p>\r\n<p></p>"
+  summary: "<p>Sets the body of this message as a byte array.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000104\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>Message body need not just a byte array. Replaced by <xref uid=\"com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody)\" data-throw-if-not-resolved=\"false\">setMessageBody(MessageBody)</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
     content: public void setBody(byte[] body)
     parameters:
@@ -579,7 +603,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 261
+    startLine: 282
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets a correlation identifier.</p>\r\n<p></p>"
   syntax:
@@ -602,7 +626,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 318
+    startLine: 339
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets an application specific message label.</p>\r\n<p></p>"
   syntax:
@@ -611,6 +635,29 @@ items:
     - id: label
       type: "26831127"
       description: <p>Label property value of this message </p>
+- uid: com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody)
+  id: setMessageBody(MessageBody)
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  langs:
+  - java
+  name: setMessageBody(MessageBody body)
+  nameWithType: IMessage.setMessageBody(MessageBody body)
+  fullName: com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody body)
+  overload: com.microsoft.azure.servicebus.IMessage.setMessageBody*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 244
+  package: com.microsoft.azure.servicebus
+  summary: "<p>Sets the body of this message.</p>\r\n<p></p>"
+  syntax: &o7
+    content: public void setMessageBody(MessageBody body)
+    parameters:
+    - id: body
+      type: com.microsoft.azure.servicebus.MessageBody
+      description: <p>body of this message </p>
 - uid: com.microsoft.azure.servicebus.IMessage.setMessageId(String)
   id: setMessageId(String)
   parent: com.microsoft.azure.servicebus.IMessage
@@ -648,7 +695,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 357
+    startLine: 378
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets a partition key for sending a message to a partitioned entity</p>\r\n<p></p>"
   syntax:
@@ -671,7 +718,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 242
+    startLine: 263
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets the map of user application properties of this message. Client applications can set user properties on the message using this map.</p>\r\n<p></p>"
   syntax:
@@ -694,7 +741,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 300
+    startLine: 321
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets the address of an entity to send replies to.</p>\r\n<p></p>"
   syntax:
@@ -717,7 +764,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 336
+    startLine: 357
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets or sets a session identifier augmenting the <xref uid=\"com.microsoft.azure.servicebus.IMessage.getReplyTo()\" data-throw-if-not-resolved=\"false\">ReplyTo</xref> address.</p>\r\n<p></p>"
   syntax:
@@ -832,7 +879,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 280
+    startLine: 301
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets the \"to\" address.</p>\r\n<p>This property is reserved for future use in routing scenarios and presently ignored by the broker itself. Applications can use this value in rule-driven <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/service-bus-auto-forwarding\">auto-forward chaining</a> scenarios to indicate the intended logical destination of the message.</p>\r\n<p></p>"
   syntax:
@@ -956,6 +1003,16 @@ references:
   name: setBody
   nameWithType: IMessage.setBody
   fullName: com.microsoft.azure.servicebus.IMessage.setBody
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus.IMessage.getMessageBody*
+  name: getMessageBody
+  nameWithType: IMessage.getMessageBody
+  fullName: com.microsoft.azure.servicebus.IMessage.getMessageBody
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus.IMessage.setMessageBody*
+  name: setMessageBody
+  nameWithType: IMessage.setMessageBody
+  fullName: com.microsoft.azure.servicebus.IMessage.setMessageBody
   package: com.microsoft.azure.servicebus
 - uid: 689c8cb5
   spec.java:
@@ -1137,7 +1194,7 @@ references:
   nameWithType: Message.getContentType()
   fullName: com.microsoft.azure.servicebus.Message.getContentType()
   type: Method
-  summary: "<p>Gets the content type of this message.</p>\r\n<p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example \"application/json\".</p>\r\n<p></p>"
+  summary: "<p>Gets the content type of this message.</p>\r\n<p>Optionally describes the payload of the message, with a descriptor following the format of RFC2045, Section 5, for example \"application/json\". Note that content type is not same as message body type.</p>\r\n<p></p>"
   syntax:
     content: public String getContentType()
     return:
@@ -1333,25 +1390,80 @@ references:
   nameWithType: Message.getBody()
   fullName: com.microsoft.azure.servicebus.Message.getBody()
   type: Method
-  summary: "<p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>\r\n<p></p>"
+  summary: "<p>Gets the body of this message as a byte array. It is up to client applications to decode the bytes.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000103\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>Message body need not just a byte array. Replaced by <xref uid=\"com.microsoft.azure.servicebus.Message.getMessageBody()\" data-throw-if-not-resolved=\"false\">getMessageBody()</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
     content: public byte [] getBody()
     return:
       type: ccd9418d
       description: <p>body of this message </p>
+- uid: com.microsoft.azure.servicebus.IMessage.getMessageBody()
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  name: getMessageBody()
+  nameWithType: IMessage.getMessageBody()
+  fullName: com.microsoft.azure.servicebus.IMessage.getMessageBody()
+  type: Method
+  summary: "<p>Gets the body of this message. Client applications should extract message content based on body type.</p>\r\n<p></p>"
+  syntax: *o6
 - uid: com.microsoft.azure.servicebus.Message.setBody(byte [])
   parent: com.microsoft.azure.servicebus.Message
   href: com.microsoft.azure.servicebus.Message.yml
-  name: setBody(byte[] content)
-  nameWithType: Message.setBody(byte[] content)
-  fullName: com.microsoft.azure.servicebus.Message.setBody(byte[] content)
+  name: setBody(byte[] body)
+  nameWithType: Message.setBody(byte[] body)
+  fullName: com.microsoft.azure.servicebus.Message.setBody(byte[] body)
   type: Method
-  summary: "<p>Sets the body of this message as a byte array.</p>\r\n<p></p>"
+  summary: "<p>Sets the body of this message as a byte array.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000104\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>Message body need not just a byte array. Replaced by <xref uid=\"com.microsoft.azure.servicebus.Message.setMessageBody(MessageBody)\" data-throw-if-not-resolved=\"false\">setMessageBody(MessageBody)</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
-    content: public void setBody(byte[] content)
+    content: public void setBody(byte[] body)
     parameters:
     - id: body
       type: ccd9418d
+      description: <p>body of this message </p>
+- uid: com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody)
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  name: setMessageBody(MessageBody body)
+  nameWithType: IMessage.setMessageBody(MessageBody body)
+  fullName: com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody body)
+  type: Method
+  summary: "<p>Sets the body of this message.</p>\r\n<p></p>"
+  syntax: *o7
+- uid: com.microsoft.azure.servicebus.MessageBody
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus.MessageBody.yml
+  name: MessageBody
+  nameWithType: MessageBody
+  fullName: com.microsoft.azure.servicebus.MessageBody
+  type: Class
+  summary: "<p>This class encapsulates the body of a message. Body types map to AMQP message body types. It has getters and setters for multiple body types. Client should test for body type before calling corresponding get method. Get methods not corresponding to the type of the body return null. </p>"
+  syntax:
+    content: public class MessageBody
+- uid: com.microsoft.azure.servicebus.Message.getMessageBody()
+  parent: com.microsoft.azure.servicebus.Message
+  href: com.microsoft.azure.servicebus.Message.yml
+  name: getMessageBody()
+  nameWithType: Message.getMessageBody()
+  fullName: com.microsoft.azure.servicebus.Message.getMessageBody()
+  type: Method
+  summary: "<p>Gets the body of this message. Client applications should extract message content based on body type.</p>\r\n<p></p>"
+  syntax:
+    content: public MessageBody getMessageBody()
+    return:
+      type: com.microsoft.azure.servicebus.MessageBody
+      description: <p>body of this message </p>
+- uid: com.microsoft.azure.servicebus.Message.setMessageBody(MessageBody)
+  parent: com.microsoft.azure.servicebus.Message
+  href: com.microsoft.azure.servicebus.Message.yml
+  name: setMessageBody(MessageBody body)
+  nameWithType: Message.setMessageBody(MessageBody body)
+  fullName: com.microsoft.azure.servicebus.Message.setMessageBody(MessageBody body)
+  type: Method
+  summary: "<p>Sets the body of this message.</p>\r\n<p></p>"
+  syntax:
+    content: public void setMessageBody(MessageBody body)
+    parameters:
+    - id: body
+      type: com.microsoft.azure.servicebus.MessageBody
       description: <p>body of this message </p>
 - uid: com.microsoft.azure.servicebus.Message.getProperties()
   parent: com.microsoft.azure.servicebus.Message
@@ -1509,7 +1621,7 @@ references:
   fullName: com.microsoft.azure.servicebus.IMessage.getReplyTo()
   type: Method
   summary: "<p>Gets the address of an entity to send replies to.</p>\r\n<p>This optional and application-defined value is a standard way to express a reply path to the receiver of the message. When a sender expects a reply, it sets the value to the absolute or relative path of the queue or topic it expects the reply to be sent to.</p>\r\n<p></p>"
-  syntax: *o6
+  syntax: *o8
 - uid: com.microsoft.azure.servicebus.Message.setReplyToSessionId(String)
   parent: com.microsoft.azure.servicebus.Message
   href: com.microsoft.azure.servicebus.Message.yml
@@ -1545,7 +1657,7 @@ references:
   fullName: com.microsoft.azure.servicebus.IMessage.getSessionId()
   type: Method
   summary: "<p>Gets the session identifier for a session-aware entity.</p>\r\n<p>For session-aware entities, this application-defined value specifies the session affiliation of the message. Messages with the same session identifier are subject to summary locking and enable exact in-order processing and demultiplexing. For session-unaware entities, this value is ignored.</p>\r\n<p></p>"
-  syntax: *o7
+  syntax: *o9
 - uid: com.microsoft.azure.servicebus.Message.setPartitionKey(String)
   parent: com.microsoft.azure.servicebus.Message
   href: com.microsoft.azure.servicebus.Message.yml
