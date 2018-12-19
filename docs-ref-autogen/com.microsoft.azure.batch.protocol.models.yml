@@ -96,6 +96,7 @@ items:
   - com.microsoft.azure.batch.protocol.models.DependencyAction
   - com.microsoft.azure.batch.protocol.models.DisableComputeNodeSchedulingOption
   - com.microsoft.azure.batch.protocol.models.DisableJobOption
+  - com.microsoft.azure.batch.protocol.models.DynamicVNetAssignmentScope
   - com.microsoft.azure.batch.protocol.models.ElevationLevel
   - com.microsoft.azure.batch.protocol.models.EnvironmentSetting
   - com.microsoft.azure.batch.protocol.models.ErrorCategory
@@ -156,6 +157,7 @@ items:
   - com.microsoft.azure.batch.protocol.models.JobListPreparationAndReleaseTaskStatusNextOptions
   - com.microsoft.azure.batch.protocol.models.JobListPreparationAndReleaseTaskStatusOptions
   - com.microsoft.azure.batch.protocol.models.JobManagerTask
+  - com.microsoft.azure.batch.protocol.models.JobNetworkConfiguration
   - com.microsoft.azure.batch.protocol.models.JobPatchHeaders
   - com.microsoft.azure.batch.protocol.models.JobPatchOptions
   - com.microsoft.azure.batch.protocol.models.JobPatchParameter
@@ -204,6 +206,7 @@ items:
   - com.microsoft.azure.batch.protocol.models.JobUpdateOptions
   - com.microsoft.azure.batch.protocol.models.JobUpdateParameter
   - com.microsoft.azure.batch.protocol.models.LinuxUserConfiguration
+  - com.microsoft.azure.batch.protocol.models.LoginMode
   - com.microsoft.azure.batch.protocol.models.MetadataItem
   - com.microsoft.azure.batch.protocol.models.MultiInstanceSettings
   - com.microsoft.azure.batch.protocol.models.NameValuePair
@@ -221,7 +224,6 @@ items:
   - com.microsoft.azure.batch.protocol.models.NodeUpdateUserParameter
   - com.microsoft.azure.batch.protocol.models.OnAllTasksComplete
   - com.microsoft.azure.batch.protocol.models.OnTaskFailure
-  - com.microsoft.azure.batch.protocol.models.OSDisk
   - com.microsoft.azure.batch.protocol.models.OSType
   - com.microsoft.azure.batch.protocol.models.OutputFile
   - com.microsoft.azure.batch.protocol.models.OutputFileBlobContainerDestination
@@ -274,9 +276,6 @@ items:
   - com.microsoft.azure.batch.protocol.models.PoolUpdatePropertiesHeaders
   - com.microsoft.azure.batch.protocol.models.PoolUpdatePropertiesOptions
   - com.microsoft.azure.batch.protocol.models.PoolUpdatePropertiesParameter
-  - com.microsoft.azure.batch.protocol.models.PoolUpgradeOSHeaders
-  - com.microsoft.azure.batch.protocol.models.PoolUpgradeOSOptions
-  - com.microsoft.azure.batch.protocol.models.PoolUpgradeOSParameter
   - com.microsoft.azure.batch.protocol.models.PoolUsageMetrics
   - com.microsoft.azure.batch.protocol.models.RecentJob
   - com.microsoft.azure.batch.protocol.models.ResizeError
@@ -335,6 +334,7 @@ items:
   - com.microsoft.azure.batch.protocol.models.UserIdentity
   - com.microsoft.azure.batch.protocol.models.VirtualMachineConfiguration
   - com.microsoft.azure.batch.protocol.models.WindowsConfiguration
+  - com.microsoft.azure.batch.protocol.models.WindowsUserConfiguration
   href: com.microsoft.azure.batch.protocol.models.yml
   langs:
   - java
@@ -1283,6 +1283,16 @@ references:
   summary: "<p>Defines values for DisableJobOption. </p>"
   syntax:
     content: public enum DisableJobOption
+- uid: com.microsoft.azure.batch.protocol.models.DynamicVNetAssignmentScope
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models.DynamicVNetAssignmentScope.yml
+  name: DynamicVNetAssignmentScope
+  nameWithType: DynamicVNetAssignmentScope
+  fullName: com.microsoft.azure.batch.protocol.models.DynamicVNetAssignmentScope
+  type: Enum
+  summary: "<p>Defines values for DynamicVNetAssignmentScope. </p>"
+  syntax:
+    content: public enum DynamicVNetAssignmentScope
 - uid: com.microsoft.azure.batch.protocol.models.ElevationLevel
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models.ElevationLevel.yml
@@ -1883,6 +1893,16 @@ references:
   summary: "<p>Specifies details of a Job Manager task. The Job Manager task is automatically started when the job is created. The Batch service tries to schedule the Job Manager task before any other tasks in the job. When shrinking a pool, the Batch service tries to preserve compute nodes where Job Manager tasks are running for as long as possible (that is, nodes running 'normal' tasks are removed before nodes running Job Manager tasks). When a Job Manager task fails and needs to be restarted, the system tries to schedule it at the highest priority. If there are no idle nodes available, the system may terminate one of the running tasks in the pool and return it to the queue in order to make room for the Job Manager task to restart. Note that a Job Manager task in one job does not have priority over tasks in other jobs. Across jobs, only job level priorities are observed. For example, if a Job Manager in a priority 0 job needs to be restarted, it will not displace tasks of a priority 1 job. Batch will retry tasks when a recovery operation is triggered on a compute node. Examples of recovery operations include (but are not limited to) when an unhealthy compute node is rebooted or a compute node disappeared due to host failure. Retries due to recovery operations are independent of and are not counted against the maxTaskRetryCount. Even if the maxTaskRetryCount is 0, an internal retry due to a recovery operation may occur. Because of this, all tasks should be idempotent. This means tasks need to tolerate being interrupted and restarted without causing any corruption or duplicate data. The best practice for long running tasks is to use some form of checkpointing. </p>"
   syntax:
     content: public class JobManagerTask
+- uid: com.microsoft.azure.batch.protocol.models.JobNetworkConfiguration
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models.JobNetworkConfiguration.yml
+  name: JobNetworkConfiguration
+  nameWithType: JobNetworkConfiguration
+  fullName: com.microsoft.azure.batch.protocol.models.JobNetworkConfiguration
+  type: Class
+  summary: "<p>The network configuration for the job. </p>"
+  syntax:
+    content: public class JobNetworkConfiguration
 - uid: com.microsoft.azure.batch.protocol.models.JobPatchHeaders
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models.JobPatchHeaders.yml
@@ -2363,6 +2383,16 @@ references:
   summary: "<p>Properties used to create a user account on a Linux node. </p>"
   syntax:
     content: public class LinuxUserConfiguration
+- uid: com.microsoft.azure.batch.protocol.models.LoginMode
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models.LoginMode.yml
+  name: LoginMode
+  nameWithType: LoginMode
+  fullName: com.microsoft.azure.batch.protocol.models.LoginMode
+  type: Enum
+  summary: "<p>Defines values for LoginMode. </p>"
+  syntax:
+    content: public enum LoginMode
 - uid: com.microsoft.azure.batch.protocol.models.MetadataItem
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models.MetadataItem.yml
@@ -2533,16 +2563,6 @@ references:
   summary: "<p>Defines values for OnTaskFailure. </p>"
   syntax:
     content: public enum OnTaskFailure
-- uid: com.microsoft.azure.batch.protocol.models.OSDisk
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models.OSDisk.yml
-  name: OSDisk
-  nameWithType: OSDisk
-  fullName: com.microsoft.azure.batch.protocol.models.OSDisk
-  type: Class
-  summary: "<p>Settings for the operating system disk of the virtual machine. </p>"
-  syntax:
-    content: public class OSDisk
 - uid: com.microsoft.azure.batch.protocol.models.OSType
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models.OSType.yml
@@ -3067,36 +3087,6 @@ references:
   summary: "<p>The set of changes to be made to a pool. </p>"
   syntax:
     content: public class PoolUpdatePropertiesParameter
-- uid: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSHeaders
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSHeaders.yml
-  name: PoolUpgradeOSHeaders
-  nameWithType: PoolUpgradeOSHeaders
-  fullName: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSHeaders
-  type: Class
-  summary: "<p>Defines headers for UpgradeOS operation. </p>"
-  syntax:
-    content: public class PoolUpgradeOSHeaders
-- uid: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSOptions
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSOptions.yml
-  name: PoolUpgradeOSOptions
-  nameWithType: PoolUpgradeOSOptions
-  fullName: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSOptions
-  type: Class
-  summary: "<p>Additional parameters for upgradeOS operation. </p>"
-  syntax:
-    content: public class PoolUpgradeOSOptions
-- uid: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSParameter
-  parent: com.microsoft.azure.batch.protocol.models
-  href: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSParameter.yml
-  name: PoolUpgradeOSParameter
-  nameWithType: PoolUpgradeOSParameter
-  fullName: com.microsoft.azure.batch.protocol.models.PoolUpgradeOSParameter
-  type: Class
-  summary: "<p>Options for upgrading the operating system of compute nodes in a pool. </p>"
-  syntax:
-    content: public class PoolUpgradeOSParameter
 - uid: com.microsoft.azure.batch.protocol.models.PoolUsageMetrics
   parent: com.microsoft.azure.batch.protocol.models
   href: com.microsoft.azure.batch.protocol.models.PoolUsageMetrics.yml
@@ -3134,7 +3124,7 @@ references:
   nameWithType: ResourceFile
   fullName: com.microsoft.azure.batch.protocol.models.ResourceFile
   type: Class
-  summary: "<p>A file to be downloaded from Azure blob storage to a compute node. </p>"
+  summary: "<p>A single file or multiple files to be downloaded to a compute node. </p>"
   syntax:
     content: public class ResourceFile
 - uid: com.microsoft.azure.batch.protocol.models.ResourceStatistics
@@ -3654,7 +3644,7 @@ references:
   nameWithType: UserIdentity
   fullName: com.microsoft.azure.batch.protocol.models.UserIdentity
   type: Class
-  summary: "<p>The definition of the user identity under which the task is run. Specify either the userName or autoUser property, but not both. On CloudServiceConfiguration pools, this user is logged in with the INTERACTIVE flag. On Windows VirtualMachineConfiguration pools, this user is logged in with the BATCH flag. </p>"
+  summary: "<p>The definition of the user identity under which the task is run. Specify either the userName or autoUser property, but not both. </p>"
   syntax:
     content: public class UserIdentity
 - uid: com.microsoft.azure.batch.protocol.models.VirtualMachineConfiguration
@@ -3677,3 +3667,13 @@ references:
   summary: "<p>Windows operating system settings to apply to the virtual machine. </p>"
   syntax:
     content: public class WindowsConfiguration
+- uid: com.microsoft.azure.batch.protocol.models.WindowsUserConfiguration
+  parent: com.microsoft.azure.batch.protocol.models
+  href: com.microsoft.azure.batch.protocol.models.WindowsUserConfiguration.yml
+  name: WindowsUserConfiguration
+  nameWithType: WindowsUserConfiguration
+  fullName: com.microsoft.azure.batch.protocol.models.WindowsUserConfiguration
+  type: Class
+  summary: "<p>Properties used to create a user account on a Windows node. </p>"
+  syntax:
+    content: public class WindowsUserConfiguration
