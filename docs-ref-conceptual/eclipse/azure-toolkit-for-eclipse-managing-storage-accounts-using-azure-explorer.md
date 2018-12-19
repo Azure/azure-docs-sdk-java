@@ -118,8 +118,8 @@ For more information about Azure storage accounts, sizes, and pricing, see the f
 
 [Sizes for Windows storage accounts in Azure]: /azure/virtual-machines/virtual-machines-windows-sizes
 [Sizes for Linux storage accounts in Azure]: /azure/virtual-machines/virtual-machines-linux-sizes
-[Windows storage-account pricing]: /pricing/details/virtual-machines/windows/
-[Linux storage-account pricing]: /pricing/details/virtual-machines/linux/
+[Windows storage-account pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/
+[Linux storage-account pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 
 <!-- IMG List -->
 
