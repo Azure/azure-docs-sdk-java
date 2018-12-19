@@ -8,8 +8,8 @@ manager: routlaw
 editor: ''
 
 ms.assetid: ef2f3839-2549-4471-9b53-0deb7f4c128b
-ms.author: robmcm;asirveda
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 12/12/2018
 ms.devlang: Java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -63,7 +63,7 @@ For more information about the Azure Toolkit for Eclipse, see the following page
 
 * [Azure Toolkit for Eclipse in the Eclipse Marketplace](http://marketplace.eclipse.org/content/azure-toolkit-eclipse)
 
-For more information about using Java with Azure, see the [Azure for Java Developers](https://docs.microsoft.com/java/azure/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
+For more information about using Java with Azure, see the [Azure for Java Developers](https://docs.microsoft.com/java/azure/) and the [Java Tools for Visual Studio Team Services](/azure/devops/java/).
 
 <!-- [!INCLUDE [azure-toolkit-for-eclipse-additional-resources](../includes/azure-toolkit-for-eclipse-additional-resources.md)] -->
 
@@ -75,7 +75,6 @@ For more information about using Java with Azure, see the [Azure for Java Develo
 <!-- URL List -->
 
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- Temporarily Deprecated URLs -->
 

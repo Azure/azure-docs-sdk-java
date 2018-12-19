@@ -302,7 +302,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 ## Summary
 
-In this tutorial, you created a new Java web application using the **[Spring Initializr]**, created ab Azure Key Vault to store sensitive information, and then configured your application to retrieve information from your key vault.
+In this tutorial, you created a new Java web application using the **[Spring Initializr]**, created an Azure Key Vault to store sensitive information, and then configured your application to retrieve information from your key vault.
 
 For more information about using Azure Key Vaults, see the following articles:
 

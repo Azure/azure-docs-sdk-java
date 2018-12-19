@@ -8,8 +8,8 @@ manager: routlaw
 editor: ''
 
 ms.assetid: 115a095d-1b70-41d6-adb4-78f24b2a4451
-ms.author: robmcm;asirveda
-ms.date: 02/01/2018
+ms.author: robmcm
+ms.date: 12/12/2018
 ms.devlang: Java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -62,7 +62,7 @@ For more information about the Azure Toolkit for IntelliJ, see the following pag
 
 * [Azure Toolkit for IntelliJ in the JetBrains Plugins Repository](https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij)
 
-For more information about using Java with Azure, see the [Azure for Java Developers](https://docs.microsoft.com/java/azure/) and the [Java Tools for Visual Studio Team Services](https://java.visualstudio.com/).
+For more information about using Java with Azure, see the [Azure for Java Developers](https://docs.microsoft.com/java/azure/) and the [Java Tools for Visual Studio Team Services](/azure/devops/java/).
 
 > [!NOTE]
 > 
@@ -74,7 +74,6 @@ For more information about using Java with Azure, see the [Azure for Java Develo
 <!-- URL List -->
 
 [Azure for Java Developers]: https://docs.microsoft.com/java/azure/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
 
 <!-- Temporarily Deprecated URLs -->
 

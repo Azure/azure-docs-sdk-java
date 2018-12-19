@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid: 
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/12/2018
 ms.devlang: java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -340,7 +340,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Docker]: https://www.docker.com/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Java Tools for Visual Studio Team Services]: /azure/devops/java/
 [Kubernetes]: https://kubernetes.io/
 [Kubernetes Command-Line Interface (kubectl)]: https://kubernetes.io/docs/user-guide/kubectl-overview/
 [Maven]: http://maven.apache.org/
