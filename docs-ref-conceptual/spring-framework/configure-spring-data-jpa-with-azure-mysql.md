@@ -187,7 +187,7 @@ The following prerequisites are required in order to complete the steps in this 
 1. Build the sample application with Maven; for example:
 
    ```shell
-   mvn package -P mysql
+   mvn clean package -P mysql
    ```
 
 1. Start the sample application; for example:
@@ -250,8 +250,8 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 
 <!-- IMG List -->
 
-[MYSQL01]: media/configure-spring-data-jdbc-with-azure-mysql/create-mysql-01.png
-[MYSQL02]: media/configure-spring-data-jdbc-with-azure-mysql/create-mysql-02.png
-[MYSQL03]: media/configure-spring-data-jdbc-with-azure-mysql/create-mysql-03.png
-[MYSQL04]: media/configure-spring-data-jdbc-with-azure-mysql/create-mysql-04.png
-[MYSQL05]: media/configure-spring-data-jdbc-with-azure-mysql/create-mysql-05.png
+[MYSQL01]: media/configure-spring-data-jpa-with-azure-mysql/create-mysql-01.png
+[MYSQL02]: media/configure-spring-data-jpa-with-azure-mysql/create-mysql-02.png
+[MYSQL03]: media/configure-spring-data-jpa-with-azure-mysql/create-mysql-03.png
+[MYSQL04]: media/configure-spring-data-jpa-with-azure-mysql/create-mysql-04.png
+[MYSQL05]: media/configure-spring-data-jpa-with-azure-mysql/create-mysql-05.png

@@ -184,7 +184,7 @@ The following prerequisites are required in order to complete the steps in this 
 1. Build the sample application with Maven; for example:
 
    ```shell
-   mvn package -P mysql
+   mvn clean package -P mysql
    ```
 
 1. Start the sample application; for example:
