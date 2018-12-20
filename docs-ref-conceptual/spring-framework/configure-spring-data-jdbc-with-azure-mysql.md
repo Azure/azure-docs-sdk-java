@@ -30,6 +30,7 @@ The following prerequisites are required in order to complete the steps in this 
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 * [Curl](https://curl.haxx.se/) or similar HTTP utility to test functionality.
 * The [mysql](https://dev.mysql.com/downloads/) command-line utility.
+* A [Git](https://git-scm.com/downloads) client.
 
 ## Create a MySQL database for Azure
 
@@ -37,7 +38,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 > [!NOTE]
 > 
-> You can read more detail information about creating MySQL databases in [Create an Azure Database for MySQL server by using the Azure portal](/azure/mysql/quickstart-create-mysql-server-database-using-azure-portal).
+> You can read more detailed information about creating MySQL databases in [Create an Azure Database for MySQL server by using the Azure portal](/azure/mysql/quickstart-create-mysql-server-database-using-azure-portal).
 
 1. Browse to the Azure portal at <https://portal.azure.com/> and sign in.
 

@@ -7,7 +7,7 @@ author: rmcmurray
 manager: mbaldwin
 editor: ''
 ms.assetid:
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: cosmos-db
 ms.tgt_pltfrm: multiple

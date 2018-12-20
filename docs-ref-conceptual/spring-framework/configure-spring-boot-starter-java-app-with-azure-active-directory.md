@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid:
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: active-directory
 ms.tgt_pltfrm: multiple

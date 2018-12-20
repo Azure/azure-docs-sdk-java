@@ -19,7 +19,7 @@ ms.topic: article
 
 ## Overview
 
-This article demonstrates creating a sample application that uses [Spring Data] to store and retrieve information in an [Azure SQL Database](https://azure.microsoft.com/en-us/services/sql-database/) using [Java Database Connectivity (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/).
+This article demonstrates creating a sample application that uses [Spring Data] to store and retrieve information in an [Azure SQL Database](https://azure.microsoft.com/services/sql-database/) using [Java Database Connectivity (JDBC)](https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/).
 
 ## Prerequisites
 
@@ -29,6 +29,7 @@ The following prerequisites are required in order to complete the steps in this 
 * A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 * [Curl](https://curl.haxx.se/) or similar HTTP utility to test functionality.
+* A [Git](https://git-scm.com/downloads) client.
 
 ## Create an Azure SQL Satabase
 
@@ -36,7 +37,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 > [!NOTE]
 > 
-> You can read more detail information about creating Azure SQL databases in [Create an Azure SQL database in the Azure portal](/azure/sql-database/sql-database-get-started-portal).
+> You can read more detailed information about creating Azure SQL databases in [Create an Azure SQL database in the Azure portal](/azure/sql-database/sql-database-get-started-portal).
 
 1. Browse to the Azure portal at <https://portal.azure.com/> and sign in.
 

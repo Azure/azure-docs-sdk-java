@@ -8,7 +8,7 @@ manager: alexklim
 editor: ''
 ms.assetid:
 ms.author: dhdoshi
-ms.date: 12/17/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: Azure Monitor
 ms.tgt_pltfrm: application-insights

@@ -6,10 +6,9 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-
 ms.assetid: 
 ms.author: robmcm
-ms.date: 02/01/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: multiple
 ms.tgt_pltfrm: multiple

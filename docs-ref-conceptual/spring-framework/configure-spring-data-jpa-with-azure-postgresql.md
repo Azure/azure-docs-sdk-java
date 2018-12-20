@@ -30,6 +30,7 @@ The following prerequisites are required in order to complete the steps in this 
 * [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 * [Curl](https://curl.haxx.se/) or similar HTTP utility to test functionality. or similar HTTP utility to test functionality.
 * The [psql](https://www.postgresql.org/docs/current/app-psql.html) command-line utility.
+* A [Git](https://git-scm.com/downloads) client.
 
 ## Create a PostgreSQL database for Azure
 
@@ -37,7 +38,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 > [!NOTE]
 > 
-> You can read more detail information about creating PostgreSQL databases in [Create an Azure Database for PostgreSQL server by using the Azure portal](/azure/postgresql/quickstart-create-server-database-portal).
+> You can read more detailed information about creating PostgreSQL databases in [Create an Azure Database for PostgreSQL server by using the Azure portal](/azure/postgresql/quickstart-create-server-database-portal).
 
 1. Browse to the Azure portal at <https://portal.azure.com/> and sign in.
 
