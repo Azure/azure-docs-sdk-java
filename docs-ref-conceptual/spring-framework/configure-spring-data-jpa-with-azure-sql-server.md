@@ -169,8 +169,6 @@ The following prerequisites are required in order to complete the steps in this 
 
 In this tutorial, you created a sample Java application that uses Spring Data to store and retrieve information in an Azure SQL database using JPA.
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
-
 ## Next steps
 
 To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
@@ -178,11 +176,15 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 > [!div class="nextstepaction"]
 > [Spring on Azure](/java/azure/spring-framework)
 
+### Additional Resources
+
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
+
 <!-- URL List -->
 
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
+[Azure for Java Developers]: /java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Data]: https://spring.io/projects/spring-data

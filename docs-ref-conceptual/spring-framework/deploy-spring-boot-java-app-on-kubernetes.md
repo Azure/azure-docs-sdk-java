@@ -299,14 +299,20 @@ This tutorial deploys the app using `kubectl`, then allow you to explore the dep
 
 ## Next steps
 
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
 For more information about using Spring Boot on Azure, see the following articles:
 
 * [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
 * [Deploy a Spring Boot application on Linux in the Azure Container Service](deploy-spring-boot-java-app-on-linux.md)
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
 
-<!-- Newly added -->
 For more information about deploying a Java application to Kubernetes with Visual Studio Code, see [Visual Studio Code Java Tutorials].
 
 For more information about the Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].
@@ -317,7 +323,7 @@ The following links provide additional information about creating Spring Boot ap
 
 The following links provide additional information about using Kubernetes with Azure:
 
-* [Get started with a Kubernetes cluster in Azure Kubernetes Service](https://docs.microsoft.com/azure/aks/intro-kubernetes)
+* [Get started with a Kubernetes cluster in Azure Kubernetes Service](/azure/aks/intro-kubernetes)
 
 More information about using Kubernetes command-line interface is available in the **kubectl** user guide at <https://kubernetes.io/docs/user-guide/kubectl/>.
 
@@ -333,14 +339,14 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
 [Azure Kubernetes Service (AKS)]: https://azure.microsoft.com/services/kubernetes-service/
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
+[Azure for Java Developers]: /java/azure/
 [Azure portal]: https://portal.azure.com/
 [Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
 [Docker]: https://www.docker.com/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
-[Java Tools for Visual Studio Team Services]: /azure/devops/java/
+[Working with Azure DevOps and Java]: /azure/devops/java/
 [Kubernetes]: https://kubernetes.io/
 [Kubernetes Command-Line Interface (kubectl)]: https://kubernetes.io/docs/user-guide/kubectl-overview/
 [Maven]: http://maven.apache.org/
@@ -356,7 +362,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 <!-- http://www.oracle.com/technetwork/java/javase/downloads/ -->
 
 <!-- Newly added -->
-[Authenticate with Azure Container Registry from Azure Kubernetes Service]: https://docs.microsoft.com/azure/container-registry/container-registry-auth-aks/
+[Authenticate with Azure Container Registry from Azure Kubernetes Service]: /azure/container-registry/container-registry-auth-aks/
 [Visual Studio Code Java Tutorials]: https://code.visualstudio.com/docs/java/java-kubernetes/
 
 <!-- IMG List -->

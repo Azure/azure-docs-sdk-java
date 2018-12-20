@@ -149,10 +149,10 @@ The following prerequisites are required in order to complete the steps in this 
    |---|---|
    | `name` | Specifies a unique name for your key vault. |
    | `location` | Specifies the [Azure region](https://azure.microsoft.com/regions/) where your resource group will be hosted. |
-   | `enabled-for-deployment` | Specifies the [key vault deployment option](https://docs.microsoft.com/cli/azure/keyvault). |
-   | `enabled-for-disk-encryption` | Specifies the [key vault encryption option](https://docs.microsoft.com/cli/azure/keyvault). |
-   | `enabled-for-template-deployment` | Specifies the [key vault encryption option](https://docs.microsoft.com/cli/azure/keyvault). |
-   | `sku` | Specifies the [key vault SKU option](https://docs.microsoft.com/cli/azure/keyvault). |
+   | `enabled-for-deployment` | Specifies the [key vault deployment option](/cli/azure/keyvault). |
+   | `enabled-for-disk-encryption` | Specifies the [key vault encryption option](/cli/azure/keyvault). |
+   | `enabled-for-template-deployment` | Specifies the [key vault encryption option](/cli/azure/keyvault). |
+   | `sku` | Specifies the [key vault SKU option](/cli/azure/keyvault). |
    | `query` | Specifies a value to retrieve from the response, which is the key vault URI that you will need to complete this tutorial. |
 
    The Azure CLI will display the URI for key vault, which you will use later; for example:  
@@ -170,7 +170,7 @@ The following prerequisites are required in order to complete the steps in this 
    | Parameter | Description |
    |---|---|
    | `name` | Specifies your key vault name from earlier. |
-   | `secret-permission` | Specifies the [security policies](https://docs.microsoft.com/cli/azure/keyvault) for your key vault. |
+   | `secret-permission` | Specifies the [security policies](/cli/azure/keyvault) for your key vault. |
    | `spn` | Specifies the GUID for your application registration from earlier. |
 
    The Azure CLI will display the results of your security policy creation; for example:  
@@ -304,6 +304,15 @@ The following prerequisites are required in order to complete the steps in this 
 
 In this tutorial, you created a new Java web application using the **[Spring Initializr]**, created an Azure Key Vault to store sensitive information, and then configured your application to retrieve information from your key vault.
 
+## Next steps
+
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
 For more information about using Azure Key Vaults, see the following articles:
 
 * [Key Vault Documentation].
@@ -316,22 +325,15 @@ For more information about using Spring Boot applications on Azure, see the foll
 
 * [Running a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
-
-## Next steps
-
-To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
-
-> [!div class="nextstepaction"]
-> [Spring on Azure](/java/azure/spring-framework)
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
 
 <!-- URL List -->
 
 [Key Vault Documentation]: /azure/key-vault/
 [Get started with Azure Key Vault]: /azure/key-vault/key-vault-get-started
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
+[Azure for Java Developers]: /java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Initializr]: https://start.spring.io/
