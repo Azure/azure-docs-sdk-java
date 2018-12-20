@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid:
 ms.author: robmcm
-ms.date: 12/10/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: mysql
 ms.tgt_pltfrm: multiple
@@ -37,7 +37,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 > [!NOTE]
 > 
-> You can read more detail information about creating MySQL databases in [Create an Azure Database for MySQL server by using the Azure portal](/azure/mysql/quickstart-create-mysql-server-database-using-azure-portal#create-an-azure-database-for-mysql-server).
+> You can read more detail information about creating MySQL databases in [Create an Azure Database for MySQL server by using the Azure portal](/azure/mysql/quickstart-create-mysql-server-database-using-azure-portal).
 
 1. Browse to the Azure portal at <https://portal.azure.com/> and sign in.
 
@@ -98,7 +98,7 @@ The following prerequisites are required in order to complete the steps in this 
    |---|---|
    | `host` | Specifies your fully qualified MySQL server name from earlier in this article. |
    | `user` | Specifies your MySQL administrator and shortened server name from earlier in this article. |
-   | `p` | Specifies an appropriate geographic location for your application. |
+   | `p` | Specifies to wait until prompted for a password. |
 
 
    Your MySQL server should respond with a display like the following example:
@@ -168,7 +168,7 @@ The following prerequisites are required in order to complete the steps in this 
    ```yaml
    spring.jpa.database-platform=org.hibernate.dialect.MySQL5InnoDBDialect
    spring.datasource.url=jdbc:mysql://wingtiptoysmysql.mysql.database.azure.com:3306/mysqldb?useSSL=true&requireSSL=false
-   spring.datasource.username=wingtiptoysuser
+   spring.datasource.username=wingtiptoysuser@wingtiptoysmysql
    spring.datasource.password=********
     ```
    Where:
@@ -177,7 +177,7 @@ The following prerequisites are required in order to complete the steps in this 
    |---|---|
    | `spring.jpa.database-platform` | Specifies the JPA database platform. |
    | `spring.datasource.url` | Specifies your MySQL JDBC string from earlier in this article. |
-   | `spring.datasource.username` | Specifies your MySQL administrator name from earlier in this article. |
+   | `spring.datasource.username` | Specifies your MySQL administrator name from earlier in this article, with the shortened server name appended to it. |
    | `spring.datasource.password` | Specifies your MySQL administrator password from earlier in this article. |
 
 1. Save and close the *application.properties* file.
@@ -226,7 +226,7 @@ The following prerequisites are required in order to complete the steps in this 
 
 ## Summary
 
-In this tutorial, you created a sample Java application that uses Spring Data to store and retrieve information in an Azure MySQL database using JDBC.
+In this tutorial, you created a sample Java application that uses Spring Data to store and retrieve information in an Azure MySQL database using JPA.
 
 For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
 
