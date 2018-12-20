@@ -205,7 +205,7 @@ The following prerequisites are required in order to complete the steps in this 
     
    Your application should return values like the following:
 
-   ```shell
+   ```json
    [{"id":1,"name":"dog","species":"canine"},{"id":2,"name":"cat","species":"feline"}]
    ```
 
