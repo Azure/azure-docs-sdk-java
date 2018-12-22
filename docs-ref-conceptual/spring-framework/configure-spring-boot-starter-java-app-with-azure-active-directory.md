@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid:
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: active-directory
 ms.tgt_pltfrm: multiple
@@ -356,7 +356,7 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 [Get started with Azure AD]: /azure/active-directory/get-started-azure-ad
 [Azure for Java Developers]: /java/azure/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Initializr]: https://start.spring.io/

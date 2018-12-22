@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid:
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: storage
 ms.tgt_pltfrm: na
@@ -342,11 +342,20 @@ In this section, you create the necessary Java classes for storing a blob in you
 
      You should see the "Hello World" text that you posted.
 
+## Summary
+
+In this tutorial, you created a new Java application using the **[Spring Initializr]**, added the Azure storage starter to your application, and then configured your application to upload a blob to your Azure storage account.
+
 ## Next steps
 
-For more information about the additional Spring Boot Starters that are available for Microsoft Azure, see [Spring Boot Starters for Azure](spring-boot-starters-for-azure.md).
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
 
-For additional information about integrating Azure functionality into your Spring-based applications, see [Spring Framework on Azure](/java/azure/spring-framework/).
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
+For more information about the additional Spring Boot Starters that are available for Microsoft Azure, see [Spring Boot Starters for Azure](spring-boot-starters-for-azure.md).
 
 For detailed information about additional Azure storage APIs that you can call from your Spring Boot applications, see the following articles:
 * [How to use Azure Blob storage from Java](/azure/storage/blobs/storage-java-how-to-use-blob-storage)
