@@ -6,10 +6,9 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-
 ms.assetid: 
 ms.author: robmcm
-ms.date: 02/01/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -225,18 +224,25 @@ When you add this starter to a Spring Boot project, the following changes are ma
 
 ## Next steps
 
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
 For more information about using [Spring Boot] applications on Azure, see [Spring on Azure].
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
 
 For help with getting started with your own Spring Boot applications, see the **Spring Initializr** at https://start.spring.io/.
 
 <!-- URL List -->
 
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Azure for Java Developers]: /java/azure/
+[Working with Azure DevOps and Java]: /azure/devops/
 [Spring Boot]: http://projects.spring.io/spring-boot/
-[Spring on Azure]: https://docs.microsoft.com/java/azure/spring-framework/
+[Spring on Azure]: /java/azure/spring-framework/
 [Spring Framework]: https://spring.io/
 [Spring Initializr]: https://start.spring.io/
 
