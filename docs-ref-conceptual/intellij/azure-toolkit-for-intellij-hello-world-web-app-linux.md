@@ -6,15 +6,13 @@ documentationcenter: java
 author: rmcmurray
 manager: routlaw
 editor: ''
-
 ms.assetid: 
 ms.author: robmcm
-ms.date: 02/01/2018
+ms.date: 12/20/2018
 ms.devlang: Java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
 ms.topic: article
-ms.workload: na
 ---
 
 # Deploy a Hello World web app to a Linux container in the cloud using the Azure Toolkit for IntelliJ
@@ -70,21 +68,13 @@ The following steps walk you through using the Azure portal to create an Azure C
 
    Once you have signed in to your account on the Azure portal, you can follow the steps in the [Create a private Docker container registry using the Azure portal] article, which are paraphrased in the following steps for the sake of expediency.
 
-1. Click the menu icon for **+ New**, then click **Containers**, and then click **Azure Container Registry**.
+1. Click the menu icon for **+ Create a resource**, then click **Containers**, and then click **Container Registry**.
    
-   ![Create a new Azure Container Registry][AR01]
-
-1. When the information page for the Azure Container Registry template is displayed, click **Create**. 
-
-   ![Create a new Azure Container Registry][AR02]
+   ![Create a new Azure Container Registry][create-container-registry-01]
 
 1. When the **Create container registry** page is displayed, enter your **Registry name** and **Resource group**, choose **Enable** for the **Admin user**, and then click **Create**.
 
-   ![Configure Azure Container Registry settings][AR03]
-
-1. Once your container registry has been created, navigate to your container registry in the Azure portal, and then click **Access Keys**. Take note of the username and password for the next steps.
-
-   ![Azure Container Registry access keys][AR04]
+   ![Configure Azure Container Registry settings][create-container-registry-02]
 
 ## Deploy your web app in a Docker container
 
@@ -94,17 +84,15 @@ The following steps walk you through using the Azure portal to create an Azure C
 
    ![Add Docker support][add-docker-support]
 
-1. After you have added Docker support, right-click your project in the project explorer, choose **Azure**, and then click **Run on Web App (Linux)**.
+1. After you have added Docker support, right-click your project in the project explorer, choose **Azure**, and then click **Run on Web App for Containers**.
 
    ![Run on Web App (Linux)][run-on-web-app-linux]
 
-1. When the **Run on Web App (Linux)** dialog box is displayed, fill in the requisite information:
+1. When the **Run on Web App  for Containers** dialog box is displayed, fill in the requisite information:
 
    * **Name**: This specifies the friendly name which is displayed in the Azure Toolkit. 
 
-   * **Server URL**: This specifies the URL for your container registry from the previous section of this article; typically this will use the following syntax: "*registry*.azurecr.io". 
-
-   * **Username** and **Password**: Specifies the access keys for your container registry from the previous section of this article. 
+   * **Container Registry**: Choose the container registry from the drop-down menu that you created in the previous section of this article. The fields for **Server URL**, **Username**, and **Password** will be automatically populated.
 
    * **Image and tag**: Specifies the container image name; typically this will use the following syntax: "*registry*.azurecr.io/*appname*:latest", where: 
       * *registry* is your container registry from the previous section of this article 
@@ -116,9 +104,9 @@ The following steps walk you through using the Azure portal to create an Azure C
 
    * **App Service Plan**: Specifies whether you willuse an existing or create a new app service plan. 
 
-1. When you have finished configuring the settings listed above, click **Run**.
+1. When you have finished configuring the settings listed above, click **Run**. When your web app has been successfully deployed, the status will be displayed in the **Run** window.
 
-   ![Create Web App][create-web-app]
+   ![Successfully deployed web app][successfully-deployed]
 
 1. After you have published your web app, your settings will be saved as the default, and you can run your application on Azure by clicking the green arrow icon on the toolbar. You can modify these settings by clicking the drop-down menu for your web app and click **Edit Configurations**.
 
@@ -147,11 +135,8 @@ For additional resources for Docker, see the official [Docker website][Docker].
 
 <!-- IMG List -->
 
-[AR01]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/AR01.png
-[AR02]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/AR02.png
-[AR03]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/AR03.png
-[AR04]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/AR04.png
-
+[create-container-registry-01]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/create-container-registry-01.png
+[create-container-registry-02]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/create-container-registry-02.png
 [docker-settings-menu]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/docker-settings-menu.png
 [file-new-project]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/file-new-project.png
 [maven-archetype-webapp]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/maven-archetype-webapp.png
@@ -160,7 +145,6 @@ For additional resources for Docker, see the official [Docker website][Docker].
 [project-name]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/project-name.png
 [add-docker-support]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/add-docker-support.png
 [run-on-web-app-linux]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/run-on-web-app-linux.png
-[create-web-app]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/create-web-app.png
 [edit-configuration-menu]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/edit-configuration-menu.png
 [edit-configuration-dialog]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/edit-configuration-dialog.png
 [successfully-deployed]: media/azure-toolkit-for-intellij-hello-world-web-app-linux/successfully-deployed.png
