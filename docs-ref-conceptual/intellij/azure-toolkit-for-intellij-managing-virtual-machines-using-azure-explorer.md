@@ -155,8 +155,8 @@ For more information about Azure virtual-machine sizes and pricing, see the foll
 [Sign-in instructions for the Azure Toolkit for IntelliJ]: ./azure-toolkit-for-intellij-sign-in-instructions.md
 [Sizes for Windows virtual machines in Azure]: /azure/virtual-machines/virtual-machines-windows-sizes
 [Sizes for Linux virtual machines in Azure]: /azure/virtual-machines/virtual-machines-linux-sizes
-[Windows virtual-machine pricing]: /pricing/details/virtual-machines/windows/
-[Linux virtual-machine pricing]: /pricing/details/virtual-machines/linux/
+[Windows virtual-machine pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/windows/
+[Linux virtual-machine pricing]: https://azure.microsoft.com/pricing/details/virtual-machines/linux/
 
 <!-- IMG List -->
 

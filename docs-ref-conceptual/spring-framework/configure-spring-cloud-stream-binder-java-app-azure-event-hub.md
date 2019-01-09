@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid:
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: event-hubs
 ms.tgt_pltfrm: na
@@ -191,7 +191,7 @@ The following prerequisites are required in order to follow the steps in this ar
        }
      }
    ]
-
+   ```
 1. Specify the GUID for the subscription you want to use with Azure; for example:
 
    ```azurecli
@@ -390,6 +390,13 @@ In this section, you create the necessary Java classes for sending events to you
 
 ## Next steps
 
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
 For more information about Azure support for Event Hub Stream Binder, see the following articles:
 
 * [What is Azure Event Hubs?](/azure/event-hubs/event-hubs-about)
@@ -398,14 +405,14 @@ For more information about Azure support for Event Hub Stream Binder, see the fo
 
 * [How to use the Spring Boot Starter for Apache Kafka with Azure Event Hubs](configure-spring-cloud-stream-binder-java-app-kafka-azure-event-hub.md)
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
 
 The **[Spring Framework]** is an open-source solution that helps Java developers create enterprise-level applications. One of the more-popular projects that is built on top of that platform is [Spring Boot], which provides a simplified approach for creating stand-alone Java applications. To help developers get started with Spring Boot, several sample Spring Boot packages are available at <https://github.com/spring-guides/>. In addition to choosing from the list of basic Spring Boot projects, the **[Spring Initializr]** helps developers get started with creating custom Spring Boot applications.
 
 <!-- URL List -->
 
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
 [Spring Initializr]: https://start.spring.io/
