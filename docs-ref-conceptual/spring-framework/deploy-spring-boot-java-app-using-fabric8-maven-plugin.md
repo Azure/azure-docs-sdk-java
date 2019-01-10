@@ -8,7 +8,7 @@ manager: mbaldwin
 editor: ''
 ms.assetid: 
 ms.author: robmcm
-ms.date: 11/21/2018
+ms.date: 12/19/2018
 ms.devlang: java
 ms.service: multiple
 ms.tgt_pltfrm: multiple
@@ -502,13 +502,20 @@ When your Kubernetes cluster is no longer needed, you can use the `az group dele
 
 ## Next steps
 
+To learn more about Spring and Azure, continue to the Spring on Azure documentation center.
+
+> [!div class="nextstepaction"]
+> [Spring on Azure](/java/azure/spring-framework)
+
+### Additional Resources
+
 For more information about using Spring Boot applications on Azure, see the following articles:
 
 * [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
 * [Deploy a Spring Boot application on Linux in the Azure Container Service](deploy-spring-boot-java-app-on-linux.md)
 * [Deploy a Spring Boot Application on a Kubernetes Cluster in the Azure Container Service](deploy-spring-boot-java-app-on-kubernetes.md)
 
-For more information about using Azure with Java, see the [Azure for Java Developers] and the [Java Tools for Visual Studio Team Services].
+For more information about using Azure with Java, see the [Azure for Java Developers] and the [Working with Azure DevOps and Java].
 
 For further details about the Spring Boot on Docker sample project, see [Spring Boot on Docker Getting Started].
 
@@ -522,7 +529,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 
 [Azure Command-Line Interface (CLI)]: /cli/azure/overview
 [Azure Container Service (AKS)]: https://azure.microsoft.com/services/container-service/
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
+[Azure for Java Developers]: /java/azure/
 [Azure portal]: https://portal.azure.com/
 [Create a private Docker container registry using the Azure portal]: /azure/container-registry/container-registry-get-started-portal
 [Using a custom Docker image for Azure Web App on Linux]: /azure/app-service-web/app-service-linux-using-custom-docker-image
@@ -530,7 +537,7 @@ For additional examples for how to use custom Docker images with Azure, see [Usi
 [Fabric8]: https://fabric8.io/
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
 [Git]: https://github.com/
-[Java Tools for Visual Studio Team Services]: https://java.visualstudio.com/
+[Working with Azure DevOps and Java]: /azure/devops/java/
 [Kubernetes]: https://kubernetes.io/
 [Maven]: http://maven.apache.org/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/

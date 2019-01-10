@@ -4,12 +4,18 @@ items:
   id: ResourceFile
   parent: com.microsoft.azure.batch.protocol.models
   children:
-  - com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource()
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName()
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix()
   - com.microsoft.azure.batch.protocol.models.ResourceFile.fileMode()
   - com.microsoft.azure.batch.protocol.models.ResourceFile.filePath()
-  - com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource(String)
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl()
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl()
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName(String)
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix(String)
   - com.microsoft.azure.batch.protocol.models.ResourceFile.withFileMode(String)
   - com.microsoft.azure.batch.protocol.models.ResourceFile.withFilePath(String)
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl(String)
+  - com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl(String)
   href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
   langs:
   - java
@@ -25,33 +31,55 @@ items:
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
     startLine: 15
   package: com.microsoft.azure.batch.protocol.models
-  summary: "<p>A file to be downloaded from Azure blob storage to a compute node. </p>"
+  summary: "<p>A single file or multiple files to be downloaded to a compute node. </p>"
   syntax: &o1
     content: public class ResourceFile
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource()
-  id: blobSource()
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName()
+  id: autoStorageContainerName()
   parent: com.microsoft.azure.batch.protocol.models.ResourceFile
   href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
   langs:
   - java
-  name: blobSource()
-  nameWithType: ResourceFile.blobSource()
-  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource()
-  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource*
+  name: autoStorageContainerName()
+  nameWithType: ResourceFile.autoStorageContainerName()
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName()
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName*
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 50
+    startLine: 95
   package: com.microsoft.azure.batch.protocol.models
-  summary: "<p>Get this URL must be readable using anonymous access; that is, the Batch service does not present any credentials when downloading the blob. There are two ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, or set the ACL for the blob or its container to allow public access.</p>\r\n<p></p>"
+  summary: "<p>Get the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified.</p>\r\n<p></p>"
   syntax:
-    content: public String blobSource()
+    content: public String autoStorageContainerName()
     return:
       type: "26831127"
-      description: <p>the blobSource value </p>
+      description: <p>the autoStorageContainerName value </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix()
+  id: blobPrefix()
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: blobPrefix()
+  nameWithType: ResourceFile.blobPrefix()
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix()
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 155
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Get the property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be downloaded.</p>\r\n<p></p>"
+  syntax:
+    content: public String blobPrefix()
+    return:
+      type: "26831127"
+      description: <p>the blobPrefix value </p>
 - uid: com.microsoft.azure.batch.protocol.models.ResourceFile.fileMode()
   id: fileMode()
   parent: com.microsoft.azure.batch.protocol.models.ResourceFile
@@ -66,7 +94,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 90
+    startLine: 195
   package: com.microsoft.azure.batch.protocol.models
   summary: "<p>Get this property applies only to files being downloaded to Linux compute nodes. It will be ignored if it is specified for a resourceFile which will be downloaded to a Windows node. If this property is not specified for a Linux node, then a default value of 0770 is applied to the file.</p>\r\n<p></p>"
   syntax:
@@ -88,37 +116,107 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 70
+    startLine: 175
   package: com.microsoft.azure.batch.protocol.models
-  summary: "<p>Get the filePath value.</p>\r\n<p></p>"
+  summary: "<p>Get if the httpUrl property is specified, the filePath is required and describes the path which the file will be downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property is specified, filePath is optional and is the directory to download the files to. In the case where filePath is used as a directory, any directory structure already associated with the input data will be retained in full and appended to the specified filePath directory. The specified relative path cannot break out of the task's working directory (for example by using '..').</p>\r\n<p></p>"
   syntax:
     content: public String filePath()
     return:
       type: "26831127"
       description: <p>the filePath value </p>
-- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource(String)
-  id: withBlobSource(String)
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl()
+  id: httpUrl()
   parent: com.microsoft.azure.batch.protocol.models.ResourceFile
   href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
   langs:
   - java
-  name: withBlobSource(String blobSource)
-  nameWithType: ResourceFile.withBlobSource(String blobSource)
-  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource(String blobSource)
-  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource*
+  name: httpUrl()
+  nameWithType: ResourceFile.httpUrl()
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl()
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl*
   type: Method
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 60
+    startLine: 135
   package: com.microsoft.azure.batch.protocol.models
-  summary: "<p>Set this URL must be readable using anonymous access; that is, the Batch service does not present any credentials when downloading the blob. There are two ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, or set the ACL for the blob or its container to allow public access.</p>\r\n<p></p>"
+  summary: "<p>Get the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. If the URL points to Azure Blob Storage, it must be readable using anonymous access; that is, the Batch service does not present any credentials when downloading the blob. There are two ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, or set the ACL for the blob or its container to allow public access.</p>\r\n<p></p>"
   syntax:
-    content: public ResourceFile withBlobSource(String blobSource)
-    parameters:
-    - id: blobSource
+    content: public String httpUrl()
+    return:
       type: "26831127"
-      description: <p>the blobSource value to set </p>
+      description: <p>the httpUrl value </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl()
+  id: storageContainerUrl()
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: storageContainerUrl()
+  nameWithType: ResourceFile.storageContainerUrl()
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl()
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 115
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Get the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. This URL must be readable and listable using anonymous access; that is, the Batch service does not present any credentials when downloading blobs from the container. There are two ways to get such a URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the container, or set the ACL for the container to allow public access.</p>\r\n<p></p>"
+  syntax:
+    content: public String storageContainerUrl()
+    return:
+      type: "26831127"
+      description: <p>the storageContainerUrl value </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName(String)
+  id: withAutoStorageContainerName(String)
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: withAutoStorageContainerName(String autoStorageContainerName)
+  nameWithType: ResourceFile.withAutoStorageContainerName(String autoStorageContainerName)
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName(String autoStorageContainerName)
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 105
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Set the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified.</p>\r\n<p></p>"
+  syntax:
+    content: public ResourceFile withAutoStorageContainerName(String autoStorageContainerName)
+    parameters:
+    - id: autoStorageContainerName
+      type: "26831127"
+      description: <p>the autoStorageContainerName value to set </p>
+    return:
+      type: com.microsoft.azure.batch.protocol.models.ResourceFile
+      description: <p>the ResourceFile object itself. </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix(String)
+  id: withBlobPrefix(String)
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: withBlobPrefix(String blobPrefix)
+  nameWithType: ResourceFile.withBlobPrefix(String blobPrefix)
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix(String blobPrefix)
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 165
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Set the property is valid only when autoStorageContainerName or storageContainerUrl is used. This prefix can be a partial filename or a subdirectory. If a prefix is not specified, all the files in the container will be downloaded.</p>\r\n<p></p>"
+  syntax:
+    content: public ResourceFile withBlobPrefix(String blobPrefix)
+    parameters:
+    - id: blobPrefix
+      type: "26831127"
+      description: <p>the blobPrefix value to set </p>
     return:
       type: com.microsoft.azure.batch.protocol.models.ResourceFile
       description: <p>the ResourceFile object itself. </p>
@@ -136,7 +234,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 100
+    startLine: 205
   package: com.microsoft.azure.batch.protocol.models
   summary: "<p>Set this property applies only to files being downloaded to Linux compute nodes. It will be ignored if it is specified for a resourceFile which will be downloaded to a Windows node. If this property is not specified for a Linux node, then a default value of 0770 is applied to the file.</p>\r\n<p></p>"
   syntax:
@@ -162,9 +260,9 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
-    startLine: 80
+    startLine: 185
   package: com.microsoft.azure.batch.protocol.models
-  summary: "<p>Set the filePath value.</p>\r\n<p></p>"
+  summary: "<p>Set if the httpUrl property is specified, the filePath is required and describes the path which the file will be downloaded to, including the filename. Otherwise, if the autoStorageContainerName or storageContainerUrl property is specified, filePath is optional and is the directory to download the files to. In the case where filePath is used as a directory, any directory structure already associated with the input data will be retained in full and appended to the specified filePath directory. The specified relative path cannot break out of the task's working directory (for example by using '..').</p>\r\n<p></p>"
   syntax:
     content: public ResourceFile withFilePath(String filePath)
     parameters:
@@ -174,20 +272,102 @@ items:
     return:
       type: com.microsoft.azure.batch.protocol.models.ResourceFile
       description: <p>the ResourceFile object itself. </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl(String)
+  id: withHttpUrl(String)
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: withHttpUrl(String httpUrl)
+  nameWithType: ResourceFile.withHttpUrl(String httpUrl)
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl(String httpUrl)
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 145
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Set the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. If the URL points to Azure Blob Storage, it must be readable using anonymous access; that is, the Batch service does not present any credentials when downloading the blob. There are two ways to get such a URL for a blob in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the blob, or set the ACL for the blob or its container to allow public access.</p>\r\n<p></p>"
+  syntax:
+    content: public ResourceFile withHttpUrl(String httpUrl)
+    parameters:
+    - id: httpUrl
+      type: "26831127"
+      description: <p>the httpUrl value to set </p>
+    return:
+      type: com.microsoft.azure.batch.protocol.models.ResourceFile
+      description: <p>the ResourceFile object itself. </p>
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl(String)
+  id: withStorageContainerUrl(String)
+  parent: com.microsoft.azure.batch.protocol.models.ResourceFile
+  href: com.microsoft.azure.batch.protocol.models.ResourceFile.yml
+  langs:
+  - java
+  name: withStorageContainerUrl(String storageContainerUrl)
+  nameWithType: ResourceFile.withStorageContainerUrl(String storageContainerUrl)
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl(String storageContainerUrl)
+  overload: com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/batch/protocol/models/ResourceFile.java
+    startLine: 125
+  package: com.microsoft.azure.batch.protocol.models
+  summary: "<p>Set the autoStorageContainerName, storageContainerUrl and httpUrl properties are mutually exclusive and one of them must be specified. This URL must be readable and listable using anonymous access; that is, the Batch service does not present any credentials when downloading blobs from the container. There are two ways to get such a URL for a container in Azure storage: include a Shared Access Signature (SAS) granting read permissions on the container, or set the ACL for the container to allow public access.</p>\r\n<p></p>"
+  syntax:
+    content: public ResourceFile withStorageContainerUrl(String storageContainerUrl)
+    parameters:
+    - id: storageContainerUrl
+      type: "26831127"
+      description: <p>the storageContainerUrl value to set </p>
+    return:
+      type: com.microsoft.azure.batch.protocol.models.ResourceFile
+      description: <p>the ResourceFile object itself. </p>
 references:
 - uid: "26831127"
   spec.java:
   - name: String
     fullName: String
-- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource*
-  name: blobSource
-  nameWithType: ResourceFile.blobSource
-  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.blobSource
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName*
+  name: autoStorageContainerName
+  nameWithType: ResourceFile.autoStorageContainerName
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.autoStorageContainerName
   package: com.microsoft.azure.batch.protocol.models
-- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource*
-  name: withBlobSource
-  nameWithType: ResourceFile.withBlobSource
-  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobSource
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName*
+  name: withAutoStorageContainerName
+  nameWithType: ResourceFile.withAutoStorageContainerName
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withAutoStorageContainerName
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl*
+  name: storageContainerUrl
+  nameWithType: ResourceFile.storageContainerUrl
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.storageContainerUrl
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl*
+  name: withStorageContainerUrl
+  nameWithType: ResourceFile.withStorageContainerUrl
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withStorageContainerUrl
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl*
+  name: httpUrl
+  nameWithType: ResourceFile.httpUrl
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.httpUrl
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl*
+  name: withHttpUrl
+  nameWithType: ResourceFile.withHttpUrl
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withHttpUrl
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix*
+  name: blobPrefix
+  nameWithType: ResourceFile.blobPrefix
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.blobPrefix
+  package: com.microsoft.azure.batch.protocol.models
+- uid: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix*
+  name: withBlobPrefix
+  nameWithType: ResourceFile.withBlobPrefix
+  fullName: com.microsoft.azure.batch.protocol.models.ResourceFile.withBlobPrefix
   package: com.microsoft.azure.batch.protocol.models
 - uid: com.microsoft.azure.batch.protocol.models.ResourceFile.filePath*
   name: filePath
@@ -216,5 +396,5 @@ references:
   nameWithType: ResourceFile
   fullName: com.microsoft.azure.batch.protocol.models.ResourceFile
   type: Class
-  summary: "<p>A file to be downloaded from Azure blob storage to a compute node. </p>"
+  summary: "<p>A single file or multiple files to be downloaded to a compute node. </p>"
   syntax: *o1
