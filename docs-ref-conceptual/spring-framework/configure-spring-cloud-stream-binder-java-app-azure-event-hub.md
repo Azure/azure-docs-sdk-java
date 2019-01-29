@@ -138,12 +138,10 @@ The following prerequisites are required in order to follow the steps in this ar
    ```xml
    <dependency>
       <groupId>com.microsoft.azure</groupId>
-      <artifactId>spring-cloud-azure-eventhub-stream-binder</artifactId>
-      <version>1.0.0.M2</version>
+      <artifactId>spring-cloud-azure-eventhubs-stream-binder</artifactId>
+      <version>1.1.0.RC2</version>
    </dependency>
    ```
-
-   ![Edit pom.xml file][SI03]
 
 1. Save and close the *pom.xml* file.
 
