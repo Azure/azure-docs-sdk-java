@@ -411,7 +411,9 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 
 <!-- URL List -->
 
+
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
