@@ -245,7 +245,7 @@ respectively. Specify your user flow **Name** and **User attributes and claims**
         }
     }
     ```
-14. Copy the `greeting.html` and `home.html` from [AAD B2C Spring Boot Sample](Templates), and replace the
+14. Copy the `greeting.html` and `home.html` from [Azure AD B2C Spring Boot Sample][AAD B2C OIDC Sprint Boot Sample], and replace the
 `${your-profile-edit-user-flow}` and `${your-password-reset-user-flow}` with your user flow name
 respectively that completed earlier.
 
@@ -288,7 +288,7 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 
 <!-- URL List -->
 
-[Templates]: https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample/src/main/resources/templates
+[AAD B2C OIDC Sprint Boot Sample]: https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample/src/main/resources/templates
 
 [Azure Active Directory Documentation]: /azure/active-directory/
 
