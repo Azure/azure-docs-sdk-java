@@ -74,7 +74,7 @@ TransferManager.uploadFileToBlockBlob(fileChannel, blobURL,0, null).blockingGet(
 
 ## Management API
 
-Crete and manage Azure Storage accounts and connection keys with the management API.
+Create and manage Azure Storage accounts and connection keys with the management API.
 
 [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the management API in your project.  
 
