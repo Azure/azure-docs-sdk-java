@@ -7,6 +7,7 @@ items:
   - com.microsoft.azure.storage.blob.TransferManager.BLOB_DEFAULT_DOWNLOAD_BLOCK_SIZE
   - com.microsoft.azure.storage.blob.TransferManager.downloadBlobToFile(AsynchronousFileChannel,BlobURL,BlobRange,TransferManagerDownloadFromBlobOptions)
   - com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final AsynchronousFileChannel,final BlockBlobURL,final int,final TransferManagerUploadToBlockBlobOptions)
+  - com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable(final Flowable<ByteBuffer>,final BlockBlobURL,final int,final int,final TransferManagerUploadToBlockBlobOptions)
   href: com.microsoft.azure.storage.blob.TransferManager.yml
   langs:
   - java
@@ -20,7 +21,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-storage-java
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 41
+    startLine: 42
   package: com.microsoft.azure.storage.blob
   summary: "<p>This class contains a collection of methods (and structures associated with those methods) which perform higher-level operations. Whereas operations on the URL types guarantee a single REST request and make no assumptions on desired behavior, these methods will often compose several requests to provide a convenient way of performing more complex operations. Further, we will make our own assumptions and optimizations for common cases that may not be ideal for rarer cases. </p>"
   syntax:
@@ -40,7 +41,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 46
+    startLine: 47
   package: com.microsoft.azure.storage.blob
   summary: "<p>The default size of a download chunk for download large blobs. </p>"
   syntax:
@@ -61,7 +62,7 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 186
+    startLine: 187
   package: com.microsoft.azure.storage.blob
   summary: "<p>Downloads a file directly into a file, splitting the download into chunks and parallelizing as necessary.</p>\r\n<p></p>"
   remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_file \"Sample code for TransferManager.downloadBlobToFile\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
@@ -110,11 +111,11 @@ items:
   source:
     remote: *o0
     path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
-    startLine: 70
+    startLine: 71
   package: com.microsoft.azure.storage.blob
   summary: "<p>Uploads the contents of a file to a block blob in parallel, breaking it into block-size chunks if necessary.</p>\r\n<p></p>"
   remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_file \"Sample code for TransferManager.uploadFileToBlockBlob\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
-  syntax:
+  syntax: &o1
     content: public static Single<CommonRestResponse> uploadFileToBlockBlob(final AsynchronousFileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final TransferManagerUploadToBlockBlobOptions options)
     parameters:
     - id: file
@@ -139,6 +140,50 @@ items:
         </p>
     return:
       type: 449e6419com.microsoft.azure.storage.blob.CommonRestResponsea08ddfce
+      description: <p>Emits the successful response.</p>
+- uid: com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable(final Flowable<ByteBuffer>,final BlockBlobURL,final int,final int,final TransferManagerUploadToBlockBlobOptions)
+  id: uploadFromNonReplayableFlowable(final Flowable<ByteBuffer>,final BlockBlobURL,final int,final int,final TransferManagerUploadToBlockBlobOptions)
+  parent: com.microsoft.azure.storage.blob.TransferManager
+  href: com.microsoft.azure.storage.blob.TransferManager.yml
+  langs:
+  - java
+  name: uploadFromNonReplayableFlowable(final Flowable<ByteBuffer> source, final BlockBlobURL blockBlobURL, final int blockSize, final int numBuffers, final TransferManagerUploadToBlockBlobOptions options)
+  nameWithType: TransferManager.uploadFromNonReplayableFlowable(final Flowable<ByteBuffer> source, final BlockBlobURL blockBlobURL, final int blockSize, final int numBuffers, final TransferManagerUploadToBlockBlobOptions options)
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable(final Flowable<ByteBuffer> source, final BlockBlobURL blockBlobURL, final int blockSize, final int numBuffers, final TransferManagerUploadToBlockBlobOptions options)
+  overload: com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/TransferManager.java
+    startLine: 333
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Uploads the contents of an arbitrary<code>Flowable \r\n    </code> to a block blob. This Flowable need not be replayable and therefore it may have as its source a network stream or any other data for which the replay behavior is unknown (non-replayable meaning the Flowable may not return the exact same data on each subscription).</p>\r\n<p>To eliminate the need for replayability on the source, the client must perform some buffering in order to ensure the actual data passed to the network is replayable. This is important in order to support retries, which are crucial for reliable data transfer. Typically, the greater the number of buffers used, the greater the possible parallelism. Larger buffers means we will have to stage fewer blocks. The tradeoffs between these values are context-dependent, so some experimentation may be required to optimize inputs for a given scenario.</p>\r\n<p>Note that buffering must be strictly sequential. Only the upload portion of this operation may be parallelized; the reads cannot be. Therefore, this method is not as optimal as <xref uid=\"com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final AsynchronousFileChannel,final BlockBlobURL,final int,final TransferManagerUploadToBlockBlobOptions)\" data-throw-if-not-resolved=\"false\">uploadFileToBlockBlob(AsynchronousFileChannel, BlockBlobURL, int, TransferManagerUploadToBlockBlobOptions)</xref> and if the source is known to be a file, that method should be preferred.</p>\r\n<p></p>"
+  remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=tm_nrf \"Sample code for TransferManager.uploadFromNonReplayableFlowable\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
+  syntax:
+    content: public static Single<BlockBlobCommitBlockListResponse> uploadFromNonReplayableFlowable(final Flowable<ByteBuffer> source, final BlockBlobURL blockBlobURL, final int blockSize, final int numBuffers, final TransferManagerUploadToBlockBlobOptions options)
+    parameters:
+    - id: source
+      type: 84b9debc
+      description: <p>Contains the data to upload. Unlike other upload methods in this library, this method does not require that the Flowable be replayable. </p>
+    - id: blockBlobURL
+      type: 93de0ef9com.microsoft.azure.storage.blob.BlockBlobURL
+      description: <p>Points to the blob to which the data should be uploaded. </p>
+    - id: blockSize
+      type: cd225469
+      description: <p>The size of each block that will be staged. This value also determines the size that each buffer used by this method will be and determines the number of requests that need to be made. The amount of memory consumed by this method may be up to blockSize * numBuffers. If block size is large, this method will make fewer network calls, but each individual call will send more data and will therefore take longer. </p>
+    - id: numBuffers
+      type: cd225469
+      description: <p>The maximum number of buffers this method should allocate. Must be at least two. Generally this value should have some relationship to the value for parallelism passed via the options. If the number of available buffers is smaller than the level of parallelism, then this method will not be able to make full use of the available parallelism. It is unlikely that the value need be more than two times the level of parallelism as such a value means that (assuming buffering is fast enough) there are enough available buffers to have both one occupied for each worker and one ready for all workers should they all complete the current request at approximately the same time. The amount of memory consumed by this method may be up to blockSize * numBuffers. </p>
+    - id: options
+      type: 93de0ef9com.microsoft.azure.storage.blob.TransferManagerUploadToBlockBlobOptions
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.storage.blob.TransferManagerUploadToBlockBlobOptions" data-throw-if-not-resolved="false">TransferManagerUploadToBlockBlobOptions</xref>
+
+        </p>
+    return:
+      type: 449e6419com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponsea08ddfce
       description: <p>Emits the successful response.</p>
 references:
 - uid: cd225469
@@ -198,6 +243,25 @@ references:
   name: downloadBlobToFile
   nameWithType: TransferManager.downloadBlobToFile
   fullName: com.microsoft.azure.storage.blob.TransferManager.downloadBlobToFile
+  package: com.microsoft.azure.storage.blob
+- uid: 84b9debc
+  spec.java:
+  - name: final Flowable<ByteBuffer>
+    fullName: final Flowable<ByteBuffer>
+- uid: 449e6419com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponsea08ddfce
+  spec.java:
+  - name: Single<
+    fullName: Single<
+  - uid: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse
+    name: BlockBlobCommitBlockListResponse
+    fullName: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse
+    href: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable*
+  name: uploadFromNonReplayableFlowable
+  nameWithType: TransferManager.uploadFromNonReplayableFlowable
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadFromNonReplayableFlowable
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob.CommonRestResponse
   parent: com.microsoft.azure.storage.blob
@@ -293,3 +357,22 @@ references:
   summary: "<p>Configures the parallel download behavior for methods on the <xref uid=\"com.microsoft.azure.storage.blob.TransferManager\" data-throw-if-not-resolved=\"false\">TransferManager</xref>. </p>"
   syntax:
     content: public class TransferManagerDownloadFromBlobOptions
+- uid: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse
+  parent: com.microsoft.azure.storage.blob.models
+  href: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse.yml
+  name: BlockBlobCommitBlockListResponse
+  nameWithType: BlockBlobCommitBlockListResponse
+  fullName: com.microsoft.azure.storage.blob.models.BlockBlobCommitBlockListResponse
+  type: Class
+  summary: "<p>Contains all response data for the commitBlockList operation. </p>"
+  syntax:
+    content: public class BlockBlobCommitBlockListResponse
+- uid: com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final AsynchronousFileChannel,final BlockBlobURL,final int,final TransferManagerUploadToBlockBlobOptions)
+  parent: com.microsoft.azure.storage.blob.TransferManager
+  href: com.microsoft.azure.storage.blob.TransferManager.yml
+  name: uploadFileToBlockBlob(final AsynchronousFileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final TransferManagerUploadToBlockBlobOptions options)
+  nameWithType: TransferManager.uploadFileToBlockBlob(final AsynchronousFileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final TransferManagerUploadToBlockBlobOptions options)
+  fullName: com.microsoft.azure.storage.blob.TransferManager.uploadFileToBlockBlob(final AsynchronousFileChannel file, final BlockBlobURL blockBlobURL, final int blockLength, final TransferManagerUploadToBlockBlobOptions options)
+  type: Method
+  summary: "<p>Uploads the contents of a file to a block blob in parallel, breaking it into block-size chunks if necessary.</p>\r\n<p></p>"
+  syntax: *o1

@@ -8,15 +8,15 @@ items:
   - com.microsoft.azure.eventhubs.PartitionReceiver.closeSync()
   - com.microsoft.azure.eventhubs.PartitionReceiver.DEFAULT_PREFETCH_COUNT
   - com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
+  - com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition()
   - com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId()
-  - com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount()
   - com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout()
   - com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation()
+  - com.microsoft.azure.eventhubs.PartitionReceiver.MAXIMUM_PREFETCH_COUNT
   - com.microsoft.azure.eventhubs.PartitionReceiver.MINIMUM_PREFETCH_COUNT
   - com.microsoft.azure.eventhubs.PartitionReceiver.NULL_EPOCH
   - com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)
   - com.microsoft.azure.eventhubs.PartitionReceiver.receiveSync(final int)
-  - com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int)
   - com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveHandler(final PartitionReceiveHandler)
   - com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveHandler(final PartitionReceiveHandler,final boolean)
   - com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveTimeout(Duration)
@@ -52,7 +52,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 147
+    startLine: 140
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public CompletableFuture<Void> close()
@@ -72,7 +72,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 149
+    startLine: 142
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public void closeSync()
@@ -92,7 +92,7 @@ items:
     startLine: 27
   package: com.microsoft.azure.eventhubs
   syntax:
-    content: public int DEFAULT_PREFETCH_COUNT= 999
+    content: public int DEFAULT_PREFETCH_COUNT= 500
     return:
       type: f75371fa
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.getEpoch()
@@ -109,7 +109,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 66
+    startLine: 50
   package: com.microsoft.azure.eventhubs
   summary: "<p>Get the epoch value that this receiver is currently using for partition ownership. </p>\r\n<p>A value of 0 means this receiver is not an epoch-based receiver.</p>\r\n<p></p>"
   syntax:
@@ -117,6 +117,28 @@ items:
     return:
       type: 0364520f
       description: <p>the epoch value that this receiver is currently using for partition ownership. </p>
+- uid: com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition()
+  id: getEventPosition()
+  parent: com.microsoft.azure.eventhubs.PartitionReceiver
+  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
+  langs:
+  - java
+  name: getEventPosition()
+  nameWithType: PartitionReceiver.getEventPosition()
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition()
+  overload: com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
+    startLine: 71
+  package: com.microsoft.azure.eventhubs
+  summary: "<p>Get the <xref uid=\"com.microsoft.azure.eventhubs.EventPosition\" data-throw-if-not-resolved=\"false\">EventPosition</xref> that corresponds to an <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> which was returned last by the receiver. </p>\r\n<p>This value will not be populated, unless the knob <xref uid=\"com.microsoft.azure.eventhubs.ReceiverOptions.setReceiverRuntimeMetricEnabled(boolean)\" data-throw-if-not-resolved=\"false\">ReceiverOptions#setReceiverRuntimeMetricEnabled(boolean)</xref> is set. Note that EventPosition object is initialized using SequenceNumber and other parameters are not set and get will return null.</p>\r\n<p></p>"
+  syntax:
+    content: public EventPosition getEventPosition()
+    return:
+      type: com.microsoft.azure.eventhubs.EventPosition
+      description: <p>the EventPosition object. </p>
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId()
   id: getPartitionId()
   parent: com.microsoft.azure.eventhubs.PartitionReceiver
@@ -131,7 +153,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 36
+    startLine: 37
   package: com.microsoft.azure.eventhubs
   summary: "<p>Get EventHubs partition identifier.</p>\r\n<p></p>"
   syntax:
@@ -139,28 +161,6 @@ items:
     return:
       type: "26831127"
       description: <p>The identifier representing the partition from which this receiver is fetching data </p>
-- uid: com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount()
-  id: getPrefetchCount()
-  parent: com.microsoft.azure.eventhubs.PartitionReceiver
-  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
-  langs:
-  - java
-  name: getPrefetchCount()
-  nameWithType: PartitionReceiver.getPrefetchCount()
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount()
-  overload: com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 44
-  package: com.microsoft.azure.eventhubs
-  summary: "<p>Get Prefetch Count configured on the Receiver.</p>\r\n<p></p>"
-  syntax:
-    content: public int getPrefetchCount()
-    return:
-      type: f75371fa
-      description: <p>the upper limit of events this receiver will actively receive regardless of whether a receive operation is pending. </p>
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.getReceiveTimeout()
   id: getReceiveTimeout()
   parent: com.microsoft.azure.eventhubs.PartitionReceiver
@@ -175,7 +175,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 55
+    startLine: 39
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public Duration getReceiveTimeout()
@@ -195,7 +195,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 78
+    startLine: 62
   package: com.microsoft.azure.eventhubs
   summary: "<p>Gets the temporal <xref uid=\"com.microsoft.azure.eventhubs.ReceiverRuntimeInformation\" data-throw-if-not-resolved=\"false\">ReceiverRuntimeInformation</xref> for this EventHub partition. In general, this information is a representation of, where this <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref>'s end of stream is, at the time <xref uid=\"com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.getRetrievalTime()\" data-throw-if-not-resolved=\"false\">ReceiverRuntimeInformation#getRetrievalTime()</xref>. </p>\r\n<p>This value will not be populated, unless the knob <xref uid=\"com.microsoft.azure.eventhubs.ReceiverOptions.setReceiverRuntimeMetricEnabled(boolean)\" data-throw-if-not-resolved=\"false\">ReceiverOptions#setReceiverRuntimeMetricEnabled(boolean)</xref> is set. This value will be refreshed every time an <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> is consumed from <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref>. For ex: if no events have been consumed, then this value is not populated.</p>\r\n<p></p>"
   syntax:
@@ -203,6 +203,25 @@ items:
     return:
       type: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
       description: <p>receiver runtime information </p>
+- uid: com.microsoft.azure.eventhubs.PartitionReceiver.MAXIMUM_PREFETCH_COUNT
+  id: MAXIMUM_PREFETCH_COUNT
+  parent: com.microsoft.azure.eventhubs.PartitionReceiver
+  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
+  langs:
+  - java
+  name: MAXIMUM_PREFETCH_COUNT
+  nameWithType: PartitionReceiver.MAXIMUM_PREFETCH_COUNT
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.MAXIMUM_PREFETCH_COUNT
+  type: Field
+  source:
+    remote: *o0
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
+    startLine: 28
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public int MAXIMUM_PREFETCH_COUNT= 2000
+    return:
+      type: f75371fa
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.MINIMUM_PREFETCH_COUNT
   id: MINIMUM_PREFETCH_COUNT
   parent: com.microsoft.azure.eventhubs.PartitionReceiver
@@ -219,7 +238,7 @@ items:
     startLine: 26
   package: com.microsoft.azure.eventhubs
   syntax:
-    content: public int MINIMUM_PREFETCH_COUNT= 10
+    content: public int MINIMUM_PREFETCH_COUNT= 1
     return:
       type: f75371fa
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.NULL_EPOCH
@@ -235,7 +254,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 29
+    startLine: 30
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public long NULL_EPOCH= 0
@@ -255,7 +274,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 124
+    startLine: 117
   package: com.microsoft.azure.eventhubs
   summary: "<p>Receive a batch of <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>'s from an EventHub partition </p>\r\n<p>Sample code (sample uses sync version of the api but concept are identical): <pre>\r\nEventHubClient client = EventHubClient.createSync(\"__connection__\");\r\nPartitionReceiver receiver = client.createPartitionReceiverSync(\"ConsumerGroup1\", \"1\");\r\nIterable{&lt;}EventData{&gt;} receivedEvents = receiver.receiveSync();</pre></p>\r\n<p>\r\n  <pre>while (true)\r\n{\r\n    int batchSize = 0;\r\n    if (receivedEvents != null)\r\n    {\r\n        for(EventData receivedEvent: receivedEvents)\r\n        {\r\n            System.out.println(String.format(\"Message Payload: %s\", new String(receivedEvent.getBytes(), Charset.defaultCharset())));\r\n            System.out.println(String.format(\"Offset: %s, SeqNo: %s, EnqueueTime: %s\",\r\n                receivedEvent.getSystemProperties().getOffset(),\r\n                receivedEvent.getSystemProperties().getSequenceNumber(),\r\n                receivedEvent.getSystemProperties().getEnqueuedTime()));\r\n            batchSize++;\r\n        }\r\n    }</pre>\r\n</p>\r\n<p>\r\n  <pre>    System.out.println(String.format(\"ReceivedBatch Size: %s\", batchSize));\r\n    receivedEvents = receiver.receiveSync();\r\n}\r\n</pre>\r\n</p>\r\n<p></p>"
   syntax: &o2
@@ -281,7 +300,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 87
+    startLine: 80
   package: com.microsoft.azure.eventhubs
   summary: "<p>Synchronous version of <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)\" data-throw-if-not-resolved=\"false\">receive</xref>.</p>\r\n<p></p>"
   syntax:
@@ -296,32 +315,6 @@ items:
   exceptions:
   - type: ca207911
     description: <p>if ServiceBus client encountered any unrecoverable/non-transient problems during <xref uid="com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)" data-throw-if-not-resolved="false">receive</xref></p>
-- uid: com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int)
-  id: setPrefetchCount(final int)
-  parent: com.microsoft.azure.eventhubs.PartitionReceiver
-  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
-  langs:
-  - java
-  name: setPrefetchCount(final int prefetchCount)
-  nameWithType: PartitionReceiver.setPrefetchCount(final int prefetchCount)
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount(final int prefetchCount)
-  overload: com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount*
-  type: Method
-  source:
-    remote: *o0
-    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 53
-  package: com.microsoft.azure.eventhubs
-  summary: "<p>Set the number of events that can be pre-fetched and cached at the <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref>. </p>\r\n<p>By default the value is 300</p>\r\n<p></p>"
-  syntax:
-    content: public void setPrefetchCount(final int prefetchCount)
-    parameters:
-    - id: prefetchCount
-      type: cd225469
-      description: <p>the number of events to pre-fetch. value must be between 10 and 999. Default is 300. </p>
-  exceptions:
-  - type: ca207911
-    description: <p>if setting prefetchCount encounters error </p>
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.setReceiveHandler(final PartitionReceiveHandler)
   id: setReceiveHandler(final PartitionReceiveHandler)
   parent: com.microsoft.azure.eventhubs.PartitionReceiver
@@ -336,7 +329,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 134
+    startLine: 127
   package: com.microsoft.azure.eventhubs
   summary: "<p>Register a receive handler that will be called when an event is available. A <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiveHandler\" data-throw-if-not-resolved=\"false\">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>\r\n<p></p>"
   syntax:
@@ -362,7 +355,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 145
+    startLine: 138
   package: com.microsoft.azure.eventhubs
   summary: "<p>Register a receive handler that will be called when an event is available. A <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiveHandler\" data-throw-if-not-resolved=\"false\">PartitionReceiveHandler</xref> is a handler that allows user to specify a callback for event processing and error handling in a receive pump model.</p>\r\n<p></p>"
   syntax:
@@ -391,7 +384,7 @@ items:
   source:
     remote: *o0
     path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/PartitionReceiver.java
-    startLine: 57
+    startLine: 41
   package: com.microsoft.azure.eventhubs
   syntax:
     content: public void setReceiveTimeout(Duration value)
@@ -415,24 +408,6 @@ references:
   name: getPartitionId
   nameWithType: PartitionReceiver.getPartitionId
   fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getPartitionId
-  package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount*
-  name: getPrefetchCount
-  nameWithType: PartitionReceiver.getPrefetchCount
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getPrefetchCount
-  package: com.microsoft.azure.eventhubs
-- uid: ca207911
-  spec.java:
-  - name: EventHubException
-    fullName: EventHubException
-- uid: cd225469
-  spec.java:
-  - name: final int
-    fullName: final int
-- uid: com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount*
-  name: setPrefetchCount
-  nameWithType: PartitionReceiver.setPrefetchCount
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.setPrefetchCount
   package: com.microsoft.azure.eventhubs
 - uid: e02a2de0
   spec.java:
@@ -458,6 +433,19 @@ references:
   nameWithType: PartitionReceiver.getRuntimeInformation
   fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation
   package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition*
+  name: getEventPosition
+  nameWithType: PartitionReceiver.getEventPosition
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition
+  package: com.microsoft.azure.eventhubs
+- uid: ca207911
+  spec.java:
+  - name: EventHubException
+    fullName: EventHubException
+- uid: cd225469
+  spec.java:
+  - name: final int
+    fullName: final int
 - uid: 6ed053e5com.microsoft.azure.eventhubs.EventDataa08ddfce
   spec.java:
   - name: default Iterable<
@@ -519,25 +507,6 @@ references:
   nameWithType: PartitionReceiver.closeSync
   fullName: com.microsoft.azure.eventhubs.PartitionReceiver.closeSync
   package: com.microsoft.azure.eventhubs
-- uid: com.microsoft.azure.eventhubs.EventHubException
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs.EventHubException.yml
-  name: EventHubException
-  nameWithType: EventHubException
-  fullName: com.microsoft.azure.eventhubs.EventHubException
-  type: Class
-  summary: "<p>This is the base exception that service bus will produce for all error cases. </p>"
-  syntax:
-    content: public class EventHubException
-- uid: com.microsoft.azure.eventhubs.PartitionReceiver
-  parent: com.microsoft.azure.eventhubs
-  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
-  name: PartitionReceiver
-  nameWithType: PartitionReceiver
-  fullName: com.microsoft.azure.eventhubs.PartitionReceiver
-  type: Interface
-  summary: "<p>This is a logical representation of receiving from a EventHub partition. </p>\r\n<p>A <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <ul><li><p>If an epoch based <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> (i.e., PartitionReceiver.getEpoch != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref>. </p></li><li><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></li></ul></p>\r\n<p></p>"
-  syntax: *o1
 - uid: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
   parent: com.microsoft.azure.eventhubs
   href: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.yml
@@ -548,6 +517,15 @@ references:
   summary: "<p>Represents the temporal end of stream information of an EventHubs Partition. </p>"
   syntax:
     content: public class ReceiverRuntimeInformation
+- uid: com.microsoft.azure.eventhubs.PartitionReceiver
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
+  name: PartitionReceiver
+  nameWithType: PartitionReceiver
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiver
+  type: Interface
+  summary: "<p>This is a logical representation of receiving from a EventHub partition. </p>\r\n<p>A <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> is tied to a ConsumerGroup + EventHub Partition combination. <ul><li><p>If an epoch based <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> (i.e., PartitionReceiver.getEpoch != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref>. </p></li><li><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></li></ul></p>\r\n<p></p>"
+  syntax: *o1
 - uid: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.getRetrievalTime()
   parent: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
   href: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.yml
@@ -568,7 +546,7 @@ references:
   nameWithType: ReceiverOptions.setReceiverRuntimeMetricEnabled(boolean value)
   fullName: com.microsoft.azure.eventhubs.ReceiverOptions.setReceiverRuntimeMetricEnabled(boolean value)
   type: Method
-  summary: "<p>Knob to enable/disable runtime metric of the receiver. If this is set to true and is passed to <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createReceiver(final String,final String,final EventPosition)\" data-throw-if-not-resolved=\"false\">EventHubClient#createReceiver</xref>, after the first <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)\" data-throw-if-not-resolved=\"false\">PartitionReceiver#receive(int)</xref> call, <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation()\" data-throw-if-not-resolved=\"false\">PartitionReceiver#getRuntimeInformation()</xref> is populated. </p>\r\n<p>This knob facilitates for an optimization where the Consumer of Event Hub has the end of stream details at the disposal, without making any additional <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.getPartitionRuntimeInformation(String)\" data-throw-if-not-resolved=\"false\">EventHubClient#getPartitionRuntimeInformation(String)</xref> call to Event Hubs service. To achieve this, behind the scenes, along with the actual <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>, that the Event Hubs <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> delivers, it includes extra information about the Event Hubs partitions end of stream details on every event. In summary, enabling this knob will help users to save an extra call to Event Hubs service to fetch Event Hubs partition information and as a result, will add that information as header to each <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> received by the client.</p>\r\n<p></p>"
+  summary: "<p>Knob to enable/disable runtime metric of the receiver. If this is set to true and is passed to <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createReceiver(final String,final String,final EventPosition)\" data-throw-if-not-resolved=\"false\">EventHubClient#createReceiver</xref>, after the first <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)\" data-throw-if-not-resolved=\"false\">PartitionReceiver#receive(int)</xref> call, <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.getRuntimeInformation()\" data-throw-if-not-resolved=\"false\">PartitionReceiver#getRuntimeInformation()</xref> and <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver.getEventPosition()\" data-throw-if-not-resolved=\"false\">PartitionReceiver#getEventPosition()</xref> will be populated. </p>\r\n<p>This knob facilitates for an optimization where the Consumer of Event Hub has the end of stream details at the disposal, without making any additional <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.getPartitionRuntimeInformation(String)\" data-throw-if-not-resolved=\"false\">EventHubClient#getPartitionRuntimeInformation(String)</xref> call to Event Hubs service. To achieve this, behind the scenes, along with the actual <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>, that the Event Hubs <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\">PartitionReceiver</xref> delivers, it includes extra information about the Event Hubs partitions end of stream details on every event. In summary, enabling this knob will help users to save an extra call to Event Hubs service to fetch Event Hubs partition information and as a result, will add that information as header to each <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> received by the client.</p>\r\n<p></p>"
   syntax:
     content: public void setReceiverRuntimeMetricEnabled(boolean value)
     parameters:
@@ -585,6 +563,26 @@ references:
   summary: "<p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. </p>\r\n<p>Serializing a received <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>\r\n<p>Here's how AMQP message sections map to <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <a href=\"http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf\">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</a><pre>\r\ni.   <xref uid=\"com.microsoft.azure.eventhubs.EventData.getProperties()\" data-throw-if-not-resolved=\"false\">getProperties()</xref> - AMQPMessage.ApplicationProperties section\r\nii.  <xref uid=\"com.microsoft.azure.eventhubs.EventData.getBytes()\" data-throw-if-not-resolved=\"false\">getBytes()</xref> - if AMQPMessage.Body has Data section\r\niii. <xref uid=\"com.microsoft.azure.eventhubs.EventData.getObject()\" data-throw-if-not-resolved=\"false\">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections\r\n</pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. </p>"
   syntax:
     content: public interface EventData
+- uid: com.microsoft.azure.eventhubs.EventPosition
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventPosition.yml
+  name: EventPosition
+  nameWithType: EventPosition
+  fullName: com.microsoft.azure.eventhubs.EventPosition
+  type: Interface
+  summary: "<p>Defines a position of an <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> in the event hub partition. The position can be an Offset, Sequence Number, or EnqueuedTime. </p>"
+  syntax:
+    content: public interface EventPosition
+- uid: com.microsoft.azure.eventhubs.EventHubException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventHubException.yml
+  name: EventHubException
+  nameWithType: EventHubException
+  fullName: com.microsoft.azure.eventhubs.EventHubException
+  type: Class
+  summary: "<p>This is the base exception that service bus will produce for all error cases. </p>"
+  syntax:
+    content: public class EventHubException
 - uid: com.microsoft.azure.eventhubs.PartitionReceiver.receive(final int)
   parent: com.microsoft.azure.eventhubs.PartitionReceiver
   href: com.microsoft.azure.eventhubs.PartitionReceiver.yml

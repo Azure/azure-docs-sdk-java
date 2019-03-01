@@ -9,6 +9,8 @@ items:
   - com.microsoft.azure.cosmosdb.BridgeInternal
   - com.microsoft.azure.cosmosdb.ChangeFeedOptions
   - com.microsoft.azure.cosmosdb.CommonsBridgeInternal
+  - com.microsoft.azure.cosmosdb.CompositePath
+  - com.microsoft.azure.cosmosdb.CompositePathSortOrder
   - com.microsoft.azure.cosmosdb.Conflict
   - com.microsoft.azure.cosmosdb.ConflictResolutionMode
   - com.microsoft.azure.cosmosdb.ConflictResolutionPolicy
@@ -36,6 +38,7 @@ items:
   - com.microsoft.azure.cosmosdb.IndexingMode
   - com.microsoft.azure.cosmosdb.IndexingPolicy
   - com.microsoft.azure.cosmosdb.IndexKind
+  - com.microsoft.azure.cosmosdb.ISessionContainer
   - com.microsoft.azure.cosmosdb.JsonSerializable
   - com.microsoft.azure.cosmosdb.MediaOptions
   - com.microsoft.azure.cosmosdb.MediaReadMode
@@ -47,14 +50,20 @@ items:
   - com.microsoft.azure.cosmosdb.PartitionKind
   - com.microsoft.azure.cosmosdb.Permission
   - com.microsoft.azure.cosmosdb.PermissionMode
+  - com.microsoft.azure.cosmosdb.QueryMetrics
+  - com.microsoft.azure.cosmosdb.QueryMetricsConstants
+  - com.microsoft.azure.cosmosdb.QueryPreparationTimes
   - com.microsoft.azure.cosmosdb.RangeIndex
   - com.microsoft.azure.cosmosdb.ReplicationPolicy
   - com.microsoft.azure.cosmosdb.RequestOptions
   - com.microsoft.azure.cosmosdb.Resource
   - com.microsoft.azure.cosmosdb.ResourceResponse
   - com.microsoft.azure.cosmosdb.RetryOptions
+  - com.microsoft.azure.cosmosdb.RuntimeExecutionTimes
   - com.microsoft.azure.cosmosdb.SerializationFormattingPolicy
   - com.microsoft.azure.cosmosdb.SpatialIndex
+  - com.microsoft.azure.cosmosdb.SpatialSpec
+  - com.microsoft.azure.cosmosdb.SpatialType
   - com.microsoft.azure.cosmosdb.SqlParameter
   - com.microsoft.azure.cosmosdb.SqlParameterCollection
   - com.microsoft.azure.cosmosdb.SqlQuerySpec
@@ -151,6 +160,26 @@ references:
   type: Class
   syntax:
     content: public class CommonsBridgeInternal
+- uid: com.microsoft.azure.cosmosdb.CompositePath
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.CompositePath.yml
+  name: CompositePath
+  nameWithType: CompositePath
+  fullName: com.microsoft.azure.cosmosdb.CompositePath
+  type: Class
+  summary: "<p>Represents a composite path of the IndexingPolicy in the Azure Cosmos DB database service. A composite path is used in a composite index. For example if you want to run a query like \"SELECT * FROM c ORDER BY c.age, c.height\", then you need to add \"/age\" and \"/height\" as composite paths to your composite index. </p>"
+  syntax:
+    content: public class CompositePath extends JsonSerializable
+- uid: com.microsoft.azure.cosmosdb.CompositePathSortOrder
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.CompositePathSortOrder.yml
+  name: CompositePathSortOrder
+  nameWithType: CompositePathSortOrder
+  fullName: com.microsoft.azure.cosmosdb.CompositePathSortOrder
+  type: Enum
+  summary: "<p>Represents the sorting order for a path in a composite index, for a collection in the Azure Cosmos DB database service. </p>"
+  syntax:
+    content: public enum CompositePathSortOrder
 - uid: com.microsoft.azure.cosmosdb.Conflict
   parent: com.microsoft.azure.cosmosdb
   href: com.microsoft.azure.cosmosdb.Conflict.yml
@@ -421,6 +450,15 @@ references:
   summary: "<p>These are the indexing types available for indexing a path in the Azure Cosmos DB database service. For additional details, refer to <a href=\"http://azure.microsoft.com/documentation/articles/documentdb-indexing-policies/#ConfigPolicy\">http://azure.microsoft.com/documentation/articles/documentdb-indexing-policies/#ConfigPolicy</a>. </p>"
   syntax:
     content: public enum IndexKind
+- uid: com.microsoft.azure.cosmosdb.ISessionContainer
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.ISessionContainer.yml
+  name: ISessionContainer
+  nameWithType: ISessionContainer
+  fullName: com.microsoft.azure.cosmosdb.ISessionContainer
+  type: Interface
+  syntax:
+    content: public interface ISessionContainer
 - uid: com.microsoft.azure.cosmosdb.JsonSerializable
   parent: com.microsoft.azure.cosmosdb
   href: com.microsoft.azure.cosmosdb.JsonSerializable.yml
@@ -531,6 +569,34 @@ references:
   summary: "<p>Enumeration specifying applicability of permission in the Azure Cosmos DB database service. </p>"
   syntax:
     content: public enum PermissionMode
+- uid: com.microsoft.azure.cosmosdb.QueryMetrics
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.QueryMetrics.yml
+  name: QueryMetrics
+  nameWithType: QueryMetrics
+  fullName: com.microsoft.azure.cosmosdb.QueryMetrics
+  type: Class
+  summary: "<p>Query metrics in the Azure Cosmos database service. This metric represents a moving average for a set of queries whose metrics have been aggregated together. </p>"
+  syntax:
+    content: public class QueryMetrics
+- uid: com.microsoft.azure.cosmosdb.QueryMetricsConstants
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.QueryMetricsConstants.yml
+  name: QueryMetricsConstants
+  nameWithType: QueryMetricsConstants
+  fullName: com.microsoft.azure.cosmosdb.QueryMetricsConstants
+  type: Class
+  syntax:
+    content: public class QueryMetricsConstants
+- uid: com.microsoft.azure.cosmosdb.QueryPreparationTimes
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.QueryPreparationTimes.yml
+  name: QueryPreparationTimes
+  nameWithType: QueryPreparationTimes
+  fullName: com.microsoft.azure.cosmosdb.QueryPreparationTimes
+  type: Class
+  syntax:
+    content: public class QueryPreparationTimes
 - uid: com.microsoft.azure.cosmosdb.RangeIndex
   parent: com.microsoft.azure.cosmosdb
   href: com.microsoft.azure.cosmosdb.RangeIndex.yml
@@ -595,6 +661,16 @@ references:
   summary: "<p>Encapsulates retry options in the Azure Cosmos DB database service. </p>"
   syntax:
     content: public class RetryOptions
+- uid: com.microsoft.azure.cosmosdb.RuntimeExecutionTimes
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.RuntimeExecutionTimes.yml
+  name: RuntimeExecutionTimes
+  nameWithType: RuntimeExecutionTimes
+  fullName: com.microsoft.azure.cosmosdb.RuntimeExecutionTimes
+  type: Class
+  summary: "<p>Query runtime execution times in the Azure Cosmos DB service. </p>"
+  syntax:
+    content: public class RuntimeExecutionTimes
 - uid: com.microsoft.azure.cosmosdb.SerializationFormattingPolicy
   parent: com.microsoft.azure.cosmosdb
   href: com.microsoft.azure.cosmosdb.SerializationFormattingPolicy.yml
@@ -615,6 +691,25 @@ references:
   summary: "<p>Represents a spatial index in the Azure Cosmos DB database service. </p>"
   syntax:
     content: public class SpatialIndex extends Index
+- uid: com.microsoft.azure.cosmosdb.SpatialSpec
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.SpatialSpec.yml
+  name: SpatialSpec
+  nameWithType: SpatialSpec
+  fullName: com.microsoft.azure.cosmosdb.SpatialSpec
+  type: Class
+  syntax:
+    content: public class SpatialSpec extends JsonSerializable
+- uid: com.microsoft.azure.cosmosdb.SpatialType
+  parent: com.microsoft.azure.cosmosdb
+  href: com.microsoft.azure.cosmosdb.SpatialType.yml
+  name: SpatialType
+  nameWithType: SpatialType
+  fullName: com.microsoft.azure.cosmosdb.SpatialType
+  type: Enum
+  summary: "<p>Defines the target data type of an index path specification in the Azure Cosmos DB service. </p>"
+  syntax:
+    content: public enum SpatialType
 - uid: com.microsoft.azure.cosmosdb.SqlParameter
   parent: com.microsoft.azure.cosmosdb
   href: com.microsoft.azure.cosmosdb.SqlParameter.yml

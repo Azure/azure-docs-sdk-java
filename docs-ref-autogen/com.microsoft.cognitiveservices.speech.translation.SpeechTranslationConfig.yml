@@ -11,9 +11,6 @@ items:
   - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.fromSubscription(String,String)
   - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.getTargetLanguages()
   - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.getVoiceName()
-  - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken(String)
-  - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty(String,String)
-  - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage(String)
   - com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setVoiceName(String)
   href: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.yml
   langs:
@@ -43,9 +40,12 @@ items:
   - com.microsoft.cognitiveservices.speech.SpeechConfig.getOutputFormat()
   - com.microsoft.cognitiveservices.speech.SpeechConfig.getProperty(String)
   - com.microsoft.cognitiveservices.speech.SpeechConfig.getSpeechRecognitionLanguage()
+  - com.microsoft.cognitiveservices.speech.SpeechConfig.setAuthorizationToken(String)
   - com.microsoft.cognitiveservices.speech.SpeechConfig.setEndpointId(String)
   - com.microsoft.cognitiveservices.speech.SpeechConfig.setOutputFormat(OutputFormat)
+  - com.microsoft.cognitiveservices.speech.SpeechConfig.setProperty(String,String)
   - com.microsoft.cognitiveservices.speech.SpeechConfig.setProxy(String,int,String,String)
+  - com.microsoft.cognitiveservices.speech.SpeechConfig.setSpeechRecognitionLanguage(String)
 - uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.addTargetLanguage(String)
   id: addTargetLanguage(String)
   parent: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
@@ -60,7 +60,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 115
+    startLine: 94
   package: com.microsoft.cognitiveservices.speech.translation
   summary: "<p>Adds a (text) target language for translation. </p>"
   syntax:
@@ -83,7 +83,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 171
+    startLine: 138
   package: com.microsoft.cognitiveservices.speech.translation
   summary: "<p>Dispose of associated resources. </p>"
   syntax:
@@ -104,7 +104,7 @@ items:
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
     startLine: 61
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: "<p>Static instance of SpeechTranslationConfig returned by passing authorization token and service region. Note: The caller needs to ensure that the authorization token is valid. Before the authorization token expipres, the caller needs to refresh it by setting the property `AuthorizationToken` with a new valid token. Otherwise, all the recognizers created by this SpeechTranslationConfig instance will encounter errors during recognition. </p>"
+  summary: "<p>Static instance of SpeechTranslationConfig returned by passing authorization token and service region. Note: The caller needs to ensure that the authorization token is valid. Before the authorization token expipres, the caller needs to refresh it by calling this setter with a new valid token. Otherwise, all the recognizers created by this SpeechTranslationConfig instance will encounter errors during recognition. </p>"
   syntax:
     content: public static SpeechTranslationConfig fromAuthorizationToken(String authorizationToken, String region)
     parameters:
@@ -131,9 +131,9 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 79
+    startLine: 81
   package: com.microsoft.cognitiveservices.speech.translation
-  summary: "<p>Creates an instance of the speech config with specified endpoint and subscription key. This method is intended only for users who use a non-standard service endpoint or paramters. Note: The query parameters specified in the endpoint URL are not changed, even if they are set by any other APIs. For example, if language is defined in the uri as query parameter \"language=de-DE\", and also set by CreateSpeechRecognizer(\"en-US\"), the language setting in uri takes precedence, and the effective language is \"de-DE\". Only the parameters that are not specified in the endpoint URL can be set by other APIs. </p>"
+  summary: "<p>Creates an instance of the speech config with specified endpoint and subscription key. This method is intended only for users who use a non-standard service endpoint or paramters. Note: The query parameters specified in the endpoint URL are not changed, even if they are set by any other APIs. For example, if language is defined in the uri as query parameter \"language=de-DE\", and also set by CreateSpeechRecognizer(\"en-US\"), the language setting in uri takes precedence, and the effective language is \"de-DE\". Only the parameters that are not specified in the endpoint URL can be set by other APIs. Note: To use authorization token with fromEndpoint, pass an empty string to the subscriptionKey in the fromEndpoint method, and then call setAuthorizationToken() on the created SpeechTranslationConfig instance to use the authorization token. </p>"
   syntax:
     content: public static SpeechTranslationConfig fromEndpoint(java.net.URI endpoint, String subscriptionKey)
     parameters:
@@ -189,7 +189,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 125
+    startLine: 104
   package: com.microsoft.cognitiveservices.speech.translation
   summary: "<p>Gets all target languages that have been added for translation. </p>"
   syntax:
@@ -211,7 +211,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 141
+    startLine: 120
   package: com.microsoft.cognitiveservices.speech.translation
   summary: "<p>Returns the selected voice name. </p>"
   syntax:
@@ -219,78 +219,6 @@ items:
     return:
       type: "26831127"
       description: <p>The voice name. </p>
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken(String)
-  id: setAuthorizationToken(String)
-  parent: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
-  href: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.yml
-  langs:
-  - java
-  name: setAuthorizationToken(String value)
-  nameWithType: SpeechTranslationConfig.setAuthorizationToken(String value)
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken(String value)
-  overload: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken*
-  type: Method
-  source:
-    remote: *o0
-    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 93
-  package: com.microsoft.cognitiveservices.speech.translation
-  summary: "<p>Sets the authorization token. If this is set, subscription key is ignored. User needs to make sure the provided authorization token is valid and not expired. </p>"
-  syntax:
-    content: public void setAuthorizationToken(String value)
-    parameters:
-    - id: value
-      type: "26831127"
-      description: <p>the authorization token. </p>
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty(String,String)
-  id: setProperty(String,String)
-  parent: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
-  href: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.yml
-  langs:
-  - java
-  name: setProperty(String name, String value)
-  nameWithType: SpeechTranslationConfig.setProperty(String name, String value)
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty(String name, String value)
-  overload: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty*
-  type: Method
-  source:
-    remote: *o0
-    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 161
-  package: com.microsoft.cognitiveservices.speech.translation
-  summary: "<p>Sets a named property as value </p>"
-  syntax:
-    content: public void setProperty(String name, String value)
-    parameters:
-    - id: name
-      type: "26831127"
-      description: <p>the name of the property </p>
-    - id: value
-      type: "26831127"
-      description: <p>the value </p>
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage(String)
-  id: setSpeechRecognitionLanguage(String)
-  parent: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
-  href: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.yml
-  langs:
-  - java
-  name: setSpeechRecognitionLanguage(String value)
-  nameWithType: SpeechTranslationConfig.setSpeechRecognitionLanguage(String value)
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage(String value)
-  overload: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage*
-  type: Method
-  source:
-    remote: *o0
-    path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 105
-  package: com.microsoft.cognitiveservices.speech.translation
-  summary: "<p>Sets the authorization token. If this is set, subscription key is ignored. User needs to make sure the provided authorization token is valid and not expired. </p>"
-  syntax:
-    content: public void setSpeechRecognitionLanguage(String value)
-    parameters:
-    - id: value
-      type: "26831127"
-      description: <p>the authorization token. </p>
 - uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setVoiceName(String)
   id: setVoiceName(String)
   parent: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig
@@ -305,7 +233,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/translation/SpeechTranslationConfig.java
-    startLine: 149
+    startLine: 128
   package: com.microsoft.cognitiveservices.speech.translation
   summary: "<p>Sets voice of the translated language, enable voice synthesis output. </p>"
   syntax:
@@ -338,16 +266,6 @@ references:
   nameWithType: SpeechTranslationConfig.fromEndpoint
   fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.fromEndpoint
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken*
-  name: setAuthorizationToken
-  nameWithType: SpeechTranslationConfig.setAuthorizationToken
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setAuthorizationToken
-  package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage*
-  name: setSpeechRecognitionLanguage
-  nameWithType: SpeechTranslationConfig.setSpeechRecognitionLanguage
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setSpeechRecognitionLanguage
-  package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.addTargetLanguage*
   name: addTargetLanguage
   nameWithType: SpeechTranslationConfig.addTargetLanguage
@@ -372,11 +290,6 @@ references:
   nameWithType: SpeechTranslationConfig.setVoiceName
   fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setVoiceName
   package: com.microsoft.cognitiveservices.speech.translation
-- uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty*
-  name: setProperty
-  nameWithType: SpeechTranslationConfig.setProperty
-  fullName: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.setProperty
-  package: com.microsoft.cognitiveservices.speech.translation
 - uid: com.microsoft.cognitiveservices.speech.translation.SpeechTranslationConfig.close*
   name: close
   nameWithType: SpeechTranslationConfig.close
@@ -389,7 +302,7 @@ references:
   nameWithType: SpeechConfig.getAuthorizationToken()
   fullName: com.microsoft.cognitiveservices.speech.SpeechConfig.getAuthorizationToken()
   type: Method
-  summary: "<p>Gets the authorization token. If this is set, subscription key is ignored. User needs to make sure the provided authorization token is valid and not expired. </p>"
+  summary: "<p>Gets the authorization token. </p>"
   syntax:
     content: public String getAuthorizationToken()
     return:
@@ -445,12 +358,26 @@ references:
   nameWithType: SpeechConfig.getSpeechRecognitionLanguage()
   fullName: com.microsoft.cognitiveservices.speech.SpeechConfig.getSpeechRecognitionLanguage()
   type: Method
-  summary: "<p>Sets the speech recognition language If this is set, subscription key is ignored. User needs to make sure the provided authorization token is valid and not expired. </p>"
+  summary: "<p>Gets the speech recognition language </p>"
   syntax:
     content: public String getSpeechRecognitionLanguage()
     return:
       type: "26831127"
       description: <p>Returns the recognition language. </p>
+- uid: com.microsoft.cognitiveservices.speech.SpeechConfig.setAuthorizationToken(String)
+  parent: com.microsoft.cognitiveservices.speech.SpeechConfig
+  href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
+  name: setAuthorizationToken(String value)
+  nameWithType: SpeechConfig.setAuthorizationToken(String value)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechConfig.setAuthorizationToken(String value)
+  type: Method
+  summary: "<p>Sets the authorization token. Note: The caller needs to ensure that the authorization token is valid. Before the authorization token expires, the caller needs to refresh it by calling this setter with a new valid token. As configuration values are copied when creating a new recognizer, the new token value will not apply to recognizers that have already been created. For recognizers that have been created before, you need to set authorization token of the corresponding recognizer to refresh the token. Otherwise, the recognizers will encounter errors during recognition. </p>"
+  syntax:
+    content: public void setAuthorizationToken(String value)
+    parameters:
+    - id: value
+      type: "26831127"
+      description: <p>the authorization token. </p>
 - uid: com.microsoft.cognitiveservices.speech.SpeechConfig.setEndpointId(String)
   parent: com.microsoft.cognitiveservices.speech.SpeechConfig
   href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
@@ -479,6 +406,23 @@ references:
     - id: format
       type: com.microsoft.cognitiveservices.speech.OutputFormat
       description: <p>The output format. </p>
+- uid: com.microsoft.cognitiveservices.speech.SpeechConfig.setProperty(String,String)
+  parent: com.microsoft.cognitiveservices.speech.SpeechConfig
+  href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
+  name: setProperty(String name, String value)
+  nameWithType: SpeechConfig.setProperty(String name, String value)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechConfig.setProperty(String name, String value)
+  type: Method
+  summary: "<p>Sets a named property as value </p>"
+  syntax:
+    content: public void setProperty(String name, String value)
+    parameters:
+    - id: name
+      type: "26831127"
+      description: <p>the name of the property </p>
+    - id: value
+      type: "26831127"
+      description: <p>the value </p>
 - uid: com.microsoft.cognitiveservices.speech.SpeechConfig.setProxy(String,int,String,String)
   parent: com.microsoft.cognitiveservices.speech.SpeechConfig
   href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
@@ -492,16 +436,30 @@ references:
     parameters:
     - id: proxyHostName
       type: "26831127"
-      description: <p>the host name of the proxy server. </p>
+      description: <p>the host name of the proxy server, without the protocol scheme (<a href="http://">http://</a>) </p>
     - id: proxyPort
       type: f75371fa
       description: <p>the port number of the proxy server. </p>
     - id: proxyUserName
       type: "26831127"
-      description: <p>the user name of the proxy server. </p>
+      description: <p>the user name of the proxy server. Use empty string if no user name is needed. </p>
     - id: proxyPassword
       type: "26831127"
-      description: <p>the password of the proxy server. </p>
+      description: <p>the password of the proxy server. Use empty string if no user password is needed. </p>
+- uid: com.microsoft.cognitiveservices.speech.SpeechConfig.setSpeechRecognitionLanguage(String)
+  parent: com.microsoft.cognitiveservices.speech.SpeechConfig
+  href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
+  name: setSpeechRecognitionLanguage(String value)
+  nameWithType: SpeechConfig.setSpeechRecognitionLanguage(String value)
+  fullName: com.microsoft.cognitiveservices.speech.SpeechConfig.setSpeechRecognitionLanguage(String value)
+  type: Method
+  summary: "<p>Sets the speech recognition language </p>"
+  syntax:
+    content: public void setSpeechRecognitionLanguage(String value)
+    parameters:
+    - id: value
+      type: "26831127"
+      description: <p>the language identifier in BCP-47 format. </p>
 - uid: com.microsoft.cognitiveservices.speech.SpeechConfig
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech.SpeechConfig.yml
