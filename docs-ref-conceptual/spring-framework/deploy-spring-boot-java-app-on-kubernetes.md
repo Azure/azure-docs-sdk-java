@@ -172,7 +172,7 @@ The `id` and `username` are the name of the registry. Use the `password` value f
 1. Navigate to the completed project directory for your Spring Boot application and run the following command to build the Docker container and push the image to the registry:
 
    ```
-   mvn package docker:build -DpushImage
+   mvn package dockerfile:build -DpushImage
    ```
 
 > [!NOTE]
