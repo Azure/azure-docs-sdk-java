@@ -4,9 +4,9 @@ items:
   id: IotHubTransportConnection
   parent: com.microsoft.azure.sdk.iot.device.transport
   children:
-  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close(boolean)
+  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close()
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.getConnectionId()
-  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig>)
+  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessage(Message)
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(Message,IotHubMessageResult)
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.setListener(IotHubListener)
@@ -23,20 +23,20 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/IotHubTransportConnection.java
-    startLine: 21
+    startLine: 22
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: "<p>Interface of what all a Transport Connection object must do. Serves to decouple the Message Queueing of the Transport layer from the protocol specific details of the Connection layer. </p>"
   syntax:
     content: public interface IotHubTransportConnection
-- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close(boolean)
-  id: close(boolean)
+- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close()
+  id: close()
   parent: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection
   href: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.yml
   langs:
   - java
-  name: close(boolean isReconnecting)
-  nameWithType: IotHubTransportConnection.close(boolean isReconnecting)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close(boolean isReconnecting)
+  name: close()
+  nameWithType: IotHubTransportConnection.close()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close()
   overload: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close*
   type: Method
   source:
@@ -46,11 +46,7 @@ items:
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: "<p>Closes the transport connection. </p>"
   syntax:
-    content: public void close(boolean isReconnecting)
-    parameters:
-    - id: isReconnecting
-      type: 4fc6e284
-      description: <p>if the caller is in the process of reconnecting or not </p>
+    content: public void close()
   exceptions:
   - type: 848a9648
     description: <p>If any exceptions are encountered while closing. </p>
@@ -76,29 +72,31 @@ items:
     return:
       type: "26831127"
       description: <p>the UUID associated with this connection instance </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig>)
-  id: open(Queue<DeviceClientConfig>)
+- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
+  id: open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   parent: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection
   href: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.yml
   langs:
   - java
-  name: open(Queue<DeviceClientConfig> deviceClientConfigs)
-  nameWithType: IotHubTransportConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
+  name: open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  nameWithType: IotHubTransportConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   overload: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/IotHubTransportConnection.java
-    startLine: 29
+    startLine: 30
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: "<p>Opens the transport connection object </p>"
   syntax:
-    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs)
+    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
     parameters:
     - id: deviceClientConfigs
       type: 20d61ca6com.microsoft.azure.sdk.iot.device.DeviceClientConfiga08ddfce
       description: <p>The list of configs to use. If more than 1 configs are in this list, multiplexing will be used </p>
+    - id: scheduledExecutorService
+      type: cd415bf4
   exceptions:
   - type: 848a9648
     description: <p>If any exceptions are encountered while opening the connection </p>
@@ -177,7 +175,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/IotHubTransportConnection.java
-    startLine: 37
+    startLine: 38
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: "<p>Sets a listener into the Transport Connection object. This listener updates the Transport layer of connection status updates, message arrivals, and message acknowledgements </p>"
   syntax:
@@ -204,6 +202,10 @@ references:
     href: com.microsoft.azure.sdk.iot.device.DeviceClientConfig.yml
   - name: '>'
     fullName: '>'
+- uid: cd415bf4
+  spec.java:
+  - name: ScheduledExecutorService
+    fullName: ScheduledExecutorService
 - uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open*
   name: open
   nameWithType: IotHubTransportConnection.open
@@ -214,10 +216,6 @@ references:
   nameWithType: IotHubTransportConnection.setListener
   fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.setListener
   package: com.microsoft.azure.sdk.iot.device.transport
-- uid: 4fc6e284
-  spec.java:
-  - name: boolean
-    fullName: boolean
 - uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.close*
   name: close
   nameWithType: IotHubTransportConnection.close
@@ -228,6 +226,10 @@ references:
   nameWithType: IotHubTransportConnection.sendMessage
   fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessage
   package: com.microsoft.azure.sdk.iot.device.transport
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
 - uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult*
   name: sendMessageResult
   nameWithType: IotHubTransportConnection.sendMessageResult
@@ -271,46 +273,52 @@ references:
   type: Class
   syntax:
     content: public class MqttIotHubConnection
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.open(Queue<DeviceClientConfig>)
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
-  name: open(Queue<DeviceClientConfig> deviceClientConfigs)
-  nameWithType: MqttIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
+  name: open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  nameWithType: MqttIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   type: Method
   summary: "<p>Establishes a connection for the device and IoT Hub given in the client configuration. If the connection is already open, the function shall do nothing.</p>\r\n<p></p>"
   syntax:
-    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs)
+    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
     parameters:
     - id: deviceClientConfigs
       type: 20d61ca6com.microsoft.azure.sdk.iot.device.DeviceClientConfiga08ddfce
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.open(Queue<DeviceClientConfig>)
+    - id: scheduledExecutorService
+      type: cd415bf4
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
-  name: open(Queue<DeviceClientConfig> deviceClientConfigs)
-  nameWithType: AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
+  name: open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  nameWithType: AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   type: Method
   summary: "<p>Opens the <xref uid=\"com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection\" data-throw-if-not-resolved=\"false\">AmqpsIotHubConnection</xref>. </p>\r\n<p>This method will start the <xref uid=\"\" data-throw-if-not-resolved=\"false\">Reactor</xref>, set the connection to open and make it ready for sending. </p>\r\n<p>Do not call this method after calling close on this object, instead, create a whole new AmqpsIotHubConnection object and open that instead. </p>\r\n<p></p>"
   syntax:
-    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs)
+    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
     parameters:
     - id: deviceClientConfigs
       type: 20d61ca6com.microsoft.azure.sdk.iot.device.DeviceClientConfiga08ddfce
-- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.open(Queue<DeviceClientConfig>)
+    - id: scheduledExecutorService
+      type: cd415bf4
+- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   parent: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.yml
-  name: open(Queue<DeviceClientConfig> deviceClientConfigs)
-  nameWithType: HttpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs)
+  name: open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  nameWithType: HttpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   type: Method
   summary: "<p>Opens the transport connection object </p>"
   syntax:
-    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs)
+    content: public void open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
     parameters:
     - id: deviceClientConfigs
       type: 20d61ca6com.microsoft.azure.sdk.iot.device.DeviceClientConfiga08ddfce
       description: <p>The list of configs to use. If more than 1 configs are in this list, multiplexing will be used </p>
+    - id: scheduledExecutorService
+      type: cd415bf4
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device.DeviceClientConfig.yml
@@ -382,46 +390,36 @@ references:
   summary: "<p>Callback interface for communicating connection and message status updates from individual protocol clients (mqtt, https, amqps) to the Tranpsort layer that handles queueing of messages and connecting/reconnecting/disconnecting </p>"
   syntax:
     content: public interface IotHubListener
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close(boolean)
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close()
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
-  name: close(boolean isReconnecting)
-  nameWithType: MqttIotHubConnection.close(boolean isReconnecting)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close(boolean isReconnecting)
+  name: close()
+  nameWithType: MqttIotHubConnection.close()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close()
   type: Method
   summary: "<p>Closes the connection. After the connection is closed, it is no longer usable. If the connection is already closed, the function shall do nothing. </p>"
   syntax:
-    content: public void close(boolean isReconnecting)
-    parameters:
-    - id: isReconnecting
-      type: 4fc6e284
-- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close(boolean)
+    content: public void close()
+- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close()
   parent: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.yml
-  name: close(boolean isReconnecting)
-  nameWithType: HttpsIotHubConnection.close(boolean isReconnecting)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close(boolean isReconnecting)
+  name: close()
+  nameWithType: HttpsIotHubConnection.close()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close()
   type: Method
   summary: "<p>Closes the transport connection. </p>"
   syntax:
-    content: public void close(boolean isReconnecting)
-    parameters:
-    - id: isReconnecting
-      type: 4fc6e284
-      description: <p>if the caller is in the process of reconnecting or not </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close(boolean)
+    content: public void close()
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
-  name: close(boolean isReconnecting)
-  nameWithType: AmqpsIotHubConnection.close(boolean isReconnecting)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close(boolean isReconnecting)
+  name: close()
+  nameWithType: AmqpsIotHubConnection.close()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
   type: Method
   summary: "<p>Closes the <xref uid=\"com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection\" data-throw-if-not-resolved=\"false\">AmqpsIotHubConnection</xref>. </p>\r\n<p>If the current connection is not closed, this function will set the current state to closed and invalidate all connection related variables. </p>\r\n<p></p>"
   syntax:
-    content: public void close(boolean isReconnecting)
-    parameters:
-    - id: isReconnecting
-      type: 4fc6e284
+    content: public void close()
 - uid: com.microsoft.azure.sdk.iot.device.IotHubStatusCode
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device.IotHubStatusCode.yml
