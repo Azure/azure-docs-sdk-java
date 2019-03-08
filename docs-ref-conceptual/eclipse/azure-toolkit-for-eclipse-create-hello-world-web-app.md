@@ -89,6 +89,8 @@ When you have completed this tutorial, your application will look similar to the
 
       Specify the requisite information for your web app in the **Create App Service** dialog box, and then click **Create**.
 
+      Here you can configure the runtime environment, app settings, service plan and resource group.
+
       ![Create App Service dialog box][create-app-service-dialog]
 
 1. Select your web app and then click **Deploy**.
