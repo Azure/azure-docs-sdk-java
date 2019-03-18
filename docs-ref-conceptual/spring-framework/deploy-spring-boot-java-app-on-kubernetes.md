@@ -311,7 +311,7 @@ More information about using Kubernetes command-line interface is available in t
 
 The Kubernetes website has several articles that discuss using images in private registries:
 
-* [Configuring Service Accounts for Pods]g
+* [Configuring Service Accounts for Pods]
 * [Namespaces]
 * [Pulling an Image from a Private Registry]
 
