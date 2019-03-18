@@ -159,7 +159,7 @@ The following steps walk you through building a Spring Boot web application and 
 1. When you're using Azure Container Registry (ACR) with Azure Kubernetes Service (AKS), you need to grant Azure Kubernetes Service pull access to Azure Container Registry. Azure creates a service principal when you are creating Azure Kubernetes Service to support cluster operability with other Azure resources. You can use this auto-generated service principal for authentication with an ACR registry, using the following scripts in PowerShell to grant the AKS-generated service principal pull access to an Azure container registry, please refer to
  [Authenticate with Azure Container Registry from Azure Kubernetes Service] to more details.
   
-   ```
+```PowerShell
    # Please run the following scripts in PowerShell.
 
    # Get the id of the service principal configured for AKS
@@ -170,7 +170,7 @@ The following steps walk you through building a Spring Boot web application and 
    
    # Create role assignment
    az role assignment create --assignee $CLIENT_ID --role acrpull --scope $ACR_ID
-   ```
+```
    
   -- or -- 
    
@@ -311,7 +311,7 @@ More information about using Kubernetes command-line interface is available in t
 
 The Kubernetes website has several articles that discuss using images in private registries:
 
-* [Configuring Service Accounts for Pods]
+* [Configuring Service Accounts for Pods]g
 * [Namespaces]
 * [Pulling an Image from a Private Registry]
 
