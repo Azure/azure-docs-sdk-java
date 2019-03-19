@@ -98,11 +98,11 @@ The following steps walk you through building a Spring Boot web application and 
 
 1. Create a private Azure container registry in the resource group. The tutorial pushes the sample app as a Docker image to this registry in later steps. Replace `wingtiptoysregistry` with a unique name for your registry.
    ```azurecli
-   az acr create --resource-group wingtiptoys-kubernetes--location eastus \
+   az acr create --resource-group wingtiptoys-kubernetes --location eastus \
     --name wingtiptoysregistry --sku Basic
    ```
 
-## Push your app to the container registry using jib
+## Push your app to the container registry via Jib
 
 1. Log in to your Azure Container Registry from the Azure CLI.
    ```azurecli
@@ -113,7 +113,7 @@ The following steps walk you through building a Spring Boot web application and 
 
 1. Navigate to the completed project directory for your Spring Boot application (for example, "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
 
-1. Update the `<properties>` collection in the *pom.xml* file with the server name for your Azure Container Registry and the latest [jib maven plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin).
+1. Update the `<properties>` collection in the *pom.xml* file with the server name for your Azure Container Registry and the latest version of [Maven Jib plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin).
 
    ```xml
    <properties>
@@ -123,7 +123,7 @@ The following steps walk you through building a Spring Boot web application and 
    </properties>
    ```
 
-1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the jib maven plugin.
+1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the `<jib-maven-plugin>`.
 
    ```xml
    <plugin>
@@ -156,8 +156,7 @@ The following steps walk you through building a Spring Boot web application and 
    ```
    This command may take a while to complete.
 
-1. When you're using Azure Container Registry (ACR) with Azure Kubernetes Service (AKS), you need to grant Azure Kubernetes Service pull access to Azure Container Registry. Azure creates a service principal when you are creating Azure Kubernetes Service to support cluster operability with other Azure resources. You can use this auto-generated service principal for authentication with an ACR registry, using the following scripts in PowerShell to grant the AKS-generated service principal pull access to an Azure container registry, please refer to
- [Authenticate with Azure Container Registry from Azure Kubernetes Service] to more details.
+1. When you're using Azure Container Registry (ACR) with Azure Kubernetes Service (AKS), you need to grant Azure Kubernetes Service pull access to Azure Container Registry. Azure creates a service principal when you are creating Azure Kubernetes Service to support cluster operability with other Azure resources. Please run the following scripts in PowerShell to grant the AKS-generated service principal pull access to an Azure Container Registry, see more details at [Authenticate with Azure Container Registry from Azure Kubernetes Service].
   
 ```PowerShell
    # Please run the following scripts in PowerShell.
