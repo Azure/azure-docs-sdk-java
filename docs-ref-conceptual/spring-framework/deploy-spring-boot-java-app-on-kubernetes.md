@@ -113,7 +113,7 @@ The following steps walk you through building a Spring Boot web application and 
 
 1. Navigate to the completed project directory for your Spring Boot application (for example, "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
 
-1. Update the `<properties>` collection in the *pom.xml* file with the server name for your Azure Container Registry and the latest version of [Maven Jib plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin).
+1. Update the `<properties>` collection in the *pom.xml* file with the server name for your Azure Container Registry and the latest version of [jib-maven-plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin).
 
    ```xml
    <properties>
@@ -123,7 +123,7 @@ The following steps walk you through building a Spring Boot web application and 
    </properties>
    ```
 
-1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the `<jib-maven-plugin>`.
+1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the `jib-maven-plugin`.
 
    ```xml
    <plugin>
