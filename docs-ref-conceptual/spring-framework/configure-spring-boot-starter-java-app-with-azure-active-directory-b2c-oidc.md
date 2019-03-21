@@ -289,7 +289,7 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 <!-- URL List -->
 
 [AAD B2C OIDC Sprint Boot Sample]: https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample/src/main/resources/templates
-
+[Spring Initializr]: https://start.spring.io/
 [Azure Active Directory Documentation]: /azure/active-directory/
 
 <!-- IMG List -->
