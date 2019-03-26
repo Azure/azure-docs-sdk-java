@@ -87,7 +87,7 @@ When you have completed this tutorial, your application will look similar to the
 
       ![Run on Web App dialog box][run-on-web-app-dialog]
 
-   * Click **Create New Web App**. If you choose to create a new web app, specify the requisite information for your web app, and then click **Run**.
+   * Click **Create New Web App** from WebApp dropdown. If you choose to create a new web app, specify the requisite information for your web app, and then click **Run** after web app creation.
 
       ![Create new web app][create-new-web-app-dialog]
 
