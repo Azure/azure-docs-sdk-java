@@ -13,7 +13,9 @@ items:
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.createFromNamespaceName(String,ClientSettings)
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.createFromNamespaceNameAsyc(String,ClientSettings)
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.deregisterForConnectionError(Link)
-  - com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings()
+  - com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction(TransactionContext,boolean)
+  - com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)
+  - com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings()
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.getHostName()
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.getOperationTimeout()
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.getRetryPolicy()
@@ -22,6 +24,8 @@ items:
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.onConnectionError(ErrorCondition)
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.onConnectionOpen()
   - com.microsoft.azure.servicebus.primitives.MessagingFactory.registerForConnectionError(Link)
+  - com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction()
+  - com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()
   href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
   langs:
   - java
@@ -35,9 +39,9 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 49
+    startLine: 47
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
+  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFactory instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
   syntax: &o1
     content: public class MessagingFactory extends ClientEntity
   inheritance:
@@ -67,7 +71,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 256
+    startLine: 337
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Creates an instance of MessagingFactory from the given connection string. This method blocks for a connection to the namespace to be established. </p>"
   syntax:
@@ -98,7 +102,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 231
+    startLine: 312
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Creates an instance of MessagingFactory from the given connection string. This is a non-blocking method. </p>"
   syntax:
@@ -124,7 +128,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 244
+    startLine: 325
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Creates an instance of MessagingFactory from the given connection string builder. This method blocks for a connection to the namespace to be established. </p>"
   syntax:
@@ -155,7 +159,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 215
+    startLine: 296
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Creates an instance of MessagingFactory from the given connection string builder. This is a non-blocking method. </p>"
   syntax:
@@ -181,7 +185,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 204
+    startLine: 285
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static MessagingFactory createFromNamespaceEndpointURI(URI namespaceEndpointURI, ClientSettings clientSettings)
@@ -206,7 +210,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 181
+    startLine: 262
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromNamespaceEndpointURIAsyc(URI namespaceEndpointURI, ClientSettings clientSettings)
@@ -231,7 +235,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 199
+    startLine: 280
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static MessagingFactory createFromNamespaceName(String sbNamespaceName, ClientSettings clientSettings)
@@ -256,7 +260,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 176
+    startLine: 257
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<MessagingFactory> createFromNamespaceNameAsyc(String sbNamespaceName, ClientSettings clientSettings)
@@ -281,7 +285,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 539
+    startLine: 620
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>"
   syntax:
@@ -289,24 +293,84 @@ items:
     parameters:
     - id: link
       type: a7c9e797
-- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings()
-  id: getClientSetttings()
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction(TransactionContext,boolean)
+  id: endTransaction(TransactionContext,boolean)
   parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
   href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
   langs:
   - java
-  name: getClientSetttings()
-  nameWithType: MessagingFactory.getClientSetttings()
-  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings()
-  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings*
+  name: endTransaction(TransactionContext transaction, boolean commit)
+  nameWithType: MessagingFactory.endTransaction(TransactionContext transaction, boolean commit)
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction(TransactionContext transaction, boolean commit)
+  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 171
+    startLine: 139
+  package: com.microsoft.azure.servicebus.primitives
+  summary: "<p>Ends a transaction that was initiated using <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()\" data-throw-if-not-resolved=\"false\">MessagingFactory#startTransactionAsync()</xref>. </p>"
+  syntax:
+    content: public void endTransaction(TransactionContext transaction, boolean commit)
+    parameters:
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: <p>The transaction object. </p>
+    - id: commit
+      type: 4fc6e284
+      description: <p>A boolean value of <code>true</code> indicates transaction to be committed. A value of <code>false</code> indicates a transaction rollback. </p>
+  exceptions:
+  - type: 73fec9fb
+    description: <p>if transaction fails to end </p>
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)
+  id: endTransactionAsync(TransactionContext,boolean)
+  parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
+  langs:
+  - java
+  name: endTransactionAsync(TransactionContext transaction, boolean commit)
+  nameWithType: MessagingFactory.endTransactionAsync(TransactionContext transaction, boolean commit)
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext transaction, boolean commit)
+  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
+    startLine: 150
+  package: com.microsoft.azure.servicebus.primitives
+  summary: "<p>Ends a transaction that was initiated using <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()\" data-throw-if-not-resolved=\"false\">MessagingFactory#startTransactionAsync()</xref>. </p>"
+  syntax:
+    content: public CompletableFuture<Void> endTransactionAsync(TransactionContext transaction, boolean commit)
+    parameters:
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: <p>The transaction object. </p>
+    - id: commit
+      type: 4fc6e284
+      description: <p>A boolean value of <code>true</code> indicates transaction to be committed. A value of <code>false</code> indicates a transaction rollback. </p>
+    return:
+      type: db03ee24
+      description: <p>A <code>CompletableFuture</code></p>
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings()
+  id: getClientSettings()
+  parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
+  langs:
+  - java
+  name: getClientSettings()
+  nameWithType: MessagingFactory.getClientSettings()
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings()
+  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
+    startLine: 252
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public ClientSettings getClientSetttings()
+    content: public ClientSettings getClientSettings()
     return:
       type: com.microsoft.azure.servicebus.ClientSettings
 - uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.getHostName()
@@ -323,7 +387,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 105
+    startLine: 183
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public String getHostName()
@@ -343,7 +407,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 157
+    startLine: 238
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Gets the operation timeout from the connections string. </p>"
   syntax:
@@ -365,7 +429,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 166
+    startLine: 247
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Gets the retry policy from the connection string. </p>"
   syntax:
@@ -386,7 +450,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 52
+    startLine: 50
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static final ExecutorService INTERNAL_THREAD_POOL= Executors.newCachedThreadPool()
@@ -406,7 +470,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 386
+    startLine: 467
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -426,7 +490,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 285
+    startLine: 366
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>"
   syntax:
@@ -448,7 +512,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 265
+    startLine: 346
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>"
   syntax:
@@ -467,7 +531,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
-    startLine: 527
+    startLine: 608
   package: com.microsoft.azure.servicebus.primitives
   summary: "<p>Internal method.<nonbreakablespace></nonbreakablespace>Clients should not use this method. </p>"
   syntax:
@@ -475,11 +539,106 @@ items:
     parameters:
     - id: link
       type: a7c9e797
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction()
+  id: startTransaction()
+  parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
+  langs:
+  - java
+  name: startTransaction()
+  nameWithType: MessagingFactory.startTransaction()
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction()
+  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
+    startLine: 116
+  package: com.microsoft.azure.servicebus.primitives
+  summary: "<p>Starts a new service side transaction. The <xref uid=\"com.microsoft.azure.servicebus.TransactionContext\" data-throw-if-not-resolved=\"false\">TransactionContext</xref> should be passed to all operations that needs to be in this transaction. </p>"
+  syntax:
+    content: public TransactionContext startTransaction()
+    return:
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: <p>a new transaction </p>
+  exceptions:
+  - type: 73fec9fb
+    description: <p>if transaction fails to start </p>
+  - type: 8256ba40
+    description: <p>if the current thread was interrupted while waiting </p>
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()
+  id: startTransactionAsync()
+  parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
+  langs:
+  - java
+  name: startTransactionAsync()
+  nameWithType: MessagingFactory.startTransactionAsync()
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()
+  overload: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/MessagingFactory.java
+    startLine: 125
+  package: com.microsoft.azure.servicebus.primitives
+  summary: "<p>Starts a new service side transaction. The <xref uid=\"com.microsoft.azure.servicebus.TransactionContext\" data-throw-if-not-resolved=\"false\">TransactionContext</xref> should be passed to all operations that needs to be in this transaction. </p>"
+  syntax: &o2
+    content: public CompletableFuture<TransactionContext> startTransactionAsync()
+    return:
+      type: 9cdf14d0com.microsoft.azure.servicebus.TransactionContexta08ddfce
+      description: <p>A <code>CompletableFuture</code> which returns a new transaction </p>
 references:
 - uid: ebf10a33
   spec.java:
   - name: final ExecutorService
     fullName: final ExecutorService
+- uid: 73fec9fb
+  spec.java:
+  - name: ServiceBusException
+    fullName: ServiceBusException
+- uid: 8256ba40
+  spec.java:
+  - name: InterruptedException
+    fullName: InterruptedException
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction*
+  name: startTransaction
+  nameWithType: MessagingFactory.startTransaction
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransaction
+  package: com.microsoft.azure.servicebus.primitives
+- uid: 9cdf14d0com.microsoft.azure.servicebus.TransactionContexta08ddfce
+  spec.java:
+  - name: CompletableFuture<
+    fullName: CompletableFuture<
+  - uid: com.microsoft.azure.servicebus.TransactionContext
+    name: TransactionContext
+    fullName: com.microsoft.azure.servicebus.TransactionContext
+    href: com.microsoft.azure.servicebus.TransactionContext.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync*
+  name: startTransactionAsync
+  nameWithType: MessagingFactory.startTransactionAsync
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync
+  package: com.microsoft.azure.servicebus.primitives
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction*
+  name: endTransaction
+  nameWithType: MessagingFactory.endTransaction
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransaction
+  package: com.microsoft.azure.servicebus.primitives
+- uid: db03ee24
+  spec.java:
+  - name: CompletableFuture<Void>
+    fullName: CompletableFuture<Void>
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync*
+  name: endTransactionAsync
+  nameWithType: MessagingFactory.endTransactionAsync
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync
+  package: com.microsoft.azure.servicebus.primitives
 - uid: "26831127"
   spec.java:
   - name: String
@@ -503,10 +662,10 @@ references:
   nameWithType: MessagingFactory.getRetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.getRetryPolicy
   package: com.microsoft.azure.servicebus.primitives
-- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings*
-  name: getClientSetttings
-  nameWithType: MessagingFactory.getClientSetttings
-  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSetttings
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings*
+  name: getClientSettings
+  nameWithType: MessagingFactory.getClientSettings
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.getClientSettings
   package: com.microsoft.azure.servicebus.primitives
 - uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.onConnectionOpen*
   name: onConnectionOpen
@@ -592,10 +751,6 @@ references:
   nameWithType: MessagingFactory.createFromConnectionStringAsync
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.createFromConnectionStringAsync
   package: com.microsoft.azure.servicebus.primitives
-- uid: 8256ba40
-  spec.java:
-  - name: InterruptedException
-    fullName: InterruptedException
 - uid: f25e3dc2
   spec.java:
   - name: ExecutionException
@@ -610,10 +765,6 @@ references:
   nameWithType: MessagingFactory.createFromConnectionString
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.createFromConnectionString
   package: com.microsoft.azure.servicebus.primitives
-- uid: db03ee24
-  spec.java:
-  - name: CompletableFuture<Void>
-    fullName: CompletableFuture<Void>
 - uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.onClose*
   name: onClose
   nameWithType: MessagingFactory.onClose
@@ -737,7 +888,7 @@ references:
   nameWithType: MessagingFactory
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
   type: Class
-  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
+  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFactory instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
   syntax: *o1
 - uid: com.microsoft.azure.servicebus.ClientSettings
   parent: com.microsoft.azure.servicebus
@@ -749,6 +900,35 @@ references:
   summary: "<p>Class encapsulating common client level settings like TokenProvider, RetryPolicy, OperationTimeout. </p>"
   syntax:
     content: public class ClientSettings
+- uid: com.microsoft.azure.servicebus.TransactionContext
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus.TransactionContext.yml
+  name: TransactionContext
+  nameWithType: TransactionContext
+  fullName: com.microsoft.azure.servicebus.TransactionContext
+  type: Class
+  summary: "<p>Represents an active servicebus transaction. A transaction is initiated by calling <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()\" data-throw-if-not-resolved=\"false\">MessagingFactory#startTransactionAsync()</xref>. A transaction can result in commit or rollback. To commit, call <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)\" data-throw-if-not-resolved=\"false\">MessagingFactory#endTransactionAsync(TransactionContext, boolean)</xref> with  To rollback, call <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)\" data-throw-if-not-resolved=\"false\">MessagingFactory#endTransactionAsync(TransactionContext, boolean)</xref> with </p>"
+  syntax:
+    content: public class TransactionContext
+- uid: com.microsoft.azure.servicebus.primitives.ServiceBusException
+  parent: com.microsoft.azure.servicebus.primitives
+  href: com.microsoft.azure.servicebus.primitives.ServiceBusException.yml
+  name: ServiceBusException
+  nameWithType: ServiceBusException
+  fullName: com.microsoft.azure.servicebus.primitives.ServiceBusException
+  type: Class
+  summary: "<p>This is the base exception that service bus will generate for all error cases. </p>"
+  syntax:
+    content: public class ServiceBusException
+- uid: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()
+  parent: com.microsoft.azure.servicebus.primitives.MessagingFactory
+  href: com.microsoft.azure.servicebus.primitives.MessagingFactory.yml
+  name: startTransactionAsync()
+  nameWithType: MessagingFactory.startTransactionAsync()
+  fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()
+  type: Method
+  summary: "<p>Starts a new service side transaction. The <xref uid=\"com.microsoft.azure.servicebus.TransactionContext\" data-throw-if-not-resolved=\"false\">TransactionContext</xref> should be passed to all operations that needs to be in this transaction. </p>"
+  syntax: *o2
 - uid: com.microsoft.azure.servicebus.primitives.RetryPolicy
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives.RetryPolicy.yml
@@ -768,16 +948,6 @@ references:
   type: Enum
   syntax:
     content: public enum MessagingEntityType
-- uid: com.microsoft.azure.servicebus.primitives.ServiceBusException
-  parent: com.microsoft.azure.servicebus.primitives
-  href: com.microsoft.azure.servicebus.primitives.ServiceBusException.yml
-  name: ServiceBusException
-  nameWithType: ServiceBusException
-  fullName: com.microsoft.azure.servicebus.primitives.ServiceBusException
-  type: Class
-  summary: "<p>This is the base exception that service bus will generate for all error cases. </p>"
-  syntax:
-    content: public class ServiceBusException
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml

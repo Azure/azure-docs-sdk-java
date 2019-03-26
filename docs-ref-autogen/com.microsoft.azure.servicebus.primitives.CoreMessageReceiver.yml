@@ -4,18 +4,18 @@ items:
   id: CoreMessageReceiver
   parent: com.microsoft.azure.servicebus.primitives
   children:
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte [],Map<String, Object>)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID,Map<String, Object>)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte [])
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte [],Map<String, Object>,TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID,Map<String, Object>,TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte [],TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.create(final MessagingFactory,final String,final String,final int,final SettleModePair)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.create(final MessagingFactory,final String,final String,final int,final SettleModePair,final MessagingEntityType)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.create(final MessagingFactory,final String,final String,final String,final boolean,final int,final SettleModePair)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.create(final MessagingFactory,final String,final String,final String,final boolean,final int,final SettleModePair,final MessagingEntityType)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte [],String,String,Map<String, Object>)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID,String,String,Map<String, Object>)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte [],Map<String, Object>)
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte [],String,String,Map<String, Object>,TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID,String,String,Map<String, Object>,TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte [],Map<String, Object>,TransactionContext)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.getContext()
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.getPrefetchCount()
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.getSessionId()
@@ -33,7 +33,7 @@ items:
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.renewSessionLocksAsync()
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.setPrefetchCount(final int)
   - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.setSessionStateAsync(byte [])
-  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID [],String,String,String,Map<String, Object>)
+  - com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID [],String,String,String,Map<String, Object>,TransactionContext)
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
@@ -47,7 +47,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-service-bus-java
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 64
+    startLine: 66
   package: com.microsoft.azure.servicebus.primitives
   syntax: &o1
     content: public class CoreMessageReceiver extends ClientEntity
@@ -64,100 +64,108 @@ items:
   - com.microsoft.azure.servicebus.primitives.ClientEntity.getIsClosingOrClosed()
   - com.microsoft.azure.servicebus.primitives.ClientEntity.setClosed()
   - com.microsoft.azure.servicebus.primitives.ClientEntity.throwIfClosed(Throwable)
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte [],Map<String, Object>)
-  id: abandonMessageAsync(byte [],Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte [],Map<String, Object>,TransactionContext)
+  id: abandonMessageAsync(byte [],Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
+  name: abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1037
+    startLine: 1062
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> abandonMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: deliveryTag
       type: ccd9418d
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID,Map<String, Object>)
-  id: abandonMessageAsync(UUID,Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID,Map<String, Object>,TransactionContext)
+  id: abandonMessageAsync(UUID,Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
+  name: abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.abandonMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1047
+    startLine: 1072
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> abandonMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: lockToken
       type: add9545a
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte [])
-  id: completeMessageAsync(byte [])
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte [],TransactionContext)
+  id: completeMessageAsync(byte [],TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: completeMessageAsync(byte[] deliveryTag)
-  nameWithType: CoreMessageReceiver.completeMessageAsync(byte[] deliveryTag)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte[] deliveryTag)
+  name: completeMessageAsync(byte[] deliveryTag, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.completeMessageAsync(byte[] deliveryTag, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(byte[] deliveryTag, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1026
+    startLine: 1042
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> completeMessageAsync(byte[] deliveryTag)
+    content: public CompletableFuture<Void> completeMessageAsync(byte[] deliveryTag, TransactionContext transaction)
     parameters:
     - id: deliveryTag
       type: ccd9418d
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID)
-  id: completeMessageAsync(UUID)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID,TransactionContext)
+  id: completeMessageAsync(UUID,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: completeMessageAsync(UUID lockToken)
-  nameWithType: CoreMessageReceiver.completeMessageAsync(UUID lockToken)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID lockToken)
+  name: completeMessageAsync(UUID lockToken, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.completeMessageAsync(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync(UUID lockToken, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.completeMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1032
+    startLine: 1051
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> completeMessageAsync(UUID lockToken)
+    content: public CompletableFuture<Void> completeMessageAsync(UUID lockToken, TransactionContext transaction)
     parameters:
     - id: lockToken
       type: add9545a
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
 - uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.create(final MessagingFactory,final String,final String,final int,final SettleModePair)
@@ -174,7 +182,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 219
+    startLine: 221
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final int prefetchCount, final SettleModePair settleModePair)
@@ -205,7 +213,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 242
+    startLine: 244
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final int prefetchCount, final SettleModePair settleModePair, final MessagingEntityType entityType)
@@ -238,7 +246,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 230
+    startLine: 232
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final String sessionId, final boolean isBrowsableSession, final int prefetchCount, final SettleModePair settleModePair)
@@ -273,7 +281,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 262
+    startLine: 264
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public static CompletableFuture<CoreMessageReceiver> create(final MessagingFactory factory, final String name, final String recvPath, final String sessionId, final boolean isBrowsableSession, final int prefetchCount, final SettleModePair settleModePair, final MessagingEntityType entityType)
@@ -296,24 +304,24 @@ items:
       type: 93de0ef9com.microsoft.azure.servicebus.primitives.MessagingEntityType
     return:
       type: 9cdf14d0com.microsoft.azure.servicebus.primitives.CoreMessageReceivera08ddfce
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte [],String,String,Map<String, Object>)
-  id: deadLetterMessageAsync(byte [],String,String,Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte [],String,String,Map<String, Object>,TransactionContext)
+  id: deadLetterMessageAsync(byte [],String,String,Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+  name: deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1068
+    startLine: 1105
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> deadLetterMessageAsync(byte[] deliveryTag, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: deliveryTag
       type: ccd9418d
@@ -323,26 +331,28 @@ items:
       type: "26831127"
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID,String,String,Map<String, Object>)
-  id: deadLetterMessageAsync(UUID,String,String,Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID,String,String,Map<String, Object>,TransactionContext)
+  id: deadLetterMessageAsync(UUID,String,String,Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+  name: deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deadLetterMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1091
+    startLine: 1133
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> deadLetterMessageAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: lockToken
       type: add9545a
@@ -352,56 +362,62 @@ items:
       type: "26831127"
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte [],Map<String, Object>)
-  id: deferMessageAsync(byte [],Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte [],Map<String, Object>,TransactionContext)
+  id: deferMessageAsync(byte [],Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
+  name: deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1052
+    startLine: 1083
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> deferMessageAsync(byte[] deliveryTag, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: deliveryTag
       type: ccd9418d
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID,Map<String, Object>)
-  id: deferMessageAsync(UUID,Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID,Map<String, Object>,TransactionContext)
+  id: deferMessageAsync(UUID,Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
+  name: deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.deferMessageAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1063
+    startLine: 1094
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> deferMessageAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: lockToken
       type: add9545a
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
 - uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.getContext()
@@ -418,7 +434,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 959
+    startLine: 972
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public ErrorContext getContext()
@@ -438,7 +454,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 478
+    startLine: 480
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public int getPrefetchCount()
@@ -458,7 +474,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 487
+    startLine: 488
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public String getSessionId()
@@ -478,7 +494,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 493
+    startLine: 494
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public Instant getSessionLockedUntilUtc()
@@ -498,7 +514,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1456
+    startLine: 1530
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<byte[]> getSessionStateAsync()
@@ -518,7 +534,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 977
+    startLine: 990
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: protected CompletableFuture<Void> onClose()
@@ -538,7 +554,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 944
+    startLine: 957
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onClose(ErrorCondition condition)
@@ -559,7 +575,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 786
+    startLine: 799
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onError(Exception exception)
@@ -580,7 +596,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 582
+    startLine: 583
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onOpenComplete(Exception exception)
@@ -601,7 +617,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 657
+    startLine: 658
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void onReceiveComplete(Delivery delivery)
@@ -622,7 +638,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1530
+    startLine: 1604
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<Message>> peekMessagesAsync(long fromSequenceNumber, int messageCount, String sessionId)
@@ -649,7 +665,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 540
+    startLine: 541
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<MessageWithDeliveryTag>> receiveAsync(final int maxMessageCount, Duration timeout)
@@ -674,7 +690,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1301
+    startLine: 1369
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<MessageWithLockToken>> receiveDeferredMessageBatchAsync(Long[] sequenceNumbers)
@@ -697,7 +713,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1259
+    startLine: 1327
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Collection<Instant>> renewMessageLocksAsync(UUID[] lockTokens)
@@ -720,7 +736,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1424
+    startLine: 1498
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> renewSessionLocksAsync()
@@ -740,7 +756,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 505
+    startLine: 506
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public void setPrefetchCount(final int value)
@@ -761,7 +777,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1498
+    startLine: 1572
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public CompletableFuture<Void> setSessionStateAsync(byte[] sessionState)
@@ -770,24 +786,24 @@ items:
       type: ccd9418d
     return:
       type: db03ee24
-- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID [],String,String,String,Map<String, Object>)
-  id: updateDispositionAsync(UUID [],String,String,String,Map<String, Object>)
+- uid: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID [],String,String,String,Map<String, Object>,TransactionContext)
+  id: updateDispositionAsync(UUID [],String,String,String,Map<String, Object>,TransactionContext)
   parent: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver
   href: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.yml
   langs:
   - java
-  name: updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  nameWithType: CoreMessageReceiver.updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
-  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+  name: updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: CoreMessageReceiver.updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
   overload: com.microsoft.azure.servicebus.primitives.CoreMessageReceiver.updateDispositionAsync*
   type: Method
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/CoreMessageReceiver.java
-    startLine: 1367
+    startLine: 1435
   package: com.microsoft.azure.servicebus.primitives
   syntax:
-    content: public CompletableFuture<Void> updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify)
+    content: public CompletableFuture<Void> updateDispositionAsync(UUID[] lockTokens, String dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
     parameters:
     - id: lockTokens
       type: a4d4e765
@@ -799,6 +815,8 @@ items:
       type: "26831127"
     - id: propertiesToModify
       type: e7b06046
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
     return:
       type: db03ee24
 references:
@@ -1168,7 +1186,7 @@ references:
   nameWithType: MessagingFactory
   fullName: com.microsoft.azure.servicebus.primitives.MessagingFactory
   type: Class
-  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFacotry instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
+  summary: "<p>Abstracts all AMQP related details and encapsulates an AMQP connection and manages its life cycle. Each instance of this class represent one AMQP connection to the namespace. If an application creates multiple senders, receivers or clients using the same MessagingFactory instance, all those senders, receivers or clients will share the same connection to the namespace. </p>"
   syntax:
     content: public class MessagingFactory
 - uid: com.microsoft.azure.servicebus.primitives.SettleModePair
@@ -1225,6 +1243,16 @@ references:
   type: Class
   syntax:
     content: public class TimeoutTracker
+- uid: com.microsoft.azure.servicebus.TransactionContext
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus.TransactionContext.yml
+  name: TransactionContext
+  nameWithType: TransactionContext
+  fullName: com.microsoft.azure.servicebus.TransactionContext
+  type: Class
+  summary: "<p>Represents an active servicebus transaction. A transaction is initiated by calling <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.startTransactionAsync()\" data-throw-if-not-resolved=\"false\">MessagingFactory#startTransactionAsync()</xref>. A transaction can result in commit or rollback. To commit, call <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)\" data-throw-if-not-resolved=\"false\">MessagingFactory#endTransactionAsync(TransactionContext, boolean)</xref> with  To rollback, call <xref uid=\"com.microsoft.azure.servicebus.primitives.MessagingFactory.endTransactionAsync(TransactionContext,boolean)\" data-throw-if-not-resolved=\"false\">MessagingFactory#endTransactionAsync(TransactionContext, boolean)</xref> with </p>"
+  syntax:
+    content: public class TransactionContext
 - uid: com.microsoft.azure.servicebus.primitives.ServiceBusException
   parent: com.microsoft.azure.servicebus.primitives
   href: com.microsoft.azure.servicebus.primitives.ServiceBusException.yml
