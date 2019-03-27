@@ -20,7 +20,7 @@ The HDInsight Java SDK provides classes and methods that allow you to manage you
 
 * An Azure account. If you don't have one, [get a free trial](https://azure.microsoft.com/free/).
 * A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
-* [Maven](https://maven.apache.org/install.html)
+* [Maven](https://maven.apache.org/download.cgi)
 
 ## SDK Installation
 
@@ -42,7 +42,6 @@ You will also need to add the following dependencies to your pom.xml:
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-client-authentication</artifactId>
     <version>1.6.2</version>
-    <scope>test</scope>
   </dependency>
   ```
 
@@ -145,7 +144,8 @@ public class Main {
                 CLIENT_SECRET,
                 AzureEnvironment.AZURE);
 
-        HDInsightManagementClientImpl client = new HDInsightManagementClientImpl(credentials);
+        HDInsightManagementClientImpl client = new HDInsightManagementClientImpl(credentials)
+                .withSubscriptionId(SUBSCRIPTION_ID);
 ```
 
 

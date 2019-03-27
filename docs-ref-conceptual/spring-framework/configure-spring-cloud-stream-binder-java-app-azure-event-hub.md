@@ -138,12 +138,10 @@ The following prerequisites are required in order to follow the steps in this ar
    ```xml
    <dependency>
       <groupId>com.microsoft.azure</groupId>
-      <artifactId>spring-cloud-azure-eventhub-stream-binder</artifactId>
-      <version>1.0.0.M2</version>
+      <artifactId>spring-cloud-azure-eventhubs-stream-binder</artifactId>
+      <version>1.1.0.RC2</version>
    </dependency>
    ```
-
-   ![Edit pom.xml file][SI03]
 
 1. Save and close the *pom.xml* file.
 
@@ -192,6 +190,7 @@ The following prerequisites are required in order to follow the steps in this ar
      }
    ]
    ```
+   
 1. Specify the GUID for the subscription you want to use with Azure; for example:
 
    ```azurecli
@@ -412,6 +411,7 @@ The **[Spring Framework]** is an open-source solution that helps Java developers
 <!-- URL List -->
 
 [free Azure account]: https://azure.microsoft.com/pricing/free-trial/
+[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
 [Working with Azure DevOps and Java]: /azure/devops/
 [MSDN subscriber benefits]: https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/
 [Spring Boot]: http://projects.spring.io/spring-boot/
