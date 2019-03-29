@@ -107,6 +107,32 @@ When you have completed this tutorial, your application will look similar to the
 
    ![Edit configuration dialog box][edit-configuration-dialog]
 
+## Deploy your web app to web app slot
+Deployment slots are live apps with their own hostnames. App content and configurations elements can be swapped between two deployment slots, including the production slot.
+
+1. Within IntelliJ's Project Explorer view, right-click your project, choose **Azure**, and then choose **Run on Web App**.
+   
+   ![Run on web app menu][run-on-web-app-menu]
+
+1. In the Run on Web App dialog box, expand the Deployment Slot and click **Deploy to Slot**
+
+1. You may create a new deployment slot or use existing slot
+
+    * Click **Create new slot** , type the slot name and choose the configuration source(You may also choose don't clone configuration from existing slot)
+
+    ![Create new slot][create-new-slot]
+
+    * Click **Use existing slot** , choose an existing slot from the drop down
+
+    ![Use existing slot][use-existing-slot]
+
+1. The toolkit will display a status message when it has successfully deployed your web app to slot, which will also display the URL of your deployed slot.
+
+   ![Successful deployment][deployment-slot-done]
+
+1. You may view your slots and manage them in **Azure Explorer**
+   ![Slot explorer][slot-explorer]
+
 ## Next steps
 
 [!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
@@ -140,3 +166,8 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [browse-web-app]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/browse-web-app.png
 [edit-configuration-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-menu.png
 [edit-configuration-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-dialog.png
+
+[create-new-slot]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/create-new-slot.png
+[use-existing-slot]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/use-existing-slot.png
+[deployment-slot-done]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/deployment-slot-done.png
+[slot-explorer]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/slot-explorer.png
