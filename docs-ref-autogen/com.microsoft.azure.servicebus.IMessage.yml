@@ -4,6 +4,7 @@ items:
   id: IMessage
   parent: com.microsoft.azure.servicebus
   children:
+  - com.microsoft.azure.servicebus.IMessage.createCopy()
   - com.microsoft.azure.servicebus.IMessage.getBody()
   - com.microsoft.azure.servicebus.IMessage.getContentType()
   - com.microsoft.azure.servicebus.IMessage.getCorrelationId()
@@ -26,6 +27,7 @@ items:
   - com.microsoft.azure.servicebus.IMessage.getSessionId()
   - com.microsoft.azure.servicebus.IMessage.getTimeToLive()
   - com.microsoft.azure.servicebus.IMessage.getTo()
+  - com.microsoft.azure.servicebus.IMessage.getViaPartitionKey()
   - com.microsoft.azure.servicebus.IMessage.setBody(byte [])
   - com.microsoft.azure.servicebus.IMessage.setContentType(String)
   - com.microsoft.azure.servicebus.IMessage.setCorrelationId(String)
@@ -33,7 +35,7 @@ items:
   - com.microsoft.azure.servicebus.IMessage.setMessageBody(MessageBody)
   - com.microsoft.azure.servicebus.IMessage.setMessageId(String)
   - com.microsoft.azure.servicebus.IMessage.setPartitionKey(String)
-  - com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, String>)
+  - com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, Object>)
   - com.microsoft.azure.servicebus.IMessage.setReplyTo(String)
   - com.microsoft.azure.servicebus.IMessage.setReplyToSessionId(String)
   - com.microsoft.azure.servicebus.IMessage.setScheduledEnqueuedTimeUtc(Instant)
@@ -41,6 +43,7 @@ items:
   - com.microsoft.azure.servicebus.IMessage.setSessionId(String)
   - com.microsoft.azure.servicebus.IMessage.setTimeToLive(Duration)
   - com.microsoft.azure.servicebus.IMessage.setTo(String)
+  - com.microsoft.azure.servicebus.IMessage.setViaPartitionKey(String)
   href: com.microsoft.azure.servicebus.IMessage.yml
   langs:
   - java
@@ -57,8 +60,30 @@ items:
     startLine: 16
   package: com.microsoft.azure.servicebus
   summary: "<p>Represents the message that is exchanged between Azure Service Bus and its clients.</p>\r\n<p></p>"
-  syntax:
+  syntax: &o11
     content: public interface IMessage
+- uid: com.microsoft.azure.servicebus.IMessage.createCopy()
+  id: createCopy()
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  langs:
+  - java
+  name: createCopy()
+  nameWithType: IMessage.createCopy()
+  fullName: com.microsoft.azure.servicebus.IMessage.createCopy()
+  overload: com.microsoft.azure.servicebus.IMessage.createCopy*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 428
+  package: com.microsoft.azure.servicebus
+  summary: "<p>Creates a shallow copy of this message. </p>"
+  syntax:
+    content: public IMessage createCopy()
+    return:
+      type: com.microsoft.azure.servicebus.IMessage
+      description: <p>copy of this message </p>
 - uid: com.microsoft.azure.servicebus.IMessage.getBody()
   id: getBody()
   parent: com.microsoft.azure.servicebus.IMessage
@@ -139,7 +164,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 389
+    startLine: 409
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the name of the queue or subscription that this message was enqueued on, before it was deadlettered.</p>\r\n<p>This value is only set in messages that have been dead-lettered and subsequently auto-forwarded from the dead-letter queue to another entity. Indicates the entity in which the message was dead-lettered. This property is read-only.</p>\r\n<p></p>"
   syntax:
@@ -271,7 +296,7 @@ items:
   source:
     remote: *o0
     path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
-    startLine: 402
+    startLine: 422
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the lock token for the current message.</p>\r\n<p>The lock token is a reference to the lock that is being held by the broker in PEEKLOCK mode. Locks are used to explicitly settle messages as explained in the <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/message-transfers-locks-settlement\">product documentation in more detail</a>. The token can also be used to pin the lock permanently through the <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/message-deferral\">Deferral API</a> and, with that, take the message out of the regular delivery state flow. This property is read-only.</p>\r\n<p></p>"
   syntax:
@@ -340,7 +365,7 @@ items:
     startLine: 370
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the partition key for sending a message to a partitioned entity.</p>\r\n<p>For <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning\">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid=\"com.microsoft.azure.servicebus.IMessage.getSessionId()\" data-throw-if-not-resolved=\"false\">SessionId </xref> property overrides this value.</p>\r\n<p></p>"
-  syntax:
+  syntax: &o10
     content: public String getPartitionKey()
     return:
       type: "26831127"
@@ -363,9 +388,9 @@ items:
   package: com.microsoft.azure.servicebus
   summary: "<p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>\r\n<p></p>"
   syntax:
-    content: public Map<String, String> getProperties()
+    content: public Map<String, Object> getProperties()
     return:
-      type: 689c8cb5
+      type: e7b06046
       description: <p>the map of user application properties of this message </p>
 - uid: com.microsoft.azure.servicebus.IMessage.getReplyTo()
   id: getReplyTo()
@@ -543,6 +568,28 @@ items:
     return:
       type: "26831127"
       description: <p>To property value of this message </p>
+- uid: com.microsoft.azure.servicebus.IMessage.getViaPartitionKey()
+  id: getViaPartitionKey()
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  langs:
+  - java
+  name: getViaPartitionKey()
+  nameWithType: IMessage.getViaPartitionKey()
+  fullName: com.microsoft.azure.servicebus.IMessage.getViaPartitionKey()
+  overload: com.microsoft.azure.servicebus.IMessage.getViaPartitionKey*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 390
+  package: com.microsoft.azure.servicebus
+  summary: "<p>Gets the partition key for sending a message to a entity via another partitioned transfer entity.</p>\r\n<p>If a message is sent via a transfer queue in the scope of a transaction, this value selects the transfer queue partition: This is functionally equivalent to <xref uid=\"com.microsoft.azure.servicebus.IMessage.getPartitionKey()\" data-throw-if-not-resolved=\"false\">getPartitionKey()</xref> and ensures that messages are kept together and in order as they are transferred.</p>\r\n<p></p>"
+  syntax:
+    content: public String getViaPartitionKey()
+    return:
+      type: "26831127"
+      description: <p>partition key on the via queue. </p>
 - uid: com.microsoft.azure.servicebus.IMessage.setBody(byte [])
   id: setBody(byte [])
   parent: com.microsoft.azure.servicebus.IMessage
@@ -704,15 +751,15 @@ items:
     - id: partitionKey
       type: "26831127"
       description: <p>partition key of this message </p>
-- uid: com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, String>)
-  id: setProperties(Map<String, String>)
+- uid: com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, Object>)
+  id: setProperties(Map<String, Object>)
   parent: com.microsoft.azure.servicebus.IMessage
   href: com.microsoft.azure.servicebus.IMessage.yml
   langs:
   - java
-  name: setProperties(Map<String, String> properties)
-  nameWithType: IMessage.setProperties(Map<String, String> properties)
-  fullName: com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, String> properties)
+  name: setProperties(Map<String, Object> properties)
+  nameWithType: IMessage.setProperties(Map<String, Object> properties)
+  fullName: com.microsoft.azure.servicebus.IMessage.setProperties(Map<String, Object> properties)
   overload: com.microsoft.azure.servicebus.IMessage.setProperties*
   type: Method
   source:
@@ -722,10 +769,10 @@ items:
   package: com.microsoft.azure.servicebus
   summary: "<p>Sets the map of user application properties of this message. Client applications can set user properties on the message using this map.</p>\r\n<p></p>"
   syntax:
-    content: public void setProperties(Map<String, String> properties)
+    content: public void setProperties(Map<String, Object> properties)
     parameters:
     - id: properties
-      type: 689c8cb5
+      type: e7b06046
       description: <p>the map of user application properties of this message </p>
 - uid: com.microsoft.azure.servicebus.IMessage.setReplyTo(String)
   id: setReplyTo(String)
@@ -888,6 +935,29 @@ items:
     - id: to
       type: "26831127"
       description: <p>To property value of this message </p>
+- uid: com.microsoft.azure.servicebus.IMessage.setViaPartitionKey(String)
+  id: setViaPartitionKey(String)
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  langs:
+  - java
+  name: setViaPartitionKey(String viaPartitionKey)
+  nameWithType: IMessage.setViaPartitionKey(String viaPartitionKey)
+  fullName: com.microsoft.azure.servicebus.IMessage.setViaPartitionKey(String viaPartitionKey)
+  overload: com.microsoft.azure.servicebus.IMessage.setViaPartitionKey*
+  type: Method
+  source:
+    remote: *o0
+    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/IMessage.java
+    startLine: 398
+  package: com.microsoft.azure.servicebus
+  summary: "<p>Sets a via-partition key for sending a message to a destination entity via another partitioned entity</p>\r\n<p></p>"
+  syntax:
+    content: public void setViaPartitionKey(String viaPartitionKey)
+    parameters:
+    - id: viaPartitionKey
+      type: "26831127"
+      description: <p>via-partition key of this message </p>
 references:
 - uid: 0364520f
   spec.java:
@@ -1014,10 +1084,10 @@ references:
   nameWithType: IMessage.setMessageBody
   fullName: com.microsoft.azure.servicebus.IMessage.setMessageBody
   package: com.microsoft.azure.servicebus
-- uid: 689c8cb5
+- uid: e7b06046
   spec.java:
-  - name: Map<String, String>
-    fullName: Map<String, String>
+  - name: Map<String, Object>
+    fullName: Map<String, Object>
 - uid: com.microsoft.azure.servicebus.IMessage.getProperties*
   name: getProperties
   nameWithType: IMessage.getProperties
@@ -1088,6 +1158,16 @@ references:
   nameWithType: IMessage.setPartitionKey
   fullName: com.microsoft.azure.servicebus.IMessage.setPartitionKey
   package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus.IMessage.getViaPartitionKey*
+  name: getViaPartitionKey
+  nameWithType: IMessage.getViaPartitionKey
+  fullName: com.microsoft.azure.servicebus.IMessage.getViaPartitionKey
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus.IMessage.setViaPartitionKey*
+  name: setViaPartitionKey
+  nameWithType: IMessage.setViaPartitionKey
+  fullName: com.microsoft.azure.servicebus.IMessage.setViaPartitionKey
+  package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus.IMessage.getDeadLetterSource*
   name: getDeadLetterSource
   nameWithType: IMessage.getDeadLetterSource
@@ -1101,6 +1181,11 @@ references:
   name: getLockToken
   nameWithType: IMessage.getLockToken
   fullName: com.microsoft.azure.servicebus.IMessage.getLockToken
+  package: com.microsoft.azure.servicebus
+- uid: com.microsoft.azure.servicebus.IMessage.createCopy*
+  name: createCopy
+  nameWithType: IMessage.createCopy
+  fullName: com.microsoft.azure.servicebus.IMessage.createCopy
   package: com.microsoft.azure.servicebus
 - uid: com.microsoft.azure.servicebus.Message
   parent: com.microsoft.azure.servicebus
@@ -1474,23 +1559,23 @@ references:
   type: Method
   summary: "<p>Gets the map of user application properties of this message. Client applications can set user properties (headers) on the message using this map.</p>\r\n<p></p>"
   syntax:
-    content: public Map<String, String> getProperties()
+    content: public Map<String, Object> getProperties()
     return:
-      type: 689c8cb5
+      type: e7b06046
       description: <p>the map of user application properties of this message </p>
-- uid: com.microsoft.azure.servicebus.Message.setProperties(Map<String, String>)
+- uid: com.microsoft.azure.servicebus.Message.setProperties(Map<String, Object>)
   parent: com.microsoft.azure.servicebus.Message
   href: com.microsoft.azure.servicebus.Message.yml
-  name: setProperties(Map<String, String> properties)
-  nameWithType: Message.setProperties(Map<String, String> properties)
-  fullName: com.microsoft.azure.servicebus.Message.setProperties(Map<String, String> properties)
+  name: setProperties(Map<String, Object> properties)
+  nameWithType: Message.setProperties(Map<String, Object> properties)
+  fullName: com.microsoft.azure.servicebus.Message.setProperties(Map<String, Object> properties)
   type: Method
   summary: "<p>Sets the map of user application properties of this message. Client applications can set user properties on the message using this map.</p>\r\n<p></p>"
   syntax:
-    content: public void setProperties(Map<String, String> properties)
+    content: public void setProperties(Map<String, Object> properties)
     parameters:
     - id: properties
-      type: 689c8cb5
+      type: e7b06046
       description: <p>the map of user application properties of this message </p>
 - uid: com.microsoft.azure.servicebus.Message.getCorrelationId()
   parent: com.microsoft.azure.servicebus.Message
@@ -1672,6 +1757,42 @@ references:
     - id: partitionKey
       type: "26831127"
       description: <p>partition key of this message </p>
+- uid: com.microsoft.azure.servicebus.Message.getViaPartitionKey()
+  parent: com.microsoft.azure.servicebus.Message
+  href: com.microsoft.azure.servicebus.Message.yml
+  name: getViaPartitionKey()
+  nameWithType: Message.getViaPartitionKey()
+  fullName: com.microsoft.azure.servicebus.Message.getViaPartitionKey()
+  type: Method
+  summary: "<p>Gets the partition key for sending a message to a entity via another partitioned transfer entity.</p>\r\n<p>If a message is sent via a transfer queue in the scope of a transaction, this value selects the transfer queue partition: This is functionally equivalent to <xref uid=\"com.microsoft.azure.servicebus.Message.getPartitionKey()\" data-throw-if-not-resolved=\"false\">getPartitionKey()</xref> and ensures that messages are kept together and in order as they are transferred.</p>\r\n<p></p>"
+  syntax:
+    content: public String getViaPartitionKey()
+    return:
+      type: "26831127"
+      description: <p>partition key on the via queue. </p>
+- uid: com.microsoft.azure.servicebus.IMessage.getPartitionKey()
+  parent: com.microsoft.azure.servicebus.IMessage
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  name: getPartitionKey()
+  nameWithType: IMessage.getPartitionKey()
+  fullName: com.microsoft.azure.servicebus.IMessage.getPartitionKey()
+  type: Method
+  summary: "<p>Gets the partition key for sending a message to a partitioned entity.</p>\r\n<p>For <a href=\"https://docs.microsoft.com/azure/service-bus-messaging/service-bus-partitioning\">partitioned entities</a>, setting this value enables assigning related messages to the same internal partition, so that submission sequence order is correctly recorded. The partition is chosen by a hash function over this value and cannot be chosen directly. For session-aware entities, the <xref uid=\"com.microsoft.azure.servicebus.IMessage.getSessionId()\" data-throw-if-not-resolved=\"false\">SessionId </xref> property overrides this value.</p>\r\n<p></p>"
+  syntax: *o10
+- uid: com.microsoft.azure.servicebus.Message.setViaPartitionKey(String)
+  parent: com.microsoft.azure.servicebus.Message
+  href: com.microsoft.azure.servicebus.Message.yml
+  name: setViaPartitionKey(String partitionKey)
+  nameWithType: Message.setViaPartitionKey(String partitionKey)
+  fullName: com.microsoft.azure.servicebus.Message.setViaPartitionKey(String partitionKey)
+  type: Method
+  summary: "<p>Sets a via-partition key for sending a message to a destination entity via another partitioned entity</p>\r\n<p></p>"
+  syntax:
+    content: public void setViaPartitionKey(String partitionKey)
+    parameters:
+    - id: viaPartitionKey
+      type: "26831127"
+      description: <p>via-partition key of this message </p>
 - uid: com.microsoft.azure.servicebus.Message.getDeadLetterSource()
   parent: com.microsoft.azure.servicebus.Message
   href: com.microsoft.azure.servicebus.Message.yml
@@ -1698,3 +1819,25 @@ references:
     return:
       type: add9545a
       description: <p>lock token of this message. </p>
+- uid: com.microsoft.azure.servicebus.IMessage
+  parent: com.microsoft.azure.servicebus
+  href: com.microsoft.azure.servicebus.IMessage.yml
+  name: IMessage
+  nameWithType: IMessage
+  fullName: com.microsoft.azure.servicebus.IMessage
+  type: Interface
+  summary: "<p>Represents the message that is exchanged between Azure Service Bus and its clients.</p>\r\n<p></p>"
+  syntax: *o11
+- uid: com.microsoft.azure.servicebus.Message.createCopy()
+  parent: com.microsoft.azure.servicebus.Message
+  href: com.microsoft.azure.servicebus.Message.yml
+  name: createCopy()
+  nameWithType: Message.createCopy()
+  fullName: com.microsoft.azure.servicebus.Message.createCopy()
+  type: Method
+  summary: "<p>Creates a shallow copy of this message. </p>"
+  syntax:
+    content: public IMessage createCopy()
+    return:
+      type: com.microsoft.azure.servicebus.IMessage
+      description: <p>copy of this message </p>
