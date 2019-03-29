@@ -32,25 +32,43 @@ items:
     content: public interface IMessageSession extends IMessageReceiver
   inheritedMembers:
   - com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.ICloseable.close()
   - com.microsoft.azure.servicebus.ICloseable.closeAsync()
   - com.microsoft.azure.servicebus.IMessageReceiver.complete(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.complete(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID,Map<String, Object>)
+  - com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID,Map<String, Object>,TransactionContext)
   - com.microsoft.azure.servicebus.IMessageEntityClient.getEntityPath()
   - com.microsoft.azure.servicebus.IMessageReceiver.getPrefetchCount()
   - com.microsoft.azure.servicebus.IMessageReceiver.getReceiveMode()
@@ -75,7 +93,9 @@ items:
   - com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessageBatch(Collection<Long>)
   - com.microsoft.azure.servicebus.IMessageReceiver.receiveDeferredMessageBatchAsync(Collection<Long>)
   - com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(IMessage)
+  - com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(UUID)
   - com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(IMessage)
+  - com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(UUID)
   - com.microsoft.azure.servicebus.IMessageReceiver.setPrefetchCount(int)
 - uid: com.microsoft.azure.servicebus.IMessageSession.getLockedUntilUtc()
   id: getLockedUntilUtc()
@@ -351,6 +371,26 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: abandon(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.abandon(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Abandon <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> with lock token. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message</p>\r\n<p></p>"
+  syntax:
+    content: public void abandon(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -368,6 +408,29 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: abandon(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.abandon(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.abandon(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Abandon <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> with lock token and updated message property. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message</p>\r\n<p></p>"
+  syntax:
+    content: public void abandon(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -382,6 +445,29 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending abandon. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: abandonAsync(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.abandonAsync(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously abandon <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> with lock token. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> abandonAsync(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending abandon. </p>
@@ -402,6 +488,32 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending abandon. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously abandon <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> with lock token and updated message property. This will make the message available again for processing. Abandoning a message will increase the delivery count on the message.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> abandonAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending abandon. </p>
@@ -442,6 +554,26 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.complete(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: complete(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.complete(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.complete(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Completes a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token. This will delete the message from the service.</p>\r\n<p></p>"
+  syntax:
+    content: public void complete(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -459,6 +591,29 @@ references:
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending complete. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: completeAsync(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.completeAsync(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.completeAsync(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously completes a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token. This will delete the message from the service.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> completeAsync(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending complete. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -473,6 +628,26 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetter(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetter(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue.</p>\r\n<p></p>"
+  syntax:
+    content: public void deadLetter(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -490,6 +665,29 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetter(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetter(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with modified message properties.</p>\r\n<p></p>"
+  syntax:
+    content: public void deadLetter(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -510,6 +708,32 @@ references:
     - id: deadLetterErrorDescription
       type: "26831127"
       description: <p>The deadletter error description. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  type: Method
+  summary: "<p>Moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with deadletter reason and error description.</p>\r\n<p></p>"
+  syntax:
+    content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: deadLetterReason
+      type: "26831127"
+      description: <p>The deadletter reason. </p>
+    - id: deadLetterErrorDescription
+      type: "26831127"
+      description: <p>The deadletter error description. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,Map<String, Object>)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -533,6 +757,35 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID,String,String,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with deadletter reason and error description and modified properties.</p>\r\n<p></p>"
+  syntax:
+    content: public void deadLetter(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: deadLetterReason
+      type: "26831127"
+      description: <p>The deadletter reason. </p>
+    - id: deadLetterErrorDescription
+      type: "26831127"
+      description: <p>The deadletter error description. </p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -547,6 +800,29 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetterAsync(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with deadletter.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending deadletter. </p>
@@ -570,6 +846,32 @@ references:
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending deadletter. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with modified properties.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -590,6 +892,35 @@ references:
     - id: deadLetterErrorDescription
       type: "26831127"
       description: <p>The deadletter error description. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with deadletter reason and error description.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: deadLetterReason
+      type: "26831127"
+      description: <p>The deadletter reason. </p>
+    - id: deadLetterErrorDescription
+      type: "26831127"
+      description: <p>The deadletter error description. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending deadletter. </p>
@@ -619,6 +950,38 @@ references:
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending deadletter. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID,String,String,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously moves a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> to the deadletter sub-queue with deadletter reason and error description and modified properties.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deadLetterAsync(UUID lockToken, String deadLetterReason, String deadLetterErrorDescription, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: deadLetterReason
+      type: "26831127"
+      description: <p>The deadletter reason. </p>
+    - id: deadLetterErrorDescription
+      type: "26831127"
+      description: <p>The deadletter error description. </p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending deadletter. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -633,6 +996,26 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: defer(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.defer(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Defers a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token. This will move message into deferred subqueue.</p>\r\n<p></p>"
+  syntax:
+    content: public void defer(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,Map<String, Object>)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -650,6 +1033,29 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: defer(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.defer(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.defer(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Defers a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token with modified message property. This will move message into deferred subqueue.</p>\r\n<p></p>"
+  syntax:
+    content: public void defer(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
 - uid: com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID)
   parent: com.microsoft.azure.servicebus.IMessageReceiver
   href: com.microsoft.azure.servicebus.IMessageReceiver.yml
@@ -664,6 +1070,29 @@ references:
     - id: lockToken
       type: add9545a
       description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending defer. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deferAsync(UUID lockToken, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deferAsync(UUID lockToken, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID lockToken, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously defers a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token. This will move message into deferred subqueue.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deferAsync(UUID lockToken, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending defer. </p>
@@ -684,6 +1113,32 @@ references:
     - id: propertiesToModify
       type: e7b06046
       description: <p>Message properties to modify. </p>
+    return:
+      type: db03ee24
+      description: <p>a CompletableFuture representing the pending defer. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID,Map<String, Object>,TransactionContext)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: deferAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  nameWithType: IMessageReceiver.deferAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.deferAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+  type: Method
+  summary: "<p>Asynchronously defers a <xref uid=\"com.microsoft.azure.servicebus.Message\" data-throw-if-not-resolved=\"false\">Message</xref> using its lock token with modified message propert. This will move message into deferred subqueue.</p>\r\n<p></p>"
+  syntax:
+    content: public CompletableFuture<Void> deferAsync(UUID lockToken, Map<String, Object> propertiesToModify, TransactionContext transaction)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
+    - id: propertiesToModify
+      type: e7b06046
+      description: <p>Message properties to modify. </p>
+    - id: transaction
+      type: com.microsoft.azure.servicebus.TransactionContext
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.servicebus.TransactionContext" data-throw-if-not-resolved="false">TransactionContext</xref> which this operation should enlist to. </p>
     return:
       type: db03ee24
       description: <p>a CompletableFuture representing the pending defer. </p>
@@ -1083,13 +1538,30 @@ references:
   nameWithType: IMessageReceiver.renewMessageLock(IMessage message)
   fullName: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(IMessage message)
   type: Method
-  summary: "<p>Renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref uid=\"com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK\" data-throw-if-not-resolved=\"false\">ReceiveMode#PEEKLOCK</xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is renewed by the entity's LockDuration.</p>\r\n<p></p>"
+  summary: "<p>Renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref uid=\"com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK\" data-throw-if-not-resolved=\"false\">ReceiveMode#PEEKLOCK</xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is reset to the entity's LockDuration value.</p>\r\n<p></p>"
   syntax:
     content: public Instant renewMessageLock(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus.IMessage
       description: <p>The <xref uid="com.microsoft.azure.servicebus.Message" data-throw-if-not-resolved="false">Message</xref> to be renewed </p>
+    return:
+      type: 328f8254
+      description: <p>The new locked until UTC time. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(UUID)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: renewMessageLock(UUID lockToken)
+  nameWithType: IMessageReceiver.renewMessageLock(UUID lockToken)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLock(UUID lockToken)
+  type: Method
+  summary: "<p>Renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref uid=\"com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK\" data-throw-if-not-resolved=\"false\">ReceiveMode#PEEKLOCK</xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is reset to the entity's LockDuration value.</p>\r\n<p>Note - calling this will not update <xref uid=\"com.microsoft.azure.servicebus.Message.getLockedUntilUtc()\" data-throw-if-not-resolved=\"false\">Message#getLockedUntilUtc()</xref> and updated lockedUntilUtc must be tracked by the application. </p>"
+  syntax:
+    content: public Instant renewMessageLock(UUID lockToken)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
     return:
       type: 328f8254
       description: <p>The new locked until UTC time. </p>
@@ -1100,13 +1572,30 @@ references:
   nameWithType: IMessageReceiver.renewMessageLockAsync(IMessage message)
   fullName: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(IMessage message)
   type: Method
-  summary: "<p>Asynchronously renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity.</p>\r\n<p></p>"
+  summary: "<p>Asynchronously renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref uid=\"com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK\" data-throw-if-not-resolved=\"false\">ReceiveMode#PEEKLOCK</xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is reset to the entity's LockDuration value.</p>\r\n<p></p>"
   syntax:
     content: public CompletableFuture<Instant> renewMessageLockAsync(IMessage message)
     parameters:
     - id: message
       type: com.microsoft.azure.servicebus.IMessage
       description: <p>The <xref uid="com.microsoft.azure.servicebus.Message" data-throw-if-not-resolved="false">Message</xref> to be renewed </p>
+    return:
+      type: 6666b360
+      description: <p>a CompletableFuture representing the pending renew. </p>
+- uid: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(UUID)
+  parent: com.microsoft.azure.servicebus.IMessageReceiver
+  href: com.microsoft.azure.servicebus.IMessageReceiver.yml
+  name: renewMessageLockAsync(UUID lockToken)
+  nameWithType: IMessageReceiver.renewMessageLockAsync(UUID lockToken)
+  fullName: com.microsoft.azure.servicebus.IMessageReceiver.renewMessageLockAsync(UUID lockToken)
+  type: Method
+  summary: "<p>Renews the lock on the message specified by the lock token. The lock will be renewed based on the setting specified on the entity. When a message is received in <xref uid=\"com.microsoft.azure.servicebus.ReceiveMode.PEEKLOCK\" data-throw-if-not-resolved=\"false\">ReceiveMode#PEEKLOCK</xref> mode, the message is locked on the server for this receiver instance for a duration as specified during the Queue/Subscription creation (LockDuration). If processing of the message requires longer than this duration, the lock needs to be renewed. For each renewal, the lock is reset to the entity's LockDuration value.</p>\r\n<p>Note - calling this will not update <xref uid=\"com.microsoft.azure.servicebus.Message.getLockedUntilUtc()\" data-throw-if-not-resolved=\"false\">Message#getLockedUntilUtc()</xref> and updated lockedUntilUtc must be tracked by the application. </p>"
+  syntax:
+    content: public CompletableFuture<Instant> renewMessageLockAsync(UUID lockToken)
+    parameters:
+    - id: lockToken
+      type: add9545a
+      description: <p>Message lock token <xref uid="com.microsoft.azure.servicebus.Message.getLockToken()" data-throw-if-not-resolved="false">Message#getLockToken()</xref></p>
     return:
       type: 6666b360
       description: <p>a CompletableFuture representing the pending renew. </p>
