@@ -45,7 +45,8 @@ The following prerequisites are required in order to complete the steps in this 
 
 2. Specify that you want to generate a **Maven** project with **Java**, enter the **Group** and **Artifact** names for your application, and then select the **Web** and **Security** module of the Spring Initializr.
 
-   ![Specify Group and Aritifact names][SI]
+   ![Specify Group and Aritifact names](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/SI.png)
+
 
 3. Click `Generate Project`, download the project to a path on your local computer when prompted.
 
@@ -57,47 +58,47 @@ The following prerequisites are required in order to complete the steps in this 
 
 2. Click **+Create a resource**, then **Identity**, and then **Azure Active Directory B2C**.
 
-   ![Create new Azure Active Directory B2C instance][AZ1]
+   ![Create new Azure Active Directory B2C instance](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ1.png)
 
 3. Enter your **Organization name** and your **Initial domain name**, record the **domain name** as
 your `${your-tenant-name}` and click **Create**.
 
-   ![Get your B2C tenant name][AZ5]
+   ![Get your B2C tenant name](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ5.png)
 
 4. Select your account name on the top-right of the Azure portal toolbar, then click **Switch directory**.
 
-   ![Choose your Azure Active Directory][AZ2]
+   ![Choose your Azure Active Directory](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ2.png)
 
 5. Select your new Azure Active Directory from the drop-down menu.
 
-   ![Choose your Azure Active Directory][AZ3]
+   ![Choose your Azure Active Directory](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ3.png)
 
 6. Search `b2c` and click `Azure AD B2C` service.
 
-   ![Locate the Azure Active Directory B2C instance][AZ4]
+   ![Locate the Azure Active Directory B2C instance](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ4.png)
 
 ### Add an application registration for your Spring Boot app
 
 1. Select **Azure AD B2C** from the portal menu, click **Applications**, and then click **Add**.
 
-   ![Add a new app registration][B2C1]
+   ![Add a new app registration](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C1.png)
 
 2. Specify your application **Name**, add `http://localhost:8080/home` for the **Reply URL**, record
 the **Application ID** as your `${your-client-id}` and then click **Save**.
 
-   ![Add Application Reply URL][B2C2]
+   ![Add Application Reply URL](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C2.png)
 
 3. Select **Keys** from your application, click **Generate key** to generate `${your-client-secret}` and
 then **Save**.
 
 4. Select **User flows** on your left, and then **Click** **New user flow **.
 
-   ![Create user flow][B2C3]
+   ![Create user flow](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C3.png)
 
 5. Choose **Sign up or in**, **Profile editing** and **Password reset** to create user flows
 respectively. Specify your user flow **Name** and **User attributes and claims**, click **Create**.
 
-   ![Configure user flow][B2C4]
+   ![Configure user flow](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C4.png)
 
 ## Configure and compile your app
 
@@ -111,6 +112,7 @@ respectively. Specify your user flow **Name** and **User attributes and claims**
    <dependency>
        <groupId>com.microsoft.azure</groupId>
        <artifactId>azure-active-directory-b2c-spring-boot-starter</artifactId>
+       <version>2.1.6.M1</version>
    </dependency>
    <dependency>
        <groupId>org.springframework.boot</groupId>
@@ -245,7 +247,7 @@ respectively. Specify your user flow **Name** and **User attributes and claims**
         }
     }
     ```
-14. Copy the `greeting.html` and `home.html` from [Azure AD B2C Spring Boot Sample][AAD B2C OIDC Sprint Boot Sample], and replace the
+14. Copy the `greeting.html` and `home.html` from [Azure AD B2C Spring Boot Sample](https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample/src/main/resources/templates), and replace the
 `${your-profile-edit-user-flow}` and `${your-password-reset-user-flow}` with your user flow name
 respectively that completed earlier.
 
@@ -263,15 +265,15 @@ respectively that completed earlier.
 3. After your application is built and started by Maven, open <http://localhost:8080/> in a web browser; 
 you should be redirected to login page.
 
-   ![Login page][LO1]
+   ![Login page](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO1.png)
 
 4. Click linke with name of `${your-sign-up-or-in}` user flow, you should be rediected Azure AD B2C to start the authentication process.
 
-   ![Azure AD B2C login][LO2]
+   ![Azure AD B2C login](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO2.png)
 
 4. After you have logged in successfully, you should see the sample `home page` from the browser,
 
-   ![Successful login][LO3]
+   ![Successful login](media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO3.png)
 
 ## Summary
 
@@ -285,44 +287,3 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 
 > [!div class="nextstepaction"]
 > [Spring on Azure](/java/azure/spring-framework)
-
-<!-- URL List -->
-
-[AAD B2C OIDC Sprint Boot Sample]: https://github.com/Microsoft/azure-spring-boot/tree/master/azure-spring-boot-samples/azure-active-directory-b2c-oidc-spring-boot-sample/src/main/resources/templates
-[Spring Initializr]: https://start.spring.io/
-[Azure Active Directory Documentation]: /azure/active-directory/
-
-<!-- IMG List -->
-
-[SI]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/SI.png
-
-[AZ1]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ1.png
-[AZ2]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ2.png
-[AZ3]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ3.png
-[AZ4]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ4.png
-[AZ5]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/AZ5.png
-
-[B2C1]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C1.png
-[B2C2]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C2.png
-[B2C3]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C3.png
-[B2C4]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C4.png
-[B2C5]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/B2C5.png
-
-
-[LO1]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO1.png
-[LO2]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO2.png
-[LO3]:
-media/configure-spring-boot-starter-java-app-with-azure-active-directory-b2c-oidc/LO3.png
