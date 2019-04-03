@@ -72,15 +72,15 @@ This tutorial shows how to create and deploy a basic Hello World application to 
    
    ![Deploy to Azure menu][deploy-to-azure-menu]
 
-1. In the Run on Web App dialog box, you can choose one of the following options:
+1. In the Deploy to Azure dialog box, you can deploy to an existing webapp or create a new one.
 
-   * Click **Create New Web App** from WebApp dropdown. If you choose to create a new web app, specify the requisite information for your web app, and then click **Run** after web app creation.
-
-      ![Create new web app][create-new-web-app-dialog]
-
-   * Choose an existing web app (if one exists), and then click **Run**.
+    * To deploy to an existing webapp, choose an web app (if one exists) from webapp drop down, and then click **Run**.
 
       ![Deploy to Azure dialog box][deploy-to-azure-dialog]
+
+   * To create a new webapp, click **Create New Web App** from WebApp dropdown, and specify the required information for your web app, and then click **OK** to create the webapp.
+
+      ![Create new web app][create-new-web-app-dialog]
 
 1. The toolkit will display a status message when it has successfully deployed your web app, which will also display the URL of your deployed web app.
 
@@ -90,7 +90,7 @@ This tutorial shows how to create and deploy a basic Hello World application to 
 
    ![Browsing your web app][browse-web-app]
 
-1. After you have published your web app, your settings will be saved as the default, and you can run your application on Azure by clicking the green arrow icon on the toolbar. You can modify your settings by clicking the drop-down menu for your web app and click **Edit Configurations**.
+1. After you have published your web app, your settings will be saved as the default, and you can run the deployment by clicking the green arrow icon on the toolbar. You can modify your settings by clicking the drop-down menu for your web app and click **Edit Configurations**.
 
    ![Edit configuration menu][edit-configuration-menu]
 

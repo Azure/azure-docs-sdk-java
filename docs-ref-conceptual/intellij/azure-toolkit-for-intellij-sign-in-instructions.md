@@ -28,9 +28,9 @@ The following sections describe how to use each method.
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## Sign in to your by device login
+## Sign in to your Azure account by device login
 
-To sign in to Azure by device login, do the following:
+To sign in Azure by device login, do the following:
 
 1. Open your project with IntelliJ IDEA.
 
@@ -95,7 +95,7 @@ This section walks you through creating a credentials file that contains your se
 
 ## Sign out of your Azure account
 
-After you have configured your account by using the preceding steps, you will be automatically signed in each time you start IntelliJ IDEA. However, if you want to sign out of your Azure account, do the following.
+After you have configured your account by preceding steps, you will be automatically signed in each time you start IntelliJ IDEA. However, if you want to sign out of your Azure account, do the following.
 
 * In IntelliJ IDEA, open Azure Explorer side bar, click **Azure Sign Out** and confirm.(You may also sign out from menu Tools/Azure/Azure Sign Out)
 
