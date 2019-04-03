@@ -21,8 +21,8 @@ ms.workload: na
 
 The Azure Toolkit for IntelliJ provides two methods for signing in to your Azure account:
 
-  * **Device Login**: You open an external browser and sign in with a generated device code.
-  * **Service Principal**: You create an authentication file with credentials for an Azure Active Directory service principal which will be used for sign in.
+  * **Device Login**: Open an external browser and sign in with a generated device code.
+  * **Service Principal**: Sign in with Azure Active Directory authentication file, you may create it with IntelliJ Toolkit.
 
 The following sections describe how to use each method.
 
@@ -34,7 +34,7 @@ To sign in to Azure by device login, do the following:
 
 1. Open your project with IntelliJ IDEA.
 
-1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign in window from menu Tools/Azure/Azure Sign in).
+1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
 
    ![The IntelliJ Azure Sign In command][I01]
 
@@ -42,11 +42,11 @@ To sign in to Azure by device login, do the following:
 
    ![The Azure Sign In window with device login selected][I02]
 
-1. In the **Azure Device Login** dialog box appears, click **Copy&Open**.
+1. Click **Copy&Open** in **Azure Device Login** dialog .
 
    ![The Azure Login Dialog window][I03]
 
-1. In the browser, paste your device code (which has been copied when you click **Copy&Open** last step) and then click **Next**.
+1. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
 
    ![The device login browser][I04]
 
@@ -54,36 +54,24 @@ To sign in to Azure by device login, do the following:
 
    ![The Select Subscriptions dialog box][I05]
 
-## Sign out of your Azure account after you have signed in interactively
+## Sign in to your Azure account using service principal
 
-After you have configured your account by using the preceding steps, you will be automatically signed out of your Azure account each time you restart IntelliJ IDEA. However, if you want to sign out of your Azure account *without* restarting IntelliJ IDEA, do the following.
-
-1. In IntelliJ IDEA, on the **Tools** menu, point to **Azure**, and then click **Azure Sign Out**.
-
-   ![The IntelliJ Azure Sign Out command][L01]
-
-1. In the **Azure Sign Out** confirmation window, click **Yes**.
-
-   ![The Azure Sign Out confirmation window][L02]
-
-## Sign in to your Azure account by service principal
-
-This section walks you through creating a credentials file that contains your service principal data. After you have completed this process, IntelliJ uses the credentials file to automatically sign you in to Azure each time you open your project.
+This section walks you through creating a credentials file that contains your service principal data. After you have completed this process, IntelliJ uses the credentials file to automatically sign you in to Azure when open your project.
 
 1. Open your project with IntelliJ IDEA.
 
-1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign in window from menu Tools/Azure/Azure Sign in).
+1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
    ![The IntelliJ Azure Sign In command][A01]
 
-1. In the **Azure Sign In** window, select **Automated**, and then click **New**.
+1. In the **Azure Sign In** window, select **Service Principal**, and then click **New**.
 
    ![The Azure Sign In window with service principal selected][A02]
 
-1. In the **Azure Device Login** dialog box appears, click **Copy&Open**.
+1. Click **Copy&Open** in **Azure Device Login** dialog .
 
    ![The Azure Login Dialog window][A03]
 
-1. In the browser, paste your device code (which has been copied when you click **Copy&Open** last step) and then click **Next**.
+1. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
 
    ![The device login browser][A04]
 
@@ -91,11 +79,11 @@ This section walks you through creating a credentials file that contains your se
 
    ![The Create Authentication Files window][A05]
 
-1. In the **Service Principal Creation Status** dialog box, after your files have been created successfully, click **OK**.
+1. In the **Service Principal Creation Status** dialog box, click **OK** after your files have been created successfully.
 
    ![The Service Principal Creation Status dialog box][A06]
 
-1. In the **Azure Sign In** window, click **Sign in**.
+1. In the **Azure Sign In** window, click **Sign in**. 
 
    ![Azure Log In Dialog Box][A07]
 
@@ -103,43 +91,15 @@ This section walks you through creating a credentials file that contains your se
 
    ![The Select Subscriptions dialog box][A08]
 
-## Sign out of your Azure account after you have signed in automatically
+> Once you created the service principal authentication file, you could start from step 8, choose your authentication file and sign in.
 
-After you have configured your account by using the preceding steps, the Azure Toolkit automatically signs you in to your Azure account each time you restart IntelliJ IDEA. However, to sign out of your Azure account and prevent the Azure Toolkit from signing you in automatically, do the following:
+## Sign out of your Azure account
 
-1. In IntelliJ IDEA, on the **Tools** menu, point to **Azure**, and then click **Azure Sign Out**.
+After you have configured your account by using the preceding steps, you will be automatically signed in each time you start IntelliJ IDEA. However, if you want to sign out of your Azure account, do the following.
+
+* In IntelliJ IDEA, open Azure Explorer side bar, click **Azure Sign Out** and confirm.(You may also sign out from menu Tools/Azure/Azure Sign Out)
 
    ![The IntelliJ Azure Sign Out command][L01]
-
-1. In the **Azure Sign Out** confirmation window, click **Yes**.
-
-   ![The Azure Sign Out confirmation window][L03]
-
-## Sign in to your Azure account automatically by using an existing credentials file
-
-If you sign out of your Azure account when you are using IntelliJ IDEA, you must use an existing credentials file to automatically sign back in to the account. To configure the Azure Toolkit for Eclipse to use an existing credentials file, do the following:
-
-1. Open your project with IntelliJ IDEA.
-
-1. On the **Tools** menu, point to **Azure**, and then click **Azure Sign In**.
-
-   ![The IntelliJ Azure Sign In command][A01]
-
-1. In the **Azure Sign In** window, select **Service Principal**, and then click **Browse**.
-
-   ![The Azure Sign In window with Service Principal selected][A02]
-
-1. In the **Select Authentication File** dialog box, select a previously created credentials file, and then click **Select**.
-
-   ![The Select Authentication File dialog box][A09]
-
-1. In the **Azure Sign In** window, click **Sign in**.
-
-   ![The Azure Sign In window with Automated selected][A07]
-
-1. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
-
-   ![The Select Subscriptions dialog box][A08]
 
 ## Next steps
 

@@ -26,15 +26,6 @@ This tutorial shows how to create and deploy a basic Hello World application to 
 > For a version of this article that uses the [Azure Toolkit for Eclipse], see [Create a Hello World web app for Azure using Eclipse][eclipse-hello-world].
 >
 
-> [!IMPORTANT]
-> 
-> The Azure Toolkit for IntelliJ was updated in August 2017 with a different workflow. This article illustrates creating a Hello World web app by using version 3.0.7 (or later) of the Azure Toolkit for IntelliJ. If you are using the version 3.0.6 (or earlier) of the toolkit, you will need to follow the steps in [Create a Hello World web app for Azure in IntelliJ using the legacy toolkit][Legacy Version].
-> 
-
-When you have completed this tutorial, your application will look similar to the following illustration when you view it in a web browser:
-
-![Preview of Hello World app][browse-web-app]
-
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
 ## Create a new web app project
@@ -77,19 +68,19 @@ When you have completed this tutorial, your application will look similar to the
 
 ## Deploy your web app to Azure
 
-1. Within IntelliJ's Project Explorer view, right-click your project, choose **Azure**, and then choose **Run on Web App**.
+1. Within IntelliJ's Project Explorer view, right-click your project, choose **Azure**, and then choose **Deploy to Azure**.
    
-   ![Run on web app menu][run-on-web-app-menu]
+   ![Deploy to Azure menu][deploy-to-azure-menu]
 
 1. In the Run on Web App dialog box, you can choose one of the following options:
-
-   * Choose an existing web app (if one exists), and then click **Run**.
-
-      ![Run on Web App dialog box][run-on-web-app-dialog]
 
    * Click **Create New Web App** from WebApp dropdown. If you choose to create a new web app, specify the requisite information for your web app, and then click **Run** after web app creation.
 
       ![Create new web app][create-new-web-app-dialog]
+
+   * Choose an existing web app (if one exists), and then click **Run**.
+
+      ![Deploy to Azure dialog box][deploy-to-azure-dialog]
 
 1. The toolkit will display a status message when it has successfully deployed your web app, which will also display the URL of your deployed web app.
 
@@ -106,32 +97,6 @@ When you have completed this tutorial, your application will look similar to the
 1. When the **Run/Debug Configurations** dialog box is displayed, you can modify any of the default settings, and then click **OK**.
 
    ![Edit configuration dialog box][edit-configuration-dialog]
-
-## Deploy your web app to web app slot
-Deployment slots are live apps with their own hostnames. App content and configurations elements can be swapped between two deployment slots, including the production slot.
-
-1. Within IntelliJ's Project Explorer view, right-click your project, choose **Azure**, and then choose **Run on Web App**.
-   
-   ![Run on web app menu][run-on-web-app-menu]
-
-1. In the Run on Web App dialog box, expand the Deployment Slot and click **Deploy to Slot**
-
-1. You may create a new deployment slot or use existing slot
-
-    * Click **Create new slot** , type the slot name and choose the configuration source(You may also choose don't clone configuration from existing slot)
-
-    ![Create new slot][create-new-slot]
-
-    * Click **Use existing slot** , choose an existing slot from the drop down
-
-    ![Use existing slot][use-existing-slot]
-
-1. The toolkit will display a status message when it has successfully deployed your web app to slot, which will also display the URL of your deployed slot.
-
-   ![Successful deployment][deployment-slot-done]
-
-1. You may view your slots and manage them in **Azure Explorer**
-   ![Slot explorer][slot-explorer]
 
 ## Next steps
 
@@ -159,15 +124,10 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [project-name]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/project-name.png
 [open-index-page]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/open-index-page.png
 [edit-index-page]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-index-page.png
-[run-on-web-app-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-menu.png
-[run-on-web-app-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-dialog.png
+[deploy-to-azure-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-menu.png
+[deploy-to-azure-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-dialog.png
 [create-new-web-app-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/create-new-web-app-dialog.png
 [successfully-deployed]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/successfully-deployed.png
 [browse-web-app]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/browse-web-app.png
 [edit-configuration-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-menu.png
 [edit-configuration-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-dialog.png
-
-[create-new-slot]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/create-new-slot.png
-[use-existing-slot]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/use-existing-slot.png
-[deployment-slot-done]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/deployment-slot-done.png
-[slot-explorer]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/slot-explorer.png
