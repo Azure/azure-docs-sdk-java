@@ -20,7 +20,7 @@ ms.workload: identity
 
 ## Overview
 
-This article demonstrates creating a Java app with the **[Spring Initializr]** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
+This article demonstrates creating a Java app with the **[Spring Initializr](https://start.spring.io/)** that uses the Spring Boot Starter for Azure Active Directory (Azure AD).
 
 In this tutorial, you learn how to:
 
