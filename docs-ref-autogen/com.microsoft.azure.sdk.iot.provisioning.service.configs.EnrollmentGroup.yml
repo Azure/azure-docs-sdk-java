@@ -8,6 +8,7 @@ items:
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.EnrollmentGroup(String)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getAllocationPolicy()
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getAttestation()
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities()
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCreatedDateTimeUtc()
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCustomAllocationDefinition()
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getEnrollmentGroupId()
@@ -21,6 +22,7 @@ items:
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setAllocationPolicy(AllocationPolicy)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setAttestation(Attestation)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setAttestation(AttestationMechanism)
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities(DeviceCapabilities)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCreatedDateTimeUtc(String)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCustomAllocationDefinition(CustomAllocationDefinition)
   - com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setEnrollmentGroupId(String)
@@ -49,7 +51,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 92
+    startLine: 93
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Representation of a single Device Provisioning Service enrollment group with a JSON serializer and deserializer.</p>\r\n<p>This object is used to send EnrollmentGroup information to the provisioning service, or receive EnrollmentGroup information from the provisioning service.</p>\r\n<p>To create or update an EnrollmentGroup on the provisioning service you should fill this object and call the public API <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.ProvisioningServiceClient.createOrUpdateEnrollmentGroup(EnrollmentGroup)\" data-throw-if-not-resolved=\"false\">ProvisioningServiceClient#createOrUpdateEnrollmentGroup(EnrollmentGroup)</xref>. The minimum information required by the provisioning service is the <xref uid=\"\" data-throw-if-not-resolved=\"false\">enrollmentGroupId</xref> and the <xref uid=\"\" data-throw-if-not-resolved=\"false\">attestation</xref>.</p>\r\n<p>To provision a device using EnrollmentGroup, it must contain a X509 chip with a signingCertificate for the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.X509Attestation\" data-throw-if-not-resolved=\"false\">X509Attestation</xref> mechanism, or use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.SymmetricKeyAttestation\" data-throw-if-not-resolved=\"false\">SymmetricKeyAttestation</xref> mechanism.</p>\r\n<p>The content of this class will be serialized in a JSON format and sent as a body of the rest API to the provisioning service.</p>\r\n<p>When serialized, an EnrollmentGroup will look like the following example: <pre><code>{\r\n        \"enrollmentGroupId\":\"validEnrollmentGroupId\",\r\n        \"attestation\":{\r\n            \"type\":\"x509\",\r\n            \"signingCertificates\":{\r\n                \"primary\":{\r\n                    \"certificate\":\"[valid certificate]\"\r\n                }\r\n            }\r\n        },\r\n        \"iotHubHostName\":\"ContosoIoTHub.azure-devices.net\",\r\n        \"provisioningStatus\":\"enabled\"\r\n    }\r\n    </code></pre></p>\r\n<p>The content of this class can be filled by a JSON, received from the provisioning service, as result of a EnrollmentGroup operation like create, update, or query EnrollmentGroup.</p>\r\n<p>The following JSON is a sample of the EnrollmentGroup response, received from the provisioning service. <pre><code>{\r\n        \"enrollmentGroupId\":\"validEnrollmentGroupId\",\r\n        \"attestation\":{\r\n            \"type\":\"x509\",\r\n            \"signingCertificates\":{\r\n                \"primary\":{\r\n                    \"certificate\":\"[valid certificate]\",\r\n                    \"info\": {\r\n                        \"subjectName\": \"CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US\",\r\n                        \"sha1Thumbprint\": \"0000000000000000000000000000000000\",\r\n                        \"sha256Thumbprint\": \"validEnrollmentGroupId\",\r\n                        \"issuerName\": \"CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US\",\r\n                        \"notBeforeUtc\": \"2017-11-14T12:34:18Z\",\r\n                        \"notAfterUtc\": \"2017-11-20T12:34:18Z\",\r\n                        \"serialNumber\": \"000000000000000000\",\r\n                        \"version\": 3\r\n                    }\r\n                }\r\n            }\r\n        },\r\n        \"iotHubHostName\":\"ContosoIoTHub.azure-devices.net\",\r\n        \"provisioningStatus\":\"enabled\",\r\n        \"createdDateTimeUtc\": \"2017-09-28T16:29:42.3447817Z\",\r\n        \"lastUpdatedDateTimeUtc\": \"2017-09-28T16:29:42.3447817Z\",\r\n        \"etag\": \"\\\"00000000-0000-0000-0000-00000000000\\\"\"\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
   syntax:
@@ -75,7 +77,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 195
+    startLine: 201
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>CONSTRUCTOR</p>\r\n<p>This constructor creates an instance of the enrollment group with the minimum set of information required by the provisioning service.</p>\r\n<p>When serialized, an EnrollmentGroup will look like the following example: <pre><code>{\r\n        \"enrollmentGroupId\":\"validEnrollmentGroupId\",\r\n        \"attestation\":{\r\n            \"type\":\"x509\",\r\n            \"signingCertificates\":{\r\n                \"primary\":{\r\n                    \"certificate\":\"[valid certificate]\"\r\n                }\r\n            }\r\n        }\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
   syntax:
@@ -112,7 +114,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 245
+    startLine: 251
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>CONSTRUCTOR</p>\r\n<p>This constructor creates an instance of the enrollment group filling the class with the information provided in the JSON.</p>\r\n<p>The following JSON is a sample of the EnrollmentGroup response, received from the provisioning service. <pre><code>{\r\n        \"enrollmentGroupId\":\"validEnrollmentGroupId\",\r\n        \"attestation\":{\r\n            \"type\":\"x509\",\r\n            \"signingCertificates\":{\r\n                \"primary\":{\r\n                    \"certificate\":\"[valid certificate]\",\r\n                    \"info\": {\r\n                        \"subjectName\": \"CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US\",\r\n                        \"sha1Thumbprint\": \"0000000000000000000000000000000000\",\r\n                        \"sha256Thumbprint\": \"validEnrollmentGroupId\",\r\n                        \"issuerName\": \"CN=ROOT_00000000-0000-0000-0000-000000000000, OU=Azure IoT, O=MSFT, C=US\",\r\n                        \"notBeforeUtc\": \"2017-11-14T12:34:18Z\",\r\n                        \"notAfterUtc\": \"2017-11-20T12:34:18Z\",\r\n                        \"serialNumber\": \"000000000000000000\",\r\n                        \"version\": 3\r\n                    }\r\n                }\r\n            }\r\n        },\r\n        \"iotHubHostName\":\"ContosoIoTHub.azure-devices.net\",\r\n        \"provisioningStatus\":\"enabled\"\r\n        \"createdDateTimeUtc\": \"2017-09-28T16:29:42.3447817Z\",\r\n        \"lastUpdatedDateTimeUtc\": \"2017-09-28T16:29:42.3447817Z\",\r\n        \"etag\": \"\\\"00000000-0000-0000-0000-00000000000\\\"\"\r\n    }\r\n    </code></pre></p>\r\n<p></p>"
   syntax:
@@ -141,7 +143,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 762
+    startLine: 784
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the allocation policy.</p>\r\n<p></p>"
   syntax:
@@ -166,7 +168,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 374
+    startLine: 380
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the attestation mechanism.</p>\r\n<p></p>"
   syntax:
@@ -182,6 +184,26 @@ items:
   exceptions:
   - type: 407b0ee3
     description: <p>If the type of the attestation mechanism is unknown. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities()
+  id: getCapabilities()
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.yml
+  langs:
+  - java
+  name: getCapabilities()
+  nameWithType: EnrollmentGroup.getCapabilities()
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities()
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
+    startLine: 741
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  syntax:
+    content: public DeviceCapabilities getCapabilities()
+    return:
+      type: com.microsoft.azure.sdk.iot.deps.twin.DeviceCapabilities
 - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCreatedDateTimeUtc()
   id: getCreatedDateTimeUtc()
   parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup
@@ -196,7 +218,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 634
+    startLine: 640
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the createdDateTimeUtcDate.</p>\r\n<p></p>"
   syntax:
@@ -223,7 +245,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 806
+    startLine: 828
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the custom allocation definition policy.</p>\r\n<p></p>"
   syntax:
@@ -248,7 +270,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 340
+    startLine: 346
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the enrollmentGroupId.</p>\r\n<p></p>"
   syntax:
@@ -275,7 +297,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 696
+    startLine: 702
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the etag.</p>\r\n<p></p>"
   syntax:
@@ -302,7 +324,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 519
+    startLine: 525
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the initialTwin.</p>\r\n<p></p>"
   syntax:
@@ -329,7 +351,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 461
+    startLine: 467
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the iotHubHostName.</p>\r\n<p></p>"
   syntax:
@@ -356,7 +378,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 784
+    startLine: 806
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the list of IoTHub names that the device can be allocated to..</p>\r\n<p></p>"
   syntax:
@@ -381,7 +403,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 665
+    startLine: 671
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the lastUpdatedDateTimeUtcDate.</p>\r\n<p></p>"
   syntax:
@@ -408,7 +430,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 575
+    startLine: 581
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the provisioningStatus.</p>\r\n<p></p>"
   syntax:
@@ -433,7 +455,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 740
+    startLine: 762
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Getter for the reprovision policy.</p>\r\n<p></p>"
   syntax:
@@ -458,7 +480,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 773
+    startLine: 795
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the allocation policy.</p>\r\n<p></p>"
   syntax:
@@ -484,7 +506,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 431
+    startLine: 437
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the attestation.</p>\r\n<p>Attestation mechanism is mandatory parameter that provides the mechanism type and the necessary certificates.</p>\r\n<p>EnrollmentGroup only accept <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.X509Attestation\" data-throw-if-not-resolved=\"false\">X509Attestation</xref> with the RootCertificates, or <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.SymmetricKeyAttestation\" data-throw-if-not-resolved=\"false\">SymmetricKeyAttestation</xref> with Primary and Secondary Keys. You can create an <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.X509Attestation\" data-throw-if-not-resolved=\"false\">X509Attestation</xref> by providing the <b>.pem</b> content to <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.X509Attestation.createFromRootCertificates(String,String)\" data-throw-if-not-resolved=\"false\">X509Attestation#createFromRootCertificates(String, String)</xref>. You can create a <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.SymmetricKeyAttestation\" data-throw-if-not-resolved=\"false\">SymmetricKeyAttestation</xref> by providing the Primary and Secondary Keys in Base64 format.</p>\r\n<p></p>"
   syntax:
@@ -513,7 +535,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 393
+    startLine: 399
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the attestation.</p>\r\n<p>Attestation mechanism is mandatory parameter that provides the mechanism type and the necessary keys/certificates</p>\r\n<p></p>\r\n<p></p>"
   syntax:
@@ -533,6 +555,30 @@ items:
       <p>If the provided attestation mechanism is<code>null 
 
           </code> . </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities(DeviceCapabilities)
+  id: setCapabilities(DeviceCapabilities)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.yml
+  langs:
+  - java
+  name: setCapabilities(DeviceCapabilities capabilities)
+  nameWithType: EnrollmentGroup.setCapabilities(DeviceCapabilities capabilities)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities(DeviceCapabilities capabilities)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
+    startLine: 750
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  syntax:
+    content: public final void setCapabilities(DeviceCapabilities capabilities)
+    parameters:
+    - id: capabilities
+      type: com.microsoft.azure.sdk.iot.deps.twin.DeviceCapabilities
+      description: <p>the device capabilities to set </p>
+    return:
+      type: 3f6357ce
 - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCreatedDateTimeUtc(String)
   id: setCreatedDateTimeUtc(String)
   parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup
@@ -547,7 +593,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 653
+    startLine: 659
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the createdDateTimeUtc.</p>\r\n<p>This Date and Time is provided by the provisioning service. If the enrollmentGroup is not created yet, this string can represent an invalid Date. In this case, it will be ignored.</p>\r\n<p>Example of the expected format: \"2016-06-01T21:22:43.7996883Z\" </p>\r\n<p></p>"
   syntax:
@@ -577,7 +623,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 817
+    startLine: 839
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the custom allocation definition policy.</p>\r\n<p></p>"
   syntax:
@@ -603,7 +649,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 359
+    startLine: 365
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the enrollmentGroupId.</p>\r\n<p>A valid enrollment group Id shall follow this criteria. A case-sensitive string (up to 128 char long) of ASCII 7-bit alphanumeric chars + {'-', ':', '.', '+', '', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}. </p>\r\n<p></p>"
   syntax:
@@ -639,7 +685,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 711
+    startLine: 717
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the etag.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000096\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of provisioning-service-client version 1.3.3, please use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setEtagFinal(String)\" data-throw-if-not-resolved=\"false\">setEtagFinal(String)</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>\r\n<p></p>"
   syntax:
@@ -673,7 +719,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 726
+    startLine: 732
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the etag.</p>\r\n<p></p>"
   syntax: &o2
@@ -709,7 +755,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 536
+    startLine: 542
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the initialTwin.</p>\r\n<p>It provides a Twin precondition for the provisioned device. </p>\r\n<p></p>"
   syntax:
@@ -743,7 +789,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 558
+    startLine: 564
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the initialTwin.</p>\r\n<p>It provides a Twin precondition for the provisioned device. </p>\r\n<p></p>"
   syntax:
@@ -779,7 +825,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 482
+    startLine: 488
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the iotHubHostName.</p>\r\n<p>A valid iothub host name shall follow this criteria. A case-sensitive string (up to 128 char long) of ASCII 7-bit alphanumeric chars + {'-', ':', '.', '+', '', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}. A valid host name shall have, at least 2 parts separated by '.'. </p>\r\n<p></p>"
   syntax:
@@ -813,7 +859,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 505
+    startLine: 511
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the iotHubHostName.</p>\r\n<p>A valid iothub host name shall follow this criteria. A case-sensitive string (up to 128 char long) of ASCII 7-bit alphanumeric chars + {'-', ':', '.', '+', '', '_', '#', '*', '?', '!', '(', ')', ',', '=', '@', ';', '$', '''}. A valid host name shall have, at least 2 parts separated by '.'. </p>\r\n<p></p>"
   syntax:
@@ -849,7 +895,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 795
+    startLine: 817
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the list of IotHubs available for allocation.</p>\r\n<p></p>"
   syntax:
@@ -875,7 +921,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 684
+    startLine: 690
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the lastUpdatedDateTimeUtc.</p>\r\n<p>This Date and Time is provided by the provisioning service. If the enrollmentGroup is not created yet, this string can represent an invalid Date. In this case, it will be ignored.</p>\r\n<p>Example of the expected format: \"2016-06-01T21:22:43.7996883Z\" </p>\r\n<p></p>"
   syntax:
@@ -905,7 +951,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 594
+    startLine: 600
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the provisioningStatus.</p>\r\n<p>It provides a Status precondition for the provisioned device. </p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000095\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of provisioning-service-client version 1.3.3, please use <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setProvisioningStatusFinal(ProvisioningStatus)\" data-throw-if-not-resolved=\"false\">setProvisioningStatusFinal(ProvisioningStatus)</xref></p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>\r\n<p></p>"
   syntax:
@@ -939,7 +985,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 617
+    startLine: 623
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the provisioningStatus.</p>\r\n<p>It provides a Status precondition for the provisioned device. </p>\r\n<p></p>"
   syntax: &o1
@@ -975,7 +1021,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 751
+    startLine: 773
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Setter for the reprovision policy.</p>\r\n<p></p>"
   syntax:
@@ -1001,7 +1047,7 @@ items:
   source:
     remote: *o0
     path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/EnrollmentGroup.java
-    startLine: 320
+    startLine: 326
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
   summary: "<p>Serializer</p>\r\n<p>Creates a<code>JsonElement \r\n    </code> , which the content represents the information in this class and its subclasses in a JSON format.</p>\r\n<p>This is useful if the caller will integrate this JSON with jsons from other classes to generate a consolidated JSON. </p>\r\n<p></p>"
   syntax:
@@ -1131,6 +1177,16 @@ references:
   name: setEtagFinal
   nameWithType: EnrollmentGroup.setEtagFinal
   fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setEtagFinal
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities*
+  name: getCapabilities
+  nameWithType: EnrollmentGroup.getCapabilities
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getCapabilities
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities*
+  name: setCapabilities
+  nameWithType: EnrollmentGroup.setCapabilities
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.setCapabilities
   package: com.microsoft.azure.sdk.iot.provisioning.service.configs
 - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.EnrollmentGroup.getReprovisionPolicy*
   name: getReprovisionPolicy
@@ -1292,6 +1348,15 @@ references:
   summary: "<p>The Device Provisioning Service enrollment level allocation policies.</p>\r\n<p></p>"
   syntax:
     content: public enum AllocationPolicy
+- uid: com.microsoft.azure.sdk.iot.deps.twin.DeviceCapabilities
+  parent: com.microsoft.azure.sdk.iot.deps.twin
+  href: com.microsoft.azure.sdk.iot.deps.twin.DeviceCapabilities.yml
+  name: DeviceCapabilities
+  nameWithType: DeviceCapabilities
+  fullName: com.microsoft.azure.sdk.iot.deps.twin.DeviceCapabilities
+  type: Class
+  syntax:
+    content: public class DeviceCapabilities
 - uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.Attestation
   parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
   href: com.microsoft.azure.sdk.iot.provisioning.service.configs.Attestation.yml
