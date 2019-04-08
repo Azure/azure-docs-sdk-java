@@ -3,7 +3,7 @@
 
 To complete the steps in his article, you will need to install the Azure Toolkit for IntelliJ, which requires the following software components:
 
-* An [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) Ultimate Edition or Community Edition installed.
+* An [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) Ultimate Edition or Community Edition installed
 * An [Azure supported Java Development Kit (JDK)](https://aka.ms/azure-jdks)
 * A compatible operating system. The Azure Toolkit for IntelliJ has been tested on the following operating systems:
   
@@ -14,7 +14,7 @@ To complete the steps in his article, you will need to install the Azure Toolkit
 
 You can now [install](https://www.jetbrains.com/help/idea/managing-plugins.html) the [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) from IntelliJ's plugins marketplace.
 
-And don't forget to [sign in to your Azure account for the Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij-sign-in-instructions.md)
+And don't forget to [sign in to your Azure account for the Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij-sign-in-instructions.md).
 
 > [!NOTE]
 > 
