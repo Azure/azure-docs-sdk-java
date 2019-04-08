@@ -21,14 +21,17 @@ ms.workload: na
 
 The Azure Toolkit for IntelliJ provides two methods for signing in to your Azure account:
 
-  * **Device Login**: Open an external browser and sign in with a generated device code.
-  * **Service Principal**: Sign in with Azure Active Directory authentication file, you may create it with IntelliJ Toolkit.
+- [Sign-in instructions for the Azure Toolkit for IntelliJ](#sign-in-instructions-for-the-azure-toolkit-for-intellij)
+  - [Sign in to your Azure account by Device Login](#sign-in-to-your-azure-account-by-device-login)
+  - [Sign in to your Azure account by Service Principal](#sign-in-to-your-azure-account-by-service-principal)
+  - [Sign out of your Azure account](#sign-out-of-your-azure-account)
+  - [Next steps](#next-steps)
 
-The following sections describe how to use each method.
+[**Sign out**](#sign-out-of-your-azure-account) methods are also provided.
 
 [!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
-## Sign in to your Azure account by device login
+## Sign in to your Azure account by Device Login
 
 To sign in Azure by device login, do the following:
 
@@ -54,7 +57,7 @@ To sign in Azure by device login, do the following:
 
    ![The Select Subscriptions dialog box][I05]
 
-## Sign in to your Azure account using service principal
+## Sign in to your Azure account by Service Principal
 
 This section walks you through creating a credentials file that contains your service principal data. After you have completed this process, IntelliJ uses the credentials file to automatically sign you in to Azure when open your project.
 
