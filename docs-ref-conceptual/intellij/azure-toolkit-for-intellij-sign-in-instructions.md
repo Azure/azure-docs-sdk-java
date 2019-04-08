@@ -21,11 +21,8 @@ ms.workload: na
 
 The Azure Toolkit for IntelliJ provides two methods for signing in to your Azure account:
 
-- [Sign-in instructions for the Azure Toolkit for IntelliJ](#sign-in-instructions-for-the-azure-toolkit-for-intellij)
   - [Sign in to your Azure account by Device Login](#sign-in-to-your-azure-account-by-device-login)
   - [Sign in to your Azure account by Service Principal](#sign-in-to-your-azure-account-by-service-principal)
-  - [Sign out of your Azure account](#sign-out-of-your-azure-account)
-  - [Next steps](#next-steps)
 
 [**Sign out**](#sign-out-of-your-azure-account) methods are also provided.
 
@@ -37,23 +34,23 @@ To sign in Azure by device login, do the following:
 
 1. Open your project with IntelliJ IDEA.
 
-1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
+2. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
 
    ![The IntelliJ Azure Sign In command][I01]
 
-1. In the **Azure Sign In** window, select **Device Login**, and then click **Sign in**.
+3. In the **Azure Sign In** window, select **Device Login**, and then click **Sign in**.
 
    ![The Azure Sign In window with device login selected][I02]
 
-1. Click **Copy&Open** in **Azure Device Login** dialog .
+4. Click **Copy&Open** in **Azure Device Login** dialog .
 
    ![The Azure Login Dialog window][I03]
 
-1. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
+5. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
 
    ![The device login browser][I04]
 
-1. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
+6. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
 
    ![The Select Subscriptions dialog box][I05]
 
