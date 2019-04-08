@@ -23,6 +23,7 @@ ms.workload: web
 Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) plugin, create and deploy a basic Hello World application to Azure as a web app can be done in a few minutes.
 
 Table of Contents:
+  - [Prerequisites](#prerequisites)
   - [Creating web app project](#creating-web-app-project)
   - [Deploying web app to Azure](#deploying-web-app-to-azure)
   - [Managing deploy configurations](#managing-deploy-configurations)
