@@ -41,7 +41,7 @@ Table of Contents:
 
 ## Installation and Sign in
 
-1. In IntelliJ IDEA's Settings/Preferences dialog (Ctrl+Alt+S), select **Plugins**. Then, find the **Azure Toolkit for IntelliJ plugin** in the **Marketplace** and click **Install**. After installed, click **Restart** to activate the plugin. 
+1. In IntelliJ IDEA's Settings/Preferences dialog (Ctrl+Alt+S), select **Plugins**. Then, find the **Azure Toolkit for IntelliJ** in the **Marketplace** and click **Install**. After installed, click **Restart** to activate the plugin. 
 
    ![Azure Toolkit for IntelliJ plugin in Marketplace][marketplace]
 
@@ -91,9 +91,9 @@ Table of Contents:
 
    ```html
    <html>
-   <body>
-   <b><% out.println("Hello World!"); %></b>
-   </body>
+    <body>
+      <b><% out.println("Hello World!"); %></b>
+    </body>
    </html>
    ```
 
@@ -106,17 +106,17 @@ Table of Contents:
    ![Deploy to Azure menu][deploy-to-azure-menu]
 
 1. In the Deploy to Azure dialog box, you can directly deploy the application to an existing Tomcat webapp if you already have one, otherwise you should create a new one first.
-   1. To create a new webapp, select **Create New Web App** from WebApp dropdown.
+   1. Click the link **No Available webapp, click to create a new one** to crete a new web app, you could choose **Create New WebApp** from WebApp dropdown if there are existing webapps in your subscription.
 
       ![Deploy to Azure dialog box][deploy-to-azure-dialog]
 
-   1. In the pop-up dialog box, chose **TOMCAT 8.5-jre** as Web Container and specify other required information, then click **OK** to create the webapp.
+   1. In the pop-up dialog box, chose **TOMCAT 8.5-jre8** as Web Container and specify other required information, then click **OK** to create the webapp.
 
       ![Create new web app][create-new-web-app-dialog]
 
-   1. Choose the web app from WebApp drop down, and then click **Run**.
+   1. Choose the web app from WebApp drop down, and then click **Run**.(You could start from here if you want deploy to an existing webapp)
 
-      ![Deploy to Azure dialog box][deploy-to-azure-dialog]
+      ![Deploy to existing webapp][deploy-to-existing-webapp]
 
 1. The toolkit will display a status message when it has successfully deployed your web app, along with the URL of your deployed web app if succeed.
 
@@ -140,6 +140,8 @@ Table of Contents:
 
 1. Deleting Web Apps in Azure Explorer
 
+     ![Clean resources][clean-resources]
+
 ## Next steps
 
 [!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
@@ -158,7 +160,7 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [intelliJ-sign-in-instructions]: azure-toolkit-for-intellij-sign-in-instructions.md
 
 <!-- IMG List -->
-
+[marketplace]:./media/azure-toolkit-for-intellij-create-hello-world-web-app/marketplace.png
 [file-new-project]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/file-new-project.png
 [maven-archetype-webapp]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/maven-archetype-webapp.png
 [groupid-and-artifactid]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/groupid-and-artifactid.png
@@ -168,11 +170,13 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [edit-index-page]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-index-page.png
 [deploy-to-azure-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-menu.png
 [deploy-to-azure-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/run-on-web-app-dialog.png
+[deploy-to-existing-webapp]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/deploy-to-existing-webapp.png
 [create-new-web-app-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/create-new-web-app-dialog.png
 [successfully-deployed]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/successfully-deployed.png
 [browse-web-app]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/browse-web-app.png
 [edit-configuration-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-menu.png
 [edit-configuration-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-dialog.png
+[clean-resources]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/clean-resource.png
 [I01]: media/azure-toolkit-for-intellij-sign-in-instructions/I01.png
 [I02]: media/azure-toolkit-for-intellij-sign-in-instructions/I02.png
 [I03]: media/azure-toolkit-for-intellij-sign-in-instructions/I03.png
