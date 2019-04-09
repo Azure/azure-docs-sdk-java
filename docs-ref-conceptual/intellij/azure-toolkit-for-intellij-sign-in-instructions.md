@@ -19,14 +19,14 @@ ms.workload: na
 
 # Sign-in instructions for the Azure Toolkit for IntelliJ
 
-The Azure Toolkit for IntelliJ provides two methods for signing in to your Azure account:
+Once [installed](https://www.jetbrains.com/help/idea/managing-plugins.html), the [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) provides two methods for signing in to your Azure account:
 
   - [Sign in to your Azure account by Device Login](#sign-in-to-your-azure-account-by-device-login)
   - [Sign in to your Azure account by Service Principal](#sign-in-to-your-azure-account-by-service-principal)
 
 [**Sign out**](#sign-out-of-your-azure-account) methods are also provided.
 
-[!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
+[!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-basic-prerequisites.md)]
 
 ## Sign in to your Azure account by Device Login
 
@@ -34,7 +34,7 @@ To sign in Azure by device login, do the following:
 
 1. Open your project with IntelliJ IDEA.
 
-2. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
+2. Open sidebar **Azure Explorer**, and then click the **Azure Sign In** icon in the bar on top (or from IDEA menu **Tools/Azure/Azure Sign in**).
 
    ![The IntelliJ Azure Sign In command][I01]
 
@@ -60,7 +60,7 @@ This section walks you through creating a credentials file that contains your se
 
 1. Open your project with IntelliJ IDEA.
 
-1. Open sidebar **Azure Explorer**, and then click **Azure Sign In** (You may also open sign-in window from menu Tools/Azure/Azure Sign in).
+1. Open sidebar **Azure Explorer**, and then click the **Azure Sign In** icon in the bar on top (or from IDEA menu **Tools/Azure/Azure Sign in**).
    ![The IntelliJ Azure Sign In command][A01]
 
 1. In the **Azure Sign In** window, select **Service Principal**, and then click **New**.
@@ -97,7 +97,7 @@ This section walks you through creating a credentials file that contains your se
 
 After you have configured your account by preceding steps, you will be automatically signed in each time you start IntelliJ IDEA. However, if you want to sign out of your Azure account, do the following.
 
-* In IntelliJ IDEA, open Azure Explorer side bar, click **Azure Sign Out** and confirm.(You may also sign out from menu Tools/Azure/Azure Sign Out)
+* In IntelliJ IDEA, open Azure Explorer side bar, click **Azure Sign Out** icon and confirm (or from IDEA menu **Tools/Azure/Azure Sign Out**).
 
    ![The IntelliJ Azure Sign Out command][L01]
 

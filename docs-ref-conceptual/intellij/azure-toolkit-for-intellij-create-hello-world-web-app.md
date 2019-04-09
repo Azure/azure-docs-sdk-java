@@ -24,6 +24,7 @@ Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/pl
 
 Table of Contents:
   - [Prerequisites](#prerequisites)
+  - [Installation and Sign in](#installation-and-sign-in)
   - [Creating web app project](#creating-web-app-project)
   - [Deploying web app to Azure](#deploying-web-app-to-azure)
   - [Managing deploy configurations](#managing-deploy-configurations)
@@ -36,8 +37,33 @@ Table of Contents:
 > If you prefer using Eclipse, check out our [similar tutorial for Eclipse][eclipse-hello-world].
 >
 
-[!INCLUDE [azure-toolkit-for-intellij-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
+[!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
 
+## Installation and Sign in
+
+1. In IntelliJ IDEA's Settings/Preferences dialog (Ctrl+Alt+S), select **Plugins**. Then, find the **Azure Toolkit for IntelliJ plugin** in the **Marketplace** and click **Install**. After installed, click **Restart** to activate the plugin. 
+
+   ![Azure Toolkit for IntelliJ plugin in Marketplace][marketplace]
+
+2. To sign in to your Azure account, open sidebar **Azure Explorer**, and then click the **Azure Sign In** icon in the bar on top (or from IDEA menu **Tools/Azure/Azure Sign in**).
+
+   ![The IntelliJ Azure Sign In command][I01]
+
+3. In the **Azure Sign In** window, select **Device Login**, and then click **Sign in** ([other sign in options](azure-toolkit-for-intellij-sign-in-instructions.md)).
+
+   ![The Azure Sign In window with device login selected][I02]
+
+4. Click **Copy&Open** in **Azure Device Login** dialog .
+
+   ![The Azure Login Dialog window][I03]
+
+5. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
+
+   ![The device login browser][I04]
+
+6. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
+
+   ![The Select Subscriptions dialog box][I05]
 
 ## Creating web app project
 
@@ -147,3 +173,8 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [browse-web-app]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/browse-web-app.png
 [edit-configuration-menu]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-menu.png
 [edit-configuration-dialog]: ./media/azure-toolkit-for-intellij-create-hello-world-web-app/edit-configuration-dialog.png
+[I01]: media/azure-toolkit-for-intellij-sign-in-instructions/I01.png
+[I02]: media/azure-toolkit-for-intellij-sign-in-instructions/I02.png
+[I03]: media/azure-toolkit-for-intellij-sign-in-instructions/I03.png
+[I04]: media/azure-toolkit-for-intellij-sign-in-instructions/I04.png
+[I05]: media/azure-toolkit-for-intellij-sign-in-instructions/I05.png
