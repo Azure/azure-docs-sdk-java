@@ -37,7 +37,7 @@ Table of Contents:
 > If you prefer using Eclipse, check out our [similar tutorial for Eclipse][eclipse-hello-world].
 >
 
-[!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
+[!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-basic-prerequisites.md)]
 
 ## Installation and Sign in
 
