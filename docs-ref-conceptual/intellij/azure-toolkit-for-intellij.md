@@ -18,6 +18,7 @@ ms.workload: na
 ---
 
 # Azure Toolkit for IntelliJ
+
 The Azure Toolkit for IntelliJ provides templates and functionality that you can use to easily create, develop, test, and deploy Azure applications by using the IntelliJ integrated development environment (IDE).
 
 > [!NOTE]
@@ -25,7 +26,7 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 > There is also an Azure Toolkit for the Eclipse IDE. For more information, see [Azure Toolkit for Eclipse](../eclipse/azure-toolkit-for-eclipse.md).
 > 
 
-## Get started with the Azure Toolkit for IntelliJ
+## Get started in 10 minutes
 
 * [Create a Hello World web app for Azure in IntelliJ](azure-toolkit-for-intellij-create-hello-world-web-app.md)
 
