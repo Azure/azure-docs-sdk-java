@@ -7,7 +7,7 @@ ms.reviewer: jasonh
 ms.service: hdinsight
 ms.topic: reference
 ms.devlang: java
-ms.date: 11/21/2018
+ms.date: 04/10/2019
 ---
 
 # HDInsight SDK for Java
