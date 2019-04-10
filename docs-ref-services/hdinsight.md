@@ -1,6 +1,6 @@
 ---
-title: Azure HDInsight Java SDK
-description: Reference for Azure HDInsight Java SDK. The HDInsight Java SDK provides classes and methods that allow you to manage your HDInsight clusters.
+title: Azure HDInsight SDK for Java
+description: Reference for Azure HDInsight SDK for Java. The HDInsight SDK for Java provides classes and methods that allow you to manage your HDInsight clusters.
 author: tylerfox
 ms.author: tyfox
 ms.reviewer: jasonh
@@ -10,11 +10,11 @@ ms.devlang: java
 ms.date: 11/21/2018
 ---
 
-# HDInsight Java Management SDK (Preview)
+# HDInsight SDK for Java
 
 ## Overview
 
-The HDInsight Java SDK provides classes and methods that allow you to manage your HDInsight clusters. It includes operations to create, delete, update, list, resize, execute script actions, monitor, get properties of HDInsight clusters, and more.
+The HDInsight SDK for Java provides classes and methods that allow you to manage your HDInsight clusters. It includes operations to create, delete, update, list, resize, execute script actions, monitor, get properties of HDInsight clusters, and more.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ The HDInsight Java SDK provides classes and methods that allow you to manage you
 
 ## SDK Installation
 
-The HDInsight Java SDK is available through Maven [here](https://mvnrepository.com/artifact/com.microsoft.azure.hdinsight.v2018_06_01_preview/azure-mgmt-hdinsight). Add the following dependency to your pom.xml:
+The HDInsight SDK for Java is available through Maven [here](https://mvnrepository.com/artifact/com.microsoft.azure.hdinsight.v2018_06_01_preview/azure-mgmt-hdinsight). Add the following dependency to your pom.xml:
 
 ```
 <dependency>
@@ -148,6 +148,9 @@ public class Main {
                 .withSubscriptionId(SUBSCRIPTION_ID);
 ```
 
+#### Samples
+
+Code samples for creating several common types of HDInsight clusters are also available: [HDInsight Java Samples](https://github.com/Azure-Samples/hdinsight-java-sdk-samples).
 
 ## Cluster Management
 
