@@ -13,11 +13,13 @@ items:
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.contentType()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.expiryTime()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.generateSASQueryParameters(SharedKeyCredentials)
+  - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.generateSASQueryParameters(UserDelegationKey,String)
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.identifier()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.ipRange()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.permissions()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.protocol()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.ServiceSASSignatureValues()
+  - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.startTime()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.version()
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withBlobName(String)
@@ -32,6 +34,7 @@ items:
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withIpRange(IPRange)
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withPermissions(String)
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withProtocol(SASProtocol)
+  - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId(String)
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withStartTime(OffsetDateTime)
   - com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withVersion(String)
   href: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.yml
@@ -43,11 +46,11 @@ items:
   type: Class
   source:
     remote: &o0
-      path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+      path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
       branch: master
-      repo: https://github.com/Azure/azure-sdk-for-java
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 36
+      repo: https://github.com/Azure/azure-storage-java
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 43
   package: com.microsoft.azure.storage.blob
   summary: "<p>ServiceSASSignatureValues is used to generate a Shared Access Signature (SAS) for an Azure Storage service. Once all the values here are set appropriately, call generateSASQueryParameters to obtain a representation of the SAS which can actually be applied to blob urls. Note: that both this class and <xref uid=\"com.microsoft.azure.storage.blob.SASQueryParameters\" data-throw-if-not-resolved=\"false\">SASQueryParameters</xref> exist because the former is mutable and a logical representation while the latter is immutable and used to generate actual REST requests. </p>\r\n<p>Please see <a href=\"https://docs.microsoft.com/en-us/azure/storage/common/storage-dotnet-shared-access-signature-part-1\">here</a> for more conceptual information on SAS. </p>\r\n<p>Please see <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/constructing-a-service-sas\">here </a> for more details on each value, including which are required.</p>\r\n<p></p>"
   remarks: "## Sample Code \r\n[!code-java[Sample_Code](../azure-storage-java/src/test/java/com/microsoft/azure/storage/Samples.java?name=service_sas \"Sample code for ServiceSASSignatureValues\")] \r\nFor more samples, please see the [Samples file](https://github.com/Azure/azure-storage-java/blob/master/src/test/java/com/microsoft/azure/storage/Samples.java) "
@@ -68,10 +71,10 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 184
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 193
   package: com.microsoft.azure.storage.blob
-  summary: "<p>The name of the container the SAS user may access. </p>"
+  summary: "<p>The name of the blob the SAS user may access. </p>"
   syntax:
     content: public String blobName()
     return:
@@ -89,8 +92,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 218
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 242
   package: com.microsoft.azure.storage.blob
   summary: "<p>The cache-control header for the SAS. </p>"
   syntax:
@@ -110,8 +113,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 169
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 178
   package: com.microsoft.azure.storage.blob
   summary: "<p>The name of the container the SAS user may access. </p>"
   syntax:
@@ -131,8 +134,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 233
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 257
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-disposition header for the SAS. </p>"
   syntax:
@@ -152,8 +155,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 248
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 272
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-encoding header for the SAS. </p>"
   syntax:
@@ -173,8 +176,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 263
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 287
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-language header for the SAS. </p>"
   syntax:
@@ -194,8 +197,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 278
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 302
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-type header for the SAS. </p>"
   syntax:
@@ -215,8 +218,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 122
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 131
   package: com.microsoft.azure.storage.blob
   summary: "<p>The time after which the SAS will no longer work. </p>"
   syntax:
@@ -236,8 +239,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 299
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 323
   package: com.microsoft.azure.storage.blob
   summary: "<p>Uses an account's shared key credential to sign these signature values to produce the proper SAS query parameters.</p>\r\n<p></p>"
   syntax:
@@ -246,6 +249,40 @@ items:
     - id: sharedKeyCredentials
       type: com.microsoft.azure.storage.blob.SharedKeyCredentials
       description: <p>A <xref uid="com.microsoft.azure.storage.blob.SharedKeyCredentials" data-throw-if-not-resolved="false">SharedKeyCredentials</xref> object used to sign the SAS values.</p>
+    return:
+      type: com.microsoft.azure.storage.blob.SASQueryParameters
+      description: >-
+        <p>
+
+          <xref uid="com.microsoft.azure.storage.blob.SASQueryParameters" data-throw-if-not-resolved="false">SASQueryParameters</xref>
+
+        </p>
+- uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.generateSASQueryParameters(UserDelegationKey,String)
+  id: generateSASQueryParameters(UserDelegationKey,String)
+  parent: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
+  href: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.yml
+  langs:
+  - java
+  name: generateSASQueryParameters(UserDelegationKey delegationKey, String accountName)
+  nameWithType: ServiceSASSignatureValues.generateSASQueryParameters(UserDelegationKey delegationKey, String accountName)
+  fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.generateSASQueryParameters(UserDelegationKey delegationKey, String accountName)
+  overload: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.generateSASQueryParameters*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 357
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>Uses a user delegation key to sign these signature values to produce the proper SAS query parameters.</p>\r\n<p></p>"
+  syntax:
+    content: public SASQueryParameters generateSASQueryParameters(UserDelegationKey delegationKey, String accountName)
+    parameters:
+    - id: delegationKey
+      type: com.microsoft.azure.storage.blob.models.UserDelegationKey
+      description: <p>A <xref uid="" data-throw-if-not-resolved="false">UserDelegationKey</xref> object used to sign the SAS values.</p>
+    - id: accountName
+      type: "26831127"
+      description: <p>Name of the account holding the resource this SAS is authorizing.</p>
     return:
       type: com.microsoft.azure.storage.blob.SASQueryParameters
       description: >-
@@ -267,8 +304,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 201
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 225
   package: com.microsoft.azure.storage.blob
   summary: "<p>The name of the access policy on the container this SAS references if any. Please see <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/establishing-a-stored-access-policy\">here</a> for more information. </p>"
   syntax:
@@ -288,8 +325,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 154
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 163
   package: com.microsoft.azure.storage.blob
   summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.storage.blob.IPRange\" data-throw-if-not-resolved=\"false\">IPRange</xref>\r\n</p>"
   syntax:
@@ -309,8 +346,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 138
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 147
   package: com.microsoft.azure.storage.blob
   summary: "<p>Please refer to either <xref uid=\"com.microsoft.azure.storage.blob.ContainerSASPermission\" data-throw-if-not-resolved=\"false\">ContainerSASPermission</xref> or <xref uid=\"com.microsoft.azure.storage.blob.BlobSASPermission\" data-throw-if-not-resolved=\"false\">BlobSASPermission</xref> depending on the resource being accessed for help constructing the permissions string. </p>"
   syntax:
@@ -330,8 +367,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 92
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 101
   package: com.microsoft.azure.storage.blob
   summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.storage.blob.SASProtocol\" data-throw-if-not-resolved=\"false\">SASProtocol</xref>\r\n</p>"
   syntax:
@@ -351,12 +388,33 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 69
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 78
   package: com.microsoft.azure.storage.blob
   summary: "<p>Creates an object with empty values for all fields. </p>"
   syntax:
     content: public ServiceSASSignatureValues()
+- uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId()
+  id: snapshotId()
+  parent: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
+  href: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.yml
+  langs:
+  - java
+  name: snapshotId()
+  nameWithType: ServiceSASSignatureValues.snapshotId()
+  fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId()
+  overload: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 208
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>The specific snapshot the SAS user may access. </p>"
+  syntax:
+    content: public String snapshotId()
+    return:
+      type: "26831127"
 - uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.startTime()
   id: startTime()
   parent: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
@@ -370,8 +428,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 107
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 116
   package: com.microsoft.azure.storage.blob
   summary: "<p>When the SAS will take effect. </p>"
   syntax:
@@ -391,8 +449,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 76
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 85
   package: com.microsoft.azure.storage.blob
   summary: "<p>The version of the service this SAS will target. If not specified, it will default to the version targeted by the library. </p>"
   syntax:
@@ -412,10 +470,10 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 191
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 200
   package: com.microsoft.azure.storage.blob
-  summary: "<p>The name of the container the SAS user may access. </p>"
+  summary: "<p>The name of the blob the SAS user may access. </p>"
   syntax:
     content: public ServiceSASSignatureValues withBlobName(String blobName)
     parameters:
@@ -436,8 +494,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 225
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 249
   package: com.microsoft.azure.storage.blob
   summary: "<p>The cache-control header for the SAS. </p>"
   syntax:
@@ -460,8 +518,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 176
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 185
   package: com.microsoft.azure.storage.blob
   summary: "<p>The name of the container the SAS user may access. </p>"
   syntax:
@@ -484,8 +542,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 240
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 264
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-disposition header for the SAS. </p>"
   syntax:
@@ -508,8 +566,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 255
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 279
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-encoding header for the SAS. </p>"
   syntax:
@@ -532,8 +590,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 270
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 294
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-language header for the SAS. </p>"
   syntax:
@@ -556,8 +614,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 285
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 309
   package: com.microsoft.azure.storage.blob
   summary: "<p>The content-type header for the SAS. </p>"
   syntax:
@@ -580,8 +638,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 129
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 138
   package: com.microsoft.azure.storage.blob
   summary: "<p>The time after which the SAS will no longer work. </p>"
   syntax:
@@ -604,8 +662,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 210
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 234
   package: com.microsoft.azure.storage.blob
   summary: "<p>The name of the access policy on the container this SAS references if any. Please see <a href=\"https://docs.microsoft.com/en-us/rest/api/storageservices/establishing-a-stored-access-policy\">here</a> for more information. </p>"
   syntax:
@@ -628,8 +686,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 161
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 170
   package: com.microsoft.azure.storage.blob
   summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.storage.blob.IPRange\" data-throw-if-not-resolved=\"false\">IPRange</xref>\r\n</p>"
   syntax:
@@ -652,8 +710,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 146
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 155
   package: com.microsoft.azure.storage.blob
   summary: "<p>Please refer to either <xref uid=\"com.microsoft.azure.storage.blob.ContainerSASPermission\" data-throw-if-not-resolved=\"false\">ContainerSASPermission</xref> or <xref uid=\"com.microsoft.azure.storage.blob.BlobSASPermission\" data-throw-if-not-resolved=\"false\">BlobSASPermission</xref> depending on the resource being accessed for help constructing the permissions string. </p>"
   syntax:
@@ -676,8 +734,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 99
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 108
   package: com.microsoft.azure.storage.blob
   summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.storage.blob.SASProtocol\" data-throw-if-not-resolved=\"false\">SASProtocol</xref>\r\n</p>"
   syntax:
@@ -685,6 +743,30 @@ items:
     parameters:
     - id: protocol
       type: com.microsoft.azure.storage.blob.SASProtocol
+    return:
+      type: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
+- uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId(String)
+  id: withSnapshotId(String)
+  parent: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
+  href: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.yml
+  langs:
+  - java
+  name: withSnapshotId(String snapshotId)
+  nameWithType: ServiceSASSignatureValues.withSnapshotId(String snapshotId)
+  fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId(String snapshotId)
+  overload: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId*
+  type: Method
+  source:
+    remote: *o0
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 215
+  package: com.microsoft.azure.storage.blob
+  summary: "<p>The specific snapshot the SAS user may access. </p>"
+  syntax:
+    content: public ServiceSASSignatureValues withSnapshotId(String snapshotId)
+    parameters:
+    - id: snapshotId
+      type: "26831127"
     return:
       type: com.microsoft.azure.storage.blob.ServiceSASSignatureValues
 - uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withStartTime(OffsetDateTime)
@@ -700,8 +782,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 114
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 123
   package: com.microsoft.azure.storage.blob
   summary: "<p>When the SAS will take effect. </p>"
   syntax:
@@ -724,8 +806,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: storage/data-plane/src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
-    startLine: 84
+    path: src/main/java/com/microsoft/azure/storage/blob/ServiceSASSignatureValues.java
+    startLine: 93
   package: com.microsoft.azure.storage.blob
   summary: "<p>The version of the service this SAS will target. If not specified, it will default to the version targeted by the library. </p>"
   syntax:
@@ -828,6 +910,16 @@ references:
   name: withBlobName
   nameWithType: ServiceSASSignatureValues.withBlobName
   fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withBlobName
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId*
+  name: snapshotId
+  nameWithType: ServiceSASSignatureValues.snapshotId
+  fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.snapshotId
+  package: com.microsoft.azure.storage.blob
+- uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId*
+  name: withSnapshotId
+  nameWithType: ServiceSASSignatureValues.withSnapshotId
+  fullName: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.withSnapshotId
   package: com.microsoft.azure.storage.blob
 - uid: com.microsoft.azure.storage.blob.ServiceSASSignatureValues.identifier*
   name: identifier
@@ -963,3 +1055,13 @@ references:
   summary: "<p>SharedKeyCredentials are a means of signing and authenticating storage requests. The key can be obtained from the Azure portal. This factory will create policies which take care of all the details of creating strings to sign, signing them, and setting the Authentication header. While this is a common way of authenticating with the service, recommended practice is using <xref uid=\"com.microsoft.azure.storage.blob.TokenCredentials\" data-throw-if-not-resolved=\"false\">TokenCredentials</xref>. Pass this as the credentials in the construction of a new <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipeline</xref> via the <xref uid=\"com.microsoft.azure.storage.blob.StorageURL\" data-throw-if-not-resolved=\"false\">StorageURL</xref> type. </p>"
   syntax:
     content: public class SharedKeyCredentials
+- uid: com.microsoft.azure.storage.blob.models.UserDelegationKey
+  parent: com.microsoft.azure.storage.blob.models
+  href: com.microsoft.azure.storage.blob.models.UserDelegationKey.yml
+  name: UserDelegationKey
+  nameWithType: UserDelegationKey
+  fullName: com.microsoft.azure.storage.blob.models.UserDelegationKey
+  type: Class
+  summary: "<p>A user delegation key. </p>"
+  syntax:
+    content: public class UserDelegationKey
