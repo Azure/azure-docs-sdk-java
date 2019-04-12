@@ -148,10 +148,6 @@ public class Main {
                 .withSubscriptionId(SUBSCRIPTION_ID);
 ```
 
-#### Samples
-
-Code samples for creating several common types of HDInsight clusters are also available: [HDInsight Java Samples](https://github.com/Azure-Samples/hdinsight-java-sdk-samples).
-
 ## Cluster Management
 
 > [!NOTE]
@@ -160,6 +156,10 @@ Code samples for creating several common types of HDInsight clusters are also av
 ### Create a Cluster
 
 A new cluster can be created by calling `client.clusters().create()`.
+
+#### Samples
+
+Code samples for creating several common types of HDInsight clusters are available: [HDInsight Java Samples](https://github.com/Azure-Samples/hdinsight-java-sdk-samples).
 
 #### Example
 
