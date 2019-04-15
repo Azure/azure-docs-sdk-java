@@ -7,7 +7,7 @@ manager: douge
 ms.author: brendm # Microsoft employees only
 ms.date: 4/9/2019
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 
 
 ---
@@ -25,7 +25,7 @@ TBD
 
 TBD
 
-## Uninstal the JDK
+## Uninstall the JDK
 
 TBD
 

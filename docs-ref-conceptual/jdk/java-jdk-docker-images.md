@@ -1,20 +1,20 @@
 ---
 # Mandatory fields.
-title: Using Java Flight Recorder and Mission Control on Azure
-description: Provides guidance about using Java Flight Recorder (JFR) and Mission Control on Azure to collect and review app data.
+title: Using Azul Zulu Docker images for Azure Java development
+description: 
 author: bmitchell287
 manager: douge
 ms.author: brendm # Microsoft employees only
 ms.date: 4/9/2019
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 
 ---
 # Docker images for Azure
 
 Pre-built Docker images for Java 7, 8, and 11 are available through [Docker Hub](https://hub.docker.com/_/microsoft-java-se). 
 
-These Zulu OpenJDK Dockerfiles are to be used solely with Java application or Java application components that are being developed for deployment on Microsoft Azure or Azure Stack, and are not intended to be used for any other purpose. 
+These Zulu OpenJDK Dockerfiles are to be used solely with Java applications or application components developed for deployment on Microsoft Azure or Azure Stack, and are not intended to be used for any other purpose. 
 
 ## Running a Docker image
 
