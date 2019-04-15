@@ -7,7 +7,7 @@ manager: douge
 ms.author: brendm 
 ms.date: 4/9/2019
 ms.devlang: java
-ms.topic: article
+ms.topic: conceptual
 
 ---
 # Using Java Flight Recorder (JFR) and Mission Control on Azure
