@@ -8,7 +8,6 @@ ms.author: brendm # Microsoft employees only
 ms.date: 4/9/2019
 ms.devlang: java
 ms.topic: conceptual
-
 ---
 # Docker images for Azure
 
