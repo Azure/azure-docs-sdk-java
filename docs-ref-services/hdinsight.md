@@ -41,7 +41,7 @@ You will also need to add the following dependencies to your pom.xml:
   <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-client-authentication</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.5</version>
   </dependency>
   ```
 
@@ -50,7 +50,7 @@ You will also need to add the following dependencies to your pom.xml:
   <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-arm-client-runtime</artifactId>
-    <version>1.6.2</version>
+    <version>1.6.5</version>
   </dependency>
   ```
 
