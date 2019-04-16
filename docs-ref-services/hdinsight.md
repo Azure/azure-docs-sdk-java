@@ -30,7 +30,7 @@ The HDInsight SDK for Java is available through Maven [here](https://mvnreposito
 <dependency>
     <groupId>com.microsoft.azure.hdinsight.v2018_06_01_preview</groupId>
     <artifactId>azure-mgmt-hdinsight</artifactId>
-    <version>1.0.0-beta-1</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
