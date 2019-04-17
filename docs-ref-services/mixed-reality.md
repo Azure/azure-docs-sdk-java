@@ -30,8 +30,8 @@ Manage Azure Mixed Reality Resource using the client library.
 
 ```XML
 <dependency>
-	<groupId>com.microsoft.azure.mixedreality.v2019_02_28_preview</groupId>
-	<artifactId>azure-arm-parent</artifactId>
+	<groupId>com.microsoft.azure</groupId>
+	<artifactId>azure-mgmt-mixedreality</artifactId>
 	<version>1.0.0-beta</version>
 </dependency>
 ```
