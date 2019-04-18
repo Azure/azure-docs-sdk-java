@@ -31,7 +31,7 @@ Add telemetry to track events, exceptions, and user metrics in your apps with th
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>applicationinsights-web</artifactId>   
-    <version>1.0.8</version>
+    <version>2.3.1</version>
 </dependency>
 ```   
 
@@ -43,7 +43,7 @@ Create a new metric entry and record a value for it.
     MetricTelemetry sample = new MetricTelemetry();
     sample.setName("metric name");
     sample.setValue(42.3);
-    telemetryClient.TrackMetric(sample);
+    telemetryClient.trackMetric(sample);
 ```
 
 > [!div class="nextstepaction"]
