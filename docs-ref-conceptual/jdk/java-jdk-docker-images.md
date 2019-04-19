@@ -19,17 +19,17 @@ These Zulu OpenJDK Dockerfiles are to be used solely with Java applications or a
 
 Docker images can be run using the syntax `$ docker run mcr.microsoft.com/java/jdk:tag java` as shown in the following example.
 
-```
+```cli
 $ docker run mcr.microsoft.com/java/jdk:8u202-zulu-alpine java -version 
-
 ```
+
 ## Creating a Docker image
 
 You can create an image using Microsoft's official Docker Hub images as shown in the following examples.
 
 ### Create a Docker file
 
-```
+```cli
 FROM mcr.microsoft.com/java/jdk:8u202-zulu-alpine 
   
 RUN echo $' \ 
@@ -57,7 +57,3 @@ $ docker build -t hello-world
 ```
 $ docker run hello-world 
 ```
-
-## Next steps
-
-TBD

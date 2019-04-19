@@ -14,9 +14,9 @@ ms.topic: conceptual
 
 Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft with a  [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
 
-Download JDK distributions now.
+[Download and install JDK distributions now](java-jdk-install.md).
 
-**Long term support (LTS)**
+**Long-term support (LTS)**
 
 - [Java 11](https://www.azul.com/downloads/azure-only/zulu/#java11)
 - [Java 8](https://www.azul.com/downloads/azure-only/zulu/#java8)
@@ -29,7 +29,7 @@ Download JDK distributions now.
 Developers can also use their own Java run-times, including Oracle JDK and Red Hat JDK, to run their apps on Azure and connect to Azure services and features. The production edition of Oracle Java SE continues to be available to Java developers running  workloads in Azure Windows or Linux virtual machines.
 
 ## What is the Zulu OpenJDK for Azure?
-Azul Zulu Enterprise Builds of OpenJDK are a no cost, multi-platform, production ready distribution of the OpenJDK for Azure and Azure Stack backed by Microsoft and Azul Systems. These distributions are:
+Azul Zulu Enterprise builds of OpenJDK are a no-cost, multi-platform, production-ready distribution of the OpenJDK for Azure and Azure Stack backed by Microsoft and Azul Systems. These distributions are:
 
 - 100% open source builds of OpenJDK packaged as Java Development Kits (JDKs), Java Runtime Environments (JREs), and Headless JREs. These binaries are fully compatible and compliant commercial builds of Java Standard Edition (SE) that can be used with Java applications or components on Azure and Azure Stack.
 - Provided with long-term support including bug fixes, performance enhancements, and security patches.
@@ -52,13 +52,12 @@ Azul Systems provides fully-supported [Zulu Enterprise builds of OpenJDK for Mic
 
 |Java SE LTS  |Support until  |
 |---------|----------|
-|Java 7   |July 2023 |
-|Java 8   |March 2025|
-|Java 11  |Sept. 2026|
+|[![Java 7](../media/jdk/java-7.png)](https://www.azul.com/downloads/azure-only/zulu/#java7) |July 2023 |
+|[![Java 8](../media/jdk/java-8.png)](https://www.azul.com/downloads/azure-only/zulu/#java8) |March 2025|
+|[![Java 11](../media/jdk/java-11.png)](https://www.azul.com/downloads/azure-only/zulu/#java11) |Sept. 2026|
+|[![Java 12](../media/jdk/java-12.png)]() |**PREVIEW**|
 
-These JDK releases have quarterly security updates, bug fixes, and critical out-of-band updates and patches as needed.  This support includes back ports of security updates and bug fixes to Java 7 and 8 reported in newer versions of Java such as Java 11, which ensures the continued stability and security of older versions of Java.  Azure customers can get these security updates and platform bug fixes without incurring any unplanned Java SE subscription fees. The dates of support for each version of Java SE are highlighted in the image below.
-
-![JDK support timeline for Azure](../media/azure-jdk-support.png)
+These JDK releases have quarterly security updates, bug fixes, and critical out-of-band updates and patches as needed.  This support includes back ports of security updates and bug fixes to Java 7 and 8 reported in newer versions of Java such as Java 11, which ensures the continued stability and security of older versions of Java.  Azure customers can get these security updates and platform bug fixes without incurring any unplanned Java SE subscription fees. 
 
 Azul Systems maintains a [Java SE roadmap](https://www.azul.com/products/azul_support_roadmap/) for these releases.
 
@@ -106,7 +105,7 @@ The Azul Zulu JDK releases are:
      - [JRE-headless](https://hub.docker.com/_/microsoft-java-jre-headless)
 4. No cost
    - Microsoft provides everything you need to build and scale Java apps on Azure at no cost to you. Through Zulu you'll receive free security updates and platform bug fixes for Java apps without any fees.
-   - Java Flight Recorder and Mission Control are available in Zulu Java 8, 11, and beyond.
+   - [Java Flight Recorder and Mission Control](java-jdk-flight-recorder-and-mission-control.md) are available in Zulu Java 8, 11, and 12 (Preview).
 5. Tech Preview of Non-LTS versions
    - Tech previews provide you with opportunities to progressively test new features as they are delivered in short-term versions that will eventually graduate to Java 17 LTS.
 6. Changes to OpenJDK are up-streamed
@@ -120,21 +119,8 @@ Developers can [download](https://www.azul.com/downloads/azure-only/zulu/) Java 
 
 When developing for Azure or Azure Stack, support for local development with a JDK is available with a [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
 
-## Use in Docker containers
-
-You can build unlimited Docker images using Zulu Enterprise builds of OpenJDK on any distros of your choice. Zulu Docker images based off the Azul Zulu Enterprise for Azure JDKs are available on [Microsoft's public Docker repository](https://hub.docker.com/r/microsoft/java-jdk/). The Dockerfiles used to build these images are available on [Microsoft's Java GitHub repo](https://github.com/Microsoft/java/tree/master/docker).
-
-To containerize your apps using these images,  set a `FROM` statement in your Dockerfile and then configure the container with your application's dependencies. For example, to run a JAR file packaged Java SE application that binds to port 8080:
-
-```Dockerfile
-FROM  microsoft/java-jdk:<tag>
-EXPOSE 8080
-ADD target/hello.jar hello.jar
-ENTRYPOINT ["java", "-jar","/hello.jar"]
-```
-
 For additional guidance see [Docker images for Azure](java-jdk-docker-images.md).
 
 ## Azure service runtime support
 
-Azure platform services such as [App Service](/azure/app-service/containers/), [Functions](/azure/azure-functions/functions-create-first-java-maven), [Service Fabric](/azure/service-fabric/) and [HDInsight](/azure/hdinsight/)  use Zulu Enterprise builds of OpenJDK with built-in auto-patching of minor releases of Java, including security patches and bug fixes.
+Azure platform services such as [App Service](/azure/app-service/containers/), [Functions](/azure/azure-functions/functions-create-first-java-maven), and [HDInsight](/azure/hdinsight/) use Zulu Enterprise builds of OpenJDK with built-in auto-patching of minor releases of Java, including security patches and bug fixes.
