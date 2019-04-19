@@ -57,7 +57,7 @@ Azul Systems provides fully-supported [Zulu Enterprise builds of OpenJDK for Mic
 |[![Java 11](../media/jdk/java-11.png)](https://www.azul.com/downloads/azure-only/zulu/#java11) |Sept. 2026|
 |[![Java 12](../media/jdk/java-12.png)]() |**PREVIEW**|
 
-These JDK releases have quarterly security updates, bug fixes, and critical out-of-band updates and patches as needed.  This support includes back ports of security updates and bug fixes to Java 7 and 8 reported in newer versions of Java such as Java 11, which ensures the continued stability and security of older versions of Java.  Azure customers can get these security updates and platform bug fixes without incurring any unplanned Java SE subscription fees. 
+These JDK releases have quarterly security updates, bug fixes, and critical out-of-band updates and patches as needed.  This support includes back ports of security updates and bug fixes to Java 7 and 8 reported in newer versions of Java such as Java 11, which ensures the continued stability and security of older versions of Java.  Azure customers can get these security updates and platform bug fixes without incurring any unplanned Java SE subscription fees.
 
 Azul Systems maintains a [Java SE roadmap](https://www.azul.com/products/azul_support_roadmap/) for these releases.
 
