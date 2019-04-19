@@ -10,7 +10,7 @@ ms.author: brendm
 ms.topic: conceptual
 ---
 
-# Get Java JDK downloads and support when developing for Azure
+# Java Long-Term Support for Azure and Azure Stack
 
 Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft with a  [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
 
