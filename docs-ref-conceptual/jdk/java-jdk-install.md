@@ -54,6 +54,18 @@ These steps download a ZIP file to your Mac. There is also a DMG version availab
 unzip <name_of_zulu_package>.zip
 ```
 
+## Confirm your installation
+
+To confirm your installation, go to the command-line and run `java -version`.
+
+The output of the command should be:
+
+```cli
+openjdk version "1.8.0_181"
+OpenJDK Runtime Environment (Zulu 8.31.0.2-macosx)-Microsoft-Azure-restricted (build 1.8.0_181-b02)
+OpenJDK 64-Bit Server VM (Zulu 8.31.0.2-macosx)-Microsoft-Azure-restricted (build 25.181-b02, mixed mode)
+```
+
 ## Download and install the Azul Zulu JDKs from a Yum repository
 
 The Azul Zulu JDKs are provided in a [Yum repository](https://docs.azul.com/zulu/zuludocs/#ZuluUserGuide/PrepareZuluPlatform/AttachYumRepositoryRHEL-SLES-OracleLinuxSys.htm) by Azul.
