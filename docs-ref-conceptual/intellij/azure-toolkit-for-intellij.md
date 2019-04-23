@@ -28,7 +28,7 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 
 ## Get started in 10 minutes
 
-* [Create a Hello World web app for Azure in IntelliJ](azure-toolkit-for-intellij-create-hello-world-web-app.md)
+* [Create a Hello World web app for Azure App Service](azure-toolkit-for-intellij-create-hello-world-web-app.md)
 
 ## Step-by-Step Tutorials
 

@@ -18,9 +18,9 @@ ms.topic: article
 ms.workload: web
 ---
 
-# Create a Hello World web app for Azure using IntelliJ
+# Create a Hello World web app for Azure App Service using IntelliJ
 
-Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) plugin, create and deploy a basic Hello World application to Azure as a web app can be done in a few minutes.
+Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) plugin, create and deploy a basic Hello World application to Azure App Service as a web app can be done in a few minutes.
 
 Table of Contents:
   - [Prerequisites](#prerequisites)
