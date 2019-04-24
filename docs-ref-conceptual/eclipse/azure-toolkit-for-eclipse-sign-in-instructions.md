@@ -17,110 +17,80 @@ ms.topic: article
 ms.workload: na
 ---
 
-# Azure Sign In Instructions for the Azure Toolkit for Eclipse
+# Sign-in instructions for the Azure Toolkit for Eclipse
 
 The Azure Toolkit for Eclipse provides two methods for signing into your Azure account:
 
-  * **Automated** - when you are using this method, you will create a credentials file which contains your service principal data, after which you can use the credentials file to automatically sign into your Azure account.
-  * **Interactive** - when you are using this method, you will enter your Azure credentials each time you sign into your Azure account.
+  - [Sign in to your Azure account by Device Login](#sign-in-to-your-azure-account-by-device-login)
+  - [Sign in to your Azure account by Service Principal](#sign-in-to-your-azure-account-by-service-principal)
 
-The steps in the following sections will describe how to use each method.
+[**Sign out**](#sign-out-of-your-azure-account) methods are also provided.
 
 [!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## Signing into your Azure account automatically and creating a credentials file to use in the future
+## Sign in to your Azure account by Device Login
 
-The following steps will walk you through creating a credentials file which contains your service principal data. Once you have completed these steps, Eclipse will automatically use the credentials file to automatically sign you into Azure each time you open your project.
-
-1. Open your project with Eclipse.
-
-1. Click **Tools**, then click **Azure**, and then click **Sign In**.
-
-   ![Eclipse Menu for Azure Sign In][A01]
-
-1. When the **Azure Sign In** dialog box appears, select **Automated**, and then click **New**.
-
-   ![Sign In Dialog Box][A02]
-
-1. When the **Azure Log In** dialog box appears, enter your Azure credentials, and then click **Sign In**.
-
-   ![Azure Log In Dialog Box][A03]
-
-1. When the **Create authentication files** dialog box appears, select the subscriptions that you want to use, choose your destination directory, and then click **Start**.
-
-   ![Azure Log In Dialog Box][A04]
-
-1. The **Service Principal Creatation Status** dialog box will be displayed, and after your files have been created successfully, click **OK**.
-
-   ![Service Principal Creatation Status Dialog Box][A05]
-
-1. When the **Azure Sign In** dialog box appears, click **Sign In**.
-
-   ![Azure Log In Dialog Box][A06]
-
-1. When the **Select Subscriptions** dialog box appears, select the subscriptions that you want to use, and then click **OK**.
-
-   ![Select Subscriptions Dialog Box][A07]
-
-## Signing out of your Azure account when you signed in automatically
-
-After you have configured the steps in the previous section, the Azure Toolkit will automatically sign you into your Azure account each time you restart Eclipse. However, to sign out of your Azure account and prevent the Azure Toolkit from signing you in automatically, use the following steps.
-
-1. In Eclipse, click **Tools**, then click **Azure**, and then click **Sign Out**.
-
-   ![Eclipse Menu for Azure Sign Out][L01]
-
-1. When the **Azure Sign Out** dialog box appears, click **Yes**.
-
-   ![Sign Out Dialog Box][L03]
-
-## Signing into your Azure account automatically using a credentials file which you have already created
-
-If you sign out of Azure when you are using Eclipse, you will need to reconfigure the Azure Toolkit for Eclipse to use a credentials file which have created before you can automatically sign into your Azure acccount. The following steps will walk you through configuring the Azure Toolkit to use an existing credentials file.
+To sign in Azure by device login, do the following:
 
 1. Open your project with Eclipse.
 
-1. Click **Tools**, then click **Azure**, and then click **Sign In**.
-
-   ![Eclipse Menu for Azure Sign In][A01]
-
-1. When the **Azure Sign In** dialog box appears, select **Automated**, and then click **Browse**.
-
-   ![Sign In Dialog Box][A02]
-
-1. When the **Select Authenticated File** dialog box appears, select a credentials file which you created earlier, and then click **Open**.
-
-   ![Sign In Dialog Box][A08]
-
-1. When the **Azure Sign In** dialog box appears, click **Sign In**.
-
-   ![Azure Log In Dialog Box][A06]
-
-1. When the **Select Subscriptions** dialog box appears, select the subscriptions that you want to use, and then click **OK**.
-
-   ![Select Subscriptions Dialog Box][A07]
-
-## Signing into your Azure account interactively
-
-The following steps will illustrate how to sign into Azure by manually entering your Azure credentials.
-
-1. Open your project with Eclipse.
-
-1. Click **Tools**, then click **Azure**, and then click **Sign In**.
-
+2. Click **Tools**, then click **Azure**, and then click **Sign In**.
    ![Eclipse Menu for Azure Sign In][I01]
 
-1. When the **Azure Sign In** dialog box appears, select **Interactive**, and then click **Sign In**.
+3. In the **Azure Sign In** window, select **Device Login**, and then click **Sign in**.
 
-   ![Sign In Dialog Box][I02]
+   ![The Azure Sign In window with device login selected][I02]
 
-1. When the **Azure Log In** dialog box appears, enter your Azure credentials, and then click **Sign In**.
+4. Click **Copy&Open** in **Azure Device Login** dialog .
 
-   ![Azure Log In Dialog Box][I03]
+   ![The Azure Login Dialog window][I03]
 
-1. When the **Select Subscriptions** dialog box appears, select the subscriptions that you want to use, and then click **OK**.
+5. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
 
-   ![Select Subscriptions Dialog Box][I04]
+   ![The device login browser][I04]
+
+6. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
+
+   ![The Select Subscriptions dialog box][I05]
+
+## Sign in to your Azure account by Service Principal
+
+This section walks you through creating a credentials file that contains your service principal data. After you have completed this process, Eclipse uses the credentials file to automatically sign you in to Azure when open your project.
+
+1. Open your project with Eclipse.
+
+2. Click **Tools**, then click **Azure**, and then click **Sign In**.
+   ![The Eclipse Azure Sign In command][A01]
+
+3. In the **Azure Sign In** window, select **Service Principal**, and then click **New**.
+
+   ![The Azure Sign In window with service principal selected][A02]
+
+4. Click **Copy&Open** in **Azure Device Login** dialog .
+
+   ![The Azure Login Dialog window][A08]
+
+5. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
+
+   ![The device login browser][A03]
+
+6. In the **Create Authentication Files** window, select the subscriptions that you want to use, choose your destination directory, and then click **Start**.
+
+   ![The Create Authentication Files window][A04]
+
+7. In the **Service Principal Creation Status** dialog box, click **OK** after your files have been created successfully.
+
+   ![The Service Principal Creation Status dialog box][A05]
+
+8. In the **Azure Sign In** window, click **Sign in**. 
+
+   ![Azure Log In Dialog Box][A06]
+
+9. In the **Select Subscriptions** dialog box, select the subscriptions that you want to use, and then click **OK**.
+
+   ![The Select Subscriptions dialog box][A07]
+
+> Once you created the service principal authentication file, you could start from step 8, choose your authentication file and sign in.
 
 ## Signing out of your Azure account when you signed in interactively
 
@@ -130,7 +100,7 @@ After you have configured the steps in the previous section, you will automatica
 
    ![Eclipse Menu for Azure Sign Out][L01]
 
-1. When the **Azure Sign Out** dialog box appears, click **Yes**.
+2. When the **Azure Sign Out** dialog box appears, click **Yes**.
 
    ![Sign Out Dialog Box][L02]
 
@@ -147,6 +117,7 @@ After you have configured the steps in the previous section, you will automatica
 [I02]: media/azure-toolkit-for-eclipse-sign-in-instructions/I02.png
 [I03]: media/azure-toolkit-for-eclipse-sign-in-instructions/I03.png
 [I04]: media/azure-toolkit-for-eclipse-sign-in-instructions/I04.png
+[I05]: media/azure-toolkit-for-eclipse-sign-in-instructions/I05.png
 
 [A01]: media/azure-toolkit-for-eclipse-sign-in-instructions/A01.png
 [A02]: media/azure-toolkit-for-eclipse-sign-in-instructions/A02.png
