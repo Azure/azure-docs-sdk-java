@@ -92,7 +92,7 @@ This section walks you through creating a credentials file that contains your se
 
 > Once you created the service principal authentication file, you could start from step 8, choose your authentication file and sign in.
 
-## Signing out of your Azure account when you signed in interactively
+## Sign out of your Azure account
 
 After you have configured the steps in the previous section, you will automatically signed out of your Azure account each time you restart Eclipse. However, if you want to sign out of your Azure account without restarting Eclipse, use the following steps.
 
