@@ -2,6 +2,7 @@
 title: Create a Hello World web app for Azure using Eclipse
 description: This tutorial shows you how to use the Azure Toolkit for Eclipse to create a Hello World Web App for Azure.
 services: app-service
+keywords: java, eclipse, web app, azure app service, hello world, quick start
 documentationcenter: java
 author: selvasingh
 manager: routlaw
@@ -17,27 +18,30 @@ ms.topic: article
 ms.workload: web
 ---
 
-# Create a Hello World web app for Azure using Eclipse
+# Create a Hello World web app for Azure App Service using Eclipse
 
-This tutorial shows how to create and deploy a basic Hello World application to Azure as a web app by using the [Azure Toolkit for Eclipse].
+Using open sourced [Azure Toolkit for Eclipse](https://marketplace.eclipse.org/content/azure-toolkit-eclipse) plugin, create and deploy a basic Hello World application to Azure App Service as a web app can be done in a few minutes.
 
 > [!NOTE]
 >
-> For a version of this article that uses the [Azure Toolkit for IntelliJ], see [Create a Hello World web app for Azure using IntelliJ][intellij-hello-world].
+> If you prefer using IntelliJ IDEA, check out our [similar tutorial for IntelliJ][intellij-hello-world].
 >
 
-> [!IMPORTANT]
-> 
-> The Azure Toolkit for Eclipse was updated in August 2017 with a different workflow. This article illustrates creating a Hello World web app by using version 3.0.7 (or later) of the Azure Toolkit for Eclipse. If you are using the version 3.0.6 (or earlier) of the toolkit, you will need to follow the steps in [Create a Hello World web app for Azure in Eclipse using the legacy toolkit][Legacy Version].
-> 
+Table of Contents:
+  - [Prerequisites](#prerequisites)
+  - [Installation and Sign in](#installation-and-sign-in)
+  - [Creating web app project](#creating-web-app-project)
+  - [Deploying web app to Azure](#deploying-web-app-to-azure)
+  - [Display the Azure Explorer view](#display-the-azure-explorer-view)
+  - [Cleaning up resources](#cleaning-up-resources)
+  - [Next steps](#next-steps)
 
-When you have completed this tutorial, your application will look similar to the following illustration when you view it in a web browser:
+[!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-eclipse-basic-prerequisites.md)]
 
-![Preview of Hello World app][browse-web-app]
+## Installation and sign in
 
-[!INCLUDE [azure-toolkit-for-eclipse-prerequisites](../includes/azure-toolkit-for-eclipse-prerequisites.md)]
 
-## Create a new web app project
+## Creating web app project
 
 1. Start Eclipse, and sign into your Azure account by using the instructions in the [Azure Sign In Instructions for the Azure Toolkit for Eclipse][eclipse-sign-in-instructions] article.
 
@@ -71,7 +75,7 @@ When you have completed this tutorial, your application will look similar to the
 
 8. Save index.jsp.
 
-## Deploy your web app to Azure
+## Deploying web app to Azure
 
 1. Within Eclipse's Project Explorer view, right-click your project, choose **Azure**, and then choose **Publish as Azure Web App**.
    
@@ -105,7 +109,11 @@ When you have completed this tutorial, your application will look similar to the
 
    ![Browsing your web app][browse-web-app]
 
-1. After you have published your web to Azure, you can manage your app by right-clicking on it and selecting one of the options on the context menu. For example, you can **Start**, **Stop**, or **Delete** your web app.
+[!INCLUDE [azure-toolkit-for-eclipse-show-azure-explorer](../includes/azure-toolkit-for-eclipse-show-azure-explorer.md)]
+
+## Cleaning up resources
+
+1. After you have published your web app to Azure, you can manage it by right-clicking in Azure Explorer and selecting one of the options in the context menu. For example, you can **Delete** your web app here to clean up the resource for this tutorial.
 
    ![Manage app service][manage-app-service]
 
