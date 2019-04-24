@@ -42,11 +42,11 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 
 ## Managing Azure resources
 
-* [Manage redis caches by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer.md)
+* [Redis caches](azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer.md)
 
-* [Manage storage accounts by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
+* [Storage accounts](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
 
-* [Manage virtual machines by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
+* [Virtual machines](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
 
 ## What's more
 
