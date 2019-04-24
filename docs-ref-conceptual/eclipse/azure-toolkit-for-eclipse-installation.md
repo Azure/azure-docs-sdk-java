@@ -19,7 +19,10 @@ ms.workload: na
 
 # Installing the Azure Toolkit for Eclipse
 
-The Azure Toolkit for Eclipse provides templates and functionality that allow you to easily create, develop, test, and deploy cloud applications to Azure from the Eclipse development environment.
+There are two ways to install Azure Toolkit for Eclipse:
+
+  - [Eclipse marketplace](#eclipse-marketplace)
+  - [Install new software](#install-new-software)
 
 > [!NOTE] 
 > 
@@ -30,7 +33,7 @@ The Azure Toolkit for Eclipse provides templates and functionality that allow yo
 
 [!INCLUDE [azure-toolkit-for-eclipse-basic-prerequisites](../includes/azure-toolkit-for-eclipse-basic-prerequisites.md)]
 
-## Eclipse Marketplace
+## Eclipse marketplace
 
 1. Drag the following button to your running Eclipse workspace.
 

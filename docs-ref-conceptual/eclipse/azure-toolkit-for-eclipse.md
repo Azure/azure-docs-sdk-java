@@ -46,7 +46,7 @@ The Azure Toolkit for Eclipse provides templates and functionality that you can 
 
 * [Storage accounts](azure-toolkit-for-eclipse-managing-storage-accounts-using-azure-explorer.md)
 
-* [MVirtual machines](azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md)
+* [Virtual machines](azure-toolkit-for-eclipse-managing-virtual-machines-using-azure-explorer.md)
 
 ## What's more
 

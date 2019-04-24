@@ -1,5 +1,5 @@
 ---
-title: Create a Hello World web app for Azure using IntelliJ
+title: Create a Hello World web app for Azure App Service using IntelliJ
 description: This tutorial shows you how to use the Azure Toolkit for IntelliJ to create a Hello World Web App for Azure.
 services: app-service
 keywords: java, intellij, web app, azure app service, hello world, quick start
