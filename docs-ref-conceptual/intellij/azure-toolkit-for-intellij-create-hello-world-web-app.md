@@ -24,7 +24,7 @@ Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/pl
 
 Table of Contents:
   - [Prerequisites](#prerequisites)
-  - [Installation and Sign in](#installation-and-sign-in)
+  - [Installation and sign-in](#installation-and-sign-in)
   - [Creating web app project](#creating-web-app-project)
   - [Deploying web app to Azure](#deploying-web-app-to-azure)
   - [Managing deploy configurations](#managing-deploy-configurations)
@@ -39,7 +39,7 @@ Table of Contents:
 
 [!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-basic-prerequisites.md)]
 
-## Installation and Sign in
+## Installation and Sign-in
 
 1. In IntelliJ IDEA's Settings/Preferences dialog (Ctrl+Alt+S), select **Plugins**. Then, find the **Azure Toolkit for IntelliJ** in the **Marketplace** and click **Install**. After installed, click **Restart** to activate the plugin. 
 

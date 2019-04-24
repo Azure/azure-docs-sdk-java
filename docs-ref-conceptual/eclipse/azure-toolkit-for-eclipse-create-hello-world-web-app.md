@@ -29,7 +29,7 @@ Using open sourced [Azure Toolkit for Eclipse](https://marketplace.eclipse.org/c
 
 Table of Contents:
   - [Prerequisites](#prerequisites)
-  - [Installation and Sign in](#installation-and-sign-in)
+  - [Installation and sign-in](#installation-and-sign-in)
   - [Creating web app project](#creating-web-app-project)
   - [Deploying web app to Azure](#deploying-web-app-to-azure)
   - [Display the Azure Explorer view](#display-the-azure-explorer-view)
@@ -38,12 +38,32 @@ Table of Contents:
 
 [!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-eclipse-basic-prerequisites.md)]
 
-## Installation and sign in
+## Installation and sign-in
 
+1. Drag the following button to your running Eclipse workspace to install the Azure Toolkit for Eclipse plugin ([other installation options](azure-toolkit-for-eclipse-installation.md)).
+
+    [![Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client](https://marketplace.eclipse.org/sites/all/themes/solstice/public/images/marketplace/btn-install.png)](http://marketplace.eclipse.org/marketplace-client-intro?mpc_install=1919278 "Drag to your running Eclipse* workspace. *Requires Eclipse Marketplace Client")
+
+1. To sign in to your Azure account, click **Tools**, then click **Azure**, and then click **Sign In**.
+   ![Eclipse Menu for Azure Sign In][I01]
+
+1. In the **Azure Sign In** window, select **Device Login**, and then click **Sign in** ([other sign-in options](azure-toolkit-for-eclipse-sign-in-instructions.md)).
+
+   ![The Azure Sign In window with device login selected][I02]
+
+1. Click **Copy&Open** in **Azure Device Login** dialog .
+
+   ![The Azure Login Dialog window][I03]
+
+1. In the browser, paste your device code (which has been copied when you clicked **Copy&Open** in last step) and then click **Next**.
+
+   ![The device login browser][I04]
+
+1. Finally, in the **Select Subscriptions** dialog box, select the subscriptions that you want to use, then click **OK**.
+
+   ![The Select Subscriptions dialog box][I05]
 
 ## Creating web app project
-
-1. Start Eclipse, and sign into your Azure account by using the instructions in the [Azure Sign In Instructions for the Azure Toolkit for Eclipse][eclipse-sign-in-instructions] article.
 
 1. Click **File**, click **New**, and then click **Dynamic Web Project**. (If you don't see **Dynamic Web Project** listed as an available project after clicking **File** and **New**, then do the following: click **File**, click **New**, click **Project...**, expand **Web**, click **Dynamic Web Project**, and click **Next**.)
 
@@ -134,6 +154,11 @@ For additional information about creating Azure Web Apps, see the [Web Apps Over
 [Legacy Version]: azure-toolkit-for-eclipse-create-hello-world-web-app-legacy-version.md
 
 <!-- IMG List -->
+[I01]: media/azure-toolkit-for-eclipse-sign-in-instructions/I01.png
+[I02]: media/azure-toolkit-for-eclipse-sign-in-instructions/I02.png
+[I03]: media/azure-toolkit-for-eclipse-sign-in-instructions/I03.png
+[I04]: media/azure-toolkit-for-eclipse-sign-in-instructions/I04.png
+[I05]: media/azure-toolkit-for-eclipse-sign-in-instructions/I05.png
 
 [browse-web-app]: ./media/azure-toolkit-for-eclipse-create-hello-world-web-app/browse-web-app.png
 [file-new-dynamic-web-project]: ./media/azure-toolkit-for-eclipse-create-hello-world-web-app/file-new-dynamic-web-project.png
