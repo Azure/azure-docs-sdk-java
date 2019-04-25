@@ -20,7 +20,7 @@ ms.workload: web
 
 # Create a Hello World web app for Azure App Service using Eclipse
 
-Using open sourced [Azure Toolkit for Eclipse](https://marketplace.eclipse.org/content/azure-toolkit-eclipse) plugin, create and deploy a basic Hello World application to Azure App Service as a web app can be done in a few minutes.
+Using open sourced [Azure Toolkit for Eclipse](https://marketplace.eclipse.org/content/azure-toolkit-eclipse) plugin, creating and deploying a basic Hello World application to Azure App Service as a web app can be done in a few minutes.
 
 > [!NOTE]
 >
