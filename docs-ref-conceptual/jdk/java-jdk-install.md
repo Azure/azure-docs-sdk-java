@@ -58,9 +58,12 @@ To confirm your installation, go to the command-line and run `java -version`.
 The output of the command should be:
 
 ```cli
-openjdk version "1.8.0_181"
-OpenJDK Runtime Environment (Zulu 8.31.0.2-macosx)-Microsoft-Azure-restricted (build 1.8.0_181-b02)
-OpenJDK 64-Bit Server VM (Zulu 8.31.0.2-macosx)-Microsoft-Azure-restricted (build 25.181-b02, mixed mode)
+$ java -version
+
+openjdk version "1.8.0_212"
+OpenJDK Runtime Environment (Zulu 8.38.0.13-macosx)-Microsoft-Azure-restricted (build 1.8.0_212-b04)
+OpenJDK 64-Bit Server VM (Zulu 8.38.0.13-macosx)-Microsoft-Azure-restricted (build 25.212-b04, mixed mode)
+
 ```
 
 ## Download and install the Azul Zulu JDKs from a Yum repository
