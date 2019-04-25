@@ -12,9 +12,10 @@ ms.topic: conceptual
 
 # Java Long-Term Support for Azure and Azure Stack
 
-Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft with a  [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
+Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft.
 
-[Download and install JDK distributions now](java-jdk-install.md).
+> [!div class="nextstepaction"]
+> [Download and install JDK distributions](java-jdk-install.md)
 
 **Long-term support (LTS)**
 
@@ -25,8 +26,6 @@ Java developers on Azure and Azure Stack can build and run production Java appli
 **Technical preview**
 
 - [Java 12](https://www.azul.com/downloads/azure-only/zulu/#java12)
-
-Developers can also use their own Java run-times, including Oracle JDK and Red Hat JDK, to run their apps on Azure and connect to Azure services and features. The production edition of Oracle Java SE continues to be available to Java developers running  workloads in Azure Windows or Linux virtual machines.
 
 ## What is the Zulu OpenJDK for Azure?
 Azul Zulu Enterprise builds of OpenJDK are a no-cost, multi-platform, production-ready distribution of the OpenJDK for Azure and Azure Stack backed by Microsoft and Azul Systems. These distributions are:
@@ -80,7 +79,6 @@ The Azul Zulu JDK releases are:
 3. Supported for multi-platform. Zulu supports binaries for multiple platforms and versions, including:
    - Windows Client
      - 10
-     - 10 IoT Core
      - 8.1
      - 8, 7
    - Windows Server
@@ -117,10 +115,4 @@ As always, Java developers can bring their own Java run-times, including Oracle 
 
 Developers can [download](https://www.azul.com/downloads/azure-only/zulu/) Java JDKs for Azure and Azure Stack for use in local devlopment environments. Downloads are available for Windows, Linux, and macOS. Developers working on Linux can also get packages through the [yum](https://www.azul.com/downloads/azure-only/zulu/#yum-repo) and [apt](https://www.azul.com/downloads/azure-only/zulu/#apt-repo) package managers.
 
-When developing for Azure or Azure Stack, support for local development with a JDK is available with a [qualified Azure support plan](https://azure.microsoft.com/support/plans/).
-
 For additional guidance see [Docker images for Azure](java-jdk-docker-images.md).
-
-## Azure service runtime support
-
-Azure platform services such as [App Service](/azure/app-service/containers/), [Functions](/azure/azure-functions/functions-create-first-java-maven), and [HDInsight](/azure/hdinsight/) use Zulu Enterprise builds of OpenJDK with built-in auto-patching of minor releases of Java, including security patches and bug fixes.

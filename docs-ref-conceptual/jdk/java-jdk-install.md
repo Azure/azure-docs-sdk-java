@@ -1,6 +1,6 @@
 ---
 # Mandatory fields.
-title: Install the Azul Zulu JDKs for Azure development
+title: Install the Azul Zulu JDK for Azure and Azure Stack
 description: How to install the Azul Zulu Java Development Kits (JDKs) for Azure development with Windows, Linux, and Mac
 author: erickson-doug
 manager: douge
@@ -10,11 +10,9 @@ ms.devlang: java
 ms.topic: conceptual
 ---
 
-# Install an Azul Zulu JDK for Azure Java development
+# Install the JDK for Azure and Azure Stack
 
-Azul Systems provides Java Development Kits (JDKs) free-of-charge for Azure development. These JDKs are compliant implementations of the Java Standard Edition (Java SE) specification and contain all the components for building and running Java SE applications.
-
-For more detailed guidance on preparing, installing, and managing your Azul Zulu JDKs for Azure development, read [the official Zulu docs](https://docs.azul.com/zulu/zuludocs/index.htm).
+Azul Zulu Enterprise builds of OpenJDK are a no-cost, multi-platform, production-ready distribution of the OpenJDK for Azure and Azure Stack backed by Microsoft and Azul Systems. They contain all the components for building and running Java SE applications.
 
 There are [multiple download package types supported for each client OS](https://www.azul.com/downloads/zulu/). You can also get a virtual machine image from the Azure Marketplace Gallery for the following platforms:
 
@@ -34,7 +32,6 @@ There are [multiple download package types supported for each client OS](https:/
     ```cli
     tar -xzvf <name_of_zulu_package>.tar.gz
     ```
-
 
 ## Download and install the Azul Zulu JDKs for Windows 
 
@@ -160,4 +157,6 @@ sudo apt-get -y purge zulu-8-azure-jdk
 ```
 
 (Change the version number in the command above if you are using versions 11 or 12.)
+
+For more detailed guidance on preparing, installing, and managing your Azul Zulu JDKs for Azure development, read [the official Zulu docs](https://docs.azul.com/zulu/zuludocs/index.htm).
 
