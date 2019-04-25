@@ -12,7 +12,7 @@ ms.date: 11/13/2018
 ms.author: routlaw
 ---
 
-# Azure tools for Java developers
+# Azure tools for Java developers 
 
 ## Supported JDK runtimes
 
