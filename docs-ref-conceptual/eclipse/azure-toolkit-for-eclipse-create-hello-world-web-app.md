@@ -32,7 +32,7 @@ Table of Contents:
   - [Installation and sign-in](#installation-and-sign-in)
   - [Creating web app project](#creating-web-app-project)
   - [Deploying web app to Azure](#deploying-web-app-to-azure)
-  - [Display the Azure Explorer view](#display-the-azure-explorer-view)
+  - [Displaying the Azure Explorer view](#displaying-the-azure-explorer-view)
   - [Cleaning up resources](#cleaning-up-resources)
   - [Next steps](#next-steps)
 
