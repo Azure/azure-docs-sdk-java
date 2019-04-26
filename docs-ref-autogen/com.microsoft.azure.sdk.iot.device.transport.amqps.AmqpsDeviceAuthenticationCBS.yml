@@ -45,6 +45,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.INPUT_NAME_PROPERTY_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.makeDomain(SSLContext)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkFlow(int)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.openLinks(Session)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.operationLinksOpened()
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.protonMessageToIoTHubMessage(MessageImpl)
@@ -56,7 +57,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.senderLinkAddress
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.senderLinkEndpointPath
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.senderLinkTag
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryTag(MessageType,byte [],int,int,byte [])
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.TO_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.USER_ID_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.VERSION_IDENTIFIER_KEY
@@ -74,7 +75,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 59
+    startLine: 57
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>This constructor creates an instance of AmqpsDeviceAuthenticationCBS class and initializes member variables</p>\r\n<p></p>"
   syntax:
@@ -100,7 +101,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 240
+    startLine: 189
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Start CBS authentication process by creating an adding authentication message to the send queue</p>\r\n<p></p>"
   syntax:
@@ -128,7 +129,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 167
+    startLine: 116
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Verify if the given message is a 200OK for authentication.</p>\r\n<p></p>"
   syntax:
@@ -157,7 +158,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 145
+    startLine: 94
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Get the message from Proton if the link name matches. Set the message type to CBS authentication if the message is not null.</p>\r\n<p></p>"
   syntax:
@@ -188,7 +189,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 260
+    startLine: 229
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Search for a link using the given link name.</p>\r\n<p></p>"
   syntax:
@@ -252,7 +253,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthenticationCBS.java
-    startLine: 209
+    startLine: 158
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Create domain from the SSLContext, set the sasl mechanism to ANONYMUS and set domain on the transport</p>\r\n<p></p>"
   syntax:
@@ -475,6 +476,18 @@ references:
     return:
       type: c10077e5
       description: <p>the created Ssl domain </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkFlow(int)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
+  name: onLinkFlow(int linkCredit)
+  nameWithType: AmqpsDeviceOperations.onLinkFlow(int linkCredit)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkFlow(int linkCredit)
+  type: Method
+  syntax:
+    content: public void onLinkFlow(int linkCredit)
+    parameters:
+    - id: linkCredit
+      type: f75371fa
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.openLinks(Session)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -609,16 +622,16 @@ references:
     content: protected String senderLinkTag
     return:
       type: "26831127"
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryHash(MessageType,byte [],int,int,byte [])
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryTag(MessageType,byte [],int,int,byte [])
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
-  name: sendMessageAndGetDeliveryHash(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
-  nameWithType: AmqpsDeviceOperations.sendMessageAndGetDeliveryHash(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryHash(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
+  name: sendMessageAndGetDeliveryTag(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
+  nameWithType: AmqpsDeviceOperations.sendMessageAndGetDeliveryTag(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.sendMessageAndGetDeliveryTag(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
   type: Method
   summary: "<p>Sends the given message and returns with the delivery hash </p>"
   syntax:
-    content: protected synchronized AmqpsSendReturnValue sendMessageAndGetDeliveryHash(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
+    content: protected synchronized AmqpsSendReturnValue sendMessageAndGetDeliveryTag(MessageType messageType, byte[] msgData, int offset, int length, byte[] deliveryTag)
     parameters:
     - id: messageType
       type: com.microsoft.azure.sdk.iot.device.MessageType
@@ -699,15 +712,6 @@ references:
   type: Class
   syntax:
     content: public class CustomLogger
-- uid: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
-  parent: com.microsoft.azure.sdk.iot.device.exceptions
-  href: com.microsoft.azure.sdk.iot.device.exceptions.TransportException.yml
-  name: TransportException
-  nameWithType: TransportException
-  fullName: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
-  type: Class
-  syntax:
-    content: public class TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.yml
@@ -718,3 +722,12 @@ references:
   summary: "<p>Extension of the QPID-Proton-J MessageImpl class which implements the Message interface. Adds a Delivery object as a private member variable and adds a new ACK_TYPE enum. Adds the ability to easily acknowledge a single message. </p>"
   syntax:
     content: public class AmqpsMessage
+- uid: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
+  parent: com.microsoft.azure.sdk.iot.device.exceptions
+  href: com.microsoft.azure.sdk.iot.device.exceptions.TransportException.yml
+  name: TransportException
+  nameWithType: TransportException
+  fullName: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
+  type: Class
+  syntax:
+    content: public class TransportException
