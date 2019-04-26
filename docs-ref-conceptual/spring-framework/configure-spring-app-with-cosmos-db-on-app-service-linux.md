@@ -28,70 +28,69 @@ The following prerequisites are required in order to follow the steps in this ar
 
 - In order to deploy a Java Web app to cloud, you need an Azure subscription. If you do not already have an Azure subscription, you can activate your [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/) or sign up for a [free Azure account]((https://azure.microsoft.com/pricing/free-trial/)).
 - [Azure CLI 2.0](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-- [Java 8 JDK](https://www.azul.com/downloads/azure-only/zulu)
+- [Java 8 JDK](https://docs.microsoft.com/java/azure/jdk/java-jdk-install)
 - [Maven 3](http://maven.apache.org/)
 
 ## Clone the Sample Java Web App Repository
 For this exercise you'll be using the Spring Todo app, which is a Java application built using [Spring Boot](https://spring.io/projects/spring-boot), [Spring Data for Cosmos DB](https://docs.microsoft.com/en-us/java/azure/spring-framework/configure-spring-boot-starter-java-app-with-cosmos-db?view=azure-java-stable) and [Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-introduction).
-1. Clone the Spring Todo app from this location:
+1. Clone the Spring Todo app and copy the contents of the **.prep** folder to initialize the project:
 
-```bash
-git clone --recurse-submodules https://github.com/Azure-Samples/e2e-java-experience-in-app-service-linux-part-2.git
-```
+    For bash:
+    ```bash
+    git clone --recurse-submodules https://github.com/Azure-Samples/e2e-java-experience-in-app-service-linux-part-2.git
+    yes | cp -rf .prep/* .
+    ```
+
+    For Windows:
+    ```cmd
+    git clone --recurse-submodules https://github.com/Azure-Samples/e2e-java-experience-in-app-service-linux-part-2.git
+    cd e2e-java-experience-in-app-service-linux-part-2
+    xcopy .prep /f /s /e /y
+    ```
+
 2. Change the directory to the following folder in the cloned repo:
 
-```bash
-cd initial\spring-todo-app
-``` 
-
+   ```bash
+   cd initial\spring-todo-app
+   ``` 
 ## Create an Azure Cosmos DB from Azure CLI
 
 1. Login to your Azure CLI, and set your subscription id.
 
-```bash
-az login
-```
+    ```bash
+    az login
+    ```
 
 2. Set the subscription id if needed.
-```bash
-az account set -s <your-subscription-id>
-```
+    ```bash
+    az account set -s <your-subscription-id>
+    ```
 
 3. Create an Azure resource group, and write down the resource group name for later use.
 
-```bash
-az group create -n <your-azure-group-name> \
+    ```bash
+    az group create -n <your-azure-group-name> \
     -l <your-resource-group-region>
-```
+    ```
 
 4. Create the Cosmos DB and specify the type as GlobalDocumentDB.
 The name of the Cosmos DB must use only lower case letters. Make sure to note the `documentEndpoint` field in the response. You'll need this later.
 
-```bash
-az cosmosdb create --kind GlobalDocumentDB \
-    -g <your-azure-group-name> \
-    -n <your-azure-COSMOS-DB-name-in-lower-case-letters>
-```
+    ```bash
+    az cosmosdb create --kind GlobalDocumentDB \
+        -g <your-azure-group-name> \
+        -n <your-azure-COSMOS-DB-name-in-lower-case-letters>
+     ```
+
 4. Get your Azure Cosmos DB keys, record the `primaryMasterKey` value for later use.
 
-```bash
-az cosmosdb list-keys -g <your-azure-group-name> -n <your-azure-COSMOSDB-name>
-```
+    ```bash
+    az cosmosdb list-keys -g <your-azure-group-name> -n <your-azure-COSMOSDB-name>
+    ```
 
 ## Build and Run the App Locally
 
 1. Within your console of choice configure the environment variables shown in the following code sections with the Azure and Cosmos DB connection information you gathered previously in this article. You'll need to provide a unique name for **WEBAPP_NAME** and value for the **REGION** variables.
-
-For Windows (Command Prompt):
-
-```bash
-set COSMOSDB_URI=<put-your-COSMOS-DB-documentEndpoint-URI-here>
-set COSMOSDB_KEY=<put-your-COSMOS-DB-primaryMasterKey-here>
-set COSMOSDB_DBNAME=<put-your-COSMOS-DB-name-here>
-set RESOURCEGROUP_NAME=<put-your-resource-group-name-here>
-set WEBAPP_NAME=<put-your-Webapp-name-here>
-set REGION=<put-your-REGION-here>
-```
 
 For Linux (Bash):
 
@@ -104,23 +103,32 @@ export WEBAPP_NAME=<put-your-Webapp-name-here>
 export REGION=<put-your-REGION-here>
 ```
 
+For Windows (Command Prompt):
+```cmd
+set COSMOSDB_URI=<put-your-COSMOS-DB-documentEndpoint-URI-here>
+set COSMOSDB_KEY=<put-your-COSMOS-DB-primaryMasterKey-here>
+set COSMOSDB_DBNAME=<put-your-COSMOS-DB-name-here>
+set RESOURCEGROUP_NAME=<put-your-resource-group-name-here>
+set WEBAPP_NAME=<put-your-Webapp-name-here>
+set REGION=<put-your-REGION-here>
+```
+
 > [!NOTE]
 > If you'd like to provision these variables with a script, there is a template for Bash in the .prep directory that you can copy and use as a starting point.
 
-2. Within your local copy of the repo, copy the contents of the **.prep/initial/spring-todo-app** directory to the **initial/spring-todo-app** directory. This should include a pom.xml file and a template you can use if you want to script the environment configuration.
-3. Change the directory to the following:
+2. Change the directory to the following:
 
-```bash
-cd initial/spring-todo-app
-``` 
+    ```bash
+    cd initial/spring-todo-app
+    ``` 
  
-4. Run the Spring Todo app locally with the following command:
+3. Run the Spring Todo app locally with the following command:
 
-```bash
-mvn package spring-boot:run
-```
+    ```bash
+    mvn package spring-boot:run
+    ```
 
-7. Once the application has started,you can validate the deployment by accessing the Spring Todo app here: [http://localhost:8080/](http://localhost:8080/).
+4. Once the application has started,you can validate the deployment by accessing the Spring Todo app here: [http://localhost:8080/](http://localhost:8080/).
 
  ![Spring app running locally][SCDB01]
 
@@ -177,12 +185,11 @@ mvn package spring-boot:run
 
 2. Deploy to Java SE in App Service Linux
 
-```bash
-mvn azure-webapp:deploy
-```
+    ```bash
+    mvn azure-webapp:deploy
+    ```
 
 ```bash
-
 // Deploy
 bash-3.2$ mvn azure-webapp:deploy
 [INFO] Scanning for projects...
@@ -193,7 +200,7 @@ bash-3.2$ mvn azure-webapp:deploy
 [INFO] 
 [INFO] --- azure-webapp-maven-plugin:1.6.0:deploy (default-cli) @ spring-todo-app ---
 [INFO] Authenticate with Azure CLI 2.0
-[INFO] Target Web App doesn't exist. Creating a new one...
+[INFO] Target Web App doesnt exist. Creating a new one...
 [INFO] Creating App Service Plan 'ServicePlan11111111-1111-1111'...
 [INFO] Successfully created App Service Plan.
 [INFO] Successfully created Web App.
@@ -210,9 +217,9 @@ bash-3.2$ mvn azure-webapp:deploy
 
 3. Browse to your web app running on Java SE in App Service Linux:
 
-```bash
-https://<WEBAPP_NAME>.azurewebsites.net
-```
+    ```bash
+    https://<WEBAPP_NAME>.azurewebsites.net
+    ```
 
 ![Spring app running in App Service on Linux][SCDB02]
 
@@ -220,17 +227,17 @@ https://<WEBAPP_NAME>.azurewebsites.net
 
 1. Configure logs for the deployed Java Web app in Azure App Service in Linux:
 
-```bash
-az webapp log config --name ${WEBAPP_NAME} \
- --resource-group ${RESOURCEGROUP_NAME} \
-  --web-server-logging filesystem
-```
+    ```bash
+    az webapp log config --name ${WEBAPP_NAME} \
+     --resource-group ${RESOURCEGROUP_NAME} \
+     --web-server-logging filesystem
+    ```
 2. Open Java Web app remote log stream from a local machine:
 
-```bash
-az webapp log tail --name ${WEBAPP_NAME} \
- --resource-group ${RESOURCEGROUP_NAME}
- ```
+    ```bash
+    az webapp log tail --name ${WEBAPP_NAME} \
+     --resource-group ${RESOURCEGROUP_NAME}
+     ```
 
 ```bash
 bash-3.2$ az webapp log tail --name ${WEBAPP_NAME}  --resource-group ${RESOURCEGROUP_NAME}
@@ -244,7 +251,7 @@ bash-3.2$ az webapp log tail --name ${WEBAPP_NAME}  --resource-group ${RESOURCEG
 2018-10-28T22:44:56.265952508Z A P P   S E R V I C E   O N   L I N U X
 2018-10-28T22:44:56.265956408Z Documentation: http://aka.ms/webapp-linux
 2018-10-28T22:44:56.266260910Z Setup openrc ...
-2018-10-28T22:44:57.396926506Z Service `hwdrivers' needs non existent service `dev'
+2018-10-28T22:44:57.396926506Z Service `hwdrivers needs non existent service dev
 2018-10-28T22:44:57.397294409Z  * Caching service dependencies ... [ ok ]
 2018-10-28T22:44:57.474152273Z Starting ssh service...
 ...
@@ -273,11 +280,11 @@ bash-3.2$ az webapp log tail --name ${WEBAPP_NAME}  --resource-group ${RESOURCEG
 
 1. Scale out Java Web app using Azure CLI:
 
-```bash
-az appservice plan update --number-of-workers 2 \
-   --name ${WEBAPP_PLAN_NAME} \
-   --resource-group ${RESOURCEGROUP_NAME}
-```
+    ```bash
+    az appservice plan update --number-of-workers 2 \
+      --name ${WEBAPP_PLAN_NAME} \
+      --resource-group ${RESOURCEGROUP_NAME}
+    ```
 
 ## Next steps
 
@@ -290,17 +297,7 @@ To learn more about Spring and Azure, continue to the Spring on Azure documentat
 
 ### Additional Resources
 
-For more information about using Azure Cosmos DB and Java, see the following articles:
-
-* [Azure Cosmos DB Documentation].
-
-* [Azure Cosmos DB: Create a document database using Java and the Azure portal][Build a SQL API app with Java]
-
-* [Spring Data for Azure Cosmos DB SQL API]
-
 For more information about using Spring Boot applications on Azure, see the following articles:
-
-* [Spring Boot Document DB Starter for Azure]
 
 * [Deploy a Spring Boot Application to the Azure App Service](deploy-spring-boot-java-web-app-on-azure.md)
 
