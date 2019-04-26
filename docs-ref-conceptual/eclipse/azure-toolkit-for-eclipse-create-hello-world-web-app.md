@@ -26,15 +26,10 @@ Using open sourced [Azure Toolkit for Eclipse](https://marketplace.eclipse.org/c
 >
 > If you prefer using IntelliJ IDEA, check out our [similar tutorial for IntelliJ][intellij-hello-world].
 >
-
-Table of Contents:
-  - [Prerequisites](#prerequisites)
-  - [Installation and sign-in](#installation-and-sign-in)
-  - [Creating web app project](#creating-web-app-project)
-  - [Deploying web app to Azure](#deploying-web-app-to-azure)
-  - [Displaying the Azure Explorer view](#displaying-the-azure-explorer-view)
-  - [Cleaning up resources](#cleaning-up-resources)
-  - [Next steps](#next-steps)
+>[!INCLUDE [quickstarts-free-trial-note](../includes/quickstarts-free-trial-note.md)]
+>
+> Don't forget to clean up the resources after you complete this tutorial. In that case, running this guide will not exceed your free account quota.
+>
 
 [!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-eclipse-basic-prerequisites.md)]
 
