@@ -24,7 +24,7 @@ There are [multiple download package types supported for each client OS](https:/
 
 
 > [!NOTE]
-> These instructions target the 64-bit Java 8 version of the JDK. Azul also provides the Java Run-time Environment (JRE) as a stand-alone installation. The JRE is included with the JDK install.)
+> These instructions target the 64-bit Java 8 version of the JDK. Azul also provides the Java Run-time Environment (JRE) as a stand-alone installation. The JRE is included with the JDK install.
 >
 >  Java 11 packages are also provided on [Azul's Azure downloads page](https://www.azul.com/downloads/azure-only/zulu/).
 
