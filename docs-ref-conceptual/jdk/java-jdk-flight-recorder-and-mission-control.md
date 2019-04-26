@@ -1,6 +1,6 @@
 ---
-title: Java Flight Recorder and Mission Control on Azure
-description: Guidance for using Java Flight Recorder and Mission Control on Azure to collect and review app data.
+title: Java Flight Recorder and Mission Control
+description: Guidance for using Java Flight Recorder and Mission Control to collect and review app data.
 author: bmitchell287
 manager: douge
 ms.author: brendm 
@@ -8,7 +8,7 @@ ms.date: 4/9/2019
 ms.devlang: java
 ms.topic: conceptual
 ---
-# Using Java Flight Recorder (JFR) and Mission Control on Azure
+# Using Java Flight Recorder (JFR) and Mission Control
 
 Zulu Mission Control is a fully-tested build of JDK Mission Control, which was open sourced by Oracle in 2018 and is managed as a project under the OpenJDK umbrella. Coupled with Flight Recorder, Mission Control delivers low-overhead, interactive monitoring and management capabilities for Java workloads.
 
@@ -84,7 +84,7 @@ Follow the steps below to install Zulu Mission Control, connect to a Java Virtua
     1.	Open *zmc.ini* configuration file, located in the same directory as the *zmc.exe*
     2.	Before the line `-vmargs`, add two lines:
         * On the first line, write `–vm`
-        * On the second line, write the path to your JDK installation. (For example, `C:\Program Files\Java\jdk1.6.0_31\bin\javaw.exe`).
+        * On the second line, write the path to your JDK installation. (For example, `C:\Program Files\Java\jdk1.8.0_212\bin\javaw.exe`).
 
 7.	Locate the JVM running your application
     1.	In the upper left pane of the Zulu Mission Control window click on the tab labelled **JVM Browser**.

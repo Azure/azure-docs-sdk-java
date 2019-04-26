@@ -15,7 +15,7 @@ ms.topic: conceptual
 Java developers on Azure and Azure Stack can build and run production Java applications using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu you get free maintenance updates and can create support issues with Microsoft.
 
 > [!div class="nextstepaction"]
-> [Download and install JDK distributions](java-jdk-install.md)
+> [Download and install Java](java-jdk-install.md)
 
 **Long-term support (LTS)**
 
