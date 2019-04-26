@@ -14,29 +14,19 @@ ms.topic: conceptual
 
 Azul Zulu Enterprise builds of OpenJDK are a no-cost, multi-platform, production-ready distribution of the OpenJDK for Azure and Azure Stack backed by Microsoft and Azul Systems. They contain all the components for building and running Java SE applications.
 
-There are [multiple download package types supported for each client OS](https://www.azul.com/downloads/zulu/). You can also get a virtual machine image from the Azure Marketplace Gallery for the following platforms:
+There are [multiple download package types supported for each client OS](https://www.azul.com/downloads/azure-only/zulu/). You can also get a virtual machine image from the Azure Marketplace Gallery for the following platforms:
 
-- [Azul Zulu: Java 8 on Ubuntu 18.04](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu8-ubuntu-1804)
-- [Azul Zulu: Java 8 on Windows Server 2019](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu8-windows-2019)
-
-- [Azul Zulu: Java 11 on Ubuntu 18.04](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu11-ubuntu-1804)
-- [Azul Zulu: Java 11 on Ubuntu 18.04](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu11-windows-2019)
+  * [Azul Zulu: Java 8 on Ubuntu 18.04](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu8-ubuntu-1804)
+  * [Azul Zulu: Java 8 on Windows Server 2019](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu8-windows-2019)
+  
+  * [Azul Zulu: Java 11 on Ubuntu 18.04](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu11-ubuntu-1804)
+  * [Azul Zulu: Java 11 on Windows Server 2019](https://azuremarketplace.microsoft.com/en-us/marketplace/apps/azul.azul-zulu11-windows-2019)
 
 
 > [!NOTE]
 > These instructions target the 64-bit Java 8 version of the JDK. Azul also provides the Java Run-time Environment (JRE) as a stand-alone installation. The JRE is included with the JDK install.
 >
 >  Java 11 packages are also provided on [Azul's Azure downloads page](https://www.azul.com/downloads/azure-only/zulu/).
-
-## Download and install the Azul Zulu JDKs for Alpine Linux
-
-1. [Download the 64-bit Azul Zulu JDK 8 as a TAR file](https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.3/zulu-11-azure-jdk_11.31.11-11.0.3-linux_x64.tar.gz) to a location on your client, such as `/usr/lib/jvm`. (.RPM and .DEB packages are also provided on [Azul's Azure downloads page](https://www.azul.com/downloads/azure-only/zulu/).)
-
-2. Go to your directory and run the following command to unzip and expand the file:
-
-    ```cli
-    tar -xvf <name_of_zulu_package>.tar
-    ```
 
 ## Download and install the Azul Zulu JDKs for Windows 
 
@@ -56,6 +46,16 @@ These steps download a ZIP file to your Mac. There is also a DMG version availab
 unzip <name_of_zulu_package>.zip
 ```
 
+## Download and install the Azul Zulu JDKs for Alpine Linux
+
+1. [Download the 64-bit Azul Zulu JDK 8 as a TAR file](https://repos.azul.com/azure-only/zulu/packages/zulu-11/11.0.3/zulu-11-azure-jdk_11.31.11-11.0.3-linux_x64.tar.gz) to a location on your client, such as `/usr/lib/jvm`. (.RPM and .DEB packages are also provided on [Azul's Azure downloads page](https://www.azul.com/downloads/azure-only/zulu/).)
+
+2. Go to your directory and run the following command to unzip and expand the file:
+
+    ```cli
+    tar -xvf <name_of_zulu_package>.tar
+    ```
+
 ## Confirm your installation
 
 To confirm your installation, go to the command-line and run `java -version`.
@@ -73,7 +73,7 @@ OpenJDK 64-Bit Server VM (Zulu 8.38.0.13-macosx)-Microsoft-Azure-restricted (bui
 
 ## Download and install the Azul Zulu JDKs from a Yum repository
 
-The Azul Zulu JDKs are provided in a [Yum repository](https://docs.azul.com/zulu/zuludocs/#ZuluUserGuide/PrepareZuluPlatform/AttachYumRepositoryRHEL-SLES-OracleLinuxSys.htm) by Azul.
+The Azul Zulu JDKs are provided in a [Yum repository](http://repos.azul.com/azure-only/zulu-azure.repo) by Azul.
 
 **To install the Azul Zulu JDK for Java 8, run the following commands from your CLI:**
 
@@ -119,7 +119,7 @@ sudo yum -y erase zulu-8-azure-jdk
 
 ## Download and install the Azul Zulu JDKs from an apt-get repository
 
-The Azul Zulu JDKs are also provided in an [apt-get repository](https://docs.azul.com/zulu/zuludocs/#ZuluUserGuide/PrepareZuluPlatform/AttachAPTRepositoryUbuntuOrDebianSys.htm) by Azul.
+The Azul Zulu JDKs are also provided in an [apt-get repository](http://repos.azul.com/azure-only/zulu/apt) by Azul.
 
 **To install the Azul Zulu JDK for Java 8 with apt-get, run the following commands from your CLI:**
 
