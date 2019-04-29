@@ -1,6 +1,7 @@
 ---
 title: Deploy a Spring Boot JAR file app to the cloud with Maven and Azure
 description: Learn how to deploy a Spring Boot app to the cloud using the Maven Plugin for Azure Web App for Linux.
+keywords: azure app service, web app, java, linux, maven, spring boot, jar
 services: app-service
 documentationcenter: java
 author: rmcmurray
@@ -167,7 +168,7 @@ When your web has been deployed, you will be able to manage it through the [Azur
 
    ![Determining the URL for your web app][AP02]
 
-Be aware that Azure App Service will map the service port to 80, you can now verify the deployment by accessing your web app with the URL from the Portal. You should see the following message displayed: **Greetings from Spring Boot!** 
+Be aware that Azure App Service will map the service port to `80`, you can now verify the deployment by accessing your web app with the URL from the Portal. You should see the following message displayed: **Greetings from Spring Boot!** 
 
 ## Clean up resources
 
