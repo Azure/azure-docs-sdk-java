@@ -94,28 +94,39 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
 
    ```xml
    <plugin>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.4.0</version>
-    <configuration>
-      <deploymentType>jar</deploymentType>
-
-      <!-- configure app to run on port 80, required by App Service -->
-      <appSettings>
-        <property> 
-          <name>JAVA_OPTS</name> 
-          <value>-Dserver.port=80</value> 
-        </property> 
-      </appSettings>
-
-      <!-- Web App information -->
-      <resourceGroup>${RESOURCEGROUP_NAME}</resourceGroup>
-      <appName>${WEBAPP_NAME}</appName>
-      <region>${REGION}</region>  
-
-      <!-- Java Runtime Stack for Web App on Linux-->
-      <linuxRuntime>jre8</linuxRuntime>
-    </configuration>
+      <groupId>com.microsoft.azure</groupId>
+      <artifactId>azure-webapp-maven-plugin</artifactId>
+      <version>1.6.0</version>
+      <configuration>
+         <schemaVersion>V2</schemaVersion>
+         <subscriptionId>${SUBSCRIPTION_ID}</subscriptionId>
+         <resourceGroup>${RESOURCEGROUP_NAME}</resourceGroup>
+         <appName>${WEBAPP_NAME}</appName>
+         <region>${REGION}</region>
+         <pricingTier>P1V2</pricingTier>
+         <runtime>
+         <os>linux</os>
+         <javaVersion>jre8</javaVersion>
+         <webContainer>jre8</webContainer>
+         </runtime>
+         <appSettings>
+         <!-- Set port forwarding for app service-->
+         <property>
+            <name>PORT</name>
+            <value>8080</value>
+         </property>
+         </appSettings>
+         <deployment>
+         <resources>
+            <resource>
+               <directory>${project.basedir}/target</directory>
+               <includes>
+               <include>*.jar</include>
+               </includes>
+            </resource>
+         </resources>
+         </deployment>
+      </configuration>
    </plugin>
    ```
 
@@ -123,6 +134,7 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
 
 | Placeholder | Description |
 | ----------- | ----------- |
+| `SUBSCRIPTION_ID` | The unique ID of the subscription you want to deploy your app to. Default subscription's ID can be found from the Cloud Shell or CLI using the `az account show` command. For all the available subscriptions, use the `az account list` command.|
 | `RESOURCEGROUP_NAME` | Name for the new resource group in which to create your web app. By putting all the resources for an app in a group, you can manage them together. For example, deleting the resource group would delete all resources associated with the app. Update this value with a unique new resource group name, for example, *TestResources*. You will use this resource group name to clean up all Azure resources in a later section. |
 | `WEBAPP_NAME` | The app name will be part the host name for the web app when deployed to Azure (WEBAPP_NAME.azurewebsites.net). Update this value with a unique name for the new Azure web app, which will host your Java app, for example *contoso*. |
 | `REGION` | An Azure region where the web app is hosted, for example `westus2`. You can get a list of regions from the Cloud Shell or CLI using the `az account list-locations` command. |
@@ -156,6 +168,16 @@ When your web has been deployed, you will be able to manage it through the [Azur
    ![Determining the URL for your web app][AP02]
 
 Verify that the deployment was successful by using the same cURL command as before, using your web app URL from the Portal instead of `localhost`. You should see the following message displayed: **Greetings from Spring Boot!** 
+
+## Clean up resources
+
+In the preceding steps, you created Azure resources in a resource group. If you don't expect to need these resources in the future, delete the resource group by running the following command in the Cloud Shell:
+
+```azurecli-interactive
+az group delete --name myResourceGroup
+```
+
+This command may take a minute to run.
 
 ## Next steps
 
