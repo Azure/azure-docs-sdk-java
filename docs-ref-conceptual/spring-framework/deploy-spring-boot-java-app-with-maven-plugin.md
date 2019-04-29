@@ -167,7 +167,7 @@ When your web has been deployed, you will be able to manage it through the [Azur
 
    ![Determining the URL for your web app][AP02]
 
-Verify that the deployment was successful by using the same cURL command as before, using your web app URL from the Portal instead of `localhost`. You should see the following message displayed: **Greetings from Spring Boot!** 
+Be aware that Azure App Service will map the service port to 80, you can now verify the deployment by accessing your web app with the URL from the Portal. You should see the following message displayed: **Greetings from Spring Boot!** 
 
 ## Clean up resources
 
