@@ -108,7 +108,6 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
          <runtime>
          <os>linux</os>
          <javaVersion>jre8</javaVersion>
-         <webContainer>jre8</webContainer>
          </runtime>
          <appSettings>
          <!-- Set port forwarding for app service-->
@@ -122,7 +121,7 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
             <resource>
                <directory>${project.basedir}/target</directory>
                <includes>
-               <include>*.jar</include>
+               <include>${project.build.finalName}.jar</include>
                </includes>
             </resource>
          </resources>
