@@ -13,7 +13,7 @@ ms.devlang: java
 ms.service: dns
 ---
 
-# Azure Traffic Manager libraries for Java
+# Azure DNS libraries for Java
 
 ## Overview
 
@@ -31,7 +31,7 @@ Create DNS zones and add records to zones with the management API.
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-mgmt-dns</artifactId>
-    <version>1.3.0</version>
+    <version>1.22.0</version>
 </dependency>
 ```   
 
