@@ -28,9 +28,9 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 
 ## Get started in 10 minutes
 
-* [Create a Hello World web app for Azure in IntelliJ](azure-toolkit-for-intellij-create-hello-world-web-app.md)
+* [Create a Hello World web app for Azure App Service](azure-toolkit-for-intellij-create-hello-world-web-app.md)
 
-## Step-by-Step Tutorials
+## Step-by-Step tutorials
 
 * [Run a Hello World web app in a Linux container by using the Azure Toolkit for IntelliJ](azure-toolkit-for-intellij-hello-world-web-app-linux.md)
 
@@ -42,37 +42,16 @@ The Azure Toolkit for IntelliJ provides templates and functionality that you can
 
 ## Managing Azure resources
 
-* [Manage redis caches by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer.md)
+* [Redis caches](azure-toolkit-for-intellij-managing-redis-caches-using-azure-explorer.md)
 
-* [Manage storage accounts by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
+* [Storage accounts](azure-toolkit-for-intellij-managing-virtual-machines-using-azure-explorer.md)
 
-* [Manage virtual machines by using the Azure Explorer for IntelliJ](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
+* [Virtual machines](azure-toolkit-for-intellij-managing-storage-accounts-using-azure-explorer.md)
 
 ## What's more
 
-For more information about the Azure Toolkit for IntelliJ, see:
-
-* [Azure Toolkit Release Notes](https://github.com/Microsoft/azure-tools-for-java/releases)
-
-* [Azure Toolkit for IntelliJ in the JetBrains Plugins Repository](https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij)
-
-For more information about using Java with Azure, see:
-
-* [Azure for Java Developers](https://docs.microsoft.com/java/azure/)
-
-* [Java Tools for Visual Studio Team Services](/azure/devops/java/).
-
+[!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)]
 > [!NOTE]
 > 
 > The Azure Toolkit for IntelliJ is an open-source project whose source code is available under the [MIT license from the project's site](https://github.com/microsoft/azure-tools-for-java).
 > 
-
-<!-- [!INCLUDE [azure-toolkit-for-intellij-additional-resources](../includes/azure-toolkit-for-intellij-additional-resources.md)] -->
-
-<!-- URL List -->
-
-[Azure for Java Developers]: https://docs.microsoft.com/java/azure/
-
-<!-- Temporarily Deprecated URLs -->
-
-<!-- [Debug a Java Web App on Azure in IntelliJ]: ./app-service-web/app-service-web-debug-java-web-app-in-intellij.md -->
