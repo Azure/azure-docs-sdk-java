@@ -109,13 +109,6 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
          <os>linux</os>
          <javaVersion>jre8</javaVersion>
          </runtime>
-         <appSettings>
-         <!-- Set port forwarding for app service-->
-         <property>
-            <name>PORT</name>
-            <value>8080</value>
-         </property>
-         </appSettings>
          <deployment>
          <resources>
             <resource>
