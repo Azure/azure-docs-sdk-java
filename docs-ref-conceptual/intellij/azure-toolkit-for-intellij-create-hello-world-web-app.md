@@ -1,5 +1,5 @@
 ---
-title: Create a Hello World web app for Azure using IntelliJ
+title: Create a Hello World web app for Azure App Service using IntelliJ
 description: This tutorial shows you how to use the Azure Toolkit for IntelliJ to create a Hello World Web App for Azure.
 services: app-service
 keywords: java, intellij, web app, azure app service, hello world, quick start
@@ -18,28 +18,22 @@ ms.topic: article
 ms.workload: web
 ---
 
-# Create a Hello World web app for Azure using IntelliJ
+# Create a Hello World web app for Azure App Service using IntelliJ
 
-Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) plugin, create and deploy a basic Hello World application to Azure as a web app can be done in a few minutes.
-
-Table of Contents:
-  - [Prerequisites](#prerequisites)
-  - [Installation and Sign in](#installation-and-sign-in)
-  - [Creating web app project](#creating-web-app-project)
-  - [Deploying web app to Azure](#deploying-web-app-to-azure)
-  - [Managing deploy configurations](#managing-deploy-configurations)
-  - [Cleaning up resources](#cleaning-up-resources)
-  - [Next steps](#next-steps)
-
+Using open sourced [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) plugin, creating and deploying a basic Hello World application to Azure App Service as a web app can be done in a few minutes.
 
 > [!NOTE]
 >
 > If you prefer using Eclipse, check out our [similar tutorial for Eclipse][eclipse-hello-world].
 >
+>[!INCLUDE [quickstarts-free-trial-note](../includes/quickstarts-free-trial-note.md)]
+>
+> Don't forget to clean up the resources after you complete this tutorial. In that case, running this guide will not exceed your free account quota.
+>
 
 [!INCLUDE [azure-toolkit-for-intellij-basic-prerequisites](../includes/azure-toolkit-for-intellij-basic-prerequisites.md)]
 
-## Installation and Sign in
+## Installation and Sign-in
 
 1. In IntelliJ IDEA's Settings/Preferences dialog (Ctrl+Alt+S), select **Plugins**. Then, find the **Azure Toolkit for IntelliJ** in the **Marketplace** and click **Install**. After installed, click **Restart** to activate the plugin. 
 
