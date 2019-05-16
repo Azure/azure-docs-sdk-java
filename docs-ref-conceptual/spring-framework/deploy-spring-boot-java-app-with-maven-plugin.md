@@ -122,6 +122,10 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
       </configuration>
    </plugin>
    ```
+> [!NOTE]
+>
+> There is an environment variable named `PORT` that will indicate which port should be used by the app, which by default is 8080 or 80. If your web app uses other port, please declare it by adding a property named `PORT` to `AppSettings` and set the value to the port you use.
+>
 
 3. Update the following placeholders in the plugin configuration:
 
