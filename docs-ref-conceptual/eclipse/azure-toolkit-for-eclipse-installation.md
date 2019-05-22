@@ -48,13 +48,13 @@ There are two ways to install Azure Toolkit for Eclipse:
 1. Start Eclipse.
 
 1. Click the **Help** menu, and then click **Install New Software**, as shown in the following illustration.
-   
+
    ![Installing the Azure Toolkit for Eclipse][01]
 
 1. In the **Available Software** dialog, within the **Work with** text box, type `http://dl.microsoft.com/eclipse/` followed by the **Enter** key.
 
 1. In the **Name** pane, check **Azure Toolkit for Java**, and uncheck **Contact all update sites during install to find required software**. Your screen should appear similar to the following:
-   
+
    ![Installing the Azure Toolkit for Eclipse][02]
 
 1. If you expand **Azure Toolkit for Eclipse**, you will see a list of components that will be installed; for example:
@@ -72,19 +72,19 @@ There are two ways to install Azure Toolkit for Eclipse:
 1. Click **Next**. (If you experience unusual delays when installing the toolkit, ensure that **Contact all update sites during install to find required software** is unchecked.)
 
 1. In the **Install Details** dialog, click **Next**.
-   
+
    ![Review Installation Details][03]
 
 1. In the **Review Licenses** dialog, review the terms of the license agreements. If you accept the terms of the license agreements, click **I accept the terms of the license agreements** and then click **Finish**. (The remaining steps assume you do accept the terms of the license agreements. If you do not accept the terms of the license agreements, exit the installation process.)
-   
+
    ![Review Licenses][04]
-   
+
    Eclipse will download and install the requisite packages.
-   
+
    ![Installation Progress][05]
 
 1. If prompted to restart Eclipse to complete installation, click **Yes**.
-   
+
    ![Restart Prompt][06]
 
 ## Next steps
