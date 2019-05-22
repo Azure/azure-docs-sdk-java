@@ -118,7 +118,7 @@ The following steps walk you through building a Spring Boot web application and 
    ```xml
    <properties>
       <docker.image.prefix>wingtiptoysregistry.azurecr.io</docker.image.prefix>
-      <jib-maven-plugin.version>1.0.2</jib-maven-plugin.version>
+      <jib-maven-plugin.version>1.2.0</jib-maven-plugin.version>
       <java.version>1.8</java.version>
    </properties>
    ```
@@ -131,10 +131,10 @@ The following steps walk you through building a Spring Boot web application and 
      <groupId>com.google.cloud.tools</groupId>
      <version>${jib-maven-plugin.version}</version>
      <configuration>
-        <from>				
+        <from>
             <image>openjdk:8-jre-alpine</image>
         </from>
-        <to>				
+        <to>
             <image>${docker.image.prefix}/${project.artifactId}</image>
         </to>
      </configuration>
@@ -143,9 +143,14 @@ The following steps walk you through building a Spring Boot web application and 
 
 1. Navigate to the completed project directory for your Spring Boot application and run the following command to build the image and push the image to the registry:
 
-   ```
+   ```cmd
    mvn compile jib:build
    ```
+
+> [!NOTE]
+>
+> Due to the security concern of Azure Cli and Azure Container Registry, the credential created by `az acr login` is valid for 1 hour, if you meet *401 Unauthorized* error, you can run the `az acr login -n <your registry name>` command again to reauthenticate.
+>
 
 ## Create a Kubernetes Cluster on AKS using the Azure CLI
 
