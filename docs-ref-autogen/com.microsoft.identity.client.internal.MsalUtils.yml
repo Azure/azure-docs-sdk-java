@@ -9,7 +9,6 @@ items:
   - com.microsoft.identity.client.internal.MsalUtils.calculateExpiresOn(final String)
   - com.microsoft.identity.client.internal.MsalUtils.CHROME_PACKAGE
   - com.microsoft.identity.client.internal.MsalUtils.convertArrayToSet(final String [])
-  - com.microsoft.identity.client.internal.MsalUtils.convertSetToString(final Set<String>,final String)
   - com.microsoft.identity.client.internal.MsalUtils.createHash(String)
   - com.microsoft.identity.client.internal.MsalUtils.decodeUrlToMap(final String,final String)
   - com.microsoft.identity.client.internal.MsalUtils.DEFAULT_EXPIRATION_TIME_SEC
@@ -18,6 +17,7 @@ items:
   - com.microsoft.identity.client.internal.MsalUtils.getApplicationInfo(final Context)
   - com.microsoft.identity.client.internal.MsalUtils.getChromePackage(final Context)
   - com.microsoft.identity.client.internal.MsalUtils.getChromePackageWithCustomTabSupport(final Context)
+  - com.microsoft.identity.client.internal.MsalUtils.getExpiresOn(long)
   - com.microsoft.identity.client.internal.MsalUtils.getExpiryOrDefault(String)
   - com.microsoft.identity.client.internal.MsalUtils.getScopesAsSet(final String)
   - com.microsoft.identity.client.internal.MsalUtils.getUniqueUserIdentifier(final String,final String)
@@ -42,7 +42,7 @@ items:
       branch: master
       repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 66
+    startLine: 69
   package: com.microsoft.identity.client.internal
   summary: "<p>Internal Util class for MSAL. </p>"
   syntax:
@@ -63,7 +63,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 359
+    startLine: 353
   package: com.microsoft.identity.client.internal
   summary: "<p>Append parameter to the url. If the no query parameters, return the url originally passed in. </p>"
   syntax:
@@ -89,7 +89,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 385
+    startLine: 379
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static String base64UrlEncodeToString(final String message)
@@ -157,7 +157,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 445
+    startLine: 449
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static Set<String> convertArrayToSet(final String[] values)
@@ -166,35 +166,6 @@ items:
       type: 3e8f7ba4
     return:
       type: df32358c
-- uid: com.microsoft.identity.client.internal.MsalUtils.convertSetToString(final Set<String>,final String)
-  id: convertSetToString(final Set<String>,final String)
-  parent: com.microsoft.identity.client.internal.MsalUtils
-  href: com.microsoft.identity.client.internal.MsalUtils.yml
-  langs:
-  - java
-  name: convertSetToString(final Set<String> inputSet, final String delimiter)
-  nameWithType: MsalUtils.convertSetToString(final Set<String> inputSet, final String delimiter)
-  fullName: com.microsoft.identity.client.internal.MsalUtils.convertSetToString(final Set<String> inputSet, final String delimiter)
-  overload: com.microsoft.identity.client.internal.MsalUtils.convertSetToString*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 339
-  package: com.microsoft.identity.client.internal
-  summary: "<p>Convert the given set of scopes into the string with the provided delimiter.</p>\r\n<p></p>"
-  syntax:
-    content: public static String convertSetToString(final Set<String> inputSet, final String delimiter)
-    parameters:
-    - id: inputSet
-      type: 04c36f7e
-      description: <p>The Set of scopes to convert. </p>
-    - id: delimiter
-      type: 3d93591e
-      description: <p>The delimiter used to construct the scopes in the format of String. </p>
-    return:
-      type: "26831127"
-      description: <p>The converted scopes in the format of String. </p>
 - uid: com.microsoft.identity.client.internal.MsalUtils.createHash(String)
   id: createHash(String)
   parent: com.microsoft.identity.client.internal.MsalUtils
@@ -209,7 +180,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 402
+    startLine: 396
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static String createHash(String msg)
@@ -232,7 +203,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 300
+    startLine: 314
   package: com.microsoft.identity.client.internal
   summary: "<p>Decode the given url, and convert it into map with the given delimiter.</p>\r\n<p></p>"
   syntax:
@@ -260,7 +231,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 75
+    startLine: 78
   package: com.microsoft.identity.client.internal
   summary: "<p>Default access token expiration time in seconds. </p>"
   syntax:
@@ -280,7 +251,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 70
+    startLine: 73
   package: com.microsoft.identity.client.internal
   summary: "<p>The encoding scheme the sdk uses. </p>"
   syntax:
@@ -325,7 +296,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 433
+    startLine: 437
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static ApplicationInfo getApplicationInfo(final Context context)
@@ -348,7 +319,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 272
+    startLine: 282
   package: com.microsoft.identity.client.internal
   summary: "<p>CHROME_PACKAGE array contains all the chrome packages that is currently available on play store, we will only support chrome stable.</p>\r\n<p></p>"
   syntax:
@@ -386,6 +357,29 @@ items:
     return:
       type: "26831127"
       description: <p>The available package name for chrome. Will return null if no chrome package existed on the device. </p>
+- uid: com.microsoft.identity.client.internal.MsalUtils.getExpiresOn(long)
+  id: getExpiresOn(long)
+  parent: com.microsoft.identity.client.internal.MsalUtils
+  href: com.microsoft.identity.client.internal.MsalUtils.yml
+  langs:
+  - java
+  name: getExpiresOn(long expiresIn)
+  nameWithType: MsalUtils.getExpiresOn(long expiresIn)
+  fullName: com.microsoft.identity.client.internal.MsalUtils.getExpiresOn(long expiresIn)
+  overload: com.microsoft.identity.client.internal.MsalUtils.getExpiresOn*
+  type: Method
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
+    startLine: 431
+  package: com.microsoft.identity.client.internal
+  syntax:
+    content: public static long getExpiresOn(long expiresIn)
+    parameters:
+    - id: expiresIn
+      type: 0364520f
+    return:
+      type: 0364520f
 - uid: com.microsoft.identity.client.internal.MsalUtils.getExpiryOrDefault(String)
   id: getExpiryOrDefault(String)
   parent: com.microsoft.identity.client.internal.MsalUtils
@@ -449,7 +443,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 429
+    startLine: 427
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static String getUniqueUserIdentifier(final String uid, final String utid)
@@ -474,7 +468,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 418
+    startLine: 412
   package: com.microsoft.identity.client.internal
   summary: "<p>create url from given endpoint. return null if format is not right.</p>\r\n<p></p>"
   syntax:
@@ -550,7 +544,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/internal/MsalUtils.java
-    startLine: 392
+    startLine: 386
   package: com.microsoft.identity.client.internal
   syntax:
     content: public static boolean isScopeIntersects(final Set<String> scopes, final Set<String> otherScopes)
@@ -754,15 +748,6 @@ references:
   nameWithType: MsalUtils.decodeUrlToMap
   fullName: com.microsoft.identity.client.internal.MsalUtils.decodeUrlToMap
   package: com.microsoft.identity.client.internal
-- uid: 04c36f7e
-  spec.java:
-  - name: final Set<String>
-    fullName: final Set<String>
-- uid: com.microsoft.identity.client.internal.MsalUtils.convertSetToString*
-  name: convertSetToString
-  nameWithType: MsalUtils.convertSetToString
-  fullName: com.microsoft.identity.client.internal.MsalUtils.convertSetToString
-  package: com.microsoft.identity.client.internal
 - uid: 15b3ef59
   spec.java:
   - name: final Map<String, String>
@@ -777,6 +762,10 @@ references:
   nameWithType: MsalUtils.base64UrlEncodeToString
   fullName: com.microsoft.identity.client.internal.MsalUtils.base64UrlEncodeToString
   package: com.microsoft.identity.client.internal
+- uid: 04c36f7e
+  spec.java:
+  - name: final Set<String>
+    fullName: final Set<String>
 - uid: com.microsoft.identity.client.internal.MsalUtils.isScopeIntersects*
   name: isScopeIntersects
   nameWithType: MsalUtils.isScopeIntersects
@@ -800,6 +789,15 @@ references:
   name: getUniqueUserIdentifier
   nameWithType: MsalUtils.getUniqueUserIdentifier
   fullName: com.microsoft.identity.client.internal.MsalUtils.getUniqueUserIdentifier
+  package: com.microsoft.identity.client.internal
+- uid: 0364520f
+  spec.java:
+  - name: long
+    fullName: long
+- uid: com.microsoft.identity.client.internal.MsalUtils.getExpiresOn*
+  name: getExpiresOn
+  nameWithType: MsalUtils.getExpiresOn
+  fullName: com.microsoft.identity.client.internal.MsalUtils.getExpiresOn
   package: com.microsoft.identity.client.internal
 - uid: fc6e2798
   spec.java:
