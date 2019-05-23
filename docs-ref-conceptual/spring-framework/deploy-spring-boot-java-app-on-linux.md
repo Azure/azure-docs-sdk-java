@@ -123,7 +123,7 @@ The following steps walk you through using the Azure portal to create an Azure C
       <docker.image.prefix>wingtiptoysregistry.azurecr.io</docker.image.prefix>
       <java.version>1.8</java.version>
       <username>wingtiptoysregistry</username>
-      <password>AbCdEfGhIjKlMnOpQrStUvWxYz</password>
+      <password>{put your Azure Container Registry access key here}</password>
    </properties>
    ```
 
