@@ -34,7 +34,7 @@ There are two methods of installing the Azure Toolkit for IntelliJ: by using the
 
 The Azure Toolkit for IntelliJ requires to the following software components:
 
-* An [Azure supported Java Development Kit (JDK)](https://aka.ms/azure-jdks)
+* An Java Development Kit (JDK) 8+ installed, for example: [OpenJDK](https://openjdk.java.net/) or [Oracle JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * An [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) Ultimate Edition or Community Edition installed
 
 > [!NOTE]
