@@ -45,6 +45,15 @@ To sign in Azure by device login, do the following:
 
    ![The Azure Login Dialog window][I03]
 
+> [!NOTE]
+>
+> If the browser doesn't open, configure eclipse to use an external browser like IE or Chrome:
+>
+> 1. Open Preferences -> General -> Web Browser -> Use external web browser in Eclipse
+>
+> 2. Select the browser you prefer to use
+>
+
 5. In the browser, paste your device code (which has been copied when you clicked **Copy&Open** in last step) and then click **Next**.
 
    ![The device login browser][I04]
@@ -69,6 +78,15 @@ This section walks you through creating a credentials file that contains your se
 4. Click **Copy&Open** in **Azure Device Login** dialog.
 
    ![The Azure Login Dialog window][A08]
+
+> [!NOTE]
+>
+> If the browser doesn't open, configure eclipse to use an external browser like IE or Chrome:
+>
+> 1. Open Preferences -> General -> Web Browser -> Use external web browser in Eclipse
+>
+> 2. Select the browser you prefer to use
+>
 
 5. In the browser, paste your device code (which has been copied when you click **Copy&Open** in last step) and then click **Next**.
 
