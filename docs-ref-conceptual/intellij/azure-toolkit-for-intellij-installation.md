@@ -30,7 +30,30 @@ The Azure Toolkit for IntelliJ provides templates and functionality that allow y
 
 There are two methods of installing the Azure Toolkit for IntelliJ: by using the **Settings** dialog box, and by using the **Configure** menu on the start screen. Both installation methods will be demonstrated in the following steps.
 
-[!INCLUDE [azure-toolkit-for-IntelliJ-prerequisites](../includes/azure-toolkit-for-intellij-prerequisites.md)]
+## Prerequisites
+
+The Azure Toolkit for IntelliJ requires to the following software components:
+
+* An Java Development Kit (JDK) 8+ installed, for example: [OpenJDK](https://openjdk.java.net/) or [Oracle JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* An [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) Ultimate Edition or Community Edition installed
+
+> [!NOTE]
+> 
+> The [Azure Toolkit for IntelliJ](https://plugins.jetbrains.com/plugin/8053) page at the JetBrains Plugin Repository lists the builds that are compatible with the toolkit.
+> 
+
+<!--
+> [!IMPORTANT]
+> 
+> If you are using the Azure Toolkit for IntelliJ on Windows, the toolkit requires installing the Azure SDK 2.9.6 or later in order to use the Azure emulator. You have two options for installing the Azure SDK:
+> 
+> * You can download and install the Azure SDK by using the [Web Platform Installer (WebPI)](http://go.microsoft.com/fwlink/?LinkID=252838).
+> * If you do not have the Azure SDK installed when you create your first Azure deployment project, you will be prompted to automatically download install the requisite version of the Azure SDK.
+> 
+> Note that the Azure SDK is only required on Windows.
+> 
+-->
+
 
 ## To install the Azure Toolkit for IntelliJ from the settings dialog box
 
