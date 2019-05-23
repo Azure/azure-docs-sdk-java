@@ -113,104 +113,86 @@ The following steps walk you through using the Azure portal to create an Azure C
 
 ## Configure Maven to use your Azure Container Registry access keys
 
-1. Navigate to the configuration directory for your Maven installation and open the *settings.xml* file with a text editor.
-
-1. Add your Azure Container Registry access settings from the previous section of this tutorial to the `<servers>` collection in the *settings.xml* file; for example:
-
-   ```xml
-   <servers>
-      <server>
-         <id>wingtiptoysregistry</id>
-         <username>wingtiptoysregistry</username>
-         <password>AbCdEfGhIjKlMnOpQrStUvWxYz</password>
-      </server>
-   </servers>
-   ```
-
 1. Navigate to the completed project directory for your Spring Boot application, (for example: "*C:\SpringBoot\gs-spring-boot-docker\complete*" or "*/users/robert/SpringBoot/gs-spring-boot-docker/complete*"), and open the *pom.xml* file with a text editor.
 
-1. Update the `<properties>` collection in the *pom.xml* file with the login server value for your Azure Container Registry from the previous section of this tutorial; for example:
+1. Update the `<properties>` collection in the *pom.xml* file with the latest version of [jib-maven-plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin) and login server value and access settings for your Azure Container Registry from the previous section of this tutorial. For example:
 
    ```xml
    <properties>
+      <jib-maven-plugin.version>1.2.0</jib-maven-plugin.version>
       <docker.image.prefix>wingtiptoysregistry.azurecr.io</docker.image.prefix>
       <java.version>1.8</java.version>
+      <username>wingtiptoysregistry</username>
+      <password>{put your Azure Container Registry access key here}</password>
    </properties>
    ```
 
-1. Update the `<plugins>` collection in the *pom.xml* file so that the `<plugin>` contains the login server address and registry name for your Azure Container Registry from the previous section of this tutorial. For example:
+1. Add [jib-maven-plugin](https://github.com/GoogleContainerTools/jib/tree/master/jib-maven-plugin) to the `<plugins>` collection in the *pom.xml* file, specify the base image at `<from>/<image>` and  final image name `<to>/<image>`, specify the username and password from previous section at `<to>/<auth>`. For example:
 
    ```xml
    <plugin>
-      <groupId>com.spotify</groupId>
-      <artifactId>docker-maven-plugin</artifactId>
-      <version>0.4.11</version>
-      <configuration>
-         <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-         <dockerDirectory>src/main/docker</dockerDirectory>
-         <resources>
-            <resource>
-               <targetPath>/</targetPath>
-               <directory>${project.build.directory}</directory>
-               <include>${project.build.finalName}.jar</include>
-            </resource>
-         </resources>
-         <serverId>wingtiptoysregistry</serverId>
-         <registryUrl>https://wingtiptoysregistry.azurecr.io</registryUrl>
-      </configuration>
+     <artifactId>jib-maven-plugin</artifactId>
+     <groupId>com.google.cloud.tools</groupId>
+     <version>${jib-maven-plugin.version}</version>
+     <configuration>
+        <from>
+            <image>openjdk:8-jre-alpine</image>
+        </from>
+        <to>
+            <image>${docker.image.prefix}/${project.artifactId}</image>
+            <auth>
+               <username>${username}</username>
+               <password>${password}</password>
+            </auth>
+        </to>
+     </configuration>
    </plugin>
    ```
 
 1. Navigate to the completed project directory for your Spring Boot application and run the following command to rebuild the application and push the container to your Azure Container Registry:
 
-   ```
-   mvn package docker:build -DpushImage 
+   ```cmd
+   mvn compile jib:build
    ```
 
 > [!NOTE]
 >
-> When you are pushing your Docker container to Azure, you may receive an error message that is similar to one of the following even though your Docker container was created successfully:
->
-> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: no basic auth credentials`
->
-> * `[ERROR] Failed to execute goal com.spotify:docker-maven-plugin:0.4.11:build (default-cli) on project gs-spring-boot-docker: Exception caught: Incomplete Docker registry authorization credentials. Please provide all of username, password, and email or none.`
->
-> If this happens, you may need to sign in to your Azure account from the Docker command line; for example:
->
-> `docker login -u wingtiptoysregistry -p "AbCdEfGhIjKlMnOpQrStUvWxYz" wingtiptoysregistry.azurecr.io`
->
-> You can then push your container from the command line; for example:
->
-> `docker push wingtiptoysregistry.azurecr.io/gs-spring-boot-docker`
+> When you are using Jib to push your image to the Azure Container Registry, the image will not honor *Dockerfile*, see [this](https://cloudplatform.googleblog.com/2018/07/introducing-jib-build-java-docker-images-better.html) document for details.
 >
 
 ## Create a web app on Linux on Azure App Service using your container image
 
 1. Browse to the [Azure portal] and sign in.
 
-2. Click the menu icon for **+ New**, then click **Web + Mobile**, and then click **Web App on Linux**.
+2. Click the menu icon for **+ Create a resource**, then click **Web**, and then click **Web App for Containers**.
    
    ![Create a new web app in the Azure portal][LX01]
 
 3. When the **Web App on Linux** page is displayed, enter the following information:
 
-   a. Enter a unique name for the **App name**; for example: "*wingtiptoyslinux*."
+   a. Enter a unique name for the **App name**; for example: "*wingtiptoyslinux*"
 
    b. Choose your **Subscription** from the drop-down list.
 
    c. Choose an existing **Resource Group**, or specify a name to create a new resource group.
 
-   d. Click **Configure container** and enter the following information:
+   d. Choose *Linux* as the **OS**.
 
-   * Choose **Private registry**.
+   e. Click **App Service plan/Location** and choose an existing app service plan, or click **Create new** to create a new app service plan.
 
-   * **Image and optional tag**: Specify your container name from earlier; for example: "*wingtiptoysregistry.azurecr.io/gs-spring-boot-docker:latest*"
+   f. Click **Configure container** and enter the following information:
 
-   * **Server URL**: Specify your registry URL from earlier; for example: "*<https://wingtiptoysregistry.azurecr.io>*"
+   * Choose **Single Container** and  **Azure Container Registry**.
 
-   * **Login username** and **Password**: Specify your login credentials from your **Access Keys** that you used in previous steps.
+   * **Registry**: Choose your container name created earlier; for example: "*wingtiptoysregistry*"
+
+   * **Image**: Choose the image name; for example: "*gs-spring-boot-docker*"
    
-   e. Once you have entered all of the above information, click **OK**.
+   * **Tag**: Choose the tag for the image; for example: "*latest*"
+   
+   * **Startup File**: Keep it blank since the image already has the start up command
+   
+   e. Once you have entered all of the above information, click **Apply**.
 
    ![Configure web app settings][LX02]
 
@@ -222,13 +204,11 @@ The following steps walk you through using the Azure portal to create an Azure C
 >
 > 1. Browse to the [Azure portal] and sign in.
 > 
-> 2. Click the icon for **App Services**. (See item #1 in the image below.)
+> 2. Click the icon for **App Services**, and select your web app from the list.
 >
-> 3. Select your web app from the list. (Item #2 in the image below.)
+> 4. Click **Configuration**. (Item #1 in the image below.)
 >
-> 4. Click **Application Settings**. (Item #3 in the image below.)
->
-> 5. In the **App settings** section, add a new environment variable named **PORT** and enter your custom port number for the value. (Item #4 in the image below.)
+> 5. In the **Application settings** section, add a new setting named **PORT** and enter your custom port number for the value. (Item #2, #3, #4 in the image below.)
 >
 > 6. Click **Save**. (Item #5 in the image below.)
 >
