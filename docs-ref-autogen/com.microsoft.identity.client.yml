@@ -3,19 +3,29 @@ items:
 - uid: com.microsoft.identity.client
   id: client
   children:
+  - com.microsoft.identity.client.AccountAdapter
+  - com.microsoft.identity.client.AcquireTokenParameters
+  - com.microsoft.identity.client.AcquireTokenParameters.Builder
+  - com.microsoft.identity.client.AcquireTokenSilentParameters
+  - com.microsoft.identity.client.AcquireTokenSilentParameters.Builder
   - com.microsoft.identity.client.AuthenticationActivity
   - com.microsoft.identity.client.AuthenticationCallback
   - com.microsoft.identity.client.AuthenticationResult
+  - com.microsoft.identity.client.AuthenticationResultAdapter
   - com.microsoft.identity.client.AzureActiveDirectoryAccountIdentifier
   - com.microsoft.identity.client.BrowserTabActivity
   - com.microsoft.identity.client.IAccount
   - com.microsoft.identity.client.IAccountIdentifier
+  - com.microsoft.identity.client.IAuthenticationResult
   - com.microsoft.identity.client.ILoggerCallback
   - com.microsoft.identity.client.IMsalEventReceiver
   - com.microsoft.identity.client.Logger
   - com.microsoft.identity.client.Logger.LogLevel
   - com.microsoft.identity.client.MsalChromeCustomTabManager
   - com.microsoft.identity.client.PublicClientApplication
+  - com.microsoft.identity.client.PublicClientApplication.AccountsLoadedCallback
+  - com.microsoft.identity.client.PublicClientApplication.AccountsRemovedCallback
+  - com.microsoft.identity.client.PublicClientApplication.BrokerAccountsLoadedCallback
   - com.microsoft.identity.client.PublicClientApplicationConfiguration
   - com.microsoft.identity.client.PublicClientApplicationConfiguration.SerializedNames
   - com.microsoft.identity.client.UiBehavior
@@ -38,6 +48,14 @@ items:
   syntax:
     content: package com.microsoft.identity.client
 references:
+- uid: com.microsoft.identity.client.claims
+  href: com.microsoft.identity.client.claims.yml
+  name: com.microsoft.identity.client.claims
+  nameWithType: com.microsoft.identity.client.claims
+  fullName: com.microsoft.identity.client.claims
+  type: Namespace
+  syntax:
+    content: package com.microsoft.identity.client.claims
 - uid: com.microsoft.identity.client.configuration
   href: com.microsoft.identity.client.configuration.yml
   name: com.microsoft.identity.client.configuration
@@ -62,6 +80,35 @@ references:
   type: Namespace
   syntax:
     content: package com.microsoft.identity.client.internal
+- uid: com.microsoft.identity.client.AccountAdapter
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AccountAdapter.yml
+  name: AccountAdapter
+  nameWithType: AccountAdapter
+  fullName: com.microsoft.identity.client.AccountAdapter
+  type: Class
+  summary: "<p>Adapter class for Account transformations. </p>"
+  syntax:
+    content: public class AccountAdapter
+- uid: com.microsoft.identity.client.AcquireTokenParameters
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AcquireTokenParameters.yml
+  name: AcquireTokenParameters
+  nameWithType: AcquireTokenParameters
+  fullName: com.microsoft.identity.client.AcquireTokenParameters
+  type: Class
+  summary: "<p>Encapsulates the parameters passed to the acquireToken methods of PublicClientApplication </p>"
+  syntax:
+    content: public class AcquireTokenParameters
+- uid: com.microsoft.identity.client.AcquireTokenSilentParameters
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AcquireTokenSilentParameters.yml
+  name: AcquireTokenSilentParameters
+  nameWithType: AcquireTokenSilentParameters
+  fullName: com.microsoft.identity.client.AcquireTokenSilentParameters
+  type: Class
+  syntax:
+    content: public class AcquireTokenSilentParameters
 - uid: com.microsoft.identity.client.AuthenticationActivity
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.AuthenticationActivity.yml
@@ -69,7 +116,7 @@ references:
   nameWithType: AuthenticationActivity
   fullName: com.microsoft.identity.client.AuthenticationActivity
   type: Class
-  summary: "<p>Custom tab requires the device to have a browser with custom tab support, chrome with version&gt;= 45 comes with the support and is available on all devices with API version&gt;= 16 . The sdk use chrome custom tab, and before launching chrome custom tab, we need to check if chrome package is in the device. If it is, it's safe to launch the chrome custom tab; Otherwise the sdk will launch chrome. AuthenticationActivity will be responsible for checking if it's safe to launch chrome custom tab, if not, will go with chrome browser, if chrome is not installed, we throw error back. </p>"
+  summary: "<p>Invoking CustomTabs requires a browser on the device that also supports the CustomTabs API, chrome with version&gt;= 45 comes with the support and is available on all devices with API version&gt;= 16. MSAL is capable of using CustomTabs or device browser. MSAL prefers the user's default browser and will check for CustomTabs support before falling back to launching the full browser. AuthenticationActivity checks if CustomTabs is accessible for a given browser, if not, will go with full browser, if chrome is not installed, we generate an error. </p>"
   syntax:
     content: public class AuthenticationActivity
 - uid: com.microsoft.identity.client.AuthenticationCallback
@@ -79,7 +126,7 @@ references:
   nameWithType: AuthenticationCallback
   fullName: com.microsoft.identity.client.AuthenticationCallback
   type: Interface
-  summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.AuthenticationResult\" data-throw-if-not-resolved=\"false\">AuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
+  summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.IAuthenticationResult\" data-throw-if-not-resolved=\"false\">IAuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
   syntax:
     content: public interface AuthenticationCallback
 - uid: com.microsoft.identity.client.AuthenticationResult
@@ -91,7 +138,16 @@ references:
   type: Class
   summary: "<p>MSAL successful authentication result. When auth succeeds, token will be wrapped into the <xref uid=\"com.microsoft.identity.client.AuthenticationResult\" data-throw-if-not-resolved=\"false\">AuthenticationResult</xref> and passed back through the <xref uid=\"com.microsoft.identity.client.AuthenticationCallback\" data-throw-if-not-resolved=\"false\">AuthenticationCallback</xref>. </p>"
   syntax:
-    content: public class AuthenticationResult
+    content: public class AuthenticationResult implements IAuthenticationResult
+- uid: com.microsoft.identity.client.AuthenticationResultAdapter
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AuthenticationResultAdapter.yml
+  name: AuthenticationResultAdapter
+  nameWithType: AuthenticationResultAdapter
+  fullName: com.microsoft.identity.client.AuthenticationResultAdapter
+  type: Class
+  syntax:
+    content: public class AuthenticationResultAdapter
 - uid: com.microsoft.identity.client.AzureActiveDirectoryAccountIdentifier
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.AzureActiveDirectoryAccountIdentifier.yml
@@ -109,7 +165,7 @@ references:
   nameWithType: BrowserTabActivity
   fullName: com.microsoft.identity.client.BrowserTabActivity
   type: Class
-  summary: "<p>MSAL activity class (needs to be public in order to be discoverable by the os) to get the browser redirect with auth code from authorize endpoint. This activity has to be exposed by \"android:exported=true\", and intent filter has to be declared in the manifest for the activity. </p>\r\n<p>When chrome custom tab is launched, and we're redirected back with the redirect uri (the redirect must be unique across apps on a device), the os will fire an intent with the redirect, and the BrowserTabActivity will be launched. <pre>\r\n&lt;intent-filter&gt;\r\n    &lt;action android:name=\"android.intent.action.VIEW\" /&gt;</pre></p>\r\n<p>\r\n  <pre>    To receive implicit intents, have to put the activity in the category of default.\r\n    &lt;category android:name=\"android.intent.category.DEFAULT\" /&gt;</pre>\r\n</p>\r\n<p>\r\n  <pre>    The target activity allows itself to be started by a web browser to display data.\r\n    &lt;category android:name=\"android.intent.category.BROWSABLE\" /&gt;</pre>\r\n</p>\r\n<p>\r\n  <pre>    BrowserTabActivity will be launched when matching the custom url scheme.\r\n    &lt;data android:scheme=\"msalclientid\" android:host=\"auth\" /&gt;\r\n&lt;/intent-filter&gt;\r\n</pre>\r\n</p>"
+  summary: "<p>MSAL activity class (needs to be public in order to be discoverable by the os) to get the browser redirect with auth code from authorize endpoint. This activity has to be exposed by \"android:exported=true\", and intent filter has to be declared in the manifest for the activity. </p>\r\n<p>When the AuthorizationAgent is launched, and we're redirected back with the redirect uri (the redirect must be unique across apps on a device), the os will fire an intent with the redirect, and the BrowserTabActivity will be launched. <pre>\r\n&lt;intent-filter&gt;\r\n    &lt;action android:name=\"android.intent.action.VIEW\" /&gt;</pre></p>\r\n<p>\r\n  <pre>    To receive implicit intents, have to put the activity in the category of default.\r\n    &lt;category android:name=\"android.intent.category.DEFAULT\" /&gt;</pre>\r\n</p>\r\n<p>\r\n  <pre>    The target activity allows itself to be started by a web browser to display data.\r\n    &lt;category android:name=\"android.intent.category.BROWSABLE\" /&gt;</pre>\r\n</p>\r\n<p>\r\n  <pre>    BrowserTabActivity will be launched when matching the custom url scheme.\r\n    &lt;data android:scheme=\"msalclientid\" android:host=\"auth\" /&gt;\r\n&lt;/intent-filter&gt;\r\n</pre>\r\n</p>"
   syntax:
     content: public class BrowserTabActivity
 - uid: com.microsoft.identity.client.IAccount
@@ -132,6 +188,15 @@ references:
   summary: "<p>Interface describing an identifier with a <xref uid=\"\" data-throw-if-not-resolved=\"false\">String</xref> representation. </p>"
   syntax:
     content: public interface IAccountIdentifier
+- uid: com.microsoft.identity.client.IAuthenticationResult
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: IAuthenticationResult
+  nameWithType: IAuthenticationResult
+  fullName: com.microsoft.identity.client.IAuthenticationResult
+  type: Interface
+  syntax:
+    content: public interface IAuthenticationResult
 - uid: com.microsoft.identity.client.ILoggerCallback
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.ILoggerCallback.yml
@@ -209,6 +274,54 @@ references:
   type: Enum
   syntax:
     content: public enum WebViewSelection
+- uid: com.microsoft.identity.client.PublicClientApplication.AccountsLoadedCallback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.PublicClientApplication.AccountsLoadedCallback.yml
+  name: PublicClientApplication.AccountsLoadedCallback
+  nameWithType: PublicClientApplication.AccountsLoadedCallback
+  fullName: com.microsoft.identity.client.PublicClientApplication.AccountsLoadedCallback
+  type: Interface
+  summary: "<p>Listener callback for asynchronous loading of msal IAccount accounts. </p>"
+  syntax:
+    content: public interface AccountsLoadedCallback
+- uid: com.microsoft.identity.client.PublicClientApplication.AccountsRemovedCallback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.PublicClientApplication.AccountsRemovedCallback.yml
+  name: PublicClientApplication.AccountsRemovedCallback
+  nameWithType: PublicClientApplication.AccountsRemovedCallback
+  fullName: com.microsoft.identity.client.PublicClientApplication.AccountsRemovedCallback
+  type: Interface
+  summary: "<p>Listener callback for asynchronous loading of msal IAccount accounts. </p>"
+  syntax:
+    content: public interface AccountsRemovedCallback
+- uid: com.microsoft.identity.client.PublicClientApplication.BrokerAccountsLoadedCallback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.PublicClientApplication.BrokerAccountsLoadedCallback.yml
+  name: PublicClientApplication.BrokerAccountsLoadedCallback
+  nameWithType: PublicClientApplication.BrokerAccountsLoadedCallback
+  fullName: com.microsoft.identity.client.PublicClientApplication.BrokerAccountsLoadedCallback
+  type: Interface
+  summary: "<p>Listener callback for asynchronous loading of broker AccountRecord accounts. </p>"
+  syntax:
+    content: public interface BrokerAccountsLoadedCallback
+- uid: com.microsoft.identity.client.AcquireTokenParameters.Builder
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AcquireTokenParameters.Builder.yml
+  name: AcquireTokenParameters.Builder
+  nameWithType: AcquireTokenParameters.Builder
+  fullName: com.microsoft.identity.client.AcquireTokenParameters.Builder
+  type: Class
+  syntax:
+    content: public class Builder
+- uid: com.microsoft.identity.client.AcquireTokenSilentParameters.Builder
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.AcquireTokenSilentParameters.Builder.yml
+  name: AcquireTokenSilentParameters.Builder
+  nameWithType: AcquireTokenSilentParameters.Builder
+  fullName: com.microsoft.identity.client.AcquireTokenSilentParameters.Builder
+  type: Class
+  syntax:
+    content: public class Builder
 - uid: com.microsoft.identity.client.Logger.LogLevel
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.Logger.LogLevel.yml

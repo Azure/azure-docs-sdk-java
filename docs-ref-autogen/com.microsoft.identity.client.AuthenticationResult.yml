@@ -4,7 +4,8 @@ items:
   id: AuthenticationResult
   parent: com.microsoft.identity.client
   children:
-  - com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(final ICacheRecord)
+  - com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull AccessTokenRecord,@Nullable String,@NonNull IAccountRecord)
+  - com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull final ICacheRecord)
   - com.microsoft.identity.client.AuthenticationResult.getAccessToken()
   - com.microsoft.identity.client.AuthenticationResult.getAccount()
   - com.microsoft.identity.client.AuthenticationResult.getExpiresOn()
@@ -25,34 +26,60 @@ items:
       branch: master
       repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 35
+    startLine: 38
   package: com.microsoft.identity.client
   summary: "<p>MSAL successful authentication result. When auth succeeds, token will be wrapped into the <xref uid=\"com.microsoft.identity.client.AuthenticationResult\" data-throw-if-not-resolved=\"false\">AuthenticationResult</xref> and passed back through the <xref uid=\"com.microsoft.identity.client.AuthenticationCallback\" data-throw-if-not-resolved=\"false\">AuthenticationCallback</xref>. </p>"
   syntax: &o1
-    content: public class AuthenticationResult
+    content: public class AuthenticationResult implements IAuthenticationResult
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(final ICacheRecord)
-  id: AuthenticationResult(final ICacheRecord)
+  - com.microsoft.identity.client.IAuthenticationResult
+- uid: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull AccessTokenRecord,@Nullable String,@NonNull IAccountRecord)
+  id: AuthenticationResult(@NonNull AccessTokenRecord,@Nullable String,@NonNull IAccountRecord)
   parent: com.microsoft.identity.client.AuthenticationResult
   href: com.microsoft.identity.client.AuthenticationResult.yml
   langs:
   - java
-  name: AuthenticationResult(final ICacheRecord cacheRecord)
-  nameWithType: AuthenticationResult.AuthenticationResult(final ICacheRecord cacheRecord)
-  fullName: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(final ICacheRecord cacheRecord)
+  name: AuthenticationResult(@NonNull AccessTokenRecord accessToken, @Nullable String rawIdToken, @NonNull IAccountRecord accountRecord)
+  nameWithType: AuthenticationResult.AuthenticationResult(@NonNull AccessTokenRecord accessToken, @Nullable String rawIdToken, @NonNull IAccountRecord accountRecord)
+  fullName: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull AccessTokenRecord accessToken, @Nullable String rawIdToken, @NonNull IAccountRecord accountRecord)
   overload: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult*
   type: Constructor
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 45
+    startLine: 55
   package: com.microsoft.identity.client
   syntax:
-    content: public AuthenticationResult(final ICacheRecord cacheRecord)
+    content: public AuthenticationResult(@NonNull AccessTokenRecord accessToken, @Nullable String rawIdToken, @NonNull IAccountRecord accountRecord)
+    parameters:
+    - id: accessToken
+      type: 0d343f85
+    - id: rawIdToken
+      type: 8766ae01
+    - id: accountRecord
+      type: 674301bb
+- uid: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull final ICacheRecord)
+  id: AuthenticationResult(@NonNull final ICacheRecord)
+  parent: com.microsoft.identity.client.AuthenticationResult
+  href: com.microsoft.identity.client.AuthenticationResult.yml
+  langs:
+  - java
+  name: AuthenticationResult(@NonNull final ICacheRecord cacheRecord)
+  nameWithType: AuthenticationResult.AuthenticationResult(@NonNull final ICacheRecord cacheRecord)
+  fullName: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult(@NonNull final ICacheRecord cacheRecord)
+  overload: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult*
+  type: Constructor
+  source:
+    remote: *o0
+    path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
+    startLine: 47
+  package: com.microsoft.identity.client
+  syntax:
+    content: public AuthenticationResult(@NonNull final ICacheRecord cacheRecord)
     parameters:
     - id: cacheRecord
-      type: 685a616e
+      type: f3fc1495
 - uid: com.microsoft.identity.client.AuthenticationResult.getAccessToken()
   id: getAccessToken()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -67,13 +94,14 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 56
+    startLine: 68
   package: com.microsoft.identity.client
   syntax:
     content: public String getAccessToken()
     return:
       type: "26831127"
       description: <p>The access token requested. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getAccessToken()
 - uid: com.microsoft.identity.client.AuthenticationResult.getAccount()
   id: getAccount()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -88,7 +116,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 106
+    startLine: 108
   package: com.microsoft.identity.client
   summary: "<p>Gets the Account.</p>\r\n<p></p>"
   syntax:
@@ -96,6 +124,7 @@ items:
     return:
       type: com.microsoft.identity.client.IAccount
       description: <p>The Account to get. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getAccount()
 - uid: com.microsoft.identity.client.AuthenticationResult.getExpiresOn()
   id: getExpiresOn()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -110,13 +139,14 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 65
+    startLine: 74
   package: com.microsoft.identity.client
   syntax:
     content: public Date getExpiresOn()
     return:
       type: "12977444"
       description: <p>The expiration time of the access token returned in the Token property. This value is calculated based on current UTC time measured locally and the value expiresIn returned from the service. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getExpiresOn()
 - uid: com.microsoft.identity.client.AuthenticationResult.getIdToken()
   id: getIdToken()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -131,13 +161,14 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 97
+    startLine: 102
   package: com.microsoft.identity.client
   syntax:
     content: public String getIdToken()
     return:
       type: "26831127"
       description: <p>The id token returned by the service or null if no id token is returned. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getIdToken()
 - uid: com.microsoft.identity.client.AuthenticationResult.getScope()
   id: getScope()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -152,13 +183,14 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 113
+    startLine: 114
   package: com.microsoft.identity.client
   syntax:
     content: public String [] getScope()
     return:
       type: 1bb63ab0
       description: <p>The scopes returned from the service. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getScope()
 - uid: com.microsoft.identity.client.AuthenticationResult.getTenantId()
   id: getTenantId()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -173,13 +205,14 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 83
+    startLine: 90
   package: com.microsoft.identity.client
   syntax:
     content: public String getTenantId()
     return:
       type: "26831127"
       description: <p>A unique tenant identifier that was used in token acquisiton. Could be null if tenant information is not returned by the service. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getTenantId()
 - uid: com.microsoft.identity.client.AuthenticationResult.getUniqueId()
   id: getUniqueId()
   parent: com.microsoft.identity.client.AuthenticationResult
@@ -194,23 +227,36 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationResult.java
-    startLine: 90
+    startLine: 96
   package: com.microsoft.identity.client
   syntax:
     content: public String getUniqueId()
     return:
       type: "26831127"
       description: <p>The unique identifier of the user. </p>
+  overridden: com.microsoft.identity.client.IAuthenticationResult.getUniqueId()
 references:
-- uid: 685a616e
+- uid: f3fc1495
   spec.java:
-  - name: final ICacheRecord
-    fullName: final ICacheRecord
+  - name: '@NonNull final ICacheRecord'
+    fullName: '@NonNull final ICacheRecord'
 - uid: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult*
   name: AuthenticationResult
   nameWithType: AuthenticationResult.AuthenticationResult
   fullName: com.microsoft.identity.client.AuthenticationResult.AuthenticationResult
   package: com.microsoft.identity.client
+- uid: 0d343f85
+  spec.java:
+  - name: '@NonNull AccessTokenRecord'
+    fullName: '@NonNull AccessTokenRecord'
+- uid: 8766ae01
+  spec.java:
+  - name: '@Nullable String'
+    fullName: '@Nullable String'
+- uid: 674301bb
+  spec.java:
+  - name: '@NonNull IAccountRecord'
+    fullName: '@NonNull IAccountRecord'
 - uid: "26831127"
   spec.java:
   - name: String
@@ -258,6 +304,15 @@ references:
   nameWithType: AuthenticationResult.getScope
   fullName: com.microsoft.identity.client.AuthenticationResult.getScope
   package: com.microsoft.identity.client
+- uid: com.microsoft.identity.client.IAuthenticationResult
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: IAuthenticationResult
+  nameWithType: IAuthenticationResult
+  fullName: com.microsoft.identity.client.IAuthenticationResult
+  type: Interface
+  syntax:
+    content: public interface IAuthenticationResult
 - uid: com.microsoft.identity.client.IAccount
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.IAccount.yml
@@ -268,6 +323,91 @@ references:
   summary: "<p>Interface describing MSAL's externally-exposed Account representation. </p>"
   syntax:
     content: public interface IAccount
+- uid: com.microsoft.identity.client.IAuthenticationResult.getAccessToken()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getAccessToken()
+  nameWithType: IAuthenticationResult.getAccessToken()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getAccessToken()
+  type: Method
+  syntax:
+    content: public String getAccessToken()
+    return:
+      type: "26831127"
+      description: <p>The access token requested. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getExpiresOn()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getExpiresOn()
+  nameWithType: IAuthenticationResult.getExpiresOn()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getExpiresOn()
+  type: Method
+  syntax:
+    content: public Date getExpiresOn()
+    return:
+      type: "12977444"
+      description: <p>The expiration time of the access token returned in the Token property. This value is calculated based on current UTC time measured locally and the value expiresIn returned from the service. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getTenantId()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getTenantId()
+  nameWithType: IAuthenticationResult.getTenantId()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getTenantId()
+  type: Method
+  syntax:
+    content: public String getTenantId()
+    return:
+      type: "26831127"
+      description: <p>A unique tenant identifier that was used in token acquisiton. Could be null if tenant information is not returned by the service. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getUniqueId()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getUniqueId()
+  nameWithType: IAuthenticationResult.getUniqueId()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getUniqueId()
+  type: Method
+  syntax:
+    content: public String getUniqueId()
+    return:
+      type: "26831127"
+      description: <p>The unique identifier of the user. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getIdToken()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getIdToken()
+  nameWithType: IAuthenticationResult.getIdToken()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getIdToken()
+  type: Method
+  syntax:
+    content: public String getIdToken()
+    return:
+      type: "26831127"
+      description: <p>The id token returned by the service or null if no id token is returned. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getAccount()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getAccount()
+  nameWithType: IAuthenticationResult.getAccount()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getAccount()
+  type: Method
+  summary: "<p>Gets the Account.</p>\r\n<p></p>"
+  syntax:
+    content: public IAccount getAccount()
+    return:
+      type: com.microsoft.identity.client.IAccount
+      description: <p>The Account to get. </p>
+- uid: com.microsoft.identity.client.IAuthenticationResult.getScope()
+  parent: com.microsoft.identity.client.IAuthenticationResult
+  href: com.microsoft.identity.client.IAuthenticationResult.yml
+  name: getScope()
+  nameWithType: IAuthenticationResult.getScope()
+  fullName: com.microsoft.identity.client.IAuthenticationResult.getScope()
+  type: Method
+  syntax:
+    content: public String [] getScope()
+    return:
+      type: 1bb63ab0
+      description: <p>The scopes returned from the service. </p>
 - uid: com.microsoft.identity.client.AuthenticationResult
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.AuthenticationResult.yml
@@ -284,6 +424,6 @@ references:
   nameWithType: AuthenticationCallback
   fullName: com.microsoft.identity.client.AuthenticationCallback
   type: Interface
-  summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.AuthenticationResult\" data-throw-if-not-resolved=\"false\">AuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
+  summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.IAuthenticationResult\" data-throw-if-not-resolved=\"false\">IAuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
   syntax:
     content: public interface AuthenticationCallback

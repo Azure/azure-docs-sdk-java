@@ -103,24 +103,24 @@ The Azul Zulu JDK releases are:
    * delivered in multiple package types:
      * MSI, ZIP, TAR, DEB, RPM, and DMG
 
-Certified Docker container images for Zulu JDK, JRE, and JRE-headless on multiple base OS images are available at Docker.
+    Certified Docker container images for Zulu JDK, JRE, and JRE-headless on multiple base OS images are available at Docker.
 
-Hub:
+    Hub:
 
-* [JDK](https://hub.docker.com/_/microsoft-java-jdk)
-* [JRE](https://hub.docker.com/_/microsoft-java-jre)
-* [JRE-headless](https://hub.docker.com/_/microsoft-java-jre-headless)
+    * [JDK](https://hub.docker.com/_/microsoft-java-jdk)
+    * [JRE](https://hub.docker.com/_/microsoft-java-jre)
+    * [JRE-headless](https://hub.docker.com/_/microsoft-java-jre-headless)
 
-1. No cost
+4. No cost
 
    * Microsoft provides everything you need to build and scale Java apps on Azure at no cost to you. Through Zulu you'll receive free security updates and platform bug fixes for Java apps without any fees.
    * [Java Flight Recorder and Mission Control](java-jdk-flight-recorder-and-mission-control.md) are available in Zulu Java 8, 11, and 12 (Preview).
 
-1. Tech Preview of Non-LTS versions
+5. Tech Preview of Non-LTS versions
 
    * Tech previews provide you with opportunities to progressively test new features as they are delivered in short-term versions that will eventually graduate to Java 17 LTS.
 
-1. Changes to OpenJDK are up-streamed
+6. Changes to OpenJDK are up-streamed
 
    * Azul Systems committers push Zulu changes to OpenJDK which makes the upstream repo comprehensive and inclusive.
 
