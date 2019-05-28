@@ -1,14 +1,8 @@
-For more information about the Azure Toolkit for IntelliJ IDEA, see the following links: 
-
-* [Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij.md) 
-* [Release Notes](https://github.com/Microsoft/azure-tools-for-java/releases) 
-* [Installing the Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij-installation.md) 
-* [Create a Hello World web app for Azure in IntelliJ](../intellij/azure-toolkit-for-intellij-create-hello-world-web-app.md) 
-* [Sign-in instructions for the Azure Toolkit for IntelliJ](../intellij/azure-toolkit-for-intellij-sign-in-instructions.md) 
+To report bugs or request new features, create issues on [our GitHub repository](https://github.com/Microsoft/azure-tools-for-java/issues). Or, ask questions on [Stack Overflow with tag azure-java-tools](https://stackoverflow.com/questions/tagged/azure-java-tools).
 
 For more information about using Java with Azure, see the following links: 
 
-* [Azure for Java Developers](https://docs.microsoft.com/java/azure/) 
-* [Java Tools for Visual Studio Team Services](/azure/devops/java/)
+* [Azure for Java Developers](/java/azure/) 
+* [Java with Azure DevOps Services](/azure/devops/java/)
 * [Get Java JDK downloads and support when developing for Azure](https://aka.ms/azure-jdks)
 <!-- TODO: Add URLs for Java in VSCode here --> 

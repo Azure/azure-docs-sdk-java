@@ -96,7 +96,7 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
    <plugin>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.4</version>
     <configuration>
       <deploymentType>jar</deploymentType>
 

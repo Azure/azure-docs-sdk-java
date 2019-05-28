@@ -1,4 +1,4 @@
-## Display the Azure Explorer view
+## Displaying the Azure Explorer view
 
 If the **Azure Explorer** view is not visible in Eclipse, display it by doing the following:
 

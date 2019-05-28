@@ -142,23 +142,23 @@ Add a `build` entry under the top-level `project` element to use the [maven-exec
 
 ### Install the Azure Toolkit for Intellij
 
-The [Azure toolkit](intellij/azure-toolkit-for-intellij-installation.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for IntelliJ](intellij/azure-toolkit-for-intellij-installation.md).
+The [Azure toolkit](intellij/azure-toolkit-for-intellij-installation.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For a quickstart, visit [Azure Toolkit for IntelliJ quickstart](intellij/azure-toolkit-for-intellij-create-hello-world-web-app.md).
 
-Select the **File** menu and then select **Settings...**. 
+- Select the **File** menu and then select **Settings...**. 
 
-Select **Browse repositories...** and then search "Azure" and install the **Azure toolkit for Intellij**.
+- Select **Browse repositories...** and then search "Azure" and install the **Azure toolkit for Intellij**.
 
-Restart Intellij.
+- Restart Intellij.
 
 ### Install the Azure Toolkit for Eclipse
 
-The [Azure toolkit](eclipse/azure-toolkit-for-eclipse.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For detailed stpes, visit [Installing the Azure Toolkit for Eclipse](eclipse/azure-toolkit-for-eclipse.md).
+The [Azure toolkit](eclipse/azure-toolkit-for-eclipse.md) is necessary if you're going to be deploying web apps or APIs programmatically but is not currently used for any other kinds of development. The following is a summary of the installation process. For a quickstart, visit [Azure Toolkit for Eclipse quickstart](eclipse/azure-toolkit-for-eclipse-create-hello-world-web-app.md).
 
-Select the **Help** menu and then select **Install New software**.
+- Select the **Help** menu and then select **Install New software**.
 
-In the **Work with:** field enter `http://dl.microsoft.com/eclipse` and press enter.
+- In the **Work with:** field enter `http://dl.microsoft.com/eclipse` and press enter.
 
-Then, select the checkbox next to **Azure toolkit for Java** and uncheck the checkbox for **Contact all update sites during install to find required software**. Then select next.
+- Then, select the checkbox next to **Azure toolkit for Java** and uncheck the checkbox for **Contact all update sites during install to find required software**. Then select next.
 
 ## Create a Linux virtual machine
 
