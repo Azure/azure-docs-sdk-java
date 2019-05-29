@@ -47,7 +47,7 @@ To sign in Azure by device login, do the following:
 
 > [!NOTE]
 >
-> If the browser doesn't open, configure eclipse to use an external browser like IE or Chrome:
+> If the browser doesn't open, configure Eclipse to use an external browser like Internet Explorer, Firefox, or Chrome:
 >
 > 1. Open Preferences -> General -> Web Browser -> Use external web browser in Eclipse
 >
