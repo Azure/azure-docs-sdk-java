@@ -22,7 +22,7 @@ ms.workload: data-services
 
 Azure Cosmos DB is a globally-distributed database service that allows developers to work with data using a variety of standard APIs, such as SQL, MongoDB, Graph, and Table APIs. Microsoft's Spring Boot Starter enables developers to use Spring Boot applications that easily integrate with Azure Cosmos DB by using the SQL API.
 
-This article demonstrates creating an Azure Cosmos DB using the Azure portal, then using the **[Spring Initializr]** to create a custom java application, and then add the Spring Boot Starter functionality to your custom application to store data in and retrieve data from your Azure Cosmos DB by using the SQL API.
+This article demonstrates creating an Azure Cosmos DB using the Azure portal, then using the **[Spring Initializr]** to create a custom Spring Boot application, and then add the [Spring Boot Cosmos DB Starter](https://github.com/microsoft/azure-spring-boot/tree/master/azure-spring-boot-starters/azure-cosmosdb-spring-boot-starter) to your custom application to store data in and retrieve data from your Azure Cosmos DB by using Spring Data and the Cosmos DB SQL API.
 
 ## Prerequisites
 
@@ -30,7 +30,6 @@ The following prerequisites are required in order to follow the steps in this ar
 
 * An Azure subscription; if you don't already have an Azure subscription, you can activate your [MSDN subscriber benefits] or sign up for a [free Azure account].
 * A supported Java Development Kit (JDK). For more information about the JDKs available for use when developing on Azure, see <https://aka.ms/azure-jdks>.
-* [Apache Maven](http://maven.apache.org/), version 3.0 or later.
 
 ## Create an Azure Cosmos DB by using the Azure portal
 
@@ -44,13 +43,13 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. On the **Azure Cosmos DB** page, enter the following information:
 
-   * Enter a unique **ID**, which you will use as the URI for your database. For example: *wingtiptoysdata.documents.azure.com*.
-   * Choose **SQL** for the API.
    * Choose the **Subscription** you want to use for your database.
    * Specify whether to create a new **Resource group** for your database, or choose an existing resource group.
+   * Enter a unique **Account Name**, which you will use as the URI for your database. For example: *wingtiptoysdata*.
+   * Choose **Core (SQL)** for the API.
    * Specify the **Location** for your database.
-   
-   When you have specified these options, click **Create** to create your database.
+
+   When you have specified these options, click **Review + create** to create your database.
 
    ![Azure portal][AZ03]
 
@@ -58,7 +57,7 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ![Azure portal][AZ04]
 
-1. When the properties page for your database is displayed, click **Access keys** and copy your URI and access keys for your database; you will use these values in your Spring Boot application.
+1. When the properties page for your database is displayed, click **Keys** and copy your URI and access keys for your database; you will use these values in your Spring Boot application.
 
    ![Azure portal][AZ05]
 
