@@ -67,11 +67,6 @@ The following prerequisites are required in order to follow the steps in this ar
 
 1. Specify that you want to generate a **Maven Project** with **Java**, specify your **Spring Boot** version, enter the **Group** and **Artifact** names for your application, add **Azure Support** in the dependencies, and then click the button to **Generate Project**.
 
-   > [!IMPORTANT]
-   >
-   > There were several breaking changes to the APIs in Spring Boot version 2.0.n, which will be used to complete the steps in this article. You can still use one of the Spring Boot 1.5.n versions to complete the steps in this tutorial, and the differences will be highlighted when necessary.
-   >
-
    ![Basic Spring Initializr options][SI01]
 
    > [!NOTE]
@@ -110,18 +105,6 @@ The following prerequisites are required in order to follow the steps in this ar
 
    ![Editing the pom.xml file][PM02]
 
-   > [!IMPORTANT]
-   >
-   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to specify the older version of the Azure Cosmos DB starter; for example:
-   >
-   > ```xml
-   > <dependency>
-   >   <groupId>com.microsoft.azure</groupId>
-   >   <artifactId>azure-documentdb-spring-boot-starter</artifactId>
-   >   <version>0.1.4</version>
-   > </dependency>
-   > ```
-
 1. Verify that the Spring Boot version is the version that you chose when you created your application with the Spring Initializr; for example:
 
    ```xml
@@ -132,11 +115,6 @@ The following prerequisites are required in order to follow the steps in this ar
       <relativePath/>
    </parent>
    ```
-
-   > [!NOTE]
-   >
-   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to verify the correct version; for example: `<version>1.5.14.RELEASE</version>`.
-   >
 
 1. Verify that you use the most recent [Azure Spring Boot starters](https://github.com/microsoft/azure-spring-boot) version, for example:
 
@@ -314,11 +292,6 @@ In this section you create two Java classes for storing user data, and then you 
         }
     }
    ```
-
-   > [!IMPORTANT]
-   >
-   > If you are using one of Spring Boot 1.5.n versions to complete this tutorial, you will need to replace the `final User result = repository.findById(testUser.getId()).get();` syntax with `final User result = repository.findOne(testUser.getId());`.
-   >
 
 1. Save and close the main application Java file.
 
