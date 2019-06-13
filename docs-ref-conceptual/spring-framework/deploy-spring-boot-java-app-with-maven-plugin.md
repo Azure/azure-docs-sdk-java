@@ -96,38 +96,79 @@ In this section, you will configure the Spring Boot project `pom.xml` so that Ma
    <plugin>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.5.4</version>
-    <configuration>
-      <deploymentType>jar</deploymentType>
-
-      <!-- configure app to run on port 80, required by App Service -->
-      <appSettings>
-        <property> 
-          <name>JAVA_OPTS</name> 
-          <value>-Dserver.port=80</value> 
-        </property> 
-      </appSettings>
-
-      <!-- Web App information -->
-      <resourceGroup>${RESOURCEGROUP_NAME}</resourceGroup>
-      <appName>${WEBAPP_NAME}</appName>
-      <region>${REGION}</region>  
-
-      <!-- Java Runtime Stack for Web App on Linux-->
-      <linuxRuntime>jre8</linuxRuntime>
-    </configuration>
+    <version>1.6.0</version>
    </plugin>
    ```
 
-3. Update the following placeholders in the plugin configuration:
+3. Then you can configure the deployment, run the maven command `mvn azure-webapp:config` in the Command Prompt and use the **number** to choose these options in the prompt:
+    * **OS**: linux  
+    * **javaVersion**: jre8
+    * **runtimeStack**: jre8
 
-| Placeholder | Description |
-| ----------- | ----------- |
-| `RESOURCEGROUP_NAME` | Name for the new resource group in which to create your web app. By putting all the resources for an app in a group, you can manage them together. For example, deleting the resource group would delete all resources associated with the app. Update this value with a unique new resource group name, for example, *TestResources*. You will use this resource group name to clean up all Azure resources in a later section. |
-| `WEBAPP_NAME` | The app name will be part the host name for the web app when deployed to Azure (WEBAPP_NAME.azurewebsites.net). Update this value with a unique name for the new Azure web app, which will host your Java app, for example *contoso*. |
-| `REGION` | An Azure region where the web app is hosted, for example `westus2`. You can get a list of regions from the Cloud Shell or CLI using the `az account list-locations` command. |
+When you get the **Confirm (Y/N)** prompt, press **'y'** and the configuration is done.
 
-A full list of configuration options can be found in the [Maven plugin reference on GitHub](https://github.com/Microsoft/azure-maven-plugins/tree/develop/azure-webapp-maven-plugin).
+```cmd
+~@Azure:~/gs-spring-boot/complete$ mvn azure-webapp:config
+[INFO] Scanning for projects...
+[INFO]
+[INFO] -----------------< org.springframework:gs-spring-boot >-----------------
+[INFO] Building gs-spring-boot 0.1.0
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO]
+[INFO] --- azure-webapp-maven-plugin:1.6.0:config (default-cli) @ gs-spring-boot ---
+[WARNING] The plugin may not work if you change the os of an existing webapp.
+Define value for OS(Default: Linux):
+1. linux [*]
+2. windows
+3. docker
+Enter index to use:
+Define value for javaVersion(Default: jre8):
+1. jre8 [*]
+2. java11
+Enter index to use:
+Define value for runtimeStack(Default: TOMCAT 8.5):
+1. TOMCAT 9.0
+2. jre8
+3. TOMCAT 8.5 [*]
+4. WILDFLY 14
+Enter index to use: 2
+Please confirm webapp properties
+AppName : gs-spring-boot-1559091271202
+ResourceGroup : gs-spring-boot-1559091271202-rg
+Region : westeurope
+PricingTier : Premium_P1V2
+OS : Linux
+RuntimeStack : JAVA 8-jre8
+Deploy to slot : false
+Confirm (Y/N)? : Y
+```
+
+4. Add the `<appSettings>` section to the `<configuration>` section of `<azure-webapp-maven-plugin>` to listen on the *80* port.
+
+    ```xml
+   <plugin>
+       <groupId>com.microsoft.azure</groupId>
+       <artifactId>azure-webapp-maven-plugin</artifactId>
+       <version>1.6.0</version>
+       <configuration>
+          <schemaVersion>V2</schemaVersion>
+          <resourceGroup>gs-spring-boot-1559091271202-rg</resourceGroup>
+          <appName>gs-spring-boot-1559091271202</appName>
+          <region>westeurope</region>
+          <pricingTier>P1V2</pricingTier>
+
+          <!-- Begin of App Settings  -->
+          <appSettings>
+             <property>
+                   <name>JAVA_OPTS</name>
+                   <value>-Dserver.port=80</value>
+             </property>
+          </appSettings>
+          <!-- End of App Settings  -->
+          ...
+         </configuration>
+   </plugin>
+   ```
 
 ## Deploy the app to Azure
 
