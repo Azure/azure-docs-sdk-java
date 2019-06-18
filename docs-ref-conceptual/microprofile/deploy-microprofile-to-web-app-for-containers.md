@@ -19,14 +19,14 @@ ms.workload: web
 
 # Deploy a Java-based MicroProfile service to Azure Web App for Containers
 
-MicroProfile is a great way to build exceedingly small Java applications that you can quickly and easily deploy to services such as [Azure Web App for Containers](https://azure.microsoft.com/services/app-service/containers/). In this tutorial, you create a simple, MicroProfile-based microservice that you then containerize into a Docker container, deploy to an [Azure container registry instance](https://azure.microsoft.com/services/container-registry/), and then host by using Azure Web App for Containers.
+MicroProfile is a great way to build exceedingly small Java applications that you can quickly and easily deploy to services such as [Azure Web App for Containers](https://azure.microsoft.com/services/app-service/containers/). In this tutorial, you create a simple, MicroProfile-based microservice that you containerize into a Docker container, deploy to an [Azure container registry instance](https://azure.microsoft.com/services/container-registry/), and then host by using Azure Web App for Containers.
 
 > [!NOTE]
 > This procedure works with any implementation of MicroProfile.io, as long the Docker container image is self-executable (that is, the image includes the runtime).
 
 In this sample, you use [Payara Micro](https://www.payara.fish/payara_micro) and [MicroProfile 1.3](https://microprofile.io/) to create a small (approximately 5,000 bytes) Java web application requirement (WAR) file, and then package it into a Docker image of approximately 174 megabytes (MB). The Docker image contains everything necessary for a fully containerized deployment of the web app.
 
-An entire 174 MB Docker image ordinarily doesn't need to be redeployed whenever the application source code is changed, because Docker uploads only the differences (which are significantly smaller). Consequently, the process of executing a new release of a MicroProfile application via a CI/CD pipeline is extremely efficient and quick, reducing friction and enabling rapid development iteration.
+An entire 174 MB Docker image doesn't need to be redeployed whenever the application source code is changed, because Docker uploads only the differences (which are significantly smaller). Consequently, the process of executing a new release of a MicroProfile application via a CI/CD pipeline is extremely efficient and quick, reducing friction and enabling rapid development iteration.
 
 You'll work through this tutorial by first creating and running the code locally and then deploying it as a web app on Azure. In both phases, you can depend on Docker to simplify and standardize your efforts. Before you begin, you'll create an Azure container registry instance for storing your Docker containers.
 
@@ -38,11 +38,11 @@ You use the [Azure portal](http://portal.azure.com) to create the Azure Containe
 
 1. In about 30 seconds, when the container registry instance is live, select the container registry instance and then, in the left pane, select the **Access keys** link. 
 
-    Be sure to enable the *admin user* setting, so that you can access this container registry instance from your machines and push Docker containers into it. Doing so also enables access from the Azure Web App for Containers instance we will set up soon.
+    Be sure to enable the *admin user* setting, so that you can access this container registry instance from your machines and push Docker containers into it. Doing so also enables access from the Azure Web App for Containers instance that you'll set up soon.
 
 1. In the **Access keys** pane, copy the **username** and **password** values and paste them into your global Maven *settings.xml* file. For more information about Maven settings, go to the [Apache Maven Project](https://maven.apache.org/settings.html) website. 
 
-   For your reference, here is an example of the *${user.home}/.m2/settings.xml* file:
+   For your reference, here's an example of the *${user.home}/.m2/settings.xml* file:
 
     ```xml
     <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
