@@ -105,11 +105,11 @@ In this section, you use the Azure CLI to create a key vault resource and popula
 
 1. Now you can push a secret into your key vault. Use the key name *demo-key*, and set the value of the key to *demo-value*:
 
-```bash
-az keyvault secret set --name demo-key      \
-                       --value demo-value   \
-                       --vault-name <your_keyvault_name>  
-```
+    ```bash
+    az keyvault secret set --name demo-key      \
+                           --value demo-value   \
+                           --vault-name <your_keyvault_name>  
+    ```
 
 That's it! You now have a key vault running in Azure with a single secret. You can now clone this repo and configure it to use this resource in your app.
 
