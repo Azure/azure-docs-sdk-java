@@ -35,9 +35,7 @@ To complete this tutorial, you need the following prerequisites:
 
 ## MicroProfile Hello Azure sample
 
-In this article, you use the [MicroProfile Hello Azure](https://github.com/azure-samples/microprofile-hello-azure) sample.
-
-Clone, build, and run it locally by using the following commands:
+In this article, you use the [MicroProfile Hello Azure](https://github.com/azure-samples/microprofile-hello-azure) sample. Clone, build, and run it locally by using the following commands:
 
 ```bash
 $ git clone https://github.com/Azure-Samples/microprofile-hello-azure.git
@@ -135,7 +133,7 @@ az container create --resource-group $ARG --name $ACR --image $ACR_REPO/$IMG_NAM
 
 #### Test your deployed MicroProfile application
 
-Your application should now be up and running. To test it from the command-line, try the following command:
+Your application should now be up and running. To test it from the command-line interface, use the following command:
 
 ```bash
 curl http://$ACI_INSTANCE.$ADCL.azurecontainer.io:8080/api/hello
@@ -145,7 +143,7 @@ Congratulations! You've successfully built a MicroProfile application as a Docke
 
 ## Next steps
 
-For more information about the various technologies discussed in this article, see the following articles:
+For more information about the various technologies discussed in this article, see:
 
 * [Sign in to Azure from the Azure CLI](/azure/xplat-cli-connect)
 
