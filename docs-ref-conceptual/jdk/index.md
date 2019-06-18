@@ -12,7 +12,7 @@ ms.topic: conceptual
 
 # Java long-term support for Azure and Azure Stack
 
-As a Java developer on Microsoft Azure and Azure Stack, you can build and run production Java applications by using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu, you get free maintenance updates and can resolve support issues with Microsoft.
+As a Java developer on Microsoft Azure and Azure Stack, you can build and run production Java applications by using [Azul Zulu Enterprise for Azure](https://www.azul.com/downloads/azure-only/zulu/) without incurring additional support costs. You can use any Java runtime you want on Azure, but when you use Zulu, you get free maintenance updates and you can resolve support issues with Microsoft.
 
 > [!div class="nextstepaction"]
 > [Download and install Java](java-jdk-install.md)
@@ -67,7 +67,7 @@ The Azul Zulu JDK releases are:
 * Backed and supported by both Microsoft and Azul Systems.
 
    * Zulu binaries are production ready and backed by Microsoft and Azul Systems.
-   * Zulu comes with zero-cost LTS for Java 7, 8, and 11. (LTS will be provided for Java 17, as well). You can upgrade Java versions only when you need to.
+   * Zulu comes with zero-cost LTS for Java 7, 8, and 11 (LTS will be provided for Java 17, as well). You can upgrade Java versions only when you need to.
    * Java 7 is supported until July 2023. Java 8 and 11 are supported beyond 2024.
    * Microsoft is committed to running Zulu internally on machines that power many Azure services.
 
@@ -75,14 +75,14 @@ The Azul Zulu JDK releases are:
 
    * 100 percent open-source for its builds of OpenJDK.
    * Drop-in replacements for many Java SE distributions.
-   * JDK, JRE, and JRE-headless
-   * Java 7, 8, and 11
+   * JDK, JRE, and JRE-headless.
+   * Java 7, 8, and 11.
    * Verified compliant with the Java SE specifications that use the OpenJDK Community Technology Compatibility Kit (TCK).
    * As a developer, you continue to receive production updates for Java SE, including bug fixes, performance enhancements, and security patches for Java SE 7, 8, and 11.
 
 * Supported for multi-platform. Zulu supports binaries for multiple platforms and versions, including:
 
-   * Windows Client
+   * Windows client
      * 10
      * 8.1
      * 8, 7
@@ -116,7 +116,7 @@ The Azul Zulu JDK releases are:
    * Microsoft provides everything you need to build and scale Java apps on Azure, at no cost to you. Through Zulu you'll receive free security updates and platform bug fixes for Java apps without any fees.
    * [Java Flight Recorder and Mission Control](java-jdk-flight-recorder-and-mission-control.md) are available in Zulu Java 8, 11, and 12 (Preview).
 
-* Tech preview of non-LTS versions.
+* Available as tech preview of non-LTS versions.
 
    * With tech previews, you can progressively test new features as they're delivered, in short-term versions that will eventually graduate to Java 17 LTS.
 
@@ -124,7 +124,7 @@ The Azul Zulu JDK releases are:
 
    * Azul Systems committers push Zulu changes to OpenJDK, which makes the upstream repo comprehensive and inclusive.
 
-As always, as a Java developer, you can bring to Azure your own Java runtimes, including the Oracle JDK and the Red Hat JDK. You can also use the secure infrastructure and feature-rich services. The production edition of Oracle Java SE is also available to you for running Java workloads in Windows or Linux virtual machines on Azure.
+As always, as a Java developer, you can bring to Azure your own Java runtimes, including the Oracle JDK and the Red Hat JDK. You can also use the secure infrastructure and feature-rich services. The production edition of Oracle Java SE is available to you for running Java workloads in Windows or Linux virtual machines on Azure.
 
 ## Use Java JDKs for local development 
 
