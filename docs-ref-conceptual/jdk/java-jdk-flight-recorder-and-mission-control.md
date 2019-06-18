@@ -106,7 +106,7 @@ To install Zulu Mission Control, connect to a Java Virtual Machine (JVM), and ga
 
     b. Select either **Time fixed recording** or **Continuous recording**, and either a **Profiling** configuration (fine-grained) or a **Continuous** configuration (lower overhead), and then select **Finish**.
 
-        ![Start a Flight Recording](../media/jdk/azul-jfr-3.png)
+    ![Start a Flight Recording](../media/jdk/azul-jfr-3.png)
 
     A flight recording should appear below the **Flight Recorder** line in the JVM browser.
 
