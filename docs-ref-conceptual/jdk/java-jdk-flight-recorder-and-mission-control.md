@@ -114,7 +114,7 @@ To install Zulu Mission Control, connect to a Java Virtual Machine (JVM), and ga
 
     A new tab appears in the large pane on the right side of the Zulu Mission Control window. This pane represents the flight recording that was just dumped from the JVM that's running your application.
 
-1. Examine the flight recording using Zulu Mission Control. To do so, select the **Outline** tab in the left pane of the Zulu Mission Control Window. This tab displays various views of the data that's collected in the flight recording.
+1. Examine the flight recording by using Zulu Mission Control. To do so, select the **Outline** tab in the left pane of the Zulu Mission Control window. This tab displays various views of the data that's collected in the flight recording.
  
     ![Review the flight recording](../media/jdk/azul-jfr-4.png)
 
