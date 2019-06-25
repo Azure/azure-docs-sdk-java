@@ -32,7 +32,7 @@ You'll work through this tutorial by first creating and running the code locally
 
 ## Create an Azure container registry instance
 
-You use the [Azure portal](http://portal.azure.com) to create the Azure Container Registry, but there are other choices also, such as the Azure CLI. To create a new Azure container registry instance, do the following:
+You can use the [Azure portal](http://portal.azure.com) to create the Azure container registry instance, but there are other choices also, such as the Azure CLI. To create a new Azure container registry instance, do the following:
 
 1. Sign in to the [Azure portal](http://portal.azure.com) and create a new Azure container registry resource. Provide a registry name (this name should be set as the `docker.registry` property in the *pom.xml* file). Change the defaults as you want, and then select **Create**.
 
@@ -84,7 +84,7 @@ COPY target/${WAR_FILE} $DEPLOY_DIR
 EXPOSE 8080
 ```
 
-The Dockerfile simply creates a new Docker container that's based on the Payara Micro Docker Container. It copies in the WAR file that was created as part of your build process. It also exposes port 8080 so that you can access the service after it's up and running within a Docker container.
+The Dockerfile creates a new Docker container that's based on the Payara Micro Docker Container. It copies in the WAR file that was created as part of your build process. It also exposes port 8080 so that you can access the service after it's up and running within a Docker container.
 
 When you open the *src* directory, you'll eventually discover the `Application` class that's reproduced here:
 
