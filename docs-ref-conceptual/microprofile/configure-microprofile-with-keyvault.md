@@ -42,9 +42,9 @@ public class DemoClass {
 }
 ```
 
-This sample code uses [Payara Micro](https://www.payara.fish/payara_micro) and [MicroProfile](https://microprofile.io/) to create a tiny Java web application requirement (WAR) file that you can run locally on your machine. It doesn't demonstrate how to Dockerize or push the code to Azure, but the links section at the end of this tutorial has links to other useful tutorials that explain this.
+This sample code uses [Payara Micro](https://www.payara.fish/payara_micro) and [MicroProfile](https://microprofile.io/) to create a tiny Java web application requirement (WAR) file that you can run locally on your machine. It doesn't demonstrate how to Dockerize or push the code to Azure, but the section at the end of this article has links to other useful tutorials that explain this.
 
-The sample uses a free and open source library that creates a config source (using the MicroProfile Config API) in your key vault. To learn more about this library and review the code, see the [project GitHub page](https://github.com/Azure/azure-microprofile/tree/master/microprofile-config-keyvault). If you use the library, the code in this tutorial can simply focus on the configuration of the library and then injecting keys into your code, and you don't need to write any Azure-specific code.
+The sample uses a free and open source library that creates a config source (using the MicroProfile Config API) in your key vault. To learn more about this library and review the code, see the [project GitHub page](https://github.com/Azure/azure-microprofile/tree/master/microprofile-config-keyvault). If you use the library, the code in this tutorial can simply focus on the configuration of the library and then inject keys into your code. You don't need to write any Azure-specific code.
 
 To run this code on your local machine, starting with creating a key vault resource, follow the instructions in the next sections.
 
