@@ -87,7 +87,7 @@ The Azul Zulu JDK releases are:
      * 8.1
      * 8, 7
    * Windows Server
-     * 2016R2
+     * 2016 R2
      * 2016
      * 2012 R2
      * 2012
