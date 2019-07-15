@@ -8,7 +8,7 @@ manager: alexklim
 editor: ''
 ms.assetid:
 ms.author: dhdoshi
-ms.date: 12/19/2018
+ms.date: 07/14/2019
 ms.devlang: java
 ms.service: Azure Monitor
 ms.tgt_pltfrm: application-insights
@@ -62,14 +62,14 @@ The following prerequisites are required in order to complete the steps in this 
 
 1. On the **New Application Insights Resource** page, specify the following information:
 
+   > [!NOTE]
+   > If this is your first time creating an Application Insights resource you can learn more by visiting the [Create an Application Insights Resource](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource) article.
+
    * Enter the **Name** for your Application Insights resource.
-   * Choose the **Application Type** to Java Web Application.
    * Specify your **Subscription**, **Resource group** and **Location**.
    * Select Pin to dashboard option, if you would like to pin the resource on your Azure portal.
 
    When you have specified these options, click **Create** to create your Application Insights resource.
-
-   ![Azure portal][AZ03]
 
 1. Once your resource has been created, you will see it listed on your Azure **Dashboard**, as well as under the **All Resources** pages. You can click on your resource on any of those locations to open the overview page of the Application Insights resource. From this overview page please copy the **instrumentation key**.
 
