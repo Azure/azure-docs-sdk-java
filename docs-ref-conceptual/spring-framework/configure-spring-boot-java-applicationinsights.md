@@ -63,7 +63,7 @@ The following prerequisites are required in order to complete the steps in this 
 1. On the **New Application Insights Resource** page, specify the following information:
 
    > [!NOTE]
-   > If this is your first time creating an Application Insights resource you can learn more by visiting the [Create an Application Insights Resource](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource) doc.
+   > If this is your first time creating an Application Insights resource you can learn more by visiting the [Create an Application Insights Resource](https://docs.microsoft.com/azure/azure-monitor/app/create-new-resource) article.
 
    * Enter the **Name** for your Application Insights resource.
    * Specify your **Subscription**, **Resource group** and **Location**.
