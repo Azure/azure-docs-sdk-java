@@ -1,0 +1,563 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.core.util.polling.Poller
+  id: Poller
+  parent: com.azure.core.util.polling
+  children:
+  - com.azure.core.util.polling.Poller.block()
+  - com.azure.core.util.polling.Poller.blockUntil(OperationStatus)
+  - com.azure.core.util.polling.Poller.blockUntil(OperationStatus,Duration)
+  - com.azure.core.util.polling.Poller.cancelOperation()
+  - com.azure.core.util.polling.Poller.getObserver()
+  - com.azure.core.util.polling.Poller.getStatus()
+  - com.azure.core.util.polling.Poller.isAutoPollingEnabled()
+  - com.azure.core.util.polling.Poller.poll()
+  - com.azure.core.util.polling.Poller.Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>)
+  - com.azure.core.util.polling.Poller.Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>,Consumer<Poller<T>>)
+  - com.azure.core.util.polling.Poller.setAutoPollingEnabled(boolean)
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: Poller<T>
+  nameWithType: Poller<T>
+  fullName: com.azure.core.util.polling.Poller<T>
+  type: Class
+  source:
+    remote: &o0
+      path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+      branch: master
+      repo: https://github.com/Azure/azure-sdk-for-java
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 59
+  package: com.azure.core.util.polling
+  summary: "<p>This class offers API that simplifies the task of executing long-running operations against Azure service. The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> consist of poll operation, cancel operation if supported by Azure service and polling interval. </p>\r\n<p>It provides the following functionality:</p>\r\n<p>\r\n  <ul>\r\n    <li>\r\n      <p>Querying the current state of long-running operations. </p>\r\n    </li>\r\n    <li>\r\n      <p>Requesting an asynchronous notification for long-running operation's state. </p>\r\n    </li>\r\n    <li>\r\n      <p>Cancelling the long-running operation if cancellation is supported by the service. </p>\r\n    </li>\r\n    <li>\r\n      <p>Triggering a poll operation manually. </p>\r\n    </li>\r\n    <li>\r\n      <p>Enable/Disable auto-polling. </p>\r\n    </li>\r\n  </ul>\r\n</p>\r\n<p>\r\n  <b>Auto Polling</b>\r\n</p>\r\n<p>Auto-polling is enabled by-default. It means that the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> starts polling as soon as its instance is created. The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will transparently call the poll operation every polling cycle and track the state of the long-running operation. Azure services can return <xref uid=\"com.azure.core.util.polling.PollResponse.getRetryAfter()\" data-throw-if-not-resolved=\"false\">PollResponse#getRetryAfter()</xref> to override the<code>Poller.pollInterval \r\n    </code> defined in the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref>. The <xref uid=\"com.azure.core.util.polling.Poller.getStatus()\" data-throw-if-not-resolved=\"false\">Poller#getStatus()</xref> represents the status returned by the successful long-running operation at the time the last auto-polling or last manual polling, whichever happened most recently.</p>\r\n<p>\r\n  <b>Disable Auto Polling</b>\r\n</p>\r\n<p>For those scenarios which require manual control of the polling cycle, disable auto-poling by calling<code>setAutoPollingEnabled#false \r\n    </code> and perform manual poll by invoking <xref uid=\"com.azure.core.util.polling.Poller.poll()\" data-throw-if-not-resolved=\"false\">Poller#poll()</xref> function. It will call poll operation once and update the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> with the latest status. </p>\r\n<p>When auto-polling is disabled, the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will not update its status or other information, unless manual polling is triggered by calling <xref uid=\"com.azure.core.util.polling.Poller.poll()\" data-throw-if-not-resolved=\"false\">Poller#poll()</xref> function.</p>\r\n<p>The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will stop polling when the long-running operation is complete or it is disabled. The polling is considered complete based on status defined in <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus</xref>.</p>\r\n<p>\r\n  <b>Code Samples</b>\r\n</p>\r\n<p>\r\n  <b>Instantiating and Subscribing to Poll Response</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.instantiationAndSubscribe}</p>\r\n<p>\r\n  <b>Wait/Block for Polling to complete</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.block}</p>\r\n<p>\r\n  <b>Disable auto polling and polling manually</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.poll}</p>\r\n<p></p>"
+  syntax: &o1
+    content: public class Poller<T>
+    typeParameters:
+    - id: T
+      type: 8ce1ecb9
+      description: <p>Type of poll response value </p>
+  inheritance:
+  - java.lang.Object
+- uid: com.azure.core.util.polling.Poller.block()
+  id: block()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: block()
+  nameWithType: Poller<T>.block()
+  fullName: com.azure.core.util.polling.Poller<T>.block()
+  overload: com.azure.core.util.polling.Poller.block*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 223
+  package: com.azure.core.util.polling
+  summary: "<p>Blocks execution and wait for polling to complete. The polling is considered complete based on status defined in <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus</xref>. </p>\r\n<p>It will enable auto-polling if it was disable by user.</p>\r\n<p></p>"
+  syntax:
+    content: public PollResponse<T> block()
+    return:
+      type: com.azure.core.util.polling.PollResponse669339f7
+      description: <p>returns final <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref> when polling is complete as defined in <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref>. </p>
+- uid: com.azure.core.util.polling.Poller.blockUntil(OperationStatus)
+  id: blockUntil(OperationStatus)
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: blockUntil(OperationStatus statusToBlockFor)
+  nameWithType: Poller<T>.blockUntil(OperationStatus statusToBlockFor)
+  fullName: com.azure.core.util.polling.Poller<T>.blockUntil(OperationStatus statusToBlockFor)
+  overload: com.azure.core.util.polling.Poller.blockUntil*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 236
+  package: com.azure.core.util.polling
+  summary: "<p>Blocks indefinitely until given <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus</xref> is received. </p>"
+  syntax:
+    content: public PollResponse<T> blockUntil(OperationStatus statusToBlockFor)
+    parameters:
+    - id: statusToBlockFor
+      type: 79b25c3a
+      description: <p>The desired <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref> to block for and it can be any valid <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref> value. </p>
+    return:
+      type: com.azure.core.util.polling.PollResponse669339f7
+      description: >-
+        <p>
+
+          <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref> for matching desired status. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>If<code>statusToBlockFor 
+
+          </code> is<code>null 
+
+          </code> . </p>
+- uid: com.azure.core.util.polling.Poller.blockUntil(OperationStatus,Duration)
+  id: blockUntil(OperationStatus,Duration)
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: blockUntil(OperationStatus statusToBlockFor, Duration timeout)
+  nameWithType: Poller<T>.blockUntil(OperationStatus statusToBlockFor, Duration timeout)
+  fullName: com.azure.core.util.polling.Poller<T>.blockUntil(OperationStatus statusToBlockFor, Duration timeout)
+  overload: com.azure.core.util.polling.Poller.blockUntil*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 247
+  package: com.azure.core.util.polling
+  summary: "<p>Blocks until given <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus</xref> is received or a timeout expires if provided. A<code>null \r\n    </code><code>timeout \r\n    </code> will cause to block indefinitely for desired status. </p>"
+  syntax:
+    content: public PollResponse<T> blockUntil(OperationStatus statusToBlockFor, Duration timeout)
+    parameters:
+    - id: statusToBlockFor
+      type: 79b25c3a
+      description: <p>The desired <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref> to block for and it can be any valid <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref> value. </p>
+    - id: timeout
+      type: e02a2de0
+      description: >-
+        <p>The time after which it will stop blocking. A<code>null 
+
+            </code> value will cause to block indefinitely. Zero or negative are not valid values. </p>
+    return:
+      type: com.azure.core.util.polling.PollResponse669339f7
+      description: >-
+        <p>
+
+          <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref> for matching desired status to block for. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if<code>timeout 
+
+          </code> is zero or negative and if<code>statusToBlockFor 
+
+          </code> is<code>null 
+
+          </code> . </p>
+- uid: com.azure.core.util.polling.Poller.cancelOperation()
+  id: cancelOperation()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: cancelOperation()
+  nameWithType: Poller<T>.cancelOperation()
+  fullName: com.azure.core.util.polling.Poller<T>.cancelOperation()
+  overload: com.azure.core.util.polling.Poller.cancelOperation*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 170
+  package: com.azure.core.util.polling
+  summary: "<p>Attempts to cancel the long-running operation that this <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> represents. This is possible only if the service supports it, otherwise an<code>UnsupportedOperationException \r\n    </code> will be thrown. </p>\r\n<p>It will call cancelOperation if status is <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus#IN_PROGRESS</xref> otherwise it does nothing.</p>\r\n<p></p>"
+  syntax:
+    content: public void cancelOperation()
+  exceptions:
+  - type: b1c38b44
+    description: <p>when cancel operation is not provided. </p>
+- uid: com.azure.core.util.polling.Poller.getObserver()
+  id: getObserver()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: getObserver()
+  nameWithType: Poller<T>.getObserver()
+  fullName: com.azure.core.util.polling.Poller<T>.getObserver()
+  overload: com.azure.core.util.polling.Poller.getObserver*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 191
+  package: com.azure.core.util.polling
+  summary: "<p>This method returns a <xref uid=\"\" data-throw-if-not-resolved=\"false\">Flux</xref> that can be subscribed to, enabling a subscriber to receive notification of every <xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\">PollResponse</xref>, as it is received.</p>\r\n<p></p>"
+  syntax:
+    content: public Flux<PollResponse<T>> getObserver()
+    return:
+      type: f5e9f800com.azure.core.util.polling.PollResponse84ce83e6
+      description: <p>A <xref uid="" data-throw-if-not-resolved="false">Flux</xref> that can be subscribed to receive poll responses as the long-running operation executes. </p>
+- uid: com.azure.core.util.polling.Poller.getStatus()
+  id: getStatus()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: getStatus()
+  nameWithType: Poller<T>.getStatus()
+  fullName: com.azure.core.util.polling.Poller<T>.getStatus()
+  overload: com.azure.core.util.polling.Poller.getStatus*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 375
+  package: com.azure.core.util.polling
+  summary: "<p>Current known status as a result of last poll event or last response from a manual polling.</p>\r\n<p></p>"
+  syntax: &o2
+    content: public OperationStatus getStatus()
+    return:
+      type: 79b25c3a
+      description: >-
+        <p>current status or<code>null 
+
+            </code> if no status is available. </p>
+- uid: com.azure.core.util.polling.Poller.isAutoPollingEnabled()
+  id: isAutoPollingEnabled()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: isAutoPollingEnabled()
+  nameWithType: Poller<T>.isAutoPollingEnabled()
+  fullName: com.azure.core.util.polling.Poller<T>.isAutoPollingEnabled()
+  overload: com.azure.core.util.polling.Poller.isAutoPollingEnabled*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 366
+  package: com.azure.core.util.polling
+  summary: "<p>Indicates if auto polling is enabled. Refer to the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> class-level JavaDoc for more details on auto-polling. </p>"
+  syntax:
+    content: public boolean isAutoPollingEnabled()
+    return:
+      type: 4fc6e284
+      description: <p>A boolean value representing if auto-polling is enabled or not.. </p>
+- uid: com.azure.core.util.polling.Poller.poll()
+  id: poll()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: poll()
+  nameWithType: Poller<T>.poll()
+  fullName: com.azure.core.util.polling.Poller<T>.poll()
+  overload: com.azure.core.util.polling.Poller.poll*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 208
+  package: com.azure.core.util.polling
+  summary: "<p>Enable user to take control of polling and trigger manual poll operation. It will call poll operation once. This will not turn off auto polling.</p>\r\n<p>\r\n  <b>Code Samples</b>\r\n</p>\r\n<p>\r\n  <b>Manual Polling</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.poll.indepth}</p>\r\n<p></p>"
+  syntax: &o3
+    content: public Mono<PollResponse<T>> poll()
+    return:
+      type: 744507a1com.azure.core.util.polling.PollResponse84ce83e6
+      description: <p>a Mono of <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref> This will call poll operation once. The <xref uid="" data-throw-if-not-resolved="false">Mono</xref> returned here could be subscribed for receiving <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref> in async manner. </p>
+- uid: com.azure.core.util.polling.Poller.Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>)
+  id: Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>)
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation)
+  nameWithType: Poller<T>.Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation)
+  fullName: com.azure.core.util.polling.Poller<T>.Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation)
+  overload: com.azure.core.util.polling.Poller.Poller*
+  type: Constructor
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 119
+  package: com.azure.core.util.polling
+  summary: "<p>Create a <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> instance with poll interval and poll operation. The polling starts immediately by invoking<code>pollOperation \r\n    </code> . The next poll cycle will be defined by<code>retryAfter \r\n    </code> value in <xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\">PollResponse</xref>. In absence of<code>retryAfter \r\n    </code> , the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will use<code>pollInterval \r\n    </code> .</p>\r\n<p>\r\n  <b>Code Sample - Create poller object</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.initialize.interval.polloperation}</p>\r\n<p></p>"
+  syntax:
+    content: public Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation)
+    parameters:
+    - id: pollInterval
+      type: e02a2de0
+      description: <p>Not-null and greater than zero poll interval. </p>
+    - id: pollOperation
+      type: 432ffe41com.azure.core.util.polling.PollResponsee477f29ecom.azure.core.util.polling.PollResponsebfb1e8b9
+      description: >-
+        <p>The polling operation to be called by the <xref uid="com.azure.core.util.polling.Poller" data-throw-if-not-resolved="false">Poller</xref> instance. This is a callback into the client library, which must never return<code>null 
+
+            </code> , and which must always have a non-null <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref>. <xref uid="" data-throw-if-not-resolved="false">Mono</xref> returned from poll operation should never return <xref uid="" data-throw-if-not-resolved="false">Mono#error(Throwable)</xref>.If any unexpected scenario happens in poll operation, it should be handled by client library and return a valid <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref>. However if poll operation returns <xref uid="" data-throw-if-not-resolved="false">Mono#error(Throwable)</xref>, the <xref uid="com.azure.core.util.polling.Poller" data-throw-if-not-resolved="false">Poller</xref> will disregard that and continue to poll. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if<code>pollInterval 
+
+          </code> is less than or equal to zero and if<code>pollInterval 
+
+          </code> or<code>pollOperation 
+
+          </code> are<code>null 
+
+          </code></p>
+- uid: com.azure.core.util.polling.Poller.Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>,Consumer<Poller<T>>)
+  id: Poller(Duration,Function<PollResponse<T>, Mono<PollResponse<T>>>,Consumer<Poller<T>>)
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation, Consumer<Poller<T>> cancelOperation)
+  nameWithType: Poller<T>.Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation, Consumer<Poller<T>> cancelOperation)
+  fullName: com.azure.core.util.polling.Poller<T>.Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation, Consumer<Poller<T>> cancelOperation)
+  overload: com.azure.core.util.polling.Poller.Poller*
+  type: Constructor
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 157
+  package: com.azure.core.util.polling
+  summary: "<p>Create a <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> instance with poll interval, poll operation and cancel operation. The polling starts immediately by invoking<code>pollOperation \r\n    </code> . The next poll cycle will be defined by retryAfter value in <xref uid=\"com.azure.core.util.polling.PollResponse\" data-throw-if-not-resolved=\"false\">PollResponse</xref>. In absence of <xref uid=\"com.azure.core.util.polling.PollResponse.getRetryAfter()\" data-throw-if-not-resolved=\"false\">PollResponse#getRetryAfter()</xref>, the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will use<code>pollInterval \r\n    </code> .</p>\r\n<p></p>"
+  syntax:
+    content: public Poller(Duration pollInterval, Function<PollResponse<T>, Mono<PollResponse<T>>> pollOperation, Consumer<Poller<T>> cancelOperation)
+    parameters:
+    - id: pollInterval
+      type: e02a2de0
+      description: <p>Not-null and greater than zero poll interval. </p>
+    - id: pollOperation
+      type: 432ffe41com.azure.core.util.polling.PollResponsee477f29ecom.azure.core.util.polling.PollResponsebfb1e8b9
+      description: >-
+        <p>The polling operation to be called by the <xref uid="com.azure.core.util.polling.Poller" data-throw-if-not-resolved="false">Poller</xref> instance. This is a callback into the client library, which must never return<code>null 
+
+            </code> , and which must always have a non-null <xref uid="" data-throw-if-not-resolved="false">OperationStatus</xref>. <xref uid="" data-throw-if-not-resolved="false">Mono</xref> returned from poll operation should never return <xref uid="" data-throw-if-not-resolved="false">Mono#error(Throwable)</xref>.If any unexpected scenario happens in poll operation, it should handle it and return a valid <xref uid="com.azure.core.util.polling.PollResponse" data-throw-if-not-resolved="false">PollResponse</xref>. However if poll operation returns <xref uid="" data-throw-if-not-resolved="false">Mono#error(Throwable)</xref>, the <xref uid="com.azure.core.util.polling.Poller" data-throw-if-not-resolved="false">Poller</xref> will disregard that and continue to poll. </p>
+    - id: cancelOperation
+      type: e0918e98com.azure.core.util.polling.Poller84ce83e6
+      description: >-
+        <p>cancel operation if cancellation is supported by the service. It can be<code>null 
+
+            </code> which will indicate to the <xref uid="com.azure.core.util.polling.Poller" data-throw-if-not-resolved="false">Poller</xref> that cancel operation is not supported by Azure service. </p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if<code>pollInterval 
+
+          </code> is less than or equal to zero and if<code>pollInterval 
+
+          </code> or<code>pollOperation 
+
+          </code> are<code>null 
+
+          </code></p>
+- uid: com.azure.core.util.polling.Poller.setAutoPollingEnabled(boolean)
+  id: setAutoPollingEnabled(boolean)
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  langs:
+  - java
+  name: setAutoPollingEnabled(boolean autoPollingEnabled)
+  nameWithType: Poller<T>.setAutoPollingEnabled(boolean autoPollingEnabled)
+  fullName: com.azure.core.util.polling.Poller<T>.setAutoPollingEnabled(boolean autoPollingEnabled)
+  overload: com.azure.core.util.polling.Poller.setAutoPollingEnabled*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/core/azure-core/src/main/java/com/azure/core/util/polling/Poller.java
+    startLine: 326
+  package: com.azure.core.util.polling
+  summary: "<p>Controls whether auto-polling is enabled or disabled. Refer to the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> class-level JavaDoc for more details on auto-polling.</p>\r\n<p>\r\n  <b>Disable auto polling</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.disableautopolling}</p>\r\n<p>\r\n  <b>Enable auto polling</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.enableautopolling}</p>\r\n<p></p>"
+  syntax:
+    content: public final void setAutoPollingEnabled(boolean autoPollingEnabled)
+    parameters:
+    - id: autoPollingEnabled
+      type: 4fc6e284
+      description: <p>If true, auto-polling will occur transparently in the background, otherwise it requires manual polling by the user to get the latest state. </p>
+    return:
+      type: 3f6357ce
+references:
+- uid: 8ce1ecb9
+  spec.java:
+  - name: T
+    fullName: T
+- uid: 3c87bd19
+  spec.java:
+  - name: IllegalArgumentException
+    fullName: IllegalArgumentException
+- uid: e02a2de0
+  spec.java:
+  - name: Duration
+    fullName: Duration
+- uid: 432ffe41com.azure.core.util.polling.PollResponsee477f29ecom.azure.core.util.polling.PollResponsebfb1e8b9
+  spec.java:
+  - name: Function<
+    fullName: Function<
+  - uid: com.azure.core.util.polling.PollResponse
+    name: PollResponse
+    fullName: com.azure.core.util.polling.PollResponse
+    href: com.azure.core.util.polling.PollResponse.yml
+  - name: <T>, Mono<
+    fullName: <T>, Mono<
+  - uid: com.azure.core.util.polling.PollResponse
+    name: PollResponse
+    fullName: com.azure.core.util.polling.PollResponse
+    href: com.azure.core.util.polling.PollResponse.yml
+  - name: <T>>>
+    fullName: <T>>>
+- uid: com.azure.core.util.polling.Poller.Poller*
+  name: Poller
+  nameWithType: Poller<T>.Poller
+  fullName: com.azure.core.util.polling.Poller<T>.Poller
+  package: com.azure.core.util.polling
+- uid: e0918e98com.azure.core.util.polling.Poller84ce83e6
+  spec.java:
+  - name: Consumer<
+    fullName: Consumer<
+  - uid: com.azure.core.util.polling.Poller
+    name: Poller
+    fullName: com.azure.core.util.polling.Poller
+    href: com.azure.core.util.polling.Poller.yml
+  - name: <T>>
+    fullName: <T>>
+- uid: b1c38b44
+  spec.java:
+  - name: UnsupportedOperationException
+    fullName: UnsupportedOperationException
+- uid: com.azure.core.util.polling.Poller.cancelOperation*
+  name: cancelOperation
+  nameWithType: Poller<T>.cancelOperation
+  fullName: com.azure.core.util.polling.Poller<T>.cancelOperation
+  package: com.azure.core.util.polling
+- uid: f5e9f800com.azure.core.util.polling.PollResponse84ce83e6
+  spec.java:
+  - name: Flux<
+    fullName: Flux<
+  - uid: com.azure.core.util.polling.PollResponse
+    name: PollResponse
+    fullName: com.azure.core.util.polling.PollResponse
+    href: com.azure.core.util.polling.PollResponse.yml
+  - name: <T>>
+    fullName: <T>>
+- uid: com.azure.core.util.polling.Poller.getObserver*
+  name: getObserver
+  nameWithType: Poller<T>.getObserver
+  fullName: com.azure.core.util.polling.Poller<T>.getObserver
+  package: com.azure.core.util.polling
+- uid: 744507a1com.azure.core.util.polling.PollResponse84ce83e6
+  spec.java:
+  - name: Mono<
+    fullName: Mono<
+  - uid: com.azure.core.util.polling.PollResponse
+    name: PollResponse
+    fullName: com.azure.core.util.polling.PollResponse
+    href: com.azure.core.util.polling.PollResponse.yml
+  - name: <T>>
+    fullName: <T>>
+- uid: com.azure.core.util.polling.Poller.poll*
+  name: poll
+  nameWithType: Poller<T>.poll
+  fullName: com.azure.core.util.polling.Poller<T>.poll
+  package: com.azure.core.util.polling
+- uid: com.azure.core.util.polling.PollResponse669339f7
+  spec.java:
+  - uid: com.azure.core.util.polling.PollResponse
+    name: PollResponse
+    fullName: com.azure.core.util.polling.PollResponse
+    href: com.azure.core.util.polling.PollResponse.yml
+  - name: <T>
+    fullName: <T>
+- uid: com.azure.core.util.polling.Poller.block*
+  name: block
+  nameWithType: Poller<T>.block
+  fullName: com.azure.core.util.polling.Poller<T>.block
+  package: com.azure.core.util.polling
+- uid: 79b25c3a
+  spec.java:
+  - name: OperationStatus
+    fullName: OperationStatus
+- uid: com.azure.core.util.polling.Poller.blockUntil*
+  name: blockUntil
+  nameWithType: Poller<T>.blockUntil
+  fullName: com.azure.core.util.polling.Poller<T>.blockUntil
+  package: com.azure.core.util.polling
+- uid: 4fc6e284
+  spec.java:
+  - name: boolean
+    fullName: boolean
+- uid: 3f6357ce
+  spec.java:
+  - name: final void
+    fullName: final void
+- uid: com.azure.core.util.polling.Poller.setAutoPollingEnabled*
+  name: setAutoPollingEnabled
+  nameWithType: Poller<T>.setAutoPollingEnabled
+  fullName: com.azure.core.util.polling.Poller<T>.setAutoPollingEnabled
+  package: com.azure.core.util.polling
+- uid: com.azure.core.util.polling.Poller.isAutoPollingEnabled*
+  name: isAutoPollingEnabled
+  nameWithType: Poller<T>.isAutoPollingEnabled
+  fullName: com.azure.core.util.polling.Poller<T>.isAutoPollingEnabled
+  package: com.azure.core.util.polling
+- uid: com.azure.core.util.polling.Poller.getStatus*
+  name: getStatus
+  nameWithType: Poller<T>.getStatus
+  fullName: com.azure.core.util.polling.Poller<T>.getStatus
+  package: com.azure.core.util.polling
+- uid: com.azure.core.util.logging.ClientLogger
+  parent: com.azure.core.util.logging
+  href: com.azure.core.util.logging.ClientLogger.yml
+  name: ClientLogger
+  nameWithType: ClientLogger
+  fullName: com.azure.core.util.logging.ClientLogger
+  type: Class
+  summary: "<p>This is a fluent logger helper class that wraps a plug-able <xref uid=\"\" data-throw-if-not-resolved=\"false\">Logger</xref>.</p>\r\n<p>This logger logs formattable messages that use<code>{} \r\n    </code> as the placeholder. When a throwable is the last argument of the format varargs and the logger is enabled for <xref uid=\"\" data-throw-if-not-resolved=\"false\">verbose</xref> logging the stack trace for the throwable will be included in the log message.</p>\r\n<p>A minimum logging level threshold is determined by the <xref uid=\"com.azure.core.util.configuration.BaseConfigurations.AZURE_LOG_LEVEL\" data-throw-if-not-resolved=\"false\">AZURE_LOG_LEVEL</xref> environment configuration, by default logging is disabled.</p>\r\n<p>\r\n  <b>Log level hierarchy</b>\r\n</p>\r\n<p>\r\n  <orderedlist>\r\n    <li>\r\n      <p>\r\n        <xref uid=\"\" data-throw-if-not-resolved=\"false\">Error</xref>\r\n      </p>\r\n    </li>\r\n    <li>\r\n      <p>\r\n        <xref uid=\"\" data-throw-if-not-resolved=\"false\">Warning</xref>\r\n      </p>\r\n    </li>\r\n    <li>\r\n      <p>\r\n        <xref uid=\"\" data-throw-if-not-resolved=\"false\">Info</xref>\r\n      </p>\r\n    </li>\r\n    <li>\r\n      <p>\r\n        <xref uid=\"\" data-throw-if-not-resolved=\"false\">Verbose</xref>\r\n      </p>\r\n    </li>\r\n  </orderedlist>\r\n</p>\r\n<p></p>"
+  syntax:
+    content: public class ClientLogger
+- uid: com.azure.core.util.polling.PollResponse
+  parent: com.azure.core.util.polling
+  href: com.azure.core.util.polling.PollResponse.yml
+  name: PollResponse<T>
+  nameWithType: PollResponse<T>
+  fullName: com.azure.core.util.polling.PollResponse<T>
+  type: Class
+  summary: "<p>PollResponse represents a single response from a service for a long-running polling operation. It provides information such as the current <xref uid=\"\" data-throw-if-not-resolved=\"false\">status</xref> of the long-running operation, any <xref uid=\"com.azure.core.util.polling.PollResponse.getValue()\" data-throw-if-not-resolved=\"false\">value</xref> returned in the poll, as well as other useful information provided by the service.</p>\r\n<p>\r\n  <b>Code Sample Creating PollResponse Object</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.pollresponse.status.value}</p>\r\n<p>\r\n  <b>Code Sample Creating PollResponse Object with custom status</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.pollresponse.custom.status.value}</p>\r\n<p></p>"
+  syntax:
+    content: public class PollResponse<T>
+    typeParameters:
+    - id: T
+      type: 8ce1ecb9
+      description: <p>Type of poll response value.</p>
+- uid: com.azure.core.util.polling.Poller
+  parent: com.azure.core.util.polling
+  href: com.azure.core.util.polling.Poller.yml
+  name: Poller<T>
+  nameWithType: Poller<T>
+  fullName: com.azure.core.util.polling.Poller<T>
+  type: Class
+  summary: "<p>This class offers API that simplifies the task of executing long-running operations against Azure service. The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> consist of poll operation, cancel operation if supported by Azure service and polling interval. </p>\r\n<p>It provides the following functionality:</p>\r\n<p>\r\n  <ul>\r\n    <li>\r\n      <p>Querying the current state of long-running operations. </p>\r\n    </li>\r\n    <li>\r\n      <p>Requesting an asynchronous notification for long-running operation's state. </p>\r\n    </li>\r\n    <li>\r\n      <p>Cancelling the long-running operation if cancellation is supported by the service. </p>\r\n    </li>\r\n    <li>\r\n      <p>Triggering a poll operation manually. </p>\r\n    </li>\r\n    <li>\r\n      <p>Enable/Disable auto-polling. </p>\r\n    </li>\r\n  </ul>\r\n</p>\r\n<p>\r\n  <b>Auto Polling</b>\r\n</p>\r\n<p>Auto-polling is enabled by-default. It means that the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> starts polling as soon as its instance is created. The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will transparently call the poll operation every polling cycle and track the state of the long-running operation. Azure services can return <xref uid=\"com.azure.core.util.polling.PollResponse.getRetryAfter()\" data-throw-if-not-resolved=\"false\">PollResponse#getRetryAfter()</xref> to override the<code>Poller.pollInterval \r\n    </code> defined in the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref>. The <xref uid=\"com.azure.core.util.polling.Poller.getStatus()\" data-throw-if-not-resolved=\"false\">Poller#getStatus()</xref> represents the status returned by the successful long-running operation at the time the last auto-polling or last manual polling, whichever happened most recently.</p>\r\n<p>\r\n  <b>Disable Auto Polling</b>\r\n</p>\r\n<p>For those scenarios which require manual control of the polling cycle, disable auto-poling by calling<code>setAutoPollingEnabled#false \r\n    </code> and perform manual poll by invoking <xref uid=\"com.azure.core.util.polling.Poller.poll()\" data-throw-if-not-resolved=\"false\">Poller#poll()</xref> function. It will call poll operation once and update the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> with the latest status. </p>\r\n<p>When auto-polling is disabled, the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will not update its status or other information, unless manual polling is triggered by calling <xref uid=\"com.azure.core.util.polling.Poller.poll()\" data-throw-if-not-resolved=\"false\">Poller#poll()</xref> function.</p>\r\n<p>The <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> will stop polling when the long-running operation is complete or it is disabled. The polling is considered complete based on status defined in <xref uid=\"\" data-throw-if-not-resolved=\"false\">OperationStatus</xref>.</p>\r\n<p>\r\n  <b>Code Samples</b>\r\n</p>\r\n<p>\r\n  <b>Instantiating and Subscribing to Poll Response</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.instantiationAndSubscribe}</p>\r\n<p>\r\n  <b>Wait/Block for Polling to complete</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.block}</p>\r\n<p>\r\n  <b>Disable auto polling and polling manually</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.poll}</p>\r\n<p></p>"
+  syntax: *o1
+- uid: com.azure.core.util.polling.PollResponse.getRetryAfter()
+  parent: com.azure.core.util.polling.PollResponse
+  href: com.azure.core.util.polling.PollResponse.yml
+  name: getRetryAfter()
+  nameWithType: PollResponse<T>.getRetryAfter()
+  fullName: com.azure.core.util.polling.PollResponse<T>.getRetryAfter()
+  type: Method
+  summary: "<p>Returns the delay the service has requested until the next polling operation is performed. A null or negative value will be taken to mean that the <xref uid=\"com.azure.core.util.polling.Poller\" data-throw-if-not-resolved=\"false\">Poller</xref> should determine on its own when the next poll operation is to occur. </p>"
+  syntax:
+    content: public Duration getRetryAfter()
+    return:
+      type: e02a2de0
+      description: <p>Duration How long to wait before next retry. </p>
+- uid: com.azure.core.util.polling.Poller.getStatus()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  name: getStatus()
+  nameWithType: Poller<T>.getStatus()
+  fullName: com.azure.core.util.polling.Poller<T>.getStatus()
+  type: Method
+  summary: "<p>Current known status as a result of last poll event or last response from a manual polling.</p>\r\n<p></p>"
+  syntax: *o2
+- uid: com.azure.core.util.polling.Poller.poll()
+  parent: com.azure.core.util.polling.Poller
+  href: com.azure.core.util.polling.Poller.yml
+  name: poll()
+  nameWithType: Poller<T>.poll()
+  fullName: com.azure.core.util.polling.Poller<T>.poll()
+  type: Method
+  summary: "<p>Enable user to take control of polling and trigger manual poll operation. It will call poll operation once. This will not turn off auto polling.</p>\r\n<p>\r\n  <b>Code Samples</b>\r\n</p>\r\n<p>\r\n  <b>Manual Polling</b>\r\n</p>\r\n<p>{ com.azure.core.util.polling.poller.poll.indepth}</p>\r\n<p></p>"
+  syntax: *o3
