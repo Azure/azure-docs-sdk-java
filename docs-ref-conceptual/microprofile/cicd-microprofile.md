@@ -44,7 +44,7 @@ The build pipeline in Azure Pipelines automatically executes all the build tasks
 
 1. On your Azure DevOps project page, select **Azure Pipelines** > **Builds** in the left navigation. 
    
-   ![Select Builds](media/cicd-microprofile-vsts/builds.png)
+   ![Select Builds](media/cicd-microprofile/builds.png)
    
 1. Select **New Pipeline**.
    
@@ -57,7 +57,7 @@ The build pipeline in Azure Pipelines automatically executes all the build tasks
    
 1. To configure your build for continuous integration, select the **Triggers** tab, and then select the checkbox next to **Enable continuous integration**.  
    
-   ![Enable continuous integration](media/cicd-microprofile-vsts/continuous-integration.png)
+   ![Enable continuous integration](media/cicd-microprofile/continuous-integration.png)
    
 1. Select the **Tasks** tab to return to the main build pipeline page.
    
@@ -69,7 +69,7 @@ Azure Pipelines uses a Dockerfile with a base image from Payara Micro to create 
 
 1. On the **Tasks** tab, select the **+** next to **Agent job 1** to add a task.
    
-   ![Add a new task](media/cicd-microprofile-vsts/add-task.png)
+   ![Add a new task](media/cicd-microprofile/add-task.png)
    
 1. In the right pane, select **Docker** from the list of templates, and then select **Add**. 
    
@@ -91,7 +91,7 @@ Azure Pipelines uses a Dockerfile with a base image from Payara Micro to create 
    
 1. Select the ellipsis **...** next to the **Dockerfile** field, browse to and select the Dockerfile from the GitHub project, and then select **OK**. 
    
-   ![Select the Dockerfile](media/cicd-microprofile-vsts/selectdockerfile.png)
+   ![Select the Dockerfile](media/cicd-microprofile/selectdockerfile.png)
    
 1. Under **Tags**, enter *latest* on a new line. 
    
@@ -109,11 +109,9 @@ Azure Pipelines pushes the Docker image to your Azure Container Registry, and us
    
 1. After the build finishes, you can select the hyperlink on the **Build** page to verify build success and see other details.
    
-   ![Select the build hyperlink](media/cicd-microprofile-vsts/checkbuild.png)
+   ![Select the build hyperlink](media/cicd-microprofile/checkbuild.png)
 
-
-
-## Create a release pipeline for a Java app
+## Create a release pipeline
 
 An Azure Pipelines continuous release pipeline automatically triggers deployment to a target environment like Azure as soon as a build succeeds. You can create release pipelines for dev, test, staging, or production environments.
 
@@ -121,23 +119,23 @@ An Azure Pipelines continuous release pipeline automatically triggers deployment
    
 1. Select **New Pipeline**.
    
-   ![Select Releases and then select New Pipeline](media/cicd-microprofile-vsts/newrelease.png)
+   ![Select Releases and then select New Pipeline](media/cicd-microprofile/newrelease.png)
    
 1. Select **Deploy a Java app to Azure App Service** in the list of templates, and then select **Apply**. 
    
-   ![Select the Deploy a Java app to Azure App Service template](media/cicd-microprofile-vsts/selectreleasetemplate.png)
+   ![Select the Deploy a Java app to Azure App Service template](media/cicd-microprofile/selectreleasetemplate.png)
    
 1. In the popup window, change **Stage 1** to a stage name like *Dev*, *Test*, *Staging*, or *Production*, and then close the window. 
    
 1. Under **Artifacts** in the left pane, select **Add** to link artifacts from the build pipeline to the release pipeline. 
    
-1. Select your build pipeline in the dropdown next to **Source (build pipeline)**, and then select **Add**.
+1. Select your build pipeline in the dropdown under **Source (build pipeline)**, and then select **Add**.
    
-   ![Add a build artifact](media/cicd-microprofile-vsts/addbuildartifact.png)
+   ![Add a build artifact](media/cicd-microprofile/addbuildartifact.png)
    
 1. Select the hyperlink in the **Production** stage to **View stage tasks**.
    
-   ![Select the stage name](media/cicd-microprofile-vsts/viewstagetasks.png)
+   ![Select the stage name](media/cicd-microprofile/viewstagetasks.png)
    
 1. In the right pane:
    
@@ -147,7 +145,7 @@ An Azure Pipelines continuous release pipeline automatically triggers deployment
       
    1. Select your Web App for Container instance in the **App service name** dropdown.
       
-   1. Enter your Azure Container Registry name in the **Registry or Namespaces** field. For example enter, *myregistry.azure.io*.
+   1. Enter your Azure Container Registry name in the **Registry or Namespaces** field. For example, enter *myregistry.azure.io*.
       
    1. Enter the registry name in the **Repository** field.
    
@@ -166,12 +164,12 @@ Add and define environment variables to connect to the container registry during
    
 1. Add the variable names and values for your container registry URL, username, and password. For security, select the lock icon to keep the password value hidden.
    
-   For example:
+   For example, add:
    - registry.url
    - registry.username
    - registry.password
    
-   ![Add variables](media/cicd-microprofile-vsts/addvariables.png)
+   ![Add variables](media/cicd-microprofile/addvariables.png)
    
 1. On the **Tasks** tab, select **Deploy War to Azure App Service** in the left pane. 
    
@@ -184,7 +182,7 @@ Add and define environment variables to connect to the container registry during
    
 1. Select **OK**.
    
-   ![Add and set variables](media/cicd-microprofile-vsts/appsettings.png)
+   ![Add and set variables](media/cicd-microprofile/appsettings.png)
    
 ## Set up continuous deployment and deploy the Java app
 
@@ -194,10 +192,12 @@ To enable continuous deployment:
    
 1. In the right pane, set the **Continuous deployment trigger** to **Enabled**.
    
-   ![Enable continuous deployment trigger](media/cicd-microprofile-vsts/setcontinuousdeployment.png)
+   ![Enable continuous deployment trigger](media/cicd-microprofile/setcontinuousdeployment.png)
    
 1. Select **Save** at upper right, and then select **OK**. 
    
+## Deploy the Java app
+
 Now that you enabled CI/CD, modifying the source code creates and runs builds and releases automatically. To create and run a new release manually.
 
 1. Select **Create release** at the upper right on the pipeline page.
@@ -212,11 +212,11 @@ Now that you enabled CI/CD, modifying the source code creates and runs builds an
 
 ## Test the Java web app
 
-1. Copy your web app URL from the Azure portal, such as `https://{your-app-service-name}.azurewebsites.net/api/hello`.
+1. Copy your web app URL from the Azure portal.
    
-   ![App Service app in the Azure portal](media/cicd-microprofile-vsts/portalurl.png)
+   ![App Service app in the Azure portal](media/cicd-microprofile/portalurl.png)
    
 1. Enter the URL in your web browser to run your app. The web page should say **Hello Azure!**
    
-   ![Java web app page](media/cicd-microprofile-vsts/webapp.png)
+   ![Java web app page](media/cicd-microprofile/webapp.png)
 
