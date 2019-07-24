@@ -26,23 +26,20 @@ FROM payara/micro:5.182
 COPY target/*.war $DEPLOY_DIR/ROOT.war
 EXPOSE 8080
 ```
-You start the Azure Pipelines containerize process by building a Docker image and pushing the container image to an Azure Container Registry. You complete the process by creating an Azure Pipelines release pipeline and deploying the container image to a web app.
+You start the Azure Pipelines containerize process by building a Docker image and pushing the container image to an Azure Container Registry (ACR). You complete the process by creating an Azure Pipelines release pipeline and deploying the container image to a web app.
 
 ## Prerequisites
-- Copy and save the clone URL from [GitHub](https://github.com/Azure-Samples/microprofile-hello-azure)
-- Register or log into your [Azure DevOps](https://dev.azure.com) account
-- Create a new [Azure DevOps project](/vsts/organizations/projects/create-project) and use the Git clone URL to **Import a repository**
-- Create an [Azure Container Registry](https://azure.microsoft.com/services/container-registry) (ACR) in Azure
-- Create an Azure Web App for Containers 
+1. Copy and save the clone URL from [GitHub](https://github.com/Azure-Samples/microprofile-hello-azure).
+1. Register or log into your [Azure DevOps](https://dev.azure.com) account and create a new [project](/vsts/organizations/projects/create-project). 
+1. From your project page, select **Repos** in the left navigation, select **Import**, and use the Git clone URL you saved to **Import a Git repository**.
+1. In the [Azure portal](https://portal.azure.com), create an [Azure Container Registry](https://azure.microsoft.com/services/container-registry).
+1. In the Azure portal, create an Azure Web App for Containers. Select **Linux** for the **OS**, and for **Configure container**, select **Quickstart** as the **Image source**.  
   
-  > [!NOTE]
-  > Select **Quickstart** in the **Container Settings** when provisioning the web app instance.
-
 ## Create a build pipeline
 
-The build pipeline in Azure Pipelines automatically executes all the build tasks each time there's a commit in in the Java EE source app. In this example, Azure Pipelines uses Maven to build the Java MicroProfile project.
+The continuous integration build pipeline in Azure Pipelines automatically executes all build tasks each time there's a commit in in the Java EE source app. In this example, Azure Pipelines uses Maven to build the Java MicroProfile project.
 
-1. On your Azure DevOps project page, select **Azure Pipelines** > **Builds** in the left navigation. 
+1. From your Azure Repos Git repository, select **Azure Pipelines** > **Builds** in the left navigation. 
    
    ![Select Builds](media/cicd-microprofile/builds.png)
    
@@ -55,11 +52,9 @@ The build pipeline in Azure Pipelines automatically executes all the build tasks
    > [!NOTE]
    > This setting lets Azure Pipelines know which build server to use.  You can also use your private customized build server.
    
-1. To configure your build for continuous integration, select the **Triggers** tab, and then select the checkbox next to **Enable continuous integration**.  
+1. To configure the pipeline for continuous integration, select the **Triggers** tab, and then select the checkbox next to **Enable continuous integration**.  
    
    ![Enable continuous integration](media/cicd-microprofile/continuous-integration.png)
-   
-1. Select the **Tasks** tab to return to the main build pipeline page.
    
 1. Select the dropdown next to **Save & queue**, and select **Save**. 
 
@@ -89,7 +84,7 @@ Azure Pipelines uses a Dockerfile with a base image from Payara Micro to create 
    
 1. Under **Commands**, select **build** from the **Command** dropdown.
    
-1. Select the ellipsis **...** next to the **Dockerfile** field, browse to and select the Dockerfile from the GitHub project, and then select **OK**. 
+1. Select the ellipsis **...** next to the **Dockerfile** field, browse to and select the **Dockerfile** from the GitHub project, and then select **OK**. 
    
    ![Select the Dockerfile](media/cicd-microprofile/selectdockerfile.png)
    
@@ -113,7 +108,7 @@ Azure Pipelines pushes the Docker image to your Azure Container Registry, and us
 
 ## Create a release pipeline
 
-An Azure Pipelines continuous release pipeline automatically triggers deployment to a target environment like Azure as soon as a build succeeds. You can create release pipelines for dev, test, staging, or production environments.
+An Azure Pipelines continuous release pipeline automatically triggers deployment to a target environment like Azure as soon as a build succeeds. You can create release pipelines for environments like dev, test, staging, or production.
 
 1. On your Azure DevOps project page, select **Azure Pipelines** > **Releases** in the left navigation. 
    
@@ -139,13 +134,13 @@ An Azure Pipelines continuous release pipeline automatically triggers deployment
    
 1. In the right pane:
    
-   1. Select your Azure subscription in the **Azure subscription** dropdown.
+   1. Select your Azure subscription in the **Azure subscription** dropdown, and if necessary, select **Authorize**.
       
-   1. Select **Linux App** from the **App type** dropdown.
+   1. Select **Web App for Containers (Linux)** from the **App type** dropdown.
       
-   1. Select your Web App for Container instance in the **App service name** dropdown.
+   1. Select your ACR instance in the **App service name** dropdown.
       
-   1. Enter your Azure Container Registry name in the **Registry or Namespaces** field. For example, enter *myregistry.azure.io*.
+   1. Enter your ACR name in the **Registry or Namespaces** field. For example, enter *myregistry.azure.io*.
       
    1. Enter the registry name in the **Repository** field.
    
@@ -175,7 +170,7 @@ Add and define environment variables to connect to the container registry during
    
 1. In the right pane, expand **Application and Configuration Settings**, and then select the ellipsis **...** next to the **App Settings** field.
    
-1. In the **App settings** popup, select **Add** to define and assign the following app setting variables.
+1. In the **App settings** popup, select **Add** to define and assign the app setting variables:
    - DOCKER_REGISTRY_SERVER_PASSWORD = $(registry.password)
    - DOCKER_REGISTRY_SERVER_URL = $(registry.url)
    - DOCKER_REGISTRY_SERVER_USERNAME = $(registry.username)
