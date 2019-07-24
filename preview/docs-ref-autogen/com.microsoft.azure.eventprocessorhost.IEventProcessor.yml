@@ -1,0 +1,279 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  id: IEventProcessor
+  parent: com.microsoft.azure.eventprocessorhost
+  children:
+  - com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose(PartitionContext,CloseReason)
+  - com.microsoft.azure.eventprocessorhost.IEventProcessor.onError(PartitionContext,Throwable)
+  - com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext,Iterable<EventData>)
+  - com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen(PartitionContext)
+  href: com.microsoft.azure.eventprocessorhost.IEventProcessor.yml
+  langs:
+  - java
+  name: IEventProcessor
+  nameWithType: IEventProcessor
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  type: Interface
+  source:
+    remote: &o0
+      path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+      branch: master
+      repo: https://github.com/Azure/azure-sdk-for-java
+    path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+    startLine: 24
+  package: com.microsoft.azure.eventprocessorhost
+  summary: "<p>Interface that must be implemented by event processor classes. </p>\r\n<p>Any given instance of an event processor class will only process events from one partition of one Event Hub. A PartitionContext is provided with each call to the event processor because some parameters could change, but it will always be the same partition. </p>\r\n<p>Although EventProcessorHost is multithreaded, calls to a given instance of an event processor class are serialized, except for onError(). onOpen() is called first, then onEvents() will be called zero or more times. When the event processor needs to be shut down, whether because there was a failure somewhere, or the lease for the partition has been lost, or because the entire processor host is being shut down, onClose() is called after the last onEvents() call returns. </p>\r\n<p>onError() could be called while onEvents() or onClose() is executing. No synchronization is attempted in order to avoid possibly deadlocking. </p>"
+  syntax:
+    content: public interface IEventProcessor
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose(PartitionContext,CloseReason)
+  id: onClose(PartitionContext,CloseReason)
+  parent: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.IEventProcessor.yml
+  langs:
+  - java
+  name: onClose(PartitionContext context, CloseReason reason)
+  nameWithType: IEventProcessor.onClose(PartitionContext context, CloseReason reason)
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose(PartitionContext context, CloseReason reason)
+  overload: com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+    startLine: 45
+  package: com.microsoft.azure.eventprocessorhost
+  summary: "<p>Called by processor host to indicate that the event processor is being stopped. </p>\r\n<p>If onClose fails, the exception is reported to the general exception notification handler set via EventProcessorOptions, if any, but is otherwise ignored.</p>\r\n<p></p>"
+  syntax:
+    content: public void onClose(PartitionContext context, CloseReason reason)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: reason
+      type: com.microsoft.azure.eventprocessorhost.CloseReason
+      description: <p>Reason why the event processor is being stopped. </p>
+  exceptions:
+  - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onError(PartitionContext,Throwable)
+  id: onError(PartitionContext,Throwable)
+  parent: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.IEventProcessor.yml
+  langs:
+  - java
+  name: onError(PartitionContext context, Throwable error)
+  nameWithType: IEventProcessor.onError(PartitionContext context, Throwable error)
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onError(PartitionContext context, Throwable error)
+  overload: com.microsoft.azure.eventprocessorhost.IEventProcessor.onError*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+    startLine: 70
+  package: com.microsoft.azure.eventprocessorhost
+  summary: "<p>Called when the underlying client experiences an error while receiving. EventProcessorHost will take care of recovering from the error and continuing to pump events, so no action is required from your code. This method is provided for informational purposes.</p>\r\n<p></p>"
+  syntax:
+    content: public void onError(PartitionContext context, Throwable error)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: error
+      type: a04fafd7
+      description: <p>The error that occured. </p>
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext,Iterable<EventData>)
+  id: onEvents(PartitionContext,Iterable<EventData>)
+  parent: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.IEventProcessor.yml
+  langs:
+  - java
+  name: onEvents(PartitionContext context, Iterable<EventData> events)
+  nameWithType: IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  overload: com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+    startLine: 60
+  package: com.microsoft.azure.eventprocessorhost
+  summary: "<p>Called by the processor host when a batch of events has arrived. </p>\r\n<p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the EventProcessorHost instance was set up with an EventProcessorOptions on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then when a receive times out, onEvents will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>\r\n<p></p>"
+  syntax:
+    content: public void onEvents(PartitionContext context, Iterable<EventData> events)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: events
+      type: 2a13b5a5com.microsoft.azure.eventhubs.EventDataa08ddfce
+      description: <p>The events to be processed. May be empty. </p>
+  exceptions:
+  - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen(PartitionContext)
+  id: onOpen(PartitionContext)
+  parent: com.microsoft.azure.eventprocessorhost.IEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.IEventProcessor.yml
+  langs:
+  - java
+  name: onOpen(PartitionContext context)
+  nameWithType: IEventProcessor.onOpen(PartitionContext context)
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen(PartitionContext context)
+  overload: com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen*
+  type: Method
+  source:
+    remote: *o0
+    path: sdk/eventhubs/microsoft-azure-eventhubs-eph/src/main/java/com/microsoft/azure/eventprocessorhost/IEventProcessor.java
+    startLine: 33
+  package: com.microsoft.azure.eventprocessorhost
+  summary: "<p>Called by processor host to initialize the event processor. </p>\r\n<p>If onOpen fails, this event processor host instance will give up ownership of the partition.</p>\r\n<p></p>"
+  syntax:
+    content: public void onOpen(PartitionContext context)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition that this event processor will process events from. </p>
+  exceptions:
+  - type: 8a99d4b0
+    description: <p>to indicate failure. </p>
+references:
+- uid: 8a99d4b0
+  spec.java:
+  - name: Exception
+    fullName: Exception
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen*
+  name: onOpen
+  nameWithType: IEventProcessor.onOpen
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onOpen
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose*
+  name: onClose
+  nameWithType: IEventProcessor.onClose
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onClose
+  package: com.microsoft.azure.eventprocessorhost
+- uid: 2a13b5a5com.microsoft.azure.eventhubs.EventDataa08ddfce
+  spec.java:
+  - name: Iterable<
+    fullName: Iterable<
+  - uid: com.microsoft.azure.eventhubs.EventData
+    name: EventData
+    fullName: com.microsoft.azure.eventhubs.EventData
+    href: com.microsoft.azure.eventhubs.EventData(interface).yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents*
+  name: onEvents
+  nameWithType: IEventProcessor.onEvents
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onEvents
+  package: com.microsoft.azure.eventprocessorhost
+- uid: a04fafd7
+  spec.java:
+  - name: Throwable
+    fullName: Throwable
+- uid: com.microsoft.azure.eventprocessorhost.IEventProcessor.onError*
+  name: onError
+  nameWithType: IEventProcessor.onError
+  fullName: com.microsoft.azure.eventprocessorhost.IEventProcessor.onError
+  package: com.microsoft.azure.eventprocessorhost
+- uid: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.yml
+  name: PrefabEventProcessor
+  nameWithType: PrefabEventProcessor
+  fullName: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  type: Class
+  syntax:
+    content: public class PrefabEventProcessor
+- uid: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onOpen(PartitionContext)
+  parent: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.yml
+  name: onOpen(PartitionContext context)
+  nameWithType: PrefabEventProcessor.onOpen(PartitionContext context)
+  fullName: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onOpen(PartitionContext context)
+  type: Method
+  summary: "<p>Called by processor host to initialize the event processor. </p>\r\n<p>If onOpen fails, this event processor host instance will give up ownership of the partition.</p>\r\n<p></p>"
+  syntax:
+    content: public void onOpen(PartitionContext context)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition that this event processor will process events from. </p>
+- uid: com.microsoft.azure.eventprocessorhost.PartitionContext
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost.PartitionContext.yml
+  name: PartitionContext
+  nameWithType: PartitionContext
+  fullName: com.microsoft.azure.eventprocessorhost.PartitionContext
+  type: Class
+  syntax:
+    content: public class PartitionContext
+- uid: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onClose(PartitionContext,CloseReason)
+  parent: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.yml
+  name: onClose(PartitionContext context, CloseReason reason)
+  nameWithType: PrefabEventProcessor.onClose(PartitionContext context, CloseReason reason)
+  fullName: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onClose(PartitionContext context, CloseReason reason)
+  type: Method
+  summary: "<p>Called by processor host to indicate that the event processor is being stopped. </p>\r\n<p>If onClose fails, the exception is reported to the general exception notification handler set via EventProcessorOptions, if any, but is otherwise ignored.</p>\r\n<p></p>"
+  syntax:
+    content: public void onClose(PartitionContext context, CloseReason reason)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: reason
+      type: com.microsoft.azure.eventprocessorhost.CloseReason
+      description: <p>Reason why the event processor is being stopped. </p>
+- uid: com.microsoft.azure.eventprocessorhost.CloseReason
+  parent: com.microsoft.azure.eventprocessorhost
+  href: com.microsoft.azure.eventprocessorhost.CloseReason.yml
+  name: CloseReason
+  nameWithType: CloseReason
+  fullName: com.microsoft.azure.eventprocessorhost.CloseReason
+  type: Enum
+  syntax:
+    content: public enum CloseReason
+- uid: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onEvents(PartitionContext,Iterable<EventData>)
+  parent: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.yml
+  name: onEvents(PartitionContext context, Iterable<EventData> events)
+  nameWithType: PrefabEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  fullName: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onEvents(PartitionContext context, Iterable<EventData> events)
+  type: Method
+  summary: "<p>Called by the processor host when a batch of events has arrived. </p>\r\n<p>This is where the real work of the event processor is done. It is normally called when one or more events have arrived. If the EventProcessorHost instance was set up with an EventProcessorOptions on which setInvokeProcessorAfterReceiveTimeout(true) has been called, then when a receive times out, onEvents will be called with an empty iterable. By default this option is false and receive timeouts do not cause a call to this method.</p>\r\n<p></p>"
+  syntax:
+    content: public void onEvents(PartitionContext context, Iterable<EventData> events)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: events
+      type: 2a13b5a5com.microsoft.azure.eventhubs.EventDataa08ddfce
+      description: <p>The events to be processed. May be empty. </p>
+- uid: com.microsoft.azure.eventhubs.EventData
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventData(interface).yml
+  name: EventData
+  nameWithType: EventData
+  fullName: com.microsoft.azure.eventhubs.EventData
+  type: Interface
+  summary: "<p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. </p>\r\n<p>Serializing a received <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>\r\n<p>Here's how AMQP message sections map to <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. Here's the reference used for AMQP 1.0 specification: <a href=\"http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf\">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</a><pre>\r\ni.   <xref uid=\"com.microsoft.azure.eventhubs.EventData.getProperties()\" data-throw-if-not-resolved=\"false\">getProperties()</xref> - AMQPMessage.ApplicationProperties section\r\nii.  <xref uid=\"com.microsoft.azure.eventhubs.EventData.getBytes()\" data-throw-if-not-resolved=\"false\">getBytes()</xref> - if AMQPMessage.Body has Data section\r\niii. <xref uid=\"com.microsoft.azure.eventhubs.EventData.getObject()\" data-throw-if-not-resolved=\"false\">getObject()</xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections\r\n</pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. </p>"
+  syntax:
+    content: public interface EventData
+- uid: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onError(PartitionContext,Throwable)
+  parent: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor
+  href: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.yml
+  name: onError(PartitionContext context, Throwable error)
+  nameWithType: PrefabEventProcessor.onError(PartitionContext context, Throwable error)
+  fullName: com.microsoft.azure.eventprocessorhost.PrefabEventProcessor.onError(PartitionContext context, Throwable error)
+  type: Method
+  summary: "<p>Called when the underlying client experiences an error while receiving. EventProcessorHost will take care of recovering from the error and continuing to pump events, so no action is required from your code. This method is provided for informational purposes.</p>\r\n<p></p>"
+  syntax:
+    content: public void onError(PartitionContext context, Throwable error)
+    parameters:
+    - id: context
+      type: com.microsoft.azure.eventprocessorhost.PartitionContext
+      description: <p>Information about the partition. </p>
+    - id: error
+      type: a04fafd7
+      description: <p>The error that occured. </p>
