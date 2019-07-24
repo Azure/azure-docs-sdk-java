@@ -1,6 +1,6 @@
 ---
-title: CI/CD for MicroProfile applications using Azure DevOps
-description: Learn how to setup a CI/CD release cycle to deploy a MicroProfile application to an Azure Web App for Containers instance using Azure DevOps
+title: CI/CD for MicroProfile apps using Azure Pipelines
+description: Learn how to set up a CI/CD release cycle to deploy a MicroProfile app to an Azure Web App for Containers instance with Azure Pipelines.
 services: Azure DevOps
 documentationcenter: MicroProfile
 author: ruyakubu
@@ -9,7 +9,7 @@ editor: ruyakubu
 
 ms.assetid:
 ms.author: ruyakubu
-ms.date: 09/14/2018
+ms.date: 07/23/2019
 ms.devlang: Java
 ms.service: Azure DevOps
 ms.tgt_pltfrm: multiple
@@ -17,166 +17,206 @@ ms.topic: tutorial
 ms.workload: web
 ---
 
-# CI/CD for MicroProfile applications using Azure DevOps
+# CI/CD for MicroProfile apps using Azure Pipelines
 
-This tutorial will show how Java EE developers can easily setup a CI/CD release cycle to deploy their [MicroProfile](http://microprofile.io) applications to an Azure Web App for Containers using Azure DevOps (formally known as VSTS).  In this example, we’ll be using a MicroProfile application that uses a [Payara Micro](https://www.payara.fish/payara_micro) as a base image.   
+This tutorial shows you how to easily set up an Azure Pipelines continuous integration and continuous deployment (CI/CD) release cycle to deploy your [MicroProfile](http://microprofile.io) Java EE application to an Azure Web App for Containers. The MicroProfile app in this tutorial uses a [Payara Micro](https://www.payara.fish/payara_micro) base image. 
 
 ```Dockerfile
 FROM payara/micro:5.182
 COPY target/*.war $DEPLOY_DIR/ROOT.war
 EXPOSE 8080
 ```
-We will start the Azure DevOps containerize process by building a Docker image and pushing the container image to an Azure Container Register.  Then complete with a Azure DevOps release pipeline to deploy the container image to a Web App.
+You start the Azure Pipelines containerize process by building a Docker image and pushing the container image to an Azure Container Registry. You complete the process by creating an Azure Pipelines release pipeline and deploying the container image to a web app.
 
 ## Prerequisites
-- Copy and save the Git url from [Github](https://github.com/Azure-Samples/microprofile-hello-azure)
-- Register or Log into your [Azure DevOps](https://dev.azure.com) account
-- Create a new [Azure DevOps project](https://docs.microsoft.com/en-us/vsts/organizations/projects/create-project?view=vsts&tabs=new-nav) and use the above Git url to **import a repository**
-- Create an [Azure Container Registry](https://azure.microsoft.com/en-us/services/container-registry) (ACR)
-- Create an Azure Web App for Container
+- Copy and save the clone URL from [GitHub](https://github.com/Azure-Samples/microprofile-hello-azure)
+- Register or log into your [Azure DevOps](https://dev.azure.com) account
+- Create a new [Azure DevOps project](/vsts/organizations/projects/create-project) and use the Git clone URL to **Import a repository**
+- Create an [Azure Container Registry](https://azure.microsoft.com/services/container-registry) (ACR) in Azure
+- Create an Azure Web App for Containers 
+  
   > [!NOTE]
-  >
-  > Select "Quickstart" in the Container Settings when provisioning the Web App instance
+  > Select **Quickstart** in the **Container Settings** when provisioning the web app instance.
 
+## Create a build pipeline
 
-## Create a Build definition
+The build pipeline in Azure Pipelines automatically executes all the build tasks each time there's a commit in in the Java EE source app. In this example, Azure Pipelines uses Maven to build the Java MicroProfile project.
 
-The build definition in Azure DevOps automatically executes all the tasks in the build each time there’s a commit in Java EE application source application.  In this example, Azure DevOps will use Maven to build the Java MicroProfile project.
-
-1. Click on the "Build and Release" tab on top your Azure DevOps project page.  Then, select the **Builds** link 
-
-<img src="media/VSTS/Buid-and-Release1.png">
-
-2. Click on the **New Pipeline** button, and then **Continue** to start defining your build tasks
-3. Select "Maven" from the list of templates, then click on the **Apply** button to build your Java project
-4. Use the drop-down menu for the Agent pool field to select **Hosted Linux Preview** option.
+1. On your Azure DevOps project page, select **Azure Pipelines** > **Builds** in the left navigation. 
+   
+   ![Select Builds](media/cicd-microprofile-vsts/builds.png)
+   
+1. Select **New Pipeline**.
+   
+1. Select **Maven** from the list of templates, and then select **Apply**.
+   
+1. In the left pane, select **Agent job 1**. In the right pane, select **Hosted Ubuntu 1604** from the **Agent pool** dropdown.
+   
    > [!NOTE]
-   >
-   > This informs Azure DevOps which build server to use.  You can use your private customized build server
+   > This setting lets Azure Pipelines know which build server to use.  You can also use your private customized build server.
+   
+1. To configure your build for continuous integration, select the **Triggers** tab, and then select the checkbox next to **Enable continuous integration**.  
+   
+   ![Enable continuous integration](media/cicd-microprofile-vsts/continuous-integration.png)
+   
+1. Select the **Tasks** tab to return to the main build pipeline page.
+   
+1. Select the dropdown next to **Save & queue**, and select **Save**. 
 
-5. To configure your build for continuous integration, select the **Triggers** tab and check the **Enable continuous integration** checkbox.  
+## Create a Docker build image
 
-<img src="media/VSTS/Build-Triggers2.png"> 
+Azure Pipelines uses a Dockerfile with a base image from Payara Micro to create a Docker image.  
 
-6. Select the <strong>Tasks</strong> tab to return back to the main build pipeline page
-7. Use the <strong>Save &amp; queue</strong> drop-down menu to select the <strong>Save</strong> option
+1. On the **Tasks** tab, select the **+** next to **Agent job 1** to add a task.
+   
+   ![Add a new task](media/cicd-microprofile-vsts/add-task.png)
+   
+1. In the right pane, select **Docker** from the list of templates, and then select **Add**. 
+   
+1. Select **buildAndPush** in the left pane, and in the right pane, enter a description in the **Display name** field.
+   
+1. Under **Container Repository**, select **New** next to the **Container Registry** field. 
+   
+1. In the **Add a Docker Registry service connection** dialog:
+   1. Select **Azure Container Registry** next to **Registry type**.
+   1. Enter a name next to **Connection Name**.
+   1. Select your Azure subscription from the **Azure subscription** dropdown.
+   1. Select your Azure Container Registry name from the **Azure container registry** dropdown. 
+   1. Select **OK**.
+   
+   > [!NOTE]
+   > If you're using Docker Hub or another registry, select **Docker Hub** or **Others** instead of **Azure Container Registry** next to **Registry type**. Then provide the credentials and connection information for your container registry.
+   
+1. Under **Commands**, select **build** from the **Command** dropdown.
+   
+1. Select the ellipsis **...** next to the **Dockerfile** field, browse to and select the Dockerfile from the GitHub project, and then select **OK**. 
+   
+   ![Select the Dockerfile](media/cicd-microprofile-vsts/selectdockerfile.png)
+   
+1. Under **Tags**, enter *latest* on a new line. 
+   
+1. Select the dropdown next to **Save & queue**, and select **Save**. 
 
+## Push the Docker image to ACR
 
-## Create a Docker Build Image
+Azure Pipelines pushes the Docker image to your Azure Container Registry, and uses it to run the MicroProfile API app as a containerized Java web app.
 
-In this task, Azure DevOps uses a Dockerfile with a base image from Payara Micro to create a Docker image.  
-
-1. Select the **Tasks** tab to return back to the main build pipeline page
-2. Click on the **+** icon to add new task to the build definition
-
-<img src="media/VSTS/Tasks-add4.png">
-
-3. Select &quot;Docker&quot; from the list of templates, then click on the <strong>Add</strong> button
-4. Enter a description name for the <strong>Display name</strong> field
-5. Verify that <strong>Azure Container Registry</strong> is selected in the drop-down menu for <strong>Container registry type</strong>.
-&gt; [!NOTE]
-&gt;
-&gt;  If you are using Docker Hub or another registry, select &quot;Container Registry&quot; instead.  Then click on the &quot;+ New&quot; button to provide the credentials and connection information for it. Then skip to the Commands section to continue.
-
-6. Use the **Azure subscription** drop-down menu to select your azure subscription ID.  Then click on the **Authorize** button
-7. In the **Azure container registry** drop-down menu, select registry name you created in Azure.
-8. Verify that **build** option is selected in the **Command** drop-down menu.
-9. For the **Dockerfile**, click on the path navigation icon next to the textbox to select the Dockerfile from the github project.  Then click the **OK** button.
-
-<img src="media/VSTS/Dockerfile5.png">
-
-10. Under the **Image name**, check the **Include latest tag** checkbox. 
-11. Use the **Save & queue** drop-down menu to select the **Save** option.
-
-## Push Docker Image to ACR
-
-In this task, Azure DevOps will push the docker image to your Azure Container Registry.  This will be used to run the MicroProfile API application as a containerized Java web app.
-
-1. Since we are using Docker in Azure DevOps, create a new Docker template by repeating steps 1 - 7 above in the **Create a Docker Build Image** section.
-2. Select **push** in the **Command** drop-down menu.
-3. Click on the **Save & queue** tab, then select **Save & queue** option.
-4. Verify that the **Hosted Linux Preview** is select for the Agent pool on the pop-up window.  Then click on the **Save & queue** button.
-5. Click on the build number to verify that the build pipeline for the Java project completed successfully.
-
-<img src="media/VSTS/Build-Number6.png">
-
-
-## Create a release definition for a Java app
-
-The release pipeline in Azure DevOps automatically triggers the deployment of build artifacts to a target environment like Azure as soon as the Build process completes successfully.   The release pipeline can be created for dev, test, staging or production environments.
-
-1. Click on the "Build and release" tab on top your Azure DevOps project page.  Then, select the **Releases** link.
-
-<img src="media/VSTS/Release-new-pipeline7.png">
-
-2. Click on the &quot;New pipeline** button
-3. Select the <strong>Deploy a Java app to Azure App Service</strong> in the list of templates, then click on the <strong>Apply</strong> button.
-
-<img src="media/VSTS/deploy-java-template8.png">
-
-4. Set a <strong>Stage name</strong> (e.g Dev, Test, Staging or Production).  Then click on the <strong>X</strong> button to close the pop-up window
-5. Click on the <strong>+ Add</strong> button in the Artifacts section.  This will link artifacts from the build definition to this release definition.<br/>6. Use the drop-down menu for the <strong>Source (build pipeline)</strong> to select your build definition. Then click the <strong>Add</strong> button to continue.
-
-<img src="media/VSTS/add-artifact9.png">
-
-7. Click on the <strong>Tasks</strong> tab on the pipeline.  Then, select your stage name.
-
-<img src="media/VSTS/release-stage10.png">
-
-8. Use the **Azure subscription** drop-down menu to select your azure subscription ID.
-9. Select **Linux App** from the **App type** drop-down menu
-10. Select the name of the Web App for Container instance you created above in the **App service name** drop-down menu
-11. Enter the name of your azure container registry in the **Registry or Namespaces** field.  E.g **myregistry.azure.io**
-12. Enter the registry name in the **Repository** field
-13. Click on **Deploy Azure App Service**.  Enter the tag for the container image in the **Tag** textbox 
-14. Click on **Run on agent**.  Select **Hosted Linux Preview** in the Agent pool drop-down menu 
-
-## Setup Environment Variables
-
-1. Click on the **Variables** tab.  Then click on the **+ Add** button to define your environment variables
-2. Add the variable name and values for your container registry url, username and password.   For security, click on the lock icon to keep the password value hidden.
-
-For example:
-- registry.password
-- registry.url
-- registry.username
-
-<img src="media/VSTS/environment-variables12.png">
-
-3. Click on the **Tasks** tab to return to the main release pipeline definition page
-4. Click on **Deploy Azure App Service**. 
-5. Expand the **Application and Configuration Settings** section, then click on the navigation path for the **App Settings** field to add environments variable to connect to the container registry during deployment.
-6. Click on the ** + Add** button to define the following app settings and assign the environment variables
-7. DOCKER_REGISTRY_SERVER_PASSWORD = $(registry.password)
-8. DOCKER_REGISTRY_SERVER_URL = $(registry.url)
-9. DOCKER_REGISTRY_SERVER_USERNAME = $(registry.username)
-
-<img src="media/VSTS/environment-variables14.png">
-
-7. Click on the <strong>OK</strong> button to continue
-
-## Setup Continious Deployment & Deploy Java Application
-
-1. To enable continuous deployment, click the **Pipelines** tab
-2. In the Artifacts section, click on the lightening icon.  Then set the **Continuous deployment trigger** to Enabled.
-
-<img src="media/VSTS/release-enable-CD.png">
-
-3. Click on the <strong>Save</strong> button, then the <strong>OK</strong> button 
-4. Click on the <strong>+ Release</strong> drop-down menu, then select <strong>Create a release</strong> link
-5. Use the <strong>Stages for a trigger change from automated to manual</strong> drop-down menu to select the checkbox for your stage name
-6. Click the <strong>Create</strong> button to continue
-7. Click on the release number.  Then hover your mouse cursor over the stage name and click on the <strong>Deploy</strong> button
-8. The click on the <strong>Deploy</strong> button on the pop-up window to start the deployment process to Azure
+1. Since you are using Docker in Azure Pipelines, create a new Docker template by repeating the steps under [Create a Docker build image](#create-a-docker-build-image). This time, select **push** in the **Command** dropdown.
+   
+1. Select the dropdown next to **Save & queue**, and select **Save & queue**. 
+   
+1. In the **Run pipeline** popup, make sure **Hosted Ubuntu 1604** is selected under **Agent pool**, and select **Save and run**. 
+   
+1. After the build finishes, you can select the hyperlink on the **Build** page to verify build success and see other details.
+   
+   ![Select the build hyperlink](media/cicd-microprofile-vsts/checkbuild.png)
 
 
-## Test the Java Web Application
-1. Run the web app url in web browser:  
-   https://{your-app-service-name}.azurewebsites.net/api/hello
 
+## Create a release pipeline for a Java app
 
-<img src="media/VSTS/web-app16.png">
+An Azure Pipelines continuous release pipeline automatically triggers deployment to a target environment like Azure as soon as a build succeeds. You can create release pipelines for dev, test, staging, or production environments.
 
-2. The web page should say **Hello Azure!**
+1. On your Azure DevOps project page, select **Azure Pipelines** > **Releases** in the left navigation. 
+   
+1. Select **New Pipeline**.
+   
+   ![Select Releases and then select New Pipeline](media/cicd-microprofile-vsts/newrelease.png)
+   
+1. Select **Deploy a Java app to Azure App Service** in the list of templates, and then select **Apply**. 
+   
+   ![Select the Deploy a Java app to Azure App Service template](media/cicd-microprofile-vsts/selectreleasetemplate.png)
+   
+1. In the popup window, change **Stage 1** to a stage name like *Dev*, *Test*, *Staging*, or *Production*, and then close the window. 
+   
+1. Under **Artifacts** in the left pane, select **Add** to link artifacts from the build pipeline to the release pipeline. 
+   
+1. Select your build pipeline in the dropdown next to **Source (build pipeline)**, and then select **Add**.
+   
+   ![Add a build artifact](media/cicd-microprofile-vsts/addbuildartifact.png)
+   
+1. Select the hyperlink in the **Production** stage to **View stage tasks**.
+   
+   ![Select the stage name](media/cicd-microprofile-vsts/viewstagetasks.png)
+   
+1. In the right pane:
+   
+   1. Select your Azure subscription in the **Azure subscription** dropdown.
+      
+   1. Select **Linux App** from the **App type** dropdown.
+      
+   1. Select your Web App for Container instance in the **App service name** dropdown.
+      
+   1. Enter your Azure Container Registry name in the **Registry or Namespaces** field. For example enter, *myregistry.azure.io*.
+      
+   1. Enter the registry name in the **Repository** field.
+   
+1. In the left pane, select **Deploy War to Azure App Service**, and in the right pane, enter the *latest* tag for the container image in the **Tag** field. 
+   
+   > [!NOTE]
+   > Use the fully-qualified image name in the tag: `<registry or namespace>/<repository>:<tag>`. For example, *mymicroprofileregistry.azurecr.io*.
+   
+1. In the left pane, select **Run on agent**, and in the right pane, select **Hosted Ubuntu 1604** in the **Agent pool** dropdown. 
 
-<img src="media/VSTS/web-api17.png">
+## Set up environment variables
+
+Add and define environment variables to connect to the container registry during deployment.
+
+1. Select the **Variables** tab, and then select **Add**.
+   
+1. Add the variable names and values for your container registry URL, username, and password. For security, select the lock icon to keep the password value hidden.
+   
+   For example:
+   - registry.url
+   - registry.username
+   - registry.password
+   
+   ![Add variables](media/cicd-microprofile-vsts/addvariables.png)
+   
+1. On the **Tasks** tab, select **Deploy War to Azure App Service** in the left pane. 
+   
+1. In the right pane, expand **Application and Configuration Settings**, and then select the ellipsis **...** next to the **App Settings** field.
+   
+1. In the **App settings** popup, select **Add** to define and assign the following app setting variables.
+   - DOCKER_REGISTRY_SERVER_PASSWORD = $(registry.password)
+   - DOCKER_REGISTRY_SERVER_URL = $(registry.url)
+   - DOCKER_REGISTRY_SERVER_USERNAME = $(registry.username)
+   
+1. Select **OK**.
+   
+   ![Add and set variables](media/cicd-microprofile-vsts/appsettings.png)
+   
+## Set up continuous deployment and deploy the Java app
+
+To enable continuous deployment: 
+
+1. On the **Pipeline** tab, under **Artifacts**, select the lightning icon in the build artifact. 
+   
+1. In the right pane, set the **Continuous deployment trigger** to **Enabled**.
+   
+   ![Enable continuous deployment trigger](media/cicd-microprofile-vsts/setcontinuousdeployment.png)
+   
+1. Select **Save** at upper right, and then select **OK**. 
+   
+Now that you enabled CI/CD, modifying the source code creates and runs builds and releases automatically. To create and run a new release manually.
+
+1. Select **Create release** at the upper right on the pipeline page.
+   
+1. Select your stage in the left pane, and in the right pane, select the stage name under **Stages for a trigger change from automated to manual**. 
+   
+1. Select **Create**. 
+   
+1. Select the release number in the banner, and then select your stage name and select **Deploy**. 
+   
+1. Select **Deploy** again in the popup window to start the deployment to Azure. 
+
+## Test the Java web app
+
+1. Copy your web app URL from the Azure portal, such as `https://{your-app-service-name}.azurewebsites.net/api/hello`.
+   
+   ![App Service app in the Azure portal](media/cicd-microprofile-vsts/portalurl.png)
+   
+1. Enter the URL in your web browser to run your app. The web page should say **Hello Azure!**
+   
+   ![Java web app page](media/cicd-microprofile-vsts/webapp.png)
+
