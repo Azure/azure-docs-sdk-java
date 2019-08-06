@@ -16,6 +16,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.InternalClient.sendReportedProperties(Set<Property>,int)
   - com.microsoft.azure.sdk.iot.device.InternalClient.setOperationTimeout(long)
   - com.microsoft.azure.sdk.iot.device.InternalClient.setOption(String,Object)
+  - com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings(ProxySettings)
   - com.microsoft.azure.sdk.iot.device.InternalClient.setRetryPolicy(RetryPolicy)
   - com.microsoft.azure.sdk.iot.device.InternalClient.subscribeToDesiredProperties(Map<Property, Pair<PropertyCallBack<String, Object>, Object>>)
   - com.microsoft.azure.sdk.iot.device.InternalClient.subscribeToTwinDesiredProperties(Map<Property, Pair<TwinPropertyCallBack, Object>>)
@@ -88,7 +89,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 334
+    startLine: 337
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Getter for the device client config.</p>\r\n<p></p>"
   syntax:
@@ -110,7 +111,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 323
+    startLine: 326
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public ProductInfo getProductInfo()
@@ -167,9 +168,9 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 293
+    startLine: 296
   package: com.microsoft.azure.sdk.iot.device
-  summary: "<p>Registers a callback to be executed when the connection status of the device changes. The callback will be fired with a status and a reason why the device's status changed. When the callback is fired, the provided context will be provided alongside the status and reason.</p>\r\n<p></p>"
+  summary: "<p>Registers a callback to be executed when the connection status of the device changes. The callback will be fired with a status and a reason why the device's status changed. When the callback is fired, the provided context will be provided alongside the status and reason.</p>\r\n<p>Note that the thread used to deliver this callback should not be used to call open()/closeNow() on the client that this callback belongs to. All open()/closeNow() operations should be done on a separate thread</p>\r\n<p></p>"
   syntax:
     content: public void registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback callback, Object callbackContext)
     parameters:
@@ -307,7 +308,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 317
+    startLine: 320
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Set the length of time, in milliseconds, that any given operation will expire in. These operations include reconnecting upon a connection drop and sending a message. </p>"
   syntax:
@@ -333,7 +334,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 364
+    startLine: 367
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets a runtime option identified by parameter<code>optionName \r\n    </code> to<code>value \r\n    </code> .</p>\r\n<p>The options that can be set via this API are:<ul><li><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long \r\n    </code> .</p></li><li><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String \r\n    </code> .</p></li><li><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time, and will use that expiry time length for all subsequently generated sas tokens. The value is expected to be of type<code>long \r\n    </code> .</p></li></ul></p>\r\n<p></p>"
   syntax:
@@ -348,6 +349,29 @@ items:
   exceptions:
   - type: 3c87bd19
     description: <p>if the provided optionName is null </p>
+- uid: com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings(ProxySettings)
+  id: setProxySettings(ProxySettings)
+  parent: com.microsoft.azure.sdk.iot.device.InternalClient
+  href: com.microsoft.azure.sdk.iot.device.InternalClient.yml
+  langs:
+  - java
+  name: setProxySettings(ProxySettings proxySettings)
+  nameWithType: InternalClient.setProxySettings(ProxySettings proxySettings)
+  fullName: com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings(ProxySettings proxySettings)
+  overload: com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
+    startLine: 760
+  package: com.microsoft.azure.sdk.iot.device
+  summary: "<p>Set the proxy settings for this client to connect through. If null then any previous settings will be erased </p>"
+  syntax:
+    content: public void setProxySettings(ProxySettings proxySettings)
+    parameters:
+    - id: proxySettings
+      type: com.microsoft.azure.sdk.iot.device.ProxySettings
+      description: <p>the settings to be used when connecting to iothub through a proxy. If null, any previously saved settings will be erased, and no proxy will be used </p>
 - uid: com.microsoft.azure.sdk.iot.device.InternalClient.setRetryPolicy(RetryPolicy)
   id: setRetryPolicy(RetryPolicy)
   parent: com.microsoft.azure.sdk.iot.device.InternalClient
@@ -362,7 +386,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 305
+    startLine: 308
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets the given retry policy on the underlying transport <a href=\"https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-client/devdoc/requirement_docs/com/microsoft/azure/iothub/retryPolicy.md\">See more details about the default retry policy and about using custom retry policies here</a></p>"
   syntax:
@@ -576,6 +600,11 @@ references:
   name: setOption
   nameWithType: InternalClient.setOption
   fullName: com.microsoft.azure.sdk.iot.device.InternalClient.setOption
+  package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings*
+  name: setProxySettings
+  nameWithType: InternalClient.setProxySettings
+  fullName: com.microsoft.azure.sdk.iot.device.InternalClient.setProxySettings
   package: com.microsoft.azure.sdk.iot.device
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClient
   parent: com.microsoft.azure.sdk.iot.device
@@ -806,3 +835,12 @@ references:
   summary: "<p>Represents the complete user agent string to be included in all D2C communication. </p>"
   syntax:
     content: public class ProductInfo
+- uid: com.microsoft.azure.sdk.iot.device.ProxySettings
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device.ProxySettings.yml
+  name: ProxySettings
+  nameWithType: ProxySettings
+  fullName: com.microsoft.azure.sdk.iot.device.ProxySettings
+  type: Class
+  syntax:
+    content: public class ProxySettings
