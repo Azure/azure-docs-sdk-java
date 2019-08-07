@@ -6,9 +6,10 @@ items:
   children:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.AmqpsSessionManager(DeviceClientConfig)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.authenticate()
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Event)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks(MessageType)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Link)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks()
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.session
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType(MessageType,String)
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.yml
   langs:
   - java
@@ -22,7 +23,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 17
+    startLine: 16
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Manage multiple device clients and the authentication mechanism </p>"
   syntax:
@@ -43,7 +44,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 38
+    startLine: 32
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Constructor that takes a device configuration.</p>\r\n<p></p>"
   syntax:
@@ -52,9 +53,6 @@ items:
     - id: deviceClientConfig
       type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
       description: <p>the device configuration to use for session management. </p>
-  exceptions:
-  - type: 848a9648
-    description: <p>if a transport error occurs. </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.authenticate()
   id: authenticate()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
@@ -69,7 +67,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 122
+    startLine: 116
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Start the authetication process.</p>\r\n<p></p>"
   syntax:
@@ -77,52 +75,46 @@ items:
   exceptions:
   - type: 848a9648
     description: <p>if authentication lock throws. </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Event)
-  id: onLinkFlow(Event)
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Link)
+  id: onLinkFlow(Link)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.yml
   langs:
   - java
-  name: onLinkFlow(Event event)
-  nameWithType: AmqpsSessionManager.onLinkFlow(Event event)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Event event)
+  name: onLinkFlow(Link link)
+  nameWithType: AmqpsSessionManager.onLinkFlow(Link link)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow(Link link)
   overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 491
+    startLine: 454
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
-    content: public void onLinkFlow(Event event)
+    content: public void onLinkFlow(Link link)
     parameters:
-    - id: event
-      type: 70fceca4
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks(MessageType)
-  id: openDeviceOperationLinks(MessageType)
+    - id: link
+      type: a7c9e797
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks()
+  id: openWorkerLinks()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.yml
   langs:
   - java
-  name: openDeviceOperationLinks(MessageType msgType)
-  nameWithType: AmqpsSessionManager.openDeviceOperationLinks(MessageType msgType)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks(MessageType msgType)
-  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks*
+  name: openWorkerLinks()
+  nameWithType: AmqpsSessionManager.openWorkerLinks()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks()
+  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 151
+    startLine: 199
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-  summary: "<p>Loop through the device list and open the links. Lock the execution to wait for the open finish.</p>\r\n<p></p>"
+  summary: "<p>Opens all the operation links by calling the AmqpsSessionManager. </p>"
   syntax:
-    content: public void openDeviceOperationLinks(MessageType msgType)
-    parameters:
-    - id: msgType
-      type: com.microsoft.azure.sdk.iot.device.MessageType
-  exceptions:
-  - type: 848a9648
-    description: <p>if open lock throws. </p>
+    content: public void openWorkerLinks()
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.session
   id: session
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
@@ -136,44 +128,76 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
-    startLine: 20
+    startLine: 19
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: protected Session session= null
     return:
       type: 29aec771
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType(MessageType,String)
+  id: subscribeDeviceToMessageType(MessageType,String)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.yml
+  langs:
+  - java
+  name: subscribeDeviceToMessageType(MessageType messageType, String deviceId)
+  nameWithType: AmqpsSessionManager.subscribeDeviceToMessageType(MessageType messageType, String deviceId)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType(MessageType messageType, String deviceId)
+  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionManager.java
+    startLine: 135
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+  syntax:
+    content: protected void subscribeDeviceToMessageType(MessageType messageType, String deviceId)
+    parameters:
+    - id: messageType
+      type: com.microsoft.azure.sdk.iot.device.MessageType
+    - id: deviceId
+      type: "26831127"
 references:
 - uid: 29aec771
   spec.java:
   - name: Session
     fullName: Session
-- uid: 848a9648
-  spec.java:
-  - name: TransportException
-    fullName: TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.AmqpsSessionManager*
   name: AmqpsSessionManager
   nameWithType: AmqpsSessionManager.AmqpsSessionManager
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.AmqpsSessionManager
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
+- uid: 848a9648
+  spec.java:
+  - name: TransportException
+    fullName: TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.authenticate*
   name: authenticate
   nameWithType: AmqpsSessionManager.authenticate
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.authenticate
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks*
-  name: openDeviceOperationLinks
-  nameWithType: AmqpsSessionManager.openDeviceOperationLinks
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openDeviceOperationLinks
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks*
+  name: openWorkerLinks
+  nameWithType: AmqpsSessionManager.openWorkerLinks
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.openWorkerLinks
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-- uid: 70fceca4
+- uid: a7c9e797
   spec.java:
-  - name: Event
-    fullName: Event
+  - name: Link
+    fullName: Link
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow*
   name: onLinkFlow
   nameWithType: AmqpsSessionManager.onLinkFlow
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.onLinkFlow
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType*
+  name: subscribeDeviceToMessageType
+  nameWithType: AmqpsSessionManager.subscribeDeviceToMessageType
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.subscribeDeviceToMessageType
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
   parent: com.microsoft.azure.sdk.iot.device
@@ -203,16 +227,6 @@ references:
   type: Class
   syntax:
     content: public class AmqpsSessionDeviceOperation
-- uid: com.microsoft.azure.sdk.iot.device.ObjectLock
-  parent: com.microsoft.azure.sdk.iot.device
-  href: com.microsoft.azure.sdk.iot.device.ObjectLock.yml
-  name: ObjectLock
-  nameWithType: ObjectLock
-  fullName: com.microsoft.azure.sdk.iot.device.ObjectLock
-  type: Class
-  summary: "<p>This class enables mocking of the base class wait and notify functions </p>"
-  syntax:
-    content: public class ObjectLock
 - uid: com.microsoft.azure.sdk.iot.device.CustomLogger
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device.CustomLogger.yml
