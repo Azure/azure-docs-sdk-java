@@ -1,7 +1,7 @@
-## Microsoft Open Source Code of Conduct
+# Azure SDK for Java reference
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+This repo hosts the reference content for the Azure SDK for Java. The conceptual content has moved to https://github.com/microsoftdocs/azure-dev-docs - please make submissions and
+file issues there.
 
 # How to Update the YAML content in the repo
 
@@ -10,3 +10,9 @@ For more information see the [Code of Conduct FAQ](https://opensource.microsoft.
 3. Run Code2Yaml.exe to generate YAML files.
 
 Or you can run `powershell Scripts/build.ps1`, it would update the YAML files in api folder.
+
+## Microsoft Open Source Code of Conduct
+
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
