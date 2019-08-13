@@ -4,8 +4,11 @@ items:
   id: AmqpsDeviceAuthentication
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   children:
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication(DeviceClientConfig)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticate(DeviceClientConfig,UUID)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticationMessageReceived(AmqpsMessage,UUID)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton(AmqpsMessage,DeviceClientConfig)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton(Message)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.makeDomain(SSLContext)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.setSslDomain(Transport)
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.yml
@@ -21,7 +24,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
-    startLine: 11
+    startLine: 13
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public class AmqpsDeviceAuthentication extends AmqpsDeviceOperations
@@ -30,18 +33,17 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   inheritedMembers:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.AMQPS_APP_PROPERTY_PREFIX
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.AmqpsDeviceOperations(DeviceClientConfig,String,String,String,String,String,String)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.amqpsRecvLinkState
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.amqpsSendLinkState
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.API_VERSION_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.closeLinks()
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertFromProton(AmqpsMessage,DeviceClientConfig)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertToProton(Message)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.getMessageFromReceiverLink(String)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.initLink(Link)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.INPUT_NAME_PROPERTY_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.iotHubMessageToProtonMessage(Message)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.isLinkFound(String)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkFlow(int)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkRemoteOpen(String)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.openLinks(Session)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.operationLinksOpened()
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.protonMessageToIoTHubMessage(MessageImpl)
@@ -57,6 +59,27 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.TO_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.USER_ID_KEY
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.VERSION_IDENTIFIER_KEY
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication(DeviceClientConfig)
+  id: AmqpsDeviceAuthentication(DeviceClientConfig)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.yml
+  langs:
+  - java
+  name: AmqpsDeviceAuthentication(DeviceClientConfig config)
+  nameWithType: AmqpsDeviceAuthentication.AmqpsDeviceAuthentication(DeviceClientConfig config)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication(DeviceClientConfig config)
+  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication*
+  type: Constructor
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
+    startLine: 15
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+  syntax:
+    content: public AmqpsDeviceAuthentication(DeviceClientConfig config)
+    parameters:
+    - id: config
+      type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticate(DeviceClientConfig,UUID)
   id: authenticate(DeviceClientConfig,UUID)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
@@ -71,11 +94,11 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
-    startLine: 68
+    startLine: 62
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-  summary: "<p>Prototype (empty) function for set the SslDomain</p>\r\n<p></p>"
+  summary: "<p>abstract function for set the SslDomain</p>\r\n<p></p>"
   syntax:
-    content: protected void authenticate(DeviceClientConfig deviceClientConfig, UUID correlationId)
+    content: protected abstract void authenticate(DeviceClientConfig deviceClientConfig, UUID correlationId)
     parameters:
     - id: deviceClientConfig
       type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
@@ -83,6 +106,8 @@ items:
     - id: correlationId
       type: add9545a
       description: <p>the authentication message's correlationId. </p>
+    return:
+      type: 5beb11ad
   exceptions:
   - type: 848a9648
     description: <p>if authentication fails </p>
@@ -100,11 +125,11 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
-    startLine: 80
+    startLine: 71
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-  summary: "<p>Prototype (empty) function for evaluation function of received message.</p>\r\n<p></p>"
+  summary: "<p>abstract function for evaluation function of received message.</p>\r\n<p></p>"
   syntax:
-    content: protected Boolean authenticationMessageReceived(AmqpsMessage amqpsMessage, UUID authenticationCorrelationId)
+    content: protected abstract boolean authenticationMessageReceived(AmqpsMessage amqpsMessage, UUID authenticationCorrelationId)
     parameters:
     - id: amqpsMessage
       type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
@@ -113,8 +138,56 @@ items:
       type: add9545a
       description: <p>the expected correlation ID. </p>
     return:
-      type: 866c2227
+      type: 352efe7b
       description: <p>true if the message acknowledge the authentication, false otherwise. </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton(AmqpsMessage,DeviceClientConfig)
+  id: convertFromProton(AmqpsMessage,DeviceClientConfig)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.yml
+  langs:
+  - java
+  name: convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
+  nameWithType: AmqpsDeviceAuthentication.convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
+  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
+    startLine: 74
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+  syntax:
+    content: protected AmqpsConvertFromProtonReturnValue convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
+    parameters:
+    - id: amqpsMessage
+      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
+    - id: deviceClientConfig
+      type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
+    return:
+      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton(Message)
+  id: convertToProton(Message)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.yml
+  langs:
+  - java
+  name: convertToProton(Message message)
+  nameWithType: AmqpsDeviceAuthentication.convertToProton(Message message)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton(Message message)
+  overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
+    startLine: 80
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+  syntax:
+    content: protected AmqpsConvertToProtonReturnValue convertToProton(Message message)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.sdk.iot.device.Message
+    return:
+      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.makeDomain(SSLContext)
   id: makeDomain(SSLContext)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
@@ -129,7 +202,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
-    startLine: 26
+    startLine: 28
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Create Proton SslDomain object from Address using the given Ssl context</p>\r\n<p></p>"
   syntax:
@@ -158,19 +231,26 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsDeviceAuthentication.java
-    startLine: 56
+    startLine: 53
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-  summary: "<p>Prototype (empty) function for set the SslDomain</p>\r\n<p></p>"
+  summary: "<p>abstract function for set the SslDomain</p>\r\n<p></p>"
   syntax:
-    content: protected void setSslDomain(Transport transport)
+    content: protected abstract void setSslDomain(Transport transport)
     parameters:
     - id: transport
       type: 88c4f0f5
       description: <p>The transport to set the SSL context to </p>
+    return:
+      type: 5beb11ad
   exceptions:
   - type: 848a9648
     description: <p>if setting ssl domain fails </p>
 references:
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication*
+  name: AmqpsDeviceAuthentication
+  nameWithType: AmqpsDeviceAuthentication.AmqpsDeviceAuthentication
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.AmqpsDeviceAuthentication
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
 - uid: 848a9648
   spec.java:
   - name: TransportException
@@ -192,6 +272,10 @@ references:
   spec.java:
   - name: Transport
     fullName: Transport
+- uid: 5beb11ad
+  spec.java:
+  - name: abstract void
+    fullName: abstract void
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.setSslDomain*
   name: setSslDomain
   nameWithType: AmqpsDeviceAuthentication.setSslDomain
@@ -206,14 +290,24 @@ references:
   nameWithType: AmqpsDeviceAuthentication.authenticate
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticate
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-- uid: 866c2227
+- uid: 352efe7b
   spec.java:
-  - name: Boolean
-    fullName: Boolean
+  - name: abstract boolean
+    fullName: abstract boolean
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticationMessageReceived*
   name: authenticationMessageReceived
   nameWithType: AmqpsDeviceAuthentication.authenticationMessageReceived
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.authenticationMessageReceived
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton*
+  name: convertFromProton
+  nameWithType: AmqpsDeviceAuthentication.convertFromProton
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertFromProton
+  package: com.microsoft.azure.sdk.iot.device.transport.amqps
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton*
+  name: convertToProton
+  nameWithType: AmqpsDeviceAuthentication.convertToProton
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.convertToProton
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.AMQPS_APP_PROPERTY_PREFIX
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
@@ -226,6 +320,32 @@ references:
     content: protected static final String AMQPS_APP_PROPERTY_PREFIX= "iothub-app-"
     return:
       type: 3d93591e
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.AmqpsDeviceOperations(DeviceClientConfig,String,String,String,String,String,String)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
+  name: AmqpsDeviceOperations(DeviceClientConfig deviceClientConfig, String senderLinkEndpointPath, String receiverLinkEndpointpath, String senderLinkEndpointPathModules, String receiverLinkEndpointPathModules, String senderLinkTagPrefix, String receiverLinkTagPrefix)
+  nameWithType: AmqpsDeviceOperations.AmqpsDeviceOperations(DeviceClientConfig deviceClientConfig, String senderLinkEndpointPath, String receiverLinkEndpointpath, String senderLinkEndpointPathModules, String receiverLinkEndpointPathModules, String senderLinkTagPrefix, String receiverLinkTagPrefix)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.AmqpsDeviceOperations(DeviceClientConfig deviceClientConfig, String senderLinkEndpointPath, String receiverLinkEndpointpath, String senderLinkEndpointPathModules, String receiverLinkEndpointPathModules, String senderLinkTagPrefix, String receiverLinkTagPrefix)
+  type: Constructor
+  summary: "<p>This constructor creates an instance of device operation class and initializes member variables</p>\r\n<p></p>"
+  syntax:
+    content: public AmqpsDeviceOperations(DeviceClientConfig deviceClientConfig, String senderLinkEndpointPath, String receiverLinkEndpointpath, String senderLinkEndpointPathModules, String receiverLinkEndpointPathModules, String senderLinkTagPrefix, String receiverLinkTagPrefix)
+    parameters:
+    - id: deviceClientConfig
+      type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
+      description: <p>the config to pull the user agent string from</p>
+    - id: senderLinkEndpointPath
+      type: "26831127"
+    - id: receiverLinkEndpointpath
+      type: "26831127"
+    - id: senderLinkEndpointPathModules
+      type: "26831127"
+    - id: receiverLinkEndpointPathModules
+      type: "26831127"
+    - id: senderLinkTagPrefix
+      type: "26831127"
+    - id: receiverLinkTagPrefix
+      type: "26831127"
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.amqpsRecvLinkState
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -269,43 +389,6 @@ references:
   summary: "<p>Closes receiver and sender link if they are not null </p>"
   syntax:
     content: protected void closeLinks()
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertFromProton(AmqpsMessage,DeviceClientConfig)
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
-  name: convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
-  nameWithType: AmqpsDeviceOperations.convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
-  type: Method
-  summary: "<p>Prototype (empty) function for operation specific implementations to convert Proton message to IoTHubMessage</p>\r\n<p></p>"
-  syntax:
-    content: protected AmqpsConvertFromProtonReturnValue convertFromProton(AmqpsMessage amqpsMessage, DeviceClientConfig deviceClientConfig)
-    parameters:
-    - id: amqpsMessage
-      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
-      description: <p>The Proton message to convert </p>
-    - id: deviceClientConfig
-      type: com.microsoft.azure.sdk.iot.device.DeviceClientConfig
-      description: <p>The device client configuration </p>
-    return:
-      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
-      description: <p>the converted message </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertToProton(Message)
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
-  name: convertToProton(Message message)
-  nameWithType: AmqpsDeviceOperations.convertToProton(Message message)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.convertToProton(Message message)
-  type: Method
-  summary: "<p>Prototype (empty) function for operation specific implementations to convert IoTHubMessage to Proton message</p>\r\n<p></p>"
-  syntax:
-    content: protected AmqpsConvertToProtonReturnValue convertToProton(Message message)
-    parameters:
-    - id: message
-      type: com.microsoft.azure.sdk.iot.device.Message
-      description: <p>The IoTHubMessage to convert </p>
-    return:
-      type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
-      description: <p>the converted message </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.getMessageFromReceiverLink(String)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -367,23 +450,6 @@ references:
     return:
       type: c04bb214
       description: <p>the converted message </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.isLinkFound(String)
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
-  name: isLinkFound(String linkName)
-  nameWithType: AmqpsDeviceOperations.isLinkFound(String linkName)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.isLinkFound(String linkName)
-  type: Method
-  summary: "<p>Prototype (empty) function for operation specific implementations to identify if the given link is owned by the operation</p>\r\n<p></p>"
-  syntax:
-    content: protected Boolean isLinkFound(String linkName)
-    parameters:
-    - id: linkName
-      type: "26831127"
-      description: <p>the name of the link to find. </p>
-    return:
-      type: 866c2227
-      description: <p>true if the link is owned by the operation, false otherwise </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkFlow(int)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -396,6 +462,23 @@ references:
     parameters:
     - id: linkCredit
       type: f75371fa
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkRemoteOpen(String)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
+  name: onLinkRemoteOpen(String linkName)
+  nameWithType: AmqpsDeviceOperations.onLinkRemoteOpen(String linkName)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.onLinkRemoteOpen(String linkName)
+  type: Method
+  summary: "<p>abstract function for operation specific implementations to identify if the given link is owned by the operation</p>\r\n<p></p>"
+  syntax:
+    content: protected abstract boolean onLinkRemoteOpen(String linkName)
+    parameters:
+    - id: linkName
+      type: "26831127"
+      description: <p>the name of the link to find. </p>
+    return:
+      type: 352efe7b
+      description: <p>true if the link is owned by the operation, false otherwise </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.openLinks(Session)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -405,13 +488,13 @@ references:
   type: Method
   summary: "<p>Opens receiver and sender link </p>"
   syntax:
-    content: protected synchronized boolean openLinks(Session session)
+    content: protected synchronized void openLinks(Session session)
     parameters:
     - id: session
       type: 29aec771
       description: <p>The session where the links shall be created </p>
     return:
-      type: 85b427c6
+      type: 5c0b90ca
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.operationLinksOpened()
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
@@ -421,9 +504,9 @@ references:
   type: Method
   summary: "<p>Gets the status of the operation's links </p>"
   syntax:
-    content: public Boolean operationLinksOpened()
+    content: public boolean operationLinksOpened()
     return:
-      type: 866c2227
+      type: 4fc6e284
       description: <p>true if the all the operation links are opened, false otherwise </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.protonMessageToIoTHubMessage(MessageImpl)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
@@ -648,3 +731,30 @@ references:
   summary: "<p>Extension of the QPID-Proton-J MessageImpl class which implements the Message interface. Adds a Delivery object as a private member variable and adds a new ACK_TYPE enum. Adds the ability to easily acknowledge a single message. </p>"
   syntax:
     content: public class AmqpsMessage
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue.yml
+  name: AmqpsConvertFromProtonReturnValue
+  nameWithType: AmqpsConvertFromProtonReturnValue
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
+  type: Class
+  syntax:
+    content: public class AmqpsConvertFromProtonReturnValue
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue.yml
+  name: AmqpsConvertToProtonReturnValue
+  nameWithType: AmqpsConvertToProtonReturnValue
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
+  type: Class
+  syntax:
+    content: public class AmqpsConvertToProtonReturnValue
+- uid: com.microsoft.azure.sdk.iot.device.Message
+  parent: com.microsoft.azure.sdk.iot.device
+  href: com.microsoft.azure.sdk.iot.device.Message.yml
+  name: Message
+  nameWithType: Message
+  fullName: com.microsoft.azure.sdk.iot.device.Message
+  type: Class
+  syntax:
+    content: public class Message
