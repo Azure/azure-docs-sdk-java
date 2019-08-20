@@ -61,7 +61,7 @@ WebApp app = azure.webApps().define("newLinuxWebApp")
 
 Explore more [sample Java code for Azure App Service](https://azure.microsoft.com/resources/samples/?platform=java&term=appservice) you can use in your apps.
 
-[1]: ../docs-ref-conceptual/java-sdk-configure-webapp-sources.md
+[1]: /azure/java/java-sdk-configure-webapp-sources
 [2]: https://azure.microsoft.com/resources/samples/app-service-java-manage-staging-and-production-slots-for-web-apps/
 [3]: https://azure.microsoft.com/resources/samples/app-service-java-manage-web-apps-with-custom-domains/
 [4]: https://azure.microsoft.com/resources/samples/app-service-java-scale-web-apps-on-linux/

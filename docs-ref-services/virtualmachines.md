@@ -66,10 +66,10 @@ VirtualMachine newLinuxVm = azure.virtualMachines().define(linuxVmName)
 [Create virtual machines across regions in parallel][5]    
 [Create a virtual machine scale set with a load balancer][7]    
 
-[1]: ../docs-ref-conceptual/java-sdk-manage-virtual-machines.md
+[1]: /azure/java/java-sdk-manage-virtual-machines
 [2]: https://azure.microsoft.com/resources/samples/managed-disk-java-create-virtual-machine-using-custom-image/
-[5]: ../docs-ref-conceptual/java-sdk-virtual-machines-in-parallel.md
-[6]: ../docs-ref-conceptual/java-sdk-manage-virtual-networks.md
-[7]: ../docs-ref-conceptual/java-sdk-manage-vm-scalesets.md
+[5]: /azure/java/java-sdk-virtual-machines-in-parallel
+[6]: /azure/java/java-sdk-manage-virtual-networks
+[7]: /azure/java/java-sdk-manage-vm-scalesets
 
 Explore more [sample Java code for Azure virtual machines](https://azure.microsoft.com/resources/samples/?platform=java&term=VM) you can use in your apps.

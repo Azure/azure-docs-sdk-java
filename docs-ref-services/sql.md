@@ -92,5 +92,5 @@ Explore more [sample Java code for Azure SQL Database](https://azure.microsoft.c
 
 [1]: https://github.com/Azure-Samples/sql-database-java-manage-db
 [2]: https://github.com/Azure-Samples/sql-database-java-manage-sql-databases-across-regions
-[3]: ../java-sdk-manage-sql-elastic-pools.md
+[3]: /azure/java/java-sdk-manage-sql-elastic-pools
 [4]: https://github.com/Azure-Samples/app-service-java-manage-data-connections-for-web-apps
