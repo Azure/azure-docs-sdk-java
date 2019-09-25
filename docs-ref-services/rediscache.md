@@ -7,10 +7,8 @@ ms.author: routlaw
 manager: douge
 ms.date: 07/11/2017
 ms.topic: reference
-ms.prod: azure
-ms.technology: azure
 ms.devlang: java
-ms.service: redis-cache
+ms.service: cache
 ---
 
 # Redis Cache libraries for Java
