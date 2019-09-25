@@ -1,6 +1,6 @@
 ---
 title: Azure Application Insights libraries for Java
-description: Reference documentation for the Java management API for Azure Appplication Insights
+description: Reference documentation for the Java management API for Azure Application Insights
 keywords: Azure, Java, SDK, API, AppInsights, telemetry, diagnostics, trace, logs, performance
 author: rloutlaw
 ms.author: routlaw
