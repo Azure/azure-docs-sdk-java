@@ -142,7 +142,7 @@ The following prerequisites are required in order to follow the steps in this ar
    # Specify the DNS URI of your Azure Cosmos DB.
    azure.cosmosdb.uri=https://wingtiptoys.documents.azure.com:443/
 
-   # Specify the access key for your database.
+   # Specify the access key (PRIMARY KEY) for your database.
    azure.cosmosdb.key=57686f6120447564652c20426f6220526f636b73==
 
    # Specify the name of your database.
@@ -288,7 +288,7 @@ In this section you create two Java classes for storing user data, and then you 
             Optional<User> result = repository.findById(testUser.getId());
 
             // Display the results of the database record retrieval.
-            System.out.println("\nSaved user is: " + result + "\n")
+            System.out.println("\nSaved user is: " + result + "\n");
         }
     }
    ```
