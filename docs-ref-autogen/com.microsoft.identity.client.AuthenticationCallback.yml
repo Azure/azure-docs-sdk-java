@@ -5,8 +5,6 @@ items:
   parent: com.microsoft.identity.client
   children:
   - com.microsoft.identity.client.AuthenticationCallback.onCancel()
-  - com.microsoft.identity.client.AuthenticationCallback.onError(final MsalException)
-  - com.microsoft.identity.client.AuthenticationCallback.onSuccess(final IAuthenticationResult)
   href: com.microsoft.identity.client.AuthenticationCallback.yml
   langs:
   - java
@@ -20,11 +18,14 @@ items:
       branch: master
       repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationCallback.java
-    startLine: 33
+    startLine: 30
   package: com.microsoft.identity.client
   summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.IAuthenticationResult\" data-throw-if-not-resolved=\"false\">IAuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
   syntax:
-    content: public interface AuthenticationCallback
+    content: public interface AuthenticationCallback extends SilentAuthenticationCallback
+  inheritedMembers:
+  - com.microsoft.identity.client.SilentAuthenticationCallback.onError(final MsalException)
+  - com.microsoft.identity.client.SilentAuthenticationCallback.onSuccess(final IAuthenticationResult)
 - uid: com.microsoft.identity.client.AuthenticationCallback.onCancel()
   id: onCancel()
   parent: com.microsoft.identity.client.AuthenticationCallback
@@ -39,27 +40,24 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/AuthenticationCallback.java
-    startLine: 54
+    startLine: 35
   package: com.microsoft.identity.client
   summary: "<p>Will be called if user cancels the flow. </p>"
   syntax:
     content: public void onCancel()
-- uid: com.microsoft.identity.client.AuthenticationCallback.onError(final MsalException)
-  id: onError(final MsalException)
-  parent: com.microsoft.identity.client.AuthenticationCallback
-  href: com.microsoft.identity.client.AuthenticationCallback.yml
-  langs:
-  - java
-  name: onError(final MsalException exception)
-  nameWithType: AuthenticationCallback.onError(final MsalException exception)
-  fullName: com.microsoft.identity.client.AuthenticationCallback.onError(final MsalException exception)
-  overload: com.microsoft.identity.client.AuthenticationCallback.onError*
-  type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/AuthenticationCallback.java
-    startLine: 49
+references:
+- uid: com.microsoft.identity.client.AuthenticationCallback.onCancel*
+  name: onCancel
+  nameWithType: AuthenticationCallback.onCancel
+  fullName: com.microsoft.identity.client.AuthenticationCallback.onCancel
   package: com.microsoft.identity.client
+- uid: com.microsoft.identity.client.SilentAuthenticationCallback.onError(final MsalException)
+  parent: com.microsoft.identity.client.SilentAuthenticationCallback
+  href: com.microsoft.identity.client.SilentAuthenticationCallback.yml
+  name: onError(final MsalException exception)
+  nameWithType: SilentAuthenticationCallback.onError(final MsalException exception)
+  fullName: com.microsoft.identity.client.SilentAuthenticationCallback.onError(final MsalException exception)
+  type: Method
   summary: "<p>Error occurs during the authentication.</p>\r\n<p></p>"
   syntax:
     content: public void onError(final MsalException exception)
@@ -67,22 +65,13 @@ items:
     - id: exception
       type: 93de0ef9com.microsoft.identity.client.exception.MsalException
       description: <p>The <xref uid="" data-throw-if-not-resolved="false">MsalException</xref> contains the error code, error message and cause if applicable. The exception returned in the callback could be <xref uid="" data-throw-if-not-resolved="false">MsalClientException</xref>, <xref uid="" data-throw-if-not-resolved="false">MsalServiceException</xref> or <xref uid="" data-throw-if-not-resolved="false">MsalUiRequiredException</xref>. </p>
-- uid: com.microsoft.identity.client.AuthenticationCallback.onSuccess(final IAuthenticationResult)
-  id: onSuccess(final IAuthenticationResult)
-  parent: com.microsoft.identity.client.AuthenticationCallback
-  href: com.microsoft.identity.client.AuthenticationCallback.yml
-  langs:
-  - java
+- uid: com.microsoft.identity.client.SilentAuthenticationCallback.onSuccess(final IAuthenticationResult)
+  parent: com.microsoft.identity.client.SilentAuthenticationCallback
+  href: com.microsoft.identity.client.SilentAuthenticationCallback.yml
   name: onSuccess(final IAuthenticationResult authenticationResult)
-  nameWithType: AuthenticationCallback.onSuccess(final IAuthenticationResult authenticationResult)
-  fullName: com.microsoft.identity.client.AuthenticationCallback.onSuccess(final IAuthenticationResult authenticationResult)
-  overload: com.microsoft.identity.client.AuthenticationCallback.onSuccess*
+  nameWithType: SilentAuthenticationCallback.onSuccess(final IAuthenticationResult authenticationResult)
+  fullName: com.microsoft.identity.client.SilentAuthenticationCallback.onSuccess(final IAuthenticationResult authenticationResult)
   type: Method
-  source:
-    remote: *o0
-    path: msal/src/main/java/com/microsoft/identity/client/AuthenticationCallback.java
-    startLine: 40
-  package: com.microsoft.identity.client
   summary: "<p>Authentication finishes successfully.</p>\r\n<p></p>"
   syntax:
     content: public void onSuccess(final IAuthenticationResult authenticationResult)
@@ -93,38 +82,15 @@ items:
         <p>
 
           <xref uid="com.microsoft.identity.client.IAuthenticationResult" data-throw-if-not-resolved="false">IAuthenticationResult</xref> that contains the success response. </p>
-references:
-- uid: 93de0ef9com.microsoft.identity.client.IAuthenticationResult
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.identity.client.IAuthenticationResult
-    name: IAuthenticationResult
-    fullName: com.microsoft.identity.client.IAuthenticationResult
-    href: com.microsoft.identity.client.IAuthenticationResult.yml
-- uid: com.microsoft.identity.client.AuthenticationCallback.onSuccess*
-  name: onSuccess
-  nameWithType: AuthenticationCallback.onSuccess
-  fullName: com.microsoft.identity.client.AuthenticationCallback.onSuccess
-  package: com.microsoft.identity.client
-- uid: 93de0ef9com.microsoft.identity.client.exception.MsalException
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.identity.client.exception.MsalException
-    name: MsalException
-    fullName: com.microsoft.identity.client.exception.MsalException
-    href: com.microsoft.identity.client.exception.MsalException.yml
-- uid: com.microsoft.identity.client.AuthenticationCallback.onError*
-  name: onError
-  nameWithType: AuthenticationCallback.onError
-  fullName: com.microsoft.identity.client.AuthenticationCallback.onError
-  package: com.microsoft.identity.client
-- uid: com.microsoft.identity.client.AuthenticationCallback.onCancel*
-  name: onCancel
-  nameWithType: AuthenticationCallback.onCancel
-  fullName: com.microsoft.identity.client.AuthenticationCallback.onCancel
-  package: com.microsoft.identity.client
+- uid: com.microsoft.identity.client.SilentAuthenticationCallback
+  parent: com.microsoft.identity.client
+  href: com.microsoft.identity.client.SilentAuthenticationCallback.yml
+  name: SilentAuthenticationCallback
+  nameWithType: SilentAuthenticationCallback
+  fullName: com.microsoft.identity.client.SilentAuthenticationCallback
+  type: Interface
+  syntax:
+    content: public interface SilentAuthenticationCallback
 - uid: com.microsoft.identity.client.IAuthenticationResult
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.IAuthenticationResult.yml
@@ -134,13 +100,3 @@ references:
   type: Interface
   syntax:
     content: public interface IAuthenticationResult
-- uid: com.microsoft.identity.client.exception.MsalException
-  parent: com.microsoft.identity.client.exception
-  href: com.microsoft.identity.client.exception.MsalException.yml
-  name: MsalException
-  nameWithType: MsalException
-  fullName: com.microsoft.identity.client.exception.MsalException
-  type: Class
-  summary: "<p>\r\n  <xref uid=\"com.microsoft.identity.client.exception.MsalException\" data-throw-if-not-resolved=\"false\">MsalException</xref> thrown or sent back via callback, representing the detailed exception thrown by the sdk. It will contain the error code, error description (could be null) or throwable (could be null). </p>"
-  syntax:
-    content: public class MsalException
