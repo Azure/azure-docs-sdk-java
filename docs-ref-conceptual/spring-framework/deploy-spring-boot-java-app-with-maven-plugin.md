@@ -1,6 +1,6 @@
 ---
-title: Deploy a Spring Boot JAR file app to the cloud with Maven and Azure
-description: Learn how to deploy a Spring Boot app to the cloud using the Maven Plugin for Azure Web App for Linux.
+title: Deploy a Spring Boot JAR file web app to Azure App Service on Linux
+description: Learn how to deploy a Spring Boot app Jar file to the cloud using the Maven Plugin for Azure Web App for Linux.
 services: app-service
 documentationcenter: java
 author: rmcmurray
