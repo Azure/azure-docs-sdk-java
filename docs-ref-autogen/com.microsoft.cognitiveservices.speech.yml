@@ -3,11 +3,15 @@ items:
 - uid: com.microsoft.cognitiveservices.speech
   id: speech
   children:
+  - com.microsoft.cognitiveservices.speech.AudioDataStream
   - com.microsoft.cognitiveservices.speech.CancellationDetails
   - com.microsoft.cognitiveservices.speech.CancellationErrorCode
   - com.microsoft.cognitiveservices.speech.CancellationReason
+  - com.microsoft.cognitiveservices.speech.ClassLanguageModel
   - com.microsoft.cognitiveservices.speech.Connection
   - com.microsoft.cognitiveservices.speech.ConnectionEventArgs
+  - com.microsoft.cognitiveservices.speech.Grammar
+  - com.microsoft.cognitiveservices.speech.GrammarList
   - com.microsoft.cognitiveservices.speech.KeywordRecognitionModel
   - com.microsoft.cognitiveservices.speech.NoMatchDetails
   - com.microsoft.cognitiveservices.speech.NoMatchReason
@@ -27,6 +31,13 @@ items:
   - com.microsoft.cognitiveservices.speech.SpeechRecognitionEventArgs
   - com.microsoft.cognitiveservices.speech.SpeechRecognitionResult
   - com.microsoft.cognitiveservices.speech.SpeechRecognizer
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesisCancellationDetails
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesisEventArgs
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesisResult
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesisWordBoundaryEventArgs
+  - com.microsoft.cognitiveservices.speech.SpeechSynthesizer
+  - com.microsoft.cognitiveservices.speech.StreamStatus
   href: com.microsoft.cognitiveservices.speech.yml
   langs:
   - java
@@ -89,6 +100,16 @@ references:
   type: Namespace
   syntax:
     content: package com.microsoft.cognitiveservices.speech.util
+- uid: com.microsoft.cognitiveservices.speech.AudioDataStream
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.AudioDataStream.yml
+  name: AudioDataStream
+  nameWithType: AudioDataStream
+  fullName: com.microsoft.cognitiveservices.speech.AudioDataStream
+  type: Class
+  summary: "<p>Represents audio data stream used for operating audio data as a stream. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class AudioDataStream
 - uid: com.microsoft.cognitiveservices.speech.CancellationDetails
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech.CancellationDetails.yml
@@ -119,6 +140,16 @@ references:
   summary: "<p>Defines the possible reasons a recognition result might be canceled. </p>"
   syntax:
     content: public enum CancellationReason
+- uid: com.microsoft.cognitiveservices.speech.ClassLanguageModel
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.ClassLanguageModel.yml
+  name: ClassLanguageModel
+  nameWithType: ClassLanguageModel
+  fullName: com.microsoft.cognitiveservices.speech.ClassLanguageModel
+  type: Class
+  summary: "<p>Represents a ClassLanguageModel.</p>\r\n<p>ClassLanguageModels are only usable in specific scenarios and are not generally available.</p>\r\n<p>Added in version 1.7.0 </p>"
+  syntax:
+    content: public class ClassLanguageModel extends Grammar
 - uid: com.microsoft.cognitiveservices.speech.Connection
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech.Connection.yml
@@ -126,7 +157,7 @@ references:
   nameWithType: Connection
   fullName: com.microsoft.cognitiveservices.speech.Connection
   type: Class
-  summary: "<p>Connection is a proxy class for managing connection to the speech service of the specified Recognizer. By default, a Recognizer autonomously manages connection to service when needed. The Connection class provides additional methods for users to explicitly open or close a connection and to subscribe to connection status changes. The use of Connection is optional, and mainly for scenarios where fine tuning of application behavior based on connection status is needed. Users can optionally call Open() to manually set up a connection in advance before starting recognition on the Recognizer associated with this Connection. After starting recognition, calling Open() or Close() might fail, depending on the process state of the Recognizer. But this does not affect the state of the associated Recognizer. And if the Recognizer needs to connect or disconnect to service, it will setup or shutdown the connection independently. In this case the Connection will be notified by change of connection status via Connected/Disconnected events. Added in version 1.2.0. </p>"
+  summary: "<p>Connection is a proxy class for managing connection to the speech service of the specified Recognizer. By default, a Recognizer autonomously manages connection to service when needed. The Connection class provides additional methods for users to explicitly open or close a connection and to subscribe to connection status changes. The use of Connection is optional. It is intended for scenarios where fine tuning of application behavior based on connection status is needed. Users can optionally call openConnection() to manually initiate a service connection before starting recognition on the Recognizer associated with this Connection. After starting a recognition, calling openConnection() or closeConnection() might fail. This will not impact the Recognizer or the ongoing recognition. Connection might drop for various reasons, the Recognizer will always try to reinstitute the connection as required to guarantee ongoing operations. In all these cases Connected/Disconnected events will indicate the change of the connection status. Note: close() must be called in order to relinquish underlying resources held by the object. Added in version 1.2.0. </p>"
   syntax:
     content: public class Connection
 - uid: com.microsoft.cognitiveservices.speech.ConnectionEventArgs
@@ -139,6 +170,26 @@ references:
   summary: "<p>Defines payload for connection events like Connected/Disconnected. Added in version 1.2.0 </p>"
   syntax:
     content: public class ConnectionEventArgs extends SessionEventArgs
+- uid: com.microsoft.cognitiveservices.speech.Grammar
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.Grammar.yml
+  name: Grammar
+  nameWithType: Grammar
+  fullName: com.microsoft.cognitiveservices.speech.Grammar
+  type: Class
+  summary: "<p>Represents a generic grammar used to assist in improving speech recogniton accuracy. </p>"
+  syntax:
+    content: public class Grammar
+- uid: com.microsoft.cognitiveservices.speech.GrammarList
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.GrammarList.yml
+  name: GrammarList
+  nameWithType: GrammarList
+  fullName: com.microsoft.cognitiveservices.speech.GrammarList
+  type: Class
+  summary: "<p>Allows adding multiple grammars to a SpeechRecognizer to improve the accuracy of speech recognition.</p>\r\n<p>GrammarLists are only usable in specific scenarios and are not generally available. </p>"
+  syntax:
+    content: public class GrammarList
 - uid: com.microsoft.cognitiveservices.speech.KeywordRecognitionModel
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech.KeywordRecognitionModel.yml
@@ -216,7 +267,7 @@ references:
   nameWithType: PropertyId
   fullName: com.microsoft.cognitiveservices.speech.PropertyId
   type: Enum
-  summary: "<p>Defines property ids. Changed in version 1.5.0. </p>"
+  summary: "<p>Defines property ids. Changed in version 1.7.0. </p>"
   syntax:
     content: public enum PropertyId
 - uid: com.microsoft.cognitiveservices.speech.RecognitionEventArgs
@@ -256,7 +307,7 @@ references:
   nameWithType: ResultReason
   fullName: com.microsoft.cognitiveservices.speech.ResultReason
   type: Enum
-  summary: "<p>Defines the possible reasons a recognition result might be generated. </p>"
+  summary: "<p>Defines the possible reasons a recognition result might be generated. Changed in version 1.7.0. </p>"
   syntax:
     content: public enum ResultReason
 - uid: com.microsoft.cognitiveservices.speech.ServicePropertyChannel
@@ -286,7 +337,7 @@ references:
   nameWithType: SpeechConfig
   fullName: com.microsoft.cognitiveservices.speech.SpeechConfig
   type: Class
-  summary: "<p>Speech configuration. </p>"
+  summary: "<p>Speech configuration. Changed in version 1.7.0. </p>"
   syntax:
     content: public class SpeechConfig
 - uid: com.microsoft.cognitiveservices.speech.SpeechRecognitionCanceledEventArgs
@@ -326,6 +377,76 @@ references:
   nameWithType: SpeechRecognizer
   fullName: com.microsoft.cognitiveservices.speech.SpeechRecognizer
   type: Class
-  summary: "<p>Performs speech recognition from microphone, file, or other audio input streams, and gets transcribed text as result. </p>"
+  summary: "<p>Performs speech recognition from microphone, file, or other audio input streams, and gets transcribed text as result. Note: close() must be called in order to relinquish underlying resources held by the object. </p>"
   syntax:
     content: public class SpeechRecognizer extends Recognizer
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesisCancellationDetails
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesisCancellationDetails.yml
+  name: SpeechSynthesisCancellationDetails
+  nameWithType: SpeechSynthesisCancellationDetails
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesisCancellationDetails
+  type: Class
+  summary: "<p>Contains detailed information about why a speech synthesis was canceled. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class SpeechSynthesisCancellationDetails
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesisEventArgs
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesisEventArgs.yml
+  name: SpeechSynthesisEventArgs
+  nameWithType: SpeechSynthesisEventArgs
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesisEventArgs
+  type: Class
+  summary: "<p>Defines contents of speech synthesis related event. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class SpeechSynthesisEventArgs
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat.yml
+  name: SpeechSynthesisOutputFormat
+  nameWithType: SpeechSynthesisOutputFormat
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesisOutputFormat
+  type: Enum
+  summary: "<p>Defines the possible speech synthesis output audio format. Added in version 1.7.0 </p>"
+  syntax:
+    content: public enum SpeechSynthesisOutputFormat
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesisResult
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesisResult.yml
+  name: SpeechSynthesisResult
+  nameWithType: SpeechSynthesisResult
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesisResult
+  type: Class
+  summary: "<p>Contains detailed information about result of a speech synthesis operation. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class SpeechSynthesisResult
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesisWordBoundaryEventArgs
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesisWordBoundaryEventArgs.yml
+  name: SpeechSynthesisWordBoundaryEventArgs
+  nameWithType: SpeechSynthesisWordBoundaryEventArgs
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesisWordBoundaryEventArgs
+  type: Class
+  summary: "<p>Defines contents of speech synthesis word boundary event. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class SpeechSynthesisWordBoundaryEventArgs
+- uid: com.microsoft.cognitiveservices.speech.SpeechSynthesizer
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.SpeechSynthesizer.yml
+  name: SpeechSynthesizer
+  nameWithType: SpeechSynthesizer
+  fullName: com.microsoft.cognitiveservices.speech.SpeechSynthesizer
+  type: Class
+  summary: "<p>Performs speech synthesis to speaker, file, or other audio output streams, and gets synthesized audio as result. Added in version 1.7.0 </p>"
+  syntax:
+    content: public class SpeechSynthesizer
+- uid: com.microsoft.cognitiveservices.speech.StreamStatus
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.StreamStatus.yml
+  name: StreamStatus
+  nameWithType: StreamStatus
+  fullName: com.microsoft.cognitiveservices.speech.StreamStatus
+  type: Enum
+  summary: "<p>Defines the possible status of audio data stream. Added in version 1.7.0 </p>"
+  syntax:
+    content: public enum StreamStatus
