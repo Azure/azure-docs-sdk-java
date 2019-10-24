@@ -12,7 +12,7 @@ ms.service: storage
 
 # Azure Storage libraries for Java
 
-The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Azure Storage](/azure/storage/storage-introduction).
+The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself. For more information about Azure Storage, see [Introduction to Azure Storage](/azure/storage/storage-introduction).
 
 ## Client library for data access
 
@@ -20,7 +20,7 @@ Use the Azure Storage client library for Java to work with data in your storage 
 
 | Library version | Supported services | Maven | Reference | Source, Readme, Examples |
 |----------------------|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Version 12 (preview) | Blob, Queue, and File | [Blob](https://search.maven.org/artifact/com.azure/azure-storage-blob/) [Queue](https://search.maven.org/artifact/com.azure/azure-storage-queue/) [File](https://search.maven.org/artifact/com.azure/azure-storage-file/) | [Version 12 reference](https://docs.microsoft.com/java/api/overview/azure/storage?view=azure-java-preview) | [Blob](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-blob) [Queue](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue) [File](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-file) |
+| Version 12 (preview) | Blob, Queue, and File | [Blob](https://search.maven.org/artifact/com.azure/azure-storage-blob/)<br />[Queue](https://search.maven.org/artifact/com.azure/azure-storage-queue/)<br />[File](https://search.maven.org/artifact/com.azure/azure-storage-file/) | [Version 12 reference](https://docs.microsoft.com/java/api/overview/azure/storage?view=azure-java-preview) | [Blob](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-blob)<br />[Queue](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue)<br />[File](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-file) |
 | Version 8 | Blob, Queue, File, and Table | [All services](https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) | [Version 8 reference](https://docs.microsoft.com/java/api/overview/azure/storage/client?view=azure-java-stable) | [All services](https://github.com/azure/azure-storage-java/tree/legacy-master) |
 
 To use the client library in your project, add a dependency to your Maven `pom.xml` file. To learn how to add the dependency, visit the source repository listed in the table above for the client library you wish to use. For more information about adding a dependency in Java, see [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies).
