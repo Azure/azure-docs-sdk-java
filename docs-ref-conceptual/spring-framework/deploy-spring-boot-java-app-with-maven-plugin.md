@@ -127,7 +127,7 @@ In this section, you will configure the Spring Boot project's *pom.xml* file so 
    <plugin>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-webapp-maven-plugin</artifactId>
-    <version>1.6.0</version>
+    <version>1.8.0</version>
    </plugin>
    ```
 
@@ -144,8 +144,7 @@ In this section, you will configure the Spring Boot project's *pom.xml* file so 
    | Prompt |Description |
    |---|---|
    | **OS** | Linux |
-   | **javaVersion** | jre8 |
-   | **runtimeStack** | jre8 |
+   | **javaVersion** | Java 8 |   
    | **Confirm (Y/N)** | y |
 
    This interactive session should resemble the following example:
@@ -164,15 +163,9 @@ In this section, you will configure the Spring Boot project's *pom.xml* file so 
    2. windows
    3. docker
    Enter index to use: 1
-   Define value for javaVersion(Default: jre8):
-   1. jre8 [*]
-   2. java11
-   Enter index to use: 1
-   Define value for runtimeStack(Default: TOMCAT 8.5):
-   1. TOMCAT 9.0
-   2. jre8
-   3. TOMCAT 8.5 [*]
-   4. WILDFLY 14
+   Define value for javaVersion(Default: Java 8): 
+   1. Java 11
+   2. Java 8 [*]
    Enter index to use: 2
    Please confirm webapp properties
    AppName : gs-spring-boot-123456789
@@ -208,7 +201,7 @@ In this section, you will configure the Spring Boot project's *pom.xml* file so 
    [INFO] Building gs-spring-boot 0.1.0
    [INFO] ------------------------------------------------------------------------
    [INFO]
-   [INFO] --- azure-webapp-maven-plugin:1.6.0:config (default-cli) @ gs-spring-boot ---
+   [INFO] --- azure-webapp-maven-plugin:1.8.0:config (default-cli) @ gs-spring-boot ---
    Please choose which part to config
    1. Application
    2. Runtime
@@ -257,14 +250,18 @@ In this section, you will configure the Spring Boot project's *pom.xml* file so 
    <plugin>
        <groupId>com.microsoft.azure</groupId>
        <artifactId>azure-webapp-maven-plugin</artifactId>
-       <version>1.6.0</version>
+       <version>1.8.0</version>
        <configuration>
           <schemaVersion>V2</schemaVersion>
           <resourceGroup>gs-spring-boot-123456789-rg</resourceGroup>
           <appName>gs-spring-boot-123456789</appName>
           <region>westus</region>
           <pricingTier>F1</pricingTier>
-
+          <runtime> 
+            <os>linux</os>  
+            <javaVersion>jre8</javaVersion>  
+            <webContainer>jre8</webContainer> 
+          </runtime> 
           <!-- Begin of App Settings  -->
           <appSettings>
              <property>
@@ -307,17 +304,17 @@ If your deployment is successful, you should see a status like the following exa
 [INFO] Building gs-spring-boot 0.1.0
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- azure-webapp-maven-plugin:1.6.0:deploy (default-cli) @ gs-spring-boot ---
+[INFO] --- azure-webapp-maven-plugin:1.8.0:deploy (default-cli) @ gs-spring-boot ---
 [INFO] In the Azure Cloud Shell, use MSI to authenticate.
 [INFO] Target Web App doesn't exist. Creating a new one...
 [INFO] Creating App Service Plan 'ServicePlan12345678-1234-1234'...
 [INFO] Successfully created App Service Plan.
 [INFO] Successfully created Web App.
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] Copying 1 resource to /home/robert/SpringBoot/gs-spring-boot/complete/target/azure-webapp/gs-spring-boot-123456789
+[INFO] Copying 1 resource to /home/robert/SpringBoot/gs-spring-boot/complete/target/azure-webapp/gs-spring-boot-123456789-4ade6189-5ffe-48d5-a2c2-11acae363c00
 [INFO] Trying to deploy artifact to gs-spring-boot-123456789...
-[INFO] Renaming /home/robert/SpringBoot/gs-spring-boot/complete/target/azure-webapp/gs-spring-boot-123456789/gs-spring-boot-0.1.0.jar to app.jar
-[INFO] Deploying the zip package gs-spring-boot-123456789.zip...
+[INFO] Renaming /home/robert/SpringBoot/gs-spring-boot/complete/target/azure-webapp/gs-spring-boot-123456789-4ade6189-5ffe-48d5-a2c2-11acae363c00/gs-spring-boot-0.1.0.jar to app.jar
+[INFO] Deploying the zip package gs-spring-boot-123456789-4ade6189-5ffe-48d5-a2c2-11acae363c00935289188366298788.zip...
 [INFO] Successfully deployed the artifact to https://gs-spring-boot-123456789.azurewebsites.net
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
