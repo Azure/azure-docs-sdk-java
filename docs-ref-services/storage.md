@@ -42,7 +42,7 @@ Add the following dependencies to your Maven `pom.xml` file as appropriate:
 
 For more information about adding a dependency in Java, see [Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies).
 
-## Example usage
+### Example usage
 
 The following example creates a storage container and uploads a local file to the storage container.
 
@@ -71,7 +71,7 @@ blobClient.uploadFileFile("my-local-file.jpg");
 
 For more examples, review the [Client Library README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.0.0/sdk/storage/azure-storage-blob/README.md).
 
-## Available packages
+### Available packages
 
  The following table describes the recommended versions of the storage client library for Java.
 
