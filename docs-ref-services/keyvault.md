@@ -5,7 +5,7 @@ keywords: Azure, Java, SDK, API, keyvault, secure, keys, secrets, vault
 author: rloutlaw
 ms.author: routlaw
 manager: douge
-ms.date: 21/11/2019
+ms.date: 11/21/2019
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
