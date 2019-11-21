@@ -85,7 +85,7 @@ For more examples, review the [Client Library README](https://github.com/Azure/a
 Currently, the following libraries are in public preview:
 
 - File shares
-- File (Data lake)
+- Data Lake 
 
 Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for details on how to to install and use the preview packages.
 
