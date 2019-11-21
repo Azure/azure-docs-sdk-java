@@ -64,12 +64,13 @@ SecretClient secretClient = new SecretClientBuilder()
 KeyVaultSecret secret = secretClient.getSecret("secret_name");
 
 ```
-| Service | Package | Readme | Samples | API Reference | Changelog |
+| Service | Package | README | Samples | API Reference | Changelog |
 | ------- | ------- | ------ | ------- | ------------- | --------- |
-| Key Vault - Keys | [azure-security-keyvault-keys - 4.0.0](https://search.maven.org/artifact/com.azure/azure-security-keyvault-keys/4.0.0/jar/) | [ReadMe](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/README.md) | [Samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/src/samples) | [Api Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-keys/4.0.0/index.html) | [ChangeLog](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/CHANGELOG.md) |
-| Key Vault - Secrets | [azure-security-keyvault-secrets - 4.0.0](https://search.maven.org/artifact/com.azure/azure-security-keyvault-secrets/4.0.0/jar/) | [ReadMe](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/README.md) | [Samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/src/samples) | [Api Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-secrets/4.0.0/index.html) | [ChangeLog](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/CHANGELOG.md) |
+| Key Vault - Keys | [azure-security-keyvault-keys - 4.0.0](https://search.maven.org/artifact/com.azure/azure-security-keyvault-keys/4.0.0/jar/) | [README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/README.md) | [Samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/src/samples) | [Api Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-keys/4.0.0/index.html) | [ChangeLog](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-keys_4.0.0/sdk/keyvault/azure-security-keyvault-keys/CHANGELOG.md) |
+| Key Vault - Secrets | [azure-security-keyvault-secrets - 4.0.0](https://search.maven.org/artifact/com.azure/azure-security-keyvault-secrets/4.0.0/jar/) | [README](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/README.md) | [Samples](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/src/samples) | [Api Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-secrets/4.0.0/index.html) | [ChangeLog](https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.0.0/sdk/keyvault/azure-security-keyvault-secrets/CHANGELOG.md) |
 
-
+> [!div class="nextstepaction"]
+> [Explore the Client APIs](/azure/key-vault/quick-create-java)
 
 ## Management API
 
