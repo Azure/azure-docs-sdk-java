@@ -17,8 +17,8 @@ The Azure Storage libraries for Java provide classes for working with data in yo
 
 Use the Azure Storage client library for Java to work with data in your storage account:
 
-- Read and write objects and files from [Azure blob storage](/azure/storage/blobs/storage-blobs-introduction)
-- Send and receive messages between cloud-connected applications with [Azure queue storage](/azure/storage/queues/storage-queues-introduction)
+- Read and write objects and files from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction)
+- Send and receive messages between cloud-connected applications with [Azure Queue storage](/azure/storage/queues/storage-queues-introduction)
   
 Create, update, and manage Azure storage accounts from your Java application with the management modules.
 
@@ -85,7 +85,7 @@ For more examples, review the [Client Library README](https://github.com/Azure/a
 Currently, the following libraries are in public preview:
 
 - File shares
-- Data Lake 
+- Data Lake
 
 Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for details on how to to install and use the preview packages.
 
