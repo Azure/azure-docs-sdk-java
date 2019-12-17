@@ -27,7 +27,7 @@ items:
       branch: master
       repo: https://github.com/AzureAD/microsoft-authentication-library-for-android
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 63
+    startLine: 64
   package: com.microsoft.identity.client
   syntax:
     content: public class MultipleAccountPublicClientApplication extends PublicClientApplication implements IMultipleAccountPublicClientApplication
@@ -37,12 +37,10 @@ items:
   - com.microsoft.identity.client.PublicClientApplication
   inheritedMembers:
   - com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity,@NonNull final String [],@NonNull final AuthenticationCallback)
-  - com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@Nullable final Prompt,@Nullable final List<Pair<String, String>>,@Nullable final String [],@Nullable final String,@NonNull final AuthenticationCallback,@Nullable final String,@Nullable final ClaimsRequest)
   - com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final AcquireTokenParameters)
-  - com.microsoft.identity.client.PublicClientApplication.acquireTokenSilent(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   - com.microsoft.identity.client.PublicClientApplication.acquireTokenSilent(@NonNull final AcquireTokenSilentParameters)
   - com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentAsync(@NonNull final AcquireTokenSilentParameters)
-  - com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentSync(@NonNull final String [],@NonNull final String,@NonNull final IAccount,final boolean)
+  - com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,final int,@NonNull final ApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@Nullable final File,@NonNull final ApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@NonNull final ApplicationCreatedListener)
@@ -56,8 +54,8 @@ items:
   - com.microsoft.identity.client.PublicClientApplication.createSingleAccountPublicClientApplication(@NonNull final Context,@NonNull final File,@NonNull final ISingleAccountApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.createSingleAccountPublicClientApplication(@NonNull final Context,final int)
   - com.microsoft.identity.client.PublicClientApplication.createSingleAccountPublicClientApplication(@NonNull final Context,@Nullable final File)
+  - com.microsoft.identity.client.PublicClientApplication.getCommandCallback(@NonNull final SilentAuthenticationCallback,@NonNull final TokenParameters)
   - com.microsoft.identity.client.PublicClientApplication.getConfiguration()
-  - com.microsoft.identity.client.PublicClientApplication.getLocalAuthenticationCallback(@NonNull final SilentAuthenticationCallback,@NonNull final TokenParameters)
   - com.microsoft.identity.client.PublicClientApplication.getMsaFamilyRefreshToken(@NonNull final String)
   - com.microsoft.identity.client.ITokenShare.getMsaFamilyRefreshToken(String)
   - com.microsoft.identity.client.PublicClientApplication.getOrgIdFamilyRefreshToken(@NonNull final String)
@@ -66,7 +64,6 @@ items:
   - com.microsoft.identity.client.PublicClientApplication.homeAccountMatcher
   - com.microsoft.identity.client.PublicClientApplication.isSharedDevice()
   - com.microsoft.identity.client.PublicClientApplication.localAccountMatcher
-  - com.microsoft.identity.client.PublicClientApplication.mIsSharedDevice
   - com.microsoft.identity.client.PublicClientApplication.mPublicClientConfiguration
   - com.microsoft.identity.client.PublicClientApplication.mTokenShareUtility
   - com.microsoft.identity.client.PublicClientApplication.postAuthResult(@NonNull final ILocalAuthenticationResult,@NonNull final TokenParameters,@NonNull final SilentAuthenticationCallback)
@@ -92,9 +89,9 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 418
+    startLine: 460
   package: com.microsoft.identity.client
-  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior</xref> is <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior#SELECT_ACCOUNT</xref>.</p>\r\n<p></p>"
+  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup.</p>\r\n<p></p>"
   syntax:
     content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
     parameters:
@@ -125,7 +122,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 74
+    startLine: 75
   package: com.microsoft.identity.client
   summary: "<p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>\r\n<p></p>"
   syntax:
@@ -160,7 +157,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 79
+    startLine: 80
   package: com.microsoft.identity.client
   summary: "<p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>\r\n<p></p>"
   syntax:
@@ -199,7 +196,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 225
+    startLine: 238
   package: com.microsoft.identity.client
   summary: "<p>Retrieve the IAccount object matching the identifier. The identifier could be homeAccountIdentifier, localAccountIdentifier or username.</p>\r\n<p></p>"
   syntax:
@@ -226,7 +223,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 305
+    startLine: 337
   package: com.microsoft.identity.client
   summary: "<p>Retrieve the IAccount object matching the identifier. The identifier could be homeAccountIdentifier, localAccountIdentifier or username.</p>\r\n<p></p>"
   syntax:
@@ -252,7 +249,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 190
+    startLine: 203
   package: com.microsoft.identity.client
   summary: "<p>Returns a List of <xref uid=\"com.microsoft.identity.client.IAccount\" data-throw-if-not-resolved=\"false\">IAccount</xref> objects for which this application has RefreshTokens. </p>"
   syntax:
@@ -274,7 +271,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 100
+    startLine: 102
   package: com.microsoft.identity.client
   summary: "<p>Asynchronously returns a List of <xref uid=\"com.microsoft.identity.client.IAccount\" data-throw-if-not-resolved=\"false\">IAccount</xref> objects for which this application has RefreshTokens.</p>\r\n<p></p>"
   syntax:
@@ -298,7 +295,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 67
+    startLine: 68
   package: com.microsoft.identity.client
   syntax:
     content: protected MultipleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config, @Nullable final String clientId, @Nullable final String authority)
@@ -323,7 +320,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 334
+    startLine: 366
   package: com.microsoft.identity.client
   summary: "<p>Removes the Account and Credentials (tokens) for the supplied IAccount.</p>\r\n<p></p>"
   syntax:
@@ -349,7 +346,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/MultipleAccountPublicClientApplication.java
-    startLine: 391
+    startLine: 433
   package: com.microsoft.identity.client
   summary: "<p>Removes the Account and Credentials (tokens) for the supplied IAccount.</p>\r\n<p></p>"
   syntax:
@@ -523,7 +520,7 @@ references:
   nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @NonNull final AuthenticationCallback callback)
   fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @NonNull final AuthenticationCallback callback)
   type: Method
-  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior</xref> is <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior#SELECT_ACCOUNT</xref>.</p>\r\n<p></p>"
+  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"com.microsoft.identity.client.Prompt\" data-throw-if-not-resolved=\"false\">Prompt</xref> is <xref uid=\"com.microsoft.identity.client.Prompt.SELECT_ACCOUNT\" data-throw-if-not-resolved=\"false\">Prompt#SELECT_ACCOUNT</xref>.</p>\r\n<p></p>"
   syntax:
     content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @NonNull final AuthenticationCallback callback)
     parameters:
@@ -536,36 +533,6 @@ references:
     - id: callback
       type: d6b37550com.microsoft.identity.client.AuthenticationCallback
       description: <p>The <xref uid="com.microsoft.identity.client.AuthenticationCallback" data-throw-if-not-resolved="false">AuthenticationCallback</xref> to receive the result back. 1) If user cancels the flow by pressing the device back button, the result will be sent back via <xref uid="com.microsoft.identity.client.AuthenticationCallback.onCancel()" data-throw-if-not-resolved="false">AuthenticationCallback#onCancel()</xref>. 2) If the sdk successfully receives the token back, result will be sent back via <xref uid="com.microsoft.identity.client.SilentAuthenticationCallback.onSuccess(final IAuthenticationResult)" data-throw-if-not-resolved="false">AuthenticationCallback#onSuccess(IAuthenticationResult)</xref> 3) All the other errors will be sent back via <xref uid="com.microsoft.identity.client.SilentAuthenticationCallback.onError(final MsalException)" data-throw-if-not-resolved="false">AuthenticationCallback#onError(MsalException)</xref>. </p>
-- uid: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity,@NonNull final String [],@Nullable final IAccount,@Nullable final Prompt,@Nullable final List<Pair<String, String>>,@Nullable final String [],@Nullable final String,@NonNull final AuthenticationCallback,@Nullable final String,@Nullable final ClaimsRequest)
-  parent: com.microsoft.identity.client.PublicClientApplication
-  href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @Nullable final Prompt uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback, @Nullable final String loginHint, @Nullable final ClaimsRequest claimsRequest)
-  nameWithType: PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @Nullable final Prompt uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback, @Nullable final String loginHint, @Nullable final ClaimsRequest claimsRequest)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @Nullable final Prompt uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback, @Nullable final String loginHint, @Nullable final ClaimsRequest claimsRequest)
-  type: Method
-  syntax:
-    content: protected void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final IAccount account, @Nullable final Prompt uiBehavior, @Nullable final List<Pair<String, String>> extraQueryParameters, @Nullable final String[] extraScopesToConsent, @Nullable final String authority, @NonNull final AuthenticationCallback callback, @Nullable final String loginHint, @Nullable final ClaimsRequest claimsRequest)
-    parameters:
-    - id: activity
-      type: "97576948"
-    - id: scopes
-      type: e5895f1f
-    - id: account
-      type: 9a7d2fbdcom.microsoft.identity.client.IAccount
-    - id: uiBehavior
-      type: 9a7d2fbdcom.microsoft.identity.client.Prompt
-    - id: extraQueryParameters
-      type: 49327aac
-    - id: extraScopesToConsent
-      type: 9aad4ff7
-    - id: authority
-      type: b868e8dd
-    - id: callback
-      type: d6b37550com.microsoft.identity.client.AuthenticationCallback
-    - id: loginHint
-      type: b868e8dd
-    - id: claimsRequest
-      type: 9a7d2fbdcom.microsoft.identity.client.claims.ClaimsRequest
 - uid: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final AcquireTokenParameters)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -573,34 +540,12 @@ references:
   nameWithType: PublicClientApplication.acquireToken(@NonNull final AcquireTokenParameters acquireTokenParameters)
   fullName: com.microsoft.identity.client.PublicClientApplication.acquireToken(@NonNull final AcquireTokenParameters acquireTokenParameters)
   type: Method
-  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior</xref> is <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior#SELECT_ACCOUNT</xref>. </p>\r\n<p>Convey parameters via the AquireTokenParameters object</p>\r\n<p></p>"
+  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"com.microsoft.identity.client.Prompt\" data-throw-if-not-resolved=\"false\">Prompt</xref> is <xref uid=\"com.microsoft.identity.client.Prompt.SELECT_ACCOUNT\" data-throw-if-not-resolved=\"false\">Prompt#SELECT_ACCOUNT</xref>. </p>\r\n<p>Convey parameters via the AquireTokenParameters object</p>\r\n<p></p>"
   syntax:
     content: public void acquireToken(@NonNull final AcquireTokenParameters acquireTokenParameters)
     parameters:
     - id: acquireTokenParameters
       type: d6b37550com.microsoft.identity.client.AcquireTokenParameters
-- uid: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilent(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
-  parent: com.microsoft.identity.client.PublicClientApplication
-  href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: acquireTokenSilent(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
-  nameWithType: PublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
-  type: Method
-  syntax:
-    content: protected void acquireTokenSilent(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
-    parameters:
-    - id: scopes
-      type: e5895f1f
-    - id: account
-      type: d6b37550com.microsoft.identity.client.IAccount
-    - id: authority
-      type: 8789feb4
-    - id: forceRefresh
-      type: 4dda0764
-    - id: claimsRequest
-      type: 9a7d2fbdcom.microsoft.identity.client.claims.ClaimsRequest
-    - id: callback
-      type: d6b37550com.microsoft.identity.client.SilentAuthenticationCallback
 - uid: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilent(@NonNull final AcquireTokenSilentParameters)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -629,26 +574,30 @@ references:
     parameters:
     - id: acquireTokenSilentParameters
       type: d6b37550com.microsoft.identity.client.AcquireTokenSilentParameters
-- uid: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentSync(@NonNull final String [],@NonNull final String,@NonNull final IAccount,final boolean)
+- uid: com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: acquireTokenSilentSync(@NonNull final String[] scopes, @NonNull final String authority, @NonNull final IAccount account, final boolean forceRefresh)
-  nameWithType: PublicClientApplication.acquireTokenSilentSync(@NonNull final String[] scopes, @NonNull final String authority, @NonNull final IAccount account, final boolean forceRefresh)
-  fullName: com.microsoft.identity.client.PublicClientApplication.acquireTokenSilentSync(@NonNull final String[] scopes, @NonNull final String authority, @NonNull final IAccount account, final boolean forceRefresh)
+  name: buildAcquireTokenSilentParameters(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
+  nameWithType: PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
+  fullName: com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
   type: Method
   syntax:
-    content: protected IAuthenticationResult acquireTokenSilentSync(@NonNull final String[] scopes, @NonNull final String authority, @NonNull final IAccount account, final boolean forceRefresh)
+    content: protected AcquireTokenSilentParameters buildAcquireTokenSilentParameters(@NonNull final String[] scopes, @NonNull final IAccount account, @NonNull final String authority, final boolean forceRefresh, @Nullable final ClaimsRequest claimsRequest, @NonNull final SilentAuthenticationCallback callback)
     parameters:
     - id: scopes
       type: e5895f1f
-    - id: authority
-      type: 8789feb4
     - id: account
       type: d6b37550com.microsoft.identity.client.IAccount
+    - id: authority
+      type: 8789feb4
     - id: forceRefresh
       type: 4dda0764
+    - id: claimsRequest
+      type: 9a7d2fbdcom.microsoft.identity.client.claims.ClaimsRequest
+    - id: callback
+      type: d6b37550com.microsoft.identity.client.SilentAuthenticationCallback
     return:
-      type: com.microsoft.identity.client.IAuthenticationResult
+      type: com.microsoft.identity.client.AcquireTokenSilentParameters
 - uid: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,final int,@NonNull final ApplicationCreatedListener)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -911,6 +860,22 @@ references:
     return:
       type: com.microsoft.identity.client.ISingleAccountPublicClientApplication
       description: <p>An instance of ISingleAccountPublicClientApplication. </p>
+- uid: com.microsoft.identity.client.PublicClientApplication.getCommandCallback(@NonNull final SilentAuthenticationCallback,@NonNull final TokenParameters)
+  parent: com.microsoft.identity.client.PublicClientApplication
+  href: com.microsoft.identity.client.PublicClientApplication.yml
+  name: getCommandCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
+  nameWithType: PublicClientApplication.getCommandCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
+  fullName: com.microsoft.identity.client.PublicClientApplication.getCommandCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
+  type: Method
+  syntax:
+    content: protected CommandCallback getCommandCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
+    parameters:
+    - id: authenticationCallback
+      type: d6b37550com.microsoft.identity.client.SilentAuthenticationCallback
+    - id: tokenParameters
+      type: d6b37550com.microsoft.identity.client.TokenParameters
+    return:
+      type: 9bb61ed7
 - uid: com.microsoft.identity.client.PublicClientApplication.getConfiguration()
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -918,27 +883,12 @@ references:
   nameWithType: PublicClientApplication.getConfiguration()
   fullName: com.microsoft.identity.client.PublicClientApplication.getConfiguration()
   type: Method
-  summary: "<p>Returns the PublicClientConfiguration for this instance of PublicClientApplication Configuration is based on the defaults established for MSAl and can be overridden by creating the PublicClientApplication using <xref uid=\"\" data-throw-if-not-resolved=\"false\">PublicClientApplication#PublicClientApplication(Context, PublicClientApplicationConfiguration)</xref></p>\r\n<p></p>"
+  summary: "<p>Returns the PublicClientConfiguration for this instance of PublicClientApplication.</p>\r\n<p></p>"
   syntax:
     content: public PublicClientApplicationConfiguration getConfiguration()
     return:
       type: com.microsoft.identity.client.PublicClientApplicationConfiguration
-- uid: com.microsoft.identity.client.PublicClientApplication.getLocalAuthenticationCallback(@NonNull final SilentAuthenticationCallback,@NonNull final TokenParameters)
-  parent: com.microsoft.identity.client.PublicClientApplication
-  href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: getLocalAuthenticationCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
-  nameWithType: PublicClientApplication.getLocalAuthenticationCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
-  fullName: com.microsoft.identity.client.PublicClientApplication.getLocalAuthenticationCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
-  type: Method
-  syntax:
-    content: protected ILocalAuthenticationCallback getLocalAuthenticationCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
-    parameters:
-    - id: authenticationCallback
-      type: d6b37550com.microsoft.identity.client.SilentAuthenticationCallback
-    - id: tokenParameters
-      type: d6b37550com.microsoft.identity.client.TokenParameters
-    return:
-      type: 6a256ef5
+      description: <p>The PublicClientApplicationConfiguration. </p>
 - uid: com.microsoft.identity.client.PublicClientApplication.getMsaFamilyRefreshToken(@NonNull final String)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -1032,7 +982,7 @@ references:
   nameWithType: PublicClientApplication.isSharedDevice()
   fullName: com.microsoft.identity.client.PublicClientApplication.isSharedDevice()
   type: Method
-  summary: "<p>Returns whether the application is being run on a device that is marked as a shared. Only SingleAccountPublicClientApplications may be used on shared devices </p>"
+  summary: "<p>Returns whether the application is being run on a device that is marked as a shared. Only SingleAccountPublicClientApplications may be used on shared devices</p>\r\n<p></p>"
   syntax:
     content: public boolean isSharedDevice()
     return:
@@ -1045,20 +995,9 @@ references:
   fullName: com.microsoft.identity.client.PublicClientApplication.localAccountMatcher
   type: Field
   syntax:
-    content: "protected AccountMatcher localAccountMatcher= new AccountMatcher() {\n        @Override\n        boolean matches(@NonNull final String localAccountId,\n                        @NonNull final IAccount account) {\n            \n            if (localAccountId.contains(account.getId())) {\n                return true;\n            } else if (account instanceof MultiTenantAccount) {\n                \n                final MultiTenantAccount multiTenantAccount = (MultiTenantAccount) account;\n                final Map<String, ITenantProfile> tenantProfiles = multiTenantAccount.getTenantProfiles();\n\n                if (null != tenantProfiles && !tenantProfiles.isEmpty()) {\n                    for (final Map.Entry<String, ITenantProfile> profileEntry : tenantProfiles.entrySet()) {\n                        if (localAccountId.contains(profileEntry.getValue().getId())) {\n                            return true;\n                        }\n                    }\n                }\n            }\n\n            return false;\n        }\n    }"
+    content: "protected AccountMatcher localAccountMatcher= new AccountMatcher() {\n        @Override\n        boolean matches(@NonNull final String localAccountId,\n                        @NonNull final IAccount account) {\n            \n            if (localAccountId.contains(account.getId())) {\n                return true;\n            } else if (account instanceof MultiTenantAccount) {\n                \n                final MultiTenantAccount multiTenantAccount = (MultiTenantAccount) account;\n                final Map<String, ITenantProfile> tenantProfiles = multiTenantAccount.getTenantProfiles();\n\n                if (null != tenantProfiles && !tenantProfiles.isEmpty()) {\n                    for (final Map.Entry<String, ITenantProfile> profileEntry : tenantProfiles.entrySet()) {\n                        if (!TextUtils.isEmpty(profileEntry.getValue().getId()) &&\n                                localAccountId.contains(profileEntry.getValue().getId())) {\n                            return true;\n                        }\n                    }\n                }\n            }\n\n            return false;\n        }\n    }"
     return:
       type: com.microsoft.identity.client.PublicClientApplication.AccountMatcher
-- uid: com.microsoft.identity.client.PublicClientApplication.mIsSharedDevice
-  parent: com.microsoft.identity.client.PublicClientApplication
-  href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: mIsSharedDevice
-  nameWithType: PublicClientApplication.mIsSharedDevice
-  fullName: com.microsoft.identity.client.PublicClientApplication.mIsSharedDevice
-  type: Field
-  syntax:
-    content: protected boolean mIsSharedDevice
-    return:
-      type: 4fc6e284
 - uid: com.microsoft.identity.client.PublicClientApplication.mPublicClientConfiguration
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -1474,7 +1413,7 @@ references:
   nameWithType: IMultipleAccountPublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
   fullName: com.microsoft.identity.client.IMultipleAccountPublicClientApplication.acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
   type: Method
-  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior</xref> is <xref uid=\"\" data-throw-if-not-resolved=\"false\">UiBehavior#SELECT_ACCOUNT</xref>.</p>\r\n<p></p>"
+  summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup.</p>\r\n<p></p>"
   syntax:
     content: public void acquireToken(@NonNull final Activity activity, @NonNull final String[] scopes, @Nullable final String loginHint, @NonNull final AuthenticationCallback callback)
     parameters:
