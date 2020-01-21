@@ -18,7 +18,7 @@ items:
   - com.microsoft.identity.client.SingleAccountPublicClientApplication.signOut()
   - com.microsoft.identity.client.SingleAccountPublicClientApplication.signOut(@NonNull final SignOutCallback)
   - com.microsoft.identity.client.SingleAccountPublicClientApplication.SINGLE_ACCOUNT_CREDENTIAL_SHARED_PREFERENCES
-  - com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration,@Nullable final String,@Nullable final String)
+  - com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration)
   href: com.microsoft.identity.client.SingleAccountPublicClientApplication.yml
   langs:
   - java
@@ -45,8 +45,7 @@ items:
   - com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,final int,@NonNull final ApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@Nullable final File,@NonNull final ApplicationCreatedListener)
-  - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@NonNull final ApplicationCreatedListener)
-  - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@NonNull final String,@NonNull final ApplicationCreatedListener)
+  - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@Nullable final String,@NonNull final String,@NonNull final ApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,final int)
   - com.microsoft.identity.client.PublicClientApplication.createMultipleAccountPublicClientApplication(@NonNull final Context,final int,@NonNull final IMultipleAccountApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.createMultipleAccountPublicClientApplication(@NonNull final Context,@NonNull final File,@NonNull final IMultipleAccountApplicationCreatedListener)
@@ -69,7 +68,7 @@ items:
   - com.microsoft.identity.client.PublicClientApplication.mPublicClientConfiguration
   - com.microsoft.identity.client.PublicClientApplication.mTokenShareUtility
   - com.microsoft.identity.client.PublicClientApplication.postAuthResult(@NonNull final ILocalAuthenticationResult,@NonNull final TokenParameters,@NonNull final SilentAuthenticationCallback)
-  - com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration,@Nullable final String,@Nullable final String)
+  - com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration)
   - com.microsoft.identity.client.PublicClientApplication.saveMsaFamilyRefreshToken(@NonNull final String)
   - com.microsoft.identity.client.ITokenShare.saveMsaFamilyRefreshToken(String)
   - com.microsoft.identity.client.PublicClientApplication.saveOrgIdFamilyRefreshToken(@NonNull final String)
@@ -114,7 +113,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 415
+    startLine: 414
   package: com.microsoft.identity.client
   summary: "<p>Acquire token interactively, will pop-up webUI. Interactive flow will skip the cache lookup. Default value for <xref uid=\"com.microsoft.identity.client.Prompt\" data-throw-if-not-resolved=\"false\">Prompt</xref> is <xref uid=\"com.microsoft.identity.client.Prompt.SELECT_ACCOUNT\" data-throw-if-not-resolved=\"false\">Prompt#SELECT_ACCOUNT</xref>.</p>\r\n<p></p>"
   syntax:
@@ -122,7 +121,7 @@ items:
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client.AuthenticationActivity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="" data-throw-if-not-resolved="false">com.microsoft.identity.common.internal.providers.oauth2.AuthorizationActivity</xref>. </p>
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
@@ -272,7 +271,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 211
+    startLine: 210
   package: com.microsoft.identity.client
   syntax:
     content: protected CommandCallback<ILocalAuthenticationResult, BaseException> getCommandCallback( @NonNull final SilentAuthenticationCallback authenticationCallback, @NonNull final TokenParameters tokenParameters)
@@ -297,7 +296,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 137
+    startLine: 135
   package: com.microsoft.identity.client
   summary: "<p>Gets the current account and notify if the current account changes. This method must be called whenever the application is resumed or prior to running a scheduled background operation.</p>\r\n<p></p>"
   syntax:
@@ -320,7 +319,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 91
+    startLine: 89
   package: com.microsoft.identity.client
   syntax:
     content: public void getCurrentAccountAsync(@NonNull final CurrentAccountCallback callback)
@@ -341,7 +340,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 184
+    startLine: 182
   package: com.microsoft.identity.client
   summary: "<p>Allows a user to sign in to your application with one of their accounts. </p>\r\n<p>Note: The authority used to make the sign in request will be either the MSAL default: <a href=\"https://login.microsoftonline.com/common\">https://login.microsoftonline.com/common</a> or the default authority specified by you in your configuration</p>\r\n<p></p>"
   syntax:
@@ -349,7 +348,7 @@ items:
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client.AuthenticationActivity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="" data-throw-if-not-resolved="false">com.microsoft.identity.common.internal.providers.oauth2.AuthorizationActivity</xref>. </p>
     - id: loginHint
       type: 8789feb4
       description: <p>Optional. If provided, will be used as the query parameter sent for authenticating the user, which will have the UPN pre-populated. </p>
@@ -377,7 +376,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 327
+    startLine: 326
   package: com.microsoft.identity.client
   summary: "<p>Signs out the current the Account and Credentials (tokens). NOTE: If a device is marked as a shared device within broker signout will be device wide.</p>\r\n<p></p>"
   syntax:
@@ -400,7 +399,7 @@ items:
   source:
     remote: *o0
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
-    startLine: 271
+    startLine: 270
   package: com.microsoft.identity.client
   summary: "<p>Signs out the current the Account and Credentials (tokens). NOTE: If a device is marked as a shared device within broker signout will be device wide.</p>\r\n<p></p>"
   syntax:
@@ -432,15 +431,15 @@ items:
                   "com.microsoft.identity.client.single_account_credential_cache"
     return:
       type: 3d93591e
-- uid: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration,@Nullable final String,@Nullable final String)
-  id: SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration,@Nullable final String,@Nullable final String)
+- uid: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration)
+  id: SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration)
   parent: com.microsoft.identity.client.SingleAccountPublicClientApplication
   href: com.microsoft.identity.client.SingleAccountPublicClientApplication.yml
   langs:
   - java
-  name: SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config, @Nullable final String clientId, @Nullable final String authority)
-  nameWithType: SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config, @Nullable final String clientId, @Nullable final String authority)
-  fullName: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config, @Nullable final String clientId, @Nullable final String authority)
+  name: SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config)
+  nameWithType: SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config)
+  fullName: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config)
   overload: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication*
   type: Constructor
   source:
@@ -449,14 +448,10 @@ items:
     startLine: 76
   package: com.microsoft.identity.client
   syntax:
-    content: protected SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config, @Nullable final String clientId, @Nullable final String authority)
+    content: protected SingleAccountPublicClientApplication(@NonNull PublicClientApplicationConfiguration config)
     parameters:
     - id: config
       type: 3872da22com.microsoft.identity.client.PublicClientApplicationConfiguration
-    - id: clientId
-      type: b868e8dd
-    - id: authority
-      type: b868e8dd
 references:
 - uid: 3d93591e
   spec.java:
@@ -470,10 +465,6 @@ references:
     name: PublicClientApplicationConfiguration
     fullName: com.microsoft.identity.client.PublicClientApplicationConfiguration
     href: com.microsoft.identity.client.PublicClientApplicationConfiguration.yml
-- uid: b868e8dd
-  spec.java:
-  - name: '@Nullable final String'
-    fullName: '@Nullable final String'
 - uid: com.microsoft.identity.client.SingleAccountPublicClientApplication.SingleAccountPublicClientApplication*
   name: SingleAccountPublicClientApplication
   nameWithType: SingleAccountPublicClientApplication.SingleAccountPublicClientApplication
@@ -678,36 +669,16 @@ references:
     - id: listener
       type: d6b37550com.microsoft.identity.client.IPublicClientApplication.ApplicationCreatedListener
       description: <p>a callback to be invoked when the object is successfully created. Cannot be null. </p>
-- uid: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@NonNull final ApplicationCreatedListener)
+- uid: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@Nullable final String,@NonNull final String,@NonNull final ApplicationCreatedListener)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: create(@NonNull final Context context, @NonNull final String clientId, @NonNull final ApplicationCreatedListener listener)
-  nameWithType: PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @NonNull final ApplicationCreatedListener listener)
-  fullName: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @NonNull final ApplicationCreatedListener listener)
-  type: Method
-  summary: "<p>\r\n  <xref uid=\"\" data-throw-if-not-resolved=\"false\">PublicClientApplication#create(Context, String, ApplicationCreatedListener)</xref> allows the client id to be passed instead of providing through the AndroidManifest metadata. If this constructor is called, the default authority <a href=\"https://login.microsoftonline.com/common\">https://login.microsoftonline.com/common</a> will be used.</p>\r\n<p>\r\nNote: The <xref uid=\"\" data-throw-if-not-resolved=\"false\">Context</xref> should be the application context instead of the running activity's context, which could potentially make the sdk hold a strong reference to the activity, thus preventing correct garbage collection and causing bugs. </p>\r\n<p></p>"
-  syntax:
-    content: public static void create(@NonNull final Context context, @NonNull final String clientId, @NonNull final ApplicationCreatedListener listener)
-    parameters:
-    - id: context
-      type: 3c9b8ebf
-      description: <p>Application's <xref uid="" data-throw-if-not-resolved="false">Context</xref>. The sdk requires the application context to be passed in <xref uid="com.microsoft.identity.client.PublicClientApplication" data-throw-if-not-resolved="false">PublicClientApplication</xref>. Cannot be null. </p>
-    - id: clientId
-      type: 8789feb4
-      description: <p>The application's client id. Cannot be null. </p>
-    - id: listener
-      type: d6b37550com.microsoft.identity.client.IPublicClientApplication.ApplicationCreatedListener
-      description: <p>a callback to be invoked when the object is successfully created. Cannot be null. </p>
-- uid: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final String,@NonNull final String,@NonNull final ApplicationCreatedListener)
-  parent: com.microsoft.identity.client.PublicClientApplication
-  href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: create(@NonNull final Context context, @NonNull final String clientId, @NonNull final String authority, @NonNull final ApplicationCreatedListener listener)
-  nameWithType: PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @NonNull final String authority, @NonNull final ApplicationCreatedListener listener)
-  fullName: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @NonNull final String authority, @NonNull final ApplicationCreatedListener listener)
+  name: create(@NonNull final Context context, @NonNull final String clientId, @Nullable final String authority, @NonNull final String redirectUri, @NonNull final ApplicationCreatedListener listener)
+  nameWithType: PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @Nullable final String authority, @NonNull final String redirectUri, @NonNull final ApplicationCreatedListener listener)
+  fullName: com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context context, @NonNull final String clientId, @Nullable final String authority, @NonNull final String redirectUri, @NonNull final ApplicationCreatedListener listener)
   type: Method
   summary: "<p>\r\n  <xref uid=\"\" data-throw-if-not-resolved=\"false\">PublicClientApplication#create(Context, String, String, ApplicationCreatedListener)</xref> allows the client id and authority to be passed instead of providing them through metadata.</p>\r\n<p>\r\nNote: The <xref uid=\"\" data-throw-if-not-resolved=\"false\">Context</xref> should be the application context instead of an running activity's context, which could potentially make the sdk hold a strong reference to the activity, thus preventing correct garbage collection and causing bugs. </p>\r\n<p></p>"
   syntax:
-    content: public static void create(@NonNull final Context context, @NonNull final String clientId, @NonNull final String authority, @NonNull final ApplicationCreatedListener listener)
+    content: public static void create(@NonNull final Context context, @NonNull final String clientId, @Nullable final String authority, @NonNull final String redirectUri, @NonNull final ApplicationCreatedListener listener)
     parameters:
     - id: context
       type: 3c9b8ebf
@@ -716,8 +687,11 @@ references:
       type: 8789feb4
       description: <p>The application client id. Cannot be null. </p>
     - id: authority
+      type: b868e8dd
+      description: <p>The default authority to be used for the authority. If this is null, the default authority will be used. </p>
+    - id: redirectUri
       type: 8789feb4
-      description: <p>The default authority to be used for the authority. Cannot be null. </p>
+      description: <p>The redirect URI of the application. </p>
     - id: listener
       type: d6b37550com.microsoft.identity.client.IPublicClientApplication.ApplicationCreatedListener
       description: <p>a callback to be invoked when the object is successfully created. Cannot be null. </p>
@@ -1075,22 +1049,18 @@ references:
       type: d6b37550com.microsoft.identity.client.TokenParameters
     - id: authenticationCallback
       type: d6b37550com.microsoft.identity.client.SilentAuthenticationCallback
-- uid: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration,@Nullable final String,@Nullable final String)
+- uid: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
-  name: PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile, @Nullable final String clientId, @Nullable final String authority)
-  nameWithType: PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile, @Nullable final String clientId, @Nullable final String authority)
-  fullName: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile, @Nullable final String clientId, @Nullable final String authority)
+  name: PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile)
+  nameWithType: PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile)
+  fullName: com.microsoft.identity.client.PublicClientApplication.PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile)
   type: Constructor
   syntax:
-    content: protected PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile, @Nullable final String clientId, @Nullable final String authority)
+    content: protected PublicClientApplication(@NonNull final PublicClientApplicationConfiguration configFile)
     parameters:
     - id: configFile
       type: d6b37550com.microsoft.identity.client.PublicClientApplicationConfiguration
-    - id: clientId
-      type: b868e8dd
-    - id: authority
-      type: b868e8dd
 - uid: com.microsoft.identity.client.PublicClientApplication.saveMsaFamilyRefreshToken(@NonNull final String)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -1203,6 +1173,16 @@ references:
   type: Class
   syntax:
     content: public class PublicClientApplicationConfiguration
+- uid: com.microsoft.identity.client.exception.MsalClientException
+  parent: com.microsoft.identity.client.exception
+  href: com.microsoft.identity.client.exception.MsalClientException.yml
+  name: MsalClientException
+  nameWithType: MsalClientException
+  fullName: com.microsoft.identity.client.exception.MsalClientException
+  type: Class
+  summary: "<p>This exception class represents general errors that are local to the library. Below is the table of proposed codes and a short description of each. </p>\r\n<p>Set of error codes that could be returned from this exception: <ul><li><p>multiple_matching_tokens_detected: There are multiple cache entries found and the sdk cannot identify the correct access or refresh token from the cache. This usually indicates a bug in the sdk for storing tokens or the authority is not provided in the silent request and multiple matching tokens found.  </p></li><li><p>device_network_not_available: No active network is available on the device.  </p></li><li><p>json_parse_failure: The sdk failed to parse the JSON format. </p></li><li><p>io_error: IOException happened, could be the device/network errors.  </p></li><li><p>malformed_url: The url is malformed. Likely caused when constructing the auth request, authority, or redirect URI.  </p></li><li><p>unsupported_encoding: The encoding is not supported by the device.  </p></li><li><p>no_such_algorithm: The algorithm used to generate pkce challenge is not supported.  </p></li><li><p>invalid_jwt: JWT returned by the server is not valid, empty or malformed.  </p></li><li><p>state_mismatch: State from authorization response did not match the state in the authorization request. For authorization requests, the sdk will verify the state returned from redirect and the one sent in the request.  </p></li><li><p>unsupported_url: Unsupported url, cannot perform ADFS authority validation.  </p></li><li><p>authority_validation_not_supported: The authority is not supported for authority validation. The sdk supports b2c authorities, but doesn't support b2c authority validation. Only well-known host will be supported.  </p></li><li><p>chrome_not_installed: Chrome is not installed on the device. The sdk uses chrome custom tab for authorization requests if available, and will fall back to chrome browser.  </p></li><li><p>user_mismatch: The user provided in the acquire token request doesn't match the user returned from server. </p></li></ul></p>"
+  syntax:
+    content: public class MsalClientException extends MsalException
 - uid: com.microsoft.identity.client.SilentAuthenticationCallback
   parent: com.microsoft.identity.client
   href: com.microsoft.identity.client.SilentAuthenticationCallback.yml
@@ -1286,7 +1266,7 @@ references:
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client.AuthenticationActivity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="" data-throw-if-not-resolved="false">com.microsoft.identity.common.internal.providers.oauth2.AuthorizationActivity</xref>. </p>
     - id: loginHint
       type: 8789feb4
       description: <p>Optional. If provided, will be used as the query parameter sent for authenticating the user, which will have the UPN pre-populated. </p>
@@ -1309,16 +1289,6 @@ references:
   summary: "<p>Callback passed with token acquisition. <xref uid=\"com.microsoft.identity.client.IAuthenticationResult\" data-throw-if-not-resolved=\"false\">IAuthenticationResult</xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\">MsalException</xref> will be returned back via callback. </p>"
   syntax:
     content: public interface AuthenticationCallback extends SilentAuthenticationCallback
-- uid: com.microsoft.identity.client.AuthenticationActivity
-  parent: com.microsoft.identity.client
-  href: com.microsoft.identity.client.AuthenticationActivity.yml
-  name: AuthenticationActivity
-  nameWithType: AuthenticationActivity
-  fullName: com.microsoft.identity.client.AuthenticationActivity
-  type: Class
-  summary: "<p>Invoking CustomTabs requires a browser on the device that also supports the CustomTabs API, chrome with version&gt;= 45 comes with the support and is available on all devices with API version&gt;= 16. MSAL is capable of using CustomTabs or device browser. MSAL prefers the user's default browser and will check for CustomTabs support before falling back to launching the full browser. AuthenticationActivity checks if CustomTabs is accessible for a given browser, if not, will go with full browser, if chrome is not installed, we generate an error. </p>"
-  syntax:
-    content: public class AuthenticationActivity
 - uid: com.microsoft.identity.client.SilentAuthenticationCallback.onSuccess(final IAuthenticationResult)
   parent: com.microsoft.identity.client.SilentAuthenticationCallback
   href: com.microsoft.identity.client.SilentAuthenticationCallback.yml
@@ -1399,7 +1369,7 @@ references:
     parameters:
     - id: activity
       type: "97576948"
-      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="com.microsoft.identity.client.AuthenticationActivity" data-throw-if-not-resolved="false">AuthenticationActivity</xref>. </p>
+      description: <p>Non-null <xref uid="" data-throw-if-not-resolved="false">Activity</xref> that is used as the parent activity for launching the <xref uid="" data-throw-if-not-resolved="false">com.microsoft.identity.common.internal.providers.oauth2.AuthorizationActivity</xref>. </p>
     - id: scopes
       type: e5895f1f
       description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
