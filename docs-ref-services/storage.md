@@ -1,9 +1,9 @@
 ---
 title: Azure Storage libraries for Java
 description: The Azure Storage libraries for Java provide classes for working with data in your your Azure storage account, and with the storage account itself.
-author: adrianhall
-ms.author: adhal
-ms.date: 11/20/2019
+author: tamram
+ms.author: tamram
+ms.date: 02/13/2020
 ms.topic: conceptual
 ms.devlang: java
 ms.service: storage
@@ -15,12 +15,7 @@ The Azure Storage libraries for Java provide classes for working with data in yo
 
 ## Client library for data access
 
-Use the Azure Storage client library for Java to work with data in your storage account:
-
-- Read and write objects and files from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction)
-- Send and receive messages between cloud-connected applications with [Azure Queue storage](/azure/storage/queues/storage-queues-introduction)
-  
-Create, update, and manage Azure storage accounts from your Java application with the management modules.
+The Azure Storage client library for Java supports Blob storage, Queue storage, Azure Files, and Azure Data Lake Storage Gen2 (preview library).
 
 ### Add the package to your project
 
@@ -30,13 +25,25 @@ Add the following dependencies to your Maven `pom.xml` file as appropriate:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.0.0</version>
+    <version>12.4.0</version>
 </dependency>
 
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-queue</artifactId>
-  <version>12.0.0</version>
+  <version>12.3.0</version>
+</dependency>
+
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-storage-file-share</artifactId>
+  <version>12.2.0</version>
+</dependency>
+
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-storage-file-datalake</artifactId>
+  <version>12.0.0-preview.6</version>
 </dependency>
 ```
 
@@ -77,17 +84,10 @@ For more examples, review the [Client Library README](https://github.com/Azure/a
 
 | Library version | Supported services | Maven | Reference / Javadoc | Source, Readme, Examples |
 |----------------------|------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Version 12 | Blob and Queue | [Blob](https://search.maven.org/artifact/com.azure/azure-storage-blob/)<br />[Queue](https://search.maven.org/artifact/com.azure/azure-storage-queue/) | [Blob](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-blob/12.0.0/index.html)<br/>[Queue](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-queue/12.0.0/index.html) | [Blob](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.0.0/sdk/storage/azure-storage-blob) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java))<br />[Queue](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.0.0/sdk/storage/azure-storage-queue) |
+| Version 12 | Blob, Queue, File, and Data Lake | [Blob](https://search.maven.org/artifact/com.azure/azure-storage-blob/)<br />[Queue](https://search.maven.org/artifact/com.azure/azure-storage-queue/)<br />[File](https://search.maven.org/artifact/com.azure/azure-storage-file-share/)<br />[Data Lake](https://search.maven.org/artifact/com.azure/azure-storage-file-datalake/) | [Blob](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-blob/12.4.0/index.html)<br/>[Queue](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-queue/12.3.0/index.html)<br />[File](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-file-share/12.2.0/index.html)<br />[Data Lake](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-storage-file-datalake/12.0.0-preview.6/index.html)  | [Blob](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.4.0/sdk/storage/azure-storage-blob) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java))<br />[Queue](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.3.0/sdk/storage/azure-storage-queue)<br />[File](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-file-share_12.2.0/sdk/storage/azure-storage-queue)<br />[Data Lake](https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob_12.0.0/sdk/storage/azure-storage-file-datalake) |
 | Version 8 | Blob, Queue, File, and Table | [All services](https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage) | [Version 8 reference](https://docs.microsoft.com/java/api/overview/azure/storage/client?view=azure-java-stable) | [All services](https://github.com/azure/azure-storage-java/tree/legacy-master) ([Quickstart](/azure/storage/blobs/storage-quickstart-blobs-java-legacy)) |
 
-### Accessing other storage account services with v12 libraries
-
-Currently, the following libraries are in public preview:
-
-- File shares
-- Data Lake
-
-Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for details on how to to install and use the preview packages.
+Refer to the [Azure SDK Releases page](https://azure.github.io/azure-sdk/) for details on how to install and use the preview packages.
 
 ## Client library for resource management
 
