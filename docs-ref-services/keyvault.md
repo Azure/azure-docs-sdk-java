@@ -10,7 +10,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: keyvault
+ms.service: key-vault
 ---
 
 # Azure Key Vault libraries for Java
