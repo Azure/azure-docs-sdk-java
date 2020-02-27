@@ -20,7 +20,7 @@ if __name__ == "__main__":
         text = f.read().rstrip("\n")
         code2yaml = json.loads(text)
 
-    with open(CODE2YAML, 'r') as f:
+    with open(REPOJSON, 'r') as f:
         text = f.read().rstrip("\n")
         repojson = json.loads(text)
 
@@ -56,6 +56,36 @@ if __name__ == "__main__":
     #     }
     #     ]
     # }
+
+    resolved_paths = []
+    replaced_paths = []
+
+    for input_path in code2yaml['input_paths']:
+        for repo in repojson['repo']:
+            if input_path.startswith("src/{}".format(repo['name'])):
+                resolved_path = "{}/tree/{}{}".format(repo['url'], repo['branch'] or repo['tag'], input_path.replace("src/{}".format(repo['name']), ""))
+                
+                if 'com/' in input_path:
+                    resolved_namespace = 'com.' + input_path.split('com/')[1].replace('/','.')
+                else:
+                    resolved_namespace = 'check root'
+
+                resolved_paths.append(resolved_path+","+resolved_namespace)
+                replaced_paths.append(input_path)
+
+
+    inputs = set(code2yaml['input_paths'])
+    seen_inputs = set(replaced_paths)
+
+    unseen_inputs = inputs - seen_inputs
+
+    with open('./resolved_paths.txt', 'w') as f:
+        f.write("\n".join(resolved_paths))
+
+    with open('./unresolved_paths.txt', 'w') as f:
+        f.write("\n".join(list(unseen_inputs)))
+
+
 
     # the folder within the target repository is:
         # input_path.replace( src/{repo.name} )
