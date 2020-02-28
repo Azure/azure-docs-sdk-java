@@ -3,6 +3,7 @@ items:
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps
   id: amqps
   children:
+  - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFeedbackReceivedEvent
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFeedbackReceivedHandler
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFileUploadNotificationReceive
@@ -11,6 +12,7 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpResponseVerification
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSend
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpSendHandler
+  - com.microsoft.azure.sdk.iot.service.transport.amqps.ReactorRunner
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.yml
   langs:
   - java
@@ -20,14 +22,23 @@ items:
   type: Namespace
   source:
     remote:
-      path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpFeedbackReceivedEvent.java
+      path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
-    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpFeedbackReceivedEvent.java
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
     startLine: 5
   syntax:
     content: package com.microsoft.azure.sdk.iot.service.transport.amqps
 references:
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.yml
+  name: AmqpConnectionHandler
+  nameWithType: AmqpConnectionHandler
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
+  type: Class
+  syntax:
+    content: public class AmqpConnectionHandler extends ErrorLoggingBaseHandlerWithCleanup
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFeedbackReceivedEvent
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFeedbackReceivedEvent.yml
@@ -46,7 +57,7 @@ references:
   type: Class
   summary: "<p>Instance of the QPID-Proton-J BaseHandler class to override the events what are needed to handle the receive operation Contains and sets connection parameters (path, port, endpoint) Maintains the layers of AMQP protocol (Link, Session, Connection, Transport) Creates and sets SASL authentication for transport </p>"
   syntax:
-    content: public class AmqpFeedbackReceivedHandler
+    content: public class AmqpFeedbackReceivedHandler extends AmqpConnectionHandler
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFileUploadNotificationReceive
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpFileUploadNotificationReceive.yml
@@ -66,7 +77,7 @@ references:
   type: Class
   summary: "<p>Instance of the QPID-Proton-J BaseHandler class to override the events what are needed to handle the receive operation Contains and sets connection parameters (path, port, endpoint) Maintains the layers of AMQP protocol (Link, Session, Connection, Transport) Creates and sets SASL authentication for transport </p>"
   syntax:
-    content: public class AmqpFileUploadNotificationReceivedHandler
+    content: public class AmqpFileUploadNotificationReceivedHandler extends AmqpConnectionHandler
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpReceive
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpReceive.yml
@@ -105,4 +116,13 @@ references:
   type: Class
   summary: "<p>Instance of the QPID-Proton-J BaseHandler class to override the events what are needed to handle the send operation Contains and sets connection parameters (path, port, endpoint) Maintains the layers of AMQP protocol (Link, Session, Connection, Transport) Creates and sets SASL authentication for transport </p>"
   syntax:
-    content: public class AmqpSendHandler
+    content: public class AmqpSendHandler extends AmqpConnectionHandler
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.ReactorRunner
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps.ReactorRunner.yml
+  name: ReactorRunner
+  nameWithType: ReactorRunner
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.ReactorRunner
+  type: Class
+  syntax:
+    content: public class ReactorRunner
