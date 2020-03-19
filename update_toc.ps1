@@ -4,6 +4,7 @@ Param(
 )
 
 $results = Get-Content "$TargetFolder/docs-ref-autogen/toc.yml","legacy-docs-toc-merge/toc.yml" 
-# needs to be another 
+# separate operations otherwise pshell leaves the file open and the set-content fails
 $results | Set-Content "$TargetFolder/docs-ref-autogen/toc.yml" 
-Copy-Item -Path "$TargetFolder/legacy-docs-toc-merge/*" -Destination "$TargetFolder/docs-ref-autogen"
+
+Copy-Item -Path "$TargetFolder/legacy-docs-toc-merge/*" -Exclude @("toc.yml") -Destination "$TargetFolder/docs-ref-autogen"
