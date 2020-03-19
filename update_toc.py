@@ -9,7 +9,7 @@ import shutil
 
 
 LEGACY_SOURCE_FOLDER = "legacy/docs-ref-autogen"
-TARGET_SOURCE_FOLDER = "unified-latest/docs-ref-autogen" #"docs-ref-autogen"
+TARGET_SOURCE_FOLDER = "docs-ref-autogen"
 
 root_dir = os.path.abspath(os.path.join(os.path.abspath(__file__), ".."))
 
