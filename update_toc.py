@@ -47,4 +47,3 @@ if __name__ == "__main__":
 
 for file_name in files_for_move:
   shutil.copy(file_name, os.path.join(root_dir, TARGET_SOURCE_FOLDER))
-
