@@ -11,6 +11,7 @@ items:
   - com.microsoft.azure.storage.core.EncryptionData
   - com.microsoft.azure.storage.core.ExecutionEngine
   - com.microsoft.azure.storage.core.JsonUtilities
+  - com.microsoft.azure.storage.core.KeepAliveSocketFactory
   - com.microsoft.azure.storage.core.LazySegmentedIterable
   - com.microsoft.azure.storage.core.LazySegmentedIterator
   - com.microsoft.azure.storage.core.ListingContext
@@ -42,7 +43,7 @@ items:
     remote:
       path: microsoft-azure-storage/src/com/microsoft/azure/storage/core/Base64.java
       branch: legacy-master
-      repo: https://github.com/Azure/azure-storage-java
+      repo: https://github.com/azure/azure-storage-java
     path: microsoft-azure-storage/src/com/microsoft/azure/storage/core/Base64.java
     startLine: 14
   syntax:
@@ -127,6 +128,16 @@ references:
   type: Class
   syntax:
     content: public class JsonUtilities
+- uid: com.microsoft.azure.storage.core.KeepAliveSocketFactory
+  parent: com.microsoft.azure.storage.core
+  href: com.microsoft.azure.storage.core.KeepAliveSocketFactory.yml
+  name: KeepAliveSocketFactory
+  nameWithType: KeepAliveSocketFactory
+  fullName: com.microsoft.azure.storage.core.KeepAliveSocketFactory
+  type: Class
+  summary: "<p>RESERVED FOR INTERNAL USE.</p>\r\n<p>This type is used to help work around a bug in the JDK where connection timeouts are not honored on a retried request. In other words, if a customer set a timeout on an operation, this timeout is only ever respected on the first attempt at the request. Retries will cause a different underlying connection implementation to be loaded that will ignore the timeout parameter. Therefore, requests can potentially hang forever if the connection is broken after these retries.</p>\r\n<p>Enabling keep-alive timeouts acts as a fallback in these scenarios so that, even if the operation timeout is ignored, the socket will still eventually timeout and the request will be cancelled. We enable keep alive timeouts via a wrapper implementation of a SocketFactory. We use a default socket factory to get sockets from the system and then simply set the keep-alive option to true before returning to the client. This factory will be set on the HttpsUrlConnection objects. </p>"
+  syntax:
+    content: public class KeepAliveSocketFactory
 - uid: com.microsoft.azure.storage.core.LazySegmentedIterable
   parent: com.microsoft.azure.storage.core
   href: com.microsoft.azure.storage.core.LazySegmentedIterable.yml
