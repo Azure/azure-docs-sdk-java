@@ -73,7 +73,7 @@ try {
 
 /* Upload the file to the container */
 BlobClient blobClient = containerClient.getBlobClient("my-remote-file.jpg");
-blobClient.uploadFileFile("my-local-file.jpg");
+blobClient.uploadFromFile("my-local-file.jpg");
 ```
 
 For more examples, review the [Client Library README](https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.0.0/sdk/storage/azure-storage-blob/README.md).
