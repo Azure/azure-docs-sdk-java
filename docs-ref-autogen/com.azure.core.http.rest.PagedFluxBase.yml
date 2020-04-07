@@ -17,7 +17,7 @@ items:
   fullName: "com.azure.core.http.rest.PagedFluxBase<T,P>"
   type: "Class"
   package: "com.azure.core.http.rest"
-  summary: "This class is a flux that can operate on any type that extends <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> and also provides the ability to operate on individual items. When processing the response by page, each response will contain the items in the page as well as the request details like status code and headers.\n\n**Process each item in Flux**\n\nTo process one item at a time, simply subscribe to this Flux.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.items\\}\n\n**Process one page at a time**\n\nTo process one page at a time, starting from the beginning, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\">byPage()</xref> method.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.pages\\}\n\n**Process items starting from a continuation token**\n\nTo process items one page at a time starting from any page associated with a continuation token, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage(java.lang.String)\" data-throw-if-not-resolved=\"false\">#byPage(String)</xref>.\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.pagesWithContinuationToken\\}"
+  summary: "This class is a flux that can operate on any type that extends <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> and also provides the ability to operate on individual items. When processing the response by page, each response will contain the items in the page as well as the request details like status code and headers.\n\n**Process each item in Flux**\n\nTo process one item at a time, simply subscribe to this Flux.\n\n```java\npagedFluxBase\n     .log()\n     .subscribe(item -> System.out.println(\"Processing item \" + item),\n         error -> System.err.println(\"Error occurred \" + error),\n         () -> System.out.println(\"Completed processing.\"));\n```\n\n**Process one page at a time**\n\nTo process one page at a time, starting from the beginning, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\">byPage()</xref> method.\n\n```java\npagedFluxBase\n     .byPage()\n     .log()\n     .subscribe(page -> System.out.println(\"Processing page containing \" + page.getItems()),\n         error -> System.err.println(\"Error occurred \" + error),\n         () -> System.out.println(\"Completed processing.\"));\n```\n\n**Process items starting from a continuation token**\n\nTo process items one page at a time starting from any page associated with a continuation token, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage(java.lang.String)\" data-throw-if-not-resolved=\"false\">#byPage(String)</xref>.\n\n```java\nString continuationToken = getContinuationToken();\n pagedFluxBase\n     .byPage(continuationToken)\n     .log()\n     .doOnSubscribe(ignored -> System.out.println(\n         \"Subscribed to paged flux processing pages starting from: \" + continuationToken))\n     .subscribe(page -> System.out.println(\"Processing page containing \" + page.getItems()),\n         error -> System.err.println(\"Error occurred \" + error),\n         () -> System.out.println(\"Completed processing.\"));\n```"
   syntax:
     content: "public class PagedFluxBase<T,P> extends ContinuablePagedFluxCore<String,T,P>"
     typeParameters:
@@ -487,7 +487,7 @@ items:
   overload: "com.azure.core.http.rest.PagedFluxBase.PagedFluxBase*"
   type: "Constructor"
   package: "com.azure.core.http.rest"
-  summary: "Creates an instance of <xref uid=\"com.azure.core.http.rest.PagedFluxBase\" data-throw-if-not-resolved=\"false\">PagedFluxBase</xref> that consists of only a single page. This constructor takes a `Supplier` that return the single page of `T`.\n\n**Code sample**\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.singlepage.instantiation\\}"
+  summary: "Creates an instance of <xref uid=\"com.azure.core.http.rest.PagedFluxBase\" data-throw-if-not-resolved=\"false\">PagedFluxBase</xref> that consists of only a single page. This constructor takes a `Supplier` that return the single page of `T`.\n\n**Code sample**\n\n```java\n// A supplier that fetches the first page of data from source/service\n Supplier<Mono<PagedResponse<Integer>>> firstPageRetrieverFunction = () -> getFirstPage();\n \n PagedFluxBase<Integer, PagedResponse<Integer>> pagedFluxBaseInstance = new PagedFluxBase<>(firstPageRetrieverFunction,\n     nextPageRetriever);\n```"
   syntax:
     content: "public PagedFluxBase(Supplier<Mono<P>> firstPageRetriever)"
     parameters:
@@ -505,7 +505,7 @@ items:
   overload: "com.azure.core.http.rest.PagedFluxBase.PagedFluxBase*"
   type: "Constructor"
   package: "com.azure.core.http.rest"
-  summary: "Creates an instance of <xref uid=\"com.azure.core.http.rest.PagedFluxBase\" data-throw-if-not-resolved=\"false\">PagedFluxBase</xref>. The constructor takes a `Supplier` and `Function`. The `Supplier` returns the first page of `T`, the `Function` retrieves subsequent pages of `T`.\n\n**Code sample**\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.instantiation\\}"
+  summary: "Creates an instance of <xref uid=\"com.azure.core.http.rest.PagedFluxBase\" data-throw-if-not-resolved=\"false\">PagedFluxBase</xref>. The constructor takes a `Supplier` and `Function`. The `Supplier` returns the first page of `T`, the `Function` retrieves subsequent pages of `T`.\n\n**Code sample**\n\n```java\n// A supplier that fetches the first page of data from source/service\n Supplier<Mono<PagedResponse<Integer>>> firstPageRetriever = () -> getFirstPage();\n \n // A function that fetches subsequent pages of data from source/service given a continuation token\n Function<String, Mono<PagedResponse<Integer>>> nextPageRetriever =\n     continuationToken -> getNextPage(continuationToken);\n \n PagedFluxBase<Integer, PagedResponse<Integer>> pagedFluxBase = new PagedFluxBase<>(firstPageRetriever,\n     nextPageRetriever);\n```"
   syntax:
     content: "public PagedFluxBase(Supplier<Mono<P>> firstPageRetriever, Function<String,Mono<P>> nextPageRetriever)"
     parameters:
@@ -526,7 +526,7 @@ items:
   overload: "com.azure.core.http.rest.PagedFluxBase.byPage*"
   type: "Method"
   package: "com.azure.core.http.rest"
-  summary: "Creates a Flux of <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> starting from the first page.\n\n**Code sample**\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.bypage\\}"
+  summary: "Creates a Flux of <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> starting from the first page.\n\n**Code sample**\n\n```java\n// Start processing the results from first page\n pagedFluxBase.byPage()\n     .log()\n     .doOnSubscribe(ignoredVal -> System.out.println(\n         \"Subscribed to paged flux processing pages starting from first page\"))\n     .subscribe(page -> System.out.println(\"Processing page containing \" + page.getItems()),\n         error -> System.err.println(\"Error occurred \" + error),\n         () -> System.out.println(\"Completed processing.\"));\n```"
   syntax:
     content: "public Flux<P> byPage()"
     return:
@@ -543,7 +543,7 @@ items:
   overload: "com.azure.core.http.rest.PagedFluxBase.byPage*"
   type: "Method"
   package: "com.azure.core.http.rest"
-  summary: "Creates a Flux of <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> starting from the next page associated with the given continuation token. To start from first page, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\">#byPage()</xref> instead.\n\n**Code sample**\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.bypage\\#String\\}"
+  summary: "Creates a Flux of <xref uid=\"com.azure.core.http.rest.PagedResponse\" data-throw-if-not-resolved=\"false\">PagedResponse</xref> starting from the next page associated with the given continuation token. To start from first page, use <xref uid=\"com.azure.core.http.rest.PagedFluxBase.byPage()\" data-throw-if-not-resolved=\"false\">#byPage()</xref> instead.\n\n**Code sample**\n\n```java\n// Start processing the results from a page associated with the continuation token\n String continuationToken = getContinuationToken();\n pagedFluxBase.byPage(continuationToken)\n     .log()\n     .doOnSubscribe(ignoredVal -> System.out.println(\n         \"Subscribed to paged flux processing page starting from \" + continuationToken))\n     .subscribe(page -> System.out.println(\"Processing page containing \" + page.getItems()),\n         error -> System.err.println(\"Error occurred \" + error),\n         () -> System.out.println(\"Completed processing.\"));\n```"
   syntax:
     content: "public Flux<P> byPage(String continuationToken)"
     parameters:
@@ -564,7 +564,7 @@ items:
   overload: "com.azure.core.http.rest.PagedFluxBase.subscribe*"
   type: "Method"
   package: "com.azure.core.http.rest"
-  summary: "Subscribe to consume all items of type `T` in the sequence respectively. This is recommended for most common scenarios. This will seamlessly fetch next page when required and provide with a <xref uid=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"false\">Flux</xref> of items.\n\n**Code sample**\n\n\\{@codesnippet com.azure.core.http.rest.pagedfluxbase.subscribe\\}"
+  summary: "Subscribe to consume all items of type `T` in the sequence respectively. This is recommended for most common scenarios. This will seamlessly fetch next page when required and provide with a <xref uid=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"false\">Flux</xref> of items.\n\n**Code sample**\n\n```java\npagedFluxBase.subscribe(new BaseSubscriber<Integer>() {\n         {@literal @}Override\n         protected void hookOnSubscribe(Subscription subscription) {\n             System.out.println(\"Subscribed to paged flux processing items\");\n             super.hookOnSubscribe(subscription);\n         }\n \n         {@literal @}Override\n         protected void hookOnNext(Integer value) {\n             System.out.println(\"Processing item \" + value);\n         }\n \n         {@literal @}Override\n         protected void hookOnComplete() {\n             System.out.println(\"Completed processing\");\n         }\n     });\n```"
   syntax:
     content: "public void subscribe(CoreSubscriber<? super T> coreSubscriber)"
     parameters:

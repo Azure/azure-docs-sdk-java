@@ -194,7 +194,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.addLink*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Provides a way to link multiple tracing spans. Used in batching operations to relate multiple requests under a single batch.\n\n**Code samples**\n\nLink multiple spans using their span context information\n\n\\{@codesnippet com.azure.core.util.tracing.addLink\\#context\\}"
+  summary: "Provides a way to link multiple tracing spans. Used in batching operations to relate multiple requests under a single batch.\n\n**Code samples**\n\nLink multiple spans using their span context information\n\n```java\n// use the parent context containing the current tracing span to start a child span\n Context parentContext = new Context(PARENT_SPAN_KEY, \"<user-current-span>\");\n // use the returned span context information of the current tracing span to link\n Context spanContext = tracer.start(\"test.method\", parentContext, ProcessKind.MESSAGE);\n \n // Adds a link between multiple span's using the span context information of the Span\n // For each event processed, add a link with the created spanContext\n tracer.addLink(spanContext);\n```"
   syntax:
     content: "public abstract void addLink(Context context)"
     parameters:
@@ -212,7 +212,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.end*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Completes the current tracing span.\n\n**Code samples**\n\nCompletes the tracing span present in the context, with the corresponding OpenTelemetry status for the given response status code\n\n\\{@codesnippet com.azure.core.util.tracing.end\\#int-throwable-context\\}"
+  summary: "Completes the current tracing span.\n\n**Code samples**\n\nCompletes the tracing span present in the context, with the corresponding OpenTelemetry status for the given response status code\n\n```java\n// context containing the current tracing span to end\n String openTelemetrySpanKey = \"openTelemetry-span\";\n Context traceContext = new Context(PARENT_SPAN_KEY, \"<user-current-span>\");\n \n // completes the tracing span with the passed response status code\n tracer.end(200, null, traceContext);\n```"
   syntax:
     content: "public abstract void end(int responseCode, Throwable error, Context context)"
     parameters:
@@ -236,7 +236,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.end*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Completes the current tracing span for AMQP calls.\n\n**Code samples**\n\nCompletes the tracing span with the corresponding OpenTelemetry status for the given status message\n\n\\{@codesnippet com.azure.core.util.tracing.end\\#string-throwable-context\\}"
+  summary: "Completes the current tracing span for AMQP calls.\n\n**Code samples**\n\nCompletes the tracing span with the corresponding OpenTelemetry status for the given status message\n\n```java\n// context containing the current tracing span to end\n // completes the tracing span with the passed status message\n tracer.end(\"success\", null, traceContext);\n```"
   syntax:
     content: "public abstract void end(String statusMessage, Throwable error, Context context)"
     parameters:
@@ -260,7 +260,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.extractContext*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Extracts the span's context as <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\">Context</xref> from upstream.\n\n**Code samples**\n\nExtracts the corresponding span context information from a valid diagnostic id\n\n\\{@codesnippet com.azure.core.util.tracing.extractContext\\#string-context\\}"
+  summary: "Extracts the span's context as <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\">Context</xref> from upstream.\n\n**Code samples**\n\nExtracts the corresponding span context information from a valid diagnostic id\n\n```java\n// Extracts the span context information from the passed diagnostic Id that can be used for linking spans.\n String spanImplContext = \"span-context\";\n Context spanContext = tracer.extractContext(\"valid-diagnostic-id\", Context.NONE);\n System.out.printf(\"Span context of the current tracing span: %s%n\", spanContext.getData(spanImplContext).get());\n```"
   syntax:
     content: "public abstract Context extractContext(String diagnosticId, Context context)"
     parameters:
@@ -284,7 +284,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.getSharedSpanBuilder*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Returns a span builder with the provided name in <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\">Context</xref>.\n\n**Code samples**\n\nReturns a builder with the provided span name.\n\n\\{@codesnippet com.azure.core.util.tracing.getSpanBuilder\\#string-context\\}"
+  summary: "Returns a span builder with the provided name in <xref uid=\"com.azure.core.util.Context\" data-throw-if-not-resolved=\"false\">Context</xref>.\n\n**Code samples**\n\nReturns a builder with the provided span name.\n\n```java\n// Returns a span builder with the provided name\n String methodName = \"message-span\";\n Context spanContext = tracer.getSharedSpanBuilder(methodName, Context.NONE);\n System.out.printf(\"Span context of the current tracing span: %s%n\", spanContext.getData(SPAN_BUILDER_KEY).get());\n```"
   syntax:
     content: "public default Context getSharedSpanBuilder(String spanName, Context context)"
     parameters:
@@ -332,7 +332,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.setSpanName*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Sets the name for spans that are created.\n\n**Code samples**\n\nRetrieve the span name of the returned span\n\n\\{@codesnippet com.azure.core.util.tracing.setSpanName\\#string-context\\}"
+  summary: "Sets the name for spans that are created.\n\n**Code samples**\n\nRetrieve the span name of the returned span\n\n```java\n// Sets the span name of the returned span on the context object, with key PARENT_SPAN_KEY\n String openTelemetrySpanKey = \"openTelemetry-span\";\n Context context = tracer.setSpanName(\"test-span-method\", Context.NONE);\n System.out.printf(\"Span name: %s%n\", context.getData(PARENT_SPAN_KEY).get().toString());\n```"
   syntax:
     content: "public abstract Context setSpanName(String spanName, Context context)"
     parameters:
@@ -356,7 +356,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.start*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Creates a new tracing span.\n\nThe `context` will be checked for information about a parent span. If a parent span is found, the new span will be added as a child. Otherwise, the parent span will be created and added to the `context` and any downstream `start()` calls will use the created span as the parent.\n\n**Code samples**\n\nStarts a tracing span with provided method name and explicit parent span\n\n\\{@codesnippet com.azure.core.util.tracing.start\\#string-context\\}"
+  summary: "Creates a new tracing span.\n\nThe `context` will be checked for information about a parent span. If a parent span is found, the new span will be added as a child. Otherwise, the parent span will be created and added to the `context` and any downstream `start()` calls will use the created span as the parent.\n\n**Code samples**\n\nStarts a tracing span with provided method name and explicit parent span\n\n```java\n// pass the current tracing span context to the calling method\n Context traceContext = new Context(PARENT_SPAN_KEY, \"<user-current-span>\");\n // start a new tracing span with the given method name and explicit parent span\n Context updatedContext = tracer.start(\"azure.keyvault.secrets/setsecret\", traceContext);\n System.out.printf(\"Span returned in the context object: %s%n\",\n     updatedContext.getData(PARENT_SPAN_KEY).get());\n```"
   syntax:
     content: "public abstract Context start(String methodName, Context context)"
     parameters:
@@ -380,7 +380,7 @@ items:
   overload: "com.azure.core.util.tracing.Tracer.start*"
   type: "Method"
   package: "com.azure.core.util.tracing"
-  summary: "Creates a new tracing span for AMQP calls.\n\nThe `context` will be checked for information about a parent span. If a parent span is found, the new span will be added as a child. Otherwise, the parent span will be created and added to the `context` and any downstream `start()` calls will use the created span as the parent.\n\nSets additional request attributes on the created span when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.SEND\" data-throw-if-not-resolved=\"false\">ProcessKind.SEND</xref>.\n\nReturns the diagnostic Id and span context of the returned span when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.MESSAGE\" data-throw-if-not-resolved=\"false\">ProcessKind.MESSAGE</xref>.\n\nCreates a new tracing span with remote parent and returns that scope when the given when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.PROCESS\" data-throw-if-not-resolved=\"false\">ProcessKind.PROCESS</xref>.\n\n**Code samples**\n\nStarts a tracing span with provided method name and AMQP operation SEND\n\n\\{@codesnippet com.azure.core.util.tracing.start\\#string-context-processKind-SEND\\}\n\nStarts a tracing span with provided method name and AMQP operation MESSAGE\n\n\\{@codesnippet com.azure.core.util.tracing.start\\#string-context-processKind-MESSAGE\\}\n\nStarts a tracing span with provided method name and AMQP operation PROCESS\n\n\\{@codesnippet com.azure.core.util.tracing.start\\#string-context-processKind-PROCESS\\}"
+  summary: "Creates a new tracing span for AMQP calls.\n\nThe `context` will be checked for information about a parent span. If a parent span is found, the new span will be added as a child. Otherwise, the parent span will be created and added to the `context` and any downstream `start()` calls will use the created span as the parent.\n\nSets additional request attributes on the created span when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.SEND\" data-throw-if-not-resolved=\"false\">ProcessKind.SEND</xref>.\n\nReturns the diagnostic Id and span context of the returned span when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.MESSAGE\" data-throw-if-not-resolved=\"false\">ProcessKind.MESSAGE</xref>.\n\nCreates a new tracing span with remote parent and returns that scope when the given when `processKind` is <xref uid=\"com.azure.core.util.tracing.ProcessKind.PROCESS\" data-throw-if-not-resolved=\"false\">ProcessKind.PROCESS</xref>.\n\n**Code samples**\n\nStarts a tracing span with provided method name and AMQP operation SEND\n\n```java\n// pass the current tracing span and request metadata to the calling method\n Context sendContext = new Context(PARENT_SPAN_KEY, \"<user-current-span>\")\n     .addData(ENTITY_PATH_KEY, \"entity-path\").addData(HOST_NAME_KEY, \"hostname\");\n \n // start a new tracing span with explicit parent, sets the request attributes on the span and sets the span\n // kind to client when process kind SEND\n Context updatedSendContext = tracer.start(\"azure.eventhubs.send\", sendContext, ProcessKind.SEND);\n System.out.printf(\"Span returned in the context object: %s%n\",\n     updatedSendContext.getData(PARENT_SPAN_KEY).get());\n```\n\nStarts a tracing span with provided method name and AMQP operation MESSAGE\n\n```java\nString diagnosticIdKey = \"diagnostic-id\";\n // start a new tracing span with explicit parent, sets the diagnostic Id (traceparent headers) on the current\n // context when process kind MESSAGE\n Context updatedReceiveContext = tracer.start(\"azure.eventhubs.receive\", traceContext,\n     ProcessKind.MESSAGE);\n System.out.printf(\"Diagnostic Id: %s%n\", updatedReceiveContext.getData(diagnosticIdKey).get().toString());\n```\n\nStarts a tracing span with provided method name and AMQP operation PROCESS\n\n```java\nString spanImplContext = \"span-context\";\n // start a new tracing span with remote parent and uses the span in the current context to return a scope\n // when process kind PROCESS\n Context processContext = new Context(PARENT_SPAN_KEY, \"<user-current-span>\")\n     .addData(spanImplContext, \"<user-current-span-context>\");\n Context updatedProcessContext = tracer.start(\"azure.eventhubs.process\", processContext,\n     ProcessKind.PROCESS);\n System.out.printf(\"Scope: %s%n\", updatedProcessContext.getData(\"scope\").get());\n```"
   syntax:
     content: "public abstract Context start(String methodName, Context context, ProcessKind processKind)"
     parameters:
