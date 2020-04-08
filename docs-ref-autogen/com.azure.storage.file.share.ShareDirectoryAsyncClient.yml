@@ -25,6 +25,9 @@ items:
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteSubdirectoryWithResponse(java.lang.String,com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteWithResponse()"
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteWithResponse(com.azure.core.util.Context)"
+  - "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists()"
+  - "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse()"
+  - "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse(com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseAllHandles(boolean)"
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseAllHandlesWithTimeout(boolean,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseHandle(java.lang.String)"
@@ -61,7 +64,7 @@ items:
   fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient"
   type: "Class"
   package: "com.azure.storage.file.share"
-  summary: "This class provides a client that contains all the operations for interacting with directory in Azure Storage File Service. Operations allowed by the client are creating, deleting and listing subdirectory and file, retrieving properties, setting metadata and list or force close handles of the directory or file.\n\n**Instantiating an Asynchronous Directory Client**\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.instantiation\\}\n\nView <xref uid=\"com.azure.storage.file.share.ShareFileClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
+  summary: "This class provides a client that contains all the operations for interacting with directory in Azure Storage File Service. Operations allowed by the client are creating, deleting and listing subdirectory and file, retrieving properties, setting metadata and list or force close handles of the directory or file.\n\n**Instantiating an Asynchronous Directory Client**\n\n```java\nShareDirectoryAsyncClient client = new ShareFileClientBuilder()\n     .connectionString(\"${connectionString}\")\n     .endpoint(\"${endpoint}\")\n     .buildDirectoryAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.file.share.ShareFileClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
   syntax:
     content: "public class ShareDirectoryAsyncClient"
   inheritance:
@@ -120,7 +123,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.create*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates this directory in the file share and returns a response of <xref uid=\"com.azure.storage.file.share.models.ShareDirectoryInfo\" data-throw-if-not-resolved=\"false\">ShareDirectoryInfo</xref> to interact with it.\n\n**Code Samples**\n\nCreate the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.create\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates this directory in the file share and returns a response of <xref uid=\"com.azure.storage.file.share.models.ShareDirectoryInfo\" data-throw-if-not-resolved=\"false\">ShareDirectoryInfo</xref> to interact with it.\n\n**Code Samples**\n\nCreate the directory\n\n```java\nshareDirectoryAsyncClient.create().subscribe(\n     response -> {\n     },\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Completed creating the directory!\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public Mono<ShareDirectoryInfo> create()"
     return:
@@ -137,7 +140,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createFile*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a file in this directory with specific name, max number of results and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate 1k file with named \"myFile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createFile\\#string-long\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates a file in this directory with specific name, max number of results and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate 1k file with named \"myFile\"\n\n```java\nshareDirectoryAsyncClient.createFile(\"myfile\", 1024).subscribe(\n     response -> {\n     },\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed creating the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public Mono<ShareFileAsyncClient> createFile(String fileName, long maxSize)"
     parameters:
@@ -161,7 +164,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a file in this directory with specific name and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the file named \"myFile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createFileWithResponse\\#String-long-ShareFileHttpHeaders-FileSmbProperties-String-Map\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates a file in this directory with specific name and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the file named \"myFile\"\n\n```java\nShareFileHttpHeaders httpHeaders = new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\");\n FileSmbProperties smbProperties = new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\");\n String filePermission = \"filePermission\";\n // NOTE: filePermission and filePermissionKey should never be both set\n shareDirectoryAsyncClient.createFileWithResponse(\"myFile\", 1024, httpHeaders, smbProperties, filePermission,\n     Collections.singletonMap(\"directory\", \"metadata\")).subscribe(\n         response -> System.out.printf(\"Creating the file completed with status code %d\", response.getStatusCode()),\n         error -> System.err.println(error.toString()),\n         () -> System.out.println(\"Completed creating the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public Mono<Response<ShareFileAsyncClient>> createFileWithResponse(String fileName, long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata)"
     parameters:
@@ -197,7 +200,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a file in this directory with specific name and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the file named \"myFile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createFileWithResponse\\#String-long-ShareFileHttpHeaders-FileSmbProperties-String-Map-ShareRequestConditions\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates a file in this directory with specific name and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the file named \"myFile\"\n\n```java\nShareFileHttpHeaders httpHeaders = new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\");\n FileSmbProperties smbProperties = new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\");\n String filePermission = \"filePermission\";\n // NOTE: filePermission and filePermissionKey should never be both set\n \n ShareRequestConditions requestConditions = new ShareRequestConditions().setLeaseId(leaseId);\n \n shareDirectoryAsyncClient.createFileWithResponse(\"myFile\", 1024, httpHeaders, smbProperties, filePermission,\n     Collections.singletonMap(\"directory\", \"metadata\"), requestConditions).subscribe(\n         response -> System.out.printf(\"Creating the file completed with status code %d\", response.getStatusCode()),\n         error -> System.err.println(error.toString()),\n         () -> System.out.println(\"Completed creating the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public Mono<Response<ShareFileAsyncClient>> createFileWithResponse(String fileName, long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata, ShareRequestConditions requestConditions)"
     parameters:
@@ -268,7 +271,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createSubdirectory*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a subdirectory under current directory with specific name and returns a response of ShareDirectoryAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the sub directory \"subdir\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createSubdirectory\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates a subdirectory under current directory with specific name and returns a response of ShareDirectoryAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the sub directory \"subdir\"\n\n```java\nshareDirectoryAsyncClient.createSubdirectory(\"subdir\")\n     .doOnSuccess(response -> System.out.println(\"Completed creating the subdirectory.\"));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public Mono<ShareDirectoryAsyncClient> createSubdirectory(String subdirectoryName)"
     parameters:
@@ -289,7 +292,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createSubdirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a subdirectory under current directory with specific name , metadata and returns a response of ShareDirectoryAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the subdirectory named \"subdir\", with metadata\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createSubdirectoryWithResponse\\#String-FileSmbProperties-String-Map\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates a subdirectory under current directory with specific name , metadata and returns a response of ShareDirectoryAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the subdirectory named \"subdir\", with metadata\n\n```java\nFileSmbProperties smbProperties = new FileSmbProperties();\n String filePermission = \"filePermission\";\n Map<String, String> metadata = Collections.singletonMap(\"directory\", \"metadata\");\n shareDirectoryAsyncClient.createSubdirectoryWithResponse(\"subdir\", smbProperties, filePermission, metadata).subscribe(\n     response ->\n         System.out.println(\"Successfully creating the subdirectory with status code: \"\n             + response.getStatusCode()),\n     error -> System.err.println(error.toString())\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public Mono<Response<ShareDirectoryAsyncClient>> createSubdirectoryWithResponse(String subdirectoryName, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata)"
     parameters:
@@ -345,7 +348,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a directory in the file share and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.createWithResponse\\#FileSmbProperties-String-Map\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates a directory in the file share and returns a response of ShareDirectoryInfo to interact with it.\n\n**Code Samples**\n\nCreate the directory\n\n```java\nFileSmbProperties smbProperties = new FileSmbProperties();\n String filePermission = \"filePermission\";\n Map<String, String> metadata = Collections.singletonMap(\"directory\", \"metadata\");\n shareDirectoryAsyncClient.createWithResponse(smbProperties, filePermission, metadata).subscribe(\n     response ->\n         System.out.println(\"Completed creating the directory with status code:\" + response.getStatusCode()),\n     error -> System.err.print(error.toString())\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public Mono<Response<ShareDirectoryInfo>> createWithResponse(FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata)"
     parameters:
@@ -396,7 +399,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.delete*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the directory in the file share.\n\n**Code Samples**\n\nDelete the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.delete\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the directory in the file share.\n\n**Code Samples**\n\nDelete the directory\n\n```java\nshareDirectoryAsyncClient.delete().subscribe(\n     response -> {\n     },\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public Mono<Void> delete()"
     return:
@@ -413,7 +416,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFile*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFile\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n```java\nshareDirectoryAsyncClient.deleteFile(\"myfile\").subscribe(\n     response -> {\n     },\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public Mono<Void> deleteFile(String fileName)"
     parameters:
@@ -434,7 +437,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFileWithResponse\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n```java\nshareDirectoryAsyncClient.deleteFileWithResponse(\"myfile\").subscribe(\n     response -> System.out.printf(\"Delete file completed with status code %d\", response.getStatusCode()),\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public Mono<Response<Void>> deleteFileWithResponse(String fileName)"
     parameters:
@@ -455,7 +458,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteFileWithResponse\\#string-ShareRequestConditions\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the file with specific name in this directory.\n\n**Code Samples**\n\nDelete the file \"filetest\"\n\n```java\nShareRequestConditions requestConditions = new ShareRequestConditions().setLeaseId(leaseId);\n shareDirectoryAsyncClient.deleteFileWithResponse(\"myfile\", requestConditions).subscribe(\n     response -> System.out.printf(\"Delete file completed with status code %d\", response.getStatusCode()),\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the file.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public Mono<Response<Void>> deleteFileWithResponse(String fileName, ShareRequestConditions requestConditions)"
     parameters:
@@ -501,7 +504,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteSubdirectory*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the subdirectory with specific name in this directory.\n\n**Code Samples**\n\nDelete the subdirectory named \"subdir\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteSubdirectory\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the subdirectory with specific name in this directory.\n\n**Code Samples**\n\nDelete the subdirectory named \"subdir\"\n\n```java\nshareDirectoryAsyncClient.deleteSubdirectory(\"mysubdirectory\").subscribe(\n     response -> {\n     },\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the subdirectory.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public Mono<Void> deleteSubdirectory(String subdirectoryName)"
     parameters:
@@ -522,7 +525,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteSubdirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the subdirectory with specific name in this directory.\n\n**Code Samples**\n\nDelete the subdirectory named \"subdir\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteSubdirectoryWithResponse\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the subdirectory with specific name in this directory.\n\n**Code Samples**\n\nDelete the subdirectory named \"subdir\"\n\n```java\nshareDirectoryAsyncClient.deleteSubdirectoryWithResponse(\"mysubdirectory\").subscribe(\n     response -> System.out.printf(\"Delete subdirectory completed with status code %d\",\n         response.getStatusCode()),\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed deleting the subdirectory.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public Mono<Response<Void>> deleteSubdirectoryWithResponse(String subdirectoryName)"
     parameters:
@@ -563,7 +566,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the directory in the file share.\n\n**Code Samples**\n\nDelete the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.deleteWithResponse\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the directory in the file share.\n\n**Code Samples**\n\nDelete the directory\n\n```java\nshareDirectoryAsyncClient.deleteWithResponse().subscribe(\n     response -> System.out.printf(\"Delete completed with status code %d\", response.getStatusCode()),\n     error -> System.err.println(error.toString())\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public Mono<Response<Void>> deleteWithResponse()"
     return:
@@ -587,6 +590,58 @@ items:
       type: "com.azure.core.util.Context"
     return:
       type: "reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>"
+- uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists()"
+  id: "exists()"
+  parent: "com.azure.storage.file.share.ShareDirectoryAsyncClient"
+  langs:
+  - "java"
+  name: "exists()"
+  nameWithType: "ShareDirectoryAsyncClient.exists()"
+  fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists()"
+  overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists*"
+  type: "Method"
+  package: "com.azure.storage.file.share"
+  summary: "Determines if the directory this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nclient.exists().subscribe(response -> System.out.printf(\"Exists? %b%n\", response));\n```"
+  syntax:
+    content: "public Mono<Boolean> exists()"
+    return:
+      type: "reactor.core.publisher.Mono<java.lang.Boolean>"
+      description: "Flag indicating existence of the directory."
+- uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse()"
+  id: "existsWithResponse()"
+  parent: "com.azure.storage.file.share.ShareDirectoryAsyncClient"
+  langs:
+  - "java"
+  name: "existsWithResponse()"
+  nameWithType: "ShareDirectoryAsyncClient.existsWithResponse()"
+  fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse()"
+  overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse*"
+  type: "Method"
+  package: "com.azure.storage.file.share"
+  summary: "Determines if the directory this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nclient.existsWithResponse().subscribe(response -> System.out.printf(\"Exists? %b%n\", response.getValue()));\n```"
+  syntax:
+    content: "public Mono<Response<Boolean>> existsWithResponse()"
+    return:
+      type: "reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Boolean>>"
+      description: "Flag indicating existence of the directory."
+- uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse(com.azure.core.util.Context)"
+  id: "existsWithResponse(com.azure.core.util.Context)"
+  parent: "com.azure.storage.file.share.ShareDirectoryAsyncClient"
+  langs:
+  - "java"
+  name: "existsWithResponse(Context context)"
+  nameWithType: "ShareDirectoryAsyncClient.existsWithResponse(Context context)"
+  fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse(Context context)"
+  overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse*"
+  type: "Method"
+  package: "com.azure.storage.file.share"
+  syntax:
+    content: " Mono<Response<Boolean>> existsWithResponse(Context context)"
+    parameters:
+    - id: "context"
+      type: "com.azure.core.util.Context"
+    return:
+      type: "reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Boolean>>"
 - uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseAllHandles(boolean)"
   id: "forceCloseAllHandles(boolean)"
   parent: "com.azure.storage.file.share.ShareDirectoryAsyncClient"
@@ -598,7 +653,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseAllHandles*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Closes all handles opened on the directory at the service.\n\n**Code Samples**\n\nForce close all handles recursively.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseAllHandles\\#boolean\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
+  summary: "Closes all handles opened on the directory at the service.\n\n**Code Samples**\n\nForce close all handles recursively.\n\n```java\nshareDirectoryAsyncClient.forceCloseAllHandles(true).subscribe(closeHandlesInfo ->\n     System.out.printf(\"Closed %d open handles on the directory%nFailed to close %d open handles on the \"\n         + \"directory%n\", closeHandlesInfo.getClosedHandles(), closeHandlesInfo.getFailedHandles()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
   syntax:
     content: "public Mono<CloseHandlesInfo> forceCloseAllHandles(boolean recursive)"
     parameters:
@@ -641,7 +696,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseHandle*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Closes a handle on the directory. This is intended to be used alongside <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles(java.lang.Integer,boolean)\" data-throw-if-not-resolved=\"false\">#listHandles(Integer, boolean)</xref>.\n\n**Code Samples**\n\nForce close handles returned by list handles.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseHandle\\#String\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
+  summary: "Closes a handle on the directory. This is intended to be used alongside <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles(java.lang.Integer,boolean)\" data-throw-if-not-resolved=\"false\">#listHandles(Integer, boolean)</xref>.\n\n**Code Samples**\n\nForce close handles returned by list handles.\n\n```java\nshareDirectoryAsyncClient.listHandles(null, true).subscribe(handleItem ->\n     shareDirectoryAsyncClient.forceCloseHandle(handleItem.getHandleId()).subscribe(ignored ->\n         System.out.printf(\"Closed handle %s on resource %s%n\",\n             handleItem.getHandleId(), handleItem.getPath())));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
   syntax:
     content: "public Mono<CloseHandlesInfo> forceCloseHandle(String handleId)"
     parameters:
@@ -662,7 +717,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseHandleWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Closes a handle on the directory. This is intended to be used alongside <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles(java.lang.Integer,boolean)\" data-throw-if-not-resolved=\"false\">#listHandles(Integer, boolean)</xref>.\n\n**Code Samples**\n\nForce close handles returned by list handles.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.forceCloseHandleWithResponse\\#String\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
+  summary: "Closes a handle on the directory. This is intended to be used alongside <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles(java.lang.Integer,boolean)\" data-throw-if-not-resolved=\"false\">#listHandles(Integer, boolean)</xref>.\n\n**Code Samples**\n\nForce close handles returned by list handles.\n\n```java\nshareDirectoryAsyncClient.listHandles(null, true).subscribe(handleItem ->\n     shareDirectoryAsyncClient.forceCloseHandleWithResponse(handleItem.getHandleId()).subscribe(response ->\n         System.out.printf(\"Closing handle %s on resource %s completed with status code %d%n\",\n             handleItem.getHandleId(), handleItem.getPath(), response.getStatusCode())));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/force-close-handles"
   syntax:
     content: "public Mono<Response<CloseHandlesInfo>> forceCloseHandleWithResponse(String handleId)"
     parameters:
@@ -703,7 +758,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.generateSas*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Generates a service SAS for the directory using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.generateSas\\#ShareServiceSasSignatureValues\\}"
+  summary: "Generates a service SAS for the directory using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);\n ShareFileSasPermission permission = new ShareFileSasPermission().setReadPermission(true);\n \n ShareServiceSasSignatureValues values = new ShareServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n shareDirectoryAsyncClient.generateSas(values); // Client must be authenticated via StorageSharedKeyCredential\n```"
   syntax:
     content: "public String generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues)"
     parameters:
@@ -741,7 +796,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getDirectoryPath*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Get directory path of the client.\n\nGet directory path.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.getDirectoryPath\\}"
+  summary: "Get directory path of the client.\n\nGet directory path.\n\n```java\nString directoryPath = shareDirectoryAsyncClient.getDirectoryPath();\n System.out.println(\"The name of the directory is \" + directoryPath);\n```"
   syntax:
     content: "public String getDirectoryPath()"
     return:
@@ -813,7 +868,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves the properties of this directory. The properties includes directory metadata, last modified date, is server encrypted, and eTag.\n\n**Code Samples**\n\nRetrieve directory properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.getProperties\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-directory-properties"
+  summary: "Retrieves the properties of this directory. The properties includes directory metadata, last modified date, is server encrypted, and eTag.\n\n**Code Samples**\n\nRetrieve directory properties\n\n```java\nshareDirectoryAsyncClient.getProperties().subscribe(properties -> {\n     System.out.printf(\"Directory latest modified date is %s.\", properties.getLastModified());\n });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-directory-properties"
   syntax:
     content: "public Mono<ShareDirectoryProperties> getProperties()"
     return:
@@ -830,7 +885,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves the properties of this directory. The properties includes directory metadata, last modified date, is server encrypted, and eTag.\n\n**Code Samples**\n\nRetrieve directory properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.getPropertiesWithResponse\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-directory-properties"
+  summary: "Retrieves the properties of this directory. The properties includes directory metadata, last modified date, is server encrypted, and eTag.\n\n**Code Samples**\n\nRetrieve directory properties\n\n```java\nshareDirectoryAsyncClient.getPropertiesWithResponse().subscribe(properties -> {\n     System.out.printf(\"Directory latest modified date is %s:\", properties.getValue().getLastModified());\n });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-directory-properties"
   syntax:
     content: "public Mono<Response<ShareDirectoryProperties>> getPropertiesWithResponse()"
     return:
@@ -882,7 +937,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getShareName*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Get the share name of directory client.\n\nGet the share name.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.getShareName\\}"
+  summary: "Get the share name of directory client.\n\nGet the share name.\n\n```java\nString shareName = shareDirectoryAsyncClient.getShareName();\n System.out.println(\"The share name of the directory is \" + shareName);\n```"
   syntax:
     content: "public String getShareName()"
     return:
@@ -899,7 +954,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getShareSnapshotId*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Get snapshot id which attached to <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient\" data-throw-if-not-resolved=\"false\">ShareDirectoryAsyncClient</xref>. Return `null` if no snapshot id attached.\n\n**Code Samples**\n\nGet the share snapshot id.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.getShareSnapshotId\\}"
+  summary: "Get snapshot id which attached to <xref uid=\"com.azure.storage.file.share.ShareDirectoryAsyncClient\" data-throw-if-not-resolved=\"false\">ShareDirectoryAsyncClient</xref>. Return `null` if no snapshot id attached.\n\n**Code Samples**\n\nGet the share snapshot id.\n\n```java\nOffsetDateTime currentTime = OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC);\n ShareDirectoryAsyncClient shareDirectoryAsyncClient = new ShareFileClientBuilder()\n     .endpoint(\"https://${accountName}.file.core.windows.net\")\n     .sasToken(\"${SASToken}\")\n     .shareName(\"myshare\")\n     .resourcePath(\"mydirectory\")\n     .snapshot(currentTime.toString())\n     .buildDirectoryAsyncClient();\n \n System.out.printf(\"Snapshot ID: %s%n\", shareDirectoryAsyncClient.getShareSnapshotId());\n```"
   syntax:
     content: "public String getShareSnapshotId()"
     return:
@@ -937,7 +992,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.listFilesAndDirectories*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Lists all sub-directories and files in this directory without their prefix or maxResults in single page.\n\n**Code Samples**\n\nList all sub-directories and files in the account\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.listFilesAndDirectories\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-directories-and-files"
+  summary: "Lists all sub-directories and files in this directory without their prefix or maxResults in single page.\n\n**Code Samples**\n\nList all sub-directories and files in the account\n\n```java\nshareDirectoryAsyncClient.listFilesAndDirectories().subscribe(\n     fileRef -> System.out.printf(\"Is the resource a directory? %b. The resource name is: %s.\",\n         fileRef.isDirectory(), fileRef.getName()),\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed listing the directories and files.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-directories-and-files"
   syntax:
     content: "public PagedFlux<ShareFileItem> listFilesAndDirectories()"
     return:
@@ -954,7 +1009,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.listFilesAndDirectories*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Lists all sub-directories and files in this directory with their prefix or snapshots.\n\n**Code Samples**\n\nList all sub-directories with \"subdir\" prefix and return 10 results in the account\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.listFilesAndDirectories\\#string-integer\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-directories-and-files"
+  summary: "Lists all sub-directories and files in this directory with their prefix or snapshots.\n\n**Code Samples**\n\nList all sub-directories with \"subdir\" prefix and return 10 results in the account\n\n```java\nshareDirectoryAsyncClient.listFilesAndDirectories(\"subdir\", 10).subscribe(\n     fileRef -> System.out.printf(\"Is the resource a directory? %b. The resource name is: %s.\",\n         fileRef.isDirectory(), fileRef.getName()),\n     error -> System.err.println(error.toString()),\n     () -> System.out.println(\"Completed listing the directories and files.\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-directories-and-files"
   syntax:
     content: "public PagedFlux<ShareFileItem> listFilesAndDirectories(String prefix, Integer maxResultsPerPage)"
     parameters:
@@ -1002,7 +1057,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "List of open handles on a directory or a file.\n\n**Code Samples**\n\nGet 10 handles with recursive call.\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.listHandles\\#integer-boolean\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-handles"
+  summary: "List of open handles on a directory or a file.\n\n**Code Samples**\n\nGet 10 handles with recursive call.\n\n```java\nshareDirectoryAsyncClient.listHandles(10, true)\n     .subscribe(handleItem -> System.out.printf(\"Get handles completed with handle id %s\",\n         handleItem.getHandleId()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-handles"
   syntax:
     content: "public PagedFlux<HandleItem> listHandles(Integer maxResultPerPage, boolean recursive)"
     parameters:
@@ -1050,7 +1105,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadata*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the user-defined metadata to associate to the directory.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the directory.\n\n**Code Samples**\n\nSet the metadata to \"directory:updatedMetadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadata\\#map\\}\n\nClear the metadata of the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadata\\#map.clearMetadata\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-metadata"
+  summary: "Sets the user-defined metadata to associate to the directory.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the directory.\n\n**Code Samples**\n\nSet the metadata to \"directory:updatedMetadata\"\n\n```java\nshareDirectoryAsyncClient.setMetadata(Collections.singletonMap(\"directory\", \"updatedMetadata\"))\n     .subscribe(response -> System.out.println(\"Setting the directory metadata completed.\"));\n```\n\nClear the metadata of the directory\n\n```java\nshareDirectoryAsyncClient.setMetadata(null)\n     .doOnSuccess(response -> System.out.println(\"Clearing the directory metadata completed\"));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-metadata"
   syntax:
     content: "public Mono<ShareDirectorySetMetadataInfo> setMetadata(Map<String,String> metadata)"
     parameters:
@@ -1071,7 +1126,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadataWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the user-defined metadata to associate to the directory.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the directory.\n\n**Code Samples**\n\nSet the metadata to \"directory:updatedMetadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadataWithResponse\\#map\\}\n\nClear the metadata of the directory\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setMetadataWithResponse\\#map.clearMetadata\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-metadata"
+  summary: "Sets the user-defined metadata to associate to the directory.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the directory.\n\n**Code Samples**\n\nSet the metadata to \"directory:updatedMetadata\"\n\n```java\nshareDirectoryAsyncClient.setMetadataWithResponse(Collections.singletonMap(\"directory\", \"updatedMetadata\"))\n     .subscribe(response -> System.out.println(\"Setting the directory metadata completed with status code:\"\n         + response.getStatusCode()));\n```\n\nClear the metadata of the directory\n\n```java\nshareDirectoryAsyncClient.setMetadataWithResponse(null).subscribe(\n     response -> System.out.printf(\"Clearing the directory metadata completed with status code %d\",\n         response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-metadata"
   syntax:
     content: "public Mono<Response<ShareDirectorySetMetadataInfo>> setMetadataWithResponse(Map<String,String> metadata)"
     parameters:
@@ -1112,7 +1167,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.setProperties*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the properties of this directory. The properties include the file SMB properties and the file permission.\n\n**Code Samples**\n\nSet directory properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setProperties\\#FileSmbProperties-String\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-properties"
+  summary: "Sets the properties of this directory. The properties include the file SMB properties and the file permission.\n\n**Code Samples**\n\nSet directory properties\n\n```java\nFileSmbProperties smbProperties = new FileSmbProperties();\n String filePermission = \"filePermission\";\n shareDirectoryAsyncClient.setProperties(smbProperties, filePermission).subscribe(properties -> {\n     System.out.printf(\"Directory latest modified date is %s:\", properties.getLastModified());\n });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-properties"
   syntax:
     content: "public Mono<ShareDirectoryInfo> setProperties(FileSmbProperties smbProperties, String filePermission)"
     parameters:
@@ -1136,7 +1191,7 @@ items:
   overload: "com.azure.storage.file.share.ShareDirectoryAsyncClient.setPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the properties of this directory. The properties include the file SMB properties and the file permission.\n\n**Code Samples**\n\nSet directory properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareDirectoryAsyncClient.setPropertiesWithResponse\\#FileSmbProperties-String\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-properties"
+  summary: "Sets the properties of this directory. The properties include the file SMB properties and the file permission.\n\n**Code Samples**\n\nSet directory properties\n\n```java\nFileSmbProperties smbProperties = new FileSmbProperties();\n String filePermission = \"filePermission\";\n shareDirectoryAsyncClient.setPropertiesWithResponse(smbProperties, filePermission).subscribe(properties -> {\n     System.out.printf(\"Directory latest modified date is %s:\", properties.getValue().getLastModified());\n });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-directory-properties"
   syntax:
     content: "public Mono<Response<ShareDirectoryInfo>> setPropertiesWithResponse(FileSmbProperties smbProperties, String filePermission)"
     parameters:
@@ -1214,6 +1269,52 @@ references:
   nameWithType: "ShareDirectoryAsyncClient.getSubdirectoryClient"
   fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.getSubdirectoryClient"
   package: "com.azure.storage.file.share"
+- uid: "reactor.core.publisher.Mono<java.lang.Boolean>"
+  spec.java:
+  - uid: "reactor.core.publisher.Mono"
+    name: "Mono"
+    fullName: "reactor.core.publisher.Mono"
+  - name: "<"
+    fullName: "<"
+  - uid: "java.lang.Boolean"
+    name: "Boolean"
+    fullName: "java.lang.Boolean"
+  - name: ">"
+    fullName: ">"
+- uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists*"
+  name: "exists"
+  nameWithType: "ShareDirectoryAsyncClient.exists"
+  fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.exists"
+  package: "com.azure.storage.file.share"
+- uid: "reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Boolean>>"
+  spec.java:
+  - uid: "reactor.core.publisher.Mono"
+    name: "Mono"
+    fullName: "reactor.core.publisher.Mono"
+  - name: "<"
+    fullName: "<"
+  - uid: "com.azure.core.http.rest.Response"
+    name: "Response"
+    fullName: "com.azure.core.http.rest.Response"
+  - name: "<"
+    fullName: "<"
+  - uid: "java.lang.Boolean"
+    name: "Boolean"
+    fullName: "java.lang.Boolean"
+  - name: ">"
+    fullName: ">"
+  - name: ">"
+    fullName: ">"
+- uid: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse*"
+  name: "existsWithResponse"
+  nameWithType: "ShareDirectoryAsyncClient.existsWithResponse"
+  fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.existsWithResponse"
+  package: "com.azure.storage.file.share"
+- uid: "com.azure.core.util.Context"
+  spec.java:
+  - uid: "com.azure.core.util.Context"
+    name: "Context"
+    fullName: "com.azure.core.util.Context"
 - uid: "reactor.core.publisher.Mono<com.azure.storage.file.share.models.ShareDirectoryInfo>"
   spec.java:
   - uid: "reactor.core.publisher.Mono"
@@ -1276,11 +1377,6 @@ references:
   nameWithType: "ShareDirectoryAsyncClient.createWithResponse"
   fullName: "com.azure.storage.file.share.ShareDirectoryAsyncClient.createWithResponse"
   package: "com.azure.storage.file.share"
-- uid: "com.azure.core.util.Context"
-  spec.java:
-  - uid: "com.azure.core.util.Context"
-    name: "Context"
-    fullName: "com.azure.core.util.Context"
 - uid: "reactor.core.publisher.Mono<java.lang.Void>"
   spec.java:
   - uid: "reactor.core.publisher.Mono"
@@ -1734,14 +1830,22 @@ references:
   name: "Object.toString()"
   nameWithType: "Object.toString()"
   fullName: "java.lang.Object.toString()"
-- uid: "com.azure.storage.file.share.models.ShareDirectoryInfo"
-  name: "ShareDirectoryInfo"
-  nameWithType: "ShareDirectoryInfo"
-  fullName: "com.azure.storage.file.share.models.ShareDirectoryInfo"
+- uid: "java.lang.Boolean"
+  name: "Boolean"
+  nameWithType: "Boolean"
+  fullName: "java.lang.Boolean"
 - uid: "reactor.core.publisher.Mono"
   name: "Mono"
   nameWithType: "Mono"
   fullName: "reactor.core.publisher.Mono"
+- uid: "com.azure.core.http.rest.Response"
+  name: "Response"
+  nameWithType: "Response"
+  fullName: "com.azure.core.http.rest.Response"
+- uid: "com.azure.storage.file.share.models.ShareDirectoryInfo"
+  name: "ShareDirectoryInfo"
+  nameWithType: "ShareDirectoryInfo"
+  fullName: "com.azure.storage.file.share.models.ShareDirectoryInfo"
 - uid: "java.util.Map"
   name: "Map"
   nameWithType: "Map"
@@ -1750,10 +1854,6 @@ references:
   name: "String,String"
   nameWithType: "String,String"
   fullName: "java.lang.String,java.lang.String"
-- uid: "com.azure.core.http.rest.Response"
-  name: "Response"
-  nameWithType: "Response"
-  fullName: "com.azure.core.http.rest.Response"
 - uid: "java.lang.Void"
   name: "Void"
   nameWithType: "Void"

@@ -63,7 +63,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.deleteBlobs*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Delete multiple blobs in a single request to the service.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.deleteBlobs\\#List-DeleteSnapshotsOptionType\\}"
+  summary: "Delete multiple blobs in a single request to the service.\n\n**Code samples**\n\n```java\nList<String> blobUrls = new ArrayList<>();\n blobUrls.add(blobClient1.getBlobUrl());\n blobUrls.add(blobClient2.getBlobUrl());\n blobUrls.add(blobClient3.getBlobUrl());\n \n try {\n     batchClient.deleteBlobs(blobUrls, DeleteSnapshotsOptionType.INCLUDE).forEach(response ->\n         System.out.printf(\"Deleting blob with URL %s completed with status code %d%n\",\n             response.getRequest().getUrl(), response.getStatusCode()));\n } catch (Throwable error) {\n     System.err.printf(\"Deleting blob failed with exception: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public PagedIterable<Response<Void>> deleteBlobs(List<String> blobUrls, DeleteSnapshotsOptionType deleteOptions)"
     parameters:
@@ -87,7 +87,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.deleteBlobs*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Delete multiple blobs in a single request to the service.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.deleteBlobs\\#List-DeleteSnapshotsOptionType-Duration-Context\\}"
+  summary: "Delete multiple blobs in a single request to the service.\n\n**Code samples**\n\n```java\nList<String> blobUrls = new ArrayList<>();\n blobUrls.add(blobClient1.getBlobUrl());\n blobUrls.add(blobClient2.getBlobUrl());\n blobUrls.add(blobClient3.getBlobUrl());\n \n try {\n     batchClient.deleteBlobs(blobUrls, DeleteSnapshotsOptionType.INCLUDE, timeout, Context.NONE)\n         .forEach(response -> System.out.printf(\"Deleting blob with URL %s completed with status code %d%n\",\n             response.getRequest().getUrl(), response.getStatusCode()));\n } catch (Throwable error) {\n     System.err.printf(\"Deleting blob failed with exception: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public PagedIterable<Response<Void>> deleteBlobs(List<String> blobUrls, DeleteSnapshotsOptionType deleteOptions, Duration timeout, Context context)"
     parameters:
@@ -134,7 +134,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.setBlobsAccessTier*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Set access tier on multiple blobs in a single request to the service.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.setBlobsAccessTier\\#List-AccessTier\\}"
+  summary: "Set access tier on multiple blobs in a single request to the service.\n\n**Code samples**\n\n```java\nList<String> blobUrls = new ArrayList<>();\n blobUrls.add(blobClient1.getBlobUrl());\n blobUrls.add(blobClient2.getBlobUrl());\n blobUrls.add(blobClient3.getBlobUrl());\n \n try {\n     batchClient.setBlobsAccessTier(blobUrls, AccessTier.HOT).forEach(response ->\n         System.out.printf(\"Setting blob access tier with URL %s completed with status code %d%n\",\n             response.getRequest().getUrl(), response.getStatusCode()));\n } catch (Throwable error) {\n     System.err.printf(\"Setting blob access tier failed with exception: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public PagedIterable<Response<Void>> setBlobsAccessTier(List<String> blobUrls, AccessTier accessTier)"
     parameters:
@@ -158,7 +158,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.setBlobsAccessTier*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Set access tier on multiple blobs in a single request to the service.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.setBlobsAccessTier\\#List-AccessTier-Duration-Context\\}"
+  summary: "Set access tier on multiple blobs in a single request to the service.\n\n**Code samples**\n\n```java\nList<String> blobUrls = new ArrayList<>();\n blobUrls.add(blobClient1.getBlobUrl());\n blobUrls.add(blobClient2.getBlobUrl());\n blobUrls.add(blobClient3.getBlobUrl());\n \n try {\n     batchClient.setBlobsAccessTier(blobUrls, AccessTier.HOT, timeout, Context.NONE).forEach(response ->\n         System.out.printf(\"Setting blob access tier with URL %s completed with status code %d%n\",\n             response.getRequest().getUrl(), response.getStatusCode()));\n } catch (Throwable error) {\n     System.err.printf(\"Setting blob access tier failed with exception: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public PagedIterable<Response<Void>> setBlobsAccessTier(List<String> blobUrls, AccessTier accessTier, Duration timeout, Context context)"
     parameters:
@@ -188,7 +188,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.submitBatch*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Submits a batch operation.\n\nIf any request in a batch fails this will throw a <xref uid=\"com.azure.storage.blob.models.BlobStorageException\" data-throw-if-not-resolved=\"false\">BlobStorageException</xref>.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.submitBatch\\#BlobBatch\\}"
+  summary: "Submits a batch operation.\n\nIf any request in a batch fails this will throw a <xref uid=\"com.azure.storage.blob.models.BlobStorageException\" data-throw-if-not-resolved=\"false\">BlobStorageException</xref>.\n\n**Code samples**\n\n```java\nBlobBatch batch = batchClient.getBlobBatch();\n \n Response<Void> deleteResponse1 = batch.deleteBlob(\"container\", \"blob1\");\n Response<Void> deleteResponse2 = batch.deleteBlob(\"container\", \"blob2\", DeleteSnapshotsOptionType.INCLUDE,\n     new BlobRequestConditions().setLeaseId(\"leaseId\"));\n \n try {\n     batchClient.submitBatch(batch);\n     System.out.println(\"Batch submission completed successfully.\");\n     System.out.printf(\"Delete operation 1 completed with status code: %d%n\", deleteResponse1.getStatusCode());\n     System.out.printf(\"Delete operation 2 completed with status code: %d%n\", deleteResponse2.getStatusCode());\n } catch (BlobStorageException error) {\n     System.err.printf(\"Batch submission failed. Error message: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public void submitBatch(BlobBatch batch)"
     parameters:
@@ -206,7 +206,7 @@ items:
   overload: "com.azure.storage.blob.batch.BlobBatchClient.submitBatchWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.batch"
-  summary: "Submits a batch operation.\n\nIf `throwOnAnyFailure` is `true` a <xref uid=\"com.azure.storage.blob.models.BlobStorageException\" data-throw-if-not-resolved=\"false\">BlobStorageException</xref> will be thrown if any request fails.\n\n**Code samples**\n\n\\{@codesnippet com.azure.storage.blob.batch.BlobBatchClient.submitBatch\\#BlobBatch-boolean-Duration-Context\\}"
+  summary: "Submits a batch operation.\n\nIf `throwOnAnyFailure` is `true` a <xref uid=\"com.azure.storage.blob.models.BlobStorageException\" data-throw-if-not-resolved=\"false\">BlobStorageException</xref> will be thrown if any request fails.\n\n**Code samples**\n\n```java\nBlobBatch batch = batchClient.getBlobBatch();\n \n Response<Void> deleteResponse1 = batch.deleteBlob(\"container\", \"blob1\");\n Response<Void> deleteResponse2 = batch.deleteBlob(\"container\", \"blob2\", DeleteSnapshotsOptionType.INCLUDE,\n     new BlobRequestConditions().setLeaseId(\"leaseId\"));\n \n try {\n     System.out.printf(\"Batch submission completed with status code: %d%n\",\n         batchClient.submitBatchWithResponse(batch, true, timeout, Context.NONE).getStatusCode());\n     System.out.printf(\"Delete operation 1 completed with status code: %d%n\", deleteResponse1.getStatusCode());\n     System.out.printf(\"Delete operation 2 completed with status code: %d%n\", deleteResponse2.getStatusCode());\n } catch (BlobStorageException error) {\n     System.err.printf(\"Batch submission failed. Error message: %s%n\", error.getMessage());\n }\n```"
   syntax:
     content: "public Response<Void> submitBatchWithResponse(BlobBatch batch, boolean throwOnAnyFailure, Duration timeout, Context context)"
     parameters:

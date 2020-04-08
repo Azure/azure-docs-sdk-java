@@ -36,7 +36,7 @@ items:
   fullName: "com.azure.storage.queue.QueueServiceAsyncClient"
   type: "Class"
   package: "com.azure.storage.queue"
-  summary: "This class provides a client that contains all the operations for interacting with a queue account in Azure Storage. Operations allowed by the client are creating, listing, and deleting queues, retrieving and updating properties of the account, and retrieving statistics of the account.\n\n**Instantiating an Asynchronous Queue Service Client**\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.instantiation\\}\n\nView <xref uid=\"com.azure.storage.queue.QueueServiceClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
+  summary: "This class provides a client that contains all the operations for interacting with a queue account in Azure Storage. Operations allowed by the client are creating, listing, and deleting queues, retrieving and updating properties of the account, and retrieving statistics of the account.\n\n**Instantiating an Asynchronous Queue Service Client**\n\n```java\nQueueServiceAsyncClient client = new QueueServiceClientBuilder()\n     .connectionString(\"connectionstring\")\n     .endpoint(\"endpoint\")\n     .buildAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.queue.QueueServiceClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
   syntax:
     content: "public final class QueueServiceAsyncClient"
   inheritance:
@@ -86,7 +86,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.createQueue*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Creates a queue in the storage account with the specified name and returns a QueueAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the queue \"test\"\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.createQueue\\#string\\}"
+  summary: "Creates a queue in the storage account with the specified name and returns a QueueAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the queue \"test\"\n\n```java\nclient.createQueue(\"myqueue\").subscribe(\n     response -> {\n     },\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete creating the queue!\")\n );\n```"
   syntax:
     content: "public Mono<QueueAsyncClient> createQueue(String queueName)"
     parameters:
@@ -107,7 +107,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.createQueueWithResponse*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Creates a queue in the storage account with the specified name and metadata and returns a QueueAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the queue \"test\" with metadata \"queue:metadata\"\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.createQueueWithResponse\\#string-map\\}"
+  summary: "Creates a queue in the storage account with the specified name and metadata and returns a QueueAsyncClient to interact with it.\n\n**Code Samples**\n\nCreate the queue \"test\" with metadata \"queue:metadata\"\n\n```java\nclient.createQueueWithResponse(\"myqueue\", Collections.singletonMap(\"queue\", \"metadata\"))\n     .subscribe(\n         response -> System.out.printf(\"Creating the queue with status code %d\", response.getStatusCode()),\n         error -> System.err.print(error.toString()),\n         () -> System.out.println(\"Complete creating the queue!\")\n     );\n```"
   syntax:
     content: "public Mono<Response<QueueAsyncClient>> createQueueWithResponse(String queueName, Map<String,String> metadata)"
     parameters:
@@ -153,7 +153,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.deleteQueue*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Deletes a queue in the storage account\n\n**Code Samples**\n\nDelete the queue \"test\"\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.deleteQueue\\#string\\}"
+  summary: "Deletes a queue in the storage account\n\n**Code Samples**\n\nDelete the queue \"test\"\n\n```java\nclient.deleteQueue(\"myshare\").subscribe(\n     response -> System.out.println(\"Deleting the queue completed.\")\n );\n```"
   syntax:
     content: "public Mono<Void> deleteQueue(String queueName)"
     parameters:
@@ -174,7 +174,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.deleteQueueWithResponse*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Deletes a queue in the storage account\n\n**Code Samples**\n\nDelete the queue \"test\"\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.deleteQueueWithResponse\\#string\\}"
+  summary: "Deletes a queue in the storage account\n\n**Code Samples**\n\nDelete the queue \"test\"\n\n```java\nclient.deleteQueueWithResponse(\"myshare\").subscribe(\n     response -> System.out.println(\"Deleting the queue completed with status code: \" + response.getStatusCode())\n );\n```"
   syntax:
     content: "public Mono<Response<Void>> deleteQueueWithResponse(String queueName)"
     parameters:
@@ -215,7 +215,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.generateAccountSas*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to queues and file shares.\n\n\\{@codesnippet com.azure.storage.queue.QueueServiceAsyncClient.generateAccountSas\\#AccountSasSignatureValues\\}"
+  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to queues and file shares.\n\n```java\nAccountSasPermission permissions = new AccountSasPermission()\n     .setListPermission(true)\n     .setReadPermission(true);\n AccountSasResourceType resourceTypes = new AccountSasResourceType().setContainer(true).setObject(true);\n AccountSasService services = new AccountSasService().setQueueAccess(true).setFileAccess(true);\n OffsetDateTime expiryTime = OffsetDateTime.now().plus(Duration.ofDays(2));\n \n AccountSasSignatureValues sasValues =\n     new AccountSasSignatureValues(expiryTime, permissions, services, resourceTypes);\n \n // Client must be authenticated via StorageSharedKeyCredential\n String sas = queueServiceAsyncClient.generateAccountSas(sasValues);\n```"
   syntax:
     content: "public String generateAccountSas(AccountSasSignatureValues accountSasSignatureValues)"
     parameters:
@@ -270,7 +270,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Retrieves the properties of the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing).\n\n**Code Samples**\n\nRetrieve Queue service properties\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.getProperties\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties"
+  summary: "Retrieves the properties of the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing).\n\n**Code Samples**\n\nRetrieve Queue service properties\n\n```java\nclient.getProperties()\n     .subscribe(properties -> {\n         System.out.printf(\"Hour metrics enabled: %b, Minute metrics enabled: %b\",\n             properties.getHourMetrics().isEnabled(), properties.getMinuteMetrics().isEnabled());\n     });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties"
   syntax:
     content: "public Mono<QueueServiceProperties> getProperties()"
     return:
@@ -287,7 +287,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Retrieves the properties of the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing).\n\n**Code Samples**\n\nRetrieve Queue service properties\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.getPropertiesWithResponse\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties"
+  summary: "Retrieves the properties of the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing).\n\n**Code Samples**\n\nRetrieve Queue service properties\n\n```java\nclient.getPropertiesWithResponse()\n     .subscribe(response -> {\n         QueueServiceProperties properties = response.getValue();\n         System.out.printf(\"Hour metrics enabled: %b, Minute metrics enabled: %b\",\n             properties.getHourMetrics().isEnabled(), properties.getMinuteMetrics().isEnabled());\n     });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-properties"
   syntax:
     content: "public Mono<Response<QueueServiceProperties>> getPropertiesWithResponse()"
     return:
@@ -376,7 +376,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.getStatistics*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Retrieves the geo replication information about the Queue service.\n\n**Code Samples**\n\nRetrieve the geo replication information\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.getStatistics\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-stats"
+  summary: "Retrieves the geo replication information about the Queue service.\n\n**Code Samples**\n\nRetrieve the geo replication information\n\n```java\nclient.getStatistics()\n     .subscribe(stats -> {\n         System.out.printf(\"Geo replication status: %s, Last synced: %s\",\n             stats.getGeoReplication().getStatus(), stats.getGeoReplication().getLastSyncTime());\n     });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-stats"
   syntax:
     content: "public Mono<QueueServiceStatistics> getStatistics()"
     return:
@@ -393,7 +393,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.getStatisticsWithResponse*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Retrieves the geo replication information about the Queue service.\n\n**Code Samples**\n\nRetrieve the geo replication information\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.getStatisticsWithResponse\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-stats"
+  summary: "Retrieves the geo replication information about the Queue service.\n\n**Code Samples**\n\nRetrieve the geo replication information\n\n```java\nclient.getStatisticsWithResponse()\n     .subscribe(response -> {\n         QueueServiceStatistics stats = response.getValue();\n         System.out.printf(\"Geo replication status: %s, Last synced: %s\",\n             stats.getGeoReplication().getStatus(), stats.getGeoReplication().getLastSyncTime());\n     });\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-queue-service-stats"
   syntax:
     content: "public Mono<Response<QueueServiceStatistics>> getStatisticsWithResponse()"
     return:
@@ -428,7 +428,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.listQueues*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Lists all queues in the storage account without their metadata.\n\n**Code Samples**\n\nList all queues in the account\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.listQueues\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1"
+  summary: "Lists all queues in the storage account without their metadata.\n\n**Code Samples**\n\nList all queues in the account\n\n```java\nclient.listQueues().subscribe(\n     queueItem -> System.out.printf(\"Queue %s exists in the account\", queueItem.getName()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete listing the queues!\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1"
   syntax:
     content: "public PagedFlux<QueueItem> listQueues()"
     return:
@@ -445,7 +445,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.listQueues*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Lists the queues in the storage account that pass the filter. Pass true to <xref uid=\"com.azure.storage.queue.models.QueuesSegmentOptions.setIncludeMetadata(boolean)\" data-throw-if-not-resolved=\"false\">includeMetadata</xref> to have metadata returned for the queues.\n\n**Code Samples**\n\nList all queues that begin with \"azure\"\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.listQueues\\#queueSergmentOptions\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1"
+  summary: "Lists the queues in the storage account that pass the filter. Pass true to <xref uid=\"com.azure.storage.queue.models.QueuesSegmentOptions.setIncludeMetadata(boolean)\" data-throw-if-not-resolved=\"false\">includeMetadata</xref> to have metadata returned for the queues.\n\n**Code Samples**\n\nList all queues that begin with \"azure\"\n\n```java\nclient.listQueues(new QueuesSegmentOptions().setPrefix(\"azure\")).subscribe(\n     queueItem -> System.out.printf(\"Queue %s exists in the account and has metadata %s\",\n         queueItem.getName(), queueItem.getMetadata()),\n     error -> System.err.print(error.toString()),\n     () -> System.out.println(\"Complete listing the queues!\")\n );\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/list-queues1"
   syntax:
     content: "public PagedFlux<QueueItem> listQueues(QueuesSegmentOptions options)"
     parameters:
@@ -496,7 +496,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.setProperties*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Sets the properties for the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing). To maintain the CORS in the Queue service pass a `null` value for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>. To disable all CORS in the Queue service pass an empty list for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>.\n\n**Code Sample**\n\nClear CORS in the Queue service\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.setProperties\\#QueueServiceProperties\\}\n\nEnable Minute and Hour Metrics\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.setPropertiesEnableMetrics\\#QueueServiceProperties\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-queue-service-properties"
+  summary: "Sets the properties for the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing). To maintain the CORS in the Queue service pass a `null` value for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>. To disable all CORS in the Queue service pass an empty list for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>.\n\n**Code Sample**\n\nClear CORS in the Queue service\n\n```java\nQueueServiceProperties properties = client.getProperties().block();\n client.setProperties(properties)\n     .doOnSuccess(response -> System.out.println(\"Setting Queue service properties completed.\"));\n```\n\nEnable Minute and Hour Metrics\n\n```java\nQueueServiceProperties properties = client.getProperties().block();\n properties.getMinuteMetrics().setEnabled(true);\n properties.getHourMetrics().setEnabled(true);\n client.setProperties(properties).subscribe(\n     response -> System.out.println(\"Setting Queue service properties completed.\"));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-queue-service-properties"
   syntax:
     content: "public Mono<Void> setProperties(QueueServiceProperties properties)"
     parameters:
@@ -517,7 +517,7 @@ items:
   overload: "com.azure.storage.queue.QueueServiceAsyncClient.setPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.queue"
-  summary: "Sets the properties for the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing). To maintain the CORS in the Queue service pass a `null` value for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>. To disable all CORS in the Queue service pass an empty list for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>.\n\n**Code Sample**\n\nClear CORS in the Queue service\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.setPropertiesWithResponse\\#QueueServiceProperties\\}\n\nEnable Minute and Hour Metrics\n\n\\{@codesnippet com.azure.storage.queue.queueServiceAsyncClient.setPropertiesWithResponseEnableMetrics\\#QueueServiceProperties\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-queue-service-properties"
+  summary: "Sets the properties for the storage account's Queue service. The properties range from storage analytics and metric to CORS (Cross-Origin Resource Sharing). To maintain the CORS in the Queue service pass a `null` value for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>. To disable all CORS in the Queue service pass an empty list for <xref uid=\"com.azure.storage.queue.models.QueueServiceProperties.getCors()\" data-throw-if-not-resolved=\"false\">CORS</xref>.\n\n**Code Sample**\n\nClear CORS in the Queue service\n\n```java\nQueueServiceProperties properties = client.getProperties().block();\n client.setPropertiesWithResponse(properties)\n     .subscribe(response -> System.out.printf(\"Setting Queue service properties completed with status code %d\",\n         response.getStatusCode()));\n```\n\nEnable Minute and Hour Metrics\n\n```java\nQueueServiceProperties properties = client.getProperties().block();\n properties.getMinuteMetrics().setEnabled(true);\n properties.getHourMetrics().setEnabled(true);\n client.setPropertiesWithResponse(properties)\n     .subscribe(response -> System.out.printf(\"Setting Queue service properties completed with status code %d\",\n         response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-queue-service-properties"
   syntax:
     content: "public Mono<Response<Void>> setPropertiesWithResponse(QueueServiceProperties properties)"
     parameters:

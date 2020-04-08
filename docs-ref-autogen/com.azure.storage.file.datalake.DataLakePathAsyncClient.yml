@@ -31,6 +31,7 @@ items:
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.getProperties()"
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.getPropertiesWithResponse(com.azure.storage.file.datalake.models.DataLakeRequestConditions)"
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.getServiceVersion()"
+  - "com.azure.storage.file.datalake.DataLakePathAsyncClient.pathName"
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.pathResourceType"
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.prepareBuilderReplacePath(java.lang.String,java.lang.String)"
   - "com.azure.storage.file.datalake.DataLakePathAsyncClient.renameWithResponse(java.lang.String,java.lang.String,com.azure.storage.file.datalake.models.DataLakeRequestConditions,com.azure.storage.file.datalake.models.DataLakeRequestConditions,com.azure.core.util.Context)"
@@ -151,7 +152,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.create*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a resource. By default this method will not overwrite an existing path.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.create\\}\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a resource. By default this method will not overwrite an existing path.\n\n**Code Samples**\n\n```java\nclient.create().subscribe(response ->\n     System.out.printf(\"Last Modified Time:%s\", response.getLastModified()));\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Mono<PathInfo> create()"
     return:
@@ -168,7 +169,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.create*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.create\\#boolean\\}\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a resource.\n\n**Code Samples**\n\n```java\nboolean overwrite = true;\n client.create(overwrite).subscribe(response ->\n     System.out.printf(\"Last Modified Time:%s\", response.getLastModified()));\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Mono<PathInfo> create(boolean overwrite)"
     parameters:
@@ -219,7 +220,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.createWithResponse\\#String-String-PathHttpHeaders-Map-DataLakeRequestConditions\\}\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a resource.\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n String permissions = \"permissions\";\n String umask = \"umask\";\n \n client.createWithResponse(permissions, umask, httpHeaders, Collections.singletonMap(\"metadata\", \"value\"),\n     requestConditions)\n     .subscribe(response -> System.out.printf(\"Last Modified Time:%s\", response.getValue().getLastModified()));\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Mono<Response<PathInfo>> createWithResponse(String permissions, String umask, PathHttpHeaders headers, Map<String,String> metadata, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -293,7 +294,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.exists*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Determines if the path this client represents exists in the cloud.\n\nNote that this method does not guarantee that the path type (file/directory) matches expectations.\n\nFor example, a DataLakeFileClient representing a path to a datalake directory will return true, and vice versa.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.exists\\}"
+  summary: "Determines if the path this client represents exists in the cloud.\n\nNote that this method does not guarantee that the path type (file/directory) matches expectations.\n\nFor example, a DataLakeFileClient representing a path to a datalake directory will return true, and vice versa.\n\n**Code Samples**\n\n```java\nclient.exists().subscribe(response -> System.out.printf(\"Exists? %b%n\", response));\n```"
   syntax:
     content: "public Mono<Boolean> exists()"
     return:
@@ -310,7 +311,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.existsWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Determines if the path this client represents exists in the cloud.\n\nNote that this method does not guarantee that the path type (file/directory) matches expectations.\n\nFor example, a DataLakeFileClient representing a path to a datalake directory will return true, and vice versa.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.existsWithResponse\\}"
+  summary: "Determines if the path this client represents exists in the cloud.\n\nNote that this method does not guarantee that the path type (file/directory) matches expectations.\n\nFor example, a DataLakeFileClient representing a path to a datalake directory will return true, and vice versa.\n\n**Code Samples**\n\n```java\nclient.existsWithResponse().subscribe(response -> System.out.printf(\"Exists? %b%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<Boolean>> existsWithResponse()"
     return:
@@ -327,7 +328,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.generateSas*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Generates a service SAS for the path using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.generateSas\\#DataLakeServiceSasSignatureValues\\}"
+  summary: "Generates a service SAS for the path using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);\n PathSasPermission permission = new PathSasPermission().setReadPermission(true);\n \n DataLakeServiceSasSignatureValues values = new DataLakeServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateSas(values); // Client must be authenticated via StorageSharedKeyCredential\n```"
   syntax:
     content: "public String generateSas(DataLakeServiceSasSignatureValues dataLakeServiceSasSignatureValues)"
     parameters:
@@ -348,7 +349,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.generateUserDelegationSas*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Generates a user delegation SAS for the path using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.generateUserDelegationSas\\#DataLakeServiceSasSignatureValues-UserDelegationKey\\}"
+  summary: "Generates a user delegation SAS for the path using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime myExpiryTime = OffsetDateTime.now().plusDays(1);\n PathSasPermission myPermission = new PathSasPermission().setReadPermission(true);\n \n DataLakeServiceSasSignatureValues myValues = new DataLakeServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateUserDelegationSas(values, userDelegationKey);\n```"
   syntax:
     content: "public String generateUserDelegationSas(DataLakeServiceSasSignatureValues dataLakeServiceSasSignatureValues, UserDelegationKey userDelegationKey)"
     parameters:
@@ -372,7 +373,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getAccessControl*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the access control for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.getAccessControl\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/getproperties"
+  summary: "Returns the access control for a resource.\n\n**Code Samples**\n\n```java\nclient.getAccessControl().subscribe(\n     response -> System.out.printf(\"Access Control List: %s, Group: %s, Owner: %s, Permissions: %s\",\n         PathAccessControlEntry.serializeList(response.getAccessControlList()), response.getGroup(),\n         response.getOwner(), response.getPermissions()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/getproperties"
   syntax:
     content: "public Mono<PathAccessControl> getAccessControl()"
     return:
@@ -389,7 +390,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getAccessControlWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the access control for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.getAccessControlWithResponse\\#boolean-DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/getproperties"
+  summary: "Returns the access control for a resource.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n boolean userPrincipalNameReturned = false;\n \n client.getAccessControlWithResponse(userPrincipalNameReturned, requestConditions).subscribe(\n     response -> System.out.printf(\"Access Control List: %s, Group: %s, Owner: %s, Permissions: %s\",\n         PathAccessControlEntry.serializeList(response.getValue().getAccessControlList()),\n         response.getValue().getGroup(), response.getValue().getOwner(), response.getValue().getPermissions()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/getproperties"
   syntax:
     content: "public Mono<Response<PathAccessControl>> getAccessControlWithResponse(boolean userPrincipalNameReturned, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -576,7 +577,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the resources's metadata and properties.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.getProperties\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-properties"
+  summary: "Returns the resources's metadata and properties.\n\n**Code Samples**\n\n```java\nclient.getProperties().subscribe(response ->\n     System.out.printf(\"Creation Time: %s, Size: %d%n\", response.getCreationTime(), response.getFileSize()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-properties"
   syntax:
     content: "public Mono<PathProperties> getProperties()"
     return:
@@ -593,7 +594,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the resource's metadata and properties.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.getPropertiesWithResponse\\#DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-properties"
+  summary: "Returns the resource's metadata and properties.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n \n client.getPropertiesWithResponse(requestConditions).subscribe(\n     response -> System.out.printf(\"Creation Time: %s, Size: %d%n\", response.getValue().getCreationTime(),\n         response.getValue().getFileSize()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-blob-properties"
   syntax:
     content: "public Mono<Response<PathProperties>> getPropertiesWithResponse(DataLakeRequestConditions requestConditions)"
     parameters:
@@ -620,6 +621,20 @@ items:
     return:
       type: "com.azure.storage.file.datalake.DataLakeServiceVersion"
       description: "the service version the client is using."
+- uid: "com.azure.storage.file.datalake.DataLakePathAsyncClient.pathName"
+  id: "pathName"
+  parent: "com.azure.storage.file.datalake.DataLakePathAsyncClient"
+  langs:
+  - "java"
+  name: "pathName"
+  nameWithType: "DataLakePathAsyncClient.pathName"
+  fullName: "com.azure.storage.file.datalake.DataLakePathAsyncClient.pathName"
+  type: "Field"
+  package: "com.azure.storage.file.datalake"
+  syntax:
+    content: "final String pathName"
+    return:
+      type: "java.lang.String"
 - uid: "com.azure.storage.file.datalake.DataLakePathAsyncClient.pathResourceType"
   id: "pathResourceType"
   parent: "com.azure.storage.file.datalake.DataLakePathAsyncClient"
@@ -702,7 +717,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setAccessControlList*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes the access control list, group and/or owner for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setAccessControlList\\#List-String-String\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
+  summary: "Changes the access control list, group and/or owner for a resource.\n\n**Code Samples**\n\n```java\nPathAccessControlEntry pathAccessControlEntry = new PathAccessControlEntry()\n     .setEntityId(\"entityId\")\n     .setPermissions(new RolePermissions().setReadPermission(true));\n List<PathAccessControlEntry> pathAccessControlEntries = new ArrayList<>();\n pathAccessControlEntries.add(pathAccessControlEntry);\n String group = \"group\";\n String owner = \"owner\";\n \n client.setAccessControlList(pathAccessControlEntries, group, owner).subscribe(\n     response -> System.out.printf(\"Last Modified Time: %s\", response.getLastModified()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
   syntax:
     content: "public Mono<PathInfo> setAccessControlList(List<PathAccessControlEntry> accessControlList, String group, String owner)"
     parameters:
@@ -729,7 +744,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setAccessControlListWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes the access control list, group and/or owner for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setAccessControlListWithResponse\\#List-String-String-DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
+  summary: "Changes the access control list, group and/or owner for a resource.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n PathAccessControlEntry pathAccessControlEntry = new PathAccessControlEntry()\n     .setEntityId(\"entityId\")\n     .setPermissions(new RolePermissions().setReadPermission(true));\n List<PathAccessControlEntry> pathAccessControlEntries = new ArrayList<>();\n pathAccessControlEntries.add(pathAccessControlEntry);\n String group = \"group\";\n String owner = \"owner\";\n \n client.setAccessControlListWithResponse(pathAccessControlEntries, group, owner, requestConditions).subscribe(\n     response -> System.out.printf(\"Last Modified Time: %s\", response.getValue().getLastModified()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
   syntax:
     content: "public Mono<Response<PathInfo>> setAccessControlListWithResponse(List<PathAccessControlEntry> accessControlList, String group, String owner, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -787,7 +802,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setHttpHeaders*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes a resource's HTTP header properties. If only one HTTP header is updated, the others will all be erased. In order to preserve existing values, they must be passed alongside the header being changed.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setHttpHeaders\\#PathHttpHeaders\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-properties"
+  summary: "Changes a resource's HTTP header properties. If only one HTTP header is updated, the others will all be erased. In order to preserve existing values, they must be passed alongside the header being changed.\n\n**Code Samples**\n\n```java\nclient.setHttpHeaders(new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\"));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public Mono<Void> setHttpHeaders(PathHttpHeaders headers)"
     parameters:
@@ -808,7 +823,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setHttpHeadersWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes a resources's HTTP header properties. If only one HTTP header is updated, the others will all be erased. In order to preserve existing values, they must be passed alongside the header being changed.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setHttpHeadersWithResponse\\#PathHttpHeaders-DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-properties"
+  summary: "Changes a resources's HTTP header properties. If only one HTTP header is updated, the others will all be erased. In order to preserve existing values, they must be passed alongside the header being changed.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n \n client.setHttpHeadersWithResponse(new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\"), requestConditions).subscribe(response ->\n     System.out.printf(\"Set HTTP headers completed with status %d%n\", response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public Mono<Response<Void>> setHttpHeadersWithResponse(PathHttpHeaders headers, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -832,7 +847,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setMetadata*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes a resource's metadata. The specified metadata in this method will replace existing metadata. If old values must be preserved, they must be downloaded and included in the call to this method.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setMetadata\\#Map\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-metadata"
+  summary: "Changes a resource's metadata. The specified metadata in this method will replace existing metadata. If old values must be preserved, they must be downloaded and included in the call to this method.\n\n**Code Samples**\n\n```java\nclient.setMetadata(Collections.singletonMap(\"metadata\", \"value\"))\n     .subscribe(response -> System.out.println(\"Set metadata completed\"));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-metadata"
   syntax:
     content: "public Mono<Void> setMetadata(Map<String,String> metadata)"
     parameters:
@@ -853,7 +868,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setMetadataWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes a resource's metadata. The specified metadata in this method will replace existing metadata. If old values must be preserved, they must be downloaded and included in the call to this method.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setMetadata\\#Map-DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-metadata"
+  summary: "Changes a resource's metadata. The specified metadata in this method will replace existing metadata. If old values must be preserved, they must be downloaded and included in the call to this method.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n \n client.setMetadataWithResponse(Collections.singletonMap(\"metadata\", \"value\"), requestConditions)\n     .subscribe(response -> System.out.printf(\"Set metadata completed with status %d%n\",\n         response.getStatusCode()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-metadata"
   syntax:
     content: "public Mono<Response<Void>> setMetadataWithResponse(Map<String,String> metadata, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -877,7 +892,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setPermissions*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes the permissions, group and/or owner for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setPermissions\\#PathPermissions-String-String\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
+  summary: "Changes the permissions, group and/or owner for a resource.\n\n**Code Samples**\n\n```java\nPathPermissions permissions = new PathPermissions()\n     .setGroup(new RolePermissions().setExecutePermission(true).setReadPermission(true))\n     .setOwner(new RolePermissions().setExecutePermission(true).setReadPermission(true).setWritePermission(true))\n     .setOther(new RolePermissions().setReadPermission(true));\n String group = \"group\";\n String owner = \"owner\";\n \n client.setPermissions(permissions, group, owner).subscribe(\n     response -> System.out.printf(\"Last Modified Time: %s\", response.getLastModified()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
   syntax:
     content: "public Mono<PathInfo> setPermissions(PathPermissions permissions, String group, String owner)"
     parameters:
@@ -904,7 +919,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakePathAsyncClient.setPermissionsWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Changes the permissions, group and/or owner for a resource.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakePathAsyncClient.setPermissionsWithResponse\\#PathPermissions-String-String-DataLakeRequestConditions\\}\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
+  summary: "Changes the permissions, group and/or owner for a resource.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions().setLeaseId(leaseId);\n PathPermissions permissions = new PathPermissions()\n     .setGroup(new RolePermissions().setExecutePermission(true).setReadPermission(true))\n     .setOwner(new RolePermissions().setExecutePermission(true).setReadPermission(true).setWritePermission(true))\n     .setOther(new RolePermissions().setReadPermission(true));\n String group = \"group\";\n String owner = \"owner\";\n \n client.setPermissionsWithResponse(permissions, group, owner, requestConditions).subscribe(\n     response -> System.out.printf(\"Last Modified Time: %s\", response.getValue().getLastModified()));\n```\n\nFor more information, see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/update"
   syntax:
     content: "public Mono<Response<PathInfo>> setPermissionsWithResponse(PathPermissions permissions, String group, String owner, DataLakeRequestConditions requestConditions)"
     parameters:

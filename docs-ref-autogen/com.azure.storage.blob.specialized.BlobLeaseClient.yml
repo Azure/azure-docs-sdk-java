@@ -25,7 +25,7 @@ items:
   fullName: "com.azure.storage.blob.specialized.BlobLeaseClient"
   type: "Class"
   package: "com.azure.storage.blob.specialized"
-  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.blob.BlobContainerClient\" data-throw-if-not-resolved=\"false\">containers</xref> and <xref uid=\"com.azure.storage.blob.BlobClient\" data-throw-if-not-resolved=\"false\">blobs</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a BlobLeaseClient**\n\n\\{@codesnippet com.azure.storage.blob.specialized.LeaseClientBuilder.syncInstantiationWithBlob\\} \\{@codesnippet com.azure.storage.blob.specialized.LeaseClientBuilder.syncInstantiationWithContainer\\}\n\nView <xref uid=\"com.azure.storage.blob.specialized.BlobLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [container leasing][] or [blob leasing][] documentation.\n\n\n[container leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[blob leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
+  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.blob.BlobContainerClient\" data-throw-if-not-resolved=\"false\">containers</xref> and <xref uid=\"com.azure.storage.blob.BlobClient\" data-throw-if-not-resolved=\"false\">blobs</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a BlobLeaseClient**\n\n```java\nBlobLeaseClient blobLeaseClient = new BlobLeaseClientBuilder()\n     .blobClient(blobClient)\n     .buildClient();\n```\n\n```java\nBlobLeaseClient blobLeaseClient = new BlobLeaseClientBuilder()\n     .containerClient(blobContainerClient)\n     .buildClient();\n```\n\nView <xref uid=\"com.azure.storage.blob.specialized.BlobLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [container leasing][] or [blob leasing][] documentation.\n\n\n[container leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[blob leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
   syntax:
     content: "public final class BlobLeaseClient"
   inheritance:
@@ -69,7 +69,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.acquireLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.acquireLease\\#int\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Lease ID is %s%n\", client.acquireLease(60));\n```"
   syntax:
     content: "public String acquireLease(int duration)"
     parameters:
@@ -90,7 +90,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.acquireLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.acquireLeaseWithResponse\\#int-RequestConditions-Duration-Context\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfModifiedSince(OffsetDateTime.now().minusDays(3));\n \n System.out.printf(\"Lease ID is %s%n\", client\n     .acquireLeaseWithResponse(60, modifiedRequestConditions, timeout, new Context(key, value))\n     .getValue());\n```"
   syntax:
     content: "public Response<String> acquireLeaseWithResponse(int duration, RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -120,7 +120,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.breakLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.breakLease\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"The broken lease has %d seconds remaining on the lease\", client.breakLease());\n```"
   syntax:
     content: "public Integer breakLease()"
     return:
@@ -137,7 +137,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.breakLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.breakLeaseWithResponse\\#Integer-RequestConditions-Duration-Context\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n```java\nInteger retainLeaseInSeconds = 5;\n RequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n System.out.printf(\"The broken lease has %d seconds remaining on the lease\", client\n     .breakLeaseWithResponse(retainLeaseInSeconds, modifiedRequestConditions, timeout, new Context(key, value))\n     .getValue());\n```"
   syntax:
     content: "public Response<Integer> breakLeaseWithResponse(Integer breakPeriodInSeconds, RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -167,7 +167,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.changeLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.changeLease\\#String\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Changed lease ID is %s%n\", client.changeLease(\"proposedId\"));\n```"
   syntax:
     content: "public String changeLease(String proposedId)"
     parameters:
@@ -188,7 +188,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.changeLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.changeLeaseWithResponse\\#String-RequestConditions-Duration-Context\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n System.out.printf(\"Changed lease ID is %s%n\",\n     client.changeLeaseWithResponse(\"proposedId\", modifiedRequestConditions, timeout, new Context(key, value))\n         .getValue());\n```"
   syntax:
     content: "public Response<String> changeLeaseWithResponse(String proposedId, RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -269,7 +269,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.releaseLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.releaseLease\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nclient.releaseLease();\n System.out.println(\"Release lease completed\");\n```"
   syntax:
     content: "public void releaseLease()"
 - uid: "com.azure.storage.blob.specialized.BlobLeaseClient.releaseLeaseWithResponse(com.azure.core.http.RequestConditions,java.time.Duration,com.azure.core.util.Context)"
@@ -283,7 +283,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.releaseLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.releaseLeaseWithResponse\\#RequestConditions-Duration-Context\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n System.out.printf(\"Release lease completed with status %d%n\",\n     client.releaseLeaseWithResponse(modifiedRequestConditions, timeout, new Context(key, value))\n         .getStatusCode());\n```"
   syntax:
     content: "public Response<Void> releaseLeaseWithResponse(RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -310,7 +310,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.renewLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.renewLease\\}"
+  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Renewed lease ID is %s%n\", client.renewLease());\n```"
   syntax:
     content: "public String renewLease()"
     return:
@@ -327,7 +327,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseClient.renewLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Renews the previously-acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClient.renewLeaseWithResponse\\#RequestConditions-Duration-Context\\}"
+  summary: "Renews the previously-acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n System.out.printf(\"Renewed lease ID is %s%n\",\n     client.renewLeaseWithResponse(modifiedRequestConditions, timeout, new Context(key, value))\n         .getValue());\n```"
   syntax:
     content: "public Response<String> renewLeaseWithResponse(RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:

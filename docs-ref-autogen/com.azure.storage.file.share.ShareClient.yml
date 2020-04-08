@@ -23,6 +23,8 @@ items:
   - "com.azure.storage.file.share.ShareClient.deleteFileWithResponse(java.lang.String,com.azure.storage.file.share.models.ShareRequestConditions,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareClient.deleteFileWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareClient.deleteWithResponse(java.time.Duration,com.azure.core.util.Context)"
+  - "com.azure.storage.file.share.ShareClient.exists()"
+  - "com.azure.storage.file.share.ShareClient.existsWithResponse(java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.share.ShareClient.generateSas(com.azure.storage.file.share.sas.ShareServiceSasSignatureValues)"
   - "com.azure.storage.file.share.ShareClient.getAccessPolicy()"
   - "com.azure.storage.file.share.ShareClient.getAccountName()"
@@ -53,7 +55,7 @@ items:
   fullName: "com.azure.storage.file.share.ShareClient"
   type: "Class"
   package: "com.azure.storage.file.share"
-  summary: "This class provides a client that contains all the operations for interacting with a share in Azure Storage Share. Operations allowed by the client are creating and deleting the share, creating snapshots for the share, creating and deleting directories in the share and retrieving and updating properties metadata and access policies of the share.\n\n**Instantiating a Synchronous Share Client**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.instantiation\\}\n\nView <xref uid=\"com.azure.storage.file.share.ShareClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
+  summary: "This class provides a client that contains all the operations for interacting with a share in Azure Storage Share. Operations allowed by the client are creating and deleting the share, creating snapshots for the share, creating and deleting directories in the share and retrieving and updating properties metadata and access policies of the share.\n\n**Instantiating a Synchronous Share Client**\n\n```java\nShareClient client = new ShareClientBuilder()\n     .connectionString(\"${connectionString}\")\n     .endpoint(\"${endpoint}\")\n     .buildClient();\n```\n\nView <xref uid=\"com.azure.storage.file.share.ShareClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client."
   syntax:
     content: "public class ShareClient"
   inheritance:
@@ -97,7 +99,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.create*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the share in the storage account.\n\n**Code Samples**\n\nCreate the share\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.create\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-share"
+  summary: "Creates the share in the storage account.\n\n**Code Samples**\n\nCreate the share\n\n```java\nShareInfo response = shareClient.create();\n System.out.println(\"Complete creating the shares with status code: \" + response);\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-share"
   syntax:
     content: "public ShareInfo create()"
     return:
@@ -114,7 +116,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createDirectory*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the directory in the share with the given name.\n\n**Code Samples**\n\nCreate the directory \"documents\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createDirectory\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates the directory in the share with the given name.\n\n**Code Samples**\n\nCreate the directory \"documents\"\n\n```java\nShareDirectoryClient response = shareClient.createDirectory(\"mydirectory\");\n System.out.println(\"Complete creating the directory.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public ShareDirectoryClient createDirectory(String directoryName)"
     parameters:
@@ -135,7 +137,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createDirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the directory in the share with the given name and associates the passed metadata to it.\n\n**Code Samples**\n\nCreate the directory \"documents\" with metadata \"directory:metadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createDirectoryWithResponse\\#String-FileSmbProperties-String-Map-Duration-Context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
+  summary: "Creates the directory in the share with the given name and associates the passed metadata to it.\n\n**Code Samples**\n\nCreate the directory \"documents\" with metadata \"directory:metadata\"\n\n```java\nFileSmbProperties smbProperties = new FileSmbProperties();\n String filePermission = \"filePermission\";\n Response<ShareDirectoryClient> response = shareClient.createDirectoryWithResponse(\"documents\",\n     smbProperties, filePermission, Collections.singletonMap(\"directory\", \"metadata\"),\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"Creating the directory completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-directory"
   syntax:
     content: "public Response<ShareDirectoryClient> createDirectoryWithResponse(String directoryName, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata, Duration timeout, Context context)"
     parameters:
@@ -171,7 +173,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createFile*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the file in the share with the given name and file max size.\n\n**Code Samples**\n\nCreate the file \"myfile\" with size of 1024 bytes.\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createFile\\#string-long\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates the file in the share with the given name and file max size.\n\n**Code Samples**\n\nCreate the file \"myfile\" with size of 1024 bytes.\n\n```java\nShareFileClient response = shareClient.createFile(\"myfile\", 1024);\n System.out.println(\"Complete creating the file with snapshot Id:\" + response.getShareSnapshotId());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public ShareFileClient createFile(String fileName, long maxSize)"
     parameters:
@@ -195,7 +197,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the file in the share with the given name, file max size and associates the passed properties to it.\n\n**Code Samples**\n\nCreate the file \"myfile\" with length of 1024 bytes, some headers, file smb properties and metadata\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createFileWithResponse\\#String-long-ShareFileHttpHeaders-FileSmbProperties-String-Map-ShareRequestConditions-Duration-Context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates the file in the share with the given name, file max size and associates the passed properties to it.\n\n**Code Samples**\n\nCreate the file \"myfile\" with length of 1024 bytes, some headers, file smb properties and metadata\n\n```java\nShareFileHttpHeaders httpHeaders = new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\");\n FileSmbProperties smbProperties = new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\");\n String filePermission = \"filePermission\";\n // NOTE: filePermission and filePermissionKey should never be both set\n \n ShareRequestConditions requestConditions = new ShareRequestConditions().setLeaseId(leaseId);\n \n Response<ShareFileClient> response = shareClient.createFileWithResponse(\"myfile\", 1024,\n     httpHeaders, smbProperties, filePermission, Collections.singletonMap(\"directory\", \"metadata\"),\n     requestConditions, Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"Creating the file completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public Response<ShareFileClient> createFileWithResponse(String fileName, long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata, ShareRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -240,7 +242,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the file in the share with the given name, file max size and associates the passed properties to it.\n\n**Code Samples**\n\nCreate the file \"myfile\" with length of 1024 bytes, some headers, file smb properties and metadata\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createFileWithResponse\\#String-long-ShareFileHttpHeaders-FileSmbProperties-String-Map-Duration-Context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
+  summary: "Creates the file in the share with the given name, file max size and associates the passed properties to it.\n\n**Code Samples**\n\nCreate the file \"myfile\" with length of 1024 bytes, some headers, file smb properties and metadata\n\n```java\nShareFileHttpHeaders httpHeaders = new ShareFileHttpHeaders()\n     .setContentType(\"text/html\")\n     .setContentEncoding(\"gzip\")\n     .setContentLanguage(\"en\")\n     .setCacheControl(\"no-transform\")\n     .setContentDisposition(\"attachment\");\n FileSmbProperties smbProperties = new FileSmbProperties()\n     .setNtfsFileAttributes(EnumSet.of(NtfsFileAttributes.READ_ONLY))\n     .setFileCreationTime(OffsetDateTime.now())\n     .setFileLastWriteTime(OffsetDateTime.now())\n     .setFilePermissionKey(\"filePermissionKey\");\n String filePermission = \"filePermission\";\n // NOTE: filePermission and filePermissionKey should never be both set\n Response<ShareFileClient> response = shareClient.createFileWithResponse(\"myfile\", 1024,\n     httpHeaders, smbProperties, filePermission, Collections.singletonMap(\"directory\", \"metadata\"),\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"Creating the file completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-file"
   syntax:
     content: "public Response<ShareFileClient> createFileWithResponse(String fileName, long maxSize, ShareFileHttpHeaders httpHeaders, FileSmbProperties smbProperties, String filePermission, Map<String,String> metadata, Duration timeout, Context context)"
     parameters:
@@ -282,7 +284,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createPermission*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a permission at the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createPermission\\#string\\}"
+  summary: "Creates a permission at the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n```java\nString response = shareClient.createPermission(\"filePermission\");\n System.out.printf(\"The file permission key is %s\", response);\n```"
   syntax:
     content: "public String createPermission(String filePermission)"
     parameters:
@@ -303,7 +305,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createPermissionWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a permission t the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createPermissionWithResponse\\#string-context\\}"
+  summary: "Creates a permission t the share level. If a permission already exists, it returns the key of it, else creates a new permission and returns the key.\n\n**Code Samples**\n\n```java\nResponse<String> response = shareClient.createPermissionWithResponse(\"filePermission\", Context.NONE);\n System.out.printf(\"The file permission key is %s\", response.getValue());\n```"
   syntax:
     content: "public Response<String> createPermissionWithResponse(String filePermission, Context context)"
     parameters:
@@ -327,7 +329,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createSnapshot*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a snapshot of the share with the same metadata associated to the share at the time of creation.\n\n**Code Samples**\n\nCreate a snapshot\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createSnapshot\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/snapshot-share"
+  summary: "Creates a snapshot of the share with the same metadata associated to the share at the time of creation.\n\n**Code Samples**\n\nCreate a snapshot\n\n```java\nShareSnapshotInfo response = shareClient.createSnapshot();\n System.out.println(\"Complete creating the share snpashot with snapshot id: \" + response.getSnapshot());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/snapshot-share"
   syntax:
     content: "public ShareSnapshotInfo createSnapshot()"
     return:
@@ -344,7 +346,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createSnapshotWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates a snapshot of the share with the metadata that was passed associated to the snapshot.\n\n**Code Samples**\n\nCreate a snapshot with metadata \"snapshot:metadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.createSnapshotWithResponse\\#map-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/snapshot-share"
+  summary: "Creates a snapshot of the share with the metadata that was passed associated to the snapshot.\n\n**Code Samples**\n\nCreate a snapshot with metadata \"snapshot:metadata\"\n\n```java\nResponse<ShareSnapshotInfo> response =\n     shareClient.createSnapshotWithResponse(Collections.singletonMap(\"snpashot\", \"metadata\"),\n         Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete creating the share snpashot with snapshot id: \" + response.getValue().getSnapshot());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/snapshot-share"
   syntax:
     content: "public Response<ShareSnapshotInfo> createSnapshotWithResponse(Map<String,String> metadata, Duration timeout, Context context)"
     parameters:
@@ -371,7 +373,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Creates the share in the storage account with the specified metadata and quota.\n\n**Code Samples**\n\nCreate the share with metadata \"share:metadata\"\n\n\\{@codesnippet ShareClient.createWithResponse\\#map-integer-duration-context.metadata\\}\n\nCreate the share with a quota of 10 GB\n\n\\{@codesnippet ShareClient.createWithResponse\\#map-integer-duration-context.quota\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-share"
+  summary: "Creates the share in the storage account with the specified metadata and quota.\n\n**Code Samples**\n\nCreate the share with metadata \"share:metadata\"\n\n```java\nResponse<ShareInfo> response = shareClient.createWithResponse(Collections.singletonMap(\"share\", \"metadata\"),\n     null, Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete creating the shares with status code: \" + response.getStatusCode());\n```\n\nCreate the share with a quota of 10 GB\n\n```java\nResponse<ShareInfo> response = shareClient.createWithResponse(null, 10,\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete creating the shares with status code: \" + response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/create-share"
   syntax:
     content: "public Response<ShareInfo> createWithResponse(Map<String,String> metadata, Integer quotaInGB, Duration timeout, Context context)"
     parameters:
@@ -401,7 +403,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.delete*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the share in the storage account\n\n**Code Samples**\n\nDelete the share\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.delete\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-share"
+  summary: "Deletes the share in the storage account\n\n**Code Samples**\n\nDelete the share\n\n```java\nshareClient.delete();\n System.out.println(\"Completed deleting the share.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-share"
   syntax:
     content: "public void delete()"
 - uid: "com.azure.storage.file.share.ShareClient.deleteDirectory(java.lang.String)"
@@ -415,7 +417,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteDirectory*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the specified directory in the share.\n\n**Code Samples**\n\nDelete the directory \"mydirectory\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteDirectory\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the specified directory in the share.\n\n**Code Samples**\n\nDelete the directory \"mydirectory\"\n\n```java\nshareClient.deleteDirectory(\"mydirectory\");\n System.out.println(\"Completed deleting the directory.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public void deleteDirectory(String directoryName)"
     parameters:
@@ -433,7 +435,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteDirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the specified directory in the share.\n\n**Code Samples**\n\nDelete the directory \"mydirectory\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteDirectoryWithResponse\\#string-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
+  summary: "Deletes the specified directory in the share.\n\n**Code Samples**\n\nDelete the directory \"mydirectory\"\n\n```java\nResponse<Void> response = shareClient.deleteDirectoryWithResponse(\"mydirectory\",\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete deleting the directory with status code: \" + response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-directory"
   syntax:
     content: "public Response<Void> deleteDirectoryWithResponse(String directoryName, Duration timeout, Context context)"
     parameters:
@@ -460,7 +462,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteFile*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteFile\\#string\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n```java\nshareClient.deleteFile(\"myfile\");\n System.out.println(\"Complete deleting the file.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public void deleteFile(String fileName)"
     parameters:
@@ -478,7 +480,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteFileWithResponse\\#string-ShareRequestConditions-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n```java\nShareRequestConditions requestConditions = new ShareRequestConditions().setLeaseId(leaseId);\n Response<Void> response = shareClient.deleteFileWithResponse(\"myfile\", requestConditions,\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete deleting the file with status code: \" + response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public Response<Void> deleteFileWithResponse(String fileName, ShareRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -508,7 +510,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteFileWithResponse\\#string-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
+  summary: "Deletes the specified file in the share.\n\n**Code Samples**\n\nDelete the file \"myfile\"\n\n```java\nResponse<Void> response = shareClient.deleteFileWithResponse(\"myfile\",\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete deleting the file with status code: \" + response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-file2"
   syntax:
     content: "public Response<Void> deleteFileWithResponse(String fileName, Duration timeout, Context context)"
     parameters:
@@ -535,7 +537,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.deleteWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Deletes the share in the storage account\n\n**Code Samples**\n\nDelete the share\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.deleteWithResponse\\#duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-share"
+  summary: "Deletes the share in the storage account\n\n**Code Samples**\n\nDelete the share\n\n```java\nResponse<Void> response = shareClient.deleteWithResponse(Duration.ofSeconds(1), new Context(key1, value1));\n System.out.println(\"Complete deleting the share with status code: \" + response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-share"
   syntax:
     content: "public Response<Void> deleteWithResponse(Duration timeout, Context context)"
     parameters:
@@ -548,6 +550,47 @@ items:
     return:
       type: "com.azure.core.http.rest.Response<java.lang.Void>"
       description: "A response that only contains headers and response status code"
+- uid: "com.azure.storage.file.share.ShareClient.exists()"
+  id: "exists()"
+  parent: "com.azure.storage.file.share.ShareClient"
+  langs:
+  - "java"
+  name: "exists()"
+  nameWithType: "ShareClient.exists()"
+  fullName: "com.azure.storage.file.share.ShareClient.exists()"
+  overload: "com.azure.storage.file.share.ShareClient.exists*"
+  type: "Method"
+  package: "com.azure.storage.file.share"
+  summary: "Determines if the share this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Exists? %b%n\", client.exists());\n```"
+  syntax:
+    content: "public Boolean exists()"
+    return:
+      type: "java.lang.Boolean"
+      description: "Flag indicating existence of the share."
+- uid: "com.azure.storage.file.share.ShareClient.existsWithResponse(java.time.Duration,com.azure.core.util.Context)"
+  id: "existsWithResponse(java.time.Duration,com.azure.core.util.Context)"
+  parent: "com.azure.storage.file.share.ShareClient"
+  langs:
+  - "java"
+  name: "existsWithResponse(Duration timeout, Context context)"
+  nameWithType: "ShareClient.existsWithResponse(Duration timeout, Context context)"
+  fullName: "com.azure.storage.file.share.ShareClient.existsWithResponse(Duration timeout, Context context)"
+  overload: "com.azure.storage.file.share.ShareClient.existsWithResponse*"
+  type: "Method"
+  package: "com.azure.storage.file.share"
+  summary: "Determines if the share this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nContext context = new Context(\"Key\", \"Value\");\n System.out.printf(\"Exists? %b%n\", client.existsWithResponse(timeout, context).getValue());\n```"
+  syntax:
+    content: "public Response<Boolean> existsWithResponse(Duration timeout, Context context)"
+    parameters:
+    - id: "timeout"
+      type: "java.time.Duration"
+      description: "An optional timeout value beyond which a <xref uid=\"\" data-throw-if-not-resolved=\"false\">RuntimeException</xref> will be raised."
+    - id: "context"
+      type: "com.azure.core.util.Context"
+      description: "Additional context that is passed through the Http pipeline during the service call."
+    return:
+      type: "com.azure.core.http.rest.Response<java.lang.Boolean>"
+      description: "Flag indicating existence of the share."
 - uid: "com.azure.storage.file.share.ShareClient.generateSas(com.azure.storage.file.share.sas.ShareServiceSasSignatureValues)"
   id: "generateSas(com.azure.storage.file.share.sas.ShareServiceSasSignatureValues)"
   parent: "com.azure.storage.file.share.ShareClient"
@@ -559,7 +602,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.generateSas*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Generates a service sas for the queue using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareAsyncClient.generateSas\\#ShareServiceSasSignatureValues\\}"
+  summary: "Generates a service sas for the queue using the specified <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.share.sas.ShareServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">ShareServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);\n ShareSasPermission permission = new ShareSasPermission().setReadPermission(true);\n \n ShareServiceSasSignatureValues values = new ShareServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n shareAsyncClient.generateSas(values); // Client must be authenticated via StorageSharedKeyCredential\n```"
   syntax:
     content: "public String generateSas(ShareServiceSasSignatureValues shareServiceSasSignatureValues)"
     parameters:
@@ -580,7 +623,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves stored access policies specified for the share.\n\n**Code Samples**\n\nList the stored access policies\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getAccessPolicy\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-acl"
+  summary: "Retrieves stored access policies specified for the share.\n\n**Code Samples**\n\nList the stored access policies\n\n```java\nfor (ShareSignedIdentifier result : shareClient.getAccessPolicy()) {\n     System.out.printf(\"Access policy %s allows these permissions: %s\",\n         result.getId(), result.getAccessPolicy().getPermissions());\n }\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-acl"
   syntax:
     content: "public PagedIterable<ShareSignedIdentifier> getAccessPolicy()"
     return:
@@ -673,7 +716,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getPermission*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Gets a permission for a given key\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getPermission\\#string\\}"
+  summary: "Gets a permission for a given key\n\n**Code Samples**\n\n```java\nString response = shareClient.getPermission(\"filePermissionKey\");\n System.out.printf(\"The file permission is %s\", response);\n```"
   syntax:
     content: "public String getPermission(String filePermissionKey)"
     parameters:
@@ -694,7 +737,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getPermissionWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Gets a permission for a given key.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getPermissionWithResponse\\#string-context\\}"
+  summary: "Gets a permission for a given key.\n\n**Code Samples**\n\n```java\nResponse<String> response = shareClient.getPermissionWithResponse(\"filePermissionKey\", Context.NONE);\n System.out.printf(\"The file permission is %s\", response.getValue());\n```"
   syntax:
     content: "public Response<String> getPermissionWithResponse(String filePermissionKey, Context context)"
     parameters:
@@ -718,7 +761,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves the properties of the share, these include the metadata associated to it and the quota that the share is restricted to.\n\n**Code Samples**\n\nRetrieve the share properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getProperties\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
+  summary: "Retrieves the properties of the share, these include the metadata associated to it and the quota that the share is restricted to.\n\n**Code Samples**\n\nRetrieve the share properties\n\n```java\nShareProperties properties = shareClient.getProperties();\n System.out.printf(\"Share quota: %d, Metadata: %s\", properties.getQuota(), properties.getMetadata());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
   syntax:
     content: "public ShareProperties getProperties()"
     return:
@@ -735,7 +778,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves the properties of the share, these include the metadata associated to it and the quota that the share is restricted to.\n\n**Code Samples**\n\nRetrieve the share properties\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getPropertiesWithResponse\\#duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
+  summary: "Retrieves the properties of the share, these include the metadata associated to it and the quota that the share is restricted to.\n\n**Code Samples**\n\nRetrieve the share properties\n\n```java\nShareProperties properties = shareClient.getPropertiesWithResponse(\n     Duration.ofSeconds(1), new Context(key1, value1)).getValue();\n System.out.printf(\"Share quota: %d, Metadata: %s\", properties.getQuota(), properties.getMetadata());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
   syntax:
     content: "public Response<ShareProperties> getPropertiesWithResponse(Duration timeout, Context context)"
     parameters:
@@ -793,7 +836,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getShareName*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Get share name from share client.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getShareName\\}"
+  summary: "Get share name from share client.\n\n**Code Samples**\n\n```java\nString shareName = shareAsyncClient.getShareName();\n System.out.println(\"The name of the share is \" + shareName);\n```"
   syntax:
     content: "public String getShareName()"
     return:
@@ -827,7 +870,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getSnapshotId*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Get snapshot id which attached to <xref uid=\"com.azure.storage.file.share.ShareClient\" data-throw-if-not-resolved=\"false\">ShareClient</xref>. Return `null` if no snapshot id attached.\n\n**Code Samples**\n\nGet the share snapshot id.\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getSnapshotId\\}"
+  summary: "Get snapshot id which attached to <xref uid=\"com.azure.storage.file.share.ShareClient\" data-throw-if-not-resolved=\"false\">ShareClient</xref>. Return `null` if no snapshot id attached.\n\n**Code Samples**\n\nGet the share snapshot id.\n\n```java\nOffsetDateTime currentTime = OffsetDateTime.of(LocalDateTime.now(), ZoneOffset.UTC);\n ShareClient shareClient = new ShareClientBuilder().endpoint(\"https://${accountName}.file.core.windows.net\")\n     .sasToken(\"${SASToken}\")\n     .shareName(\"myshare\")\n     .snapshot(currentTime.toString())\n     .buildClient();\n \n System.out.printf(\"Snapshot ID: %s%n\", shareClient.getSnapshotId());\n```"
   syntax:
     content: "public String getSnapshotId()"
     return:
@@ -844,7 +887,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getStatistics*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves storage statistics about the share.\n\n**Code Samples**\n\nRetrieve the storage statistics\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getStatistics\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-stats"
+  summary: "Retrieves storage statistics about the share.\n\n**Code Samples**\n\nRetrieve the storage statistics\n\n```java\nShareStatistics response = shareClient.getStatistics();\n System.out.printf(\"The share is using %d GB\", response.getShareUsageInGB());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-stats"
   syntax:
     content: "public ShareStatistics getStatistics()"
     return:
@@ -861,7 +904,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.getStatisticsWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Retrieves storage statistics about the share.\n\n**Code Samples**\n\nRetrieve the storage statistics\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.getStatisticsWithResponse\\#duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-stats"
+  summary: "Retrieves storage statistics about the share.\n\n**Code Samples**\n\nRetrieve the storage statistics\n\n```java\nResponse<ShareStatistics> response = shareClient.getStatisticsWithResponse(\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"The share is using %d GB\", response.getValue().getShareUsageInGB());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-stats"
   syntax:
     content: "public Response<ShareStatistics> getStatisticsWithResponse(Duration timeout, Context context)"
     parameters:
@@ -885,7 +928,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets stored access policies for the share.\n\n**Code Samples**\n\nSet a read only stored access policy\n\n\\{@codesnippet ShareClient.setAccessPolicy\\#List\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-acl"
+  summary: "Sets stored access policies for the share.\n\n**Code Samples**\n\nSet a read only stored access policy\n\n```java\nShareAccessPolicy accessPolicy = new ShareAccessPolicy().setPermissions(\"r\")\n     .setStartsOn(OffsetDateTime.now(ZoneOffset.UTC))\n     .setExpiresOn(OffsetDateTime.now(ZoneOffset.UTC).plusDays(10));\n \n ShareSignedIdentifier permission = new ShareSignedIdentifier().setId(\"mypolicy\").setAccessPolicy(accessPolicy);\n \n shareClient.setAccessPolicy(Collections.singletonList(permission));\n System.out.println(\"Setting access policies completed.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-acl"
   syntax:
     content: "public ShareInfo setAccessPolicy(List<ShareSignedIdentifier> permissions)"
     parameters:
@@ -906,7 +949,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setAccessPolicyWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets stored access policies for the share.\n\n**Code Samples**\n\nSet a read only stored access policy\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.setAccessPolicyWithResponse\\#list-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-acl"
+  summary: "Sets stored access policies for the share.\n\n**Code Samples**\n\nSet a read only stored access policy\n\n```java\nShareAccessPolicy accessPolicy = new ShareAccessPolicy().setPermissions(\"r\")\n     .setStartsOn(OffsetDateTime.now(ZoneOffset.UTC))\n     .setExpiresOn(OffsetDateTime.now(ZoneOffset.UTC).plusDays(10));\n \n ShareSignedIdentifier permission = new ShareSignedIdentifier().setId(\"mypolicy\").setAccessPolicy(accessPolicy);\n \n Response<ShareInfo> response = shareClient.setAccessPolicyWithResponse(Collections.singletonList(permission),\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"Setting access policies completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-acl"
   syntax:
     content: "public Response<ShareInfo> setAccessPolicyWithResponse(List<ShareSignedIdentifier> permissions, Duration timeout, Context context)"
     parameters:
@@ -933,7 +976,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setMetadata*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the user-defined metadata to associate to the share.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the share.\n\n**Code Samples**\n\nSet the metadata to \"share:updatedMetadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.setMetadata\\#map\\}\n\nClear the metadata of the share\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.clearMetadata\\#map\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-metadata"
+  summary: "Sets the user-defined metadata to associate to the share.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the share.\n\n**Code Samples**\n\nSet the metadata to \"share:updatedMetadata\"\n\n```java\nshareClient.setMetadata(Collections.singletonMap(\"share\", \"updatedMetadata\"));\n System.out.println(\"Setting the share metadata.\");\n```\n\nClear the metadata of the share\n\n```java\nshareClient.setMetadata(null);\n System.out.println(\"Clear metadata completed.\");\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-metadata"
   syntax:
     content: "public ShareInfo setMetadata(Map<String,String> metadata)"
     parameters:
@@ -954,7 +997,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setMetadataWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the user-defined metadata to associate to the share.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the share.\n\n**Code Samples**\n\nSet the metadata to \"share:updatedMetadata\"\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.setMetadataWithResponse\\#map-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-metadata"
+  summary: "Sets the user-defined metadata to associate to the share.\n\nIf `null` is passed for the metadata it will clear the metadata associated to the share.\n\n**Code Samples**\n\nSet the metadata to \"share:updatedMetadata\"\n\n```java\nResponse<ShareInfo> response = shareClient.setMetadataWithResponse(\n     Collections.singletonMap(\"share\", \"updatedMetadata\"), Duration.ofSeconds(1),\n     new Context(key1, value1));\n System.out.printf(\"Setting the share metadata completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-share-metadata"
   syntax:
     content: "public Response<ShareInfo> setMetadataWithResponse(Map<String,String> metadata, Duration timeout, Context context)"
     parameters:
@@ -981,7 +1024,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setQuota*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n\\{@codesnippet ShareClient.setQuota\\#int\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
+  summary: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nSystem.out.println(\"Setting the share quota completed.\" + shareClient.setQuota(1024));\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
   syntax:
     content: "public ShareInfo setQuota(int quotaInGB)"
     parameters:
@@ -1002,7 +1045,7 @@ items:
   overload: "com.azure.storage.file.share.ShareClient.setQuotaWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.share"
-  summary: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n\\{@codesnippet com.azure.storage.file.share.ShareClient.setQuotaWithResponse\\#int-duration-context\\}\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
+  summary: "Sets the maximum size in GB that the share is allowed to grow.\n\n**Code Samples**\n\nSet the quota to 1024 GB\n\n```java\nResponse<ShareInfo> response = shareClient.setQuotaWithResponse(1024,\n     Duration.ofSeconds(1), new Context(key1, value1));\n System.out.printf(\"Setting the share quota completed with status code %d\", response.getStatusCode());\n```\n\nFor more information, see the [Azure Docs][].\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-share-properties"
   syntax:
     content: "public Response<ShareInfo> setQuotaWithResponse(int quotaInGB, Duration timeout, Context context)"
     parameters:
@@ -1070,6 +1113,43 @@ references:
   nameWithType: "ShareClient.getFileClient"
   fullName: "com.azure.storage.file.share.ShareClient.getFileClient"
   package: "com.azure.storage.file.share"
+- uid: "java.lang.Boolean"
+  spec.java:
+  - uid: "java.lang.Boolean"
+    name: "Boolean"
+    fullName: "java.lang.Boolean"
+- uid: "com.azure.storage.file.share.ShareClient.exists*"
+  name: "exists"
+  nameWithType: "ShareClient.exists"
+  fullName: "com.azure.storage.file.share.ShareClient.exists"
+  package: "com.azure.storage.file.share"
+- uid: "java.time.Duration"
+  spec.java:
+  - uid: "java.time.Duration"
+    name: "Duration"
+    fullName: "java.time.Duration"
+- uid: "com.azure.core.util.Context"
+  spec.java:
+  - uid: "com.azure.core.util.Context"
+    name: "Context"
+    fullName: "com.azure.core.util.Context"
+- uid: "com.azure.core.http.rest.Response<java.lang.Boolean>"
+  spec.java:
+  - uid: "com.azure.core.http.rest.Response"
+    name: "Response"
+    fullName: "com.azure.core.http.rest.Response"
+  - name: "<"
+    fullName: "<"
+  - uid: "java.lang.Boolean"
+    name: "Boolean"
+    fullName: "java.lang.Boolean"
+  - name: ">"
+    fullName: ">"
+- uid: "com.azure.storage.file.share.ShareClient.existsWithResponse*"
+  name: "existsWithResponse"
+  nameWithType: "ShareClient.existsWithResponse"
+  fullName: "com.azure.storage.file.share.ShareClient.existsWithResponse"
+  package: "com.azure.storage.file.share"
 - uid: "com.azure.storage.file.share.models.ShareInfo"
   name: "ShareInfo"
   nameWithType: "ShareInfo"
@@ -1101,16 +1181,6 @@ references:
   - uid: "java.lang.Integer"
     name: "Integer"
     fullName: "java.lang.Integer"
-- uid: "java.time.Duration"
-  spec.java:
-  - uid: "java.time.Duration"
-    name: "Duration"
-    fullName: "java.time.Duration"
-- uid: "com.azure.core.util.Context"
-  spec.java:
-  - uid: "com.azure.core.util.Context"
-    name: "Context"
-    fullName: "com.azure.core.util.Context"
 - uid: "com.azure.core.http.rest.Response<com.azure.storage.file.share.models.ShareInfo>"
   spec.java:
   - uid: "com.azure.core.http.rest.Response"
@@ -1483,6 +1553,10 @@ references:
   name: "Object.toString()"
   nameWithType: "Object.toString()"
   fullName: "java.lang.Object.toString()"
+- uid: "com.azure.core.http.rest.Response"
+  name: "Response"
+  nameWithType: "Response"
+  fullName: "com.azure.core.http.rest.Response"
 - uid: "java.util.Map"
   name: "Map"
   nameWithType: "Map"
@@ -1491,10 +1565,6 @@ references:
   name: "String,String"
   nameWithType: "String,String"
   fullName: "java.lang.String,java.lang.String"
-- uid: "com.azure.core.http.rest.Response"
-  name: "Response"
-  nameWithType: "Response"
-  fullName: "com.azure.core.http.rest.Response"
 - uid: "java.lang.Void"
   name: "Void"
   nameWithType: "Void"

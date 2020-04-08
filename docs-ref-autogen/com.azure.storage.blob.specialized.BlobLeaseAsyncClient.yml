@@ -30,7 +30,7 @@ items:
   fullName: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient"
   type: "Class"
   package: "com.azure.storage.blob.specialized"
-  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.blob.BlobContainerAsyncClient\" data-throw-if-not-resolved=\"false\">containers</xref> and <xref uid=\"com.azure.storage.blob.BlobAsyncClient\" data-throw-if-not-resolved=\"false\">blobs</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a BlobLeaseAsyncClient**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClientBuilder.asyncInstantiationWithBlob\\} \\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseClientBuilder.asyncInstantiationWithContainer\\}\n\nView <xref uid=\"com.azure.storage.blob.specialized.BlobLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [container leasing][] or [blob leasing][] documentation.\n\n\n[container leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[blob leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
+  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.blob.BlobContainerAsyncClient\" data-throw-if-not-resolved=\"false\">containers</xref> and <xref uid=\"com.azure.storage.blob.BlobAsyncClient\" data-throw-if-not-resolved=\"false\">blobs</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a BlobLeaseAsyncClient**\n\n```java\nBlobLeaseAsyncClient blobLeaseAsyncClient = new BlobLeaseClientBuilder()\n     .blobAsyncClient(blobAsyncClient)\n     .buildAsyncClient();\n```\n\n```java\nBlobLeaseAsyncClient blobLeaseAsyncClient = new BlobLeaseClientBuilder()\n     .containerAsyncClient(blobContainerAsyncClient)\n     .buildAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.blob.specialized.BlobLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [container leasing][] or [blob leasing][] documentation.\n\n\n[container leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[blob leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
   syntax:
     content: "public final class BlobLeaseAsyncClient"
   inheritance:
@@ -84,7 +84,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.acquireLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.acquireLease\\#int\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nclient.acquireLease(60).subscribe(response -> System.out.printf(\"Lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> acquireLease(int duration)"
     parameters:
@@ -105,7 +105,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.acquireLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds, or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.acquireLeaseWithResponse\\#int-RequestConditions\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds, or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfModifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.acquireLeaseWithResponse(60, modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> acquireLeaseWithResponse(int duration, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -151,7 +151,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.breakLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.breakLease\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n```java\nclient.breakLease().subscribe(response ->\n     System.out.printf(\"The broken lease has %d seconds remaining on the lease\", response));\n```"
   syntax:
     content: "public Mono<Integer> breakLease()"
     return:
@@ -168,7 +168,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.breakLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.breakLeaseWithResponse\\#Integer-RequestConditions\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n```java\nInteger retainLeaseInSeconds = 5;\n RequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.breakLeaseWithResponse(retainLeaseInSeconds, modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"The broken lease has %d seconds remaining on the lease\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<Integer>> breakLeaseWithResponse(Integer breakPeriodInSeconds, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -214,7 +214,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.changeLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.changeLease\\#String\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nclient.changeLease(\"proposedId\").subscribe(response -> System.out.printf(\"Changed lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> changeLease(String proposedId)"
     parameters:
@@ -235,7 +235,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.changeLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.changeLeaseWithResponse\\#String-RequestConditions\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.changeLeaseWithResponse(\"proposedId\", modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Changed lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> changeLeaseWithResponse(String proposedId, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -332,7 +332,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.releaseLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.releaseLease\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nclient.releaseLease().subscribe(response -> System.out.println(\"Completed release lease\"));\n```"
   syntax:
     content: "public Mono<Void> releaseLease()"
     return:
@@ -349,7 +349,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.releaseLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.releaseLeaseWithResponse\\#RequestConditions\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.releaseLeaseWithResponse(modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Release lease completed with status %d%n\", response.getStatusCode()));\n```"
   syntax:
     content: "public Mono<Response<Void>> releaseLeaseWithResponse(RequestConditions modifiedRequestConditions)"
     parameters:
@@ -390,7 +390,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.renewLease*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.renewLease\\}"
+  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n```java\nclient.renewLease().subscribe(response -> System.out.printf(\"Renewed lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> renewLease()"
     return:
@@ -407,7 +407,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlobLeaseAsyncClient.renewLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlobLeaseAsyncClient.renewLeaseWithResponse\\#RequestConditions\\}"
+  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.renewLeaseWithResponse(modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Renewed lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> renewLeaseWithResponse(RequestConditions modifiedRequestConditions)"
     parameters:

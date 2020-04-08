@@ -159,7 +159,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.clearPages*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Frees the specified pages from the page blob. The size of the range must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.clearPages\\#PageRange\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Frees the specified pages from the page blob. The size of the range must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n \n PageBlobItem pageBlob = client.clearPages(pageRange);\n \n System.out.printf(\"Cleared page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public PageBlobItem clearPages(PageRange pageRange)"
     parameters:
@@ -180,7 +180,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.clearPagesWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Frees the specified pages from the page blob. The size of the range must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.clearPagesWithResponse\\#PageRange-PageBlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Frees the specified pages from the page blob. The size of the range must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n PageBlobRequestConditions pageBlobRequestConditions = new PageBlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client\n     .clearPagesWithResponse(pageRange, pageBlobRequestConditions, timeout, context).getValue();\n \n System.out.printf(\"Cleared page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public Response<PageBlobItem> clearPagesWithResponse(PageRange pageRange, PageBlobRequestConditions pageBlobRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -210,7 +210,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.copyIncremental*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Begins an operation to start an incremental copy from one page blob's snapshot to this page blob. The snapshot is copied such that only the differential changes between the previously copied snapshot are transferred to the destination. The copied snapshots are complete copies of the original snapshot and can be read or copied from as usual. For more information, see the Azure Docs [here][] and [here][here 1].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.copyIncremental\\#String-String\\}\n\n\n[here]: https://docs.microsoft.com/rest/api/storageservices/incremental-copy-blob\n[here 1]: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/incremental-snapshots"
+  summary: "Begins an operation to start an incremental copy from one page blob's snapshot to this page blob. The snapshot is copied such that only the differential changes between the previously copied snapshot are transferred to the destination. The copied snapshots are complete copies of the original snapshot and can be read or copied from as usual. For more information, see the Azure Docs [here][] and [here][here 1].\n\n**Code Samples**\n\n```java\nfinal String snapshot = \"copy snapshot\";\n CopyStatusType statusType = client.copyIncremental(url, snapshot);\n \n if (CopyStatusType.SUCCESS == statusType) {\n     System.out.println(\"Page blob copied successfully\");\n } else if (CopyStatusType.FAILED == statusType) {\n     System.out.println(\"Page blob copied failed\");\n } else if (CopyStatusType.ABORTED == statusType) {\n     System.out.println(\"Page blob copied aborted\");\n } else if (CopyStatusType.PENDING == statusType) {\n     System.out.println(\"Page blob copied pending\");\n }\n```\n\n\n[here]: https://docs.microsoft.com/rest/api/storageservices/incremental-copy-blob\n[here 1]: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/incremental-snapshots"
   syntax:
     content: "public CopyStatusType copyIncremental(String source, String snapshot)"
     parameters:
@@ -234,7 +234,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.copyIncrementalWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Begins an operation to start an incremental copy from one page blob's snapshot to this page blob. The snapshot is copied such that only the differential changes between the previously copied snapshot are transferred to the destination. The copied snapshots are complete copies of the original snapshot and can be read or copied from as usual. For more information, see the Azure Docs [here][] and [here][here 1].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.copyIncrementalWithResponse\\#String-String-RequestConditions-Duration-Context\\}\n\n\n[here]: https://docs.microsoft.com/rest/api/storageservices/incremental-copy-blob\n[here 1]: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/incremental-snapshots"
+  summary: "Begins an operation to start an incremental copy from one page blob's snapshot to this page blob. The snapshot is copied such that only the differential changes between the previously copied snapshot are transferred to the destination. The copied snapshots are complete copies of the original snapshot and can be read or copied from as usual. For more information, see the Azure Docs [here][] and [here][here 1].\n\n**Code Samples**\n\n```java\nfinal String snapshot = \"copy snapshot\";\n RequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfNoneMatch(\"snapshotMatch\");\n Context context = new Context(key, value);\n \n CopyStatusType statusType = client\n     .copyIncrementalWithResponse(url, snapshot, modifiedRequestConditions, timeout, context).getValue();\n \n if (CopyStatusType.SUCCESS == statusType) {\n     System.out.println(\"Page blob copied successfully\");\n } else if (CopyStatusType.FAILED == statusType) {\n     System.out.println(\"Page blob copied failed\");\n } else if (CopyStatusType.ABORTED == statusType) {\n     System.out.println(\"Page blob copied aborted\");\n } else if (CopyStatusType.PENDING == statusType) {\n     System.out.println(\"Page blob copied pending\");\n }\n```\n\n\n[here]: https://docs.microsoft.com/rest/api/storageservices/incremental-copy-blob\n[here 1]: https://docs.microsoft.com/en-us/azure/virtual-machines/windows/incremental-snapshots"
   syntax:
     content: "public Response<CopyStatusType> copyIncrementalWithResponse(String source, String snapshot, RequestConditions modifiedRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -267,7 +267,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.create*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a page blob of the specified length. By default this method will not overwrite an existing blob. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.PageBlobClient.create\\#long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a page blob of the specified length. By default this method will not overwrite an existing blob. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageBlobItem pageBlob = client.create(size);\n System.out.printf(\"Created page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public PageBlobItem create(long size)"
     parameters:
@@ -288,7 +288,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.create*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a page blob of the specified length. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.PageBlobClient.create\\#long-boolean\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a page blob of the specified length. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; // Default value\n PageBlobItem pageBlob = client.create(size, overwrite);\n System.out.printf(\"Created page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public PageBlobItem create(long size, boolean overwrite)"
     parameters:
@@ -312,7 +312,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a page blob of the specified length. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.createWithResponse\\#long-Long-BlobHttpHeaders-Map-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a page blob of the specified length. Call PutPage to upload data data to a page blob. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n```java\nBlobHttpHeaders headers = new BlobHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n BlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client\n     .createWithResponse(size, sequenceNumber, headers, metadata, blobRequestConditions, timeout, context)\n     .getValue();\n \n System.out.printf(\"Created page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public Response<PageBlobItem> createWithResponse(long size, Long sequenceNumber, BlobHttpHeaders headers, Map<String,String> metadata, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -396,7 +396,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getManagedDiskPageRangesDiff*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getManagedDiskPageRangesDiff\\#BlobRange-String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n final String prevSnapshotUrl = \"previous snapshot url\";\n PageList pageList = client.getPageRangesDiff(blobRange, prevSnapshotUrl);\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public PageList getManagedDiskPageRangesDiff(BlobRange blobRange, String prevSnapshotUrl)"
     parameters:
@@ -420,7 +420,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getManagedDiskPageRangesDiffWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getManagedDiskPageRangesDiffWithResponse\\#BlobRange-String-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n final String prevSnapshotUrl = \"previous snapshot url\";\n BlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageList pageList = client\n     .getPageRangesDiffWithResponse(blobRange, prevSnapshotUrl, blobRequestConditions, timeout, context).getValue();\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public Response<PageList> getManagedDiskPageRangesDiffWithResponse(BlobRange blobRange, String prevSnapshotUrl, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -453,7 +453,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getPageRanges*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Returns the list of valid page ranges for a page blob or snapshot of a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getPageRanges\\#BlobRange\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "Returns the list of valid page ranges for a page blob or snapshot of a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n PageList pageList = client.getPageRanges(blobRange);\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public PageList getPageRanges(BlobRange blobRange)"
     parameters:
@@ -474,7 +474,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getPageRangesDiff*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Gets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getPageRangesDiff\\#BlobRange-String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "Gets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n final String prevSnapshot = \"previous snapshot\";\n PageList pageList = client.getPageRangesDiff(blobRange, prevSnapshot);\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public PageList getPageRangesDiff(BlobRange blobRange, String prevSnapshot)"
     parameters:
@@ -498,7 +498,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getPageRangesDiffWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getPageRangesDiffWithResponse\\#BlobRange-String-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "This API only works for managed disk accounts.\n\nGets the collection of page ranges that differ between a specified snapshot and this page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n final String prevSnapshot = \"previous snapshot\";\n BlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageList pageList = client\n     .getPageRangesDiffWithResponse(blobRange, prevSnapshot, blobRequestConditions, timeout, context).getValue();\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public Response<PageList> getPageRangesDiffWithResponse(BlobRange blobRange, String prevSnapshot, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -531,7 +531,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.getPageRangesWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Returns the list of valid page ranges for a page blob or snapshot of a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.getPageRangesWithResponse\\#BlobRange-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
+  summary: "Returns the list of valid page ranges for a page blob or snapshot of a page blob. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRange blobRange = new BlobRange(offset);\n BlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageList pageList = client\n     .getPageRangesWithResponse(blobRange, blobRequestConditions, timeout, context).getValue();\n \n System.out.println(\"Valid Page Ranges are:\");\n for (PageRange pageRange : pageList.getPageRange()) {\n     System.out.printf(\"Start: %s, End: %s%n\", pageRange.getStart(), pageRange.getEnd());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-page-ranges"
   syntax:
     content: "public Response<PageList> getPageRangesWithResponse(BlobRange blobRange, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -561,7 +561,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.resize*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Resizes the page blob to the specified size (which must be a multiple of 512). For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.resize\\#long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
+  summary: "Resizes the page blob to the specified size (which must be a multiple of 512). For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageBlobItem pageBlob = client.resize(size);\n System.out.printf(\"Page blob resized with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public PageBlobItem resize(long size)"
     parameters:
@@ -582,7 +582,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.resizeWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Resizes the page blob to the specified size (which must be a multiple of 512). For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.resizeWithResponse\\#long-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
+  summary: "Resizes the page blob to the specified size (which must be a multiple of 512). For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client\n     .resizeWithResponse(size, blobRequestConditions, timeout, context).getValue();\n System.out.printf(\"Page blob resized with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public Response<PageBlobItem> resizeWithResponse(long size, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -612,7 +612,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.updateSequenceNumber*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Sets the page blob's sequence number. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.updateSequenceNumber\\#SequenceNumberActionType-Long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
+  summary: "Sets the page blob's sequence number. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageBlobItem pageBlob = client.updateSequenceNumber(SequenceNumberActionType.INCREMENT, size);\n \n System.out.printf(\"Page blob updated to sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public PageBlobItem updateSequenceNumber(SequenceNumberActionType action, Long sequenceNumber)"
     parameters:
@@ -636,7 +636,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.updateSequenceNumberWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Sets the page blob's sequence number. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.updateSequenceNumberWithResponse\\#SequenceNumberActionType-Long-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
+  summary: "Sets the page blob's sequence number. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client.updateSequenceNumberWithResponse(\n     SequenceNumberActionType.INCREMENT, size, blobRequestConditions, timeout, context).getValue();\n \n System.out.printf(\"Page blob updated to sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-blob-properties"
   syntax:
     content: "public Response<PageBlobItem> updateSequenceNumberWithResponse(SequenceNumberActionType action, Long sequenceNumber, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -669,7 +669,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.uploadPages*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes one or more pages to the page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.uploadPages\\#PageRange-InputStream\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Writes one or more pages to the page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n InputStream dataStream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));\n \n PageBlobItem pageBlob = client.uploadPages(pageRange, dataStream);\n System.out.printf(\"Uploaded page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public PageBlobItem uploadPages(PageRange pageRange, InputStream body)"
     parameters:
@@ -693,7 +693,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.uploadPagesFromUrl*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes one or more pages from the source page blob to this page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.uploadPagesFromUrl\\#PageRange-String-Long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Writes one or more pages from the source page blob to this page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n \n PageBlobItem pageBlob = client.uploadPagesFromUrl(pageRange, url, sourceOffset);\n \n System.out.printf(\"Uploaded page blob from URL with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public PageBlobItem uploadPagesFromUrl(PageRange range, String sourceUrl, Long sourceOffset)"
     parameters:
@@ -720,7 +720,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.uploadPagesFromUrlWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes one or more pages from the source page blob to this page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.uploadPagesFromUrlWithResponse\\#PageRange-String-Long-byte-PageBlobRequestConditions-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Writes one or more pages from the source page blob to this page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n InputStream dataStream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));\n byte[] sourceContentMD5 = new byte[512];\n PageBlobRequestConditions pageBlobRequestConditions = new PageBlobRequestConditions().setLeaseId(leaseId);\n BlobRequestConditions sourceRequestConditions = new BlobRequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client\n     .uploadPagesFromUrlWithResponse(pageRange, url, sourceOffset, sourceContentMD5, pageBlobRequestConditions,\n         sourceRequestConditions, timeout, context).getValue();\n \n System.out.printf(\"Uploaded page blob from URL with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public Response<PageBlobItem> uploadPagesFromUrlWithResponse(PageRange range, String sourceUrl, Long sourceOffset, byte[] sourceContentMd5, PageBlobRequestConditions destRequestConditions, BlobRequestConditions sourceRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -762,7 +762,7 @@ items:
   overload: "com.azure.storage.blob.specialized.PageBlobClient.uploadPagesWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes one or more pages to the page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.PageBlobClient.uploadPagesWithResponse\\#PageRange-InputStream-byte-PageBlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  summary: "Writes one or more pages to the page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nbyte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n PageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n InputStream dataStream = new ByteArrayInputStream(data.getBytes(StandardCharsets.UTF_8));\n PageBlobRequestConditions pageBlobRequestConditions = new PageBlobRequestConditions().setLeaseId(leaseId);\n Context context = new Context(key, value);\n \n PageBlobItem pageBlob = client\n     .uploadPagesWithResponse(pageRange, dataStream, md5, pageBlobRequestConditions, timeout, context).getValue();\n \n System.out.printf(\"Uploaded page blob with sequence number %s%n\", pageBlob.getBlobSequenceNumber());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
   syntax:
     content: "public Response<PageBlobItem> uploadPagesWithResponse(PageRange pageRange, InputStream body, byte[] contentMd5, PageBlobRequestConditions pageBlobRequestConditions, Duration timeout, Context context)"
     parameters:
