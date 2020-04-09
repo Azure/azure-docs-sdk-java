@@ -13,6 +13,7 @@ items:
   - "com.azure.security.keyvault.keys.KeyClientBuilder.httpClient(com.azure.core.http.HttpClient)"
   - "com.azure.security.keyvault.keys.KeyClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)"
   - "com.azure.security.keyvault.keys.KeyClientBuilder.pipeline(com.azure.core.http.HttpPipeline)"
+  - "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)"
   - "com.azure.security.keyvault.keys.KeyClientBuilder.serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)"
   - "com.azure.security.keyvault.keys.KeyClientBuilder.vaultUrl(java.lang.String)"
   langs:
@@ -22,7 +23,7 @@ items:
   fullName: "com.azure.security.keyvault.keys.KeyClientBuilder"
   type: "Class"
   package: "com.azure.security.keyvault.keys"
-  summary: "This class provides a fluent builder API to help aid the configuration and instantiation of the <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">secret async client</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">secret sync client</xref>, by calling <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder.buildAsyncClient()\" data-throw-if-not-resolved=\"false\">buildAsyncClient</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder.buildClient()\" data-throw-if-not-resolved=\"false\">buildClient</xref> respectively. It constructs an instance of the desired client.\n\nThe minimal configuration options required by <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">KeyClientBuilder</xref> to build <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">KeyAsyncClient</xref> are <xref uid=\"\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> and <xref uid=\"\" data-throw-if-not-resolved=\"false\">credential</xref>.\n\n\\{@codesnippet com.azure.security.keyvault.keys.async.keyclient.instantiation\\}\n\nThe <xref uid=\"\" data-throw-if-not-resolved=\"false\">log detail level</xref>, multiple custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">policies</xref> and custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">http client</xref> can be optionally configured in the <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">KeyClientBuilder</xref>.\n\n\\{@codesnippet com.azure.security.keyvault.keys.async.keyclient.withhttpclient.instantiation\\}\n\nAlternatively, custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">http pipeline</xref> with custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipelinePolicy</xref> policies and <xref uid=\"\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> can be specified. It provides finer control over the construction of <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">KeyAsyncClient</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">KeyClient</xref>\n\n\\{@codesnippet com.azure.security.keyvault.keys.async.keyclient.pipeline.instantiation\\}\n\nThe minimal configuration options required by <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">secretClientBuilder</xref> to build <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">KeyClient</xref> are <xref uid=\"\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> and <xref uid=\"\" data-throw-if-not-resolved=\"false\">credential</xref>.\n\n\\{@codesnippet com.azure.security.keyvault.keys.keyclient.instantiation\\}"
+  summary: "This class provides a fluent builder API to help aid the configuration and instantiation of the <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">secret async client</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">secret sync client</xref>, by calling <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder.buildAsyncClient()\" data-throw-if-not-resolved=\"false\">buildAsyncClient</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder.buildClient()\" data-throw-if-not-resolved=\"false\">buildClient</xref> respectively. It constructs an instance of the desired client.\n\nThe minimal configuration options required by <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">KeyClientBuilder</xref> to build <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">KeyAsyncClient</xref> are <xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> and <xref uid=\"\" data-throw-if-not-resolved=\"false\">credential</xref>.\n\n```java\nKeyAsyncClient keyAsyncClient = new KeyClientBuilder()\n     .vaultUrl(\"https://myvault.azure.net/\")\n     .credential(new DefaultAzureCredentialBuilder().build())\n     .buildAsyncClient();\n```\n\nThe <xref uid=\"\" data-throw-if-not-resolved=\"false\">log detail level</xref>, multiple custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">policies</xref> and custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">http client</xref> can be optionally configured in the <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">KeyClientBuilder</xref>.\n\n```java\nKeyAsyncClient keyAsyncClient = new KeyClientBuilder()\n     .vaultUrl(\"https://myvault.azure.net/\")\n     .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))\n     .addPolicy(new KeyVaultCredentialPolicy(new DefaultAzureCredentialBuilder().build()))\n     .httpClient(HttpClient.createDefault())\n     .buildAsyncClient();\n```\n\nAlternatively, custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">http pipeline</xref> with custom <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipelinePolicy</xref> policies and <xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> can be specified. It provides finer control over the construction of <xref uid=\"com.azure.security.keyvault.keys.KeyAsyncClient\" data-throw-if-not-resolved=\"false\">KeyAsyncClient</xref> and <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">KeyClient</xref>\n\n```java\nHttpPipeline pipeline = new HttpPipelineBuilder()\n     .policies(new KeyVaultCredentialPolicy(new DefaultAzureCredentialBuilder().build()), new RetryPolicy())\n     .build();\n KeyAsyncClient keyAsyncClient = new KeyClientBuilder()\n     .pipeline(pipeline)\n     .vaultUrl(\"https://myvault.azure.net/\")\n     .buildAsyncClient();\n```\n\nThe minimal configuration options required by <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">secretClientBuilder</xref> to build <xref uid=\"com.azure.security.keyvault.keys.KeyClient\" data-throw-if-not-resolved=\"false\">KeyClient</xref> are <xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">vaultUrl</xref> and <xref uid=\"\" data-throw-if-not-resolved=\"false\">credential</xref>.\n\n```java\nKeyClient keyClient = new KeyClientBuilder()\n     .vaultUrl(\"https://myvault.azure.net/\")\n     .credential(new DefaultAzureCredentialBuilder().build())\n     .buildClient();\n```"
   syntax:
     content: "public final class KeyClientBuilder"
   inheritance:
@@ -213,6 +214,27 @@ items:
     return:
       type: "com.azure.security.keyvault.keys.KeyClientBuilder"
       description: "the updated <xref uid=\"com.azure.security.keyvault.keys.KeyClientBuilder\" data-throw-if-not-resolved=\"false\">KeyClientBuilder</xref> object."
+- uid: "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)"
+  id: "retryPolicy(com.azure.core.http.policy.RetryPolicy)"
+  parent: "com.azure.security.keyvault.keys.KeyClientBuilder"
+  langs:
+  - "java"
+  name: "retryPolicy(RetryPolicy retryPolicy)"
+  nameWithType: "KeyClientBuilder.retryPolicy(RetryPolicy retryPolicy)"
+  fullName: "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(RetryPolicy retryPolicy)"
+  overload: "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy*"
+  type: "Method"
+  package: "com.azure.security.keyvault.keys"
+  summary: "Sets the <xref uid=\"\" data-throw-if-not-resolved=\"false\">RetryPolicy</xref> that is used when each request is sent. The default retry policy will be used in the pipeline, if not provided."
+  syntax:
+    content: "public KeyClientBuilder retryPolicy(RetryPolicy retryPolicy)"
+    parameters:
+    - id: "retryPolicy"
+      type: "com.azure.core.http.policy.RetryPolicy"
+      description: "user's retry policy applied to each request."
+    return:
+      type: "com.azure.security.keyvault.keys.KeyClientBuilder"
+      description: "The updated KeyClientBuilder object."
 - uid: "com.azure.security.keyvault.keys.KeyClientBuilder.serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)"
   id: "serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)"
   parent: "com.azure.security.keyvault.keys.KeyClientBuilder"
@@ -357,6 +379,16 @@ references:
   name: "configuration"
   nameWithType: "KeyClientBuilder.configuration"
   fullName: "com.azure.security.keyvault.keys.KeyClientBuilder.configuration"
+  package: "com.azure.security.keyvault.keys"
+- uid: "com.azure.core.http.policy.RetryPolicy"
+  spec.java:
+  - uid: "com.azure.core.http.policy.RetryPolicy"
+    name: "RetryPolicy"
+    fullName: "com.azure.core.http.policy.RetryPolicy"
+- uid: "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy*"
+  name: "retryPolicy"
+  nameWithType: "KeyClientBuilder.retryPolicy"
+  fullName: "com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy"
   package: "com.azure.security.keyvault.keys"
 - uid: "java.lang.Object.notify()"
   name: "Object.notify()"
