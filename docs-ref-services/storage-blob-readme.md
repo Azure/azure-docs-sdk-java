@@ -9,7 +9,8 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Blob Storage for Java Readme - Version 12.5.0
+# Azure Storage Blob client library for Java - Version 12.6.0
+
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
 Storage is optimized for storing massive amounts of unstructured data.
 Unstructured data is data that does not adhere to a particular data model or
@@ -25,14 +26,14 @@ definition, such as text or binary data.
 - [Azure Subscription][azure_subscription]
 - [Create Storage Account][storage_account]
 
-### Adding the package to your product
+### Include the package
 
 [//]: # ({x-version-update-start;com.azure:azure-storage-blob;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.5.0</version>
+    <version>12.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -46,6 +47,9 @@ az storage account create \
     --name <storage-account-name> \
     --location <location>
 ```
+
+Your storage account URL, subsequently identified as <your-storage-account-url>, would be formatted as follows
+http(s)://<storage-account-name>.blob.core.windows.net
 
 ### Authenticate the client
 
@@ -114,6 +118,32 @@ Blob Storage is designed for:
 - Writing to log files
 - Storing data for backup and restore, disaster recovery, and archiving
 - Storing data for analysis by an on-premises or Azure-hosted service
+
+### URL format
+Blobs are addressable using the following URL format:
+The following URL addresses a blob:
+https://myaccount.blob.core.windows.net/mycontainer/myblob
+
+#### Resource URI Syntax
+For the storage account, the base URI for blob operations includes the name of the account only:
+
+```
+https://myaccount.blob.core.windows.net
+```
+
+For a container, the base URI includes the name of the account and the name of the container:
+
+```
+https://myaccount.blob.core.windows.net/mycontainer
+```
+
+For a blob, the base URI includes the name of the account, the name of the container and the name of the blob:
+
+```
+https://myaccount.blob.core.windows.net/mycontainer/myblob
+```
+
+Note that the above URIs may not hold for more advanced scenarios such as custom domain names.
 
 ## Examples
 
@@ -324,10 +354,17 @@ Several Storage blob Java SDK samples are available to you in the SDK's GitHub r
 ## Next steps Samples
 Samples are explained in detail [here][samples_readme].
 
+## Contributing
+
+This project welcomes contributions and suggestions. Most contributions require you to agree to a [Contributor License Agreement (CLA)][cla] declaring that you have the right to, and actually do, grant us the rights to use your contribution.
+
+When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
+
+This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-blob
-[samples_readme]: src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -339,7 +376,7 @@ Samples are explained in detail [here][samples_readme].
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-blob/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
