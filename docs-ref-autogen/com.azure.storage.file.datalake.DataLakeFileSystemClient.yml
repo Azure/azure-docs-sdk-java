@@ -8,8 +8,10 @@ items:
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.ROOT_FILESYSTEM_NAME"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.create()"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory(java.lang.String)"
+  - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory(java.lang.String,boolean)"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectoryWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.storage.file.datalake.models.PathHttpHeaders,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.DataLakeRequestConditions,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile(java.lang.String)"
+  - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile(java.lang.String,boolean)"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFileWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.storage.file.datalake.models.PathHttpHeaders,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.DataLakeRequestConditions,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.createWithResponse(java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.PublicAccessType,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.datalake.DataLakeFileSystemClient.delete()"
@@ -109,7 +111,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.create*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.create\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\ntry {\n     client.create();\n     System.out.printf(\"Create completed%n\");\n } catch (BlobStorageException error) {\n     if (error.getErrorCode().equals(BlobErrorCode.CONTAINER_ALREADY_EXISTS)) {\n         System.out.printf(\"Can't create file system. It already exists %n\");\n     }\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public void create()"
 - uid: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory(java.lang.String)"
@@ -123,13 +125,37 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new directory within a file system. If a directory with the same name already exists, the directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new directory within a file system. By default, this method will not overwrite an existing directory. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeDirectoryClient directoryClient = client.createDirectory(directoryName);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public DataLakeDirectoryClient createDirectory(String directoryName)"
     parameters:
     - id: "directoryName"
       type: "java.lang.String"
       description: "Name of the directory to create."
+    return:
+      type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
+      description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> used to interact with the directory created."
+- uid: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory(java.lang.String,boolean)"
+  id: "createDirectory(java.lang.String,boolean)"
+  parent: "com.azure.storage.file.datalake.DataLakeFileSystemClient"
+  langs:
+  - "java"
+  name: "createDirectory(String directoryName, boolean overwrite)"
+  nameWithType: "DataLakeFileSystemClient.createDirectory(String directoryName, boolean overwrite)"
+  fullName: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory(String directoryName, boolean overwrite)"
+  overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectory*"
+  type: "Method"
+  package: "com.azure.storage.file.datalake"
+  summary: "Creates a new directory within a file system. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; /* Default value. */\n DataLakeDirectoryClient dClient = client.createDirectory(fileName, overwrite);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  syntax:
+    content: "public DataLakeDirectoryClient createDirectory(String directoryName, boolean overwrite)"
+    parameters:
+    - id: "directoryName"
+      type: "java.lang.String"
+      description: "Name of the directory to create."
+    - id: "overwrite"
+      type: "boolean"
+      description: "Whether or not to overwrite, should a directory exist."
     return:
       type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
       description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> used to interact with the directory created."
@@ -144,7 +170,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new directory within a file system. If a directory with the same name already exists, the directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.createDirectoryWithResponse\\#String-String-String-PathHttpHeaders-Map-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new directory within a file system. If a directory with the same name already exists, the directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n String permissions = \"permissions\";\n String umask = \"umask\";\n Response<DataLakeDirectoryClient> newDirectoryClient = client.createDirectoryWithResponse(directoryName,\n     permissions, umask, httpHeaders, Collections.singletonMap(\"metadata\", \"value\"), requestConditions,\n     timeout, new Context(key1, value1));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Response<DataLakeDirectoryClient> createDirectoryWithResponse(String directoryName, String permissions, String umask, PathHttpHeaders headers, Map<String,String> metadata, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -186,13 +212,37 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file within a file system. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new file within a file system. By default, this method will not overwrite an existing file. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeFileClient fileClient = client.createFile(fileName);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public DataLakeFileClient createFile(String fileName)"
     parameters:
     - id: "fileName"
       type: "java.lang.String"
       description: "Name of the file to create."
+    return:
+      type: "com.azure.storage.file.datalake.DataLakeFileClient"
+      description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> used to interact with the file created."
+- uid: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile(java.lang.String,boolean)"
+  id: "createFile(java.lang.String,boolean)"
+  parent: "com.azure.storage.file.datalake.DataLakeFileSystemClient"
+  langs:
+  - "java"
+  name: "createFile(String fileName, boolean overwrite)"
+  nameWithType: "DataLakeFileSystemClient.createFile(String fileName, boolean overwrite)"
+  fullName: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile(String fileName, boolean overwrite)"
+  overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile*"
+  type: "Method"
+  package: "com.azure.storage.file.datalake"
+  summary: "Creates a new file within a file system. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; /* Default value. */\n DataLakeFileClient fClient = client.createFile(fileName, overwrite);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  syntax:
+    content: "public DataLakeFileClient createFile(String fileName, boolean overwrite)"
+    parameters:
+    - id: "fileName"
+      type: "java.lang.String"
+      description: "Name of the file to create."
+    - id: "overwrite"
+      type: "boolean"
+      description: "Whether or not to overwrite, should a file exist."
     return:
       type: "com.azure.storage.file.datalake.DataLakeFileClient"
       description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> used to interact with the file created."
@@ -207,7 +257,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file within a file system. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.createFileWithResponse\\#String-String-String-PathHttpHeaders-Map-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new file within a file system. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n String permissions = \"permissions\";\n String umask = \"umask\";\n Response<DataLakeFileClient> newFileClient = client.createFileWithResponse(fileName, permissions, umask, httpHeaders,\n     Collections.singletonMap(\"metadata\", \"value\"), requestConditions,\n     timeout, new Context(key1, value1));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Response<DataLakeFileClient> createFileWithResponse(String fileName, String permissions, String umask, PathHttpHeaders headers, Map<String,String> metadata, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -249,7 +299,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.createWithResponse\\#Map-PublicAccessType-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n Context context = new Context(\"Key\", \"Value\");\n \n System.out.printf(\"Create completed with status %d%n\",\n     client.createWithResponse(metadata, PublicAccessType.CONTAINER, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public Response<Void> createWithResponse(Map<String,String> metadata, PublicAccessType accessType, Duration timeout, Context context)"
     parameters:
@@ -279,7 +329,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.delete*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Marks the specified file system for deletion. The file system and any files/directories contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.delete\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
+  summary: "Marks the specified file system for deletion. The file system and any files/directories contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\ntry {\n     client.delete();\n     System.out.printf(\"Delete completed%n\");\n } catch (BlobStorageException error) {\n     if (error.getErrorCode().equals(BlobErrorCode.CONTAINER_NOT_FOUND)) {\n         System.out.printf(\"Delete failed. File System was not found %n\");\n     }\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
   syntax:
     content: "public void delete()"
 - uid: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectory(java.lang.String)"
@@ -293,7 +343,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectory*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified directory in the file system. If the directory doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectory\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified directory in the file system. If the directory doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteDirectory(directoryName);\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public void deleteDirectory(String directoryName)"
     parameters:
@@ -311,7 +361,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified directory in the file system. If the directory doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectoryWithResponse\\#String-boolean-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified directory in the file system. If the directory doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n boolean recursive = false; // Default value\n \n client.deleteDirectoryWithResponse(directoryName, recursive, requestConditions, timeout,\n     new Context(key1, value1));\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public Response<Void> deleteDirectoryWithResponse(String directoryName, boolean recursive, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -344,7 +394,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteFile*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file in the file system. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteFile\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified file in the file system. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteFile(fileName);\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public void deleteFile(String fileName)"
     parameters:
@@ -362,7 +412,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file in the file system. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteFileWithResponse\\#String-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified file in the file system. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n \n client.deleteFileWithResponse(fileName, requestConditions, timeout, new Context(key1, value1));\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public Response<Void> deleteFileWithResponse(String fileName, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -392,7 +442,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Marks the specified file system for deletion. The file system and any files/directories contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteWithResponse\\#DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
+  summary: "Marks the specified file system for deletion. The file system and any files/directories contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"Key\", \"Value\");\n \n System.out.printf(\"Delete completed with status %d%n\", client.deleteWithResponse(\n     requestConditions, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
   syntax:
     content: "public Response<Void> deleteWithResponse(DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -419,7 +469,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.generateSas*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Generates a service SAS for the file system using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.generateSas\\#DataLakeServiceSasSignatureValues\\}"
+  summary: "Generates a service SAS for the file system using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);\n FileSystemSasPermission permission = new FileSystemSasPermission().setReadPermission(true);\n \n DataLakeServiceSasSignatureValues values = new DataLakeServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateSas(values); // Client must be authenticated via StorageSharedKeyCredential\n```"
   syntax:
     content: "public String generateSas(DataLakeServiceSasSignatureValues dataLakeServiceSasSignatureValues)"
     parameters:
@@ -440,7 +490,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.generateUserDelegationSas*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Generates a user delegation SAS for the file system using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient.generateUserDelegationSas\\#DataLakeServiceSasSignatureValues-UserDelegationKey\\}"
+  summary: "Generates a user delegation SAS for the file system using the specified <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.file.datalake.sas.DataLakeServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">DataLakeServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime myExpiryTime = OffsetDateTime.now().plusDays(1);\n FileSystemSasPermission myPermission = new FileSystemSasPermission().setReadPermission(true);\n \n DataLakeServiceSasSignatureValues myValues = new DataLakeServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateUserDelegationSas(values, userDelegationKey);\n```"
   syntax:
     content: "public String generateUserDelegationSas(DataLakeServiceSasSignatureValues dataLakeServiceSasSignatureValues, UserDelegationKey userDelegationKey)"
     parameters:
@@ -464,7 +514,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the file system's permissions. The permissions indicate whether file system's paths may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getAccessPolicy\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
+  summary: "Returns the file system's permissions. The permissions indicate whether file system's paths may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nFileSystemAccessPolicies accessPolicies = client.getAccessPolicy();\n System.out.printf(\"Data Lake Access Type: %s%n\", accessPolicies.getDataLakeAccessType());\n \n for (DataLakeSignedIdentifier identifier : accessPolicies.getIdentifiers()) {\n     System.out.printf(\"Identifier Name: %s, Permissions %s%n\",\n         identifier.getId(),\n         identifier.getAccessPolicy().getPermissions());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
   syntax:
     content: "public FileSystemAccessPolicies getAccessPolicy()"
     return:
@@ -481,7 +531,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getAccessPolicyWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the file system's permissions. The permissions indicate whether file system's paths may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getAccessPolicyWithResponse\\#String-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
+  summary: "Returns the file system's permissions. The permissions indicate whether file system's paths may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nContext context = new Context(\"Key\", \"Value\");\n FileSystemAccessPolicies accessPolicies = client.getAccessPolicyWithResponse(leaseId, timeout, context)\n     .getValue();\n System.out.printf(\"Data Lake Access Type: %s%n\", accessPolicies.getDataLakeAccessType());\n \n for (DataLakeSignedIdentifier identifier : accessPolicies.getIdentifiers()) {\n     System.out.printf(\"Identifier Name: %s, Permissions %s%n\",\n         identifier.getId(),\n         identifier.getAccessPolicy().getPermissions());\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
   syntax:
     content: "public Response<FileSystemAccessPolicies> getAccessPolicyWithResponse(String leaseId, Duration timeout, Context context)"
     parameters:
@@ -546,7 +596,7 @@ items:
     parameters:
     - id: "directoryName"
       type: "java.lang.String"
-      description: "A <code>String</code> representing the name of the directory.\n\n <p><strong>Code Samples</strong></p>\n\n {@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getDirectoryClient#String}"
+      description: "A <code>String</code> representing the name of the directory.\n\n <p><strong>Code Samples</strong></p>\n\n <pre>\n DataLakeDirectoryClient dataLakeDirectoryClient = client.getDirectoryClient&#40;directoryName&#41;;\n </pre>"
     return:
       type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
       description: "A new <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> object which references the directory with the specified name in\n this file system."
@@ -567,7 +617,7 @@ items:
     parameters:
     - id: "fileName"
       type: "java.lang.String"
-      description: "A <code>String</code> representing the name of the file.\n\n <p><strong>Code Samples</strong></p>\n\n {@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getFileClient#String}"
+      description: "A <code>String</code> representing the name of the file.\n\n <p><strong>Code Samples</strong></p>\n\n <pre>\n DataLakeFileClient dataLakeFileClient = client.getFileClient&#40;fileName&#41;;\n </pre>"
     return:
       type: "com.azure.storage.file.datalake.DataLakeFileClient"
       description: "A new <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> object which references the file with the specified name in this file\n system."
@@ -582,7 +632,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getFileSystemName*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Get the file system name.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getFileSystemName\\}"
+  summary: "Get the file system name.\n\n**Code Samples**\n\n```java\nString fileSystemName = client.getFileSystemName();\n System.out.println(\"The name of the file system is \" + fileSystemName);\n```"
   syntax:
     content: "public String getFileSystemName()"
     return:
@@ -633,7 +683,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the file system's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getProperties\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
+  summary: "Returns the file system's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nFileSystemProperties properties = client.getProperties();\n System.out.printf(\"Public Access Type: %s, Legal Hold? %b, Immutable? %b%n\",\n     properties.getDataLakePublicAccess(),\n     properties.hasLegalHold(),\n     properties.hasImmutabilityPolicy());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
   syntax:
     content: "public FileSystemProperties getProperties()"
     return:
@@ -650,7 +700,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns the file system's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getPropertiesWithResponse\\#String-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
+  summary: "Returns the file system's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nContext context = new Context(\"Key\", \"Value\");\n \n FileSystemProperties properties = client.getPropertiesWithResponse(leaseId, timeout, context)\n     .getValue();\n System.out.printf(\"Public Access Type: %s, Legal Hold? %b, Immutable? %b%n\",\n     properties.getDataLakePublicAccess(),\n     properties.hasLegalHold(),\n     properties.hasImmutabilityPolicy());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
   syntax:
     content: "public Response<FileSystemProperties> getPropertiesWithResponse(String leaseId, Duration timeout, Context context)"
     parameters:
@@ -677,7 +727,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.getRootDirectoryClient*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Initializes a new DataLakeDirectoryClient object by concatenating `\"\"` to the end of DataLakeFileSystemClient's URL. The new DataLakeDirectoryClient uses the same request policy pipeline as the DataLakeFileSystemClient.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.getRootDirectoryClient\\}"
+  summary: "Initializes a new DataLakeDirectoryClient object by concatenating `\"\"` to the end of DataLakeFileSystemClient's URL. The new DataLakeDirectoryClient uses the same request policy pipeline as the DataLakeFileSystemClient.\n\n**Code Samples**\n\n```java\nDataLakeDirectoryClient dataLakeDirectoryClient = client.getRootDirectoryClient();\n```"
   syntax:
     content: " DataLakeDirectoryClient getRootDirectoryClient()"
     return:
@@ -711,7 +761,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.listPaths*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns a lazy loaded list of files/directories in this account. The returned <xref uid=\"com.azure.core.http.rest.PagedIterable\" data-throw-if-not-resolved=\"false\">PagedIterable</xref> can be consumed while new items are automatically retrieved as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.listPaths\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list#filesystem"
+  summary: "Returns a lazy loaded list of files/directories in this account. The returned <xref uid=\"com.azure.core.http.rest.PagedIterable\" data-throw-if-not-resolved=\"false\">PagedIterable</xref> can be consumed while new items are automatically retrieved as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.listPaths().forEach(path -> System.out.printf(\"Name: %s%n\", path.getName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list#filesystem"
   syntax:
     content: "public PagedIterable<PathItem> listPaths()"
     return:
@@ -728,7 +778,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.listPaths*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns a lazy loaded list of files/directories in this account. The returned <xref uid=\"com.azure.core.http.rest.PagedIterable\" data-throw-if-not-resolved=\"false\">PagedIterable</xref> can be consumed while new items are automatically retrieved as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.listPaths\\#ListPathsOptions-Duration\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list#filesystem"
+  summary: "Returns a lazy loaded list of files/directories in this account. The returned <xref uid=\"com.azure.core.http.rest.PagedIterable\" data-throw-if-not-resolved=\"false\">PagedIterable</xref> can be consumed while new items are automatically retrieved as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nListPathsOptions options = new ListPathsOptions()\n     .setPath(\"pathPrefixToMatch\")\n     .setMaxResults(10);\n \n client.listPaths(options, timeout).forEach(path -> System.out.printf(\"Name: %s%n\", path.getName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/filesystem/list#filesystem"
   syntax:
     content: "public PagedIterable<PathItem> listPaths(ListPathsOptions options, Duration timeout)"
     parameters:
@@ -752,7 +802,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.setAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Sets the file system's permissions. The permissions indicate whether paths in a file system may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.setAccessPolicy\\#PublicAccessType-List\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
+  summary: "Sets the file system's permissions. The permissions indicate whether paths in a file system may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeSignedIdentifier identifier = new DataLakeSignedIdentifier()\n     .setId(\"name\")\n     .setAccessPolicy(new DataLakeAccessPolicy()\n         .setStartsOn(OffsetDateTime.now())\n         .setExpiresOn(OffsetDateTime.now().plusDays(7))\n         .setPermissions(\"permissionString\"));\n \n try {\n     client.setAccessPolicy(PublicAccessType.CONTAINER, Collections.singletonList(identifier));\n     System.out.printf(\"Set Access Policy completed %n\");\n } catch (UnsupportedOperationException error) {\n     System.out.printf(\"Set Access Policy completed %s%n\", error);\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
   syntax:
     content: "public void setAccessPolicy(PublicAccessType accessType, List<DataLakeSignedIdentifier> identifiers)"
     parameters:
@@ -773,7 +823,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.setAccessPolicyWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Sets the file system's permissions. The permissions indicate whether paths in a file system may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.setAccessPolicyWithResponse\\#PublicAccessType-List-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
+  summary: "Sets the file system's permissions. The permissions indicate whether paths in a file system may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeSignedIdentifier identifier = new DataLakeSignedIdentifier()\n     .setId(\"name\")\n     .setAccessPolicy(new DataLakeAccessPolicy()\n         .setStartsOn(OffsetDateTime.now())\n         .setExpiresOn(OffsetDateTime.now().plusDays(7))\n         .setPermissions(\"permissionString\"));\n \n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n Context context = new Context(\"Key\", \"Value\");\n \n System.out.printf(\"Set access policy completed with status %d%n\",\n     client.setAccessPolicyWithResponse(PublicAccessType.CONTAINER,\n         Collections.singletonList(identifier),\n         requestConditions,\n         timeout,\n         context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
   syntax:
     content: "public Response<Void> setAccessPolicyWithResponse(PublicAccessType accessType, List<DataLakeSignedIdentifier> identifiers, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -806,7 +856,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.setMetadata*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Sets the file system's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.setMetadata\\#Map\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
+  summary: "Sets the file system's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n try {\n     client.setMetadata(metadata);\n     System.out.printf(\"Set metadata completed with status %n\");\n } catch (UnsupportedOperationException error) {\n     System.out.printf(\"Fail while setting metadata %n\");\n }\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
   syntax:
     content: "public void setMetadata(Map<String,String> metadata)"
     parameters:
@@ -824,7 +874,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeFileSystemClient.setMetadataWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Sets the file system's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeFileSystemClient.setMetadataWithResponse\\#Map-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
+  summary: "Sets the file system's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"Key\", \"Value\");\n \n System.out.printf(\"Set metadata completed with status %d%n\",\n     client.setMetadataWithResponse(metadata, requestConditions, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
   syntax:
     content: "public Response<Void> setMetadataWithResponse(Map<String,String> metadata, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -1049,6 +1099,11 @@ references:
   nameWithType: "DataLakeFileSystemClient.createFile"
   fullName: "com.azure.storage.file.datalake.DataLakeFileSystemClient.createFile"
   package: "com.azure.storage.file.datalake"
+- uid: "boolean"
+  spec.java:
+  - uid: "boolean"
+    name: "boolean"
+    fullName: "boolean"
 - uid: "com.azure.storage.file.datalake.models.PathHttpHeaders"
   name: "PathHttpHeaders"
   nameWithType: "PathHttpHeaders"
@@ -1107,11 +1162,6 @@ references:
   nameWithType: "DataLakeFileSystemClient.deleteDirectory"
   fullName: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectory"
   package: "com.azure.storage.file.datalake"
-- uid: "boolean"
-  spec.java:
-  - uid: "boolean"
-    name: "boolean"
-    fullName: "boolean"
 - uid: "com.azure.storage.file.datalake.DataLakeFileSystemClient.deleteDirectoryWithResponse*"
   name: "deleteDirectoryWithResponse"
   nameWithType: "DataLakeFileSystemClient.deleteDirectoryWithResponse"

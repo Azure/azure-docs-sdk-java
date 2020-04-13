@@ -145,7 +145,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlock*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.appendBlock\\#InputStream-long\\}"
+  summary: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlock(data, length).getBlobCommittedBlockCount());\n```"
   syntax:
     content: "public AppendBlobItem appendBlock(InputStream data, long length)"
     parameters:
@@ -169,7 +169,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlockFromUrl*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Commits a new block of data from another blob to the end of this append blob.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.appendBlockFromUrl\\#String-BlobRange\\}"
+  summary: "Commits a new block of data from another blob to the end of this append blob.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlockFromUrl(sourceUrl, new BlobRange(offset, count)).getBlobCommittedBlockCount());\n```"
   syntax:
     content: "public AppendBlobItem appendBlockFromUrl(String sourceUrl, BlobRange sourceRange)"
     parameters:
@@ -193,7 +193,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlockFromUrlWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Commits a new block of data from another blob to the end of this append blob.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.appendBlockFromUrlWithResponse\\#String-BlobRange-byte-AppendBlobRequestConditions-BlobRequestConditions-Duration-Context\\}"
+  summary: "Commits a new block of data from another blob to the end of this append blob.\n\n**Code Samples**\n\n```java\nAppendBlobRequestConditions appendBlobRequestConditions = new AppendBlobRequestConditions()\n     .setAppendPosition(POSITION)\n     .setMaxSize(maxSize);\n \n BlobRequestConditions modifiedRequestConditions = new BlobRequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlockFromUrlWithResponse(sourceUrl, new BlobRange(offset, count), null,\n         appendBlobRequestConditions, modifiedRequestConditions, timeout,\n         context).getValue().getBlobCommittedBlockCount());\n```"
   syntax:
     content: "public Response<AppendBlobItem> appendBlockFromUrlWithResponse(String sourceUrl, BlobRange sourceRange, byte[] sourceContentMd5, AppendBlobRequestConditions destRequestConditions, BlobRequestConditions sourceRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -232,7 +232,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.appendBlockWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.appendBlockWithResponse\\#InputStream-long-byte-AppendBlobRequestConditions-Duration-Context\\}"
+  summary: "Commits a new block of data to the end of the existing append blob.\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nbyte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n AppendBlobRequestConditions requestConditions = new AppendBlobRequestConditions()\n     .setAppendPosition(POSITION)\n     .setMaxSize(maxSize);\n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"AppendBlob has %d committed blocks%n\",\n     client.appendBlockWithResponse(data, length, md5, requestConditions, timeout, context)\n         .getValue().getBlobCommittedBlockCount());\n```"
   syntax:
     content: "public Response<AppendBlobItem> appendBlockWithResponse(InputStream data, long length, byte[] contentMd5, AppendBlobRequestConditions appendBlobRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -268,7 +268,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.create*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob. By default this method will not overwrite an existing blob.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.create\\}"
+  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob. By default this method will not overwrite an existing blob.\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Created AppendBlob at %s%n\", client.create().getLastModified());\n```"
   syntax:
     content: "public AppendBlobItem create()"
     return:
@@ -285,7 +285,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.create*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.create\\#boolean\\}"
+  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob.\n\n**Code Samples**\n\n```java\nboolean overwrite = false; // Default value\n System.out.printf(\"Created AppendBlob at %s%n\", client.create(overwrite).getLastModified());\n```"
   syntax:
     content: "public AppendBlobItem create(boolean overwrite)"
     parameters:
@@ -306,7 +306,7 @@ items:
   overload: "com.azure.storage.blob.specialized.AppendBlobClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob.\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.AppendBlobClient.createWithResponse\\#BlobHttpHeaders-Map-BlobRequestConditions-Duration-Context\\}"
+  summary: "Creates a 0-length append blob. Call appendBlock to append data to an append blob.\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n```java\nBlobHttpHeaders headers = new BlobHttpHeaders()\n     .setContentType(\"binary\")\n     .setContentLanguage(\"en-US\");\n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"Created AppendBlob at %s%n\",\n     client.createWithResponse(headers, metadata, requestConditions, timeout, context).getValue().getLastModified());\n```"
   syntax:
     content: "public Response<AppendBlobItem> createWithResponse(BlobHttpHeaders headers, Map<String,String> metadata, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:

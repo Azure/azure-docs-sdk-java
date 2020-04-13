@@ -85,7 +85,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystem*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystem\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeFileSystemAsyncClient dataLakeFileSystemAsyncClient =\n     client.createFileSystem(\"fileSystemName\").block();\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public Mono<DataLakeFileSystemAsyncClient> createFileSystem(String fileSystemName)"
     parameters:
@@ -106,7 +106,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystemWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystemWithResponse\\#String-Map-PublicAccessType\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new file system within a storage account. If a file system with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n \n DataLakeFileSystemAsyncClient dataLakeFileSystemAsyncClient = client\n     .createFileSystemWithResponse(\"fileSystemName\", metadata, PublicAccessType.CONTAINER).block().getValue();\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public Mono<Response<DataLakeFileSystemAsyncClient>> createFileSystemWithResponse(String fileSystemName, Map<String,String> metadata, PublicAccessType accessType)"
     parameters:
@@ -133,7 +133,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystem*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file system in the storage account. If the file system doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystem\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-container"
+  summary: "Deletes the specified file system in the storage account. If the file system doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteFileSystem(\"fileSystemName\").subscribe(\n     response -> System.out.printf(\"Delete file system completed%n\"),\n     error -> System.out.printf(\"Delete file system failed: %s%n\", error));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-container"
   syntax:
     content: "public Mono<Void> deleteFileSystem(String fileSystemName)"
     parameters:
@@ -154,7 +154,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystemWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file system in the storage account. If the file system doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystemWithResponse\\#String-DataLakeRequestConditions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-container"
+  summary: "Deletes the specified file system in the storage account. If the file system doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteFileSystemWithResponse(\"fileSystemName\", new DataLakeRequestConditions()).subscribe(response ->\n     System.out.printf(\"Delete file system completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/delete-container"
   syntax:
     content: "public Mono<Response<Void>> deleteFileSystemWithResponse(String fileSystemName, DataLakeRequestConditions requestConditions)"
     parameters:
@@ -178,7 +178,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.generateAccountSas*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to file systems and file shares.\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.generateAccountSas\\#AccountSasSignatureValues\\}"
+  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to file systems and file shares.\n\n```java\nAccountSasPermission permissions = new AccountSasPermission()\n     .setListPermission(true)\n     .setReadPermission(true);\n AccountSasResourceType resourceTypes = new AccountSasResourceType().setContainer(true);\n AccountSasService services = new AccountSasService().setBlobAccess(true).setFileAccess(true);\n OffsetDateTime expiryTime = OffsetDateTime.now().plus(Duration.ofDays(2));\n \n AccountSasSignatureValues sasValues =\n     new AccountSasSignatureValues(expiryTime, permissions, services, resourceTypes);\n \n // Client must be authenticated via StorageSharedKeyCredential\n String sas = client.generateAccountSas(sasValues);\n```"
   syntax:
     content: "public String generateAccountSas(AccountSasSignatureValues accountSasSignatureValues)"
     parameters:
@@ -233,7 +233,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getFileSystemAsyncClient*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Initializes a <xref uid=\"com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient\" data-throw-if-not-resolved=\"false\">DataLakeFileSystemAsyncClient</xref> object pointing to the specified file system. This method does not create a file system. It simply constructs the URL to the file system and offers access to methods relevant to file systems.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getFileSystemAsyncClient\\#String\\}"
+  summary: "Initializes a <xref uid=\"com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient\" data-throw-if-not-resolved=\"false\">DataLakeFileSystemAsyncClient</xref> object pointing to the specified file system. This method does not create a file system. It simply constructs the URL to the file system and offers access to methods relevant to file systems.\n\n**Code Samples**\n\n```java\nDataLakeFileSystemAsyncClient dataLakeFileSystemAsyncClient = client.getFileSystemAsyncClient(\"fileSystemName\");\n```"
   syntax:
     content: "public DataLakeFileSystemAsyncClient getFileSystemAsyncClient(String fileSystemName)"
     parameters:
@@ -288,7 +288,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getUserDelegationKey*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid=\"\" data-throw-if-not-resolved=\"false\">TokenCredential</xref> in this object's <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipeline</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getUserDelegationKey\\#OffsetDateTime-OffsetDateTime\\}"
+  summary: "Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid=\"\" data-throw-if-not-resolved=\"false\">TokenCredential</xref> in this object's <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipeline</xref>.\n\n**Code Samples**\n\n```java\nclient.getUserDelegationKey(delegationKeyStartTime, delegationKeyExpiryTime).subscribe(response ->\n     System.out.printf(\"User delegation key: %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<UserDelegationKey> getUserDelegationKey(OffsetDateTime start, OffsetDateTime expiry)"
     parameters:
@@ -312,7 +312,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getUserDelegationKeyWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid=\"\" data-throw-if-not-resolved=\"false\">TokenCredential</xref> in this object's <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipeline</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getUserDelegationKeyWithResponse\\#OffsetDateTime-OffsetDateTime\\}"
+  summary: "Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid=\"\" data-throw-if-not-resolved=\"false\">TokenCredential</xref> in this object's <xref uid=\"\" data-throw-if-not-resolved=\"false\">HttpPipeline</xref>.\n\n**Code Samples**\n\n```java\nclient.getUserDelegationKeyWithResponse(delegationKeyStartTime, delegationKeyExpiryTime).subscribe(response ->\n     System.out.printf(\"User delegation key: %s%n\", response.getValue().getValue()));\n```"
   syntax:
     content: "public Mono<Response<UserDelegationKey>> getUserDelegationKeyWithResponse(OffsetDateTime start, OffsetDateTime expiry)"
     parameters:
@@ -336,7 +336,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns a reactive Publisher emitting all the file systems in this account lazily as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-containers2"
+  summary: "Returns a reactive Publisher emitting all the file systems in this account lazily as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.listFileSystems().subscribe(fileSystem -> System.out.printf(\"Name: %s%n\", fileSystem.getName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-containers2"
   syntax:
     content: "public PagedFlux<FileSystemItem> listFileSystems()"
     return:
@@ -353,7 +353,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Returns a reactive Publisher emitting all the file systems in this account lazily as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems\\#ListFileSystemsOptions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-containers2"
+  summary: "Returns a reactive Publisher emitting all the file systems in this account lazily as needed. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nListFileSystemsOptions options = new ListFileSystemsOptions()\n     .setPrefix(\"fileSystemNamePrefixToMatch\")\n     .setDetails(new FileSystemListDetails().setRetrieveMetadata(true));\n \n client.listFileSystems(options).subscribe(fileSystem -> System.out.printf(\"Name: %s%n\", fileSystem.getName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-containers2"
   syntax:
     content: "public PagedFlux<FileSystemItem> listFileSystems(ListFileSystemsOptions options)"
     parameters:

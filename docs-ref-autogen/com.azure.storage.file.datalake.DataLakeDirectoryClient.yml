@@ -6,8 +6,10 @@ items:
   children:
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.DataLakeDirectoryClient(com.azure.storage.file.datalake.DataLakeDirectoryAsyncClient,com.azure.storage.blob.specialized.BlockBlobClient)"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile(java.lang.String)"
+  - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile(java.lang.String,boolean)"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFileWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.storage.file.datalake.models.PathHttpHeaders,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.DataLakeRequestConditions,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory(java.lang.String)"
+  - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory(java.lang.String,boolean)"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectoryWithResponse(java.lang.String,java.lang.String,java.lang.String,com.azure.storage.file.datalake.models.PathHttpHeaders,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.DataLakeRequestConditions,java.time.Duration,com.azure.core.util.Context)"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.delete()"
   - "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFile(java.lang.String)"
@@ -120,13 +122,37 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file within a directory. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new file within a directory. By default this method will not overwrite an existing file. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeFileClient fileClient = client.createFile(fileName);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public DataLakeFileClient createFile(String fileName)"
     parameters:
     - id: "fileName"
       type: "java.lang.String"
       description: "Name of the file to create."
+    return:
+      type: "com.azure.storage.file.datalake.DataLakeFileClient"
+      description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> used to interact with the file created."
+- uid: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile(java.lang.String,boolean)"
+  id: "createFile(java.lang.String,boolean)"
+  parent: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
+  langs:
+  - "java"
+  name: "createFile(String fileName, boolean overwrite)"
+  nameWithType: "DataLakeDirectoryClient.createFile(String fileName, boolean overwrite)"
+  fullName: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile(String fileName, boolean overwrite)"
+  overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFile*"
+  type: "Method"
+  package: "com.azure.storage.file.datalake"
+  summary: "Creates a new file within a directory. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; /* Default value. */\n DataLakeFileClient fClient = client.createFile(fileName, overwrite);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  syntax:
+    content: "public DataLakeFileClient createFile(String fileName, boolean overwrite)"
+    parameters:
+    - id: "fileName"
+      type: "java.lang.String"
+      description: "Name of the file to create."
+    - id: "overwrite"
+      type: "boolean"
+      description: "Whether or not to overwrite, should a file exist."
     return:
       type: "com.azure.storage.file.datalake.DataLakeFileClient"
       description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> used to interact with the file created."
@@ -141,7 +167,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new file within a directory. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.createFileWithResponse\\#String-String-String-PathHttpHeaders-Map-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new file within a directory. If a file with the same name already exists, the file will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n String permissions = \"permissions\";\n String umask = \"umask\";\n Response<DataLakeFileClient> newFileClient = client.createFileWithResponse(fileName, permissions, umask, httpHeaders,\n     Collections.singletonMap(\"metadata\", \"value\"), requestConditions,\n     timeout, new Context(key1, value1));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Response<DataLakeFileClient> createFileWithResponse(String fileName, String permissions, String umask, PathHttpHeaders headers, Map<String,String> metadata, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -183,13 +209,37 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new sub-directory within a directory. If a sub-directory with the same name already exists, the sub-directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new sub-directory within a directory. By default this method will not overwrite an existing sub-directory. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeDirectoryClient directoryClient = client.createSubdirectory(directoryName);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public DataLakeDirectoryClient createSubdirectory(String subdirectoryName)"
     parameters:
     - id: "subdirectoryName"
       type: "java.lang.String"
       description: "Name of the sub-directory to create."
+    return:
+      type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
+      description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> used to interact with the sub-directory created."
+- uid: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory(java.lang.String,boolean)"
+  id: "createSubdirectory(java.lang.String,boolean)"
+  parent: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
+  langs:
+  - "java"
+  name: "createSubdirectory(String subdirectoryName, boolean overwrite)"
+  nameWithType: "DataLakeDirectoryClient.createSubdirectory(String subdirectoryName, boolean overwrite)"
+  fullName: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory(String subdirectoryName, boolean overwrite)"
+  overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectory*"
+  type: "Method"
+  package: "com.azure.storage.file.datalake"
+  summary: "Creates a new sub-directory within a directory. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; /* Default value. */\n DataLakeDirectoryClient dClient = client.createSubdirectory(fileName, overwrite);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  syntax:
+    content: "public DataLakeDirectoryClient createSubdirectory(String subdirectoryName, boolean overwrite)"
+    parameters:
+    - id: "subdirectoryName"
+      type: "java.lang.String"
+      description: "Name of the sub-directory to create."
+    - id: "overwrite"
+      type: "boolean"
+      description: "Whether or not to overwrite, should the sub-directory exist."
     return:
       type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
       description: "A <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> used to interact with the sub-directory created."
@@ -204,7 +254,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Creates a new sub-directory within a directory. If a sub-directory with the same name already exists, the sub-directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.createSubdirectoryWithResponse\\#String-String-String-PathHttpHeaders-Map-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Creates a new sub-directory within a directory. If a sub-directory with the same name already exists, the sub-directory will be overwritten. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nPathHttpHeaders httpHeaders = new PathHttpHeaders()\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n DataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n String permissions = \"permissions\";\n String umask = \"umask\";\n Response<DataLakeDirectoryClient> newDirectoryClient = client.createSubdirectoryWithResponse(directoryName,\n     permissions, umask, httpHeaders, Collections.singletonMap(\"metadata\", \"value\"), requestConditions, timeout,\n     new Context(key1, value1));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Response<DataLakeDirectoryClient> createSubdirectoryWithResponse(String subdirectoryName, String permissions, String umask, PathHttpHeaders headers, Map<String,String> metadata, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -246,7 +296,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.delete*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes a directory.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.delete\\}\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes a directory.\n\n**Code Samples**\n\n```java\nclient.delete();\n System.out.println(\"Delete request completed\");\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public void delete()"
 - uid: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFile(java.lang.String)"
@@ -260,7 +310,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFile*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file in the directory. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFile\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified file in the directory. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteFile(fileName);\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public void deleteFile(String fileName)"
     parameters:
@@ -278,7 +328,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFileWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified file in the directory. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteFileWithResponse\\#String-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified file in the directory. If the file doesn't exist the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n \n client.deleteFileWithResponse(fileName, requestConditions, timeout, new Context(key1, value1));\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public Response<Void> deleteFileWithResponse(String fileName, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -308,7 +358,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteSubdirectory*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified sub-directory in the directory. If the sub-directory doesn't exist or is not empty the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteSubdirectory\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified sub-directory in the directory. If the sub-directory doesn't exist or is not empty the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.deleteSubdirectory(directoryName);\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public void deleteSubdirectory(String subdirectoryName)"
     parameters:
@@ -326,7 +376,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteSubdirectoryWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes the specified sub-directory in the directory. If the sub-directory doesn't exist or is not empty the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteSubdirectoryWithResponse\\#String-boolean-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes the specified sub-directory in the directory. If the sub-directory doesn't exist or is not empty the operation fails. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n boolean recursive = false; // Default value\n \n client.deleteSubdirectoryWithResponse(directoryName, recursive, requestConditions, timeout,\n     new Context(key1, value1));\n System.out.println(\"Delete request completed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public Response<Void> deleteSubdirectoryWithResponse(String subdirectoryName, boolean recursive, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -359,7 +409,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Deletes a directory.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.deleteWithResponse\\#boolean-DataLakeRequestConditions-Duration-Context\\}\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
+  summary: "Deletes a directory.\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions requestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n boolean recursive = false; // Default value\n \n client.deleteWithResponse(recursive, requestConditions, timeout, new Context(key1, value1));\n System.out.println(\"Delete request completed\");\n```\n\nFor more information see the [Azure Docs][]\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/delete"
   syntax:
     content: "public Response<Void> deleteWithResponse(boolean recursive, DataLakeRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -446,7 +496,7 @@ items:
     parameters:
     - id: "fileName"
       type: "java.lang.String"
-      description: "A <code>String</code> representing the name of the file.\n\n <p><strong>Code Samples</strong></p>\n\n {@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.getFileClient#String}"
+      description: "A <code>String</code> representing the name of the file.\n\n <p><strong>Code Samples</strong></p>\n\n <pre>\n DataLakeFileClient dataLakeFileClient = client.getFileClient&#40;fileName&#41;;\n </pre>"
     return:
       type: "com.azure.storage.file.datalake.DataLakeFileClient"
       description: "A new <xref uid=\"com.azure.storage.file.datalake.DataLakeFileClient\" data-throw-if-not-resolved=\"false\">DataLakeFileClient</xref> object which references the file with the specified name in this\n directory."
@@ -467,7 +517,7 @@ items:
     parameters:
     - id: "subdirectoryName"
       type: "java.lang.String"
-      description: "A <code>String</code> representing the name of the sub-directory.\n\n <p><strong>Code Samples</strong></p>\n\n {@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.getSubdirectoryClient#String}"
+      description: "A <code>String</code> representing the name of the sub-directory.\n\n <p><strong>Code Samples</strong></p>\n\n <pre>\n DataLakeDirectoryClient dataLakeDirectoryClient = client.getSubdirectoryClient&#40;directoryName&#41;;\n </pre>"
     return:
       type: "com.azure.storage.file.datalake.DataLakeDirectoryClient"
       description: "A new <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryClient\" data-throw-if-not-resolved=\"false\">DataLakeDirectoryClient</xref> object which references the sub-directory with the specified name\n in this directory"
@@ -482,7 +532,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.rename*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Moves the directory to another location within the file system. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.rename\\#String-String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Moves the directory to another location within the file system. For more information see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeDirectoryClient renamedClient = client.rename(fileSystemName, destinationPath);\n System.out.println(\"Directory Client has been renamed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public DataLakeDirectoryClient rename(String destinationFileSystem, String destinationPath)"
     parameters:
@@ -506,7 +556,7 @@ items:
   overload: "com.azure.storage.file.datalake.DataLakeDirectoryClient.renameWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake"
-  summary: "Moves the directory to another location within the file system. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.DataLakeDirectoryClient.renameWithResponse\\#String-String-DataLakeRequestConditions-DataLakeRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
+  summary: "Moves the directory to another location within the file system. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nDataLakeRequestConditions sourceRequestConditions = new DataLakeRequestConditions()\n     .setLeaseId(leaseId);\n DataLakeRequestConditions destinationRequestConditions = new DataLakeRequestConditions();\n \n DataLakeDirectoryClient newRenamedClient = client.renameWithResponse(fileSystemName, destinationPath,\n     sourceRequestConditions, destinationRequestConditions, timeout, new Context(key1, value1)).getValue();\n System.out.println(\"Directory Client has been renamed\");\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/datalakestoragegen2/path/create"
   syntax:
     content: "public Response<DataLakeDirectoryClient> renameWithResponse(String destinationFileSystem, String destinationPath, DataLakeRequestConditions sourceRequestConditions, DataLakeRequestConditions destinationRequestConditions, Duration timeout, Context context)"
     parameters:

@@ -25,7 +25,7 @@ items:
   fullName: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient"
   type: "Class"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient\" data-throw-if-not-resolved=\"false\">file systems</xref>, <xref uid=\"com.azure.storage.file.datalake.DataLakeFileAsyncClient\" data-throw-if-not-resolved=\"false\">files</xref> and <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryAsyncClient\" data-throw-if-not-resolved=\"false\">directories</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a DataLakeLeaseAsyncClient**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseClientBuilder.asyncInstantiationWithFile\\} \\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseClientBuilder.asyncInstantiationWithDirectory\\} \\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseClientBuilder.asyncInstantiationWithFileSystem\\}\n\nView <xref uid=\"com.azure.storage.file.datalake.specialized.DataLakeLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [file system leasing][] or [path leasing][] documentation.\n\n\n[file system leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[path leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
+  summary: "This class provides a client that contains all the leasing operations for <xref uid=\"com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient\" data-throw-if-not-resolved=\"false\">file systems</xref>, <xref uid=\"com.azure.storage.file.datalake.DataLakeFileAsyncClient\" data-throw-if-not-resolved=\"false\">files</xref> and <xref uid=\"com.azure.storage.file.datalake.DataLakeDirectoryAsyncClient\" data-throw-if-not-resolved=\"false\">directories</xref>. This client acts as a supplement to those clients and only handles leasing operations.\n\n**Instantiating a DataLakeLeaseAsyncClient**\n\n```java\nDataLakeLeaseAsyncClient dataLakeLeaseAsyncClient = new DataLakeLeaseClientBuilder()\n     .fileAsyncClient(fileAsyncClient)\n     .buildAsyncClient();\n```\n\n```java\nDataLakeLeaseAsyncClient dataLakeLeaseAsyncClient = new DataLakeLeaseClientBuilder()\n     .directoryAsyncClient(directoryAsyncClient)\n     .buildAsyncClient();\n```\n\n```java\nDataLakeLeaseAsyncClient dataLakeLeaseAsyncClient = new DataLakeLeaseClientBuilder()\n     .fileSystemAsyncClient(dataLakeFileSystemAsyncClient)\n     .buildAsyncClient();\n```\n\nView <xref uid=\"com.azure.storage.file.datalake.specialized.DataLakeLeaseClientBuilder\" data-throw-if-not-resolved=\"false\">this</xref> for additional ways to construct the client.\n\nFor more information about leasing see the [file system leasing][] or [path leasing][] documentation.\n\n\n[file system leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-container\n[path leasing]: https://docs.microsoft.com/en-us/rest/api/storageservices/lease-blob"
   syntax:
     content: "public final class DataLakeLeaseAsyncClient"
   inheritance:
@@ -69,7 +69,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.acquireLease*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.acquireLease\\#int\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nclient.acquireLease(60).subscribe(response -> System.out.printf(\"Lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> acquireLease(int duration)"
     parameters:
@@ -90,7 +90,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.acquireLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds, or -1 for an infinite duration.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.acquireLeaseWithResponse\\#int-RequestConditions\\}"
+  summary: "Acquires a lease for write and delete operations. The lease duration must be between 15 to 60 seconds, or -1 for an infinite duration.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfModifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.acquireLeaseWithResponse(60, modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> acquireLeaseWithResponse(int duration, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -114,7 +114,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.breakLease*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.breakLease\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\n**Code Samples**\n\n```java\nclient.breakLease().subscribe(response ->\n     System.out.printf(\"The broken lease has %d seconds remaining on the lease\", response));\n```"
   syntax:
     content: "public Mono<Integer> breakLease()"
     return:
@@ -131,7 +131,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.breakLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.breakLeaseWithResponse\\#Integer-RequestConditions\\}"
+  summary: "Breaks the previously acquired lease, if it exists.\n\nIf `null` is passed for `breakPeriodInSeconds` a fixed duration lease will break after the remaining lease period elapses and an infinite lease will break immediately.\n\n**Code Samples**\n\n```java\nInteger retainLeaseInSeconds = 5;\n RequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.breakLeaseWithResponse(retainLeaseInSeconds, modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"The broken lease has %d seconds remaining on the lease\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<Integer>> breakLeaseWithResponse(Integer breakPeriodInSeconds, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -155,7 +155,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.changeLease*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.changeLease\\#String\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nclient.changeLease(\"proposedId\").subscribe(response -> System.out.printf(\"Changed lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> changeLease(String proposedId)"
     parameters:
@@ -176,7 +176,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.changeLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Changes the lease ID.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.changeLeaseWithResponse\\#String-RequestConditions\\}"
+  summary: "Changes the lease ID.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.changeLeaseWithResponse(\"proposedId\", modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Changed lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> changeLeaseWithResponse(String proposedId, RequestConditions modifiedRequestConditions)"
     parameters:
@@ -251,7 +251,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.releaseLease*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.releaseLease\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nclient.releaseLease().subscribe(response -> System.out.println(\"Completed release lease\"));\n```"
   syntax:
     content: "public Mono<Void> releaseLease()"
     return:
@@ -268,7 +268,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.releaseLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.releaseLeaseWithResponse\\#RequestConditions\\}"
+  summary: "Releases the previously acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.releaseLeaseWithResponse(modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Release lease completed with status %d%n\", response.getStatusCode()));\n```"
   syntax:
     content: "public Mono<Response<Void>> releaseLeaseWithResponse(RequestConditions modifiedRequestConditions)"
     parameters:
@@ -289,7 +289,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.renewLease*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.renewLease\\}"
+  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n```java\nclient.renewLease().subscribe(response -> System.out.printf(\"Renewed lease ID is %s%n\", response));\n```"
   syntax:
     content: "public Mono<String> renewLease()"
     return:
@@ -306,7 +306,7 @@ items:
   overload: "com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.renewLeaseWithResponse*"
   type: "Method"
   package: "com.azure.storage.file.datalake.specialized"
-  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.file.datalake.specialized.DataLakeLeaseAsyncClient.renewLeaseWithResponse\\#RequestConditions\\}"
+  summary: "Renews the previously acquired lease.\n\n**Code Samples**\n\n```java\nRequestConditions modifiedRequestConditions = new RequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.renewLeaseWithResponse(modifiedRequestConditions).subscribe(response ->\n     System.out.printf(\"Renewed lease ID is %s%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<String>> renewLeaseWithResponse(RequestConditions modifiedRequestConditions)"
     parameters:

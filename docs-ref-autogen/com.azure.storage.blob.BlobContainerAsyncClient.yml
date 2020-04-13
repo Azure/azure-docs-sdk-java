@@ -165,7 +165,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.create*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Creates a new container within a storage account. If a container with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.create\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new container within a storage account. If a container with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.create().subscribe(\n     response -> System.out.printf(\"Create completed%n\"),\n     error -> System.out.printf(\"Error while creating container %s%n\", error));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public Mono<Void> create()"
     return:
@@ -182,7 +182,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.createWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Creates a new container within a storage account. If a container with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.createWithResponse\\#Map-PublicAccessType\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
+  summary: "Creates a new container within a storage account. If a container with the same name already exists, the operation fails. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n client.createWithResponse(metadata, PublicAccessType.CONTAINER).subscribe(response ->\n     System.out.printf(\"Create completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/create-container"
   syntax:
     content: "public Mono<Response<Void>> createWithResponse(Map<String,String> metadata, PublicAccessType accessType)"
     parameters:
@@ -228,7 +228,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.delete*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Marks the specified container for deletion. The container and any blobs contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.delete\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
+  summary: "Marks the specified container for deletion. The container and any blobs contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.delete().subscribe(\n     response -> System.out.printf(\"Delete completed%n\"),\n     error -> System.out.printf(\"Delete failed: %s%n\", error));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
   syntax:
     content: "public Mono<Void> delete()"
     return:
@@ -245,7 +245,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.deleteWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Marks the specified container for deletion. The container and any blobs contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.deleteWithResponse\\#BlobRequestConditions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
+  summary: "Marks the specified container for deletion. The container and any blobs contained within it are later deleted during garbage collection. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.deleteWithResponse(requestConditions).subscribe(response ->\n     System.out.printf(\"Delete completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/delete-container"
   syntax:
     content: "public Mono<Response<Void>> deleteWithResponse(BlobRequestConditions requestConditions)"
     parameters:
@@ -286,7 +286,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.exists*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Gets if the container this client represents exists in the cloud.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.exists\\}"
+  summary: "Gets if the container this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nclient.exists().subscribe(response -> System.out.printf(\"Exists? %b%n\", response));\n```"
   syntax:
     content: "public Mono<Boolean> exists()"
     return:
@@ -303,7 +303,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.existsWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Gets if the container this client represents exists in the cloud.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.existsWithResponse\\}"
+  summary: "Gets if the container this client represents exists in the cloud.\n\n**Code Samples**\n\n```java\nclient.existsWithResponse().subscribe(response -> System.out.printf(\"Exists? %b%n\", response.getValue()));\n```"
   syntax:
     content: "public Mono<Response<Boolean>> existsWithResponse()"
     return:
@@ -340,7 +340,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.generateSas*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Generates a service SAS for the container using the specified <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.generateSas\\#BlobServiceSasSignatureValues\\}"
+  summary: "Generates a service SAS for the container using the specified <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> for more information on how to construct a service SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime expiryTime = OffsetDateTime.now().plusDays(1);\n BlobContainerSasPermission permission = new BlobContainerSasPermission().setReadPermission(true);\n \n BlobServiceSasSignatureValues values = new BlobServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateSas(values); // Client must be authenticated via StorageSharedKeyCredential\n```"
   syntax:
     content: "public String generateSas(BlobServiceSasSignatureValues blobServiceSasSignatureValues)"
     parameters:
@@ -361,7 +361,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.generateUserDelegationSas*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Generates a user delegation SAS for the container using the specified <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.generateUserDelegationSas\\#BlobServiceSasSignatureValues-UserDelegationKey\\}"
+  summary: "Generates a user delegation SAS for the container using the specified <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref>.\n\nSee <xref uid=\"com.azure.storage.blob.sas.BlobServiceSasSignatureValues\" data-throw-if-not-resolved=\"false\">BlobServiceSasSignatureValues</xref> for more information on how to construct a user delegation SAS.\n\n**Code Samples**\n\n```java\nOffsetDateTime myExpiryTime = OffsetDateTime.now().plusDays(1);\n BlobContainerSasPermission myPermission = new BlobContainerSasPermission().setReadPermission(true);\n \n BlobServiceSasSignatureValues myValues = new BlobServiceSasSignatureValues(expiryTime, permission)\n     .setStartTime(OffsetDateTime.now());\n \n client.generateUserDelegationSas(values, userDelegationKey);\n```"
   syntax:
     content: "public String generateUserDelegationSas(BlobServiceSasSignatureValues blobServiceSasSignatureValues, UserDelegationKey userDelegationKey)"
     parameters:
@@ -385,7 +385,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the container's permissions. The permissions indicate whether container's blobs may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getAccessPolicy\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
+  summary: "Returns the container's permissions. The permissions indicate whether container's blobs may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getAccessPolicy().subscribe(response -> {\n     System.out.printf(\"Blob Access Type: %s%n\", response.getBlobAccessType());\n \n     for (BlobSignedIdentifier identifier : response.getIdentifiers()) {\n         System.out.printf(\"Identifier Name: %s, Permissions %s%n\",\n             identifier.getId(),\n             identifier.getAccessPolicy().getPermissions());\n     }\n });\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
   syntax:
     content: "public Mono<BlobContainerAccessPolicies> getAccessPolicy()"
     return:
@@ -402,7 +402,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getAccessPolicyWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the container's permissions. The permissions indicate whether container's blobs may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getAccessPolicyWithResponse\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
+  summary: "Returns the container's permissions. The permissions indicate whether container's blobs may be accessed publicly. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getAccessPolicyWithResponse(leaseId).subscribe(response -> {\n     System.out.printf(\"Blob Access Type: %s%n\", response.getValue().getBlobAccessType());\n \n     for (BlobSignedIdentifier identifier : response.getValue().getIdentifiers()) {\n         System.out.printf(\"Identifier Name: %s, Permissions %s%n\",\n             identifier.getId(),\n             identifier.getAccessPolicy().getPermissions());\n     }\n });\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-acl"
   syntax:
     content: "public Mono<Response<BlobContainerAccessPolicies>> getAccessPolicyWithResponse(String leaseId)"
     parameters:
@@ -443,7 +443,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getAccountInfo*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the sku name and account kind for the account. For more information, please see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getAccountInfo\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information"
+  summary: "Returns the sku name and account kind for the account. For more information, please see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getAccountInfo().subscribe(response ->\n     System.out.printf(\"Account Kind: %s, SKU: %s%n\",\n         response.getAccountKind(),\n         response.getSkuName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information"
   syntax:
     content: "public Mono<StorageAccountInfo> getAccountInfo()"
     return:
@@ -460,7 +460,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getAccountInfoWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the sku name and account kind for the account. For more information, please see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getAccountInfoWithResponse\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information"
+  summary: "Returns the sku name and account kind for the account. For more information, please see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getAccountInfoWithResponse().subscribe(response ->\n     System.out.printf(\"Account Kind: %s, SKU: %s%n\",\n         response.getValue().getAccountKind(),\n         response.getValue().getSkuName()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/get-account-information"
   syntax:
     content: "public Mono<Response<StorageAccountInfo>> getAccountInfoWithResponse()"
     return:
@@ -512,7 +512,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getBlobAsyncClient*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Creates a new BlobAsyncClient object by concatenating blobName to the end of ContainerAsyncClient's URL. The new BlobAsyncClient uses the same request policy pipeline as the ContainerAsyncClient. To change the pipeline, create the BlobAsyncClient and then call its WithPipeline method passing in the desired pipeline object. Or, call this package's getBlobAsyncClient instead of calling this object's getBlobAsyncClient method.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getBlobAsyncClient\\#String\\}"
+  summary: "Creates a new BlobAsyncClient object by concatenating blobName to the end of ContainerAsyncClient's URL. The new BlobAsyncClient uses the same request policy pipeline as the ContainerAsyncClient. To change the pipeline, create the BlobAsyncClient and then call its WithPipeline method passing in the desired pipeline object. Or, call this package's getBlobAsyncClient instead of calling this object's getBlobAsyncClient method.\n\n**Code Samples**\n\n```java\nBlobAsyncClient blobAsyncClient = client.getBlobAsyncClient(blobName);\n```"
   syntax:
     content: "public BlobAsyncClient getBlobAsyncClient(String blobName)"
     parameters:
@@ -533,7 +533,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getBlobAsyncClient*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Creates a new BlobAsyncClient object by concatenating blobName to the end of ContainerAsyncClient's URL. The new BlobAsyncClient uses the same request policy pipeline as the ContainerAsyncClient. To change the pipeline, create the BlobAsyncClient and then call its WithPipeline method passing in the desired pipeline object. Or, call this package's getBlobAsyncClient instead of calling this object's getBlobAsyncClient method.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getBlobAsyncClient\\#String-String\\}"
+  summary: "Creates a new BlobAsyncClient object by concatenating blobName to the end of ContainerAsyncClient's URL. The new BlobAsyncClient uses the same request policy pipeline as the ContainerAsyncClient. To change the pipeline, create the BlobAsyncClient and then call its WithPipeline method passing in the desired pipeline object. Or, call this package's getBlobAsyncClient instead of calling this object's getBlobAsyncClient method.\n\n**Code Samples**\n\n```java\nBlobAsyncClient blobAsyncClient = client.getBlobAsyncClient(blobName, snapshot);\n```"
   syntax:
     content: "public BlobAsyncClient getBlobAsyncClient(String blobName, String snapshot)"
     parameters:
@@ -557,7 +557,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getBlobContainerName*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Get the container name.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getBlobContainerName\\}"
+  summary: "Get the container name.\n\n**Code Samples**\n\n```java\nString containerName = client.getBlobContainerName();\n System.out.println(\"The name of the blob is \" + containerName);\n```"
   syntax:
     content: "public String getBlobContainerName()"
     return:
@@ -642,7 +642,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getProperties*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the container's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getProperties\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
+  summary: "Returns the container's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getProperties().subscribe(response ->\n     System.out.printf(\"Public Access Type: %s, Legal Hold? %b, Immutable? %b%n\",\n         response.getBlobPublicAccess(),\n         response.hasLegalHold(),\n         response.hasImmutabilityPolicy()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
   syntax:
     content: "public Mono<BlobContainerProperties> getProperties()"
     return:
@@ -659,7 +659,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.getPropertiesWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns the container's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.getPropertiesWithResponse\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
+  summary: "Returns the container's metadata and system properties. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.getPropertiesWithResponse(leaseId).subscribe(response ->\n     System.out.printf(\"Public Access Type: %s, Legal Hold? %b, Immutable? %b%n\",\n         response.getValue().getBlobPublicAccess(),\n         response.getValue().hasLegalHold(),\n         response.getValue().hasImmutabilityPolicy()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-container-metadata"
   syntax:
     content: "public Mono<Response<BlobContainerProperties>> getPropertiesWithResponse(String leaseId)"
     parameters:
@@ -717,7 +717,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.listBlobs*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.listBlobs\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
+  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n**Code Samples**\n\n```java\nclient.listBlobs().subscribe(blob ->\n     System.out.printf(\"Name: %s, Directory? %b%n\", blob.getName(), blob.isPrefix()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
   syntax:
     content: "public PagedFlux<BlobItem> listBlobs()"
     return:
@@ -734,7 +734,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.listBlobs*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.listBlobs\\#ListBlobsOptions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
+  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n```java\nListBlobsOptions options = new ListBlobsOptions()\n     .setPrefix(\"prefixToMatch\")\n     .setDetails(new BlobListDetails()\n         .setRetrieveDeletedBlobs(true)\n         .setRetrieveSnapshots(true));\n \n client.listBlobs(options).subscribe(blob ->\n     System.out.printf(\"Name: %s, Directory? %b, Deleted? %b, Snapshot ID: %s%n\",\n         blob.getName(),\n         blob.isPrefix(),\n         blob.isDeleted(),\n         blob.getSnapshot()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
   syntax:
     content: "public PagedFlux<BlobItem> listBlobs(ListBlobsOptions options)"
     parameters:
@@ -755,7 +755,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.listBlobs*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.listBlobs\\#ListBlobsOptions-String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
+  summary: "Returns a reactive Publisher emitting all the blobs in this container lazily as needed. The directories are flattened and only actual blobs and no directories are returned.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return\n\n *  foo/foo1\n *  foo/foo2\n *  bar\n\n```java\nListBlobsOptions options = new ListBlobsOptions()\n     .setPrefix(\"prefixToMatch\")\n     .setDetails(new BlobListDetails()\n         .setRetrieveDeletedBlobs(true)\n         .setRetrieveSnapshots(true));\n \n String continuationToken = \"continuationToken\";\n \n client.listBlobs(options, continuationToken).subscribe(blob ->\n     System.out.printf(\"Name: %s, Directory? %b, Deleted? %b, Snapshot ID: %s%n\",\n         blob.getName(),\n         blob.isPrefix(),\n         blob.isDeleted(),\n         blob.getSnapshot()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
   syntax:
     content: "public PagedFlux<BlobItem> listBlobs(ListBlobsOptions options, String continuationToken)"
     parameters:
@@ -779,7 +779,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.listBlobsByHierarchy*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns a reactive Publisher emitting all the blobs and directories (prefixes) under the given directory (prefix). Directories will have <xref uid=\"com.azure.storage.blob.models.BlobItem.isPrefix()\" data-throw-if-not-resolved=\"false\">BlobItem#isPrefix()</xref> set to true.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return the following results when prefix=null:\n\n *  foo/ (isPrefix = true)\n *  bar (isPrefix = false)\n\nwill return the following results when prefix=\"foo/\":\n\n *  foo/foo1 (isPrefix = false)\n *  foo/foo2 (isPrefix = false)\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.listBlobsByHierarchy\\#String\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
+  summary: "Returns a reactive Publisher emitting all the blobs and directories (prefixes) under the given directory (prefix). Directories will have <xref uid=\"com.azure.storage.blob.models.BlobItem.isPrefix()\" data-throw-if-not-resolved=\"false\">BlobItem#isPrefix()</xref> set to true.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return the following results when prefix=null:\n\n *  foo/ (isPrefix = true)\n *  bar (isPrefix = false)\n\nwill return the following results when prefix=\"foo/\":\n\n *  foo/foo1 (isPrefix = false)\n *  foo/foo2 (isPrefix = false)\n\n**Code Samples**\n\n```java\nclient.listBlobsByHierarchy(\"directoryName\").subscribe(blob ->\n     System.out.printf(\"Name: %s, Directory? %b%n\", blob.getName(), blob.isDeleted()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
   syntax:
     content: "public PagedFlux<BlobItem> listBlobsByHierarchy(String directory)"
     parameters:
@@ -800,7 +800,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.listBlobsByHierarchy*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Returns a reactive Publisher emitting all the blobs and prefixes (directories) under the given prefix (directory). Directories will have <xref uid=\"com.azure.storage.blob.models.BlobItem.isPrefix()\" data-throw-if-not-resolved=\"false\">BlobItem#isPrefix()</xref> set to true.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return the following results when prefix=null:\n\n *  foo/ (isPrefix = true)\n *  bar (isPrefix = false)\n\nwill return the following results when prefix=\"foo/\":\n\n *  foo/foo1 (isPrefix = false)\n *  foo/foo2 (isPrefix = false)\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.listBlobsByHierarchy\\#String-ListBlobsOptions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
+  summary: "Returns a reactive Publisher emitting all the blobs and prefixes (directories) under the given prefix (directory). Directories will have <xref uid=\"com.azure.storage.blob.models.BlobItem.isPrefix()\" data-throw-if-not-resolved=\"false\">BlobItem#isPrefix()</xref> set to true.\n\nBlob names are returned in lexicographic order. For more information, see the [Azure Docs][].\n\nE.g. listing a container containing a 'foo' folder, which contains blobs 'foo1' and 'foo2', and a blob on the root level 'bar', will return the following results when prefix=null:\n\n *  foo/ (isPrefix = true)\n *  bar (isPrefix = false)\n\nwill return the following results when prefix=\"foo/\":\n\n *  foo/foo1 (isPrefix = false)\n *  foo/foo2 (isPrefix = false)\n\n**Code Samples**\n\n```java\nListBlobsOptions options = new ListBlobsOptions()\n     .setPrefix(\"directoryName\")\n     .setDetails(new BlobListDetails()\n         .setRetrieveDeletedBlobs(true)\n         .setRetrieveSnapshots(true));\n \n client.listBlobsByHierarchy(\"/\", options).subscribe(blob ->\n     System.out.printf(\"Name: %s, Directory? %b, Deleted? %b, Snapshot ID: %s%n\",\n         blob.getName(),\n         blob.isPrefix(),\n         blob.isDeleted(),\n         blob.getSnapshot()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/list-blobs"
   syntax:
     content: "public PagedFlux<BlobItem> listBlobsByHierarchy(String delimiter, ListBlobsOptions options)"
     parameters:
@@ -868,7 +868,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.setAccessPolicy*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Sets the container's permissions. The permissions indicate whether blobs in a container may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.setAccessPolicy\\#PublicAccessType-List\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
+  summary: "Sets the container's permissions. The permissions indicate whether blobs in a container may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobSignedIdentifier identifier = new BlobSignedIdentifier()\n     .setId(\"name\")\n     .setAccessPolicy(new BlobAccessPolicy()\n         .setStartsOn(OffsetDateTime.now())\n         .setExpiresOn(OffsetDateTime.now().plusDays(7))\n         .setPermissions(\"permissionString\"));\n \n client.setAccessPolicy(PublicAccessType.CONTAINER, Collections.singletonList(identifier)).subscribe(\n     response -> System.out.printf(\"Set access policy completed%n\"),\n     error -> System.out.printf(\"Set access policy failed: %s%n\", error));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
   syntax:
     content: "public Mono<Void> setAccessPolicy(PublicAccessType accessType, List<BlobSignedIdentifier> identifiers)"
     parameters:
@@ -892,7 +892,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.setAccessPolicyWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Sets the container's permissions. The permissions indicate whether blobs in a container may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.setAccessPolicyWithResponse\\#PublicAccessType-List-BlobRequestConditions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
+  summary: "Sets the container's permissions. The permissions indicate whether blobs in a container may be accessed publicly. Note that, for each signed identifier, we will truncate the start and expiry times to the nearest second to ensure the time formatting is compatible with the service. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobSignedIdentifier identifier = new BlobSignedIdentifier()\n     .setId(\"name\")\n     .setAccessPolicy(new BlobAccessPolicy()\n         .setStartsOn(OffsetDateTime.now())\n         .setExpiresOn(OffsetDateTime.now().plusDays(7))\n         .setPermissions(\"permissionString\"));\n \n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.setAccessPolicyWithResponse(PublicAccessType.CONTAINER, Collections.singletonList(identifier), requestConditions)\n     .subscribe(response ->\n         System.out.printf(\"Set access policy completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-acl"
   syntax:
     content: "public Mono<Response<Void>> setAccessPolicyWithResponse(PublicAccessType accessType, List<BlobSignedIdentifier> identifiers, BlobRequestConditions requestConditions)"
     parameters:
@@ -943,7 +943,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.setMetadata*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Sets the container's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.setMetadata\\#Map\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
+  summary: "Sets the container's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n client.setMetadata(metadata).subscribe(\n     response -> System.out.printf(\"Set metadata completed%n\"),\n     error -> System.out.printf(\"Set metadata failed: %s%n\", error));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
   syntax:
     content: "public Mono<Void> setMetadata(Map<String,String> metadata)"
     parameters:
@@ -964,7 +964,7 @@ items:
   overload: "com.azure.storage.blob.BlobContainerAsyncClient.setMetadataWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob"
-  summary: "Sets the container's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.BlobContainerAsyncClient.setMetadataWithResponse\\#Map-BlobRequestConditions\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
+  summary: "Sets the container's metadata. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nMap<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.setMetadataWithResponse(metadata, requestConditions).subscribe(response ->\n     System.out.printf(\"Set metadata completed with status %d%n\", response.getStatusCode()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/set-container-metadata"
   syntax:
     content: "public Mono<Response<Void>> setMetadataWithResponse(Map<String,String> metadata, BlobRequestConditions requestConditions)"
     parameters:

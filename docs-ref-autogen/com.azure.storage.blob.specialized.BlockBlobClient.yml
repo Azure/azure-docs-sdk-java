@@ -168,7 +168,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.commitBlockList*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.commitBlockList\\#List\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
+  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Committing block list completed. Last modified: %s%n\",\n     client.commitBlockList(Collections.singletonList(base64BlockId)).getLastModified());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
   syntax:
     content: "public BlockBlobItem commitBlockList(List<String> base64BlockIds)"
     parameters:
@@ -189,7 +189,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.commitBlockList*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.commitBlockList\\#List-boolean\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
+  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false; // Default behavior\n System.out.printf(\"Committing block list completed. Last modified: %s%n\",\n     client.commitBlockList(Collections.singletonList(base64BlockId), overwrite).getLastModified());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
   syntax:
     content: "public BlockBlobItem commitBlockList(List<String> base64BlockIds, boolean overwrite)"
     parameters:
@@ -213,7 +213,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.commitBlockListWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.uploadFromFile\\#List-BlobHttpHeaders-Map-AccessTier-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
+  summary: "Writes a blob by specifying the list of block IDs that are to make up the blob. In order to be written as part of a blob, a block must have been successfully written to the server in a prior stageBlock operation. You can call commitBlockList to update a blob by uploading only those blocks that have changed, then committing the new and existing blocks together. Any blocks not specified in the block list and permanently deleted. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n```java\nBlobHttpHeaders headers = new BlobHttpHeaders()\n     .setContentMd5(\"data\".getBytes(StandardCharsets.UTF_8))\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n \n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"Committing block list completed with status %d%n\",\n     client.commitBlockListWithResponse(Collections.singletonList(base64BlockId), headers, metadata,\n         AccessTier.HOT, requestConditions, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block-list"
   syntax:
     content: "public Response<BlockBlobItem> commitBlockListWithResponse(List<String> base64BlockIds, BlobHttpHeaders headers, Map<String,String> metadata, AccessTier tier, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
@@ -344,7 +344,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.listBlocks*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Returns the list of blocks that have been uploaded as part of a block blob using the specified block list filter. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.listBlocks\\#BlockListType\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-block-list"
+  summary: "Returns the list of blocks that have been uploaded as part of a block blob using the specified block list filter. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlockList block = client.listBlocks(BlockListType.ALL);\n \n System.out.println(\"Committed Blocks:\");\n block.getCommittedBlocks().forEach(b -> System.out.printf(\"Name: %s, Size: %d\", b.getName(), b.getSize()));\n \n System.out.println(\"Uncommitted Blocks:\");\n block.getUncommittedBlocks().forEach(b -> System.out.printf(\"Name: %s, Size: %d\", b.getName(), b.getSize()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-block-list"
   syntax:
     content: "public BlockList listBlocks(BlockListType listType)"
     parameters:
@@ -365,7 +365,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.listBlocksWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Returns the list of blocks that have been uploaded as part of a block blob using the specified block list filter. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.listBlocksWithResponse\\#BlockListType-String-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-block-list"
+  summary: "Returns the list of blocks that have been uploaded as part of a block blob using the specified block list filter. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nContext context = new Context(\"key\", \"value\");\n BlockList block = client.listBlocksWithResponse(BlockListType.ALL, leaseId, timeout, context).getValue();\n \n System.out.println(\"Committed Blocks:\");\n block.getCommittedBlocks().forEach(b -> System.out.printf(\"Name: %s, Size: %d\", b.getName(), b.getSize()));\n \n System.out.println(\"Uncommitted Blocks:\");\n block.getUncommittedBlocks().forEach(b -> System.out.printf(\"Name: %s, Size: %d\", b.getName(), b.getSize()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/get-block-list"
   syntax:
     content: "public Response<BlockList> listBlocksWithResponse(BlockListType listType, String leaseId, Duration timeout, Context context)"
     parameters:
@@ -395,7 +395,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.stageBlock*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.stageBlock\\#String-InputStream-long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
+  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.stageBlock(base64BlockId, data, length);\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
   syntax:
     content: "public void stageBlock(String base64BlockId, InputStream data, long length)"
     parameters:
@@ -419,7 +419,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.stageBlockFromUrl*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a new block to be committed as part of a blob where the contents are read from a URL. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.stageBlockFromUrl\\#String-String-BlobRange\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/put-block-from-url"
+  summary: "Creates a new block to be committed as part of a blob where the contents are read from a URL. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nclient.stageBlockFromUrl(base64BlockId, sourceUrl, new BlobRange(offset, count));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/put-block-from-url"
   syntax:
     content: "public void stageBlockFromUrl(String base64BlockId, String sourceUrl, BlobRange sourceRange)"
     parameters:
@@ -443,7 +443,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.stageBlockFromUrlWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a new block to be committed as part of a blob where the contents are read from a URL. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.stageBlockFromUrlWithResponse\\#String-String-BlobRange-byte-String-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/put-block-from-url"
+  summary: "Creates a new block to be committed as part of a blob where the contents are read from a URL. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nBlobRequestConditions sourceRequestConditions = new BlobRequestConditions()\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"Staging block from URL completed with status %d%n\",\n     client.stageBlockFromUrlWithResponse(base64BlockId, sourceUrl, new BlobRange(offset, count), null,\n         leaseId, sourceRequestConditions, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/put-block-from-url"
   syntax:
     content: "public Response<Void> stageBlockFromUrlWithResponse(String base64BlockId, String sourceUrl, BlobRange sourceRange, byte[] sourceContentMd5, String leaseId, BlobRequestConditions sourceRequestConditions, Duration timeout, Context context)"
     parameters:
@@ -485,7 +485,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.stageBlockWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.stageBlockWithResponse\\#String-InputStream-long-byte-String-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
+  summary: "Uploads the specified block to the block blob's \"staging area\" to be later committed by a call to commitBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nContext context = new Context(\"key\", \"value\");\n System.out.printf(\"Staging block completed with status %d%n\",\n     client.stageBlockWithResponse(base64BlockId, data, length, md5, leaseId, timeout, context).getStatusCode());\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-block"
   syntax:
     content: "public Response<Void> stageBlockWithResponse(String base64BlockId, InputStream data, long length, byte[] contentMd5, String leaseId, Duration timeout, Context context)"
     parameters:
@@ -524,7 +524,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.upload*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a new block blob. By default this method will not overwrite an existing blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.upload\\#InputStream-long\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a new block blob. By default this method will not overwrite an existing blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nSystem.out.printf(\"Uploaded BlockBlob MD5 is %s%n\",\n     Base64.getEncoder().encodeToString(client.upload(data, length).getContentMd5()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public BlockBlobItem upload(InputStream data, long length)"
     parameters:
@@ -548,7 +548,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.upload*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a new block blob, or updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.upload\\#InputStream-long-boolean\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a new block blob, or updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\n**Code Samples**\n\n```java\nboolean overwrite = false;\n System.out.printf(\"Uploaded BlockBlob MD5 is %s%n\",\n     Base64.getEncoder().encodeToString(client.upload(data, length, overwrite).getContentMd5()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public BlockBlobItem upload(InputStream data, long length, boolean overwrite)"
     parameters:
@@ -575,7 +575,7 @@ items:
   overload: "com.azure.storage.blob.specialized.BlockBlobClient.uploadWithResponse*"
   type: "Method"
   package: "com.azure.storage.blob.specialized"
-  summary: "Creates a new block blob, or updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n\\{@codesnippet com.azure.storage.blob.specialized.BlockBlobClient.uploadWithResponse\\#InputStream-long-BlobHttpHeaders-Map-AccessTier-byte-BlobRequestConditions-Duration-Context\\}\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
+  summary: "Creates a new block blob, or updates the content of an existing block blob. Updating an existing block blob overwrites any existing metadata on the blob. Partial updates are not supported with PutBlob; the content of the existing blob is overwritten with the new content. To perform a partial update of a block blob's, use PutBlock and PutBlockList. For more information, see the [Azure Docs][].\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n```java\nBlobHttpHeaders headers = new BlobHttpHeaders()\n     .setContentMd5(\"data\".getBytes(StandardCharsets.UTF_8))\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n \n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n \n byte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n \n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n Context context = new Context(\"key\", \"value\");\n \n System.out.printf(\"Uploaded BlockBlob MD5 is %s%n\", Base64.getEncoder()\n     .encodeToString(client.uploadWithResponse(data, length, headers, metadata, AccessTier.HOT, md5,\n         requestConditions, timeout, context)\n         .getValue()\n         .getContentMd5()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-blob"
   syntax:
     content: "public Response<BlockBlobItem> uploadWithResponse(InputStream data, long length, BlobHttpHeaders headers, Map<String,String> metadata, AccessTier tier, byte[] contentMd5, BlobRequestConditions requestConditions, Duration timeout, Context context)"
     parameters:
