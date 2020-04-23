@@ -1,14 +1,17 @@
 ---
-title: Azure Key Vault Keys for Java Readme
+title: Azure Key Vault Key client library for Java
+keywords: Azure, Java, SDK, API, keyvault, azure-security-keyvault-keys
 author: maggiepint
 ms.author: magpint
-ms.date: 03/16/2020
-ms.topic: conceptual
-ms.devlang: java
-ms.service: key-vault
+ms.date: 04/16/2020
+ms.topic: article
+ms.prod: azure
+ms.technology: azure
+ms.devlang: Java
+ms.service: keyvault
 ---
+ # Azure Key Vault Key client library for Java - Version 4.1.2 
 
-# Azure Key Vault Key client library for Java - Version 4.1.2
 Azure Key Vault allows you to create and store keys in the Key Vault. Azure Key Vault client supports RSA keys and elliptic curve keys, each with corresponding support in hardware security modules (HSM).
 
  Multiple keys, and multiple versions of the same key, can be kept in the Key Vault. Cryptographic keys in Key Vault are represented as [JSON Web Key [JWK]](https://tools.ietf.org/html/rfc7517) objects. This library offers operations to create, retrieve, update, delete, purge, backup, restore and list the keys and its versions.

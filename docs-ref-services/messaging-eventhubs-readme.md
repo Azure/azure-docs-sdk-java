@@ -1,15 +1,18 @@
 ---
-title: Azure Event Hubs for Java Readme
+title: Azure Event Hubs client library for Java
+keywords: Azure, Java, SDK, API, eventhubs, azure-messaging-eventhubs
 author: maggiepint
 ms.author: magpint
-ms.date: 03/16/2020
-ms.topic: conceptual
-ms.devlang: java
-ms.service: event-hubs
+ms.date: 04/16/2020
+ms.topic: article
+ms.prod: azure
+ms.technology: azure
+ms.devlang: Java
+ms.service: eventhubs
 ---
+ # Azure Event Hubs client library for Java - Version 5.0.3 
 
 
-# Azure Event Hubs client library for Java - Version 5.0.3
 Azure Event Hubs is a highly scalable publish-subscribe service that can ingest millions of events per second and stream
 them to multiple consumers. This lets you process and analyze the massive amounts of data produced by your connected
 devices and applications. Once Event Hubs has collected the data, you can retrieve, transform, and store it by using any
