@@ -1,286 +1,295 @@
 ### YamlMime:ManagedReference
 items:
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient"
-  id: "ServiceBusSenderClient"
-  parent: "com.azure.messaging.servicebus"
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient
+  id: ServiceBusSenderClient
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus
   children:
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.close()"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessage)"
-  - "com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessageBatch)"
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.close()
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessage)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessageBatch)
   langs:
-  - "java"
-  name: "ServiceBusSenderClient"
-  nameWithType: "ServiceBusSenderClient"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient"
-  type: "Class"
-  package: "com.azure.messaging.servicebus"
+  - java
+  name: ServiceBusSenderClient
+  nameWithType: ServiceBusSenderClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient
+  type: Class
+  package: com.azure.messaging.servicebus
   summary: "A **synchronous** sender responsible for sending <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessage\" data-throw-if-not-resolved=\"false\">ServiceBusMessage</xref> to specific queue or topic on Azure Service Bus.\n\n**Create an instance of sender**\n\n```java\n// The required parameter is a way to authenticate with Service Bus using credentials.\n // The connectionString provides a way to authenticate with Service Bus.\n ServiceBusSenderClient sender = new ServiceBusClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\")\n     .sender()\n     .queueName(\"queue-name\")\n     .buildClient();\n```\n\n**Send messages to a Service Bus resource**\n\n```java\nList<ServiceBusMessage> messages = Arrays.asList(new ServiceBusMessage(\"test-1\".getBytes(UTF_8)),\n     new ServiceBusMessage(\"test-2\".getBytes(UTF_8)));\n \n final CreateBatchOptions options = new CreateBatchOptions().setMaximumSizeInBytes(10 * 1024);\n // Creating a batch without options set.\n ServiceBusMessageBatch batch = sender.createBatch(options);\n for (ServiceBusMessage message : messages) {\n     if (batch.tryAdd(message)) {\n         continue;\n     }\n \n     sender.send(batch);\n }\n```\n\n**Send messages using a size-limited <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref>**\n\n```java\nfinal List<ServiceBusMessage> telemetryMessages = Arrays.asList(firstMessage, secondMessage, thirdMessage);\n \n // Setting `setMaximumSizeInBytes` when creating a batch, limits the size of that batch.\n // In this case, all the batches created with these options are limited to 256 bytes.\n final CreateBatchOptions options = new CreateBatchOptions()\n     .setMaximumSizeInBytes(256);\n \n ServiceBusMessageBatch currentBatch = sender.createBatch(options);\n \n // For each telemetry message, we try to add it to the current batch.\n // When the batch is full, send it then create another batch to add more mesages to.\n for (ServiceBusMessage message : telemetryMessages) {\n     if (!currentBatch.tryAdd(message)) {\n         sender.send(currentBatch);\n         currentBatch = sender.createBatch(options);\n \n         // Add the message we couldn't before.\n         if (!currentBatch.tryAdd(message)) {\n             throw new IllegalArgumentException(\"Message is too large for an empty batch.\");\n         }\n     }\n }\n```"
   syntax:
-    content: "public class ServiceBusSenderClient implements AutoCloseable"
+    content: public class ServiceBusSenderClient implements AutoCloseable
   inheritance:
-  - "java.lang.Object"
+  - java.lang.Object
   implements:
-  - "java.lang.AutoCloseable"
+  - java.lang.AutoCloseable
   inheritedMembers:
-  - "java.lang.Object.clone()"
-  - "java.lang.Object.equals(java.lang.Object)"
-  - "java.lang.Object.finalize()"
-  - "java.lang.Object.getClass()"
-  - "java.lang.Object.hashCode()"
-  - "java.lang.Object.notify()"
-  - "java.lang.Object.notifyAll()"
-  - "java.lang.Object.toString()"
-  - "java.lang.Object.wait()"
-  - "java.lang.Object.wait(long)"
-  - "java.lang.Object.wait(long,int)"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)"
-  id: "ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)
+  id: ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)"
-  nameWithType: "ServiceBusSenderClient.ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient*"
-  type: "Constructor"
-  package: "com.azure.messaging.servicebus"
-  summary: "Creates a new instance of <xref uid=\"com.azure.messaging.servicebus.ServiceBusSenderClient\" data-throw-if-not-resolved=\"false\">ServiceBusSenderClient</xref> that sends messages to an Azure Service Bus."
+  - java
+  name: ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)
+  nameWithType: ServiceBusSenderClient.ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient*
+  type: Constructor
+  package: com.azure.messaging.servicebus
+  summary: Creates a new instance of <xref uid="com.azure.messaging.servicebus.ServiceBusSenderClient" data-throw-if-not-resolved="false">ServiceBusSenderClient</xref> that sends messages to an Azure Service Bus.
   syntax:
     content: " ServiceBusSenderClient(ServiceBusSenderAsyncClient asyncClient, Duration tryTimeout)"
     parameters:
-    - id: "asyncClient"
-      type: "com.azure.messaging.servicebus.ServiceBusSenderAsyncClient"
-    - id: "tryTimeout"
-      type: "java.time.Duration"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.close()"
-  id: "close()"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+    - id: asyncClient
+      type: com.azure.messaging.servicebus.ServiceBusSenderAsyncClient
+    - id: tryTimeout
+      type: java.time.Duration
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.close()
+  id: close()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "close()"
-  nameWithType: "ServiceBusSenderClient.close()"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.close()"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.close*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "\\{@inheritDoc\\}"
+  - java
+  name: close()
+  nameWithType: ServiceBusSenderClient.close()
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.close()
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.close*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: '\{@inheritDoc\}'
   syntax:
-    content: "public void close()"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()"
-  id: "createBatch()"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+    content: public void close()
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
+  id: createBatch()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "createBatch()"
-  nameWithType: "ServiceBusSenderClient.createBatch()"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Creates a <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows."
+  - java
+  name: createBatch()
+  nameWithType: ServiceBusSenderClient.createBatch()
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Creates a <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows.
   syntax:
-    content: "public ServiceBusMessageBatch createBatch()"
+    content: public ServiceBusMessageBatch createBatch()
     return:
-      type: "com.azure.messaging.servicebus.ServiceBusMessageBatch"
-      description: "A <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows."
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)"
-  id: "createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+      type: com.azure.messaging.servicebus.ServiceBusMessageBatch
+      description: A <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
+  id: createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "createBatch(CreateBatchOptions options)"
-  nameWithType: "ServiceBusSenderClient.createBatch(CreateBatchOptions options)"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(CreateBatchOptions options)"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Creates an <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref> configured with the options specified."
+  - java
+  name: createBatch(CreateBatchOptions options)
+  nameWithType: ServiceBusSenderClient.createBatch(CreateBatchOptions options)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(CreateBatchOptions options)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Creates an <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> configured with the options specified.
   syntax:
-    content: "public ServiceBusMessageBatch createBatch(CreateBatchOptions options)"
+    content: public ServiceBusMessageBatch createBatch(CreateBatchOptions options)
     parameters:
-    - id: "options"
-      type: "com.azure.messaging.servicebus.models.CreateBatchOptions"
-      description: "A set of options used to configure the <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref>."
+    - id: options
+      type: com.azure.messaging.servicebus.models.CreateBatchOptions
+      description: A set of options used to configure the <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref>.
     return:
-      type: "com.azure.messaging.servicebus.ServiceBusMessageBatch"
-      description: "A new <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref> configured with the given options."
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()"
-  id: "getEntityPath()"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+      type: com.azure.messaging.servicebus.ServiceBusMessageBatch
+      description: A new <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> configured with the given options.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()
+  id: getEntityPath()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "getEntityPath()"
-  nameWithType: "ServiceBusSenderClient.getEntityPath()"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Gets the name of the Service Bus resource."
+  - java
+  name: getEntityPath()
+  nameWithType: ServiceBusSenderClient.getEntityPath()
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Gets the name of the Service Bus resource.
   syntax:
-    content: "public String getEntityPath()"
+    content: public String getEntityPath()
     return:
-      type: "java.lang.String"
-      description: "The name of the Service Bus resource."
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()"
-  id: "getFullyQualifiedNamespace()"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+      type: java.lang.String
+      description: The name of the Service Bus resource.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()
+  id: getFullyQualifiedNamespace()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "getFullyQualifiedNamespace()"
-  nameWithType: "ServiceBusSenderClient.getFullyQualifiedNamespace()"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Gets the fully qualified namespace."
+  - java
+  name: getFullyQualifiedNamespace()
+  nameWithType: ServiceBusSenderClient.getFullyQualifiedNamespace()
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Gets the fully qualified namespace.
   syntax:
-    content: "public String getFullyQualifiedNamespace()"
+    content: public String getFullyQualifiedNamespace()
     return:
-      type: "java.lang.String"
-      description: "The fully qualified namespace."
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessage)"
-  id: "send(com.azure.messaging.servicebus.ServiceBusMessage)"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+      type: java.lang.String
+      description: The fully qualified namespace.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessage)
+  id: send(com.azure.messaging.servicebus.ServiceBusMessage)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "send(ServiceBusMessage message)"
-  nameWithType: "ServiceBusSenderClient.send(ServiceBusMessage message)"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.send(ServiceBusMessage message)"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.send*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Sends a message to a Service Bus queue or topic."
+  - java
+  name: send(ServiceBusMessage message)
+  nameWithType: ServiceBusSenderClient.send(ServiceBusMessage message)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.send(ServiceBusMessage message)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.send*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sends a message to a Service Bus queue or topic.
   syntax:
-    content: "public void send(ServiceBusMessage message)"
+    content: public void send(ServiceBusMessage message)
     parameters:
-    - id: "message"
-      type: "com.azure.messaging.servicebus.ServiceBusMessage"
-      description: "Message to be sent to Service Bus queue or topic."
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessageBatch)"
-  id: "send(com.azure.messaging.servicebus.ServiceBusMessageBatch)"
-  parent: "com.azure.messaging.servicebus.ServiceBusSenderClient"
+    - id: message
+      type: com.azure.messaging.servicebus.ServiceBusMessage
+      description: Message to be sent to Service Bus queue or topic.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.send(com.azure.messaging.servicebus.ServiceBusMessageBatch)
+  id: send(com.azure.messaging.servicebus.ServiceBusMessageBatch)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
-  - "java"
-  name: "send(ServiceBusMessageBatch batch)"
-  nameWithType: "ServiceBusSenderClient.send(ServiceBusMessageBatch batch)"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.send(ServiceBusMessageBatch batch)"
-  overload: "com.azure.messaging.servicebus.ServiceBusSenderClient.send*"
-  type: "Method"
-  package: "com.azure.messaging.servicebus"
-  summary: "Sends a message batch to the Azure Service Bus entity this sender is connected to."
+  - java
+  name: send(ServiceBusMessageBatch batch)
+  nameWithType: ServiceBusSenderClient.send(ServiceBusMessageBatch batch)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.send(ServiceBusMessageBatch batch)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.send*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sends a message batch to the Azure Service Bus entity this sender is connected to.
   syntax:
-    content: "public void send(ServiceBusMessageBatch batch)"
+    content: public void send(ServiceBusMessageBatch batch)
     parameters:
-    - id: "batch"
-      type: "com.azure.messaging.servicebus.ServiceBusMessageBatch"
-      description: "of messages which allows client to send maximum allowed size for a batch of messages."
+    - id: batch
+      type: com.azure.messaging.servicebus.ServiceBusMessageBatch
+      description: of messages which allows client to send maximum allowed size for a batch of messages.
 references:
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderAsyncClient"
-  name: "ServiceBusSenderAsyncClient"
-  nameWithType: "ServiceBusSenderAsyncClient"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderAsyncClient"
-- uid: "java.time.Duration"
+- uid: com.azure.messaging.servicebus.ServiceBusSenderAsyncClient
+  name: ServiceBusSenderAsyncClient
+  nameWithType: ServiceBusSenderAsyncClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderAsyncClient
+- uid: java.time.Duration
   spec.java:
-  - uid: "java.time.Duration"
-    name: "Duration"
-    fullName: "java.time.Duration"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient*"
-  name: "ServiceBusSenderClient"
-  nameWithType: "ServiceBusSenderClient.ServiceBusSenderClient"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient"
-  package: "com.azure.messaging.servicebus"
-- uid: "java.lang.String"
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient*
+  name: ServiceBusSenderClient
+  nameWithType: ServiceBusSenderClient.ServiceBusSenderClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient
+  package: com.azure.messaging.servicebus
+- uid: java.lang.String
   spec.java:
-  - uid: "java.lang.String"
-    name: "String"
-    fullName: "java.lang.String"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath*"
-  name: "getEntityPath"
-  nameWithType: "ServiceBusSenderClient.getEntityPath"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath"
-  package: "com.azure.messaging.servicebus"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace*"
-  name: "getFullyQualifiedNamespace"
-  nameWithType: "ServiceBusSenderClient.getFullyQualifiedNamespace"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace"
-  package: "com.azure.messaging.servicebus"
-- uid: "com.azure.messaging.servicebus.ServiceBusMessage"
-  name: "ServiceBusMessage"
-  nameWithType: "ServiceBusMessage"
-  fullName: "com.azure.messaging.servicebus.ServiceBusMessage"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.send*"
-  name: "send"
-  nameWithType: "ServiceBusSenderClient.send"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.send"
-  package: "com.azure.messaging.servicebus"
-- uid: "com.azure.messaging.servicebus.ServiceBusMessageBatch"
-  name: "ServiceBusMessageBatch"
-  nameWithType: "ServiceBusMessageBatch"
-  fullName: "com.azure.messaging.servicebus.ServiceBusMessageBatch"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*"
-  name: "createBatch"
-  nameWithType: "ServiceBusSenderClient.createBatch"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch"
-  package: "com.azure.messaging.servicebus"
-- uid: "com.azure.messaging.servicebus.models.CreateBatchOptions"
-  name: "CreateBatchOptions"
-  nameWithType: "CreateBatchOptions"
-  fullName: "com.azure.messaging.servicebus.models.CreateBatchOptions"
-- uid: "com.azure.messaging.servicebus.ServiceBusSenderClient.close*"
-  name: "close"
-  nameWithType: "ServiceBusSenderClient.close"
-  fullName: "com.azure.messaging.servicebus.ServiceBusSenderClient.close"
-  package: "com.azure.messaging.servicebus"
-- uid: "java.lang.AutoCloseable"
-  name: "AutoCloseable"
-  nameWithType: "AutoCloseable"
-  fullName: "java.lang.AutoCloseable"
-- uid: "java.lang.Object.notify()"
-  name: "Object.notify()"
-  nameWithType: "Object.notify()"
-  fullName: "java.lang.Object.notify()"
-- uid: "java.lang.Object.wait()"
-  name: "Object.wait()"
-  nameWithType: "Object.wait()"
-  fullName: "java.lang.Object.wait()"
-- uid: "java.lang.Object.finalize()"
-  name: "Object.finalize()"
-  nameWithType: "Object.finalize()"
-  fullName: "java.lang.Object.finalize()"
-- uid: "java.lang.Object.clone()"
-  name: "Object.clone()"
-  nameWithType: "Object.clone()"
-  fullName: "java.lang.Object.clone()"
-- uid: "java.lang.Object.notifyAll()"
-  name: "Object.notifyAll()"
-  nameWithType: "Object.notifyAll()"
-  fullName: "java.lang.Object.notifyAll()"
-- uid: "java.lang.Object.equals(java.lang.Object)"
-  name: "Object.equals(Object)"
-  nameWithType: "Object.equals(Object)"
-  fullName: "java.lang.Object.equals(java.lang.Object)"
-- uid: "java.lang.Object.getClass()"
-  name: "Object.getClass()"
-  nameWithType: "Object.getClass()"
-  fullName: "java.lang.Object.getClass()"
-- uid: "java.lang.Object.wait(long)"
-  name: "Object.wait(long)"
-  nameWithType: "Object.wait(long)"
-  fullName: "java.lang.Object.wait(long)"
-- uid: "java.lang.Object.hashCode()"
-  name: "Object.hashCode()"
-  nameWithType: "Object.hashCode()"
-  fullName: "java.lang.Object.hashCode()"
-- uid: "java.lang.Object.wait(long,int)"
-  name: "Object.wait(long,int)"
-  nameWithType: "Object.wait(long,int)"
-  fullName: "java.lang.Object.wait(long,int)"
-- uid: "java.lang.Object.toString()"
-  name: "Object.toString()"
-  nameWithType: "Object.toString()"
-  fullName: "java.lang.Object.toString()"
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath*
+  name: getEntityPath
+  nameWithType: ServiceBusSenderClient.getEntityPath
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace*
+  name: getFullyQualifiedNamespace
+  nameWithType: ServiceBusSenderClient.getFullyQualifiedNamespace
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusMessage
+  name: ServiceBusMessage
+  nameWithType: ServiceBusMessage
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.send*
+  name: send
+  nameWithType: ServiceBusSenderClient.send
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.send
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusMessageBatch
+  name: ServiceBusMessageBatch
+  nameWithType: ServiceBusMessageBatch
+  fullName: com.azure.messaging.servicebus.ServiceBusMessageBatch
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
+  name: createBatch
+  nameWithType: ServiceBusSenderClient.createBatch
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.models.CreateBatchOptions
+  name: CreateBatchOptions
+  nameWithType: CreateBatchOptions
+  fullName: com.azure.messaging.servicebus.models.CreateBatchOptions
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.close*
+  name: close
+  nameWithType: ServiceBusSenderClient.close
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.close
+  package: com.azure.messaging.servicebus
+- uid: java.lang.AutoCloseable
+  name: AutoCloseable
+  nameWithType: AutoCloseable
+  fullName: java.lang.AutoCloseable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
