@@ -27,19 +27,19 @@ If you cannot update existing applications to version 4.x, then Microsoft recomm
 
 The version 4.x client libraries for Java are part of the Azure SDK for Java. The source code for the Azure Key Vault client libraries for Java is available on [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault).
 
-Use the following version 4.x libraries to work with keys, secrets, and certificates:
+Use the following version 4.x libraries to work with certificates, keys, and secrets:
 
 | Library | Reference | Package | Source |
 |----------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+|    azure-security-keyvault-certificates   |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-certificates)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-certificates) |
 |    azure-security-keyvault-keys    |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-keys)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-keys)    |
 |    azure-security-keyvault-secrets    |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-secrets)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-secrets)    |
-|    azure-security-keyvault-certificates   |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-certificates)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-certificates) |
 
 ### Version 1.x
 
 The source code for the Azure Key Vault client libraries for Java is available on [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault).
 
-Use the following version 1.x libraries to work with keys, secrets, and certificates:
+Use the following version 1.x libraries to work with certificates, keys, and secrets:
 
 | Library | Reference | Package | Source |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
