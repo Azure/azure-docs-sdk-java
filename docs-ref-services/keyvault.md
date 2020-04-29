@@ -15,7 +15,7 @@ ms.service: key-vault
 
 # Azure Key Vault libraries for Java
 
-The Azure Key Vault client libraries for Java offer a convenient interface for making calls to Azure Key Vault. For more information about Azure Key Vault, see [Introduction to Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/general/overview).
+The Azure Key Vault client libraries for Java offer a convenient interface for making calls to Azure Key Vault. For more information about Azure Key Vault, see [Introduction to Azure Key Vault](https://docs.microsoft.com/azure/key-vault/general/overview).
 
 ## Libraries for data access
 
@@ -31,9 +31,9 @@ Use the following version 4.x libraries to work with certificates, keys, and sec
 
 | Library | Reference | Package | Source |
 |----------------------------------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-|    azure-security-keyvault-certificates   |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-certificates)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-certificates) |
-|    azure-security-keyvault-keys    |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-keys)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-keys)    |
-|    azure-security-keyvault-secrets    |    [Reference](https://azure.github.io/azure-sdk-for-java/)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-secrets)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-secrets)    |
+|    azure-security-keyvault-certificates   |    [Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-certificates/4.1.0-beta.2/index.html)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-certificates)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-certificates) |
+|    azure-security-keyvault-keys    |    [Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-keys/4.2.0-beta.3/index.html)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-keys)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-keys)    |
+|    azure-security-keyvault-secrets    |    [Reference](https://azuresdkdocs.blob.core.windows.net/$web/java/azure-security-keyvault-secrets/4.2.0-beta.2/index.html)    |    [Maven](https://search.maven.org/artifact/com.azure/azure-security-keyvault-secrets)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/azure-security-keyvault-secrets)    |
 
 ### Version 1.x
 
@@ -43,11 +43,11 @@ Use the following version 1.x libraries to work with certificates, keys, and sec
 
 | Library | Reference | Package | Source |
 |--------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-|    microsoft-azure-keyvault-core    |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-core)    |
-|    microsoft-azure-keyvault-cryptography    |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-cryptography)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-cryptography)    |
-|    microsoft-azure-keyvault-extensions   |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-extensions)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-extensions) |
-|    microsoft-azure-keyvault-webkey    |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-webkey)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-webkey)    |
-|    microsoft-azure-keyvault   |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault) |
+|    microsoft-azure-keyvault-core    |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault.core?view=azure-java-legacy&viewFallbackFrom=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-core)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-core)    |
+|    microsoft-azure-keyvault-cryptography    |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault.cryptography?view=azure-java-legacy&viewFallbackFrom=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-cryptography)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-cryptography)    |
+|    microsoft-azure-keyvault-extensions   |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault.extensions?view=azure-java-legacy&viewFallbackFrom=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-extensions)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-extensions) |
+|    microsoft-azure-keyvault-webkey    |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault.webkey?view=azure-java-legacy&viewFallbackFrom=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault-webkey)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault-webkey)    |
+|    microsoft-azure-keyvault   |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.keyvault?view=azure-java-legacy&viewFallbackFrom=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-keyvault)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/microsoft-azure-keyvault) |
 
 ## Libraries for resource management
 
@@ -55,4 +55,4 @@ Use the following library to work with the Azure Key Vault resource provider:
 
 |    Library    |    Reference    |    Package    |    Source    |
 |------------------------------------------|-------------------------------------------------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
-|    azure-mgmt-keyvault    |        |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-keyvault)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/mgmt)    |
+|    azure-mgmt-keyvault    |    [Reference](https://docs.microsoft.com/java/api/com.microsoft.azure.management.keyvault?view=azure-java-stable)    |    [Maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-mgmt-keyvault)    |    [GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/keyvault/mgmt)    |
