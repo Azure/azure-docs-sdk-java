@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.core.util.FluxUtil.FileReadFlux
   id: FileReadFlux
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util
   children:
   - com.azure.core.util.FluxUtil.FileReadFlux.FileReadFlux(java.nio.channels.AsynchronousFileChannel,int,long,long)
@@ -142,7 +142,6 @@ items:
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,boolean,int)
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,int)
-  - reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
   - reactor.core.publisher.Flux.<T>create(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>)
   - reactor.core.publisher.Flux.<T>create(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>,reactor.core.publisher.FluxSink.OverflowStrategy)
   - reactor.core.publisher.Flux.<T>defer(java.util.function.Supplier<? extends org.reactivestreams.Publisher<T>>)
@@ -177,6 +176,7 @@ items:
   - reactor.core.publisher.Flux.<T>push(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>,reactor.core.publisher.FluxSink.OverflowStrategy)
   - reactor.core.publisher.Flux.<T>switchOnNext(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   - reactor.core.publisher.Flux.<T>switchOnNext(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,int)
+  - reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
   - reactor.core.publisher.Flux.<TRight,TLeftEnd,TRightEnd,R>groupJoin(org.reactivestreams.Publisher<? extends TRight>,java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<TLeftEnd>>,java.util.function.Function<? super TRight,? extends org.reactivestreams.Publisher<TRightEnd>>,java.util.function.BiFunction<? super T,? super reactor.core.publisher.Flux<TRight>,? extends R>)
   - reactor.core.publisher.Flux.<TRight,TLeftEnd,TRightEnd,R>join(org.reactivestreams.Publisher<? extends TRight>,java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<TLeftEnd>>,java.util.function.Function<? super TRight,? extends org.reactivestreams.Publisher<TRightEnd>>,java.util.function.BiFunction<? super T,? super TRight,? extends R>)
   - reactor.core.publisher.Flux.<TUPLE,V>zip(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<?>>,java.util.function.Function<? super TUPLE,? extends V>)
@@ -216,6 +216,7 @@ items:
   - reactor.core.publisher.Flux.<V>switchMap(java.util.function.Function<? super T,org.reactivestreams.Publisher<? extends V>>)
   - reactor.core.publisher.Flux.<V>switchMap(java.util.function.Function<? super T,org.reactivestreams.Publisher<? extends V>>,int)
   - reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>)
+  - reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
   - reactor.core.publisher.Flux.<V>then(reactor.core.publisher.Mono<V>)
   - reactor.core.publisher.Flux.<V>thenMany(org.reactivestreams.Publisher<V>)
   - reactor.core.publisher.Flux.<V>transform(java.util.function.Function<? super reactor.core.publisher.Flux<T>,? extends org.reactivestreams.Publisher<V>>)
@@ -374,6 +375,7 @@ items:
   - reactor.core.publisher.Flux.retryBackoff(long,java.time.Duration,java.time.Duration,double,reactor.core.scheduler.Scheduler)
   - reactor.core.publisher.Flux.retryBackoff(long,java.time.Duration,java.time.Duration,reactor.core.scheduler.Scheduler)
   - reactor.core.publisher.Flux.retryWhen(java.util.function.Function<reactor.core.publisher.Flux<java.lang.Throwable>,? extends org.reactivestreams.Publisher<?>>)
+  - reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
   - reactor.core.publisher.Flux.sample(java.time.Duration)
   - reactor.core.publisher.Flux.sampleFirst(java.time.Duration)
   - reactor.core.publisher.Flux.scan(java.util.function.BiFunction<T,T,T>)
@@ -444,7 +446,7 @@ items:
   - reactor.core.publisher.Flux.windowWhile(java.util.function.Predicate<T>,int)
 - uid: com.azure.core.util.FluxUtil.FileReadFlux.FileReadFlux(java.nio.channels.AsynchronousFileChannel,int,long,long)
   id: FileReadFlux(java.nio.channels.AsynchronousFileChannel,int,long,long)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil.FileReadFlux
   langs:
   - java
@@ -467,7 +469,7 @@ items:
       type: long
 - uid: com.azure.core.util.FluxUtil.FileReadFlux.subscribe(reactor.core.CoreSubscriber<? super java.nio.ByteBuffer>)
   id: subscribe(reactor.core.CoreSubscriber<? super java.nio.ByteBuffer>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil.FileReadFlux
   langs:
   - java
@@ -808,6 +810,10 @@ references:
   name: Flux.<R>publish(Function<? super Flux<T>,? extends Publisher<? extends R>>)
   nameWithType: Flux.<R>publish(Function<? super Flux<T>,? extends Publisher<? extends R>>)
   fullName: reactor.core.publisher.Flux.<R>publish(java.util.function.Function<? super reactor.core.publisher.Flux<T>,? extends org.reactivestreams.Publisher<? extends R>>)
+- uid: reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
+  name: Flux.retryWhen(Retry)
+  nameWithType: Flux.retryWhen(Retry)
+  fullName: reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
 - uid: reactor.core.publisher.Flux.elapsed()
   name: Flux.elapsed()
   nameWithType: Flux.elapsed()
@@ -936,10 +942,6 @@ references:
   name: Flux.bufferUntil(Predicate<? super T>,boolean)
   nameWithType: Flux.bufferUntil(Predicate<? super T>,boolean)
   fullName: reactor.core.publisher.Flux.bufferUntil(java.util.function.Predicate<? super T>,boolean)
-- uid: reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
-  name: Flux.<T>convertToMono(Callable<T>)
-  nameWithType: Flux.<T>convertToMono(Callable<T>)
-  fullName: reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
 - uid: reactor.core.publisher.Flux.<T>merge(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   name: Flux.<T>merge(Publisher<? extends Publisher<? extends T>>)
   nameWithType: Flux.<T>merge(Publisher<? extends Publisher<? extends T>>)
@@ -1068,6 +1070,10 @@ references:
   name: Flux.sample(Duration)
   nameWithType: Flux.sample(Duration)
   fullName: reactor.core.publisher.Flux.sample(java.time.Duration)
+- uid: reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
+  name: Flux.<T>wrapToMono(Callable<T>)
+  nameWithType: Flux.<T>wrapToMono(Callable<T>)
+  fullName: reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
 - uid: reactor.core.publisher.Flux.<U,V>windowWhen(org.reactivestreams.Publisher<U>,java.util.function.Function<? super U,? extends org.reactivestreams.Publisher<V>>)
   name: Flux.<U,V>windowWhen(Publisher<U>,Function<? super U,? extends Publisher<V>>)
   nameWithType: Flux.<U,V>windowWhen(Publisher<U>,Function<? super U,? extends Publisher<V>>)
@@ -1516,6 +1522,10 @@ references:
   name: Flux.filterWhen(Function<? super T,? extends Publisher<Boolean>>)
   nameWithType: Flux.filterWhen(Function<? super T,? extends Publisher<Boolean>>)
   fullName: reactor.core.publisher.Flux.filterWhen(java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<java.lang.Boolean>>)
+- uid: reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
+  name: Flux.<V>switchOnFirst(BiFunction<Signal<? extends T>,Flux<T>,Publisher<? extends V>>,boolean)
+  nameWithType: Flux.<V>switchOnFirst(BiFunction<Signal<? extends T>,Flux<T>,Publisher<? extends V>>,boolean)
+  fullName: reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
 - uid: reactor.core.publisher.Flux.timestamp()
   name: Flux.timestamp()
   nameWithType: Flux.timestamp()
@@ -2752,10 +2762,6 @@ references:
   name: '? super T>,boolean)'
   nameWithType: '? super T>,boolean)'
   fullName: '? super T>,boolean)'
-- uid: T>convertToMono(java.util.concurrent.Callable
-  name: T>convertToMono(Callable
-  nameWithType: T>convertToMono(Callable
-  fullName: T>convertToMono(java.util.concurrent.Callable
 - uid: T>>)
   name: T>>)
   nameWithType: T>>)
@@ -2852,6 +2858,10 @@ references:
   name: '? extends R>>,int,int)'
   nameWithType: '? extends R>>,int,int)'
   fullName: '? extends R>>,int,int)'
+- uid: T>wrapToMono(java.util.concurrent.Callable
+  name: T>wrapToMono(Callable
+  nameWithType: T>wrapToMono(Callable
+  fullName: T>wrapToMono(java.util.concurrent.Callable
 - uid: '? super U,? extends org.reactivestreams.Publisher'
   name: '? super U,? extends Publisher'
   nameWithType: '? super U,? extends Publisher'
@@ -3248,6 +3258,26 @@ references:
   name: Boolean>>)
   nameWithType: Boolean>>)
   fullName: java.lang.Boolean>>)
+- uid: T>,org.reactivestreams.Publisher
+  name: T>,Publisher
+  nameWithType: T>,Publisher
+  fullName: T>,org.reactivestreams.Publisher
+- uid: reactor.core.publisher.Signal
+  name: Signal
+  nameWithType: Signal
+  fullName: reactor.core.publisher.Signal
+- uid: '? extends T>,reactor.core.publisher.Flux'
+  name: '? extends T>,Flux'
+  nameWithType: '? extends T>,Flux'
+  fullName: '? extends T>,reactor.core.publisher.Flux'
+- uid: '? extends V>>,boolean)'
+  name: '? extends V>>,boolean)'
+  nameWithType: '? extends V>>,boolean)'
+  fullName: '? extends V>>,boolean)'
+- uid: V>switchOnFirst(java.util.function.BiFunction
+  name: V>switchOnFirst(BiFunction
+  nameWithType: V>switchOnFirst(BiFunction
+  fullName: V>switchOnFirst(java.util.function.BiFunction
 - uid: V>windowUntilChanged(java.util.function.Function
   name: V>windowUntilChanged(Function
   nameWithType: V>windowUntilChanged(Function
@@ -3708,22 +3738,6 @@ references:
   name: T>error(Throwable)
   nameWithType: T>error(Throwable)
   fullName: T>error(java.lang.Throwable)
-- uid: T>,org.reactivestreams.Publisher
-  name: T>,Publisher
-  nameWithType: T>,Publisher
-  fullName: T>,org.reactivestreams.Publisher
-- uid: reactor.core.publisher.Signal
-  name: Signal
-  nameWithType: Signal
-  fullName: reactor.core.publisher.Signal
-- uid: '? extends T>,reactor.core.publisher.Flux'
-  name: '? extends T>,Flux'
-  nameWithType: '? extends T>,Flux'
-  fullName: '? extends T>,reactor.core.publisher.Flux'
-- uid: V>switchOnFirst(java.util.function.BiFunction
-  name: V>switchOnFirst(BiFunction
-  nameWithType: V>switchOnFirst(BiFunction
-  fullName: V>switchOnFirst(java.util.function.BiFunction
 - uid: java.lang.Void>)
   name: Void>)
   nameWithType: Void>)
