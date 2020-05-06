@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.core.util.FluxUtil
   id: FluxUtil
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util
   children:
   - com.azure.core.util.FluxUtil.<T>fluxContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Flux<T>>)
@@ -18,6 +18,8 @@ items:
   - com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel)
   - com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel,int,long,long)
   - com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel,long,long)
+  - com.azure.core.util.FluxUtil.toFluxByteBuffer(java.io.InputStream)
+  - com.azure.core.util.FluxUtil.toFluxByteBuffer(java.io.InputStream,int)
   - com.azure.core.util.FluxUtil.toReactorContext(com.azure.core.util.Context)
   - com.azure.core.util.FluxUtil.writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel)
   - com.azure.core.util.FluxUtil.writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel,long)
@@ -47,7 +49,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.core.util.FluxUtil.<T>fluxContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Flux<T>>)
   id: <T>fluxContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Flux<T>>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -84,7 +86,7 @@ items:
       description: The response from service call
 - uid: com.azure.core.util.FluxUtil.<T>fluxError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
   id: <T>fluxError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -109,7 +111,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> that terminates with error wrapping the <xref uid="java.lang.RuntimeException" data-throw-if-not-resolved="false">RuntimeException</xref>.
 - uid: com.azure.core.util.FluxUtil.<T>monoError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
   id: <T>monoError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -134,7 +136,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> that terminates with error wrapping the <xref uid="java.lang.RuntimeException" data-throw-if-not-resolved="false">RuntimeException</xref>.
 - uid: com.azure.core.util.FluxUtil.<T>pagedFluxError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
   id: <T>pagedFluxError(com.azure.core.util.logging.ClientLogger,java.lang.RuntimeException)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -159,7 +161,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> that terminates with error wrapping the <xref uid="java.lang.RuntimeException" data-throw-if-not-resolved="false">RuntimeException</xref>.
 - uid: com.azure.core.util.FluxUtil.<T>toMono(com.azure.core.http.rest.Response<T>)
   id: <T>toMono(com.azure.core.http.rest.Response<T>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -181,7 +183,7 @@ items:
       description: The converted <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref>
 - uid: com.azure.core.util.FluxUtil.<T>withContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>)
   id: <T>withContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -218,7 +220,7 @@ items:
       description: The response from service call
 - uid: com.azure.core.util.FluxUtil.<T>withContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>,java.util.Map<java.lang.String,java.lang.String>)
   id: <T>withContext(java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>,java.util.Map<java.lang.String,java.lang.String>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -239,8 +241,8 @@ items:
     - id: serviceCall
       type: java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>
       description: >-
-        serviceCall The lambda function that makes the service call into which azure context
-         will be passed
+        serviceCall The lambda function that makes the service call into which azure context will be
+         passed
     - id: contextAttributes
       type: java.util.Map<java.lang.String,java.lang.String>
       description: The map of attributes sent by the calling method to be set on <xref uid="com.azure.core.util.Context" data-throw-if-not-resolved="false">Context</xref>.
@@ -249,7 +251,7 @@ items:
       description: The response from service call
 - uid: com.azure.core.util.FluxUtil.FluxUtil()
   id: FluxUtil()
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -263,7 +265,7 @@ items:
     content: private FluxUtil()
 - uid: com.azure.core.util.FluxUtil.byteBufferToArray(java.nio.ByteBuffer)
   id: byteBufferToArray(java.nio.ByteBuffer)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -285,7 +287,7 @@ items:
       description: the byte array
 - uid: com.azure.core.util.FluxUtil.collectBytesInByteBufferStream(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
   id: collectBytesInByteBufferStream(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -307,7 +309,7 @@ items:
       description: A Mono which emits the concatenation of all the ByteBuffer instances given by the source Flux.
 - uid: com.azure.core.util.FluxUtil.isFluxByteBuffer(java.lang.reflect.Type)
   id: isFluxByteBuffer(java.lang.reflect.Type)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -329,7 +331,7 @@ items:
       description: whether the type represents a Flux that emits ByteBuffer
 - uid: com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel)
   id: readFile(java.nio.channels.AsynchronousFileChannel)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -351,7 +353,7 @@ items:
       description: The AsyncInputStream.
 - uid: com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel,int,long,long)
   id: readFile(java.nio.channels.AsynchronousFileChannel,int,long,long)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -382,7 +384,7 @@ items:
       description: the Flux.
 - uid: com.azure.core.util.FluxUtil.readFile(java.nio.channels.AsynchronousFileChannel,long,long)
   id: readFile(java.nio.channels.AsynchronousFileChannel,long,long)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -408,9 +410,70 @@ items:
     return:
       type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
       description: the Flux.
+- uid: com.azure.core.util.FluxUtil.toFluxByteBuffer(java.io.InputStream)
+  id: toFluxByteBuffer(java.io.InputStream)
+  artifact: com.azure:azure-core:1.5.0
+  parent: com.azure.core.util.FluxUtil
+  langs:
+  - java
+  name: toFluxByteBuffer(InputStream inputStream)
+  nameWithType: FluxUtil.toFluxByteBuffer(InputStream inputStream)
+  fullName: com.azure.core.util.FluxUtil.toFluxByteBuffer(InputStream inputStream)
+  overload: com.azure.core.util.FluxUtil.toFluxByteBuffer*
+  type: Method
+  package: com.azure.core.util
+  summary: >-
+    Converts an <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> into a <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> of <xref uid="java.nio.ByteBuffer" data-throw-if-not-resolved="false">ByteBuffer</xref> using a chunk size of 4096.
+
+
+    Given that <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> is not guaranteed to be replayable the returned <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> should be considered non-replayable as well.
+
+
+    If the passed <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> is `null` <xref uid="" data-throw-if-not-resolved="false">Flux#empty()</xref> will be returned.
+  syntax:
+    content: public static Flux<ByteBuffer> toFluxByteBuffer(InputStream inputStream)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+      description: The <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> to convert into a <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref>.
+    return:
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: A <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> of <xref uid="java.nio.ByteBuffer" data-throw-if-not-resolved="false">ByteBuffers</xref> that contains the contents of the stream.
+- uid: com.azure.core.util.FluxUtil.toFluxByteBuffer(java.io.InputStream,int)
+  id: toFluxByteBuffer(java.io.InputStream,int)
+  artifact: com.azure:azure-core:1.5.0
+  parent: com.azure.core.util.FluxUtil
+  langs:
+  - java
+  name: toFluxByteBuffer(InputStream inputStream, int chunkSize)
+  nameWithType: FluxUtil.toFluxByteBuffer(InputStream inputStream, int chunkSize)
+  fullName: com.azure.core.util.FluxUtil.toFluxByteBuffer(InputStream inputStream, int chunkSize)
+  overload: com.azure.core.util.FluxUtil.toFluxByteBuffer*
+  type: Method
+  package: com.azure.core.util
+  summary: >-
+    Converts an <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> into a <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> of <xref uid="java.nio.ByteBuffer" data-throw-if-not-resolved="false">ByteBuffer</xref>.
+
+
+    Given that <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> is not guaranteed to be replayable the returned <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> should be considered non-replayable as well.
+
+
+    If the passed <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> is `null` <xref uid="" data-throw-if-not-resolved="false">Flux#empty()</xref> will be returned.
+  syntax:
+    content: public static Flux<ByteBuffer> toFluxByteBuffer(InputStream inputStream, int chunkSize)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+      description: The <xref uid="" data-throw-if-not-resolved="false">InputStream</xref> to convert into a <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref>.
+    - id: chunkSize
+      type: int
+      description: The requested size for each <xref uid="java.nio.ByteBuffer" data-throw-if-not-resolved="false">ByteBuffer</xref>.
+    return:
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: A <xref uid="reactor.core.publisher.Flux" data-throw-if-not-resolved="false">Flux</xref> of <xref uid="java.nio.ByteBuffer" data-throw-if-not-resolved="false">ByteBuffers</xref> that contains the contents of the stream.
 - uid: com.azure.core.util.FluxUtil.toReactorContext(com.azure.core.util.Context)
   id: toReactorContext(com.azure.core.util.Context)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -432,7 +495,7 @@ items:
       description: The Reactor context.
 - uid: com.azure.core.util.FluxUtil.writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel)
   id: writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -457,7 +520,7 @@ items:
       description: a Mono which performs the write operation when subscribed
 - uid: com.azure.core.util.FluxUtil.writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel,long)
   id: writeFile(reactor.core.publisher.Flux<java.nio.ByteBuffer>,java.nio.channels.AsynchronousFileChannel,long)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.FluxUtil
   langs:
   - java
@@ -552,6 +615,21 @@ references:
   nameWithType: FluxUtil.byteBufferToArray
   fullName: com.azure.core.util.FluxUtil.byteBufferToArray
   package: com.azure.core.util
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
+- uid: com.azure.core.util.FluxUtil.toFluxByteBuffer*
+  name: toFluxByteBuffer
+  nameWithType: FluxUtil.toFluxByteBuffer
+  fullName: com.azure.core.util.FluxUtil.toFluxByteBuffer
+  package: com.azure.core.util
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
 - uid: java.util.function.Function<com.azure.core.util.Context,reactor.core.publisher.Mono<T>>
   spec.java:
   - uid: java.util.function.Function
@@ -745,11 +823,6 @@ references:
   - uid: long
     name: long
     fullName: long
-- uid: int
-  spec.java:
-  - uid: int
-    name: int
-    fullName: int
 - uid: com.azure.core.util.FluxUtil.readFile*
   name: readFile
   nameWithType: FluxUtil.readFile
