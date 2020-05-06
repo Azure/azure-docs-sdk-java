@@ -2,13 +2,14 @@
 items:
 - uid: com.azure.core.util.CoreUtils
   id: CoreUtils
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util
   children:
   - com.azure.core.util.CoreUtils.<T>arrayToString(T[],java.util.function.Function<T,java.lang.String>)
   - com.azure.core.util.CoreUtils.<T>clone(T[])
   - com.azure.core.util.CoreUtils.<T>extractAndFetch(com.azure.core.http.rest.PagedResponse<T>,com.azure.core.util.Context,java.util.function.BiFunction<java.lang.String,com.azure.core.util.Context,org.reactivestreams.Publisher<T>>)
   - com.azure.core.util.CoreUtils.<T>findFirstOfType(java.lang.Object[],java.lang.Class<T>)
+  - com.azure.core.util.CoreUtils.bomAwareToString(byte[],java.lang.String)
   - com.azure.core.util.CoreUtils.clone(byte[])
   - com.azure.core.util.CoreUtils.clone(int[])
   - com.azure.core.util.CoreUtils.getProperties(java.lang.String)
@@ -42,7 +43,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.core.util.CoreUtils.<T>arrayToString(T[],java.util.function.Function<T,java.lang.String>)
   id: <T>arrayToString(T[],java.util.function.Function<T,java.lang.String>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -67,7 +68,7 @@ items:
       description: Array with each element mapped and delimited, otherwise null if the array is empty or null.
 - uid: com.azure.core.util.CoreUtils.<T>clone(T[])
   id: <T>clone(T[])
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -89,7 +90,7 @@ items:
       description: A copy of the array or null if source was null.
 - uid: com.azure.core.util.CoreUtils.<T>extractAndFetch(com.azure.core.http.rest.PagedResponse<T>,com.azure.core.util.Context,java.util.function.BiFunction<java.lang.String,com.azure.core.util.Context,org.reactivestreams.Publisher<T>>)
   id: <T>extractAndFetch(com.azure.core.http.rest.PagedResponse<T>,com.azure.core.util.Context,java.util.function.BiFunction<java.lang.String,com.azure.core.util.Context,org.reactivestreams.Publisher<T>>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -117,7 +118,7 @@ items:
       description: The publisher holding all the generic items combined.
 - uid: com.azure.core.util.CoreUtils.<T>findFirstOfType(java.lang.Object[],java.lang.Class<T>)
   id: <T>findFirstOfType(java.lang.Object[],java.lang.Class<T>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -142,7 +143,7 @@ items:
       description: The first object of the desired type, otherwise null.
 - uid: com.azure.core.util.CoreUtils.CoreUtils()
   id: CoreUtils()
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -154,9 +155,45 @@ items:
   package: com.azure.core.util
   syntax:
     content: private CoreUtils()
+- uid: com.azure.core.util.CoreUtils.bomAwareToString(byte[],java.lang.String)
+  id: bomAwareToString(byte[],java.lang.String)
+  artifact: com.azure:azure-core:1.5.0
+  parent: com.azure.core.util.CoreUtils
+  langs:
+  - java
+  name: bomAwareToString(byte[] bytes, String contentType)
+  nameWithType: CoreUtils.bomAwareToString(byte[] bytes, String contentType)
+  fullName: com.azure.core.util.CoreUtils.bomAwareToString(byte[] bytes, String contentType)
+  overload: com.azure.core.util.CoreUtils.bomAwareToString*
+  type: Method
+  package: com.azure.core.util
+  summary: >-
+    Attempts to convert a byte stream into the properly encoded String.
+
+
+    This utility method will attempt to find the encoding for the String in this order.
+
+
+    1.  Find the byte order mark in the byte array.
+
+    2.  Find the `charset` in the `Content-Type` header.
+
+    3.  Default to `UTF-8`.
+  syntax:
+    content: public static String bomAwareToString(byte[] bytes, String contentType)
+    parameters:
+    - id: bytes
+      type: byte[]
+      description: Byte array.
+    - id: contentType
+      type: java.lang.String
+      description: <code>Content-Type</code> header value.
+    return:
+      type: java.lang.String
+      description: A string representation of the byte array encoded to the found encoding.
 - uid: com.azure.core.util.CoreUtils.clone(byte[])
   id: clone(byte[])
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -178,7 +215,7 @@ items:
       description: A copy of the array, or null if source was null.
 - uid: com.azure.core.util.CoreUtils.clone(int[])
   id: clone(int[])
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -200,7 +237,7 @@ items:
       description: A copy of the array, or null if source was null.
 - uid: com.azure.core.util.CoreUtils.getProperties(java.lang.String)
   id: getProperties(java.lang.String)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -222,7 +259,7 @@ items:
       description: an immutable <xref uid="java.util.Map" data-throw-if-not-resolved="false">Map</xref>.
 - uid: com.azure.core.util.CoreUtils.isNullOrEmpty(java.lang.CharSequence)
   id: isNullOrEmpty(java.lang.CharSequence)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -244,7 +281,7 @@ items:
       description: True if the character sequence is null or empty, false otherwise.
 - uid: com.azure.core.util.CoreUtils.isNullOrEmpty(java.lang.Object[])
   id: isNullOrEmpty(java.lang.Object[])
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -266,7 +303,7 @@ items:
       description: True if the array is null or empty, false otherwise.
 - uid: com.azure.core.util.CoreUtils.isNullOrEmpty(java.util.Collection<?>)
   id: isNullOrEmpty(java.util.Collection<?>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -288,7 +325,7 @@ items:
       description: True if the collection is null or empty, false otherwise.
 - uid: com.azure.core.util.CoreUtils.isNullOrEmpty(java.util.Map<?,?>)
   id: isNullOrEmpty(java.util.Map<?,?>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.util.CoreUtils
   langs:
   - java
@@ -523,6 +560,11 @@ references:
   name: getProperties
   nameWithType: CoreUtils.getProperties
   fullName: com.azure.core.util.CoreUtils.getProperties
+  package: com.azure.core.util
+- uid: com.azure.core.util.CoreUtils.bomAwareToString*
+  name: bomAwareToString
+  nameWithType: CoreUtils.bomAwareToString
+  fullName: com.azure.core.util.CoreUtils.bomAwareToString
   package: com.azure.core.util
 - uid: java.lang.Object.notify()
   name: Object.notify()

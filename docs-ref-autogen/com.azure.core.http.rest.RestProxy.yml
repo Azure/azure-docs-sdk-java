@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.core.http.rest.RestProxy
   id: RestProxy
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest
   children:
   - com.azure.core.http.rest.RestProxy.<A>create(java.lang.Class<A>)
@@ -10,6 +10,7 @@ items:
   - com.azure.core.http.rest.RestProxy.<A>create(java.lang.Class<A>,com.azure.core.http.HttpPipeline,com.azure.core.util.serializer.SerializerAdapter)
   - com.azure.core.http.rest.RestProxy.invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[])
   - com.azure.core.http.rest.RestProxy.send(com.azure.core.http.HttpRequest,com.azure.core.util.Context)
+  - com.azure.core.http.rest.RestProxy.validateLength(com.azure.core.http.HttpRequest)
   langs:
   - java
   name: RestProxy
@@ -38,7 +39,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.core.http.rest.RestProxy.<A>create(java.lang.Class<A>)
   id: <A>create(java.lang.Class<A>)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -60,7 +61,7 @@ items:
       description: a proxy implementation of the provided Swagger interface
 - uid: com.azure.core.http.rest.RestProxy.<A>create(java.lang.Class<A>,com.azure.core.http.HttpPipeline)
   id: <A>create(java.lang.Class<A>,com.azure.core.http.HttpPipeline)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -85,7 +86,7 @@ items:
       description: a proxy implementation of the provided Swagger interface
 - uid: com.azure.core.http.rest.RestProxy.<A>create(java.lang.Class<A>,com.azure.core.http.HttpPipeline,com.azure.core.util.serializer.SerializerAdapter)
   id: <A>create(java.lang.Class<A>,com.azure.core.http.HttpPipeline,com.azure.core.util.serializer.SerializerAdapter)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -104,20 +105,16 @@ items:
       description: the Swagger interface to provide a proxy implementation for
     - id: httpPipeline
       type: com.azure.core.http.HttpPipeline
-      description: >-
-        the HttpPipelinePolicy and HttpClient pipline that will be used to send Http
-             requests
+      description: the HttpPipelinePolicy and HttpClient pipline that will be used to send Http requests
     - id: serializer
       type: com.azure.core.util.serializer.SerializerAdapter
-      description: >-
-        the serializer that will be used to convert POJOs to and from request and
-             response bodies
+      description: the serializer that will be used to convert POJOs to and from request and response bodies
     return:
       type: A
       description: a proxy implementation of the provided Swagger interface
 - uid: com.azure.core.http.rest.RestProxy.RestProxy(com.azure.core.http.HttpPipeline,com.azure.core.util.serializer.SerializerAdapter,com.azure.core.http.rest.SwaggerInterfaceParser)
   id: RestProxy(com.azure.core.http.HttpPipeline,com.azure.core.util.serializer.SerializerAdapter,com.azure.core.http.rest.SwaggerInterfaceParser)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -133,20 +130,18 @@ items:
     parameters:
     - id: httpPipeline
       type: com.azure.core.http.HttpPipeline
-      description: >-
-        the HttpPipelinePolicy and HttpClient httpPipeline that will be used to send HTTP
-             requests.
+      description: the HttpPipelinePolicy and HttpClient httpPipeline that will be used to send HTTP requests.
     - id: serializer
       type: com.azure.core.util.serializer.SerializerAdapter
       description: the serializer that will be used to convert response bodies to POJOs.
     - id: interfaceParser
       type: com.azure.core.http.rest.SwaggerInterfaceParser
       description: >-
-        the parser that contains information about the interface describing REST API methods
-             that this RestProxy "implements".
+        the parser that contains information about the interface describing REST API methods that
+         this RestProxy "implements".
 - uid: com.azure.core.http.rest.RestProxy.invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[])
   id: invoke(java.lang.Object,java.lang.reflect.Method,java.lang.Object[])
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -169,7 +164,7 @@ items:
       type: java.lang.Object
 - uid: com.azure.core.http.rest.RestProxy.send(com.azure.core.http.HttpRequest,com.azure.core.util.Context)
   id: send(com.azure.core.http.HttpRequest,com.azure.core.util.Context)
-  artifact: com.azure:azure-core:1.4.0
+  artifact: com.azure:azure-core:1.5.0
   parent: com.azure.core.http.rest.RestProxy
   langs:
   - java
@@ -192,6 +187,25 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.HttpResponse>
       description: a <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> that emits HttpResponse asynchronously
+- uid: com.azure.core.http.rest.RestProxy.validateLength(com.azure.core.http.HttpRequest)
+  id: validateLength(com.azure.core.http.HttpRequest)
+  artifact: com.azure:azure-core:1.5.0
+  parent: com.azure.core.http.rest.RestProxy
+  langs:
+  - java
+  name: validateLength(HttpRequest request)
+  nameWithType: RestProxy.validateLength(HttpRequest request)
+  fullName: com.azure.core.http.rest.RestProxy.validateLength(HttpRequest request)
+  overload: com.azure.core.http.rest.RestProxy.validateLength*
+  type: Method
+  package: com.azure.core.http.rest
+  syntax:
+    content: static Flux<ByteBuffer> validateLength(HttpRequest request)
+    parameters:
+    - id: request
+      type: com.azure.core.http.HttpRequest
+    return:
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
 references:
 - uid: com.azure.core.http.HttpPipeline
   name: HttpPipeline
@@ -256,6 +270,23 @@ references:
   name: invoke
   nameWithType: RestProxy.invoke
   fullName: com.azure.core.http.rest.RestProxy.invoke
+  package: com.azure.core.http.rest
+- uid: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+  spec.java:
+  - uid: reactor.core.publisher.Flux
+    name: Flux
+    fullName: reactor.core.publisher.Flux
+  - name: <
+    fullName: <
+  - uid: java.nio.ByteBuffer
+    name: ByteBuffer
+    fullName: java.nio.ByteBuffer
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.http.rest.RestProxy.validateLength*
+  name: validateLength
+  nameWithType: RestProxy.validateLength
+  fullName: com.azure.core.http.rest.RestProxy.validateLength
   package: com.azure.core.http.rest
 - uid: java.lang.Class<A>
   spec.java:
@@ -335,6 +366,14 @@ references:
   name: Mono
   nameWithType: Mono
   fullName: reactor.core.publisher.Mono
+- uid: reactor.core.publisher.Flux
+  name: Flux
+  nameWithType: Flux
+  fullName: reactor.core.publisher.Flux
+- uid: java.nio.ByteBuffer
+  name: ByteBuffer
+  nameWithType: ByteBuffer
+  fullName: java.nio.ByteBuffer
 - uid: java.lang.Class
   name: Class
   nameWithType: Class
