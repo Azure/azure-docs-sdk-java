@@ -2,13 +2,18 @@
 items:
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils
   id: MessageUtils
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation
   children:
   - com.azure.messaging.servicebus.implementation.MessageUtils.LOCK_TOKEN_SIZE
   - com.azure.messaging.servicebus.implementation.MessageUtils.ZERO_LOCK_TOKEN
   - com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout(java.time.Duration)
   - com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetBytesToUUID(byte[])
+  - com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant(long)
+  - com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes(java.util.UUID)
+  - com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState(com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
+  - com.azure.messaging.servicebus.implementation.MessageUtils.toException(com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition,java.lang.String,com.azure.core.amqp.exception.AmqpErrorContext)
+  - com.azure.messaging.servicebus.implementation.MessageUtils.toException(org.apache.qpid.proton.amqp.transport.ErrorCondition,com.azure.core.amqp.exception.AmqpErrorContext)
   langs:
   - java
   name: MessageUtils
@@ -16,9 +21,9 @@ items:
   fullName: com.azure.messaging.servicebus.implementation.MessageUtils
   type: Class
   package: com.azure.messaging.servicebus.implementation
-  summary: Contains helper methods for message conversions.
+  summary: Contains helper methods for message conversions, reading status codes, and getting delivery state.
   syntax:
-    content: final class MessageUtils
+    content: public final class MessageUtils
   inheritance:
   - java.lang.Object
   inheritedMembers:
@@ -35,7 +40,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.LOCK_TOKEN_SIZE
   id: LOCK_TOKEN_SIZE
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageUtils
   langs:
   - java
@@ -50,7 +55,7 @@ items:
       type: int
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.MessageUtils()
   id: MessageUtils()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageUtils
   langs:
   - java
@@ -64,7 +69,7 @@ items:
     content: private MessageUtils()
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.ZERO_LOCK_TOKEN
   id: ZERO_LOCK_TOKEN
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageUtils
   langs:
   - java
@@ -74,12 +79,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: public static final UUID ZERO_LOCK_TOKEN
+    content: static final UUID ZERO_LOCK_TOKEN
     return:
       type: java.util.UUID
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout(java.time.Duration)
   id: adjustServerTimeout(java.time.Duration)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageUtils
   langs:
   - java
@@ -98,7 +103,7 @@ items:
       type: java.time.Duration
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetBytesToUUID(byte[])
   id: convertDotNetBytesToUUID(byte[])
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageUtils
   langs:
   - java
@@ -118,11 +123,140 @@ items:
     return:
       type: java.util.UUID
       description: the equivalent UUID.
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant(long)
+  id: convertDotNetTicksToInstant(long)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageUtils
+  langs:
+  - java
+  name: convertDotNetTicksToInstant(long dotNetTicks)
+  nameWithType: MessageUtils.convertDotNetTicksToInstant(long dotNetTicks)
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant(long dotNetTicks)
+  overload: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: Gets the <xref uid="java.time.Instant" data-throw-if-not-resolved="false">Instant</xref> representation of .NET epoch ticks. .NET ticks are measured from 0001/01/01. Java <xref uid="java.time.Instant" data-throw-if-not-resolved="false">Instant</xref> is measured from 1970/01/01.
+  syntax:
+    content: static Instant convertDotNetTicksToInstant(long dotNetTicks)
+    parameters:
+    - id: dotNetTicks
+      type: long
+      description: long measured from 01/01/0001
+    return:
+      type: java.time.Instant
+      description: The instant represented by the ticks.
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes(java.util.UUID)
+  id: convertUUIDToDotNetBytes(java.util.UUID)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageUtils
+  langs:
+  - java
+  name: convertUUIDToDotNetBytes(UUID uuid)
+  nameWithType: MessageUtils.convertUUIDToDotNetBytes(UUID uuid)
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes(UUID uuid)
+  overload: com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: Converts a Java UUID to its byte\[\] representation.
+  syntax:
+    content: static byte[] convertUUIDToDotNetBytes(UUID uuid)
+    parameters:
+    - id: uuid
+      type: java.util.UUID
+      description: UUID to convert to .NET bytes.
+    return:
+      type: byte[]
+      description: The .NET byte representation.
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState(com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
+  id: getDeliveryState(com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageUtils
+  langs:
+  - java
+  name: getDeliveryState(DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+  nameWithType: MessageUtils.getDeliveryState(DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState(DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+  overload: com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: Given the disposition state, returns its associated delivery state.
+  syntax:
+    content: public static DeliveryState getDeliveryState(DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+    parameters:
+    - id: dispositionStatus
+      type: com.azure.messaging.servicebus.implementation.DispositionStatus
+    - id: deadLetterReason
+      type: java.lang.String
+    - id: deadLetterErrorDescription
+      type: java.lang.String
+    - id: propertiesToModify
+      type: java.util.Map<java.lang.String,java.lang.Object>
+    return:
+      type: org.apache.qpid.proton.amqp.transport.DeliveryState
+      description: The corresponding DeliveryState, or null if the disposition status is unknown.
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.toException(com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition,java.lang.String,com.azure.core.amqp.exception.AmqpErrorContext)
+  id: toException(com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition,java.lang.String,com.azure.core.amqp.exception.AmqpErrorContext)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageUtils
+  langs:
+  - java
+  name: toException(ServiceBusErrorCondition errorCondition, String description, AmqpErrorContext errorContext)
+  nameWithType: MessageUtils.toException(ServiceBusErrorCondition errorCondition, String description, AmqpErrorContext errorContext)
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.toException(ServiceBusErrorCondition errorCondition, String description, AmqpErrorContext errorContext)
+  overload: com.azure.messaging.servicebus.implementation.MessageUtils.toException*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static Throwable toException(ServiceBusErrorCondition errorCondition, String description, AmqpErrorContext errorContext)
+    parameters:
+    - id: errorCondition
+      type: com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition
+    - id: description
+      type: java.lang.String
+    - id: errorContext
+      type: com.azure.core.amqp.exception.AmqpErrorContext
+    return:
+      type: java.lang.Throwable
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.toException(org.apache.qpid.proton.amqp.transport.ErrorCondition,com.azure.core.amqp.exception.AmqpErrorContext)
+  id: toException(org.apache.qpid.proton.amqp.transport.ErrorCondition,com.azure.core.amqp.exception.AmqpErrorContext)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageUtils
+  langs:
+  - java
+  name: toException(ErrorCondition errorCondition, AmqpErrorContext errorContext)
+  nameWithType: MessageUtils.toException(ErrorCondition errorCondition, AmqpErrorContext errorContext)
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.toException(ErrorCondition errorCondition, AmqpErrorContext errorContext)
+  overload: com.azure.messaging.servicebus.implementation.MessageUtils.toException*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: Creates an exception given the error condition and context.
+  syntax:
+    content: static Throwable toException(ErrorCondition errorCondition, AmqpErrorContext errorContext)
+    parameters:
+    - id: errorCondition
+      type: org.apache.qpid.proton.amqp.transport.ErrorCondition
+      description: Error condition for the AMQP exception.
+    - id: errorContext
+      type: com.azure.core.amqp.exception.AmqpErrorContext
+      description: AMQP context it occurred in.
+    return:
+      type: java.lang.Throwable
+      description: Corresponding <xref uid="" data-throw-if-not-resolved="false">Throwable</xref> for the error condition.
 references:
 - uid: com.azure.messaging.servicebus.implementation.MessageUtils.MessageUtils*
   name: MessageUtils
   nameWithType: MessageUtils.MessageUtils
   fullName: com.azure.messaging.servicebus.implementation.MessageUtils.MessageUtils
+  package: com.azure.messaging.servicebus.implementation
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout*
+  name: adjustServerTimeout
+  nameWithType: MessageUtils.adjustServerTimeout
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout
   package: com.azure.messaging.servicebus.implementation
 - uid: byte[]
   spec.java:
@@ -141,16 +275,86 @@ references:
   nameWithType: MessageUtils.convertDotNetBytesToUUID
   fullName: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetBytesToUUID
   package: com.azure.messaging.servicebus.implementation
-- uid: java.time.Duration
-  spec.java:
-  - uid: java.time.Duration
-    name: Duration
-    fullName: java.time.Duration
-- uid: com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout*
-  name: adjustServerTimeout
-  nameWithType: MessageUtils.adjustServerTimeout
-  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.adjustServerTimeout
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes*
+  name: convertUUIDToDotNetBytes
+  nameWithType: MessageUtils.convertUUIDToDotNetBytes
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.convertUUIDToDotNetBytes
   package: com.azure.messaging.servicebus.implementation
+- uid: long
+  spec.java:
+  - uid: long
+    name: long
+    fullName: long
+- uid: java.time.Instant
+  spec.java:
+  - uid: java.time.Instant
+    name: Instant
+    fullName: java.time.Instant
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant*
+  name: convertDotNetTicksToInstant
+  nameWithType: MessageUtils.convertDotNetTicksToInstant
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.convertDotNetTicksToInstant
+  package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.DispositionStatus
+  name: DispositionStatus
+  nameWithType: DispositionStatus
+  fullName: com.azure.messaging.servicebus.implementation.DispositionStatus
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.util.Map<java.lang.String,java.lang.Object>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '>'
+    fullName: '>'
+- uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+  spec.java:
+  - uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+    name: DeliveryState
+    fullName: org.apache.qpid.proton.amqp.transport.DeliveryState
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState*
+  name: getDeliveryState
+  nameWithType: MessageUtils.getDeliveryState
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.getDeliveryState
+  package: com.azure.messaging.servicebus.implementation
+- uid: org.apache.qpid.proton.amqp.transport.ErrorCondition
+  spec.java:
+  - uid: org.apache.qpid.proton.amqp.transport.ErrorCondition
+    name: ErrorCondition
+    fullName: org.apache.qpid.proton.amqp.transport.ErrorCondition
+- uid: com.azure.core.amqp.exception.AmqpErrorContext
+  spec.java:
+  - uid: com.azure.core.amqp.exception.AmqpErrorContext
+    name: AmqpErrorContext
+    fullName: com.azure.core.amqp.exception.AmqpErrorContext
+- uid: java.lang.Throwable
+  spec.java:
+  - uid: java.lang.Throwable
+    name: Throwable
+    fullName: java.lang.Throwable
+- uid: com.azure.messaging.servicebus.implementation.MessageUtils.toException*
+  name: toException
+  nameWithType: MessageUtils.toException
+  fullName: com.azure.messaging.servicebus.implementation.MessageUtils.toException
+  package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition
+  name: ServiceBusErrorCondition
+  nameWithType: ServiceBusErrorCondition
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusErrorCondition
 - uid: int
   spec.java:
   - uid: int
@@ -200,3 +404,11 @@ references:
   name: Object.toString()
   nameWithType: Object.toString()
   fullName: java.lang.Object.toString()
+- uid: java.lang.String,java.lang.Object
+  name: String,Object
+  nameWithType: String,Object
+  fullName: java.lang.String,java.lang.Object
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map

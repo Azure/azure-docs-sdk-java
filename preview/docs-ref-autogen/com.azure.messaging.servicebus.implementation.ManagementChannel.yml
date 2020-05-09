@@ -2,21 +2,21 @@
 items:
 - uid: com.azure.messaging.servicebus.implementation.ManagementChannel
   id: ManagementChannel
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation
   children:
   - com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel(reactor.core.publisher.Mono<com.azure.core.amqp.implementation.RequestResponseChannel>,java.lang.String,java.lang.String,com.azure.core.amqp.implementation.TokenManager,com.azure.core.amqp.implementation.MessageSerializer,java.time.Duration)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long,java.lang.String)
   - com.azure.messaging.servicebus.implementation.ManagementChannel.close()
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.peek()
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int,long)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage(com.azure.messaging.servicebus.models.ReceiveMode,long)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch(com.azure.messaging.servicebus.models.ReceiveMode,long...)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(java.util.UUID)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int)
-  - com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState(java.lang.String,java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long,java.lang.String,java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long,java.lang.String,java.lang.String,int)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages(com.azure.messaging.servicebus.models.ReceiveMode,java.lang.String,java.lang.String,java.lang.Iterable<java.lang.Long>)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(java.lang.String,java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock(java.lang.String,java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int,java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState(java.lang.String,byte[],java.lang.String)
+  - com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>,java.lang.String,java.lang.String)
   langs:
   - java
   name: ManagementChannel
@@ -45,20 +45,20 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel(reactor.core.publisher.Mono<com.azure.core.amqp.implementation.RequestResponseChannel>,java.lang.String,java.lang.String,com.azure.core.amqp.implementation.TokenManager,com.azure.core.amqp.implementation.MessageSerializer,java.time.Duration)
   id: ManagementChannel(reactor.core.publisher.Mono<com.azure.core.amqp.implementation.RequestResponseChannel>,java.lang.String,java.lang.String,com.azure.core.amqp.implementation.TokenManager,com.azure.core.amqp.implementation.MessageSerializer,java.time.Duration)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: ManagementChannel(Mono<RequestResponseChannel> createRequestResponse, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
-  nameWithType: ManagementChannel.ManagementChannel(Mono<RequestResponseChannel> createRequestResponse, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel(Mono<RequestResponseChannel> createRequestResponse, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
+  name: ManagementChannel(Mono<RequestResponseChannel> createChannel, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
+  nameWithType: ManagementChannel.ManagementChannel(Mono<RequestResponseChannel> createChannel, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel(Mono<RequestResponseChannel> createChannel, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel*
   type: Constructor
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: " ManagementChannel(Mono<RequestResponseChannel> createRequestResponse, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)"
+    content: " ManagementChannel(Mono<RequestResponseChannel> createChannel, String fullyQualifiedNamespace, String entityPath, TokenManager tokenManager, MessageSerializer messageSerializer, Duration operationTimeout)"
     parameters:
-    - id: createRequestResponse
+    - id: createChannel
       type: reactor.core.publisher.Mono<com.azure.core.amqp.implementation.RequestResponseChannel>
     - id: fullyQualifiedNamespace
       type: java.lang.String
@@ -70,29 +70,31 @@ items:
       type: com.azure.core.amqp.implementation.MessageSerializer
     - id: operationTimeout
       type: java.time.Duration
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long)
-  id: cancelScheduledMessage(long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long,java.lang.String)
+  id: cancelScheduledMessage(long,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: cancelScheduledMessage(long sequenceNumber)
-  nameWithType: ManagementChannel.cancelScheduledMessage(long sequenceNumber)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long sequenceNumber)
+  name: cancelScheduledMessage(long sequenceNumber, String associatedLinkName)
+  nameWithType: ManagementChannel.cancelScheduledMessage(long sequenceNumber, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage(long sequenceNumber, String associatedLinkName)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Mono<Void> cancelScheduledMessage(long sequenceNumber)
+    content: public Mono<Void> cancelScheduledMessage(long sequenceNumber, String associatedLinkName)
     parameters:
     - id: sequenceNumber
       type: long
+    - id: associatedLinkName
+      type: java.lang.String
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
 - uid: com.azure.messaging.servicebus.implementation.ManagementChannel.close()
   id: close()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
@@ -105,187 +107,210 @@ items:
   summary: '\{@inheritDoc\}'
   syntax:
     content: public void close()
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peek()
-  id: peek()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState(java.lang.String,java.lang.String)
+  id: getSessionState(java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: peek()
-  nameWithType: ManagementChannel.peek()
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peek()
+  name: getSessionState(String sessionId, String associatedLinkName)
+  nameWithType: ManagementChannel.getSessionState(String sessionId, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState(String sessionId, String associatedLinkName)
+  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: '\{@inheritDoc\}'
+  syntax:
+    content: public Mono<byte[]> getSessionState(String sessionId, String associatedLinkName)
+    parameters:
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
+    return:
+      type: reactor.core.publisher.Mono<byte[]>
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long,java.lang.String,java.lang.String)
+  id: peek(long,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
+  langs:
+  - java
+  name: peek(long fromSequenceNumber, String sessionId, String associatedLinkName)
+  nameWithType: ManagementChannel.peek(long fromSequenceNumber, String sessionId, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long fromSequenceNumber, String sessionId, String associatedLinkName)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.peek*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Mono<ServiceBusReceivedMessage> peek()
+    content: public Mono<ServiceBusReceivedMessage> peek(long fromSequenceNumber, String sessionId, String associatedLinkName)
+    parameters:
+    - id: fromSequenceNumber
+      type: long
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
     return:
       type: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long)
-  id: peek(long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long,java.lang.String,java.lang.String,int)
+  id: peek(long,java.lang.String,java.lang.String,int)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: peek(long fromSequenceNumber)
-  nameWithType: ManagementChannel.peek(long fromSequenceNumber)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long fromSequenceNumber)
+  name: peek(long fromSequenceNumber, String sessionId, String associatedLinkName, int maxMessages)
+  nameWithType: ManagementChannel.peek(long fromSequenceNumber, String sessionId, String associatedLinkName, int maxMessages)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peek(long fromSequenceNumber, String sessionId, String associatedLinkName, int maxMessages)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.peek*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Mono<ServiceBusReceivedMessage> peek(long fromSequenceNumber)
+    content: public Flux<ServiceBusReceivedMessage> peek(long fromSequenceNumber, String sessionId, String associatedLinkName, int maxMessages)
     parameters:
     - id: fromSequenceNumber
       type: long
-    return:
-      type: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int)
-  id: peekBatch(int)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
-  langs:
-  - java
-  name: peekBatch(int maxMessages)
-  nameWithType: ManagementChannel.peekBatch(int maxMessages)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int maxMessages)
-  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch*
-  type: Method
-  package: com.azure.messaging.servicebus.implementation
-  summary: '\{@inheritDoc\}'
-  syntax:
-    content: public Flux<ServiceBusReceivedMessage> peekBatch(int maxMessages)
-    parameters:
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
     - id: maxMessages
       type: int
     return:
       type: reactor.core.publisher.Flux<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int,long)
-  id: peekBatch(int,long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages(com.azure.messaging.servicebus.models.ReceiveMode,java.lang.String,java.lang.String,java.lang.Iterable<java.lang.Long>)
+  id: receiveDeferredMessages(com.azure.messaging.servicebus.models.ReceiveMode,java.lang.String,java.lang.String,java.lang.Iterable<java.lang.Long>)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: peekBatch(int maxMessages, long fromSequenceNumber)
-  nameWithType: ManagementChannel.peekBatch(int maxMessages, long fromSequenceNumber)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch(int maxMessages, long fromSequenceNumber)
-  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch*
+  name: receiveDeferredMessages(ReceiveMode receiveMode, String sessionId, String associatedLinkName, Iterable<Long> sequenceNumbers)
+  nameWithType: ManagementChannel.receiveDeferredMessages(ReceiveMode receiveMode, String sessionId, String associatedLinkName, Iterable<Long> sequenceNumbers)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages(ReceiveMode receiveMode, String sessionId, String associatedLinkName, Iterable<Long> sequenceNumbers)
+  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Flux<ServiceBusReceivedMessage> peekBatch(int maxMessages, long fromSequenceNumber)
-    parameters:
-    - id: maxMessages
-      type: int
-    - id: fromSequenceNumber
-      type: long
-    return:
-      type: reactor.core.publisher.Flux<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage(com.azure.messaging.servicebus.models.ReceiveMode,long)
-  id: receiveDeferredMessage(com.azure.messaging.servicebus.models.ReceiveMode,long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
-  langs:
-  - java
-  name: receiveDeferredMessage(ReceiveMode receiveMode, long sequenceNumber)
-  nameWithType: ManagementChannel.receiveDeferredMessage(ReceiveMode receiveMode, long sequenceNumber)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage(ReceiveMode receiveMode, long sequenceNumber)
-  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage*
-  type: Method
-  package: com.azure.messaging.servicebus.implementation
-  summary: '\{@inheritDoc\}'
-  syntax:
-    content: public Mono<ServiceBusReceivedMessage> receiveDeferredMessage(ReceiveMode receiveMode, long sequenceNumber)
+    content: public Flux<ServiceBusReceivedMessage> receiveDeferredMessages(ReceiveMode receiveMode, String sessionId, String associatedLinkName, Iterable<Long> sequenceNumbers)
     parameters:
     - id: receiveMode
       type: com.azure.messaging.servicebus.models.ReceiveMode
-    - id: sequenceNumber
-      type: long
-    return:
-      type: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch(com.azure.messaging.servicebus.models.ReceiveMode,long...)
-  id: receiveDeferredMessageBatch(com.azure.messaging.servicebus.models.ReceiveMode,long...)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
-  langs:
-  - java
-  name: receiveDeferredMessageBatch(ReceiveMode receiveMode, long[] sequenceNumbers)
-  nameWithType: ManagementChannel.receiveDeferredMessageBatch(ReceiveMode receiveMode, long[] sequenceNumbers)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch(ReceiveMode receiveMode, long[] sequenceNumbers)
-  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch*
-  type: Method
-  package: com.azure.messaging.servicebus.implementation
-  summary: '\{@inheritDoc\}'
-  syntax:
-    content: public Flux<ServiceBusReceivedMessage> receiveDeferredMessageBatch(ReceiveMode receiveMode, long[] sequenceNumbers)
-    parameters:
-    - id: receiveMode
-      type: com.azure.messaging.servicebus.models.ReceiveMode
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
     - id: sequenceNumbers
-      type: long[]
+      type: java.lang.Iterable<java.lang.Long>
     return:
       type: reactor.core.publisher.Flux<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(java.util.UUID)
-  id: renewMessageLock(java.util.UUID)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(java.lang.String,java.lang.String)
+  id: renewMessageLock(java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: renewMessageLock(UUID lockToken)
-  nameWithType: ManagementChannel.renewMessageLock(UUID lockToken)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(UUID lockToken)
+  name: renewMessageLock(String lockToken, String associatedLinkName)
+  nameWithType: ManagementChannel.renewMessageLock(String lockToken, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock(String lockToken, String associatedLinkName)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Mono<Instant> renewMessageLock(UUID lockToken)
+    content: public Mono<Instant> renewMessageLock(String lockToken, String associatedLinkName)
     parameters:
     - id: lockToken
-      type: java.util.UUID
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
     return:
       type: reactor.core.publisher.Mono<java.time.Instant>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int)
-  id: schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock(java.lang.String,java.lang.String)
+  id: renewSessionLock(java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: schedule(ServiceBusMessage messageToSchedule, Instant scheduledEnqueueTime, int maxSendLinkSize)
-  nameWithType: ManagementChannel.schedule(ServiceBusMessage messageToSchedule, Instant scheduledEnqueueTime, int maxSendLinkSize)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(ServiceBusMessage messageToSchedule, Instant scheduledEnqueueTime, int maxSendLinkSize)
+  name: renewSessionLock(String sessionId, String associatedLinkName)
+  nameWithType: ManagementChannel.renewSessionLock(String sessionId, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock(String sessionId, String associatedLinkName)
+  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public Mono<Instant> renewSessionLock(String sessionId, String associatedLinkName)
+    parameters:
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
+    return:
+      type: reactor.core.publisher.Mono<java.time.Instant>
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int,java.lang.String)
+  id: schedule(com.azure.messaging.servicebus.ServiceBusMessage,java.time.Instant,int,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
+  langs:
+  - java
+  name: schedule(ServiceBusMessage message, Instant scheduledEnqueueTime, int maxLinkSize, String associatedLinkName)
+  nameWithType: ManagementChannel.schedule(ServiceBusMessage message, Instant scheduledEnqueueTime, int maxLinkSize, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule(ServiceBusMessage message, Instant scheduledEnqueueTime, int maxLinkSize, String associatedLinkName)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: '\{@inheritDoc\}'
   syntax:
-    content: public Mono<Long> schedule(ServiceBusMessage messageToSchedule, Instant scheduledEnqueueTime, int maxSendLinkSize)
+    content: public Mono<Long> schedule(ServiceBusMessage message, Instant scheduledEnqueueTime, int maxLinkSize, String associatedLinkName)
     parameters:
-    - id: messageToSchedule
+    - id: message
       type: com.azure.messaging.servicebus.ServiceBusMessage
     - id: scheduledEnqueueTime
       type: java.time.Instant
-    - id: maxSendLinkSize
+    - id: maxLinkSize
       type: int
+    - id: associatedLinkName
+      type: java.lang.String
     return:
       type: reactor.core.publisher.Mono<java.lang.Long>
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
-  id: updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState(java.lang.String,byte[],java.lang.String)
+  id: setSessionState(java.lang.String,byte[],java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementChannel
   langs:
   - java
-  name: updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
-  nameWithType: ManagementChannel.updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+  name: setSessionState(String sessionId, byte[] state, String associatedLinkName)
+  nameWithType: ManagementChannel.setSessionState(String sessionId, byte[] state, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState(String sessionId, byte[] state, String associatedLinkName)
+  overload: com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public Mono<Void> setSessionState(String sessionId, byte[] state, String associatedLinkName)
+    parameters:
+    - id: sessionId
+      type: java.lang.String
+    - id: state
+      type: byte[]
+    - id: associatedLinkName
+      type: java.lang.String
+    return:
+      type: reactor.core.publisher.Mono<java.lang.Void>
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>,java.lang.String,java.lang.String)
+  id: updateDisposition(java.lang.String,com.azure.messaging.servicebus.implementation.DispositionStatus,java.lang.String,java.lang.String,java.util.Map<java.lang.String,java.lang.Object>,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementChannel
+  langs:
+  - java
+  name: updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify, String sessionId, String associatedLinkName)
+  nameWithType: ManagementChannel.updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify, String sessionId, String associatedLinkName)
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify, String sessionId, String associatedLinkName)
   overload: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: public Mono<Void> updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify)
+    content: public Mono<Void> updateDisposition(String lockToken, DispositionStatus dispositionStatus, String deadLetterReason, String deadLetterErrorDescription, Map<String,Object> propertiesToModify, String sessionId, String associatedLinkName)
     parameters:
     - id: lockToken
       type: java.lang.String
@@ -297,6 +322,10 @@ items:
       type: java.lang.String
     - id: propertiesToModify
       type: java.util.Map<java.lang.String,java.lang.Object>
+    - id: sessionId
+      type: java.lang.String
+    - id: associatedLinkName
+      type: java.lang.String
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
 references:
@@ -337,27 +366,11 @@ references:
   nameWithType: ManagementChannel.ManagementChannel
   fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.ManagementChannel
   package: com.azure.messaging.servicebus.implementation
-- uid: com.azure.messaging.servicebus.implementation.DispositionStatus
-  name: DispositionStatus
-  nameWithType: DispositionStatus
-  fullName: com.azure.messaging.servicebus.implementation.DispositionStatus
-- uid: java.util.Map<java.lang.String,java.lang.Object>
+- uid: long
   spec.java:
-  - uid: java.util.Map
-    name: Map
-    fullName: java.util.Map
-  - name: <
-    fullName: <
-  - uid: java.lang.String
-    name: String
-    fullName: java.lang.String
-  - name: ','
-    fullName: ','
-  - uid: java.lang.Object
-    name: Object
-    fullName: java.lang.Object
-  - name: '>'
-    fullName: '>'
+  - uid: long
+    name: long
+    fullName: long
 - uid: reactor.core.publisher.Mono<java.lang.Void>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -370,16 +383,30 @@ references:
     fullName: java.lang.Void
   - name: '>'
     fullName: '>'
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition*
-  name: updateDisposition
-  nameWithType: ManagementChannel.updateDisposition
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage*
+  name: cancelScheduledMessage
+  nameWithType: ManagementChannel.cancelScheduledMessage
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage
   package: com.azure.messaging.servicebus.implementation
-- uid: long
+- uid: reactor.core.publisher.Mono<byte[]>
   spec.java:
-  - uid: long
-    name: long
-    fullName: long
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: byte
+    name: byte
+    fullName: byte
+  - name: '[]'
+    fullName: '[]'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState*
+  name: getSessionState
+  nameWithType: ManagementChannel.getSessionState
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.getSessionState
+  package: com.azure.messaging.servicebus.implementation
 - uid: reactor.core.publisher.Mono<com.azure.messaging.servicebus.ServiceBusReceivedMessage>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -414,37 +441,27 @@ references:
     fullName: com.azure.messaging.servicebus.ServiceBusReceivedMessage
   - name: '>'
     fullName: '>'
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch*
-  name: peekBatch
-  nameWithType: ManagementChannel.peekBatch
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.peekBatch
-  package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.models.ReceiveMode
   name: ReceiveMode
   nameWithType: ReceiveMode
   fullName: com.azure.messaging.servicebus.models.ReceiveMode
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage*
-  name: receiveDeferredMessage
-  nameWithType: ManagementChannel.receiveDeferredMessage
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessage
-  package: com.azure.messaging.servicebus.implementation
-- uid: long[]
+- uid: java.lang.Iterable<java.lang.Long>
   spec.java:
-  - uid: long
-    name: long
-    fullName: long
-  - name: '[]'
-    fullName: '[]'
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch*
-  name: receiveDeferredMessageBatch
-  nameWithType: ManagementChannel.receiveDeferredMessageBatch
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessageBatch
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: java.lang.Long
+    name: Long
+    fullName: java.lang.Long
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages*
+  name: receiveDeferredMessages
+  nameWithType: ManagementChannel.receiveDeferredMessages
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.receiveDeferredMessages
   package: com.azure.messaging.servicebus.implementation
-- uid: java.util.UUID
-  spec.java:
-  - uid: java.util.UUID
-    name: UUID
-    fullName: java.util.UUID
 - uid: reactor.core.publisher.Mono<java.time.Instant>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -462,10 +479,10 @@ references:
   nameWithType: ManagementChannel.renewMessageLock
   fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.renewMessageLock
   package: com.azure.messaging.servicebus.implementation
-- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage*
-  name: cancelScheduledMessage
-  nameWithType: ManagementChannel.cancelScheduledMessage
-  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.cancelScheduledMessage
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock*
+  name: renewSessionLock
+  nameWithType: ManagementChannel.renewSessionLock
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.renewSessionLock
   package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.ServiceBusMessage
   name: ServiceBusMessage
@@ -492,6 +509,44 @@ references:
   name: schedule
   nameWithType: ManagementChannel.schedule
   fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.schedule
+  package: com.azure.messaging.servicebus.implementation
+- uid: byte[]
+  spec.java:
+  - uid: byte
+    name: byte
+    fullName: byte
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState*
+  name: setSessionState
+  nameWithType: ManagementChannel.setSessionState
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.setSessionState
+  package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.DispositionStatus
+  name: DispositionStatus
+  nameWithType: DispositionStatus
+  fullName: com.azure.messaging.servicebus.implementation.DispositionStatus
+- uid: java.util.Map<java.lang.String,java.lang.Object>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition*
+  name: updateDisposition
+  nameWithType: ManagementChannel.updateDisposition
+  fullName: com.azure.messaging.servicebus.implementation.ManagementChannel.updateDisposition
   package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.implementation.ManagementChannel.close*
   name: close
@@ -554,14 +609,6 @@ references:
   name: RequestResponseChannel
   nameWithType: RequestResponseChannel
   fullName: com.azure.core.amqp.implementation.RequestResponseChannel
-- uid: java.lang.String,java.lang.Object
-  name: String,Object
-  nameWithType: String,Object
-  fullName: java.lang.String,java.lang.Object
-- uid: java.util.Map
-  name: Map
-  nameWithType: Map
-  fullName: java.util.Map
 - uid: java.lang.Void
   name: Void
   nameWithType: Void
@@ -578,3 +625,15 @@ references:
   name: Long
   nameWithType: Long
   fullName: java.lang.Long
+- uid: java.lang.Iterable
+  name: Iterable
+  nameWithType: Iterable
+  fullName: java.lang.Iterable
+- uid: java.lang.String,java.lang.Object
+  name: String,Object
+  nameWithType: String,Object
+  fullName: java.lang.String,java.lang.Object
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map

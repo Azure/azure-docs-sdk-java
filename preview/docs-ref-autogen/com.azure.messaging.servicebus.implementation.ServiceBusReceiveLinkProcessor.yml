@@ -2,20 +2,24 @@
 items:
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   id: ServiceBusReceiveLinkProcessor
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation
   children:
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.ServiceBusReceiveLinkProcessor(int,com.azure.core.amqp.AmqpRetryPolicy,reactor.core.Disposable,com.azure.core.amqp.exception.AmqpErrorContext)
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.cancel()
+  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose()
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getError()
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getErrorContext()
+  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName()
+  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch()
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.isTerminated()
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onComplete()
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onError(java.lang.Throwable)
-  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(com.azure.core.amqp.implementation.AmqpReceiveLink)
+  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink)
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onSubscribe(org.reactivestreams.Subscription)
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.request(long)
   - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.subscribe(reactor.core.CoreSubscriber<? super org.apache.qpid.proton.message.Message>)
+  - com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition(java.lang.String,org.apache.qpid.proton.amqp.transport.DeliveryState)
   langs:
   - java
   name: ServiceBusReceiveLinkProcessor
@@ -23,9 +27,9 @@ items:
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   type: Class
   package: com.azure.messaging.servicebus.implementation
-  summary: Processes AMQP receive links into a stream of AMQP messages.
+  summary: Processes AMQP receive links into a stream of AMQP messages. This is almost a carbon copy of AmqpReceiveLinkProcessor. When we can abstract it from proton-j, it would be nice to unify this.
   syntax:
-    content: public class ServiceBusReceiveLinkProcessor extends FluxProcessor<AmqpReceiveLink,Message> implements Subscription
+    content: public class ServiceBusReceiveLinkProcessor extends FluxProcessor<ServiceBusReceiveLink,Message> implements Subscription
   inheritance:
   - java.lang.Object
   - reactor.core.publisher.Flux
@@ -154,7 +158,6 @@ items:
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,boolean,int)
   - reactor.core.publisher.Flux.<T>concatDelayError(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,int)
-  - reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
   - reactor.core.publisher.Flux.<T>create(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>)
   - reactor.core.publisher.Flux.<T>create(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>,reactor.core.publisher.FluxSink.OverflowStrategy)
   - reactor.core.publisher.Flux.<T>defer(java.util.function.Supplier<? extends org.reactivestreams.Publisher<T>>)
@@ -189,6 +192,7 @@ items:
   - reactor.core.publisher.Flux.<T>push(java.util.function.Consumer<? super reactor.core.publisher.FluxSink<T>>,reactor.core.publisher.FluxSink.OverflowStrategy)
   - reactor.core.publisher.Flux.<T>switchOnNext(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   - reactor.core.publisher.Flux.<T>switchOnNext(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>,int)
+  - reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
   - reactor.core.publisher.Flux.<TRight,TLeftEnd,TRightEnd,R>groupJoin(org.reactivestreams.Publisher<? extends TRight>,java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<TLeftEnd>>,java.util.function.Function<? super TRight,? extends org.reactivestreams.Publisher<TRightEnd>>,java.util.function.BiFunction<? super T,? super reactor.core.publisher.Flux<TRight>,? extends R>)
   - reactor.core.publisher.Flux.<TRight,TLeftEnd,TRightEnd,R>join(org.reactivestreams.Publisher<? extends TRight>,java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<TLeftEnd>>,java.util.function.Function<? super TRight,? extends org.reactivestreams.Publisher<TRightEnd>>,java.util.function.BiFunction<? super T,? super TRight,? extends R>)
   - reactor.core.publisher.Flux.<TUPLE,V>zip(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<?>>,java.util.function.Function<? super TUPLE,? extends V>)
@@ -228,6 +232,7 @@ items:
   - reactor.core.publisher.Flux.<V>switchMap(java.util.function.Function<? super T,org.reactivestreams.Publisher<? extends V>>)
   - reactor.core.publisher.Flux.<V>switchMap(java.util.function.Function<? super T,org.reactivestreams.Publisher<? extends V>>,int)
   - reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>)
+  - reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
   - reactor.core.publisher.Flux.<V>then(reactor.core.publisher.Mono<V>)
   - reactor.core.publisher.Flux.<V>thenMany(org.reactivestreams.Publisher<V>)
   - reactor.core.publisher.Flux.<V>transform(java.util.function.Function<? super reactor.core.publisher.Flux<T>,? extends org.reactivestreams.Publisher<V>>)
@@ -386,6 +391,7 @@ items:
   - reactor.core.publisher.Flux.retryBackoff(long,java.time.Duration,java.time.Duration,double,reactor.core.scheduler.Scheduler)
   - reactor.core.publisher.Flux.retryBackoff(long,java.time.Duration,java.time.Duration,reactor.core.scheduler.Scheduler)
   - reactor.core.publisher.Flux.retryWhen(java.util.function.Function<reactor.core.publisher.Flux<java.lang.Throwable>,? extends org.reactivestreams.Publisher<?>>)
+  - reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
   - reactor.core.publisher.Flux.sample(java.time.Duration)
   - reactor.core.publisher.Flux.sampleFirst(java.time.Duration)
   - reactor.core.publisher.Flux.scan(java.util.function.BiFunction<T,T,T>)
@@ -474,7 +480,7 @@ items:
   - reactor.core.publisher.FluxProcessor.sink(reactor.core.publisher.FluxSink.OverflowStrategy)
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.ServiceBusReceiveLinkProcessor(int,com.azure.core.amqp.AmqpRetryPolicy,reactor.core.Disposable,com.azure.core.amqp.exception.AmqpErrorContext)
   id: ServiceBusReceiveLinkProcessor(int,com.azure.core.amqp.AmqpRetryPolicy,reactor.core.Disposable,com.azure.core.amqp.exception.AmqpErrorContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -501,7 +507,7 @@ items:
       type: com.azure.core.amqp.exception.AmqpErrorContext
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.cancel()
   id: cancel()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -514,9 +520,23 @@ items:
   summary: When downstream subscriber cancels their subscription.
   syntax:
     content: public void cancel()
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose()
+  id: dispose()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
+  langs:
+  - java
+  name: dispose()
+  nameWithType: ServiceBusReceiveLinkProcessor.dispose()
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose()
+  overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public void dispose()
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getError()
   id: getError()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -534,7 +554,7 @@ items:
       description: Error associated with this processor. <code>null</code> if there is no error.
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getErrorContext()
   id: getErrorContext()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -550,9 +570,41 @@ items:
     return:
       type: com.azure.core.amqp.exception.AmqpErrorContext
       description: the error context associated with this link.
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName()
+  id: getLinkName()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
+  langs:
+  - java
+  name: getLinkName()
+  nameWithType: ServiceBusReceiveLinkProcessor.getLinkName()
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName()
+  overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public String getLinkName()
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch()
+  id: getPrefetch()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
+  langs:
+  - java
+  name: getPrefetch()
+  nameWithType: ServiceBusReceiveLinkProcessor.getPrefetch()
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch()
+  overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public int getPrefetch()
+    return:
+      type: int
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.isTerminated()
   id: isTerminated()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -570,7 +622,7 @@ items:
       description: <code>true</code> if the processor has terminated; false otherwise.
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onComplete()
   id: onComplete()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -580,12 +632,12 @@ items:
   overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onComplete*
   type: Method
   package: com.azure.messaging.servicebus.implementation
-  summary: Terminates the
+  summary: When upstream has completed emitting messages.
   syntax:
     content: public void onComplete()
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onError(java.lang.Throwable)
   id: onError(java.lang.Throwable)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -602,28 +654,28 @@ items:
     - id: throwable
       type: java.lang.Throwable
       description: Error that occurred in upstream publisher.
-- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(com.azure.core.amqp.implementation.AmqpReceiveLink)
-  id: onNext(com.azure.core.amqp.implementation.AmqpReceiveLink)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink)
+  id: onNext(com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
-  name: onNext(AmqpReceiveLink next)
-  nameWithType: ServiceBusReceiveLinkProcessor.onNext(AmqpReceiveLink next)
-  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(AmqpReceiveLink next)
+  name: onNext(ServiceBusReceiveLink next)
+  nameWithType: ServiceBusReceiveLinkProcessor.onNext(ServiceBusReceiveLink next)
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext(ServiceBusReceiveLink next)
   overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext*
   type: Method
   package: com.azure.messaging.servicebus.implementation
   summary: When the next AMQP link is fetched.
   syntax:
-    content: public void onNext(AmqpReceiveLink next)
+    content: public void onNext(ServiceBusReceiveLink next)
     parameters:
     - id: next
-      type: com.azure.core.amqp.implementation.AmqpReceiveLink
+      type: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink
       description: The next AMQP receive link.
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onSubscribe(org.reactivestreams.Subscription)
   id: onSubscribe(org.reactivestreams.Subscription)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -642,7 +694,7 @@ items:
       description: Subscription to upstream publisher.
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.request(long)
   id: request(long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -660,7 +712,7 @@ items:
       type: long
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.subscribe(reactor.core.CoreSubscriber<? super org.apache.qpid.proton.message.Message>)
   id: subscribe(reactor.core.CoreSubscriber<? super org.apache.qpid.proton.message.Message>)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
   langs:
   - java
@@ -677,6 +729,27 @@ items:
     - id: actual
       type: reactor.core.CoreSubscriber<? super org.apache.qpid.proton.message.Message>
       description: The downstream subscriber.
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition(java.lang.String,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  id: updateDisposition(java.lang.String,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor
+  langs:
+  - java
+  name: updateDisposition(String lockToken, DeliveryState deliveryState)
+  nameWithType: ServiceBusReceiveLinkProcessor.updateDisposition(String lockToken, DeliveryState deliveryState)
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition(String lockToken, DeliveryState deliveryState)
+  overload: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public Mono<Void> updateDisposition(String lockToken, DeliveryState deliveryState)
+    parameters:
+    - id: lockToken
+      type: java.lang.String
+    - id: deliveryState
+      type: org.apache.qpid.proton.amqp.transport.DeliveryState
+    return:
+      type: reactor.core.publisher.Mono<java.lang.Void>
 references:
 - uid: int
   spec.java:
@@ -703,10 +776,42 @@ references:
   nameWithType: ServiceBusReceiveLinkProcessor.ServiceBusReceiveLinkProcessor
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.ServiceBusReceiveLinkProcessor
   package: com.azure.messaging.servicebus.implementation
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName*
+  name: getLinkName
+  nameWithType: ServiceBusReceiveLinkProcessor.getLinkName
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getLinkName
+  package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getErrorContext*
   name: getErrorContext
   nameWithType: ServiceBusReceiveLinkProcessor.getErrorContext
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getErrorContext
+  package: com.azure.messaging.servicebus.implementation
+- uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+  spec.java:
+  - uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+    name: DeliveryState
+    fullName: org.apache.qpid.proton.amqp.transport.DeliveryState
+- uid: reactor.core.publisher.Mono<java.lang.Void>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: java.lang.Void
+    name: Void
+    fullName: java.lang.Void
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition*
+  name: updateDisposition
+  nameWithType: ServiceBusReceiveLinkProcessor.updateDisposition
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.updateDisposition
   package: com.azure.messaging.servicebus.implementation
 - uid: java.lang.Throwable
   spec.java:
@@ -728,6 +833,11 @@ references:
   nameWithType: ServiceBusReceiveLinkProcessor.isTerminated
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.isTerminated
   package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch*
+  name: getPrefetch
+  nameWithType: ServiceBusReceiveLinkProcessor.getPrefetch
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.getPrefetch
+  package: com.azure.messaging.servicebus.implementation
 - uid: org.reactivestreams.Subscription
   spec.java:
   - uid: org.reactivestreams.Subscription
@@ -738,11 +848,10 @@ references:
   nameWithType: ServiceBusReceiveLinkProcessor.onSubscribe
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onSubscribe
   package: com.azure.messaging.servicebus.implementation
-- uid: com.azure.core.amqp.implementation.AmqpReceiveLink
-  spec.java:
-  - uid: com.azure.core.amqp.implementation.AmqpReceiveLink
-    name: AmqpReceiveLink
-    fullName: com.azure.core.amqp.implementation.AmqpReceiveLink
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink
+  name: ServiceBusReceiveLink
+  nameWithType: ServiceBusReceiveLink
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onNext*
   name: onNext
   nameWithType: ServiceBusReceiveLinkProcessor.onNext
@@ -770,6 +879,11 @@ references:
   nameWithType: ServiceBusReceiveLinkProcessor.onError
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onError
   package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose*
+  name: dispose
+  nameWithType: ServiceBusReceiveLinkProcessor.dispose
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.dispose
+  package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.onComplete*
   name: onComplete
   nameWithType: ServiceBusReceiveLinkProcessor.onComplete
@@ -790,10 +904,10 @@ references:
   nameWithType: ServiceBusReceiveLinkProcessor.cancel
   fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLinkProcessor.cancel
   package: com.azure.messaging.servicebus.implementation
-- uid: reactor.core.publisher.FluxProcessor<com.azure.core.amqp.implementation.AmqpReceiveLink,org.apache.qpid.proton.message.Message>
-  name: FluxProcessor<AmqpReceiveLink,Message>
-  nameWithType: FluxProcessor<AmqpReceiveLink,Message>
-  fullName: reactor.core.publisher.FluxProcessor<com.azure.core.amqp.implementation.AmqpReceiveLink,org.apache.qpid.proton.message.Message>
+- uid: reactor.core.publisher.FluxProcessor<com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink,org.apache.qpid.proton.message.Message>
+  name: FluxProcessor<ServiceBusReceiveLink,Message>
+  nameWithType: FluxProcessor<ServiceBusReceiveLink,Message>
+  fullName: reactor.core.publisher.FluxProcessor<com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink,org.apache.qpid.proton.message.Message>
 - uid: reactor.core.publisher.Flux.<T1,T2>zip(org.reactivestreams.Publisher<? extends T1>,org.reactivestreams.Publisher<? extends T2>)
   name: Flux.<T1,T2>zip(Publisher<? extends T1>,Publisher<? extends T2>)
   nameWithType: Flux.<T1,T2>zip(Publisher<? extends T1>,Publisher<? extends T2>)
@@ -1098,6 +1212,10 @@ references:
   name: Flux.<R>publish(Function<? super Flux<T>,? extends Publisher<? extends R>>)
   nameWithType: Flux.<R>publish(Function<? super Flux<T>,? extends Publisher<? extends R>>)
   fullName: reactor.core.publisher.Flux.<R>publish(java.util.function.Function<? super reactor.core.publisher.Flux<T>,? extends org.reactivestreams.Publisher<? extends R>>)
+- uid: reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
+  name: Flux.retryWhen(Retry)
+  nameWithType: Flux.retryWhen(Retry)
+  fullName: reactor.core.publisher.Flux.retryWhen(reactor.util.retry.Retry)
 - uid: reactor.core.publisher.Flux.elapsed()
   name: Flux.elapsed()
   nameWithType: Flux.elapsed()
@@ -1230,10 +1348,6 @@ references:
   name: Flux.bufferUntil(Predicate<? super T>,boolean)
   nameWithType: Flux.bufferUntil(Predicate<? super T>,boolean)
   fullName: reactor.core.publisher.Flux.bufferUntil(java.util.function.Predicate<? super T>,boolean)
-- uid: reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
-  name: Flux.<T>convertToMono(Callable<T>)
-  nameWithType: Flux.<T>convertToMono(Callable<T>)
-  fullName: reactor.core.publisher.Flux.<T>convertToMono(java.util.concurrent.Callable<T>)
 - uid: reactor.core.publisher.Flux.<T>merge(org.reactivestreams.Publisher<? extends org.reactivestreams.Publisher<? extends T>>)
   name: Flux.<T>merge(Publisher<? extends Publisher<? extends T>>)
   nameWithType: Flux.<T>merge(Publisher<? extends Publisher<? extends T>>)
@@ -1366,6 +1480,10 @@ references:
   name: Flux.sample(Duration)
   nameWithType: Flux.sample(Duration)
   fullName: reactor.core.publisher.Flux.sample(java.time.Duration)
+- uid: reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
+  name: Flux.<T>wrapToMono(Callable<T>)
+  nameWithType: Flux.<T>wrapToMono(Callable<T>)
+  fullName: reactor.core.publisher.Flux.<T>wrapToMono(java.util.concurrent.Callable<T>)
 - uid: reactor.core.publisher.Flux.<U,V>windowWhen(org.reactivestreams.Publisher<U>,java.util.function.Function<? super U,? extends org.reactivestreams.Publisher<V>>)
   name: Flux.<U,V>windowWhen(Publisher<U>,Function<? super U,? extends Publisher<V>>)
   nameWithType: Flux.<U,V>windowWhen(Publisher<U>,Function<? super U,? extends Publisher<V>>)
@@ -1834,6 +1952,10 @@ references:
   name: Flux.filterWhen(Function<? super T,? extends Publisher<Boolean>>)
   nameWithType: Flux.filterWhen(Function<? super T,? extends Publisher<Boolean>>)
   fullName: reactor.core.publisher.Flux.filterWhen(java.util.function.Function<? super T,? extends org.reactivestreams.Publisher<java.lang.Boolean>>)
+- uid: reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
+  name: Flux.<V>switchOnFirst(BiFunction<Signal<? extends T>,Flux<T>,Publisher<? extends V>>,boolean)
+  nameWithType: Flux.<V>switchOnFirst(BiFunction<Signal<? extends T>,Flux<T>,Publisher<? extends V>>,boolean)
+  fullName: reactor.core.publisher.Flux.<V>switchOnFirst(java.util.function.BiFunction<reactor.core.publisher.Signal<? extends T>,reactor.core.publisher.Flux<T>,org.reactivestreams.Publisher<? extends V>>,boolean)
 - uid: reactor.core.publisher.Flux.timestamp()
   name: Flux.timestamp()
   nameWithType: Flux.timestamp()
@@ -2550,6 +2672,14 @@ references:
   name: Flux.<I>mergeDelayError(int,Publisher<? extends I>...)
   nameWithType: Flux.<I>mergeDelayError(int,Publisher<? extends I>...)
   fullName: reactor.core.publisher.Flux.<I>mergeDelayError(int,org.reactivestreams.Publisher<? extends I>...)
+- uid: java.lang.Void
+  name: Void
+  nameWithType: Void
+  fullName: java.lang.Void
+- uid: reactor.core.publisher.Mono
+  name: Mono
+  nameWithType: Mono
+  fullName: reactor.core.publisher.Mono
 - uid: reactor.core.CoreSubscriber
   name: CoreSubscriber
   nameWithType: CoreSubscriber
@@ -2558,10 +2688,10 @@ references:
   name: '? super Message'
   nameWithType: '? super Message'
   fullName: '? super org.apache.qpid.proton.message.Message'
-- uid: com.azure.core.amqp.implementation.AmqpReceiveLink,org.apache.qpid.proton.message.Message
-  name: AmqpReceiveLink,Message
-  nameWithType: AmqpReceiveLink,Message
-  fullName: com.azure.core.amqp.implementation.AmqpReceiveLink,org.apache.qpid.proton.message.Message
+- uid: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink,org.apache.qpid.proton.message.Message
+  name: ServiceBusReceiveLink,Message
+  nameWithType: ServiceBusReceiveLink,Message
+  fullName: com.azure.messaging.servicebus.implementation.ServiceBusReceiveLink,org.apache.qpid.proton.message.Message
 - uid: reactor.core.publisher.FluxProcessor
   name: FluxProcessor
   nameWithType: FluxProcessor
@@ -3090,10 +3220,6 @@ references:
   name: '? super T>,boolean)'
   nameWithType: '? super T>,boolean)'
   fullName: '? super T>,boolean)'
-- uid: T>convertToMono(java.util.concurrent.Callable
-  name: T>convertToMono(Callable
-  nameWithType: T>convertToMono(Callable
-  fullName: T>convertToMono(java.util.concurrent.Callable
 - uid: T>>)
   name: T>>)
   nameWithType: T>>)
@@ -3190,6 +3316,10 @@ references:
   name: '? extends R>>,int,int)'
   nameWithType: '? extends R>>,int,int)'
   fullName: '? extends R>>,int,int)'
+- uid: T>wrapToMono(java.util.concurrent.Callable
+  name: T>wrapToMono(Callable
+  nameWithType: T>wrapToMono(Callable
+  fullName: T>wrapToMono(java.util.concurrent.Callable
 - uid: '? super U,? extends org.reactivestreams.Publisher'
   name: '? super U,? extends Publisher'
   nameWithType: '? super U,? extends Publisher'
@@ -3590,6 +3720,26 @@ references:
   name: Boolean>>)
   nameWithType: Boolean>>)
   fullName: java.lang.Boolean>>)
+- uid: T>,org.reactivestreams.Publisher
+  name: T>,Publisher
+  nameWithType: T>,Publisher
+  fullName: T>,org.reactivestreams.Publisher
+- uid: reactor.core.publisher.Signal
+  name: Signal
+  nameWithType: Signal
+  fullName: reactor.core.publisher.Signal
+- uid: '? extends T>,reactor.core.publisher.Flux'
+  name: '? extends T>,Flux'
+  nameWithType: '? extends T>,Flux'
+  fullName: '? extends T>,reactor.core.publisher.Flux'
+- uid: '? extends V>>,boolean)'
+  name: '? extends V>>,boolean)'
+  nameWithType: '? extends V>>,boolean)'
+  fullName: '? extends V>>,boolean)'
+- uid: V>switchOnFirst(java.util.function.BiFunction
+  name: V>switchOnFirst(BiFunction
+  nameWithType: V>switchOnFirst(BiFunction
+  fullName: V>switchOnFirst(java.util.function.BiFunction
 - uid: V>windowUntilChanged(java.util.function.Function
   name: V>windowUntilChanged(Function
   nameWithType: V>windowUntilChanged(Function
@@ -4070,22 +4220,6 @@ references:
   name: T>error(Throwable)
   nameWithType: T>error(Throwable)
   fullName: T>error(java.lang.Throwable)
-- uid: T>,org.reactivestreams.Publisher
-  name: T>,Publisher
-  nameWithType: T>,Publisher
-  fullName: T>,org.reactivestreams.Publisher
-- uid: reactor.core.publisher.Signal
-  name: Signal
-  nameWithType: Signal
-  fullName: reactor.core.publisher.Signal
-- uid: '? extends T>,reactor.core.publisher.Flux'
-  name: '? extends T>,Flux'
-  nameWithType: '? extends T>,Flux'
-  fullName: '? extends T>,reactor.core.publisher.Flux'
-- uid: V>switchOnFirst(java.util.function.BiFunction
-  name: V>switchOnFirst(BiFunction
-  nameWithType: V>switchOnFirst(BiFunction
-  fullName: V>switchOnFirst(java.util.function.BiFunction
 - uid: java.lang.Void>)
   name: Void>)
   nameWithType: Void>)

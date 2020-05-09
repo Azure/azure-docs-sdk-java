@@ -2,16 +2,18 @@
 items:
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants
   id: ManagementConstants
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation
   children:
   - com.azure.messaging.servicebus.implementation.ManagementConstants.ASSOCIATED_LINK_NAME_KEY
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.CANCEL_SCHEDULED_MESSAGE_OPERATION
   - com.azure.messaging.servicebus.implementation.ManagementConstants.DEADLETTER_DESCRIPTION_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.DEADLETTER_REASON_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.DISPOSITION_STATUS_KEY
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATION
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATIONS
   - com.azure.messaging.servicebus.implementation.ManagementConstants.FROM_SEQUENCE_NUMBER
   - com.azure.messaging.servicebus.implementation.ManagementConstants.LOCK_TOKENS_KEY
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.LOCK_TOKEN_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.MANAGEMENT_OPERATION_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.MAX_MESSAGING_AMQP_HEADER_SIZE_BYTES
   - com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE
@@ -19,16 +21,23 @@ items:
   - com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE_COUNT_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE_ID
   - com.azure.messaging.servicebus.implementation.ManagementConstants.ManagementConstants()
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.PEEK_OPERATION
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_CANCEL_SCHEDULED_MESSAGE
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_GET_SESSION_STATE
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_PEEK
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_LOCK
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_SESSION_LOCK
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SCHEDULE_MESSAGE
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SET_SESSION_STATE
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_UPDATE_DISPOSITION
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.PARTITION_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.PROPERTIES_TO_MODIFY_KEY
   - com.azure.messaging.servicebus.implementation.ManagementConstants.RECEIVER_SETTLE_MODE
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.RENEW_LOCK_OPERATION
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.REQUEST_RESPONSE_SESSION_ID
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.SCHEDULE_MESSAGE_OPERATION
   - com.azure.messaging.servicebus.implementation.ManagementConstants.SEQUENCE_NUMBERS
   - com.azure.messaging.servicebus.implementation.ManagementConstants.SERVER_TIMEOUT
-  - com.azure.messaging.servicebus.implementation.ManagementConstants.UPDATE_DISPOSITION_OPERATION
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_ID
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_STATE
+  - com.azure.messaging.servicebus.implementation.ManagementConstants.VIA_PARTITION_KEY
   langs:
   - java
   name: ManagementConstants
@@ -38,7 +47,7 @@ items:
   package: com.azure.messaging.servicebus.implementation
   summary: Constants which is used for management calls to support operations for example renewlock, schedule, defer etc.
   syntax:
-    content: " class ManagementConstants"
+    content: public class ManagementConstants
   inheritance:
   - java.lang.Object
   inheritedMembers:
@@ -55,7 +64,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.ASSOCIATED_LINK_NAME_KEY
   id: ASSOCIATED_LINK_NAME_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -65,27 +74,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String ASSOCIATED_LINK_NAME_KEY
-    return:
-      type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.CANCEL_SCHEDULED_MESSAGE_OPERATION
-  id: CANCEL_SCHEDULED_MESSAGE_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
-  langs:
-  - java
-  name: CANCEL_SCHEDULED_MESSAGE_OPERATION
-  nameWithType: ManagementConstants.CANCEL_SCHEDULED_MESSAGE_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.CANCEL_SCHEDULED_MESSAGE_OPERATION
-  type: Field
-  package: com.azure.messaging.servicebus.implementation
-  syntax:
-    content: static final String CANCEL_SCHEDULED_MESSAGE_OPERATION
+    content: public static final String ASSOCIATED_LINK_NAME_KEY
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.DEADLETTER_DESCRIPTION_KEY
   id: DEADLETTER_DESCRIPTION_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -100,7 +94,7 @@ items:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.DEADLETTER_REASON_KEY
   id: DEADLETTER_REASON_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -115,7 +109,7 @@ items:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.DISPOSITION_STATUS_KEY
   id: DISPOSITION_STATUS_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -128,9 +122,39 @@ items:
     content: static final String DISPOSITION_STATUS_KEY
     return:
       type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATION
+  id: EXPIRATION
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: EXPIRATION
+  nameWithType: ManagementConstants.EXPIRATION
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATION
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String EXPIRATION
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATIONS
+  id: EXPIRATIONS
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: EXPIRATIONS
+  nameWithType: ManagementConstants.EXPIRATIONS
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.EXPIRATIONS
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String EXPIRATIONS
+    return:
+      type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.FROM_SEQUENCE_NUMBER
   id: FROM_SEQUENCE_NUMBER
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -140,12 +164,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String FROM_SEQUENCE_NUMBER
+    content: public static final String FROM_SEQUENCE_NUMBER
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.LOCK_TOKENS_KEY
   id: LOCK_TOKENS_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -155,12 +179,27 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String LOCK_TOKENS_KEY
+    content: public static final String LOCK_TOKENS_KEY
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.LOCK_TOKEN_KEY
+  id: LOCK_TOKEN_KEY
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: LOCK_TOKEN_KEY
+  nameWithType: ManagementConstants.LOCK_TOKEN_KEY
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.LOCK_TOKEN_KEY
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String LOCK_TOKEN_KEY
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MANAGEMENT_OPERATION_KEY
   id: MANAGEMENT_OPERATION_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -175,7 +214,7 @@ items:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MAX_MESSAGING_AMQP_HEADER_SIZE_BYTES
   id: MAX_MESSAGING_AMQP_HEADER_SIZE_BYTES
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -190,7 +229,7 @@ items:
       type: int
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE
   id: MESSAGE
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -200,12 +239,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String MESSAGE
+    content: public static final String MESSAGE
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGES
   id: MESSAGES
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -215,12 +254,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String MESSAGES
+    content: public static final String MESSAGES
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE_COUNT_KEY
   id: MESSAGE_COUNT_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -230,12 +269,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String MESSAGE_COUNT_KEY
+    content: public static final String MESSAGE_COUNT_KEY
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.MESSAGE_ID
   id: MESSAGE_ID
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -245,12 +284,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String MESSAGE_ID
+    content: public static final String MESSAGE_ID
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.ManagementConstants()
   id: ManagementConstants()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -261,25 +300,160 @@ items:
   type: Constructor
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: " ManagementConstants()"
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.PEEK_OPERATION
-  id: PEEK_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+    content: public ManagementConstants()
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_CANCEL_SCHEDULED_MESSAGE
+  id: OPERATION_CANCEL_SCHEDULED_MESSAGE
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
-  name: PEEK_OPERATION
-  nameWithType: ManagementConstants.PEEK_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.PEEK_OPERATION
+  name: OPERATION_CANCEL_SCHEDULED_MESSAGE
+  nameWithType: ManagementConstants.OPERATION_CANCEL_SCHEDULED_MESSAGE
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_CANCEL_SCHEDULED_MESSAGE
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String PEEK_OPERATION
+    content: static final String OPERATION_CANCEL_SCHEDULED_MESSAGE
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_GET_SESSION_STATE
+  id: OPERATION_GET_SESSION_STATE
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_GET_SESSION_STATE
+  nameWithType: ManagementConstants.OPERATION_GET_SESSION_STATE
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_GET_SESSION_STATE
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_GET_SESSION_STATE
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_PEEK
+  id: OPERATION_PEEK
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_PEEK
+  nameWithType: ManagementConstants.OPERATION_PEEK
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_PEEK
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_PEEK
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  id: OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  nameWithType: ManagementConstants.OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_RECEIVE_BY_SEQUENCE_NUMBER
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_LOCK
+  id: OPERATION_RENEW_LOCK
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_RENEW_LOCK
+  nameWithType: ManagementConstants.OPERATION_RENEW_LOCK
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_LOCK
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_RENEW_LOCK
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_SESSION_LOCK
+  id: OPERATION_RENEW_SESSION_LOCK
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_RENEW_SESSION_LOCK
+  nameWithType: ManagementConstants.OPERATION_RENEW_SESSION_LOCK
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_RENEW_SESSION_LOCK
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_RENEW_SESSION_LOCK
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SCHEDULE_MESSAGE
+  id: OPERATION_SCHEDULE_MESSAGE
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_SCHEDULE_MESSAGE
+  nameWithType: ManagementConstants.OPERATION_SCHEDULE_MESSAGE
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SCHEDULE_MESSAGE
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_SCHEDULE_MESSAGE
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SET_SESSION_STATE
+  id: OPERATION_SET_SESSION_STATE
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_SET_SESSION_STATE
+  nameWithType: ManagementConstants.OPERATION_SET_SESSION_STATE
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_SET_SESSION_STATE
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_SET_SESSION_STATE
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_UPDATE_DISPOSITION
+  id: OPERATION_UPDATE_DISPOSITION
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: OPERATION_UPDATE_DISPOSITION
+  nameWithType: ManagementConstants.OPERATION_UPDATE_DISPOSITION
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.OPERATION_UPDATE_DISPOSITION
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: static final String OPERATION_UPDATE_DISPOSITION
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.PARTITION_KEY
+  id: PARTITION_KEY
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: PARTITION_KEY
+  nameWithType: ManagementConstants.PARTITION_KEY
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.PARTITION_KEY
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String PARTITION_KEY
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.PROPERTIES_TO_MODIFY_KEY
   id: PROPERTIES_TO_MODIFY_KEY
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -294,7 +468,7 @@ items:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.RECEIVER_SETTLE_MODE
   id: RECEIVER_SETTLE_MODE
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -304,72 +478,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String RECEIVER_SETTLE_MODE
-    return:
-      type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  id: RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
-  langs:
-  - java
-  name: RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  nameWithType: ManagementConstants.RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-  type: Field
-  package: com.azure.messaging.servicebus.implementation
-  syntax:
-    content: static final String RECEIVE_BY_SEQUENCE_NUMBER_OPERATION
-    return:
-      type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.RENEW_LOCK_OPERATION
-  id: RENEW_LOCK_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
-  langs:
-  - java
-  name: RENEW_LOCK_OPERATION
-  nameWithType: ManagementConstants.RENEW_LOCK_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.RENEW_LOCK_OPERATION
-  type: Field
-  package: com.azure.messaging.servicebus.implementation
-  syntax:
-    content: static final String RENEW_LOCK_OPERATION
-    return:
-      type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.REQUEST_RESPONSE_SESSION_ID
-  id: REQUEST_RESPONSE_SESSION_ID
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
-  langs:
-  - java
-  name: REQUEST_RESPONSE_SESSION_ID
-  nameWithType: ManagementConstants.REQUEST_RESPONSE_SESSION_ID
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.REQUEST_RESPONSE_SESSION_ID
-  type: Field
-  package: com.azure.messaging.servicebus.implementation
-  syntax:
-    content: static final String REQUEST_RESPONSE_SESSION_ID
-    return:
-      type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.SCHEDULE_MESSAGE_OPERATION
-  id: SCHEDULE_MESSAGE_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
-  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
-  langs:
-  - java
-  name: SCHEDULE_MESSAGE_OPERATION
-  nameWithType: ManagementConstants.SCHEDULE_MESSAGE_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.SCHEDULE_MESSAGE_OPERATION
-  type: Field
-  package: com.azure.messaging.servicebus.implementation
-  syntax:
-    content: static final String SCHEDULE_MESSAGE_OPERATION
+    content: public static final String RECEIVER_SETTLE_MODE
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.SEQUENCE_NUMBERS
   id: SEQUENCE_NUMBERS
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -379,12 +493,12 @@ items:
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String SEQUENCE_NUMBERS
+    content: public static final String SEQUENCE_NUMBERS
     return:
       type: java.lang.String
 - uid: com.azure.messaging.servicebus.implementation.ManagementConstants.SERVER_TIMEOUT
   id: SERVER_TIMEOUT
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
@@ -397,19 +511,49 @@ items:
     content: static final String SERVER_TIMEOUT
     return:
       type: java.lang.String
-- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.UPDATE_DISPOSITION_OPERATION
-  id: UPDATE_DISPOSITION_OPERATION
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_ID
+  id: SESSION_ID
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.ManagementConstants
   langs:
   - java
-  name: UPDATE_DISPOSITION_OPERATION
-  nameWithType: ManagementConstants.UPDATE_DISPOSITION_OPERATION
-  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.UPDATE_DISPOSITION_OPERATION
+  name: SESSION_ID
+  nameWithType: ManagementConstants.SESSION_ID
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_ID
   type: Field
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: static final String UPDATE_DISPOSITION_OPERATION
+    content: public static final String SESSION_ID
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_STATE
+  id: SESSION_STATE
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: SESSION_STATE
+  nameWithType: ManagementConstants.SESSION_STATE
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.SESSION_STATE
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String SESSION_STATE
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.servicebus.implementation.ManagementConstants.VIA_PARTITION_KEY
+  id: VIA_PARTITION_KEY
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.ManagementConstants
+  langs:
+  - java
+  name: VIA_PARTITION_KEY
+  nameWithType: ManagementConstants.VIA_PARTITION_KEY
+  fullName: com.azure.messaging.servicebus.implementation.ManagementConstants.VIA_PARTITION_KEY
+  type: Field
+  package: com.azure.messaging.servicebus.implementation
+  syntax:
+    content: public static final String VIA_PARTITION_KEY
     return:
       type: java.lang.String
 references:

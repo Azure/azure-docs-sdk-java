@@ -2,12 +2,13 @@
 items:
 - uid: com.azure.messaging.servicebus.implementation.MessageLockContainer
   id: MessageLockContainer
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation
   children:
-  - com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer()
+  - com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer(java.time.Duration)
   - com.azure.messaging.servicebus.implementation.MessageLockContainer.addOrUpdate(java.lang.String,java.time.Instant)
-  - com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration(java.lang.String)
+  - com.azure.messaging.servicebus.implementation.MessageLockContainer.close()
+  - com.azure.messaging.servicebus.implementation.MessageLockContainer.contains(java.lang.String)
   - com.azure.messaging.servicebus.implementation.MessageLockContainer.remove(java.lang.String)
   langs:
   - java
@@ -16,11 +17,13 @@ items:
   fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer
   type: Class
   package: com.azure.messaging.servicebus.implementation
-  summary: Container of Message lock and related metadata related.
+  summary: Container for message locks that are cleaned up periodically.
   syntax:
-    content: public class MessageLockContainer
+    content: public class MessageLockContainer implements AutoCloseable
   inheritance:
   - java.lang.Object
+  implements:
+  - java.lang.AutoCloseable
   inheritedMembers:
   - java.lang.Object.clone()
   - java.lang.Object.equals(java.lang.Object)
@@ -33,23 +36,26 @@ items:
   - java.lang.Object.wait()
   - java.lang.Object.wait(long)
   - java.lang.Object.wait(long,int)
-- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer()
-  id: MessageLockContainer()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer(java.time.Duration)
+  id: MessageLockContainer(java.time.Duration)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageLockContainer
   langs:
   - java
-  name: MessageLockContainer()
-  nameWithType: MessageLockContainer.MessageLockContainer()
-  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer()
+  name: MessageLockContainer(Duration cleanupInterval)
+  nameWithType: MessageLockContainer.MessageLockContainer(Duration cleanupInterval)
+  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer(Duration cleanupInterval)
   overload: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer*
   type: Constructor
   package: com.azure.messaging.servicebus.implementation
   syntax:
-    content: public MessageLockContainer()
+    content: public MessageLockContainer(Duration cleanupInterval)
+    parameters:
+    - id: cleanupInterval
+      type: java.time.Duration
 - uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.addOrUpdate(java.lang.String,java.time.Instant)
   id: addOrUpdate(java.lang.String,java.time.Instant)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageLockContainer
   langs:
   - java
@@ -74,31 +80,45 @@ items:
       description: >-
         The updated value in the container. If the expiration time in the container is larger than
              <code>lockTokenExpiration</code>, then the current container value is used.
-- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration(java.lang.String)
-  id: getLockTokenExpiration(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.close()
+  id: close()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageLockContainer
   langs:
   - java
-  name: getLockTokenExpiration(String lockToken)
-  nameWithType: MessageLockContainer.getLockTokenExpiration(String lockToken)
-  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration(String lockToken)
-  overload: com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration*
+  name: close()
+  nameWithType: MessageLockContainer.close()
+  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.close()
+  overload: com.azure.messaging.servicebus.implementation.MessageLockContainer.close*
   type: Method
   package: com.azure.messaging.servicebus.implementation
-  summary: Gets the lock expiration given a lock token.
   syntax:
-    content: public Instant getLockTokenExpiration(String lockToken)
+    content: public void close()
+- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.contains(java.lang.String)
+  id: contains(java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.implementation.MessageLockContainer
+  langs:
+  - java
+  name: contains(String lockToken)
+  nameWithType: MessageLockContainer.contains(String lockToken)
+  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.contains(String lockToken)
+  overload: com.azure.messaging.servicebus.implementation.MessageLockContainer.contains*
+  type: Method
+  package: com.azure.messaging.servicebus.implementation
+  summary: Gets whether or not the lock token is held in the container and has not expired.
+  syntax:
+    content: public boolean contains(String lockToken)
     parameters:
     - id: lockToken
       type: java.lang.String
-      description: Token to get associated lock expiration for.
+      description: Lock token to check.
     return:
-      type: java.time.Instant
-      description: An <xref uid="java.time.Instant" data-throw-if-not-resolved="false">Instant</xref> for when the lock expires or <code>null</code> if the <code>lockToken</code> does not exist.
+      type: boolean
+      description: <code>true</code> if the lock token is in the container and has not expired; <code>false</code> otherwise.
 - uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.remove(java.lang.String)
   id: remove(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.implementation.MessageLockContainer
   langs:
   - java
@@ -116,6 +136,11 @@ items:
       type: java.lang.String
       description: Token to remove.
 references:
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
 - uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.MessageLockContainer*
   name: MessageLockContainer
   nameWithType: MessageLockContainer.MessageLockContainer
@@ -136,16 +161,30 @@ references:
   nameWithType: MessageLockContainer.addOrUpdate
   fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.addOrUpdate
   package: com.azure.messaging.servicebus.implementation
-- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration*
-  name: getLockTokenExpiration
-  nameWithType: MessageLockContainer.getLockTokenExpiration
-  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.getLockTokenExpiration
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.contains*
+  name: contains
+  nameWithType: MessageLockContainer.contains
+  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.contains
   package: com.azure.messaging.servicebus.implementation
 - uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.remove*
   name: remove
   nameWithType: MessageLockContainer.remove
   fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.remove
   package: com.azure.messaging.servicebus.implementation
+- uid: com.azure.messaging.servicebus.implementation.MessageLockContainer.close*
+  name: close
+  nameWithType: MessageLockContainer.close
+  fullName: com.azure.messaging.servicebus.implementation.MessageLockContainer.close
+  package: com.azure.messaging.servicebus.implementation
+- uid: java.lang.AutoCloseable
+  name: AutoCloseable
+  nameWithType: AutoCloseable
+  fullName: java.lang.AutoCloseable
 - uid: java.lang.Object.notify()
   name: Object.notify()
   nameWithType: Object.notify()
