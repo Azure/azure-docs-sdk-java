@@ -2,12 +2,14 @@
 items:
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder
   id: ServiceBusClientBuilder
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus
   children:
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusClientBuilder()
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusReceiverClientBuilder
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSenderClientBuilder
+  - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  - com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration(com.azure.core.util.Configuration)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.connectionString(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.credential(java.lang.String,com.azure.core.credential.TokenCredential)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.onClientClose()
@@ -16,6 +18,7 @@ items:
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.retryOptions(com.azure.core.amqp.AmqpRetryOptions)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.scheduler(reactor.core.scheduler.Scheduler)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.sender()
+  - com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver()
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.transportType(com.azure.core.amqp.AmqpTransportType)
   langs:
   - java
@@ -43,7 +46,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusClientBuilder()
   id: ServiceBusClientBuilder()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -56,9 +59,31 @@ items:
   summary: Creates a new instance with the default transport <xref uid="" data-throw-if-not-resolved="false">AmqpTransportType#AMQP</xref>.
   syntax:
     content: public ServiceBusClientBuilder()
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration(com.azure.core.util.Configuration)
+  id: configuration(com.azure.core.util.Configuration)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
+  langs:
+  - java
+  name: configuration(Configuration configuration)
+  nameWithType: ServiceBusClientBuilder.configuration(Configuration configuration)
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration(Configuration configuration)
+  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sets the configuration store that is used during construction of the service client. If not specified, the default configuration store is used to configure Service Bus clients. Use <xref uid="" data-throw-if-not-resolved="false">Configuration#NONE</xref> to bypass using configuration settings during construction.
+  syntax:
+    content: public ServiceBusClientBuilder configuration(Configuration configuration)
+    parameters:
+    - id: configuration
+      type: com.azure.core.util.Configuration
+      description: The configuration store used to configure Service Bus clients.
+    return:
+      type: com.azure.messaging.servicebus.ServiceBusClientBuilder
+      description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.connectionString(java.lang.String)
   id: connectionString(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -80,7 +105,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.credential(java.lang.String,com.azure.core.credential.TokenCredential)
   id: credential(java.lang.String,com.azure.core.credential.TokenCredential)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -99,13 +124,13 @@ items:
       description: for the Service Bus.
     - id: credential
       type: com.azure.core.credential.TokenCredential
-      description: <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">TokenCredential</xref> to be used for authentication.
+      description: <xref uid="" data-throw-if-not-resolved="false">TokenCredential</xref> to be used for authentication.
     return:
       type: com.azure.messaging.servicebus.ServiceBusClientBuilder
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.onClientClose()
   id: onClientClose()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -120,7 +145,7 @@ items:
     content: " void onClientClose()"
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.proxyOptions(com.azure.core.amqp.ProxyOptions)
   id: proxyOptions(com.azure.core.amqp.ProxyOptions)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -142,7 +167,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.receiver()
   id: receiver()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -160,7 +185,7 @@ items:
       description: A new instance of <xref uid="" data-throw-if-not-resolved="false">ServiceBusReceiverClientBuilder</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.retryOptions(com.azure.core.amqp.AmqpRetryOptions)
   id: retryOptions(com.azure.core.amqp.AmqpRetryOptions)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -182,7 +207,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.scheduler(reactor.core.scheduler.Scheduler)
   id: scheduler(reactor.core.scheduler.Scheduler)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -204,7 +229,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusClientBuilder" data-throw-if-not-resolved="false">ServiceBusClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.sender()
   id: sender()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -220,9 +245,27 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSenderClientBuilder
       description: A new instance of <xref uid="" data-throw-if-not-resolved="false">ServiceBusSenderClientBuilder</xref>.
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver()
+  id: sessionReceiver()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
+  parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
+  langs:
+  - java
+  name: sessionReceiver()
+  nameWithType: ServiceBusClientBuilder.sessionReceiver()
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver()
+  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: A new instance of <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> used to configure **session aware** Service Bus message consumers.
+  syntax:
+    content: public ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionReceiver()
+    return:
+      type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+      description: A new instance of <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.transportType(com.azure.core.amqp.AmqpTransportType)
   id: transportType(com.azure.core.amqp.AmqpTransportType)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.1
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.2
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder
   langs:
   - java
@@ -257,6 +300,16 @@ references:
   name: connectionString
   nameWithType: ServiceBusClientBuilder.connectionString
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.connectionString
+  package: com.azure.messaging.servicebus
+- uid: com.azure.core.util.Configuration
+  spec.java:
+  - uid: com.azure.core.util.Configuration
+    name: Configuration
+    fullName: com.azure.core.util.Configuration
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration*
+  name: configuration
+  nameWithType: ServiceBusClientBuilder.configuration
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.configuration
   package: com.azure.messaging.servicebus
 - uid: com.azure.core.credential.TokenCredential
   spec.java:
@@ -325,6 +378,15 @@ references:
   name: receiver
   nameWithType: ServiceBusClientBuilder.receiver
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.receiver
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  name: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver*
+  name: sessionReceiver
+  nameWithType: ServiceBusClientBuilder.sessionReceiver
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.sessionReceiver
   package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.onClientClose*
   name: onClientClose

@@ -3,14 +3,14 @@ title: Azure Key Vault Secret client library for Java
 keywords: Azure, Java, SDK, API, keyvault, azure-security-keyvault-secrets
 author: maggiepint
 ms.author: magpint
-ms.date: 04/16/2020
+ms.date: 05/10/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: Java
 ms.service: keyvault
 ---
- # Azure Key Vault Secret client library for Java - Version 4.1.2 
+ # Azure Key Vault Secret client library for Java - Version 4.1.3 
 
 Azure Key Vault is a cloud service that provides a secure storage of secrets, such as passwords and database connection strings.
 
@@ -30,10 +30,60 @@ Maven dependency for Azure Secret Client library. Add it to your project's pom f
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-secrets</artifactId>
-    <version>4.1.0</version>
+    <version>4.1.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
+
+### Default HTTP Client
+All client libraries, by default, use Netty HTTP client. Adding the above dependency will automatically configure 
+KeyVault Secrets to use Netty HTTP client. 
+
+### Alternate HTTP client
+If, instead of Netty it is preferable to use OkHTTP, there is a HTTP client available for that too. Exclude the default
+Netty and include OkHTTP client in your pom.xml.
+
+[//]: # ({x-version-update-start;com.azure:azure-security-keyvault-secrets;current})
+```xml
+<!-- Add KeyVault Secrets dependency without Netty HTTP client -->
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-security-keyvault-secrets</artifactId>
+    <version>4.1.0</version>
+    <exclusions>
+      <exclusion>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-core-http-netty</artifactId>
+      </exclusion>
+    </exclusions>
+</dependency>
+```
+[//]: # ({x-version-update-end})
+[//]: # ({x-version-update-start;com.azure:azure-core-http-okhttp;current})
+```xml
+<!-- Add OkHTTP client to use with KeyVault Secrets -->
+<dependency>
+  <groupId>com.azure</groupId>
+  <artifactId>azure-core-http-okhttp</artifactId>
+  <version>1.1.0</version>
+</dependency>
+```
+[//]: # ({x-version-update-end})
+
+### Configuring HTTP Clients
+When an HTTP client is included on the classpath, as shown above, it is not necessary to specify it in the client library [builders](#create-secret-client), unless you want to customize the HTTP client in some fashion. If this is desired, the `httpClient` builder method is often available to achieve just this, by allowing users to provide a custom (or customized) `com.azure.core.http.HttpClient` instances.
+
+For starters, by having the Netty or OkHTTP dependencies on your classpath, as shown above, you can create new instances of these `HttpClient` types using their builder APIs. For example, here is how you would create a Netty HttpClient instance:
+
+```java
+HttpClient client = new NettyAsyncHttpClientBuilder()
+    .port(8080)
+    .wiretap(true)
+    .build();
+```
+
+### Default SSL library
+All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides better performance compared to the default SSL implementation within the JDK. For more information, including how to reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ### Prerequisites
 
@@ -50,7 +100,7 @@ In order to interact with the Key Vault service, you'll need to create an instan
 
 The `DefaultAzureCredential` way of authentication by providing client secret credentials is being used in this getting started section but you can find more ways to authenticate with [azure-identity][azure_identity].
 
-#### Create/Get credentials
+ #### Create/Get credentials
 To create/get client secret credentials you can use the [Azure Portal][azure_create_application_in_portal], [Azure CLI][azure_keyvault_cli_full] or [Azure Cloud Shell](https://shell.azure.com/bash)
 
 Here is [Azure Cloud Shell](https://shell.azure.com/bash) snippet below to 
@@ -291,16 +341,6 @@ try {
 }
 ```
 
-### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure 
-the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the [HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
-
-### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL 
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides 
-better performance compared to the default SSL implementation within the JDK. For more information, including how to 
-reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
-
 ## Next steps
 Several KeyVault Java SDK samples are available to you in the SDK's GitHub repository. These samples provide example code for additional scenarios commonly encountered while working with Key Vault:
 
@@ -318,7 +358,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/keyvault/azure-security-keyvault-secrets/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/ab73e60b7e99bbbdac7747fc49d6b6803cba2880/sdk/keyvault/azure-security-keyvault-secrets/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
@@ -331,8 +371,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_create_application_in_portal]:https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]:https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]:https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[secrets_samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
+[secrets_samples]: https://github.com/Azure/azure-sdk-for-java/tree/ab73e60b7e99bbbdac7747fc49d6b6803cba2880/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/ab73e60b7e99bbbdac7747fc49d6b6803cba2880/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-secrets%2FREADME.png)
+
