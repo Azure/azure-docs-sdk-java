@@ -3,14 +3,14 @@ title: Azure Event Hubs Checkpoint Store client library for Java
 keywords: Azure, Java, SDK, API, eventhubs, azure-messaging-eventhubs-checkpointstore-blob
 author: maggiepint
 ms.author: magpint
-ms.date: 04/16/2020
+ms.date: 05/10/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: Java
 ms.service: eventhubs
 ---
- # Azure Event Hubs Checkpoint Store client library for Java - Version 1.0.3 
+ # Azure Event Hubs Checkpoint Store client library for Java - Version 1.1.0 
  using Storage Blobs
 
 Azure Event Hubs Checkpoint Store can be used for storing checkpoints while processing events from Azure Event Hubs.
@@ -33,19 +33,20 @@ documentation][event_hubs_product_docs] | [Samples][sample_examples]
 - Azure Storage account
     - Step-by-step guide for [creating a Storage account using the Azure Portal][storage_account]
 
-### Adding the package to your product
+### Including the package
 
 [//]: # ({x-version-update-start;com.azure:azure-messaging-eventhubs-checkpointstore-blob;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-messaging-eventhubs-checkpointstore-blob</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Authenticate the storage container client
+
 In order to create an instance of `BlobCheckpointStore`, a `ContainerAsyncClient` should first be created with
 appropriate SAS token with write access and connection string. To make this possible you'll need the Account SAS
 (shared access signature) string of Storage account. Learn more at [SAS Token][sas_token].
@@ -66,15 +67,17 @@ It is possible to return to older data by specifying a lower offset from this ch
 mechanism, checkpointing enables both failover resiliency and event stream replay.
 
 ### Offsets & sequence numbers
+
 Both offset & sequence number refer to the position of an event within a partition. You can think of them as a
 client-side cursor. The offset is a byte numbering of the event. The offset/sequence number enables an event consumer
 (reader) to specify a point in the event stream from which they want to begin reading events. You can specify the a
 timestamp such that you receive events that were enqueued only after the given timestamp. Consumers are responsible for
 storing their own offset values outside of the Event Hubs service. Within a partition, each event includes an offset,
-sequence number and the timestamp of when it was enqueued.
+sequence number, and the timestamp of when it was enqueued.
 
 ## Examples
 - [Create an instance of Storage Container client][sample_container_client]
+- [Create an instance using Azure Identity][sample_azure_identity]
 - [Consume events from all Event Hub partitions][sample_event_processor]
 - [Specify storage version to create checkpoint store][sample_checkpointstore_custom_storage_version]
 
@@ -91,9 +94,9 @@ BlobContainerAsyncClient blobContainerAsyncClient = new BlobContainerClientBuild
 
 ### Consume events using an Event Processor Client
 
-To consume events for all partitions of an Event Hub, you'll create an [`EventProcessorClient`][source_eventprocessorclient] for a
-specific consumer group. When an Event Hub is created, it provides a default consumer group that can be used to get
-started.
+To consume events for all partitions of an Event Hub, you'll create an 
+[`EventProcessorClient`][source_eventprocessorclient] for a specific consumer group. When an Event Hub is created, it 
+provides a default consumer group that can be used to get started.
 
 The [`EventProcessorClient`][source_eventprocessorclient] will delegate processing of events to a callback function that you
 provide, allowing you to focus on the logic needed to provide value while the processor holds responsibility for
@@ -138,42 +141,47 @@ eventProcessorClient.stop();
 
 ### Enable client logging
 
-You can set the `AZURE_LOG_LEVEL` environment variable to view logging statements made in the client library. For
-example, setting `AZURE_LOG_LEVEL=2` would show all informational, warning, and error log messages. The log levels can
-be found here: [log levels][source_loglevels].
+Azure SDK for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite
+their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
+locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
 
 ### Default SSL library
+
 All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
 operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
 better performance compared to the default SSL implementation within the JDK. For more information, including how to
 reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ## Next steps
+
 Get started by exploring the samples [here][samples_readme].
 
 ## Contributing
 
 If you would like to become an active contributor to this project please refer to our [Contribution
-Guidelines](https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/CONTRIBUTING.md) for more information.
+Guidelines](https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/CONTRIBUTING.md) for more information.
 
 <!-- Links -->
 [api_documentation]: http://azure.github.io/azure-sdk-for-java
 [event_hubs_create]: https://docs.microsoft.com/azure/event-hubs/event-hubs-create
 [event_hubs_product_docs]: https://docs.microsoft.com/azure/event-hubs/
 [java_8_sdk_javadocs]: https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html
+[logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [maven]: https://maven.apache.org/
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/README.md
-[sample_container_client]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/BlobCheckpointStoreSample.java
-[sample_event_hubs]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs
-[sample_event_processor]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/EventProcessorBlobCheckpointStoreSample.java
-[sample_checkpointstore_custom_storage_version]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/EventProcessorWithCustomStorageVersion.java
-[sample_examples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/README.md
+[sample_azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/EventProcessorWithAzureIdentity.java
+[sample_container_client]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/BlobCheckpointStoreSample.java
+[sample_event_hubs]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs
+[sample_event_processor]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/EventProcessorBlobCheckpointStoreSample.java
+[sample_checkpointstore_custom_storage_version]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob/EventProcessorWithCustomStorageVersion.java
+[sample_examples]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/samples/java/com/azure/messaging/eventhubs/checkpointstore/blob
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob
-[source_eventprocessorclient]: ./src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
-[source_blobcheckpointstore]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/main/java/com/azure/messaging/eventhubs/checkpointstore/blob/BlobCheckpointStore.java
-[source_loglevels]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob
+[source_eventprocessorclient]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs/src/main/java/com/azure/messaging/eventhubs/EventProcessorClient.java
+[source_blobcheckpointstore]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/src/main/java/com/azure/messaging/eventhubs/checkpointstore/blob/BlobCheckpointStore.java
+[source_loglevels]: https://github.com/Azure/azure-sdk-for-java/tree/fcdaff1ebc84a6f660f94c54038c2c34fef76e0c/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/ClientLogger.java
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Feventhubs%2Fazure-messaging-eventhubs-checkpointstore-blob%2FREADME.png)
+
