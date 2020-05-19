@@ -4,9 +4,6 @@ items:
   id: PartitionBasedLoadBalancer
   artifact: com.azure:azure-messaging-eventhubs:5.1.0
   parent: com.azure.messaging.eventhubs
-  children:
-  - com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.PartitionBasedLoadBalancer(com.azure.messaging.eventhubs.CheckpointStore,com.azure.messaging.eventhubs.EventHubAsyncClient,java.lang.String,java.lang.String,java.lang.String,java.lang.String,long,com.azure.messaging.eventhubs.PartitionPumpManager,java.util.function.Consumer<com.azure.messaging.eventhubs.models.ErrorContext>)
-  - com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance()
   langs:
   - java
   name: PartitionBasedLoadBalancer
@@ -81,28 +78,6 @@ items:
     - id: processError
       type: java.util.function.Consumer<com.azure.messaging.eventhubs.models.ErrorContext>
       description: The callback that will be called when an error occurs while running the load balancer.
-- uid: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance()
-  id: loadBalance()
-  artifact: com.azure:azure-messaging-eventhubs:5.1.0
-  parent: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer
-  langs:
-  - java
-  name: loadBalance()
-  nameWithType: PartitionBasedLoadBalancer.loadBalance()
-  fullName: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance()
-  overload: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance*
-  type: Method
-  package: com.azure.messaging.eventhubs
-  summary: >-
-    This is the main method responsible for load balancing. This method is expected to be invoked by the <xref uid="com.azure.messaging.eventhubs.EventProcessorClient" data-throw-if-not-resolved="false">EventProcessorClient</xref> periodically. Every call to this method will result in this <xref uid="com.azure.messaging.eventhubs.EventProcessorClient" data-throw-if-not-resolved="false">EventProcessorClient</xref> owning **at most one** new partition.
-
-
-    The load is considered balanced when no active EventProcessor owns 2 partitions more than any other active EventProcessor. Given that each invocation to this method results in ownership claim of at most one partition, this algorithm converges gradually towards a steady state.
-
-
-    When a new partition is claimed, this method is also responsible for starting a partition pump that creates an <xref uid="com.azure.messaging.eventhubs.EventHubConsumerAsyncClient" data-throw-if-not-resolved="false">EventHubConsumerAsyncClient</xref> for processing events from that partition.
-  syntax:
-    content: " void loadBalance()"
 references:
 - uid: com.azure.messaging.eventhubs.CheckpointStore
   name: CheckpointStore
@@ -142,11 +117,6 @@ references:
   name: PartitionBasedLoadBalancer
   nameWithType: PartitionBasedLoadBalancer.PartitionBasedLoadBalancer
   fullName: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.PartitionBasedLoadBalancer
-  package: com.azure.messaging.eventhubs
-- uid: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance*
-  name: loadBalance
-  nameWithType: PartitionBasedLoadBalancer.loadBalance
-  fullName: com.azure.messaging.eventhubs.PartitionBasedLoadBalancer.loadBalance
   package: com.azure.messaging.eventhubs
 - uid: java.lang.Object.notify()
   name: Object.notify()

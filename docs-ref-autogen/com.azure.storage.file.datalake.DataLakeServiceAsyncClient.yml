@@ -5,7 +5,6 @@ items:
   artifact: com.azure:azure-storage-file-datalake:12.1.1
   parent: com.azure.storage.file.datalake
   children:
-  - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.DataLakeServiceAsyncClient(com.azure.core.http.HttpPipeline,java.lang.String,com.azure.storage.file.datalake.DataLakeServiceVersion,java.lang.String,com.azure.storage.blob.BlobServiceAsyncClient)
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystem(java.lang.String)
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystemWithResponse(java.lang.String,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.file.datalake.models.PublicAccessType)
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystem(java.lang.String)
@@ -20,7 +19,6 @@ items:
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getUserDelegationKeyWithResponse(java.time.OffsetDateTime,java.time.OffsetDateTime)
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems()
   - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems(com.azure.storage.file.datalake.models.ListFileSystemsOptions)
-  - com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout(com.azure.storage.file.datalake.models.ListFileSystemsOptions,java.time.Duration)
   langs:
   - java
   name: DataLakeServiceAsyncClient
@@ -35,7 +33,7 @@ items:
     This client contains operations on the main data lake service account. Operations on a file system are available on <xref uid="com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient" data-throw-if-not-resolved="false">DataLakeFileSystemAsyncClient</xref> through <xref uid="com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getFileSystemAsyncClient(java.lang.String)" data-throw-if-not-resolved="false">#getFileSystemAsyncClient(String)</xref>, and operations on a file or directory are available on <xref uid="com.azure.storage.file.datalake.DataLakeFileAsyncClient" data-throw-if-not-resolved="false">DataLakeFileAsyncClient</xref> or <xref uid="com.azure.storage.file.datalake.DataLakeDirectoryAsyncClient" data-throw-if-not-resolved="false">DataLakeDirectoryAsyncClient</xref>.
 
 
-    Note this client is an async client that returns reactive responses from Spring Reactor Core project (https://projectreactor.io/). Calling the methods in this client will **NOT** start the actual network operation, until `.subscribe()` is called on the reactive response. You can simply convert one of these responses to a <xref uid="" data-throw-if-not-resolved="false">java.util.concurrent.CompletableFuture</xref> object through <xref uid="" data-throw-if-not-resolved="false">Mono#toFuture()</xref>.
+    Note this client is an async client that returns reactive responses from Spring Reactor Core project (https://projectreactor.io/). Calling the methods in this client will **NOT** start the actual network operation, until `.subscribe()` is called on the reactive response. You can simply convert one of these responses to a <xref uid="" data-throw-if-not-resolved="false">java.util.concurrent.CompletableFuture</xref> object through <xref uid="reactor.core.publisher.Mono.toFuture*" data-throw-if-not-resolved="false">Mono#toFuture()</xref>.
   syntax:
     content: public class DataLakeServiceAsyncClient
   inheritance:
@@ -82,7 +80,7 @@ items:
       description: The storage account name.
     - id: blobServiceAsyncClient
       type: com.azure.storage.blob.BlobServiceAsyncClient
-      description: The underlying <xref uid="" data-throw-if-not-resolved="false">BlobServiceAsyncClient</xref>
+      description: The underlying <xref uid="com.azure.storage.blob.BlobServiceAsyncClient" data-throw-if-not-resolved="false">BlobServiceAsyncClient</xref>
 - uid: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.createFileSystem(java.lang.String)
   id: createFileSystem(java.lang.String)
   artifact: com.azure:azure-storage-file-datalake:12.1.1
@@ -151,7 +149,7 @@ items:
          x-ms-blob-public-access header in the Azure Docs for more information. Pass null for no public access.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient>>
-      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="" data-throw-if-not-resolved="false">value</xref> contains a <xref uid="com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient" data-throw-if-not-resolved="false">DataLakeFileSystemAsyncClient</xref> used to interact with the file system created.
+      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains a <xref uid="com.azure.storage.file.datalake.DataLakeFileSystemAsyncClient" data-throw-if-not-resolved="false">DataLakeFileSystemAsyncClient</xref> used to interact with the file system created.
 - uid: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.deleteFileSystem(java.lang.String)
   id: deleteFileSystem(java.lang.String)
   artifact: com.azure:azure-storage-file-datalake:12.1.1
@@ -242,13 +240,13 @@ items:
   overload: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.generateAccountSas*
   type: Method
   package: com.azure.storage.file.datalake
-  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to file systems and file shares.\n\n```java\nAccountSasPermission permissions = new AccountSasPermission()\n     .setListPermission(true)\n     .setReadPermission(true);\n AccountSasResourceType resourceTypes = new AccountSasResourceType().setContainer(true);\n AccountSasService services = new AccountSasService().setBlobAccess(true).setFileAccess(true);\n OffsetDateTime expiryTime = OffsetDateTime.now().plus(Duration.ofDays(2));\n \n AccountSasSignatureValues sasValues =\n     new AccountSasSignatureValues(expiryTime, permissions, services, resourceTypes);\n \n // Client must be authenticated via StorageSharedKeyCredential\n String sas = client.generateAccountSas(sasValues);\n```"
+  summary: "Generates an account SAS for the Azure Storage account using the specified <xref uid=\"com.azure.storage.common.sas.AccountSasSignatureValues\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref>. Note : The client must be authenticated via <xref uid=\"\" data-throw-if-not-resolved=\"false\">StorageSharedKeyCredential</xref>\n\nSee <xref uid=\"com.azure.storage.common.sas.AccountSasSignatureValues\" data-throw-if-not-resolved=\"false\">AccountSasSignatureValues</xref> for more information on how to construct an account SAS.\n\nThe snippet below generates a SAS that lasts for two days and gives the user read and list access to file systems and file shares.\n\n```java\nAccountSasPermission permissions = new AccountSasPermission()\n     .setListPermission(true)\n     .setReadPermission(true);\n AccountSasResourceType resourceTypes = new AccountSasResourceType().setContainer(true);\n AccountSasService services = new AccountSasService().setBlobAccess(true).setFileAccess(true);\n OffsetDateTime expiryTime = OffsetDateTime.now().plus(Duration.ofDays(2));\n \n AccountSasSignatureValues sasValues =\n     new AccountSasSignatureValues(expiryTime, permissions, services, resourceTypes);\n \n // Client must be authenticated via StorageSharedKeyCredential\n String sas = client.generateAccountSas(sasValues);\n```"
   syntax:
     content: public String generateAccountSas(AccountSasSignatureValues accountSasSignatureValues)
     parameters:
     - id: accountSasSignatureValues
       type: com.azure.storage.common.sas.AccountSasSignatureValues
-      description: <xref uid="" data-throw-if-not-resolved="false">AccountSasSignatureValues</xref>
+      description: <xref uid="com.azure.storage.common.sas.AccountSasSignatureValues" data-throw-if-not-resolved="false">AccountSasSignatureValues</xref>
     return:
       type: java.lang.String
       description: A <code>String</code> representing all SAS query parameters.
@@ -335,7 +333,7 @@ items:
   overload: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.getHttpPipeline*
   type: Method
   package: com.azure.storage.file.datalake
-  summary: Gets the <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> powering this client.
+  summary: Gets the <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref> powering this client.
   syntax:
     content: public HttpPipeline getHttpPipeline()
     return:
@@ -372,7 +370,7 @@ items:
   type: Method
   package: com.azure.storage.file.datalake
   summary: >-
-    Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid="" data-throw-if-not-resolved="false">TokenCredential</xref> in this object's <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref>.
+    Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid="" data-throw-if-not-resolved="false">TokenCredential</xref> in this object's <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref>.
 
 
     **Code Samples**
@@ -408,7 +406,7 @@ items:
   type: Method
   package: com.azure.storage.file.datalake
   summary: >-
-    Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid="" data-throw-if-not-resolved="false">TokenCredential</xref> in this object's <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref>.
+    Gets a user delegation key for use with this account's data lake storage. Note: This method call is only valid when using <xref uid="" data-throw-if-not-resolved="false">TokenCredential</xref> in this object's <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref>.
 
 
     **Code Samples**
@@ -431,7 +429,7 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<com.azure.storage.file.datalake.models.UserDelegationKey>>
       description: >-
-        A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="" data-throw-if-not-resolved="false">value</xref> containing the user
+        A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> containing the user
          delegation key.
 - uid: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystems()
   id: listFileSystems()
@@ -488,27 +486,6 @@ items:
     return:
       type: com.azure.core.http.rest.PagedFlux<com.azure.storage.file.datalake.models.FileSystemItem>
       description: A reactive response emitting the list of file systems.
-- uid: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout(com.azure.storage.file.datalake.models.ListFileSystemsOptions,java.time.Duration)
-  id: listFileSystemsWithOptionalTimeout(com.azure.storage.file.datalake.models.ListFileSystemsOptions,java.time.Duration)
-  artifact: com.azure:azure-storage-file-datalake:12.1.1
-  parent: com.azure.storage.file.datalake.DataLakeServiceAsyncClient
-  langs:
-  - java
-  name: listFileSystemsWithOptionalTimeout(ListFileSystemsOptions options, Duration timeout)
-  nameWithType: DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout(ListFileSystemsOptions options, Duration timeout)
-  fullName: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout(ListFileSystemsOptions options, Duration timeout)
-  overload: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout*
-  type: Method
-  package: com.azure.storage.file.datalake
-  syntax:
-    content: " PagedFlux<FileSystemItem> listFileSystemsWithOptionalTimeout(ListFileSystemsOptions options, Duration timeout)"
-    parameters:
-    - id: options
-      type: com.azure.storage.file.datalake.models.ListFileSystemsOptions
-    - id: timeout
-      type: java.time.Duration
-    return:
-      type: com.azure.core.http.rest.PagedFlux<com.azure.storage.file.datalake.models.FileSystemItem>
 references:
 - uid: com.azure.core.http.HttpPipeline
   spec.java:
@@ -686,16 +663,6 @@ references:
   name: ListFileSystemsOptions
   nameWithType: ListFileSystemsOptions
   fullName: com.azure.storage.file.datalake.models.ListFileSystemsOptions
-- uid: java.time.Duration
-  spec.java:
-  - uid: java.time.Duration
-    name: Duration
-    fullName: java.time.Duration
-- uid: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout*
-  name: listFileSystemsWithOptionalTimeout
-  nameWithType: DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout
-  fullName: com.azure.storage.file.datalake.DataLakeServiceAsyncClient.listFileSystemsWithOptionalTimeout
-  package: com.azure.storage.file.datalake
 - uid: java.time.OffsetDateTime
   spec.java:
   - uid: java.time.OffsetDateTime
