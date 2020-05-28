@@ -41,7 +41,7 @@ AMQP 1.0 compliant libraries such as Apache Qpid Proton's JMS provider.
 
 ## Client library
 
-The official Service Bus client is available in [source code form on GitHub](https://github.com/azure/azure-service-bus-java) and
+The official Service Bus client is available in [source code form on GitHub](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/servicebus/) and
 binaries and packaged sources [are available on Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22).
 
 **The [sample code repository](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/) contains samples for:**
