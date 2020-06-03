@@ -4,7 +4,7 @@ items:
   id: AmqpConnectionHandler
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps
   children:
-  - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol)
+  - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol,ProxyOptions)
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AMQPS_PORT
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AMQPS_WS_PORT
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.connectionOpenedRemotely
@@ -16,6 +16,7 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.onLinkRemoteOpen(Event)
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.onReactorInit(Event)
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.onSessionRemoteOpen(Event)
+  - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.proxyOptions
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.sasToken
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.savedException
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.sessionOpenedRemotely
@@ -23,7 +24,6 @@ items:
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.verifyConnectionWasOpened()
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.WEBSOCKET_PATH
   - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.WEBSOCKET_SUB_PROTOCOL
-  - com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.webSocketHostName
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.yml
   langs:
   - java
@@ -37,7 +37,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 18
+    startLine: 25
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public class AmqpConnectionHandler extends ErrorLoggingBaseHandlerWithCleanup
@@ -58,24 +58,24 @@ items:
   - com.microsoft.azure.sdk.iot.deps.transport.amqp.ErrorLoggingBaseHandlerWithCleanup.onSessionRemoteClose(Event)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp.ErrorLoggingBaseHandlerWithCleanup.onTransportError(Event)
   - com.microsoft.azure.sdk.iot.deps.transport.amqp.ErrorLoggingBaseHandler.protonJExceptionParser
-- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol)
-  id: AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol)
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol,ProxyOptions)
+  id: AmqpConnectionHandler(String,String,String,IotHubServiceClientProtocol,ProxyOptions)
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
   href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.yml
   langs:
   - java
-  name: AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol)
-  nameWithType: AmqpConnectionHandler.AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol)
-  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol)
+  name: AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol, ProxyOptions proxyOptions)
+  nameWithType: AmqpConnectionHandler.AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol, ProxyOptions proxyOptions)
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol, ProxyOptions proxyOptions)
   overload: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AmqpConnectionHandler*
   type: Constructor
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 36
+    startLine: 43
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
-    content: protected AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol)
+    content: protected AmqpConnectionHandler(String hostName, String userName, String sasToken, IotHubServiceClientProtocol iotHubServiceClientProtocol, ProxyOptions proxyOptions)
     parameters:
     - id: hostName
       type: "26831127"
@@ -85,6 +85,8 @@ items:
       type: "26831127"
     - id: iotHubServiceClientProtocol
       type: com.microsoft.azure.sdk.iot.service.IotHubServiceClientProtocol
+    - id: proxyOptions
+      type: com.microsoft.azure.sdk.iot.service.ProxyOptions
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AMQPS_PORT
   id: AMQPS_PORT
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
@@ -98,12 +100,12 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 22
+    startLine: 29
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
-    content: public static final String AMQPS_PORT= ":5671"
+    content: public static final int AMQPS_PORT= 5671
     return:
-      type: 3d93591e
+      type: cd225469
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.AMQPS_WS_PORT
   id: AMQPS_WS_PORT
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
@@ -117,12 +119,12 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 23
+    startLine: 30
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
-    content: public static final String AMQPS_WS_PORT= ":443"
+    content: public static final int AMQPS_WS_PORT= 443
     return:
-      type: 3d93591e
+      type: cd225469
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.connectionOpenedRemotely
   id: connectionOpenedRemotely
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
@@ -136,7 +138,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 26
+    startLine: 33
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected boolean connectionOpenedRemotely
@@ -155,7 +157,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 30
+    startLine: 37
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String hostName
@@ -174,7 +176,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 33
+    startLine: 40
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final IotHubServiceClientProtocol iotHubServiceClientProtocol
@@ -193,7 +195,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 28
+    startLine: 35
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected boolean linkOpenedRemotely
@@ -213,7 +215,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 87
+    startLine: 103
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: "<p>Event handler for the connection bound event </p>"
   syntax:
@@ -236,7 +238,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 122
+    startLine: 144
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onConnectionRemoteOpen(Event event)
@@ -257,7 +259,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 108
+    startLine: 130
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onLinkRemoteOpen(Event event)
@@ -278,7 +280,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 77
+    startLine: 76
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onReactorInit(Event event)
@@ -299,13 +301,32 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 115
+    startLine: 137
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public void onSessionRemoteOpen(Event event)
     parameters:
     - id: event
       type: 70fceca4
+- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.proxyOptions
+  id: proxyOptions
+  parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
+  href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.yml
+  langs:
+  - java
+  name: proxyOptions
+  nameWithType: AmqpConnectionHandler.proxyOptions
+  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.proxyOptions
+  type: Field
+  source:
+    remote: *o0
+    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
+    startLine: 41
+  package: com.microsoft.azure.sdk.iot.service.transport.amqps
+  syntax:
+    content: protected final ProxyOptions proxyOptions
+    return:
+      type: 93de0ef9com.microsoft.azure.sdk.iot.service.ProxyOptions
 - uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.sasToken
   id: sasToken
   parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
@@ -319,7 +340,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 32
+    startLine: 39
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String sasToken
@@ -338,7 +359,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 25
+    startLine: 32
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected Exception savedException
@@ -357,7 +378,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 27
+    startLine: 34
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected boolean sessionOpenedRemotely
@@ -376,7 +397,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 31
+    startLine: 38
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: protected final String userName
@@ -396,7 +417,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 133
+    startLine: 155
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   summary: "<p>If an exception was encountered while opening the AMQP connection, this function shall throw that saved exception </p>"
   syntax:
@@ -417,7 +438,7 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 20
+    startLine: 27
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String WEBSOCKET_PATH= "/$iothub/websocket"
@@ -436,29 +457,10 @@ items:
   source:
     remote: *o0
     path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 21
+    startLine: 28
   package: com.microsoft.azure.sdk.iot.service.transport.amqps
   syntax:
     content: public static final String WEBSOCKET_SUB_PROTOCOL= "AMQPWSB10"
-    return:
-      type: 3d93591e
-- uid: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.webSocketHostName
-  id: webSocketHostName
-  parent: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler
-  href: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.yml
-  langs:
-  - java
-  name: webSocketHostName
-  nameWithType: AmqpConnectionHandler.webSocketHostName
-  fullName: com.microsoft.azure.sdk.iot.service.transport.amqps.AmqpConnectionHandler.webSocketHostName
-  type: Field
-  source:
-    remote: *o0
-    path: service/iot-service-client/src/main/java/com/microsoft/azure/sdk/iot/service/transport/amqps/AmqpConnectionHandler.java
-    startLine: 34
-  package: com.microsoft.azure.sdk.iot.service.transport.amqps
-  syntax:
-    content: protected final String webSocketHostName
     return:
       type: 3d93591e
 references:
@@ -466,6 +468,10 @@ references:
   spec.java:
   - name: final String
     fullName: final String
+- uid: cd225469
+  spec.java:
+  - name: final int
+    fullName: final int
 - uid: 8a99d4b0
   spec.java:
   - name: Exception
@@ -482,6 +488,14 @@ references:
     name: IotHubServiceClientProtocol
     fullName: com.microsoft.azure.sdk.iot.service.IotHubServiceClientProtocol
     href: com.microsoft.azure.sdk.iot.service.IotHubServiceClientProtocol.yml
+- uid: 93de0ef9com.microsoft.azure.sdk.iot.service.ProxyOptions
+  spec.java:
+  - name: 'final '
+    fullName: 'final '
+  - uid: com.microsoft.azure.sdk.iot.service.ProxyOptions
+    name: ProxyOptions
+    fullName: com.microsoft.azure.sdk.iot.service.ProxyOptions
+    href: com.microsoft.azure.sdk.iot.service.ProxyOptions.yml
 - uid: "26831127"
   spec.java:
   - name: String
@@ -710,3 +724,13 @@ references:
   summary: "<p>The application-layer protocol used by the service client to communicate with an IoT Hub. </p>"
   syntax:
     content: public enum IotHubServiceClientProtocol
+- uid: com.microsoft.azure.sdk.iot.service.ProxyOptions
+  parent: com.microsoft.azure.sdk.iot.service
+  href: com.microsoft.azure.sdk.iot.service.ProxyOptions.yml
+  name: ProxyOptions
+  nameWithType: ProxyOptions
+  fullName: com.microsoft.azure.sdk.iot.service.ProxyOptions
+  type: Class
+  summary: "<p>The settings supported by this SDK when communicating to IoT Hub through a proxy. HTTP proxies are supported by this SDK, but only if the proxy does not require authentication. </p>"
+  syntax:
+    content: public class ProxyOptions
