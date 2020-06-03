@@ -41,6 +41,9 @@ if __name__ == "__main__":
 
   appended_content = yaml.dump(toc_items, default_flow_style=False)
 
+  if not os.path.exists(os.path.join(root_dir, TARGET_SOURCE_FOLDER)):
+    os.mkdir(os.path.join(root_dir, TARGET_SOURCE_FOLDER))
+
   # write the toc
   with open(os.path.join(root_dir, TARGET_SOURCE_FOLDER, "toc.yml"), "a", encoding="utf-8") as stable_toc:
     stable_toc.write(appended_content)
