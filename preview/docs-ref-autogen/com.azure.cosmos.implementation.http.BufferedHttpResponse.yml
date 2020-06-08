@@ -81,6 +81,25 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.body*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: >-
+    Get the publisher emitting response content chunks.
+
+
+    Returns a stream of the response's body content. Emissions may occur on the Netty EventLoop threads which are shared across channels and should not be blocked. Blocking should be avoided as much as possible/practical in reactive programming but if you do use methods like `blockingSubscribe` or `blockingGet` on the stream then be sure to use `subscribeOn` and `observeOn` before the blocking call. For example:
+
+
+    ```java
+
+    response.body()
+         .map(bb -> bb.limit())
+         .reduce((x,y) -> x + y)
+         .subscribeOn(Schedulers.io())
+         .observeOn(Schedulers.io())
+         .blockingGet();
+    ```
+
+
+    The above code is a simplistic example and would probably run fine without the \`subscribeOn\` and \`observeOn\` but should be considered a template for more complex situations.
   syntax:
     content: public Flux<ByteBuf> body()
     return:
@@ -97,6 +116,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.bodyAsByteArray*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get the response content as a byte\[\].
   syntax:
     content: public Mono<byte[]> bodyAsByteArray()
     return:
@@ -113,6 +133,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.bodyAsString*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get the response content as a string.
   syntax:
     content: public Mono<String> bodyAsString()
     return:
@@ -129,6 +150,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.bodyAsString*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get the response content as a string.
   syntax:
     content: public Mono<String> bodyAsString(Charset charset)
     parameters:
@@ -148,6 +170,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.buffer*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get a new Response object wrapping this response with it's content buffered into memory.
   syntax:
     content: public BufferedHttpResponse buffer()
     return:
@@ -164,6 +187,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.headerValue*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Lookup a response header with the provided name.
   syntax:
     content: public String headerValue(String name)
     parameters:
@@ -183,6 +207,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.headers*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get all response headers.
   syntax:
     content: public HttpHeaders headers()
     return:
@@ -199,6 +224,7 @@ items:
   overload: com.azure.cosmos.implementation.http.BufferedHttpResponse.statusCode*
   type: Method
   package: com.azure.cosmos.implementation.http
+  summary: Get the response status code.
   syntax:
     content: public int statusCode()
     return:
