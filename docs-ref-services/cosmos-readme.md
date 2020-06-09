@@ -8,10 +8,9 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: Java
-ms.service: cosmos
+ms.service: cosmos-db
 ---
  # Azure CosmosDB Client Library for Java - Version 4.0.1-beta.1 
-
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.microsoft.azure/azure-cosmos.svg)](https://search.maven.org/artifact/com.microsoft.azure/azure-cosmos)
 [![Known Vulnerabilities](https://snyk.io/test/github/Azure/azure-cosmosdb-java/badge.svg?targetFile=sdk%2Fpom.xml)](https://snyk.io/test/github/Azure/azure-cosmosdb-java?targetFile=sdk%2Fpom.xml)
@@ -93,8 +92,8 @@ Also We have more examples in form of standalone unit tests in [examples project
 
 ## Consuming the official Microsoft Azure Cosmos DB Java SDK
 
-This project provides a SDK library in Java for interacting with [SQL API](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-sql-query) of [Azure Cosmos DB
-Database Service](https://azure.microsoft.com/en-us/services/cosmos-db/). This project also includes samples, tools, and utilities.
+This project provides a SDK library in Java for interacting with [SQL API](https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query) of [Azure Cosmos DB
+Database Service](https://azure.microsoft.com/services/cosmos-db/). This project also includes samples, tools, and utilities.
 
 Jar dependency binary information for maven and gradle can be found here at [maven](https://mvnrepository.com/artifact/com.microsoft.azure/azure-cosmos).
 
@@ -113,15 +112,15 @@ For example, using maven, you can add the following dependency to your maven pom
 Useful links:
 
 - [Sample Get Started APP](https://github.com/Azure-Samples/azure-cosmos-db-sql-api-async-java-getting-started)
-- [Introduction to Resource Model of Azure Cosmos DB Service](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-resources)
-- [Introduction to SQL API of Azure Cosmos DB Service](https://docs.microsoft.com/en-us/azure/cosmos-db/sql-api-sql-query)
+- [Introduction to Resource Model of Azure Cosmos DB Service](https://docs.microsoft.com/azure/cosmos-db/sql-api-resources)
+- [Introduction to SQL API of Azure Cosmos DB Service](https://docs.microsoft.com/azure/cosmos-db/sql-api-sql-query)
 - [Reactor Core JavaDoc API](https://projectreactor.io/docs/core/release/api/)
 - [SDK FAQ](faq/)
 
 ## Prerequisites
 
 - Java Development Kit 8
-- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://azure.microsoft.com/documentation/articles/documentdb-nosql-local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store as [explained here](https://docs.microsoft.com/azure/cosmos-db/local-emulator-export-ssl-certificates)
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
 - (Optional) Maven
@@ -284,7 +283,7 @@ Values that are in error are ignored.
 
 ### Common Perf Tips
 
-There is a set of common perf tips written for our Java SDK. It is available [here](https://docs.microsoft.com/en-us/azure/cosmos-db/performance-tips-async-java).
+There is a set of common perf tips written for our Java SDK. It is available [here](https://docs.microsoft.com/azure/cosmos-db/performance-tips-async-java).
 
 ## FAQ
 
