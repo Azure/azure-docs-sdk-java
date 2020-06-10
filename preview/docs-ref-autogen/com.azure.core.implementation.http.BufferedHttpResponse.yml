@@ -80,6 +80,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.buffer*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get a new Response object wrapping this response with it's content buffered into memory.
   syntax:
     content: public BufferedHttpResponse buffer()
     return:
@@ -96,6 +97,25 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getBody*
   type: Method
   package: com.azure.core.implementation.http
+  summary: >-
+    Get the publisher emitting response content chunks.
+
+
+    Returns a stream of the response's body content. Emissions may occur on the Netty EventLoop threads which are shared across channels and should not be blocked. Blocking should be avoided as much as possible/practical in reactive programming but if you do use methods like `blockingSubscribe` or `blockingGet` on the stream then be sure to use `subscribeOn` and `observeOn` before the blocking call. For example:
+
+
+    ```java
+
+    response.body()
+         .map(bb -> bb.limit())
+         .reduce((x,y) -> x + y)
+         .subscribeOn(Schedulers.io())
+         .observeOn(Schedulers.io())
+         ;
+    ```
+
+
+    The above code is a simplistic example and would probably run fine without the \`subscribeOn\` and \`observeOn\` but should be considered a template for more complex situations.
   syntax:
     content: public Flux<ByteBuffer> getBody()
     return:
@@ -112,6 +132,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getBodyAsByteArray*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get the response content as a byte\[\].
   syntax:
     content: public Mono<byte[]> getBodyAsByteArray()
     return:
@@ -128,6 +149,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getBodyAsString*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get the response content as a string.
   syntax:
     content: public Mono<String> getBodyAsString()
     return:
@@ -144,6 +166,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getBodyAsString*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get the response content as a string.
   syntax:
     content: public Mono<String> getBodyAsString(Charset charset)
     parameters:
@@ -163,6 +186,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getHeaderValue*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Lookup a response header with the provided name.
   syntax:
     content: public String getHeaderValue(String name)
     parameters:
@@ -182,6 +206,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getHeaders*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get all response headers.
   syntax:
     content: public HttpHeaders getHeaders()
     return:
@@ -198,6 +223,7 @@ items:
   overload: com.azure.core.implementation.http.BufferedHttpResponse.getStatusCode*
   type: Method
   package: com.azure.core.implementation.http
+  summary: Get the response status code.
   syntax:
     content: public int getStatusCode()
     return:
