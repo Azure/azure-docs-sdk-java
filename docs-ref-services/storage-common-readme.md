@@ -1,7 +1,21 @@
-# Azure Storage Common client library for Java
+---
+title: Azure Storage Common shared library for Java
+keywords: Azure, java, SDK, API, azure-storage-common, 
+author: maggiepint
+ms.author: magpint
+ms.date: 06/13/2020
+ms.topic: article
+ms.prod: azure
+ms.technology: azure
+ms.devlang: java
+ms.service: 
+---
+
+# Azure Storage Common shared library for Java - Version 12.7.0 
+
 Azure Storage Common is a library that has common dependencies for all Azure Storage packages.
 
-[Source code][source] | [API reference documentation][docs] 
+[Source code][source] | [API reference documentation][docs]
 
 ## Getting started
 
@@ -18,7 +32,7 @@ Azure Storage Common is a library that has common dependencies for all Azure Sto
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-common</artifactId>
-    <version>12.6.0</version>
+    <version>12.7.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -32,14 +46,14 @@ Azure Storage Common is a library that has common dependencies for all Azure Sto
 ## Troubleshooting
 
 ### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure 
+All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
 the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
 [HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
 
 ### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL 
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides 
-better performance compared to the default SSL implementation within the JDK. For more information, including how to 
+All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
+operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
+better performance compared to the default SSL implementation within the JDK. For more information, including how to
 reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ## Next steps
@@ -55,7 +69,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-common/src
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-common/src
 [samples_readme]: src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
@@ -68,3 +82,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [coc_contact]: mailto:opencode@microsoft.com
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-common%2FREADME.png)
+
