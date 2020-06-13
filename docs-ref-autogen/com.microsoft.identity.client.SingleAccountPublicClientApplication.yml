@@ -43,7 +43,6 @@ items:
   - com.microsoft.identity.client.IPublicClientApplication
   - com.microsoft.identity.client.PublicClientApplication
   inheritedMembers:
-  - com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String [],@Nullable final String)
   - com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,final int,@NonNull final ApplicationCreatedListener)
   - com.microsoft.identity.client.PublicClientApplication.create(@NonNull final Context,@NonNull final File,@NonNull final ApplicationCreatedListener)
@@ -172,15 +171,19 @@ items:
     path: msal/src/main/java/com/microsoft/identity/client/SingleAccountPublicClientApplication.java
     startLine: 625
   package: com.microsoft.identity.client
+  summary: "<p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>\r\n<p></p>"
   syntax:
     content: public IAuthenticationResult acquireTokenSilent(@NonNull final String[] scopes, @NonNull final String authority)
     parameters:
     - id: scopes
       type: e5895f1f
+      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
     - id: authority
       type: 8789feb4
+      description: <p>Authority to issue the token. </p>
     return:
       type: com.microsoft.identity.client.IAuthenticationResult
+  overridden: com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String [],@NonNull final String)
 - uid: com.microsoft.identity.client.SingleAccountPublicClientApplication.acquireTokenSilentAsync(@NonNull final AcquireTokenSilentParameters)
   id: acquireTokenSilentAsync(@NonNull final AcquireTokenSilentParameters)
   parent: com.microsoft.identity.client.SingleAccountPublicClientApplication
@@ -679,25 +682,6 @@ references:
     name: AcquireTokenSilentParameters
     fullName: com.microsoft.identity.client.AcquireTokenSilentParameters
     href: com.microsoft.identity.client.AcquireTokenSilentParameters.yml
-- uid: com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String [],@Nullable final String)
-  parent: com.microsoft.identity.client.ISingleAccountPublicClientApplication
-  href: com.microsoft.identity.client.ISingleAccountPublicClientApplication.yml
-  name: acquireTokenSilent(@NonNull final String[] scopes, @Nullable final String authority)
-  nameWithType: ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @Nullable final String authority)
-  fullName: com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @Nullable final String authority)
-  type: Method
-  summary: "<p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>\r\n<p></p>"
-  syntax:
-    content: public IAuthenticationResult acquireTokenSilent(@NonNull final String[] scopes, @Nullable final String authority)
-    parameters:
-    - id: scopes
-      type: e5895f1f
-      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
-    - id: authority
-      type: b868e8dd
-      description: <p>Optional. Can be passed to override the configured authority. </p>
-    return:
-      type: com.microsoft.identity.client.IAuthenticationResult
 - uid: com.microsoft.identity.client.PublicClientApplication.buildAcquireTokenSilentParameters(@NonNull final String [],@NonNull final IAccount,@NonNull final String,final boolean,@Nullable final ClaimsRequest,@NonNull final SilentAuthenticationCallback)
   parent: com.microsoft.identity.client.PublicClientApplication
   href: com.microsoft.identity.client.PublicClientApplication.yml
@@ -1617,6 +1601,25 @@ references:
   type: Interface
   syntax:
     content: public interface IAuthenticationResult
+- uid: com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String [],@NonNull final String)
+  parent: com.microsoft.identity.client.ISingleAccountPublicClientApplication
+  href: com.microsoft.identity.client.ISingleAccountPublicClientApplication.yml
+  name: acquireTokenSilent(@NonNull final String[] scopes, @NonNull final String authority)
+  nameWithType: ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @NonNull final String authority)
+  fullName: com.microsoft.identity.client.ISingleAccountPublicClientApplication.acquireTokenSilent(@NonNull final String[] scopes, @NonNull final String authority)
+  type: Method
+  summary: "<p>Perform acquire token silent call. If there is a valid access token in the cache, the sdk will return the access token; If no valid access token exists, the sdk will try to find a refresh token and use the refresh token to get a new access token. If refresh token does not exist or it fails the refresh, exception will be sent back via callback.</p>\r\n<p></p>"
+  syntax:
+    content: public IAuthenticationResult acquireTokenSilent(@NonNull final String[] scopes, @NonNull final String authority)
+    parameters:
+    - id: scopes
+      type: e5895f1f
+      description: <p>The non-null array of scopes to be requested for the access token. MSAL always sends the scopes 'openid profile offline_access'. Do not include any of these scopes in the scope parameter. </p>
+    - id: authority
+      type: 8789feb4
+      description: <p>Authority to issue the token. </p>
+    return:
+      type: com.microsoft.identity.client.IAuthenticationResult
 - uid: com.microsoft.identity.client.IPublicClientApplication.acquireTokenSilentAsync(@NonNull final AcquireTokenSilentParameters)
   parent: com.microsoft.identity.client.IPublicClientApplication
   href: com.microsoft.identity.client.IPublicClientApplication.yml
