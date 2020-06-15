@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient
   id: KeyAsyncClient
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys
   children:
   - com.azure.security.keyvault.keys.KeyAsyncClient.backupKey(java.lang.String)
@@ -48,7 +48,13 @@ items:
     **Samples to construct the async client**
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.instantiation\}
+    ```java
+
+    KeyAsyncClient keyAsyncClient = new KeyClientBuilder()
+         .vaultUrl("https://myvault.azure.net/")
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .buildAsyncClient();
+    ```
   syntax:
     content: public final class KeyAsyncClient
   inheritance:
@@ -67,7 +73,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.KeyAsyncClient(java.net.URL,com.azure.core.http.HttpPipeline,com.azure.security.keyvault.keys.KeyServiceVersion)
   id: KeyAsyncClient(java.net.URL,com.azure.core.http.HttpPipeline,com.azure.security.keyvault.keys.KeyServiceVersion)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -92,7 +98,7 @@ items:
       description: <xref uid="com.azure.security.keyvault.keys.KeyServiceVersion" data-throw-if-not-resolved="false">KeyServiceVersion</xref> of the service to be used when making requests.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.backupKey(java.lang.String)
   id: backupKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -112,7 +118,13 @@ items:
     Backs up the key from the key vault. Subscribes to the call asynchronously and prints out the length of the key's backup byte array returned in the response.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.backupKey\#string\}
+    ```java
+
+    keyAsyncClient.backupKey("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyBackupResponse ->
+             System.out.printf("Key's Backup Byte array's length %s %n", keyBackupResponse.length));
+    ```
   syntax:
     content: public Mono<byte[]> backupKey(String name)
     parameters:
@@ -124,7 +136,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the backed up key blob.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.backupKeyWithResponse(java.lang.String)
   id: backupKeyWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -144,7 +156,13 @@ items:
     Backs up the key from the key vault. Subscribes to the call asynchronously and prints out the length of the key's backup byte array returned in the response.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.backupKeyWithResponse\#string\}
+    ```java
+
+    keyAsyncClient.backupKeyWithResponse("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyBackupResponse ->
+             System.out.printf("Key's Backup Byte array's length %s %n", keyBackupResponse.getValue().length));
+    ```
   syntax:
     content: public Mono<Response<byte[]>> backupKeyWithResponse(String name)
     parameters:
@@ -158,7 +176,7 @@ items:
              key blob.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.beginDeleteKey(java.lang.String)
   id: beginDeleteKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -178,7 +196,15 @@ items:
     Deletes the key in the Azure Key Vault. Subscribes to the call asynchronously and prints out the deleted key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.deleteKey\#string\}
+    ```java
+
+    keyAsyncClient.beginDeleteKey("keyName")
+         .subscribe(pollResponse -> {
+             System.out.println("Delete Status: " + pollResponse.getStatus().toString());
+             System.out.println("Delete Key Name: " + pollResponse.getValue().getName());
+             System.out.println("Key Delete Date: " + pollResponse.getValue().getDeletedOn().toString());
+         });
+    ```
   syntax:
     content: public PollerFlux<DeletedKey,Void> beginDeleteKey(String name)
     parameters:
@@ -190,7 +216,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> to poll on the <xref uid="com.azure.security.keyvault.keys.models.DeletedKey" data-throw-if-not-resolved="false">deleted key</xref> status.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.beginRecoverDeletedKey(java.lang.String)
   id: beginRecoverDeletedKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -210,7 +236,18 @@ items:
     Recovers the deleted key from the key vault enabled for soft-delete. Subscribes to the call asynchronously and prints out the recovered key details when a response has been received.
 
 
-    //Assuming key is deleted on a soft-delete enabled vault. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.recoverDeletedKey\#string\}
+    //Assuming key is deleted on a soft-delete enabled vault.
+
+
+    ```java
+
+    keyAsyncClient.beginRecoverDeletedKey("deletedKeyName")
+         .subscribe(pollResponse -> {
+             System.out.println("Recovery Status: " + pollResponse.getStatus().toString());
+             System.out.println("Recover Key Name: " + pollResponse.getValue().getName());
+             System.out.println("Recover Key Type: " + pollResponse.getValue().getKeyType());
+         });
+    ```
   syntax:
     content: public PollerFlux<KeyVaultKey,Void> beginRecoverDeletedKey(String name)
     parameters:
@@ -222,7 +259,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> to poll on the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">recovered key</xref> status.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createEcKey(com.azure.security.keyvault.keys.models.CreateEcKeyOptions)
   id: createEcKey(com.azure.security.keyvault.keys.models.CreateEcKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -248,7 +285,18 @@ items:
     Creates a new EC key with P-384 web key curve. The key activates in one day and expires in one year. Subscribes to the call asynchronously and prints out the newly created ec key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createEcKey\#EcKeyCreateOptions\}
+    ```java
+
+    CreateEcKeyOptions createEcKeyOptions = new CreateEcKeyOptions("keyName")
+         .setCurveName(KeyCurveName.P_384)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createEcKey(createEcKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> createEcKey(CreateEcKeyOptions createEcKeyOptions)
     parameters:
@@ -260,7 +308,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createEcKeyWithResponse(com.azure.security.keyvault.keys.models.CreateEcKeyOptions)
   id: createEcKeyWithResponse(com.azure.security.keyvault.keys.models.CreateEcKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -286,7 +334,18 @@ items:
     Creates a new EC key with P-384 web key curve. The key activates in one day and expires in one year. Subscribes to the call asynchronously and prints out the newly created ec key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createEcKeyWithResponse\#EcKeyCreateOptions\}
+    ```java
+
+    CreateEcKeyOptions createEcKeyOptions = new CreateEcKeyOptions("keyName")
+         .setCurveName(KeyCurveName.P_384)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createEcKeyWithResponse(createEcKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getValue().getName(),
+                 keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> createEcKeyWithResponse(CreateEcKeyOptions createEcKeyOptions)
     parameters:
@@ -298,7 +357,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createKey(com.azure.security.keyvault.keys.models.CreateKeyOptions)
   id: createKey(com.azure.security.keyvault.keys.models.CreateKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -324,7 +383,17 @@ items:
     Creates a new Rsa key which activates in one day and expires in one year. Subscribes to the call asynchronously and prints out the newly created key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createKey\#keyCreateOptions\}
+    ```java
+
+    CreateKeyOptions createKeyOptions = new CreateKeyOptions("keyName", KeyType.RSA)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createKey(createKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> createKey(CreateKeyOptions createKeyOptions)
     parameters:
@@ -336,7 +405,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createKey(java.lang.String,com.azure.security.keyvault.keys.models.KeyType)
   id: createKey(java.lang.String,com.azure.security.keyvault.keys.models.KeyType)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -359,7 +428,14 @@ items:
     Creates a new EC key. Subscribes to the call asynchronously and prints out the newly created key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createKey\#string-keyType\}
+    ```java
+
+    keyAsyncClient.createKey("keyName", KeyType.EC)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> createKey(String name, KeyType keyType)
     parameters:
@@ -374,7 +450,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createKeyWithResponse(com.azure.security.keyvault.keys.models.CreateKeyOptions)
   id: createKeyWithResponse(com.azure.security.keyvault.keys.models.CreateKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -397,7 +473,17 @@ items:
     Creates a new EC key. Subscribes to the call asynchronously and prints out the newly created key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createKeyWithResponse\#keyCreateOptions\}
+    ```java
+
+    CreateKeyOptions createKeyOptions = new CreateKeyOptions("keyName", KeyType.RSA)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createKeyWithResponse(createKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getValue().getName(),
+                 keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> createKeyWithResponse(CreateKeyOptions createKeyOptions)
     parameters:
@@ -409,7 +495,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createRsaKey(com.azure.security.keyvault.keys.models.CreateRsaKeyOptions)
   id: createRsaKey(com.azure.security.keyvault.keys.models.CreateRsaKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -435,7 +521,18 @@ items:
     Creates a new RSA key with size 2048 which activates in one day and expires in one year. Subscribes to the call asynchronously and prints out the newly created key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createRsaKey\#RsaKeyCreateOptions\}
+    ```java
+
+    CreateRsaKeyOptions createRsaKeyOptions = new CreateRsaKeyOptions("keyName")
+         .setKeySize(2048)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createRsaKey(createRsaKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> createRsaKey(CreateRsaKeyOptions createRsaKeyOptions)
     parameters:
@@ -449,7 +546,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.createRsaKeyWithResponse(com.azure.security.keyvault.keys.models.CreateRsaKeyOptions)
   id: createRsaKeyWithResponse(com.azure.security.keyvault.keys.models.CreateRsaKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -469,7 +566,18 @@ items:
     The <xref uid="com.azure.security.keyvault.keys.models.CreateRsaKeyOptions.getKeyType*" data-throw-if-not-resolved="false">keyType</xref> indicates the type of key to create. Possible values include: <xref uid="com.azure.security.keyvault.keys.models.KeyType.RSA" data-throw-if-not-resolved="false">RSA</xref> and <xref uid="com.azure.security.keyvault.keys.models.KeyType.RSA_HSM" data-throw-if-not-resolved="false">RSA-HSM</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.createRsaKeyWithResponse\#RsaKeyCreateOptions\}
+    ```java
+
+    CreateRsaKeyOptions createRsaKeyOptions = new CreateRsaKeyOptions("keyName")
+         .setKeySize(2048)
+         .setNotBefore(OffsetDateTime.now().plusDays(1))
+         .setExpiresOn(OffsetDateTime.now().plusYears(1));
+     keyAsyncClient.createRsaKeyWithResponse(createRsaKeyOptions)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getValue().getName(),
+                 keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> createRsaKeyWithResponse(CreateRsaKeyOptions createRsaKeyOptions)
     parameters:
@@ -483,7 +591,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">created key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getDeletedKey(java.lang.String)
   id: getDeletedKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -503,7 +611,16 @@ items:
     Gets the deleted key from the key vault enabled for soft-delete. Subscribes to the call asynchronously and prints out the deleted key details when a response has been received.
 
 
-    //Assuming key is deleted on a soft-delete enabled vault. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.getDeletedKey\#string\}
+    //Assuming key is deleted on a soft-delete enabled vault.
+
+
+    ```java
+
+    keyAsyncClient.getDeletedKey("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Deleted Key's Recovery Id %s", keyResponse.getRecoveryId()));
+    ```
   syntax:
     content: public Mono<DeletedKey> getDeletedKey(String name)
     parameters:
@@ -515,7 +632,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.DeletedKey" data-throw-if-not-resolved="false">deleted key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getDeletedKeyWithResponse(java.lang.String)
   id: getDeletedKeyWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -535,7 +652,16 @@ items:
     Gets the deleted key from the key vault enabled for soft-delete. Subscribes to the call asynchronously and prints out the deleted key details when a response has been received.
 
 
-    //Assuming key is deleted on a soft-delete enabled vault. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.getDeletedKeyWithResponse\#string\}
+    //Assuming key is deleted on a soft-delete enabled vault.
+
+
+    ```java
+
+    keyAsyncClient.getDeletedKeyWithResponse("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedKeyResponse ->
+             System.out.printf("Deleted Key's Recovery Id %s", deletedKeyResponse.getValue().getRecoveryId()));
+    ```
   syntax:
     content: public Mono<Response<DeletedKey>> getDeletedKeyWithResponse(String name)
     parameters:
@@ -547,7 +673,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.DeletedKey" data-throw-if-not-resolved="false">deleted key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getKey(java.lang.String)
   id: getKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -567,7 +693,14 @@ items:
     Gets latest version of the key in the key vault. Subscribes to the call asynchronously and prints out the returned key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.getKey\#string\}
+    ```java
+
+    keyAsyncClient.getKey("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> getKey(String name)
     parameters:
@@ -576,10 +709,12 @@ items:
       description: The name of the key.
     return:
       type: reactor.core.publisher.Mono<com.azure.security.keyvault.keys.models.KeyVaultKey>
-      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
+      description: >-
+        A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>. The content of the key is null
+         if <code>name</code> is null or empty.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getKey(java.lang.String,java.lang.String)
   id: getKey(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -599,7 +734,15 @@ items:
     Gets a specific version of the key in the key vault. Subscribes to the call asynchronously and prints out the returned key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.getKey\#string-string\}
+    ```java
+
+    String keyVersion = "6A385B124DEF4096AF1361A85B16C204";
+     keyAsyncClient.getKey("keyName", keyVersion)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> getKey(String name, String version)
     parameters:
@@ -613,10 +756,12 @@ items:
              equivalent to calling <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient.getKey(java.lang.String)" data-throw-if-not-resolved="false">KeyAsyncClient#getKey(String)</xref>, with the latest version being retrieved.
     return:
       type: reactor.core.publisher.Mono<com.azure.security.keyvault.keys.models.KeyVaultKey>
-      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
+      description: >-
+        A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
+         The content of the key is null if both <code>name</code> and <code>version</code> are null or empty.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getKeyWithResponse(java.lang.String,java.lang.String)
   id: getKeyWithResponse(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -636,7 +781,15 @@ items:
     Gets a specific version of the key in the key vault. Subscribes to the call asynchronously and prints out the returned key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.getKeyWithResponse\#string-string\}
+    ```java
+
+    String keyVersion = "6A385B124DEF4096AF1361A85B16C204";
+     keyAsyncClient.getKeyWithResponse("keyName", keyVersion)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse ->
+             System.out.printf("Key is created with name %s and id %s %n",
+                 keyResponse.getValue().getName(), keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> getKeyWithResponse(String name, String version)
     parameters:
@@ -652,10 +805,11 @@ items:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<com.azure.security.keyvault.keys.models.KeyVaultKey>>
       description: >-
         A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested
-             <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
+             <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>. The content of the key is null if both <code>name</code> and <code>version</code>
+             are null or empty.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.getVaultUrl()
   id: getVaultUrl()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -673,7 +827,7 @@ items:
       description: the vault endpoint url
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.importKey(com.azure.security.keyvault.keys.models.ImportKeyOptions)
   id: importKey(com.azure.security.keyvault.keys.models.ImportKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -696,7 +850,13 @@ items:
     Imports a new key into key vault. Subscribes to the call asynchronously and prints out the newly imported key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.keyasyncclient.importKey\#options\}
+    ```java
+
+    ImportKeyOptions options = new ImportKeyOptions("keyName", jsonWebKeyToImport)
+         .setHardwareProtected(false);
+     keyAsyncClient.importKey(options).subscribe(keyResponse ->
+         System.out.printf("Key is imported with name %s and id %s \n", keyResponse.getName(), keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> importKey(ImportKeyOptions importKeyOptions)
     parameters:
@@ -710,7 +870,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">imported key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.importKey(java.lang.String,com.azure.security.keyvault.keys.models.JsonWebKey)
   id: importKey(java.lang.String,com.azure.security.keyvault.keys.models.JsonWebKey)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -730,7 +890,11 @@ items:
     Imports a new key into key vault. Subscribes to the call asynchronously and prints out the newly imported key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.keyasyncclient.importKey\#string-jsonwebkey\}
+    ```java
+
+    keyAsyncClient.importKey("keyName", jsonWebKeyToImport).subscribe(keyResponse ->
+         System.out.printf("Key is imported with name %s and id %s \n", keyResponse.getName(), keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> importKey(String name, JsonWebKey keyMaterial)
     parameters:
@@ -745,7 +909,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">imported key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.importKeyWithResponse(com.azure.security.keyvault.keys.models.ImportKeyOptions)
   id: importKeyWithResponse(com.azure.security.keyvault.keys.models.ImportKeyOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -768,7 +932,14 @@ items:
     Imports a new key into key vault. Subscribes to the call asynchronously and prints out the newly imported key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.keyasyncclient.importKeyWithResponse\#options-response\}
+    ```java
+
+    ImportKeyOptions importKeyOptions = new ImportKeyOptions("keyName", jsonWebKeyToImport)
+         .setHardwareProtected(false);
+     keyAsyncClient.importKeyWithResponse(importKeyOptions).subscribe(keyResponse ->
+         System.out.printf("Key is imported with name %s and id %s \n", keyResponse.getValue().getName(),
+             keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> importKeyWithResponse(ImportKeyOptions importKeyOptions)
     parameters:
@@ -782,7 +953,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">imported key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.listDeletedKeys()
   id: listDeletedKeys()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -802,7 +973,12 @@ items:
     Lists the deleted keys in the key vault. Subscribes to the call asynchronously and prints out the recovery id of each deleted key when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.listDeletedKeys\}
+    ```java
+
+    keyAsyncClient.listDeletedKeys()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedKey  -> System.out.printf("Deleted key's recovery Id %s", deletedKey.getRecoveryId()));
+    ```
   syntax:
     content: public PagedFlux<DeletedKey> listDeletedKeys()
     return:
@@ -810,7 +986,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.keys.models.DeletedKey" data-throw-if-not-resolved="false">deleted keys</xref> in the vault.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.listPropertiesOfKeyVersions(java.lang.String)
   id: listPropertiesOfKeyVersions(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -827,7 +1003,16 @@ items:
     It is possible to get the keys with key material of all the versions from this information. Convert the <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.keys.models.KeyProperties" data-throw-if-not-resolved="false">key properties</xref> to <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref> using <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient.getKey(java.lang.String,java.lang.String)" data-throw-if-not-resolved="false">KeyAsyncClient#getKey(String, String)</xref> within <xref uid="" data-throw-if-not-resolved="false">Flux#flatMap(Function)</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.listKeyVersions\}
+    ```java
+
+    keyAsyncClient.listPropertiesOfKeyVersions("keyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyProperties -> keyAsyncClient.getKey(keyProperties.getName(), keyProperties.getVersion())
+             .subscribe(keyResponse ->
+                 System.out.printf("Received key's version with name %s, type %s and version %s",
+                     keyResponse.getName(),
+                     keyResponse.getKeyType(), keyResponse.getProperties().getVersion())));
+    ```
   syntax:
     content: public PagedFlux<KeyProperties> listPropertiesOfKeyVersions(String name)
     parameters:
@@ -841,7 +1026,7 @@ items:
              Flux is empty if key with <code>name</code> does not exist in key vault.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.listPropertiesOfKeys()
   id: listPropertiesOfKeys()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -858,7 +1043,15 @@ items:
     It is possible to get full keys with key material from this information. Convert the <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.keys.models.KeyProperties" data-throw-if-not-resolved="false">key properties</xref> to <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref> using <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient.getKey(java.lang.String,java.lang.String)" data-throw-if-not-resolved="false">KeyAsyncClient#getKey(String, String)</xref> within <xref uid="" data-throw-if-not-resolved="false">Flux#flatMap(Function)</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.listKeys\}
+    ```java
+
+    keyAsyncClient.listPropertiesOfKeys()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyProperties -> keyAsyncClient.getKey(keyProperties.getName(), keyProperties.getVersion())
+             .subscribe(keyResponse -> System.out.printf("Received key with name %s and type %s",
+                 keyResponse.getName(),
+                  keyResponse.getKeyType())));
+    ```
   syntax:
     content: public PagedFlux<KeyProperties> listPropertiesOfKeys()
     return:
@@ -866,7 +1059,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.keys.models.KeyProperties" data-throw-if-not-resolved="false">key</xref> of all the keys in the vault.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.purgeDeletedKey(java.lang.String)
   id: purgeDeletedKey(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -886,7 +1079,15 @@ items:
     Purges the deleted key from the key vault enabled for soft-delete. Subscribes to the call asynchronously and prints out the status code from the server response when a response has been received.
 
 
-    //Assuming key is deleted on a soft-delete enabled vault. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.purgeDeletedKey\#string\}
+    //Assuming key is deleted on a soft-delete enabled vault.
+
+
+    ```java
+
+    keyAsyncClient.purgeDeletedKey("deletedKeyName")
+         .subscribe(purgeResponse ->
+             System.out.println("Successfully Purged deleted Key"));
+    ```
   syntax:
     content: public Mono<Void> purgeDeletedKey(String name)
     parameters:
@@ -898,7 +1099,7 @@ items:
       description: An empty <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.purgeDeletedKeyWithResponse(java.lang.String)
   id: purgeDeletedKeyWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -918,7 +1119,16 @@ items:
     Purges the deleted key from the key vault enabled for soft-delete. Subscribes to the call asynchronously and prints out the status code from the server response when a response has been received.
 
 
-    //Assuming key is deleted on a soft-delete enabled vault. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.purgeDeletedKeyWithResponse\#string\}
+    //Assuming key is deleted on a soft-delete enabled vault.
+
+
+    ```java
+
+    keyAsyncClient.purgeDeletedKeyWithResponse("deletedKeyName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(purgeResponse ->
+             System.out.printf("Purge Status response %d %n", purgeResponse.getStatusCode()));
+    ```
   syntax:
     content: public Mono<Response<Void>> purgeDeletedKeyWithResponse(String name)
     parameters:
@@ -930,7 +1140,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a Response containing status code and HTTP headers.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.restoreKeyBackup(byte[])
   id: restoreKeyBackup(byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -950,7 +1160,18 @@ items:
     Restores the key in the key vault from its backup. Subscribes to the call asynchronously and prints out the restored key details when a response has been received.
 
 
-    //Pass the Key Backup Byte array to the restore operation. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.restoreKeyBackup\#byte\}
+    //Pass the Key Backup Byte array to the restore operation.
+
+
+    ```java
+
+    byte[] keyBackupByteArray = {};
+     keyAsyncClient.restoreKeyBackup(keyBackupByteArray)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse  ->
+             System.out.printf("Restored Key with name %s and id %s %n", keyResponse.getName(),
+                 keyResponse.getId()));
+    ```
   syntax:
     content: public Mono<KeyVaultKey> restoreKeyBackup(byte[] backup)
     parameters:
@@ -962,7 +1183,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">restored key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.restoreKeyBackupWithResponse(byte[])
   id: restoreKeyBackupWithResponse(byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -982,7 +1203,18 @@ items:
     Restores the key in the key vault from its backup. Subscribes to the call asynchronously and prints out the restored key details when a response has been received.
 
 
-    //Pass the Key Backup Byte array to the restore operation. \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.restoreKeyBackupWithResponse\#byte\}
+    //Pass the Key Backup Byte array to the restore operation.
+
+
+    ```java
+
+    byte[] keyBackupByteArray = {};
+     keyAsyncClient.restoreKeyBackupWithResponse(keyBackupByteArray)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(keyResponse  ->
+             System.out.printf("Restored Key with name %s and id %s %n", keyResponse.getValue().getName(),
+                 keyResponse.getValue().getId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> restoreKeyBackupWithResponse(byte[] backup)
     parameters:
@@ -994,7 +1226,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">restored key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.updateKeyProperties(com.azure.security.keyvault.keys.models.KeyProperties,com.azure.security.keyvault.keys.models.KeyOperation...)
   id: updateKeyProperties(com.azure.security.keyvault.keys.models.KeyProperties,com.azure.security.keyvault.keys.models.KeyOperation...)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -1014,7 +1246,20 @@ items:
     Gets latest version of the key, changes its notBefore time and then updates it in the Azure Key Vault. Subscribes to the call asynchronously and prints out the returned key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.updateKeyProperties\#KeyProperties-keyOperations\}
+    ```java
+
+    keyAsyncClient.getKey("keyName")
+          .subscribe(keyResponse  -> {
+              //Update the not before time of the key.
+              keyResponse.getProperties().setNotBefore(OffsetDateTime.now().plusDays(50));
+              keyAsyncClient.updateKeyProperties(keyResponse.getProperties(), KeyOperation.ENCRYPT,
+                  KeyOperation.DECRYPT)
+                  .subscriberContext(Context.of(key1, value1, key2, value2))
+                  .subscribe(updatedKeyResponse  ->
+                      System.out.printf("Key's updated not before time %s %n",
+                          updatedKeyResponse.getProperties().getNotBefore().toString()));
+          });
+    ```
   syntax:
     content: public Mono<KeyVaultKey> updateKeyProperties(KeyProperties keyProperties, KeyOperation[] keyOperations)
     parameters:
@@ -1029,7 +1274,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">updated key</xref>.
 - uid: com.azure.security.keyvault.keys.KeyAsyncClient.updateKeyPropertiesWithResponse(com.azure.security.keyvault.keys.models.KeyProperties,com.azure.security.keyvault.keys.models.KeyOperation...)
   id: updateKeyPropertiesWithResponse(com.azure.security.keyvault.keys.models.KeyProperties,com.azure.security.keyvault.keys.models.KeyOperation...)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyAsyncClient
   langs:
   - java
@@ -1049,7 +1294,20 @@ items:
     Gets latest version of the key, changes its notBefore time and then updates it in the Azure Key Vault. Subscribes to the call asynchronously and prints out the returned key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.updateKeyPropertiesWithResponse\#KeyProperties-keyOperations\}
+    ```java
+
+    keyAsyncClient.getKey("keyName")
+         .subscribe(keyResponse  -> {
+             //Update the not before time of the key.
+             keyResponse.getProperties().setNotBefore(OffsetDateTime.now().plusDays(50));
+             keyAsyncClient.updateKeyPropertiesWithResponse(keyResponse.getProperties(), KeyOperation.ENCRYPT,
+                 KeyOperation.DECRYPT)
+                 .subscriberContext(Context.of(key1, value1, key2, value2))
+                 .subscribe(updatedKeyResponse  ->
+                     System.out.printf("Key's updated not before time %s %n",
+                         updatedKeyResponse.getValue().getProperties().getNotBefore().toString()));
+         });
+    ```
   syntax:
     content: public Mono<Response<KeyVaultKey>> updateKeyPropertiesWithResponse(KeyProperties keyProperties, KeyOperation[] keyOperations)
     parameters:
