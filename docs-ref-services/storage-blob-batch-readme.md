@@ -1,16 +1,17 @@
 ---
 title: Azure Storage Blobs Batch client library for Java
-keywords: Azure, Java, SDK, API, storage, azure-storage-blob-batch
+keywords: Azure, java, SDK, API, azure-storage-blob-batch, 
 author: maggiepint
 ms.author: magpint
-ms.date: 04/16/2020
+ms.date: 06/13/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
-ms.devlang: Java
-ms.service: storage
+ms.devlang: java
+ms.service: 
 ---
- # Azure Storage Blobs Batch client library for Java - Version 12.5.0 
+
+# Azure Storage Blobs Batch client library for Java - Version 12.5.2 
 
 
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
@@ -35,7 +36,7 @@ definition, such as text or binary data.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-blob-batch</artifactId>
-  <version>12.5.0</version>
+  <version>12.5.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -125,7 +126,7 @@ System.out.printf("Deleting blob with lease completed with status code %d%n",
     deleteWithLeaseResponse.getStatusCode());
 ```
 
-Setting `AccessTier` on blobs in batch that have different pre-requisites. 
+Setting `AccessTier` on blobs in batch that have different pre-requisites.
 
 <!-- embedme ./src/samples/java/com/azure/storage/blob/batch/ReadmeSamples.java#L81-L97 -->
 ```java
@@ -155,14 +156,14 @@ status codes returned for [REST API][error_codes] requests. For example, if you 
 doesn't exist in your Storage Account, a `404` error is returned, indicating `Not Found`.
 
 ### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure 
+All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
 the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
 [HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
 
 ### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL 
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides 
-better performance compared to the default SSL implementation within the JDK. For more information, including how to 
+All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
+operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
+better performance compared to the default SSL implementation within the JDK. For more information, including how to
 reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ## Next steps
@@ -178,16 +179,16 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob-batch/src/main/java
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob-batch/src/main/java
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob-batch/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob-batch/src/samples
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[blob_samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-blob-batch/src/samples/README.md
+[blob_samples]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob-batch/src/samples/README.md
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
@@ -195,3 +196,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob-batch%2FREADME.png)
+

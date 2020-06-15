@@ -3,7 +3,7 @@ title: Azure Storage Blob client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob, 
 author: maggiepint
 ms.author: magpint
-ms.date: 06/13/2020
+ms.date: 06/04/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Storage Blob client library for Java - Version 12.7.0 
+# Azure Storage Blob client library for Java - Version 12.7.0-beta.1 
 
 
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
@@ -36,7 +36,7 @@ definition, such as text or binary data.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.7.0</version>
+    <version>12.6.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -366,8 +366,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/ba7c05859c02aeed324f135de74bdcea15c55adf/sdk/storage/azure-storage-blob/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/ba7c05859c02aeed324f135de74bdcea15c55adf/sdk/storage/azure-storage-blob/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -379,7 +379,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-blob/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/ba7c05859c02aeed324f135de74bdcea15c55adf/sdk/storage/azure-storage-blob/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
