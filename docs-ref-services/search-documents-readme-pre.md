@@ -1,6 +1,6 @@
 ---
 title: Azure Cognitive Search client library for Java
-keywords: Azure, java, SDK, API, azure-search-documents, 
+keywords: Azure, java, SDK, API, search, azure-search-documents, 
 author: maggiepint
 ms.author: magpint
 ms.date: 06/09/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: search
 ---
 
 # Azure Cognitive Search client library for Java - Version 1.0.0-beta.4 
