@@ -1,0 +1,320 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer
+  id: UUIDTimer
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid
+  children:
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer)
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer,com.azure.cosmos.implementation.uuid.UUIDClock)
+  - com.azure.cosmos.implementation.uuid.UUIDTimer._clock
+  - com.azure.cosmos.implementation.uuid.UUIDTimer._random
+  - com.azure.cosmos.implementation.uuid.UUIDTimer._syncer
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp(byte[])
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence()
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp()
+  - com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown(long,long)
+  langs:
+  - java
+  name: UUIDTimer
+  nameWithType: UUIDTimer
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer
+  type: Class
+  package: com.azure.cosmos.implementation.uuid
+  summary: >-
+    UUIDTimer produces the time stamps required for time-based UUIDs. It works as outlined in the UUID specification, with following implementation:
+
+     *  Java classes can only product time stamps with maximum resolution of one millisecond (at least before JDK 1.5). To compensate, an additional counter is used, so that more than one UUID can be generated between java clock updates. Counter may be used to generate up to 10000 UUIDs for each distinct java clock value.
+     *  Due to even lower clock resolution on some platforms (older Windows versions use 55 msec resolution), timestamp value can also advanced ahead of physical value within limits (by default, up 100 millisecond ahead of reported), if necessary (ie. 10000 instances created before clock time advances).
+     *  As an additional precaution, counter is initialized not to 0 but to a random 8-bit number, and each time clock changes, lowest 8-bits of counter are preserved. The purpose it to make likelyhood of multi-JVM multi-instance generators to collide, without significantly reducing max. UUID generation speed. Note though that using more than one generator (from separate JVMs) is strongly discouraged, so hopefully this enhancement isn't needed. This 8-bit offset has to be reduced from total max. UUID count to preserve ordering property of UUIDs (ie. one can see which UUID was generated first for given UUID generator); the resulting 9500 UUIDs isn't much different from the optimal choice.
+     *  Finally, as of version 2.0 and onwards, optional external timestamp synchronization can be done. This is done similar to the way UUID specification suggests; except that since there is no way to lock the whole system, file-based locking is used. This works between multiple JVMs and Jug instances.
+
+    Some additional assumptions about calculating the timestamp:
+
+     *  System.currentTimeMillis() is assumed to give time offset in UTC, or at least close enough thing to get correct timestamps. The alternate route would have to go through calendar object, use TimeZone offset to get to UTC, and then modify. Using currentTimeMillis should be much faster to allow rapid UUID creation.
+     *  Similarly, the constant used for time offset between 1.1.1970 and start of Gregorian calendar is assumed to be correct (which seems to be the case when testing with Java calendars).
+
+    Note about synchronization: main synchronization point (as of version 3.1.1 and above) is <xref uid="com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp*" data-throw-if-not-resolved="false">#getTimestamp</xref>, so caller need not synchronize access explicitly.
+  syntax:
+    content: public class UUIDTimer
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer)
+  id: UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: UUIDTimer(Random rnd, TimestampSynchronizer sync)
+  nameWithType: UUIDTimer.UUIDTimer(Random rnd, TimestampSynchronizer sync)
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(Random rnd, TimestampSynchronizer sync)
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer*
+  type: Constructor
+  package: com.azure.cosmos.implementation.uuid
+  syntax:
+    content: public UUIDTimer(Random rnd, TimestampSynchronizer sync)
+    parameters:
+    - id: rnd
+      type: java.util.Random
+    - id: sync
+      type: com.azure.cosmos.implementation.uuid.TimestampSynchronizer
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer,com.azure.cosmos.implementation.uuid.UUIDClock)
+  id: UUIDTimer(java.util.Random,com.azure.cosmos.implementation.uuid.TimestampSynchronizer,com.azure.cosmos.implementation.uuid.UUIDClock)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: UUIDTimer(Random rnd, TimestampSynchronizer sync, UUIDClock clock)
+  nameWithType: UUIDTimer.UUIDTimer(Random rnd, TimestampSynchronizer sync, UUIDClock clock)
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer(Random rnd, TimestampSynchronizer sync, UUIDClock clock)
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer*
+  type: Constructor
+  package: com.azure.cosmos.implementation.uuid
+  syntax:
+    content: public UUIDTimer(Random rnd, TimestampSynchronizer sync, UUIDClock clock)
+    parameters:
+    - id: rnd
+      type: java.util.Random
+      description: Random-number generator to use
+    - id: sync
+      type: com.azure.cosmos.implementation.uuid.TimestampSynchronizer
+      description: Synchronizer needed for multi-threaded timestamp access
+    - id: clock
+      type: com.azure.cosmos.implementation.uuid.UUIDClock
+      description: Provider for milli-second resolution timestamp
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer._clock
+  id: _clock
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: _clock
+  nameWithType: UUIDTimer._clock
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer._clock
+  type: Field
+  package: com.azure.cosmos.implementation.uuid
+  summary: Clock used to get the time when a timestamp is requested.
+  syntax:
+    content: protected final UUIDClock _clock
+    return:
+      type: com.azure.cosmos.implementation.uuid.UUIDClock
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer._random
+  id: _random
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: _random
+  nameWithType: UUIDTimer._random
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer._random
+  type: Field
+  package: com.azure.cosmos.implementation.uuid
+  summary: Random number generator used to generate additional information to further reduce probability of collisions.
+  syntax:
+    content: protected final Random _random
+    return:
+      type: java.util.Random
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer._syncer
+  id: _syncer
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: _syncer
+  nameWithType: UUIDTimer._syncer
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer._syncer
+  type: Field
+  package: com.azure.cosmos.implementation.uuid
+  summary: >-
+    Object used to reliably ensure that no multiple JVMs generate UUIDs, and also that the time stamp value used for generating time-based UUIDs is monotonically increasing even if system clock moves backwards over a reboot (usually due to some system level problem).
+
+
+    See <xref uid="com.azure.cosmos.implementation.uuid.TimestampSynchronizer" data-throw-if-not-resolved="false">TimestampSynchronizer</xref> for details.
+  syntax:
+    content: protected final TimestampSynchronizer _syncer
+    return:
+      type: com.azure.cosmos.implementation.uuid.TimestampSynchronizer
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp(byte[])
+  id: getAndSetTimestamp(byte[])
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: getAndSetTimestamp(byte[] uuidBytes)
+  nameWithType: UUIDTimer.getAndSetTimestamp(byte[] uuidBytes)
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp(byte[] uuidBytes)
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp*
+  type: Method
+  package: com.azure.cosmos.implementation.uuid
+  syntax:
+    content: protected final void getAndSetTimestamp(byte[] uuidBytes)
+    parameters:
+    - id: uuidBytes
+      type: byte[]
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence()
+  id: getClockSequence()
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: getClockSequence()
+  nameWithType: UUIDTimer.getClockSequence()
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence()
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence*
+  type: Method
+  package: com.azure.cosmos.implementation.uuid
+  syntax:
+    content: public int getClockSequence()
+    return:
+      type: int
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp()
+  id: getTimestamp()
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: getTimestamp()
+  nameWithType: UUIDTimer.getTimestamp()
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp()
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp*
+  type: Method
+  package: com.azure.cosmos.implementation.uuid
+  summary: Method that constructs unique timestamp suitable for use for constructing UUIDs. Default implementation is fully synchronized; sub-classes may choose to implemented alternate strategies
+  syntax:
+    content: public synchronized long getTimestamp()
+    return:
+      type: long
+      description: 64-bit timestamp to use for constructing UUID
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown(long,long)
+  id: slowDown(long,long)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.uuid.UUIDTimer
+  langs:
+  - java
+  name: slowDown(long startTime, long actDiff)
+  nameWithType: UUIDTimer.slowDown(long startTime, long actDiff)
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown(long startTime, long actDiff)
+  overload: com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown*
+  type: Method
+  package: com.azure.cosmos.implementation.uuid
+  summary: Simple utility method to use to wait for couple of milliseconds, to let system clock hopefully advance closer to the virtual timestamps used. Delay is kept to just a millisecond or two, to prevent excessive blocking; but that should be enough to eventually synchronize physical clock with virtual clock values used for UUIDs.
+  syntax:
+    content: protected static void slowDown(long startTime, long actDiff)
+    parameters:
+    - id: startTime
+      type: long
+    - id: actDiff
+      type: long
+      description: "Number of milliseconds to wait for from current \n    time point, to catch up"
+references:
+- uid: java.util.Random
+  spec.java:
+  - uid: java.util.Random
+    name: Random
+    fullName: java.util.Random
+- uid: com.azure.cosmos.implementation.uuid.TimestampSynchronizer
+  name: TimestampSynchronizer
+  nameWithType: TimestampSynchronizer
+  fullName: com.azure.cosmos.implementation.uuid.TimestampSynchronizer
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer*
+  name: UUIDTimer
+  nameWithType: UUIDTimer.UUIDTimer
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.UUIDTimer
+  package: com.azure.cosmos.implementation.uuid
+- uid: com.azure.cosmos.implementation.uuid.UUIDClock
+  name: UUIDClock
+  nameWithType: UUIDClock
+  fullName: com.azure.cosmos.implementation.uuid.UUIDClock
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence*
+  name: getClockSequence
+  nameWithType: UUIDTimer.getClockSequence
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getClockSequence
+  package: com.azure.cosmos.implementation.uuid
+- uid: long
+  spec.java:
+  - uid: long
+    name: long
+    fullName: long
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp*
+  name: getTimestamp
+  nameWithType: UUIDTimer.getTimestamp
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getTimestamp
+  package: com.azure.cosmos.implementation.uuid
+- uid: byte[]
+  spec.java:
+  - uid: byte
+    name: byte
+    fullName: byte
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp*
+  name: getAndSetTimestamp
+  nameWithType: UUIDTimer.getAndSetTimestamp
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.getAndSetTimestamp
+  package: com.azure.cosmos.implementation.uuid
+- uid: com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown*
+  name: slowDown
+  nameWithType: UUIDTimer.slowDown
+  fullName: com.azure.cosmos.implementation.uuid.UUIDTimer.slowDown
+  package: com.azure.cosmos.implementation.uuid
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()

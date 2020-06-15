@@ -2,12 +2,13 @@
 items:
 - uid: com.azure.storage.blob.models.ParallelTransferOptions
   id: ParallelTransferOptions
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models
   children:
   - com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver)
   - com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver,java.lang.Integer)
   - com.azure.storage.blob.models.ParallelTransferOptions.getBlockSize()
+  - com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency()
   - com.azure.storage.blob.models.ParallelTransferOptions.getMaxSingleUploadSize()
   - com.azure.storage.blob.models.ParallelTransferOptions.getNumBuffers()
   - com.azure.storage.blob.models.ParallelTransferOptions.getProgressReceiver()
@@ -37,19 +38,19 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver)
   id: ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver)
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
-  name: ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver)
-  nameWithType: ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver)
-  fullName: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver)
+  name: ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver)
+  nameWithType: ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver)
+  fullName: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver)
   overload: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions*
   type: Constructor
   package: com.azure.storage.blob.models
   summary: Creates a new <xref uid="com.azure.storage.blob.models.ParallelTransferOptions" data-throw-if-not-resolved="false">ParallelTransferOptions</xref> with default parameters applied.
   syntax:
-    content: public ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver)
+    content: public ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver)
     parameters:
     - id: blockSize
       type: java.lang.Integer
@@ -60,31 +61,31 @@ items:
          individual call will send more data and will therefore take longer. This parameter also determines the size
          that each buffer uses when buffering is required and consequently amount of memory consumed by such methods may
          be up to blockSize * numBuffers.
-    - id: numBuffers
+    - id: maxConcurrency
       type: java.lang.Integer
       description: >-
-        For buffered upload only, the number of buffers is the maximum number of buffers this method
-         should allocate. Memory will be allocated lazily as needed. Must be at least two. Typically, the larger the
-         number of buffers, the more parallel, and thus faster, the upload portion  of this operation will be.
+        For buffered upload only, the number of buffers is the maximum number of buffers this
+         method should allocate. Memory will be allocated lazily as needed. Must be at least two. Typically, the larger
+         the number of buffers, the more parallel, and thus faster, the upload portion  of this operation will be.
          The amount of memory consumed by methods using this value may be up to blockSize * numBuffers.
     - id: progressReceiver
       type: com.azure.storage.blob.ProgressReceiver
       description: <xref uid="com.azure.storage.blob.ProgressReceiver" data-throw-if-not-resolved="false">ProgressReceiver</xref>
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver,java.lang.Integer)
   id: ParallelTransferOptions(java.lang.Integer,java.lang.Integer,com.azure.storage.blob.ProgressReceiver,java.lang.Integer)
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
-  name: ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
-  nameWithType: ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
-  fullName: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
+  name: ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
+  nameWithType: ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
+  fullName: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
   overload: com.azure.storage.blob.models.ParallelTransferOptions.ParallelTransferOptions*
   type: Constructor
   package: com.azure.storage.blob.models
   summary: Creates a new <xref uid="com.azure.storage.blob.models.ParallelTransferOptions" data-throw-if-not-resolved="false">ParallelTransferOptions</xref> with default parameters applied.
   syntax:
-    content: public ParallelTransferOptions(Integer blockSize, Integer numBuffers, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
+    content: public ParallelTransferOptions(Integer blockSize, Integer maxConcurrency, ProgressReceiver progressReceiver, Integer maxSingleUploadSize)
     parameters:
     - id: blockSize
       type: java.lang.Integer
@@ -94,14 +95,17 @@ items:
          of requests that need to be made. If block size is large, upload will make fewer network calls, but each
          individual call will send more data and will therefore take longer. This parameter also determines the size
          that each buffer uses when buffering is required and consequently amount of memory consumed by such methods may
-         be up to blockSize * numBuffers.
-    - id: numBuffers
+         be up to blockSize * maxConcurrency.
+    - id: maxConcurrency
       type: java.lang.Integer
       description: >-
-        For buffered upload only, the number of buffers is the maximum number of buffers this method
-         should allocate. Memory will be allocated lazily as needed. Must be at least two. Typically, the larger the
-         number of buffers, the more parallel, and thus faster, the upload portion  of this operation will be.
-         The amount of memory consumed by methods using this value may be up to blockSize * numBuffers.
+        The maximum number of parallel requests that will be issued at any given time as a part of
+         a single parallel transfer. This value applies per api. For example, if two calls to uploadFromFile are made at
+         the same time, and each specifies a maxConcurrency of 5, there may be up to 10 outstanding, concurrent requests,
+         up to 5 for each of the upload operations. For buffered uploads only, the maximum number of buffers to be
+         allocated as part of the transfer will be <code>maxConcurrency + 1</code>. In those cases, memory will be allocated
+         lazily as needed. The amount of memory consumed by methods which buffer may be up to blockSize * maxConcurrency.
+         In general, upload methods which do not accept a length parameter must perform some buffering.
     - id: progressReceiver
       type: com.azure.storage.blob.ProgressReceiver
       description: <xref uid="com.azure.storage.blob.ProgressReceiver" data-throw-if-not-resolved="false">ProgressReceiver</xref>
@@ -117,7 +121,7 @@ items:
          <xref uid="com.azure.storage.blob.specialized.BlockBlobAsyncClient.MAX_UPLOAD_BLOB_BYTES" data-throw-if-not-resolved="false">BlockBlobAsyncClient#MAX_UPLOAD_BLOB_BYTES</xref>.
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.getBlockSize()
   id: getBlockSize()
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
@@ -133,9 +137,27 @@ items:
     return:
       type: java.lang.Integer
       description: The block size.
+- uid: com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency()
+  id: getMaxConcurrency()
+  artifact: com.azure:azure-storage-blob:12.7.0
+  parent: com.azure.storage.blob.models.ParallelTransferOptions
+  langs:
+  - java
+  name: getMaxConcurrency()
+  nameWithType: ParallelTransferOptions.getMaxConcurrency()
+  fullName: com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency()
+  overload: com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency*
+  type: Method
+  package: com.azure.storage.blob.models
+  summary: Gets the maximum number of parallel requests that will be issued at any given time.
+  syntax:
+    content: public Integer getMaxConcurrency()
+    return:
+      type: java.lang.Integer
+      description: The max concurrency value.
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.getMaxSingleUploadSize()
   id: getMaxSingleUploadSize()
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
@@ -153,7 +175,7 @@ items:
       description: The threshold value.
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.getNumBuffers()
   id: getNumBuffers()
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
@@ -171,7 +193,7 @@ items:
       description: The number of buffers.
 - uid: com.azure.storage.blob.models.ParallelTransferOptions.getProgressReceiver()
   id: getProgressReceiver()
-  artifact: com.azure:azure-storage-blob:12.6.1
+  artifact: com.azure:azure-storage-blob:12.7.0
   parent: com.azure.storage.blob.models.ParallelTransferOptions
   langs:
   - java
@@ -221,6 +243,11 @@ references:
   name: getMaxSingleUploadSize
   nameWithType: ParallelTransferOptions.getMaxSingleUploadSize
   fullName: com.azure.storage.blob.models.ParallelTransferOptions.getMaxSingleUploadSize
+  package: com.azure.storage.blob.models
+- uid: com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency*
+  name: getMaxConcurrency
+  nameWithType: ParallelTransferOptions.getMaxConcurrency
+  fullName: com.azure.storage.blob.models.ParallelTransferOptions.getMaxConcurrency
   package: com.azure.storage.blob.models
 - uid: java.lang.Object.notify()
   name: Object.notify()

@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient
   id: CertificateAsyncClient
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates
   children:
   - com.azure.security.keyvault.certificates.CertificateAsyncClient.backupCertificate(java.lang.String)
@@ -71,7 +71,14 @@ items:
     **Samples to construct the async client**
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.instantiation\}
+    ```java
+
+    CertificateAsyncClient certificateAsyncClient = new CertificateClientBuilder()
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .vaultUrl("https://myvault.vault.azure.net/")
+         .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+         .buildAsyncClient();
+    ```
   syntax:
     content: public final class CertificateAsyncClient
   inheritance:
@@ -90,7 +97,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.CertificateAsyncClient(java.net.URL,com.azure.core.http.HttpPipeline,com.azure.security.keyvault.certificates.CertificateServiceVersion)
   id: CertificateAsyncClient(java.net.URL,com.azure.core.http.HttpPipeline,com.azure.security.keyvault.certificates.CertificateServiceVersion)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -115,7 +122,7 @@ items:
       description: <xref uid="com.azure.security.keyvault.certificates.CertificateServiceVersion" data-throw-if-not-resolved="false">CertificateServiceVersion</xref> of the service to be used when making requests.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.backupCertificate(java.lang.String)
   id: backupCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -135,7 +142,13 @@ items:
     Backs up the certificate from the key vault. Prints out the length of the certificate's backup byte array returned in the response.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.backupCertificate\#string\}
+    ```java
+
+    certificateAsyncClient.backupCertificate("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateBackupResponse ->
+             System.out.printf("Certificate's Backup Byte array's length %s %n", certificateBackupResponse.length));
+    ```
   syntax:
     content: public Mono<byte[]> backupCertificate(String certificateName)
     parameters:
@@ -147,7 +160,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the backed up certificate blob.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.backupCertificateWithResponse(java.lang.String)
   id: backupCertificateWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -167,7 +180,14 @@ items:
     Backs up the certificate from the key vault. Prints out the length of the certificate's backup byte array returned in the response.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.backupCertificateWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.backupCertificateWithResponse("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateBackupResponse ->
+             System.out.printf("Certificate's Backup Byte array's length %s %n",
+                 certificateBackupResponse.getValue().length));
+    ```
   syntax:
     content: public Mono<Response<byte[]>> backupCertificateWithResponse(String certificateName)
     parameters:
@@ -179,7 +199,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the backed up certificate blob.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.beginCreateCertificate(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
   id: beginCreateCertificate(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -199,7 +219,17 @@ items:
     Create certificate is a long running operation. The <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">poller</xref> allows users to automatically poll on the create certificate operation status. It is possible to monitor each intermediate poll response during the poll operation.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.beginCreateCertificate\#String-CertificatePolicy\}
+    ```java
+
+    CertificatePolicy certPolicy = new CertificatePolicy("Self", "CN=SelfSignedJavaPkcs12");
+     certificateAsyncClient.beginCreateCertificate("certificateName", certPolicy)
+         .subscribe(pollResponse -> {
+             System.out.println("---------------------------------------------------------------------------------");
+             System.out.println(pollResponse.getStatus());
+             System.out.println(pollResponse.getValue().getStatus());
+             System.out.println(pollResponse.getValue().getStatusDetails());
+         });
+    ```
   syntax:
     content: public PollerFlux<CertificateOperation,KeyVaultCertificateWithPolicy> beginCreateCertificate(String certificateName, CertificatePolicy policy)
     parameters:
@@ -214,7 +244,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> polling on the create certificate operation status.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.beginCreateCertificate(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy,java.lang.Boolean,java.util.Map<java.lang.String,java.lang.String>)
   id: beginCreateCertificate(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy,java.lang.Boolean,java.util.Map<java.lang.String,java.lang.String>)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -234,7 +264,19 @@ items:
     Create certificate is a long running operation. The <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">poller</xref> allows users to automatically poll on the create certificate operation status. It is possible to monitor each intermediate poll response during the poll operation.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.beginCreateCertificate\#String-CertificatePolicy-Boolean-Map\}
+    ```java
+
+    CertificatePolicy policy = new CertificatePolicy("Self", "CN=SelfSignedJavaPkcs12");
+     Map<String, String> tags = new HashMap<>();
+     tags.put("foo", "bar");
+     certificateAsyncClient.beginCreateCertificate("certificateName", policy, true, tags)
+         .subscribe(pollResponse -> {
+             System.out.println("---------------------------------------------------------------------------------");
+             System.out.println(pollResponse.getStatus());
+             System.out.println(pollResponse.getValue().getStatus());
+             System.out.println(pollResponse.getValue().getStatusDetails());
+         });
+    ```
   syntax:
     content: public PollerFlux<CertificateOperation,KeyVaultCertificateWithPolicy> beginCreateCertificate(String certificateName, CertificatePolicy policy, Boolean isEnabled, Map<String,String> tags)
     parameters:
@@ -255,7 +297,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> polling on the create certificate operation status.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.beginDeleteCertificate(java.lang.String)
   id: beginDeleteCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -275,7 +317,15 @@ items:
     Deletes the certificate in the Azure Key Vault. Prints out the deleted certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.beginDeleteCertificate\#string\}
+    ```java
+
+    certificateAsyncClient.beginDeleteCertificate("certificateName")
+         .subscribe(pollResponse -> {
+             System.out.println("Delete Status: " + pollResponse.getStatus().toString());
+             System.out.println("Delete Certificate Name: " + pollResponse.getValue().getName());
+             System.out.println("Certificate Delete Date: " + pollResponse.getValue().getDeletedOn().toString());
+         });
+    ```
   syntax:
     content: public PollerFlux<DeletedCertificate,Void> beginDeleteCertificate(String certificateName)
     parameters:
@@ -287,7 +337,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> to poll on the <xref uid="com.azure.security.keyvault.certificates.models.DeletedCertificate" data-throw-if-not-resolved="false">deleted certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.beginRecoverDeletedCertificate(java.lang.String)
   id: beginRecoverDeletedCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -307,7 +357,15 @@ items:
     Recovers the deleted certificate from the key vault enabled for soft-delete. Prints out the recovered certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.certificatevault.certificates.CertificateAsyncClient.beginRecoverDeletedCertificate\#string\}
+    ```java
+
+    certificateAsyncClient.beginRecoverDeletedCertificate("deletedCertificateName")
+         .subscribe(pollResponse -> {
+             System.out.println("Recovery Status: " + pollResponse.getStatus().toString());
+             System.out.println("Recover Certificate Name: " + pollResponse.getValue().getName());
+             System.out.println("Recover Certificate Id: " + pollResponse.getValue().getId());
+         });
+    ```
   syntax:
     content: public PollerFlux<KeyVaultCertificateWithPolicy,Void> beginRecoverDeletedCertificate(String certificateName)
     parameters:
@@ -319,7 +377,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> to poll on the <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">recovered certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.cancelCertificateOperation(java.lang.String)
   id: cancelCertificateOperation(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -339,7 +397,12 @@ items:
     Triggers certificate creation and then cancels the certificate creation operation in the Azure Key Vault. Prints out the updated certificate operation details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.cancelCertificateOperation\#string\}
+    ```java
+
+    certificateAsyncClient.cancelCertificateOperation("certificateName")
+         .subscribe(certificateOperation -> System.out.printf("Certificate operation status %s",
+             certificateOperation.getStatus()));
+    ```
   syntax:
     content: public Mono<CertificateOperation> cancelCertificateOperation(String certificateName)
     parameters:
@@ -351,7 +414,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.CertificateOperation" data-throw-if-not-resolved="false">cancelled certificate operation</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.cancelCertificateOperationWithResponse(java.lang.String)
   id: cancelCertificateOperationWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -371,7 +434,12 @@ items:
     Triggers certificate creation and then cancels the certificate creation operation in the Azure Key Vault. Prints out the updated certificate operation details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.cancelCertificateOperationWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.cancelCertificateOperationWithResponse("certificateName")
+         .subscribe(certificateOperationResponse -> System.out.printf("Certificate operation status %s",
+             certificateOperationResponse.getValue().getStatus()));
+    ```
   syntax:
     content: public Mono<Response<CertificateOperation>> cancelCertificateOperationWithResponse(String certificateName)
     parameters:
@@ -383,7 +451,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.CertificateOperation" data-throw-if-not-resolved="false">cancelled certificate operation</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.createIssuer(com.azure.security.keyvault.certificates.models.CertificateIssuer)
   id: createIssuer(com.azure.security.keyvault.certificates.models.CertificateIssuer)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -403,7 +471,18 @@ items:
     Creates a new certificate issuer in the key vault. Prints out the created certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.createIssuer\#CertificateIssuer\}
+    ```java
+
+    CertificateIssuer issuer = new CertificateIssuer("issuerName", "providerName")
+         .setAccountId("keyvaultuser")
+         .setPassword("temp2");
+     certificateAsyncClient.createIssuer(issuer)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerResponse -> {
+             System.out.printf("Issuer created with %s and %s", issuerResponse.getName(),
+                 issuerResponse.getProvider());
+         });
+    ```
   syntax:
     content: public Mono<CertificateIssuer> createIssuer(CertificateIssuer issuer)
     parameters:
@@ -415,7 +494,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the created <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">certificate issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.createIssuerWithResponse(com.azure.security.keyvault.certificates.models.CertificateIssuer)
   id: createIssuerWithResponse(com.azure.security.keyvault.certificates.models.CertificateIssuer)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -435,7 +514,18 @@ items:
     Creates a new certificate issuer in the key vault. Prints out the created certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.createIssuerWithResponse\#CertificateIssuer\}
+    ```java
+
+    CertificateIssuer newIssuer = new CertificateIssuer("issuerName", "providerName")
+         .setAccountId("keyvaultuser")
+         .setPassword("temp2");
+     certificateAsyncClient.createIssuerWithResponse(newIssuer)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerResponse -> {
+             System.out.printf("Issuer created with %s and %s", issuerResponse.getValue().getName(),
+                 issuerResponse.getValue().getProvider());
+         });
+    ```
   syntax:
     content: public Mono<Response<CertificateIssuer>> createIssuerWithResponse(CertificateIssuer issuer)
     parameters:
@@ -449,7 +539,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing  a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the created <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">certificate issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteCertificateOperation(java.lang.String)
   id: deleteCertificateOperation(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -469,7 +559,12 @@ items:
     Triggers certificate creation and then deletes the certificate creation operation in the Azure Key Vault. Prints out the deleted certificate operation details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteCertificateOperation\#string\}
+    ```java
+
+    certificateAsyncClient.deleteCertificateOperation("certificateName")
+         .subscribe(certificateOperation -> System.out.printf("Deleted Certificate operation last status %s",
+             certificateOperation.getStatus()));
+    ```
   syntax:
     content: public Mono<CertificateOperation> deleteCertificateOperation(String certificateName)
     parameters:
@@ -481,7 +576,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.CertificateOperation" data-throw-if-not-resolved="false">deleted certificate operation</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteCertificateOperationWithResponse(java.lang.String)
   id: deleteCertificateOperationWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -501,7 +596,12 @@ items:
     Triggers certificate creation and then deletes the certificate creation operation in the Azure Key Vault. Prints out the deleted certificate operation details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteCertificateOperationWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.deleteCertificateOperationWithResponse("certificateName")
+         .subscribe(certificateOperationResponse -> System.out.printf("Deleted Certificate operation's last"
+             + " status %s", certificateOperationResponse.getValue().getStatus()));
+    ```
   syntax:
     content: public Mono<Response<CertificateOperation>> deleteCertificateOperationWithResponse(String certificateName)
     parameters:
@@ -513,7 +613,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.CertificateOperation" data-throw-if-not-resolved="false">deleted certificate operation</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteContacts()
   id: deleteContacts()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -533,7 +633,12 @@ items:
     Deletes the certificate contacts in the Azure Key Vault. Prints out the deleted contacts details.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteContacts\}
+    ```java
+
+    certificateAsyncClient.deleteContacts().subscribe(contact ->
+         System.out.printf("Deleted Contact name %s and email %s", contact.getName(), contact.getEmail())
+     );
+    ```
   syntax:
     content: public PagedFlux<CertificateContact> deleteContacts()
     return:
@@ -541,7 +646,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.CertificateContact" data-throw-if-not-resolved="false">deleted certificate contacts</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteIssuer(java.lang.String)
   id: deleteIssuer(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -561,7 +666,13 @@ items:
     Deletes the certificate issuer in the Azure Key Vault. Prints out the deleted certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteIssuer\#string\}
+    ```java
+
+    certificateAsyncClient.deleteIssuer("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedIssuerResponse ->
+             System.out.printf("Deleted issuer with name %s %n", deletedIssuerResponse.getName()));
+    ```
   syntax:
     content: public Mono<CertificateIssuer> deleteIssuer(String issuerName)
     parameters:
@@ -573,7 +684,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">deleted issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteIssuerWithResponse(java.lang.String)
   id: deleteIssuerWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -593,7 +704,13 @@ items:
     Deletes the certificate issuer in the Azure Key Vault. Prints out the deleted certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.deleteIssuerWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.deleteIssuerWithResponse("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedIssuerResponse ->
+             System.out.printf("Deleted issuer with name %s %n", deletedIssuerResponse.getValue().getName()));
+    ```
   syntax:
     content: public Mono<Response<CertificateIssuer>> deleteIssuerWithResponse(String issuerName)
     parameters:
@@ -605,7 +722,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">deleted issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificate(java.lang.String)
   id: getCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -625,7 +742,14 @@ items:
     Gets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificate\#String\}
+    ```java
+
+    certificateAsyncClient.getCertificate("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponse ->
+             System.out.printf("Certificate is returned with name %s and secretId %s %n",
+                 certificateResponse.getProperties().getName(), certificateResponse.getSecretId()));
+    ```
   syntax:
     content: public Mono<KeyVaultCertificateWithPolicy> getCertificate(String certificateName)
     parameters:
@@ -637,7 +761,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy" data-throw-if-not-resolved="false">certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateOperation(java.lang.String)
   id: getCertificateOperation(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -657,7 +781,16 @@ items:
     Get a pending certificate operation. The <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">poller</xref> allows users to automatically poll on the certificate operation status. It is possible to monitor each intermediate poll response during the poll operation.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateOperation\#String\}
+    ```java
+
+    certificateAsyncClient.getCertificateOperation("certificateName")
+         .subscribe(pollResponse -> {
+             System.out.println("---------------------------------------------------------------------------------");
+             System.out.println(pollResponse.getStatus());
+             System.out.println(pollResponse.getValue().getStatus());
+             System.out.println(pollResponse.getValue().getStatusDetails());
+         });
+    ```
   syntax:
     content: public PollerFlux<CertificateOperation,KeyVaultCertificateWithPolicy> getCertificateOperation(String certificateName)
     parameters:
@@ -669,7 +802,7 @@ items:
       description: A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> polling on the certificate operation status.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificatePolicy(java.lang.String)
   id: getCertificatePolicy(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -689,7 +822,14 @@ items:
     Gets the policy of a certirifcate in the key vault. Prints out the returned certificate policy details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificatePolicy\#string\}
+    ```java
+
+    certificateAsyncClient.getCertificatePolicy("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(policy ->
+             System.out.printf("Certificate policy is returned with issuer name %s and subject name %s %n",
+                 policy.getIssuerName(), policy.getSubject()));
+    ```
   syntax:
     content: public Mono<CertificatePolicy> getCertificatePolicy(String certificateName)
     parameters:
@@ -701,7 +841,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested <xref uid="com.azure.security.keyvault.certificates.models.CertificatePolicy" data-throw-if-not-resolved="false">certificate policy</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificatePolicyWithResponse(java.lang.String)
   id: getCertificatePolicyWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -721,7 +861,14 @@ items:
     Gets the policy of a certirifcate in the key vault. Prints out the returned certificate policy details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificatePolicyWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.getCertificatePolicyWithResponse("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(policyResponse ->
+             System.out.printf("Certificate policy is returned with issuer name %s and subject name %s %n",
+                 policyResponse.getValue().getIssuerName(), policyResponse.getValue().getSubject()));
+    ```
   syntax:
     content: public Mono<Response<CertificatePolicy>> getCertificatePolicyWithResponse(String certificateName)
     parameters:
@@ -733,7 +880,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.certificates.models.CertificatePolicy" data-throw-if-not-resolved="false">certificate policy</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersion(java.lang.String,java.lang.String)
   id: getCertificateVersion(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -753,7 +900,14 @@ items:
     Gets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersion\#String-String\}
+    ```java
+
+    certificateAsyncClient.getCertificateVersion("certificateName", certificateVersion)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateWithVersion ->
+             System.out.printf("Certificate is returned with name %s and secretId %s %n",
+                 certificateWithVersion.getProperties().getName(), certificateWithVersion.getSecretId()));
+    ```
   syntax:
     content: public Mono<KeyVaultCertificate> getCertificateVersion(String certificateName, String version)
     parameters:
@@ -768,7 +922,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersionWithResponse(java.lang.String,java.lang.String)
   id: getCertificateVersionWithResponse(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -788,7 +942,16 @@ items:
     Gets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersionWithResponse\#string-string\}
+    ```java
+
+    String certificateVersion = "6A385B124DEF4096AF1361A85B16C204";
+     certificateAsyncClient.getCertificateVersionWithResponse("certificateName", certificateVersion)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateWithVersion ->
+             System.out.printf("Certificate is returned with name %s and secretId %s %n",
+                 certificateWithVersion.getValue().getProperties().getName(),
+                 certificateWithVersion.getValue().getSecretId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificate>> getCertificateVersionWithResponse(String certificateName, String version)
     parameters:
@@ -803,7 +966,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateWithResponse(java.lang.String)
   id: getCertificateWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -823,7 +986,15 @@ items:
     Gets a specific version of the certificate in the key vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateWithResponse\#String\}
+    ```java
+
+    certificateAsyncClient.getCertificateWithResponse("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponse ->
+             System.out.printf("Certificate is returned with name %s and secretId %s %n",
+                 certificateResponse.getValue().getProperties().getName(),
+                 certificateResponse.getValue().getSecretId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificateWithPolicy>> getCertificateWithResponse(String certificateName)
     parameters:
@@ -835,7 +1006,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy" data-throw-if-not-resolved="false">certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getDeletedCertificate(java.lang.String)
   id: getDeletedCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -855,7 +1026,13 @@ items:
     Gets the deleted certificate from the key vault enabled for soft-delete. Prints out the deleted certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getDeletedCertificate\#string\}
+    ```java
+
+    certificateAsyncClient.getDeletedCertificate("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedSecretResponse ->
+             System.out.printf("Deleted Certificate's Recovery Id %s %n", deletedSecretResponse.getRecoveryId()));
+    ```
   syntax:
     content: public Mono<DeletedCertificate> getDeletedCertificate(String certificateName)
     parameters:
@@ -867,7 +1044,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.DeletedCertificate" data-throw-if-not-resolved="false">deleted certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getDeletedCertificateWithResponse(java.lang.String)
   id: getDeletedCertificateWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -887,7 +1064,14 @@ items:
     Gets the deleted certificate from the key vault enabled for soft-delete. Prints out the deleted certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getDeletedCertificateWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.getDeletedCertificateWithResponse("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedSecretResponse ->
+             System.out.printf("Deleted Certificate's Recovery Id %s %n",
+                 deletedSecretResponse.getValue().getRecoveryId()));
+    ```
   syntax:
     content: public Mono<Response<DeletedCertificate>> getDeletedCertificateWithResponse(String certificateName)
     parameters:
@@ -899,7 +1083,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.DeletedCertificate" data-throw-if-not-resolved="false">deleted certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuer(java.lang.String)
   id: getIssuer(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -919,7 +1103,15 @@ items:
     Gets the specified certificate issuer in the key vault. Prints out the returned certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuer\#string\}
+    ```java
+
+    certificateAsyncClient.getIssuer("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuer -> {
+             System.out.printf("Issuer returned with %s and %s", issuer.getName(),
+                 issuer.getProvider());
+         });
+    ```
   syntax:
     content: public Mono<CertificateIssuer> getIssuer(String issuerName)
     parameters:
@@ -931,7 +1123,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the requested <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">certificate issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuerWithResponse(java.lang.String)
   id: getIssuerWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -951,7 +1143,15 @@ items:
     Gets the specificed certifcate issuer in the key vault. Prints out the returned certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuerWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.getIssuerWithResponse("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerResponse -> {
+             System.out.printf("Issuer returned with %s and %s", issuerResponse.getValue().getName(),
+                 issuerResponse.getValue().getProvider());
+         });
+    ```
   syntax:
     content: public Mono<Response<CertificateIssuer>> getIssuerWithResponse(String issuerName)
     parameters:
@@ -963,7 +1163,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">certificate issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.getVaultUrl()
   id: getVaultUrl()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -981,7 +1181,7 @@ items:
       description: the vault endpoint url
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.importCertificate(com.azure.security.keyvault.certificates.models.ImportCertificateOptions)
   id: importCertificate(com.azure.security.keyvault.certificates.models.ImportCertificateOptions)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1001,7 +1201,15 @@ items:
     Imports a certificate into the key vault.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.importCertificate\#options\}
+    ```java
+
+    byte[] certificateToImport = new byte[100];
+     ImportCertificateOptions config =
+         new ImportCertificateOptions("certificateName", certificateToImport).setEnabled(false);
+     certificateAsyncClient.importCertificate(config)
+         .subscribe(certificate -> System.out.printf("Received Certificate with name %s and key id %s",
+             certificate.getProperties().getName(), certificate.getKeyId()));
+    ```
   syntax:
     content: public Mono<KeyVaultCertificateWithPolicy> importCertificate(ImportCertificateOptions importCertificateOptions)
     parameters:
@@ -1013,7 +1221,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy" data-throw-if-not-resolved="false">imported certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.importCertificateWithResponse(com.azure.security.keyvault.certificates.models.ImportCertificateOptions)
   id: importCertificateWithResponse(com.azure.security.keyvault.certificates.models.ImportCertificateOptions)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1033,7 +1241,15 @@ items:
     Imports a certificate into the key vault.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.importCertificateWithResponse\#options\}
+    ```java
+
+    byte[] certToImport = new byte[100];
+     ImportCertificateOptions importCertificateOptions  =
+         new ImportCertificateOptions("certificateName", certToImport).setEnabled(false);
+     certificateAsyncClient.importCertificateWithResponse(importCertificateOptions)
+         .subscribe(certificateResponse -> System.out.printf("Received Certificate with name %s and key id %s",
+             certificateResponse.getValue().getProperties().getName(), certificateResponse.getValue().getKeyId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificateWithPolicy>> importCertificateWithResponse(ImportCertificateOptions importCertificateOptions)
     parameters:
@@ -1045,7 +1261,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificateWithPolicy" data-throw-if-not-resolved="false">imported certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listContacts()
   id: listContacts()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1065,7 +1281,12 @@ items:
     Lists the certificate contacts in the Azure Key Vault. Prints out the returned contacts details.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listContacts\}
+    ```java
+
+    certificateAsyncClient.listContacts().subscribe(contact ->
+         System.out.printf("Contact name %s and email %s", contact.getName(), contact.getEmail())
+     );
+    ```
   syntax:
     content: public PagedFlux<CertificateContact> listContacts()
     return:
@@ -1073,7 +1294,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.CertificateContact" data-throw-if-not-resolved="false">certificate contacts</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listDeletedCertificates()
   id: listDeletedCertificates()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1093,7 +1314,13 @@ items:
     Lists the deleted certificates in the key vault. Prints out the recovery id of each deleted certificate when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listDeletedCertificates\}
+    ```java
+
+    certificateAsyncClient.listDeletedCertificates()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedCertificateResponse ->  System.out.printf("Deleted Certificate's Recovery Id %s %n",
+             deletedCertificateResponse.getRecoveryId()));
+    ```
   syntax:
     content: public PagedFlux<DeletedCertificate> listDeletedCertificates()
     return:
@@ -1101,7 +1328,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.DeletedCertificate" data-throw-if-not-resolved="false">deleted certificates</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listDeletedCertificates(boolean)
   id: listDeletedCertificates(boolean)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1121,7 +1348,13 @@ items:
     Lists the deleted certificates in the key vault. Prints out the recovery id of each deleted certificate when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listDeletedCertificates\}
+    ```java
+
+    certificateAsyncClient.listDeletedCertificates()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(deletedCertificateResponse ->  System.out.printf("Deleted Certificate's Recovery Id %s %n",
+             deletedCertificateResponse.getRecoveryId()));
+    ```
   syntax:
     content: public PagedFlux<DeletedCertificate> listDeletedCertificates(boolean includePending)
     parameters:
@@ -1133,7 +1366,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.DeletedCertificate" data-throw-if-not-resolved="false">deleted certificates</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listPropertiesOfCertificateVersions(java.lang.String)
   id: listPropertiesOfCertificateVersions(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1150,7 +1383,15 @@ items:
     It is possible to get the certificates with properties excluding the policy for all the versions from this information. Convert the <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">CertificateProperties</xref> to <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">certificate</xref> using <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersion(java.lang.String,java.lang.String)" data-throw-if-not-resolved="false">CertificateAsyncClient#getCertificateVersion(String, String)</xref> within <xref uid="" data-throw-if-not-resolved="false">Flux#flatMap(Function)</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listCertificateVersions\}
+    ```java
+
+    certificateAsyncClient.listPropertiesOfCertificateVersions("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificate -> certificateAsyncClient.getCertificateVersion(certificate.getName(),
+             certificate.getVersion())
+             .subscribe(certificateResponse -> System.out.printf("Received certificate with name %s and key id %s",
+                 certificateResponse.getProperties().getName(), certificateResponse.getKeyId())));
+    ```
   syntax:
     content: public PagedFlux<CertificateProperties> listPropertiesOfCertificateVersions(String certificateName)
     parameters:
@@ -1162,7 +1403,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">certificate</xref> of all the versions of the specified certificate in the vault. Flux is empty if certificate with <code>certificateName</code> does not exist in key vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listPropertiesOfCertificates()
   id: listPropertiesOfCertificates()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1179,7 +1420,15 @@ items:
     It is possible to get certificates with all the properties excluding the policy from this information. Convert the <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">CertificateProperties</xref> to <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">certificate</xref> using <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersion(java.lang.String,java.lang.String)" data-throw-if-not-resolved="false">CertificateAsyncClient#getCertificateVersion(String, String)</xref> within <xref uid="" data-throw-if-not-resolved="false">Flux#flatMap(Function)</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listCertificates\}
+    ```java
+
+    certificateAsyncClient.listPropertiesOfCertificates()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificate -> certificateAsyncClient.getCertificateVersion(certificate.getName(),
+             certificate.getVersion())
+             .subscribe(certificateResponse -> System.out.printf("Received certificate with name %s and key id %s",
+                 certificateResponse.getName(), certificateResponse.getKeyId())));
+    ```
   syntax:
     content: public PagedFlux<CertificateProperties> listPropertiesOfCertificates()
     return:
@@ -1187,7 +1436,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">certificate</xref> for all the certificates in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listPropertiesOfCertificates(boolean)
   id: listPropertiesOfCertificates(boolean)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1204,7 +1453,15 @@ items:
     It is possible to get certificates with all the properties excluding the policy from this information. Convert the <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">CertificateProperties</xref> to <xref uid="" data-throw-if-not-resolved="false">Flux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">certificate</xref> using <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient.getCertificateVersion(java.lang.String,java.lang.String)" data-throw-if-not-resolved="false">CertificateAsyncClient#getCertificateVersion(String, String)</xref> within <xref uid="" data-throw-if-not-resolved="false">Flux#flatMap(Function)</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listCertificates\}
+    ```java
+
+    certificateAsyncClient.listPropertiesOfCertificates()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificate -> certificateAsyncClient.getCertificateVersion(certificate.getName(),
+             certificate.getVersion())
+             .subscribe(certificateResponse -> System.out.printf("Received certificate with name %s and key id %s",
+                 certificateResponse.getName(), certificateResponse.getKeyId())));
+    ```
   syntax:
     content: public PagedFlux<CertificateProperties> listPropertiesOfCertificates(boolean includePending)
     parameters:
@@ -1216,7 +1473,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">certificate</xref> for all the certificates in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.listPropertiesOfIssuers()
   id: listPropertiesOfIssuers()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1230,7 +1487,17 @@ items:
     List all the certificate issuers resources in the key vault. The individual certificate issuer response in the flux is represented by <xref uid="com.azure.security.keyvault.certificates.models.IssuerProperties" data-throw-if-not-resolved="false">IssuerProperties</xref> as only the certificate issuer identifier and provider are provided in the response. This operation requires the `certificates/manageissuers/getissuers` permission.
 
 
-    It is possible to get the certificate issuer with all of its properties from this information. Convert the <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.IssuerProperties" data-throw-if-not-resolved="false">issuerProperties</xref> to <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">issuer</xref> using <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuer(java.lang.String)" data-throw-if-not-resolved="false">CertificateAsyncClient#getIssuer(String)</xref> \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.listPropertiesOfIssuers\}
+    It is possible to get the certificate issuer with all of its properties from this information. Convert the <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.IssuerProperties" data-throw-if-not-resolved="false">issuerProperties</xref> to <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">issuer</xref> using <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient.getIssuer(java.lang.String)" data-throw-if-not-resolved="false">CertificateAsyncClient#getIssuer(String)</xref>
+
+
+    ```java
+
+    certificateAsyncClient.listPropertiesOfIssuers()
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerProperties -> certificateAsyncClient.getIssuer(issuerProperties.getName())
+             .subscribe(issuerResponse -> System.out.printf("Received issuer with name %s and provider %s",
+                 issuerResponse.getName(), issuerResponse.getProvider())));
+    ```
   syntax:
     content: public PagedFlux<IssuerProperties> listPropertiesOfIssuers()
     return:
@@ -1238,7 +1505,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.IssuerProperties" data-throw-if-not-resolved="false">certificate issuers</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.mergeCertificate(com.azure.security.keyvault.certificates.models.MergeCertificateOptions)
   id: mergeCertificate(com.azure.security.keyvault.certificates.models.MergeCertificateOptions)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1258,7 +1525,15 @@ items:
     Merges a certificate with a kay pair available in the service.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.mergeCertificate\#config\}
+    ```java
+
+    List<byte[]> x509CertificatesToMerge = new ArrayList<>();
+     MergeCertificateOptions config =
+         new MergeCertificateOptions("certificateName", x509CertificatesToMerge).setEnabled(false);
+     certificateAsyncClient.mergeCertificate(config)
+         .subscribe(certificate -> System.out.printf("Received Certificate with name %s and key id %s",
+             certificate.getProperties().getName(), certificate.getKeyId()));
+    ```
   syntax:
     content: public Mono<KeyVaultCertificate> mergeCertificate(MergeCertificateOptions mergeCertificateOptions)
     parameters:
@@ -1270,7 +1545,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the merged certificate.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.mergeCertificateWithResponse(com.azure.security.keyvault.certificates.models.MergeCertificateOptions)
   id: mergeCertificateWithResponse(com.azure.security.keyvault.certificates.models.MergeCertificateOptions)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1290,7 +1565,15 @@ items:
     Merges a certificate with a kay pair available in the service.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.mergeCertificateWithResponse\#config\}
+    ```java
+
+    List<byte[]> x509CertsToMerge = new ArrayList<>();
+     MergeCertificateOptions mergeConfig =
+         new MergeCertificateOptions("certificateName", x509CertsToMerge).setEnabled(false);
+     certificateAsyncClient.mergeCertificateWithResponse(mergeConfig)
+         .subscribe(certificateResponse -> System.out.printf("Received Certificate with name %s and key id %s",
+             certificateResponse.getValue().getProperties().getName(), certificateResponse.getValue().getKeyId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificateWithPolicy>> mergeCertificateWithResponse(MergeCertificateOptions mergeCertificateOptions)
     parameters:
@@ -1302,7 +1585,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the merged certificate.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.purgeDeletedCertificate(java.lang.String)
   id: purgeDeletedCertificate(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1322,7 +1605,13 @@ items:
     Purges the deleted certificate from the key vault enabled for soft-delete. Prints out the status code from the server response when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.purgeDeletedCertificateWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.purgeDeletedCertificateWithResponse("deletedCertificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(purgeResponse ->
+             System.out.printf("Purge Status response %d %n", purgeResponse.getStatusCode()));
+    ```
   syntax:
     content: public Mono<Void> purgeDeletedCertificate(String certificateName)
     parameters:
@@ -1334,7 +1623,7 @@ items:
       description: An empty <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.purgeDeletedCertificateWithResponse(java.lang.String)
   id: purgeDeletedCertificateWithResponse(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1354,7 +1643,13 @@ items:
     Purges the deleted certificate from the key vault enabled for soft-delete. Prints out the status code from the server response when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.purgeDeletedCertificateWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.purgeDeletedCertificateWithResponse("deletedCertificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(purgeResponse ->
+             System.out.printf("Purge Status response %d %n", purgeResponse.getStatusCode()));
+    ```
   syntax:
     content: public Mono<Response<Void>> purgeDeletedCertificateWithResponse(String certificateName)
     parameters:
@@ -1366,7 +1661,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a Void Response}.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.restoreCertificateBackup(byte[])
   id: restoreCertificateBackup(byte[])
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1386,7 +1681,14 @@ items:
     Restores the certificate in the key vault from its backup. Prints out the restored certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.restoreCertificate\#byte\}
+    ```java
+
+    byte[] certificateBackupByteArray = {};
+     certificateAsyncClient.restoreCertificateBackup(certificateBackupByteArray)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponse -> System.out.printf("Restored Certificate with name %s and key id %s %n",
+             certificateResponse.getProperties().getName(), certificateResponse.getKeyId()));
+    ```
   syntax:
     content: public Mono<KeyVaultCertificateWithPolicy> restoreCertificateBackup(byte[] backup)
     parameters:
@@ -1398,7 +1700,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">restored certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.restoreCertificateBackupWithResponse(byte[])
   id: restoreCertificateBackupWithResponse(byte[])
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1418,7 +1720,14 @@ items:
     Restores the certificate in the key vault from its backup. Prints out the restored certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.restoreCertificateWithResponse\#byte\}
+    ```java
+
+    byte[] certificateBackup = {};
+     certificateAsyncClient.restoreCertificateBackup(certificateBackup)
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponse -> System.out.printf("Restored Certificate with name %s and key id %s %n",
+             certificateResponse.getProperties().getName(), certificateResponse.getKeyId()));
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificateWithPolicy>> restoreCertificateBackupWithResponse(byte[] backup)
     parameters:
@@ -1430,7 +1739,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.KeyVaultCertificate" data-throw-if-not-resolved="false">restored certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.setContacts(java.util.List<com.azure.security.keyvault.certificates.models.CertificateContact>)
   id: setContacts(java.util.List<com.azure.security.keyvault.certificates.models.CertificateContact>)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1453,7 +1762,13 @@ items:
     Sets the certificate contacts in the Azure Key Vault. Prints out the returned contacts details.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.setContacts\#contacts\}
+    ```java
+
+    CertificateContact contactToAdd = new CertificateContact().setName("user").setEmail("useremail{@literal @}exmaple.com");
+     certificateAsyncClient.setContacts(Arrays.asList(contactToAdd)).subscribe(contact ->
+         System.out.printf("Contact name %s and email %s", contact.getName(), contact.getEmail())
+     );
+    ```
   syntax:
     content: public PagedFlux<CertificateContact> setContacts(List<CertificateContact> contacts)
     parameters:
@@ -1465,7 +1780,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> containing all of the <xref uid="com.azure.security.keyvault.certificates.models.CertificateContact" data-throw-if-not-resolved="false">certificate contacts</xref> in the vault.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePolicy(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
   id: updateCertificatePolicy(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1485,7 +1800,20 @@ items:
     Gets the certificate policy, changes its properties and then updates it in the Azure Key Vault. Prints out the returned policy details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePolicy\#string\}
+    ```java
+
+    certificateAsyncClient.getCertificatePolicy("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificatePolicyResponseValue -> {
+             CertificatePolicy certificatePolicy = certificatePolicyResponseValue;
+             // Update transparency
+             certificatePolicy.setCertificateTransparent(true);
+             certificateAsyncClient.updateCertificatePolicy("certificateName", certificatePolicy)
+                 .subscribe(updatedPolicy ->
+                     System.out.printf("Certificate policy's updated transparency status %s %n",
+                         updatedPolicy.isCertificateTransparent()));
+         });
+    ```
   syntax:
     content: public Mono<CertificatePolicy> updateCertificatePolicy(String certificateName, CertificatePolicy policy)
     parameters:
@@ -1500,7 +1828,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the updated <xref uid="com.azure.security.keyvault.certificates.models.CertificatePolicy" data-throw-if-not-resolved="false">certificate policy</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePolicyWithResponse(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
   id: updateCertificatePolicyWithResponse(java.lang.String,com.azure.security.keyvault.certificates.models.CertificatePolicy)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1520,7 +1848,21 @@ items:
     Gets the certificate policy, changes its properties and then updates it in the Azure Key Vault. Prints out the returned policy details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePolicyWithResponse\#string\}
+    ```java
+
+    certificateAsyncClient.getCertificatePolicy("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificatePolicyResponseValue -> {
+             CertificatePolicy certificatePolicy = certificatePolicyResponseValue;
+             // Update transparency
+             certificatePolicy.setCertificateTransparent(true);
+             certificateAsyncClient.updateCertificatePolicyWithResponse("certificateName",
+                 certificatePolicy)
+                 .subscribe(updatedPolicyResponse ->
+                     System.out.printf("Certificate policy's updated transparency status %s %n",
+                         updatedPolicyResponse.getValue().isCertificateTransparent()));
+         });
+    ```
   syntax:
     content: public Mono<Response<CertificatePolicy>> updateCertificatePolicyWithResponse(String certificateName, CertificatePolicy policy)
     parameters:
@@ -1535,7 +1877,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the updated <xref uid="com.azure.security.keyvault.certificates.models.CertificatePolicy" data-throw-if-not-resolved="false">certificate policy</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificateProperties(com.azure.security.keyvault.certificates.models.CertificateProperties)
   id: updateCertificateProperties(com.azure.security.keyvault.certificates.models.CertificateProperties)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1555,7 +1897,20 @@ items:
     Gets latest version of the certificate, changes its tags and enabled status and then updates it in the Azure Key Vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificateProperties\#CertificateProperties\}
+    ```java
+
+    certificateAsyncClient.getCertificate("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponseValue -> {
+             KeyVaultCertificate certificate = certificateResponseValue;
+             //Update enabled status of the certificate
+             certificate.getProperties().setEnabled(false);
+             certificateAsyncClient.updateCertificateProperties(certificate.getProperties())
+                 .subscribe(certificateResponse ->
+                     System.out.printf("Certificate's enabled status %s %n",
+                         certificateResponse.getProperties().isEnabled().toString()));
+         });
+    ```
   syntax:
     content: public Mono<KeyVaultCertificate> updateCertificateProperties(CertificateProperties properties)
     parameters:
@@ -1567,7 +1922,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">updated certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePropertiesWithResponse(com.azure.security.keyvault.certificates.models.CertificateProperties)
   id: updateCertificatePropertiesWithResponse(com.azure.security.keyvault.certificates.models.CertificateProperties)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1587,7 +1942,20 @@ items:
     Gets latest version of the certificate, changes its enabled status and then updates it in the Azure Key Vault. Prints out the returned certificate details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateCertificatePropertiesWithResponse\#CertificateProperties\}
+    ```java
+
+    certificateAsyncClient.getCertificate("certificateName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(certificateResponseValue -> {
+             KeyVaultCertificate certificate = certificateResponseValue;
+             //Update the enabled status of the certificate.
+             certificate.getProperties().setEnabled(false);
+             certificateAsyncClient.updateCertificatePropertiesWithResponse(certificate.getProperties())
+                 .subscribe(certificateResponse ->
+                     System.out.printf("Certificate's enabled status %s %n",
+                         certificateResponse.getValue().getProperties().isEnabled().toString()));
+         });
+    ```
   syntax:
     content: public Mono<Response<KeyVaultCertificate>> updateCertificatePropertiesWithResponse(CertificateProperties properties)
     parameters:
@@ -1599,7 +1967,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing a <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.security.keyvault.certificates.models.CertificateProperties" data-throw-if-not-resolved="false">updated certificate</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateIssuer(com.azure.security.keyvault.certificates.models.CertificateIssuer)
   id: updateIssuer(com.azure.security.keyvault.certificates.models.CertificateIssuer)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1619,7 +1987,20 @@ items:
     Gets the certificate issuer, changes its attributes/properties then updates it in the Azure Key Vault. Prints out the returned certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateIssuer\#CertificateIssuer\}
+    ```java
+
+    certificateAsyncClient.getIssuer("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerResponseValue -> {
+             CertificateIssuer issuer = issuerResponseValue;
+             //Update the enabled status of the issuer.
+             issuer.setEnabled(false);
+             certificateAsyncClient.updateIssuer(issuer)
+                 .subscribe(issuerResponse ->
+                     System.out.printf("Issuer's enabled status %s %n",
+                         issuerResponse.isEnabled().toString()));
+         });
+    ```
   syntax:
     content: public Mono<CertificateIssuer> updateIssuer(CertificateIssuer issuer)
     parameters:
@@ -1633,7 +2014,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the <xref uid="com.azure.security.keyvault.certificates.models.CertificateIssuer" data-throw-if-not-resolved="false">updated issuer</xref>.
 - uid: com.azure.security.keyvault.certificates.CertificateAsyncClient.updateIssuerWithResponse(com.azure.security.keyvault.certificates.models.CertificateIssuer)
   id: updateIssuerWithResponse(com.azure.security.keyvault.certificates.models.CertificateIssuer)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateAsyncClient
   langs:
   - java
@@ -1653,7 +2034,20 @@ items:
     Gets the certificate issuer, changes its attributes/properties then updates it in the Azure Key Vault. Prints out the returned certificate issuer details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.updateIssuer\#CertificateIssuer\}
+    ```java
+
+    certificateAsyncClient.getIssuer("issuerName")
+         .subscriberContext(Context.of(key1, value1, key2, value2))
+         .subscribe(issuerResponseValue -> {
+             CertificateIssuer issuer = issuerResponseValue;
+             //Update the enabled status of the issuer.
+             issuer.setEnabled(false);
+             certificateAsyncClient.updateIssuer(issuer)
+                 .subscribe(issuerResponse ->
+                     System.out.printf("Issuer's enabled status %s %n",
+                         issuerResponse.isEnabled().toString()));
+         });
+    ```
   syntax:
     content: public Mono<Response<CertificateIssuer>> updateIssuerWithResponse(CertificateIssuer issuer)
     parameters:
