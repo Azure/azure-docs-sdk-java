@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   id: CryptographyClient
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography
   children:
   - com.azure.security.keyvault.keys.cryptography.CryptographyClient.decrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[])
@@ -37,7 +37,13 @@ items:
     **Samples to construct the sync client**
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.cryptographyclient.instantiation\}
+    ```java
+
+    CryptographyClient cryptographyClient = new CryptographyClientBuilder()
+         .keyIdentifier("<YOUR-KEY-IDENTIFIER>")
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .buildClient();
+    ```
   syntax:
     content: public class CryptographyClient
   inheritance:
@@ -56,7 +62,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.CryptographyClient(com.azure.security.keyvault.keys.cryptography.CryptographyAsyncClient)
   id: CryptographyClient(com.azure.security.keyvault.keys.cryptography.CryptographyAsyncClient)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -75,7 +81,7 @@ items:
       description: The <xref uid="com.azure.security.keyvault.keys.cryptography.CryptographyAsyncClient" data-throw-if-not-resolved="false">CryptographyAsyncClient</xref> that the client routes its request through.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.decrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[])
   id: decrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -98,7 +104,11 @@ items:
     Decrypts the encrypted content. Subscribes to the call asynchronously and prints out the decrypted content details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.decrypt\#EncryptionAlgorithm-byte\}
+    ```java
+
+    DecryptResult decryptResult = cryptographyClient.decrypt(EncryptionAlgorithm.RSA_OAEP, encryptedData);
+     System.out.printf("Received decrypted content of length %d\n", decryptResult.getPlainText().length);
+    ```
   syntax:
     content: public DecryptResult decrypt(EncryptionAlgorithm algorithm, byte[] cipherText)
     parameters:
@@ -113,7 +123,7 @@ items:
       description: The decrypted blob.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.decrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[],com.azure.core.util.Context)
   id: decrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -136,7 +146,12 @@ items:
     Decrypts the encrypted content. Subscribes to the call asynchronously and prints out the decrypted content details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.decrypt\#EncryptionAlgorithm-byte-Context\}
+    ```java
+
+    DecryptResult decryptionResult = cryptographyClient.decrypt(EncryptionAlgorithm.RSA_OAEP, encryptedData,
+         new Context(key1, value1));
+     System.out.printf("Received decrypted content of length %d\n", decryptionResult.getPlainText().length);
+    ```
   syntax:
     content: public DecryptResult decrypt(EncryptionAlgorithm algorithm, byte[] cipherText, Context context)
     parameters:
@@ -154,7 +169,7 @@ items:
       description: The decrypted blob.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.encrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[])
   id: encrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -177,7 +192,14 @@ items:
     Encrypts the content. Subscribes to the call asynchronously and prints out the encrypted content details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.encrypt\#EncryptionAlgorithm-byte\}
+    ```java
+
+    byte[] plainText = new byte[100];
+     new Random(0x1234567L).nextBytes(plainText);
+     EncryptResult encryptResult = cryptographyClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plainText);
+     System.out.printf("Received encrypted content of length %d with algorithm %s \n",
+         encryptResult.getCipherText().length, encryptResult.getAlgorithm().toString());
+    ```
   syntax:
     content: public EncryptResult encrypt(EncryptionAlgorithm algorithm, byte[] plaintext)
     parameters:
@@ -194,7 +216,7 @@ items:
              content.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.encrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[],com.azure.core.util.Context)
   id: encrypt(com.azure.security.keyvault.keys.cryptography.models.EncryptionAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -217,7 +239,15 @@ items:
     Encrypts the content. Subscribes to the call asynchronously and prints out the encrypted content details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.encrypt\#EncryptionAlgorithm-byte-Context\}
+    ```java
+
+    byte[] plainTextToEncrypt = new byte[100];
+     new Random(0x1234567L).nextBytes(plainTextToEncrypt);
+     EncryptResult encryptionResult = cryptographyClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plainTextToEncrypt,
+         new Context(key1, value1));
+     System.out.printf("Received encrypted content of length %d with algorithm %s \n",
+         encryptionResult.getCipherText().length, encryptionResult.getAlgorithm().toString());
+    ```
   syntax:
     content: public EncryptResult encrypt(EncryptionAlgorithm algorithm, byte[] plaintext, Context context)
     parameters:
@@ -237,7 +267,7 @@ items:
          content.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.getKey()
   id: getKey()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -257,7 +287,11 @@ items:
     Gets the key configured in the client. Prints out the returned key details.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.cryptographyclient.getKey\}
+    ```java
+
+    KeyVaultKey key = cryptographyClient.getKey();
+     System.out.printf("Key is returned with name %s and id %s \n", key.getName(), key.getId());
+    ```
   syntax:
     content: public KeyVaultKey getKey()
     return:
@@ -265,7 +299,7 @@ items:
       description: The requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.getKeyWithResponse(com.azure.core.util.Context)
   id: getKeyWithResponse(com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -285,7 +319,11 @@ items:
     Gets the key configured in the client. Prints out the returned key details.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.cryptographyclient.getKeyWithResponse\#Context\}
+    ```java
+
+    KeyVaultKey keyWithVersion = cryptographyClient.getKeyWithResponse(new Context(key1, value1)).getValue();
+     System.out.printf("Key is returned with name %s and id %s \n", keyWithVersion.getName(), keyWithVersion.getId());
+    ```
   syntax:
     content: public Response<KeyVaultKey> getKeyWithResponse(Context context)
     parameters:
@@ -297,7 +335,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the requested <xref uid="com.azure.security.keyvault.keys.models.KeyVaultKey" data-throw-if-not-resolved="false">key</xref>.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.sign(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[])
   id: sign(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -320,7 +358,17 @@ items:
     Sings the digest. Subscribes to the call asynchronously and prints out the signature details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.sign\#SignatureAlgorithm-byte\}
+    ```java
+
+    byte[] data = new byte[100];
+     new Random(0x1234567L).nextBytes(data);
+     MessageDigest md = MessageDigest.getInstance("SHA-256");
+     md.update(data);
+     byte[] digest = md.digest();
+     SignResult signResult = cryptographyClient.sign(SignatureAlgorithm.ES256, digest);
+     System.out.printf("Received signature of length %d with algorithm %s", signResult.getSignature().length,
+         signResult.getAlgorithm().toString());
+    ```
   syntax:
     content: public SignResult sign(SignatureAlgorithm algorithm, byte[] digest)
     parameters:
@@ -335,7 +383,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult" data-throw-if-not-resolved="false">SignResult</xref> whose <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult.getSignature()" data-throw-if-not-resolved="false">signature</xref> contains the created signature.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.sign(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],com.azure.core.util.Context)
   id: sign(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -358,7 +406,17 @@ items:
     Sings the digest. Subscribes to the call asynchronously and prints out the signature details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.sign\#SignatureAlgorithm-byte-Context\}
+    ```java
+
+    byte[] plainTextData = new byte[100];
+     new Random(0x1234567L).nextBytes(plainTextData);
+     MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+     messageDigest.update(data);
+     byte[] digetContent = messageDigest.digest();
+     SignResult signResponse = cryptographyClient.sign(SignatureAlgorithm.ES256, digetContent);
+     System.out.printf("Received signature of length %d with algorithm %s", signResponse.getSignature().length,
+         signResponse.getAlgorithm().toString(), new Context(key1, value1));
+    ```
   syntax:
     content: public SignResult sign(SignatureAlgorithm algorithm, byte[] digest, Context context)
     parameters:
@@ -376,7 +434,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult" data-throw-if-not-resolved="false">SignResult</xref> whose <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult.getSignature()" data-throw-if-not-resolved="false">signature</xref> contains the created signature.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.signData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[])
   id: signData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -399,7 +457,13 @@ items:
     Signs the raw data. Subscribes to the call asynchronously and prints out the signature details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.signData\#SignatureAlgorithm-byte\}
+    ```java
+
+    byte[] data = new byte[100];
+     new Random(0x1234567L).nextBytes(data);
+     SignResult signResult = cryptographyClient.sign(SignatureAlgorithm.ES256, data);
+     System.out.printf("Received signature of length %d with algorithm %s", signResult.getSignature().length);
+    ```
   syntax:
     content: public SignResult signData(SignatureAlgorithm algorithm, byte[] data)
     parameters:
@@ -414,7 +478,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult" data-throw-if-not-resolved="false">SignResult</xref> whose <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult.getSignature()" data-throw-if-not-resolved="false">signature</xref> contains the created signature.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.signData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],com.azure.core.util.Context)
   id: signData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -437,7 +501,14 @@ items:
     Signs the raw data. Subscribes to the call asynchronously and prints out the signature details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.signData\#SignatureAlgorithm-byte-Context\}
+    ```java
+
+    byte[] plainTextData = new byte[100];
+     new Random(0x1234567L).nextBytes(plainTextData);
+     SignResult signReponse = cryptographyClient.sign(SignatureAlgorithm.ES256, plainTextData);
+     System.out.printf("Received signature of length %d with algorithm %s", signReponse.getSignature().length,
+         new Context(key1, value1));
+    ```
   syntax:
     content: public SignResult signData(SignatureAlgorithm algorithm, byte[] data, Context context)
     parameters:
@@ -455,7 +526,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult" data-throw-if-not-resolved="false">SignResult</xref> whose <xref uid="com.azure.security.keyvault.keys.cryptography.models.SignResult.getSignature()" data-throw-if-not-resolved="false">signature</xref> contains the created signature.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.unwrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[])
   id: unwrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -478,7 +549,11 @@ items:
     Unwraps the key content. Subscribes to the call asynchronously and prints out the unwrapped key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.unwrapKey\#KeyWrapAlgorithm-byte\}
+    ```java
+
+    UnwrapResult unwrapResult = cryptographyClient.unwrapKey(KeyWrapAlgorithm.RSA_OAEP, encryptedKey);
+     System.out.printf("Received key of length %d", unwrapResult.getKey().length);
+    ```
   syntax:
     content: public UnwrapResult unwrapKey(KeyWrapAlgorithm algorithm, byte[] encryptedKey)
     parameters:
@@ -493,7 +568,7 @@ items:
       description: The unwrapped key content.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.unwrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[],com.azure.core.util.Context)
   id: unwrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -516,7 +591,12 @@ items:
     Unwraps the key content. Subscribes to the call asynchronously and prints out the unwrapped key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.unwrapKey\#KeyWrapAlgorithm-byte-Context\}
+    ```java
+
+    UnwrapResult keyUnwrapResponse = cryptographyClient.unwrapKey(KeyWrapAlgorithm.RSA_OAEP, encryptedKey,
+         new Context(key2, value2));
+     System.out.printf("Received key of length %d", keyUnwrapResponse.getKey().length);
+    ```
   syntax:
     content: public UnwrapResult unwrapKey(KeyWrapAlgorithm algorithm, byte[] encryptedKey, Context context)
     parameters:
@@ -534,7 +614,7 @@ items:
       description: The unwrapped key content.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.verify(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[])
   id: verify(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -557,7 +637,11 @@ items:
     Verifies the signature against the specified digest. Subscribes to the call asynchronously and prints out the verification details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.verify\#SignatureAlgorithm-byte-byte\}
+    ```java
+
+    VerifyResult verifyResult = cryptographyClient.verify(SignatureAlgorithm.ES256, digest, signature);
+     System.out.printf("Verification status %s", verifyResult.isValid());
+    ```
   syntax:
     content: public VerifyResult verify(SignatureAlgorithm algorithm, byte[] digest, byte[] signature)
     parameters:
@@ -575,7 +659,7 @@ items:
       description: The <xref uid="" data-throw-if-not-resolved="false">Boolean</xref> indicating the signature verification result.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.verify(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)
   id: verify(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -598,7 +682,11 @@ items:
     Verifies the signature against the specified digest. Subscribes to the call asynchronously and prints out the verification details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.verify\#SignatureAlgorithm-byte-byte-Context\}
+    ```java
+
+    VerifyResult verifyResponse = cryptographyClient.verify(SignatureAlgorithm.ES256, digest, signature);
+     System.out.printf("Verification status %s", verifyResponse.isValid(), new Context(key2, value2));
+    ```
   syntax:
     content: public VerifyResult verify(SignatureAlgorithm algorithm, byte[] digest, byte[] signature, Context context)
     parameters:
@@ -619,7 +707,7 @@ items:
       description: The <xref uid="" data-throw-if-not-resolved="false">Boolean</xref> indicating the signature verification result.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.verifyData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[])
   id: verifyData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -642,7 +730,11 @@ items:
     Verifies the signature against the raw data. Subscribes to the call asynchronously and prints out the verification details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.verifyData\#SignatureAlgorithm-byte-byte\}
+    ```java
+
+    VerifyResult verifyResult =  cryptographyClient.verify(SignatureAlgorithm.ES256, data, signature);
+     System.out.printf("Verification status %s", verifyResult.isValid());
+    ```
   syntax:
     content: public VerifyResult verifyData(SignatureAlgorithm algorithm, byte[] data, byte[] signature)
     parameters:
@@ -660,7 +752,7 @@ items:
       description: The <xref uid="" data-throw-if-not-resolved="false">Boolean</xref> indicating the signature verification result.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.verifyData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)
   id: verifyData(com.azure.security.keyvault.keys.cryptography.models.SignatureAlgorithm,byte[],byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -683,7 +775,11 @@ items:
     Verifies the signature against the raw data. Subscribes to the call asynchronously and prints out the verification details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.verifyData\#SignatureAlgorithm-byte-byte-Context\}
+    ```java
+
+    VerifyResult verifyResponse =  cryptographyClient.verify(SignatureAlgorithm.ES256, data, signature);
+     System.out.printf("Verification status %s", verifyResponse.isValid(), new Context(key2, value2));
+    ```
   syntax:
     content: public VerifyResult verifyData(SignatureAlgorithm algorithm, byte[] data, byte[] signature, Context context)
     parameters:
@@ -704,7 +800,7 @@ items:
       description: The <xref uid="" data-throw-if-not-resolved="false">Boolean</xref> indicating the signature verification result.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.wrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[])
   id: wrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[])
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -727,7 +823,14 @@ items:
     Wraps the key content. Subscribes to the call asynchronously and prints out the wrapped key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.wrapKey\#KeyWrapAlgorithm-byte\}
+    ```java
+
+    byte[] key = new byte[100];
+     new Random(0x1234567L).nextBytes(key);
+     WrapResult wrapResult = cryptographyClient.wrapKey(KeyWrapAlgorithm.RSA_OAEP, key);
+     System.out.printf("Received encypted key of length %d with algorithm %s", wrapResult.getEncryptedKey().length,
+         wrapResult.getAlgorithm().toString());
+    ```
   syntax:
     content: public WrapResult wrapKey(KeyWrapAlgorithm algorithm, byte[] key)
     parameters:
@@ -744,7 +847,7 @@ items:
              key result.
 - uid: com.azure.security.keyvault.keys.cryptography.CryptographyClient.wrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[],com.azure.core.util.Context)
   id: wrapKey(com.azure.security.keyvault.keys.cryptography.models.KeyWrapAlgorithm,byte[],com.azure.core.util.Context)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.cryptography.CryptographyClient
   langs:
   - java
@@ -767,7 +870,14 @@ items:
     Wraps the key content. Subscribes to the call asynchronously and prints out the wrapped key details when a response has been received.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.cryptography.CryptographyClient.wrapKey\#KeyWrapAlgorithm-byte-Context\}
+    ```java
+
+    byte[] keyContent = new byte[100];
+     new Random(0x1234567L).nextBytes(keyContent);
+     WrapResult keyWrapResponse = cryptographyClient.wrapKey(KeyWrapAlgorithm.RSA_OAEP, keyContent);
+     System.out.printf("Received encypted key of length %d with algorithm %s", keyWrapResponse.getEncryptedKey().length,
+         keyWrapResponse.getAlgorithm().toString(), new Context(key1, value1));
+    ```
   syntax:
     content: public WrapResult wrapKey(KeyWrapAlgorithm algorithm, byte[] key, Context context)
     parameters:

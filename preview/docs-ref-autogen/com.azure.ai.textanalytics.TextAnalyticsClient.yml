@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient
   id: TextAnalyticsClient
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics
   children:
   - com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(java.lang.String)
@@ -38,12 +38,6 @@ items:
   - com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>)
   - com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   - com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(java.lang.String)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(java.lang.String,java.lang.String)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  - com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   langs:
   - java
   name: TextAnalyticsClient
@@ -52,13 +46,19 @@ items:
   type: Class
   package: com.azure.ai.textanalytics
   summary: >-
-    This class provides a synchronous client that contains all the operations that apply to Azure Text Analytics. Operations allowed by the client are, detect language, recognize entities, recognize Personally Identifiable Information entities, recognize linked entities, and analyze sentiment for a document or a list of documents.
+    This class provides a synchronous client that contains all the operations that apply to Azure Text Analytics. Operations allowed by the client are language detection, entities recognition, linked entities recognition, key phrases extraction, and sentiment analysis of a document or a list of documents.
 
 
     **Instantiating a synchronous Text Analytics Client**
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.instantiation\}
+    ```java
+
+    TextAnalyticsClient textAnalyticsClient = new TextAnalyticsClientBuilder()
+         .apiKey(new AzureKeyCredential("{api_key}"))
+         .endpoint("{endpoint}")
+         .buildClient();
+    ```
 
 
     View <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder" data-throw-if-not-resolved="false">this</xref> for additional ways to construct the client.
@@ -80,7 +80,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.TextAnalyticsClient(com.azure.ai.textanalytics.TextAnalyticsAsyncClient)
   id: TextAnalyticsClient(com.azure.ai.textanalytics.TextAnalyticsAsyncClient)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
@@ -99,71 +99,51 @@ items:
       description: The <xref uid="com.azure.ai.textanalytics.TextAnalyticsClient" data-throw-if-not-resolved="false">TextAnalyticsClient</xref> that the client routes its request through.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(java.lang.String)
   id: analyzeSentiment(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentiment(String text)
-  nameWithType: TextAnalyticsClient.analyzeSentiment(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(String text)
+  name: analyzeSentiment(String document)
+  nameWithType: TextAnalyticsClient.analyzeSentiment(String document)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(String document)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within i This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments of documents
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment\#String\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within i This method will use the default language that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.\n\n**Code Sample**\n\nAnalyze the sentiments of documents\n\n```java\nfinal DocumentSentiment documentSentiment =\n     textAnalyticsClient.analyzeSentiment(\"The hotel was dark and unclean.\");\n \n System.out.printf(\"Recognized sentiment: %s, positive score: %.2f, neutral score: %.2f, negative score: %.2f.%n\",\n     documentSentiment.getSentiment(),\n     documentSentiment.getConfidenceScores().getPositive(),\n     documentSentiment.getConfidenceScores().getNeutral(),\n     documentSentiment.getConfidenceScores().getNegative());\n \n for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences()) {\n     System.out.printf(\n         \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f, negative score: %.2f.%n\",\n         sentenceSentiment.getSentiment(),\n         sentenceSentiment.getConfidenceScores().getPositive(),\n         sentenceSentiment.getConfidenceScores().getNeutral(),\n         sentenceSentiment.getConfidenceScores().getNegative());\n }\n```"
   syntax:
-    content: public DocumentSentiment analyzeSentiment(String text)
+    content: public DocumentSentiment analyzeSentiment(String document)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.models.DocumentSentiment
       description: A <xref uid="com.azure.ai.textanalytics.models.DocumentSentiment" data-throw-if-not-resolved="false">analyzed document sentiment</xref> of the document.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(java.lang.String,java.lang.String)
   id: analyzeSentiment(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentiment(String text, String language)
-  nameWithType: TextAnalyticsClient.analyzeSentiment(String text, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(String text, String language)
+  name: analyzeSentiment(String document, String language)
+  nameWithType: TextAnalyticsClient.analyzeSentiment(String document, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment(String document, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within i
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments in a document with a provided language representation.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentiment\#String-String\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within i\n\n**Code Sample**\n\nAnalyze the sentiments in a document with a provided language representation.\n\n```java\nfinal DocumentSentiment documentSentiment = textAnalyticsClient.analyzeSentiment(\n     \"The hotel was dark and unclean.\", \"en\");\n \n System.out.printf(\n     \"Recognized sentiment: %s, positive score: %.2f, neutral score: %.2f, negative score: %.2f.%n\",\n     documentSentiment.getSentiment(),\n     documentSentiment.getConfidenceScores().getPositive(),\n     documentSentiment.getConfidenceScores().getNeutral(),\n     documentSentiment.getConfidenceScores().getNegative());\n \n for (SentenceSentiment sentenceSentiment : documentSentiment.getSentences()) {\n     System.out.printf(\n         \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f, negative score: %.2f.%n\",\n         sentenceSentiment.getSentiment(),\n         sentenceSentiment.getConfidenceScores().getPositive(),\n         sentenceSentiment.getConfidenceScores().getNeutral(),\n         sentenceSentiment.getConfidenceScores().getNegative());\n }\n```"
   syntax:
-    content: public DocumentSentiment analyzeSentiment(String text, String language)
+    content: public DocumentSentiment analyzeSentiment(String document, String language)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -174,36 +154,26 @@ items:
       description: A <xref uid="com.azure.ai.textanalytics.models.DocumentSentiment" data-throw-if-not-resolved="false">analyzed document sentiment</xref> of the document.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
   id: analyzeSentimentBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentimentBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+  name: analyzeSentimentBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments with http response in a list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> with request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.\n\n**Code Sample**\n\nAnalyze the sentiments with http response in a list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">documents</xref> with request options.\n\n```java\nList<TextDocumentInput> textDocumentInputs = Arrays.asList(\n     new TextDocumentInput(\"1\", \"The hotel was dark and unclean. The restaurant had amazing gnocchi.\", \"en\"),\n     new TextDocumentInput(\"2\", \"The restaurant had amazing gnocchi. The hotel was dark and unclean.\", \"en\")\n );\n \n // Analyzing batch sentiments\n textAnalyticsClient.analyzeSentimentBatch(textDocumentInputs,\n         new TextAnalyticsRequestOptions().setIncludeStatistics(true), Context.NONE).iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         // Analyzed sentiment for each of documents from a batch of documents\n         response.getElements().forEach(analyzeSentimentResult -> {\n             System.out.printf(\"Document ID: %s%n\", analyzeSentimentResult.getId());\n             // Valid document\n             DocumentSentiment documentSentiment = analyzeSentimentResult.getDocumentSentiment();\n             System.out.printf(\n                 \"Recognized document sentiment: %s, positive score: %.2f, neutral score: %.2f, \"\n                     + \"negative score: %.2f.%n\",\n                 documentSentiment.getSentiment(),\n                 documentSentiment.getConfidenceScores().getPositive(),\n                 documentSentiment.getConfidenceScores().getNeutral(),\n                 documentSentiment.getConfidenceScores().getNegative());\n             documentSentiment.getSentences().forEach(sentenceSentiment -> {\n                 System.out.printf(\n                     \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                         + \" negative score: %.2f.%n\",\n                     sentenceSentiment.getSentiment(),\n                     sentenceSentiment.getConfidenceScores().getPositive(),\n                     sentenceSentiment.getConfidenceScores().getNeutral(),\n                     sentenceSentiment.getConfidenceScores().getNegative());\n             });\n         });\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>
       description: >-
-        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">inputs/documents</xref> to be analyzed.
+        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: options
       type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
       description: >-
@@ -219,36 +189,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.AnalyzeSentimentResult" data-throw-if-not-resolved="false">analyzed sentiment document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(java.lang.Iterable<java.lang.String>)
   id: analyzeSentimentBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentimentBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs)
+  name: analyzeSentimentBatch(Iterable<String> documents)
+  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch\#Iterable\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it. This method will use the default language that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.\n\n**Code Sample**\n\nAnalyze the sentiments in a list of documents.\n\n```java\nfinal List<String> documents = Arrays.asList(\n     \"The hotel was dark and unclean. The restaurant had amazing gnocchi.\",\n     \"The restaurant had amazing gnocchi. The hotel was dark and unclean.\"\n );\n \n // Analyzing batch sentiments\n textAnalyticsClient.analyzeSentimentBatch(documents).iterableByPage().forEach(response -> {\n     // Batch statistics\n     final TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n     System.out.printf(\n         \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n         batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n     // Analyzed sentiment for each of documents from a batch of documents\n     response.getElements().forEach(analyzeSentimentResult -> {\n         System.out.printf(\"Document ID: %s%n\", analyzeSentimentResult.getId());\n         // Valid document\n         final DocumentSentiment documentSentiment = analyzeSentimentResult.getDocumentSentiment();\n         System.out.printf(\n             \"Recognized document sentiment: %s, positive score: %.2f, neutral score: %.2f, \"\n                 + \"negative score: %.2f.%n\",\n             documentSentiment.getSentiment(),\n             documentSentiment.getConfidenceScores().getPositive(),\n             documentSentiment.getConfidenceScores().getNeutral(),\n             documentSentiment.getConfidenceScores().getNegative());\n         documentSentiment.getSentences().forEach(sentenceSentiment -> System.out.printf(\n             \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                 + \" negative score: %.2f.%n\",\n             sentenceSentiment.getSentiment(),\n             sentenceSentiment.getConfidenceScores().getPositive(),\n             sentenceSentiment.getConfidenceScores().getNeutral(),\n             sentenceSentiment.getConfidenceScores().getNegative()));\n     });\n });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> textInputs)
+    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> documents)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.AnalyzeSentimentResult>
       description: >-
@@ -256,36 +216,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.AnalyzeSentimentResult" data-throw-if-not-resolved="false">analyzed sentiment document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   id: analyzeSentimentBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentimentBatch(Iterable<String> textInputs, String language)
-  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs, String language)
+  name: analyzeSentimentBatch(Iterable<String> documents, String language)
+  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments in a list of documents with a provided language code.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch\#Iterable-String\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.\n\n**Code Sample**\n\nAnalyze the sentiments in a list of documents with a provided language code.\n\n```java\nList<String> documents = Arrays.asList(\n     \"The hotel was dark and unclean. The restaurant had amazing gnocchi.\",\n     \"The restaurant had amazing gnocchi. The hotel was dark and unclean.\"\n );\n \n // Analyzing batch sentiments\n textAnalyticsClient.analyzeSentimentBatch(documents, \"en\").iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         // Analyzed sentiment for each of documents from a batch of documents\n         response.getElements().forEach(analyzeSentimentResult -> {\n             System.out.printf(\"Document ID: %s%n\", analyzeSentimentResult.getId());\n             // Valid document\n             DocumentSentiment documentSentiment = analyzeSentimentResult.getDocumentSentiment();\n             System.out.printf(\n                 \"Recognized document sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                     + \" negative score: %.2f.%n\",\n                 documentSentiment.getSentiment(),\n                 documentSentiment.getConfidenceScores().getPositive(),\n                 documentSentiment.getConfidenceScores().getNeutral(),\n                 documentSentiment.getConfidenceScores().getNegative());\n             documentSentiment.getSentences().forEach(sentenceSentiment -> System.out.printf(\n                 \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                     + \" negative score: %.2f.%n\",\n                 sentenceSentiment.getSentiment(),\n                 sentenceSentiment.getConfidenceScores().getPositive(),\n                 sentenceSentiment.getConfidenceScores().getNeutral(),\n                 sentenceSentiment.getConfidenceScores().getNegative()));\n         });\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> textInputs, String language)
+    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> documents, String language)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -298,36 +248,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.AnalyzeSentimentResult" data-throw-if-not-resolved="false">analyzed sentiment document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   id: analyzeSentimentBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: analyzeSentimentBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+  name: analyzeSentimentBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  nameWithType: TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.
-
-
-    **Code Sample**
-
-
-    Analyze the sentiments in a list of documents with a provided language representation and request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.analyzeSentimentBatch\#Iterable-String-TextAnalyticsRequestOptions\}
+  summary: "Returns a sentiment prediction, as well as confidence scores for each sentiment label (Positive, Negative, and Neutral) for the document and each sentence within it.\n\n**Code Sample**\n\nAnalyze the sentiments in a list of documents with a provided language representation and request options.\n\n```java\nList<String> documents = Arrays.asList(\n     \"The hotel was dark and unclean. The restaurant had amazing gnocchi.\",\n     \"The restaurant had amazing gnocchi. The hotel was dark and unclean.\"\n );\n \n // Analyzing batch sentiments\n textAnalyticsClient.analyzeSentimentBatch(documents, \"en\", null).iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         // Analyzed sentiment for each of documents from a batch of documents\n         response.getElements().forEach(analyzeSentimentResult -> {\n             System.out.printf(\"Document ID: %s%n\", analyzeSentimentResult.getId());\n             // Valid document\n             DocumentSentiment documentSentiment = analyzeSentimentResult.getDocumentSentiment();\n             System.out.printf(\n                 \"Recognized document sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                     + \" negative score: %.2f.%n\",\n                 documentSentiment.getSentiment(),\n                 documentSentiment.getConfidenceScores().getPositive(),\n                 documentSentiment.getConfidenceScores().getNeutral(),\n                 documentSentiment.getConfidenceScores().getNegative());\n             documentSentiment.getSentences().forEach(sentenceSentiment -> System.out.printf(\n                 \"Recognized sentence sentiment: %s, positive score: %.2f, neutral score: %.2f,\"\n                     + \" negative score: %.2f.%n\",\n                 sentenceSentiment.getSentiment(),\n                 sentenceSentiment.getConfidenceScores().getPositive(),\n                 sentenceSentiment.getConfidenceScores().getNeutral(),\n                 sentenceSentiment.getConfidenceScores().getNegative()));\n         });\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+    content: public TextAnalyticsPagedIterable<AnalyzeSentimentResult> analyzeSentimentBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -345,13 +285,13 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.AnalyzeSentimentResult" data-throw-if-not-resolved="false">analyzed sentiment document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(java.lang.String)
   id: detectLanguage(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguage(String text)
-  nameWithType: TextAnalyticsClient.detectLanguage(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(String text)
+  name: detectLanguage(String document)
+  nameWithType: TextAnalyticsClient.detectLanguage(String document)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(String document)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage*
   type: Method
   package: com.azure.ai.textanalytics
@@ -365,28 +305,33 @@ items:
     Detects the language of single document.
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage\#String\}
+    ```java
+
+    DetectedLanguage detectedLanguage = textAnalyticsClient.detectLanguage("Bonjour tout le monde");
+     System.out.printf("Detected language name: %s, ISO 6391 name: %s, score: %f.%n",
+         detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());
+    ```
   syntax:
-    content: public DetectedLanguage detectLanguage(String text)
+    content: public DetectedLanguage detectLanguage(String document)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.models.DetectedLanguage
       description: The <xref uid="com.azure.ai.textanalytics.models.DetectedLanguage" data-throw-if-not-resolved="false">detected language</xref> of the document.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(java.lang.String,java.lang.String)
   id: detectLanguage(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguage(String text, String countryHint)
-  nameWithType: TextAnalyticsClient.detectLanguage(String text, String countryHint)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(String text, String countryHint)
+  name: detectLanguage(String document, String countryHint)
+  nameWithType: TextAnalyticsClient.detectLanguage(String document, String countryHint)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage(String document, String countryHint)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage*
   type: Method
   package: com.azure.ai.textanalytics
@@ -400,16 +345,22 @@ items:
     Detects the language of documents with a provided country hint.
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguage\#String-String\}
+    ```java
+
+    DetectedLanguage detectedLanguage = textAnalyticsClient.detectLanguage(
+         "This text is in English", "US");
+     System.out.printf("Detected language name: %s, ISO 6391 name: %s, score: %f.%n",
+         detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());
+    ```
   syntax:
-    content: public DetectedLanguage detectLanguage(String text, String countryHint)
+    content: public DetectedLanguage detectLanguage(String document, String countryHint)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: countryHint
       type: java.lang.String
       description: >-
@@ -421,36 +372,26 @@ items:
       description: The <xref uid="com.azure.ai.textanalytics.models.DetectedLanguage" data-throw-if-not-resolved="false">detected language</xref> of the document.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.DetectLanguageInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
   id: detectLanguageBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.DetectLanguageInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguageBatch(Iterable<DetectLanguageInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<DetectLanguageInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<DetectLanguageInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+  name: detectLanguageBatch(Iterable<DetectLanguageInput> documents, TextAnalyticsRequestOptions options, Context context)
+  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<DetectLanguageInput> documents, TextAnalyticsRequestOptions options, Context context)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<DetectLanguageInput> documents, TextAnalyticsRequestOptions options, Context context)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Detects Language for a batch of <xref uid="com.azure.ai.textanalytics.models.DetectLanguageInput" data-throw-if-not-resolved="false">document</xref> with provided request options.
-
-
-    **Code Sample**
-
-
-    Detects the languages with http response in a list of <xref uid="com.azure.ai.textanalytics.models.DetectLanguageInput" data-throw-if-not-resolved="false">document</xref> with provided request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
+  summary: "Detects Language for a batch of <xref uid=\"com.azure.ai.textanalytics.models.DetectLanguageInput\" data-throw-if-not-resolved=\"false\">document</xref> with provided request options.\n\n**Code Sample**\n\nDetects the languages with http response in a list of <xref uid=\"com.azure.ai.textanalytics.models.DetectLanguageInput\" data-throw-if-not-resolved=\"false\">document</xref> with provided request options.\n\n```java\nList<DetectLanguageInput> detectLanguageInputs = Arrays.asList(\n     new DetectLanguageInput(\"1\", \"This is written in English.\", \"US\"),\n     new DetectLanguageInput(\"2\", \"Este es un documento  escrito en Espa�ol.\", \"es\")\n );\n \n textAnalyticsClient.detectLanguageBatch(detectLanguageInputs,\n     new TextAnalyticsRequestOptions().setIncludeStatistics(true), Context.NONE).iterableByPage().forEach(\n         response -> {\n             // Batch statistics\n             TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n             System.out.printf(\n                 \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n                 batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n             // Batch result of languages\n             response.getElements().forEach(detectLanguageResult -> {\n                 System.out.printf(\"Document ID: %s%n\", detectLanguageResult.getId());\n                 DetectedLanguage detectedLanguage = detectLanguageResult.getPrimaryLanguage();\n                 System.out.printf(\"Primary language name: %s, ISO 6391 name: %s, score: %f.%n\",\n                     detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());\n             });\n         });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<DetectLanguageInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<DetectLanguageInput> documents, TextAnalyticsRequestOptions options, Context context)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<com.azure.ai.textanalytics.models.DetectLanguageInput>
       description: >-
-        The list of <xref uid="com.azure.ai.textanalytics.models.DetectLanguageInput" data-throw-if-not-resolved="false">inputs/documents</xref> to be analyzed.
+        The list of <xref uid="com.azure.ai.textanalytics.models.DetectLanguageInput" data-throw-if-not-resolved="false">documents</xref> to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: options
       type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
       description: >-
@@ -466,36 +407,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.DetectLanguageResult" data-throw-if-not-resolved="false">detected language document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(java.lang.Iterable<java.lang.String>)
   id: detectLanguageBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguageBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs)
+  name: detectLanguageBatch(Iterable<String> documents)
+  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Detects Language for a batch of input. This method will use the default country hint that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultCountryHint(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultCountryHint(String)</xref>. If none is specified, service will use 'US' as the country hint.
-
-
-    **Code Sample**
-
-
-    Detects the languages in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch\#Iterable\}
+  summary: "Detects Language for a batch of documents. This method will use the default country hint that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultCountryHint(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultCountryHint(String)</xref>. If none is specified, service will use 'US' as the country hint.\n\n**Code Sample**\n\nDetects the languages in a list of documents.\n\n```java\nList<String> documents = Arrays.asList(\n     \"This is written in English\",\n     \"Este es un documento  escrito en Espa�ol.\");\n \n textAnalyticsClient.detectLanguageBatch(documents).iterableByPage().forEach(response -> {\n     // Batch statistics\n     TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n     System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n         batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n     response.getElements().forEach(detectLanguageResult -> {\n         DetectedLanguage detectedLanguage = detectLanguageResult.getPrimaryLanguage();\n         System.out.printf(\"Primary language name: %s, ISO 6391 name: %s, score: %f.%n\",\n             detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());\n     });\n });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> textInputs)
+    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> documents)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         The list of documents to detect languages for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.DetectLanguageResult>
       description: >-
@@ -503,36 +434,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.DetectLanguageResult" data-throw-if-not-resolved="false">detected language document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   id: detectLanguageBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguageBatch(Iterable<String> textInputs, String countryHint)
-  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs, String countryHint)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs, String countryHint)
+  name: detectLanguageBatch(Iterable<String> documents, String countryHint)
+  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents, String countryHint)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents, String countryHint)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Detects Language for a batch of input with provided country hint.
-
-
-    **Code Sample**
-
-
-    Detects the language in a list of documents with a provided country hint.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch\#Iterable-String\}
+  summary: "Detects Language for a batch of document with provided country hint.\n\n**Code Sample**\n\nDetects the language in a list of documents with a provided country hint.\n\n```java\nList<String> documents = Arrays.asList(\n     \"This is written in English\",\n     \"Este es un documento  escrito en Espa�ol.\"\n );\n \n textAnalyticsClient.detectLanguageBatch(documents, \"US\").iterableByPage().forEach(\n     response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n         // Batch result of languages\n         response.getElements().forEach(detectLanguageResult -> {\n             System.out.printf(\"Document ID: %s%n\", detectLanguageResult.getId());\n             DetectedLanguage detectedLanguage = detectLanguageResult.getPrimaryLanguage();\n             System.out.printf(\"Primary language name: %s, ISO 6391 name: %s, score: %f.%n\",\n                 detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());\n         });\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> textInputs, String countryHint)
+    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> documents, String countryHint)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         The list of documents to detect languages for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: countryHint
       type: java.lang.String
       description: >-
@@ -546,36 +467,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.DetectLanguageResult" data-throw-if-not-resolved="false">detected language document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   id: detectLanguageBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: detectLanguageBatch(Iterable<String> textInputs, String countryHint, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs, String countryHint, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> textInputs, String countryHint, TextAnalyticsRequestOptions options)
+  name: detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)
+  nameWithType: TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Detects Language for a batch of input with the provided country hint and request options.
-
-
-    **Code Sample**
-
-
-    Detects the language in a list of documents with a provided country hint and request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.detectLanguageBatch\#Iterable-String-TextAnalyticsRequestOptions\}
+  summary: "Detects Language for a batch of document with the provided country hint and request options.\n\n**Code Sample**\n\nDetects the language in a list of documents with a provided country hint and request options.\n\n```java\nList<String> documents = Arrays.asList(\n     \"This is written in English\",\n     \"Este es un documento  escrito en Espa�ol.\"\n );\n \n textAnalyticsClient.detectLanguageBatch(documents, \"US\", null).iterableByPage().forEach(\n     response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n         // Batch result of languages\n         response.getElements().forEach(detectLanguageResult -> {\n             System.out.printf(\"Document ID: %s%n\", detectLanguageResult.getId());\n             DetectedLanguage detectedLanguage = detectLanguageResult.getPrimaryLanguage();\n             System.out.printf(\"Primary language name: %s, ISO 6391 name: %s, score: %f.%n\",\n                 detectedLanguage.getName(), detectedLanguage.getIso6391Name(), detectedLanguage.getScore());\n         });\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> textInputs, String countryHint, TextAnalyticsRequestOptions options)
+    content: public TextAnalyticsPagedIterable<DetectLanguageResult> detectLanguageBatch(Iterable<String> documents, String countryHint, TextAnalyticsRequestOptions options)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         The list of documents to detect languages for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: countryHint
       type: java.lang.String
       description: >-
@@ -594,13 +505,13 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.DetectLanguageResult" data-throw-if-not-resolved="false">detected language document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(java.lang.String)
   id: extractKeyPhrases(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrases(String text)
-  nameWithType: TextAnalyticsClient.extractKeyPhrases(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(String text)
+  name: extractKeyPhrases(String document)
+  nameWithType: TextAnalyticsClient.extractKeyPhrases(String document)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(String document)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases*
   type: Method
   package: com.azure.ai.textanalytics
@@ -614,33 +525,39 @@ items:
     Extracts key phrases of documents
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases\#String\}
+    ```java
+
+    System.out.println("Extracted phrases:");
+     for (String keyPhrase : textAnalyticsClient.extractKeyPhrases("My cat might need to see a veterinarian.")) {
+         System.out.printf("%s.%n", keyPhrase);
+     }
+    ```
   syntax:
-    content: public TextAnalyticsPagedIterable<String> extractKeyPhrases(String text)
+    content: public TextAnalyticsPagedIterable<String> extractKeyPhrases(String document)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<java.lang.String>
       description: A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> contains a list of extracted key phrases.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(java.lang.String,java.lang.String)
   id: extractKeyPhrases(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrases(String text, String language)
-  nameWithType: TextAnalyticsClient.extractKeyPhrases(String text, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(String text, String language)
+  name: extractKeyPhrases(String document, String language)
+  nameWithType: TextAnalyticsClient.extractKeyPhrases(String document, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases(String document, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases*
   type: Method
   package: com.azure.ai.textanalytics
   summary: >-
-    Returns a list of strings denoting the key phrases in the document. See  for the list of enabled languages.
+    Returns a list of strings denoting the key phrases in the document. See [this][] for the list of enabled languages.
 
 
     **Code Sample**
@@ -649,16 +566,25 @@ items:
     Extracts key phrases in a document with a provided language representation.
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrases\#String-String-Context\}
+    ```java
+
+    System.out.println("Extracted phrases:");
+     textAnalyticsClient.extractKeyPhrases("My cat might need to see a veterinarian.", "en")
+         .forEach(kegPhrase -> System.out.printf("%s.%n", kegPhrase));
+    ```
+
+
+
+    [this]: https://aka.ms/talangs
   syntax:
-    content: public TextAnalyticsPagedIterable<String> extractKeyPhrases(String text, String language)
+    content: public TextAnalyticsPagedIterable<String> extractKeyPhrases(String document, String language)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -669,36 +595,26 @@ items:
       description: A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> contains a list of extracted key phrases.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
   id: extractKeyPhrasesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrasesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+  name: extractKeyPhrasesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of strings denoting the key phrases in the a batch of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">document</xref> with request options. See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Extracts key phrases with http response in a list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">TextDocumentInput</xref> with request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
+  summary: "Returns a list of strings denoting the key phrases in the a batch of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">document</xref> with request options. See [this][] for the list of enabled languages.\n\n**Code Sample**\n\nExtracts key phrases with http response in a list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">TextDocumentInput</xref> with request options.\n\n```java\nList<TextDocumentInput> textDocumentInputs = Arrays.asList(\n     new TextDocumentInput(\"1\", \"My cat might need to see a veterinarian.\", \"en\"),\n     new TextDocumentInput(\"2\", \"The pitot tube is used to measure airspeed.\", \"en\")\n );\n \n // Extracting batch key phrases\n textAnalyticsClient.extractKeyPhrasesBatch(textDocumentInputs,\n     new TextAnalyticsRequestOptions().setIncludeStatistics(true), Context.NONE).iterableByPage().forEach(\n         response -> {\n             // Batch statistics\n             TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n             System.out.printf(\n                 \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n                 batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n             // Extracted key phrase for each of documents from a batch of documents\n             response.getElements().forEach(extractKeyPhraseResult -> {\n                 System.out.printf(\"Document ID: %s%n\", extractKeyPhraseResult.getId());\n                 // Valid document\n                 System.out.println(\"Extracted phrases:\");\n                 extractKeyPhraseResult.getKeyPhrases().forEach(keyPhrase ->\n                     System.out.printf(\"%s.%n\", keyPhrase));\n             });\n         });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>
       description: >-
-        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">inputs/documents</xref> to be analyzed.
+        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: options
       type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
       description: >-
@@ -714,36 +630,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.ExtractKeyPhraseResult" data-throw-if-not-resolved="false">extracted key phrases document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>)
   id: extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrasesBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs)
+  name: extractKeyPhrasesBatch(Iterable<String> documents)
+  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of strings denoting the key phrases in the document. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Extracts key phrases in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch\#Iterable\}
+  summary: "Returns a list of strings denoting the key phrases in the document. This method will use the default language that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.\n\n**Code Sample**\n\nExtracts key phrases in a list of documents.\n\n```java\nfinal List<String> documents = Arrays.asList(\n     \"My cat might need to see a veterinarian.\",\n     \"The pitot tube is used to measure airspeed.\"\n );\n \n // Extracting batch key phrases\n textAnalyticsClient.extractKeyPhrasesBatch(documents).iterableByPage().forEach(response -> {\n     // Batch statistics\n     final TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n     System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n         batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n     // Extracted key phrase for each of documents from a batch of documents\n     response.getElements().forEach(extractKeyPhraseResult -> {\n         System.out.printf(\"Document ID: %s%n\", extractKeyPhraseResult.getId());\n         // Valid document\n         System.out.println(\"Extracted phrases:\");\n         extractKeyPhraseResult.getKeyPhrases().forEach(keyPhrase -> System.out.printf(\"%s.%n\", keyPhrase));\n     });\n });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> textInputs)
+    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> documents)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.ExtractKeyPhraseResult>
       description: >-
@@ -751,36 +657,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.ExtractKeyPhraseResult" data-throw-if-not-resolved="false">extracted key phrases document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   id: extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrasesBatch(Iterable<String> textInputs, String language)
-  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs, String language)
+  name: extractKeyPhrasesBatch(Iterable<String> documents, String language)
+  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of strings denoting the key phrases in the documents with provided language code. See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Extracts key phrases in a list of documents with a provided language code.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch\#Iterable-String\}
+  summary: "Returns a list of strings denoting the key phrases in the documents with provided language code. See [this][] for the list of enabled languages.\n\n**Code Sample**\n\nExtracts key phrases in a list of documents with a provided language code.\n\n```java\nList<String> documents = Arrays.asList(\n     \"My cat might need to see a veterinarian.\",\n     \"The pitot tube is used to measure airspeed.\"\n );\n \n // Extracting batch key phrases\n textAnalyticsClient.extractKeyPhrasesBatch(documents, \"en\").iterableByPage().forEach(\n     response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\n             \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         // Extracted key phrase for each of documents from a batch of documents\n         response.getElements().forEach(extractKeyPhraseResult -> {\n             System.out.printf(\"Document ID: %s%n\", extractKeyPhraseResult.getId());\n             // Valid document\n             System.out.println(\"Extracted phrases:\");\n             extractKeyPhraseResult.getKeyPhrases().forEach(keyPhrase -> System.out.printf(\"%s.%n\", keyPhrase));\n         });\n     });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> textInputs, String language)
+    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> documents, String language)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -793,36 +689,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.ExtractKeyPhraseResult" data-throw-if-not-resolved="false">extracted key phrases document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   id: extractKeyPhrasesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: extractKeyPhrasesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+  name: extractKeyPhrasesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  nameWithType: TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of strings denoting the key phrases in the documents with provided language code and request options. See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Extracts key phrases in a list of documents with a provided language code and request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.extractKeyPhrasesBatch\#Iterable-String-TextAnalyticsRequestOptions\}
+  summary: "Returns a list of strings denoting the key phrases in the documents with provided language code and request options. See [this][] for the list of enabled languages.\n\n**Code Sample**\n\nExtracts key phrases in a list of documents with a provided language code and request options.\n\n```java\nList<String> documents = Arrays.asList(\n     \"My cat might need to see a veterinarian.\",\n     \"The pitot tube is used to measure airspeed.\"\n );\n \n // Extracting batch key phrases\n textAnalyticsClient.extractKeyPhrasesBatch(documents, \"en\", null).iterableByPage().forEach(\n     response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\n             \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         // Extracted key phrase for each of documents from a batch of documents\n         response.getElements().forEach(extractKeyPhraseResult -> {\n             System.out.printf(\"Document ID: %s%n\", extractKeyPhraseResult.getId());\n             // Valid document\n             System.out.println(\"Extracted phrases:\");\n             extractKeyPhraseResult.getKeyPhrases().forEach(keyPhrase -> System.out.printf(\"%s.%n\", keyPhrase));\n         });\n     });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+    content: public TextAnalyticsPagedIterable<ExtractKeyPhraseResult> extractKeyPhrasesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to be analyzed.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -840,7 +726,7 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.ExtractKeyPhraseResult" data-throw-if-not-resolved="false">extracted key phrases document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.getDefaultCountryHint()
   id: getDefaultCountryHint()
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
@@ -858,7 +744,7 @@ items:
       description: The default country hint code
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.getDefaultLanguage()
   id: getDefaultLanguage()
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
@@ -876,7 +762,7 @@ items:
       description: The default language
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.getServiceVersion()
   id: getServiceVersion()
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
@@ -894,18 +780,18 @@ items:
       description: The service version the client is using.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(java.lang.String)
   id: recognizeEntities(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntities(String text)
-  nameWithType: TextAnalyticsClient.recognizeEntities(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(String text)
+  name: recognizeEntities(String document)
+  nameWithType: TextAnalyticsClient.recognizeEntities(String document)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(String document)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities*
   type: Method
   package: com.azure.ai.textanalytics
   summary: >-
-    Returns a list of general categorized entities in the provided document. For a list of supported entity types, check:  This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
+    Returns a list of general categorized entities in the provided document. For a list of supported entity types, check: [this][] This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
 
 
     **Code Sample**
@@ -914,16 +800,28 @@ items:
     Recognize the entities of documents
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeCategorizedEntities\#String\}
+    ```java
+
+    final TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntitiesResult =
+         textAnalyticsClient.recognizeEntities("Satya Nadella is the CEO of Microsoft");
+     for (CategorizedEntity entity : recognizeEntitiesResult) {
+         System.out.printf("Recognized entity: %s, entity category: %s, score: %f.%n",
+             entity.getText(), entity.getCategory(), entity.getConfidenceScore());
+     }
+    ```
+
+
+
+    [this]: https://aka.ms/taner
   syntax:
-    content: public TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntities(String text)
+    content: public TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntities(String document)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         the document to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.CategorizedEntity>
       description: >-
@@ -931,26 +829,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.CategorizedEntity" data-throw-if-not-resolved="false">recognized categorized entities</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(java.lang.String,java.lang.String)
   id: recognizeEntities(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntities(String text, String language)
-  nameWithType: TextAnalyticsClient.recognizeEntities(String text, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(String text, String language)
+  name: recognizeEntities(String document, String language)
+  nameWithType: TextAnalyticsClient.recognizeEntities(String document, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities(String document, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntities*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: "Returns a list of general categorized entities in the provided document with provided language code. For a list of supported entity types, check:  For a list of enabled languages, check: \n\n**Code Sample**\n\nRecognizes the entities in a document with a provided language code.\n\n\\{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeCategorizedEntities\\#String-String\\}"
+  summary: "Returns a list of general categorized entities in the provided document with provided language code. For a list of supported entity types, check: [this][] For a list of enabled languages, check: [this][this 1]\n\n**Code Sample**\n\nRecognizes the entities in a document with a provided language code.\n\n```java\nfinal TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntitiesResult =\n     textAnalyticsClient.recognizeEntities(\"Satya Nadella is the CEO of Microsoft\", \"en\");\n \n for (CategorizedEntity entity : recognizeEntitiesResult) {\n     System.out.printf(\"Recognized entity: %s, entity category: %s, score: %f.%n\",\n         entity.getText(), entity.getCategory(), entity.getConfidenceScore());\n }\n```\n\n\n[this]: https://aka.ms/taner\n[this 1]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntities(String text, String language)
+    content: public TextAnalyticsPagedIterable<CategorizedEntity> recognizeEntities(String document, String language)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: The 2 letter ISO 639-1 representation of language. If not set, uses "en" for English as default.
@@ -961,36 +859,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.CategorizedEntity" data-throw-if-not-resolved="false">recognized categorized entities</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
   id: recognizeEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+  name: recognizeEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of general categorized entities for the provided list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">document</xref> with provided request options.
-
-
-    **Code Sample**
-
-
-    Recognizes the entities with http response in a list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">document</xref> with provided request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
+  summary: "Returns a list of general categorized entities for the provided list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">document</xref> with provided request options.\n\n**Code Sample**\n\nRecognizes the entities with http response in a list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">document</xref> with provided request options.\n\n```java\nList<TextDocumentInput> textDocumentInputs = Arrays.asList(\n     new TextDocumentInput(\"0\", \"I had a wonderful trip to Seattle last week.\"),\n     new TextDocumentInput(\"1\", \"I work at Microsoft.\")\n );\n \n textAnalyticsClient.recognizeEntitiesBatch(textDocumentInputs,\n         new TextAnalyticsRequestOptions().setIncludeStatistics(true), Context.NONE).iterableByPage().forEach(\n             response -> {\n                 // Batch statistics\n                 TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n                 System.out.printf(\n                     \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n                     batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n                 response.getElements().forEach(recognizeEntitiesResult ->\n                     recognizeEntitiesResult.getEntities().forEach(entity -> {\n                         System.out.printf(\"Recognized entity: %s, entity category: %s, score: %f.%n\",\n                             entity.getText(), entity.getCategory(), entity.getConfidenceScore());\n                     }));\n             });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>
       description: >-
-        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">inputs/documents</xref> to recognize entities for.
+        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: options
       type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
       description: >-
@@ -1006,36 +894,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.RecognizeCategorizedEntitiesResult" data-throw-if-not-resolved="false">recognized categorized entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>)
   id: recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntitiesBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs)
+  name: recognizeEntitiesBatch(Iterable<String> documents)
+  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of general categorized entities for the provided list of documents. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Recognizes the entities in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeCategorizedEntitiesBatch\#Iterable\}
+  summary: "Returns a list of general categorized entities for the provided list of documents. This method will use the default language that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.\n\n**Code Sample**\n\nRecognizes the entities in a list of documents.\n\n```java\nfinal List<String> documents = Arrays.asList(\n     \"I had a wonderful trip to Seattle last week.\",\n     \"I work at Microsoft.\");\n \n textAnalyticsClient.recognizeEntitiesBatch(documents).iterableByPage().forEach(response -> {\n     // Batch statistics\n     final TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n     System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n         batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n     response.getElements().forEach(recognizeEntitiesResult ->\n         recognizeEntitiesResult.getEntities().forEach(entity ->\n             System.out.printf(\"Recognized entity: %s, entity category: %s, score: %f.%n\",\n                 entity.getText(), entity.getCategory(), entity.getConfidenceScore())));\n });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> textInputs)
+    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> documents)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizeCategorizedEntitiesResult>
       description: >-
@@ -1043,36 +921,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.RecognizeCategorizedEntitiesResult" data-throw-if-not-resolved="false">recognized categorized entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   id: recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntitiesBatch(Iterable<String> textInputs, String language)
-  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs, String language)
+  name: recognizeEntitiesBatch(Iterable<String> documents, String language)
+  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of general categorized entities for the provided list of documents with provided language code.
-
-
-    **Code Sample**
-
-
-    Recognizes the entities in a list of documents with a provided language code.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeCategorizedEntitiesBatch\#Iterable-String\}
+  summary: "Returns a list of general categorized entities for the provided list of documents with provided language code.\n\n**Code Sample**\n\nRecognizes the entities in a list of documents with a provided language code.\n\n```java\nList<String> documents = Arrays.asList(\n     \"I had a wonderful trip to Seattle last week.\",\n     \"I work at Microsoft.\");\n \n textAnalyticsClient.recognizeEntitiesBatch(documents, \"en\").iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\n             \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         response.getElements().forEach(recognizeEntitiesResult ->\n             recognizeEntitiesResult.getEntities().forEach(entity -> {\n                 System.out.printf(\"Recognized entity: %s, entity category: %s, score: %f.%n\",\n                     entity.getText(), entity.getCategory(), entity.getConfidenceScore());\n             }));\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> textInputs, String language)
+    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> documents, String language)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: The 2 letter ISO 639-1 representation of language. If not set, uses "en" for English as default.
@@ -1083,36 +951,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.RecognizeCategorizedEntitiesResult" data-throw-if-not-resolved="false">recognized categorized entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   id: recognizeEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+  name: recognizeEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  nameWithType: TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of general categorized entities for the provided list of documents with provided language code and request options.
-
-
-    **Code Sample**
-
-
-    Recognizes the entities in a list of documents with a provided language code and request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeCategorizedEntitiesBatch\#Iterable-String-TextAnalyticsRequestOptions\}
+  summary: "Returns a list of general categorized entities for the provided list of documents with provided language code and request options.\n\n**Code Sample**\n\nRecognizes the entities in a list of documents with a provided language code and request options.\n\n```java\nList<String> documents = Arrays.asList(\n     \"I had a wonderful trip to Seattle last week.\",\n     \"I work at Microsoft.\");\n \n textAnalyticsClient.recognizeEntitiesBatch(documents, \"en\", null).iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\n             \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         response.getElements().forEach(recognizeEntitiesResult ->\n             recognizeEntitiesResult.getEntities().forEach(entity -> {\n                 System.out.printf(\"Recognized entity: %s, entity category: %s, score: %f.%n\",\n                     entity.getText(), entity.getCategory(), entity.getConfidenceScore());\n             }));\n     });\n```"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+    content: public TextAnalyticsPagedIterable<RecognizeCategorizedEntitiesResult> recognizeEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: The 2 letter ISO 639-1 representation of language. If not set, uses "en" for English as default.
@@ -1128,18 +986,18 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.RecognizeCategorizedEntitiesResult" data-throw-if-not-resolved="false">recognized categorized entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(java.lang.String)
   id: recognizeLinkedEntities(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntities(String text)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntities(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(String text)
+  name: recognizeLinkedEntities(String document)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntities(String document)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(String document)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities*
   type: Method
   package: com.azure.ai.textanalytics
   summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the provided document. See  for supported languages in Text Analytics API. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
+    Returns a list of recognized entities with links to a well-known knowledge base for the provided document. See [this][] for supported languages in Text Analytics API. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
 
 
     **Code Sample**
@@ -1148,16 +1006,31 @@ items:
     Recognize the linked entities of documents
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities\#String\}
+    ```java
+
+    final String document = "Old Faithful is a geyser at Yellowstone Park.";
+     System.out.println("Linked Entities:");
+     textAnalyticsClient.recognizeLinkedEntities(document).forEach(linkedEntity -> {
+         System.out.printf("Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n",
+             linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),
+             linkedEntity.getDataSource());
+         linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(
+             "Matched entity: %s, score: %f.%n", entityMatch.getText(), entityMatch.getConfidenceScore()));
+     });
+    ```
+
+
+
+    [this]: https://aka.ms/talangs
   syntax:
-    content: public TextAnalyticsPagedIterable<LinkedEntity> recognizeLinkedEntities(String text)
+    content: public TextAnalyticsPagedIterable<LinkedEntity> recognizeLinkedEntities(String document)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         the document to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.LinkedEntity>
       description: >-
@@ -1165,18 +1038,18 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(java.lang.String,java.lang.String)
   id: recognizeLinkedEntities(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntities(String text, String language)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntities(String text, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(String text, String language)
+  name: recognizeLinkedEntities(String document, String language)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntities(String document, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities(String document, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities*
   type: Method
   package: com.azure.ai.textanalytics
   summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the provided document with language code. See  for supported languages in Text Analytics API.
+    Returns a list of recognized entities with links to a well-known knowledge base for the provided document with language code. See [this][] for supported languages in Text Analytics API.
 
 
     **Code Sample**
@@ -1185,16 +1058,30 @@ items:
     Recognizes the linked entities in a document with a provided language code.
 
 
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntities\#String-String\}
+    ```java
+
+    String document = "Old Faithful is a geyser at Yellowstone Park.";
+     textAnalyticsClient.recognizeLinkedEntities(document, "en").forEach(linkedEntity -> {
+         System.out.printf("Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n",
+             linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),
+             linkedEntity.getDataSource());
+         linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(
+             "Matched entity: %s, score: %f.%n", entityMatch.getText(), entityMatch.getConfidenceScore()));
+     });
+    ```
+
+
+
+    [this]: https://aka.ms/talangs
   syntax:
-    content: public TextAnalyticsPagedIterable<LinkedEntity> recognizeLinkedEntities(String text, String language)
+    content: public TextAnalyticsPagedIterable<LinkedEntity> recognizeLinkedEntities(String document, String language)
     parameters:
-    - id: text
+    - id: document
       type: java.lang.String
       description: >-
         The document to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -1207,36 +1094,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
   id: recognizeLinkedEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+  name: recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">document</xref> and request options. See  for supported languages in Text Analytics API.
-
-
-    **Code Sample**
-
-
-    Recognizes the linked entities with http response in a list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">TextDocumentInput</xref> with request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
+  summary: "Returns a list of recognized entities with links to a well-known knowledge base for the list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">document</xref> and request options. See [this][] for supported languages in Text Analytics API.\n\n**Code Sample**\n\nRecognizes the linked entities with http response in a list of <xref uid=\"com.azure.ai.textanalytics.models.TextDocumentInput\" data-throw-if-not-resolved=\"false\">TextDocumentInput</xref> with request options.\n\n```java\nList<TextDocumentInput> textDocumentInputs = Arrays.asList(\n     new TextDocumentInput(\"1\", \"Old Faithful is a geyser at Yellowstone Park.\", \"en\"),\n     new TextDocumentInput(\"2\", \"Mount Shasta has lenticular clouds.\", \"en\")\n );\n \n textAnalyticsClient.recognizeLinkedEntitiesBatch(textDocumentInputs,\n     new TextAnalyticsRequestOptions().setIncludeStatistics(true), Context.NONE).iterableByPage().forEach(\n         response -> {\n             // Batch statistics\n             TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n             System.out.printf(\n                 \"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n                 batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n             response.getElements().forEach(recognizeLinkedEntitiesResult ->\n                 recognizeLinkedEntitiesResult.getEntities().forEach(linkedEntity -> {\n                     System.out.println(\"Linked Entities:\");\n                     System.out.printf(\"Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n\",\n                         linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),\n                         linkedEntity.getDataSource());\n                     linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(\n                         \"Matched entity: %s, score: %.2f.%n\", entityMatch.getText(), entityMatch.getConfidenceScore()));\n                 }));\n         });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
+    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<TextDocumentInput> documents, TextAnalyticsRequestOptions options, Context context)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>
       description: >-
-        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">inputs/documents</xref> to recognize linked entities for.
+        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: options
       type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
       description: >-
@@ -1252,36 +1129,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>)
   id: recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntitiesBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs)
+  name: recognizeLinkedEntitiesBatch(Iterable<String> documents)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the list of documents. See  for supported languages in Text Analytics API. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Recognizes the linked entities in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch\#Iterable\}
+  summary: "Returns a list of recognized entities with links to a well-known knowledge base for the list of documents. See [this][] for supported languages in Text Analytics API. This method will use the default language that sets up in <xref uid=\"com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)\" data-throw-if-not-resolved=\"false\">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.\n\n**Code Sample**\n\nRecognizes the linked entities in a list of documents.\n\n```java\nfinal List<String> documents = Arrays.asList(\n     \"Old Faithful is a geyser at Yellowstone Park.\",\n     \"Mount Shasta has lenticular clouds.\");\n \n textAnalyticsClient.recognizeLinkedEntitiesBatch(documents).iterableByPage().forEach(response -> {\n     // Batch statistics\n     TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n     System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n         batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n     response.getElements().forEach(recognizeLinkedEntitiesResult ->\n         recognizeLinkedEntitiesResult.getEntities().forEach(linkedEntity -> {\n             System.out.println(\"Linked Entities:\");\n             System.out.printf(\"Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n\",\n                 linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),\n                 linkedEntity.getDataSource());\n             linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(\n                 \"Matched entity: %s, score: %f.%n\", entityMatch.getText(), entityMatch.getConfidenceScore()));\n         }));\n });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> textInputs)
+    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> documents)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     return:
       type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizeLinkedEntitiesResult>
       description: >-
@@ -1289,36 +1156,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
   id: recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language)
+  name: recognizeLinkedEntitiesBatch(Iterable<String> documents, String language)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents, String language)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents, String language)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the list of documents with provided language code. See  for supported languages in Text Analytics API.
-
-
-    **Code Sample**
-
-
-    Recognizes the linked entities in a list of documents with a provided language code.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch\#Iterable-String\}
+  summary: "Returns a list of recognized entities with links to a well-known knowledge base for the list of documents with provided language code. See [this][] for supported languages in Text Analytics API.\n\n**Code Sample**\n\nRecognizes the linked entities in a list of documents with a provided language code.\n\n```java\nList<String> documents = Arrays.asList(\n     \"Old Faithful is a geyser at Yellowstone Park.\",\n     \"Mount Shasta has lenticular clouds.\"\n );\n \n textAnalyticsClient.recognizeLinkedEntitiesBatch(documents, \"en\").iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         response.getElements().forEach(recognizeLinkedEntitiesResult ->\n             recognizeLinkedEntitiesResult.getEntities().forEach(linkedEntity -> {\n                 System.out.println(\"Linked Entities:\");\n                 System.out.printf(\"Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n\",\n                     linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),\n                     linkedEntity.getDataSource());\n                 linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(\n                     \"Matched entity: %s, score: %f.%n\", entityMatch.getText(), entityMatch.getConfidenceScore()));\n             }));\n     });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language)
+    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> documents, String language)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -1331,36 +1188,26 @@ items:
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities document result</xref>.
 - uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
   id: recognizeLinkedEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
+  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.4
   parent: com.azure.ai.textanalytics.TextAnalyticsClient
   langs:
   - java
-  name: recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+  name: recognizeLinkedEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  nameWithType: TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
+  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
   overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch*
   type: Method
   package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of recognized entities with links to a well-known knowledge base for the list of documents with provided language code and request options. See  for supported languages in Text Analytics API.
-
-
-    **Code Sample**
-
-
-    Recognizes the linked entities in a list of documents with a provided language code and request options.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizeLinkedEntitiesBatch\#Iterable-String-TextAnalyticsRequestOptions\}
+  summary: "Returns a list of recognized entities with links to a well-known knowledge base for the list of documents with provided language code and request options. See [this][] for supported languages in Text Analytics API.\n\n**Code Sample**\n\nRecognizes the linked entities in a list of documents with a provided language code and request options.\n\n```java\nList<String> documents = Arrays.asList(\n     \"Old Faithful is a geyser at Yellowstone Park.\",\n     \"Mount Shasta has lenticular clouds.\"\n );\n \n textAnalyticsClient.recognizeLinkedEntitiesBatch(documents, \"en\", null).iterableByPage()\n     .forEach(response -> {\n         // Batch statistics\n         TextDocumentBatchStatistics batchStatistics = response.getStatistics();\n         System.out.printf(\"A batch of documents statistics, transaction count: %s, valid document count: %s.%n\",\n             batchStatistics.getTransactionCount(), batchStatistics.getValidDocumentCount());\n \n         response.getElements().forEach(recognizeLinkedEntitiesResult ->\n             recognizeLinkedEntitiesResult.getEntities().forEach(linkedEntity -> {\n                 System.out.println(\"Linked Entities:\");\n                 System.out.printf(\"Name: %s, entity ID in data source: %s, URL: %s, data source: %s.%n\",\n                     linkedEntity.getName(), linkedEntity.getDataSourceEntityId(), linkedEntity.getUrl(),\n                     linkedEntity.getDataSource());\n                 linkedEntity.getLinkedEntityMatches().forEach(entityMatch -> System.out.printf(\n                     \"Matched entity: %s, score: %f.%n\", entityMatch.getText(), entityMatch.getConfidenceScore()));\n             }));\n     });\n```\n\n\n[this]: https://aka.ms/talangs"
   syntax:
-    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
+    content: public TextAnalyticsPagedIterable<RecognizeLinkedEntitiesResult> recognizeLinkedEntitiesBatch(Iterable<String> documents, String language, TextAnalyticsRequestOptions options)
     parameters:
-    - id: textInputs
+    - id: documents
       type: java.lang.Iterable<java.lang.String>
       description: >-
         A list of documents to recognize linked entities for.
          For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
+         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits">data limits</a>.
     - id: language
       type: java.lang.String
       description: >-
@@ -1376,257 +1223,6 @@ items:
       description: >-
         A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> of the
          <xref uid="com.azure.ai.textanalytics.models.LinkedEntity" data-throw-if-not-resolved="false">recognized linked entities document result</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(java.lang.String)
-  id: recognizePiiEntities(java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntities(String text)
-  nameWithType: TextAnalyticsClient.recognizePiiEntities(String text)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(String text)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the document. For the list of supported entity types, check  PII. See  for the list of enabled languages. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Recognize the Personally Identifiable Information entities in a document
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities\#String\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<PiiEntity> recognizePiiEntities(String text)
-    parameters:
-    - id: text
-      type: java.lang.String
-      description: >-
-        The document to recognize Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.PiiEntity>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> contains a list of
-         <xref uid="com.azure.ai.textanalytics.models.PiiEntity" data-throw-if-not-resolved="false">Personally Identifiable Information entities</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(java.lang.String,java.lang.String)
-  id: recognizePiiEntities(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntities(String text, String language)
-  nameWithType: TextAnalyticsClient.recognizePiiEntities(String text, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities(String text, String language)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the document with provided language code. For the list of supported entity types, check  See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Recognizes the Personally Identifiable Information entities in a document with a provided language representation.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities\#String-String-Context\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<PiiEntity> recognizePiiEntities(String text, String language)
-    parameters:
-    - id: text
-      type: java.lang.String
-      description: >-
-        The document to recognize Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    - id: language
-      type: java.lang.String
-      description: >-
-        The 2 letter ISO 639-1 representation of language for the document. If not set, uses "en" for
-         English as default.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.PiiEntity>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> contains a list of
-         <xref uid="com.azure.ai.textanalytics.models.PiiEntity" data-throw-if-not-resolved="false">Personally Identifiable Information entities</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  id: recognizePiiEntitiesBatch(java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  nameWithType: TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the batch of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">documents</xref> with request options. For the list of supported entity types, check . See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Recognizes the Personally Identifiable Information entities with http response in a list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">TextDocumentInput</xref>.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch\#Iterable-TextAnalyticsRequestOptions-Context\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<RecognizePiiEntitiesResult> recognizePiiEntitiesBatch(Iterable<TextDocumentInput> textInputs, TextAnalyticsRequestOptions options, Context context)
-    parameters:
-    - id: textInputs
-      type: java.lang.Iterable<com.azure.ai.textanalytics.models.TextDocumentInput>
-      description: >-
-        A list of <xref uid="com.azure.ai.textanalytics.models.TextDocumentInput" data-throw-if-not-resolved="false">inputs/documents</xref> to recognize
-         Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    - id: options
-      type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
-      description: >-
-        The <xref uid="com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions" data-throw-if-not-resolved="false">options</xref> to configure the scoring model for documents
-         and show statistics.
-    - id: context
-      type: com.azure.core.util.Context
-      description: Additional context that is passed through the Http pipeline during the service call.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> of the
-         <xref uid="com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult" data-throw-if-not-resolved="false">recognized Personally Identifiable Information entities document result</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>)
-  id: recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntitiesBatch(Iterable<String> textInputs)
-  nameWithType: TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the list of documents. For the list of supported entity types, check https://aka.ms/tanerpii. See  for the list of enabled languages. This method will use the default language that sets up in <xref uid="com.azure.ai.textanalytics.TextAnalyticsClientBuilder.defaultLanguage(java.lang.String)" data-throw-if-not-resolved="false">TextAnalyticsClientBuilder#defaultLanguage(String)</xref>. If none is specified, service will use 'en' as the language.
-
-
-    **Code Sample**
-
-
-    Recognizes the Personally Identifiable Information entities in a list of documents.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch\#Iterable\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<RecognizePiiEntitiesResult> recognizePiiEntitiesBatch(Iterable<String> textInputs)
-    parameters:
-    - id: textInputs
-      type: java.lang.Iterable<java.lang.String>
-      description: >-
-        A list of documents to recognize Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> of the
-         <xref uid="com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult" data-throw-if-not-resolved="false">recognized Personally Identifiable Information entities document result</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  id: recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntitiesBatch(Iterable<String> textInputs, String language)
-  nameWithType: TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs, String language)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs, String language)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the list of documents with provided language code. For the list of supported entity types, check . See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Recognizes the Personally Identifiable Information entities in a list of documents with a provided language code.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch\#Iterable-String\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<RecognizePiiEntitiesResult> recognizePiiEntitiesBatch(Iterable<String> textInputs, String language)
-    parameters:
-    - id: textInputs
-      type: java.lang.Iterable<java.lang.String>
-      description: >-
-        A list of documents to recognize Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    - id: language
-      type: java.lang.String
-      description: >-
-        The 2 letter ISO 639-1 representation of language for the document. If not set, uses "en" for
-         English as default.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> of the
-         <xref uid="com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult" data-throw-if-not-resolved="false">recognized Personally Identifiable Information entities document result</xref>.
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  id: recognizePiiEntitiesBatch(java.lang.Iterable<java.lang.String>,java.lang.String,com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions)
-  artifact: com.azure:azure-ai-textanalytics:1.0.0-beta.3
-  parent: com.azure.ai.textanalytics.TextAnalyticsClient
-  langs:
-  - java
-  name: recognizePiiEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  nameWithType: TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-  overload: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch*
-  type: Method
-  package: com.azure.ai.textanalytics
-  summary: >-
-    Returns a list of personal information entities ("SSN", "Bank Account", etc) in the list of documents with provided language code and request options. For the list of supported entity types, check . See  for the list of enabled languages.
-
-
-    **Code Sample**
-
-
-    Recognizes the Personally Identifiable Information entities in a list of documents with a provided language representation.
-
-
-    \{@codesnippet com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch\#Iterable-String-TextAnalyticsRequestOptions\}
-  syntax:
-    content: public TextAnalyticsPagedIterable<RecognizePiiEntitiesResult> recognizePiiEntitiesBatch(Iterable<String> textInputs, String language, TextAnalyticsRequestOptions options)
-    parameters:
-    - id: textInputs
-      type: java.lang.Iterable<java.lang.String>
-      description: >-
-        A list of documents to recognize Personally Identifiable Information entities for.
-         For text length limits, maximum batch size, and supported text encoding, see
-         <a href="https://docs.microsoft.com/azure/cognitive-services/text-analytics/overview#data-limits"/>.
-    - id: language
-      type: java.lang.String
-      description: >-
-        The 2 letter ISO 639-1 representation of language for the document. If not set, uses "en" for
-         English as default.
-    - id: options
-      type: com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions
-      description: >-
-        The <xref uid="com.azure.ai.textanalytics.models.TextAnalyticsRequestOptions" data-throw-if-not-resolved="false">options</xref> to configure the scoring model for documents
-         and show statistics.
-    return:
-      type: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult>
-      description: >-
-        A <xref uid="com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable" data-throw-if-not-resolved="false">TextAnalyticsPagedIterable</xref> of the
-         <xref uid="com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult" data-throw-if-not-resolved="false">recognized Personally Identifiable Information entities document result</xref>.
 references:
 - uid: com.azure.ai.textanalytics.TextAnalyticsAsyncClient
   name: TextAnalyticsAsyncClient
@@ -1766,40 +1362,6 @@ references:
     fullName: com.azure.ai.textanalytics.models.TextDocumentInput
   - name: '>'
     fullName: '>'
-- uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.PiiEntity>
-  spec.java:
-  - uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable
-    name: TextAnalyticsPagedIterable
-    fullName: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable
-  - name: <
-    fullName: <
-  - uid: com.azure.ai.textanalytics.models.PiiEntity
-    name: PiiEntity
-    fullName: com.azure.ai.textanalytics.models.PiiEntity
-  - name: '>'
-    fullName: '>'
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities*
-  name: recognizePiiEntities
-  nameWithType: TextAnalyticsClient.recognizePiiEntities
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntities
-  package: com.azure.ai.textanalytics
-- uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult>
-  spec.java:
-  - uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable
-    name: TextAnalyticsPagedIterable
-    fullName: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable
-  - name: <
-    fullName: <
-  - uid: com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult
-    name: RecognizePiiEntitiesResult
-    fullName: com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult
-  - name: '>'
-    fullName: '>'
-- uid: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch*
-  name: recognizePiiEntitiesBatch
-  nameWithType: TextAnalyticsClient.recognizePiiEntitiesBatch
-  fullName: com.azure.ai.textanalytics.TextAnalyticsClient.recognizePiiEntitiesBatch
-  package: com.azure.ai.textanalytics
 - uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable<com.azure.ai.textanalytics.models.LinkedEntity>
   spec.java:
   - uid: com.azure.ai.textanalytics.util.TextAnalyticsPagedIterable
@@ -1966,14 +1528,6 @@ references:
   name: TextDocumentInput
   nameWithType: TextDocumentInput
   fullName: com.azure.ai.textanalytics.models.TextDocumentInput
-- uid: com.azure.ai.textanalytics.models.PiiEntity
-  name: PiiEntity
-  nameWithType: PiiEntity
-  fullName: com.azure.ai.textanalytics.models.PiiEntity
-- uid: com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult
-  name: RecognizePiiEntitiesResult
-  nameWithType: RecognizePiiEntitiesResult
-  fullName: com.azure.ai.textanalytics.models.RecognizePiiEntitiesResult
 - uid: com.azure.ai.textanalytics.models.LinkedEntity
   name: LinkedEntity
   nameWithType: LinkedEntity

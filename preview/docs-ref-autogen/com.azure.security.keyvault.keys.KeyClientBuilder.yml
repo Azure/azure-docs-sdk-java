@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder
   id: KeyClientBuilder
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys
   children:
   - com.azure.security.keyvault.keys.KeyClientBuilder.KeyClientBuilder()
@@ -14,6 +14,7 @@ items:
   - com.azure.security.keyvault.keys.KeyClientBuilder.httpClient(com.azure.core.http.HttpClient)
   - com.azure.security.keyvault.keys.KeyClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
   - com.azure.security.keyvault.keys.KeyClientBuilder.pipeline(com.azure.core.http.HttpPipeline)
+  - com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)
   - com.azure.security.keyvault.keys.KeyClientBuilder.serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)
   - com.azure.security.keyvault.keys.KeyClientBuilder.vaultUrl(java.lang.String)
   langs:
@@ -30,25 +31,54 @@ items:
     The minimal configuration options required by <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> to build <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient" data-throw-if-not-resolved="false">KeyAsyncClient</xref> are <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> and <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">credential</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.instantiation\}
+    ```java
+
+    KeyAsyncClient keyAsyncClient = new KeyClientBuilder()
+         .vaultUrl("https://myvault.azure.net/")
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .buildAsyncClient();
+    ```
 
 
     The <xref uid="" data-throw-if-not-resolved="false">log detail level</xref>, multiple custom <xref uid="" data-throw-if-not-resolved="false">policies</xref> and custom <xref uid="com.azure.core.http.HttpClient" data-throw-if-not-resolved="false">http client</xref> can be optionally configured in the <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.withhttpclient.instantiation\}
+    ```java
+
+    KeyAsyncClient keyAsyncClient = new KeyClientBuilder()
+         .vaultUrl("https://myvault.azure.net/")
+         .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+         .addPolicy(new KeyVaultCredentialPolicy(new DefaultAzureCredentialBuilder().build()))
+         .httpClient(HttpClient.createDefault())
+         .buildAsyncClient();
+    ```
 
 
     Alternatively, custom <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">http pipeline</xref> with custom <xref uid="com.azure.core.http.policy.HttpPipelinePolicy" data-throw-if-not-resolved="false">HttpPipelinePolicy</xref> policies and <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> can be specified. It provides finer control over the construction of <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient" data-throw-if-not-resolved="false">KeyAsyncClient</xref> and <xref uid="com.azure.security.keyvault.keys.KeyClient" data-throw-if-not-resolved="false">KeyClient</xref>
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.async.keyclient.pipeline.instantiation\}
+    ```java
+
+    HttpPipeline pipeline = new HttpPipelineBuilder()
+         .policies(new KeyVaultCredentialPolicy(new DefaultAzureCredentialBuilder().build()), new RetryPolicy())
+         .build();
+     KeyAsyncClient keyAsyncClient = new KeyClientBuilder()
+         .pipeline(pipeline)
+         .vaultUrl("https://myvault.azure.net/")
+         .buildAsyncClient();
+    ```
 
 
     The minimal configuration options required by <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">secretClientBuilder</xref> to build <xref uid="com.azure.security.keyvault.keys.KeyClient" data-throw-if-not-resolved="false">KeyClient</xref> are <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> and <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">credential</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.keys.keyclient.instantiation\}
+    ```java
+
+    KeyClient keyClient = new KeyClientBuilder()
+         .vaultUrl("https://myvault.azure.net/")
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .buildClient();
+    ```
   syntax:
     content: public final class KeyClientBuilder
   inheritance:
@@ -67,7 +97,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.KeyClientBuilder()
   id: KeyClientBuilder()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -82,7 +112,7 @@ items:
     content: public KeyClientBuilder()
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
   id: addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -104,7 +134,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.buildAsyncClient()
   id: buildAsyncClient()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -127,7 +157,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.KeyAsyncClient" data-throw-if-not-resolved="false">KeyAsyncClient</xref> with the options set from the builder.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.buildClient()
   id: buildClient()
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -149,7 +179,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.keys.KeyClient" data-throw-if-not-resolved="false">KeyClient</xref> with the options set from the builder.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.configuration(com.azure.core.util.Configuration)
   id: configuration(com.azure.core.util.Configuration)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -173,7 +203,7 @@ items:
       description: The updated KeyClientBuilder object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.credential(com.azure.core.credential.TokenCredential)
   id: credential(com.azure.core.credential.TokenCredential)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -195,7 +225,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.httpClient(com.azure.core.http.HttpClient)
   id: httpClient(com.azure.core.http.HttpClient)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -217,7 +247,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
   id: httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -243,7 +273,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.pipeline(com.azure.core.http.HttpPipeline)
   id: pipeline(com.azure.core.http.HttpPipeline)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -263,9 +293,31 @@ items:
     return:
       type: com.azure.security.keyvault.keys.KeyClientBuilder
       description: the updated <xref uid="com.azure.security.keyvault.keys.KeyClientBuilder" data-throw-if-not-resolved="false">KeyClientBuilder</xref> object.
+- uid: com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)
+  id: retryPolicy(com.azure.core.http.policy.RetryPolicy)
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
+  parent: com.azure.security.keyvault.keys.KeyClientBuilder
+  langs:
+  - java
+  name: retryPolicy(RetryPolicy retryPolicy)
+  nameWithType: KeyClientBuilder.retryPolicy(RetryPolicy retryPolicy)
+  fullName: com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy(RetryPolicy retryPolicy)
+  overload: com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy*
+  type: Method
+  package: com.azure.security.keyvault.keys
+  summary: Sets the <xref uid="com.azure.core.http.policy.RetryPolicy" data-throw-if-not-resolved="false">RetryPolicy</xref> that is used when each request is sent. The default retry policy will be used in the pipeline, if not provided.
+  syntax:
+    content: public KeyClientBuilder retryPolicy(RetryPolicy retryPolicy)
+    parameters:
+    - id: retryPolicy
+      type: com.azure.core.http.policy.RetryPolicy
+      description: user's retry policy applied to each request.
+    return:
+      type: com.azure.security.keyvault.keys.KeyClientBuilder
+      description: The updated KeyClientBuilder object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)
   id: serviceVersion(com.azure.security.keyvault.keys.KeyServiceVersion)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -291,7 +343,7 @@ items:
       description: The updated KeyClientBuilder object.
 - uid: com.azure.security.keyvault.keys.KeyClientBuilder.vaultUrl(java.lang.String)
   id: vaultUrl(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.1
+  artifact: com.azure:azure-security-keyvault-keys:4.2.0-beta.4
   parent: com.azure.security.keyvault.keys.KeyClientBuilder
   langs:
   - java
@@ -413,6 +465,16 @@ references:
   name: configuration
   nameWithType: KeyClientBuilder.configuration
   fullName: com.azure.security.keyvault.keys.KeyClientBuilder.configuration
+  package: com.azure.security.keyvault.keys
+- uid: com.azure.core.http.policy.RetryPolicy
+  spec.java:
+  - uid: com.azure.core.http.policy.RetryPolicy
+    name: RetryPolicy
+    fullName: com.azure.core.http.policy.RetryPolicy
+- uid: com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy*
+  name: retryPolicy
+  nameWithType: KeyClientBuilder.retryPolicy
+  fullName: com.azure.security.keyvault.keys.KeyClientBuilder.retryPolicy
   package: com.azure.security.keyvault.keys
 - uid: java.lang.Object.notify()
   name: Object.notify()

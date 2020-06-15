@@ -13,6 +13,8 @@ items:
   - com.microsoft.cognitiveservices.speech.audio.AudioConfig.fromStreamOutput(AudioOutputStream)
   - com.microsoft.cognitiveservices.speech.audio.AudioConfig.fromWavFileInput(String)
   - com.microsoft.cognitiveservices.speech.audio.AudioConfig.fromWavFileOutput(String)
+  - com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(PropertyId,String)
+  - com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(String,String)
   href: com.microsoft.cognitiveservices.speech.audio.AudioConfig.yml
   langs:
   - java
@@ -26,13 +28,14 @@ items:
       branch: javadocs201809
       repo: https://msasg.visualstudio.com/DefaultCollection/Skyman/_git/Carbon
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 13
+    startLine: 22
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Represents audio input configuration used for specifying what type of input to use (microphone, file, stream). Updated in version 1.7.0 </p>"
   syntax: &o1
     content: public class AudioConfig
   inheritance:
   - java.lang.Object
+  - Closeable
 - uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig.close()
   id: close()
   parent: com.microsoft.cognitiveservices.speech.audio.AudioConfig
@@ -47,7 +50,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 107
+    startLine: 138
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Explicitly frees any external resource attached to the object </p>"
   syntax:
@@ -66,7 +69,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 30
+    startLine: 39
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the default microphone on the system. </p>"
   syntax:
@@ -88,7 +91,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 80
+    startLine: 103
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the default speaker on the system. Added in version 1.7.0 </p>"
   syntax:
@@ -110,7 +113,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 41
+    startLine: 52
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing a specific microphone on the system. </p>"
   syntax:
@@ -136,7 +139,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 59
+    startLine: 76
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the specified stream. </p>"
   syntax:
@@ -144,7 +147,7 @@ items:
     parameters:
     - id: audioStream
       type: com.microsoft.cognitiveservices.speech.audio.AudioInputStream
-      description: <p>Specifies the custom audio input stream. Currently, only WAV / PCM with 16-bit samples, 16 kHz sample rate, and a single channel (Mono) is supported. When used with Conversation Transcription, eight channels are supported. </p>
+      description: <p>Specifies the custom audio input stream. </p>
     return:
       type: com.microsoft.cognitiveservices.speech.audio.AudioConfig
       description: <p>The audio input configuration being created. </p>
@@ -162,7 +165,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 68
+    startLine: 88
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the specified stream. </p>"
   syntax:
@@ -170,7 +173,7 @@ items:
     parameters:
     - id: callback
       type: com.microsoft.cognitiveservices.speech.audio.PullAudioInputStreamCallback
-      description: <p>Specifies the pull audio input stream callback. Currently, only WAV / PCM with 16-bit samples, 16 kHz sample rate, and a single channel (Mono) is supported. When used with Conversation Transcription, eight channels are supported. </p>
+      description: <p>Specifies the pull audio input stream callback. </p>
     return:
       type: com.microsoft.cognitiveservices.speech.audio.AudioConfig
       description: <p>The audio input configuration being created. </p>
@@ -188,7 +191,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 100
+    startLine: 128
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the specified stream. Added in version 1.7.0 </p>"
   syntax:
@@ -214,7 +217,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 50
+    startLine: 64
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the specified file. </p>"
   syntax:
@@ -222,7 +225,7 @@ items:
     parameters:
     - id: fileName
       type: "26831127"
-      description: <p>Specifies the audio input file. Currently, only WAV / PCM with 16-bit samples, 16 kHz sample rate, and a single channel (Mono) is supported. When used with Conversation Transcription, eight channels are supported. </p>
+      description: <p>Specifies the audio input file. </p>
     return:
       type: com.microsoft.cognitiveservices.speech.audio.AudioConfig
       description: <p>The audio input configuration being created. </p>
@@ -240,7 +243,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
-    startLine: 90
+    startLine: 115
   package: com.microsoft.cognitiveservices.speech.audio
   summary: "<p>Creates an AudioConfig object representing the specified file. Added in version 1.7.0 </p>"
   syntax:
@@ -252,6 +255,58 @@ items:
     return:
       type: com.microsoft.cognitiveservices.speech.audio.AudioConfig
       description: <p>The audio output configuration being created. </p>
+- uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(PropertyId,String)
+  id: setProperty(PropertyId,String)
+  parent: com.microsoft.cognitiveservices.speech.audio.AudioConfig
+  href: com.microsoft.cognitiveservices.speech.audio.AudioConfig.yml
+  langs:
+  - java
+  name: setProperty(PropertyId id, String value)
+  nameWithType: AudioConfig.setProperty(PropertyId id, String value)
+  fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(PropertyId id, String value)
+  overload: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty*
+  type: Method
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
+    startLine: 172
+  package: com.microsoft.cognitiveservices.speech.audio
+  summary: "<p>Sets the property by propertyId. </p>"
+  syntax:
+    content: public void setProperty(PropertyId id, String value)
+    parameters:
+    - id: id
+      type: com.microsoft.cognitiveservices.speech.PropertyId
+      description: <p>PropertyId of the property. </p>
+    - id: value
+      type: "26831127"
+      description: <p>The value. </p>
+- uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(String,String)
+  id: setProperty(String,String)
+  parent: com.microsoft.cognitiveservices.speech.audio.AudioConfig
+  href: com.microsoft.cognitiveservices.speech.audio.AudioConfig.yml
+  langs:
+  - java
+  name: setProperty(String name, String value)
+  nameWithType: AudioConfig.setProperty(String name, String value)
+  fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty(String name, String value)
+  overload: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty*
+  type: Method
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/audio/AudioConfig.java
+    startLine: 160
+  package: com.microsoft.cognitiveservices.speech.audio
+  summary: "<p>Sets a named property as value. </p>"
+  syntax:
+    content: public void setProperty(String name, String value)
+    parameters:
+    - id: name
+      type: "26831127"
+      description: <p>the name of the property. </p>
+    - id: value
+      type: "26831127"
+      description: <p>the value. </p>
 references:
 - uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig.fromDefaultMicrophoneInput*
   name: fromDefaultMicrophoneInput
@@ -297,6 +352,11 @@ references:
   nameWithType: AudioConfig.close
   fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig.close
   package: com.microsoft.cognitiveservices.speech.audio
+- uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty*
+  name: setProperty
+  nameWithType: AudioConfig.setProperty
+  fullName: com.microsoft.cognitiveservices.speech.audio.AudioConfig.setProperty
+  package: com.microsoft.cognitiveservices.speech.audio
 - uid: com.microsoft.cognitiveservices.speech.audio.AudioInputStream
   parent: com.microsoft.cognitiveservices.speech.audio
   href: com.microsoft.cognitiveservices.speech.audio.AudioInputStream.yml
@@ -317,6 +377,16 @@ references:
   summary: "<p>Represents audio output stream used for custom audio output configurations. Note: close() must be called in order to relinquish underlying resources held by the object. Updated in version 1.7.0 </p>"
   syntax:
     content: public class AudioOutputStream
+- uid: com.microsoft.cognitiveservices.speech.PropertyCollection
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.PropertyCollection.yml
+  name: PropertyCollection
+  nameWithType: PropertyCollection
+  fullName: com.microsoft.cognitiveservices.speech.PropertyCollection
+  type: Class
+  summary: "<p>Represents collection of properties and their values. </p>"
+  syntax:
+    content: public class PropertyCollection
 - uid: com.microsoft.cognitiveservices.speech.audio.AudioConfig
   parent: com.microsoft.cognitiveservices.speech.audio
   href: com.microsoft.cognitiveservices.speech.audio.AudioConfig.yml
@@ -336,3 +406,13 @@ references:
   summary: "<p>An abstract base class that defines callback methods (read() and close()) for custom audio input streams). </p>"
   syntax:
     content: public class PullAudioInputStreamCallback
+- uid: com.microsoft.cognitiveservices.speech.PropertyId
+  parent: com.microsoft.cognitiveservices.speech
+  href: com.microsoft.cognitiveservices.speech.PropertyId.yml
+  name: PropertyId
+  nameWithType: PropertyId
+  fullName: com.microsoft.cognitiveservices.speech.PropertyId
+  type: Enum
+  summary: "<p>Defines property ids. Changed in version 1.8.0. </p>"
+  syntax:
+    content: public enum PropertyId
