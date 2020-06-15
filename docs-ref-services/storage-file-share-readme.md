@@ -1,16 +1,17 @@
 ---
 title: Azure File Share client library for Java
-keywords: Azure, Java, SDK, API, storage, azure-storage-file-share
+keywords: Azure, java, SDK, API, azure-storage-file-share, 
 author: maggiepint
 ms.author: magpint
-ms.date: 04/16/2020
+ms.date: 06/13/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
-ms.devlang: Java
-ms.service: storage
+ms.devlang: java
+ms.service: 
 ---
- # Azure File Share client library for Java - Version 12.4.0 
+
+# Azure File Share client library for Java - Version 12.5.0 
 
 The Server Message Block (SMB) protocol is the preferred file share protocol used on-premises today.
 The Microsoft Azure File Share service enables customers to leverage the availability and scalability of Azure's Cloud Infrastructure as a Service (IaaS) SMB without having to rewrite SMB client applications.
@@ -37,7 +38,7 @@ Shares provide a way to organize sets of files and also can be mounted as an SMB
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-file-share</artifactId>
-  <version>12.4.0</version>
+  <version>12.5.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -464,14 +465,14 @@ fileClient.setHttpHeaders(newFileSize, httpHeaders);
 When you interact with file using this Java client library, errors returned by the service correspond to the same HTTP status codes returned for [REST API][storage_file_rest] requests. For example, if you try to retrieve a share that doesn't exist in your Storage Account, a `404` error is returned, indicating `Not Found`.
 
 ### Default HTTP Client
-All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure 
+All client libraries by default use the Netty HTTP client. Adding the above dependency will automatically configure
 the client library to use the Netty HTTP client. Configuring or changing the HTTP client is detailed in the
 [HTTP clients wiki](https://github.com/Azure/azure-sdk-for-java/wiki/HTTP-clients).
 
 ### Default SSL library
-All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL 
-operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides 
-better performance compared to the default SSL implementation within the JDK. For more information, including how to 
+All client libraries, by default, use the Tomcat-native Boring SSL library to enable native-level performance for SSL
+operations. The Boring SSL library is an uber jar containing native libraries for Linux / macOS / Windows, and provides
+better performance compared to the default SSL implementation within the JDK. For more information, including how to
 reduce the dependency size, refer to the [performance tuning][performance_tuning] section of the wiki.
 
 ## Next steps
@@ -498,7 +499,7 @@ If you would like to become an active contributor to this project please follow 
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-file-share/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-file-share/src
 [reference_docs]: https://azure.github.io/azure-sdk-for-java/
 [rest_api_documentation]: https://docs.microsoft.com/rest/api/storageservices/file-service-rest-api
 [storage_docs]: https://docs.microsoft.com/azure/storage/files/storage-files-introduction
@@ -512,7 +513,8 @@ If you would like to become an active contributor to this project please follow 
 [RFL_URL_2]: https://www.ietf.org/rfc/rfc3987.txt
 [csharp_identifiers]: https://docs.microsoft.com/dotnet/csharp/language-reference/
 [storage_file_rest]: https://docs.microsoft.com/rest/api/storageservices/file-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/2d2f9b2c1c5f73f0b4bfb2eabe376239998e98d7/../../azure-sdk-for-java/sdk/storage/azure-storage-file-share/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/e68b2fcf6170bb392b4c9b846008cf0aa2395c82/sdk/storage/azure-storage-file-share/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-file-share%2FREADME.png)
+
