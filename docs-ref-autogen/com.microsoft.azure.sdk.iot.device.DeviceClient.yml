@@ -6,6 +6,7 @@ items:
   children:
   - com.microsoft.azure.sdk.iot.device.DeviceClient.close()
   - com.microsoft.azure.sdk.iot.device.DeviceClient.closeNow()
+  - com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification)
   - com.microsoft.azure.sdk.iot.device.DeviceClient.CONNECTION_STRING_CHARSET
   - com.microsoft.azure.sdk.iot.device.DeviceClient.createFromSecurityProvider(String,String,SecurityProvider,IotHubClientProtocol)
   - com.microsoft.azure.sdk.iot.device.DeviceClient.createFromSecurityProvider(String,String,SecurityProvider,IotHubClientProtocol,ClientOptions)
@@ -17,6 +18,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.DeviceClient.DeviceClient(String,IotHubClientProtocol,String,boolean,String,boolean)
   - com.microsoft.azure.sdk.iot.device.DeviceClient.DeviceClient(String,TransportClient)
   - com.microsoft.azure.sdk.iot.device.DeviceClient.getDeviceTwin()
+  - com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest)
   - com.microsoft.azure.sdk.iot.device.DeviceClient.HOSTNAME_ATTRIBUTE
   - com.microsoft.azure.sdk.iot.device.DeviceClient.open()
   - com.microsoft.azure.sdk.iot.device.DeviceClient.RECEIVE_PERIOD_MILLIS
@@ -46,7 +48,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 40
+    startLine: 45
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>The public-facing API. Allows a single logical or physical device to connect to an IoT Hub. The IoT Hub client supports sending events to and receiving messages from an IoT Hub. </p>\r\n<p>To support these workflows, the client library will provide the following abstractions: a message, with its payload and associated properties; and a client, which sends and receives messages. </p>\r\n<p>The client buffers messages while the network is down, and re-sends them when the network comes back online. It also batches messages to improve communication efficiency (HTTPS only). </p>\r\n<p>The client supports HTTPS 1.1 and AMQPS 1.0 transports. </p>"
   syntax: &o2
@@ -80,7 +82,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 384
+    startLine: 395
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Completes all current outstanding requests and closes the IoT Hub client. Must be called to terminate the background thread that is sending data to IoT Hub. After<code>closeNow() \r\n    </code> is called, the IoT Hub client is no longer usable. If the client is already closed, the function shall do nothing. <xrefsect id=\"deprecated_1_deprecated000060\"><xreftitle>Deprecated</xreftitle><xrefdescription><p>: As of release 1.1.25 this call is replaced by <xref uid=\"com.microsoft.azure.sdk.iot.device.DeviceClient.closeNow()\" data-throw-if-not-resolved=\"false\">closeNow()</xref></p></xrefdescription></xrefsect></p>\r\n<p></p>"
   syntax:
@@ -102,7 +104,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 420
+    startLine: 431
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Closes the IoT Hub client by releasing any resources held by client. When closeNow is called all the messages that were in transit or pending to be sent will be informed to the user in the callbacks and any existing connection to IotHub will be closed. Must be called to terminate the background thread that is sending data to IoT Hub. After<code>closeNow() \r\n    </code> is called, the IoT Hub client is no longer usable. If the client is already closed, the function shall do nothing.</p>\r\n<p></p>"
   syntax: &o3
@@ -110,6 +112,32 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if the connection to an IoT Hub cannot be closed. </p>
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification)
+  id: completeFileUploadAsync(FileUploadCompletionNotification)
+  parent: com.microsoft.azure.sdk.iot.device.DeviceClient
+  href: com.microsoft.azure.sdk.iot.device.DeviceClient.yml
+  langs:
+  - java
+  name: completeFileUploadAsync(FileUploadCompletionNotification notification)
+  nameWithType: DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification notification)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification notification)
+  overload: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 525
+  package: com.microsoft.azure.sdk.iot.device
+  summary: "<p>Notify IoT Hub that a file upload has been completed, successfully or otherwise. See <a href=\"https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-file-upload#notify-iot-hub-of-a-completed-file-upload\">this documentation</a> for more details. </p>"
+  syntax: &o5
+    content: public void completeFileUploadAsync(FileUploadCompletionNotification notification)
+    parameters:
+    - id: notification
+      type: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification
+      description: <p>The notification details, including if the file upload succeeded. </p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>If this HTTPS request fails to send. </p>
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClient.CONNECTION_STRING_CHARSET
   id: CONNECTION_STRING_CHARSET
   parent: com.microsoft.azure.sdk.iot.device.DeviceClient
@@ -123,7 +151,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 73
+    startLine: 78
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000057\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and will not be replaced. The charset used for URL-encoding the device ID in the connection string. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
@@ -144,7 +172,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 265
+    startLine: 271
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Creates a device client that uses the provided security provider for authentication.</p>\r\n<p></p>"
   syntax:
@@ -184,7 +212,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 282
+    startLine: 288
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Creates a device client that uses the provided security provider for authentication.</p>\r\n<p></p>"
   syntax:
@@ -226,7 +254,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 53
+    startLine: 58
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000054\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and will not be replaced. The device ID attribute name in a connection string. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
@@ -247,7 +275,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 825
+    startLine: 870
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected DeviceClient()
@@ -265,7 +293,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 172
+    startLine: 178
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Constructor that takes a connection string as an argument.</p>\r\n<p></p>"
   syntax:
@@ -320,7 +348,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 194
+    startLine: 200
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Constructor that takes a connection string as an argument.</p>\r\n<p></p>"
   syntax:
@@ -378,7 +406,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 247
+    startLine: 253
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Creates a device client that uses the provided SSLContext for SSL negotiation </p>"
   syntax:
@@ -410,7 +438,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 224
+    startLine: 230
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Constructor that uses x509 authentication for communicating with IotHub</p>\r\n<p></p>"
   syntax:
@@ -451,7 +479,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 125
+    startLine: 131
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Constructor that takes a connection string and a transport client as an argument.</p>\r\n<p></p>"
   syntax:
@@ -504,7 +532,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 494
+    startLine: 539
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Retrieves the twin's latest desired properties </p>"
   syntax:
@@ -512,6 +540,37 @@ items:
   exceptions:
   - type: cbf33bbe
     description: <p>if the iothub cannot be reached </p>
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest)
+  id: getFileUploadSasUri(FileUploadSasUriRequest)
+  parent: com.microsoft.azure.sdk.iot.device.DeviceClient
+  href: com.microsoft.azure.sdk.iot.device.DeviceClient.yml
+  langs:
+  - java
+  name: getFileUploadSasUri(FileUploadSasUriRequest request)
+  nameWithType: DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest request)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest request)
+  overload: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
+    startLine: 510
+  package: com.microsoft.azure.sdk.iot.device
+  summary: "<p>Get a file upload SAS URI which the Azure Storage SDK can use to upload a file to blob for this device. See <a href=\"https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-file-upload#initialize-a-file-upload\">this documentation</a> for more details. </p>"
+  syntax: &o4
+    content: public FileUploadSasUriResponse getFileUploadSasUri(FileUploadSasUriRequest request)
+    parameters:
+    - id: request
+      type: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriRequest
+      description: <p>The request details for getting the SAS URI, including the destination blob name. </p>
+    return:
+      type: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriResponse
+      description: <p>The file upload details to be used with the Azure Storage SDK in order to upload a file from this device. </p>
+  exceptions:
+  - type: cbf33bbe
+    description: <p>If this HTTPS request fails to send. </p>
+  - type: "44102508"
+    description: <p>If the returned sas uri cannot be constructed correctly </p>
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClient.HOSTNAME_ATTRIBUTE
   id: HOSTNAME_ATTRIBUTE
   parent: com.microsoft.azure.sdk.iot.device.DeviceClient
@@ -525,7 +584,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 47
+    startLine: 52
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000053\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and will not be replaced. The hostname attribute name in a connection string. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
@@ -546,7 +605,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 350
+    startLine: 361
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Starts asynchronously sending and receiving messages from an IoT Hub. If the client is already open, the function shall do nothing.</p>\r\n<p></p>"
   syntax:
@@ -567,7 +626,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 99
+    startLine: 104
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: protected long RECEIVE_PERIOD_MILLIS
@@ -586,7 +645,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 93
+    startLine: 98
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000059\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 these value is deprecated and replaced by <xref uid=\"com.microsoft.azure.sdk.iot.device.DeviceClient.setOption(String,Object)\" data-throw-if-not-resolved=\"false\">setOption(String, Object)</xref><b>SetMinimumPollingInterval</b> to change it.</p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>\r\n<p>The number of milliseconds the transport will wait between polling for messages. </p>"
   syntax:
@@ -606,7 +665,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 97
+    startLine: 102
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_HTTPS= 25*60*1000
@@ -625,7 +684,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 95
+    startLine: 100
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public static long RECEIVE_PERIOD_MILLIS_MQTT= 10L
@@ -645,9 +704,9 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 570
+    startLine: 615
   package: com.microsoft.azure.sdk.iot.device
-  summary: "<p>Registers a callback to be executed whenever the connection to the device is lost or established. <xrefsect id=\"deprecated_1_deprecated000061\"><xreftitle>Deprecated</xreftitle><xrefdescription><p>as of release 1.10.0 by <xref uid=\"com.microsoft.azure.sdk.iot.device.InternalClient.registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback,Object)\" data-throw-if-not-resolved=\"false\">registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback callback, Object callbackContext)</xref></p></xrefdescription></xrefsect></p>"
+  summary: "<p>Registers a callback to be executed whenever the connection to the device is lost or established. <xrefsect id=\"deprecated_1_deprecated000062\"><xreftitle>Deprecated</xreftitle><xrefdescription><p>as of release 1.10.0 by <xref uid=\"com.microsoft.azure.sdk.iot.device.InternalClient.registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback,Object)\" data-throw-if-not-resolved=\"false\">registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback callback, Object callbackContext)</xref></p></xrefdescription></xrefsect></p>"
   syntax:
     content: public void registerConnectionStateCallback(IotHubConnectionStateCallback callback, Object callbackContext)
     parameters:
@@ -676,7 +735,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 83
+    startLine: 88
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000058\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and replaced by <xref uid=\"com.microsoft.azure.sdk.iot.device.DeviceClient.setOption(String,Object)\" data-throw-if-not-resolved=\"false\">setOption(String, Object)</xref><b>SetSendInterval</b> to change it.</p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>\r\n<p>The number of milliseconds the transport will wait between sending out messages. </p>"
   syntax:
@@ -697,7 +756,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 300
+    startLine: 306
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets the message callback.</p>\r\n<p></p>"
   syntax:
@@ -740,7 +799,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 644
+    startLine: 689
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets a runtime option identified by parameter<code>optionName \r\n    </code> to<code>value \r\n    </code> .</p>\r\n<p>The options that can be set via this API are:<ul><li><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long \r\n    </code> .</p></li><li><p><b>SetSendInterval</b> - this option is applicable to all protocols. This value sets the period (in milliseconds) that this SDK spawns threads to send queued messages. Even if no message is queued, this thread will be spawned.</p></li><li><p><b>SetReceiveInterval</b> - this option is applicable to all protocols in case of HTTPS protocol, this option acts the same as<code>SetMinimumPollingInterval \r\n    </code> in case of MQTT and AMQP protocols, this option specifies the interval in millisecods between spawning a thread that dequeues a message from the SDK's queue of received messages.</p></li><li><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String \r\n    </code> .</p></li><li><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time, and will use that expiry time length for all subsequently generated sas tokens. The value is expected to be of type<code>long \r\n    </code> .</p></li><li><p><b>SetHttpsReadTimeout</b> - this option is applicable for HTTPS. This option specifies the read timeout in milliseconds per https request made by this client. By default, this value is 4 minutes. The value is expected to be of type<code>int \r\n    </code> .</p></li><li><p><b>SetHttpsConnectTimeout</b> - this option is applicable for HTTPS. This option specifies the connect timeout in milliseconds per https request made by this client. By default, this value is 0 (no connect timeout). The value is expected to be of type<code>int \r\n    </code> .</p></li></ul></p>\r\n<p></p>"
   syntax: &o1
@@ -768,7 +827,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 59
+    startLine: 64
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000055\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and will not be replaced. The shared access key attribute name in a connection string. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
@@ -788,7 +847,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 65
+    startLine: 70
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000056\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>as of release 1.2.27 this value is deprecated and will not be replaced. The shared access signature attribute name in a connection string. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
@@ -809,7 +868,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 523
+    startLine: 568
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Starts the device twin. This device client will receive a callback with the current state of the full twin, including reported properties and desired properties. After that callback is received, this device client will receive a callback each time a desired property is updated. That callback will either contain the full desired properties set, or only the updated desired property depending on how the desired property was changed. IoT Hub supports a PUT and a PATCH on the twin. The PUT will cause this device client to receive the full desired properties set, and the PATCH will cause this device client to only receive the updated desired properties. Similarly, the version of each desired property will be incremented from a PUT call, and only the actually updated desired property will have its version incremented from a PATCH call. The java service client library uses the PATCH call when updated desired properties, but it builds the patch such that all properties are included in the patch. As a result, the device side will receive full twin updates, not partial updates.</p>\r\n<p>See <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/replacedevicetwin\">PUT</a> and <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/updatedevicetwin\">PATCH</a></p>\r\n<p></p>"
   syntax:
@@ -863,7 +922,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 554
+    startLine: 599
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Starts the device twin. This device client will receive a callback with the current state of the full twin, including reported properties and desired properties. After that callback is received, this device client will receive a callback each time a desired property is updated. That callback will either contain the full desired properties set, or only the updated desired property depending on how the desired property was changed. IoT Hub supports a PUT and a PATCH on the twin. The PUT will cause this device client to receive the full desired properties set, and the PATCH will cause this device client to only receive the updated desired properties. Similarly, the version of each desired property will be incremented from a PUT call, and only the actually updated desired property will have its version incremented from a PATCH call. The java service client library uses the PATCH call when updated desired properties, but it builds the patch such that all properties are included in the patch. As a result, the device side will receive full twin updates, not partial updates.</p>\r\n<p>See <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/replacedevicetwin\">PUT</a> and <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/updatedevicetwin\">PATCH</a></p>\r\n<p></p>"
   syntax:
@@ -917,7 +976,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 591
+    startLine: 636
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Subscribes to device methods</p>\r\n<p></p>"
   syntax:
@@ -966,9 +1025,9 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/DeviceClient.java
-    startLine: 462
+    startLine: 477
   package: com.microsoft.azure.sdk.iot.device
-  summary: "<p>Asynchronously upload a stream to the IoT Hub.</p>\r\n<p>NOTE: IotHub does not currently support CA signed devices using file upload. Please use SAS based authentication or self signed certificates.</p>\r\n<p></p>"
+  summary: "<p>Asynchronously upload a stream to the IoT Hub.</p>\r\n<p>NOTE: IotHub does not currently support CA signed devices using file upload. Please use SAS based authentication or self signed certificates.</p>\r\n<p>\r\n  <xrefsect id=\"deprecated_1_deprecated000061\">\r\n    <xreftitle>Deprecated</xreftitle>\r\n    <xrefdescription>\r\n      <p>Use <xref uid=\"com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest)\" data-throw-if-not-resolved=\"false\">getFileUploadSasUri(FileUploadSasUriRequest)</xref> to get the SAS URI, use the azure storage SDK to upload a file to that SAS URI, and then use <xref uid=\"com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification)\" data-throw-if-not-resolved=\"false\">completeFileUploadAsync(FileUploadCompletionNotification)</xref> to notify Iot Hub that your file upload has completed, successfully or otherwise. This method does all three of these tasks for you, but has limited configuration options. </p>\r\n    </xrefdescription>\r\n  </xrefsect>\r\n</p>"
   syntax:
     content: public void uploadToBlobAsync(String destinationBlobName, InputStream inputStream, long streamLength, IotHubEventCallback callback, Object callbackContext)
     parameters:
@@ -1082,6 +1141,16 @@ references:
   name: uploadToBlobAsync
   nameWithType: DeviceClient.uploadToBlobAsync
   fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.uploadToBlobAsync
+  package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri*
+  name: getFileUploadSasUri
+  nameWithType: DeviceClient.getFileUploadSasUri
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri
+  package: com.microsoft.azure.sdk.iot.device
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync*
+  name: completeFileUploadAsync
+  nameWithType: DeviceClient.completeFileUploadAsync
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync
   package: com.microsoft.azure.sdk.iot.device
 - uid: com.microsoft.azure.sdk.iot.device.DeviceClient.getDeviceTwin*
   name: getDeviceTwin
@@ -1344,6 +1413,16 @@ references:
   summary: "<p>Provide means to upload file in the Azure Storage using the IoTHub. </p>"
   syntax:
     content: public class FileUpload
+- uid: com.microsoft.azure.sdk.iot.device.fileupload.FileUploadTask
+  parent: com.microsoft.azure.sdk.iot.device.fileupload
+  href: com.microsoft.azure.sdk.iot.device.fileupload.FileUploadTask.yml
+  name: FileUploadTask
+  nameWithType: FileUploadTask
+  fullName: com.microsoft.azure.sdk.iot.device.fileupload.FileUploadTask
+  type: Class
+  summary: "<p>Provide means to asynchronous upload file in the Azure Storage using the IoTHub.</p>\r\n<p>The file upload process is composed by 3 steps represented in the follow diagram. +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | Device | | Iot Hub | | Storage | | Service | +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><ndash></ndash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ +<mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash><mdash></mdash>+ | | | | | | | | REQUEST_BLOB | | | +<mdash></mdash> request blob <mdash></mdash>&gt;| | | |&lt;<ndash></ndash> blob SAS token <ndash></ndash>+ | | | | | | UPLOAD_FILE | | | +<mdash></mdash>- upload file to the provided blob <mdash></mdash>&gt;| | +&lt;<mdash></mdash><mdash></mdash> end of upload with `status` <mdash></mdash><mdash></mdash>+ | | | | | NOTIFY_IOTHUB | | | +<mdash></mdash> notify status <ndash></ndash>&gt;| | | | +<mdash></mdash><mdash></mdash> notify new file available <mdash></mdash><mdash></mdash>-&gt;| | | | | </p>"
+  syntax:
+    content: public class FileUploadTask
 - uid: com.microsoft.azure.sdk.iot.device.IotHubClientProtocol
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device.IotHubClientProtocol.yml
@@ -1402,6 +1481,54 @@ references:
   summary: "<p>An interface for an IoT Hub event callback.</p>\r\n<p>Developers are expected to create an implementation of this interface, and the transport will call <xref uid=\"com.microsoft.azure.sdk.iot.device.IotHubEventCallback.execute(IotHubStatusCode,Object)\" data-throw-if-not-resolved=\"false\">IotHubEventCallback#execute(IotHubStatusCode, Object)</xref> upon receiving a response from an IoT Hub. </p>"
   syntax:
     content: public interface IotHubEventCallback
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest)
+  parent: com.microsoft.azure.sdk.iot.device.DeviceClient
+  href: com.microsoft.azure.sdk.iot.device.DeviceClient.yml
+  name: getFileUploadSasUri(FileUploadSasUriRequest request)
+  nameWithType: DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest request)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.getFileUploadSasUri(FileUploadSasUriRequest request)
+  type: Method
+  summary: "<p>Get a file upload SAS URI which the Azure Storage SDK can use to upload a file to blob for this device. See <a href=\"https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-file-upload#initialize-a-file-upload\">this documentation</a> for more details. </p>"
+  syntax: *o4
+- uid: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification)
+  parent: com.microsoft.azure.sdk.iot.device.DeviceClient
+  href: com.microsoft.azure.sdk.iot.device.DeviceClient.yml
+  name: completeFileUploadAsync(FileUploadCompletionNotification notification)
+  nameWithType: DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification notification)
+  fullName: com.microsoft.azure.sdk.iot.device.DeviceClient.completeFileUploadAsync(FileUploadCompletionNotification notification)
+  type: Method
+  summary: "<p>Notify IoT Hub that a file upload has been completed, successfully or otherwise. See <a href=\"https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-devguide-file-upload#notify-iot-hub-of-a-completed-file-upload\">this documentation</a> for more details. </p>"
+  syntax: *o5
+- uid: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriResponse
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriResponse.yml
+  name: FileUploadSasUriResponse
+  nameWithType: FileUploadSasUriResponse
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriResponse
+  type: Class
+  summary: "<p>The information provided from IoT Hub that can be used with the Azure Storage SDK to upload a file from your device, including authentication. </p>"
+  syntax:
+    content: public class FileUploadSasUriResponse
+- uid: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriRequest
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriRequest.yml
+  name: FileUploadSasUriRequest
+  nameWithType: FileUploadSasUriRequest
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadSasUriRequest
+  type: Class
+  summary: "<p>The request parameters when getting a file upload sas uri from IoT Hub. </p>"
+  syntax:
+    content: public class FileUploadSasUriRequest
+- uid: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification
+  parent: com.microsoft.azure.sdk.iot.deps.serializer
+  href: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification.yml
+  name: FileUploadCompletionNotification
+  nameWithType: FileUploadCompletionNotification
+  fullName: com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification
+  type: Class
+  summary: "<p>The request payload to send to IoT Hub to notify it when a file upload is completed, whether successful or not. Must set <xref uid=\"com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification.setSuccess(Boolean)\" data-throw-if-not-resolved=\"false\">setSuccess(Boolean)</xref> and <xref uid=\"com.microsoft.azure.sdk.iot.deps.serializer.FileUploadCompletionNotification.setCorrelationId(String)\" data-throw-if-not-resolved=\"false\">setCorrelationId(String)</xref>, but all other fields are optional. </p>"
+  syntax:
+    content: public class FileUploadCompletionNotification
 - uid: com.microsoft.azure.sdk.iot.device.DeviceTwin.PropertyCallBack
   parent: com.microsoft.azure.sdk.iot.device.DeviceTwin
   href: com.microsoft.azure.sdk.iot.device.DeviceTwin.PropertyCallBack.yml

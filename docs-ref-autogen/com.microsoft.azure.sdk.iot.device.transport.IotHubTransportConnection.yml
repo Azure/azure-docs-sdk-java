@@ -8,7 +8,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.getConnectionId()
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessage(Message)
-  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(Message,IotHubMessageResult)
+  - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
   - com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.setListener(IotHubListener)
   href: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.yml
   langs:
@@ -130,15 +130,15 @@ items:
   exceptions:
   - type: 848a9648
     description: <p>if any exception is encountered while sending the message </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(Message,IotHubMessageResult)
-  id: sendMessageResult(Message,IotHubMessageResult)
+- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
+  id: sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
   parent: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection
   href: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.yml
   langs:
   - java
-  name: sendMessageResult(Message message, IotHubMessageResult result)
-  nameWithType: IotHubTransportConnection.sendMessageResult(Message message, IotHubMessageResult result)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(Message message, IotHubMessageResult result)
+  name: sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  nameWithType: IotHubTransportConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
   overload: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportConnection.sendMessageResult*
   type: Method
   source:
@@ -148,10 +148,10 @@ items:
   package: com.microsoft.azure.sdk.iot.device.transport
   summary: "<p>Send an acknowledgement to the IotHub for a message that the Transport layer received </p>"
   syntax:
-    content: public boolean sendMessageResult(Message message, IotHubMessageResult result)
+    content: public boolean sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
     parameters:
     - id: message
-      type: com.microsoft.azure.sdk.iot.device.Message
+      type: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
       description: <p>the message to acknowledge </p>
     - id: result
       type: com.microsoft.azure.sdk.iot.device.IotHubMessageResult
@@ -252,9 +252,9 @@ references:
   nameWithType: AmqpsIotHubConnection
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
   type: Class
-  summary: "<p>An AMQPS IotHub connection between a device and an IoTHub. This class contains functionality for sending/receiving a message, and logic to re-establish the connection with the IoTHub in case it gets lost. </p>"
+  summary: "<p>An AMQPS IotHub connection between a device and an IoTHub or Edgehub. This class is responsible for reacting to connection level and reactor level events. It is also responsible for creating sessions and handlers for those sessions. An instance of this object may be reused after it has been closed. </p>"
   syntax:
-    content: public class AmqpsIotHubConnection extends ErrorLoggingBaseHandler implements IotHubTransportConnection,SubscriptionMessageRequestSentCallback
+    content: public class AmqpsIotHubConnection implements IotHubTransportConnection
 - uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection
   parent: com.microsoft.azure.sdk.iot.device.transport.https
   href: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.yml
@@ -296,14 +296,16 @@ references:
   nameWithType: AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
   type: Method
-  summary: "<p>Opens the <xref uid=\"com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection\" data-throw-if-not-resolved=\"false\">AmqpsIotHubConnection</xref>. </p>\r\n<p>This method will start the <xref uid=\"\" data-throw-if-not-resolved=\"false\">Reactor</xref>, set the connection to open and make it ready for sending. </p>\r\n<p>Do not call this method after calling close on this object, instead, create a whole new AmqpsIotHubConnection object and open that instead. </p>\r\n<p></p>"
+  summary: "<p>Opens the transport connection object </p>"
   syntax:
     content: public void open(Queue<DeviceClientConfig> deviceClientConfigs, ScheduledExecutorService scheduledExecutorService)
     parameters:
     - id: deviceClientConfigs
       type: 20d61ca6com.microsoft.azure.sdk.iot.device.DeviceClientConfiga08ddfce
+      description: <p>The list of configs to use. If more than 1 configs are in this list, multiplexing will be used </p>
     - id: scheduledExecutorService
       type: cd415bf4
+      description: <p>the executor service to use when spawning threads </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.open(Queue<DeviceClientConfig>,ScheduledExecutorService)
   parent: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.yml
@@ -392,6 +394,16 @@ references:
   summary: "<p>Callback interface for communicating connection and message status updates from individual protocol clients (mqtt, https, amqps) to the Tranpsort layer that handles queueing of messages and connecting/reconnecting/disconnecting </p>"
   syntax:
     content: public interface IotHubListener
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
+  name: close()
+  nameWithType: AmqpsIotHubConnection.close()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
+  type: Method
+  summary: "<p>Closes the transport connection. </p>"
+  syntax:
+    content: public void close()
 - uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.close()
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
@@ -410,16 +422,6 @@ references:
   fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.close()
   type: Method
   summary: "<p>Closes the transport connection. </p>"
-  syntax:
-    content: public void close()
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
-  name: close()
-  nameWithType: AmqpsIotHubConnection.close()
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.close()
-  type: Method
-  summary: "<p>Closes the <xref uid=\"com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection\" data-throw-if-not-resolved=\"false\">AmqpsIotHubConnection</xref>. </p>\r\n<p>If the current connection is not closed, this function will set the current state to closed and invalidate all connection related variables. </p>\r\n<p></p>"
   syntax:
     content: public void close()
 - uid: com.microsoft.azure.sdk.iot.device.IotHubStatusCode
@@ -475,38 +477,38 @@ references:
   type: Class
   syntax:
     content: public class Message
-- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.sendMessageResult(Message,IotHubMessageResult)
+- uid: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
   parent: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.yml
-  name: sendMessageResult(Message message, IotHubMessageResult result)
-  nameWithType: HttpsIotHubConnection.sendMessageResult(Message message, IotHubMessageResult result)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.sendMessageResult(Message message, IotHubMessageResult result)
+  name: sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  nameWithType: HttpsIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.https.HttpsIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
   type: Method
   summary: "<p>Sends the message result for the previously received message.</p>\r\n<p></p>"
   syntax:
-    content: public boolean sendMessageResult(Message message, IotHubMessageResult result)
+    content: public boolean sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
     parameters:
     - id: message
-      type: com.microsoft.azure.sdk.iot.device.Message
+      type: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
       description: <p>the message that was received from the service to send the result of </p>
     - id: result
       type: com.microsoft.azure.sdk.iot.device.IotHubMessageResult
       description: <p>the message result (one of <xref uid="" data-throw-if-not-resolved="false">IotHubMessageResult#COMPLETE</xref>, <xref uid="" data-throw-if-not-resolved="false">IotHubMessageResult#ABANDON</xref>, or <xref uid="" data-throw-if-not-resolved="false">IotHubMessageResult#REJECT</xref>).</p>
     return:
       type: 4fc6e284
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.sendMessageResult(Message,IotHubMessageResult)
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
   parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
   href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
-  name: sendMessageResult(Message message, IotHubMessageResult result)
-  nameWithType: MqttIotHubConnection.sendMessageResult(Message message, IotHubMessageResult result)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.sendMessageResult(Message message, IotHubMessageResult result)
+  name: sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  nameWithType: MqttIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
   type: Method
   summary: "<p>Sends an ACK to the service for the provided message </p>"
   syntax:
-    content: public boolean sendMessageResult(Message message, IotHubMessageResult result)
+    content: public boolean sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
     parameters:
     - id: message
-      type: com.microsoft.azure.sdk.iot.device.Message
+      type: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
       description: <p>the message to acknowledge to the service </p>
     - id: result
       type: com.microsoft.azure.sdk.iot.device.IotHubMessageResult
@@ -514,6 +516,36 @@ references:
     return:
       type: 4fc6e284
       description: <p>true if the ACK was sent successfully and false otherwise </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.sendMessageResult(IotHubTransportMessage,IotHubMessageResult)
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
+  name: sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  nameWithType: AmqpsIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+  type: Method
+  summary: "<p>Send an acknowledgement to the IotHub for a message that the Transport layer received </p>"
+  syntax:
+    content: public boolean sendMessageResult(IotHubTransportMessage message, IotHubMessageResult result)
+    parameters:
+    - id: message
+      type: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
+      description: <p>the message to acknowledge </p>
+    - id: result
+      type: com.microsoft.azure.sdk.iot.device.IotHubMessageResult
+      description: <p>the acknowledgement value to notify the service of </p>
+    return:
+      type: 4fc6e284
+      description: <p>true if the acknowledgement was sent successfully, and false otherwise </p>
+- uid: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
+  parent: com.microsoft.azure.sdk.iot.device.transport
+  href: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage.yml
+  name: IotHubTransportMessage
+  nameWithType: IotHubTransportMessage
+  fullName: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
+  type: Class
+  summary: "<p>Extends Message, adding transport artifacts. </p>"
+  syntax:
+    content: public class IotHubTransportMessage
 - uid: com.microsoft.azure.sdk.iot.device.IotHubMessageResult
   parent: com.microsoft.azure.sdk.iot.device
   href: com.microsoft.azure.sdk.iot.device.IotHubMessageResult.yml
@@ -537,12 +569,12 @@ references:
     return:
       type: "26831127"
       description: <p>the UUID associated with this connection instance </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.getConnectionId()
-  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
-  href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.getConnectionId()
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
   name: getConnectionId()
-  nameWithType: MqttIotHubConnection.getConnectionId()
-  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.getConnectionId()
+  nameWithType: AmqpsIotHubConnection.getConnectionId()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.getConnectionId()
   type: Method
   summary: "<p>Gives the UUID associated with this connection instance. This string is used in conjunction with the callbacks with connection status updates to ensure that all connection status updates are relevant to this connection object</p>\r\n<p></p>"
   syntax:
@@ -550,12 +582,12 @@ references:
     return:
       type: "26831127"
       description: <p>the UUID associated with this connection instance </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.getConnectionId()
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.yml
+- uid: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.getConnectionId()
+  parent: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection
+  href: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.yml
   name: getConnectionId()
-  nameWithType: AmqpsIotHubConnection.getConnectionId()
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection.getConnectionId()
+  nameWithType: MqttIotHubConnection.getConnectionId()
+  fullName: com.microsoft.azure.sdk.iot.device.transport.mqtt.MqttIotHubConnection.getConnectionId()
   type: Method
   summary: "<p>Gives the UUID associated with this connection instance. This string is used in conjunction with the callbacks with connection status updates to ensure that all connection status updates are relevant to this connection object</p>\r\n<p></p>"
   syntax:

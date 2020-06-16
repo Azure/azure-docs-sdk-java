@@ -3,29 +3,23 @@ items:
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps
   id: amqps
   children:
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpSasTokenRenewalHandler
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationCBS
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationState
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationX509
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceMethods
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperationLinkState
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTelemetry
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTwin
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsReceiverLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSenderLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsExceptionTranslator
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.ACK_TYPE
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendReturnValue
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionDeviceOperation
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsReceiverLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsSenderLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsReceiverLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSasTokenRenewalHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSenderLinkHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendResult
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsTelemetryReceiverLinkHandler
   - com.microsoft.azure.sdk.iot.device.transport.amqps.IoTHubConnectionType
   - com.microsoft.azure.sdk.iot.device.transport.amqps.IotHubReactor
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback.SubscriptionType
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.yml
   langs:
   - java
@@ -35,11 +29,11 @@ items:
   type: Namespace
   source:
     remote:
-      path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpSasTokenRenewalHandler.java
+      path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsCbsReceiverLinkHandler.java
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
-    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpSasTokenRenewalHandler.java
-    startLine: 5
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsCbsReceiverLinkHandler.java
+    startLine: 3
   summary: "<p>AMQPS IoT Hub transport and communication classes. </p>"
   syntax:
     content: package com.microsoft.azure.sdk.iot.device.transport.amqps
@@ -52,116 +46,36 @@ references:
   type: Namespace
   syntax:
     content: package com.microsoft.azure.sdk.iot.device.transport.amqps.exceptions
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpSasTokenRenewalHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsReceiverLinkHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpSasTokenRenewalHandler.yml
-  name: AmqpSasTokenRenewalHandler
-  nameWithType: AmqpSasTokenRenewalHandler
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpSasTokenRenewalHandler
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsReceiverLinkHandler.yml
+  name: AmqpsCbsReceiverLinkHandler
+  nameWithType: AmqpsCbsReceiverLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsReceiverLinkHandler
   type: Class
+  summary: "<p>Every SAS token based authentication over AMQP requires a CBS session with a sender and receiver link. This class defines the receiver link which receives authentication status codes corresponding to each authentication attempt. </p>"
   syntax:
-    content: public class AmqpSasTokenRenewalHandler
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
+    content: public class AmqpsCbsReceiverLinkHandler extends AmqpsReceiverLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSenderLinkHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue.yml
-  name: AmqpsConvertFromProtonReturnValue
-  nameWithType: AmqpsConvertFromProtonReturnValue
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertFromProtonReturnValue
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSenderLinkHandler.yml
+  name: AmqpsCbsSenderLinkHandler
+  nameWithType: AmqpsCbsSenderLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSenderLinkHandler
   type: Class
+  summary: "<p>Every SAS token based authentication over AMQP requires a CBS session with a sender and receiver link. This class defines the sender link which proactively sends renewed sas tokens to keep the device sessions authenticated. </p>"
   syntax:
-    content: public class AmqpsConvertFromProtonReturnValue
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
+    content: public class AmqpsCbsSenderLinkHandler extends AmqpsSenderLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue.yml
-  name: AmqpsConvertToProtonReturnValue
-  nameWithType: AmqpsConvertToProtonReturnValue
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsConvertToProtonReturnValue
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.yml
+  name: AmqpsCbsSessionHandler
+  nameWithType: AmqpsCbsSessionHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   type: Class
+  summary: "<p>This class defines the special CBS session that owns a CBS sender and receiver link. This session is responsible for sending authentication messages on behalf of all device sessions in this connection. Even when multiplexing, there is only one CBS session. </p>"
   syntax:
-    content: public class AmqpsConvertToProtonReturnValue
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication.yml
-  name: AmqpsDeviceAuthentication
-  nameWithType: AmqpsDeviceAuthentication
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthentication
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceAuthentication extends AmqpsDeviceOperations
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationCBS
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationCBS.yml
-  name: AmqpsDeviceAuthenticationCBS
-  nameWithType: AmqpsDeviceAuthenticationCBS
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationCBS
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceAuthenticationCBS extends AmqpsDeviceAuthentication
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationState
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationState.yml
-  name: AmqpsDeviceAuthenticationState
-  nameWithType: AmqpsDeviceAuthenticationState
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationState
-  type: Enum
-  summary: "<p>Authentication states. </p>"
-  syntax:
-    content: public enum AmqpsDeviceAuthenticationState
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationX509
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationX509.yml
-  name: AmqpsDeviceAuthenticationX509
-  nameWithType: AmqpsDeviceAuthenticationX509
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceAuthenticationX509
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceAuthenticationX509 extends AmqpsDeviceAuthentication
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceMethods
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceMethods.yml
-  name: AmqpsDeviceMethods
-  nameWithType: AmqpsDeviceMethods
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceMethods
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceMethods extends AmqpsDeviceOperations
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperationLinkState
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperationLinkState.yml
-  name: AmqpsDeviceOperationLinkState
-  nameWithType: AmqpsDeviceOperationLinkState
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperationLinkState
-  type: Enum
-  summary: "<p>Operation link state. </p>"
-  syntax:
-    content: public enum AmqpsDeviceOperationLinkState
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations.yml
-  name: AmqpsDeviceOperations
-  nameWithType: AmqpsDeviceOperations
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceOperations
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceOperations
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTelemetry
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTelemetry.yml
-  name: AmqpsDeviceTelemetry
-  nameWithType: AmqpsDeviceTelemetry
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTelemetry
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceTelemetry extends AmqpsDeviceOperations
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTwin
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTwin.yml
-  name: AmqpsDeviceTwin
-  nameWithType: AmqpsDeviceTwin
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsDeviceTwin
-  type: Class
-  syntax:
-    content: public class AmqpsDeviceTwin extends AmqpsDeviceOperations
+    content: public class AmqpsCbsSessionHandler implements AmqpsLinkStateCallback
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsExceptionTranslator
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsExceptionTranslator.yml
@@ -169,6 +83,7 @@ references:
   nameWithType: AmqpsExceptionTranslator
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsExceptionTranslator
   type: Class
+  summary: "<p>Converter for amqp style error codes to throwable transport exceptions </p>"
   syntax:
     content: public class AmqpsExceptionTranslator
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
@@ -178,9 +93,19 @@ references:
   nameWithType: AmqpsIotHubConnection
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsIotHubConnection
   type: Class
-  summary: "<p>An AMQPS IotHub connection between a device and an IoTHub. This class contains functionality for sending/receiving a message, and logic to re-establish the connection with the IoTHub in case it gets lost. </p>"
+  summary: "<p>An AMQPS IotHub connection between a device and an IoTHub or Edgehub. This class is responsible for reacting to connection level and reactor level events. It is also responsible for creating sessions and handlers for those sessions. An instance of this object may be reused after it has been closed. </p>"
   syntax:
-    content: public class AmqpsIotHubConnection extends ErrorLoggingBaseHandler implements IotHubTransportConnection,SubscriptionMessageRequestSentCallback
+    content: public class AmqpsIotHubConnection implements IotHubTransportConnection
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.yml
+  name: AmqpsLinkStateCallback
+  nameWithType: AmqpsLinkStateCallback
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
+  type: Interface
+  summary: "<p>Status callbacks to be executed to notify the session level when something happened to one of its links. Should only be implemented by session handler objects. </p>"
+  syntax:
+    content: public interface AmqpsLinkStateCallback
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.yml
@@ -191,34 +116,79 @@ references:
   summary: "<p>Extension of the QPID-Proton-J MessageImpl class which implements the Message interface. Adds a Delivery object as a private member variable and adds a new ACK_TYPE enum. Adds the ability to easily acknowledge a single message. </p>"
   syntax:
     content: public class AmqpsMessage
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendReturnValue
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsReceiverLinkHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendReturnValue.yml
-  name: AmqpsSendReturnValue
-  nameWithType: AmqpsSendReturnValue
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendReturnValue
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsReceiverLinkHandler.yml
+  name: AmqpsMethodsReceiverLinkHandler
+  nameWithType: AmqpsMethodsReceiverLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsReceiverLinkHandler
   type: Class
   syntax:
-    content: public class AmqpsSendReturnValue
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionDeviceOperation
+    content: public class AmqpsMethodsReceiverLinkHandler extends AmqpsReceiverLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsSenderLinkHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionDeviceOperation.yml
-  name: AmqpsSessionDeviceOperation
-  nameWithType: AmqpsSessionDeviceOperation
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionDeviceOperation
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsSenderLinkHandler.yml
+  name: AmqpsMethodsSenderLinkHandler
+  nameWithType: AmqpsMethodsSenderLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMethodsSenderLinkHandler
   type: Class
   syntax:
-    content: public class AmqpsSessionDeviceOperation
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
+    content: public class AmqpsMethodsSenderLinkHandler extends AmqpsSenderLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsReceiverLinkHandler
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager.yml
-  name: AmqpsSessionManager
-  nameWithType: AmqpsSessionManager
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionManager
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsReceiverLinkHandler.yml
+  name: AmqpsReceiverLinkHandler
+  nameWithType: AmqpsReceiverLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsReceiverLinkHandler
   type: Class
-  summary: "<p>Manage multiple device clients and the authentication mechanism </p>"
   syntax:
-    content: public class AmqpsSessionManager
+    content: public class AmqpsReceiverLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSasTokenRenewalHandler
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSasTokenRenewalHandler.yml
+  name: AmqpsSasTokenRenewalHandler
+  nameWithType: AmqpsSasTokenRenewalHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSasTokenRenewalHandler
+  type: Class
+  summary: "<p>This class is responsible for proactively renewing sas tokens for a single device. When multiplexing, there will be one instance of this class per device. It will periodically execute the onTimerTask logic to send a renewed sas token, and then will schedule the next timer task appropriately. </p>"
+  syntax:
+    content: public class AmqpsSasTokenRenewalHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSenderLinkHandler
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSenderLinkHandler.yml
+  name: AmqpsSenderLinkHandler
+  nameWithType: AmqpsSenderLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSenderLinkHandler
+  type: Class
+  syntax:
+    content: public class AmqpsSenderLinkHandler
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendResult
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendResult.yml
+  name: AmqpsSendResult
+  nameWithType: AmqpsSendResult
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSendResult
+  type: Class
+  syntax:
+    content: public class AmqpsSendResult
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.yml
+  name: AmqpsSessionHandler
+  nameWithType: AmqpsSessionHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler
+  type: Class
+  syntax:
+    content: public class AmqpsSessionHandler implements AmqpsLinkStateCallback
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsTelemetryReceiverLinkHandler
+  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
+  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsTelemetryReceiverLinkHandler.yml
+  name: AmqpsTelemetryReceiverLinkHandler
+  nameWithType: AmqpsTelemetryReceiverLinkHandler
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsTelemetryReceiverLinkHandler
+  type: Class
+  syntax:
+    content: public class AmqpsTelemetryReceiverLinkHandler extends AmqpsReceiverLinkHandler
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.IoTHubConnectionType
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.IoTHubConnectionType.yml
@@ -238,30 +208,3 @@ references:
   type: Class
   syntax:
     content: public class IotHubReactor
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback.yml
-  name: SubscriptionMessageRequestSentCallback
-  nameWithType: SubscriptionMessageRequestSentCallback
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback
-  type: Interface
-  syntax:
-    content: public interface SubscriptionMessageRequestSentCallback
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.ACK_TYPE
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.ACK_TYPE.yml
-  name: AmqpsMessage.ACK_TYPE
-  nameWithType: AmqpsMessage.ACK_TYPE
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsMessage.ACK_TYPE
-  type: Enum
-  syntax:
-    content: public enum ACK_TYPE
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback.SubscriptionType
-  parent: com.microsoft.azure.sdk.iot.device.transport.amqps
-  href: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback.SubscriptionType.yml
-  name: SubscriptionMessageRequestSentCallback.SubscriptionType
-  nameWithType: SubscriptionMessageRequestSentCallback.SubscriptionType
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.SubscriptionMessageRequestSentCallback.SubscriptionType
-  type: Enum
-  syntax:
-    content: public enum SubscriptionType
