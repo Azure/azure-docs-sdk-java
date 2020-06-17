@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Common shared library for Java
-keywords: Azure, java, SDK, API, azure-storage-common, 
+keywords: Azure, java, SDK, API, storage, azure-storage-common, 
 author: maggiepint
 ms.author: magpint
 ms.date: 06/13/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: storage
 ---
 
 # Azure Storage Common shared library for Java - Version 12.7.0 
