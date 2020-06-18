@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder
   id: CertificateClientBuilder
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates
   children:
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.CertificateClientBuilder()
@@ -14,6 +14,7 @@ items:
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.httpClient(com.azure.core.http.HttpClient)
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.pipeline(com.azure.core.http.HttpPipeline)
+  - com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.serviceVersion(com.azure.security.keyvault.certificates.CertificateServiceVersion)
   - com.azure.security.keyvault.certificates.CertificateClientBuilder.vaultUrl(java.lang.String)
   langs:
@@ -30,25 +31,56 @@ items:
     The minimal configuration options required by <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> to build <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient" data-throw-if-not-resolved="false">CertificateAsyncClient</xref> are <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> and <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">credential</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.instantiation\}
+    ```java
+
+    CertificateAsyncClient certificateAsyncClient = new CertificateClientBuilder()
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .vaultUrl("https://myvault.vault.azure.net/")
+         .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+         .buildAsyncClient();
+    ```
 
 
     The <xref uid="" data-throw-if-not-resolved="false">log detail level</xref>, multiple custom <xref uid="" data-throw-if-not-resolved="false">policies</xref> and custom <xref uid="com.azure.core.http.HttpClient" data-throw-if-not-resolved="false">http client</xref> can be optionally configured in the <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.withhttpclient.instantiation\}
+    ```java
+
+    CertificateAsyncClient certificateAsyncClient = new CertificateClientBuilder()
+         .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+         .vaultUrl("https://myvault.azure.net/")
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .httpClient(HttpClient.createDefault())
+         .buildAsyncClient();
+    ```
 
 
     Alternatively, custom <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">http pipeline</xref> with custom <xref uid="com.azure.core.http.policy.HttpPipelinePolicy" data-throw-if-not-resolved="false">HttpPipelinePolicy</xref> policies and <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> can be specified. It provides finer control over the construction of <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient" data-throw-if-not-resolved="false">CertificateAsyncClient</xref> and <xref uid="com.azure.security.keyvault.certificates.CertificateClient" data-throw-if-not-resolved="false">CertificateClient</xref>
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateAsyncClient.pipeline.instantiation\}
+    ```java
+
+    HttpPipeline pipeline = new HttpPipelineBuilder()
+         .policies(new KeyVaultCredentialPolicy(new DefaultAzureCredentialBuilder().build()), new RetryPolicy())
+         .build();
+     CertificateAsyncClient certificateAsyncClient = new CertificateClientBuilder()
+         .pipeline(pipeline)
+         .vaultUrl("https://myvault.azure.net/")
+         .buildAsyncClient();
+    ```
 
 
     The minimal configuration options required by <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">certificateClientBuilder</xref> to build <xref uid="com.azure.security.keyvault.certificates.CertificateClient" data-throw-if-not-resolved="false">CertificateClient</xref> are <xref uid="java.lang.String" data-throw-if-not-resolved="false">vaultUrl</xref> and <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">credential</xref>.
 
 
-    \{@codesnippet com.azure.security.keyvault.certificates.CertificateClient.instantiation\}
+    ```java
+
+    CertificateClient certificateClient = new CertificateClientBuilder()
+         .credential(new DefaultAzureCredentialBuilder().build())
+         .vaultUrl("https://myvault.vault.azure.net/")
+         .httpLogOptions(new HttpLogOptions().setLogLevel(HttpLogDetailLevel.BODY_AND_HEADERS))
+         .buildClient();
+    ```
   syntax:
     content: public final class CertificateClientBuilder
   inheritance:
@@ -67,7 +99,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.CertificateClientBuilder()
   id: CertificateClientBuilder()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -82,7 +114,7 @@ items:
     content: public CertificateClientBuilder()
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
   id: addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -104,7 +136,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.buildAsyncClient()
   id: buildAsyncClient()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -128,7 +160,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.certificates.CertificateAsyncClient" data-throw-if-not-resolved="false">CertificateAsyncClient</xref> with the options set from the builder.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.buildClient()
   id: buildClient()
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -150,7 +182,7 @@ items:
       description: A <xref uid="com.azure.security.keyvault.certificates.CertificateClient" data-throw-if-not-resolved="false">CertificateClient</xref> with the options set from the builder.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.configuration(com.azure.core.util.Configuration)
   id: configuration(com.azure.core.util.Configuration)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -174,7 +206,7 @@ items:
       description: The updated CertificateClientBuilder object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.credential(com.azure.core.credential.TokenCredential)
   id: credential(com.azure.core.credential.TokenCredential)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -196,7 +228,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.httpClient(com.azure.core.http.HttpClient)
   id: httpClient(com.azure.core.http.HttpClient)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -218,7 +250,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
   id: httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -244,7 +276,7 @@ items:
       description: the updated <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.pipeline(com.azure.core.http.HttpPipeline)
   id: pipeline(com.azure.core.http.HttpPipeline)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -264,9 +296,31 @@ items:
     return:
       type: com.azure.security.keyvault.certificates.CertificateClientBuilder
       description: the updated <xref uid="com.azure.security.keyvault.certificates.CertificateClientBuilder" data-throw-if-not-resolved="false">CertificateClientBuilder</xref> object.
+- uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy(com.azure.core.http.policy.RetryPolicy)
+  id: retryPolicy(com.azure.core.http.policy.RetryPolicy)
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
+  parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
+  langs:
+  - java
+  name: retryPolicy(RetryPolicy retryPolicy)
+  nameWithType: CertificateClientBuilder.retryPolicy(RetryPolicy retryPolicy)
+  fullName: com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy(RetryPolicy retryPolicy)
+  overload: com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy*
+  type: Method
+  package: com.azure.security.keyvault.certificates
+  summary: Sets the <xref uid="com.azure.core.http.policy.RetryPolicy" data-throw-if-not-resolved="false">RetryPolicy</xref> that is used when each request is sent. The default retry policy will be used in the pipeline, if not provided.
+  syntax:
+    content: public CertificateClientBuilder retryPolicy(RetryPolicy retryPolicy)
+    parameters:
+    - id: retryPolicy
+      type: com.azure.core.http.policy.RetryPolicy
+      description: user's retry policy applied to each request.
+    return:
+      type: com.azure.security.keyvault.certificates.CertificateClientBuilder
+      description: The updated CertificateClientBuilder object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.serviceVersion(com.azure.security.keyvault.certificates.CertificateServiceVersion)
   id: serviceVersion(com.azure.security.keyvault.certificates.CertificateServiceVersion)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -292,7 +346,7 @@ items:
       description: The updated CertificateClientBuilder object.
 - uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.vaultUrl(java.lang.String)
   id: vaultUrl(java.lang.String)
-  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.1
+  artifact: com.azure:azure-security-keyvault-certificates:4.1.0-beta.3
   parent: com.azure.security.keyvault.certificates.CertificateClientBuilder
   langs:
   - java
@@ -414,6 +468,16 @@ references:
   name: serviceVersion
   nameWithType: CertificateClientBuilder.serviceVersion
   fullName: com.azure.security.keyvault.certificates.CertificateClientBuilder.serviceVersion
+  package: com.azure.security.keyvault.certificates
+- uid: com.azure.core.http.policy.RetryPolicy
+  spec.java:
+  - uid: com.azure.core.http.policy.RetryPolicy
+    name: RetryPolicy
+    fullName: com.azure.core.http.policy.RetryPolicy
+- uid: com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy*
+  name: retryPolicy
+  nameWithType: CertificateClientBuilder.retryPolicy
+  fullName: com.azure.security.keyvault.certificates.CertificateClientBuilder.retryPolicy
   package: com.azure.security.keyvault.certificates
 - uid: java.lang.Object.notify()
   name: Object.notify()
