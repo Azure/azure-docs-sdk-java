@@ -1,0 +1,340 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  id: UnicodeEscaper
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape
+  children:
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper()
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt(java.lang.CharSequence,int,int)
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(int)
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(java.lang.String)
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow(java.lang.String,int)
+  - com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex(java.lang.CharSequence,int,int)
+  langs:
+  - java
+  name: UnicodeEscaper
+  nameWithType: UnicodeEscaper
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    An <xref uid="com.azure.cosmos.implementation.guava25.escape.Escaper" data-throw-if-not-resolved="false">Escaper</xref> that converts literal text into a format safe for inclusion in a particular context (such as an XML document). Typically (but not always), the inverse process of "unescaping" the text is performed automatically by the relevant parser.
+
+
+    For example, an XML escaper would convert the literal string `"Foo"` into `"Foo<Bar>"` to prevent `""` from being confused with an XML tag. When the resulting XML document is parsed, the parser API will return this text as the original literal string `"Foo"`.
+
+
+    **Note:** This class is similar to <xref uid="com.azure.cosmos.implementation.guava25.escape.CharEscaper" data-throw-if-not-resolved="false">CharEscaper</xref> but with one very important difference. A CharEscaper can only process Java [UTF16][] characters in isolation and may not cope when it encounters surrogate pairs. This class facilitates the correct escaping of all Unicode characters.
+
+
+    As there are important reasons, including potential security issues, to handle Unicode correctly if you are considering implementing a new escaper you should favor using UnicodeEscaper wherever possible.
+
+
+    A `UnicodeEscaper` instance is required to be stateless, and safe when used concurrently by multiple threads.
+
+
+    Popular escapers are defined as constants in classes like <xref uid="" data-throw-if-not-resolved="false">com.azure.cosmos.html.HtmlEscapers</xref> and <xref uid="" data-throw-if-not-resolved="false">com.azure.cosmos.xml.XmlEscapers</xref>. To create your own escapers extend this class and implement the <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(int)" data-throw-if-not-resolved="false">#escape(int)</xref> method.
+
+
+
+    [UTF16]: http://en.wikipedia.org/wiki/UTF-16
+  syntax:
+    content: public abstract class UnicodeEscaper extends Escaper
+  inheritance:
+  - java.lang.Object
+  - com.azure.cosmos.implementation.guava25.escape.Escaper
+  inheritedMembers:
+  - com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+  - com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper()
+  id: UnicodeEscaper()
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: UnicodeEscaper()
+  nameWithType: UnicodeEscaper.UnicodeEscaper()
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper()
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: Constructor for use by subclasses.
+  syntax:
+    content: protected UnicodeEscaper()
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt(java.lang.CharSequence,int,int)
+  id: codePointAt(java.lang.CharSequence,int,int)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: codePointAt(CharSequence seq, int index, int end)
+  nameWithType: UnicodeEscaper.codePointAt(CharSequence seq, int index, int end)
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt(CharSequence seq, int index, int end)
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: "Returns the Unicode code point of the character at the given index.\n\nUnlike <xref uid=\"java.lang.Character.codePointAt*\" data-throw-if-not-resolved=\"false\">Character#codePointAt(CharSequence, int)</xref> or <xref uid=\"java.lang.String.codePointAt*\" data-throw-if-not-resolved=\"false\">String#codePointAt(int)</xref> this method will never fail silently when encountering an invalid surrogate pair.\n\nThe behaviour of this method is as follows:\n\n1.  If `index >= end`, <xref uid=\"\" data-throw-if-not-resolved=\"false\">IndexOutOfBoundsException</xref> is thrown.\n2.  **If the character at the specified index is not a surrogate, it is returned.**\n3.  If the first character was a high surrogate value, then an attempt is made to read the next character.\n    \n    1.  **If the end of the sequence was reached, the negated value of the trailing high surrogate is returned.**\n    2.  **If the next character was a valid low surrogate, the code point value of the high/low surrogate pair is returned.**\n    3.  If the next character was not a low surrogate value, then <xref uid=\"\" data-throw-if-not-resolved=\"false\">IllegalArgumentException</xref> is thrown.\n4.  If the first character was a low surrogate value, <xref uid=\"\" data-throw-if-not-resolved=\"false\">IllegalArgumentException</xref> is thrown."
+  syntax:
+    content: protected static int codePointAt(CharSequence seq, int index, int end)
+    parameters:
+    - id: seq
+      type: java.lang.CharSequence
+      description: the sequence of characters from which to decode the code point
+    - id: index
+      type: int
+      description: the index of the first character to decode
+    - id: end
+      type: int
+      description: the index beyond the last valid character to decode
+    return:
+      type: int
+      description: >-
+        the Unicode code point for the given index or the negated value of the trailing high
+             surrogate character at the end of the sequence
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(int)
+  id: escape(int)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: escape(int cp)
+  nameWithType: UnicodeEscaper.escape(int cp)
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(int cp)
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    Returns the escaped form of the given Unicode code point, or `null` if this code point does not need to be escaped. When called as part of an escaping operation, the given code point is guaranteed to be in the range `0 <= cp <= Character#MAX_CODE_POINT`.
+
+
+    If an empty array is returned, this effectively strips the input character from the resulting text.
+
+
+    If the character does not need to be escaped, this method should return `null`, rather than an array containing the character representation of the code point. This enables the escaping algorithm to perform more efficiently.
+
+
+    If the implementation of this method cannot correctly handle a particular code point then it should either throw an appropriate runtime exception or return a suitable replacement character. It must never silently discard invalid input as this may constitute a security risk.
+  syntax:
+    content: protected abstract char[] escape(int cp)
+    parameters:
+    - id: cp
+      type: int
+      description: the Unicode code point to escape if necessary
+    return:
+      type: char[]
+      description: the replacement characters, or <code>null</code> if no escaping was needed
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(java.lang.String)
+  id: escape(java.lang.String)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: escape(String string)
+  nameWithType: UnicodeEscaper.escape(String string)
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(String string)
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    Returns the escaped form of a given literal string.
+
+
+    If you are escaping input in arbitrary successive chunks, then it is not generally safe to use this method. If an input string ends with an unmatched high surrogate character, then this method will throw <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref>. You should ensure your input is valid [UTF-16][] before calling this method.
+
+
+    **Note:** When implementing an escaper it is a good idea to override this method for efficiency by inlining the implementation of <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex(java.lang.CharSequence,int,int)" data-throw-if-not-resolved="false">#nextEscapeIndex(CharSequence, int, int)</xref> directly. Doing this for <xref uid="com.azure.cosmos.implementation.guava25.net.PercentEscaper" data-throw-if-not-resolved="false">com.azure.cosmos.implementation.guava25.net.PercentEscaper</xref> more than doubled the performance for unescaped strings (as measured by <xref uid="" data-throw-if-not-resolved="false">CharEscapersBenchmark</xref>).
+
+
+
+    [UTF-16]: http://en.wikipedia.org/wiki/UTF-16
+  syntax:
+    content: public String escape(String string)
+    parameters:
+    - id: string
+      type: java.lang.String
+      description: the literal string to be escaped
+    return:
+      type: java.lang.String
+      description: the escaped form of <code>string</code>
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow(java.lang.String,int)
+  id: escapeSlow(java.lang.String,int)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: escapeSlow(String s, int index)
+  nameWithType: UnicodeEscaper.escapeSlow(String s, int index)
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow(String s, int index)
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    Returns the escaped form of a given literal string, starting at the given index. This method is called by the <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(java.lang.String)" data-throw-if-not-resolved="false">#escape(String)</xref> method when it discovers that escaping is required. It is protected to allow subclasses to override the fastpath escaping function to inline their escaping test. See <xref uid="com.azure.cosmos.implementation.guava25.escape.CharEscaperBuilder" data-throw-if-not-resolved="false">CharEscaperBuilder</xref> for an example usage.
+
+
+    This method is not reentrant and may only be invoked by the top level <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(java.lang.String)" data-throw-if-not-resolved="false">#escape(String)</xref> method.
+  syntax:
+    content: protected final String escapeSlow(String s, int index)
+    parameters:
+    - id: s
+      type: java.lang.String
+      description: the literal string to be escaped
+    - id: index
+      type: int
+      description: the index to start escaping from
+    return:
+      type: java.lang.String
+      description: the escaped form of <code>string</code>
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex(java.lang.CharSequence,int,int)
+  id: nextEscapeIndex(java.lang.CharSequence,int,int)
+  artifact: com.azure:azure-cosmos:4.0.1
+  parent: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper
+  langs:
+  - java
+  name: nextEscapeIndex(CharSequence csq, int start, int end)
+  nameWithType: UnicodeEscaper.nextEscapeIndex(CharSequence csq, int start, int end)
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex(CharSequence csq, int start, int end)
+  overload: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    Scans a sub-sequence of characters from a given <xref uid="java.lang.CharSequence" data-throw-if-not-resolved="false">CharSequence</xref>, returning the index of the next character that requires escaping.
+
+
+    **Note:** When implementing an escaper, it is a good idea to override this method for efficiency. The base class implementation determines successive Unicode code points and invokes <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape(int)" data-throw-if-not-resolved="false">#escape(int)</xref> for each of them. If the semantics of your escaper are such that code points in the supplementary range are either all escaped or all unescaped, this method can be implemented more efficiently using <xref uid="java.lang.CharSequence.charAt*" data-throw-if-not-resolved="false">CharSequence#charAt(int)</xref>.
+
+
+    Note however that if your escaper does not escape characters in the supplementary range, you should either continue to validate the correctness of any surrogate characters encountered or provide a clear warning to users that your escaper does not validate its input.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.net.PercentEscaper" data-throw-if-not-resolved="false">com.azure.cosmos.implementation.guava25.net.PercentEscaper</xref> for an example.
+  syntax:
+    content: protected int nextEscapeIndex(CharSequence csq, int start, int end)
+    parameters:
+    - id: csq
+      type: java.lang.CharSequence
+      description: a sequence of characters
+    - id: start
+      type: int
+      description: the index of the first character to be scanned
+    - id: end
+      type: int
+      description: the index immediately after the last character to be scanned
+    return:
+      type: int
+references:
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper*
+  name: UnicodeEscaper
+  nameWithType: UnicodeEscaper.UnicodeEscaper
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.UnicodeEscaper
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: char[]
+  spec.java:
+  - uid: char
+    name: char
+    fullName: char
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape*
+  name: escape
+  nameWithType: UnicodeEscaper.escape
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escape
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.lang.CharSequence
+  spec.java:
+  - uid: java.lang.CharSequence
+    name: CharSequence
+    fullName: java.lang.CharSequence
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex*
+  name: nextEscapeIndex
+  nameWithType: UnicodeEscaper.nextEscapeIndex
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.nextEscapeIndex
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow*
+  name: escapeSlow
+  nameWithType: UnicodeEscaper.escapeSlow
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.escapeSlow
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt*
+  name: codePointAt
+  nameWithType: UnicodeEscaper.codePointAt
+  fullName: com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper.codePointAt
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper
+  name: Escaper
+  nameWithType: Escaper
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+  name: Escaper.asFunction()
+  nameWithType: Escaper.asFunction()
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)
+  name: Escaper.escape(String)
+  nameWithType: Escaper.escape(String)
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)
