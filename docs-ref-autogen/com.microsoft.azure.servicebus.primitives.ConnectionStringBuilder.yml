@@ -2,15 +2,19 @@
 items:
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
   id: ConnectionStringBuilder
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives
   children:
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String,final String,final String,final String)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String,final String,final String)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI,final String,final String,final String)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI,final String,final String)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String,String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.lang.String)
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEndpoint()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEntityPath()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getOperationTimeout()
@@ -19,157 +23,39 @@ items:
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKeyName()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSharedAccessSignatureToken()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType()
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(final Duration)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(final RetryPolicy)
-  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(final TransportType)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(java.time.Duration)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(com.microsoft.azure.servicebus.primitives.TransportType)
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toLoggableString()
   - com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: ConnectionStringBuilder
   nameWithType: ConnectionStringBuilder
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
   type: Class
-  source:
-    remote: &o0
-      path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-      branch: master
-      repo: https://github.com/Azure/azure-service-bus-java
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 40
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>\r\n<p>Sample Code: <pre><code>ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(\r\n                                             \"ServiceBusNamespaceName\", \r\n                                             \"ServiceBusEntityName\", // QueueName or TopicName or SubscriptionPath\r\n                                             \"SharedAccessSignatureKeyName\", \r\n                                             \"SharedAccessSignatureKey\");\r\n     \r\n    String connectionString = connectionStringBuilder.toString();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisted of key-value pair separated by \";\". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <ul><li><p>Endpoint - URL that points to the servicebus namespace </p></li><li><p>EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p></li><li><p>SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity. </p></li><li><p>SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity. </p></li><li><p>SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token. </p></li><li><p>OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string. </p></li><li><p>RetryPolicy - Name of the retry policy. </p></li></ul></p>"
-  syntax: &o2
+  summary: "This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string.\n\nSample Code:\n\n```java\nConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(\n                                          \"ServiceBusNamespaceName\", \n                                          \"ServiceBusEntityName\", // QueueName or TopicName or SubscriptionPath\n                                          \"SharedAccessSignatureKeyName\", \n                                          \"SharedAccessSignatureKey\");\n  \n String connectionString = connectionStringBuilder.toString();\n```\n\nA connection string is basically a string consisted of key-value pair separated by \";\". Basic format is \\{=\\[;=\\]\\} where supported key name are as follow:\n\n *  Endpoint - URL that points to the servicebus namespace\n *  EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is <topicName>/subscriptions/<subscriptionName>\n *  SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity.\n *  SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity.\n *  SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token.\n *  OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string.\n *  RetryPolicy - Name of the retry policy."
+  syntax:
     content: public class ConnectionStringBuilder
   inheritance:
   - java.lang.Object
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String,final String,final String,final String)
-  id: ConnectionStringBuilder(final String,final String,final String,final String)
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String)
+  id: ConnectionStringBuilder(java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 143
-  package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from namespace, entity path and SAS Key name and value. </p>"
-  syntax:
-    content: public ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-    parameters:
-    - id: namespaceName
-      type: 3d93591e
-      description: '<p>Namespace name (dns suffix - ex: .servicebus.windows.net is not required) </p>'
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p>
-    - id: sharedAccessKeyName
-      type: 3d93591e
-      description: <p>Shared Access Key name </p>
-    - id: sharedAccessKey
-      type: 3d93591e
-      description: <p>Shared Access Key </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String,final String,final String)
-  id: ConnectionStringBuilder(final String,final String,final String)
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessSingature)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessSingature)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessSingature)
-  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 158
-  package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from namespace, entity path and already generated SAS token. </p>"
-  syntax:
-    content: public ConnectionStringBuilder(final String namespaceName, final String entityPath, final String sharedAccessSingature)
-    parameters:
-    - id: namespaceName
-      type: 3d93591e
-      description: '<p>Namespace name (dns suffix - ex: .servicebus.windows.net is not required) </p>'
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p>
-    - id: sharedAccessSingature
-      type: 3d93591e
-      description: <p>Shared Access Signature already generated </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI,final String,final String,final String)
-  id: ConnectionStringBuilder(final URI,final String,final String,final String)
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 174
-  package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from endpoint address of the namesapce, entity path and SAS Key name and value </p>"
-  syntax:
-    content: public ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessKeyName, final String sharedAccessKey)
-    parameters:
-    - id: endpointAddress
-      type: bac42120
-      description: <p>namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName </p>
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p>
-    - id: sharedAccessKeyName
-      type: 3d93591e
-      description: <p>Shared Access Key name </p>
-    - id: sharedAccessKey
-      type: 3d93591e
-      description: <p>Shared Access Key </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI,final String,final String)
-  id: ConnectionStringBuilder(final URI,final String,final String)
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  langs:
-  - java
-  name: ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSingature)
-  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSingature)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSingature)
-  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
-  type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 189
-  package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from endpoint address of the namesapce, entity path and already generated SAS token. </p>"
-  syntax:
-    content: public ConnectionStringBuilder(final URI endpointAddress, final String entityPath, final String sharedAccessSingature)
-    parameters:
-    - id: endpointAddress
-      type: bac42120
-      description: <p>namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName </p>
-    - id: entityPath
-      type: 3d93591e
-      description: <p>Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p>
-    - id: sharedAccessSingature
-      type: 3d93591e
-      description: <p>Shared Access Signature already generated </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String)
-  id: ConnectionStringBuilder(String)
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: ConnectionStringBuilder(String connectionString)
@@ -177,25 +63,18 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String connectionString)
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
   type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 205
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from the given connection string. ConnectionString format: Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessKeyName=SHARED_ACCESS_KEY_NAME;SharedAccessKey=SHARED_ACCESS_KEY or Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessSignatureToken=SHARED_ACCESS_SIGNATURE_TOKEN </p>"
+  summary: 'Creates a new instance from the given connection string. ConnectionString format: Endpoint=sb://namespace\_DNS\_Name;EntityPath=EVENT\_HUB\_NAME;SharedAccessKeyName=SHARED\_ACCESS\_KEY\_NAME;SharedAccessKey=SHARED\_ACCESS\_KEY or Endpoint=sb://namespace\_DNS\_Name;EntityPath=EVENT\_HUB\_NAME;SharedAccessSignatureToken=SHARED\_ACCESS\_SIGNATURE\_TOKEN'
   syntax:
     content: public ConnectionStringBuilder(String connectionString)
     parameters:
     - id: connectionString
-      type: "26831127"
-      description: <p>ServiceBus ConnectionString </p>
-  exceptions:
-  - type: 6aada8cf
-    description: <p>when the format of the ConnectionString is not valid </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String,String)
-  id: ConnectionStringBuilder(String,String)
+      type: java.lang.String
+      description: ServiceBus ConnectionString
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String)
+  id: ConnectionStringBuilder(java.lang.String,java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: ConnectionStringBuilder(String namespaceConnectionString, String entityPath)
@@ -203,45 +82,318 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String namespaceConnectionString, String entityPath)
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
   type: Constructor
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 218
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Creates a new instance from the given connection string and entity path. A connection string may or may not include the entity path. ConnectionString format: Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessKeyName=SHARED_ACCESS_KEY_NAME;SharedAccessKey=SHARED_ACCESS_KEY or Endpoint=sb://namespace_DNS_Name;EntityPath=EVENT_HUB_NAME;SharedAccessSignatureToken=SHARED_ACCESS_SIGNATURE_TOKEN </p>"
+  summary: 'Creates a new instance from the given connection string and entity path. A connection string may or may not include the entity path. ConnectionString format: Endpoint=sb://namespace\_DNS\_Name;EntityPath=EVENT\_HUB\_NAME;SharedAccessKeyName=SHARED\_ACCESS\_KEY\_NAME;SharedAccessKey=SHARED\_ACCESS\_KEY or Endpoint=sb://namespace\_DNS\_Name;EntityPath=EVENT\_HUB\_NAME;SharedAccessSignatureToken=SHARED\_ACCESS\_SIGNATURE\_TOKEN'
   syntax:
     content: public ConnectionStringBuilder(String namespaceConnectionString, String entityPath)
     parameters:
     - id: namespaceConnectionString
-      type: "26831127"
-      description: <p>connections string of the ServiceBus namespace. This doesn't include the entity path. </p>
+      type: java.lang.String
+      description: connections string of the ServiceBus namespace. This doesn't include the entity path.
     - id: entityPath
-      type: "26831127"
-      description: <p>path to the entity within the namespace </p>
+      type: java.lang.String
+      description: path to the entity within the namespace
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String)
+  id: ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingature)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingature)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingature)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  summary: Creates a new instance from namespace, entity path and already generated SAS token.
+  syntax:
+    content: public ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingature)
+    parameters:
+    - id: namespaceName
+      type: java.lang.String
+      description: 'Namespace name (dns suffix - ex: .servicebus.windows.net is not required)'
+    - id: entityPath
+      type: java.lang.String
+      description: Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt;
+    - id: sharedAccessSingature
+      type: java.lang.String
+      description: Shared Access Signature already generated
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+  id: ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  summary: Creates a new instance from namespace, entity path and SAS Key name and value.
+  syntax:
+    content: public ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+    parameters:
+    - id: namespaceName
+      type: java.lang.String
+      description: 'Namespace name (dns suffix - ex: .servicebus.windows.net is not required)'
+    - id: entityPath
+      type: java.lang.String
+      description: Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt;
+    - id: sharedAccessKeyName
+      type: java.lang.String
+      description: Shared Access Key name
+    - id: sharedAccessKey
+      type: java.lang.String
+      description: Shared Access Key
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: private ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+    parameters:
+    - id: namespaceName
+      type: java.lang.String
+    - id: entityPath
+      type: java.lang.String
+    - id: sharedAccessKeyName
+      type: java.lang.String
+    - id: sharedAccessKey
+      type: java.lang.String
+    - id: operationTimeout
+      type: java.time.Duration
+    - id: retryPolicy
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: ConnectionStringBuilder(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: private ConnectionStringBuilder(String namespaceName, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+    parameters:
+    - id: namespaceName
+      type: java.lang.String
+    - id: entityPath
+      type: java.lang.String
+    - id: sharedAccessSingatureToken
+      type: java.lang.String
+    - id: operationTimeout
+      type: java.time.Duration
+    - id: retryPolicy
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String)
+  id: ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingature)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingature)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingature)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  summary: Creates a new instance from endpoint address of the namesapce, entity path and already generated SAS token.
+  syntax:
+    content: public ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingature)
+    parameters:
+    - id: endpointAddress
+      type: java.net.URI
+      description: namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName
+    - id: entityPath
+      type: java.lang.String
+      description: Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt;
+    - id: sharedAccessSingature
+      type: java.lang.String
+      description: Shared Access Signature already generated
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.lang.String)
+  id: ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  summary: Creates a new instance from endpoint address of the namesapce, entity path and SAS Key name and value
+  syntax:
+    content: public ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey)
+    parameters:
+    - id: endpointAddress
+      type: java.net.URI
+      description: namespace level endpoint. This needs to be in the format of scheme://fullyQualifiedServiceBusNamespaceEndpointName
+    - id: entityPath
+      type: java.lang.String
+      description: Entity path. For queue or topic, use name. For subscription use &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt;
+    - id: sharedAccessKeyName
+      type: java.lang.String
+      description: Shared Access Key name
+    - id: sharedAccessKey
+      type: java.lang.String
+      description: Shared Access Key
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: private ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessKeyName, String sharedAccessKey, Duration operationTimeout, RetryPolicy retryPolicy)
+    parameters:
+    - id: endpointAddress
+      type: java.net.URI
+    - id: entityPath
+      type: java.lang.String
+    - id: sharedAccessKeyName
+      type: java.lang.String
+    - id: sharedAccessKey
+      type: java.lang.String
+    - id: operationTimeout
+      type: java.time.Duration
+    - id: retryPolicy
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: ConnectionStringBuilder(java.net.URI,java.lang.String,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: private ConnectionStringBuilder(URI endpointAddress, String entityPath, String sharedAccessSingatureToken, Duration operationTimeout, RetryPolicy retryPolicy)
+    parameters:
+    - id: endpointAddress
+      type: java.net.URI
+    - id: entityPath
+      type: java.lang.String
+    - id: sharedAccessSingatureToken
+      type: java.lang.String
+    - id: operationTimeout
+      type: java.time.Duration
+    - id: retryPolicy
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(java.net.URI,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: ConnectionStringBuilder(java.net.URI,java.lang.String,java.time.Duration,com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: ConnectionStringBuilder(URI endpointAddress, String entityPath, Duration operationTimeout, RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, Duration operationTimeout, RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder(URI endpointAddress, String entityPath, Duration operationTimeout, RetryPolicy retryPolicy)
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
+  type: Constructor
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: private ConnectionStringBuilder(URI endpointAddress, String entityPath, Duration operationTimeout, RetryPolicy retryPolicy)
+    parameters:
+    - id: endpointAddress
+      type: java.net.URI
+    - id: entityPath
+      type: java.lang.String
+    - id: operationTimeout
+      type: java.time.Duration
+    - id: retryPolicy
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout
   id: DefaultOperationTimeout
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: DefaultOperationTimeout
   nameWithType: ConnectionStringBuilder.DefaultOperationTimeout
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout
   type: Field
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 77
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Default operation timeout if timeout is not specified in the connection string. 30 seconds. </p>"
-  syntax: &o1
-    content: public static final Duration DefaultOperationTimeout= Duration.ofSeconds(ClientConstants.DEFAULT_OPERATION_TIMEOUT_IN_SECONDS)
+  summary: Default operation timeout if timeout is not specified in the connection string. 30 seconds.
+  syntax:
+    content: public static final Duration DefaultOperationTimeout
     return:
-      type: 89ac7c4d
+      type: java.time.Duration
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  id: MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  nameWithType: ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+  type: Field
+  package: com.microsoft.azure.servicebus.primitives
+  summary: Connection string value used for the Authentication field which indicates that Managed Identity TokenProvider will be used for authentication purposes.
+  syntax:
+    content: public static final String MANAGED_IDENTITY_AUTHENTICATION_WITHOUT_SPACE
+    return:
+      type: java.lang.String
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  id: MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  nameWithType: ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+  type: Field
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: public static final String MANAGED_IDENTITY_AUTHENTICATION_WITH_SPACE
+    return:
+      type: java.lang.String
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication()
+  id: getAuthentication()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
+  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
+  langs:
+  - java
+  name: getAuthentication()
+  nameWithType: ConnectionStringBuilder.getAuthentication()
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication()
+  overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication*
+  type: Method
+  package: com.microsoft.azure.servicebus.primitives
+  syntax:
+    content: public String getAuthentication()
+    return:
+      type: java.lang.String
+      description: Returns the authentication method.
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEndpoint()
   id: getEndpoint()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getEndpoint()
@@ -249,21 +401,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEndpoint()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEndpoint*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 228
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Get the endpoint which can be used to connect to the ServiceBus Namespace </p>"
+  summary: Get the endpoint which can be used to connect to the ServiceBus Namespace
   syntax:
     content: public URI getEndpoint()
     return:
-      type: "62304784"
-      description: <p>Endpoint representing the service bus namespace </p>
+      type: java.net.URI
+      description: Endpoint representing the service bus namespace
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEntityPath()
   id: getEntityPath()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getEntityPath()
@@ -271,21 +419,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEntityPath()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEntityPath*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 264
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Get the entity path value from the connection string </p>"
+  summary: Get the entity path value from the connection string
   syntax:
     content: public String getEntityPath()
     return:
-      type: "26831127"
-      description: <p>Entity Path </p>
+      type: java.lang.String
+      description: Entity Path
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getOperationTimeout()
   id: getOperationTimeout()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getOperationTimeout()
@@ -293,21 +437,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getOperationTimeout()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getOperationTimeout*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 274
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Gets the duration after which a pending operation like Send or RECEIVE will time out. If a timeout is not specified, it defaults to <xref uid=\"com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout\" data-throw-if-not-resolved=\"false\">DefaultOperationTimeout</xref> This value will be used by all operations which uses this <xref uid=\"com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref>, unless explicitly over-ridden. </p>"
+  summary: Gets the duration after which a pending operation like Send or RECEIVE will time out. If a timeout is not specified, it defaults to <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout" data-throw-if-not-resolved="false">#DefaultOperationTimeout</xref> This value will be used by all operations which uses this <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref>, unless explicitly over-ridden.
   syntax:
     content: public Duration getOperationTimeout()
     return:
-      type: e02a2de0
-      description: <p>operationTimeout </p>
+      type: java.time.Duration
+      description: operationTimeout
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getRetryPolicy()
   id: getRetryPolicy()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getRetryPolicy()
@@ -315,21 +455,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getRetryPolicy()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getRetryPolicy*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 293
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Get the retry policy instance that was created as part of this builder's creation. </p>"
+  summary: Get the retry policy instance that was created as part of this builder's creation.
   syntax:
     content: public RetryPolicy getRetryPolicy()
     return:
       type: com.microsoft.azure.servicebus.primitives.RetryPolicy
-      description: <p>RetryPolicy applied for any operation performed using this ConnectionString </p>
+      description: RetryPolicy applied for any operation performed using this ConnectionString
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKey()
   id: getSasKey()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getSasKey()
@@ -337,21 +473,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKey()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKey*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 237
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Get the shared access policy key value from the connection string or null. </p>"
+  summary: Get the shared access policy key value from the connection string or null.
   syntax:
     content: public String getSasKey()
     return:
-      type: "26831127"
-      description: <p>Shared Access Signature key value </p>
+      type: java.lang.String
+      description: Shared Access Signature key value
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKeyName()
   id: getSasKeyName()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getSasKeyName()
@@ -359,21 +491,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKeyName()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSasKeyName*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 246
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Get the shared access policy owner name from the connection string or null. </p>"
+  summary: Get the shared access policy owner name from the connection string or null.
   syntax:
     content: public String getSasKeyName()
     return:
-      type: "26831127"
-      description: <p>Shared Access Signature key name </p>
+      type: java.lang.String
+      description: Shared Access Signature key name
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSharedAccessSignatureToken()
   id: getSharedAccessSignatureToken()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getSharedAccessSignatureToken()
@@ -381,21 +509,17 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSharedAccessSignatureToken()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getSharedAccessSignatureToken*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 255
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Returns the shared access signature token from the connection string or null. </p>"
+  summary: Returns the shared access signature token from the connection string or null.
   syntax:
     content: public String getSharedAccessSignatureToken()
     return:
-      type: "26831127"
-      description: <p>Shared Access Signature Token </p>
+      type: java.lang.String
+      description: Shared Access Signature Token
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType()
   id: getTransportType()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: getTransportType()
@@ -403,93 +527,85 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 315
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>TransportType on which all the communication for the Service Bus created using this ConnectionString. Default value is <xref uid=\"com.microsoft.azure.servicebus.primitives.TransportType.AMQP\" data-throw-if-not-resolved=\"false\">TransportType#AMQP</xref>.</p>\r\n<p></p>"
+  summary: TransportType on which all the communication for the Service Bus created using this ConnectionString. Default value is <xref uid="com.microsoft.azure.servicebus.primitives.TransportType.AMQP" data-throw-if-not-resolved="false">TransportType#AMQP</xref>.
   syntax:
     content: public TransportType getTransportType()
     return:
       type: com.microsoft.azure.servicebus.primitives.TransportType
-      description: <p>transportType </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(final Duration)
-  id: setOperationTimeout(final Duration)
+      description: transportType
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(java.time.Duration)
+  id: setOperationTimeout(java.time.Duration)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
-  name: setOperationTimeout(final Duration operationTimeout)
-  nameWithType: ConnectionStringBuilder.setOperationTimeout(final Duration operationTimeout)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(final Duration operationTimeout)
+  name: setOperationTimeout(Duration operationTimeout)
+  nameWithType: ConnectionStringBuilder.setOperationTimeout(Duration operationTimeout)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout(Duration operationTimeout)
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setOperationTimeout*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 284
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Set the OperationTimeout value in the Connection String. This value will be used by all operations which uses this <xref uid=\"com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref>, unless explicitly over-ridden. </p>\r\n<p>ConnectionString with operationTimeout is not inter-operable between java and clients in other platforms. </p>"
+  summary: >-
+    Set the OperationTimeout value in the Connection String. This value will be used by all operations which uses this <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref>, unless explicitly over-ridden.
+
+
+    ConnectionString with operationTimeout is not inter-operable between java and clients in other platforms.
   syntax:
-    content: public void setOperationTimeout(final Duration operationTimeout)
+    content: public void setOperationTimeout(Duration operationTimeout)
     parameters:
     - id: operationTimeout
-      type: 89ac7c4d
-      description: <p>Operation Timeout </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(final RetryPolicy)
-  id: setRetryPolicy(final RetryPolicy)
+      type: java.time.Duration
+      description: Operation Timeout
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  id: setRetryPolicy(com.microsoft.azure.servicebus.primitives.RetryPolicy)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
-  name: setRetryPolicy(final RetryPolicy retryPolicy)
-  nameWithType: ConnectionStringBuilder.setRetryPolicy(final RetryPolicy retryPolicy)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(final RetryPolicy retryPolicy)
+  name: setRetryPolicy(RetryPolicy retryPolicy)
+  nameWithType: ConnectionStringBuilder.setRetryPolicy(RetryPolicy retryPolicy)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy(RetryPolicy retryPolicy)
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 303
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Set the retry policy. </p>\r\n<p>RetryPolicy is not Serialized as part of <xref uid=\"com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder#toString()</xref> and is not interoperable with ServiceBus clients in other platforms. </p>"
+  summary: >-
+    Set the retry policy.
+
+
+    RetryPolicy is not Serialized as part of <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()" data-throw-if-not-resolved="false">ConnectionStringBuilder#toString()</xref> and is not interoperable with ServiceBus clients in other platforms.
   syntax:
-    content: public void setRetryPolicy(final RetryPolicy retryPolicy)
+    content: public void setRetryPolicy(RetryPolicy retryPolicy)
     parameters:
     - id: retryPolicy
-      type: 93de0ef9com.microsoft.azure.servicebus.primitives.RetryPolicy
-      description: <p>RetryPolicy applied for any operation performed using this ConnectionString </p>
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(final TransportType)
-  id: setTransportType(final TransportType)
+      type: com.microsoft.azure.servicebus.primitives.RetryPolicy
+      description: RetryPolicy applied for any operation performed using this ConnectionString
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(com.microsoft.azure.servicebus.primitives.TransportType)
+  id: setTransportType(com.microsoft.azure.servicebus.primitives.TransportType)
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
-  name: setTransportType(final TransportType transportType)
-  nameWithType: ConnectionStringBuilder.setTransportType(final TransportType transportType)
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(final TransportType transportType)
+  name: setTransportType(TransportType transportType)
+  nameWithType: ConnectionStringBuilder.setTransportType(TransportType transportType)
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType(TransportType transportType)
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 326
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Set the TransportType value in the Connection String. If no TransportType is set, this defaults to <xref uid=\"com.microsoft.azure.servicebus.primitives.TransportType.AMQP\" data-throw-if-not-resolved=\"false\">TransportType#AMQP</xref>.</p>\r\n<p></p>"
+  summary: Set the TransportType value in the Connection String. If no TransportType is set, this defaults to <xref uid="com.microsoft.azure.servicebus.primitives.TransportType.AMQP" data-throw-if-not-resolved="false">TransportType#AMQP</xref>.
   syntax:
-    content: public ConnectionStringBuilder setTransportType(final TransportType transportType)
+    content: public ConnectionStringBuilder setTransportType(TransportType transportType)
     parameters:
     - id: transportType
-      type: 93de0ef9com.microsoft.azure.servicebus.primitives.TransportType
-      description: <p>Transport Type </p>
+      type: com.microsoft.azure.servicebus.primitives.TransportType
+      description: Transport Type
     return:
       type: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-      description: <p>the <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> instance being set. </p>
+      description: the <xref uid="com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder" data-throw-if-not-resolved="false">ConnectionStringBuilder</xref> instance being set.
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toLoggableString()
   id: toLoggableString()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: toLoggableString()
@@ -497,19 +613,15 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toLoggableString()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toLoggableString*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 540
   package: com.microsoft.azure.servicebus.primitives
   syntax:
     content: public String toLoggableString()
     return:
-      type: "26831127"
+      type: java.lang.String
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()
   id: toString()
+  artifact: com.microsoft.azure:azure-servicebus:3.4.0
   parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
   langs:
   - java
   name: toString()
@@ -517,47 +629,38 @@ items:
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()
   overload: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString*
   type: Method
-  source:
-    remote: *o0
-    path: azure-servicebus/src/main/java/com/microsoft/azure/servicebus/primitives/ConnectionStringBuilder.java
-    startLine: 337
   package: com.microsoft.azure.servicebus.primitives
-  summary: "<p>Returns an inter-operable connection string that can be used to connect to ServiceBus Namespace </p>"
-  syntax: &o3
+  summary: Returns an inter-operable connection string that can be used to connect to ServiceBus Namespace
+  syntax:
     content: public String toString()
     return:
-      type: "26831127"
-      description: <p>connection string </p>
+      type: java.lang.String
+      description: connection string
 references:
-- uid: 89ac7c4d
+- uid: java.net.URI
   spec.java:
-  - name: final Duration
-    fullName: final Duration
-- uid: 3d93591e
+  - uid: java.net.URI
+    name: URI
+    fullName: java.net.URI
+- uid: java.lang.String
   spec.java:
-  - name: final String
-    fullName: final String
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
+- uid: com.microsoft.azure.servicebus.primitives.RetryPolicy
+  name: RetryPolicy
+  nameWithType: RetryPolicy
+  fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder*
   name: ConnectionStringBuilder
   nameWithType: ConnectionStringBuilder.ConnectionStringBuilder
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.ConnectionStringBuilder
   package: com.microsoft.azure.servicebus.primitives
-- uid: bac42120
-  spec.java:
-  - name: final URI
-    fullName: final URI
-- uid: 6aada8cf
-  spec.java:
-  - name: IllegalConnectionStringFormatException
-    fullName: IllegalConnectionStringFormatException
-- uid: "26831127"
-  spec.java:
-  - name: String
-    fullName: String
-- uid: "62304784"
-  spec.java:
-  - name: URI
-    fullName: URI
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEndpoint*
   name: getEndpoint
   nameWithType: ConnectionStringBuilder.getEndpoint
@@ -583,10 +686,6 @@ references:
   nameWithType: ConnectionStringBuilder.getEntityPath
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getEntityPath
   package: com.microsoft.azure.servicebus.primitives
-- uid: e02a2de0
-  spec.java:
-  - name: Duration
-    fullName: Duration
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getOperationTimeout*
   name: getOperationTimeout
   nameWithType: ConnectionStringBuilder.getOperationTimeout
@@ -602,36 +701,29 @@ references:
   nameWithType: ConnectionStringBuilder.getRetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getRetryPolicy
   package: com.microsoft.azure.servicebus.primitives
-- uid: 93de0ef9com.microsoft.azure.servicebus.primitives.RetryPolicy
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.azure.servicebus.primitives.RetryPolicy
-    name: RetryPolicy
-    fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
-    href: com.microsoft.azure.servicebus.primitives.RetryPolicy.yml
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy*
   name: setRetryPolicy
   nameWithType: ConnectionStringBuilder.setRetryPolicy
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setRetryPolicy
   package: com.microsoft.azure.servicebus.primitives
+- uid: com.microsoft.azure.servicebus.primitives.TransportType
+  name: TransportType
+  nameWithType: TransportType
+  fullName: com.microsoft.azure.servicebus.primitives.TransportType
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType*
   name: getTransportType
   nameWithType: ConnectionStringBuilder.getTransportType
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getTransportType
   package: com.microsoft.azure.servicebus.primitives
-- uid: 93de0ef9com.microsoft.azure.servicebus.primitives.TransportType
-  spec.java:
-  - name: 'final '
-    fullName: 'final '
-  - uid: com.microsoft.azure.servicebus.primitives.TransportType
-    name: TransportType
-    fullName: com.microsoft.azure.servicebus.primitives.TransportType
-    href: com.microsoft.azure.servicebus.primitives.TransportType.yml
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType*
   name: setTransportType
   nameWithType: ConnectionStringBuilder.setTransportType
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.setTransportType
+  package: com.microsoft.azure.servicebus.primitives
+- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication*
+  name: getAuthentication
+  nameWithType: ConnectionStringBuilder.getAuthentication
+  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.getAuthentication
   package: com.microsoft.azure.servicebus.primitives
 - uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString*
   name: toString
@@ -643,60 +735,47 @@ references:
   nameWithType: ConnectionStringBuilder.toLoggableString
   fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toLoggableString
   package: com.microsoft.azure.servicebus.primitives
-- uid: com.microsoft.azure.servicebus.primitives.RetryPolicy
-  parent: com.microsoft.azure.servicebus.primitives
-  href: com.microsoft.azure.servicebus.primitives.RetryPolicy.yml
-  name: RetryPolicy
-  nameWithType: RetryPolicy
-  fullName: com.microsoft.azure.servicebus.primitives.RetryPolicy
-  type: Class
-  summary: "<p>Represents an abstraction of a policy for retrying messaging operations when an exception is encountered. Some exceptions encountered by a sender or receiver can be transient like ServerBusy and the operation will succeed if retried. Clients can specify a retry policy using <xref uid=\"com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder\" data-throw-if-not-resolved=\"false\">ConnectionStringBuilder</xref> which guides senders and receivers to automatically retry the failed operation before throwing the exception to the client application. Users should not implement this class, instead should use one of the provided implementations through <xref uid=\"com.microsoft.azure.servicebus.primitives.RetryPolicy.getDefault()\" data-throw-if-not-resolved=\"false\">getDefault</xref> or <xref uid=\"com.microsoft.azure.servicebus.primitives.RetryPolicy.getNoRetry()\" data-throw-if-not-resolved=\"false\">getNoRetry</xref>. </p>"
-  syntax:
-    content: public class RetryPolicy
-- uid: com.microsoft.azure.servicebus.primitives.TransportType
-  parent: com.microsoft.azure.servicebus.primitives
-  href: com.microsoft.azure.servicebus.primitives.TransportType.yml
-  name: TransportType
-  nameWithType: TransportType
-  fullName: com.microsoft.azure.servicebus.primitives.TransportType
-  type: Enum
-  summary: "<p>All TransportType switches available for communicating to EventHubs service. </p>"
-  syntax:
-    content: public enum TransportType
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  name: DefaultOperationTimeout
-  nameWithType: ConnectionStringBuilder.DefaultOperationTimeout
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.DefaultOperationTimeout
-  type: Field
-  summary: "<p>Default operation timeout if timeout is not specified in the connection string. 30 seconds. </p>"
-  syntax: *o1
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  parent: com.microsoft.azure.servicebus.primitives
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  name: ConnectionStringBuilder
-  nameWithType: ConnectionStringBuilder
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  type: Class
-  summary: "<p>This class can be used to construct a connection string which can establish communication with ServiceBus entities. It can also be used to perform basic validation on an existing connection string. </p>\r\n<p>Sample Code: <pre><code>ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(\r\n                                             \"ServiceBusNamespaceName\", \r\n                                             \"ServiceBusEntityName\", // QueueName or TopicName or SubscriptionPath\r\n                                             \"SharedAccessSignatureKeyName\", \r\n                                             \"SharedAccessSignatureKey\");\r\n     \r\n    String connectionString = connectionStringBuilder.toString();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisted of key-value pair separated by \";\". Basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <ul><li><p>Endpoint - URL that points to the servicebus namespace </p></li><li><p>EntityPath - Path to the service bus entity (queue/topic/subscription/). For queues and topics, it is just the entity name. For subscriptions, path is &lt;topicName&gt;/subscriptions/&lt;subscriptionName&gt; </p></li><li><p>SharedAccessKeyName - Key name to the corresponding shared access policy rule for the namespace, or entity. </p></li><li><p>SharedAccessKey - Key value for the corresponding shared access policy rule of the namespace or entity. </p></li><li><p>SharedAccessSignatureToken - Instead of a key name and key value, clients can provide an already generated SAS Token. </p></li><li><p>OperationTimeout - Default timeout to be used for all senders, receiver and clients created from this connection string. </p></li><li><p>RetryPolicy - Name of the retry policy. </p></li></ul></p>"
-  syntax: *o2
-- uid: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()
-  parent: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder
-  href: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.yml
-  name: toString()
-  nameWithType: ConnectionStringBuilder.toString()
-  fullName: com.microsoft.azure.servicebus.primitives.ConnectionStringBuilder.toString()
-  type: Method
-  summary: "<p>Returns an inter-operable connection string that can be used to connect to ServiceBus Namespace </p>"
-  syntax: *o3
-- uid: com.microsoft.azure.servicebus.primitives.TransportType.AMQP
-  parent: com.microsoft.azure.servicebus.primitives.TransportType
-  href: com.microsoft.azure.servicebus.primitives.TransportType.yml
-  name: AMQP
-  nameWithType: TransportType.AMQP
-  fullName: com.microsoft.azure.servicebus.primitives.TransportType.AMQP
-  type: Field
-  summary: "<p>AMQP over TCP. Uses port 5671 - assigned by IANA for secure AMQP (AMQPS). </p>"
-  syntax:
-    content: public AMQP=("Amqp")
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
