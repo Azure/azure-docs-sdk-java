@@ -3,7 +3,7 @@ title: Azure Schema Registry shared library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, 
 author: maggiepint
 ms.author: magpint
-ms.date: 06/05/2020
+ms.date: 06/19/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Schema Registry shared library for Java - Version 1.0.0-beta.1 
+# Azure Schema Registry shared library for Java - Version 1.0.0-beta.2 
 
 
 This library contains common implementations for Azure Schema Registry-backed serializers and deserializers.
