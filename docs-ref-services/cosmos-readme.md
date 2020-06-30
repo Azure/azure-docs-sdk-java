@@ -1,17 +1,18 @@
 ---
 title: Azure CosmosDB Client Library for Java
-keywords: Azure, Java, SDK, API, cosmos, azure-cosmos
+keywords: Azure, java, SDK, API, azure-cosmos,  
 author: maggiepint
 ms.author: magpint
-ms.date: 04/16/2020
+ms.date: 06/25/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
-ms.devlang: Java
-ms.service: cosmos
+ms.devlang: java
+ms.service:  
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.0.1
+# Azure CosmosDB Client Library for Java - Version 4.1.0 
+
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
 This project provides SDK library in Java for interacting with [SQL API][sql_api_query] of [Azure Cosmos DB Database Service][cosmos_introduction].
@@ -27,7 +28,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.0.1</version>
+  <version>4.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -192,8 +193,6 @@ container.createItem(new Passenger("carla.davis@outlook.com", "Carla Davis", "SE
 // ...
 ```
 
-See the complete code in [`HelloWorldDemo.java`](https://github.com/Azure/azure-sdk-for-java/tree/f4952c765cdf42876a8b291b26f145068627477f/sdk/cosmos/azure-cosmos-examples/src/main/java/com/azure/cosmos/examples/HelloWorldDemo.java)
-
 We have a get started sample app available [here][getting_started].
 
 Also, we have more examples [examples project][samples].
@@ -268,9 +267,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/f4952c765cdf42876a8b291b26f145068627477f/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/bb7c0ba1a376bf9456f81f1e476bafd90e56b33d/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/en-us/azure/cosmos-db/
-[api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/4.0.1-beta.3/index.html
+[api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/en-us/azure/cosmos-db/introduction
 [jdk]: https://docs.microsoft.com/java/azure/java-supported-jdk-runtime?view=azure-java-stable
 [maven]: https://maven.apache.org/
@@ -291,3 +290,4 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [project_reactor_schedulers]: https://projectreactor.io/docs/core/release/api/reactor/core/scheduler/Schedulers.html
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcosmos%2FREADME.png)
+
