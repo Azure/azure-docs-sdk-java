@@ -1,6 +1,6 @@
 ---
-title: Azure Core AMQP shared library for Java
-keywords: Azure, java, SDK, API, azure-core-amqp, core
+title: Azure Core Experimental shared library for Java
+keywords: Azure, java, SDK, API, azure-core-experimental, 
 author: maggiepint
 ms.author: magpint
 ms.date: 07/02/2020
@@ -8,14 +8,15 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: 
 ---
 
-# Azure Core AMQP shared library for Java - Version 1.3.0 
+# Azure Core Experimental shared library for Java - Version 1.0.0-beta.1 
 
 
-Azure Core AMQP client library is a collection of classes common to the AMQP protocol. It help developers create their
-own AMQP client library that abstracts from the underlying transport library's implementation.
+[![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
+
+Azure Core Experimental contains types that are being evaluated and might eventually become part of Azure Core, this library will always stay in a preview version and might allow breaking changes.
 
 ## Getting started
 
@@ -25,20 +26,20 @@ own AMQP client library that abstracts from the underlying transport library's i
 
 ### Include the package
 
-[//]: # ({x-version-update-start;com.azure:azure-core-amqp;current})
+[//]: # ({x-version-update-start;com.azure:azure-core-experimental;current})
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
-    <artifactId>azure-core-amqp</artifactId>
-    <version>1.3.0</version>
+    <artifactId>azure-core-experimental</artifactId>
+    <version>1.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ## Key concepts
 
-The concepts for AMQP are well documented in [OASIS Advanced Messaging Queuing Protocol (AMQP) Version
-1.0](http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html).
+Azure Core experimental is reserved for features that are actively being prototyped and may be merged into Azure Core
+in the future.
 
 ## Examples
 
@@ -66,5 +67,5 @@ Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
 <!-- Links -->
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 
-![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-amqp%2FREADME.png)
+![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fcore%2Fazure-core-experimental%2FREADME.png)
 
