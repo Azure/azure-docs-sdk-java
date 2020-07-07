@@ -1,9 +1,9 @@
 ---
 title: Azure Core shared library for Java
-keywords: Azure, java, SDK, API, core, azure-core, 
+keywords: Azure, java, SDK, API, azure-core, core
 author: maggiepint
 ms.author: magpint
-ms.date: 06/08/2020
+ms.date: 07/02/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core shared library for Java - Version 1.5.1 
+# Azure Core shared library for Java - Version 1.6.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -36,7 +36,7 @@ Typically, you won't need to install or depend on Azure Core, instead it will be
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core</artifactId>
-  <version>1.5.1</version>
+  <version>1.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
