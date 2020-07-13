@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.storage.blob.batch.BlobBatch
   id: BlobBatch
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch
   children:
   - com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String)
@@ -27,7 +27,16 @@ items:
     Azure Storage Blob batches are homogeneous which means a <xref uid="com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String)" data-throw-if-not-resolved="false">delete</xref> and <xref uid="com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier(java.lang.String,com.azure.storage.blob.models.AccessTier)" data-throw-if-not-resolved="false">set tier</xref> are not allowed to be in the same batch.
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.illegalBatchOperation\}
+    ```java
+
+    try {
+         Response<Void> deleteResponse = batch.deleteBlob("{url of blob}");
+         Response<Void> setTierResponse = batch.setBlobAccessTier("{url of another blob}", AccessTier.HOT);
+     } catch (UnsupportedOperationException ex) {
+         System.err.printf("This will fail as Azure Storage Blob batch operations are homogeneous. Exception: %s%n",
+             ex.getMessage());
+     }
+    ```
 
 
     Please refer to the [Azure Docs][] for more information.
@@ -53,7 +62,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.blob.batch.BlobBatch.BlobBatch(java.lang.String,com.azure.core.http.HttpPipeline)
   id: BlobBatch(java.lang.String,com.azure.core.http.HttpPipeline)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -72,7 +81,7 @@ items:
       type: com.azure.core.http.HttpPipeline
 - uid: com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String)
   id: deleteBlob(java.lang.String)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -89,7 +98,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.deleteBlob\#String\}
+    ```java
+
+    Response<Void> deleteResponse = batch.deleteBlob("{url of blob}");
+
+    ```
   syntax:
     content: public Response<Void> deleteBlob(String blobUrl)
     parameters:
@@ -103,7 +116,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String,com.azure.storage.blob.models.DeleteSnapshotsOptionType,com.azure.storage.blob.models.BlobRequestConditions)
   id: deleteBlob(java.lang.String,com.azure.storage.blob.models.DeleteSnapshotsOptionType,com.azure.storage.blob.models.BlobRequestConditions)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -113,14 +126,7 @@ items:
   overload: com.azure.storage.blob.batch.BlobBatch.deleteBlob*
   type: Method
   package: com.azure.storage.blob.batch
-  summary: >-
-    Adds a delete blob operation to the batch.
-
-
-    **Code sample**
-
-
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.deleteBlob\#String-DeleteSnapshotsOptionType-BlobRequestConditions\}
+  summary: "Adds a delete blob operation to the batch.\n\n**Code sample**\n\n```java\nBlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(\"{lease ID}\");\n \n Response<Void> deleteResponse = batch.deleteBlob(\"{url of blob}\", DeleteSnapshotsOptionType.INCLUDE,\n     blobRequestConditions);\n```"
   syntax:
     content: public Response<Void> deleteBlob(String blobUrl, DeleteSnapshotsOptionType deleteOptions, BlobRequestConditions blobRequestConditions)
     parameters:
@@ -140,7 +146,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String,java.lang.String)
   id: deleteBlob(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -157,7 +163,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.deleteBlob\#String-String\}
+    ```java
+
+    Response<Void> deleteResponse = batch.deleteBlob("{container name}", "{blob name}");
+
+    ```
   syntax:
     content: public Response<Void> deleteBlob(String containerName, String blobName)
     parameters:
@@ -174,7 +184,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.deleteBlob(java.lang.String,java.lang.String,com.azure.storage.blob.models.DeleteSnapshotsOptionType,com.azure.storage.blob.models.BlobRequestConditions)
   id: deleteBlob(java.lang.String,java.lang.String,com.azure.storage.blob.models.DeleteSnapshotsOptionType,com.azure.storage.blob.models.BlobRequestConditions)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -184,14 +194,7 @@ items:
   overload: com.azure.storage.blob.batch.BlobBatch.deleteBlob*
   type: Method
   package: com.azure.storage.blob.batch
-  summary: >-
-    Adds a delete blob operation to the batch.
-
-
-    **Code sample**
-
-
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.deleteBlob\#String-String-DeleteSnapshotsOptionType-BlobRequestConditions\}
+  summary: "Adds a delete blob operation to the batch.\n\n**Code sample**\n\n```java\nBlobRequestConditions blobRequestConditions = new BlobRequestConditions().setLeaseId(\"{lease ID}\");\n \n Response<Void> deleteResponse = batch.deleteBlob(\"{container name}\", \"{blob name}\",\n     DeleteSnapshotsOptionType.INCLUDE, blobRequestConditions);\n```"
   syntax:
     content: public Response<Void> deleteBlob(String containerName, String blobName, DeleteSnapshotsOptionType deleteOptions, BlobRequestConditions blobRequestConditions)
     parameters:
@@ -214,7 +217,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier(java.lang.String,com.azure.storage.blob.models.AccessTier)
   id: setBlobAccessTier(java.lang.String,com.azure.storage.blob.models.AccessTier)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -231,7 +234,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier\#String-AccessTier\}
+    ```java
+
+    Response<Void> setTierResponse = batch.setBlobAccessTier("{url of blob}", AccessTier.HOT);
+
+    ```
   syntax:
     content: public Response<Void> setBlobAccessTier(String blobUrl, AccessTier accessTier)
     parameters:
@@ -248,7 +255,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier(java.lang.String,com.azure.storage.blob.models.AccessTier,java.lang.String)
   id: setBlobAccessTier(java.lang.String,com.azure.storage.blob.models.AccessTier,java.lang.String)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -265,7 +272,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier\#String-AccessTier-String\}
+    ```java
+
+    Response<Void> setTierResponse = batch.setBlobAccessTier("{url of blob}", AccessTier.HOT, "{lease ID}");
+
+    ```
   syntax:
     content: public Response<Void> setBlobAccessTier(String blobUrl, AccessTier accessTier, String leaseId)
     parameters:
@@ -285,7 +296,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier(java.lang.String,java.lang.String,com.azure.storage.blob.models.AccessTier)
   id: setBlobAccessTier(java.lang.String,java.lang.String,com.azure.storage.blob.models.AccessTier)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -302,7 +313,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier\#String-String-AccessTier\}
+    ```java
+
+    Response<Void> setTierResponse = batch.setBlobAccessTier("{container name}", "{blob name}", AccessTier.HOT);
+
+    ```
   syntax:
     content: public Response<Void> setBlobAccessTier(String containerName, String blobName, AccessTier accessTier)
     parameters:
@@ -322,7 +337,7 @@ items:
          submitted.
 - uid: com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier(java.lang.String,java.lang.String,com.azure.storage.blob.models.AccessTier,java.lang.String)
   id: setBlobAccessTier(java.lang.String,java.lang.String,com.azure.storage.blob.models.AccessTier,java.lang.String)
-  artifact: com.azure:azure-storage-blob-batch:12.4.0-beta.1
+  artifact: com.azure:azure-storage-blob-batch:12.6.0-beta.1
   parent: com.azure.storage.blob.batch.BlobBatch
   langs:
   - java
@@ -339,7 +354,11 @@ items:
     **Code sample**
 
 
-    \{@codesnippet com.azure.storage.blob.batch.BlobBatch.setBlobAccessTier\#String-String-AccessTier-String\}
+    ```java
+
+    Response<Void> setTierResponse = batch.setBlobAccessTier("{container name}", "{blob name}", AccessTier.HOT,
+         "{lease ID}");
+    ```
   syntax:
     content: public Response<Void> setBlobAccessTier(String containerName, String blobName, AccessTier accessTier, String leaseId)
     parameters:
