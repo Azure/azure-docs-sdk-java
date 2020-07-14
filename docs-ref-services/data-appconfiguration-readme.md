@@ -1,17 +1,17 @@
 ---
 title: Azure App Configuration client library for Java
-keywords: Azure, java, SDK, API, azure-data-appconfiguration, 
+keywords: Azure, java, SDK, API, azure-data-appconfiguration, appconfiguration
 author: maggiepint
 ms.author: magpint
-ms.date: 06/10/2020
+ms.date: 07/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: appconfiguration
 ---
 
-# Azure App Configuration client library for Java - Version 1.1.2 
+# Azure App Configuration client library for Java - Version 1.1.3 
 
 Azure App Configuration is a managed service that helps developers centralize their application configurations simply and securely.
 
@@ -37,12 +37,12 @@ Use the client library for App Configuration to create and manage application co
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-appconfiguration</artifactId>
-  <version>1.1.2</version>
+  <version>1.1.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
-### Create an App Configuration Store
+#### Create an App Configuration Store
 
 To create a Configuration Store you can use the Azure Portal or [Azure CLI][azure_cli].
 
@@ -433,9 +433,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [package]: https://search.maven.org/artifact/com.azure/azure-data-appconfiguration
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 [rest_api]: https://github.com/Azure/AppConfiguration#rest-api-reference
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/304453b0a033d04f6a1ea3611f0fad4e781286ef/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/304453b0a033d04f6a1ea3611f0fad4e781286ef/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/304453b0a033d04f6a1ea3611f0fad4e781286ef/sdk/appconfiguration/azure-data-appconfiguration/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/afe7b5964710686a53aa5dbe6839d5429eab85db/sdk/appconfiguration/azure-data-appconfiguration/src/samples/java/com/azure/data/appconfiguration
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/afe7b5964710686a53aa5dbe6839d5429eab85db/sdk/appconfiguration/azure-data-appconfiguration/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/afe7b5964710686a53aa5dbe6839d5429eab85db/sdk/appconfiguration/azure-data-appconfiguration/src
 [spring_quickstart]: https://docs.microsoft.com/azure/azure-app-configuration/quickstart-java-spring-app
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fappconfiguration%2Fazure-data-appconfiguration%2FREADME.png)
