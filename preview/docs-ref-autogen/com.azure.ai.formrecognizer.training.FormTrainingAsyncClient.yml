@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   id: FormTrainingAsyncClient
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training
   children:
   - com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginCopyModel(java.lang.String,com.azure.ai.formrecognizer.models.CopyAuthorization)
@@ -56,7 +56,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.FormTrainingAsyncClient(com.azure.ai.formrecognizer.implementation.FormRecognizerClientImpl,com.azure.ai.formrecognizer.FormRecognizerServiceVersion)
   id: FormTrainingAsyncClient(com.azure.ai.formrecognizer.implementation.FormRecognizerClientImpl,com.azure.ai.formrecognizer.FormRecognizerServiceVersion)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -78,7 +78,7 @@ items:
       description: The versions of Azure Form Recognizer supported by this client library.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginCopyModel(java.lang.String,com.azure.ai.formrecognizer.models.CopyAuthorization)
   id: beginCopyModel(java.lang.String,com.azure.ai.formrecognizer.models.CopyAuthorization)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -109,12 +109,12 @@ items:
      formTrainingAsyncClient.getCopyAuthorization(resourceId, resourceRegion)
          .subscribe(copyAuthorization -> formTrainingAsyncClient.beginCopyModel(copyModelId, copyAuthorization)
              .subscribe(copyPoller -> copyPoller.getFinalResult().subscribe(customFormModelInfo -> {
-                 System.out.printf("Copied model has model Id: %s, model status: %s, was requested on: %s,"
-                         + " transfer completed on: %s.%n",
+                 System.out.printf("Copied model has model Id: %s, model status: %s, training started on: %s,"
+                         + " training completed on: %s.%n",
                      customFormModelInfo.getModelId(),
                      customFormModelInfo.getStatus(),
-                     customFormModelInfo.getRequestedOn(),
-                     customFormModelInfo.getCompletedOn());
+                     customFormModelInfo.getTrainingStartedOn(),
+                     customFormModelInfo.getTrainingCompletedOn());
              })));
     ```
   syntax:
@@ -135,7 +135,7 @@ items:
          or has been cancelled. The completed operation returns the copied model <xref uid="com.azure.ai.formrecognizer.models.CustomFormModelInfo" data-throw-if-not-resolved="false">CustomFormModelInfo</xref>.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginCopyModel(java.lang.String,com.azure.ai.formrecognizer.models.CopyAuthorization,java.time.Duration)
   id: beginCopyModel(java.lang.String,com.azure.ai.formrecognizer.models.CopyAuthorization,java.time.Duration)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -167,12 +167,12 @@ items:
          .subscribe(copyAuthorization -> formTrainingAsyncClient.beginCopyModel(copyModelId, copyAuthorization,
              Duration.ofSeconds(5)).subscribe(copyPoller ->
              copyPoller.getFinalResult().subscribe(customFormModelInfo -> {
-                 System.out.printf("Copied model has model Id: %s, model status: %s, was requested on: %s,"
-                         + "transfer completed on: %s.%n",
+                 System.out.printf("Copied model has model Id: %s, model status: %s, training started on: %s,"
+                         + "training completed on: %s.%n",
                      customFormModelInfo.getModelId(),
                      customFormModelInfo.getStatus(),
-                     customFormModelInfo.getRequestedOn(),
-                     customFormModelInfo.getCompletedOn());
+                     customFormModelInfo.getTrainingStartedOn(),
+                     customFormModelInfo.getTrainingCompletedOn());
              })));
     ```
   syntax:
@@ -198,7 +198,7 @@ items:
          or has been cancelled. The completed operation returns the copied model <xref uid="com.azure.ai.formrecognizer.models.CustomFormModelInfo" data-throw-if-not-resolved="false">CustomFormModelInfo</xref>.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(java.lang.String,boolean)
   id: beginTraining(java.lang.String,boolean)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -215,33 +215,40 @@ items:
     The service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.
 
 
+    See [here][] for information on building your own training data set.
+
+
     **Code sample**
 
 
     ```java
 
-    String trainingFilesUrl = "{training-set-SAS-URL}";
+    String trainingFilesUrl = "{SAS-URL-of-your-container-in-blob-storage}";
      boolean useTrainingLabels = true;
      formTrainingAsyncClient.beginTraining(trainingFilesUrl, useTrainingLabels).subscribe(
-         recognizePollingOperation -> {
+         trainingPollingOperation -> {
              // if training polling operation completed, retrieve the final result.
-             recognizePollingOperation.getFinalResult().subscribe(customFormModel -> {
+             trainingPollingOperation.getFinalResult().subscribe(customFormModel -> {
                  System.out.printf("Model Id: %s%n", customFormModel.getModelId());
                  System.out.printf("Model Status: %s%n", customFormModel.getModelStatus());
                  customFormModel.getSubmodels().forEach(customFormSubmodel ->
-                     customFormSubmodel.getFieldMap().forEach((key, customFormModelField) ->
+                     customFormSubmodel.getFields().forEach((key, customFormModelField) ->
                          System.out.printf("Form type: %s Field Text: %s Field Accuracy: %s%n",
                              key, customFormModelField.getName(), customFormModelField.getAccuracy())));
              });
          });
     ```
+
+
+
+    [here]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#upload-your-training-data
   syntax:
     content: public PollerFlux<OperationResult,CustomFormModel> beginTraining(String trainingFilesUrl, boolean useTrainingLabels)
     parameters:
     - id: trainingFilesUrl
       type: java.lang.String
       description: >-
-        source URL parameter that is either an externally accessible Azure
+        source URL parameter that is an externally accessible Azure
          storage blob container Uri (preferably a Shared Access Signature Uri).
     - id: useTrainingLabels
       type: boolean
@@ -250,10 +257,10 @@ items:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.OperationResult,com.azure.ai.formrecognizer.models.CustomFormModel>
       description: >-
         A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the training model operation until it has completed, has failed, or has
-         been cancelled. The completed operation returns a <xref uid="com.azure.ai.formrecognizer.models.CustomFormModel" data-throw-if-not-resolved="false">CustomFormModel</xref>.
+         been cancelled. The completed operation returns the trained <xref uid="com.azure.ai.formrecognizer.models.CustomFormModel" data-throw-if-not-resolved="false">custom form model</xref>.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(java.lang.String,boolean,com.azure.ai.formrecognizer.models.TrainingFileFilter,java.time.Duration)
   id: beginTraining(java.lang.String,boolean,com.azure.ai.formrecognizer.models.TrainingFileFilter,java.time.Duration)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -263,7 +270,7 @@ items:
   overload: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining*
   type: Method
   package: com.azure.ai.formrecognizer.training
-  summary: "Create and train a custom model.\n\nModels are trained using documents that are of the following content type - 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'.Other type of content is ignored.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString trainingFilesUrl = \"{training-set-SAS-URL}\";\n TrainingFileFilter trainingFileFilter = new TrainingFileFilter().setIncludeSubFolders(false).setPrefix(\"Invoice\");\n \n formTrainingAsyncClient.beginTraining(trainingFilesUrl, true, trainingFileFilter,\n     Duration.ofSeconds(5)).subscribe(recognizePollingOperation -> {\n         // if training polling operation completed, retrieve the final result.\n         recognizePollingOperation.getFinalResult().subscribe(customFormModel -> {\n             System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n             System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n             customFormModel.getSubmodels().forEach(customFormSubmodel ->\n                 customFormSubmodel.getFieldMap().forEach((key, customFormModelField) ->\n                     System.out.printf(\"Form Type: %s Field Text: %s Field Accuracy: %s%n\",\n                         key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n         });\n     });\n```"
+  summary: "Create and train a custom model.\n\nModels are trained using documents that are of the following content type - 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'.Other type of content is ignored.\n\nSee [here][] for information on building your own training data set.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString trainingFilesUrl = \"{SAS-URL-of-your-container-in-blob-storage}\";\n TrainingFileFilter trainingFileFilter = new TrainingFileFilter().setIncludeSubFolders(false).setPrefix(\"Invoice\");\n \n formTrainingAsyncClient.beginTraining(trainingFilesUrl, true, trainingFileFilter,\n     Duration.ofSeconds(5)).subscribe(trainingPollingOperation -> {\n         // if training polling operation completed, retrieve the final result.\n         trainingPollingOperation.getFinalResult().subscribe(customFormModel -> {\n             System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n             System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n             customFormModel.getSubmodels().forEach(customFormSubmodel ->\n                 customFormSubmodel.getFields().forEach((key, customFormModelField) ->\n                     System.out.printf(\"Form Type: %s Field Text: %s Field Accuracy: %s%n\",\n                         key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n         });\n     });\n```\n\n\n[here]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#upload-your-training-data"
   syntax:
     content: public PollerFlux<OperationResult,CustomFormModel> beginTraining(String trainingFilesUrl, boolean useTrainingLabels, TrainingFileFilter trainingFileFilter, Duration pollInterval)
     parameters:
@@ -286,11 +293,11 @@ items:
     return:
       type: com.azure.core.util.polling.PollerFlux<com.azure.ai.formrecognizer.models.OperationResult,com.azure.ai.formrecognizer.models.CustomFormModel>
       description: >-
-        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the extract receipt operation until it
-         has completed, has failed, or has been cancelled. The completed operation returns a <xref uid="com.azure.ai.formrecognizer.models.CustomFormModel" data-throw-if-not-resolved="false">CustomFormModel</xref>.
+        A <xref uid="com.azure.core.util.polling.PollerFlux" data-throw-if-not-resolved="false">PollerFlux</xref> that polls the training model operation until it has completed, has failed, or has
+         been cancelled. The completed operation returns the trained <xref uid="com.azure.ai.formrecognizer.models.CustomFormModel" data-throw-if-not-resolved="false">custom form model</xref>.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.deleteModel(java.lang.String)
   id: deleteModel(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -324,7 +331,7 @@ items:
       description: An empty Mono.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.deleteModelWithResponse(java.lang.String)
   id: deleteModelWithResponse(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -357,10 +364,10 @@ items:
       description: The UUID string format model identifier.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing containing status code and HTTP headers
+      description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing the status code and HTTP headers.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getAccountProperties()
   id: getAccountProperties()
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -371,7 +378,7 @@ items:
   type: Method
   package: com.azure.ai.formrecognizer.training
   summary: >-
-    Get account information for all custom models.
+    Get account information of the form recognizer account.
 
 
     **Code sample**
@@ -389,10 +396,10 @@ items:
     content: public Mono<AccountProperties> getAccountProperties()
     return:
       type: reactor.core.publisher.Mono<com.azure.ai.formrecognizer.models.AccountProperties>
-      description: The account information.
+      description: The requested account information details.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getAccountPropertiesWithResponse()
   id: getAccountPropertiesWithResponse()
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -403,7 +410,7 @@ items:
   type: Method
   package: com.azure.ai.formrecognizer.training
   summary: >-
-    Get account information.
+    Get account information of the form recognizer account with an Http response.
 
 
     **Code sample**
@@ -426,7 +433,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing the requested account information details.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getCopyAuthorization(java.lang.String,java.lang.String)
   id: getCopyAuthorization(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -469,7 +476,7 @@ items:
       description: The <xref uid="com.azure.ai.formrecognizer.models.CopyAuthorization" data-throw-if-not-resolved="false">CopyAuthorization</xref> that could be used to authorize copying model between resources.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getCopyAuthorizationWithResponse(java.lang.String,java.lang.String)
   id: getCopyAuthorizationWithResponse(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -515,7 +522,7 @@ items:
          model between resources.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getCustomModel(java.lang.String)
   id: getCustomModel(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -525,7 +532,7 @@ items:
   overload: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getCustomModel*
   type: Method
   package: com.azure.ai.formrecognizer.training
-  summary: "Get detailed information for a specified custom model id.\n\n**Code sample**\n\n```java\nString modelId = \"{model_id}\";\n formTrainingAsyncClient.getCustomModel(modelId).subscribe(customFormModel -> {\n     System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n     System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n     customFormModel.getSubmodels().forEach(customFormSubmodel ->\n         customFormSubmodel.getFieldMap().forEach((key, customFormModelField) ->\n             System.out.printf(\"Form Type: %s Field Text: %s Field Accuracy: %s%n\",\n                 key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n \n });\n```"
+  summary: "Get detailed information for a specified custom model id.\n\n**Code sample**\n\n```java\nString modelId = \"{model_id}\";\n formTrainingAsyncClient.getCustomModel(modelId).subscribe(customFormModel -> {\n     System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n     System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n     customFormModel.getSubmodels().forEach(customFormSubmodel ->\n         customFormSubmodel.getFields().forEach((key, customFormModelField) ->\n             System.out.printf(\"Form Type: %s Field Text: %s Field Accuracy: %s%n\",\n                 key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n \n });\n```"
   syntax:
     content: public Mono<CustomFormModel> getCustomModel(String modelId)
     parameters:
@@ -537,7 +544,7 @@ items:
       description: The detailed information for the specified model.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getCustomModelWithResponse(java.lang.String)
   id: getCustomModelWithResponse(java.lang.String)
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -548,7 +555,7 @@ items:
   type: Method
   package: com.azure.ai.formrecognizer.training
   summary: >-
-    Get detailed information for a specified custom model id with Http response
+    Get detailed information for a specified custom model id with Http response.
 
 
     **Code sample**
@@ -563,7 +570,7 @@ items:
          System.out.printf("Model Id: %s%n", customFormModel.getModelId());
          System.out.printf("Model Status: %s%n", customFormModel.getModelStatus());
          customFormModel.getSubmodels().forEach(customFormSubmodel ->
-             customFormSubmodel.getFieldMap().forEach((key, customFormModelField) ->
+             customFormSubmodel.getFields().forEach((key, customFormModelField) ->
                  System.out.printf("Form Type: %s Field Text: %s Field Accuracy: %f%n",
                      key, customFormModelField.getName(), customFormModelField.getAccuracy())));
      });
@@ -579,7 +586,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing the requested <xref uid="com.azure.ai.formrecognizer.models.CustomFormModel" data-throw-if-not-resolved="false">model</xref>.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.getFormRecognizerAsyncClient()
   id: getFormRecognizerAsyncClient()
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -597,7 +604,7 @@ items:
       description: A new <xref uid="com.azure.ai.formrecognizer.FormRecognizerAsyncClient" data-throw-if-not-resolved="false">FormRecognizerAsyncClient</xref> object.
 - uid: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.listCustomModels()
   id: listCustomModels()
-  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.3
+  artifact: com.azure:azure-ai-formrecognizer:1.0.0-beta.4
   parent: com.azure.ai.formrecognizer.training.FormTrainingAsyncClient
   langs:
   - java
@@ -608,7 +615,7 @@ items:
   type: Method
   package: com.azure.ai.formrecognizer.training
   summary: >-
-    List information for all models.
+    List information for each model on the form recognizer account.
 
 
     **Code sample**
@@ -620,8 +627,8 @@ items:
          System.out.printf("Model Id: %s, Model status: %s, Created on: %s, Last updated on: %s.%n",
              customModel.getModelId(),
              customModel.getStatus(),
-             customModel.getRequestedOn(),
-             customModel.getCompletedOn()));
+             customModel.getTrainingStartedOn(),
+             customModel.getTrainingCompletedOn()));
     ```
   syntax:
     content: public PagedFlux<CustomFormModelInfo> listCustomModels()
