@@ -15,12 +15,15 @@ items:
   - com.microsoft.azure.functions.annotation.CosmosDBOutput
   - com.microsoft.azure.functions.annotation.CosmosDBTrigger
   - com.microsoft.azure.functions.annotation.CustomBinding
+  - com.microsoft.azure.functions.annotation.EventGridOutput
   - com.microsoft.azure.functions.annotation.EventGridTrigger
   - com.microsoft.azure.functions.annotation.EventHubOutput
   - com.microsoft.azure.functions.annotation.EventHubTrigger
   - com.microsoft.azure.functions.annotation.FunctionName
   - com.microsoft.azure.functions.annotation.HttpOutput
   - com.microsoft.azure.functions.annotation.HttpTrigger
+  - com.microsoft.azure.functions.annotation.KafkaOutput
+  - com.microsoft.azure.functions.annotation.KafkaTrigger
   - com.microsoft.azure.functions.annotation.QueueOutput
   - com.microsoft.azure.functions.annotation.QueueTrigger
   - com.microsoft.azure.functions.annotation.SendGridOutput
@@ -171,6 +174,16 @@ references:
   summary: "<p>CustomBinding(direction = \"in\", name = \"inputParameterName\", type = \"customBindingTrigger\") String customTriggerInput final ExecutionContext context ) { context.getLogger().info(customTriggerInput); }</p>\r\n<p></p>"
   syntax:
     content: public interface CustomBinding
+- uid: com.microsoft.azure.functions.annotation.EventGridOutput
+  parent: com.microsoft.azure.functions.annotation
+  href: com.microsoft.azure.functions.annotation.EventGridOutput.yml
+  name: EventGridOutput
+  nameWithType: EventGridOutput
+  fullName: com.microsoft.azure.functions.annotation.EventGridOutput
+  type: Interface
+  summary: "<p>EventGridOutput(name = \"outputEvent\", topicEndpointUri = \"MyEventGridTopicUriSetting\", topicKeySetting = \"MyEventGridTopicKeySetting\") OutputBinding&lt;String&gt; outputEvent final ExecutionContext context ) { context.getLogger().info(content); final String eventGridOutputDocument = \"{\\\"id\": \"100\", \"eventType\":\"recordInserted\", \"subject\": \"myapp/test/java\", \"eventTime\":\"2017-08-10T21:03:07+00:00\", \"data\": {\"tag1\": \"value1\",\"tag2\":\"value2\"}, \"dataVersion\": \"1.0\"}\"; outputEvent.setValue(eventGridOutputDocument); }</p>\r\n<p></p>"
+  syntax:
+    content: public interface EventGridOutput
 - uid: com.microsoft.azure.functions.annotation.EventGridTrigger
   parent: com.microsoft.azure.functions.annotation
   href: com.microsoft.azure.functions.annotation.EventGridTrigger.yml
@@ -231,6 +244,26 @@ references:
   summary: "<p>HttpTrigger(name = \"req\", methods = {HttpMethod.GET, HttpMethod.POST}, authLevel = AuthorizationLevel.ANONYMOUS) final HttpRequestMessage&lt;Optional&lt;String&gt;&gt; request) { String name = request.getBody().orElseGet(() -&gt; request.getQueryParameters().get(\"name\")); return name == null ? \"Please pass a name on the query string or in the request body\" : \"Hello \" + name; } </p>\r\n<p></p>"
   syntax:
     content: public interface HttpTrigger
+- uid: com.microsoft.azure.functions.annotation.KafkaOutput
+  parent: com.microsoft.azure.functions.annotation
+  href: com.microsoft.azure.functions.annotation.KafkaOutput.yml
+  name: KafkaOutput
+  nameWithType: KafkaOutput
+  fullName: com.microsoft.azure.functions.annotation.KafkaOutput
+  type: Interface
+  summary: "<p>KafkaOutput(name = \"event\", topic = \"users\", brokerList=\"broker:29092\") OutputBinding&lt;String&lt;output, final ExecutionContext context) { context.getLogger().info(\"Message:\" + message); output.setValue(message); return \"{ \\\"id\": \"\" + System.currentTimeMillis() + \"\", \"description\": \"\" + message + \"\" }\"; } </p>\r\n<p></p>"
+  syntax:
+    content: public interface KafkaOutput
+- uid: com.microsoft.azure.functions.annotation.KafkaTrigger
+  parent: com.microsoft.azure.functions.annotation
+  href: com.microsoft.azure.functions.annotation.KafkaTrigger.yml
+  name: KafkaTrigger
+  nameWithType: KafkaTrigger
+  fullName: com.microsoft.azure.functions.annotation.KafkaTrigger
+  type: Interface
+  summary: "<p>KafkaTrigger(name = \"kafkaTrigger\", topic = \"users\", brokerList=\"broker:29092\", consumerGroup=\"functions\") List&lt;Map&lt;String, String&gt;&gt; kafkaEventData, final ExecutionContext context ) { context.getLogger().info(kafkaEventData); } </p>\r\n<p></p>"
+  syntax:
+    content: public interface KafkaTrigger
 - uid: com.microsoft.azure.functions.annotation.QueueOutput
   parent: com.microsoft.azure.functions.annotation
   href: com.microsoft.azure.functions.annotation.QueueOutput.yml
