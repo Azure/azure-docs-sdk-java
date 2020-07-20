@@ -1,17 +1,17 @@
 ---
 title: Azure CosmosDB Client Library for Java
-keywords: Azure, java, SDK, API, azure-cosmos,  
+keywords: Azure, java, SDK, API, azure-cosmos, cosmos
 author: maggiepint
 ms.author: magpint
-ms.date: 06/25/2020
+ms.date: 07/14/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service:  
+ms.service: cosmos
 ---
 
-# Azure CosmosDB Client Library for Java - Version 4.1.0 
+# Azure CosmosDB Client Library for Java - Version 4.2.0 
 
 
 Azure Cosmos DB is Microsoft’s globally distributed, multi-model database service for operational and analytics workloads. It offers multi-mastering feature by automatically scaling throughput, compute, and storage.
@@ -28,7 +28,7 @@ This project provides SDK library in Java for interacting with [SQL API][sql_api
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-cosmos</artifactId>
-  <version>4.1.0</version>
+  <version>4.2.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -267,7 +267,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/bb7c0ba1a376bf9456f81f1e476bafd90e56b33d/sdk/cosmos/azure-cosmos/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/511309d72a7703b59903cc7eea33ff634b779724/sdk/cosmos/azure-cosmos/src
 [cosmos_introduction]: https://docs.microsoft.com/en-us/azure/cosmos-db/
 [api_documentation]: https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cosmos/latest/index.html
 [cosmos_docs]: https://docs.microsoft.com/en-us/azure/cosmos-db/introduction
