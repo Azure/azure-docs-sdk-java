@@ -1,9 +1,9 @@
 ---
 title: Azure Key Vault Key client library for Java
-keywords: Azure, java, SDK, API, keyvault, azure-security-keyvault-keys, 
+keywords: Azure, java, SDK, API, keyvault, azure-security-keyvault-keys
 author: maggiepint
 ms.author: magpint
-ms.date: 06/11/2020
+ms.date: 07/17/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Key client library for Java - Version 4.2.0-beta.4 
+# Azure Key Vault Key client library for Java - Version 4.2.0-beta.5
 
 Azure Key Vault allows you to create, manage and store keys in the Key Vault. The Azure Key Vault Keys client library supports RSA keys and elliptic curve keys, each with corresponding support in hardware security modules (HSM).
 
@@ -28,7 +28,7 @@ Maven dependency for the Azure Key Vault Key client library. Add it to your proj
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-keys</artifactId>
-    <version>4.1.4</version>
+    <version>4.1.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -269,7 +269,7 @@ The following sections provide several code snippets covering some of the most c
 - [Update an existing key asynchronously](#update-an-existing-key-asynchronously)
 - [Delete a key asynchronously](#delete-a-key-asynchronously)
 - [List keys asynchronously](#list-keys-asynchronously)
-- [Encrypt asynchronously](#encryp-asynchronously)
+- [Encrypt asynchronously](#encrypt-asynchronously)
 - [Decrypt asynchronously](#decrypt-asynchronously)
 
 > Note : You should add `System.in.read()` or `Thread.sleep()` after the function calls in the main class/thread to allow async functions/operations to execute and finish before the main application/thread exits.
@@ -426,7 +426,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/d300413042dfca9ac51d1eeedd89d8d8d5d11141/sdk/keyvault/azure-security-keyvault-keys/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
 [azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity
@@ -439,9 +439,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[keys_samples]: https://github.com/Azure/azure-sdk-for-java/tree/d300413042dfca9ac51d1eeedd89d8d8d5d11141/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/d300413042dfca9ac51d1eeedd89d8d8d5d11141/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
+[keys_samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-keys%2FREADME.png)
-
