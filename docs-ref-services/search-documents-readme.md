@@ -537,4 +537,3 @@ or contact [opencode@microsoft.com][coc_contact] with any additional questions o
 [status_codes]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fsearch%2Fazure-search-documents%2FREADME.png)
-
