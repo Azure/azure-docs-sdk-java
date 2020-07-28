@@ -3,7 +3,7 @@ title: Azure Text Analytics client library for Java
 keywords: Azure, java, SDK, API, azure-ai-textanalytics, textanalytics
 author: maggiepint
 ms.author: magpint
-ms.date: 07/07/2020
+ms.date: 07/28/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: textanalytics
 ---
 
-# Azure Text Analytics client library for Java - Version 1.0.1 
+# Azure Text Analytics client library for Java - Version 5.0.0 
 
 Text Analytics is a cloud-based service that provides advanced natural language processing over raw text, 
 and includes six main functions:
@@ -69,7 +69,7 @@ az cognitiveservices account create \
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-ai-textanalytics</artifactId>
-    <version>1.0.1</version>
+    <version>5.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
