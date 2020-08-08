@@ -3,7 +3,7 @@ title: Azure Core Experimental shared library for Java
 keywords: Azure, java, SDK, API, azure-core-experimental, 
 author: maggiepint
 ms.author: magpint
-ms.date: 07/02/2020
+ms.date: 08/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Core Experimental shared library for Java - Version 1.0.0-beta.1 
+# Azure Core Experimental shared library for Java - Version 1.0.0-beta.2 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -31,7 +31,7 @@ Azure Core Experimental contains types that are being evaluated and might eventu
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-experimental</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
