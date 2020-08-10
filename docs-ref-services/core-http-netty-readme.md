@@ -3,7 +3,7 @@ title: Azure Core Netty HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-netty, core
 author: maggiepint
 ms.author: magpint
-ms.date: 07/02/2020
+ms.date: 08/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Netty HTTP plugin library for Java - Version 1.5.3 
+# Azure Core Netty HTTP plugin library for Java - Version 1.5.4 
 
 
 Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -29,7 +29,7 @@ Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-netty</artifactId>
-    <version>1.5.3</version>
+    <version>1.5.4</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
