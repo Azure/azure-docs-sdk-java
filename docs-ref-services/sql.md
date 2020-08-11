@@ -1,6 +1,6 @@
 ---
 title: Azure SQL Database libraries for Java
-description: Connect to Azure SQL database using the JDBC driver or mangement Azure SQL database instances with the management API.
+description: Connect to Azure SQL database using the JDBC driver or management Azure SQL database instances with the management API.
 keywords: Azure, Java, SDK, API, SQL, database , JDBC
 author: rloutlaw
 ms.author: routlaw

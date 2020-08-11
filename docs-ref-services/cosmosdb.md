@@ -10,7 +10,7 @@ ms.topic: reference
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmosdb
+ms.service: cosmos-db
 ---
 
 # Azure Cosmos DB libraries for Java
