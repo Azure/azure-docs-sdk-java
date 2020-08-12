@@ -45,13 +45,10 @@ The official Service Bus client is available in [source code form on GitHub](htt
 binaries and packaged sources [are available on Maven Central](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22azure-servicebus%22).
 
 **The [sample code repository](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/) contains samples for:**
-* How to use the [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithQueueClient.java)
-* How to use the [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/BasicSendReceiveWithTopicSubscriptionClient.java)
-* How to use [MessageSender and MessageReceiver](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/src/com/microsoft/azure/servicebus/samples/SendReceiveWithMessageSenderReceiver.java) messages from Service Bus.
+* How to use the [QueueClient](https://github.com/Azure/azure-service-bus/blob/master/samples/Java/azure-servicebus/QueuesGettingStarted/src/main/java/com/microsoft/azure/servicebus/samples/queuesgettingstarted/QueuesGettingStarted.java)
+* How to use the [TopicClient and SubscriptionClient](https://github.com/Azure/azure-service-bus/tree/master/samples/Java/azure-servicebus/TopicsGettingStarted/src/main/java/com/microsoft/azure/servicebus/samples/topicsgettingstarted)
 
-Add a dependency to your Maven project's `pom.xml` file to use the library in your own project. Specify the version as desired.
-
-[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project.
+[Add a dependency](https://maven.apache.org/guides/getting-started/index.html#How_do_I_use_external_dependencies) to your Maven `pom.xml` file to use the client library in your project. Specify the version as desired.
 
 ```XML
 <dependency>
