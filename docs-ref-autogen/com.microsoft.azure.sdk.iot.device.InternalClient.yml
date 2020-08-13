@@ -11,6 +11,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.InternalClient.open()
   - com.microsoft.azure.sdk.iot.device.InternalClient.registerConnectionStatusChangeCallback(IotHubConnectionStatusChangeCallback,Object)
   - com.microsoft.azure.sdk.iot.device.InternalClient.sendEventAsync(Message,IotHubEventCallback,Object)
+  - com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync(List<Message>,IotHubEventCallback,Object)
   - com.microsoft.azure.sdk.iot.device.InternalClient.sendReportedProperties(Set<Property>)
   - com.microsoft.azure.sdk.iot.device.InternalClient.sendReportedProperties(Set<Property>,int)
   - com.microsoft.azure.sdk.iot.device.InternalClient.setOperationTimeout(long)
@@ -32,7 +33,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 24
+    startLine: 25
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public class InternalClient
@@ -52,7 +53,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 147
+    startLine: 148
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void close()
@@ -70,7 +71,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 158
+    startLine: 159
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void closeNow()
@@ -88,7 +89,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 364
+    startLine: 393
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Getter for the device client config.</p>\r\n<p></p>"
   syntax:
@@ -110,7 +111,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 353
+    startLine: 382
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public ProductInfo getProductInfo()
@@ -130,7 +131,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 135
+    startLine: 136
   package: com.microsoft.azure.sdk.iot.device
   syntax:
     content: public void open()
@@ -148,7 +149,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 323
+    startLine: 352
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Registers a callback to be executed when the connection status of the device changes. The callback will be fired with a status and a reason why the device's status changed. When the callback is fired, the provided context will be provided alongside the status and reason.</p>\r\n<p>Note that the thread used to deliver this callback should not be used to call open()/closeNow() on the client that this callback belongs to. All open()/closeNow() operations should be done on a separate thread</p>\r\n<p></p>"
   syntax:
@@ -180,7 +181,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 177
+    startLine: 178
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Asynchronously sends an event message to the IoT Hub.</p>\r\n<p></p>"
   syntax:
@@ -189,6 +190,49 @@ items:
     - id: message
       type: com.microsoft.azure.sdk.iot.device.Message
       description: <p>the message to be sent. </p>
+    - id: callback
+      type: com.microsoft.azure.sdk.iot.device.IotHubEventCallback
+      description: >-
+        <p>the callback to be invoked when a response is received. Can be<code>null 
+
+            </code> . </p>
+    - id: callbackContext
+      type: "79317049"
+      description: >-
+        <p>a context to be passed to the callback. Can be <code>null 
+
+            </code> if no callback is provided.</p>
+  exceptions:
+  - type: 3c87bd19
+    description: >-
+      <p>if the message provided is<code>null 
+
+          </code> . </p>
+  - type: 12fe80de
+    description: <p>if the client has not been opened yet or is already closed. </p>
+- uid: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync(List<Message>,IotHubEventCallback,Object)
+  id: sendEventBatchAsync(List<Message>,IotHubEventCallback,Object)
+  parent: com.microsoft.azure.sdk.iot.device.InternalClient
+  href: com.microsoft.azure.sdk.iot.device.InternalClient.yml
+  langs:
+  - java
+  name: sendEventBatchAsync(List<Message> messages, IotHubEventCallback callback, Object callbackContext)
+  nameWithType: InternalClient.sendEventBatchAsync(List<Message> messages, IotHubEventCallback callback, Object callbackContext)
+  fullName: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync(List<Message> messages, IotHubEventCallback callback, Object callbackContext)
+  overload: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync*
+  type: Method
+  source:
+    remote: *o0
+    path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
+    startLine: 203
+  package: com.microsoft.azure.sdk.iot.device
+  summary: "<p>Asynchronously sends a batch of messages to the IoT Hub HTTPS messages will be sent in a single batch and MQTT and AMQP messages will be sent individually. In case of HTTPS, This API call is an all-or-nothing single HTTPS message and the callback will be triggered only once. Maximum payload size for HTTPS is 255KB</p>\r\n<p></p>"
+  syntax:
+    content: public void sendEventBatchAsync(List<Message> messages, IotHubEventCallback callback, Object callbackContext)
+    parameters:
+    - id: messages
+      type: 5618da2dcom.microsoft.azure.sdk.iot.device.Messagea08ddfce
+      description: <p>the list of message to be sent. </p>
     - id: callback
       type: com.microsoft.azure.sdk.iot.device.IotHubEventCallback
       description: >-
@@ -223,7 +267,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 256
+    startLine: 285
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sends reported properties</p>\r\n<p></p>"
   syntax:
@@ -254,7 +298,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 285
+    startLine: 314
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sends reported properties</p>\r\n<p></p>"
   syntax:
@@ -288,7 +332,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 347
+    startLine: 376
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Set the length of time, in milliseconds, that any given operation will expire in. These operations include reconnecting upon a connection drop and sending a message. </p>"
   syntax:
@@ -314,7 +358,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 415
+    startLine: 444
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets a runtime option identified by parameter<code>optionName \r\n    </code> to<code>value \r\n    </code> .</p>\r\n<p>The options that can be set via this API are:<ul><li><p><b>SetMinimumPollingInterval</b> - this option is applicable only when the transport configured with this client is HTTP. This option specifies the interval in milliseconds between calls to the service checking for availability of new messages. The value is expected to be of type<code>long \r\n    </code> .</p></li><li><p><b>SetSendInterval</b> - this option is applicable to all protocols. This value sets the period (in milliseconds) that this SDK spawns threads to send queued messages. Even if no message is queued, this thread will be spawned.</p></li><li><p><b>SetReceiveInterval</b> - this option is applicable to all protocols in case of HTTPS protocol, this option acts the same as<code>SetMinimumPollingInterval \r\n    </code> in case of MQTT and AMQP protocols, this option specifies the interval in millisecods between spawning a thread that dequeues a message from the SDK's queue of received messages.</p></li><li><p><b>SetCertificatePath</b> - this option is applicable only when the transport configured with this client is AMQP. This option specifies the path to the certificate used to verify peer. The value is expected to be of type<code>String \r\n    </code> .</p></li><li><p><b>SetSASTokenExpiryTime</b> - this option is applicable for HTTP/ AMQP/MQTT. This option specifies the interval in seconds after which SASToken expires. If the transport is already open then setting this option will restart the transport with the updated expiry time, and will use that expiry time length for all subsequently generated sas tokens. The value is expected to be of type<code>long \r\n    </code> .</p></li><li><p><b>SetHttpsReadTimeout</b> - this option is applicable for HTTPS. This option specifies the read timeout in milliseconds per https request made by this client. By default, this value is 4 minutes. The value is expected to be of type<code>int \r\n    </code> .</p></li><li><p><b>SetHttpsConnectTimeout</b> - this option is applicable for HTTPS. This option specifies the connect timeout in milliseconds per https request made by this client. By default, this value is 0 (no connect timeout). The value is expected to be of type<code>int \r\n    </code> .</p></li></ul></p>\r\n<p></p>"
   syntax:
@@ -343,7 +387,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 852
+    startLine: 881
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Set the proxy settings for this client to connect through. If null then any previous settings will be erased </p>"
   syntax:
@@ -366,7 +410,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 335
+    startLine: 364
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Sets the given retry policy on the underlying transport <a href=\"https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-client/devdoc/requirement_docs/com/microsoft/azure/iothub/retryPolicy.md\">See more details about the default retry policy and about using custom retry policies here</a></p>"
   syntax:
@@ -389,7 +433,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 205
+    startLine: 234
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Subscribes to desired properties.</p>\r\n<p>This client will receive a callback each time a desired property is updated. That callback will either contain the full desired properties set, or only the updated desired property depending on how the desired property was changed. IoT Hub supports a PUT and a PATCH on the twin. The PUT will cause this device client to receive the full desired properties set, and the PATCH will cause this device client to only receive the updated desired properties. Similarly, the version of each desired property will be incremented from a PUT call, and only the actually updated desired property will have its version incremented from a PATCH call. The java service client library uses the PATCH call when updated desired properties, but it builds the patch such that all properties are included in the patch. As a result, the device side will receive full twin updates, not partial updates.</p>\r\n<p>See <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/replacedevicetwin\">PUT</a> and <a href=\"https://docs.microsoft.com/en-us/rest/api/iothub/service/twin/updatedevicetwin\">PATCH</a></p>\r\n<p></p>"
   syntax:
@@ -418,7 +462,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/InternalClient.java
-    startLine: 230
+    startLine: 259
   package: com.microsoft.azure.sdk.iot.device
   summary: "<p>Subscribes to desired properties</p>\r\n<p></p>"
   syntax:
@@ -465,6 +509,21 @@ references:
   name: sendEventAsync
   nameWithType: InternalClient.sendEventAsync
   fullName: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventAsync
+  package: com.microsoft.azure.sdk.iot.device
+- uid: 5618da2dcom.microsoft.azure.sdk.iot.device.Messagea08ddfce
+  spec.java:
+  - name: List<
+    fullName: List<
+  - uid: com.microsoft.azure.sdk.iot.device.Message
+    name: Message
+    fullName: com.microsoft.azure.sdk.iot.device.Message
+    href: com.microsoft.azure.sdk.iot.device.Message.yml
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync*
+  name: sendEventBatchAsync
+  nameWithType: InternalClient.sendEventBatchAsync
+  fullName: com.microsoft.azure.sdk.iot.device.InternalClient.sendEventBatchAsync
   package: com.microsoft.azure.sdk.iot.device
 - uid: cbf33bbe
   spec.java:
