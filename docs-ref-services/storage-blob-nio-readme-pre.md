@@ -1,17 +1,17 @@
 ---
-title: Azure Storage Blob NIO FileSystemProvider
-keywords: Azure, java, SDK, API, storage, azure-storage-blob-nio, 
+title: 
+keywords: Azure, java, SDK, API, azure-storage-blob-nio, 
 author: maggiepint
 ms.author: magpint
-ms.date: 07/17/2020
+ms.date: 08/13/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storage
+ms.service: 
 ---
 
-# Azure Storage Blob NIO FileSystemProvider - Version 12.0.0-beta.1
+# Azure Storage Blob NIO FileSystemProvider
 
 This package allows you to interact with Azure Blob Storage through the standard Java NIO Filesystem APIs.
 
@@ -32,7 +32,7 @@ This package allows you to interact with Azure Blob Storage through the standard
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob-nio</artifactId>
-    <version>12.0.0-beta.1</version>
+    <version>12.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -316,8 +316,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-nio_12.0.0-beta.1/sdk/storage/azure-storage-blob-nio/src
-[samples_readme]: src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob-nio/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/storage/azure-storage-blob-nio/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -340,3 +340,4 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [file_systems]: https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystems.html
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
+
