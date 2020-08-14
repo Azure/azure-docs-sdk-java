@@ -9,7 +9,7 @@ items:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.getDeviceId()
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onLinkClosedUnexpectedly(ErrorCondition)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onLinkOpened(BaseHandler)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message,int)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message,int,DeliveryState)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageReceived(IotHubTransportMessage)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onSessionLocalClose(Event)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onSessionLocalOpen(Event)
@@ -29,7 +29,7 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 20
+    startLine: 21
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public class AmqpsSessionHandler implements AmqpsLinkStateCallback
@@ -50,7 +50,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 251
+    startLine: 252
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public boolean acknowledgeReceivedMessage(IotHubTransportMessage message, DeliveryState ackType)
@@ -75,7 +75,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 80
+    startLine: 81
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void closeSession()
@@ -93,7 +93,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 85
+    startLine: 86
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public String getDeviceId()
@@ -113,7 +113,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 244
+    startLine: 245
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Executed if a link closes remotely unexpectedly</p>\r\n<p></p>"
   syntax:
@@ -137,7 +137,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 139
+    startLine: 140
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Executed when a link has finished opening</p>\r\n<p></p>"
   syntax:
@@ -147,25 +147,25 @@ items:
       type: 20bdf194
       description: <p>the handler of the link that opened successfully </p>
   overridden: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onLinkOpened(BaseHandler)
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message,int)
-  id: onMessageAcknowledged(Message,int)
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message,int,DeliveryState)
+  id: onMessageAcknowledged(Message,int,DeliveryState)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.yml
   langs:
   - java
-  name: onMessageAcknowledged(Message message, int deliveryTag)
-  nameWithType: AmqpsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag)
+  name: onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  nameWithType: AmqpsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
   overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged*
   type: Method
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 224
+    startLine: 225
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Executed when a message sent by a link in this session was acknowledged by the service</p>\r\n<p></p>"
   syntax:
-    content: public void onMessageAcknowledged(Message message, int deliveryTag)
+    content: public void onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
     parameters:
     - id: message
       type: com.microsoft.azure.sdk.iot.device.Message
@@ -173,7 +173,10 @@ items:
     - id: deliveryTag
       type: f75371fa
       description: <p>the integer that identifies which delivery this acknowledgement was tied to </p>
-  overridden: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message,int)
+    - id: deliveryState
+      type: 86018a0a
+      description: <p>state information that describes if the message was accepted by the receiver or not. </p>
+  overridden: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message,int,DeliveryState)
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageReceived(IotHubTransportMessage)
   id: onMessageReceived(IotHubTransportMessage)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler
@@ -188,7 +191,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 238
+    startLine: 239
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: "<p>Executed when a message is received by a link in this session. This message should be acknowledged later.</p>\r\n<p></p>"
   syntax:
@@ -212,7 +215,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 130
+    startLine: 131
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void onSessionLocalClose(Event e)
@@ -233,7 +236,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 106
+    startLine: 107
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void onSessionLocalOpen(Event e)
@@ -254,7 +257,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 112
+    startLine: 113
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void onSessionRemoteClose(Event e)
@@ -275,7 +278,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 91
+    startLine: 92
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void onSessionRemoteOpen(Event e)
@@ -296,7 +299,7 @@ items:
   source:
     remote: *o0
     path: device/iot-device-client/src/main/java/com/microsoft/azure/sdk/iot/device/transport/amqps/AmqpsSessionHandler.java
-    startLine: 56
+    startLine: 57
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   syntax:
     content: public void setSession(Session session)
@@ -364,6 +367,10 @@ references:
   spec.java:
   - name: int
     fullName: int
+- uid: 86018a0a
+  spec.java:
+  - name: DeliveryState
+    fullName: DeliveryState
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onMessageAcknowledged*
   name: onMessageAcknowledged
   nameWithType: AmqpsSessionHandler.onMessageAcknowledged
@@ -383,10 +390,6 @@ references:
   nameWithType: AmqpsSessionHandler.onLinkClosedUnexpectedly
   fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionHandler.onLinkClosedUnexpectedly
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
-- uid: 86018a0a
-  spec.java:
-  - name: DeliveryState
-    fullName: DeliveryState
 - uid: 4fc6e284
   spec.java:
   - name: boolean
@@ -467,16 +470,16 @@ references:
     - id: linkHandler
       type: 20bdf194
       description: <p>the handler of the link that opened successfully </p>
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message,int)
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message,int,DeliveryState)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.yml
-  name: onMessageAcknowledged(Message message, int deliveryTag)
-  nameWithType: AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag)
+  name: onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  nameWithType: AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
   type: Method
   summary: "<p>Executed when a message sent by a link in this session was acknowledged by the service</p>\r\n<p></p>"
   syntax:
-    content: public void onMessageAcknowledged(Message message, int deliveryTag)
+    content: public void onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
     parameters:
     - id: message
       type: com.microsoft.azure.sdk.iot.device.Message
@@ -484,6 +487,9 @@ references:
     - id: deliveryTag
       type: f75371fa
       description: <p>the integer that identifies which delivery this acknowledgement was tied to </p>
+    - id: deliveryState
+      type: 86018a0a
+      description: <p>state information that describes if the message was accepted by the receiver or not. </p>
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageReceived(IotHubTransportMessage)
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   href: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.yml
