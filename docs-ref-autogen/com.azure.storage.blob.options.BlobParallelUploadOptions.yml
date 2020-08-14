@@ -2,22 +2,26 @@
 items:
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions
   id: BlobParallelUploadOptions
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options
   children:
   - com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(java.io.InputStream,long)
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getDataStream()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getHeaders()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getLength()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getMetadata()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getParallelTransferOptions()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getRequestConditions()
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.getTags()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getTier()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getTimeout()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setMetadata(java.util.Map<java.lang.String,java.lang.String>)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setRequestConditions(com.azure.storage.blob.models.BlobRequestConditions)
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.setTags(java.util.Map<java.lang.String,java.lang.String>)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setTier(com.azure.storage.blob.models.AccessTier)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setTimeout(java.time.Duration)
   langs:
@@ -46,7 +50,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(java.io.InputStream,long)
   id: BlobParallelUploadOptions(java.io.InputStream,long)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -62,15 +66,57 @@ items:
     parameters:
     - id: dataStream
       type: java.io.InputStream
-      description: The data to write to the blob.
+      description: >-
+        The data to write to the blob. Unlike other upload methods, this method does not require that
+         the <code>InputStream</code> be markable.
     - id: length
       type: long
       description: >-
         The exact length of the data. It is important that this value match precisely the length of the
          data provided in the <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref>.
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  id: BlobParallelUploadOptions(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  artifact: com.azure:azure-storage-blob:12.8.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: BlobParallelUploadOptions(Flux<ByteBuffer> dataFlux)
+  nameWithType: BlobParallelUploadOptions.BlobParallelUploadOptions(Flux<ByteBuffer> dataFlux)
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(Flux<ByteBuffer> dataFlux)
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions*
+  type: Constructor
+  package: com.azure.storage.blob.options
+  summary: Constructs a new `BlobParallelUploadOptions`.
+  syntax:
+    content: public BlobParallelUploadOptions(Flux<ByteBuffer> dataFlux)
+    parameters:
+    - id: dataFlux
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: >-
+        The data to write to the blob. Unlike other upload methods, this method does not require that
+         the <code>Flux</code> be replayable. In other words, it does not have to support multiple subscribers and is not
+         expected to produce the same values across subscriptions.
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux()
+  id: getDataFlux()
+  artifact: com.azure:azure-storage-blob:12.8.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: getDataFlux()
+  nameWithType: BlobParallelUploadOptions.getDataFlux()
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux()
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux*
+  type: Method
+  package: com.azure.storage.blob.options
+  summary: Gets the data source.
+  syntax:
+    content: public Flux<ByteBuffer> getDataFlux()
+    return:
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: The data to write to the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataStream()
   id: getDataStream()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -88,7 +134,7 @@ items:
       description: The data to write to the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getHeaders()
   id: getHeaders()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -106,7 +152,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.BlobHttpHeaders" data-throw-if-not-resolved="false">BlobHttpHeaders</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getLength()
   id: getLength()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -126,7 +172,7 @@ items:
          data provided in the <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref>.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getMetadata()
   id: getMetadata()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -144,7 +190,7 @@ items:
       description: The metadata to associate with the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getParallelTransferOptions()
   id: getParallelTransferOptions()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -162,7 +208,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.ParallelTransferOptions" data-throw-if-not-resolved="false">ParallelTransferOptions</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getRequestConditions()
   id: getRequestConditions()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -178,9 +224,27 @@ items:
     return:
       type: com.azure.storage.blob.models.BlobRequestConditions
       description: <xref uid="com.azure.storage.blob.models.BlobRequestConditions" data-throw-if-not-resolved="false">BlobRequestConditions</xref>
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags()
+  id: getTags()
+  artifact: com.azure:azure-storage-blob:12.8.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: getTags()
+  nameWithType: BlobParallelUploadOptions.getTags()
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags()
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags*
+  type: Method
+  package: com.azure.storage.blob.options
+  summary: Get the tags.
+  syntax:
+    content: public Map<String,String> getTags()
+    return:
+      type: java.util.Map<java.lang.String,java.lang.String>
+      description: The tags to associate with the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTier()
   id: getTier()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -198,7 +262,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.AccessTier" data-throw-if-not-resolved="false">AccessTier</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTimeout()
   id: getTimeout()
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -216,7 +280,7 @@ items:
       description: An optional timeout value beyond which a <xref uid="" data-throw-if-not-resolved="false">RuntimeException</xref> will be raised.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
   id: setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -238,7 +302,7 @@ items:
       description: The updated options
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setMetadata(java.util.Map<java.lang.String,java.lang.String>)
   id: setMetadata(java.util.Map<java.lang.String,java.lang.String>)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -260,7 +324,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
   id: setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -282,7 +346,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setRequestConditions(com.azure.storage.blob.models.BlobRequestConditions)
   id: setRequestConditions(com.azure.storage.blob.models.BlobRequestConditions)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -302,9 +366,31 @@ items:
     return:
       type: com.azure.storage.blob.options.BlobParallelUploadOptions
       description: The updated options.
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags(java.util.Map<java.lang.String,java.lang.String>)
+  id: setTags(java.util.Map<java.lang.String,java.lang.String>)
+  artifact: com.azure:azure-storage-blob:12.8.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: setTags(Map<String,String> tags)
+  nameWithType: BlobParallelUploadOptions.setTags(Map<String,String> tags)
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags(Map<String,String> tags)
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags*
+  type: Method
+  package: com.azure.storage.blob.options
+  summary: Set the tags.
+  syntax:
+    content: public BlobParallelUploadOptions setTags(Map<String,String> tags)
+    parameters:
+    - id: tags
+      type: java.util.Map<java.lang.String,java.lang.String>
+      description: The tags to associate with the blob.
+    return:
+      type: com.azure.storage.blob.options.BlobParallelUploadOptions
+      description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTier(com.azure.storage.blob.models.AccessTier)
   id: setTier(com.azure.storage.blob.models.AccessTier)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -326,7 +412,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTimeout(java.time.Duration)
   id: setTimeout(java.time.Duration)
-  artifact: com.azure:azure-storage-blob:12.7.0
+  artifact: com.azure:azure-storage-blob:12.8.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -345,8 +431,25 @@ items:
       description: An optional timeout value beyond which a <xref uid="" data-throw-if-not-resolved="false">RuntimeException</xref> will be raised.
     return:
       type: com.azure.storage.blob.options.BlobParallelUploadOptions
-      description: The updated options.
+      description: The updated options
 references:
+- uid: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+  spec.java:
+  - uid: reactor.core.publisher.Flux
+    name: Flux
+    fullName: reactor.core.publisher.Flux
+  - name: <
+    fullName: <
+  - uid: java.nio.ByteBuffer
+    name: ByteBuffer
+    fullName: java.nio.ByteBuffer
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions*
+  name: BlobParallelUploadOptions
+  nameWithType: BlobParallelUploadOptions.BlobParallelUploadOptions
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions
+  package: com.azure.storage.blob.options
 - uid: java.io.InputStream
   spec.java:
   - uid: java.io.InputStream
@@ -357,10 +460,10 @@ references:
   - uid: long
     name: long
     fullName: long
-- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions*
-  name: BlobParallelUploadOptions
-  nameWithType: BlobParallelUploadOptions.BlobParallelUploadOptions
-  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux*
+  name: getDataFlux
+  nameWithType: BlobParallelUploadOptions.getDataFlux
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux
   package: com.azure.storage.blob.options
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataStream*
   name: getDataStream
@@ -426,6 +529,16 @@ references:
   name: setMetadata
   nameWithType: BlobParallelUploadOptions.setMetadata
   fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setMetadata
+  package: com.azure.storage.blob.options
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags*
+  name: getTags
+  nameWithType: BlobParallelUploadOptions.getTags
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags
+  package: com.azure.storage.blob.options
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags*
+  name: setTags
+  nameWithType: BlobParallelUploadOptions.setTags
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags
   package: com.azure.storage.blob.options
 - uid: com.azure.storage.blob.models.AccessTier
   name: AccessTier
@@ -514,6 +627,14 @@ references:
   name: Object.toString()
   nameWithType: Object.toString()
   fullName: java.lang.Object.toString()
+- uid: reactor.core.publisher.Flux
+  name: Flux
+  nameWithType: Flux
+  fullName: reactor.core.publisher.Flux
+- uid: java.nio.ByteBuffer
+  name: ByteBuffer
+  nameWithType: ByteBuffer
+  fullName: java.nio.ByteBuffer
 - uid: java.util.Map
   name: Map
   nameWithType: Map
