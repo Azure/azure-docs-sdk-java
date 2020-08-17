@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Blob NIO FileSystemProvider
-keywords: Azure, java, SDK, API, azure-storage-blob-nio, 
+keywords: Azure, java, SDK, API, storage, azure-storage-blob-nio, 
 author: maggiepint
 ms.author: magpint
 ms.date: 08/13/2020
