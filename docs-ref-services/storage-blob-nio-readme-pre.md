@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: storage
 ---
 
 # Azure Storage Blob NIO FileSystemProvider
