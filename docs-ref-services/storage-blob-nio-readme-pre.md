@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blob NIO FileSystemProvider
+# Azure Storage Blob NIO FileSystemProvider - Version 12.0.0-beta.2
 
 This package allows you to interact with Azure Blob Storage through the standard Java NIO Filesystem APIs.
 
