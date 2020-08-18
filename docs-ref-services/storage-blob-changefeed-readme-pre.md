@@ -3,7 +3,7 @@ title: Azure Blob Storage change feed client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-changefeed, 
 author: maggiepint
 ms.author: magpint
-ms.date: 07/07/2020
+ms.date: 08/13/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Blob Storage change feed client library for Java - Version 12.0.0-beta.1 
+# Azure Blob Storage change feed client library for Java - Version 12.0.0-beta.2 
 
 
 The purpose of the change feed is to provide transaction logs of all the changes that occur to
@@ -34,7 +34,7 @@ process change events that occur in your Blob Storage account at a low cost.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob-changefeed</artifactId>
-    <version>12.0.0-beta.1</version>
+    <version>12.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -132,17 +132,18 @@ tasks, including:
 - [Get events](#get-events)
 - [Get events between a start and end time](#get-events-start-end)
 - [Resume with a cursor](#get-events-cursor)
+- [Poll for events with a cursor](#poll-events-cursor)
 
 ### Create a `BlobChangefeedClient`
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L23-L23 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L26-L26 -->
 ```java
 client = new BlobChangefeedClientBuilder(blobServiceClient).buildClient();
 ```
 
 ### Get events
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L27-L28 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L30-L31 -->
 ```java
 client.getEvents().forEach(event ->
     System.out.printf("Topic: %s, Subject: %s%n", event.getTopic(), event.getSubject()));
@@ -150,7 +151,7 @@ client.getEvents().forEach(event ->
 
 ### Get events between a start and end time
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L32-L36 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L35-L39 -->
 ```java
 OffsetDateTime startTime = OffsetDateTime.MIN;
 OffsetDateTime endTime = OffsetDateTime.now();
@@ -161,7 +162,7 @@ client.getEvents(startTime, endTime).forEach(event ->
 
 ### Resume with a cursor
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L40-L56 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L43-L59 -->
 ```java
 BlobChangefeedPagedIterable iterable = client.getEvents();
 Iterable<BlobChangefeedPagedResponse> pages = iterable.iterableByPage();
@@ -180,6 +181,46 @@ for (BlobChangefeedPagedResponse page : pages) {
 /* Resume iterating from the pervious position with the cursor. */
 client.getEvents(cursor).forEach(event ->
     System.out.printf("Topic: %s, Subject: %s%n", event.getTopic(), event.getSubject()));
+```
+
+### Poll for events with a cursor
+
+<!-- embedme ./src/samples/java/com/azure/storage/blob/changefeed/ReadmeSamples.java#L63-L96 -->
+```java
+List<BlobChangefeedEvent> changefeedEvents = new ArrayList<BlobChangefeedEvent>();
+
+/* Get the start time.  The change feed client will round start time down to the nearest hour if you provide
+   an OffsetDateTime with minutes and seconds. */
+OffsetDateTime startTime = OffsetDateTime.now();
+
+/* Get your polling interval. */
+long pollingInterval = 1000 * 60 * 5; /* 5 minutes. */
+
+/* Get initial set of events. */
+Iterable<BlobChangefeedPagedResponse> pages = client.getEvents(startTime, null).iterableByPage();
+
+String continuationToken = null;
+
+while (true) {
+    for (BlobChangefeedPagedResponse page : pages) {
+        changefeedEvents.addAll(page.getValue());
+        /*
+         * Get the change feed cursor. The cursor is not required to get each page of events,
+         * it is intended to be saved and used to resume iterating at a later date.
+         */
+        continuationToken = page.getContinuationToken();
+    }
+
+    /* Wait before processing next batch of events. */
+    try {
+        Thread.sleep(pollingInterval);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+
+    /* Resume from last continuation token and fetch latest set of events. */
+    pages = client.getEvents(continuationToken).iterableByPage();
+}
 ```
 
 ## Troubleshooting
@@ -212,8 +253,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-changefeed/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-changefeed/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/afa00d4d5bc323c314afcda843e16ea1ba068908/sdk/storage/azure-storage-blob-changefeed/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/afa00d4d5bc323c314afcda843e16ea1ba068908/sdk/storage/azure-storage-blob-changefeed/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -225,7 +266,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-changefeed/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/afa00d4d5bc323c314afcda843e16ea1ba068908/sdk/storage/azure-storage-blob-changefeed/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
