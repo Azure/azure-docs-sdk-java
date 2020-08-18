@@ -2,10 +2,13 @@
 items:
 - uid: com.azure.search.documents.util.SearchPagedIterable
   id: SearchPagedIterable
-  artifact: com.azure:azure-search-documents:1.0.0-beta.3
+  artifact: com.azure:azure-search-documents:11.1.0-beta.1
   parent: com.azure.search.documents.util
   children:
   - com.azure.search.documents.util.SearchPagedIterable.SearchPagedIterable(com.azure.search.documents.util.SearchPagedFlux)
+  - com.azure.search.documents.util.SearchPagedIterable.getCoverage()
+  - com.azure.search.documents.util.SearchPagedIterable.getFacets()
+  - com.azure.search.documents.util.SearchPagedIterable.getTotalCount()
   langs:
   - java
   name: SearchPagedIterable
@@ -13,7 +16,7 @@ items:
   fullName: com.azure.search.documents.util.SearchPagedIterable
   type: Class
   package: com.azure.search.documents.util
-  summary: Implementation of <xref uid="" data-throw-if-not-resolved="false">ContinuablePagedIterable</xref> where the continuation token type is <xref uid="com.azure.search.documents.models.SearchRequest" data-throw-if-not-resolved="false">SearchRequest</xref>, the element type is <xref uid="com.azure.search.documents.models.SearchResult" data-throw-if-not-resolved="false">SearchResult</xref>, and the page type is <xref uid="com.azure.search.documents.util.SearchPagedResponse" data-throw-if-not-resolved="false">SearchPagedResponse</xref>.
+  summary: Implementation of <xref uid="" data-throw-if-not-resolved="false">ContinuablePagedIterable</xref> where the continuation token type is <xref uid="com.azure.search.documents.implementation.models.SearchRequest" data-throw-if-not-resolved="false">SearchRequest</xref>, the element type is <xref uid="com.azure.search.documents.models.SearchResult" data-throw-if-not-resolved="false">SearchResult</xref>, and the page type is <xref uid="com.azure.search.documents.util.SearchPagedResponse" data-throw-if-not-resolved="false">SearchPagedResponse</xref>.
   syntax:
     content: public final class SearchPagedIterable extends PagedIterableBase<SearchResult,SearchPagedResponse>
   inheritance:
@@ -46,7 +49,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.search.documents.util.SearchPagedIterable.SearchPagedIterable(com.azure.search.documents.util.SearchPagedFlux)
   id: SearchPagedIterable(com.azure.search.documents.util.SearchPagedFlux)
-  artifact: com.azure:azure-search-documents:1.0.0-beta.3
+  artifact: com.azure:azure-search-documents:11.1.0-beta.1
   parent: com.azure.search.documents.util.SearchPagedIterable
   langs:
   - java
@@ -63,6 +66,76 @@ items:
     - id: pagedFlux
       type: com.azure.search.documents.util.SearchPagedFlux
       description: The <xref uid="com.azure.search.documents.util.SearchPagedFlux" data-throw-if-not-resolved="false">SearchPagedFlux</xref> that will be consumed as an iterable.
+- uid: com.azure.search.documents.util.SearchPagedIterable.getCoverage()
+  id: getCoverage()
+  artifact: com.azure:azure-search-documents:11.1.0-beta.1
+  parent: com.azure.search.documents.util.SearchPagedIterable
+  langs:
+  - java
+  name: getCoverage()
+  nameWithType: SearchPagedIterable.getCoverage()
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getCoverage()
+  overload: com.azure.search.documents.util.SearchPagedIterable.getCoverage*
+  type: Method
+  package: com.azure.search.documents.util
+  summary: >-
+    The percentage of the index covered in the search request.
+
+
+    If `minimumCoverage` wasn't supplied in the request this will be `null`.
+  syntax:
+    content: public Double getCoverage()
+    return:
+      type: java.lang.Double
+      description: >-
+        The percentage of the index covered in the search request if <code>minimumCoverage</code> was set in the
+         request, otherwise <code>null</code>.
+- uid: com.azure.search.documents.util.SearchPagedIterable.getFacets()
+  id: getFacets()
+  artifact: com.azure:azure-search-documents:11.1.0-beta.1
+  parent: com.azure.search.documents.util.SearchPagedIterable
+  langs:
+  - java
+  name: getFacets()
+  nameWithType: SearchPagedIterable.getFacets()
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getFacets()
+  overload: com.azure.search.documents.util.SearchPagedIterable.getFacets*
+  type: Method
+  package: com.azure.search.documents.util
+  summary: >-
+    The facet query results based on the search request.
+
+
+    If `facets` weren't supplied in the request this will be `null`.
+  syntax:
+    content: public Map<String,List<FacetResult>> getFacets()
+    return:
+      type: java.util.Map<java.lang.String,java.util.List<com.azure.search.documents.models.FacetResult>>
+      description: The facet query results if <code>facets</code> were supplied in the request, otherwise <code>null</code>.
+- uid: com.azure.search.documents.util.SearchPagedIterable.getTotalCount()
+  id: getTotalCount()
+  artifact: com.azure:azure-search-documents:11.1.0-beta.1
+  parent: com.azure.search.documents.util.SearchPagedIterable
+  langs:
+  - java
+  name: getTotalCount()
+  nameWithType: SearchPagedIterable.getTotalCount()
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getTotalCount()
+  overload: com.azure.search.documents.util.SearchPagedIterable.getTotalCount*
+  type: Method
+  package: com.azure.search.documents.util
+  summary: >-
+    The approximate number of documents that matched the search and filter parameters in the request.
+
+
+    If `count` is set to `false` in the request this will be `null`.
+  syntax:
+    content: public Long getTotalCount()
+    return:
+      type: java.lang.Long
+      description: >-
+        The approximate number of documents that match the request if <code>count</code> is <code>true</code>, otherwise
+         <code>null</code>.
 references:
 - uid: com.azure.search.documents.util.SearchPagedFlux
   name: SearchPagedFlux
@@ -72,6 +145,55 @@ references:
   name: SearchPagedIterable
   nameWithType: SearchPagedIterable.SearchPagedIterable
   fullName: com.azure.search.documents.util.SearchPagedIterable.SearchPagedIterable
+  package: com.azure.search.documents.util
+- uid: java.lang.Double
+  spec.java:
+  - uid: java.lang.Double
+    name: Double
+    fullName: java.lang.Double
+- uid: com.azure.search.documents.util.SearchPagedIterable.getCoverage*
+  name: getCoverage
+  nameWithType: SearchPagedIterable.getCoverage
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getCoverage
+  package: com.azure.search.documents.util
+- uid: java.util.Map<java.lang.String,java.util.List<com.azure.search.documents.models.FacetResult>>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: com.azure.search.documents.models.FacetResult
+    name: FacetResult
+    fullName: com.azure.search.documents.models.FacetResult
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.search.documents.util.SearchPagedIterable.getFacets*
+  name: getFacets
+  nameWithType: SearchPagedIterable.getFacets
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getFacets
+  package: com.azure.search.documents.util
+- uid: java.lang.Long
+  spec.java:
+  - uid: java.lang.Long
+    name: Long
+    fullName: java.lang.Long
+- uid: com.azure.search.documents.util.SearchPagedIterable.getTotalCount*
+  name: getTotalCount
+  nameWithType: SearchPagedIterable.getTotalCount
+  fullName: com.azure.search.documents.util.SearchPagedIterable.getTotalCount
   package: com.azure.search.documents.util
 - uid: com.azure.core.http.rest.PagedIterableBase<com.azure.search.documents.models.SearchResult,com.azure.search.documents.util.SearchPagedResponse>
   name: PagedIterableBase<SearchResult,SearchPagedResponse>
@@ -165,6 +287,18 @@ references:
   name: ContinuablePagedIterable.iterableByPage()
   nameWithType: ContinuablePagedIterable.iterableByPage()
   fullName: com.azure.core.util.paging.ContinuablePagedIterable.iterableByPage()
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
+- uid: com.azure.search.documents.models.FacetResult
+  name: FacetResult
+  nameWithType: FacetResult
+  fullName: com.azure.search.documents.models.FacetResult
+- uid: java.lang.String,java.util.List
+  name: String,List
+  nameWithType: String,List
+  fullName: java.lang.String,java.util.List
 - uid: com.azure.search.documents.models.SearchResult,com.azure.search.documents.util.SearchPagedResponse
   name: SearchResult,SearchPagedResponse
   nameWithType: SearchResult,SearchPagedResponse
