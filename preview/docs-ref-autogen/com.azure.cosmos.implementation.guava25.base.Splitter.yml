@@ -1,0 +1,662 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter
+  id: Splitter
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base
+  children:
+  - com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+  - com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength(int)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.limit(int)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings()
+  - com.azure.cosmos.implementation.guava25.base.Splitter.on(char)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.on(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.on(java.lang.String)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.on(java.util.regex.Pattern)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.onPattern(java.lang.String)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.split(java.lang.CharSequence)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.splitToList(java.lang.CharSequence)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.trimResults()
+  - com.azure.cosmos.implementation.guava25.base.Splitter.trimResults(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(char)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(com.azure.cosmos.implementation.guava25.base.Splitter)
+  - com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(java.lang.String)
+  langs:
+  - java
+  name: Splitter
+  nameWithType: Splitter
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Extracts non-overlapping substrings from an input string, typically by recognizing appearances of a *separator* sequence. This separator can be specified as a single <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.on(char)" data-throw-if-not-resolved="false">character</xref>, fixed <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.on(java.lang.String)" data-throw-if-not-resolved="false">string</xref>, <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.onPattern*" data-throw-if-not-resolved="false">regular expression</xref> or <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.on(com.azure.cosmos.implementation.guava25.base.CharMatcher)" data-throw-if-not-resolved="false">CharMatcher</xref> instance. Or, instead of using a separator at all, a splitter can extract adjacent substrings of a given <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength*" data-throw-if-not-resolved="false">fixed length</xref>.
+
+
+    For example, this expression:
+
+
+    ```java
+
+    Splitter.on(',').split("foo,bar,qux")
+
+    ```
+
+
+    ... produces an `Iterable` containing `"foo"`, `"bar"` and `"qux"`, in that order.
+
+
+    By default, `Splitter`'s behavior is simplistic and unassuming. The following expression:
+
+
+    ```java
+
+    Splitter.on(',').split(" foo,,,  bar ,")
+
+    ```
+
+
+    ... yields the substrings `[" foo", "", "", " bar ", ""]`. If this is not the desired behavior, use configuration methods to obtain a *new* splitter instance with modified behavior:
+
+
+    ```java
+
+    private static final Splitter MY_SPLITTER = Splitter.on(',')
+         .trimResults()
+         .omitEmptyStrings();
+    ```
+
+
+    Now `MY_SPLITTER.split("foo,,, bar ,")` returns just `["foo", "bar"]`. Note that the order in which these configuration methods are called is never significant.
+
+
+    **Warning:** Splitter instances are immutable. Invoking a configuration method has no effect on the receiving instance; you must store and use the new splitter instance it returns instead.
+
+
+    ```java
+
+    // Do NOT do this
+     Splitter splitter = Splitter.on('/');
+     splitter.trimResults(); // does nothing!
+     return splitter.split("wrong / wrong / wrong");
+    ```
+
+
+    For separator-based splitters that do not use `omitEmptyStrings`, an input string containing `n` occurrences of the separator naturally yields an iterable of size `n + 1`. So if the separator does not occur anywhere in the input, a single substring is returned containing the entire input. Consequently, all splitters split the empty string to `[""]` (note: even fixed-length splitters).
+
+
+    Splitter instances are thread-safe immutable, and are therefore safe to store as `static final` constants.
+
+
+    The <xref uid="com.azure.cosmos.implementation.guava25.base.Joiner" data-throw-if-not-resolved="false">Joiner</xref> class provides the inverse operation to splitting, but note that a round-trip between the two should be assumed to be lossy.
+
+
+    See the Guava User Guide article on [`Splitter`][Splitter].
+
+
+
+    [Splitter]: https://github.com/google/guava/wiki/StringsExplained#splitter
+  syntax:
+    content: public final class Splitter
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter(com.azure.cosmos.implementation.guava25.base.Splitter.Strategy)
+  id: Splitter(com.azure.cosmos.implementation.guava25.base.Splitter.Strategy)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: Splitter(Splitter.Strategy strategy)
+  nameWithType: Splitter.Splitter(Splitter.Strategy strategy)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter(Splitter.Strategy strategy)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  syntax:
+    content: private Splitter(Splitter.Strategy strategy)
+    parameters:
+    - id: strategy
+      type: com.azure.cosmos.implementation.guava25.base.Splitter.Strategy
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter(com.azure.cosmos.implementation.guava25.base.Splitter.Strategy,boolean,com.azure.cosmos.implementation.guava25.base.CharMatcher,int)
+  id: Splitter(com.azure.cosmos.implementation.guava25.base.Splitter.Strategy,boolean,com.azure.cosmos.implementation.guava25.base.CharMatcher,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: Splitter(Splitter.Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer, int limit)
+  nameWithType: Splitter.Splitter(Splitter.Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer, int limit)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter(Splitter.Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer, int limit)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  syntax:
+    content: private Splitter(Splitter.Strategy strategy, boolean omitEmptyStrings, CharMatcher trimmer, int limit)
+    parameters:
+    - id: strategy
+      type: com.azure.cosmos.implementation.guava25.base.Splitter.Strategy
+    - id: omitEmptyStrings
+      type: boolean
+    - id: trimmer
+      type: com.azure.cosmos.implementation.guava25.base.CharMatcher
+    - id: limit
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength(int)
+  id: fixedLength(int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: fixedLength(int length)
+  nameWithType: Splitter.fixedLength(int length)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength(int length)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns a splitter that divides strings into pieces of the given length. For example, `Splitter.fixedLength(2).split("abcde")` returns an iterable containing `["ab", "cd", "e"]`. The last piece can be smaller than `length` but will never be empty.
+
+
+    **Exception:** for consistency with separator-based splitters, `split("")` does not yield an empty iterable, but an iterable containing `""`. This is the only case in which `Iterables.size(split(input))` does not equal `IntMath.divide(input.length(), length, CEILING)`. To avoid this behavior, use `omitEmptyStrings`.
+  syntax:
+    content: public static Splitter fixedLength(int length)
+    parameters:
+    - id: length
+      type: int
+      description: the desired length of pieces after splitting, a positive integer
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that can split into fixed sized pieces
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.limit(int)
+  id: limit(int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: limit(int limit)
+  nameWithType: Splitter.limit(int limit)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.limit(int limit)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.limit*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns a splitter that behaves equivalently to `this` splitter but stops splitting after it reaches the limit. The limit defines the maximum number of items returned by the iterator, or the maximum size of the list returned by <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.splitToList*" data-throw-if-not-resolved="false">#splitToList</xref>.
+
+
+    For example, `Splitter.on(',').limit(3).split("a,b,c,d")` returns an iterable containing `["a", "b", "c,d"]`. When omitting empty strings, the omitted strings do not count. Hence, `Splitter.on(',').limit(3).omitEmptyStrings().split("a,,,b,,,c,d")` returns an iterable containing `["a", "b", "c,d"`. When trim is requested, all entries are trimmed, including the last. Hence `Splitter.on(',').limit(3).trimResults().split(" a , b , c , d ")` results in `["a", "b", "c , d"]`.
+  syntax:
+    content: public Splitter limit(int limit)
+    parameters:
+    - id: limit
+      type: int
+      description: the maximum number of items returned
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter with the desired configuration
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings()
+  id: omitEmptyStrings()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: omitEmptyStrings()
+  nameWithType: Splitter.omitEmptyStrings()
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings()
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns a splitter that behaves equivalently to `this` splitter, but automatically omits empty strings from the results. For example, `Splitter.on(',').omitEmptyStrings().split(",a,,,b,c,,")` returns an iterable containing only `["a", "b", "c"]`.
+
+
+    If either `trimResults` option is also specified when creating a splitter, that splitter always trims results first before checking for emptiness. So, for example, `Splitter.on(':').omitEmptyStrings().trimResults().split(": : : ")` returns an empty iterable.
+
+
+    Note that it is ordinarily not possible for <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.split(java.lang.CharSequence)" data-throw-if-not-resolved="false">#split(CharSequence)</xref> to return an empty iterable, but when using this option, it can (if the input sequence consists of nothing but separators).
+  syntax:
+    content: public Splitter omitEmptyStrings()
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter with the desired configuration
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.on(char)
+  id: on(char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: on(char separator)
+  nameWithType: Splitter.on(char separator)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.on(char separator)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.on*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that uses the given single-character separator. For example, `Splitter.on(',').split("foo,,bar")` returns an iterable containing `["foo", "", "bar"]`.
+  syntax:
+    content: public static Splitter on(char separator)
+    parameters:
+    - id: separator
+      type: char
+      description: the character to recognize as a separator
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that recognizes that separator
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.on(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  id: on(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: on(CharMatcher separatorMatcher)
+  nameWithType: Splitter.on(CharMatcher separatorMatcher)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.on(CharMatcher separatorMatcher)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.on*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that considers any single character matched by the given `CharMatcher` to be a separator. For example, `Splitter.on(CharMatcher.anyOf(";,")).split("foo,;bar,quux")` returns an iterable containing `["foo", "", "bar", "quux"]`.
+  syntax:
+    content: public static Splitter on(CharMatcher separatorMatcher)
+    parameters:
+    - id: separatorMatcher
+      type: com.azure.cosmos.implementation.guava25.base.CharMatcher
+      description: >-
+        a <xref uid="com.azure.cosmos.implementation.guava25.base.CharMatcher" data-throw-if-not-resolved="false">CharMatcher</xref> that determines whether a character is a
+             separator
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that uses this matcher
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.on(java.lang.String)
+  id: on(java.lang.String)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: on(String separator)
+  nameWithType: Splitter.on(String separator)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.on(String separator)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.on*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that uses the given fixed string as a separator. For example, `Splitter.on(", ").split("foo, bar,baz")` returns an iterable containing `["foo", "bar,baz"]`.
+  syntax:
+    content: public static Splitter on(String separator)
+    parameters:
+    - id: separator
+      type: java.lang.String
+      description: the literal, nonempty string to recognize as a separator
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that recognizes that separator
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.on(java.util.regex.Pattern)
+  id: on(java.util.regex.Pattern)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: on(Pattern separatorPattern)
+  nameWithType: Splitter.on(Pattern separatorPattern)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.on(Pattern separatorPattern)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.on*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that considers any subsequence matching `pattern` to be a separator. For example, `Splitter.on(Pattern.compile("\r?\n")).split(entireFile)` splits a string into lines whether it uses DOS-style or UNIX-style line terminators.
+  syntax:
+    content: public static Splitter on(Pattern separatorPattern)
+    parameters:
+    - id: separatorPattern
+      type: java.util.regex.Pattern
+      description: >-
+        the pattern that determines whether a subsequence is a separator. This
+             pattern may not match the empty string.
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that uses this pattern
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.onPattern(java.lang.String)
+  id: onPattern(java.lang.String)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: onPattern(String separatorPattern)
+  nameWithType: Splitter.onPattern(String separatorPattern)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.onPattern(String separatorPattern)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.onPattern*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that considers any subsequence matching a given pattern (regular expression) to be a separator. For example, `Splitter.onPattern("\r?\n").split(entireFile)` splits a string into lines whether it uses DOS-style or UNIX-style line terminators. This is equivalent to `Splitter.on(Pattern.compile(pattern))`.
+  syntax:
+    content: public static Splitter onPattern(String separatorPattern)
+    parameters:
+    - id: separatorPattern
+      type: java.lang.String
+      description: >-
+        the pattern that determines whether a subsequence is a separator. This
+             pattern may not match the empty string.
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter, with default settings, that uses this pattern
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.split(java.lang.CharSequence)
+  id: split(java.lang.CharSequence)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: split(CharSequence sequence)
+  nameWithType: Splitter.split(CharSequence sequence)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.split(CharSequence sequence)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.split*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Splits `sequence` into string components and makes them available through an <xref uid="java.util.Iterator" data-throw-if-not-resolved="false">Iterator</xref>, which may be lazily evaluated. If you want an eagerly computed <xref uid="java.util.List" data-throw-if-not-resolved="false">List</xref>, use <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.splitToList(java.lang.CharSequence)" data-throw-if-not-resolved="false">#splitToList(CharSequence)</xref>.
+  syntax:
+    content: public Iterable<String> split(CharSequence sequence)
+    parameters:
+    - id: sequence
+      type: java.lang.CharSequence
+      description: the sequence of characters to split
+    return:
+      type: java.lang.Iterable<java.lang.String>
+      description: an iteration over the segments split from the parameter
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.splitToList(java.lang.CharSequence)
+  id: splitToList(java.lang.CharSequence)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: splitToList(CharSequence sequence)
+  nameWithType: Splitter.splitToList(CharSequence sequence)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.splitToList(CharSequence sequence)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.splitToList*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Splits `sequence` into string components and returns them as an immutable list. If you want an <xref uid="java.lang.Iterable" data-throw-if-not-resolved="false">Iterable</xref> which may be lazily evaluated, use <xref uid="com.azure.cosmos.implementation.guava25.base.Splitter.split(java.lang.CharSequence)" data-throw-if-not-resolved="false">#split(CharSequence)</xref>.
+  syntax:
+    content: public List<String> splitToList(CharSequence sequence)
+    parameters:
+    - id: sequence
+      type: java.lang.CharSequence
+      description: the sequence of characters to split
+    return:
+      type: java.util.List<java.lang.String>
+      description: an immutable list of the segments split from the parameter
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults()
+  id: trimResults()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: trimResults()
+  nameWithType: Splitter.trimResults()
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults()
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that behaves equivalently to `this` splitter, but automatically removes leading and trailing <xref uid="com.azure.cosmos.implementation.guava25.base.CharMatcher.whitespace*" data-throw-if-not-resolved="false">whitespace</xref> from each returned substring; equivalent to `trimResults(CharMatcher.whitespace())`. For example, `Splitter.on(',').trimResults().split(" a, b ,c ")` returns an iterable containing `["a", "b", "c"]`.
+  syntax:
+    content: public Splitter trimResults()
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter with the desired configuration
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  id: trimResults(com.azure.cosmos.implementation.guava25.base.CharMatcher)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: trimResults(CharMatcher trimmer)
+  nameWithType: Splitter.trimResults(CharMatcher trimmer)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults(CharMatcher trimmer)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a splitter that behaves equivalently to `this` splitter, but removes all leading or trailing characters matching the given `CharMatcher` from each returned substring. For example, `Splitter.on(',').trimResults(CharMatcher.is('_')).split("_a ,_b_ ,c__")` returns an iterable containing `["a ", "b_ ", "c"]`.
+  syntax:
+    content: public Splitter trimResults(CharMatcher trimmer)
+    parameters:
+    - id: trimmer
+      type: com.azure.cosmos.implementation.guava25.base.CharMatcher
+      description: >-
+        a <xref uid="com.azure.cosmos.implementation.guava25.base.CharMatcher" data-throw-if-not-resolved="false">CharMatcher</xref> that determines whether a character should be removed from
+             the beginning/end of a subsequence
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+      description: a splitter with the desired configuration
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(char)
+  id: withKeyValueSeparator(char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: withKeyValueSeparator(char separator)
+  nameWithType: Splitter.withKeyValueSeparator(char separator)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(char separator)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a `MapSplitter` which splits entries based on this splitter, and splits entries into keys and values using the specified separator.
+  syntax:
+    content: public Splitter.MapSplitter withKeyValueSeparator(char separator)
+    parameters:
+    - id: separator
+      type: char
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(com.azure.cosmos.implementation.guava25.base.Splitter)
+  id: withKeyValueSeparator(com.azure.cosmos.implementation.guava25.base.Splitter)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: withKeyValueSeparator(Splitter keyValueSplitter)
+  nameWithType: Splitter.withKeyValueSeparator(Splitter keyValueSplitter)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(Splitter keyValueSplitter)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a `MapSplitter` which splits entries based on this splitter, and splits entries into keys and values using the specified key-value splitter.
+  syntax:
+    content: public Splitter.MapSplitter withKeyValueSeparator(Splitter keyValueSplitter)
+    parameters:
+    - id: keyValueSplitter
+      type: com.azure.cosmos.implementation.guava25.base.Splitter
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(java.lang.String)
+  id: withKeyValueSeparator(java.lang.String)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Splitter
+  langs:
+  - java
+  name: withKeyValueSeparator(String separator)
+  nameWithType: Splitter.withKeyValueSeparator(String separator)
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator(String separator)
+  overload: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a `MapSplitter` which splits entries based on this splitter, and splits entries into keys and values using the specified separator.
+  syntax:
+    content: public Splitter.MapSplitter withKeyValueSeparator(String separator)
+    parameters:
+    - id: separator
+      type: java.lang.String
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+references:
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.Strategy
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Splitter.Strategy
+    name: Strategy
+    fullName: com.azure.cosmos.implementation.guava25.base.Splitter.Strategy
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter*
+  name: Splitter
+  nameWithType: Splitter.Splitter
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.Splitter
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.CharMatcher
+  name: CharMatcher
+  nameWithType: CharMatcher
+  fullName: com.azure.cosmos.implementation.guava25.base.CharMatcher
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: char
+  spec.java:
+  - uid: char
+    name: char
+    fullName: char
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.on*
+  name: on
+  nameWithType: Splitter.on
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.on
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.util.regex.Pattern
+  spec.java:
+  - uid: java.util.regex.Pattern
+    name: Pattern
+    fullName: java.util.regex.Pattern
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.onPattern*
+  name: onPattern
+  nameWithType: Splitter.onPattern
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.onPattern
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength*
+  name: fixedLength
+  nameWithType: Splitter.fixedLength
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.fixedLength
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings*
+  name: omitEmptyStrings
+  nameWithType: Splitter.omitEmptyStrings
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.omitEmptyStrings
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.limit*
+  name: limit
+  nameWithType: Splitter.limit
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.limit
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults*
+  name: trimResults
+  nameWithType: Splitter.trimResults
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.trimResults
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.CharSequence
+  spec.java:
+  - uid: java.lang.CharSequence
+    name: CharSequence
+    fullName: java.lang.CharSequence
+- uid: java.lang.Iterable<java.lang.String>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.split*
+  name: split
+  nameWithType: Splitter.split
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.split
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.util.List<java.lang.String>
+  spec.java:
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.splitToList*
+  name: splitToList
+  nameWithType: Splitter.splitToList
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.splitToList
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+  name: Splitter.MapSplitter
+  nameWithType: Splitter.MapSplitter
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.MapSplitter
+- uid: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator*
+  name: withKeyValueSeparator
+  nameWithType: Splitter.withKeyValueSeparator
+  fullName: com.azure.cosmos.implementation.guava25.base.Splitter.withKeyValueSeparator
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: java.lang.Iterable
+  name: Iterable
+  nameWithType: Iterable
+  fullName: java.lang.Iterable
+- uid: java.util.List
+  name: List
+  nameWithType: List
+  fullName: java.util.List

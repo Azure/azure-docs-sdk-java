@@ -1,0 +1,331 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  id: MapMaker
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect
+  children:
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.<K,V>makeMap()
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker()
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel(int)
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity(int)
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.toString()
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys()
+  - com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues()
+  langs:
+  - java
+  name: MapMaker
+  nameWithType: MapMaker
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    A builder of <xref uid="java.util.concurrent.ConcurrentMap" data-throw-if-not-resolved="false">ConcurrentMap</xref> instances that can have keys or values automatically wrapped in <xref uid="java.lang.ref.WeakReference" data-throw-if-not-resolved="false">weak</xref> references.
+
+
+    Usage example:
+
+
+    ```java
+
+    ConcurrentMap timers = new MapMaker()
+         .concurrencyLevel(4)
+         .weakKeys()
+         .makeMap();
+    ```
+
+
+    These features are all optional; `new MapMaker().makeMap()` returns a valid concurrent map that behaves similarly to a <xref uid="" data-throw-if-not-resolved="false">ConcurrentHashMap</xref>.
+
+
+    The returned map is implemented as a hash table with similar performance characteristics to <xref uid="" data-throw-if-not-resolved="false">ConcurrentHashMap</xref>. It supports all optional operations of the `ConcurrentMap` interface. It does not permit null keys or values.
+
+
+    **Note:** by default, the returned map uses equality comparisons (the <xref uid="java.lang.Object.equals" data-throw-if-not-resolved="false">equals</xref> method) to determine equality for keys or values. However, if <xref uid="com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys*" data-throw-if-not-resolved="false">#weakKeys</xref> was specified, the map uses identity (`==`) comparisons instead for keys. Likewise, if <xref uid="com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues*" data-throw-if-not-resolved="false">#weakValues</xref> was specified, the map uses identity comparisons for values.
+
+
+    The view collections of the returned map have *weakly consistent iterators*. This means that they are safe for concurrent use, but if other threads modify the map after the iterator is created, it is undefined which of these changes, if any, are reflected in that iterator. These iterators never throw <xref uid="" data-throw-if-not-resolved="false">ConcurrentModificationException</xref>.
+
+
+    If <xref uid="com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys*" data-throw-if-not-resolved="false">#weakKeys</xref> or <xref uid="com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues*" data-throw-if-not-resolved="false">#weakValues</xref> are requested, it is possible for a key or value present in the map to be reclaimed by the garbage collector. Entries with reclaimed keys or values may be removed from the map on each map modification or on occasional map accesses; such entries may be counted by <xref uid="java.util.Map.size" data-throw-if-not-resolved="false">Map#size</xref>, but will never be visible to read or write operations. A partially-reclaimed entry is never exposed to the user. Any <xref uid="" data-throw-if-not-resolved="false">java.util.Entry</xref> instance retrieved from the map's <xref uid="java.util.Map.entrySet" data-throw-if-not-resolved="false">entry set</xref> is a snapshot of that entry's state at the time of retrieval; such entries do, however, support <xref uid="" data-throw-if-not-resolved="false">java.util.Entry#setValue</xref>, which simply calls <xref uid="java.util.Map.put" data-throw-if-not-resolved="false">Map#put</xref> on the entry's key.
+
+
+    The maps produced by `MapMaker` are serializable, and the deserialized maps retain all the configuration properties of the original map. During deserialization, if the original map had used weak references, the entries are reconstructed as they were, but it's not unlikely they'll be quickly garbage-collected before they are ever accessed.
+
+
+    `new MapMaker().weakKeys().makeMap()` is a recommended replacement for <xref uid="" data-throw-if-not-resolved="false">java.util.WeakHashMap</xref>, but note that it compares keys using object identity whereas `WeakHashMap` uses <xref uid="java.lang.Object.equals" data-throw-if-not-resolved="false">Object#equals</xref>.
+  syntax:
+    content: public final class MapMaker
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.<K,V>makeMap()
+  id: <K,V>makeMap()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: <K,V>makeMap()
+  nameWithType: MapMaker.<K,V>makeMap()
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.<K,V>makeMap()
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.makeMap*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Builds a thread-safe map. This method does not alter the state of this `MapMaker` instance, so it can be invoked again to create multiple independent maps.
+
+
+    The bulk operations `putAll`, `equals`, and `clear` are not guaranteed to be performed atomically on the returned map. Additionally, `size` and `containsValue` are implemented as bulk read operations, and thus may fail to observe concurrent writes.
+  syntax:
+    content: public ConcurrentMap<K,V> <K,V>makeMap()
+    return:
+      type: java.util.concurrent.ConcurrentMap<K,V>
+      description: a serializable concurrent map having the requested features
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker()
+  id: MapMaker()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: MapMaker()
+  nameWithType: MapMaker.MapMaker()
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker()
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Constructs a new `MapMaker` instance with default settings, including strong keys, strong values, and no automatic eviction of any kind.
+  syntax:
+    content: public MapMaker()
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel(int)
+  id: concurrencyLevel(int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: concurrencyLevel(int concurrencyLevel)
+  nameWithType: MapMaker.concurrencyLevel(int concurrencyLevel)
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel(int concurrencyLevel)
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Guides the allowed concurrency among update operations. Used as a hint for internal sizing. The table is internally partitioned to try to permit the indicated number of concurrent updates without contention. Because assignment of entries to these partitions is not necessarily uniform, the actual concurrency observed may vary. Ideally, you should choose a value to accommodate as many threads as will ever concurrently modify the table. Using a significantly higher value than you need can waste space and time, and a significantly lower value can lead to thread contention. But overestimates and underestimates within an order of magnitude do not usually have much noticeable impact. A value of one permits only one thread to modify the map at a time, but since read operations can proceed concurrently, this still yields higher concurrency than full synchronization. Defaults to 4.
+
+
+    **Note:** Prior to Guava release 9.0, the default was 16. It is possible the default will change again in the future. If you care about this value, you should always choose it explicitly.
+  syntax:
+    content: public MapMaker concurrencyLevel(int concurrencyLevel)
+    parameters:
+    - id: concurrencyLevel
+      type: int
+    return:
+      type: com.azure.cosmos.implementation.guava25.collect.MapMaker
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity(int)
+  id: initialCapacity(int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: initialCapacity(int initialCapacity)
+  nameWithType: MapMaker.initialCapacity(int initialCapacity)
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity(int initialCapacity)
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Sets the minimum total size for the internal hash tables. For example, if the initial capacity is `60`, and the concurrency level is `8`, then eight segments are created, each having a hash table of size eight. Providing a large enough estimate at construction time avoids the need for expensive resizing operations later, but setting this value unnecessarily high wastes memory.
+  syntax:
+    content: public MapMaker initialCapacity(int initialCapacity)
+    parameters:
+    - id: initialCapacity
+      type: int
+    return:
+      type: com.azure.cosmos.implementation.guava25.collect.MapMaker
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.toString()
+  id: toString()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: toString()
+  nameWithType: MapMaker.toString()
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.toString()
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.toString*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Returns a string representation for this MapMaker instance. The exact form of the returned string is not specified.
+  syntax:
+    content: public String toString()
+    return:
+      type: java.lang.String
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys()
+  id: weakKeys()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: weakKeys()
+  nameWithType: MapMaker.weakKeys()
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys()
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Specifies that each key (not value) stored in the map should be wrapped in a <xref uid="java.lang.ref.WeakReference" data-throw-if-not-resolved="false">WeakReference</xref> (by default, strong references are used).
+
+
+    **Warning:** when this method is used, the resulting map will use identity (`==`) comparison to determine equality of keys, which is a technical violation of the <xref uid="java.util.Map" data-throw-if-not-resolved="false">Map</xref> specification, and may not be what you expect.
+  syntax:
+    content: public MapMaker weakKeys()
+    return:
+      type: com.azure.cosmos.implementation.guava25.collect.MapMaker
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues()
+  id: weakValues()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.collect.MapMaker
+  langs:
+  - java
+  name: weakValues()
+  nameWithType: MapMaker.weakValues()
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues()
+  overload: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Specifies that each value (not key) stored in the map should be wrapped in a <xref uid="java.lang.ref.WeakReference" data-throw-if-not-resolved="false">WeakReference</xref> (by default, strong references are used).
+
+
+    Weak values will be garbage collected once they are weakly reachable. This makes them a poor candidate for caching.
+
+
+    **Warning:** when this method is used, the resulting map will use identity (`==`) comparison to determine equality of values. This technically violates the specifications of the methods <xref uid="java.util.Map.containsValue" data-throw-if-not-resolved="false">containsValue</xref>, <xref uid="java.util.concurrent.ConcurrentMap.remove*" data-throw-if-not-resolved="false">remove(Object, Object)</xref> and <xref uid="ConcurrentMap#replace(Object, Object, Object)" data-throw-if-not-resolved="false">replace(K, V,
+     V)</xref>, and may not be what you expect.
+  syntax:
+    content: public MapMaker weakValues()
+    return:
+      type: com.azure.cosmos.implementation.guava25.collect.MapMaker
+references:
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker*
+  name: MapMaker
+  nameWithType: MapMaker.MapMaker
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.MapMaker
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity*
+  name: initialCapacity
+  nameWithType: MapMaker.initialCapacity
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.initialCapacity
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel*
+  name: concurrencyLevel
+  nameWithType: MapMaker.concurrencyLevel
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.concurrencyLevel
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys*
+  name: weakKeys
+  nameWithType: MapMaker.weakKeys
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakKeys
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues*
+  name: weakValues
+  nameWithType: MapMaker.weakValues
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.weakValues
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.util.concurrent.ConcurrentMap<K,V>
+  spec.java:
+  - uid: java.util.concurrent.ConcurrentMap
+    name: ConcurrentMap
+    fullName: java.util.concurrent.ConcurrentMap
+  - name: <
+    fullName: <
+  - uid: K
+    name: K
+    fullName: K
+  - name: ','
+    fullName: ','
+  - uid: V
+    name: V
+    fullName: V
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.makeMap*
+  name: <K,V>makeMap
+  nameWithType: MapMaker.<K,V>makeMap
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.<K,V>makeMap
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.cosmos.implementation.guava25.collect.MapMaker.toString*
+  name: toString
+  nameWithType: MapMaker.toString
+  fullName: com.azure.cosmos.implementation.guava25.collect.MapMaker.toString
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: K,V
+  name: K,V
+  nameWithType: K,V
+  fullName: K,V
+- uid: java.util.concurrent.ConcurrentMap
+  name: ConcurrentMap
+  nameWithType: ConcurrentMap
+  fullName: java.util.concurrent.ConcurrentMap
