@@ -1,0 +1,946 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.base.Verify
+  id: Verify
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base
+  children:
+  - com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T)
+  - com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T,java.lang.String,java.lang.Object...)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,char)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,int)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,long)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,char)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,int)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,long)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,char)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,int)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,long)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object...)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,char)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,int)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,long)
+  langs:
+  - java
+  name: Verify
+  nameWithType: Verify
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Static convenience methods that serve the same purpose as Java language [assertions][], except that they are always enabled. These methods should be used instead of Java assertions whenever there is a chance the check may fail "in real life". Example:
+
+
+    ```java
+
+    Bill bill = remoteService.getLastUnpaidBill();
+
+     // In case bug 12345 happens again we'd rather just die
+     Verify.verify(bill.status() == Status.UNPAID,
+         "Unexpected bill status: %s", bill.status());
+    ```
+
+
+    ### Comparison to alternatives ###
+
+
+    **Note:** In some cases the differences explained below can be subtle. When it's unclear which approach to use, **don't worry** too much about it; just pick something that seems reasonable and it will be fine.
+
+     *  If checking whether the *caller* has violated your method or constructor's contract (such as by passing an invalid argument), use the utilities of the <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions" data-throw-if-not-resolved="false">Preconditions</xref> class instead.
+     *  If checking an *impossible* condition (which *cannot* happen unless your own class or its *trusted* dependencies is badly broken), this is what ordinary Java assertions are for. Note that assertions are not enabled by default; they are essentially considered "compiled comments."
+     *  An explicit `if/throw` (as illustrated below) is always acceptable; we still recommend using our <xref uid="com.azure.cosmos.implementation.guava25.base.VerifyException" data-throw-if-not-resolved="false">VerifyException</xref> exception type. Throwing a plain <xref uid="java.lang.RuntimeException" data-throw-if-not-resolved="false">RuntimeException</xref> is frowned upon.
+     *  Use of <xref uid="com.azure.cosmos.implementation.guava25.base.Objects.requireNonNull*" data-throw-if-not-resolved="false">java.util.Objects#requireNonNull(Object)</xref> is generally discouraged, since <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*" data-throw-if-not-resolved="false">#verifyNotNull(Object)</xref> and <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">Preconditions#checkNotNull(Object)</xref> perform the same function with more clarity.
+
+    ### Warning about performance ###
+
+
+    Remember that parameter values for message construction must all be computed eagerly, and autoboxing and varargs array creation may happen as well, even when the verification succeeds and the message ends up unneeded. Performance-sensitive verification checks should continue to use usual form:
+
+
+    ```java
+
+    Bill bill = remoteService.getLastUnpaidBill();
+     if (bill.status() != Status.UNPAID) {
+       throw new VerifyException("Unexpected bill status: " + bill.status());
+     }
+    ```
+
+
+    ### Only `%s` is supported ###
+
+
+    As with <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions" data-throw-if-not-resolved="false">Preconditions</xref> error message template strings, only the `"%s"` specifier is supported, not the full range of <xref uid="" data-throw-if-not-resolved="false">java.util.Formatter</xref> specifiers. However, note that if the number of arguments does not match the number of occurrences of `"%s"` in the format string, `Verify` will still behave as expected, and will still include all argument values in the error message; the message will simply not be formatted exactly as intended.
+
+
+    ### More information ###
+
+
+    See [Conditional failures explained][] in the Guava User Guide for advice on when this class should be used.
+
+
+
+    [assertions]: http://docs.oracle.com/javase/7/docs/technotes/guides/language/assert.html
+
+    [Conditional failures explained]: https://github.com/google/guava/wiki/ConditionalFailuresExplained
+  syntax:
+    content: public final class Verify
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T)
+  id: <T>verifyNotNull(T)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: <T>verifyNotNull(T reference)
+  nameWithType: Verify.<T>verifyNotNull(T reference)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T reference)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `reference` is non-null, throwing a `VerifyException` with a default message otherwise.
+  syntax:
+    content: public static T <T>verifyNotNull(T reference)
+    parameters:
+    - id: reference
+      type: T
+    return:
+      type: T
+      description: <code>reference</code>, guaranteed to be non-null, for convenience
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T,java.lang.String,java.lang.Object...)
+  id: <T>verifyNotNull(T,java.lang.String,java.lang.Object...)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: <T>verifyNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  nameWithType: Verify.<T>verifyNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `reference` is non-null, throwing a `VerifyException` with a custom message otherwise.
+  syntax:
+    content: public static T <T>verifyNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+    parameters:
+    - id: reference
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+      description: >-
+        a template for the exception message should the check fail. The
+             message is formed by replacing each <code>%s</code> placeholder in the template with an
+             argument. These are matched by position - the first <code>%s</code> gets <code>
+             errorMessageArgs[0]</code>, etc. Unmatched arguments will be appended to the formatted message in
+             square braces. Unmatched placeholders will be left as-is.
+    - id: errorMessageArgs
+      type: java.lang.Object[]
+      description: >-
+        the arguments to be substituted into the message template. Arguments
+             are converted to strings using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>.
+    return:
+      type: T
+      description: <code>reference</code>, guaranteed to be non-null, for convenience
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.Verify()
+  id: Verify()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: Verify()
+  nameWithType: Verify.Verify()
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.Verify()
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.Verify*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  syntax:
+    content: private Verify()
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean)
+  id: verify(boolean)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression)
+  nameWithType: Verify.verify(boolean expression)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `expression` is `true`, throwing a `VerifyException` with no message otherwise.
+  syntax:
+    content: public static void verify(boolean expression)
+    parameters:
+    - id: expression
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char)
+  id: verify(boolean,java.lang.String,char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, char p1)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, char p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, char p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, char p1)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,char)
+  id: verify(boolean,java.lang.String,char,char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, char p1, char p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, char p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, char p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, char p1, char p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,int)
+  id: verify(boolean,java.lang.String,char,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, char p1, int p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, char p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, char p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, char p1, int p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,java.lang.Object)
+  id: verify(boolean,java.lang.String,char,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, char p1, Object p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, char p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, char p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, char p1, Object p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,char,long)
+  id: verify(boolean,java.lang.String,char,long)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, char p1, long p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, char p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, char p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, char p1, long p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int)
+  id: verify(boolean,java.lang.String,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, int p1)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, int p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, int p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, int p1)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,char)
+  id: verify(boolean,java.lang.String,int,char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, int p1, char p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, int p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, int p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, int p1, char p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,int)
+  id: verify(boolean,java.lang.String,int,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, int p1, int p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, int p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, int p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, int p1, int p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,java.lang.Object)
+  id: verify(boolean,java.lang.String,int,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, int p1, Object p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, int p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, int p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, int p1, Object p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,int,long)
+  id: verify(boolean,java.lang.String,int,long)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, int p1, long p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, int p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, int p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, int p1, long p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object)
+  id: verify(boolean,java.lang.String,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,char)
+  id: verify(boolean,java.lang.String,java.lang.Object,char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, char p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, char p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,int)
+  id: verify(boolean,java.lang.String,java.lang.Object,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, int p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, int p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  id: verify(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, Object p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, Object p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: verify(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+    - id: p4
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object,long)
+  id: verify(boolean,java.lang.String,java.lang.Object,long)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object p1, long p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object p1, long p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,java.lang.Object...)
+  id: verify(boolean,java.lang.String,java.lang.Object...)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+    - id: errorMessageTemplate
+      type: java.lang.String
+      description: >-
+        a template for the exception message should the check fail. The
+             message is formed by replacing each <code>%s</code> placeholder in the template with an
+             argument. These are matched by position - the first <code>%s</code> gets <code>
+             errorMessageArgs[0]</code>, etc. Unmatched arguments will be appended to the formatted message in
+             square braces. Unmatched placeholders will be left as-is.
+    - id: errorMessageArgs
+      type: java.lang.Object[]
+      description: >-
+        the arguments to be substituted into the message template. Arguments
+             are converted to strings using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>.
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long)
+  id: verify(boolean,java.lang.String,long)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, long p1)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, long p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, long p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, long p1)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,char)
+  id: verify(boolean,java.lang.String,long,char)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, long p1, char p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, long p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, long p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, long p1, char p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,int)
+  id: verify(boolean,java.lang.String,long,int)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, long p1, int p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, long p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, long p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, long p1, int p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,java.lang.Object)
+  id: verify(boolean,java.lang.String,long,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, long p1, Object p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, long p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, long p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, long p1, Object p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean,java.lang.String,long,long)
+  id: verify(boolean,java.lang.String,long,long)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.base.Verify
+  langs:
+  - java
+  name: verify(boolean expression, String errorMessageTemplate, long p1, long p2)
+  nameWithType: Verify.verify(boolean expression, String errorMessageTemplate, long p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify(boolean expression, String errorMessageTemplate, long p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that `expression` is `true`, throwing a `VerifyException` with a custom message otherwise.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verify*" data-throw-if-not-resolved="false">#verify(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void verify(boolean expression, String errorMessageTemplate, long p1, long p2)
+    parameters:
+    - id: expression
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: long
+references:
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.Verify*
+  name: Verify
+  nameWithType: Verify.Verify
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.Verify
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verify*
+  name: verify
+  nameWithType: Verify.verify
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.verify
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.lang.Object[]
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '[]'
+    fullName: '[]'
+- uid: char
+  spec.java:
+  - uid: char
+    name: char
+    fullName: char
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: long
+  spec.java:
+  - uid: long
+    name: long
+    fullName: long
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: T
+  spec.java:
+  - uid: T
+    name: T
+    fullName: T
+- uid: com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*
+  name: <T>verifyNotNull
+  nameWithType: Verify.<T>verifyNotNull
+  fullName: com.azure.cosmos.implementation.guava25.base.Verify.<T>verifyNotNull
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()

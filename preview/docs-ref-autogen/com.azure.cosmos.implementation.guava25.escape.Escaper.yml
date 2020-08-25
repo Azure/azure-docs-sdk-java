@@ -1,0 +1,204 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper
+  id: Escaper
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.escape
+  children:
+  - com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper()
+  - com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+  - com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)
+  langs:
+  - java
+  name: Escaper
+  nameWithType: Escaper
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    An object that converts literal text into a format safe for inclusion in a particular context (such as an XML document). Typically (but not always), the inverse process of "unescaping" the text is performed automatically by the relevant parser.
+
+
+    For example, an XML escaper would convert the literal string `"Foo"` into `"Foo<Bar>"` to prevent `""` from being confused with an XML tag. When the resulting XML document is parsed, the parser API will return this text as the original literal string `"Foo"`.
+
+
+    An `Escaper` instance is required to be stateless, and safe when used concurrently by multiple threads.
+
+
+    Because, in general, escaping operates on the code points of a string and not on its individual `char` values, it is not safe to assume that `escape(s)` is equivalent to `escape(s.substring(0, n)) + escape(s.substring(n))` for arbitrary `n`. This is because of the possibility of splitting a surrogate pair. The only case in which it is safe to escape strings and concatenate the results is if you can rule out this possibility, either by splitting an existing long string into short strings adaptively around <xref uid="java.lang.Character.isHighSurrogate" data-throw-if-not-resolved="false">surrogate</xref> <xref uid="java.lang.Character.isLowSurrogate" data-throw-if-not-resolved="false">pairs</xref>, or by starting with short strings already known to be free of unpaired surrogates.
+
+
+    The two primary implementations of this interface are <xref uid="com.azure.cosmos.implementation.guava25.escape.CharEscaper" data-throw-if-not-resolved="false">CharEscaper</xref> and <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper" data-throw-if-not-resolved="false">UnicodeEscaper</xref>. They are heavily optimized for performance and greatly simplify the task of implementing new escapers. It is strongly recommended that when implementing a new escaper you extend one of these classes. If you find that you are unable to achieve the desired behavior using either of these classes, please contact the Java libraries team for advice.
+
+
+    Popular escapers are defined as constants in classes like <xref uid="" data-throw-if-not-resolved="false">com.azure.cosmos.html.HtmlEscapers</xref> and <xref uid="" data-throw-if-not-resolved="false">com.azure.cosmos.xml.XmlEscapers</xref>. To create your own escapers, use <xref uid="com.azure.cosmos.implementation.guava25.escape.CharEscaperBuilder" data-throw-if-not-resolved="false">CharEscaperBuilder</xref>, or extend `CharEscaper` or `UnicodeEscaper`.
+  syntax:
+    content: public abstract class Escaper
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper()
+  id: Escaper()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.escape.Escaper
+  langs:
+  - java
+  name: Escaper()
+  nameWithType: Escaper.Escaper()
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper()
+  overload: com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: Constructor for use by subclasses.
+  syntax:
+    content: protected Escaper()
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+  id: asFunction()
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.escape.Escaper
+  langs:
+  - java
+  name: asFunction()
+  nameWithType: Escaper.asFunction()
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction()
+  overload: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: Returns a <xref uid="com.azure.cosmos.implementation.guava25.base.Function" data-throw-if-not-resolved="false">Function</xref> that invokes <xref uid="com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)" data-throw-if-not-resolved="false">#escape(String)</xref> on this escaper.
+  syntax:
+    content: public final Function<String,String> asFunction()
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Function<java.lang.String,java.lang.String>
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.escape(java.lang.String)
+  id: escape(java.lang.String)
+  artifact: com.azure:azure-cosmos:4.3.2-beta.2
+  parent: com.azure.cosmos.implementation.guava25.escape.Escaper
+  langs:
+  - java
+  name: escape(String string)
+  nameWithType: Escaper.escape(String string)
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.escape(String string)
+  overload: com.azure.cosmos.implementation.guava25.escape.Escaper.escape*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.escape
+  summary: >-
+    Returns the escaped form of a given literal string.
+
+
+    Note that this method may treat input characters differently depending on the specific escaper implementation.
+
+     *  <xref uid="com.azure.cosmos.implementation.guava25.escape.UnicodeEscaper" data-throw-if-not-resolved="false">UnicodeEscaper</xref> handles [UTF-16][] correctly, including surrogate character pairs. If the input is badly formed the escaper should throw <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref>.
+     *  <xref uid="com.azure.cosmos.implementation.guava25.escape.CharEscaper" data-throw-if-not-resolved="false">CharEscaper</xref> handles Java characters independently and does not verify the input for well formed characters. A `CharEscaper` should not be used in situations where input is not guaranteed to be restricted to the Basic Multilingual Plane (BMP).
+
+
+    [UTF-16]: http://en.wikipedia.org/wiki/UTF-16
+  syntax:
+    content: public abstract String escape(String string)
+    parameters:
+    - id: string
+      type: java.lang.String
+      description: the literal string to be escaped
+    return:
+      type: java.lang.String
+      description: the escaped form of <code>string</code>
+references:
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper*
+  name: Escaper
+  nameWithType: Escaper.Escaper
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.Escaper
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.escape*
+  name: escape
+  nameWithType: Escaper.escape
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.escape
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: com.azure.cosmos.implementation.guava25.base.Function<java.lang.String,java.lang.String>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Function
+    name: Function
+    fullName: com.azure.cosmos.implementation.guava25.base.Function
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction*
+  name: asFunction
+  nameWithType: Escaper.asFunction
+  fullName: com.azure.cosmos.implementation.guava25.escape.Escaper.asFunction
+  package: com.azure.cosmos.implementation.guava25.escape
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: com.azure.cosmos.implementation.guava25.base.Function
+  name: Function
+  nameWithType: Function
+  fullName: com.azure.cosmos.implementation.guava25.base.Function
+- uid: java.lang.String,java.lang.String
+  name: String,String
+  nameWithType: String,String
+  fullName: java.lang.String,java.lang.String
