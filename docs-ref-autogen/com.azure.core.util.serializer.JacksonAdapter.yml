@@ -2,14 +2,16 @@
 items:
 - uid: com.azure.core.util.serializer.JacksonAdapter
   id: JacksonAdapter
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer
   children:
   - com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
+  - com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
   - com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
   - com.azure.core.util.serializer.JacksonAdapter.JacksonAdapter()
   - com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()
   - com.azure.core.util.serializer.JacksonAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
+  - com.azure.core.util.serializer.JacksonAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
   - com.azure.core.util.serializer.JacksonAdapter.serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
   - com.azure.core.util.serializer.JacksonAdapter.serializeRaw(java.lang.Object)
   - com.azure.core.util.serializer.JacksonAdapter.serializer()
@@ -42,7 +44,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
   id: <T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -52,6 +54,16 @@ items:
   overload: com.azure.core.util.serializer.JacksonAdapter.deserialize*
   type: Method
   package: com.azure.core.util.serializer
+  summary: >-
+    Deserialize the provided headers returned from a REST API to an entity instance declared as the model to hold 'Matching' headers. 'Matching' headers are the REST API returned headers those with:
+
+
+    1.  header names same as name of a properties in the entity.
+
+    2.  header names start with value of <xref uid="com.azure.core.annotation.HeaderCollection" data-throw-if-not-resolved="false">com.azure.core.annotation.HeaderCollection</xref> annotation applied to the properties in the entity.
+
+
+    When needed, the 'header entity' types must be declared as first generic argument of <xref uid="com.azure.core.http.rest.ResponseBase" data-throw-if-not-resolved="false">com.azure.core.http.rest.ResponseBase</xref> returned by java proxy method corresponding to the REST API. e.g. `Mono> getMetadata(args);` `class FooMetadataHeaders { String name; {@literal @}HeaderCollection("header-collection-prefix-") Map headerCollection; }` in the case of above example, this method produces an instance of FooMetadataHeaders from provided `headers`.
   syntax:
     content: public T <T>deserialize(HttpHeaders headers, Type deserializedHeadersType)
     parameters:
@@ -63,9 +75,35 @@ items:
       type: T
   exceptions:
   - type: java.io.IOException
+- uid: com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  id: <T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  artifact: com.azure:azure-core:1.8.0
+  parent: com.azure.core.util.serializer.JacksonAdapter
+  langs:
+  - java
+  name: <T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+  nameWithType: JacksonAdapter.<T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+  fullName: com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+  overload: com.azure.core.util.serializer.JacksonAdapter.deserialize*
+  type: Method
+  package: com.azure.core.util.serializer
+  summary: Deserializes a byte\[\] into a `T` object.
+  syntax:
+    content: public T <T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+    - id: type
+      type: java.lang.reflect.Type
+    - id: encoding
+      type: com.azure.core.util.serializer.SerializerEncoding
+    return:
+      type: T
+  exceptions:
+  - type: java.io.IOException
 - uid: com.azure.core.util.serializer.JacksonAdapter.<T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
   id: <T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -75,6 +113,7 @@ items:
   overload: com.azure.core.util.serializer.JacksonAdapter.deserialize*
   type: Method
   package: com.azure.core.util.serializer
+  summary: Deserializes a string into a `T` object.
   syntax:
     content: public T <T>deserialize(String value, Type type, SerializerEncoding encoding)
     parameters:
@@ -90,7 +129,7 @@ items:
   - type: java.io.IOException
 - uid: com.azure.core.util.serializer.JacksonAdapter.JacksonAdapter()
   id: JacksonAdapter()
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -105,7 +144,7 @@ items:
     content: public JacksonAdapter()
 - uid: com.azure.core.util.serializer.JacksonAdapter.createDefaultSerializerAdapter()
   id: createDefaultSerializerAdapter()
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -123,7 +162,7 @@ items:
       description: the default serializer
 - uid: com.azure.core.util.serializer.JacksonAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
   id: serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -145,9 +184,33 @@ items:
       type: java.lang.String
   exceptions:
   - type: java.io.IOException
+- uid: com.azure.core.util.serializer.JacksonAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
+  id: serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
+  artifact: com.azure:azure-core:1.8.0
+  parent: com.azure.core.util.serializer.JacksonAdapter
+  langs:
+  - java
+  name: serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  nameWithType: JacksonAdapter.serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  fullName: com.azure.core.util.serializer.JacksonAdapter.serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  overload: com.azure.core.util.serializer.JacksonAdapter.serialize*
+  type: Method
+  package: com.azure.core.util.serializer
+  summary: Serializes an object and writes its output into an <xref uid="java.io.OutputStream" data-throw-if-not-resolved="false">OutputStream</xref>.
+  syntax:
+    content: public void serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+    parameters:
+    - id: object
+      type: java.lang.Object
+    - id: encoding
+      type: com.azure.core.util.serializer.SerializerEncoding
+    - id: outputStream
+      type: java.io.OutputStream
+  exceptions:
+  - type: java.io.IOException
 - uid: com.azure.core.util.serializer.JacksonAdapter.serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
   id: serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -169,7 +232,7 @@ items:
       type: java.lang.String
 - uid: com.azure.core.util.serializer.JacksonAdapter.serializeRaw(java.lang.Object)
   id: serializeRaw(java.lang.Object)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -189,7 +252,7 @@ items:
       type: java.lang.String
 - uid: com.azure.core.util.serializer.JacksonAdapter.serializer()
   id: serializer()
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -206,7 +269,7 @@ items:
       description: the original serializer type
 - uid: com.azure.core.util.serializer.JacksonAdapter.simpleMapper()
   id: simpleMapper()
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.JacksonAdapter
   langs:
   - java
@@ -276,6 +339,11 @@ references:
   nameWithType: JacksonAdapter.serialize
   fullName: com.azure.core.util.serializer.JacksonAdapter.serialize
   package: com.azure.core.util.serializer
+- uid: java.io.OutputStream
+  spec.java:
+  - uid: java.io.OutputStream
+    name: OutputStream
+    fullName: java.io.OutputStream
 - uid: com.azure.core.util.serializer.JacksonAdapter.serializeRaw*
   name: serializeRaw
   nameWithType: JacksonAdapter.serializeRaw
@@ -317,6 +385,11 @@ references:
   nameWithType: JacksonAdapter.<T>deserialize
   fullName: com.azure.core.util.serializer.JacksonAdapter.<T>deserialize
   package: com.azure.core.util.serializer
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
 - uid: com.azure.core.http.HttpHeaders
   name: HttpHeaders
   nameWithType: HttpHeaders
