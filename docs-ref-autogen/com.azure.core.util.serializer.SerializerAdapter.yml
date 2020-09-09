@@ -2,12 +2,14 @@
 items:
 - uid: com.azure.core.util.serializer.SerializerAdapter
   id: SerializerAdapter
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer
   children:
-  - com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
-  - com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  - com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
+  - com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  - com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
   - com.azure.core.util.serializer.SerializerAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
+  - com.azure.core.util.serializer.SerializerAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
   - com.azure.core.util.serializer.SerializerAdapter.serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
   - com.azure.core.util.serializer.SerializerAdapter.serializeRaw(java.lang.Object)
   langs:
@@ -20,15 +22,15 @@ items:
   summary: An interface defining the behaviors of a serializer.
   syntax:
     content: public interface SerializerAdapter
-- uid: com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
-  id: <U>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
-  artifact: com.azure:azure-core:1.7.0
+- uid: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
+  id: <T>deserialize(com.azure.core.http.HttpHeaders,java.lang.reflect.Type)
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.SerializerAdapter
   langs:
   - java
-  name: <U>deserialize(HttpHeaders headers, Type type)
-  nameWithType: SerializerAdapter.<U>deserialize(HttpHeaders headers, Type type)
-  fullName: com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(HttpHeaders headers, Type type)
+  name: <T>deserialize(HttpHeaders headers, Type type)
+  nameWithType: SerializerAdapter.<T>deserialize(HttpHeaders headers, Type type)
+  fullName: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(HttpHeaders headers, Type type)
   overload: com.azure.core.util.serializer.SerializerAdapter.deserialize*
   type: Method
   package: com.azure.core.util.serializer
@@ -43,7 +45,7 @@ items:
 
     When needed, the 'header entity' types must be declared as first generic argument of <xref uid="com.azure.core.http.rest.ResponseBase" data-throw-if-not-resolved="false">com.azure.core.http.rest.ResponseBase</xref> returned by java proxy method corresponding to the REST API. e.g. `Mono> getMetadata(args);` `class FooMetadataHeaders { String name; {@literal @}HeaderCollection("header-collection-prefix-") Map headerCollection; }` in the case of above example, this method produces an instance of FooMetadataHeaders from provided `headers`.
   syntax:
-    content: public abstract U <U>deserialize(HttpHeaders headers, Type type)
+    content: public abstract T <T>deserialize(HttpHeaders headers, Type type)
     parameters:
     - id: headers
       type: com.azure.core.http.HttpHeaders
@@ -52,28 +54,59 @@ items:
       type: java.lang.reflect.Type
       description: the type to deserialize
     return:
-      type: U
+      type: T
       description: >-
-        instance of header entity type created based on provided <code>headers</code>, if header entity model does
-             not exists then return null
+        instance of header entity type created based on provided <code>headers</code>, if header entity model does not
+         not exists then return null
   exceptions:
   - type: java.io.IOException
     description: If an I/O error occurs
-- uid: com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
-  id: <U>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
-  artifact: com.azure:azure-core:1.7.0
+- uid: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  id: <T>deserialize(java.io.InputStream,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.SerializerAdapter
   langs:
   - java
-  name: <U>deserialize(String value, Type type, SerializerEncoding encoding)
-  nameWithType: SerializerAdapter.<U>deserialize(String value, Type type, SerializerEncoding encoding)
-  fullName: com.azure.core.util.serializer.SerializerAdapter.<U>deserialize(String value, Type type, SerializerEncoding encoding)
+  name: <T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+  nameWithType: SerializerAdapter.<T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+  fullName: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
   overload: com.azure.core.util.serializer.SerializerAdapter.deserialize*
   type: Method
   package: com.azure.core.util.serializer
-  summary: Deserializes a string into a `U` object.
+  summary: Deserializes a byte\[\] into a `T` object.
   syntax:
-    content: public abstract U <U>deserialize(String value, Type type, SerializerEncoding encoding)
+    content: public default T <T>deserialize(InputStream inputStream, Type type, SerializerEncoding encoding)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+      description: The <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> containing the serialized object data to deserialize.
+    - id: type
+      type: java.lang.reflect.Type
+      description: The type to deserialize.
+    - id: encoding
+      type: com.azure.core.util.serializer.SerializerEncoding
+      description: The encoding used to serialize value.
+    return:
+      type: T
+      description: The deserialized object, or null if it cannot be deserialized.
+  exceptions:
+  - type: java.io.IOException
+    description: exception from deserialization
+- uid: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  id: <T>deserialize(java.lang.String,java.lang.reflect.Type,com.azure.core.util.serializer.SerializerEncoding)
+  artifact: com.azure:azure-core:1.8.0
+  parent: com.azure.core.util.serializer.SerializerAdapter
+  langs:
+  - java
+  name: <T>deserialize(String value, Type type, SerializerEncoding encoding)
+  nameWithType: SerializerAdapter.<T>deserialize(String value, Type type, SerializerEncoding encoding)
+  fullName: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize(String value, Type type, SerializerEncoding encoding)
+  overload: com.azure.core.util.serializer.SerializerAdapter.deserialize*
+  type: Method
+  package: com.azure.core.util.serializer
+  summary: Deserializes a string into a `T` object.
+  syntax:
+    content: public abstract T <T>deserialize(String value, Type type, SerializerEncoding encoding)
     parameters:
     - id: value
       type: java.lang.String
@@ -85,14 +118,14 @@ items:
       type: com.azure.core.util.serializer.SerializerEncoding
       description: the encoding used in the serialized value
     return:
-      type: U
+      type: T
       description: the deserialized object
   exceptions:
   - type: java.io.IOException
     description: exception from deserialization
 - uid: com.azure.core.util.serializer.SerializerAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
   id: serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.SerializerAdapter
   langs:
   - java
@@ -118,9 +151,37 @@ items:
   exceptions:
   - type: java.io.IOException
     description: exception from serialization
+- uid: com.azure.core.util.serializer.SerializerAdapter.serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
+  id: serialize(java.lang.Object,com.azure.core.util.serializer.SerializerEncoding,java.io.OutputStream)
+  artifact: com.azure:azure-core:1.8.0
+  parent: com.azure.core.util.serializer.SerializerAdapter
+  langs:
+  - java
+  name: serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  nameWithType: SerializerAdapter.serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  fullName: com.azure.core.util.serializer.SerializerAdapter.serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+  overload: com.azure.core.util.serializer.SerializerAdapter.serialize*
+  type: Method
+  package: com.azure.core.util.serializer
+  summary: Serializes an object and writes its output into an <xref uid="java.io.OutputStream" data-throw-if-not-resolved="false">OutputStream</xref>.
+  syntax:
+    content: public default void serialize(Object object, SerializerEncoding encoding, OutputStream outputStream)
+    parameters:
+    - id: object
+      type: java.lang.Object
+      description: The object to serialize.
+    - id: encoding
+      type: com.azure.core.util.serializer.SerializerEncoding
+      description: The encoding to use for serialization.
+    - id: outputStream
+      type: java.io.OutputStream
+      description: The <xref uid="java.io.OutputStream" data-throw-if-not-resolved="false">OutputStream</xref> where the serialized object will be written.
+  exceptions:
+  - type: java.io.IOException
+    description: exception from serialization
 - uid: com.azure.core.util.serializer.SerializerAdapter.serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
   id: serializeList(java.util.List<?>,com.azure.core.util.serializer.CollectionFormat)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.SerializerAdapter
   langs:
   - java
@@ -145,7 +206,7 @@ items:
       description: the serialized string
 - uid: com.azure.core.util.serializer.SerializerAdapter.serializeRaw(java.lang.Object)
   id: serializeRaw(java.lang.Object)
-  artifact: com.azure:azure-core:1.7.0
+  artifact: com.azure:azure-core:1.8.0
   parent: com.azure.core.util.serializer.SerializerAdapter
   langs:
   - java
@@ -190,6 +251,11 @@ references:
   nameWithType: SerializerAdapter.serialize
   fullName: com.azure.core.util.serializer.SerializerAdapter.serialize
   package: com.azure.core.util.serializer
+- uid: java.io.OutputStream
+  spec.java:
+  - uid: java.io.OutputStream
+    name: OutputStream
+    fullName: java.io.OutputStream
 - uid: com.azure.core.util.serializer.SerializerAdapter.serializeRaw*
   name: serializeRaw
   nameWithType: SerializerAdapter.serializeRaw
@@ -221,16 +287,21 @@ references:
   - uid: java.lang.reflect.Type
     name: Type
     fullName: java.lang.reflect.Type
-- uid: U
+- uid: T
   spec.java:
-  - uid: U
-    name: U
-    fullName: U
+  - uid: T
+    name: T
+    fullName: T
 - uid: com.azure.core.util.serializer.SerializerAdapter.deserialize*
-  name: <U>deserialize
-  nameWithType: SerializerAdapter.<U>deserialize
-  fullName: com.azure.core.util.serializer.SerializerAdapter.<U>deserialize
+  name: <T>deserialize
+  nameWithType: SerializerAdapter.<T>deserialize
+  fullName: com.azure.core.util.serializer.SerializerAdapter.<T>deserialize
   package: com.azure.core.util.serializer
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
 - uid: com.azure.core.http.HttpHeaders
   name: HttpHeaders
   nameWithType: HttpHeaders
