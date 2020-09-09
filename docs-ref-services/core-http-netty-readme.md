@@ -3,7 +3,7 @@ title: Azure Core Netty HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-netty, core
 author: maggiepint
 ms.author: magpint
-ms.date: 08/08/2020
+ms.date: 09/04/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Netty HTTP plugin library for Java - Version 1.5.4 
+# Azure Core Netty HTTP plugin library for Java - Version 1.6.0 
 
 
 Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -29,7 +29,7 @@ Azure Core Netty HTTP client is a plugin for the `azure-core` HTTP client API.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-netty</artifactId>
-    <version>1.5.4</version>
+    <version>1.6.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -67,7 +67,7 @@ HttpClient client = new NettyAsyncHttpClientBuilder()
 
 ### Enabling Logging
 
-Azure SDKs for Java offer a consistent logging story to help aid in troubleshooting application errors and expedite
+Azure SDKs for Java provide a consistent logging story to help aid in troubleshooting application errors and expedite
 their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help
 locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
 
@@ -75,8 +75,8 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft
-Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+If you would like to become an active contributor to this project please follow the instructions provided in 
+[Microsoft Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
