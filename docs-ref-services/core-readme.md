@@ -3,7 +3,7 @@ title: Azure Core shared library for Java
 keywords: Azure, java, SDK, API, azure-core, core
 author: maggiepint
 ms.author: magpint
-ms.date: 09/04/2020
+ms.date: 09/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core shared library for Java - Version 1.8.0 
+# Azure Core shared library for Java - Version 1.8.1 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -41,7 +41,7 @@ tool when you depend on client libraries using it.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core</artifactId>
-  <version>1.8.0</version>
+  <version>1.8.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
