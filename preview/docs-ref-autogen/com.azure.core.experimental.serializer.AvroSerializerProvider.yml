@@ -2,10 +2,12 @@
 items:
 - uid: com.azure.core.experimental.serializer.AvroSerializerProvider
   id: AvroSerializerProvider
-  artifact: com.azure:azure-core-experimental:1.0.0-beta.2
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.3
   parent: com.azure.core.experimental.serializer
   children:
   - com.azure.core.experimental.serializer.AvroSerializerProvider.createInstance(java.lang.String)
+  - com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema(java.lang.Object)
+  - com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName(java.lang.Object)
   langs:
   - java
   name: AvroSerializerProvider
@@ -13,12 +15,12 @@ items:
   fullName: com.azure.core.experimental.serializer.AvroSerializerProvider
   type: Interface
   package: com.azure.core.experimental.serializer
-  summary: An interface to be implemented by any azure-core plugin that wishes to provide an Avro <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref> implementation.
+  summary: An interface to be implemented by any azure-core plugin that wishes to provide an Avro <xref uid="com.azure.core.experimental.serializer.AvroSerializer" data-throw-if-not-resolved="false">AvroSerializer</xref> implementation.
   syntax:
     content: public interface AvroSerializerProvider
 - uid: com.azure.core.experimental.serializer.AvroSerializerProvider.createInstance(java.lang.String)
   id: createInstance(java.lang.String)
-  artifact: com.azure:azure-core-experimental:1.0.0-beta.2
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.3
   parent: com.azure.core.experimental.serializer.AvroSerializerProvider
   langs:
   - java
@@ -28,29 +30,87 @@ items:
   overload: com.azure.core.experimental.serializer.AvroSerializerProvider.createInstance*
   type: Method
   package: com.azure.core.experimental.serializer
-  summary: Creates a new Avro-based <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref> tied to the given schema.
+  summary: Creates a new <xref uid="com.azure.core.experimental.serializer.AvroSerializer" data-throw-if-not-resolved="false">AvroSerializer</xref> tied to the given schema.
   syntax:
-    content: public abstract ObjectSerializer createInstance(String schema)
+    content: public abstract AvroSerializer createInstance(String schema)
     parameters:
     - id: schema
       type: java.lang.String
       description: The Avro schema that will be associated to the serializer.
     return:
-      type: com.azure.core.util.serializer.ObjectSerializer
-      description: A new Avro-based <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref> instance.
+      type: com.azure.core.experimental.serializer.AvroSerializer
+      description: A new <xref uid="com.azure.core.experimental.serializer.AvroSerializer" data-throw-if-not-resolved="false">AvroSerializer</xref> instance.
+- uid: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema(java.lang.Object)
+  id: getSchema(java.lang.Object)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.3
+  parent: com.azure.core.experimental.serializer.AvroSerializerProvider
+  langs:
+  - java
+  name: getSchema(Object object)
+  nameWithType: AvroSerializerProvider.getSchema(Object object)
+  fullName: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema(Object object)
+  overload: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema*
+  type: Method
+  package: com.azure.core.experimental.serializer
+  summary: Returns the Avro schema for specified object.
+  syntax:
+    content: public abstract String getSchema(Object object)
+    parameters:
+    - id: object
+      type: java.lang.Object
+      description: The object having its Avro schema retrieved.
+    return:
+      type: java.lang.String
+      description: The Avro schema for the object.
+- uid: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName(java.lang.Object)
+  id: getSchemaName(java.lang.Object)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.3
+  parent: com.azure.core.experimental.serializer.AvroSerializerProvider
+  langs:
+  - java
+  name: getSchemaName(Object object)
+  nameWithType: AvroSerializerProvider.getSchemaName(Object object)
+  fullName: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName(Object object)
+  overload: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName*
+  type: Method
+  package: com.azure.core.experimental.serializer
+  summary: Returns the Avro schema for specified object.
+  syntax:
+    content: public abstract String getSchemaName(Object object)
+    parameters:
+    - id: object
+      type: java.lang.Object
+      description: The object having its Avro schema name retrieved.
+    return:
+      type: java.lang.String
+      description: The Avro schema name for the object.
 references:
 - uid: java.lang.String
   spec.java:
   - uid: java.lang.String
     name: String
     fullName: java.lang.String
-- uid: com.azure.core.util.serializer.ObjectSerializer
-  spec.java:
-  - uid: com.azure.core.util.serializer.ObjectSerializer
-    name: ObjectSerializer
-    fullName: com.azure.core.util.serializer.ObjectSerializer
+- uid: com.azure.core.experimental.serializer.AvroSerializer
+  name: AvroSerializer
+  nameWithType: AvroSerializer
+  fullName: com.azure.core.experimental.serializer.AvroSerializer
 - uid: com.azure.core.experimental.serializer.AvroSerializerProvider.createInstance*
   name: createInstance
   nameWithType: AvroSerializerProvider.createInstance
   fullName: com.azure.core.experimental.serializer.AvroSerializerProvider.createInstance
+  package: com.azure.core.experimental.serializer
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema*
+  name: getSchema
+  nameWithType: AvroSerializerProvider.getSchema
+  fullName: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchema
+  package: com.azure.core.experimental.serializer
+- uid: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName*
+  name: getSchemaName
+  nameWithType: AvroSerializerProvider.getSchemaName
+  fullName: com.azure.core.experimental.serializer.AvroSerializerProvider.getSchemaName
   package: com.azure.core.experimental.serializer
