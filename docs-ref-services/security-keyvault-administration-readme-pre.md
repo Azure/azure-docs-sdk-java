@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Key Vault Administration library for Java
+# Azure Key Vault Administration library for Java - Version 4.0.0-beta.1 
 
 ## Getting started
 ### Adding the package to your project
