@@ -1,9 +1,9 @@
 ---
 title: Azure Key Vault Certificate client library for Java
-keywords: Azure, java, SDK, API, keyvault, azure-security-keyvault-certificates,
+keywords: Azure, java, SDK, API, azure-security-keyvault-certificates, keyvault
 author: maggiepint
 ms.author: magpint
-ms.date: 07/17/2020
+ms.date: 09/11/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Certificate client library for Java - Version 4.1.0-beta.4
+# Azure Key Vault Certificate client library for Java - Version 4.2.0-beta.1 
 
 Azure Key Vault allows you to securely manage and tightly control your certificates. The Azure Key Vault Certificate client library supports certificates backed by RSA and EC keys.
 
@@ -28,7 +28,7 @@ Maven dependency for the Azure Key Vault Certificate client library. Add it to y
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-certificates</artifactId>
-    <version>4.0.5</version>
+    <version>4.1.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -152,7 +152,7 @@ SyncPoller<CertificateOperation, KeyVaultCertificateWithPolicy> certificatePolle
     certificateClient.beginCreateCertificate("certificateName", CertificatePolicy.getDefault());
 certificatePoller.waitUntil(LongRunningOperationStatus.SUCCESSFULLY_COMPLETED);
 KeyVaultCertificate certificate = certificatePoller.getFinalResult();
-System.out.printf("Certificate created with name \"%s\"\n", certificate.getName());
+System.out.printf("Certificate created with name \"%s\"%n", certificate.getName());
 ```
 
 ### Retrieve a certificate
@@ -160,7 +160,7 @@ Retrieve a previously stored certificate by calling `getCertificate` or `getCert
 
 ```Java
 KeyVaultCertificateWithPolicy certificate = certificateClient.getCertificate("<certificate-name>");
-System.out.printf("Recevied certificate with name \"%s\", version %s and secret id %s\n",
+System.out.printf("Recevied certificate with name \"%s\", version %s and secret id %s%n",
     certificate.getProperties().getName(), certificate.getProperties().getVersion(), certificate.getSecretId());
 ```
 
@@ -173,7 +173,7 @@ KeyVaultCertificate certificate = certificateClient.getCertificate("<certificate
 // Update certificate enabled status.
 certificate.getProperties().setEnabled(false);
 KeyVaultCertificate updatedCertificate = certificateClient.updateCertificateProperties(certificate.getProperties());
-System.out.printf("Updated certificate with name \"%s\" and enabled status \"%s\"\n",
+System.out.printf("Updated certificate with name \"%s\" and enabled status \"%s\"%n",
     updatedCertificate.getProperties().getName(), updatedCertificate.getProperties().isEnabled());
 ```
 
@@ -249,7 +249,7 @@ Retrieve a previously stored certificate by calling `getCertificate` or `getCert
 ```Java
 certificateAsyncClient.getCertificate("<certificate-name>")
     .subscribe(certificateResponse ->
-        System.out.printf("Certificate was returned with name \"%s\" and secretId %s\n",
+        System.out.printf("Certificate was returned with name \"%s\" and secretId %s%n",
             certificateResponse.getProperties().getName(), certificateResponse.getSecretId()));
 ```
 
@@ -264,8 +264,8 @@ certificateAsyncClient.getCertificate("<certificate-name>")
         certificate.getProperties().setEnabled(false);
         certificateAsyncClient.updateCertificateProperties(certificate.getProperties())
             .subscribe(certificateResponse ->
-                System.out.printf("Certificate's enabled status %s\n",
-                    certificateResponse.getProperties().isEnabled().toString()));
+                System.out.printf("Certificate's enabled status: %s%n",
+                    certificateResponse.getProperties().isEnabled()));
     });
 ```
 
@@ -275,9 +275,9 @@ Delete an existing certificate by calling `beginDeleteCertificate`.
 ```java
 certificateAsyncClient.beginDeleteCertificate("<certificate-name>")
     .subscribe(pollResponse -> {
-        System.out.printf("Deletion status: %s\n", pollResponse.getStatus().toString());
-        System.out.printf("Deleted certificate name: %s\n", pollResponse.getValue().getName());
-        System.out.printf("Certificate deletion date: %s\n", pollResponse.getValue().getDeletedOn().toString());
+        System.out.printf("Deletion status: %s%n", pollResponse.getStatus());
+        System.out.printf("Deleted certificate name: %s%n", pollResponse.getValue().getName());
+        System.out.printf("Certificate deletion date: %s%n", pollResponse.getValue().getDeletedOn());
     });
 ```
 
@@ -292,8 +292,8 @@ certificateAsyncClient.listPropertiesOfCertificates()
         certificateAsyncClient.getCertificateVersion(certificateProperties.getName(),
             certificateProperties.getVersion())
             .subscribe(certificateResponse ->
-                System.out.printf("Received certificate with name \"%s\" and key id %s",
-                    certificateResponse.getName(), certificateResponse.getKeyId())));
+                System.out.printf("Received certificate with name \"%s\" and key id %s", certificateResponse.getName(),
+                    certificateResponse.getKeyId())));
 ```
 
 ## Troubleshooting
@@ -331,10 +331,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.1.0-beta.4/sdk/keyvault/azure-security-keyvault-certificates/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-certificates/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.2.0-beta.1/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/quick-create-portal
@@ -344,8 +344,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.1.0-beta.4/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-certificates_4.1.0-beta.4/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
+[certificates_samples]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-certificates/src/samples/java/com/azure/security/keyvault/certificates
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-certificates/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-certificates%2FREADME.png)
+
