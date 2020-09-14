@@ -1,17 +1,17 @@
 ---
 title: Azure Schema Registry Avro Serializer/Deserializer client library for Java
-keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, 
+keywords: Azure, java, SDK, API, azure-data-schemaregistry-avro, dataschemaregistry
 author: maggiepint
 ms.author: magpint
-ms.date: 06/19/2020
+ms.date: 09/10/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: dataschemaregistry
 ---
 
-# Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.2 
+# Azure Schema Registry Avro Serializer/Deserializer client library for Java - Version 1.0.0-beta.3 
 
 
 This library contains Avro-specific implementations of Azure Schema Registry-back serializers and deserializers, in addition to builder classes that specify required configurations.
