@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: keyvault
 ---
 
 # Azure Key Vault Administration library for Java - Version 4.0.0-beta.1 
