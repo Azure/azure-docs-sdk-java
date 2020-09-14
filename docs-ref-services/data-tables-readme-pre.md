@@ -89,7 +89,7 @@ az cosmosdb list-connection-strings \
 ```
 
 #### Shared Key credential
-Shared Key authorization relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the Authorization header. See [Authenticate with a Shared Key credential](#authenticate-with-a-shared-key-credential) for an example of how to use Shared Key authorization with a `TableServiceClient`.
+Shared Key authorization relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the Authorization header. See [Authenticate with a Shared Key credential](#authenticate-with-a-shared-key) for an example of how to use Shared Key authorization with a `TableServiceClient`.
 
 To use Shared Key authorization you'll need your account name and URL, as well as an account access key. You can obtain your primary access key from the Azure Portal (click **Access keys** under **Settings** in the Portal Storage account blade, or **Connection String** under **Settings** in the Portal Cosmos DB account blade) or using the Azure CLI:
 
@@ -106,7 +106,7 @@ az cosmosdb list-keys \
 ```
 
 #### Shared Access Signature (SAS)
-A shared access signature allows administrators to delegate granular access to an Azure table without sharing the access key directly. You can control what resources the client may access, what permissions it has on those resources, and how long the SAS is valid, among other parameters. It relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the query string. See [Authenticate with a Shared Access Signature (SAS) token](#authenticate-with-a-shared-access-signature-sas-token) for an example of how to use shared access signatures with a `TableServiceClient`.
+A shared access signature allows administrators to delegate granular access to an Azure table without sharing the access key directly. You can control what resources the client may access, what permissions it has on those resources, and how long the SAS is valid, among other parameters. It relies on your account access keys and other parameters to produce an encrypted signature string that is passed on the request in the query string. See [Authenticate with a Shared Access Signature (SAS) token](#authenticate-with-a-shared-access-signature-sas) for an example of how to use shared access signatures with a `TableServiceClient`.
 
 To use SAS token authorization you'll need your account name and URL, as well as the SAS. You can obtain your SAS from the Azure Portal (click **Shared access signature** under **Settings** in the Portal Storage account blade) or using the Azure CLI:
 
@@ -353,4 +353,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftables%2Fazure-data-tables%2FREADME.png)
-
