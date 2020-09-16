@@ -1,9 +1,9 @@
 ---
 title: Azure Key Vault Key client library for Java
-keywords: Azure, java, SDK, API, keyvault, azure-security-keyvault-keys
+keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
 author: maggiepint
 ms.author: magpint
-ms.date: 07/17/2020
+ms.date: 09/11/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Key client library for Java - Version 4.2.0-beta.5
+# Azure Key Vault Key client library for Java - Version 4.3.0-beta.1 
 
 Azure Key Vault allows you to create, manage and store keys in the Key Vault. The Azure Key Vault Keys client library supports RSA keys and elliptic curve keys, each with corresponding support in hardware security modules (HSM).
 
@@ -28,7 +28,7 @@ Maven dependency for the Azure Key Vault Key client library. Add it to your proj
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-keys</artifactId>
-    <version>4.1.5</version>
+    <version>4.2.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -173,12 +173,12 @@ KeyClient keyClient = new KeyClientBuilder()
 KeyVaultKey rsaKey = keyClient.createRsaKey(new CreateRsaKeyOptions("CloudRsaKey")
     .setExpiresOn(OffsetDateTime.now().plusYears(1))
     .setKeySize(2048));
-System.out.printf("Key created with name \"%s\" and id %s\n", rsaKey.getName(), rsaKey.getId());
+System.out.printf("Key created with name \"%s\" and id %s%n", rsaKey.getName(), rsaKey.getId());
 
 KeyVaultKey ecKey = keyClient.createEcKey(new CreateEcKeyOptions("CloudEcKey")
     .setCurveName(KeyCurveName.P_256)
     .setExpiresOn(OffsetDateTime.now().plusYears(1)));
-System.out.printf("Key created with name \"%s\" and id %s\n", ecKey.getName(), ecKey.getId());
+System.out.printf("Key created with name \"%s\" and id %s%n", ecKey.getName(), ecKey.getId());
 ```
 
 ### Retrieve a key
@@ -186,7 +186,7 @@ Retrieve a previously stored key by calling `getKey`.
 
 ```Java
 KeyVaultKey key = keyClient.getKey("<key-name>");
-System.out.printf("A key was returned with name \"%s\" and id %s\n", key.getName(), key.getId());
+System.out.printf("A key was returned with name \"%s\" and id %s%n", key.getName(), key.getId());
 ```
 
 ### Update an existing key
@@ -198,7 +198,7 @@ KeyVaultKey key = keyClient.getKey("<key-name>");
 // Update the expiry time of the key.
 key.getProperties().setExpiresOn(OffsetDateTime.now().plusDays(30));
 KeyVaultKey updatedKey = keyClient.updateKeyProperties(key.getProperties());
-System.out.printf("Key's updated expiry time: %s\n", updatedKey.getProperties().getExpiresOn().toString());
+System.out.printf("Key's updated expiry time: %s%n", updatedKey.getProperties().getExpiresOn());
 ```
 
 ### Delete a key
@@ -212,7 +212,7 @@ PollResponse<DeletedKey> deletedKeyPollResponse = deletedKeyPoller.poll();
 // Deleted key is accessible as soon as polling begins.
 DeletedKey deletedKey = deletedKeyPollResponse.getValue();
 // Deletion date only works for a SoftDelete-enabled Key Vault.
-System.out.printf("Deletion date: %s\n", deletedKey.getDeletedOn().toString());
+System.out.printf("Deletion date: %s%n", deletedKey.getDeletedOn());
 
 // Key is being deleted on server.
 deletedKeyPoller.waitForCompletion();
@@ -226,7 +226,7 @@ List the keys in the key vault by calling `listPropertiesOfKeys`.
 // get the key with its key material information.
 for (KeyProperties keyProperties : keyClient.listPropertiesOfKeys()) {
     KeyVaultKey keyWithMaterial = keyClient.getKey(keyProperties.getName(), keyProperties.getVersion());
-    System.out.printf("Received key with name \"%s\" and type \"%s\"\n", keyWithMaterial.getName(),
+    System.out.printf("Received key with name \"%s\" and type \"%s\"%n", keyWithMaterial.getName(),
         keyWithMaterial.getKey().getKeyType());
 }
 ```
@@ -245,8 +245,8 @@ new Random(0x1234567L).nextBytes(plainText);
 
 // Let's encrypt a simple plain text of size 100 bytes.
 EncryptResult encryptionResult = cryptoClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plainText);
-System.out.printf("Returned cipherText size is %d bytes with algorithm \"%s\"\n",
-    encryptionResult.getCipherText().length, encryptionResult.getAlgorithm().toString());
+System.out.printf("Returned cipherText size is %d bytes with algorithm \"%s\"%n",
+    encryptionResult.getCipherText().length, encryptionResult.getAlgorithm());
 ```
 
 ### Decrypt
@@ -259,7 +259,7 @@ EncryptResult encryptionResult = cryptoClient.encrypt(EncryptionAlgorithm.RSA_OA
 
 //Let's decrypt the encrypted result.
 DecryptResult decryptionResult = cryptoClient.decrypt(EncryptionAlgorithm.RSA_OAEP, encryptionResult.getCipherText());
-System.out.printf("Returned plainText size is %d bytes\n", decryptionResult.getPlainText().length);
+System.out.printf("Returned plainText size is %d bytes%n", decryptionResult.getPlainText().length);
 ```
 
 ### Async API
@@ -294,12 +294,12 @@ keyAsyncClient.createRsaKey(new CreateRsaKeyOptions("CloudRsaKey")
     .setExpiresOn(OffsetDateTime.now().plusYears(1))
     .setKeySize(2048))
     .subscribe(key ->
-        System.out.printf("Key created with name \"%s\" and id %s\n", key.getName(), key.getId()));
+        System.out.printf("Key created with name \"%s\" and id %s%n", key.getName(), key.getId()));
 
 keyAsyncClient.createEcKey(new CreateEcKeyOptions("CloudEcKey")
     .setExpiresOn(OffsetDateTime.now().plusYears(1)))
     .subscribe(key ->
-        System.out.printf("Key created with name \"%s\" and id %s\n", key.getName(), key.getId()));
+        System.out.printf("Key created with name \"%s\" and id %s%n", key.getName(), key.getId()));
 ```
 
 ### Retrieve a key asynchronously
@@ -308,7 +308,7 @@ Retrieve a previously stored key by calling `getKey`.
 ```Java
 keyAsyncClient.getKey("<key-name>")
     .subscribe(key ->
-        System.out.printf("Key was returned with name \"%s\" and id %s\n", key.getName(), key.getId()));
+        System.out.printf("Key was returned with name \"%s\" and id %s%n", key.getName(), key.getId()));
 ```
 
 ### Update an existing key asynchronously
@@ -322,8 +322,7 @@ keyAsyncClient.getKey("<key-name>")
         key.getProperties().setExpiresOn(OffsetDateTime.now().plusDays(50));
         keyAsyncClient.updateKeyProperties(key.getProperties())
             .subscribe(updatedKey ->
-                System.out.printf("Key's updated expiry time: %s\n",
-                    updatedKey.getProperties().getExpiresOn().toString()));
+                System.out.printf("Key's updated expiry time: %s%n", updatedKey.getProperties().getExpiresOn()));
    });
 ```
 
@@ -333,9 +332,9 @@ Delete an existing key by calling `beginDeleteKey`.
 ```java
 keyAsyncClient.beginDeleteKey("<key-name>")
     .subscribe(pollResponse -> {
-        System.out.printf("Deletetion status: %s\n", pollResponse.getStatus().toString());
-        System.out.printf("Deleted key name: %s\n", pollResponse.getValue().getName());
-        System.out.printf("Key deletion date: %s\n", pollResponse.getValue().getDeletedOn().toString());
+        System.out.printf("Deletetion status: %s%n", pollResponse.getStatus());
+        System.out.printf("Deleted key name: %s%n", pollResponse.getValue().getName());
+        System.out.printf("Key deletion date: %s%n", pollResponse.getValue().getDeletedOn());
     });
 ```
 
@@ -367,8 +366,8 @@ new Random(0x1234567L).nextBytes(plainText);
 // Let's encrypt a simple plain text of size 100 bytes.
 cryptoAsyncClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plainText)
     .subscribe(encryptionResult -> {
-        System.out.printf("Returned cipherText size is %d bytes with algorithm \"%s\"\n",
-            encryptionResult.getCipherText().length, encryptionResult.getAlgorithm().toString());
+        System.out.printf("Returned cipherText size is %d bytes with algorithm \"%s\"%n",
+            encryptionResult.getCipherText().length, encryptionResult.getAlgorithm());
     });
 ```
 
@@ -382,12 +381,12 @@ new Random(0x1234567L).nextBytes(plainText);
 // Let's encrypt a simple plain text of size 100 bytes.
 cryptoAsyncClient.encrypt(EncryptionAlgorithm.RSA_OAEP, plainText)
     .subscribe(encryptionResult -> {
-        System.out.printf("Returned cipherText size is %d bytes with algorithm %s\n",
-            encryptionResult.getCipherText().length, encryptionResult.getAlgorithm().toString());
+        System.out.printf("Returned cipherText size is %d bytes with algorithm \"%s\"%n",
+            encryptionResult.getCipherText().length, encryptionResult.getAlgorithm());
         //Let's decrypt the encrypted response.
         cryptoAsyncClient.decrypt(EncryptionAlgorithm.RSA_OAEP, encryptionResult.getCipherText())
             .subscribe(decryptionResult ->
-                System.out.printf("Returned plainText size is %d bytes\n", decryptionResult.getPlainText().length));
+                System.out.printf("Returned plainText size is %d bytes%n", decryptionResult.getPlainText().length));
     });
 ```
 
@@ -426,10 +425,10 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-keys/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.3.0-beta.1/sdk/identity/azure-identity
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
 [azure_keyvault]: https://docs.microsoft.com/azure/key-vault/quick-create-portal
@@ -439,8 +438,8 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[keys_samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-keys_4.2.0-beta.5/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
+[keys_samples]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-keys/src/samples/java/com/azure/security/keyvault/keys
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-keys/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-keys%2FREADME.png)

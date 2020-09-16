@@ -2,36 +2,37 @@
 items:
 - uid: com.azure.messaging.servicebus.ServiceBusMessage
   id: ServiceBusMessage
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus
   children:
   - com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(byte[])
   - com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(com.azure.messaging.servicebus.ServiceBusReceivedMessage)
   - com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.addContext(java.lang.String,java.lang.Object)
+  - com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage()
+  - com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties()
   - com.azure.messaging.servicebus.ServiceBusMessage.getBody()
   - com.azure.messaging.servicebus.ServiceBusMessage.getContentType()
   - com.azure.messaging.servicebus.ServiceBusMessage.getCorrelationId()
-  - com.azure.messaging.servicebus.ServiceBusMessage.getLabel()
   - com.azure.messaging.servicebus.ServiceBusMessage.getMessageId()
   - com.azure.messaging.servicebus.ServiceBusMessage.getPartitionKey()
-  - com.azure.messaging.servicebus.ServiceBusMessage.getProperties()
   - com.azure.messaging.servicebus.ServiceBusMessage.getReplyTo()
   - com.azure.messaging.servicebus.ServiceBusMessage.getReplyToSessionId()
   - com.azure.messaging.servicebus.ServiceBusMessage.getScheduledEnqueueTime()
   - com.azure.messaging.servicebus.ServiceBusMessage.getSessionId()
+  - com.azure.messaging.servicebus.ServiceBusMessage.getSubject()
   - com.azure.messaging.servicebus.ServiceBusMessage.getTimeToLive()
   - com.azure.messaging.servicebus.ServiceBusMessage.getTo()
   - com.azure.messaging.servicebus.ServiceBusMessage.getViaPartitionKey()
   - com.azure.messaging.servicebus.ServiceBusMessage.setContentType(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setCorrelationId(java.lang.String)
-  - com.azure.messaging.servicebus.ServiceBusMessage.setLabel(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setMessageId(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setPartitionKey(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setReplyTo(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setReplyToSessionId(java.lang.String)
-  - com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(java.time.Instant)
+  - com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(java.time.OffsetDateTime)
   - com.azure.messaging.servicebus.ServiceBusMessage.setSessionId(java.lang.String)
+  - com.azure.messaging.servicebus.ServiceBusMessage.setSubject(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setTimeToLive(java.time.Duration)
   - com.azure.messaging.servicebus.ServiceBusMessage.setTo(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusMessage.setViaPartitionKey(java.lang.String)
@@ -49,7 +50,7 @@ items:
     Here's how AMQP message sections map to <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>. For reference, the specification can be found here: [AMQP 1.0 specification][]
 
 
-    1.  <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getProperties()" data-throw-if-not-resolved="false">#getProperties()</xref> \- AMQPMessage.ApplicationProperties section
+    1.  <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties()" data-throw-if-not-resolved="false">#getApplicationProperties()</xref> \- AMQPMessage.ApplicationProperties section
 
     2.  <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getBody()" data-throw-if-not-resolved="false">#getBody()</xref> \- if AMQPMessage.Body has Data section
 
@@ -77,7 +78,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(byte[])
   id: ServiceBusMessage(byte[])
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -96,7 +97,7 @@ items:
       description: The data to set for this <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(com.azure.messaging.servicebus.ServiceBusReceivedMessage)
   id: ServiceBusMessage(com.azure.messaging.servicebus.ServiceBusReceivedMessage)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -115,7 +116,7 @@ items:
       description: The received message to create new message from.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.ServiceBusMessage(java.lang.String)
   id: ServiceBusMessage(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -134,7 +135,7 @@ items:
       description: The content of the Service bus message.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.addContext(java.lang.String,java.lang.Object)
   id: addContext(java.lang.String,java.lang.Object)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -157,9 +158,45 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessage
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage()
+  id: getAmqpAnnotatedMessage()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  parent: com.azure.messaging.servicebus.ServiceBusMessage
+  langs:
+  - java
+  name: getAmqpAnnotatedMessage()
+  nameWithType: ServiceBusMessage.getAmqpAnnotatedMessage()
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage()
+  overload: com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Gets the <xref uid="com.azure.core.amqp.models.AmqpAnnotatedMessage" data-throw-if-not-resolved="false">AmqpAnnotatedMessage</xref>.
+  syntax:
+    content: public AmqpAnnotatedMessage getAmqpAnnotatedMessage()
+    return:
+      type: com.azure.core.amqp.models.AmqpAnnotatedMessage
+      description: the amqp message.
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties()
+  id: getApplicationProperties()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  parent: com.azure.messaging.servicebus.ServiceBusMessage
+  langs:
+  - java
+  name: getApplicationProperties()
+  nameWithType: ServiceBusMessage.getApplicationProperties()
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties()
+  overload: com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Gets the set of free-form <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> properties which may be used for passing metadata associated with the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> during Service Bus operations. A common use-case for `getApplicationProperties()` is to associate serialization hints for the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getBody()" data-throw-if-not-resolved="false">#getBody()</xref> as an aid to consumers who wish to deserialize the binary data.
+  syntax:
+    content: public Map<String,Object> getApplicationProperties()
+    return:
+      type: java.util.Map<java.lang.String,java.lang.Object>
+      description: Application properties associated with this <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getBody()
   id: getBody()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -173,7 +210,7 @@ items:
     Gets the actual payload/data wrapped by the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 
 
-    If the means for deserializing the raw data is not apparent to consumers, a common technique is to make use of <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getProperties()" data-throw-if-not-resolved="false">#getProperties()</xref> when creating the event, to associate serialization hints as an aid to consumers who wish to deserialize the binary data.
+    If the means for deserializing the raw data is not apparent to consumers, a common technique is to make use of <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties()" data-throw-if-not-resolved="false">#getApplicationProperties()</xref> when creating the event, to associate serialization hints as an aid to consumers who wish to deserialize the binary data.
   syntax:
     content: public byte[] getBody()
     return:
@@ -181,7 +218,7 @@ items:
       description: A byte array representing the data.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getContentType()
   id: getContentType()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -199,7 +236,7 @@ items:
       description: the contentType of the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getCorrelationId()
   id: getCorrelationId()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -219,27 +256,9 @@ items:
     return:
       type: java.lang.String
       description: correlation id of this message
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.getLabel()
-  id: getLabel()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
-  parent: com.azure.messaging.servicebus.ServiceBusMessage
-  langs:
-  - java
-  name: getLabel()
-  nameWithType: ServiceBusMessage.getLabel()
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getLabel()
-  overload: com.azure.messaging.servicebus.ServiceBusMessage.getLabel*
-  type: Method
-  package: com.azure.messaging.servicebus
-  summary: Gets the label for the message.
-  syntax:
-    content: public String getLabel()
-    return:
-      type: java.lang.String
-      description: The label for the message.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getMessageId()
   id: getMessageId()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -256,7 +275,7 @@ items:
       description: Id of the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getPartitionKey()
   id: getPartitionKey()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -280,27 +299,9 @@ items:
     return:
       type: java.lang.String
       description: The partition key of this message
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.getProperties()
-  id: getProperties()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
-  parent: com.azure.messaging.servicebus.ServiceBusMessage
-  langs:
-  - java
-  name: getProperties()
-  nameWithType: ServiceBusMessage.getProperties()
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getProperties()
-  overload: com.azure.messaging.servicebus.ServiceBusMessage.getProperties*
-  type: Method
-  package: com.azure.messaging.servicebus
-  summary: Gets the set of free-form <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> properties which may be used for passing metadata associated with the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> during Service Bus operations. A common use-case for `properties()` is to associate serialization hints for the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage.getBody()" data-throw-if-not-resolved="false">#getBody()</xref> as an aid to consumers who wish to deserialize the binary data.
-  syntax:
-    content: public Map<String,Object> getProperties()
-    return:
-      type: java.util.Map<java.lang.String,java.lang.Object>
-      description: Application properties associated with this <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getReplyTo()
   id: getReplyTo()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -322,7 +323,7 @@ items:
       description: ReplyTo property value of this message
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getReplyToSessionId()
   id: getReplyToSessionId()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -344,7 +345,7 @@ items:
       description: ReplyToSessionId property value of this message
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getScheduledEnqueueTime()
   id: getScheduledEnqueueTime()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -358,15 +359,15 @@ items:
     Gets the scheduled enqueue time of this message.
 
 
-    This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given instant; the actual activation time depends on the queue's workload and its state.
+    This value is used for delayed message availability. The message is safely added to the queue, but is not considered active and therefore not retrievable until the scheduled enqueue time. Mind that the message may not be activated (enqueued) at the exact given datetime; the actual activation time depends on the queue's workload and its state.
   syntax:
-    content: public Instant getScheduledEnqueueTime()
+    content: public OffsetDateTime getScheduledEnqueueTime()
     return:
-      type: java.time.Instant
-      description: the instant at which the message will be enqueued in Azure Service Bus
+      type: java.time.OffsetDateTime
+      description: the datetime at which the message will be enqueued in Azure Service Bus
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getSessionId()
   id: getSessionId()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -382,9 +383,27 @@ items:
     return:
       type: java.lang.String
       description: Session Id of the <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getSubject()
+  id: getSubject()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  parent: com.azure.messaging.servicebus.ServiceBusMessage
+  langs:
+  - java
+  name: getSubject()
+  nameWithType: ServiceBusMessage.getSubject()
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getSubject()
+  overload: com.azure.messaging.servicebus.ServiceBusMessage.getSubject*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Gets the subject for the message.
+  syntax:
+    content: public String getSubject()
+    return:
+      type: java.lang.String
+      description: The subject for the message.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getTimeToLive()
   id: getTimeToLive()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -406,7 +425,7 @@ items:
       description: Time to live duration of this message
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getTo()
   id: getTo()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -424,7 +443,7 @@ items:
       description: "\"To\" property value of this message"
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getViaPartitionKey()
   id: getViaPartitionKey()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -442,7 +461,7 @@ items:
       description: partition key on the via queue.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setContentType(java.lang.String)
   id: setContentType(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -464,7 +483,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setCorrelationId(java.lang.String)
   id: setCorrelationId(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -484,31 +503,9 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessage
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.setLabel(java.lang.String)
-  id: setLabel(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
-  parent: com.azure.messaging.servicebus.ServiceBusMessage
-  langs:
-  - java
-  name: setLabel(String label)
-  nameWithType: ServiceBusMessage.setLabel(String label)
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setLabel(String label)
-  overload: com.azure.messaging.servicebus.ServiceBusMessage.setLabel*
-  type: Method
-  package: com.azure.messaging.servicebus
-  summary: Sets the label for the message.
-  syntax:
-    content: public ServiceBusMessage setLabel(String label)
-    parameters:
-    - id: label
-      type: java.lang.String
-      description: The label to set.
-    return:
-      type: com.azure.messaging.servicebus.ServiceBusMessage
-      description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setMessageId(java.lang.String)
   id: setMessageId(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -530,7 +527,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setPartitionKey(java.lang.String)
   id: setPartitionKey(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -552,7 +549,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setReplyTo(java.lang.String)
   id: setReplyTo(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -574,7 +571,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setReplyToSessionId(java.lang.String)
   id: setReplyToSessionId(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -594,31 +591,31 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessage
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(java.time.Instant)
-  id: setScheduledEnqueueTime(java.time.Instant)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(java.time.OffsetDateTime)
+  id: setScheduledEnqueueTime(java.time.OffsetDateTime)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
-  name: setScheduledEnqueueTime(Instant scheduledEnqueueTime)
-  nameWithType: ServiceBusMessage.setScheduledEnqueueTime(Instant scheduledEnqueueTime)
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(Instant scheduledEnqueueTime)
+  name: setScheduledEnqueueTime(OffsetDateTime scheduledEnqueueTime)
+  nameWithType: ServiceBusMessage.setScheduledEnqueueTime(OffsetDateTime scheduledEnqueueTime)
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime(OffsetDateTime scheduledEnqueueTime)
   overload: com.azure.messaging.servicebus.ServiceBusMessage.setScheduledEnqueueTime*
   type: Method
   package: com.azure.messaging.servicebus
-  summary: Sets the scheduled enqueue time of this message.
+  summary: Sets the scheduled enqueue time of this message. A `null` will not be set. If this value needs to be unset it could be done by value removing from <xref uid="com.azure.core.amqp.models.AmqpAnnotatedMessage.getMessageAnnotations*" data-throw-if-not-resolved="false">AmqpAnnotatedMessage#getMessageAnnotations()</xref> using key <xref uid="" data-throw-if-not-resolved="false">AmqpMessageConstant#SCHEDULED_ENQUEUE_UTC_TIME_NAME</xref>.
   syntax:
-    content: public ServiceBusMessage setScheduledEnqueueTime(Instant scheduledEnqueueTime)
+    content: public ServiceBusMessage setScheduledEnqueueTime(OffsetDateTime scheduledEnqueueTime)
     parameters:
     - id: scheduledEnqueueTime
-      type: java.time.Instant
-      description: the instant at which this message should be enqueued in Azure Service Bus.
+      type: java.time.OffsetDateTime
+      description: the datetime at which this message should be enqueued in Azure Service Bus.
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessage
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setSessionId(java.lang.String)
   id: setSessionId(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -638,9 +635,31 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessage
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.setSubject(java.lang.String)
+  id: setSubject(java.lang.String)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  parent: com.azure.messaging.servicebus.ServiceBusMessage
+  langs:
+  - java
+  name: setSubject(String subject)
+  nameWithType: ServiceBusMessage.setSubject(String subject)
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setSubject(String subject)
+  overload: com.azure.messaging.servicebus.ServiceBusMessage.setSubject*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sets the subject for the message.
+  syntax:
+    content: public ServiceBusMessage setSubject(String subject)
+    parameters:
+    - id: subject
+      type: java.lang.String
+      description: The subject to set.
+    return:
+      type: com.azure.messaging.servicebus.ServiceBusMessage
+      description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setTimeToLive(java.time.Duration)
   id: setTimeToLive(java.time.Duration)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -662,7 +681,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setTo(java.lang.String)
   id: setTo(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -692,7 +711,7 @@ items:
       description: The updated <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">ServiceBusMessage</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.setViaPartitionKey(java.lang.String)
   id: setViaPartitionKey(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.5
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
   parent: com.azure.messaging.servicebus.ServiceBusMessage
   langs:
   - java
@@ -734,6 +753,16 @@ references:
   name: ServiceBusReceivedMessage
   nameWithType: ServiceBusReceivedMessage
   fullName: com.azure.messaging.servicebus.ServiceBusReceivedMessage
+- uid: com.azure.core.amqp.models.AmqpAnnotatedMessage
+  spec.java:
+  - uid: com.azure.core.amqp.models.AmqpAnnotatedMessage
+    name: AmqpAnnotatedMessage
+    fullName: com.azure.core.amqp.models.AmqpAnnotatedMessage
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage*
+  name: getAmqpAnnotatedMessage
+  nameWithType: ServiceBusMessage.getAmqpAnnotatedMessage
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getAmqpAnnotatedMessage
+  package: com.azure.messaging.servicebus
 - uid: java.util.Map<java.lang.String,java.lang.Object>
   spec.java:
   - uid: java.util.Map
@@ -751,10 +780,10 @@ references:
     fullName: java.lang.Object
   - name: '>'
     fullName: '>'
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.getProperties*
-  name: getProperties
-  nameWithType: ServiceBusMessage.getProperties
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getProperties
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties*
+  name: getApplicationProperties
+  nameWithType: ServiceBusMessage.getApplicationProperties
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getApplicationProperties
   package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getBody*
   name: getBody
@@ -781,15 +810,15 @@ references:
   nameWithType: ServiceBusMessage.setCorrelationId
   fullName: com.azure.messaging.servicebus.ServiceBusMessage.setCorrelationId
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.getLabel*
-  name: getLabel
-  nameWithType: ServiceBusMessage.getLabel
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getLabel
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.getSubject*
+  name: getSubject
+  nameWithType: ServiceBusMessage.getSubject
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.getSubject
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.ServiceBusMessage.setLabel*
-  name: setLabel
-  nameWithType: ServiceBusMessage.setLabel
-  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setLabel
+- uid: com.azure.messaging.servicebus.ServiceBusMessage.setSubject*
+  name: setSubject
+  nameWithType: ServiceBusMessage.setSubject
+  fullName: com.azure.messaging.servicebus.ServiceBusMessage.setSubject
   package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getMessageId*
   name: getMessageId
@@ -846,11 +875,11 @@ references:
   nameWithType: ServiceBusMessage.setTimeToLive
   fullName: com.azure.messaging.servicebus.ServiceBusMessage.setTimeToLive
   package: com.azure.messaging.servicebus
-- uid: java.time.Instant
+- uid: java.time.OffsetDateTime
   spec.java:
-  - uid: java.time.Instant
-    name: Instant
-    fullName: java.time.Instant
+  - uid: java.time.OffsetDateTime
+    name: OffsetDateTime
+    fullName: java.time.OffsetDateTime
 - uid: com.azure.messaging.servicebus.ServiceBusMessage.getScheduledEnqueueTime*
   name: getScheduledEnqueueTime
   nameWithType: ServiceBusMessage.getScheduledEnqueueTime
