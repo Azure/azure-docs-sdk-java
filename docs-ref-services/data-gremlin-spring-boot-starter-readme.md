@@ -1,6 +1,6 @@
 ---
 title: Azure Gremlin Spring Boot Starter client library for Java
-keywords: Azure, java, SDK, API, azure-data-gremlin-spring-boot-starter, 
+keywords: Azure, java, SDK, API, azure-data-gremlin-spring-boot-starter, springboot
 author: maggiepint
 ms.author: magpint
 ms.date: 09/14/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: springboot
 ---
 
 # Azure Gremlin Spring Boot Starter client library for Java - Version 2.3.5 
