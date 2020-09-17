@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Spring Cloud Stream Binder core client library for Java
-keywords: Azure, java, SDK, API, spring-cloud-azure-servicebus-stream-binder-core, spring
+keywords: Azure, java, SDK, API, spring-cloud-azure-servicebus-stream-binder-core, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 09/15/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: spring
+ms.service: springcloud
 ---
 
 # Azure Service Bus Spring Cloud Stream Binder core client library for Java - Version 1.2.8 

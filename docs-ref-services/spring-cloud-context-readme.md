@@ -1,6 +1,6 @@
 ---
 title: Azure Spring cloud azure context client library for Java
-keywords: Azure, java, SDK, API, spring-cloud-azure-context, spring
+keywords: Azure, java, SDK, API, spring-cloud-azure-context, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 09/15/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: spring
+ms.service: springcloud
 ---
 
 # Azure Spring cloud azure context client library for Java - Version 1.2.8 
