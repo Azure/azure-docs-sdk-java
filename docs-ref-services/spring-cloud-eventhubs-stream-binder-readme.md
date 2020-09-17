@@ -1,5 +1,5 @@
 ---
-title: 
+title: Azure Event Hubs Spring Cloud Stream Binder client library for Java
 keywords: Azure, java, SDK, API, spring-cloud-azure-eventhubs-stream-binder, spring
 author: maggiepint
 ms.author: magpint
