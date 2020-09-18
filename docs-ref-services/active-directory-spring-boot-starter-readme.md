@@ -1,5 +1,5 @@
 ---
-title: 
+title: Azure AD Spring Boot Starter client library for Java
 keywords: Azure, java, SDK, API, azure-active-directory-spring-boot-starter, azureactivedirectory
 author: maggiepint
 ms.author: magpint
