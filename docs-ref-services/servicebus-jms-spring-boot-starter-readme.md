@@ -1,17 +1,17 @@
 ---
 title: Azure Service Bus JMS Spring Boot Starter client library for Java
-keywords: Azure, java, SDK, API, azure-servicebus-jms-spring-boot-starter, 
+keywords: Azure, java, SDK, API, azure-servicebus-jms-spring-boot-starter, servicebus
 author: maggiepint
 ms.author: magpint
-ms.date: 08/14/2020
+ms.date: 09/14/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: servicebus
 ---
 
-# Azure Service Bus JMS Spring Boot Starter client library for Java - Version 2.3.3 
+# Azure Service Bus JMS Spring Boot Starter client library for Java - Version 2.3.5 
 
 
 With this starter you could easily use Spring JMS Queue and Topic with Azure Service Bus.
@@ -30,7 +30,7 @@ With this starter you could easily use Spring JMS Queue and Topic with Azure Ser
 <dependency>
     <groupId>com.microsoft.azure</groupId>
     <artifactId>azure-servicebus-jms-spring-boot-starter</artifactId>
-    <version>2.3.3</version>
+    <version>2.3.5</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -208,7 +208,7 @@ To solve this issue, you need to add the dependency below into your classpath:
 </dependency>
 ```
 ### Enable client logging
-Azure SDKs for Java offer a consistent logging story to help aid in troubleshooting application errors and expedite their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
+Azure SDKs for Java offers a consistent logging story to help aid in troubleshooting application errors and expedite their resolution. The logs produced will capture the flow of an application before reaching the terminal state to help locate the root issue. View the [logging][logging] wiki for guidance about enabling logging.
 
 ### Enable Spring logging
 Spring allow all the supported logging systems to set logger levels set in the Spring Environment (for example, in application.properties) by using `logging.level.<logger-name>=<level>` where level is one of TRACE, DEBUG, INFO, WARN, ERROR, FATAL, or OFF. The root logger can be configured by using logging.level.root.
@@ -221,26 +221,26 @@ logging.level.org.springframework.web=DEBUG
 logging.level.org.hibernate=ERROR
 ```
 
-For more information about setting loging in pring, please refer to the [official doc](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging).
+For more information about setting logging in spring, please refer to the [official doc](https://docs.spring.io/spring-boot/docs/current/reference/html/spring-boot-features.html#boot-features-logging).
  
 
 ## Next steps
 The following section provides sample projects illustrating how to use the starter in different cases.
 ### More sample code
-- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/tree/b2976bf8e5091b67593a98f0e6ff0c1478ab8935/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
-- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/tree/b2976bf8e5091b67593a98f0e6ff0c1478ab8935/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
+- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/tree/407b4e0bffbb75b461c0512e669a6d43376fa7ab/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
+- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/tree/407b4e0bffbb75b461c0512e669a6d43376fa7ab/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
 
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/tree/b2976bf8e5091b67593a98f0e6ff0c1478ab8935/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
+Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/tree/407b4e0bffbb75b461c0512e669a6d43376fa7ab/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
 
 <!-- LINKS -->
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-service-bus
 [refdocs]: https://azure.github.io/azure-sdk-for-java/spring.html#azure-servicebus-jms-spring-boot-starter
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/azure-servicebus-jms-spring-boot-starter
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/spring/azure-spring-boot-samples/
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-servicebus-jms-spring-boot-starter_2.3.5/sdk/spring/azure-spring-boot-samples/
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [azure_subscription]: https://azure.microsoft.com/free
 

@@ -2,18 +2,23 @@
 items:
 - uid: com.azure.cosmos.CosmosAsyncContainer
   id: CosmosAsyncContainer
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos
   children:
   - com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T)
   - com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
   - com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
+  - com.azure.cosmos.CosmosAsyncContainer.<T>deleteItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
   - com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(com.azure.cosmos.models.SqlQuerySpec,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(com.azure.cosmos.models.SqlQuerySpec,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(java.lang.String,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(java.lang.String,java.lang.Class<T>)
+  - com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
+  - com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
+  - com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.Class<T>)
+  - com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.String,java.lang.Class<T>)
   - com.azure.cosmos.CosmosAsyncContainer.<T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey)
   - com.azure.cosmos.CosmosAsyncContainer.<T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
   - com.azure.cosmos.CosmosAsyncContainer.<T>upsertItem(T)
@@ -62,7 +67,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T)
   id: <T>createItem(T)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -90,7 +95,7 @@ items:
          created Cosmos item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: <T>createItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -115,7 +120,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the single resource response with the created Cosmos item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>createItem(T,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: <T>createItem(T,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -145,9 +150,38 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.cosmos.models.CosmosItemResponse<T>>
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the single resource response with the created Cosmos item or an error.
+- uid: com.azure.cosmos.CosmosAsyncContainer.<T>deleteItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
+  id: <T>deleteItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
+  artifact: com.azure:azure-cosmos:4.5.0
+  parent: com.azure.cosmos.CosmosAsyncContainer
+  langs:
+  - java
+  name: <T>deleteItem(T item, CosmosItemRequestOptions options)
+  nameWithType: CosmosAsyncContainer.<T>deleteItem(T item, CosmosItemRequestOptions options)
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>deleteItem(T item, CosmosItemRequestOptions options)
+  overload: com.azure.cosmos.CosmosAsyncContainer.deleteItem*
+  type: Method
+  package: com.azure.cosmos
+  summary: >-
+    Deletes the item.
+
+
+    After subscription the operation will be performed. The <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> upon successful completion will contain a single Cosmos item response for the deleted item.
+  syntax:
+    content: public Mono<CosmosItemResponse<Object>> <T>deleteItem(T item, CosmosItemRequestOptions options)
+    parameters:
+    - id: item
+      type: T
+      description: item to be deleted.
+    - id: options
+      type: com.azure.cosmos.models.CosmosItemRequestOptions
+      description: the request options.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.cosmos.models.CosmosItemResponse<java.lang.Object>>
+      description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item resource response.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(com.azure.cosmos.models.SqlQuerySpec,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
   id: <T>queryItems(com.azure.cosmos.models.SqlQuerySpec,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -181,7 +215,7 @@ items:
          error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(com.azure.cosmos.models.SqlQuerySpec,java.lang.Class<T>)
   id: <T>queryItems(com.azure.cosmos.models.SqlQuerySpec,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -212,7 +246,7 @@ items:
          error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(java.lang.String,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
   id: <T>queryItems(java.lang.String,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -246,7 +280,7 @@ items:
          error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>queryItems(java.lang.String,java.lang.Class<T>)
   id: <T>queryItems(java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -275,9 +309,72 @@ items:
       description: >-
         a <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> containing one or several feed response pages of the obtained items or an
          error.
+- uid: com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
+  id: <T>readAllItems(com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosQueryRequestOptions,java.lang.Class<T>)
+  artifact: com.azure:azure-cosmos:4.5.0
+  parent: com.azure.cosmos.CosmosAsyncContainer
+  langs:
+  - java
+  name: <T>readAllItems(PartitionKey partitionKey, CosmosQueryRequestOptions options, Class<T> classType)
+  nameWithType: CosmosAsyncContainer.<T>readAllItems(PartitionKey partitionKey, CosmosQueryRequestOptions options, Class<T> classType)
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(PartitionKey partitionKey, CosmosQueryRequestOptions options, Class<T> classType)
+  overload: com.azure.cosmos.CosmosAsyncContainer.readAllItems*
+  type: Method
+  package: com.azure.cosmos
+  summary: >-
+    Reads all the items of a logical partition
+
+
+    After subscription the operation will be performed. The <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> will contain one or several feed responses of the read Cosmos items. In case of failure the <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> will error.
+  syntax:
+    content: public CosmosPagedFlux<T> <T>readAllItems(PartitionKey partitionKey, CosmosQueryRequestOptions options, Class<T> classType)
+    parameters:
+    - id: partitionKey
+      type: com.azure.cosmos.models.PartitionKey
+      description: the partition key value of the documents that need to be read
+    - id: options
+      type: com.azure.cosmos.models.CosmosQueryRequestOptions
+      description: the feed options.
+    - id: classType
+      type: java.lang.Class<T>
+      description: the class type.
+    return:
+      type: com.azure.cosmos.util.CosmosPagedFlux<T>
+      description: "a <xref uid=\"com.azure.cosmos.util.CosmosPagedFlux\" data-throw-if-not-resolved=\"false\">CosmosPagedFlux</xref> containing one or several feed response pages \n of the read Cosmos items or an error."
+- uid: com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
+  id: <T>readAllItems(com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
+  artifact: com.azure:azure-cosmos:4.5.0
+  parent: com.azure.cosmos.CosmosAsyncContainer
+  langs:
+  - java
+  name: <T>readAllItems(PartitionKey partitionKey, Class<T> classType)
+  nameWithType: CosmosAsyncContainer.<T>readAllItems(PartitionKey partitionKey, Class<T> classType)
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems(PartitionKey partitionKey, Class<T> classType)
+  overload: com.azure.cosmos.CosmosAsyncContainer.readAllItems*
+  type: Method
+  package: com.azure.cosmos
+  summary: >-
+    Reads all the items of a logical partition
+
+
+    After subscription the operation will be performed. The <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> will contain one or several feed responses of the read Cosmos items. In case of failure the <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> will error.
+  syntax:
+    content: public CosmosPagedFlux<T> <T>readAllItems(PartitionKey partitionKey, Class<T> classType)
+    parameters:
+    - id: partitionKey
+      type: com.azure.cosmos.models.PartitionKey
+      description: the partition key value of the documents that need to be read
+    - id: classType
+      type: java.lang.Class<T>
+      description: the class type.
+    return:
+      type: com.azure.cosmos.util.CosmosPagedFlux<T>
+      description: >-
+        a <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref> containing one or several feed response pages
+         of the read Cosmos items or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions,java.lang.Class<T>)
   id: <T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -312,7 +409,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item response with the read item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
   id: <T>readItem(java.lang.String,com.azure.cosmos.models.PartitionKey,java.lang.Class<T>)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -342,9 +439,62 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.cosmos.models.CosmosItemResponse<T>>
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item response with the read item or an error.
+- uid: com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.Class<T>)
+  id: <T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.Class<T>)
+  artifact: com.azure:azure-cosmos:4.5.0
+  parent: com.azure.cosmos.CosmosAsyncContainer
+  langs:
+  - java
+  name: <T>readMany(List<CosmosItemIdentity> itemIdentityList, Class<T> classType)
+  nameWithType: CosmosAsyncContainer.<T>readMany(List<CosmosItemIdentity> itemIdentityList, Class<T> classType)
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readMany(List<CosmosItemIdentity> itemIdentityList, Class<T> classType)
+  overload: com.azure.cosmos.CosmosAsyncContainer.readMany*
+  type: Method
+  package: com.azure.cosmos
+  summary: Reads many documents.
+  syntax:
+    content: public Mono<FeedResponse<T>> <T>readMany(List<CosmosItemIdentity> itemIdentityList, Class<T> classType)
+    parameters:
+    - id: itemIdentityList
+      type: java.util.List<com.azure.cosmos.models.CosmosItemIdentity>
+      description: CosmosItem id and partition key tuple of items that that needs to be read
+    - id: classType
+      type: java.lang.Class<T>
+      description: class type
+    return:
+      type: reactor.core.publisher.Mono<com.azure.cosmos.models.FeedResponse<T>>
+      description: a Mono with feed response of cosmos items
+- uid: com.azure.cosmos.CosmosAsyncContainer.<T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.String,java.lang.Class<T>)
+  id: <T>readMany(java.util.List<com.azure.cosmos.models.CosmosItemIdentity>,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-cosmos:4.5.0
+  parent: com.azure.cosmos.CosmosAsyncContainer
+  langs:
+  - java
+  name: <T>readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)
+  nameWithType: CosmosAsyncContainer.<T>readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)
+  overload: com.azure.cosmos.CosmosAsyncContainer.readMany*
+  type: Method
+  package: com.azure.cosmos
+  summary: Reads many documents.
+  syntax:
+    content: public Mono<FeedResponse<T>> <T>readMany(List<CosmosItemIdentity> itemIdentityList, String sessionToken, Class<T> classType)
+    parameters:
+    - id: itemIdentityList
+      type: java.util.List<com.azure.cosmos.models.CosmosItemIdentity>
+      description: CosmosItem id and partition key tuple of items that that needs to be read
+    - id: sessionToken
+      type: java.lang.String
+      description: the optional Session token - null if the read can be made without specific session token
+    - id: classType
+      type: java.lang.Class<T>
+      description: class type
+    return:
+      type: reactor.core.publisher.Mono<com.azure.cosmos.models.FeedResponse<T>>
+      description: a Mono with feed response of cosmos items
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey)
   id: <T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -376,7 +526,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item resource response with the replaced item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: <T>replaceItem(T,java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -411,7 +561,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item resource response with the replaced item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>upsertItem(T)
   id: <T>upsertItem(T)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -437,7 +587,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the single resource response with the upserted item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>upsertItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: <T>upsertItem(T,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -466,7 +616,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the single resource response with the upserted item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.<T>upsertItem(T,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: <T>upsertItem(T,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -498,7 +648,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the single resource response with the upserted item or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.CosmosAsyncContainer(java.lang.String,com.azure.cosmos.CosmosAsyncDatabase)
   id: CosmosAsyncContainer(java.lang.String,com.azure.cosmos.CosmosAsyncDatabase)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -517,7 +667,7 @@ items:
       type: com.azure.cosmos.CosmosAsyncDatabase
 - uid: com.azure.cosmos.CosmosAsyncContainer.delete()
   id: delete()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -541,7 +691,7 @@ items:
          the deleted container or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.delete(com.azure.cosmos.models.CosmosContainerRequestOptions)
   id: delete(com.azure.cosmos.models.CosmosContainerRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -569,7 +719,7 @@ items:
          the deleted database or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.deleteItem(java.lang.String,com.azure.cosmos.models.PartitionKey)
   id: deleteItem(java.lang.String,com.azure.cosmos.models.PartitionKey)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -598,7 +748,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item resource response.
 - uid: com.azure.cosmos.CosmosAsyncContainer.deleteItem(java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
   id: deleteItem(java.lang.String,com.azure.cosmos.models.PartitionKey,com.azure.cosmos.models.CosmosItemRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -630,7 +780,7 @@ items:
       description: an <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> containing the Cosmos item resource response.
 - uid: com.azure.cosmos.CosmosAsyncContainer.getConflict(java.lang.String)
   id: getConflict(java.lang.String)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -652,7 +802,7 @@ items:
       description: a Cosmos conflict.
 - uid: com.azure.cosmos.CosmosAsyncContainer.getDatabase()
   id: getDatabase()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -670,7 +820,7 @@ items:
       description: the <xref uid="com.azure.cosmos.CosmosAsyncDatabase" data-throw-if-not-resolved="false">CosmosAsyncDatabase</xref>.
 - uid: com.azure.cosmos.CosmosAsyncContainer.getId()
   id: getId()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -688,7 +838,7 @@ items:
       description: the id of the <xref uid="com.azure.cosmos.CosmosAsyncContainer" data-throw-if-not-resolved="false">CosmosAsyncContainer</xref>.
 - uid: com.azure.cosmos.CosmosAsyncContainer.getScripts()
   id: getScripts()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -710,7 +860,7 @@ items:
       description: the <xref uid="com.azure.cosmos.CosmosAsyncScripts" data-throw-if-not-resolved="false">CosmosAsyncScripts</xref>.
 - uid: com.azure.cosmos.CosmosAsyncContainer.queryConflicts(java.lang.String)
   id: queryConflicts(java.lang.String)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -734,7 +884,7 @@ items:
          obtained conflicts or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.queryConflicts(java.lang.String,com.azure.cosmos.models.CosmosQueryRequestOptions)
   id: queryConflicts(java.lang.String,com.azure.cosmos.models.CosmosQueryRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -761,7 +911,7 @@ items:
          obtained conflicts or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.read()
   id: read()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -785,7 +935,7 @@ items:
          the read container or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.read(com.azure.cosmos.models.CosmosContainerRequestOptions)
   id: read(com.azure.cosmos.models.CosmosContainerRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -813,7 +963,7 @@ items:
          the read container or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.readAllConflicts(com.azure.cosmos.models.CosmosQueryRequestOptions)
   id: readAllConflicts(com.azure.cosmos.models.CosmosQueryRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -837,7 +987,7 @@ items:
          obtained conflicts or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.readThroughput()
   id: readThroughput()
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -855,7 +1005,7 @@ items:
       description: the mono containing throughput response.
 - uid: com.azure.cosmos.CosmosAsyncContainer.replace(com.azure.cosmos.models.CosmosContainerProperties)
   id: replace(com.azure.cosmos.models.CosmosContainerProperties)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -883,7 +1033,7 @@ items:
          the replaced container properties or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.replace(com.azure.cosmos.models.CosmosContainerProperties,com.azure.cosmos.models.CosmosContainerRequestOptions)
   id: replace(com.azure.cosmos.models.CosmosContainerProperties,com.azure.cosmos.models.CosmosContainerRequestOptions)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -914,7 +1064,7 @@ items:
          the replaced container properties or an error.
 - uid: com.azure.cosmos.CosmosAsyncContainer.replaceThroughput(com.azure.cosmos.models.ThroughputProperties)
   id: replaceThroughput(com.azure.cosmos.models.ThroughputProperties)
-  artifact: com.azure:azure-cosmos:4.3.1
+  artifact: com.azure:azure-cosmos:4.5.0
   parent: com.azure.cosmos.CosmosAsyncContainer
   langs:
   - java
@@ -1072,6 +1222,47 @@ references:
   name: <T>readItem
   nameWithType: CosmosAsyncContainer.<T>readItem
   fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readItem
+  package: com.azure.cosmos
+- uid: java.util.List<com.azure.cosmos.models.CosmosItemIdentity>
+  spec.java:
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: com.azure.cosmos.models.CosmosItemIdentity
+    name: CosmosItemIdentity
+    fullName: com.azure.cosmos.models.CosmosItemIdentity
+  - name: '>'
+    fullName: '>'
+- uid: reactor.core.publisher.Mono<com.azure.cosmos.models.FeedResponse<T>>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.cosmos.models.FeedResponse
+    name: FeedResponse
+    fullName: com.azure.cosmos.models.FeedResponse
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.CosmosAsyncContainer.readMany*
+  name: <T>readMany
+  nameWithType: CosmosAsyncContainer.<T>readMany
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readMany
+  package: com.azure.cosmos
+- uid: com.azure.cosmos.CosmosAsyncContainer.readAllItems*
+  name: <T>readAllItems
+  nameWithType: CosmosAsyncContainer.<T>readAllItems
+  fullName: com.azure.cosmos.CosmosAsyncContainer.<T>readAllItems
   package: com.azure.cosmos
 - uid: com.azure.cosmos.CosmosAsyncContainer.replaceItem*
   name: <T>replaceItem
@@ -1237,6 +1428,18 @@ references:
   name: CosmosPagedFlux
   nameWithType: CosmosPagedFlux
   fullName: com.azure.cosmos.util.CosmosPagedFlux
+- uid: com.azure.cosmos.models.CosmosItemIdentity
+  name: CosmosItemIdentity
+  nameWithType: CosmosItemIdentity
+  fullName: com.azure.cosmos.models.CosmosItemIdentity
+- uid: java.util.List
+  name: List
+  nameWithType: List
+  fullName: java.util.List
+- uid: com.azure.cosmos.models.FeedResponse
+  name: FeedResponse
+  nameWithType: FeedResponse
+  fullName: com.azure.cosmos.models.FeedResponse
 - uid: java.lang.Object
   name: Object
   nameWithType: Object
