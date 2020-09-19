@@ -1,6 +1,6 @@
 ---
 title: Azure Core Management client library for Java
-keywords: Azure, java, SDK, API, azure-core-management, 
+keywords: Azure, java, SDK, API, azure-core-management, core
 author: maggiepint
 ms.author: magpint
 ms.date: 08/08/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: core
 ---
 
 # Azure Core Management client library for Java - Version 1.0.0-beta.3 
