@@ -3,7 +3,7 @@ title: Azure Schema Registry client library for Java
 keywords: Azure, java, SDK, API, azure-data-schemaregistry, dataschemaregistry
 author: maggiepint
 ms.author: magpint
-ms.date: 09/10/2020
+ms.date: 09/21/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: dataschemaregistry
 ---
 
-# Azure Schema Registry client library for Java - Version 1.0.0-beta.3 
+# Azure Schema Registry client library for Java - Version 1.0.0-beta.4 
 
 
 Azure Schema Registry is a schema repository service hosted by Azure Event Hubs, providing schema storage, versioning, 
@@ -202,15 +202,15 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/c911c22408806885c4952d63e5d90f206efc2c62/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/c911c22408806885c4952d63e5d90f206efc2c62/sdk/schemaregistry/azure-data-schemaregistry/src
-[samples_code]: https://github.com/Azure/azure-sdk-for-java/tree/c911c22408806885c4952d63e5d90f206efc2c62/sdk/schemaregistry/azure-data-schemaregistry/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry/src/samples/java/com/azure/data/schemaregistry
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0-beta.4/sdk/schemaregistry/azure-data-schemaregistry/src
+[samples_code]: src/samples/
 [azure_subscription]: https://azure.microsoft.com/free/
 [api_reference_doc]: https://aka.ms/schemaregistry
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_portal]: https://portal.azure.com
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.0-beta.3/sdk/identity/azure-identity
-[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0-beta.3/sdk/identity/azure-identity/README.md#defaultazurecredential
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-data-schemaregistry_1.0.0-beta.4/sdk/identity/azure-identity
+[DefaultAzureCredential]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-schemaregistry_1.0.0-beta.4/sdk/identity/azure-identity/README.md#defaultazurecredential
 [event_hubs_namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-about
 [product_documentation]: https://aka.ms/schemaregistry
 
