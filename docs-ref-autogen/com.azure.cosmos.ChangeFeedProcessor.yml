@@ -2,9 +2,10 @@
 items:
 - uid: com.azure.cosmos.ChangeFeedProcessor
   id: ChangeFeedProcessor
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.5.1
   parent: com.azure.cosmos
   children:
+  - com.azure.cosmos.ChangeFeedProcessor.getCurrentState()
   - com.azure.cosmos.ChangeFeedProcessor.getEstimatedLag()
   - com.azure.cosmos.ChangeFeedProcessor.isStarted()
   - com.azure.cosmos.ChangeFeedProcessor.start()
@@ -42,9 +43,31 @@ items:
     ```
   syntax:
     content: public interface ChangeFeedProcessor
+- uid: com.azure.cosmos.ChangeFeedProcessor.getCurrentState()
+  id: getCurrentState()
+  artifact: com.azure:azure-cosmos:4.5.1
+  parent: com.azure.cosmos.ChangeFeedProcessor
+  langs:
+  - java
+  name: getCurrentState()
+  nameWithType: ChangeFeedProcessor.getCurrentState()
+  fullName: com.azure.cosmos.ChangeFeedProcessor.getCurrentState()
+  overload: com.azure.cosmos.ChangeFeedProcessor.getCurrentState*
+  type: Method
+  package: com.azure.cosmos
+  summary: >-
+    Returns a read only list of states each representing one scoped worker item.
+
+
+    An empty list will be returned if the processor was not started or no lease items matching the current <xref uid="com.azure.cosmos.ChangeFeedProcessor" data-throw-if-not-resolved="false">ChangeFeedProcessor</xref> instance's lease prefix could be found.
+  syntax:
+    content: public abstract Mono<List<ChangeFeedProcessorState>> getCurrentState()
+    return:
+      type: reactor.core.publisher.Mono<java.util.List<com.azure.cosmos.models.ChangeFeedProcessorState>>
+      description: a read only list of states each representing one scoped worker item.
 - uid: com.azure.cosmos.ChangeFeedProcessor.getEstimatedLag()
   id: getEstimatedLag()
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.5.1
   parent: com.azure.cosmos.ChangeFeedProcessor
   langs:
   - java
@@ -68,7 +91,7 @@ items:
                  lag, asynchronously.
 - uid: com.azure.cosmos.ChangeFeedProcessor.isStarted()
   id: isStarted()
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.5.1
   parent: com.azure.cosmos.ChangeFeedProcessor
   langs:
   - java
@@ -86,7 +109,7 @@ items:
       description: true if the change feed processor is currently active and running.
 - uid: com.azure.cosmos.ChangeFeedProcessor.start()
   id: start()
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.5.1
   parent: com.azure.cosmos.ChangeFeedProcessor
   langs:
   - java
@@ -104,7 +127,7 @@ items:
       description: a representation of the deferred computation of this call.
 - uid: com.azure.cosmos.ChangeFeedProcessor.stop()
   id: stop()
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.5.1
   parent: com.azure.cosmos.ChangeFeedProcessor
   langs:
   - java
@@ -182,6 +205,30 @@ references:
   nameWithType: ChangeFeedProcessor.getEstimatedLag
   fullName: com.azure.cosmos.ChangeFeedProcessor.getEstimatedLag
   package: com.azure.cosmos
+- uid: reactor.core.publisher.Mono<java.util.List<com.azure.cosmos.models.ChangeFeedProcessorState>>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: com.azure.cosmos.models.ChangeFeedProcessorState
+    name: ChangeFeedProcessorState
+    fullName: com.azure.cosmos.models.ChangeFeedProcessorState
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.ChangeFeedProcessor.getCurrentState*
+  name: getCurrentState
+  nameWithType: ChangeFeedProcessor.getCurrentState
+  fullName: com.azure.cosmos.ChangeFeedProcessor.getCurrentState
+  package: com.azure.cosmos
 - uid: java.lang.Void
   name: Void
   nameWithType: Void
@@ -198,3 +245,11 @@ references:
   name: String,Integer
   nameWithType: String,Integer
   fullName: java.lang.String,java.lang.Integer
+- uid: java.util.List
+  name: List
+  nameWithType: List
+  fullName: java.util.List
+- uid: com.azure.cosmos.models.ChangeFeedProcessorState
+  name: ChangeFeedProcessorState
+  nameWithType: ChangeFeedProcessorState
+  fullName: com.azure.cosmos.models.ChangeFeedProcessorState
