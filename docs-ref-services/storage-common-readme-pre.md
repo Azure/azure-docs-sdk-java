@@ -3,7 +3,7 @@ title: Azure Storage Common shared library for Java
 keywords: Azure, java, SDK, API, azure-storage-common, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 07/07/2020
+ms.date: 10/01/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Common shared library for Java - Version 12.8.0-beta.1 
+# Azure Storage Common shared library for Java - Version 12.9.0-beta.1 
 
 Azure Storage Common is a library that has common dependencies for all Azure Storage packages.
 
@@ -32,7 +32,7 @@ Azure Storage Common is a library that has common dependencies for all Azure Sto
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-common</artifactId>
-    <version>12.8.0-beta.1</version>
+    <version>12.9.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -69,7 +69,7 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-common/src
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-common_12.9.0-beta.1/sdk/storage/azure-storage-common/src
 [samples_readme]: src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
