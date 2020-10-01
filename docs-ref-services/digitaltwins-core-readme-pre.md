@@ -3,11 +3,7 @@ title: Azure IoT Digital Twins client library for Java
 keywords: Azure, java, SDK, API, azure-digitaltwins-core, digitaltwins
 author: maggiepint
 ms.author: magpint
-ms.date: 09/24/2020
-keywords: Azure, java, SDK, API, azure-digitaltwins-core, 
-author: maggiepint
-ms.author: magpint
-ms.date: 09/22/2020
+ms.date: 10/01/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -15,7 +11,8 @@ ms.devlang: java
 ms.service: digitaltwins
 ---
 
-# Azure IoT Digital Twins client library for Java - Version 1.0.0-beta.2
+# Azure IoT Digital Twins client library for Java - Version 1.0.0-beta.3 
+
 
 This library provides access to the Azure Digital Twins service for managing twins, models, relationships, etc.
 
@@ -35,7 +32,7 @@ For the best development experience, developers should use the official Microsof
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-digitaltwins-core</artifactId>
-  <version>1.0.0-beta.1</version>
+  <version>1.0.0-beta.3</version>
 </dependency>
 ```
 
@@ -55,7 +52,7 @@ For the best development experience, developers should use the official Microsof
 
 ### Authenticate the Client
 
-In order to interact with the Azure Digital Twins service, you will need to create an instance of a [TokenCredential class][token_credential] and pass it to the constructor of your [DigitalTwinsClientBuilder](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClientBuilder.java).
+In order to interact with the Azure Digital Twins service, you will need to create an instance of a [TokenCredential class][token_credential] and pass it to the constructor of your [DigitalTwinsClientBuilder](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClientBuilder.java).
 
 ## Key concepts
 
@@ -66,20 +63,21 @@ You can learn more about Azure Digital Twins by visiting [Azure Digital Twins Do
 
 ## Examples
 
-You can familiarize yourself with different APIs using [samples for Digital Twins](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/samples).
+You can familiarize yourself with different APIs using [samples for Digital Twins](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/samples).
 
 ## Source code folder structure
 
 ### /src/main/java/com/azure/digitaltwins/core
 
-- The Digital Twins client builder [`DigitalTwinsClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClientBuilder.java)
-- The Digital Twins public sync and async clients [`DigitalTwinsClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClient.java), [`DigitalTwinsAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsAsyncClient.java)
-- [`models` package](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/models)
+- The Digital Twins client builder [`DigitalTwinsClientBuilder`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClientBuilder.java)
+- The Digital Twins public sync and async clients [`DigitalTwinsClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsClient.java), [`DigitalTwinsAsyncClient`](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/DigitalTwinsAsyncClient.java)
+- [`models` package](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/main/java/com/azure/digitaltwins/core/models)
 
 ### /src/swagger
 
 A local copy of the swagger file that defines the structure of the REST APIs supported by the Azure Digital Twins service.
-To regenerate the code, run the powershell script [generate.ps1](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.1/sdk/digitaltwins/azure-digitaltwins-core/generate.ps1).
+
+To regenerate the code, run the powershell script [generate.ps1](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/generate.ps1).
 
 ## Troubleshooting
 
@@ -103,8 +101,7 @@ catch (ErrorResponseException ex) {
 
 ## Next steps
 
-See implementation examples with our [code samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/samples).
-
+See implementation examples with our [code samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core/src/samples).
 
 ## Contributing
 
@@ -123,12 +120,12 @@ For more information see the Code of Conduct FAQ or contact opencode@microsoft.c
 [microsoft_sdk_download]: https://azure.microsoft.com/downloads/?sdk=java
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.3/sdk/digitaltwins/azure-digitaltwins-core
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
 [nuget]: https://www.nuget.org/
 [azure_portal]: https://portal.azure.com/
 [azure_rest_api]: https://docs.microsoft.com/rest/api/azure/
-[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/core/azure-core
+[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.3/sdk/core/azure-core
 [token_credential]: https://docs.microsoft.com/java/api/com.azure.core.credential.tokencredential?view=azure-java-stable
 [digital_twins_documentation]: https://docs.microsoft.com/azure/digital-twins/
 [azure_cli]: https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest
