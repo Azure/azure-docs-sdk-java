@@ -3,7 +3,7 @@ title: Azure Storage Blob client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 07/07/2020
+ms.date: 10/01/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blob client library for Java - Version 12.8.0-beta.1 
+# Azure Storage Blob client library for Java - Version 12.9.0-beta.1 
 
 
 Azure Blob Storage is Microsoft's object storage solution for the cloud. Blob
@@ -36,7 +36,7 @@ definition, such as text or binary data.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-storage-blob</artifactId>
-    <version>12.8.0-beta.1</version>
+    <version>12.9.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -125,7 +125,9 @@ Blob Storage is designed for:
 ### URL format
 Blobs are addressable using the following URL format:
 The following URL addresses a blob:
+```
 https://myaccount.blob.core.windows.net/mycontainer/myblob
+```
 
 #### Resource URI Syntax
 For the storage account, the base URI for blob operations includes the name of the account only:
@@ -177,8 +179,9 @@ BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
 
 or
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L34-L36 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L34-L37 -->
 ```java
+// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
 BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
     .endpoint("<your-storage-account-url>" + "?" + "<your-sasToken>")
     .buildClient();
@@ -188,14 +191,14 @@ BlobServiceClient blobServiceClient = new BlobServiceClientBuilder()
 
 Create a `BlobContainerClient` using a `BlobServiceClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L40-L40 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L41-L41 -->
 ```java
 BlobContainerClient blobContainerClient = blobServiceClient.getBlobContainerClient("mycontainer");
 ```
 
 Create a `BlobContainerClient` from the builder [`sasToken`](#get-credentials) generated above.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L44-L48 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L45-L49 -->
 ```java
 BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
     .endpoint("<your-storage-account-url>")
@@ -206,8 +209,9 @@ BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
 
 or
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L52-L54 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L53-L56 -->
 ```java
+// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
 BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
     .endpoint("<your-storage-account-url>" + "/" + "mycontainer" + "?" + "<your-sasToken>")
     .buildClient();
@@ -217,7 +221,7 @@ BlobContainerClient blobContainerClient = new BlobContainerClientBuilder()
 
 Create a `BlobClient` using a `BlobContainerClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L58-L58 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L60-L60 -->
 ```java
 BlobClient blobClient = blobContainerClient.getBlobClient("myblob");
 ```
@@ -226,7 +230,7 @@ or
 
 Create a `BlobClient` from the builder [`sasToken`](#get-credentials) generated above.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L62-L67 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L64-L69 -->
 ```java
 BlobClient blobClient = new BlobClientBuilder()
     .endpoint("<your-storage-account-url>")
@@ -238,8 +242,9 @@ BlobClient blobClient = new BlobClientBuilder()
 
 or
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L71-L73 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L73-L76 -->
 ```java
+// Only one "?" is needed here. If the sastoken starts with "?", please removing one "?".
 BlobClient blobClient = new BlobClientBuilder()
     .endpoint("<your-storage-account-url>" + "/" + "mycontainer" + "/" + "myblob" + "?" + "<your-sasToken>")
     .buildClient();
@@ -249,7 +254,7 @@ BlobClient blobClient = new BlobClientBuilder()
 
 Create a container using a `BlobServiceClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L77-L77 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L80-L80 -->
 ```java
 blobServiceClient.createBlobContainer("mycontainer");
 ```
@@ -258,7 +263,7 @@ or
 
 Create a container using a `BlobContainerClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L81-L81 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L84-L84 -->
 ```java
 blobContainerClient.create();
 ```
@@ -267,7 +272,7 @@ blobContainerClient.create();
 
 Upload from an `InputStream` to a blob using a `BlockBlobClient` generated from a `BlobContainerClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L85-L91 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L88-L94 -->
 ```java
 BlockBlobClient blockBlobClient = blobContainerClient.getBlobClient("myblockblob").getBlockBlobClient();
 String dataSample = "samples";
@@ -282,7 +287,7 @@ try (ByteArrayInputStream dataStream = new ByteArrayInputStream(dataSample.getBy
 
 Upload a file to a blob using a `BlobClient` generated from a `BlobContainerClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L95-L96 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L98-L99 -->
 ```java
 BlobClient blobClient = blobContainerClient.getBlobClient("myblockblob");
 blobClient.uploadFromFile("local-file.jpg");
@@ -292,7 +297,7 @@ blobClient.uploadFromFile("local-file.jpg");
 
 Download a blob to an `OutputStream` using a `BlobClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L100-L104 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L103-L107 -->
 ```java
 try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
     blobClient.download(outputStream);
@@ -305,7 +310,7 @@ try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream()) {
 
 Download blob to a local file using a `BlobClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L108-L108 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L111-L111 -->
 ```java
 blobClient.downloadToFile("downloaded-file.jpg");
 ```
@@ -314,7 +319,7 @@ blobClient.downloadToFile("downloaded-file.jpg");
 
 Enumerating all blobs using a `BlobContainerClient`.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L112-L114 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L115-L117 -->
 ```java
 for (BlobItem blobItem : blobContainerClient.listBlobs()) {
     System.out.println("This is the blob name: " + blobItem.getName());
@@ -325,7 +330,7 @@ for (BlobItem blobItem : blobContainerClient.listBlobs()) {
 
 The [Azure Identity library][identity] provides Azure Active Directory support for authenticating with Azure Storage.
 
-<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L118-L121 -->
+<!-- embedme ./src/samples/java/com/azure/storage/blob/ReadmeSamples.java#L121-L124 -->
 ```java
 BlobServiceClient blobStorageClient = new BlobServiceClientBuilder()
     .endpoint("<your-storage-account-url>")
@@ -366,8 +371,8 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For more information see the [Code of Conduct FAQ][coc_faq] or contact [opencode@microsoft.com][coc_contact] with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob/src/samples/README.md
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.9.0-beta.1/sdk/storage/azure-storage-blob/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.9.0-beta.1/sdk/storage/azure-storage-blob/src/samples/README.md
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
@@ -377,9 +382,9 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
-[identity]: https://github.com/Azure/azure-sdk-for-java/blob/master/sdk/identity/azure-identity/README.md
+[identity]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.9.0-beta.1/sdk/identity/azure-identity/README.md
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob_12.9.0-beta.1/sdk/storage/azure-storage-blob/src/samples
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
@@ -387,4 +392,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
-
