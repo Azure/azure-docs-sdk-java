@@ -4,6 +4,10 @@ keywords: Azure, java, SDK, API, azure-digitaltwins-core, digitaltwins
 author: maggiepint
 ms.author: magpint
 ms.date: 09/24/2020
+keywords: Azure, java, SDK, API, azure-digitaltwins-core, 
+author: maggiepint
+ms.author: magpint
+ms.date: 09/22/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -12,6 +16,8 @@ ms.service: digitaltwins
 ---
 
 # Azure IoT Digital Twins client library for Java - Version 1.0.0-beta.2 
+
+# Azure IoT Digital Twins client library for Java - Version 1.0.0-beta.1 
 
 
 This library provides access to the Azure Digital Twins service for managing twins, models, relationships, etc.
@@ -76,8 +82,7 @@ You can familiarize yourself with different APIs using [samples for Digital Twin
 ### /src/swagger
 
 A local copy of the swagger file that defines the structure of the REST APIs supported by the Azure Digital Twins service.
-
-To regenerate the code, run the powershell script [generate.ps1](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/generate.ps1).
+To regenerate the code, run the powershell script [generate.ps1](https://github.com/Azure/azure-sdk-for-java/blob/azure-digitaltwins-core_1.0.0-beta.1/sdk/digitaltwins/azure-digitaltwins-core/generate.ps1).
 
 ## Troubleshooting
 
@@ -102,6 +107,7 @@ catch (ErrorResponseException ex) {
 ## Next steps
 
 See implementation examples with our [code samples](https://github.com/Azure/azure-sdk-for-java/tree/azure-digitaltwins-core_1.0.0-beta.2/sdk/digitaltwins/azure-digitaltwins-core/src/samples).
+
 
 ## Contributing
 
