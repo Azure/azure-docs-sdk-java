@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient
   id: DigitalTwinsClient
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core
   children:
   - com.azure.digitaltwins.core.DigitalTwinsClient.<T>createDigitalTwin(java.lang.String,T,java.lang.Class<T>)
@@ -43,7 +43,7 @@ items:
   - com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships(java.lang.String)
   - com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships(java.lang.String,com.azure.core.util.Context)
   - com.azure.digitaltwins.core.DigitalTwinsClient.listModels()
-  - com.azure.digitaltwins.core.DigitalTwinsClient.listModels(com.azure.digitaltwins.core.models.ListModelOptions,com.azure.core.util.Context)
+  - com.azure.digitaltwins.core.DigitalTwinsClient.listModels(com.azure.digitaltwins.core.models.ModelsListOptions,com.azure.core.util.Context)
   - com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetry(java.lang.String,java.lang.String,java.lang.Object)
   - com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetryWithResponse(java.lang.String,java.lang.String,java.lang.Object,com.azure.digitaltwins.core.models.PublishTelemetryRequestOptions,com.azure.core.util.Context)
   - com.azure.digitaltwins.core.DigitalTwinsClient.publishTelemetry(java.lang.String,java.lang.Object)
@@ -62,10 +62,24 @@ items:
   type: Class
   package: com.azure.digitaltwins.core
   summary: >-
-    This class provides a client for interacting synchronously with an Azure Digital Twins instance.
+    This class provides a client for interacting synchronously with an Azure Digital Twins instance. This client is instantiated through <xref uid="com.azure.digitaltwins.core.DigitalTwinsClientBuilder" data-throw-if-not-resolved="false">DigitalTwinsClientBuilder</xref>.
 
 
-    This client is instantiated through <xref uid="com.azure.digitaltwins.core.DigitalTwinsClientBuilder" data-throw-if-not-resolved="false">DigitalTwinsClientBuilder</xref>.
+    **Code Samples**
+
+
+    ```java
+
+    DigitalTwinsClient digitalTwinsSyncClient = new DigitalTwinsClientBuilder()
+         .credential(
+             new ClientSecretCredentialBuilder()
+                 .tenantId(tenantId)
+                 .clientId(clientId)
+                 .clientSecret(clientSecret)
+                 .build())
+         .endpoint(digitalTwinsEndpointUrl)
+         .buildClient();
+    ```
 
 
     This client allows for management of digital twins, their components, and their relationships. It also allows for managing the digital twin models and event routes tied to your Azure Digital Twins instance.
@@ -87,7 +101,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>createDigitalTwin(java.lang.String,T,java.lang.Class<T>)
   id: <T>createDigitalTwin(java.lang.String,T,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -97,7 +111,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createDigitalTwin*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates a digital twin.
+  summary: "Creates a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as the input parameter:\n\n```java\nString modelId = \"dtmi:samples:Building;1\";\n \n BasicDigitalTwin basicTwin = new BasicDigitalTwin()\n     .setId(\"myDigitalTwinId\")\n     .setMetadata(\n         new DigitalTwinMetadata()\n             .setModelId(modelId)\n     );\n \n BasicDigitalTwin createdTwin = digitalTwinsClient.createDigitalTwin(\n     basicTwin.getId(),\n     basicTwin,\n     BasicDigitalTwin.class);\n \n System.out.println(\"Created digital twin with Id: \" + createdTwin.getId());\n```\n\nOr alternatively String can be used as input and output type:\n\n```java\nString stringResult = digitalTwinsClient.createDigitalTwin(\n     \"myDigitalTwinId\",\n     digitalTwinStringPayload,\n     String.class);\n System.out.println(\"Created digital twin: \" + stringResult);\n```"
   syntax:
     content: public T <T>createDigitalTwin(String digitalTwinId, T digitalTwin, Class<T> clazz)
     parameters:
@@ -115,7 +129,7 @@ items:
       description: The deserialized application/json object representing the digital twin created.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>createDigitalTwinWithResponse(java.lang.String,T,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>createDigitalTwinWithResponse(java.lang.String,T,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -125,7 +139,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createDigitalTwinWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates a digital twin.
+  summary: "Creates a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object type such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as the input parameter:\n\n```java\nString modelId = \"dtmi:samples:Building;1\";\n \n BasicDigitalTwin basicDigitalTwin = new BasicDigitalTwin()\n     .setId(\"myDigitalTwinId\")\n     .setMetadata(\n         new DigitalTwinMetadata()\n             .setModelId(modelId)\n     );\n \n Response<BasicDigitalTwin> resultWithResponse = digitalTwinsClient.createDigitalTwinWithResponse(\n     basicDigitalTwin.getId(),\n     basicDigitalTwin,\n     BasicDigitalTwin.class,\n     new Context(\"Key\", \"Value\"));\n \n System.out.println(\"Response http status: \"\n     + resultWithResponse.getStatusCode() +\n     \" created digital twin Id: \" +\n     resultWithResponse.getValue().getId());\n```\n\nOr alternatively String can be used as input and output type:\n\n```java\nString stringResult = digitalTwinsClient.createDigitalTwin(\n     \"myDigitalTwinId\",\n     digitalTwinStringPayload,\n     String.class);\n System.out.println(\"Created digital twin: \" + stringResult);\n```"
   syntax:
     content: public Response<T> <T>createDigitalTwinWithResponse(String digitalTwinId, T digitalTwin, Class<T> clazz, Context context)
     parameters:
@@ -146,7 +160,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing the deserialized application/json object representing the digital twin created.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>createRelationship(java.lang.String,java.lang.String,T,java.lang.Class<T>)
   id: <T>createRelationship(java.lang.String,java.lang.String,T,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -156,7 +170,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createRelationship*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates a relationship on a digital twin.
+  summary: "Creates a relationship on a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nBasicRelationship buildingToFloorBasicRelationship = new BasicRelationship()\n     .setId(\"myRelationshipId\")\n     .setSourceId(\"mySourceDigitalTwinId\")\n     .setTargetId(\"myTargetDigitalTwinId\")\n     .setName(\"contains\")\n     .addCustomProperty(\"Prop1\", \"Prop1 value\")\n     .addCustomProperty(\"Prop2\", 6);\n \n BasicRelationship createdRelationship = digitalTwinsSyncClient.createRelationship(\n     \"mySourceDigitalTwinId\",\n     \"myRelationshipId\",\n     buildingToFloorBasicRelationship,\n     BasicRelationship.class);\n \n System.out.println(\n     \"Created relationship with Id: \" +\n     createdRelationship.getId() +\n     \" from: \" + createdRelationship.getSourceId() +\n     \" to: \" + createdRelationship.getTargetId());\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nString relationshipPayload = getRelationshipPayload();\n \n String createdRelationshipString = digitalTwinsSyncClient.createRelationship(\n     \"mySourceDigitalTwinId\",\n     \"myRelationshipId\",\n     relationshipPayload,\n     String.class);\n \n System.out.println(\"Created relationship: \" + createdRelationshipString);\n```"
   syntax:
     content: public T <T>createRelationship(String digitalTwinId, String relationshipId, T relationship, Class<T> clazz)
     parameters:
@@ -177,7 +191,7 @@ items:
       description: The relationship created.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>createRelationshipWithResponse(java.lang.String,java.lang.String,T,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>createRelationshipWithResponse(java.lang.String,java.lang.String,T,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -187,7 +201,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createRelationshipWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates a relationship on a digital twin.
+  summary: "Creates a relationship on a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nBasicRelationship buildingToFloorBasicRelationship = new BasicRelationship()\n     .setId(\"myRelationshipId\")\n     .setSourceId(\"mySourceDigitalTwinId\")\n     .setTargetId(\"myTargetDigitalTwinId\")\n     .setName(\"contains\")\n     .addCustomProperty(\"Prop1\", \"Prop1 value\")\n     .addCustomProperty(\"Prop2\", 6);\n \n Response<BasicRelationship> createdRelationshipWithResponse = digitalTwinsSyncClient.createRelationshipWithResponse(\n     \"mySourceDigitalTwinId\",\n     \"myRelationshipId\",\n     buildingToFloorBasicRelationship,\n     BasicRelationship.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Created relationship with Id: \" +\n         createdRelationshipWithResponse.getValue().getId() +\n         \" from: \" + createdRelationshipWithResponse.getValue().getSourceId() +\n         \" to: \" + createdRelationshipWithResponse.getValue().getTargetId() +\n         \" Http status code: \" +\n         createdRelationshipWithResponse.getStatusCode());\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nString relationshipPayload = getRelationshipPayload();\n \n Response<String> createdRelationshipStringWithResponse = digitalTwinsSyncClient.createRelationshipWithResponse(\n     \"mySourceDigitalTwinId\",\n     \"myRelationshipId\",\n     relationshipPayload,\n     String.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Created relationship: \" +\n     createdRelationshipStringWithResponse +\n     \" With HTTP status code: \" +\n     createdRelationshipStringWithResponse.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<T> <T>createRelationshipWithResponse(String digitalTwinId, String relationshipId, T relationship, Class<T> clazz, Context context)
     parameters:
@@ -211,7 +225,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing the relationship created.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getComponent(java.lang.String,java.lang.String,java.lang.Class<T>)
   id: <T>getComponent(java.lang.String,java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -221,7 +235,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getComponent*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Get a component of a digital twin.
+  summary: "Get a component of a digital twin.\n\n**Code Samples**\n\n```java\nString componentString = digitalTwinsSyncClient.getComponent(\n     \"myDigitalTwinId\",\n     \"myComponentPath\",\n     String.class);\n \n System.out.println(\"Retrieved component: \" + componentString);\n```"
   syntax:
     content: public T <T>getComponent(String digitalTwinId, String componentPath, Class<T> clazz)
     parameters:
@@ -239,7 +253,7 @@ items:
       description: The deserialized application/json object representing the component of the digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getComponentWithResponse(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>getComponentWithResponse(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -249,7 +263,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getComponentWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Get a component of a digital twin.
+  summary: "Get a component of a digital twin.\n\n**Code Samples**\n\n```java\nResponse<String> componentStringWithResponse = digitalTwinsSyncClient.getComponentWithResponse(\n     \"myDigitalTwinId\",\n     \"myComponentPath\",\n     String.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received component get operation response with HTTP status code: \" +\n     componentStringWithResponse.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<T> <T>getComponentWithResponse(String digitalTwinId, String componentPath, Class<T> clazz, Context context)
     parameters:
@@ -270,7 +284,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing the deserialized application/json object representing the component of the digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getDigitalTwin(java.lang.String,java.lang.Class<T>)
   id: <T>getDigitalTwin(java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -280,7 +294,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getDigitalTwin*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a digital twin.
+  summary: "Gets a digital twin.\n\n**Code Samples**\n\nA Strongly typed object type such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as an input parameter for `clazz` to indicate what type is used to deserialize the response.\n\n```java\nBasicDigitalTwin basicTwinResult = digitalTwinsClient.getDigitalTwin(\n     \"myDigitalTwinId\",\n     BasicDigitalTwin.class);\n \n System.out.println(\"Retrieved digital twin with Id: \" + basicTwinResult.getId());\n```\n\nAlternatively String can be used to get the response in a json string format.\n\n```java\nString stringResult = digitalTwinsClient.getDigitalTwin(\"myDigitalTwinId\", String.class);\n \n System.out.println(\"Retrieved digital twin: \" + stringResult);\n```"
   syntax:
     content: public T <T>getDigitalTwin(String digitalTwinId, Class<T> clazz)
     parameters:
@@ -295,7 +309,7 @@ items:
       description: The deserialized application/json object representing the digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getDigitalTwinWithResponse(java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>getDigitalTwinWithResponse(java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -305,7 +319,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getDigitalTwinWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a digital twin.
+  summary: "Gets a digital twin.\n\n**Code Samples**\n\nA Strongly typed object type such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as an input parameter for `clazz` to indicate what type is used to deserialize the response.\n\n```java\nResponse<BasicDigitalTwin> basicTwinResultWithResponse = digitalTwinsClient.getDigitalTwinWithResponse(\n     \"myDigitalTwinId\",\n     BasicDigitalTwin.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Http status code: \" + basicTwinResultWithResponse.getStatusCode());\n System.out.println(\"Retrieved digital twin with Id: \" + basicTwinResultWithResponse.getValue().getId());\n```\n\nAlternatively String can be used to get the response in a json string format.\n\n```java\nResponse<String> stringResultWithResponse = digitalTwinsClient.getDigitalTwinWithResponse(\n     \"myDigitalTwinId\",\n     String.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Http response status: \" + stringResultWithResponse.getStatusCode());\n System.out.println(\"Retrieved digital twin: \" + stringResultWithResponse.getValue());\n```"
   syntax:
     content: public DigitalTwinsResponse<T> <T>getDigitalTwinWithResponse(String digitalTwinId, Class<T> clazz, Context context)
     parameters:
@@ -323,7 +337,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing the deserialized application/json object representing the digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getRelationship(java.lang.String,java.lang.String,java.lang.Class<T>)
   id: <T>getRelationship(java.lang.String,java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -333,7 +347,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getRelationship*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a relationship on a digital twin.
+  summary: "Gets a relationship on a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nBasicRelationship retrievedRelationship = digitalTwinsSyncClient.getRelationship(\n     \"myDigitalTwinId\",\n     \"myRelationshipName\",\n     BasicRelationship.class);\n \n System.out.println(\n     \"Retrieved relationship with Id: \"\n     + retrievedRelationship.getId() +\n     \" from: \" +\n     retrievedRelationship.getSourceId() +\n     \" to: \" + retrievedRelationship.getTargetId());\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nString retrievedRelationshipString = digitalTwinsSyncClient.getRelationship(\n     \"myDigitalTwinId\",\n     \"myRelationshipName\",\n     String.class);\n \n System.out.println(\"Retrieved relationship: \" + retrievedRelationshipString);\n```"
   syntax:
     content: public T <T>getRelationship(String digitalTwinId, String relationshipId, Class<T> clazz)
     parameters:
@@ -351,7 +365,7 @@ items:
       description: The deserialized relationship.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>getRelationshipWithResponse(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>getRelationshipWithResponse(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -361,7 +375,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getRelationshipWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a relationship on a digital twin.
+  summary: "Gets a relationship on a digital twin.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nResponse<BasicRelationship> retrievedRelationshipWithResponse = digitalTwinsSyncClient.getRelationshipWithResponse(\n     \"myDigitalTwinId\",\n     \"myRelationshipName\",\n     BasicRelationship.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Retrieved relationship with Id: \"\n         + retrievedRelationshipWithResponse.getValue().getId() +\n         \" from: \" +\n         retrievedRelationshipWithResponse.getValue().getSourceId() +\n         \" to: \" + retrievedRelationshipWithResponse.getValue().getTargetId() +\n         \"HTTP status code: \" + retrievedRelationshipWithResponse.getStatusCode());\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nResponse<String> retrievedRelationshipString = digitalTwinsSyncClient.getRelationshipWithResponse(\n     \"myDigitalTwinId\",\n     \"myRelationshipName\",\n     String.class,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Retrieved relationship: \" +\n     retrievedRelationshipString +\n     \" HTTP status code: \" +\n     retrievedRelationshipString.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<T> <T>getRelationshipWithResponse(String digitalTwinId, String relationshipId, Class<T> clazz, Context context)
     parameters:
@@ -382,7 +396,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing the deserialized relationship.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>listRelationships(java.lang.String,java.lang.Class<T>)
   id: <T>listRelationships(java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -392,7 +406,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listRelationships*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List the relationships that have a given digital twin as the source.
+  summary: "List the relationships that have a given digital twin as the source.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nPagedIterable<BasicRelationship> pagedRelationshipsByItem = digitalTwinsSyncClient.listRelationships(\n     \"myDigitalTwinId\",\n     BasicRelationship.class);\n \n for (BasicRelationship rel : pagedRelationshipsByItem) {\n     System.out.println(\"Retrieved relationship with Id: \" + rel.getId());\n }\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nPagedIterable<String> pagedRelationshipsStringByItem = digitalTwinsSyncClient.listRelationships(\n     \"myDigitalTwinId\",\n     String.class);\n \n for (String rel : pagedRelationshipsStringByItem) {\n     System.out.println(\"Retrieved relationship: \" + rel);\n }\n```"
   syntax:
     content: public PagedIterable<T> <T>listRelationships(String digitalTwinId, Class<T> clazz)
     parameters:
@@ -409,7 +423,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedIterable" data-throw-if-not-resolved="false">PagedIterable</xref> of relationships belonging to the specified digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>listRelationships(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>listRelationships(java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -419,7 +433,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listRelationships*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List the relationships that have a given digital twin as the source and that have the given relationship name.
+  summary: "List the relationships that have a given digital twin as the source and that have the given relationship name.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicRelationship\" data-throw-if-not-resolved=\"false\">BasicRelationship</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nPagedIterable<BasicRelationship> pagedRelationshipByNameByItem = digitalTwinsSyncClient.listRelationships(\n     \"myDigitalTwinId\",\n     \"myRelationshipName\",\n     BasicRelationship.class,\n     new Context(\"Key\", \"value\"));\n \n for (BasicRelationship rel : pagedRelationshipByNameByItem) {\n     System.out.println(\"Retrieved relationship with Id: \" + rel.getId());\n }\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nPagedIterable<String> pagedRelationshipsStringByNameByItem = digitalTwinsSyncClient.listRelationships(\n     \"myDigitalTwinId\",\n     \"myRelationshipId\",\n     String.class,\n     new Context(\"key\", \"value\"));\n \n for (String rel : pagedRelationshipsStringByNameByItem) {\n     System.out.println(\"Retrieved relationship: \" + rel);\n }\n```"
   syntax:
     content: public PagedIterable<T> <T>listRelationships(String digitalTwinId, String relationshipName, Class<T> clazz, Context context)
     parameters:
@@ -442,7 +456,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedIterable" data-throw-if-not-resolved="false">PagedIterable</xref> of relationships belonging to the specified digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>query(java.lang.String,java.lang.Class<T>)
   id: <T>query(java.lang.String,java.lang.Class<T>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -452,7 +466,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.query*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Query digital twins.
+  summary: "Query digital twins.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nPagedIterable<BasicDigitalTwin> queryResultBasicDigitalTwin = digitalTwinsSyncClient.query(\n     \"SELECT * FROM digitaltwins\",\n     BasicDigitalTwin.class);\n \n queryResultBasicDigitalTwin.forEach(basicTwin -> System.out.println(\n     \"Retrieved digitalTwin query result with Id: \" +\n     basicTwin.getId()));\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nPagedIterable<String> queryResultString = digitalTwinsSyncClient.query(\n     \"SELECT * FROM digitaltwins\",\n     String.class);\n \n queryResultString.forEach(queryResult -> System.out.println(\"Retrieved digitalTwin query result: \" + queryResult));\n```"
   syntax:
     content: public PagedIterable<T> <T>query(String query, Class<T> clazz)
     parameters:
@@ -469,7 +483,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedIterable" data-throw-if-not-resolved="false">PagedIterable</xref> of deserialized digital twins.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.<T>query(java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
   id: <T>query(java.lang.String,java.lang.Class<T>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -479,7 +493,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.query*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Query digital twins.
+  summary: "Query digital twins.\n\n**Code Samples**\n\nA strongly typed digital twin object such as <xref uid=\"com.azure.digitaltwins.core.models.BasicDigitalTwin\" data-throw-if-not-resolved=\"false\">BasicDigitalTwin</xref> can be provided as the input parameter to deserialize the response into.\n\n```java\nPagedIterable<BasicDigitalTwin> queryResultBasicDigitalTwinWithContext = digitalTwinsSyncClient.query(\n     \"SELECT * FROM digitaltwins\",\n     BasicDigitalTwin.class,\n     new Context(\"key\", \"value\"));\n \n queryResultBasicDigitalTwinWithContext\n     .forEach(basicTwin ->\n         System.out.println(\"Retrieved digitalTwin query result with Id: \" + basicTwin.getId()));\n```\n\nOr alternatively String can be used as input and output deserialization type:\n\n```java\nPagedIterable<String> queryResultStringWithContext = digitalTwinsSyncClient.query(\n     \"SELECT * FROM digitaltwins\",\n     String.class,\n     new Context(\"key\", \"value\"));\n \n queryResultStringWithContext\n     .forEach(queryResult ->\n         System.out.println(\"Retrieved digitalTwin query result: \" + queryResult));\n```"
   syntax:
     content: public PagedIterable<T> <T>query(String query, Class<T> clazz, Context context)
     parameters:
@@ -499,7 +513,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedIterable" data-throw-if-not-resolved="false">PagedIterable</xref> of deserialized digital twins.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.DigitalTwinsClient(com.azure.digitaltwins.core.DigitalTwinsAsyncClient)
   id: DigitalTwinsClient(com.azure.digitaltwins.core.DigitalTwinsAsyncClient)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -516,7 +530,7 @@ items:
       type: com.azure.digitaltwins.core.DigitalTwinsAsyncClient
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.createEventRoute(java.lang.String,com.azure.digitaltwins.core.models.EventRoute)
   id: createEventRoute(java.lang.String,com.azure.digitaltwins.core.models.EventRoute)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -526,7 +540,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createEventRoute*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Create an event route.
+  summary: "Create an event route.\n\n**Code Samples**\n\n```java\nString filter = \"$eventType = 'DigitalTwinTelemetryMessages' or $eventType = 'DigitalTwinLifecycleNotification'\";\n \n EventRoute eventRoute = new EventRoute(\"myEndpointName\").setFilter(filter);\n digitalTwinsSyncClient.createEventRoute(\"myEventRouteId\", eventRoute);\n```"
   syntax:
     content: public void createEventRoute(String eventRouteId, EventRoute eventRoute)
     parameters:
@@ -538,7 +552,7 @@ items:
       description: The event route to create.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.createEventRouteWithResponse(java.lang.String,com.azure.digitaltwins.core.models.EventRoute,com.azure.core.util.Context)
   id: createEventRouteWithResponse(java.lang.String,com.azure.digitaltwins.core.models.EventRoute,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -548,7 +562,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createEventRouteWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Create an event route.
+  summary: "Create an event route.\n\n**Code Samples**\n\n```java\nString filter = \"$eventType = 'DigitalTwinTelemetryMessages' or $eventType = 'DigitalTwinLifecycleNotification'\";\n \n EventRoute eventRoute = new EventRoute(\"myEndpointName\").setFilter(filter);\n Response<Void> response = digitalTwinsSyncClient.createEventRouteWithResponse(\n     \"myEventRouteId\",\n     eventRoute,\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Created an event rout with HTTP status code: \" + response.getStatusCode());\n```"
   syntax:
     content: public Response<Void> createEventRouteWithResponse(String eventRouteId, EventRoute eventRoute, Context context)
     parameters:
@@ -566,7 +580,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.createModels(java.lang.Iterable<java.lang.String>)
   id: createModels(java.lang.Iterable<java.lang.String>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -576,7 +590,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createModels*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates one or many models.
+  summary: "Creates one or many models.\n\n**Code Samples**\n\n```java\nIterable<DigitalTwinsModelData> createdModels = digitalTwinsSyncClient.createModels(\n     Arrays.asList(model1, model2, model3));\n \n createdModels.forEach(model ->\n     System.out.println(\"Retrieved model with Id: \" + model.getId()));\n```"
   syntax:
     content: public Iterable<DigitalTwinsModelData> createModels(Iterable<String> models)
     parameters:
@@ -590,7 +604,7 @@ items:
          will contain metadata about the created model, but will not contain the model itself.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.createModelsWithResponse(java.lang.Iterable<java.lang.String>,com.azure.core.util.Context)
   id: createModelsWithResponse(java.lang.Iterable<java.lang.String>,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -600,7 +614,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.createModelsWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Creates one or many models.
+  summary: "Creates one or many models.\n\n**Code Samples**\n\n```java\nResponse<Iterable<DigitalTwinsModelData>> createdModels = digitalTwinsSyncClient.createModelsWithResponse(\n     Arrays.asList(model1, model2, model3),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Received HTTP response of \" + createdModels.getStatusCode());\n \n createdModels.getValue()\n     .forEach(model -> System.out.println(\"Retrieved model with Id: \" + model.getId()));\n```"
   syntax:
     content: public Response<Iterable<DigitalTwinsModelData>> createModelsWithResponse(Iterable<String> models, Context context)
     parameters:
@@ -617,7 +631,7 @@ items:
          will contain metadata about the created model, but will not contain the model itself.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.decommissionModel(java.lang.String)
   id: decommissionModel(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -627,7 +641,18 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.decommissionModel*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Decommissions a model.
+  summary: >-
+    Decommissions a model.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    digitalTwinsSyncClient.decommissionModel("dtmi:samples:Building;1");
+
+    ```
   syntax:
     content: public void decommissionModel(String modelId)
     parameters:
@@ -636,7 +661,7 @@ items:
       description: The Id of the model to decommission.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.decommissionModelWithResponse(java.lang.String,com.azure.core.util.Context)
   id: decommissionModelWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -646,7 +671,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.decommissionModelWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Decommissions a model.
+  summary: "Decommissions a model.\n\n**Code Samples**\n\n```java\nResponse<Void> response = digitalTwinsSyncClient.decommissionModelWithResponse(\n     \"dtmi:samples:Building;1\",\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Received decommission operation HTTP response with status: \" + response.getStatusCode());\n```"
   syntax:
     content: public Response<Void> decommissionModelWithResponse(String modelId, Context context)
     parameters:
@@ -661,7 +686,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> with no parsed payload object.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteDigitalTwin(java.lang.String)
   id: deleteDigitalTwin(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -671,7 +696,18 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteDigitalTwin*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
+  summary: >-
+    Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    digitalTwinsClient.deleteDigitalTwin("myDigitalTwinId");
+
+    ```
   syntax:
     content: public void deleteDigitalTwin(String digitalTwinId)
     parameters:
@@ -680,7 +716,7 @@ items:
       description: The Id of the digital twin. The Id is unique within the service and case sensitive.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteDigitalTwinWithResponse(java.lang.String,com.azure.digitaltwins.core.models.DeleteDigitalTwinRequestOptions,com.azure.core.util.Context)
   id: deleteDigitalTwinWithResponse(java.lang.String,com.azure.digitaltwins.core.models.DeleteDigitalTwinRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -690,7 +726,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteDigitalTwinWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a digital twin. All relationships referencing the digital twin must already be deleted.
+  summary: "Deletes a digital twin. All relationships referencing the digital twin must already be deleted.\n\n**Code Samples**\n\n```java\nResponse<Void> response = digitalTwinsClient.deleteDigitalTwinWithResponse(\n     \"myDigitalTwinId\",\n     new DeleteDigitalTwinRequestOptions(),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Deleted digital twin HTTP response status code: \" + response.getStatusCode());\n```"
   syntax:
     content: public Response<Void> deleteDigitalTwinWithResponse(String digitalTwinId, DeleteDigitalTwinRequestOptions options, Context context)
     parameters:
@@ -708,7 +744,7 @@ items:
       description: The Http response.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteEventRoute(java.lang.String)
   id: deleteEventRoute(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -718,7 +754,18 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteEventRoute*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Delete an event route.
+  summary: >-
+    Delete an event route.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    digitalTwinsSyncClient.deleteEventRoute("myEventRouteId");
+
+    ```
   syntax:
     content: public void deleteEventRoute(String eventRouteId)
     parameters:
@@ -727,7 +774,7 @@ items:
       description: The Id of the event route to delete.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteEventRouteWithResponse(java.lang.String,com.azure.core.util.Context)
   id: deleteEventRouteWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -737,7 +784,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteEventRouteWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Delete an event route.
+  summary: "Delete an event route.\n\n**Code Samples**\n\n```java\nResponse<Void> deleteResponse = digitalTwinsSyncClient.deleteEventRouteWithResponse(\n     \"myEventRouteId\",\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received delete event route operation response with HTTP status code: \" +\n     deleteResponse.getStatusCode());\n```"
   syntax:
     content: public Response<Void> deleteEventRouteWithResponse(String eventRouteId, Context context)
     parameters:
@@ -752,7 +799,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing no parsed value.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteModel(java.lang.String)
   id: deleteModel(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -762,7 +809,18 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteModel*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a model.
+  summary: >-
+    Deletes a model.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    digitalTwinsSyncClient.deleteModel("dtmi:samples:Building;1");
+
+    ```
   syntax:
     content: public void deleteModel(String modelId)
     parameters:
@@ -771,7 +829,7 @@ items:
       description: The Id for the model. The Id is globally unique and case sensitive.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteModelWithResponse(java.lang.String,com.azure.core.util.Context)
   id: deleteModelWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -781,7 +839,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteModelWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a model.
+  summary: "Deletes a model.\n\n**Code Samples**\n\n```java\nResponse<Void> response = digitalTwinsSyncClient.deleteModelWithResponse(\n     \"dtmi:samples:Building;1\",\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Received delete model operation HTTP response with status: \" + response.getStatusCode());\n```"
   syntax:
     content: public Response<Void> deleteModelWithResponse(String modelId, Context context)
     parameters:
@@ -796,7 +854,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> with no parsed payload object.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteRelationship(java.lang.String,java.lang.String)
   id: deleteRelationship(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -806,7 +864,18 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteRelationship*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a relationship on a digital twin.
+  summary: >-
+    Deletes a relationship on a digital twin.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    digitalTwinsSyncClient.deleteRelationship("myDigitalTwinId", "myRelationshipId");
+
+    ```
   syntax:
     content: public void deleteRelationship(String digitalTwinId, String relationshipId)
     parameters:
@@ -818,7 +887,7 @@ items:
       description: The Id of the relationship to delete.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteRelationshipWithResponse(java.lang.String,java.lang.String,com.azure.digitaltwins.core.models.DeleteRelationshipRequestOptions,com.azure.core.util.Context)
   id: deleteRelationshipWithResponse(java.lang.String,java.lang.String,com.azure.digitaltwins.core.models.DeleteRelationshipRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -828,7 +897,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.deleteRelationshipWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Deletes a relationship on a digital twin.
+  summary: "Deletes a relationship on a digital twin.\n\n**Code Samples**\n\n```java\nResponse<Void> deleteResponse = digitalTwinsSyncClient.deleteRelationshipWithResponse(\n     \"myDigitalTwinId\",\n     \"myRelationshipId\",\n     new DeleteRelationshipRequestOptions(),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Deleted relationship with HTTP status code: \" + deleteResponse.getStatusCode());\n```"
   syntax:
     content: public Response<Void> deleteRelationshipWithResponse(String digitalTwinId, String relationshipId, DeleteRelationshipRequestOptions options, Context context)
     parameters:
@@ -849,7 +918,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing no parsed payload object.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.getEventRoute(java.lang.String)
   id: getEventRoute(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -859,7 +928,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getEventRoute*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Get an event route.
+  summary: "Get an event route.\n\n**Code Samples**\n\n```java\nEventRoute eventRoute = digitalTwinsSyncClient.getEventRoute(\"myEventRouteId\");\n \n System.out.println(\"Retrieved event route with Id: \" + eventRoute.getId());\n```"
   syntax:
     content: public EventRoute getEventRoute(String eventRouteId)
     parameters:
@@ -871,7 +940,7 @@ items:
       description: The retrieved event route.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.getEventRouteWithResponse(java.lang.String,com.azure.core.util.Context)
   id: getEventRouteWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -881,7 +950,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getEventRouteWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Get an event route.
+  summary: "Get an event route.\n\n**Code Samples**\n\n```java\nResponse<EventRoute> eventRouteWithResponse = digitalTwinsSyncClient.getEventRouteWithResponse(\n     \"myEventRouteId\",\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received get event route operation response with HTTP status code: \" +\n     eventRouteWithResponse.getStatusCode());\n System.out.println(\"Retrieved event route with Id: \" + eventRouteWithResponse.getValue().getId());\n```"
   syntax:
     content: public Response<EventRoute> getEventRouteWithResponse(String eventRouteId, Context context)
     parameters:
@@ -896,7 +965,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing the retrieved event route.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.getModel(java.lang.String)
   id: getModel(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -906,7 +975,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getModel*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a model, including the model metadata and the model definition.
+  summary: "Gets a model, including the model metadata and the model definition.\n\n**Code Samples**\n\n```java\nDigitalTwinsModelData model = digitalTwinsSyncClient.getModel(\"dtmi:samples:Building;1\");\n \n System.out.println(\"Retrieved model with Id: \" + model.getId());\n```"
   syntax:
     content: public DigitalTwinsModelData getModel(String modelId)
     parameters:
@@ -918,7 +987,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsModelData" data-throw-if-not-resolved="false">DigitalTwinsModelData</xref> instance that contains the model and its metadata.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.getModelWithResponse(java.lang.String,com.azure.core.util.Context)
   id: getModelWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -928,7 +997,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.getModelWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Gets a model, including the model metadata and the model definition.
+  summary: "Gets a model, including the model metadata and the model definition.\n\n**Code Samples**\n\n```java\nResponse<DigitalTwinsModelData> modelWithResponse = digitalTwinsSyncClient.getModelWithResponse(\n     \"dtmi:samples:Building;1\",\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Received HTTP response with status code: \" + modelWithResponse.getStatusCode());\n System.out.println(\"Retrieved model with Id: \" + modelWithResponse.getValue().getId());\n```"
   syntax:
     content: public Response<DigitalTwinsModelData> getModelWithResponse(String modelId, Context context)
     parameters:
@@ -943,7 +1012,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> containing a <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsModelData" data-throw-if-not-resolved="false">DigitalTwinsModelData</xref> instance that contains the model and its metadata.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.getServiceVersion()
   id: getServiceVersion()
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -961,7 +1030,7 @@ items:
       description: The Azure Digital Twins service API version.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.listEventRoutes()
   id: listEventRoutes()
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -971,7 +1040,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listEventRoutes*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List all the event routes that exist in your digital twins instance.
+  summary: "List all the event routes that exist in your digital twins instance.\n\n**Code Samples**\n\n```java\nPagedIterable<EventRoute> listResponse =  digitalTwinsSyncClient.listEventRoutes();\n \n listResponse.forEach(eventRoute -> System.out.println(\"Retrieved event route with Id: \" + eventRoute.getId()));\n```"
   syntax:
     content: public PagedIterable<EventRoute> listEventRoutes()
     return:
@@ -981,7 +1050,7 @@ items:
          This PagedIterable may take multiple service requests to iterate over all event routes.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.listEventRoutes(com.azure.digitaltwins.core.models.EventRoutesListOptions,com.azure.core.util.Context)
   id: listEventRoutes(com.azure.digitaltwins.core.models.EventRoutesListOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -991,7 +1060,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listEventRoutes*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List all the event routes that exist in your digital twins instance.
+  summary: "List all the event routes that exist in your digital twins instance.\n\n**Code Samples**\n\n```java\nPagedIterable<EventRoute> listResponseWithOptions =  digitalTwinsSyncClient.listEventRoutes(\n     new EventRoutesListOptions().setMaxItemCount(5),\n     new Context(\"key\", \"value\"));\n \n listResponseWithOptions\n     .forEach(eventRoute -> System.out.println(\"Retrieved event route with Id: \" + eventRoute.getId()));\n```"
   syntax:
     content: public PagedIterable<EventRoute> listEventRoutes(EventRoutesListOptions options, Context context)
     parameters:
@@ -1010,7 +1079,7 @@ items:
          This PagedIterable may take multiple service requests to iterate over all event routes.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships(java.lang.String)
   id: listIncomingRelationships(java.lang.String)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1020,7 +1089,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List the relationships that have a given digital twin as the target.
+  summary: "List the relationships that have a given digital twin as the target.\n\n**Code Samples**\n\n```java\nPagedIterable<IncomingRelationship> pagedIncomingRelationships = digitalTwinsSyncClient.listIncomingRelationships(\n     \"myDigitalTwinId\",\n     new Context(\"key\", \"value\"));\n \n for (IncomingRelationship rel : pagedIncomingRelationships) {\n     System.out.println(\n         \"Retrieved relationship with Id: \" +\n             rel.getRelationshipId() +\n             \" from: \" +\n             rel.getSourceId() +\n             \" to: myDigitalTwinId\");\n }\n```"
   syntax:
     content: public PagedIterable<IncomingRelationship> listIncomingRelationships(String digitalTwinId)
     parameters:
@@ -1034,7 +1103,7 @@ items:
          specified digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships(java.lang.String,com.azure.core.util.Context)
   id: listIncomingRelationships(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1044,7 +1113,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listIncomingRelationships*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List the relationships that have a given digital twin as the target.
+  summary: "List the relationships that have a given digital twin as the target.\n\n**Code Samples**\n\n```java\nPagedIterable<IncomingRelationship> pagedIncomingRelationshipsWithContext =\n     digitalTwinsSyncClient.listIncomingRelationships(\n         \"myDigitalTwinId\",\n         new Context(\"key\", \"value\"));\n \n for (IncomingRelationship rel : pagedIncomingRelationshipsWithContext) {\n     System.out.println(\n         \"Retrieved relationship with Id: \" +\n         rel.getRelationshipId() +\n         \" from: \" +\n         rel.getSourceId() +\n         \" to: myDigitalTwinId\");\n }\n```"
   syntax:
     content: public PagedIterable<IncomingRelationship> listIncomingRelationships(String digitalTwinId, Context context)
     parameters:
@@ -1061,7 +1130,7 @@ items:
          specified digital twin.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.listModels()
   id: listModels()
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1071,30 +1140,30 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listModels*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List all of the models in this digital twins instance.
+  summary: "List all of the models in this digital twins instance.\n\n**Code Samples**\n\n```java\nPagedIterable<DigitalTwinsModelData> modelsListPagedIterable =  digitalTwinsSyncClient.listModels();\n \n modelsListPagedIterable.forEach(model -> System.out.println(\"Retrieved a model with Id: \" + model.getId()));\n```"
   syntax:
     content: public PagedIterable<DigitalTwinsModelData> listModels()
     return:
       type: com.azure.core.http.rest.PagedIterable<com.azure.digitaltwins.core.models.DigitalTwinsModelData>
       description: A <xref uid="com.azure.core.http.rest.PagedFlux" data-throw-if-not-resolved="false">PagedFlux</xref> of <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsModelData" data-throw-if-not-resolved="false">DigitalTwinsModelData</xref> that enumerates all the models.
-- uid: com.azure.digitaltwins.core.DigitalTwinsClient.listModels(com.azure.digitaltwins.core.models.ListModelOptions,com.azure.core.util.Context)
-  id: listModels(com.azure.digitaltwins.core.models.ListModelOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+- uid: com.azure.digitaltwins.core.DigitalTwinsClient.listModels(com.azure.digitaltwins.core.models.ModelsListOptions,com.azure.core.util.Context)
+  id: listModels(com.azure.digitaltwins.core.models.ModelsListOptions,com.azure.core.util.Context)
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
-  name: listModels(ListModelOptions listModelOptions, Context context)
-  nameWithType: DigitalTwinsClient.listModels(ListModelOptions listModelOptions, Context context)
-  fullName: com.azure.digitaltwins.core.DigitalTwinsClient.listModels(ListModelOptions listModelOptions, Context context)
+  name: listModels(ModelsListOptions modelsListOptions, Context context)
+  nameWithType: DigitalTwinsClient.listModels(ModelsListOptions modelsListOptions, Context context)
+  fullName: com.azure.digitaltwins.core.DigitalTwinsClient.listModels(ModelsListOptions modelsListOptions, Context context)
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.listModels*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: List the models in this digital twins instance based on some options.
+  summary: "List the models in this digital twins instance based on some options.\n\n**Code Samples**\n\n```java\nPagedIterable<DigitalTwinsModelData> modelsListWithOptionsPagedIterable =  digitalTwinsSyncClient.listModels(\n     new ModelsListOptions()\n         .setIncludeModelDefinition(true)\n         .setMaxItemCount(5),\n     new Context(\"key\", \"value\"));\n \n modelsListWithOptionsPagedIterable.forEach(model -> System.out.println(\"Retrieved a model with Id: \" + model.getId()));\n```"
   syntax:
-    content: public PagedIterable<DigitalTwinsModelData> listModels(ListModelOptions listModelOptions, Context context)
+    content: public PagedIterable<DigitalTwinsModelData> listModels(ModelsListOptions modelsListOptions, Context context)
     parameters:
-    - id: listModelOptions
-      type: com.azure.digitaltwins.core.models.ListModelOptions
+    - id: modelsListOptions
+      type: com.azure.digitaltwins.core.models.ModelsListOptions
       description: The options to follow when listing the models.
     - id: context
       type: com.azure.core.util.Context
@@ -1104,7 +1173,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.PagedIterable" data-throw-if-not-resolved="false">PagedIterable</xref> containing the retrieved <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsModelData" data-throw-if-not-resolved="false">DigitalTwinsModelData</xref> instances.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetry(java.lang.String,java.lang.String,java.lang.Object)
   id: publishComponentTelemetry(java.lang.String,java.lang.String,java.lang.Object)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1114,7 +1183,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetry*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Publishes telemetry from a digital twin's component The result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid="com.azure.digitaltwins.core.models.EventRoute" data-throw-if-not-resolved="false">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed.
+  summary: "Publishes telemetry from a digital twin's component\n\n**Code Samples**\n\nA strongly typed object such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.Hashtable</xref> can be provided as the input parameter for the telemetry payload.\n\n```java\nDictionary<String, Integer> telemetryPayload = new Hashtable<>();\n telemetryPayload.put(\"Telemetry1\", 5);\n \n digitalTwinsSyncClient.publishComponentTelemetry(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     telemetryPayload);\n```\n\nOr alternatively String can be used as input type to construct the json string telemetry payload:\n\n```java\ndigitalTwinsSyncClient.publishComponentTelemetry(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     \"{\\\"Telemetry1\\\": 5}\");\n```\n\nThe result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid=\"com.azure.digitaltwins.core.models.EventRoute\" data-throw-if-not-resolved=\"false\">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed."
   syntax:
     content: public void publishComponentTelemetry(String digitalTwinId, String componentName, Object payload)
     parameters:
@@ -1129,7 +1198,7 @@ items:
       description: The application/json telemetry payload to be sent. payload can be a raw json string or a strongly typed object like a Dictionary.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetryWithResponse(java.lang.String,java.lang.String,java.lang.Object,com.azure.digitaltwins.core.models.PublishTelemetryRequestOptions,com.azure.core.util.Context)
   id: publishComponentTelemetryWithResponse(java.lang.String,java.lang.String,java.lang.Object,com.azure.digitaltwins.core.models.PublishTelemetryRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1139,7 +1208,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.publishComponentTelemetryWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Publishes telemetry from a digital twin's component The result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid="com.azure.digitaltwins.core.models.EventRoute" data-throw-if-not-resolved="false">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed.
+  summary: "Publishes telemetry from a digital twin's component\n\n**Code Samples**\n\nA strongly typed object such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.Hashtable</xref> can be provided as the input parameter for the telemetry payload.\n\n```java\nDictionary<String, Integer> telemetryPayload = new Hashtable<>();\n telemetryPayload.put(\"Telemetry1\", 5);\n \n Response<Void> responseObject = digitalTwinsSyncClient.publishComponentTelemetryWithResponse(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     telemetryPayload,\n     new PublishTelemetryRequestOptions().setMessageId(UUID.randomUUID().toString()),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received publish component telemetry operation response with HTTP status code: \" +\n     responseObject.getStatusCode());\n```\n\nOr alternatively String can be used as input type to construct the json string telemetry payload:\n\n```java\nResponse<Void> responseString = digitalTwinsSyncClient.publishComponentTelemetryWithResponse(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     \"{\\\"Telemetry1\\\": 5}\",\n     new PublishTelemetryRequestOptions().setMessageId(UUID.randomUUID().toString()),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received publish component telemetry operation response with HTTP status code: \" +\n     responseString.getStatusCode());\n```\n\nThe result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid=\"com.azure.digitaltwins.core.models.EventRoute\" data-throw-if-not-resolved=\"false\">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed."
   syntax:
     content: public Response<Void> publishComponentTelemetryWithResponse(String digitalTwinId, String componentName, Object payload, PublishTelemetryRequestOptions publishTelemetryRequestOptions, Context context)
     parameters:
@@ -1163,7 +1232,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.publishTelemetry(java.lang.String,java.lang.Object)
   id: publishTelemetry(java.lang.String,java.lang.Object)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1173,7 +1242,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.publishTelemetry*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Publishes telemetry from a digital twin The result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid="com.azure.digitaltwins.core.models.EventRoute" data-throw-if-not-resolved="false">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed.
+  summary: "Publishes telemetry from a digital twin\n\n**Code Samples**\n\nA strongly typed object such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.Hashtable</xref> can be provided as the input parameter for the telemetry payload.\n\n```java\nDictionary<String, Integer> telemetryPayload = new Hashtable<>();\n telemetryPayload.put(\"Telemetry1\", 5);\n \n digitalTwinsSyncClient.publishTelemetry(\"myDigitalTwinId\", telemetryPayload);\n```\n\nOr alternatively String can be used as input type to construct the json string telemetry payload:\n\n```java\ndigitalTwinsSyncClient.publishTelemetry(\"myDigitalTwinId\", \"{\\\"Telemetry1\\\": 5}\");\n```\n\nThe result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid=\"com.azure.digitaltwins.core.models.EventRoute\" data-throw-if-not-resolved=\"false\">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed."
   syntax:
     content: public void publishTelemetry(String digitalTwinId, Object payload)
     parameters:
@@ -1185,7 +1254,7 @@ items:
       description: The application/json telemetry payload to be sent. payload can be a raw json string or a strongly typed object like a Dictionary.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.publishTelemetryWithResponse(java.lang.String,java.lang.Object,com.azure.digitaltwins.core.models.PublishTelemetryRequestOptions,com.azure.core.util.Context)
   id: publishTelemetryWithResponse(java.lang.String,java.lang.Object,com.azure.digitaltwins.core.models.PublishTelemetryRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1195,7 +1264,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.publishTelemetryWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Publishes telemetry from a digital twin The result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid="com.azure.digitaltwins.core.models.EventRoute" data-throw-if-not-resolved="false">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed.
+  summary: "Publishes telemetry from a digital twin\n\n**Code Samples**\n\nA strongly typed object such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.Hashtable</xref> can be provided as the input parameter for the telemetry payload.\n\n```java\nDictionary<String, Integer> telemetryPayload = new Hashtable<>();\n telemetryPayload.put(\"Telemetry1\", 5);\n \n Response<Void> responseObject = digitalTwinsSyncClient.publishTelemetryWithResponse(\n     \"myDigitalTwinId\",\n     telemetryPayload,\n     new PublishTelemetryRequestOptions().setMessageId(UUID.randomUUID().toString()),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received publish telemetry operation response with HTTP status code: \" +\n     responseObject.getStatusCode());\n```\n\nOr alternatively String can be used as input type to construct the json string telemetry payload:\n\n```java\nResponse<Void> responseString = digitalTwinsSyncClient.publishTelemetryWithResponse(\n     \"myDigitalTwinId\",\n     \"{\\\"Telemetry1\\\": 5}\",\n     new PublishTelemetryRequestOptions().setMessageId(UUID.randomUUID().toString()),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received publish telemetry operation response with HTTP status code: \" +\n     responseString.getStatusCode());\n```\n\nThe result is then consumed by one or many destination endpoints (subscribers) defined under <xref uid=\"com.azure.digitaltwins.core.models.EventRoute\" data-throw-if-not-resolved=\"false\">EventRoute</xref> These event routes need to be set before publishing a telemetry message, in order for the telemetry message to be consumed."
   syntax:
     content: public Response<Void> publishTelemetryWithResponse(String digitalTwinId, Object payload, PublishTelemetryRequestOptions publishTelemetryRequestOptions, Context context)
     parameters:
@@ -1216,7 +1285,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateComponent(java.lang.String,java.lang.String,java.util.List<java.lang.Object>)
   id: updateComponent(java.lang.String,java.lang.String,java.util.List<java.lang.Object>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1226,7 +1295,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateComponent*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Patch a component on a digital twin.
+  summary: "Patch a component on a digital twin.\n\n**Code Samples**\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"/ComponentProp1\", \"Some new value\");\n \n digitalTwinsSyncClient.updateComponent(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     updateOperationUtility.getUpdateOperations());\n```"
   syntax:
     content: public void updateComponent(String digitalTwinId, String componentPath, List<Object> componentUpdateOperations)
     parameters:
@@ -1243,7 +1312,7 @@ items:
                                           This argument can be created using <xref uid="com.azure.digitaltwins.core.models.UpdateOperationUtility" data-throw-if-not-resolved="false">UpdateOperationUtility</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateComponentWithResponse(java.lang.String,java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateComponentRequestOptions,com.azure.core.util.Context)
   id: updateComponentWithResponse(java.lang.String,java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateComponentRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1253,7 +1322,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateComponentWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Patch a component on a digital twin.
+  summary: "Patch a component on a digital twin.\n\n**Code Samples**\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"/ComponentProp1\", \"Some new value\");\n \n Response<Void> updateResponse = digitalTwinsSyncClient.updateComponentWithResponse(\n     \"myDigitalTwinId\",\n     \"myComponentName\",\n     updateOperationUtility.getUpdateOperations(),\n     new UpdateComponentRequestOptions(),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\n     \"Received update operation HTTP response with status: \" +\n     updateResponse.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<Void> updateComponentWithResponse(String digitalTwinId, String componentPath, List<Object> componentUpdateOperations, UpdateComponentRequestOptions options, Context context)
     parameters:
@@ -1279,7 +1348,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref> containing no parsed payload object.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateDigitalTwin(java.lang.String,java.util.List<java.lang.Object>)
   id: updateDigitalTwin(java.lang.String,java.util.List<java.lang.Object>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1289,7 +1358,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateDigitalTwin*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Updates a digital twin.
+  summary: "Updates a digital twin.\n\n**Code Samples**\n\nUpdate digital twin by providing list of intended patch operations.\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"Prop1\", \"newValue\");\n \n digitalTwinsClient.updateDigitalTwin(\n     \"myDigitalTwinId\",\n     updateOperationUtility.getUpdateOperations());\n```"
   syntax:
     content: public void updateDigitalTwin(String digitalTwinId, List<Object> digitalTwinUpdateOperations)
     parameters:
@@ -1303,7 +1372,7 @@ items:
                                             This argument can be created using <xref uid="com.azure.digitaltwins.core.models.UpdateOperationUtility" data-throw-if-not-resolved="false">UpdateOperationUtility</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateDigitalTwinWithResponse(java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateDigitalTwinRequestOptions,com.azure.core.util.Context)
   id: updateDigitalTwinWithResponse(java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateDigitalTwinRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1313,7 +1382,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateDigitalTwinWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Updates a digital twin.
+  summary: "Updates a digital twin.\n\n**Code Samples**\n\nUpdate digital twin by providing list of intended patch operations.\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"Prop1\", \"newValue\");\n \n Response<Void> response = digitalTwinsClient.updateDigitalTwinWithResponse(\n     \"myDigitalTwinId\",\n     updateOperationUtility.getUpdateOperations(),\n     new UpdateDigitalTwinRequestOptions(),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Update completed with HTTP status code: \" + response.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<Void> updateDigitalTwinWithResponse(String digitalTwinId, List<Object> digitalTwinUpdateOperations, UpdateDigitalTwinRequestOptions options, Context context)
     parameters:
@@ -1336,7 +1405,7 @@ items:
       description: A <xref uid="com.azure.digitaltwins.core.models.DigitalTwinsResponse" data-throw-if-not-resolved="false">DigitalTwinsResponse</xref>
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateRelationship(java.lang.String,java.lang.String,java.util.List<java.lang.Object>)
   id: updateRelationship(java.lang.String,java.lang.String,java.util.List<java.lang.Object>)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1346,7 +1415,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateRelationship*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Updates the properties of a relationship on a digital twin.
+  summary: "Updates the properties of a relationship on a digital twin.\n\n**Code Samples**\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"/relationshipProperty1\", \"new property value\");\n \n digitalTwinsSyncClient.updateRelationship(\n     \"myDigitalTwinId\",\n     \"myRelationshipId\",\n     updateOperationUtility.getUpdateOperations());\n```"
   syntax:
     content: public void updateRelationship(String digitalTwinId, String relationshipId, List<Object> relationshipUpdateOperations)
     parameters:
@@ -1363,7 +1432,7 @@ items:
                                              This argument can be created using <xref uid="com.azure.digitaltwins.core.models.UpdateOperationUtility" data-throw-if-not-resolved="false">UpdateOperationUtility</xref>.
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.updateRelationshipWithResponse(java.lang.String,java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateRelationshipRequestOptions,com.azure.core.util.Context)
   id: updateRelationshipWithResponse(java.lang.String,java.lang.String,java.util.List<java.lang.Object>,com.azure.digitaltwins.core.models.UpdateRelationshipRequestOptions,com.azure.core.util.Context)
-  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.1
+  artifact: com.azure:azure-digitaltwins-core:1.0.0-beta.3
   parent: com.azure.digitaltwins.core.DigitalTwinsClient
   langs:
   - java
@@ -1373,7 +1442,7 @@ items:
   overload: com.azure.digitaltwins.core.DigitalTwinsClient.updateRelationshipWithResponse*
   type: Method
   package: com.azure.digitaltwins.core
-  summary: Updates the properties of a relationship on a digital twin.
+  summary: "Updates the properties of a relationship on a digital twin.\n\n**Code Samples**\n\n```java\nUpdateOperationUtility updateOperationUtility = new UpdateOperationUtility();\n updateOperationUtility.appendReplaceOperation(\"/relationshipProperty1\", \"new property value\");\n \n Response<Void> updateResponse = digitalTwinsSyncClient.updateRelationshipWithResponse(\n     \"myDigitalTwinId\",\n     \"myRelationshipId\",\n     updateOperationUtility.getUpdateOperations(),\n     new UpdateRelationshipRequestOptions(),\n     new Context(\"key\", \"value\"));\n \n System.out.println(\"Relationship updated with status code: \" + updateResponse.getStatusCode());\n```"
   syntax:
     content: public DigitalTwinsResponse<Void> updateRelationshipWithResponse(String digitalTwinId, String relationshipId, List<Object> relationshipUpdateOperations, UpdateRelationshipRequestOptions options, Context context)
     parameters:
@@ -1729,10 +1798,10 @@ references:
   nameWithType: DigitalTwinsClient.listModels
   fullName: com.azure.digitaltwins.core.DigitalTwinsClient.listModels
   package: com.azure.digitaltwins.core
-- uid: com.azure.digitaltwins.core.models.ListModelOptions
-  name: ListModelOptions
-  nameWithType: ListModelOptions
-  fullName: com.azure.digitaltwins.core.models.ListModelOptions
+- uid: com.azure.digitaltwins.core.models.ModelsListOptions
+  name: ModelsListOptions
+  nameWithType: ModelsListOptions
+  fullName: com.azure.digitaltwins.core.models.ModelsListOptions
 - uid: com.azure.digitaltwins.core.DigitalTwinsClient.deleteModel*
   name: deleteModel
   nameWithType: DigitalTwinsClient.deleteModel
