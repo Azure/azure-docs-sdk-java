@@ -2,9 +2,10 @@
 items:
 - uid: com.azure.core.http.policy.HttpPipelinePolicy
   id: HttpPipelinePolicy
-  artifact: com.azure:azure-core:1.8.1
+  artifact: com.azure:azure-core:1.9.0
   parent: com.azure.core.http.policy
   children:
+  - com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition()
   - com.azure.core.http.policy.HttpPipelinePolicy.process(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextPolicy)
   langs:
   - java
@@ -16,9 +17,31 @@ items:
   summary: A policy within the <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref>.
   syntax:
     content: public interface HttpPipelinePolicy
+- uid: com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition()
+  id: getPipelinePosition()
+  artifact: com.azure:azure-core:1.9.0
+  parent: com.azure.core.http.policy.HttpPipelinePolicy
+  langs:
+  - java
+  name: getPipelinePosition()
+  nameWithType: HttpPipelinePolicy.getPipelinePosition()
+  fullName: com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition()
+  overload: com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition*
+  type: Method
+  package: com.azure.core.http.policy
+  summary: >-
+    Gets the position to place the policy.
+
+
+    By default pipeline policies are positioned <xref uid="com.azure.core.http.HttpPipelinePosition.PER_RETRY" data-throw-if-not-resolved="false">HttpPipelinePosition#PER_RETRY</xref>.
+  syntax:
+    content: public default HttpPipelinePosition getPipelinePosition()
+    return:
+      type: com.azure.core.http.HttpPipelinePosition
+      description: The position to place the policy.
 - uid: com.azure.core.http.policy.HttpPipelinePolicy.process(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextPolicy)
   id: process(com.azure.core.http.HttpPipelineCallContext,com.azure.core.http.HttpPipelineNextPolicy)
-  artifact: com.azure:azure-core:1.8.1
+  artifact: com.azure:azure-core:1.9.0
   parent: com.azure.core.http.policy.HttpPipelinePolicy
   langs:
   - java
@@ -28,13 +51,13 @@ items:
   overload: com.azure.core.http.policy.HttpPipelinePolicy.process*
   type: Method
   package: com.azure.core.http.policy
-  summary: Process provided request context and invokes the next policy.
+  summary: Processes provided request context and invokes the next policy.
   syntax:
     content: public abstract Mono<HttpResponse> process(HttpPipelineCallContext context, HttpPipelineNextPolicy next)
     parameters:
     - id: context
       type: com.azure.core.http.HttpPipelineCallContext
-      description: request context
+      description: The request context.
     - id: next
       type: com.azure.core.http.HttpPipelineNextPolicy
       description: The next policy to invoke.
@@ -66,6 +89,15 @@ references:
   name: process
   nameWithType: HttpPipelinePolicy.process
   fullName: com.azure.core.http.policy.HttpPipelinePolicy.process
+  package: com.azure.core.http.policy
+- uid: com.azure.core.http.HttpPipelinePosition
+  name: HttpPipelinePosition
+  nameWithType: HttpPipelinePosition
+  fullName: com.azure.core.http.HttpPipelinePosition
+- uid: com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition*
+  name: getPipelinePosition
+  nameWithType: HttpPipelinePolicy.getPipelinePosition
+  fullName: com.azure.core.http.policy.HttpPipelinePolicy.getPipelinePosition
   package: com.azure.core.http.policy
 - uid: com.azure.core.http.HttpResponse
   name: HttpResponse
