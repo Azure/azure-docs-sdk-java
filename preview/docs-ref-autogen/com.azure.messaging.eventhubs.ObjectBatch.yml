@@ -2,10 +2,13 @@
 items:
 - uid: com.azure.messaging.eventhubs.ObjectBatch
   id: ObjectBatch
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs
   children:
   - com.azure.messaging.eventhubs.ObjectBatch.tryAdd(T)
+  - com.azure.messaging.eventhubs.ObjectBatch.tryAdd(T,java.util.Map<java.lang.String,java.lang.Object>)
+  - com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync(T)
+  - com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync(T,java.util.Map<java.lang.String,java.lang.Object>)
   langs:
   - java
   name: ObjectBatch<T>
@@ -25,7 +28,7 @@ items:
   - com.azure.messaging.eventhubs.EventDataBatchBase.getCount()
   - com.azure.messaging.eventhubs.EventDataBatchBase.getMaxSizeInBytes()
   - com.azure.messaging.eventhubs.EventDataBatchBase.getSizeInBytes()
-  - com.azure.messaging.eventhubs.EventDataBatchBase.tryAdd(com.azure.messaging.eventhubs.EventData)
+  - com.azure.messaging.eventhubs.EventDataBatchBase.getStartingPublishedSequenceNumber()
   - java.lang.Object.clone()
   - java.lang.Object.equals(java.lang.Object)
   - java.lang.Object.finalize()
@@ -39,7 +42,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.eventhubs.ObjectBatch.ObjectBatch(int,java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.amqp.implementation.ErrorContextProvider,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,java.lang.String)
   id: ObjectBatch(int,java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.amqp.implementation.ErrorContextProvider,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,java.lang.String)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.ObjectBatch
   langs:
   - java
@@ -70,9 +73,44 @@ items:
       type: java.lang.String
     - id: hostname
       type: java.lang.String
+- uid: com.azure.messaging.eventhubs.ObjectBatch.ObjectBatch(int,java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.amqp.implementation.ErrorContextProvider,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,java.lang.String,boolean)
+  id: ObjectBatch(int,java.lang.String,java.lang.String,java.lang.Class<T>,com.azure.core.amqp.implementation.ErrorContextProvider,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,java.lang.String,boolean)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.ObjectBatch
+  langs:
+  - java
+  name: ObjectBatch(int maxMessageSize, String partitionId, String partitionKey, Class<T> batchType, ErrorContextProvider contextProvider, TracerProvider tracerProvider, ObjectSerializer serializer, String entityPath, String hostname, boolean isPublishingSequenceNumberRequired)
+  nameWithType: ObjectBatch<T>.ObjectBatch(int maxMessageSize, String partitionId, String partitionKey, Class<T> batchType, ErrorContextProvider contextProvider, TracerProvider tracerProvider, ObjectSerializer serializer, String entityPath, String hostname, boolean isPublishingSequenceNumberRequired)
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.ObjectBatch(int maxMessageSize, String partitionId, String partitionKey, Class<T> batchType, ErrorContextProvider contextProvider, TracerProvider tracerProvider, ObjectSerializer serializer, String entityPath, String hostname, boolean isPublishingSequenceNumberRequired)
+  overload: com.azure.messaging.eventhubs.ObjectBatch.ObjectBatch*
+  type: Constructor
+  package: com.azure.messaging.eventhubs
+  syntax:
+    content: " ObjectBatch(int maxMessageSize, String partitionId, String partitionKey, Class<T> batchType, ErrorContextProvider contextProvider, TracerProvider tracerProvider, ObjectSerializer serializer, String entityPath, String hostname, boolean isPublishingSequenceNumberRequired)"
+    parameters:
+    - id: maxMessageSize
+      type: int
+    - id: partitionId
+      type: java.lang.String
+    - id: partitionKey
+      type: java.lang.String
+    - id: batchType
+      type: java.lang.Class<T>
+    - id: contextProvider
+      type: com.azure.core.amqp.implementation.ErrorContextProvider
+    - id: tracerProvider
+      type: com.azure.core.amqp.implementation.TracerProvider
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+    - id: entityPath
+      type: java.lang.String
+    - id: hostname
+      type: java.lang.String
+    - id: isPublishingSequenceNumberRequired
+      type: boolean
 - uid: com.azure.messaging.eventhubs.ObjectBatch.tryAdd(T)
   id: tryAdd(T)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.ObjectBatch
   langs:
   - java
@@ -82,18 +120,88 @@ items:
   overload: com.azure.messaging.eventhubs.ObjectBatch.tryAdd*
   type: Method
   package: com.azure.messaging.eventhubs
+  summary: Tries to synchronously serialize an object into an EventData payload and add the EventData to the batch.
+  syntax:
+    content: public boolean tryAdd(T object)
+    parameters:
+    - id: object
+      type: T
+      description: The object to add to this batch.
+    return:
+      type: boolean
+      description: <code>true</code> is the object is successfully added to the batch.
+- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAdd(T,java.util.Map<java.lang.String,java.lang.Object>)
+  id: tryAdd(T,java.util.Map<java.lang.String,java.lang.Object>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.ObjectBatch
+  langs:
+  - java
+  name: tryAdd(T object, Map<String,Object> eventProperties)
+  nameWithType: ObjectBatch<T>.tryAdd(T object, Map<String,Object> eventProperties)
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAdd(T object, Map<String,Object> eventProperties)
+  overload: com.azure.messaging.eventhubs.ObjectBatch.tryAdd*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Tries to synchronously serialize an object into an EventData payload and add the EventData to the batch.
+  syntax:
+    content: public boolean tryAdd(T object, Map<String,Object> eventProperties)
+    parameters:
+    - id: object
+      type: T
+      description: The object to add to this batch.
+    - id: eventProperties
+      type: java.util.Map<java.lang.String,java.lang.Object>
+      description: Properties to add to the event associated with this object.
+    return:
+      type: boolean
+      description: <code>true</code> is the object is successfully added to the batch.
+- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync(T)
+  id: tryAddAsync(T)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.ObjectBatch
+  langs:
+  - java
+  name: tryAddAsync(T object)
+  nameWithType: ObjectBatch<T>.tryAddAsync(T object)
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAddAsync(T object)
+  overload: com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync*
+  type: Method
+  package: com.azure.messaging.eventhubs
   summary: Tries to asynchronously serialize an object into an EventData payload and add the EventData to the batch.
   syntax:
-    content: public Mono<Boolean> tryAdd(T object)
+    content: public Mono<Boolean> tryAddAsync(T object)
     parameters:
     - id: object
       type: T
       description: The object to add to the batch.
     return:
       type: reactor.core.publisher.Mono<java.lang.Boolean>
-      description: >-
-        <code>true</code> if the object could be added to the batch; <code>false</code> if the serialized
-         object was too large to fit in the batch.
+      description: <code>true</code> is the object is successfully added to the batch.
+- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync(T,java.util.Map<java.lang.String,java.lang.Object>)
+  id: tryAddAsync(T,java.util.Map<java.lang.String,java.lang.Object>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.ObjectBatch
+  langs:
+  - java
+  name: tryAddAsync(T object, Map<String,Object> eventProperties)
+  nameWithType: ObjectBatch<T>.tryAddAsync(T object, Map<String,Object> eventProperties)
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAddAsync(T object, Map<String,Object> eventProperties)
+  overload: com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Tries to asynchronously serialize an object into an EventData payload and add the EventData to the batch.
+  syntax:
+    content: public Mono<Boolean> tryAddAsync(T object, Map<String,Object> eventProperties)
+    parameters:
+    - id: object
+      type: T
+      description: The object to add to this batch.
+    - id: eventProperties
+      type: java.util.Map<java.lang.String,java.lang.Object>
+      description: Properties to add to the event associated with this object.
+    return:
+      type: reactor.core.publisher.Mono<java.lang.Boolean>
+      description: <code>true</code> is the object is successfully added to the batch.
 references:
 - uid: int
   spec.java:
@@ -132,6 +240,11 @@ references:
   - uid: com.azure.core.util.serializer.ObjectSerializer
     name: ObjectSerializer
     fullName: com.azure.core.util.serializer.ObjectSerializer
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
 - uid: com.azure.messaging.eventhubs.ObjectBatch.ObjectBatch*
   name: ObjectBatch
   nameWithType: ObjectBatch<T>.ObjectBatch
@@ -142,6 +255,28 @@ references:
   - uid: T
     name: T
     fullName: T
+- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAdd*
+  name: tryAdd
+  nameWithType: ObjectBatch<T>.tryAdd
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAdd
+  package: com.azure.messaging.eventhubs
+- uid: java.util.Map<java.lang.String,java.lang.Object>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '>'
+    fullName: '>'
 - uid: reactor.core.publisher.Mono<java.lang.Boolean>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -154,10 +289,10 @@ references:
     fullName: java.lang.Boolean
   - name: '>'
     fullName: '>'
-- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAdd*
-  name: tryAdd
-  nameWithType: ObjectBatch<T>.tryAdd
-  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAdd
+- uid: com.azure.messaging.eventhubs.ObjectBatch.tryAddAsync*
+  name: tryAddAsync
+  nameWithType: ObjectBatch<T>.tryAddAsync
+  fullName: com.azure.messaging.eventhubs.ObjectBatch<T>.tryAddAsync
   package: com.azure.messaging.eventhubs
 - uid: com.azure.messaging.eventhubs.EventDataBatchBase
   name: EventDataBatchBase
@@ -179,6 +314,10 @@ references:
   name: Object.finalize()
   nameWithType: Object.finalize()
   fullName: java.lang.Object.finalize()
+- uid: com.azure.messaging.eventhubs.EventDataBatchBase.getStartingPublishedSequenceNumber()
+  name: EventDataBatchBase.getStartingPublishedSequenceNumber()
+  nameWithType: EventDataBatchBase.getStartingPublishedSequenceNumber()
+  fullName: com.azure.messaging.eventhubs.EventDataBatchBase.getStartingPublishedSequenceNumber()
 - uid: java.lang.Object.notifyAll()
   name: Object.notifyAll()
   nameWithType: Object.notifyAll()
@@ -195,10 +334,6 @@ references:
   name: Object.equals(Object)
   nameWithType: Object.equals(Object)
   fullName: java.lang.Object.equals(java.lang.Object)
-- uid: com.azure.messaging.eventhubs.EventDataBatchBase.tryAdd(com.azure.messaging.eventhubs.EventData)
-  name: EventDataBatchBase.tryAdd(EventData)
-  nameWithType: EventDataBatchBase.tryAdd(EventData)
-  fullName: com.azure.messaging.eventhubs.EventDataBatchBase.tryAdd(com.azure.messaging.eventhubs.EventData)
 - uid: java.lang.Object.toString()
   name: Object.toString()
   nameWithType: Object.toString()
@@ -227,6 +362,14 @@ references:
   name: Class
   nameWithType: Class
   fullName: java.lang.Class
+- uid: java.lang.String,java.lang.Object
+  name: String,Object
+  nameWithType: String,Object
+  fullName: java.lang.String,java.lang.Object
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
 - uid: java.lang.Boolean
   name: Boolean
   nameWithType: Boolean

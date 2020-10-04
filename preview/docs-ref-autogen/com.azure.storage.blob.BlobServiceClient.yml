@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.storage.blob.BlobServiceClient
   id: BlobServiceClient
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob
   children:
   - com.azure.storage.blob.BlobServiceClient.createBlobContainer(java.lang.String)
@@ -29,6 +29,8 @@ items:
   - com.azure.storage.blob.BlobServiceClient.listBlobContainers(com.azure.storage.blob.models.ListBlobContainersOptions,java.time.Duration)
   - com.azure.storage.blob.BlobServiceClient.setProperties(com.azure.storage.blob.models.BlobServiceProperties)
   - com.azure.storage.blob.BlobServiceClient.setPropertiesWithResponse(com.azure.storage.blob.models.BlobServiceProperties,java.time.Duration,com.azure.core.util.Context)
+  - com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer(java.lang.String,java.lang.String)
+  - com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse(com.azure.storage.blob.options.UndeleteBlobContainerOptions,java.time.Duration,com.azure.core.util.Context)
   langs:
   - java
   name: BlobServiceClient
@@ -66,7 +68,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.blob.BlobServiceClient.BlobServiceClient(com.azure.storage.blob.BlobServiceAsyncClient)
   id: BlobServiceClient(com.azure.storage.blob.BlobServiceAsyncClient)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -85,7 +87,7 @@ items:
       description: the async storage account client
 - uid: com.azure.storage.blob.BlobServiceClient.createBlobContainer(java.lang.String)
   id: createBlobContainer(java.lang.String)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -122,7 +124,7 @@ items:
       description: The <xref uid="com.azure.storage.blob.BlobContainerClient" data-throw-if-not-resolved="false">BlobContainerClient</xref> used to interact with the container created.
 - uid: com.azure.storage.blob.BlobServiceClient.createBlobContainerWithResponse(java.lang.String,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.blob.models.PublicAccessType,com.azure.core.util.Context)
   id: createBlobContainerWithResponse(java.lang.String,java.util.Map<java.lang.String,java.lang.String>,com.azure.storage.blob.models.PublicAccessType,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -157,7 +159,7 @@ items:
          to interact with the container created.
 - uid: com.azure.storage.blob.BlobServiceClient.deleteBlobContainer(java.lang.String)
   id: deleteBlobContainer(java.lang.String)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -195,7 +197,7 @@ items:
       description: Name of the container to delete
 - uid: com.azure.storage.blob.BlobServiceClient.deleteBlobContainerWithResponse(java.lang.String,com.azure.core.util.Context)
   id: deleteBlobContainerWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -225,7 +227,7 @@ items:
       description: A response containing status code and HTTP headers
 - uid: com.azure.storage.blob.BlobServiceClient.findBlobsByTags(com.azure.storage.blob.options.FindBlobsOptions,java.time.Duration,com.azure.core.util.Context)
   id: findBlobsByTags(com.azure.storage.blob.options.FindBlobsOptions,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -253,7 +255,7 @@ items:
 
     [Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/find-blobs-by-tags
   syntax:
-    content: public PagedIterable<FilterBlobItem> findBlobsByTags(FindBlobsOptions options, Duration timeout, Context context)
+    content: public PagedIterable<TaggedBlobItem> findBlobsByTags(FindBlobsOptions options, Duration timeout, Context context)
     parameters:
     - id: options
       type: com.azure.storage.blob.options.FindBlobsOptions
@@ -265,11 +267,11 @@ items:
       type: com.azure.core.util.Context
       description: Additional context that is passed through the Http pipeline during the service call.
     return:
-      type: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.FilterBlobItem>
+      type: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.TaggedBlobItem>
       description: The list of blobs.
 - uid: com.azure.storage.blob.BlobServiceClient.findBlobsByTags(java.lang.String)
   id: findBlobsByTags(java.lang.String)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -296,17 +298,17 @@ items:
 
     [Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/find-blobs-by-tags
   syntax:
-    content: public PagedIterable<FilterBlobItem> findBlobsByTags(String query)
+    content: public PagedIterable<TaggedBlobItem> findBlobsByTags(String query)
     parameters:
     - id: query
       type: java.lang.String
       description: Filters the results to return only blobs whose tags match the specified expression.
     return:
-      type: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.FilterBlobItem>
+      type: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.TaggedBlobItem>
       description: The list of blobs.
 - uid: com.azure.storage.blob.BlobServiceClient.generateAccountSas(com.azure.storage.common.sas.AccountSasSignatureValues)
   id: generateAccountSas(com.azure.storage.common.sas.AccountSasSignatureValues)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -328,7 +330,7 @@ items:
       description: A <code>String</code> representing all SAS query parameters.
 - uid: com.azure.storage.blob.BlobServiceClient.getAccountInfo()
   id: getAccountInfo()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -346,7 +348,7 @@ items:
       description: The storage account info.
 - uid: com.azure.storage.blob.BlobServiceClient.getAccountInfoWithResponse(java.time.Duration,com.azure.core.util.Context)
   id: getAccountInfoWithResponse(java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -376,7 +378,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the storage account info.
 - uid: com.azure.storage.blob.BlobServiceClient.getAccountName()
   id: getAccountName()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -394,7 +396,7 @@ items:
       description: account name associated with this storage resource.
 - uid: com.azure.storage.blob.BlobServiceClient.getAccountUrl()
   id: getAccountUrl()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -412,7 +414,7 @@ items:
       description: the URL.
 - uid: com.azure.storage.blob.BlobServiceClient.getBlobContainerClient(java.lang.String)
   id: getBlobContainerClient(java.lang.String)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -445,7 +447,7 @@ items:
       description: A <xref uid="com.azure.storage.blob.BlobContainerClient" data-throw-if-not-resolved="false">BlobContainerClient</xref> object pointing to the specified container
 - uid: com.azure.storage.blob.BlobServiceClient.getHttpPipeline()
   id: getHttpPipeline()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -463,7 +465,7 @@ items:
       description: The pipeline.
 - uid: com.azure.storage.blob.BlobServiceClient.getProperties()
   id: getProperties()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -481,7 +483,7 @@ items:
       description: The storage account properties.
 - uid: com.azure.storage.blob.BlobServiceClient.getPropertiesWithResponse(java.time.Duration,com.azure.core.util.Context)
   id: getPropertiesWithResponse(java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -506,7 +508,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the storage account properties.
 - uid: com.azure.storage.blob.BlobServiceClient.getServiceVersion()
   id: getServiceVersion()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -524,7 +526,7 @@ items:
       description: the service version the client is using.
 - uid: com.azure.storage.blob.BlobServiceClient.getStatistics()
   id: getStatistics()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -557,7 +559,7 @@ items:
       description: The storage account statistics.
 - uid: com.azure.storage.blob.BlobServiceClient.getStatisticsWithResponse(java.time.Duration,com.azure.core.util.Context)
   id: getStatisticsWithResponse(java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -597,7 +599,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> the storage account statistics.
 - uid: com.azure.storage.blob.BlobServiceClient.getUserDelegationKey(java.time.OffsetDateTime,java.time.OffsetDateTime)
   id: getUserDelegationKey(java.time.OffsetDateTime,java.time.OffsetDateTime)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -633,7 +635,7 @@ items:
       description: The user delegation key.
 - uid: com.azure.storage.blob.BlobServiceClient.getUserDelegationKeyWithResponse(java.time.OffsetDateTime,java.time.OffsetDateTime,java.time.Duration,com.azure.core.util.Context)
   id: getUserDelegationKeyWithResponse(java.time.OffsetDateTime,java.time.OffsetDateTime,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -675,7 +677,7 @@ items:
       description: A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the user delegation key.
 - uid: com.azure.storage.blob.BlobServiceClient.listBlobContainers()
   id: listBlobContainers()
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -708,7 +710,7 @@ items:
       description: The list of containers.
 - uid: com.azure.storage.blob.BlobServiceClient.listBlobContainers(com.azure.storage.blob.models.ListBlobContainersOptions,java.time.Duration)
   id: listBlobContainers(com.azure.storage.blob.models.ListBlobContainersOptions,java.time.Duration)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -733,7 +735,7 @@ items:
       description: The list of containers.
 - uid: com.azure.storage.blob.BlobServiceClient.setProperties(com.azure.storage.blob.models.BlobServiceProperties)
   id: setProperties(com.azure.storage.blob.models.BlobServiceProperties)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -752,7 +754,7 @@ items:
       description: Configures the service.
 - uid: com.azure.storage.blob.BlobServiceClient.setPropertiesWithResponse(com.azure.storage.blob.models.BlobServiceProperties,java.time.Duration,com.azure.core.util.Context)
   id: setPropertiesWithResponse(com.azure.storage.blob.models.BlobServiceProperties,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-storage-blob:12.8.0-beta.1
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
   parent: com.azure.storage.blob.BlobServiceClient
   langs:
   - java
@@ -778,6 +780,97 @@ items:
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
       description: The storage account properties.
+- uid: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer(java.lang.String,java.lang.String)
+  id: undeleteBlobContainer(java.lang.String,java.lang.String)
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
+  parent: com.azure.storage.blob.BlobServiceClient
+  langs:
+  - java
+  name: undeleteBlobContainer(String deletedContainerName, String deletedContainerVersion)
+  nameWithType: BlobServiceClient.undeleteBlobContainer(String deletedContainerName, String deletedContainerVersion)
+  fullName: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer(String deletedContainerName, String deletedContainerVersion)
+  overload: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer*
+  type: Method
+  package: com.azure.storage.blob
+  summary: >-
+    Restores a previously deleted container. If the container associated with provided `deletedContainerName` already exists, this call will result in a 409 (conflict). This API is only functional if Container Soft Delete is enabled for the storage account associated with the container. For more information, see the Azure Docs. TODO (kasobol-msft) add link to REST API docs
+
+
+    **Code Samples**
+
+
+    ```java
+
+    ListBlobContainersOptions listBlobContainersOptions = new ListBlobContainersOptions();
+     listBlobContainersOptions.getDetails().setRetrieveDeleted(true);
+     client.listBlobContainers(listBlobContainersOptions, null).forEach(
+         deletedContainer -> {
+             BlobContainerClient blobContainerClient = client.undeleteBlobContainer(
+                 deletedContainer.getName(), deletedContainer.getVersion());
+         }
+     );
+    ```
+  syntax:
+    content: public BlobContainerClient undeleteBlobContainer(String deletedContainerName, String deletedContainerVersion)
+    parameters:
+    - id: deletedContainerName
+      type: java.lang.String
+      description: The name of the previously deleted container.
+    - id: deletedContainerVersion
+      type: java.lang.String
+      description: The version of the previously deleted container.
+    return:
+      type: com.azure.storage.blob.BlobContainerClient
+      description: The <xref uid="com.azure.storage.blob.BlobContainerClient" data-throw-if-not-resolved="false">BlobContainerClient</xref> used to interact with the restored container.
+- uid: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse(com.azure.storage.blob.options.UndeleteBlobContainerOptions,java.time.Duration,com.azure.core.util.Context)
+  id: undeleteBlobContainerWithResponse(com.azure.storage.blob.options.UndeleteBlobContainerOptions,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-storage-blob:12.9.0-beta.1
+  parent: com.azure.storage.blob.BlobServiceClient
+  langs:
+  - java
+  name: undeleteBlobContainerWithResponse(UndeleteBlobContainerOptions options, Duration timeout, Context context)
+  nameWithType: BlobServiceClient.undeleteBlobContainerWithResponse(UndeleteBlobContainerOptions options, Duration timeout, Context context)
+  fullName: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse(UndeleteBlobContainerOptions options, Duration timeout, Context context)
+  overload: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse*
+  type: Method
+  package: com.azure.storage.blob
+  summary: >-
+    Restores a previously deleted container. The restored container will be renamed to the `destinationContainerName` if provided in `options`. Otherwise `deletedContainerName` is used as destination container name. If the container associated with provided `destinationContainerName` already exists, this call will result in a 409 (conflict). This API is only functional if Container Soft Delete is enabled for the storage account associated with the container. For more information, see the Azure Docs. TODO (kasobol-msft) add link to REST API docs
+
+
+    **Code Samples**
+
+
+    ```java
+
+    ListBlobContainersOptions listBlobContainersOptions = new ListBlobContainersOptions();
+     listBlobContainersOptions.getDetails().setRetrieveDeleted(true);
+     client.listBlobContainers(listBlobContainersOptions, null).forEach(
+         deletedContainer -> {
+             BlobContainerClient blobContainerClient = client.undeleteBlobContainerWithResponse(
+                 new UndeleteBlobContainerOptions(deletedContainer.getName(), deletedContainer.getVersion())
+                     .setDestinationContainerName(deletedContainer.getName() + "V2"), timeout,
+                 context).getValue();
+         }
+     );
+    ```
+  syntax:
+    content: public Response<BlobContainerClient> undeleteBlobContainerWithResponse(UndeleteBlobContainerOptions options, Duration timeout, Context context)
+    parameters:
+    - id: options
+      type: com.azure.storage.blob.options.UndeleteBlobContainerOptions
+      description: <xref uid="com.azure.storage.blob.options.UndeleteBlobContainerOptions" data-throw-if-not-resolved="false">UndeleteBlobContainerOptions</xref>.
+    - id: timeout
+      type: java.time.Duration
+      description: An optional timeout value beyond which a <xref uid="" data-throw-if-not-resolved="false">RuntimeException</xref> will be raised.
+    - id: context
+      type: com.azure.core.util.Context
+      description: Additional context that is passed through the Http pipeline during the service call.
+    return:
+      type: com.azure.core.http.rest.Response<com.azure.storage.blob.BlobContainerClient>
+      description: >-
+        A <xref uid="com.azure.core.http.rest.Response" data-throw-if-not-resolved="false">Response</xref> whose <xref uid="com.azure.core.http.rest.Response.getValue*" data-throw-if-not-resolved="false">value</xref> contains the <xref uid="com.azure.storage.blob.BlobContainerClient" data-throw-if-not-resolved="false">BlobContainerClient</xref> used
+         to interact with the restored container.
 references:
 - uid: com.azure.storage.blob.BlobServiceAsyncClient
   name: BlobServiceAsyncClient
@@ -922,16 +1015,16 @@ references:
   - uid: java.time.Duration
     name: Duration
     fullName: java.time.Duration
-- uid: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.FilterBlobItem>
+- uid: com.azure.core.http.rest.PagedIterable<com.azure.storage.blob.models.TaggedBlobItem>
   spec.java:
   - uid: com.azure.core.http.rest.PagedIterable
     name: PagedIterable
     fullName: com.azure.core.http.rest.PagedIterable
   - name: <
     fullName: <
-  - uid: com.azure.storage.blob.models.FilterBlobItem
-    name: FilterBlobItem
-    fullName: com.azure.storage.blob.models.FilterBlobItem
+  - uid: com.azure.storage.blob.models.TaggedBlobItem
+    name: TaggedBlobItem
+    fullName: com.azure.storage.blob.models.TaggedBlobItem
   - name: '>'
     fullName: '>'
 - uid: com.azure.storage.blob.BlobServiceClient.findBlobsByTags*
@@ -1077,6 +1170,20 @@ references:
   nameWithType: BlobServiceClient.generateAccountSas
   fullName: com.azure.storage.blob.BlobServiceClient.generateAccountSas
   package: com.azure.storage.blob
+- uid: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer*
+  name: undeleteBlobContainer
+  nameWithType: BlobServiceClient.undeleteBlobContainer
+  fullName: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainer
+  package: com.azure.storage.blob
+- uid: com.azure.storage.blob.options.UndeleteBlobContainerOptions
+  name: UndeleteBlobContainerOptions
+  nameWithType: UndeleteBlobContainerOptions
+  fullName: com.azure.storage.blob.options.UndeleteBlobContainerOptions
+- uid: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse*
+  name: undeleteBlobContainerWithResponse
+  nameWithType: BlobServiceClient.undeleteBlobContainerWithResponse
+  fullName: com.azure.storage.blob.BlobServiceClient.undeleteBlobContainerWithResponse
+  package: com.azure.storage.blob
 - uid: java.lang.Object.notify()
   name: Object.notify()
   nameWithType: Object.notify()
@@ -1145,7 +1252,7 @@ references:
   name: PagedIterable
   nameWithType: PagedIterable
   fullName: com.azure.core.http.rest.PagedIterable
-- uid: com.azure.storage.blob.models.FilterBlobItem
-  name: FilterBlobItem
-  nameWithType: FilterBlobItem
-  fullName: com.azure.storage.blob.models.FilterBlobItem
+- uid: com.azure.storage.blob.models.TaggedBlobItem
+  name: TaggedBlobItem
+  nameWithType: TaggedBlobItem
+  fullName: com.azure.storage.blob.models.TaggedBlobItem

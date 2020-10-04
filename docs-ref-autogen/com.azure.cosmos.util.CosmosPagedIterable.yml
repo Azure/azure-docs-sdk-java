@@ -2,8 +2,10 @@
 items:
 - uid: com.azure.cosmos.util.CosmosPagedIterable
   id: CosmosPagedIterable
-  artifact: com.azure:azure-cosmos:4.5.0
+  artifact: com.azure:azure-cosmos:4.6.0
   parent: com.azure.cosmos.util
+  children:
+  - com.azure.cosmos.util.CosmosPagedIterable.handle(java.util.function.Consumer<com.azure.cosmos.models.FeedResponse<T>>)
   langs:
   - java
   name: CosmosPagedIterable<T>
@@ -15,7 +17,7 @@ items:
     Cosmos implementation of <xref uid="com.azure.core.util.paging.ContinuablePagedIterable" data-throw-if-not-resolved="false">com.azure.core.util.paging.ContinuablePagedIterable</xref>.
 
 
-    This type is a <xref uid="com.azure.core.util.IterableStream" data-throw-if-not-resolved="false">com.azure.core.util.IterableStream</xref> that provides the ability to operate on pages of type <xref uid="com.azure.cosmos.models.FeedResponse" data-throw-if-not-resolved="false">FeedResponse</xref> and individual items in such pages. This type supports <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> type continuation tokens, allowing for restarting from a previously-retrieved continuation token.
+    This type is a <xref uid="com.azure.core.util.IterableStream" data-throw-if-not-resolved="false">com.azure.core.util.IterableStream</xref> that provides the ability to operate on pages of type <xref uid="com.azure.cosmos.models.FeedResponse" data-throw-if-not-resolved="false">FeedResponse</xref> and individual items in such pages. This type supports <xref uid="" data-throw-if-not-resolved="false">String</xref> type continuation tokens, allowing for restarting from a previously-retrieved continuation token.
 
 
     For more information on the base type, refer <xref uid="com.azure.core.util.paging.ContinuablePagedIterable" data-throw-if-not-resolved="false">com.azure.core.util.paging.ContinuablePagedIterable</xref>
@@ -50,43 +52,72 @@ items:
   - java.lang.Object.wait()
   - java.lang.Object.wait(long)
   - java.lang.Object.wait(long,int)
-- uid: com.azure.cosmos.util.CosmosPagedIterable.CosmosPagedIterable(com.azure.core.util.paging.ContinuablePagedFlux<java.lang.String,T,com.azure.cosmos.models.FeedResponse<T>>)
-  id: CosmosPagedIterable(com.azure.core.util.paging.ContinuablePagedFlux<java.lang.String,T,com.azure.cosmos.models.FeedResponse<T>>)
-  artifact: com.azure:azure-cosmos:4.5.0
+- uid: com.azure.cosmos.util.CosmosPagedIterable.CosmosPagedIterable(com.azure.cosmos.util.CosmosPagedFlux<T>)
+  id: CosmosPagedIterable(com.azure.cosmos.util.CosmosPagedFlux<T>)
+  artifact: com.azure:azure-cosmos:4.6.0
   parent: com.azure.cosmos.util.CosmosPagedIterable
   langs:
   - java
-  name: CosmosPagedIterable(ContinuablePagedFlux<String,T,FeedResponse<T>> pagedFlux)
-  nameWithType: CosmosPagedIterable<T>.CosmosPagedIterable(ContinuablePagedFlux<String,T,FeedResponse<T>> pagedFlux)
-  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.CosmosPagedIterable(ContinuablePagedFlux<String,T,FeedResponse<T>> pagedFlux)
+  name: CosmosPagedIterable(CosmosPagedFlux<T> cosmosPagedFlux)
+  nameWithType: CosmosPagedIterable<T>.CosmosPagedIterable(CosmosPagedFlux<T> cosmosPagedFlux)
+  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.CosmosPagedIterable(CosmosPagedFlux<T> cosmosPagedFlux)
   overload: com.azure.cosmos.util.CosmosPagedIterable.CosmosPagedIterable*
   type: Constructor
   package: com.azure.cosmos.util
-  summary: Creates instance given <xref uid="com.azure.core.util.paging.ContinuablePagedFlux" data-throw-if-not-resolved="false">ContinuablePagedFlux</xref>.
+  summary: Creates instance given <xref uid="com.azure.cosmos.util.CosmosPagedFlux" data-throw-if-not-resolved="false">CosmosPagedFlux</xref>.
   syntax:
-    content: " CosmosPagedIterable(ContinuablePagedFlux<String,T,FeedResponse<T>> pagedFlux)"
+    content: " CosmosPagedIterable(CosmosPagedFlux<T> cosmosPagedFlux)"
     parameters:
-    - id: pagedFlux
-      type: com.azure.core.util.paging.ContinuablePagedFlux<java.lang.String,T,com.azure.cosmos.models.FeedResponse<T>>
+    - id: cosmosPagedFlux
+      type: com.azure.cosmos.util.CosmosPagedFlux<T>
       description: the paged flux use as iterable
+- uid: com.azure.cosmos.util.CosmosPagedIterable.handle(java.util.function.Consumer<com.azure.cosmos.models.FeedResponse<T>>)
+  id: handle(java.util.function.Consumer<com.azure.cosmos.models.FeedResponse<T>>)
+  artifact: com.azure:azure-cosmos:4.6.0
+  parent: com.azure.cosmos.util.CosmosPagedIterable
+  langs:
+  - java
+  name: handle(Consumer<FeedResponse<T>> feedResponseConsumer)
+  nameWithType: CosmosPagedIterable<T>.handle(Consumer<FeedResponse<T>> feedResponseConsumer)
+  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.handle(Consumer<FeedResponse<T>> feedResponseConsumer)
+  overload: com.azure.cosmos.util.CosmosPagedIterable.handle*
+  type: Method
+  package: com.azure.cosmos.util
+  summary: Handle for invoking "side-effects" on each FeedResponse returned by CosmosPagedIterable
+  syntax:
+    content: public CosmosPagedIterable<T> handle(Consumer<FeedResponse<T>> feedResponseConsumer)
+    parameters:
+    - id: feedResponseConsumer
+      type: java.util.function.Consumer<com.azure.cosmos.models.FeedResponse<T>>
+      description: handler
+    return:
+      type: com.azure.cosmos.util.CosmosPagedIterable<T>
+      description: CosmosPagedIterable instance with attached handler
 references:
-- uid: com.azure.core.util.paging.ContinuablePagedFlux<java.lang.String,T,com.azure.cosmos.models.FeedResponse<T>>
+- uid: com.azure.cosmos.util.CosmosPagedFlux<T>
   spec.java:
-  - uid: com.azure.core.util.paging.ContinuablePagedFlux
-    name: ContinuablePagedFlux
-    fullName: com.azure.core.util.paging.ContinuablePagedFlux
+  - uid: com.azure.cosmos.util.CosmosPagedFlux
+    name: CosmosPagedFlux
+    fullName: com.azure.cosmos.util.CosmosPagedFlux
   - name: <
     fullName: <
-  - uid: java.lang.String
-    name: String
-    fullName: java.lang.String
-  - name: ','
-    fullName: ','
   - uid: T
     name: T
     fullName: T
-  - name: ','
-    fullName: ','
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.util.CosmosPagedIterable.CosmosPagedIterable*
+  name: CosmosPagedIterable
+  nameWithType: CosmosPagedIterable<T>.CosmosPagedIterable
+  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.CosmosPagedIterable
+  package: com.azure.cosmos.util
+- uid: java.util.function.Consumer<com.azure.cosmos.models.FeedResponse<T>>
+  spec.java:
+  - uid: java.util.function.Consumer
+    name: Consumer
+    fullName: java.util.function.Consumer
+  - name: <
+    fullName: <
   - uid: com.azure.cosmos.models.FeedResponse
     name: FeedResponse
     fullName: com.azure.cosmos.models.FeedResponse
@@ -99,10 +130,22 @@ references:
     fullName: '>'
   - name: '>'
     fullName: '>'
-- uid: com.azure.cosmos.util.CosmosPagedIterable.CosmosPagedIterable*
-  name: CosmosPagedIterable
-  nameWithType: CosmosPagedIterable<T>.CosmosPagedIterable
-  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.CosmosPagedIterable
+- uid: com.azure.cosmos.util.CosmosPagedIterable<T>
+  spec.java:
+  - uid: com.azure.cosmos.util.CosmosPagedIterable
+    name: CosmosPagedIterable
+    fullName: com.azure.cosmos.util.CosmosPagedIterable
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.util.CosmosPagedIterable.handle*
+  name: handle
+  nameWithType: CosmosPagedIterable<T>.handle
+  fullName: com.azure.cosmos.util.CosmosPagedIterable<T>.handle
   package: com.azure.cosmos.util
 - uid: T
   name: T
@@ -200,18 +243,26 @@ references:
   name: ContinuablePagedIterable.iterableByPage()
   nameWithType: ContinuablePagedIterable.iterableByPage()
   fullName: com.azure.core.util.paging.ContinuablePagedIterable.iterableByPage()
-- uid: java.lang.String,T,com.azure.cosmos.models.FeedResponse
-  name: String,T,FeedResponse
-  nameWithType: String,T,FeedResponse
-  fullName: java.lang.String,T,com.azure.cosmos.models.FeedResponse
-- uid: com.azure.core.util.paging.ContinuablePagedFlux
-  name: ContinuablePagedFlux
-  nameWithType: ContinuablePagedFlux
-  fullName: com.azure.core.util.paging.ContinuablePagedFlux
+- uid: com.azure.cosmos.util.CosmosPagedFlux
+  name: CosmosPagedFlux
+  nameWithType: CosmosPagedFlux
+  fullName: com.azure.cosmos.util.CosmosPagedFlux
+- uid: java.util.function.Consumer
+  name: Consumer
+  nameWithType: Consumer
+  fullName: java.util.function.Consumer
+- uid: com.azure.cosmos.models.FeedResponse
+  name: FeedResponse
+  nameWithType: FeedResponse
+  fullName: com.azure.cosmos.models.FeedResponse
 - uid: com.azure.core.util.paging.ContinuablePagedIterable
   name: ContinuablePagedIterable
   nameWithType: ContinuablePagedIterable
   fullName: com.azure.core.util.paging.ContinuablePagedIterable
+- uid: java.lang.String,T,com.azure.cosmos.models.FeedResponse
+  name: String,T,FeedResponse
+  nameWithType: String,T,FeedResponse
+  fullName: java.lang.String,T,com.azure.cosmos.models.FeedResponse
 - uid: com.azure.core.util.IterableStream.
   name: IterableStream.
   nameWithType: IterableStream.

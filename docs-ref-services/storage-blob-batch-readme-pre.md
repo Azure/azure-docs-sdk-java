@@ -3,7 +3,7 @@ title: Azure Storage Blobs Batch client library for Java
 keywords: Azure, java, SDK, API, azure-storage-blob-batch, storage
 author: maggiepint
 ms.author: magpint
-ms.date: 07/07/2020
+ms.date: 10/01/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: storage
 ---
 
-# Azure Storage Blobs Batch client library for Java - Version 12.6.0-beta.1 
+# Azure Storage Blobs Batch client library for Java - Version 12.7.0-beta.1 
 
 
 Azure Blob storage is Microsoft's object storage solution for the cloud. Blob
@@ -25,7 +25,7 @@ definition, such as text or binary data.
 
 ### Prerequisites
 
--  Java Development Kit (JDK) with version 8 or above
+- [Java Development Kit (JDK)][jdk] with version 8 or above
 - [Azure Subscription][azure_subscription]
 - [Create Storage Account][storage_account]
 
@@ -36,15 +36,15 @@ definition, such as text or binary data.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-blob-batch</artifactId>
-  <version>12.6.0-beta.1</version>
+  <version>12.7.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Create a Storage Account
-To create a Storage Account you can use the Azure Portal or [Azure CLI][storage_account_create_cli].
+To create a Storage Account you can use the [Azure Portal][azure_portal] or [Azure CLI][storage_account_create_cli].
 
-```Powershell
+```bash
 az storage account create \
     --resource-group <resource-group-name> \
     --name <storage-account-name> \
@@ -66,14 +66,14 @@ Blob storage is designed for:
 
 The following sections provide several code snippets covering some of the most common Azure Storage Blob Batch tasks, including:
 
-- [Creating BlobBatchClient](#create-blobbatchclient)
+- [Creating BlobBatchClient](#creating-blobbatchclient)
 - [Bulk Deleting Blobs](#bulk-deleting-blobs)
 - [Bulk Setting AccessTier](#bulk-setting-accesstier)
 - [Advanced Batching](#advanced-batching)
 
 ### Creating BlobBatchClient
 
-Create a BlobBatchClient from a [`BlobServiceClient`]().
+Create a BlobBatchClient from a [BlobServiceClient][blob_service_client].
 
 <!-- embedme ./src/samples/java/com/azure/storage/blob/batch/ReadmeSamples.java#L42-L42 -->
 ```java
@@ -179,16 +179,19 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact opencode@microsoft.com with any additional questions or comments.
 
 <!-- LINKS -->
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-batch/src/main/java
+[source]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.7.0-beta.1/sdk/storage/azure-storage-blob-batch/src/main/java
 [docs]: http://azure.github.io/azure-sdk-for-java/
 [rest_docs]: https://docs.microsoft.com/rest/api/storageservices/blob-service-rest-api
 [product_docs]: https://docs.microsoft.com/azure/storage/blobs/storage-blobs-overview
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-batch/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.7.0-beta.1/sdk/storage/azure-storage-blob-batch/src/samples
+[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
+[azure_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-cli
+[blob_service_client]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-blob-batch_12.7.0-beta.1/sdk/storage/azure-storage-blob#create-a-storage-account
 [error_codes]: https://docs.microsoft.com/rest/api/storageservices/blob-service-error-codes
-[blob_samples]: https://github.com/Azure/azure-sdk-for-java/tree/c548afc068451c8f24e503f24a369e7145091995/sdk/storage/azure-storage-blob-batch/src/samples/README.md
+[blob_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-storage-blob-batch_12.7.0-beta.1/sdk/storage/azure-storage-blob-batch/src/samples/README.md
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/

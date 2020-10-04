@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   id: ShareLeaseClientBuilder
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized
   children:
   - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.ShareLeaseClientBuilder()
@@ -11,6 +11,8 @@ items:
   - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.fileAsyncClient(com.azure.storage.file.share.ShareFileAsyncClient)
   - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.fileClient(com.azure.storage.file.share.ShareFileClient)
   - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.leaseId(java.lang.String)
+  - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient(com.azure.storage.file.share.ShareAsyncClient)
+  - com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient(com.azure.storage.file.share.ShareClient)
   langs:
   - java
   name: ShareLeaseClientBuilder
@@ -19,7 +21,7 @@ items:
   type: Class
   package: com.azure.storage.file.share.specialized
   summary: >-
-    This class provides a fluent builder API to help aid the configuration and instantiation of Storage Lease clients. Lease clients are able to interact only with share file clients and act as a supplement client. A new instance of <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClient" data-throw-if-not-resolved="false">ShareLeaseClient</xref> and <xref uid="com.azure.storage.file.share.specialized.ShareLeaseAsyncClient" data-throw-if-not-resolved="false">ShareLeaseAsyncClient</xref> are constructed every time <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildClient()" data-throw-if-not-resolved="false">buildClient</xref> and <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildAsyncClient()" data-throw-if-not-resolved="false">buildAsyncClient</xref> are called respectively.
+    This class provides a fluent builder API to help aid the configuration and instantiation of Storage Lease clients. Lease clients are able to interact with both share and share file clients and act as a supplement client. A new instance of <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClient" data-throw-if-not-resolved="false">ShareLeaseClient</xref> and <xref uid="com.azure.storage.file.share.specialized.ShareLeaseAsyncClient" data-throw-if-not-resolved="false">ShareLeaseAsyncClient</xref> are constructed every time <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildClient()" data-throw-if-not-resolved="false">buildClient</xref> and <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildAsyncClient()" data-throw-if-not-resolved="false">buildAsyncClient</xref> are called respectively.
 
 
     When a client is instantiated and a <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.leaseId(java.lang.String)" data-throw-if-not-resolved="false">leaseId</xref> hasn't been set a <xref uid="" data-throw-if-not-resolved="false">UUID</xref> will be used as the lease identifier.
@@ -37,6 +39,15 @@ items:
     ```
 
 
+    ```java
+
+    ShareLeaseClient fileLeaseClient = new ShareLeaseClientBuilder()
+         .shareClient(shareClient)
+         .leaseId(leaseId)
+         .buildClient();
+    ```
+
+
     **Instantiating LeaseAsyncClients**
 
 
@@ -44,6 +55,15 @@ items:
 
     ShareLeaseAsyncClient fileLeaseAsyncClient = new ShareLeaseClientBuilder()
          .fileAsyncClient(shareFileAsyncClient)
+         .leaseId(leaseId)
+         .buildAsyncClient();
+    ```
+
+
+    ```java
+
+    ShareLeaseAsyncClient fileLeaseAsyncClient = new ShareLeaseClientBuilder()
+         .shareAsyncClient(shareAsyncClient)
          .leaseId(leaseId)
          .buildAsyncClient();
     ```
@@ -65,7 +85,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.ShareLeaseClientBuilder()
   id: ShareLeaseClientBuilder()
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -79,7 +99,7 @@ items:
     content: public ShareLeaseClientBuilder()
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildAsyncClient()
   id: buildAsyncClient()
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -97,7 +117,7 @@ items:
       description: a <xref uid="com.azure.storage.file.share.specialized.ShareLeaseAsyncClient" data-throw-if-not-resolved="false">ShareLeaseAsyncClient</xref> based on the configurations in this builder.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.buildClient()
   id: buildClient()
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -115,7 +135,7 @@ items:
       description: a <xref uid="com.azure.storage.file.share.specialized.ShareLeaseClient" data-throw-if-not-resolved="false">ShareLeaseClient</xref> based on the configurations in this builder.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.fileAsyncClient(com.azure.storage.file.share.ShareFileAsyncClient)
   id: fileAsyncClient(com.azure.storage.file.share.ShareFileAsyncClient)
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -131,13 +151,13 @@ items:
     parameters:
     - id: fileAsyncClient
       type: com.azure.storage.file.share.ShareFileAsyncClient
-      description: BlobAsyncClient used to configure the builder.
+      description: ShareFileAsyncClient used to configure the builder.
     return:
       type: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
       description: the updated ShareLeaseClientBuilder object
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.fileClient(com.azure.storage.file.share.ShareFileClient)
   id: fileClient(com.azure.storage.file.share.ShareFileClient)
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -159,7 +179,7 @@ items:
       description: the updated ShareLeaseClientBuilder object
 - uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.leaseId(java.lang.String)
   id: leaseId(java.lang.String)
-  artifact: com.azure:azure-storage-file-share:12.6.0-beta.1
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
   parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
   langs:
   - java
@@ -180,6 +200,50 @@ items:
     - id: leaseId
       type: java.lang.String
       description: Identifier for the lease.
+    return:
+      type: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
+      description: the updated ShareLeaseClientBuilder object
+- uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient(com.azure.storage.file.share.ShareAsyncClient)
+  id: shareAsyncClient(com.azure.storage.file.share.ShareAsyncClient)
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
+  parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
+  langs:
+  - java
+  name: shareAsyncClient(ShareAsyncClient shareAsyncClient)
+  nameWithType: ShareLeaseClientBuilder.shareAsyncClient(ShareAsyncClient shareAsyncClient)
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient(ShareAsyncClient shareAsyncClient)
+  overload: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: Configures the builder based on the passed <xref uid="com.azure.storage.file.share.ShareAsyncClient" data-throw-if-not-resolved="false">ShareAsyncClient</xref>. This will set the <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> and <xref uid="" data-throw-if-not-resolved="false">URL</xref> that are used to interact with the service.
+  syntax:
+    content: public ShareLeaseClientBuilder shareAsyncClient(ShareAsyncClient shareAsyncClient)
+    parameters:
+    - id: shareAsyncClient
+      type: com.azure.storage.file.share.ShareAsyncClient
+      description: ShareAsyncClient used to configure the builder.
+    return:
+      type: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
+      description: the updated ShareLeaseClientBuilder object
+- uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient(com.azure.storage.file.share.ShareClient)
+  id: shareClient(com.azure.storage.file.share.ShareClient)
+  artifact: com.azure:azure-storage-file-share:12.7.0-beta.1
+  parent: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
+  langs:
+  - java
+  name: shareClient(ShareClient shareClient)
+  nameWithType: ShareLeaseClientBuilder.shareClient(ShareClient shareClient)
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient(ShareClient shareClient)
+  overload: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: Configures the builder based on the passed <xref uid="com.azure.storage.file.share.ShareClient" data-throw-if-not-resolved="false">ShareClient</xref>. This will set the <xref uid="" data-throw-if-not-resolved="false">HttpPipeline</xref> and <xref uid="" data-throw-if-not-resolved="false">URL</xref> that are used to interact with the service.
+  syntax:
+    content: public ShareLeaseClientBuilder shareClient(ShareClient shareClient)
+    parameters:
+    - id: shareClient
+      type: com.azure.storage.file.share.ShareClient
+      description: ShareClient used to configure the builder.
     return:
       type: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder
       description: the updated ShareLeaseClientBuilder object
@@ -224,6 +288,24 @@ references:
   name: fileAsyncClient
   nameWithType: ShareLeaseClientBuilder.fileAsyncClient
   fullName: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.fileAsyncClient
+  package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.ShareClient
+  name: ShareClient
+  nameWithType: ShareClient
+  fullName: com.azure.storage.file.share.ShareClient
+- uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient*
+  name: shareClient
+  nameWithType: ShareLeaseClientBuilder.shareClient
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareClient
+  package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.ShareAsyncClient
+  name: ShareAsyncClient
+  nameWithType: ShareAsyncClient
+  fullName: com.azure.storage.file.share.ShareAsyncClient
+- uid: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient*
+  name: shareAsyncClient
+  nameWithType: ShareLeaseClientBuilder.shareAsyncClient
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseClientBuilder.shareAsyncClient
   package: com.azure.storage.file.share.specialized
 - uid: java.lang.String
   spec.java:

@@ -2,11 +2,12 @@
 items:
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   id: EventHubProducerAsyncClient
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs
   children:
   - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>createBatch(java.lang.Class<T>)
   - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
   - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.close()
   - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.createBatch()
   - com.azure.messaging.eventhubs.EventHubProducerAsyncClient.createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
@@ -46,7 +47,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>createBatch(java.lang.Class<T>)
   id: <T>createBatch(java.lang.Class<T>)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -68,7 +69,7 @@ items:
       description: A new <xref uid="com.azure.messaging.eventhubs.ObjectBatch" data-throw-if-not-resolved="false">ObjectBatch</xref> that can fit as many serialized objects as events as the transport allows.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
   id: <T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -91,9 +92,31 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.messaging.eventhubs.ObjectBatch<T>>
       description: A new <xref uid="com.azure.messaging.eventhubs.ObjectBatch" data-throw-if-not-resolved="false">ObjectBatch</xref> that can fit as many events as the transport allows.
+- uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
+  id: <T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+  langs:
+  - java
+  name: <T>send(ObjectBatch<T> objectBatch)
+  nameWithType: EventHubProducerAsyncClient.<T>send(ObjectBatch<T> objectBatch)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.<T>send(ObjectBatch<T> objectBatch)
+  overload: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sends the object batch to the associated Event Hub.
+  syntax:
+    content: public Mono<Void> <T>send(ObjectBatch<T> objectBatch)
+    parameters:
+    - id: objectBatch
+      type: com.azure.messaging.eventhubs.ObjectBatch<T>
+      description: The batch to send to the service.
+    return:
+      type: reactor.core.publisher.Mono<java.lang.Void>
+      description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> that completes when the batch is pushed to the service.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.AmqpRetryOptions,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable)
   id: EventHubProducerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.AmqpRetryOptions,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -103,7 +126,6 @@ items:
   overload: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient*
   type: Constructor
   package: com.azure.messaging.eventhubs
-  summary: Creates a new instance of this <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> that can send messages to a single partition when <xref uid="com.azure.messaging.eventhubs.models.CreateBatchOptions.getPartitionId()" data-throw-if-not-resolved="false">CreateBatchOptions#getPartitionId()</xref> is not null or an empty string. Otherwise, allows the service to load balance the messages amongst available partitions.
   syntax:
     content: " EventHubProducerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, AmqpRetryOptions retryOptions, TracerProvider tracerProvider, MessageSerializer messageSerializer, ObjectSerializer serializer, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClose)"
     parameters:
@@ -127,9 +149,49 @@ items:
       type: boolean
     - id: onClientClose
       type: java.lang.Runnable
+- uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.AmqpRetryOptions,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable,boolean,java.util.Map<java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState>)
+  id: EventHubProducerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.AmqpRetryOptions,com.azure.core.amqp.implementation.TracerProvider,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable,boolean,java.util.Map<java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+  langs:
+  - java
+  name: EventHubProducerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, AmqpRetryOptions retryOptions, TracerProvider tracerProvider, MessageSerializer messageSerializer, ObjectSerializer serializer, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClose, boolean isIdempotentPartitionPublishing, Map<String,PartitionPublishingState> initialPartitionPublishingStates)
+  nameWithType: EventHubProducerAsyncClient.EventHubProducerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, AmqpRetryOptions retryOptions, TracerProvider tracerProvider, MessageSerializer messageSerializer, ObjectSerializer serializer, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClose, boolean isIdempotentPartitionPublishing, Map<String,PartitionPublishingState> initialPartitionPublishingStates)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, AmqpRetryOptions retryOptions, TracerProvider tracerProvider, MessageSerializer messageSerializer, ObjectSerializer serializer, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClose, boolean isIdempotentPartitionPublishing, Map<String,PartitionPublishingState> initialPartitionPublishingStates)
+  overload: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient*
+  type: Constructor
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new instance of this <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> that can send messages to a single partition when <xref uid="com.azure.messaging.eventhubs.models.CreateBatchOptions.getPartitionId()" data-throw-if-not-resolved="false">CreateBatchOptions#getPartitionId()</xref> is not null or an empty string. Otherwise, allows the service to load balance the messages amongst available partitions.
+  syntax:
+    content: " EventHubProducerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, AmqpRetryOptions retryOptions, TracerProvider tracerProvider, MessageSerializer messageSerializer, ObjectSerializer serializer, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClose, boolean isIdempotentPartitionPublishing, Map<String,PartitionPublishingState> initialPartitionPublishingStates)"
+    parameters:
+    - id: fullyQualifiedNamespace
+      type: java.lang.String
+    - id: eventHubName
+      type: java.lang.String
+    - id: connectionProcessor
+      type: com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor
+    - id: retryOptions
+      type: com.azure.core.amqp.AmqpRetryOptions
+    - id: tracerProvider
+      type: com.azure.core.amqp.implementation.TracerProvider
+    - id: messageSerializer
+      type: com.azure.core.amqp.implementation.MessageSerializer
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+    - id: scheduler
+      type: reactor.core.scheduler.Scheduler
+    - id: isSharedConnection
+      type: boolean
+    - id: onClientClose
+      type: java.lang.Runnable
+    - id: isIdempotentPartitionPublishing
+      type: boolean
+    - id: initialPartitionPublishingStates
+      type: java.util.Map<java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState>
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.close()
   id: close()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -144,7 +206,7 @@ items:
     content: public void close()
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.createBatch()
   id: createBatch()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -162,7 +224,7 @@ items:
       description: A new <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> that can fit as many events as the transport allows.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
   id: createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -184,7 +246,7 @@ items:
       description: A new <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> that can fit as many events as the transport allows.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.getEventHubName()
   id: getEventHubName()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -202,7 +264,7 @@ items:
       description: The Event Hub name this client interacts with.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.getEventHubProperties()
   id: getEventHubProperties()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -220,7 +282,7 @@ items:
       description: The set of information for the Event Hub that this client is associated with.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.getFullyQualifiedNamespace()
   id: getFullyQualifiedNamespace()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -238,7 +300,7 @@ items:
       description: The fully qualified Event Hubs namespace that the connection is associated with.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.getPartitionIds()
   id: getPartitionIds()
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -256,7 +318,7 @@ items:
       description: A Flux of identifiers for the partitions of an Event Hub.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.getPartitionProperties(java.lang.String)
   id: getPartitionProperties(java.lang.String)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -278,21 +340,21 @@ items:
       description: The set of information for the requested partition under the Event Hub this client is associated with.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send(com.azure.messaging.eventhubs.EventDataBatch)
   id: send(com.azure.messaging.eventhubs.EventDataBatch)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
-  name: send(EventDataBatch batch)
-  nameWithType: EventHubProducerAsyncClient.send(EventDataBatch batch)
-  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send(EventDataBatch batch)
+  name: send(EventDataBatch eventDataBatch)
+  nameWithType: EventHubProducerAsyncClient.send(EventDataBatch eventDataBatch)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send(EventDataBatch eventDataBatch)
   overload: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send*
   type: Method
   package: com.azure.messaging.eventhubs
-  summary: Sends the batch to the associated Event Hub.
+  summary: Sends the event data batch to the associated Event Hub.
   syntax:
-    content: public Mono<Void> send(EventDataBatch batch)
+    content: public Mono<Void> send(EventDataBatch eventDataBatch)
     parameters:
-    - id: batch
+    - id: eventDataBatch
       type: com.azure.messaging.eventhubs.EventDataBatch
       description: The batch to send to the service.
     return:
@@ -300,7 +362,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> that completes when the batch is pushed to the service.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)
   id: send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -342,7 +404,7 @@ items:
       description: A <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> that completes when all events are pushed to the service.
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)
   id: send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)
-  artifact: com.azure:azure-messaging-eventhubs:5.2.0-beta.2
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
   parent: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
   langs:
   - java
@@ -431,6 +493,23 @@ references:
   - uid: java.lang.Runnable
     name: Runnable
     fullName: java.lang.Runnable
+- uid: java.util.Map<java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: com.azure.messaging.eventhubs.implementation.PartitionPublishingState
+    name: PartitionPublishingState
+    fullName: com.azure.messaging.eventhubs.implementation.PartitionPublishingState
+  - name: '>'
+    fullName: '>'
 - uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient.EventHubProducerAsyncClient*
   name: EventHubProducerAsyncClient
   nameWithType: EventHubProducerAsyncClient.EventHubProducerAsyncClient
@@ -582,6 +661,18 @@ references:
   name: SendOptions
   nameWithType: SendOptions
   fullName: com.azure.messaging.eventhubs.models.SendOptions
+- uid: com.azure.messaging.eventhubs.ObjectBatch<T>
+  spec.java:
+  - uid: com.azure.messaging.eventhubs.ObjectBatch
+    name: ObjectBatch
+    fullName: com.azure.messaging.eventhubs.ObjectBatch
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
 - uid: com.azure.messaging.eventhubs.EventDataBatch
   name: EventDataBatch
   nameWithType: EventDataBatch
@@ -639,6 +730,14 @@ references:
   name: Object.toString()
   nameWithType: Object.toString()
   fullName: java.lang.Object.toString()
+- uid: java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState
+  name: String,PartitionPublishingState
+  nameWithType: String,PartitionPublishingState
+  fullName: java.lang.String,com.azure.messaging.eventhubs.implementation.PartitionPublishingState
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
 - uid: reactor.core.publisher.Mono
   name: Mono
   nameWithType: Mono
