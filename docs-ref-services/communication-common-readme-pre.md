@@ -1,17 +1,18 @@
 ---
-title: Azure Communications SMS Service client library for Java
-keywords: Azure, java, SDK, API, azure-communication-sms, communication
+title: Azure Communication Service Common client library for Java
+keywords: Azure, java, SDK, API, azure-communication-common, communicationcommunication
 author: maggiepint
 ms.author: magpint
-ms.date: 09/22/2020
+ms.date: 10/05/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communication
+ms.service: communicationcommunication
 ---
 
-# Azure Communication Service Common client library for Java - Version 1.0.0-beta.1 
+# Azure Communication Service Common client library for Java - Version 1.0.0-beta.2 
+
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
 It is intended to provide cross cutting concerns, e.g. authentication. 
@@ -32,7 +33,7 @@ It is intended to provide cross cutting concerns, e.g. authentication.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-common</artifactId>
-    <version>1.0.0-beta.1</version>
+    <version>1.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
