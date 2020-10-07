@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: metricsadvisor
 ---
 
 # Azure Metrics Advisor client library for Java - Version 1.0.0-beta.1 
@@ -17,7 +17,7 @@ Azure Metrics Advisor is a new Cognitive  Service that uses time series based de
 trouble shooting the incidents of online services, and monitor the business health by automating the slice and dice
 of business metrics.
 
-[Source code][source_code] | [Package (Maven)]<!--TODO: (once available)--> | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][samples]
+[Source code][source_code] | [Package (Maven)][mvn_package] | [API reference documentation][api_reference_doc] | [Product Documentation][product_documentation] | [Samples][samples]
 
 ## Getting started
 
@@ -372,6 +372,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [metrics_advisor_account]: https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesMetricsAdvisor
 [metrics_advisor_doc]: https://docs.microsoft.com/en-gb/azure/cognitive-services/metrics-advisor/glossary
+[mvn_package]: https://mvnrepository.com/artifact/com.azure/azure-ai-metricsadvisor
 [product_documentation]: https://docs.microsoft.com/azure/cognitive-services/metrics-advisor/overview
 [source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.0.0-beta.1/sdk/metricsadvisor/azure-ai-metricsadvisor/src
 [samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-ai-metricsadvisor_1.0.0-beta.1/sdk/metricsadvisor/azure-ai-metricsadvisor/src/samples
