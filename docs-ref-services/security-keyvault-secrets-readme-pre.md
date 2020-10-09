@@ -3,7 +3,7 @@ title: Azure Key Vault Secret client library for Java
 keywords: Azure, java, SDK, API, azure-security-keyvault-secrets, keyvault
 author: maggiepint
 ms.author: magpint
-ms.date: 09/11/2020
+ms.date: 10/09/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: keyvault
 ---
 
-# Azure Key Vault Secret client library for Java - Version 4.3.0-beta.1 
+# Azure Key Vault Secret client library for Java - Version 4.3.0-beta.2 
 
 Azure Key Vault is a cloud service that provides secure storage for secrets, such as passwords and database connection strings.
 
@@ -30,14 +30,14 @@ Maven dependency for the Azure Key Vault Secrets client library. Add it to your 
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-security-keyvault-secrets</artifactId>
-    <version>4.2.1</version>
+    <version>4.3.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Prerequisites
 
-- Java Development Kit (JDK) with version 8 or above
+- A [Java Development Kit (JDK)][jdk_link], version 8 or later.
 - [Azure Subscription][azure_subscription]
 - An existing [Azure Key Vault][azure_keyvault]. If you need to create a Key Vault, you can use the [Azure Cloud Shell](https://shell.azure.com/bash) to create one with this Azure CLI command. Replace `<your-resource-group-name>` and `<your-key-vault-name>` with your own, unique names:
 
@@ -314,9 +314,9 @@ When you submit a pull request, a CLA-bot will automatically determine whether y
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the Code of Conduct FAQ or contact <opencode@microsoft.com> with any additional questions or comments.
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-secrets/src
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-secrets/src
 [api_documentation]: https://azure.github.io/azure-sdk-for-java
-[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-secrets_4.3.0-beta.1/sdk/identity/azure-identity
+[azure_identity]: https://github.com/Azure/azure-sdk-for-java/tree/azure-security-keyvault-secrets_4.3.0-beta.2/sdk/identity/azure-identity
 [azkeyvault_docs]: https://docs.microsoft.com/azure/key-vault/
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/
@@ -327,8 +327,10 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 [azure_create_application_in_portal]: https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal
 [azure_keyvault_cli]: https://docs.microsoft.com/azure/key-vault/quick-create-cli
 [azure_keyvault_cli_full]: https://docs.microsoft.com/cli/azure/keyvault?view=azure-cli-latest
-[secrets_samples]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/9d14a835552c8e47e556a088c51dc4b83f282ee0/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
+[secrets_samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-security-keyvault-secrets_4.3.0-beta.2/sdk/keyvault/azure-security-keyvault-secrets/src/samples/README.md
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fkeyvault%2Fazure-security-keyvault-secrets%2FREADME.png)
+
