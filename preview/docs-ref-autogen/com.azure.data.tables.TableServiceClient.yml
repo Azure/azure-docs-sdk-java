@@ -2,15 +2,18 @@
 items:
 - uid: com.azure.data.tables.TableServiceClient
   id: TableServiceClient
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables
   children:
   - com.azure.data.tables.TableServiceClient.createTable(java.lang.String)
+  - com.azure.data.tables.TableServiceClient.createTable(java.lang.String,java.time.Duration)
   - com.azure.data.tables.TableServiceClient.createTableIfNotExists(java.lang.String)
-  - com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(java.lang.String,com.azure.core.util.Context)
-  - com.azure.data.tables.TableServiceClient.createTableWithResponse(java.lang.String,com.azure.core.util.Context)
+  - com.azure.data.tables.TableServiceClient.createTableIfNotExists(java.lang.String,java.time.Duration)
+  - com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  - com.azure.data.tables.TableServiceClient.createTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
   - com.azure.data.tables.TableServiceClient.deleteTable(java.lang.String)
-  - com.azure.data.tables.TableServiceClient.deleteTableWithResponse(java.lang.String,com.azure.core.util.Context)
+  - com.azure.data.tables.TableServiceClient.deleteTable(java.lang.String,java.time.Duration)
+  - com.azure.data.tables.TableServiceClient.deleteTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
   - com.azure.data.tables.TableServiceClient.getAccountName()
   - com.azure.data.tables.TableServiceClient.getApiVersion()
   - com.azure.data.tables.TableServiceClient.getServiceUrl()
@@ -24,7 +27,7 @@ items:
   fullName: com.azure.data.tables.TableServiceClient
   type: Class
   package: com.azure.data.tables
-  summary: client for table service
+  summary: Provides a synchronous service client for accessing the Azure Tables service. The client encapsulates the URL for the Tables service endpoint and the credentials for accessing the storage or CosmosDB table API account. It provides methods to create, delete, and list tables within the account. These methods invoke REST API operations to make the requests and obtain the results that are returned. Instances of this client are obtained by calling the <xref uid="com.azure.data.tables.TableServiceClientBuilder.buildClient()" data-throw-if-not-resolved="false">TableServiceClientBuilder#buildClient()</xref> method on a <xref uid="com.azure.data.tables.TableServiceClientBuilder" data-throw-if-not-resolved="false">TableServiceClientBuilder</xref> object.
   syntax:
     content: public class TableServiceClient
   inheritance:
@@ -43,7 +46,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.data.tables.TableServiceClient.TableServiceClient(com.azure.data.tables.TableServiceAsyncClient)
   id: TableServiceClient(com.azure.data.tables.TableServiceAsyncClient)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -60,7 +63,7 @@ items:
       type: com.azure.data.tables.TableServiceAsyncClient
 - uid: com.azure.data.tables.TableServiceClient.createTable(java.lang.String)
   id: createTable(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -70,16 +73,38 @@ items:
   overload: com.azure.data.tables.TableServiceClient.createTable*
   type: Method
   package: com.azure.data.tables
-  summary: creates the table with the given name. If a table with the same name already exists, the operation fails.
+  summary: Creates a table within the Tables service.
   syntax:
     content: public void createTable(String tableName)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to create
+      description: The name of the table to create.
+- uid: com.azure.data.tables.TableServiceClient.createTable(java.lang.String,java.time.Duration)
+  id: createTable(java.lang.String,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableServiceClient
+  langs:
+  - java
+  name: createTable(String tableName, Duration timeout)
+  nameWithType: TableServiceClient.createTable(String tableName, Duration timeout)
+  fullName: com.azure.data.tables.TableServiceClient.createTable(String tableName, Duration timeout)
+  overload: com.azure.data.tables.TableServiceClient.createTable*
+  type: Method
+  package: com.azure.data.tables
+  summary: Creates a table within the Tables service.
+  syntax:
+    content: public void createTable(String tableName, Duration timeout)
+    parameters:
+    - id: tableName
+      type: java.lang.String
+      description: The name of the table to create.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableServiceClient.createTableIfNotExists(java.lang.String)
   id: createTableIfNotExists(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -89,66 +114,94 @@ items:
   overload: com.azure.data.tables.TableServiceClient.createTableIfNotExists*
   type: Method
   package: com.azure.data.tables
-  summary: creates the table with the given name if it does not exist, otherwise no action is taken.
+  summary: Creates a table within the Tables service if the table does not already exist.
   syntax:
     content: public void createTableIfNotExists(String tableName)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to create
-- uid: com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(java.lang.String,com.azure.core.util.Context)
-  id: createTableIfNotExistsWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: The name of the table to create.
+- uid: com.azure.data.tables.TableServiceClient.createTableIfNotExists(java.lang.String,java.time.Duration)
+  id: createTableIfNotExists(java.lang.String,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
-  name: createTableIfNotExistsWithResponse(String tableName, Context context)
-  nameWithType: TableServiceClient.createTableIfNotExistsWithResponse(String tableName, Context context)
-  fullName: com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(String tableName, Context context)
+  name: createTableIfNotExists(String tableName, Duration timeout)
+  nameWithType: TableServiceClient.createTableIfNotExists(String tableName, Duration timeout)
+  fullName: com.azure.data.tables.TableServiceClient.createTableIfNotExists(String tableName, Duration timeout)
+  overload: com.azure.data.tables.TableServiceClient.createTableIfNotExists*
+  type: Method
+  package: com.azure.data.tables
+  summary: Creates a table within the Tables service if the table does not already exist.
+  syntax:
+    content: public void createTableIfNotExists(String tableName, Duration timeout)
+    parameters:
+    - id: tableName
+      type: java.lang.String
+      description: The name of the table to create.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
+- uid: com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  id: createTableIfNotExistsWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableServiceClient
+  langs:
+  - java
+  name: createTableIfNotExistsWithResponse(String tableName, Duration timeout, Context context)
+  nameWithType: TableServiceClient.createTableIfNotExistsWithResponse(String tableName, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse(String tableName, Duration timeout, Context context)
   overload: com.azure.data.tables.TableServiceClient.createTableIfNotExistsWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: creates the table with the given name if it does not exist, otherwise no action is taken.
+  summary: Creates a table within the Tables service if the table does not already exist.
   syntax:
-    content: public Response<Void> createTableIfNotExistsWithResponse(String tableName, Context context)
+    content: public Response<Void> createTableIfNotExistsWithResponse(String tableName, Duration timeout, Context context)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to create
+      description: The name of the table to create.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: response
-- uid: com.azure.data.tables.TableServiceClient.createTableWithResponse(java.lang.String,com.azure.core.util.Context)
-  id: createTableWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: The HTTP response.
+- uid: com.azure.data.tables.TableServiceClient.createTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  id: createTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
-  name: createTableWithResponse(String tableName, Context context)
-  nameWithType: TableServiceClient.createTableWithResponse(String tableName, Context context)
-  fullName: com.azure.data.tables.TableServiceClient.createTableWithResponse(String tableName, Context context)
+  name: createTableWithResponse(String tableName, Duration timeout, Context context)
+  nameWithType: TableServiceClient.createTableWithResponse(String tableName, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableServiceClient.createTableWithResponse(String tableName, Duration timeout, Context context)
   overload: com.azure.data.tables.TableServiceClient.createTableWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: creates the table with the given name. If a table with the same name already exists, the operation fails.
+  summary: Creates a table within the Tables service.
   syntax:
-    content: public Response<Void> createTableWithResponse(String tableName, Context context)
+    content: public Response<Void> createTableWithResponse(String tableName, Duration timeout, Context context)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to create
+      description: The name of the table to create.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: response
+      description: The HTTP response.
 - uid: com.azure.data.tables.TableServiceClient.deleteTable(java.lang.String)
   id: deleteTable(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -158,41 +211,66 @@ items:
   overload: com.azure.data.tables.TableServiceClient.deleteTable*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given table. Will error if the table doesn't exists or cannot be found with the given name.
+  summary: Deletes a table within the Tables service.
   syntax:
     content: public void deleteTable(String tableName)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to be deleted
-- uid: com.azure.data.tables.TableServiceClient.deleteTableWithResponse(java.lang.String,com.azure.core.util.Context)
-  id: deleteTableWithResponse(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: The name of the table to delete.
+- uid: com.azure.data.tables.TableServiceClient.deleteTable(java.lang.String,java.time.Duration)
+  id: deleteTable(java.lang.String,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
-  name: deleteTableWithResponse(String tableName, Context context)
-  nameWithType: TableServiceClient.deleteTableWithResponse(String tableName, Context context)
-  fullName: com.azure.data.tables.TableServiceClient.deleteTableWithResponse(String tableName, Context context)
-  overload: com.azure.data.tables.TableServiceClient.deleteTableWithResponse*
+  name: deleteTable(String tableName, Duration timeout)
+  nameWithType: TableServiceClient.deleteTable(String tableName, Duration timeout)
+  fullName: com.azure.data.tables.TableServiceClient.deleteTable(String tableName, Duration timeout)
+  overload: com.azure.data.tables.TableServiceClient.deleteTable*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given table. Will error if the table doesn't exists or cannot be found with the given name.
+  summary: Deletes a table within the Tables service.
   syntax:
-    content: public Response<Void> deleteTableWithResponse(String tableName, Context context)
+    content: public void deleteTable(String tableName, Duration timeout)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: the name of the table to be deleted
+      description: The name of the table to delete.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
+- uid: com.azure.data.tables.TableServiceClient.deleteTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  id: deleteTableWithResponse(java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableServiceClient
+  langs:
+  - java
+  name: deleteTableWithResponse(String tableName, Duration timeout, Context context)
+  nameWithType: TableServiceClient.deleteTableWithResponse(String tableName, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableServiceClient.deleteTableWithResponse(String tableName, Duration timeout, Context context)
+  overload: com.azure.data.tables.TableServiceClient.deleteTableWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Deletes a table within the Tables service.
+  syntax:
+    content: public Response<Void> deleteTableWithResponse(String tableName, Duration timeout, Context context)
+    parameters:
+    - id: tableName
+      type: java.lang.String
+      description: The name of the table to delete.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: response
+      description: The HTTP response.
 - uid: com.azure.data.tables.TableServiceClient.getAccountName()
   id: getAccountName()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -202,15 +280,15 @@ items:
   overload: com.azure.data.tables.TableServiceClient.getAccountName*
   type: Method
   package: com.azure.data.tables
-  summary: returns the account for this service
+  summary: Gets the name of the account containing the table.
   syntax:
     content: public String getAccountName()
     return:
       type: java.lang.String
-      description: returns the account name
+      description: The name of the account containing the table.
 - uid: com.azure.data.tables.TableServiceClient.getApiVersion()
   id: getApiVersion()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -220,15 +298,15 @@ items:
   overload: com.azure.data.tables.TableServiceClient.getApiVersion*
   type: Method
   package: com.azure.data.tables
-  summary: returns the version
+  summary: Gets the REST API version used by this client.
   syntax:
     content: public TablesServiceVersion getApiVersion()
     return:
       type: com.azure.data.tables.TablesServiceVersion
-      description: the version
+      description: The REST API version used by this client.
 - uid: com.azure.data.tables.TableServiceClient.getServiceUrl()
   id: getServiceUrl()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -238,37 +316,37 @@ items:
   overload: com.azure.data.tables.TableServiceClient.getServiceUrl*
   type: Method
   package: com.azure.data.tables
-  summary: returns Url of this service
+  summary: Gets the absolute URL for the Tables service endpoint.
   syntax:
     content: public String getServiceUrl()
     return:
       type: java.lang.String
-      description: Url
+      description: The absolute URL for the Tables service endpoint.
 - uid: com.azure.data.tables.TableServiceClient.getTableClient(java.lang.String)
   id: getTableClient(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
-  name: getTableClient(String name)
-  nameWithType: TableServiceClient.getTableClient(String name)
-  fullName: com.azure.data.tables.TableServiceClient.getTableClient(String name)
+  name: getTableClient(String tableName)
+  nameWithType: TableServiceClient.getTableClient(String tableName)
+  fullName: com.azure.data.tables.TableServiceClient.getTableClient(String tableName)
   overload: com.azure.data.tables.TableServiceClient.getTableClient*
   type: Method
   package: com.azure.data.tables
-  summary: gets the Table Client for the given table
+  summary: Gets a <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> instance for the provided table in the account.
   syntax:
-    content: public TableClient getTableClient(String name)
+    content: public TableClient getTableClient(String tableName)
     parameters:
-    - id: name
+    - id: tableName
       type: java.lang.String
-      description: the name of the table
+      description: The name of the table.
     return:
       type: com.azure.data.tables.TableClient
-      description: the Table Client for the table
+      description: A <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> instance for the provided table in the account.
 - uid: com.azure.data.tables.TableServiceClient.listTables()
   id: listTables()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -278,15 +356,15 @@ items:
   overload: com.azure.data.tables.TableServiceClient.listTables*
   type: Method
   package: com.azure.data.tables
-  summary: query all the tables under the storage account
+  summary: Lists all tables within the account.
   syntax:
     content: public PagedIterable<TableItem> listTables()
     return:
       type: com.azure.core.http.rest.PagedIterable<com.azure.data.tables.models.TableItem>
-      description: a list of tables that meet the query
+      description: A paged iterable containing all tables within the account.
 - uid: com.azure.data.tables.TableServiceClient.listTables(com.azure.data.tables.models.ListTablesOptions)
   id: listTables(com.azure.data.tables.models.ListTablesOptions)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableServiceClient
   langs:
   - java
@@ -296,16 +374,16 @@ items:
   overload: com.azure.data.tables.TableServiceClient.listTables*
   type: Method
   package: com.azure.data.tables
-  summary: query all the tables under the storage account given the query options and returns the ones that fit the criteria
+  summary: Lists tables using the parameters in the provided options. If the \`filter\` parameter in the options is set, only tables matching the filter will be returned. If the \`top\` parameter is set, the number of returned tables will be limited to that value.
   syntax:
     content: public PagedIterable<TableItem> listTables(ListTablesOptions options)
     parameters:
     - id: options
       type: com.azure.data.tables.models.ListTablesOptions
-      description: the odata query object
+      description: The `filter` and `top` OData query options to apply to this operation.
     return:
       type: com.azure.core.http.rest.PagedIterable<com.azure.data.tables.models.TableItem>
-      description: a list of tables that meet the query
+      description: A paged iterable containing matching tables within the account.
 references:
 - uid: com.azure.data.tables.TableServiceAsyncClient
   name: TableServiceAsyncClient
@@ -354,6 +432,11 @@ references:
   nameWithType: TableServiceClient.createTable
   fullName: com.azure.data.tables.TableServiceClient.createTable
   package: com.azure.data.tables
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
 - uid: com.azure.core.util.Context
   spec.java:
   - uid: com.azure.core.util.Context
