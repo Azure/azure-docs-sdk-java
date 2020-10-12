@@ -2,9 +2,15 @@
 items:
 - uid: com.azure.data.tables.TableClient
   id: TableClient
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables
   children:
+  - com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  - com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  - com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration)
+  - com.azure.data.tables.TableClient.<T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration,com.azure.core.util.Context)
+  - com.azure.data.tables.TableClient.<T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  - com.azure.data.tables.TableClient.<T>listEntities(java.lang.Class<T>)
   - com.azure.data.tables.TableClient.create()
   - com.azure.data.tables.TableClient.create(java.time.Duration)
   - com.azure.data.tables.TableClient.createEntity(com.azure.data.tables.models.TableEntity)
@@ -21,17 +27,18 @@ items:
   - com.azure.data.tables.TableClient.getAccountName()
   - com.azure.data.tables.TableClient.getApiVersion()
   - com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String)
-  - com.azure.data.tables.TableClient.getEntityWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)
+  - com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String,java.lang.String)
+  - com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String,java.lang.String,java.time.Duration)
+  - com.azure.data.tables.TableClient.getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.azure.core.util.Context)
   - com.azure.data.tables.TableClient.getTableName()
   - com.azure.data.tables.TableClient.getTableUrl()
   - com.azure.data.tables.TableClient.listEntities()
   - com.azure.data.tables.TableClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions)
-  - com.azure.data.tables.TableClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.time.Duration)
   - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity)
-  - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration)
   - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  - com.azure.data.tables.TableClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration,com.azure.core.util.Context)
+  - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  - com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration)
+  - com.azure.data.tables.TableClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration,com.azure.core.util.Context)
   - com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity)
   - com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   - com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,java.time.Duration)
@@ -43,7 +50,7 @@ items:
   fullName: com.azure.data.tables.TableClient
   type: Class
   package: com.azure.data.tables
-  summary: sync client for table operations
+  summary: Provides a synchronous service client for accessing a table in the Azure Tables service. The client encapsulates the URL for the table within the Tables service endpoint, the name of the table, and the credentials for accessing the storage or CosmosDB table API account. It provides methods to create and delete the table itself, as well as methods to create, upsert, update, delete, list, and get entities within the table. These methods invoke REST API operations to make the requests and obtain the results that are returned. Instances of this client are obtained by calling the <xref uid="com.azure.data.tables.TableClientBuilder.buildClient()" data-throw-if-not-resolved="false">TableClientBuilder#buildClient()</xref> method on a <xref uid="com.azure.data.tables.TableClientBuilder" data-throw-if-not-resolved="false">TableClientBuilder</xref> object.
   syntax:
     content: public class TableClient
   inheritance:
@@ -60,9 +67,186 @@ items:
   - java.lang.Object.wait()
   - java.lang.Object.wait(long)
   - java.lang.Object.wait(long,int)
+- uid: com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  id: <T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  nameWithType: TableClient.<T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  fullName: com.azure.data.tables.TableClient.<T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  overload: com.azure.data.tables.TableClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public T <T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: T
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  id: <T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  nameWithType: TableClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  fullName: com.azure.data.tables.TableClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  overload: com.azure.data.tables.TableClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public T <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: T
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration)
+  id: <T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout)
+  nameWithType: TableClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout)
+  fullName: com.azure.data.tables.TableClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout)
+  overload: com.azure.data.tables.TableClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public T <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
+    return:
+      type: T
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.<T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration,com.azure.core.util.Context)
+  id: <T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout, Context context)
+  nameWithType: TableClient.<T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableClient.<T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout, Context context)
+  overload: com.azure.data.tables.TableClient.getEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Response<T> <T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType, Duration timeout, Context context)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
+    - id: context
+      type: com.azure.core.util.Context
+      description: Additional context that is passed through the HTTP pipeline during the service call.
+    return:
+      type: com.azure.core.http.rest.Response<T>
+      description: The HTTP response containing the entity.
+- uid: com.azure.data.tables.TableClient.<T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  id: <T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  nameWithType: TableClient.<T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  fullName: com.azure.data.tables.TableClient.<T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  overload: com.azure.data.tables.TableClient.listEntities*
+  type: Method
+  package: com.azure.data.tables
+  summary: Lists entities using the parameters in the provided options. If the \`filter\` parameter in the options is set, only entities matching the filter will be returned. If the \`select\` parameter is set, only the properties included in the select parameter will be returned for each entity. If the \`top\` parameter is set, the number of returned entities will be limited to that value.
+  syntax:
+    content: public PagedIterable<T> <T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+    parameters:
+    - id: options
+      type: com.azure.data.tables.models.ListEntitiesOptions
+      description: The `filter`, `select`, and `top` OData query options to apply to this operation.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: com.azure.core.http.rest.PagedIterable<T>
+      description: A paged iterable containing matching entities within the table.
+- uid: com.azure.data.tables.TableClient.<T>listEntities(java.lang.Class<T>)
+  id: <T>listEntities(java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: <T>listEntities(Class<T> resultType)
+  nameWithType: TableClient.<T>listEntities(Class<T> resultType)
+  fullName: com.azure.data.tables.TableClient.<T>listEntities(Class<T> resultType)
+  overload: com.azure.data.tables.TableClient.listEntities*
+  type: Method
+  package: com.azure.data.tables
+  summary: Lists all entities within the table.
+  syntax:
+    content: public PagedIterable<T> <T>listEntities(Class<T> resultType)
+    parameters:
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: com.azure.core.http.rest.PagedIterable<T>
+      description: A paged iterable containing all entities within the table.
 - uid: com.azure.data.tables.TableClient.TableClient(com.azure.data.tables.TableAsyncClient)
   id: TableClient(com.azure.data.tables.TableAsyncClient)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -79,7 +263,7 @@ items:
       type: com.azure.data.tables.TableAsyncClient
 - uid: com.azure.data.tables.TableClient.create()
   id: create()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -89,12 +273,12 @@ items:
   overload: com.azure.data.tables.TableClient.create*
   type: Method
   package: com.azure.data.tables
-  summary: creates new table with the name of this client
+  summary: Creates the table within the Tables service.
   syntax:
     content: public void create()
 - uid: com.azure.data.tables.TableClient.create(java.time.Duration)
   id: create(java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -104,85 +288,85 @@ items:
   overload: com.azure.data.tables.TableClient.create*
   type: Method
   package: com.azure.data.tables
-  summary: creates new table with the name of this client
+  summary: Creates the table within the Tables service.
   syntax:
     content: public void create(Duration timeout)
     parameters:
     - id: timeout
       type: java.time.Duration
-      description: Duration to wait for operation to complete.
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableClient.createEntity(com.azure.data.tables.models.TableEntity)
   id: createEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
-  name: createEntity(TableEntity tableEntity)
-  nameWithType: TableClient.createEntity(TableEntity tableEntity)
-  fullName: com.azure.data.tables.TableClient.createEntity(TableEntity tableEntity)
+  name: createEntity(TableEntity entity)
+  nameWithType: TableClient.createEntity(TableEntity entity)
+  fullName: com.azure.data.tables.TableClient.createEntity(TableEntity entity)
   overload: com.azure.data.tables.TableClient.createEntity*
   type: Method
   package: com.azure.data.tables
-  summary: insert a TableEntity with the given properties and return that TableEntity. Property map must include rowKey and partitionKey
+  summary: Inserts an entity into the table.
   syntax:
-    content: public void createEntity(TableEntity tableEntity)
+    content: public void createEntity(TableEntity entity)
     parameters:
-    - id: tableEntity
+    - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to add
+      description: The entity to insert.
 - uid: com.azure.data.tables.TableClient.createEntity(com.azure.data.tables.models.TableEntity,java.time.Duration)
   id: createEntity(com.azure.data.tables.models.TableEntity,java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
-  name: createEntity(TableEntity tableEntity, Duration timeout)
-  nameWithType: TableClient.createEntity(TableEntity tableEntity, Duration timeout)
-  fullName: com.azure.data.tables.TableClient.createEntity(TableEntity tableEntity, Duration timeout)
+  name: createEntity(TableEntity entity, Duration timeout)
+  nameWithType: TableClient.createEntity(TableEntity entity, Duration timeout)
+  fullName: com.azure.data.tables.TableClient.createEntity(TableEntity entity, Duration timeout)
   overload: com.azure.data.tables.TableClient.createEntity*
   type: Method
   package: com.azure.data.tables
-  summary: insert a TableEntity with the given properties and return that TableEntity. Property map must include rowKey and partitionKey
+  summary: Inserts an entity into the table.
   syntax:
-    content: public void createEntity(TableEntity tableEntity, Duration timeout)
+    content: public void createEntity(TableEntity entity, Duration timeout)
     parameters:
-    - id: tableEntity
+    - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to add
+      description: The entity to insert.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableClient.createEntityWithResponse(com.azure.data.tables.models.TableEntity,java.time.Duration,com.azure.core.util.Context)
   id: createEntityWithResponse(com.azure.data.tables.models.TableEntity,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
-  name: createEntityWithResponse(TableEntity tableEntity, Duration timeout, Context context)
-  nameWithType: TableClient.createEntityWithResponse(TableEntity tableEntity, Duration timeout, Context context)
-  fullName: com.azure.data.tables.TableClient.createEntityWithResponse(TableEntity tableEntity, Duration timeout, Context context)
+  name: createEntityWithResponse(TableEntity entity, Duration timeout, Context context)
+  nameWithType: TableClient.createEntityWithResponse(TableEntity entity, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableClient.createEntityWithResponse(TableEntity entity, Duration timeout, Context context)
   overload: com.azure.data.tables.TableClient.createEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: insert a TableEntity with the given properties and return that TableEntity. Property map must include rowKey and partitionKey
+  summary: Inserts an entity into the table.
   syntax:
-    content: public Response<Void> createEntityWithResponse(TableEntity tableEntity, Duration timeout, Context context)
+    content: public Response<Void> createEntityWithResponse(TableEntity entity, Duration timeout, Context context)
     parameters:
-    - id: tableEntity
+    - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to add
+      description: The entity to insert.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: a response
+      description: The HTTP response.
 - uid: com.azure.data.tables.TableClient.createWithResponse(java.time.Duration,com.azure.core.util.Context)
   id: createWithResponse(java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -192,13 +376,13 @@ items:
   overload: com.azure.data.tables.TableClient.createWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: creates a new table with the name of this client
+  summary: Creates the table within the Tables service.
   syntax:
     content: public Response<Void> createWithResponse(Duration timeout, Context context)
     parameters:
     - id: timeout
       type: java.time.Duration
-      description: Duration to wait for operation to complete.
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
       description: Additional context that is passed through the HTTP pipeline during the service call.
@@ -207,7 +391,7 @@ items:
       description: The HTTP response.
 - uid: com.azure.data.tables.TableClient.delete()
   id: delete()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -217,12 +401,12 @@ items:
   overload: com.azure.data.tables.TableClient.delete*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the table with the name of this client
+  summary: Deletes the table within the Tables service.
   syntax:
     content: public void delete()
 - uid: com.azure.data.tables.TableClient.delete(java.time.Duration)
   id: delete(java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -232,16 +416,16 @@ items:
   overload: com.azure.data.tables.TableClient.delete*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the table with the name of this client
+  summary: Deletes the table within the Tables service.
   syntax:
     content: public void delete(Duration timeout)
     parameters:
     - id: timeout
       type: java.time.Duration
-      description: Duration to wait for operation to complete.
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableClient.deleteEntity(java.lang.String,java.lang.String)
   id: deleteEntity(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -251,19 +435,19 @@ items:
   overload: com.azure.data.tables.TableClient.deleteEntity*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the entity with the given partition key and row key
+  summary: Deletes an entity from the table.
   syntax:
     content: public void deleteEntity(String partitionKey, String rowKey)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
 - uid: com.azure.data.tables.TableClient.deleteEntity(java.lang.String,java.lang.String,java.lang.String)
   id: deleteEntity(java.lang.String,java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -273,22 +457,24 @@ items:
   overload: com.azure.data.tables.TableClient.deleteEntity*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the entity with the given partition key and row key
+  summary: Deletes an entity from the table.
   syntax:
     content: public void deleteEntity(String partitionKey, String rowKey, String eTag)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     - id: eTag
       type: java.lang.String
-      description: the eTag of the entity, the delete will only occur if this matches the entity in the service
+      description: >-
+        The value to compare with the eTag of the entity in the Tables service. If the values do not match,
+                     the delete will not occur and an exception will be thrown.
 - uid: com.azure.data.tables.TableClient.deleteEntity(java.lang.String,java.lang.String,java.lang.String,java.time.Duration)
   id: deleteEntity(java.lang.String,java.lang.String,java.lang.String,java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -298,25 +484,27 @@ items:
   overload: com.azure.data.tables.TableClient.deleteEntity*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given entity
+  summary: Deletes an entity from the table.
   syntax:
     content: public void deleteEntity(String partitionKey, String rowKey, String eTag, Duration timeout)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     - id: eTag
       type: java.lang.String
-      description: the eTag of the entity, the delete will only occur if this matches the entity in the service
+      description: >-
+        The value to compare with the eTag of the entity in the Tables service. If the values do not match,
+                     the delete will not occur and an exception will be thrown.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableClient.deleteEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.azure.core.util.Context)
   id: deleteEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -326,31 +514,33 @@ items:
   overload: com.azure.data.tables.TableClient.deleteEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given entity
+  summary: Deletes an entity from the table.
   syntax:
     content: public Response<Void> deleteEntityWithResponse(String partitionKey, String rowKey, String eTag, Duration timeout, Context context)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     - id: eTag
       type: java.lang.String
-      description: the eTag of the entity, the delete will only occur if this matches the entity in the service
+      description: >-
+        The value to compare with the eTag of the entity in the Tables service. If the values do not match,
+                     the delete will not occur and an exception will be thrown.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: a response
+      description: The HTTP response.
 - uid: com.azure.data.tables.TableClient.deleteWithResponse(java.time.Duration,com.azure.core.util.Context)
   id: deleteWithResponse(java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -360,13 +550,13 @@ items:
   overload: com.azure.data.tables.TableClient.deleteWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the table with the name of this client
+  summary: Deletes the table within the Tables service.
   syntax:
     content: public Response<Void> deleteWithResponse(Duration timeout, Context context)
     parameters:
     - id: timeout
       type: java.time.Duration
-      description: Duration to wait for operation to complete.
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
       description: Additional context that is passed through the HTTP pipeline during the service call.
@@ -375,7 +565,7 @@ items:
       description: The HTTP response.
 - uid: com.azure.data.tables.TableClient.getAccountName()
   id: getAccountName()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -385,15 +575,15 @@ items:
   overload: com.azure.data.tables.TableClient.getAccountName*
   type: Method
   package: com.azure.data.tables
-  summary: returns the account for this table
+  summary: Gets the name of the account containing the table.
   syntax:
     content: public String getAccountName()
     return:
       type: java.lang.String
-      description: a string of the account name
+      description: The name of the account containing the table.
 - uid: com.azure.data.tables.TableClient.getApiVersion()
   id: getApiVersion()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -403,15 +593,15 @@ items:
   overload: com.azure.data.tables.TableClient.getApiVersion*
   type: Method
   package: com.azure.data.tables
-  summary: returns the version
+  summary: Gets the REST API version used by this client.
   syntax:
     content: public TablesServiceVersion getApiVersion()
     return:
       type: com.azure.data.tables.TablesServiceVersion
-      description: the version
+      description: The REST API version used by this client.
 - uid: com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String)
   id: getEntity(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -421,50 +611,115 @@ items:
   overload: com.azure.data.tables.TableClient.getEntity*
   type: Method
   package: com.azure.data.tables
-  summary: gets the entity which fits the given criteria
+  summary: Gets a single entity from the table.
   syntax:
     content: public TableEntity getEntity(String partitionKey, String rowKey)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key of the entity
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key of the entity
+      description: The partition key of the entity.
     return:
       type: com.azure.data.tables.models.TableEntity
-      description: the table entity
-- uid: com.azure.data.tables.TableClient.getEntityWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)
-  id: getEntityWithResponse(java.lang.String,java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String,java.lang.String)
+  id: getEntity(java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
-  name: getEntityWithResponse(String partitionKey, String rowKey, Context context)
-  nameWithType: TableClient.getEntityWithResponse(String partitionKey, String rowKey, Context context)
-  fullName: com.azure.data.tables.TableClient.getEntityWithResponse(String partitionKey, String rowKey, Context context)
-  overload: com.azure.data.tables.TableClient.getEntityWithResponse*
+  name: getEntity(String partitionKey, String rowKey, String select)
+  nameWithType: TableClient.getEntity(String partitionKey, String rowKey, String select)
+  fullName: com.azure.data.tables.TableClient.getEntity(String partitionKey, String rowKey, String select)
+  overload: com.azure.data.tables.TableClient.getEntity*
   type: Method
   package: com.azure.data.tables
-  summary: gets the entity which fits the given criteria
+  summary: Gets a single entity from the table.
   syntax:
-    content: public Response<TableEntity> getEntityWithResponse(String partitionKey, String rowKey, Context context)
+    content: public TableEntity getEntity(String partitionKey, String rowKey, String select)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key of the entity
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key of the entity
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    return:
+      type: com.azure.data.tables.models.TableEntity
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.getEntity(java.lang.String,java.lang.String,java.lang.String,java.time.Duration)
+  id: getEntity(java.lang.String,java.lang.String,java.lang.String,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: getEntity(String partitionKey, String rowKey, String select, Duration timeout)
+  nameWithType: TableClient.getEntity(String partitionKey, String rowKey, String select, Duration timeout)
+  fullName: com.azure.data.tables.TableClient.getEntity(String partitionKey, String rowKey, String select, Duration timeout)
+  overload: com.azure.data.tables.TableClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public TableEntity getEntity(String partitionKey, String rowKey, String select, Duration timeout)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
+    return:
+      type: com.azure.data.tables.models.TableEntity
+      description: The entity.
+- uid: com.azure.data.tables.TableClient.getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  id: getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: getEntityWithResponse(String partitionKey, String rowKey, String select, Duration timeout, Context context)
+  nameWithType: TableClient.getEntityWithResponse(String partitionKey, String rowKey, String select, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableClient.getEntityWithResponse(String partitionKey, String rowKey, String select, Duration timeout, Context context)
+  overload: com.azure.data.tables.TableClient.getEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Response<TableEntity> getEntityWithResponse(String partitionKey, String rowKey, String select, Duration timeout, Context context)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<com.azure.data.tables.models.TableEntity>
-      description: a mono of the response with the table entity
+      description: The HTTP response containing the entity.
 - uid: com.azure.data.tables.TableClient.getTableName()
   id: getTableName()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -474,15 +729,15 @@ items:
   overload: com.azure.data.tables.TableClient.getTableName*
   type: Method
   package: com.azure.data.tables
-  summary: returns the table name associated with the client\*
+  summary: Gets the name of the table.
   syntax:
     content: public String getTableName()
     return:
       type: java.lang.String
-      description: table name
+      description: The name of the table.
 - uid: com.azure.data.tables.TableClient.getTableUrl()
   id: getTableUrl()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -492,15 +747,15 @@ items:
   overload: com.azure.data.tables.TableClient.getTableUrl*
   type: Method
   package: com.azure.data.tables
-  summary: returns Url of this table
+  summary: Gets the absolute URL for this table.
   syntax:
     content: public String getTableUrl()
     return:
       type: java.lang.String
-      description: Url
+      description: The absolute URL for this table.
 - uid: com.azure.data.tables.TableClient.listEntities()
   id: listEntities()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -510,15 +765,15 @@ items:
   overload: com.azure.data.tables.TableClient.listEntities*
   type: Method
   package: com.azure.data.tables
-  summary: Queries and returns all entities in the given table
+  summary: Lists all entities within the table.
   syntax:
     content: public PagedIterable<TableEntity> listEntities()
     return:
       type: com.azure.core.http.rest.PagedIterable<com.azure.data.tables.models.TableEntity>
-      description: a list of the tables that fit the query
+      description: A paged iterable containing all entities within the table.
 - uid: com.azure.data.tables.TableClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions)
   id: listEntities(com.azure.data.tables.models.ListEntitiesOptions)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -528,44 +783,19 @@ items:
   overload: com.azure.data.tables.TableClient.listEntities*
   type: Method
   package: com.azure.data.tables
-  summary: Queries and returns entities in the given table using the odata QueryOptions
+  summary: Lists entities using the parameters in the provided options. If the \`filter\` parameter in the options is set, only entities matching the filter will be returned. If the \`select\` parameter is set, only the properties included in the select parameter will be returned for each entity. If the \`top\` parameter is set, the number of returned entities will be limited to that value.
   syntax:
     content: public PagedIterable<TableEntity> listEntities(ListEntitiesOptions options)
     parameters:
     - id: options
       type: com.azure.data.tables.models.ListEntitiesOptions
-      description: the odata query object
+      description: The `filter`, `select`, and `top` OData query options to apply to this operation.
     return:
       type: com.azure.core.http.rest.PagedIterable<com.azure.data.tables.models.TableEntity>
-      description: a list of the tables that fit the query
-- uid: com.azure.data.tables.TableClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.time.Duration)
-  id: listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
-  parent: com.azure.data.tables.TableClient
-  langs:
-  - java
-  name: listEntities(ListEntitiesOptions options, Duration timeout)
-  nameWithType: TableClient.listEntities(ListEntitiesOptions options, Duration timeout)
-  fullName: com.azure.data.tables.TableClient.listEntities(ListEntitiesOptions options, Duration timeout)
-  overload: com.azure.data.tables.TableClient.listEntities*
-  type: Method
-  package: com.azure.data.tables
-  summary: Queries and returns entities in the given table using the odata QueryOptions
-  syntax:
-    content: public PagedIterable<TableEntity> listEntities(ListEntitiesOptions options, Duration timeout)
-    parameters:
-    - id: options
-      type: com.azure.data.tables.models.ListEntitiesOptions
-      description: the odata query object
-    - id: timeout
-      type: java.time.Duration
-      description: max time for query to execute before erroring out
-    return:
-      type: com.azure.core.http.rest.PagedIterable<com.azure.data.tables.models.TableEntity>
-      description: a list of the tables that fit the query
+      description: A paged iterable containing matching entities within the table.
 - uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity)
   id: updateEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -575,69 +805,16 @@ items:
   overload: com.azure.data.tables.TableClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
+  summary: Updates an existing entity by merging the provided entity with the existing entity.
   syntax:
     content: public void updateEntity(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-- uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  id: updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
-  parent: com.azure.data.tables.TableClient
-  langs:
-  - java
-  name: updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  nameWithType: TableClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  fullName: com.azure.data.tables.TableClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  overload: com.azure.data.tables.TableClient.updateEntity*
-  type: Method
-  package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
-  syntax:
-    content: public void updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-    parameters:
-    - id: entity
-      type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-    - id: ifUnchanged
-      type: boolean
-      description: if the eTag of the entity must match the entity in the service or not
-    - id: updateMode
-      type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
-- uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration)
-  id: updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
-  parent: com.azure.data.tables.TableClient
-  langs:
-  - java
-  name: updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout)
-  nameWithType: TableClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout)
-  fullName: com.azure.data.tables.TableClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout)
-  overload: com.azure.data.tables.TableClient.updateEntity*
-  type: Method
-  package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
-  syntax:
-    content: public void updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout)
-    parameters:
-    - id: entity
-      type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-    - id: ifUnchanged
-      type: boolean
-      description: if the eTag of the entity must match the entity in the service or not
-    - id: updateMode
-      type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
-    - id: timeout
-      type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: The entity to update.
 - uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   id: updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -647,53 +824,115 @@ items:
   overload: com.azure.data.tables.TableClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public void updateEntity(TableEntity entity, UpdateMode updateMode)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
+      description: The entity to update.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
-- uid: com.azure.data.tables.TableClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration,com.azure.core.util.Context)
-  id: updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: which type of mode to execute
+- uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  id: updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
-  name: updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout, Context context)
-  nameWithType: TableClient.updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout, Context context)
-  fullName: com.azure.data.tables.TableClient.updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout, Context context)
-  overload: com.azure.data.tables.TableClient.updateEntityWithResponse*
+  name: updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  nameWithType: TableClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  fullName: com.azure.data.tables.TableClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  overload: com.azure.data.tables.TableClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
-    content: public Response<Void> updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode, Duration timeout, Context context)
+    content: public void updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-    - id: ifUnchanged
-      type: boolean
-      description: if the eTag of the entity must match the entity in the service or not
+      description: The entity to update.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
+      description: The type of update to perform.
+    - id: ifUnchanged
+      type: boolean
+      description: >-
+        When true, the eTag of the provided entity must match the eTag of the entity in the Table
+                            service. If the values do not match, the update will not occur and an exception will be
+                            thrown.
+- uid: com.azure.data.tables.TableClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration)
+  id: updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout)
+  nameWithType: TableClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout)
+  fullName: com.azure.data.tables.TableClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout)
+  overload: com.azure.data.tables.TableClient.updateEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
+  syntax:
+    content: public void updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout)
+    parameters:
+    - id: entity
+      type: com.azure.data.tables.models.TableEntity
+      description: The entity to update.
+    - id: updateMode
+      type: com.azure.data.tables.models.UpdateMode
+      description: The type of update to perform.
+    - id: ifUnchanged
+      type: boolean
+      description: >-
+        When true, the eTag of the provided entity must match the eTag of the entity in the Table
+                            service. If the values do not match, the update will not occur and an exception will be
+                            thrown.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
+- uid: com.azure.data.tables.TableClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration,com.azure.core.util.Context)
+  id: updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean,java.time.Duration,com.azure.core.util.Context)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableClient
+  langs:
+  - java
+  name: updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout, Context context)
+  nameWithType: TableClient.updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout, Context context)
+  fullName: com.azure.data.tables.TableClient.updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout, Context context)
+  overload: com.azure.data.tables.TableClient.updateEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
+  syntax:
+    content: public Response<Void> updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged, Duration timeout, Context context)
+    parameters:
+    - id: entity
+      type: com.azure.data.tables.models.TableEntity
+      description: The entity to update.
+    - id: updateMode
+      type: com.azure.data.tables.models.UpdateMode
+      description: The type of update to perform.
+    - id: ifUnchanged
+      type: boolean
+      description: >-
+        When true, the eTag of the provided entity must match the eTag of the entity in the Table
+                            service. If the values do not match, the update will not occur and an exception will be
+                            thrown.
+    - id: timeout
+      type: java.time.Duration
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: a response
+      description: The HTTP response.
 - uid: com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity)
   id: upsertEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -703,16 +942,16 @@ items:
   overload: com.azure.data.tables.TableClient.upsertEntity*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or merges the entity with the existing entity otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the provided entity's properties will be merged into the existing entity.
   syntax:
     content: public void upsertEntity(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
 - uid: com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   id: upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -722,19 +961,19 @@ items:
   overload: com.azure.data.tables.TableClient.upsertEntity*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or updates the existing entity using the specified update mode otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the existing entity will be updated according to the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public void upsertEntity(TableEntity entity, UpdateMode updateMode)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: type of upsert
+      description: The type of update to perform if the entity already exits.
 - uid: com.azure.data.tables.TableClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,java.time.Duration)
   id: upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,java.time.Duration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -744,22 +983,22 @@ items:
   overload: com.azure.data.tables.TableClient.upsertEntity*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or updates the existing entity using the specified update mode otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the existing entity will be updated according to the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public void upsertEntity(TableEntity entity, UpdateMode updateMode, Duration timeout)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: type of upsert
+      description: The type of update to perform if the entity already exits.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
 - uid: com.azure.data.tables.TableClient.upsertEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,java.time.Duration,com.azure.core.util.Context)
   id: upsertEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,java.time.Duration,com.azure.core.util.Context)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClient
   langs:
   - java
@@ -769,25 +1008,25 @@ items:
   overload: com.azure.data.tables.TableClient.upsertEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or updates the existing entity using the specified update mode otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the existing entity will be updated according to the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public Response<Void> upsertEntityWithResponse(TableEntity entity, UpdateMode updateMode, Duration timeout, Context context)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: type of upsert
+      description: The type of update to perform if the entity already exits.
     - id: timeout
       type: java.time.Duration
-      description: max time for query to execute before erroring out
+      description: Duration to wait for the operation to complete.
     - id: context
       type: com.azure.core.util.Context
-      description: the context of the query
+      description: Additional context that is passed through the HTTP pipeline during the service call.
     return:
       type: com.azure.core.http.rest.Response<java.lang.Void>
-      description: a response
+      description: The HTTP response.
 references:
 - uid: com.azure.data.tables.TableAsyncClient
   name: TableAsyncClient
@@ -943,11 +1182,40 @@ references:
   name: ListEntitiesOptions
   nameWithType: ListEntitiesOptions
   fullName: com.azure.data.tables.models.ListEntitiesOptions
+- uid: java.lang.Class<T>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.http.rest.PagedIterable<T>
+  spec.java:
+  - uid: com.azure.core.http.rest.PagedIterable
+    name: PagedIterable
+    fullName: com.azure.core.http.rest.PagedIterable
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
 - uid: com.azure.data.tables.TableClient.getEntity*
   name: getEntity
   nameWithType: TableClient.getEntity
   fullName: com.azure.data.tables.TableClient.getEntity
   package: com.azure.data.tables
+- uid: T
+  spec.java:
+  - uid: T
+    name: T
+    fullName: T
 - uid: com.azure.core.http.rest.Response<com.azure.data.tables.models.TableEntity>
   spec.java:
   - uid: com.azure.core.http.rest.Response
@@ -965,6 +1233,18 @@ references:
   nameWithType: TableClient.getEntityWithResponse
   fullName: com.azure.data.tables.TableClient.getEntityWithResponse
   package: com.azure.data.tables
+- uid: com.azure.core.http.rest.Response<T>
+  spec.java:
+  - uid: com.azure.core.http.rest.Response
+    name: Response
+    fullName: com.azure.core.http.rest.Response
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
 - uid: java.lang.Object.notify()
   name: Object.notify()
   nameWithType: Object.notify()
@@ -1021,3 +1301,7 @@ references:
   name: PagedIterable
   nameWithType: PagedIterable
   fullName: com.azure.core.http.rest.PagedIterable
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class
