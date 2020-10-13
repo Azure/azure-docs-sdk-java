@@ -2,12 +2,12 @@
 items:
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   id: AmqpsLinkStateCallback
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   children:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
   langs:
   - java
@@ -21,7 +21,7 @@ items:
     content: public interface AmqpsLinkStateCallback
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
   id: onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   langs:
   - java
@@ -40,7 +40,7 @@ items:
       description: the condition of the link that caused the close
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
   id: onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   langs:
   - java
@@ -57,21 +57,21 @@ items:
     - id: linkHandler
       type: org.apache.qpid.proton.engine.BaseHandler
       description: the handler of the link that opened successfully
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
-  id: onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  id: onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   langs:
   - java
-  name: onMessageAcknowledged(Message message, int deliveryTag)
-  nameWithType: AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag)
+  name: onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  nameWithType: AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
   overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged*
   type: Method
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: Executed when a message sent by a link in this session was acknowledged by the service
   syntax:
-    content: public abstract void onMessageAcknowledged(Message message, int deliveryTag)
+    content: public abstract void onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
     parameters:
     - id: message
       type: com.microsoft.azure.sdk.iot.device.Message
@@ -79,9 +79,12 @@ items:
     - id: deliveryTag
       type: int
       description: the integer that identifies which delivery this acknowledgement was tied to
+    - id: deliveryState
+      type: org.apache.qpid.proton.amqp.transport.DeliveryState
+      description: state information that describes if the message was accepted by the receiver or not.
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
   id: onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback
   langs:
   - java
@@ -118,6 +121,11 @@ references:
   - uid: int
     name: int
     fullName: int
+- uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+  spec.java:
+  - uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+    name: DeliveryState
+    fullName: org.apache.qpid.proton.amqp.transport.DeliveryState
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsLinkStateCallback.onMessageAcknowledged*
   name: onMessageAcknowledged
   nameWithType: AmqpsLinkStateCallback.onMessageAcknowledged
