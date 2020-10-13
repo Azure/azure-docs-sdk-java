@@ -1,17 +1,17 @@
 ---
 title: Azure Tables client library for Java
-keywords: Azure, java, SDK, API, azure-data-tables, 
+keywords: Azure, java, SDK, API, azure-data-tables, tables
 author: maggiepint
 ms.author: magpint
-ms.date: 09/10/2020
+ms.date: 10/07/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: tables
 ---
 
-# Azure Tables client library for Java - Version 12.0.0-beta.1 
+# Azure Tables client library for Java - Version 12.0.0-beta.2 
 
 Azure Storage Tables client library is a service that stores structured NoSQL data in the cloud, providing a
 key/attribute store with a schemaless design. Tables storage gives developers flexibility and scalability with all the
@@ -29,7 +29,7 @@ best parts of Azure cloud.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-data-tables</artifactId>
-  <version>12.0.0-beta.1</version>
+  <version>12.0.0-beta.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -67,7 +67,7 @@ Your Table API account URL, subsequently identified as `<your-table-account-url>
 `http(s)://<cosmosdb-account-name>.table.cosmosdb.azure.com`.
 
 ### Authenticate the client
-Every request made to the Table service must be authorized using a connection string, shared key credential, or shared access signature. The samples below demonstrate the usage of these methods.
+Every request made to the Tables service must be authorized using a connection string, shared key credential, or shared access signature. The samples below demonstrate the usage of these methods.
 
 Note: Azure Tables doesn't support Azure Active Directory (AAD) authentication.
 
@@ -134,7 +134,7 @@ az storage table generate-sas \
 - **Partition Key** - An entity's partition key identifies the partition within the table to which the entity belongs. Entities with the same partition key can be queried more quickly, and inserted/updated in atomic operations.
 - **Row Key** - An entity's row key is its unique identifier within a partition.
 
-Common uses of the Table service include:
+Common uses of the Tables service include:
 
 - Storing TBs of structured data capable of serving web scale applications
 - Storing datasets that don't require complex joins, foreign keys, or stored procedures and can be de-normalized for fast access
@@ -342,14 +342,15 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [cosmosdb_create_cli]: https://docs.microsoft.com/azure/cosmos-db/scripts/cli/table/create
 [cosmosdb_create_portal]: https://docs.microsoft.com/azure/cosmos-db/create-table-java#create-a-database-account
 [jdk]: https://docs.microsoft.com/java/azure/jdk/
-[log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.1/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
+[log_level]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.2/sdk/core/azure-core/src/main/java/com/azure/core/util/logging/LogLevel.java
 [package]: https://search.maven.org/artifact/com.azure/azure-data-tables
 [product_documentation]: https://docs.microsoft.com/azure/cosmos-db/table-storage-overview
 [query_options]: https://docs.microsoft.com/rest/api/storageservices/querying-tables-and-entities#supported-query-options
 [rest_api]: https://docs.microsoft.com/rest/api/storageservices/table-service-rest-api
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/496a6cf5215ec20dcbb5d21a2e5b7d05c123a130/sdk/tables/azure-data-tables/src/samples/java
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/496a6cf5215ec20dcbb5d21a2e5b7d05c123a130/sdk/tables/azure-data-tables/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.2/sdk/tables/azure-data-tables/src/samples/java/
+[source_code]: https://github.com/Azure/azure-sdk-for-java/blob/azure-data-tables_12.0.0-beta.2/sdk/tables/azure-data-tables/src
 [storage_account_create_cli]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-cli
 [storage_account_create_portal]: https://docs.microsoft.com/azure/storage/common/storage-account-create?tabs=azure-portal
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Ftables%2Fazure-data-tables%2FREADME.png)
+
