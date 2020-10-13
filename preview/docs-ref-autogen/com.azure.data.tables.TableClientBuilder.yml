@@ -2,9 +2,10 @@
 items:
 - uid: com.azure.data.tables.TableClientBuilder
   id: TableClientBuilder
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables
   children:
+  - com.azure.data.tables.TableClientBuilder.TableClientBuilder()
   - com.azure.data.tables.TableClientBuilder.addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
   - com.azure.data.tables.TableClientBuilder.buildAsyncClient()
   - com.azure.data.tables.TableClientBuilder.buildClient()
@@ -26,7 +27,7 @@ items:
   fullName: com.azure.data.tables.TableClientBuilder
   type: Class
   package: com.azure.data.tables
-  summary: builds table client
+  summary: This class provides a fluent builder API to help aid the configuration and instantiation of <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> and <xref uid="com.azure.data.tables.TableAsyncClient" data-throw-if-not-resolved="false">TableAsyncClient</xref> objects. Call <xref uid="com.azure.data.tables.TableClientBuilder.buildClient()" data-throw-if-not-resolved="false">#buildClient()</xref> or <xref uid="com.azure.data.tables.TableClientBuilder.buildAsyncClient()" data-throw-if-not-resolved="false">#buildAsyncClient()</xref>, respectively, to construct an instance of the desired client.
   syntax:
     content: public class TableClientBuilder
   inheritance:
@@ -45,7 +46,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.data.tables.TableClientBuilder.TableClientBuilder()
   id: TableClientBuilder()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -55,11 +56,12 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.TableClientBuilder*
   type: Constructor
   package: com.azure.data.tables
+  summary: Creates a builder instance that is able to configure and construct <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> and <xref uid="com.azure.data.tables.TableAsyncClient" data-throw-if-not-resolved="false">TableAsyncClient</xref> objects.
   syntax:
-    content: " TableClientBuilder()"
+    content: public TableClientBuilder()
 - uid: com.azure.data.tables.TableClientBuilder.addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
   id: addPolicy(com.azure.core.http.policy.HttpPipelinePolicy)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -69,19 +71,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.addPolicy*
   type: Method
   package: com.azure.data.tables
-  summary: Adds a policy to the set of existing policies that are executed after required policies.
+  summary: Adds a pipeline policy to apply on each request sent. The policy will be added after the retry policy. If the method is called multiple times, all policies will be added and their order preserved.
   syntax:
     content: public TableClientBuilder addPolicy(HttpPipelinePolicy pipelinePolicy)
     parameters:
     - id: pipelinePolicy
       type: com.azure.core.http.policy.HttpPipelinePolicy
-      description: The retry policy for service requests.
+      description: A pipeline policy
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.buildAsyncClient()
   id: buildAsyncClient()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -91,15 +93,15 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.buildAsyncClient*
   type: Method
   package: com.azure.data.tables
-  summary: builds an async tableClient
+  summary: Creates a <xref uid="com.azure.data.tables.TableAsyncClient" data-throw-if-not-resolved="false">TableAsyncClient</xref> based on options set in the builder.
   syntax:
     content: public TableAsyncClient buildAsyncClient()
     return:
       type: com.azure.data.tables.TableAsyncClient
-      description: an aysnc tableClient
+      description: A <xref uid="com.azure.data.tables.TableAsyncClient" data-throw-if-not-resolved="false">TableAsyncClient</xref> created from the configurations in this builder.
 - uid: com.azure.data.tables.TableClientBuilder.buildClient()
   id: buildClient()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -109,15 +111,15 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.buildClient*
   type: Method
   package: com.azure.data.tables
-  summary: builds a sync tableClient
+  summary: Creates a <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> based on options set in the builder.
   syntax:
     content: public TableClient buildClient()
     return:
       type: com.azure.data.tables.TableClient
-      description: a sync tableClient
+      description: A <xref uid="com.azure.data.tables.TableClient" data-throw-if-not-resolved="false">TableClient</xref> created from the configurations in this builder.
 - uid: com.azure.data.tables.TableClientBuilder.configuration(com.azure.core.util.Configuration)
   id: configuration(com.azure.core.util.Configuration)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -128,23 +130,20 @@ items:
   type: Method
   package: com.azure.data.tables
   summary: >-
-    Sets the configuration store that is used during construction of the service client.
-
-
-    The default configuration store is a clone of the <xref uid="Configuration#getGlobalConfiguration()" data-throw-if-not-resolved="false">global
+    Sets the configuration object used to retrieve environment configuration values during building of the client. The default configuration store is a clone of the <xref uid="Configuration#getGlobalConfiguration()" data-throw-if-not-resolved="false">global
      configuration store</xref>, use <xref uid="com.azure.core.util.Configuration.NONE" data-throw-if-not-resolved="false">Configuration#NONE</xref> to bypass using configuration settings during construction.
   syntax:
     content: public TableClientBuilder configuration(Configuration configuration)
     parameters:
     - id: configuration
       type: com.azure.core.util.Configuration
-      description: The configuration store used to
+      description: Configuration store used to retrieve environment configurations.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.connectionString(java.lang.String)
   id: connectionString(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -154,19 +153,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.connectionString*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the connection string to help build the client
+  summary: Sets the connection string to connect to the service.
   syntax:
     content: public TableClientBuilder connectionString(String connectionString)
     parameters:
     - id: connectionString
       type: java.lang.String
-      description: the connection string to the storage account
+      description: Connection string of the storage or CosmosDB table API account.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: the TableClientBuilder
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.credential(com.azure.core.credential.TokenCredential)
   id: credential(com.azure.core.credential.TokenCredential)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -176,19 +175,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.credential*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">TokenCredential</xref> used to authenticate HTTP requests.
+  summary: Sets the <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">TokenCredential</xref> used to authorize requests sent to the service.
   syntax:
     content: public TableClientBuilder credential(TokenCredential credential)
     parameters:
     - id: credential
       type: com.azure.core.credential.TokenCredential
-      description: TokenCredential used to authenticate HTTP requests.
+      description: <xref uid="com.azure.core.credential.TokenCredential" data-throw-if-not-resolved="false">TokenCredential</xref> used to authorize requests sent to the service.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.endpoint(java.lang.String)
   id: endpoint(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -198,43 +197,41 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.endpoint*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the endpoint for the Azure Storage Table instance that the client will interact with.
+  summary: Sets the service endpoint.
   syntax:
     content: public TableClientBuilder endpoint(String endpoint)
     parameters:
     - id: endpoint
       type: java.lang.String
-      description: >-
-        The URL of the Azure Storage Table instance to send service requests to and receive responses
-         from.
+      description: The URL of the storage or CosmosDB table API account endpoint.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: the updated TableClientBuilder object
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.httpClient(com.azure.core.http.HttpClient)
   id: httpClient(com.azure.core.http.HttpClient)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
-  name: httpClient(HttpClient client)
-  nameWithType: TableClientBuilder.httpClient(HttpClient client)
-  fullName: com.azure.data.tables.TableClientBuilder.httpClient(HttpClient client)
+  name: httpClient(HttpClient httpClient)
+  nameWithType: TableClientBuilder.httpClient(HttpClient httpClient)
+  fullName: com.azure.data.tables.TableClientBuilder.httpClient(HttpClient httpClient)
   overload: com.azure.data.tables.TableClientBuilder.httpClient*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the HTTP client to use for sending and receiving requests to and from the service.
+  summary: Sets the <xref uid="com.azure.core.http.HttpClient" data-throw-if-not-resolved="false">HttpClient</xref> to use for sending and receiving requests to and from the service.
   syntax:
-    content: public TableClientBuilder httpClient(HttpClient client)
+    content: public TableClientBuilder httpClient(HttpClient httpClient)
     parameters:
-    - id: client
+    - id: httpClient
       type: com.azure.core.http.HttpClient
-      description: The HTTP client to use for requests.
+      description: The <xref uid="com.azure.core.http.HttpClient" data-throw-if-not-resolved="false">HttpClient</xref> to use for requests.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
   id: httpLogOptions(com.azure.core.http.policy.HttpLogOptions)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -244,23 +241,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.httpLogOptions*
   type: Method
   package: com.azure.data.tables
-  summary: >-
-    Sets the logging configuration for HTTP requests and responses.
-
-
-    If logLevel is not provided, default value of <xref uid="" data-throw-if-not-resolved="false">HttpLogDetailLevel#NONE</xref> is set.
+  summary: Sets the logging configuration to use when sending and receiving requests to and from the service. If a `logLevel` is not provided, default value of <xref uid="" data-throw-if-not-resolved="false">HttpLogDetailLevel#NONE</xref> is set.
   syntax:
     content: public TableClientBuilder httpLogOptions(HttpLogOptions logOptions)
     parameters:
     - id: logOptions
       type: com.azure.core.http.policy.HttpLogOptions
-      description: The logging configuration to use when sending and receiving HTTP requests/responses.
+      description: The logging configuration to use when sending and receiving requests to and from the service.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.pipeline(com.azure.core.http.HttpPipeline)
   id: pipeline(com.azure.core.http.HttpPipeline)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -270,19 +263,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.pipeline*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the HTTP pipeline to use for the service client.
+  summary: Sets the <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref> to use for the service client. If `pipeline` is set, all other settings are ignored, aside from `endpoint`.
   syntax:
     content: public TableClientBuilder pipeline(HttpPipeline pipeline)
     parameters:
     - id: pipeline
       type: com.azure.core.http.HttpPipeline
-      description: The HTTP pipeline to use for sending service requests and receiving responses.
+      description: <xref uid="com.azure.core.http.HttpPipeline" data-throw-if-not-resolved="false">HttpPipeline</xref> to use for sending service requests and receiving responses.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.retryOptions(com.azure.storage.common.policy.RequestRetryOptions)
   id: retryOptions(com.azure.storage.common.policy.RequestRetryOptions)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -301,10 +294,10 @@ items:
       description: <xref uid="com.azure.storage.common.policy.RequestRetryOptions" data-throw-if-not-resolved="false">RequestRetryOptions</xref>.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: the updated TableServiceClientBuilder object
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.sasToken(java.lang.String)
   id: sasToken(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -323,10 +316,10 @@ items:
       description: The SAS token to use for authenticating requests.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: the updated BlobClientBuilder
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.serviceVersion(com.azure.data.tables.TablesServiceVersion)
   id: serviceVersion(com.azure.data.tables.TablesServiceVersion)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -336,19 +329,19 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.serviceVersion*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the <xref uid="com.azure.data.tables.TablesServiceVersion" data-throw-if-not-resolved="false">TablesServiceVersion</xref> that is used when making API requests.
+  summary: Sets the <xref uid="com.azure.data.tables.TablesServiceVersion" data-throw-if-not-resolved="false">TablesServiceVersion</xref> that is used when making API requests. If a service version is not provided, the service version that will be used will be the latest known service version based on the version of the client library being used. If no service version is specified, updating to a newer version of the client library will have the result of potentially moving to a newer service version. Targeting a specific service version may also mean that the service will return an error for newer APIs.
   syntax:
     content: public TableClientBuilder serviceVersion(TablesServiceVersion version)
     parameters:
     - id: version
       type: com.azure.data.tables.TablesServiceVersion
-      description: <xref uid="com.azure.data.tables.TablesServiceVersion" data-throw-if-not-resolved="false">TablesServiceVersion</xref> of the service to be used when making requests.
+      description: The <xref uid="com.azure.data.tables.TablesServiceVersion" data-throw-if-not-resolved="false">TablesServiceVersion</xref> of the service to be used when making requests.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: The updated TableClientBuilder object.
+      description: The updated <code>TableClientBuilder</code>.
 - uid: com.azure.data.tables.TableClientBuilder.tableName(java.lang.String)
   id: tableName(java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableClientBuilder
   langs:
   - java
@@ -358,36 +351,21 @@ items:
   overload: com.azure.data.tables.TableClientBuilder.tableName*
   type: Method
   package: com.azure.data.tables
-  summary: Sets the table name to help build the client
+  summary: Sets the name of the table.
   syntax:
     content: public TableClientBuilder tableName(String tableName)
     parameters:
     - id: tableName
       type: java.lang.String
-      description: name of the table for which the client is created for
+      description: Name of the table.
     return:
       type: com.azure.data.tables.TableClientBuilder
-      description: the TableClientBuilder
+      description: The updated <code>TableClientBuilder</code>.
 references:
 - uid: com.azure.data.tables.TableClientBuilder.TableClientBuilder*
   name: TableClientBuilder
   nameWithType: TableClientBuilder.TableClientBuilder
   fullName: com.azure.data.tables.TableClientBuilder.TableClientBuilder
-  package: com.azure.data.tables
-- uid: java.lang.String
-  spec.java:
-  - uid: java.lang.String
-    name: String
-    fullName: java.lang.String
-- uid: com.azure.data.tables.TableClientBuilder.connectionString*
-  name: connectionString
-  nameWithType: TableClientBuilder.connectionString
-  fullName: com.azure.data.tables.TableClientBuilder.connectionString
-  package: com.azure.data.tables
-- uid: com.azure.data.tables.TableClientBuilder.tableName*
-  name: tableName
-  nameWithType: TableClientBuilder.tableName
-  fullName: com.azure.data.tables.TableClientBuilder.tableName
   package: com.azure.data.tables
 - uid: com.azure.data.tables.TableClient
   name: TableClient
@@ -406,6 +384,16 @@ references:
   name: buildAsyncClient
   nameWithType: TableClientBuilder.buildAsyncClient
   fullName: com.azure.data.tables.TableClientBuilder.buildAsyncClient
+  package: com.azure.data.tables
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.data.tables.TableClientBuilder.connectionString*
+  name: connectionString
+  nameWithType: TableClientBuilder.connectionString
+  fullName: com.azure.data.tables.TableClientBuilder.connectionString
   package: com.azure.data.tables
 - uid: com.azure.data.tables.TableClientBuilder.endpoint*
   name: endpoint
@@ -495,6 +483,11 @@ references:
   name: retryOptions
   nameWithType: TableClientBuilder.retryOptions
   fullName: com.azure.data.tables.TableClientBuilder.retryOptions
+  package: com.azure.data.tables
+- uid: com.azure.data.tables.TableClientBuilder.tableName*
+  name: tableName
+  nameWithType: TableClientBuilder.tableName
+  fullName: com.azure.data.tables.TableClientBuilder.tableName
   package: com.azure.data.tables
 - uid: java.lang.Object.notify()
   name: Object.notify()

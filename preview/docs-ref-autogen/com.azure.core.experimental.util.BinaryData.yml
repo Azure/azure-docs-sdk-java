@@ -1,0 +1,661 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.core.experimental.util.BinaryData
+  id: BinaryData
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util
+  children:
+  - com.azure.core.experimental.util.BinaryData.<T>toObject(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  - com.azure.core.experimental.util.BinaryData.<T>toObjectAsync(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  - com.azure.core.experimental.util.BinaryData.fromBytes(byte[])
+  - com.azure.core.experimental.util.BinaryData.fromFlux(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  - com.azure.core.experimental.util.BinaryData.fromObject(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  - com.azure.core.experimental.util.BinaryData.fromObjectAsync(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  - com.azure.core.experimental.util.BinaryData.fromStream(java.io.InputStream)
+  - com.azure.core.experimental.util.BinaryData.fromStreamAsync(java.io.InputStream)
+  - com.azure.core.experimental.util.BinaryData.fromString(java.lang.String)
+  - com.azure.core.experimental.util.BinaryData.fromString(java.lang.String,java.nio.charset.Charset)
+  - com.azure.core.experimental.util.BinaryData.toBytes()
+  - com.azure.core.experimental.util.BinaryData.toStream()
+  - com.azure.core.experimental.util.BinaryData.toStreamAsync()
+  - com.azure.core.experimental.util.BinaryData.toString()
+  - com.azure.core.experimental.util.BinaryData.toString(java.nio.charset.Charset)
+  langs:
+  - java
+  name: BinaryData
+  nameWithType: BinaryData
+  fullName: com.azure.core.experimental.util.BinaryData
+  type: Class
+  package: com.azure.core.experimental.util
+  summary: "This class is an abstraction over many different ways that binary data can be represented. The <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref> can be created from <xref uid=\"java.io.InputStream\" data-throw-if-not-resolved=\"false\">InputStream</xref>, <xref uid=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"false\">Flux</xref> of <xref uid=\"java.nio.ByteBuffer\" data-throw-if-not-resolved=\"false\">ByteBuffer</xref>, <xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">String</xref>, <xref uid=\"java.lang.Object\" data-throw-if-not-resolved=\"false\">Object</xref> and byte array. The data is collected from provided sources and stored into a byte array.\n\nIt also provides a way to serialize and deserialize an <xref uid=\"java.lang.Object\" data-throw-if-not-resolved=\"false\">Object</xref> into <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref> given an <xref uid=\"com.azure.core.util.serializer.ObjectSerializer\" data-throw-if-not-resolved=\"false\">ObjectSerializer</xref>. Code samples are explained below.\n\n**Create an instance from Bytes**\n\n```java\nfinal byte[] data = \"Some Data\".getBytes(StandardCharsets.UTF_8);\n BinaryData binaryData = BinaryData.fromBytes(data);\n System.out.println(new String(binaryData.toBytes(), StandardCharsets.UTF_8));\n```\n\n**Create an instance from String**\n\n```java\nfinal String data = \"Some Data\";\n // Following will use default character set as StandardCharsets.UTF_8\n BinaryData binaryData = BinaryData.fromString(data);\n System.out.println(binaryData.toString());\n```\n\n**Create an instance from InputStream**\n\n```java\nfinal byte[] data = \"Some Data\".getBytes(StandardCharsets.UTF_8);\n BinaryData binaryData = BinaryData.fromStream(new ByteArrayInputStream(data));\n System.out.println(binaryData.toString());\n```\n\n**Get an Object from <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref>**\n\n```java\n// Lets say we have Person object which could be serialized into json.\n class Person {\n     {@literal @}JsonProperty\n     private String name;\n \n     {@literal @}JsonSetter\n     public Person setName(String name) {\n         this.name = name;\n         return this;\n     }\n \n     {@literal @}JsonGetter\n     public String getName() {\n         return name;\n     }\n }\n final Person data = new Person().setName(\"John\");\n \n // Ensure your classpath have the Serializer to use to serialize object. For example you can use one of\n // following library.\n // https://mvnrepository.com/artifact/com.azure/azure-core-serializer-json-jackson or\n // https://mvnrepository.com/artifact/com.azure/azure-core-serializer-json-gson\n \n final ObjectSerializer serializer =\n     new MyJsonSerializer(); // Replace this with your Serializer\n BinaryData binaryData = BinaryData.fromObject(data, serializer);\n \n // Lets print the value of BinaryData\n Disposable subscriber = binaryData\n     .toObjectAsync(Person.class, serializer)\n     .map(person -> {\n         System.out.println(person.getName());\n         return true;\n     })\n     .subscribe();\n \n // So that your program wait for above subscribe to complete.\n TimeUnit.SECONDS.sleep(5);\n subscriber.dispose();\n```"
+  syntax:
+    content: public final class BinaryData
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.core.experimental.util.BinaryData.<T>toObject(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  id: <T>toObject(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: <T>toObject(Class<T> clazz, ObjectSerializer serializer)
+  nameWithType: BinaryData.<T>toObject(Class<T> clazz, ObjectSerializer serializer)
+  fullName: com.azure.core.experimental.util.BinaryData.<T>toObject(Class<T> clazz, ObjectSerializer serializer)
+  overload: com.azure.core.experimental.util.BinaryData.toObject*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Deserialize the bytes into the <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> of given type by applying the provided <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref> on the data.
+  syntax:
+    content: public T <T>toObject(Class<T> clazz, ObjectSerializer serializer)
+    parameters:
+    - id: clazz
+      type: java.lang.Class<T>
+      description: representing the type of the Object.
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+      description: to use deserialize data into type.
+    return:
+      type: T
+      description: The <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> of given type after deserializing the bytes.
+- uid: com.azure.core.experimental.util.BinaryData.<T>toObjectAsync(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  id: <T>toObjectAsync(java.lang.Class<T>,com.azure.core.util.serializer.ObjectSerializer)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: <T>toObjectAsync(Class<T> clazz, ObjectSerializer serializer)
+  nameWithType: BinaryData.<T>toObjectAsync(Class<T> clazz, ObjectSerializer serializer)
+  fullName: com.azure.core.experimental.util.BinaryData.<T>toObjectAsync(Class<T> clazz, ObjectSerializer serializer)
+  overload: com.azure.core.experimental.util.BinaryData.toObjectAsync*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: "Return a <xref uid=\"reactor.core.publisher.Mono\" data-throw-if-not-resolved=\"false\">Mono</xref> by deserialize the bytes into the <xref uid=\"java.lang.Object\" data-throw-if-not-resolved=\"false\">Object</xref> of given type after applying the provided <xref uid=\"com.azure.core.util.serializer.ObjectSerializer\" data-throw-if-not-resolved=\"false\">ObjectSerializer</xref> on the <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref>.\n\n**Gets the specified object**\n\n```java\n// Lets say we have Person object which could be serialized into json.\n class Person {\n     {@literal @}JsonProperty\n     private String name;\n \n     {@literal @}JsonSetter\n     public Person setName(String name) {\n         this.name = name;\n         return this;\n     }\n \n     {@literal @}JsonGetter\n     public String getName() {\n         return name;\n     }\n }\n final Person data = new Person().setName(\"John\");\n \n // Ensure your classpath have the Serializer to use to serialize object. For example you can use one of\n // following library.\n // https://mvnrepository.com/artifact/com.azure/azure-core-serializer-json-jackson or\n // https://mvnrepository.com/artifact/com.azure/azure-core-serializer-json-gson\n \n final ObjectSerializer serializer =\n     new MyJsonSerializer(); // Replace this with your Serializer\n BinaryData binaryData = BinaryData.fromObject(data, serializer);\n \n // Lets print the value of BinaryData\n Disposable subscriber = binaryData\n     .toObjectAsync(Person.class, serializer)\n     .map(person -> {\n         System.out.println(person.getName());\n         return true;\n     })\n     .subscribe();\n \n // So that your program wait for above subscribe to complete.\n TimeUnit.SECONDS.sleep(5);\n subscriber.dispose();\n```"
+  syntax:
+    content: public Mono<T> <T>toObjectAsync(Class<T> clazz, ObjectSerializer serializer)
+    parameters:
+    - id: clazz
+      type: java.lang.Class<T>
+      description: representing the type of the Object.
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+      description: to use deserialize data into type.
+    return:
+      type: reactor.core.publisher.Mono<T>
+      description: The <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> of given type after deserializing the bytes.
+- uid: com.azure.core.experimental.util.BinaryData.BinaryData(byte[])
+  id: BinaryData(byte[])
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: BinaryData(byte[] data)
+  nameWithType: BinaryData.BinaryData(byte[] data)
+  fullName: com.azure.core.experimental.util.BinaryData.BinaryData(byte[] data)
+  overload: com.azure.core.experimental.util.BinaryData.BinaryData*
+  type: Constructor
+  package: com.azure.core.experimental.util
+  summary: Create instance of <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> given the data.
+  syntax:
+    content: " BinaryData(byte[] data)"
+    parameters:
+    - id: data
+      type: byte[]
+      description: to represent as bytes.
+- uid: com.azure.core.experimental.util.BinaryData.fromBytes(byte[])
+  id: fromBytes(byte[])
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromBytes(byte[] data)
+  nameWithType: BinaryData.fromBytes(byte[] data)
+  fullName: com.azure.core.experimental.util.BinaryData.fromBytes(byte[] data)
+  overload: com.azure.core.experimental.util.BinaryData.fromBytes*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Create <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> instance with given byte array data.
+  syntax:
+    content: public static BinaryData fromBytes(byte[] data)
+    parameters:
+    - id: data
+      type: byte[]
+      description: to use.
+    return:
+      type: com.azure.core.experimental.util.BinaryData
+      description: <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromFlux(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  id: fromFlux(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromFlux(Flux<ByteBuffer> data)
+  nameWithType: BinaryData.fromFlux(Flux<ByteBuffer> data)
+  fullName: com.azure.core.experimental.util.BinaryData.fromFlux(Flux<ByteBuffer> data)
+  overload: com.azure.core.experimental.util.BinaryData.fromFlux*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: "Create <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref> instance with given <xref uid=\"reactor.core.publisher.Flux\" data-throw-if-not-resolved=\"false\">Flux</xref> of <xref uid=\"java.nio.ByteBuffer\" data-throw-if-not-resolved=\"false\">ByteBuffer</xref> as source of data. It will collect all the bytes from <xref uid=\"java.nio.ByteBuffer\" data-throw-if-not-resolved=\"false\">ByteBuffer</xref> into <xref uid=\"com.azure.core.experimental.util.BinaryData\" data-throw-if-not-resolved=\"false\">BinaryData</xref>.\n\n**Create an instance from String**\n\n```java\nfinal byte[] data = \"Some Data\".getBytes(StandardCharsets.UTF_8);\n final Flux<ByteBuffer> dataFlux = Flux.just(ByteBuffer.wrap(data));\n \n Mono<BinaryData> binaryDataMono = BinaryData.fromFlux(dataFlux);\n \n // Lets print the value of BinaryData\n Disposable subscriber = binaryDataMono\n     .map(binaryData -> {\n         System.out.println(binaryData.toString());\n         return true;\n     })\n     .subscribe();\n \n // So that your program wait for above subscribe to complete.\n TimeUnit.SECONDS.sleep(5);\n subscriber.dispose();\n```"
+  syntax:
+    content: public static Mono<BinaryData> fromFlux(Flux<ByteBuffer> data)
+    parameters:
+    - id: data
+      type: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+      description: to use.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.experimental.util.BinaryData>
+      description: <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> of <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromObject(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  id: fromObject(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromObject(Object data, ObjectSerializer serializer)
+  nameWithType: BinaryData.fromObject(Object data, ObjectSerializer serializer)
+  fullName: com.azure.core.experimental.util.BinaryData.fromObject(Object data, ObjectSerializer serializer)
+  overload: com.azure.core.experimental.util.BinaryData.fromObject*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Serialize the given <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> into <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> using the provided <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref>.
+  syntax:
+    content: public static BinaryData fromObject(Object data, ObjectSerializer serializer)
+    parameters:
+    - id: data
+      type: java.lang.Object
+      description: The <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> which needs to be serialized into bytes.
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+      description: to use for serializing the object.
+    return:
+      type: com.azure.core.experimental.util.BinaryData
+      description: <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromObjectAsync(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  id: fromObjectAsync(java.lang.Object,com.azure.core.util.serializer.ObjectSerializer)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromObjectAsync(Object data, ObjectSerializer serializer)
+  nameWithType: BinaryData.fromObjectAsync(Object data, ObjectSerializer serializer)
+  fullName: com.azure.core.experimental.util.BinaryData.fromObjectAsync(Object data, ObjectSerializer serializer)
+  overload: com.azure.core.experimental.util.BinaryData.fromObjectAsync*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Serialize the given <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> into <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> using the provided <xref uid="com.azure.core.util.serializer.ObjectSerializer" data-throw-if-not-resolved="false">ObjectSerializer</xref>.
+  syntax:
+    content: public static Mono<BinaryData> fromObjectAsync(Object data, ObjectSerializer serializer)
+    parameters:
+    - id: data
+      type: java.lang.Object
+      description: The <xref uid="java.lang.Object" data-throw-if-not-resolved="false">Object</xref> which needs to be serialized into bytes.
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+      description: to use for serializing the object.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.experimental.util.BinaryData>
+      description: <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> of <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromStream(java.io.InputStream)
+  id: fromStream(java.io.InputStream)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromStream(InputStream inputStream)
+  nameWithType: BinaryData.fromStream(InputStream inputStream)
+  fullName: com.azure.core.experimental.util.BinaryData.fromStream(InputStream inputStream)
+  overload: com.azure.core.experimental.util.BinaryData.fromStream*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: >-
+    Create <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> instance with given <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> as source of data. The <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> is not closed by this function.
+
+
+    **Create an instance from InputStream**
+
+
+    ```java
+
+    final byte[] data = "Some Data".getBytes(StandardCharsets.UTF_8);
+     BinaryData binaryData = BinaryData.fromStream(new ByteArrayInputStream(data));
+     System.out.println(binaryData.toString());
+    ```
+  syntax:
+    content: public static BinaryData fromStream(InputStream inputStream)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+      description: to read bytes from.
+    return:
+      type: com.azure.core.experimental.util.BinaryData
+      description: <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromStreamAsync(java.io.InputStream)
+  id: fromStreamAsync(java.io.InputStream)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromStreamAsync(InputStream inputStream)
+  nameWithType: BinaryData.fromStreamAsync(InputStream inputStream)
+  fullName: com.azure.core.experimental.util.BinaryData.fromStreamAsync(InputStream inputStream)
+  overload: com.azure.core.experimental.util.BinaryData.fromStreamAsync*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Asynchronously create <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> instance with given <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> as source of data. The <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> is not closed by this function.
+  syntax:
+    content: public static Mono<BinaryData> fromStreamAsync(InputStream inputStream)
+    parameters:
+    - id: inputStream
+      type: java.io.InputStream
+      description: to read bytes from.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.experimental.util.BinaryData>
+      description: <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> of <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromString(java.lang.String)
+  id: fromString(java.lang.String)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromString(String data)
+  nameWithType: BinaryData.fromString(String data)
+  fullName: com.azure.core.experimental.util.BinaryData.fromString(String data)
+  overload: com.azure.core.experimental.util.BinaryData.fromString*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Create <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> instance with given data. The <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> is converted into bytes using <xref uid="" data-throw-if-not-resolved="false">StandardCharsets#UTF_8</xref> character set.
+  syntax:
+    content: public static BinaryData fromString(String data)
+    parameters:
+    - id: data
+      type: java.lang.String
+      description: to use.
+    return:
+      type: com.azure.core.experimental.util.BinaryData
+      description: <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing binary data.
+- uid: com.azure.core.experimental.util.BinaryData.fromString(java.lang.String,java.nio.charset.Charset)
+  id: fromString(java.lang.String,java.nio.charset.Charset)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: fromString(String data, Charset charSet)
+  nameWithType: BinaryData.fromString(String data, Charset charSet)
+  fullName: com.azure.core.experimental.util.BinaryData.fromString(String data, Charset charSet)
+  overload: com.azure.core.experimental.util.BinaryData.fromString*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: >-
+    Create <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> instance with given data and character set.
+
+
+    **Create an instance from String**
+
+
+    ```java
+
+    final String data = "Some Data";
+     // Following will use default character set as StandardCharsets.UTF_8
+     BinaryData binaryData = BinaryData.fromString(data);
+     System.out.println(binaryData.toString());
+    ```
+  syntax:
+    content: public static BinaryData fromString(String data, Charset charSet)
+    parameters:
+    - id: data
+      type: java.lang.String
+      description: to use.
+    - id: charSet
+      type: java.nio.charset.Charset
+      description: to use.
+    return:
+      type: com.azure.core.experimental.util.BinaryData
+      description: <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.toBytes()
+  id: toBytes()
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: toBytes()
+  nameWithType: BinaryData.toBytes()
+  fullName: com.azure.core.experimental.util.BinaryData.toBytes()
+  overload: com.azure.core.experimental.util.BinaryData.toBytes*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Provides byte array representation of this <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> object.
+  syntax:
+    content: public byte[] toBytes()
+    return:
+      type: byte[]
+      description: byte array representation of the the data.
+- uid: com.azure.core.experimental.util.BinaryData.toStream()
+  id: toStream()
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: toStream()
+  nameWithType: BinaryData.toStream()
+  fullName: com.azure.core.experimental.util.BinaryData.toStream()
+  overload: com.azure.core.experimental.util.BinaryData.toStream*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: >-
+    Provides <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> for the data represented by this <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> object.
+
+
+    **Get InputStream from BinaryData**
+
+
+    ```java
+
+    final byte[] data = "Some Data".getBytes(StandardCharsets.UTF_8);
+     BinaryData binaryData = BinaryData.fromStream(new ByteArrayInputStream(data));
+     final byte[] bytes = new byte[data.length];
+     (binaryData.toStream()).read(bytes, 0, data.length);
+     System.out.println(new String(bytes));
+    ```
+  syntax:
+    content: public InputStream toStream()
+    return:
+      type: java.io.InputStream
+      description: <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> representing the binary data.
+- uid: com.azure.core.experimental.util.BinaryData.toStreamAsync()
+  id: toStreamAsync()
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: toStreamAsync()
+  nameWithType: BinaryData.toStreamAsync()
+  fullName: com.azure.core.experimental.util.BinaryData.toStreamAsync()
+  overload: com.azure.core.experimental.util.BinaryData.toStreamAsync*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Provides <xref uid="reactor.core.publisher.Mono" data-throw-if-not-resolved="false">Mono</xref> of <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> for the data represented by this <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> object.
+  syntax:
+    content: public Mono<InputStream> toStreamAsync()
+    return:
+      type: reactor.core.publisher.Mono<java.io.InputStream>
+      description: <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> representation of the <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref>.
+- uid: com.azure.core.experimental.util.BinaryData.toString()
+  id: toString()
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: toString()
+  nameWithType: BinaryData.toString()
+  fullName: com.azure.core.experimental.util.BinaryData.toString()
+  overload: com.azure.core.experimental.util.BinaryData.toString*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Provides <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> representation of this <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> object. The bytes are converted into <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> using <xref uid="" data-throw-if-not-resolved="false">StandardCharsets#UTF_8</xref> character set.
+  syntax:
+    content: public String toString()
+    return:
+      type: java.lang.String
+      description: <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> representation of the data.
+- uid: com.azure.core.experimental.util.BinaryData.toString(java.nio.charset.Charset)
+  id: toString(java.nio.charset.Charset)
+  artifact: com.azure:azure-core-experimental:1.0.0-beta.7
+  parent: com.azure.core.experimental.util.BinaryData
+  langs:
+  - java
+  name: toString(Charset charSet)
+  nameWithType: BinaryData.toString(Charset charSet)
+  fullName: com.azure.core.experimental.util.BinaryData.toString(Charset charSet)
+  overload: com.azure.core.experimental.util.BinaryData.toString*
+  type: Method
+  package: com.azure.core.experimental.util
+  summary: Provides <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> representation of this <xref uid="com.azure.core.experimental.util.BinaryData" data-throw-if-not-resolved="false">BinaryData</xref> object given a character set.
+  syntax:
+    content: public String toString(Charset charSet)
+    parameters:
+    - id: charSet
+      type: java.nio.charset.Charset
+      description: to use to convert bytes into <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref>.
+    return:
+      type: java.lang.String
+      description: <xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref> representation of the the binary data.
+references:
+- uid: byte[]
+  spec.java:
+  - uid: byte
+    name: byte
+    fullName: byte
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.core.experimental.util.BinaryData.BinaryData*
+  name: BinaryData
+  nameWithType: BinaryData.BinaryData
+  fullName: com.azure.core.experimental.util.BinaryData.BinaryData
+  package: com.azure.core.experimental.util
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
+- uid: com.azure.core.experimental.util.BinaryData.toStream*
+  name: toStream
+  nameWithType: BinaryData.toStream
+  fullName: com.azure.core.experimental.util.BinaryData.toStream
+  package: com.azure.core.experimental.util
+- uid: reactor.core.publisher.Mono<java.io.InputStream>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.experimental.util.BinaryData.toStreamAsync*
+  name: toStreamAsync
+  nameWithType: BinaryData.toStreamAsync
+  fullName: com.azure.core.experimental.util.BinaryData.toStreamAsync
+  package: com.azure.core.experimental.util
+- uid: com.azure.core.experimental.util.BinaryData.fromStream*
+  name: fromStream
+  nameWithType: BinaryData.fromStream
+  fullName: com.azure.core.experimental.util.BinaryData.fromStream
+  package: com.azure.core.experimental.util
+- uid: reactor.core.publisher.Mono<com.azure.core.experimental.util.BinaryData>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.core.experimental.util.BinaryData
+    name: BinaryData
+    fullName: com.azure.core.experimental.util.BinaryData
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.experimental.util.BinaryData.fromStreamAsync*
+  name: fromStreamAsync
+  nameWithType: BinaryData.fromStreamAsync
+  fullName: com.azure.core.experimental.util.BinaryData.fromStreamAsync
+  package: com.azure.core.experimental.util
+- uid: reactor.core.publisher.Flux<java.nio.ByteBuffer>
+  spec.java:
+  - uid: reactor.core.publisher.Flux
+    name: Flux
+    fullName: reactor.core.publisher.Flux
+  - name: <
+    fullName: <
+  - uid: java.nio.ByteBuffer
+    name: ByteBuffer
+    fullName: java.nio.ByteBuffer
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.experimental.util.BinaryData.fromFlux*
+  name: fromFlux
+  nameWithType: BinaryData.fromFlux
+  fullName: com.azure.core.experimental.util.BinaryData.fromFlux
+  package: com.azure.core.experimental.util
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.nio.charset.Charset
+  spec.java:
+  - uid: java.nio.charset.Charset
+    name: Charset
+    fullName: java.nio.charset.Charset
+- uid: com.azure.core.experimental.util.BinaryData.fromString*
+  name: fromString
+  nameWithType: BinaryData.fromString
+  fullName: com.azure.core.experimental.util.BinaryData.fromString
+  package: com.azure.core.experimental.util
+- uid: com.azure.core.experimental.util.BinaryData.fromBytes*
+  name: fromBytes
+  nameWithType: BinaryData.fromBytes
+  fullName: com.azure.core.experimental.util.BinaryData.fromBytes
+  package: com.azure.core.experimental.util
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.azure.core.util.serializer.ObjectSerializer
+  spec.java:
+  - uid: com.azure.core.util.serializer.ObjectSerializer
+    name: ObjectSerializer
+    fullName: com.azure.core.util.serializer.ObjectSerializer
+- uid: com.azure.core.experimental.util.BinaryData.fromObject*
+  name: fromObject
+  nameWithType: BinaryData.fromObject
+  fullName: com.azure.core.experimental.util.BinaryData.fromObject
+  package: com.azure.core.experimental.util
+- uid: com.azure.core.experimental.util.BinaryData.fromObjectAsync*
+  name: fromObjectAsync
+  nameWithType: BinaryData.fromObjectAsync
+  fullName: com.azure.core.experimental.util.BinaryData.fromObjectAsync
+  package: com.azure.core.experimental.util
+- uid: com.azure.core.experimental.util.BinaryData.toBytes*
+  name: toBytes
+  nameWithType: BinaryData.toBytes
+  fullName: com.azure.core.experimental.util.BinaryData.toBytes
+  package: com.azure.core.experimental.util
+- uid: com.azure.core.experimental.util.BinaryData.toString*
+  name: toString
+  nameWithType: BinaryData.toString
+  fullName: com.azure.core.experimental.util.BinaryData.toString
+  package: com.azure.core.experimental.util
+- uid: java.lang.Class<T>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: T
+  spec.java:
+  - uid: T
+    name: T
+    fullName: T
+- uid: com.azure.core.experimental.util.BinaryData.toObject*
+  name: <T>toObject
+  nameWithType: BinaryData.<T>toObject
+  fullName: com.azure.core.experimental.util.BinaryData.<T>toObject
+  package: com.azure.core.experimental.util
+- uid: reactor.core.publisher.Mono<T>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.experimental.util.BinaryData.toObjectAsync*
+  name: <T>toObjectAsync
+  nameWithType: BinaryData.<T>toObjectAsync
+  fullName: com.azure.core.experimental.util.BinaryData.<T>toObjectAsync
+  package: com.azure.core.experimental.util
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: reactor.core.publisher.Mono
+  name: Mono
+  nameWithType: Mono
+  fullName: reactor.core.publisher.Mono
+- uid: reactor.core.publisher.Flux
+  name: Flux
+  nameWithType: Flux
+  fullName: reactor.core.publisher.Flux
+- uid: java.nio.ByteBuffer
+  name: ByteBuffer
+  nameWithType: ByteBuffer
+  fullName: java.nio.ByteBuffer
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class

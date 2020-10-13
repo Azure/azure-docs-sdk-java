@@ -2,9 +2,14 @@
 items:
 - uid: com.azure.data.tables.TableAsyncClient
   id: TableAsyncClient
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables
   children:
+  - com.azure.data.tables.TableAsyncClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  - com.azure.data.tables.TableAsyncClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  - com.azure.data.tables.TableAsyncClient.<T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  - com.azure.data.tables.TableAsyncClient.<T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  - com.azure.data.tables.TableAsyncClient.<T>listEntities(java.lang.Class<T>)
   - com.azure.data.tables.TableAsyncClient.create()
   - com.azure.data.tables.TableAsyncClient.createEntity(com.azure.data.tables.models.TableEntity)
   - com.azure.data.tables.TableAsyncClient.createEntityWithResponse(com.azure.data.tables.models.TableEntity)
@@ -17,15 +22,16 @@ items:
   - com.azure.data.tables.TableAsyncClient.getAccountName()
   - com.azure.data.tables.TableAsyncClient.getApiVersion()
   - com.azure.data.tables.TableAsyncClient.getEntity(java.lang.String,java.lang.String)
-  - com.azure.data.tables.TableAsyncClient.getEntityWithResponse(java.lang.String,java.lang.String)
+  - com.azure.data.tables.TableAsyncClient.getEntity(java.lang.String,java.lang.String,java.lang.String)
+  - com.azure.data.tables.TableAsyncClient.getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String)
   - com.azure.data.tables.TableAsyncClient.getTableName()
   - com.azure.data.tables.TableAsyncClient.getTableUrl()
   - com.azure.data.tables.TableAsyncClient.listEntities()
   - com.azure.data.tables.TableAsyncClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions)
   - com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity)
-  - com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
   - com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  - com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
+  - com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  - com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
   - com.azure.data.tables.TableAsyncClient.upsertEntity(com.azure.data.tables.models.TableEntity)
   - com.azure.data.tables.TableAsyncClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   - com.azure.data.tables.TableAsyncClient.upsertEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
@@ -36,9 +42,9 @@ items:
   fullName: com.azure.data.tables.TableAsyncClient
   type: Class
   package: com.azure.data.tables
-  summary: class for the table async client
+  summary: Provides an asynchronous service client for accessing a table in the Azure Tables service. The client encapsulates the URL for the table within the Tables service endpoint, the name of the table, and the credentials for accessing the storage or CosmosDB table API account. It provides methods to create and delete the table itself, as well as methods to create, upsert, update, delete, list, and get entities within the table. These methods invoke REST API operations to make the requests and obtain the results that are returned. Instances of this client are obtained by calling the <xref uid="com.azure.data.tables.TableClientBuilder.buildAsyncClient()" data-throw-if-not-resolved="false">TableClientBuilder#buildAsyncClient()</xref> method on a <xref uid="com.azure.data.tables.TableClientBuilder" data-throw-if-not-resolved="false">TableClientBuilder</xref> object.
   syntax:
-    content: public class TableAsyncClient
+    content: public final class TableAsyncClient
   inheritance:
   - java.lang.Object
   inheritedMembers:
@@ -53,9 +59,146 @@ items:
   - java.lang.Object.wait()
   - java.lang.Object.wait(long)
   - java.lang.Object.wait(long,int)
+- uid: com.azure.data.tables.TableAsyncClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  id: <T>getEntity(java.lang.String,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: <T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  nameWithType: TableAsyncClient.<T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  fullName: com.azure.data.tables.TableAsyncClient.<T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+  overload: com.azure.data.tables.TableAsyncClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Mono<T> <T>getEntity(String partitionKey, String rowKey, Class<T> resultType)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: reactor.core.publisher.Mono<T>
+      description: A reactive result containing the entity.
+- uid: com.azure.data.tables.TableAsyncClient.<T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  id: <T>getEntity(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  nameWithType: TableAsyncClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  fullName: com.azure.data.tables.TableAsyncClient.<T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+  overload: com.azure.data.tables.TableAsyncClient.getEntity*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Mono<T> <T>getEntity(String partitionKey, String rowKey, String select, Class<T> resultType)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: reactor.core.publisher.Mono<T>
+      description: A reactive result containing the entity.
+- uid: com.azure.data.tables.TableAsyncClient.<T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  id: <T>getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: <T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType)
+  nameWithType: TableAsyncClient.<T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType)
+  fullName: com.azure.data.tables.TableAsyncClient.<T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType)
+  overload: com.azure.data.tables.TableAsyncClient.getEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Mono<Response<T>> <T>getEntityWithResponse(String partitionKey, String rowKey, String select, Class<T> resultType)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<T>>
+      description: A reactive result containing the response and entity.
+- uid: com.azure.data.tables.TableAsyncClient.<T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  id: <T>listEntities(com.azure.data.tables.models.ListEntitiesOptions,java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: <T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  nameWithType: TableAsyncClient.<T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  fullName: com.azure.data.tables.TableAsyncClient.<T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+  overload: com.azure.data.tables.TableAsyncClient.listEntities*
+  type: Method
+  package: com.azure.data.tables
+  summary: Lists entities using the parameters in the provided options. If the \`filter\` parameter in the options is set, only entities matching the filter will be returned. If the \`select\` parameter is set, only the properties included in the select parameter will be returned for each entity. If the \`top\` parameter is set, the number of returned entities will be limited to that value.
+  syntax:
+    content: public PagedFlux<T> <T>listEntities(ListEntitiesOptions options, Class<T> resultType)
+    parameters:
+    - id: options
+      type: com.azure.data.tables.models.ListEntitiesOptions
+      description: The `filter`, `select`, and `top` OData query options to apply to this operation.
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: com.azure.core.http.rest.PagedFlux<T>
+      description: A paged reactive result containing matching entities within the table.
+- uid: com.azure.data.tables.TableAsyncClient.<T>listEntities(java.lang.Class<T>)
+  id: <T>listEntities(java.lang.Class<T>)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: <T>listEntities(Class<T> resultType)
+  nameWithType: TableAsyncClient.<T>listEntities(Class<T> resultType)
+  fullName: com.azure.data.tables.TableAsyncClient.<T>listEntities(Class<T> resultType)
+  overload: com.azure.data.tables.TableAsyncClient.listEntities*
+  type: Method
+  package: com.azure.data.tables
+  summary: Lists all entities within the table.
+  syntax:
+    content: public PagedFlux<T> <T>listEntities(Class<T> resultType)
+    parameters:
+    - id: resultType
+      type: java.lang.Class<T>
+      description: The type of the result value, which must be a subclass of TableEntity.
+    return:
+      type: com.azure.core.http.rest.PagedFlux<T>
+      description: A paged reactive result containing all entities within the table.
 - uid: com.azure.data.tables.TableAsyncClient.TableAsyncClient(java.lang.String,com.azure.core.http.HttpPipeline,java.lang.String,com.azure.data.tables.TablesServiceVersion,com.azure.core.util.serializer.SerializerAdapter)
   id: TableAsyncClient(java.lang.String,com.azure.core.http.HttpPipeline,java.lang.String,com.azure.data.tables.TablesServiceVersion,com.azure.core.util.serializer.SerializerAdapter)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -80,7 +223,7 @@ items:
       type: com.azure.core.util.serializer.SerializerAdapter
 - uid: com.azure.data.tables.TableAsyncClient.TableAsyncClient(java.lang.String,com.azure.data.tables.implementation.AzureTableImpl)
   id: TableAsyncClient(java.lang.String,com.azure.data.tables.implementation.AzureTableImpl)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -99,7 +242,7 @@ items:
       type: com.azure.data.tables.implementation.AzureTableImpl
 - uid: com.azure.data.tables.TableAsyncClient.create()
   id: create()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -109,15 +252,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.create*
   type: Method
   package: com.azure.data.tables
-  summary: creates new table with the name of this client
+  summary: Creates the table within the Tables service.
   syntax:
     content: public Mono<Void> create()
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.createEntity(com.azure.data.tables.models.TableEntity)
   id: createEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -127,19 +270,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.createEntity*
   type: Method
   package: com.azure.data.tables
-  summary: insert a TableEntity with the given properties and return that TableEntity. Property map must include rowKey and partitionKey
+  summary: Inserts an entity into the table.
   syntax:
     content: public Mono<Void> createEntity(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity
+      description: The entity to insert.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: the created TableEntity
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.createEntityWithResponse(com.azure.data.tables.models.TableEntity)
   id: createEntityWithResponse(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -149,19 +292,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.createEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: insert a TableEntity with the given properties and return that TableEntity. Property map must include rowKey and partitionKey
+  summary: Inserts an entity into the table.
   syntax:
     content: public Mono<Response<Void>> createEntityWithResponse(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity
+      description: The entity to insert.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: a mono of the response with the TableEntity
+      description: A reactive result containing the HTTP response.
 - uid: com.azure.data.tables.TableAsyncClient.createWithResponse()
   id: createWithResponse()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -171,15 +314,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.createWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: creates a new table with the name of this client
+  summary: Creates the table within the Tables service.
   syntax:
     content: public Mono<Response<Void>> createWithResponse()
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: void
+      description: A reactive result containing the HTTP response.
 - uid: com.azure.data.tables.TableAsyncClient.delete()
   id: delete()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -189,15 +332,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.delete*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the table with the name of this client
+  summary: Deletes the table within the Tables service.
   syntax:
     content: public Mono<Void> delete()
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.deleteEntity(java.lang.String,java.lang.String)
   id: deleteEntity(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -207,22 +350,22 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.deleteEntity*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given entity
+  summary: Deletes an entity from the table.
   syntax:
     content: public Mono<Void> deleteEntity(String partitionKey, String rowKey)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.deleteEntity(java.lang.String,java.lang.String,java.lang.String)
   id: deleteEntity(java.lang.String,java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -232,25 +375,27 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.deleteEntity*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given entity
+  summary: Deletes an entity from the table.
   syntax:
     content: public Mono<Void> deleteEntity(String partitionKey, String rowKey, String eTag)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     - id: eTag
       type: java.lang.String
-      description: the eTag of the entity, the delete will only occur if this matches the entity in the service
+      description: >-
+        The value to compare with the eTag of the entity in the Tables service. If the values do not match,
+                     the delete will not occur and an exception will be thrown.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.deleteEntityWithResponse(java.lang.String,java.lang.String,java.lang.String)
   id: deleteEntityWithResponse(java.lang.String,java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -260,25 +405,27 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.deleteEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the given entity
+  summary: Deletes an entity from the table.
   syntax:
     content: public Mono<Response<Void>> deleteEntityWithResponse(String partitionKey, String rowKey, String eTag)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key
+      description: The partition key of the entity.
     - id: eTag
       type: java.lang.String
-      description: the eTag of the entity, the delete will only occur if this matches the entity in the service
+      description: >-
+        The value to compare with the eTag of the entity in the Tables service. If the values do not match,
+                     the delete will not occur and an exception will be thrown.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: a response
+      description: A reactive result containing the response.
 - uid: com.azure.data.tables.TableAsyncClient.deleteWithResponse()
   id: deleteWithResponse()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -288,15 +435,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.deleteWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: deletes the table with the name of this client
+  summary: Deletes the table within the Tables service.
   syntax:
     content: public Mono<Response<Void>> deleteWithResponse()
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: void
+      description: A reactive result containing the response.
 - uid: com.azure.data.tables.TableAsyncClient.getAccountName()
   id: getAccountName()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -306,15 +453,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.getAccountName*
   type: Method
   package: com.azure.data.tables
-  summary: returns the account for this table
+  summary: Gets the name of the account containing the table.
   syntax:
     content: public String getAccountName()
     return:
       type: java.lang.String
-      description: returns the account name
+      description: The name of the account containing the table.
 - uid: com.azure.data.tables.TableAsyncClient.getApiVersion()
   id: getApiVersion()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -324,15 +471,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.getApiVersion*
   type: Method
   package: com.azure.data.tables
-  summary: returns the version
+  summary: Gets the REST API version used by this client.
   syntax:
     content: public TablesServiceVersion getApiVersion()
     return:
       type: com.azure.data.tables.TablesServiceVersion
-      description: the version
+      description: The REST API version used by this client.
 - uid: com.azure.data.tables.TableAsyncClient.getEntity(java.lang.String,java.lang.String)
   id: getEntity(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -342,47 +489,78 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.getEntity*
   type: Method
   package: com.azure.data.tables
-  summary: gets the entity which fits the given criteria
+  summary: Gets a single entity from the table.
   syntax:
     content: public Mono<TableEntity> getEntity(String partitionKey, String rowKey)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key of the entity
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key of the entity
+      description: The partition key of the entity.
     return:
       type: reactor.core.publisher.Mono<com.azure.data.tables.models.TableEntity>
-      description: a mono of the table entity
-- uid: com.azure.data.tables.TableAsyncClient.getEntityWithResponse(java.lang.String,java.lang.String)
-  id: getEntityWithResponse(java.lang.String,java.lang.String)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: A reactive result containing the entity.
+- uid: com.azure.data.tables.TableAsyncClient.getEntity(java.lang.String,java.lang.String,java.lang.String)
+  id: getEntity(java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
-  name: getEntityWithResponse(String partitionKey, String rowKey)
-  nameWithType: TableAsyncClient.getEntityWithResponse(String partitionKey, String rowKey)
-  fullName: com.azure.data.tables.TableAsyncClient.getEntityWithResponse(String partitionKey, String rowKey)
-  overload: com.azure.data.tables.TableAsyncClient.getEntityWithResponse*
+  name: getEntity(String partitionKey, String rowKey, String select)
+  nameWithType: TableAsyncClient.getEntity(String partitionKey, String rowKey, String select)
+  fullName: com.azure.data.tables.TableAsyncClient.getEntity(String partitionKey, String rowKey, String select)
+  overload: com.azure.data.tables.TableAsyncClient.getEntity*
   type: Method
   package: com.azure.data.tables
-  summary: gets the entity which fits the given criteria
+  summary: Gets a single entity from the table.
   syntax:
-    content: public Mono<Response<TableEntity>> getEntityWithResponse(String partitionKey, String rowKey)
+    content: public Mono<TableEntity> getEntity(String partitionKey, String rowKey, String select)
     parameters:
     - id: partitionKey
       type: java.lang.String
-      description: the partition key of the entity
+      description: The partition key of the entity.
     - id: rowKey
       type: java.lang.String
-      description: the row key of the entity
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.data.tables.models.TableEntity>
+      description: A reactive result containing the entity.
+- uid: com.azure.data.tables.TableAsyncClient.getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String)
+  id: getEntityWithResponse(java.lang.String,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: getEntityWithResponse(String partitionKey, String rowKey, String select)
+  nameWithType: TableAsyncClient.getEntityWithResponse(String partitionKey, String rowKey, String select)
+  fullName: com.azure.data.tables.TableAsyncClient.getEntityWithResponse(String partitionKey, String rowKey, String select)
+  overload: com.azure.data.tables.TableAsyncClient.getEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Gets a single entity from the table.
+  syntax:
+    content: public Mono<Response<TableEntity>> getEntityWithResponse(String partitionKey, String rowKey, String select)
+    parameters:
+    - id: partitionKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: rowKey
+      type: java.lang.String
+      description: The partition key of the entity.
+    - id: select
+      type: java.lang.String
+      description: An OData `select` expression to limit the set of properties included in the returned entity.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<com.azure.data.tables.models.TableEntity>>
-      description: a mono of the response with the table entity
+      description: A reactive result containing the response and entity.
 - uid: com.azure.data.tables.TableAsyncClient.getTableName()
   id: getTableName()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -392,15 +570,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.getTableName*
   type: Method
   package: com.azure.data.tables
-  summary: returns the table name associated with the client
+  summary: Gets the name of the table.
   syntax:
     content: public String getTableName()
     return:
       type: java.lang.String
-      description: table name
+      description: The name of the table.
 - uid: com.azure.data.tables.TableAsyncClient.getTableUrl()
   id: getTableUrl()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -410,15 +588,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.getTableUrl*
   type: Method
   package: com.azure.data.tables
-  summary: returns Url of this table
+  summary: Gets the absolute URL for this table.
   syntax:
     content: public String getTableUrl()
     return:
       type: java.lang.String
-      description: Url
+      description: The absolute URL for this table.
 - uid: com.azure.data.tables.TableAsyncClient.listEntities()
   id: listEntities()
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -428,15 +606,15 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.listEntities*
   type: Method
   package: com.azure.data.tables
-  summary: Queries and returns all entities in the given table
+  summary: Lists all entities within the table.
   syntax:
     content: public PagedFlux<TableEntity> listEntities()
     return:
       type: com.azure.core.http.rest.PagedFlux<com.azure.data.tables.models.TableEntity>
-      description: a paged flux of all the entities in the table
+      description: A paged reactive result containing all entities within the table.
 - uid: com.azure.data.tables.TableAsyncClient.listEntities(com.azure.data.tables.models.ListEntitiesOptions)
   id: listEntities(com.azure.data.tables.models.ListEntitiesOptions)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -446,19 +624,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.listEntities*
   type: Method
   package: com.azure.data.tables
-  summary: Queries and returns entities in the given table using the odata query options
+  summary: Lists entities using the parameters in the provided options. If the \`filter\` parameter in the options is set, only entities matching the filter will be returned. If the \`select\` parameter is set, only the properties included in the select parameter will be returned for each entity. If the \`top\` parameter is set, the number of returned entities will be limited to that value.
   syntax:
     content: public PagedFlux<TableEntity> listEntities(ListEntitiesOptions options)
     parameters:
     - id: options
       type: com.azure.data.tables.models.ListEntitiesOptions
-      description: the odata query object
+      description: The `filter`, `select`, and `top` OData query options to apply to this operation.
     return:
       type: com.azure.core.http.rest.PagedFlux<com.azure.data.tables.models.TableEntity>
-      description: a paged flux of all the entities which fit this criteria
+      description: A paged reactive result containing matching entities within the table.
 - uid: com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity)
   id: updateEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -468,47 +646,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
+  summary: Updates an existing entity by merging the provided entity with the existing entity.
   syntax:
     content: public Mono<Void> updateEntity(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
+      description: The entity to update.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
-- uid: com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  id: updateEntity(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
-  parent: com.azure.data.tables.TableAsyncClient
-  langs:
-  - java
-  name: updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  nameWithType: TableAsyncClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  fullName: com.azure.data.tables.TableAsyncClient.updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  overload: com.azure.data.tables.TableAsyncClient.updateEntity*
-  type: Method
-  package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
-  syntax:
-    content: public Mono<Void> updateEntity(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-    parameters:
-    - id: entity
-      type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-    - id: ifUnchanged
-      type: boolean
-      description: if the eTag of the entity must match the entity in the service or not
-    - id: updateMode
-      type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
-    return:
-      type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   id: updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -518,50 +668,84 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: updates the entity
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public Mono<Void> updateEntity(TableEntity entity, UpdateMode updateMode)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
+      description: The entity to update.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: which type of mode to execute
+      description: The type of update to perform.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
-- uid: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  id: updateEntityWithResponse(com.azure.data.tables.models.TableEntity,boolean,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+      description: An empty reactive result.
+- uid: com.azure.data.tables.TableAsyncClient.updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  id: updateEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
-  name: updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  nameWithType: TableAsyncClient.updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  fullName: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
-  overload: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse*
+  name: updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  nameWithType: TableAsyncClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  fullName: com.azure.data.tables.TableAsyncClient.updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  overload: com.azure.data.tables.TableAsyncClient.updateEntity*
   type: Method
   package: com.azure.data.tables
-  summary: if UpdateMode is MERGE, merges or fails if the entity doesn't exist. If UpdateMode is REPLACE replaces or fails if the entity doesn't exist
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
-    content: public Mono<Response<Void>> updateEntityWithResponse(TableEntity entity, boolean ifUnchanged, UpdateMode updateMode)
+    content: public Mono<Void> updateEntity(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: the entity to update
-    - id: ifUnchanged
-      type: boolean
-      description: if the eTag of the entity must match the entity in the service or not
+      description: The entity to update.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: which type of update to execute
+      description: The type of update to perform.
+    - id: ifUnchanged
+      type: boolean
+      description: >-
+        When true, the eTag of the provided entity must match the eTag of the entity in the Table
+                            service. If the values do not match, the update will not occur and an exception will be
+                            thrown.
+    return:
+      type: reactor.core.publisher.Mono<java.lang.Void>
+      description: An empty reactive result.
+- uid: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  id: updateEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode,boolean)
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
+  parent: com.azure.data.tables.TableAsyncClient
+  langs:
+  - java
+  name: updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  nameWithType: TableAsyncClient.updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  fullName: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+  overload: com.azure.data.tables.TableAsyncClient.updateEntityWithResponse*
+  type: Method
+  package: com.azure.data.tables
+  summary: Updates an existing entity using the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
+  syntax:
+    content: public Mono<Response<Void>> updateEntityWithResponse(TableEntity entity, UpdateMode updateMode, boolean ifUnchanged)
+    parameters:
+    - id: entity
+      type: com.azure.data.tables.models.TableEntity
+      description: The entity to update.
+    - id: updateMode
+      type: com.azure.data.tables.models.UpdateMode
+      description: The type of update to perform.
+    - id: ifUnchanged
+      type: boolean
+      description: >-
+        When true, the eTag of the provided entity must match the eTag of the entity in the Table
+                            service. If the values do not match, the update will not occur and an exception will be
+                            thrown.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: a response
+      description: A reactive result containing the HTTP response.
 - uid: com.azure.data.tables.TableAsyncClient.upsertEntity(com.azure.data.tables.models.TableEntity)
   id: upsertEntity(com.azure.data.tables.models.TableEntity)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -571,19 +755,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.upsertEntity*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or merges the entity with the existing entity otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the provided entity's properties will be merged into the existing entity.
   syntax:
     content: public Mono<Void> upsertEntity(TableEntity entity)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   id: upsertEntity(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -593,22 +777,22 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.upsertEntity*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or updates the existing entity using the specified update mode otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the existing entity will be updated according to the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public Mono<Void> upsertEntity(TableEntity entity, UpdateMode updateMode)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: type of upsert
+      description: The type of update to perform if the entity already exits.
     return:
       type: reactor.core.publisher.Mono<java.lang.Void>
-      description: void
+      description: An empty reactive result.
 - uid: com.azure.data.tables.TableAsyncClient.upsertEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
   id: upsertEntityWithResponse(com.azure.data.tables.models.TableEntity,com.azure.data.tables.models.UpdateMode)
-  artifact: com.azure:azure-data-tables:12.0.0-beta.1
+  artifact: com.azure:azure-data-tables:12.0.0-beta.2
   parent: com.azure.data.tables.TableAsyncClient
   langs:
   - java
@@ -618,19 +802,19 @@ items:
   overload: com.azure.data.tables.TableAsyncClient.upsertEntityWithResponse*
   type: Method
   package: com.azure.data.tables
-  summary: based on Mode it either inserts or merges if exists or inserts or merges if exists
+  summary: Inserts an entity into the table if it does not exist, or updates the existing entity using the specified update mode otherwise. If no entity exists within the table having the same partition key and row key as the provided entity, it will be inserted. Otherwise, the existing entity will be updated according to the specified update mode. When the update mode is 'MERGE', the provided entity's properties will be merged into the existing entity. When the update mode is 'REPLACE', the provided entity's properties will completely replace those in the existing entity.
   syntax:
     content: public Mono<Response<Void>> upsertEntityWithResponse(TableEntity entity, UpdateMode updateMode)
     parameters:
     - id: entity
       type: com.azure.data.tables.models.TableEntity
-      description: entity to upsert
+      description: The entity to upsert.
     - id: updateMode
       type: com.azure.data.tables.models.UpdateMode
-      description: type of upsert
+      description: The type of update to perform if the entity already exits.
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
-      description: a response
+      description: A reactive result containing the HTTP response.
 references:
 - uid: java.lang.String
   spec.java:
@@ -805,6 +989,30 @@ references:
   name: ListEntitiesOptions
   nameWithType: ListEntitiesOptions
   fullName: com.azure.data.tables.models.ListEntitiesOptions
+- uid: java.lang.Class<T>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.core.http.rest.PagedFlux<T>
+  spec.java:
+  - uid: com.azure.core.http.rest.PagedFlux
+    name: PagedFlux
+    fullName: com.azure.core.http.rest.PagedFlux
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
 - uid: reactor.core.publisher.Mono<com.azure.data.tables.models.TableEntity>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -822,6 +1030,18 @@ references:
   nameWithType: TableAsyncClient.getEntity
   fullName: com.azure.data.tables.TableAsyncClient.getEntity
   package: com.azure.data.tables
+- uid: reactor.core.publisher.Mono<T>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
 - uid: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<com.azure.data.tables.models.TableEntity>>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -846,6 +1066,25 @@ references:
   nameWithType: TableAsyncClient.getEntityWithResponse
   fullName: com.azure.data.tables.TableAsyncClient.getEntityWithResponse
   package: com.azure.data.tables
+- uid: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<T>>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.core.http.rest.Response
+    name: Response
+    fullName: com.azure.core.http.rest.Response
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
 - uid: java.lang.Object.notify()
   name: Object.notify()
   nameWithType: Object.notify()
@@ -906,3 +1145,11 @@ references:
   name: PagedFlux
   nameWithType: PagedFlux
   fullName: com.azure.core.http.rest.PagedFlux
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class

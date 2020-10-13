@@ -1,9 +1,9 @@
 ---
-title: 
+title: Azure Identity client library for Java
 keywords: Azure, java, SDK, API, azure-identity, identity
 author: maggiepint
 ms.author: magpint
-ms.date: 09/11/2020
+ms.date: 10/08/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: identity
 ---
 
-# Azure Identity client library for Java - Version 1.2.0-beta.1 
+# Azure Identity client library for Java - Version 1.2.0-beta.2 
 
 The Azure Identity library provides Azure Active Directory token authentication support across the Azure SDK. It provides a set of TokenCredential implementations which can be used to construct Azure SDK clients which support AAD token authentication.
 
@@ -20,7 +20,7 @@ The Azure Identity library provides Azure Active Directory token authentication 
   - [Managed identity authentication](https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/overview)
   - [Device code authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-device-code)
   - Interactive browser authentication, based on [OAuth2 authentication code](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow)
-  - [Username + password authentication](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth-ropc)
+  - [Username + password authentication](https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc)
   - IntelliJ authentication, with the login information saved in Azure Toolkit for IntelliJ
   - Visual Studio Code authentication, with the login information saved in Azure plugin for Visual Studio Code
   - Azure CLI authentication, with the login information saved in Azure CLI
@@ -38,13 +38,13 @@ Maven dependency for Azure Secret Client library. Add it to your project's pom f
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
 
 ### Prerequisites
-* [Java Development Kit (JDK)][jdk] with version 8 or above
+* A [Java Development Kit (JDK)][jdk_link], version 8 or later.
 * An [Azure subscription][azure_sub].
 * The Azure CLI can also be useful for authenticating in a development environment, creating accounts, and managing account roles.
 
@@ -83,7 +83,7 @@ The `DefaultAzureCredential` is appropriate for most scenarios where the applica
 You can find more examples of using various credentials in [Azure Identity Examples Wiki page](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Examples). 
 
 ### Authenticating with `DefaultAzureCredential`
-This example demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `DefaultAzureCredential`. There's also [a compilable sample](https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java) to create a Key Vault secret client you can copy-paste.
+This example demonstrates authenticating the `SecretClient` from the [azure-security-keyvault-secrets][secrets_client_library] client library using the `DefaultAzureCredential`. There's also [a compilable sample](https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java) to create a Key Vault secret client you can copy-paste.
 
 <!-- embedme ../../keyvault/azure-security-keyvault-secrets/src/samples/java/com/azure/security/keyvault/secrets/IdentityReadmeSamples.java#L40-L52 -->
 ```java
@@ -371,7 +371,7 @@ Credentials can be chained together to be tried in turn until one succeeds using
 </table>
 
 Configuration is attempted in the above order. For example, if values for a client secret and certificate are both present, the client secret will be used.
-f
+
 ## Troubleshooting
 Credentials raise exceptions either when they fail to authenticate or cannot execute authentication.
 When credentials fail to authenticate, the`ClientAuthenticationException` is raised and it has a `message` attribute which
@@ -403,15 +403,16 @@ This project has adopted the [Microsoft Open Source Code of Conduct][code_of_con
 <!-- LINKS -->
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [azure_sub]: https://azure.microsoft.com/free/
-[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/identity/azure-identity
+[source]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/identity/azure-identity
 [aad_doc]: https://docs.microsoft.com/azure/active-directory/
 [code_of_conduct]: https://opensource.microsoft.com/codeofconduct/
-[keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/keyvault/azure-security-keyvault-keys
+[keys_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/keyvault/azure-security-keyvault-keys
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
-[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/keyvault/azure-security-keyvault-secrets
-[eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/eventhubs/azure-messaging-eventhubs
-[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.1/sdk/core
+[secrets_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/keyvault/azure-security-keyvault-secrets
+[eventhubs_client_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/eventhubs/azure-messaging-eventhubs
+[azure_core_library]: https://github.com/Azure/azure-sdk-for-java/tree/azure-identity_1.2.0-beta.2/sdk/core
 [javadoc]: http://azure.github.io/azure-sdk-for-java
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fidentity%2Fazure-identity%2FREADME.png)
 
