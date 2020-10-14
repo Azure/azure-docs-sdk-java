@@ -2,14 +2,14 @@
 items:
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   id: AmqpsCbsSessionHandler
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps
   children:
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.close()
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onAuthenticationFailed(com.microsoft.azure.sdk.iot.device.exceptions.TransportException)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
-  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
+  - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionLocalClose(org.apache.qpid.proton.engine.Event)
   - com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionLocalOpen(org.apache.qpid.proton.engine.Event)
@@ -93,7 +93,7 @@ items:
   - org.apache.qpid.proton.engine.BaseHandler.setHandler(org.apache.qpid.proton.engine.Record,org.apache.qpid.proton.engine.Handler)
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.AmqpsCbsSessionHandler(org.apache.qpid.proton.engine.Session,com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionStateCallback)
   id: AmqpsCbsSessionHandler(org.apache.qpid.proton.engine.Session,com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionStateCallback)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -112,7 +112,7 @@ items:
       type: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsSessionStateCallback
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.close()
   id: close()
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -126,7 +126,7 @@ items:
     content: public void close()
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onAuthenticationFailed(com.microsoft.azure.sdk.iot.device.exceptions.TransportException)
   id: onAuthenticationFailed(com.microsoft.azure.sdk.iot.device.exceptions.TransportException)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -143,7 +143,7 @@ items:
       type: com.microsoft.azure.sdk.iot.device.exceptions.TransportException
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
   id: onLinkClosedUnexpectedly(org.apache.qpid.proton.amqp.transport.ErrorCondition)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -161,7 +161,7 @@ items:
       type: org.apache.qpid.proton.amqp.transport.ErrorCondition
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
   id: onLinkOpened(org.apache.qpid.proton.engine.BaseHandler)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -177,29 +177,31 @@ items:
     parameters:
     - id: linkHandler
       type: org.apache.qpid.proton.engine.BaseHandler
-- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
-  id: onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+- uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  id: onMessageAcknowledged(com.microsoft.azure.sdk.iot.device.Message,int,org.apache.qpid.proton.amqp.transport.DeliveryState)
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
-  name: onMessageAcknowledged(Message message, int deliveryTag)
-  nameWithType: AmqpsCbsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag)
-  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag)
+  name: onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  nameWithType: AmqpsCbsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
+  fullName: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
   overload: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged*
   type: Method
   package: com.microsoft.azure.sdk.iot.device.transport.amqps
   summary: Executed when a message sent by a link in this session was acknowledged by the service
   syntax:
-    content: public void onMessageAcknowledged(Message message, int deliveryTag)
+    content: public void onMessageAcknowledged(Message message, int deliveryTag, DeliveryState deliveryState)
     parameters:
     - id: message
       type: com.microsoft.azure.sdk.iot.device.Message
     - id: deliveryTag
       type: int
+    - id: deliveryState
+      type: org.apache.qpid.proton.amqp.transport.DeliveryState
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
   id: onMessageReceived(com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -217,7 +219,7 @@ items:
       type: com.microsoft.azure.sdk.iot.device.transport.IotHubTransportMessage
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionLocalClose(org.apache.qpid.proton.engine.Event)
   id: onSessionLocalClose(org.apache.qpid.proton.engine.Event)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -234,7 +236,7 @@ items:
       type: org.apache.qpid.proton.engine.Event
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionLocalOpen(org.apache.qpid.proton.engine.Event)
   id: onSessionLocalOpen(org.apache.qpid.proton.engine.Event)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -251,7 +253,7 @@ items:
       type: org.apache.qpid.proton.engine.Event
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionRemoteClose(org.apache.qpid.proton.engine.Event)
   id: onSessionRemoteClose(org.apache.qpid.proton.engine.Event)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -268,7 +270,7 @@ items:
       type: org.apache.qpid.proton.engine.Event
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onSessionRemoteOpen(org.apache.qpid.proton.engine.Event)
   id: onSessionRemoteOpen(org.apache.qpid.proton.engine.Event)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -285,7 +287,7 @@ items:
       type: org.apache.qpid.proton.engine.Event
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.sendAuthenticationMessage(com.microsoft.azure.sdk.iot.device.DeviceClientConfig,com.microsoft.azure.sdk.iot.device.transport.amqps.AuthenticationMessageCallback)
   id: sendAuthenticationMessage(com.microsoft.azure.sdk.iot.device.DeviceClientConfig,com.microsoft.azure.sdk.iot.device.transport.amqps.AuthenticationMessageCallback)
-  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.24.0
+  artifact: com.microsoft.azure.sdk.iot:iot-device-client:1.26.0
   parent: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler
   langs:
   - java
@@ -382,6 +384,11 @@ references:
   - uid: int
     name: int
     fullName: int
+- uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+  spec.java:
+  - uid: org.apache.qpid.proton.amqp.transport.DeliveryState
+    name: DeliveryState
+    fullName: org.apache.qpid.proton.amqp.transport.DeliveryState
 - uid: com.microsoft.azure.sdk.iot.device.transport.amqps.AmqpsCbsSessionHandler.onMessageAcknowledged*
   name: onMessageAcknowledged
   nameWithType: AmqpsCbsSessionHandler.onMessageAcknowledged
