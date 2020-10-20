@@ -1,6 +1,6 @@
 ---
-title: Azure Resource Manager client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager, 
+title: Azure Resource Manager ServiceBus client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-servicebus, 
 author: maggiepint
 ms.author: magpint
 ms.date: 10/19/2020
@@ -11,10 +11,10 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Resource Manager client library for Java - Version 2.0.0-beta.5 
+# Azure Resource Manager ServiceBus client library for Java - Version 2.0.0-beta.5 
 
 
-Azure Resource Manager client library for Java
+Azure Resource Manager ServiceBus client library for Java
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -26,11 +26,11 @@ For documentation on how to use this package, please see [Azure Management Libra
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-servicebus;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager</artifactId>
+    <artifactId>azure-resourcemanager-servicebus</artifactId>
     <version>2.0.0-beta.5</version>
 </dependency>
 ```

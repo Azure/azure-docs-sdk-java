@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: 
 ---
 
-# Azure Resource Manager client library for Java - Version 2.0.0-beta.5 
+# Azure Resource Manager client library for Java - Version 2.0.0 
 
 
 Azure Resource Manager client library for Java
@@ -31,7 +31,7 @@ For documentation on how to use this package, please see [Azure Management Libra
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
     <artifactId>azure-resourcemanager</artifactId>
-    <version>2.0.0-beta.5</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
