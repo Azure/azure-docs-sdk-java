@@ -1,0 +1,39 @@
+### YamlMime:JavaMember
+uid: "com.azure.search.documents.SearchAsyncClient.search*"
+fullName: "com.azure.search.documents.SearchAsyncClient.search"
+name: "search"
+nameWithType: "SearchAsyncClient.search"
+members:
+- uid: "com.azure.search.documents.SearchAsyncClient.search(java.lang.String)"
+  fullName: "com.azure.search.documents.SearchAsyncClient.search(String searchText)"
+  name: "search(String searchText)"
+  nameWithType: "SearchAsyncClient.search(String searchText)"
+  summary: "Searches for documents in the Azure Cognitive Search index.\n\nIf `searchText` is set to `null` or `\"*\"` all documents will be matched, see [simple query syntax in Azure Cognitive Search][] for more information about search query syntax.\n\n**Code Sample**\n\nSearch text from documents in service.\n\n```java\nSearchPagedFlux searchPagedFlux = searchAsyncClient.search(\"searchText\");\n searchPagedFlux.getTotalCount().subscribe(\n     count -> System.out.printf(\"There are around %d results.\", count)\n );\n searchPagedFlux.byPage()\n     .subscribe(resultRespones -> {\n         for (SearchResult result: resultRespones.getValue()) {\n             SearchDocument searchDocument = result.getDocument(SearchDocument.class);\n             for (Map.Entry<String, Object> keyValuePair: searchDocument.entrySet()) {\n                 System.out.printf(\"Document key %s, document value %s\", keyValuePair.getKey(), keyValuePair.getValue());\n             }\n         }\n     });\n```\n\n\n[simple query syntax in Azure Cognitive Search]: https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search"
+  parameters:
+  - description: "A full-text search query expression."
+    name: "searchText"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public SearchPagedFlux search(String searchText)"
+  returns:
+    description: "A <xref uid=\"com.azure.search.documents.util.SearchPagedFlux\" data-throw-if-not-resolved=\"false\">SearchPagedFlux</xref> that iterates over <xref uid=\"com.azure.search.documents.models.SearchResult\" data-throw-if-not-resolved=\"false\">SearchResult</xref> objects and provides access to the\n <xref uid=\"com.azure.search.documents.util.SearchPagedResponse\" data-throw-if-not-resolved=\"false\">SearchPagedResponse</xref> object for each page containing HTTP response and count, facet, and coverage\n information."
+    type: "<xref href=\"com.azure.search.documents.util.SearchPagedFlux?alt=com.azure.search.documents.util.SearchPagedFlux&text=SearchPagedFlux\" data-throw-if-not-resolved=\"False\" />"
+- uid: "com.azure.search.documents.SearchAsyncClient.search(java.lang.String,com.azure.search.documents.models.SearchOptions)"
+  fullName: "com.azure.search.documents.SearchAsyncClient.search(String searchText, SearchOptions searchOptions)"
+  name: "search(String searchText, SearchOptions searchOptions)"
+  nameWithType: "SearchAsyncClient.search(String searchText, SearchOptions searchOptions)"
+  summary: "Searches for documents in the Azure Cognitive Search index.\n\nIf `searchText` is set to `null` or `\"*\"` all documents will be matched, see [simple query syntax in Azure Cognitive Search][] for more information about search query syntax.\n\n**Code Sample**\n\nSearch text from documents in service with option.\n\n```java\nSearchPagedFlux pagedFlux = searchAsyncClient.search(\"searchText\",\n     new SearchOptions().setOrderBy(\"hotelId desc\"));\n \n pagedFlux.getTotalCount().subscribe(count -> {\n     System.out.printf(\"There are around %d results.\", count);\n });\n \n pagedFlux.byPage()\n     .subscribe(searchResultResponse -> {\n         searchResultResponse.getValue().forEach(searchDocument -> {\n             for (Map.Entry<String, Object> keyValuePair\n                 : searchDocument.getDocument(SearchDocument.class).entrySet()) {\n                 System.out.printf(\"Document key %s, document value %s\", keyValuePair.getKey(),\n                     keyValuePair.getValue());\n             }\n         });\n     });\n```\n\n\n[simple query syntax in Azure Cognitive Search]: https://docs.microsoft.com/rest/api/searchservice/Simple-query-syntax-in-Azure-Search"
+  parameters:
+  - description: "A full-text search query expression."
+    name: "searchText"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "Parameters to further refine the search query"
+    name: "searchOptions"
+    type: "<xref href=\"com.azure.search.documents.models.SearchOptions?alt=com.azure.search.documents.models.SearchOptions&text=SearchOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public SearchPagedFlux search(String searchText, SearchOptions searchOptions)"
+  returns:
+    description: "A <xref uid=\"com.azure.search.documents.util.SearchPagedFlux\" data-throw-if-not-resolved=\"false\">SearchPagedFlux</xref> that iterates over <xref uid=\"com.azure.search.documents.models.SearchResult\" data-throw-if-not-resolved=\"false\">SearchResult</xref> objects and provides access to the\n <xref uid=\"com.azure.search.documents.util.SearchPagedResponse\" data-throw-if-not-resolved=\"false\">SearchPagedResponse</xref> object for each page containing HTTP response and count, facet, and coverage\n information."
+    type: "<xref href=\"com.azure.search.documents.util.SearchPagedFlux?alt=com.azure.search.documents.util.SearchPagedFlux&text=SearchPagedFlux\" data-throw-if-not-resolved=\"False\" />"
+type: "method"
+metadata: {}
+package: "com.azure.search.documents"
+artifact: com.azure:azure-search-documents:11.1.1

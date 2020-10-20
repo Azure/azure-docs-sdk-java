@@ -1,284 +1,37 @@
-### YamlMime:ManagedReference
-items:
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  id: AbstractIterator
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect
-  children:
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.AbstractIterator()
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext()
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData()
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext()
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next()
-  - com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek()
-  langs:
-  - java
-  name: AbstractIterator<T>
-  nameWithType: AbstractIterator<T>
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>
-  type: Class
-  package: com.azure.cosmos.implementation.guava25.collect
-  summary: >-
-    This class provides a skeletal implementation of the `Iterator` interface, to make this interface easier to implement for certain types of data sources.
-
-
-    `Iterator` requires its implementations to support querying the end-of-data status without changing the iterator's state, using the <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext" data-throw-if-not-resolved="false">#hasNext</xref> method. But many data sources, such as <xref uid="" data-throw-if-not-resolved="false">java.io.Reader#read()</xref>, do not expose this information; the only way to discover whether there is any data left is by trying to retrieve it. These types of data sources are ordinarily difficult to write iterators for. But using this class, one must implement only the <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext" data-throw-if-not-resolved="false">#computeNext</xref> method, and invoke the <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData" data-throw-if-not-resolved="false">#endOfData</xref> method when appropriate.
-
-
-    Another example is an iterator that skips over null elements in a backing iterator. This could be implemented as:
-
-
-    ```java
-
-    public static Iterator skipNulls(final Iterator in) {
-       return new AbstractIterator() {
-         protected String computeNext() {
-           while (in.hasNext()) {
-             String s = in.next();
-             if (s != null) {
-               return s;
-             }
-           }
-           return endOfData();
-         }
-       };
-     }
-    ```
-
-
-    This class supports iterators that include null elements.
-  syntax:
-    content: public abstract class AbstractIterator<T> extends UnmodifiableIterator<T>
-    typeParameters:
-    - id: T
-  inheritance:
-  - java.lang.Object
-  - com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator
-  inheritedMembers:
-  - com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator.remove()
-  - java.lang.Object.clone()
-  - java.lang.Object.equals(java.lang.Object)
-  - java.lang.Object.finalize()
-  - java.lang.Object.getClass()
-  - java.lang.Object.hashCode()
-  - java.lang.Object.notify()
-  - java.lang.Object.notifyAll()
-  - java.lang.Object.toString()
-  - java.lang.Object.wait()
-  - java.lang.Object.wait(long)
-  - java.lang.Object.wait(long,int)
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.AbstractIterator()
-  id: AbstractIterator()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: AbstractIterator()
-  nameWithType: AbstractIterator<T>.AbstractIterator()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.AbstractIterator()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.AbstractIterator*
-  type: Constructor
-  package: com.azure.cosmos.implementation.guava25.collect
-  summary: Constructor for use by subclasses.
-  syntax:
-    content: protected AbstractIterator()
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext()
-  id: computeNext()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: computeNext()
-  nameWithType: AbstractIterator<T>.computeNext()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.computeNext()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.collect
-  summary: >-
-    Returns the next element. **Note:** the implementation must call <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData()" data-throw-if-not-resolved="false">#endOfData()</xref> when there are no elements left in the iteration. Failure to do so could result in an infinite loop.
-
-
-    The initial invocation of <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext()" data-throw-if-not-resolved="false">#hasNext()</xref> or <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next()" data-throw-if-not-resolved="false">#next()</xref> calls this method, as does the first invocation of `hasNext` or `next` following each successful call to `next`. Once the implementation either invokes `endOfData` or throws an exception, `computeNext` is guaranteed to never be called again.
-
-
-    If this method throws an exception, it will propagate outward to the `hasNext` or `next` invocation that invoked this method. Any further attempts to use the iterator will result in an <xref uid="" data-throw-if-not-resolved="false">IllegalStateException</xref>.
-
-
-    The implementation of this method may not invoke the `hasNext`, `next`, or <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek()" data-throw-if-not-resolved="false">#peek()</xref> methods on this instance; if it does, an `IllegalStateException` will result.
-  syntax:
-    content: protected abstract T computeNext()
-    return:
-      type: T
-      description: >-
-        the next element if there was one. If <code>endOfData</code> was called during execution,
-             the return value will be ignored.
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData()
-  id: endOfData()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: endOfData()
-  nameWithType: AbstractIterator<T>.endOfData()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.endOfData()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.collect
-  summary: Implementations of <xref uid="com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext" data-throw-if-not-resolved="false">#computeNext</xref> **must** invoke this method when there are no elements left in the iteration.
-  syntax:
-    content: protected final T endOfData()
-    return:
-      type: T
-      description: >-
-        <code>null</code>; a convenience so your <code>computeNext</code> implementation can use the
-             simple statement <code>return endOfData();</code>
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext()
-  id: hasNext()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: hasNext()
-  nameWithType: AbstractIterator<T>.hasNext()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.hasNext()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.collect
-  syntax:
-    content: public final boolean hasNext()
-    return:
-      type: boolean
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next()
-  id: next()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: next()
-  nameWithType: AbstractIterator<T>.next()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.next()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.collect
-  syntax:
-    content: public final T next()
-    return:
-      type: T
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek()
-  id: peek()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.collect.AbstractIterator
-  langs:
-  - java
-  name: peek()
-  nameWithType: AbstractIterator<T>.peek()
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.peek()
-  overload: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.collect
-  summary: >-
-    Returns the next element in the iteration without advancing the iteration, according to the contract of <xref uid="com.azure.cosmos.implementation.guava25.collect.PeekingIterator.peek()" data-throw-if-not-resolved="false">PeekingIterator#peek()</xref>.
-
-
-    Implementations of `AbstractIterator` that wish to expose this functionality should implement `PeekingIterator`.
-  syntax:
-    content: public final T peek()
-    return:
-      type: T
-references:
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.AbstractIterator*
-  name: AbstractIterator
-  nameWithType: AbstractIterator<T>.AbstractIterator
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.AbstractIterator
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: T
-  spec.java:
-  - uid: T
-    name: T
-    fullName: T
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext*
-  name: computeNext
-  nameWithType: AbstractIterator<T>.computeNext
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.computeNext
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData*
-  name: endOfData
-  nameWithType: AbstractIterator<T>.endOfData
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.endOfData
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: boolean
-  spec.java:
-  - uid: boolean
-    name: boolean
-    fullName: boolean
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext*
-  name: hasNext
-  nameWithType: AbstractIterator<T>.hasNext
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.hasNext
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next*
-  name: next
-  nameWithType: AbstractIterator<T>.next
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.next
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek*
-  name: peek
-  nameWithType: AbstractIterator<T>.peek
-  fullName: com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>.peek
-  package: com.azure.cosmos.implementation.guava25.collect
-- uid: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator<T>
-  name: UnmodifiableIterator<T>
-  nameWithType: UnmodifiableIterator<T>
-  fullName: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator<T>
-- uid: java.lang.Object.notify()
-  name: Object.notify()
-  nameWithType: Object.notify()
-  fullName: java.lang.Object.notify()
-- uid: java.lang.Object.wait()
-  name: Object.wait()
-  nameWithType: Object.wait()
-  fullName: java.lang.Object.wait()
-- uid: java.lang.Object.finalize()
-  name: Object.finalize()
-  nameWithType: Object.finalize()
-  fullName: java.lang.Object.finalize()
-- uid: java.lang.Object.clone()
-  name: Object.clone()
-  nameWithType: Object.clone()
-  fullName: java.lang.Object.clone()
-- uid: java.lang.Object.notifyAll()
-  name: Object.notifyAll()
-  nameWithType: Object.notifyAll()
-  fullName: java.lang.Object.notifyAll()
-- uid: java.lang.Object.equals(java.lang.Object)
-  name: Object.equals(Object)
-  nameWithType: Object.equals(Object)
-  fullName: java.lang.Object.equals(java.lang.Object)
-- uid: java.lang.Object.getClass()
-  name: Object.getClass()
-  nameWithType: Object.getClass()
-  fullName: java.lang.Object.getClass()
-- uid: java.lang.Object.wait(long)
-  name: Object.wait(long)
-  nameWithType: Object.wait(long)
-  fullName: java.lang.Object.wait(long)
-- uid: java.lang.Object.hashCode()
-  name: Object.hashCode()
-  nameWithType: Object.hashCode()
-  fullName: java.lang.Object.hashCode()
-- uid: java.lang.Object.wait(long,int)
-  name: Object.wait(long,int)
-  nameWithType: Object.wait(long,int)
-  fullName: java.lang.Object.wait(long,int)
-- uid: java.lang.Object.toString()
-  name: Object.toString()
-  nameWithType: Object.toString()
-  fullName: java.lang.Object.toString()
-- uid: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator.remove()
-  name: UnmodifiableIterator.remove()
-  nameWithType: UnmodifiableIterator.remove()
-  fullName: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator.remove()
-- uid: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator
-  name: UnmodifiableIterator
-  nameWithType: UnmodifiableIterator
-  fullName: com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator
+### YamlMime:JavaType
+uid: "com.azure.cosmos.implementation.guava25.collect.AbstractIterator"
+fullName: "com.azure.cosmos.implementation.guava25.collect.AbstractIterator<T>"
+name: "AbstractIterator<T>"
+nameWithType: "AbstractIterator<T>"
+summary: "This class provides a skeletal implementation of the `Iterator` interface, to make this interface easier to implement for certain types of data sources.\n\n`Iterator` requires its implementations to support querying the end-of-data status without changing the iterator's state, using the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext\" data-throw-if-not-resolved=\"false\">#hasNext</xref> method. But many data sources, such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.io.Reader#read()</xref>, do not expose this information; the only way to discover whether there is any data left is by trying to retrieve it. These types of data sources are ordinarily difficult to write iterators for. But using this class, one must implement only the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext\" data-throw-if-not-resolved=\"false\">#computeNext</xref> method, and invoke the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData\" data-throw-if-not-resolved=\"false\">#endOfData</xref> method when appropriate.\n\nAnother example is an iterator that skips over null elements in a backing iterator. This could be implemented as:\n\n```java\npublic static Iterator skipNulls(final Iterator in) {\n   return new AbstractIterator() {\n     protected String computeNext() {\n       while (in.hasNext()) {\n         String s = in.next();\n         if (s != null) {\n           return s;\n         }\n       }\n       return endOfData();\n     }\n   };\n }\n```\n\nThis class supports iterators that include null elements."
+inheritances:
+- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
+- "<xref href=\"com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "com.azure.cosmos.implementation.guava25.collect.UnmodifiableIterator.remove()"
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public abstract class AbstractIterator<T> extends UnmodifiableIterator<T>"
+constructors:
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.AbstractIterator()"
+methods:
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.computeNext()"
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.endOfData()"
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.hasNext()"
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.next()"
+- "com.azure.cosmos.implementation.guava25.collect.AbstractIterator.peek()"
+type: "class"
+typeParameters:
+- name: "T"
+metadata: {}
+package: "com.azure.cosmos.implementation.guava25.collect"
+artifact: com.azure:azure-cosmos:4.4.0-beta.1

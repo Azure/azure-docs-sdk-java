@@ -1,212 +1,32 @@
-### YamlMime:ManagedReference
-items:
-- uid: com.microsoft.azure.eventhubs.BatchOptions
-  id: BatchOptions
-  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
-  parent: com.microsoft.azure.eventhubs
-  children:
-  - com.microsoft.azure.eventhubs.BatchOptions.BatchOptions()
-  - com.microsoft.azure.eventhubs.BatchOptions.maxMessageSize
-  - com.microsoft.azure.eventhubs.BatchOptions.partitionKey
-  - com.microsoft.azure.eventhubs.BatchOptions.with(java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>)
-  langs:
-  - java
-  name: BatchOptions
-  nameWithType: BatchOptions
-  fullName: com.microsoft.azure.eventhubs.BatchOptions
-  type: Class
-  package: com.microsoft.azure.eventhubs
-  summary: >-
-    BatchOptions is used to create <xref uid="com.microsoft.azure.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref>es.
-
-
-    If you're creating <xref uid="com.microsoft.azure.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref>es with <xref uid="com.microsoft.azure.eventhubs.EventHubClient" data-throw-if-not-resolved="false">EventHubClient</xref>, then you can set a partitionKey and maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings: - partitionKey is null - maxMessageSize is the maximum allowed size
-
-
-    If you're creating <xref uid="com.microsoft.azure.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref>es with <xref uid="com.microsoft.azure.eventhubs.PartitionSender" data-throw-if-not-resolved="false">PartitionSender</xref>, then you can only set a maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings: - maxMessageSize is the maximum allowed size - Note: if you set a partition key, an <xref uid="java.lang.IllegalArgumentException" data-throw-if-not-resolved="false">IllegalArgumentException</xref> will be thrown.
-
-
-    To construct either type of batch, create a <xref uid="com.microsoft.azure.eventhubs.BatchOptions" data-throw-if-not-resolved="false">BatchOptions</xref> object and pass it into the appropriate createBatch method. If using <xref uid="com.microsoft.azure.eventhubs.PartitionSender" data-throw-if-not-resolved="false">PartitionSender</xref>, then use (<xref uid="com.microsoft.azure.eventhubs.PartitionSender.createBatch(com.microsoft.azure.eventhubs.BatchOptions)" data-throw-if-not-resolved="false">PartitionSender#createBatch(BatchOptions)</xref>. If using <xref uid="com.microsoft.azure.eventhubs.EventHubClient" data-throw-if-not-resolved="false">EventHubClient</xref>, then use <xref uid="com.microsoft.azure.eventhubs.EventHubClient.createBatch(com.microsoft.azure.eventhubs.BatchOptions)" data-throw-if-not-resolved="false">EventHubClient#createBatch(BatchOptions)</xref>.
-
-
-    ```java
-
-    // Note: For all examples, 'client' is an instance of EventHubClient. The usage is the same for PartitionSender,
-         however, you can NOT set a partition key when using PartitionSender
-
-         // Create EventDataBatch with defaults
-         EventDataBatch edb1 = client.createBatch();
-
-         // Create EventDataBatch with custom partitionKey
-         BatchOptions options = new BatchOptions().with( options -> options.partitionKey = "foo");
-         EventDataBatch edb2 = client.createBatch(options);
-
-         // Create EventDataBatch with custom partitionKey and maxMessageSize
-         BatchOptions options = new BatchOptions().with ( options -> {
-             options.partitionKey = "foo";
-             options.maxMessageSize = 100 * 1024;
-         };
-         EventDataBatch edb3 = client.createBatch(options);
-    ```
-  syntax:
-    content: public final class BatchOptions
-  inheritance:
-  - java.lang.Object
-  inheritedMembers:
-  - java.lang.Object.clone()
-  - java.lang.Object.equals(java.lang.Object)
-  - java.lang.Object.finalize()
-  - java.lang.Object.getClass()
-  - java.lang.Object.hashCode()
-  - java.lang.Object.notify()
-  - java.lang.Object.notifyAll()
-  - java.lang.Object.toString()
-  - java.lang.Object.wait()
-  - java.lang.Object.wait(long)
-  - java.lang.Object.wait(long,int)
-- uid: com.microsoft.azure.eventhubs.BatchOptions.BatchOptions()
-  id: BatchOptions()
-  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
-  parent: com.microsoft.azure.eventhubs.BatchOptions
-  langs:
-  - java
-  name: BatchOptions()
-  nameWithType: BatchOptions.BatchOptions()
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.BatchOptions()
-  overload: com.microsoft.azure.eventhubs.BatchOptions.BatchOptions*
-  type: Constructor
-  package: com.microsoft.azure.eventhubs
-  syntax:
-    content: public BatchOptions()
-- uid: com.microsoft.azure.eventhubs.BatchOptions.maxMessageSize
-  id: maxMessageSize
-  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
-  parent: com.microsoft.azure.eventhubs.BatchOptions
-  langs:
-  - java
-  name: maxMessageSize
-  nameWithType: BatchOptions.maxMessageSize
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.maxMessageSize
-  type: Field
-  package: com.microsoft.azure.eventhubs
-  summary: The maximum size in bytes of <xref uid="com.microsoft.azure.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> being constructed. This value cannot exceed the maximum size supported by Event Hubs service. <xref uid="com.microsoft.azure.eventhubs.EventDataBatch.tryAdd(com.microsoft.azure.eventhubs.EventData)" data-throw-if-not-resolved="false">EventDataBatch#tryAdd(EventData)</xref> API will use this value as the upper limit.
-  syntax:
-    content: public Integer maxMessageSize
-    return:
-      type: java.lang.Integer
-- uid: com.microsoft.azure.eventhubs.BatchOptions.partitionKey
-  id: partitionKey
-  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
-  parent: com.microsoft.azure.eventhubs.BatchOptions
-  langs:
-  - java
-  name: partitionKey
-  nameWithType: BatchOptions.partitionKey
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.partitionKey
-  type: Field
-  package: com.microsoft.azure.eventhubs
-  summary: The partitionKey to use for all <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref>s sent in the current <xref uid="com.microsoft.azure.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref>. Setting a PartitionKey will deliver the <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> to a specific Event Hubs partition.
-  syntax:
-    content: public String partitionKey
-    return:
-      type: java.lang.String
-- uid: com.microsoft.azure.eventhubs.BatchOptions.with(java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>)
-  id: with(java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>)
-  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
-  parent: com.microsoft.azure.eventhubs.BatchOptions
-  langs:
-  - java
-  name: with(Consumer<BatchOptions> builderFunction)
-  nameWithType: BatchOptions.with(Consumer<BatchOptions> builderFunction)
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.with(Consumer<BatchOptions> builderFunction)
-  overload: com.microsoft.azure.eventhubs.BatchOptions.with*
-  type: Method
-  package: com.microsoft.azure.eventhubs
-  syntax:
-    content: public BatchOptions with(Consumer<BatchOptions> builderFunction)
-    parameters:
-    - id: builderFunction
-      type: java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>
-    return:
-      type: com.microsoft.azure.eventhubs.BatchOptions
-references:
-- uid: com.microsoft.azure.eventhubs.BatchOptions.BatchOptions*
-  name: BatchOptions
-  nameWithType: BatchOptions.BatchOptions
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.BatchOptions
-  package: com.microsoft.azure.eventhubs
-- uid: java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>
-  spec.java:
-  - uid: java.util.function.Consumer
-    name: Consumer
-    fullName: java.util.function.Consumer
-  - name: <
-    fullName: <
-  - uid: com.microsoft.azure.eventhubs.BatchOptions
-    name: BatchOptions
-    fullName: com.microsoft.azure.eventhubs.BatchOptions
-  - name: '>'
-    fullName: '>'
-- uid: com.microsoft.azure.eventhubs.BatchOptions.with*
-  name: with
-  nameWithType: BatchOptions.with
-  fullName: com.microsoft.azure.eventhubs.BatchOptions.with
-  package: com.microsoft.azure.eventhubs
-- uid: java.lang.String
-  spec.java:
-  - uid: java.lang.String
-    name: String
-    fullName: java.lang.String
-- uid: java.lang.Integer
-  spec.java:
-  - uid: java.lang.Integer
-    name: Integer
-    fullName: java.lang.Integer
-- uid: java.lang.Object.notify()
-  name: Object.notify()
-  nameWithType: Object.notify()
-  fullName: java.lang.Object.notify()
-- uid: java.lang.Object.wait()
-  name: Object.wait()
-  nameWithType: Object.wait()
-  fullName: java.lang.Object.wait()
-- uid: java.lang.Object.finalize()
-  name: Object.finalize()
-  nameWithType: Object.finalize()
-  fullName: java.lang.Object.finalize()
-- uid: java.lang.Object.clone()
-  name: Object.clone()
-  nameWithType: Object.clone()
-  fullName: java.lang.Object.clone()
-- uid: java.lang.Object.notifyAll()
-  name: Object.notifyAll()
-  nameWithType: Object.notifyAll()
-  fullName: java.lang.Object.notifyAll()
-- uid: java.lang.Object.equals(java.lang.Object)
-  name: Object.equals(Object)
-  nameWithType: Object.equals(Object)
-  fullName: java.lang.Object.equals(java.lang.Object)
-- uid: java.lang.Object.getClass()
-  name: Object.getClass()
-  nameWithType: Object.getClass()
-  fullName: java.lang.Object.getClass()
-- uid: java.lang.Object.wait(long)
-  name: Object.wait(long)
-  nameWithType: Object.wait(long)
-  fullName: java.lang.Object.wait(long)
-- uid: java.lang.Object.hashCode()
-  name: Object.hashCode()
-  nameWithType: Object.hashCode()
-  fullName: java.lang.Object.hashCode()
-- uid: java.lang.Object.wait(long,int)
-  name: Object.wait(long,int)
-  nameWithType: Object.wait(long,int)
-  fullName: java.lang.Object.wait(long,int)
-- uid: java.lang.Object.toString()
-  name: Object.toString()
-  nameWithType: Object.toString()
-  fullName: java.lang.Object.toString()
-- uid: java.util.function.Consumer
-  name: Consumer
-  nameWithType: Consumer
-  fullName: java.util.function.Consumer
+### YamlMime:JavaType
+uid: "com.microsoft.azure.eventhubs.BatchOptions"
+fullName: "com.microsoft.azure.eventhubs.BatchOptions"
+name: "BatchOptions"
+nameWithType: "BatchOptions"
+summary: "BatchOptions is used to create <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es.\n\nIf you're creating <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es with <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient\" data-throw-if-not-resolved=\"false\">EventHubClient</xref>, then you can set a partitionKey and maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings: - partitionKey is null - maxMessageSize is the maximum allowed size\n\nIf you're creating <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>es with <xref uid=\"com.microsoft.azure.eventhubs.PartitionSender\" data-throw-if-not-resolved=\"false\">PartitionSender</xref>, then you can only set a maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings: - maxMessageSize is the maximum allowed size - Note: if you set a partition key, an <xref uid=\"java.lang.IllegalArgumentException\" data-throw-if-not-resolved=\"false\">IllegalArgumentException</xref> will be thrown.\n\nTo construct either type of batch, create a <xref uid=\"com.microsoft.azure.eventhubs.BatchOptions\" data-throw-if-not-resolved=\"false\">BatchOptions</xref> object and pass it into the appropriate createBatch method. If using <xref uid=\"com.microsoft.azure.eventhubs.PartitionSender\" data-throw-if-not-resolved=\"false\">PartitionSender</xref>, then use (<xref uid=\"com.microsoft.azure.eventhubs.PartitionSender.createBatch(com.microsoft.azure.eventhubs.BatchOptions)\" data-throw-if-not-resolved=\"false\">PartitionSender#createBatch(BatchOptions)</xref>. If using <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient\" data-throw-if-not-resolved=\"false\">EventHubClient</xref>, then use <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createBatch(com.microsoft.azure.eventhubs.BatchOptions)\" data-throw-if-not-resolved=\"false\">EventHubClient#createBatch(BatchOptions)</xref>.\n\n```java\n// Note: For all examples, 'client' is an instance of EventHubClient. The usage is the same for PartitionSender,\n     however, you can NOT set a partition key when using PartitionSender\n\n     // Create EventDataBatch with defaults\n     EventDataBatch edb1 = client.createBatch();\n\n     // Create EventDataBatch with custom partitionKey\n     BatchOptions options = new BatchOptions().with( options -> options.partitionKey = \"foo\");\n     EventDataBatch edb2 = client.createBatch(options);\n\n     // Create EventDataBatch with custom partitionKey and maxMessageSize\n     BatchOptions options = new BatchOptions().with ( options -> {\n         options.partitionKey = \"foo\";\n         options.maxMessageSize = 100 * 1024;\n     };\n     EventDataBatch edb3 = client.createBatch(options);\n```"
+inheritances:
+- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public final class BatchOptions"
+constructors:
+- "com.microsoft.azure.eventhubs.BatchOptions.BatchOptions()"
+fields:
+- "com.microsoft.azure.eventhubs.BatchOptions.maxMessageSize"
+- "com.microsoft.azure.eventhubs.BatchOptions.partitionKey"
+methods:
+- "com.microsoft.azure.eventhubs.BatchOptions.with(java.util.function.Consumer<com.microsoft.azure.eventhubs.BatchOptions>)"
+type: "class"
+metadata: {}
+package: "com.microsoft.azure.eventhubs"
+artifact: com.microsoft.azure:azure-eventhubs:3.2.1

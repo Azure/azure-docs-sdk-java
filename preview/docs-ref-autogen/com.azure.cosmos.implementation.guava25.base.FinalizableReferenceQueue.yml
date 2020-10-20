@@ -1,174 +1,31 @@
-### YamlMime:ManagedReference
-items:
-- uid: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue
-  id: FinalizableReferenceQueue
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.base
-  children:
-  - com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue()
-  - com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close()
-  langs:
-  - java
-  name: FinalizableReferenceQueue
-  nameWithType: FinalizableReferenceQueue
-  fullName: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue
-  type: Class
-  package: com.azure.cosmos.implementation.guava25.base
-  summary: >-
-    A reference queue with an associated background thread that dequeues references and invokes <xref uid="com.azure.cosmos.implementation.guava25.base.FinalizableReference.finalizeReferent()" data-throw-if-not-resolved="false">FinalizableReference#finalizeReferent()</xref> on them.
-
-
-    Keep a strong reference to this object until all of the associated referents have been finalized. If this object is garbage collected earlier, the backing thread will not invoke `finalizeReferent()` on the remaining references.
-
-
-    As an example of how this is used, imagine you have a class `MyServer` that creates a a <xref uid="" data-throw-if-not-resolved="false">ServerSocket</xref>, and you would like to ensure that the `ServerSocket` is closed even if the `MyServer` object is garbage-collected without calling its `close` method. You *could* use a finalizer to accomplish this, but that has a number of well-known problems. Here is how you might use this class instead:
-
-
-    ```java
-
-    public class MyServer implements Closeable {
-       private static final FinalizableReferenceQueue frq = new FinalizableReferenceQueue();
-       // You might also share this between several objects.
-
-       private static final Set> references = Sets.newConcurrentHashSet();
-       // This ensures that the FinalizablePhantomReference itself is not garbage-collected.
-
-       private final ServerSocket serverSocket;
-
-       private MyServer(...) {
-         ...
-         this.serverSocket = new ServerSocket(...);
-         ...
-       }
-
-       public static MyServer create(...) {
-         MyServer myServer = new MyServer(...);
-         final ServerSocket serverSocket = myServer.serverSocket;
-         Reference reference = new FinalizablePhantomReference(myServer, frq) {
-           public void finalizeReferent() {
-             references.remove(this):
-             if (!serverSocket.isClosed()) {
-               ...log a message about how nobody called close()...
-               try {
-                 serverSocket.close();
-               } catch (IOException e) {
-                 ...
-               }
-             }
-           }
-         };
-         references.add(reference);
-         return myServer;
-       }
-
-       public void close() {
-         serverSocket.close();
-       }
-     }
-    ```
-  syntax:
-    content: public class FinalizableReferenceQueue implements Closeable
-  inheritance:
-  - java.lang.Object
-  implements:
-  - java.io.Closeable
-  inheritedMembers:
-  - java.lang.Object.clone()
-  - java.lang.Object.equals(java.lang.Object)
-  - java.lang.Object.finalize()
-  - java.lang.Object.getClass()
-  - java.lang.Object.hashCode()
-  - java.lang.Object.notify()
-  - java.lang.Object.notifyAll()
-  - java.lang.Object.toString()
-  - java.lang.Object.wait()
-  - java.lang.Object.wait(long)
-  - java.lang.Object.wait(long,int)
-- uid: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue()
-  id: FinalizableReferenceQueue()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue
-  langs:
-  - java
-  name: FinalizableReferenceQueue()
-  nameWithType: FinalizableReferenceQueue.FinalizableReferenceQueue()
-  fullName: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue()
-  overload: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue*
-  type: Constructor
-  package: com.azure.cosmos.implementation.guava25.base
-  summary: Constructs a new queue.
-  syntax:
-    content: public FinalizableReferenceQueue()
-- uid: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close()
-  id: close()
-  artifact: com.azure:azure-cosmos:4.4.0-beta.1
-  parent: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue
-  langs:
-  - java
-  name: close()
-  nameWithType: FinalizableReferenceQueue.close()
-  fullName: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close()
-  overload: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close*
-  type: Method
-  package: com.azure.cosmos.implementation.guava25.base
-  syntax:
-    content: public void close()
-references:
-- uid: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue*
-  name: FinalizableReferenceQueue
-  nameWithType: FinalizableReferenceQueue.FinalizableReferenceQueue
-  fullName: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue
-  package: com.azure.cosmos.implementation.guava25.base
-- uid: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close*
-  name: close
-  nameWithType: FinalizableReferenceQueue.close
-  fullName: com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close
-  package: com.azure.cosmos.implementation.guava25.base
-- uid: java.io.Closeable
-  name: Closeable
-  nameWithType: Closeable
-  fullName: java.io.Closeable
-- uid: java.lang.Object.notify()
-  name: Object.notify()
-  nameWithType: Object.notify()
-  fullName: java.lang.Object.notify()
-- uid: java.lang.Object.wait()
-  name: Object.wait()
-  nameWithType: Object.wait()
-  fullName: java.lang.Object.wait()
-- uid: java.lang.Object.finalize()
-  name: Object.finalize()
-  nameWithType: Object.finalize()
-  fullName: java.lang.Object.finalize()
-- uid: java.lang.Object.clone()
-  name: Object.clone()
-  nameWithType: Object.clone()
-  fullName: java.lang.Object.clone()
-- uid: java.lang.Object.notifyAll()
-  name: Object.notifyAll()
-  nameWithType: Object.notifyAll()
-  fullName: java.lang.Object.notifyAll()
-- uid: java.lang.Object.equals(java.lang.Object)
-  name: Object.equals(Object)
-  nameWithType: Object.equals(Object)
-  fullName: java.lang.Object.equals(java.lang.Object)
-- uid: java.lang.Object.getClass()
-  name: Object.getClass()
-  nameWithType: Object.getClass()
-  fullName: java.lang.Object.getClass()
-- uid: java.lang.Object.wait(long)
-  name: Object.wait(long)
-  nameWithType: Object.wait(long)
-  fullName: java.lang.Object.wait(long)
-- uid: java.lang.Object.hashCode()
-  name: Object.hashCode()
-  nameWithType: Object.hashCode()
-  fullName: java.lang.Object.hashCode()
-- uid: java.lang.Object.wait(long,int)
-  name: Object.wait(long,int)
-  nameWithType: Object.wait(long,int)
-  fullName: java.lang.Object.wait(long,int)
-- uid: java.lang.Object.toString()
-  name: Object.toString()
-  nameWithType: Object.toString()
-  fullName: java.lang.Object.toString()
+### YamlMime:JavaType
+uid: "com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue"
+fullName: "com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue"
+name: "FinalizableReferenceQueue"
+nameWithType: "FinalizableReferenceQueue"
+summary: "A reference queue with an associated background thread that dequeues references and invokes <xref uid=\"com.azure.cosmos.implementation.guava25.base.FinalizableReference.finalizeReferent()\" data-throw-if-not-resolved=\"false\">FinalizableReference#finalizeReferent()</xref> on them.\n\nKeep a strong reference to this object until all of the associated referents have been finalized. If this object is garbage collected earlier, the backing thread will not invoke `finalizeReferent()` on the remaining references.\n\nAs an example of how this is used, imagine you have a class `MyServer` that creates a a <xref uid=\"\" data-throw-if-not-resolved=\"false\">ServerSocket</xref>, and you would like to ensure that the `ServerSocket` is closed even if the `MyServer` object is garbage-collected without calling its `close` method. You *could* use a finalizer to accomplish this, but that has a number of well-known problems. Here is how you might use this class instead:\n\n```java\npublic class MyServer implements Closeable {\n   private static final FinalizableReferenceQueue frq = new FinalizableReferenceQueue();\n   // You might also share this between several objects.\n\n   private static final Set> references = Sets.newConcurrentHashSet();\n   // This ensures that the FinalizablePhantomReference itself is not garbage-collected.\n\n   private final ServerSocket serverSocket;\n\n   private MyServer(...) {\n     ...\n     this.serverSocket = new ServerSocket(...);\n     ...\n   }\n\n   public static MyServer create(...) {\n     MyServer myServer = new MyServer(...);\n     final ServerSocket serverSocket = myServer.serverSocket;\n     Reference reference = new FinalizablePhantomReference(myServer, frq) {\n       public void finalizeReferent() {\n         references.remove(this):\n         if (!serverSocket.isClosed()) {\n           ...log a message about how nobody called close()...\n           try {\n             serverSocket.close();\n           } catch (IOException e) {\n             ...\n           }\n         }\n       }\n     };\n     references.add(reference);\n     return myServer;\n   }\n\n   public void close() {\n     serverSocket.close();\n   }\n }\n```"
+inheritances:
+- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
+inheritedMembers:
+- "java.lang.Object.clone()"
+- "java.lang.Object.equals(java.lang.Object)"
+- "java.lang.Object.finalize()"
+- "java.lang.Object.getClass()"
+- "java.lang.Object.hashCode()"
+- "java.lang.Object.notify()"
+- "java.lang.Object.notifyAll()"
+- "java.lang.Object.toString()"
+- "java.lang.Object.wait()"
+- "java.lang.Object.wait(long)"
+- "java.lang.Object.wait(long,int)"
+syntax: "public class FinalizableReferenceQueue implements Closeable"
+constructors:
+- "com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.FinalizableReferenceQueue()"
+methods:
+- "com.azure.cosmos.implementation.guava25.base.FinalizableReferenceQueue.close()"
+type: "class"
+implements:
+- "<xref href=\"java.io.Closeable?alt=java.io.Closeable&text=Closeable\" data-throw-if-not-resolved=\"False\" />"
+metadata: {}
+package: "com.azure.cosmos.implementation.guava25.base"
+artifact: com.azure:azure-cosmos:4.4.0-beta.1

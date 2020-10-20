@@ -1,0 +1,45 @@
+### YamlMime:JavaMember
+uid: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining*"
+fullName: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining"
+name: "beginTraining"
+nameWithType: "FormTrainingAsyncClient.beginTraining"
+members:
+- uid: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(java.lang.String,boolean)"
+  fullName: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(String trainingFilesUrl, boolean useTrainingLabels)"
+  name: "beginTraining(String trainingFilesUrl, boolean useTrainingLabels)"
+  nameWithType: "FormTrainingAsyncClient.beginTraining(String trainingFilesUrl, boolean useTrainingLabels)"
+  summary: "Create and train a custom model. Models are trained using documents that are of the following content type - 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'. Other type of content is ignored.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\nSee [here][] for information on building your own training data set.\n\n**Code sample**\n\n```java\nString trainingFilesUrl = \"{SAS-URL-of-your-container-in-blob-storage}\";\n boolean useTrainingLabels = true;\n formTrainingAsyncClient.beginTraining(trainingFilesUrl, useTrainingLabels)\n     // if training polling operation completed, retrieve the final result.\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(customFormModel -> {\n         System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n         System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n         customFormModel.getSubmodels()\n             .forEach(customFormSubmodel -> customFormSubmodel.getFields()\n                 .forEach((key, customFormModelField) ->\n                     System.out.printf(\"Form type: %s Field Text: %s Field Accuracy: %f%n\",\n                         key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n     });\n```\n\n\n[here]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#upload-your-training-data"
+  parameters:
+  - description: "source URL parameter that is an externally accessible Azure\n storage blob container Uri (preferably a Shared Access Signature Uri)."
+    name: "trainingFilesUrl"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "boolean to specify the use of labeled files for training the model."
+    name: "useTrainingLabels"
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public PollerFlux<FormRecognizerOperationResult,CustomFormModel> beginTraining(String trainingFilesUrl, boolean useTrainingLabels)"
+  returns:
+    description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\">PollerFlux</xref> that polls the training model operation until it has completed, has failed, or has\n been cancelled. The completed operation returns the trained <xref uid=\"com.azure.ai.formrecognizer.training.models.CustomFormModel\" data-throw-if-not-resolved=\"false\">custom form model</xref>."
+    type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.ai.formrecognizer.models.FormRecognizerOperationResult?alt=com.azure.ai.formrecognizer.models.FormRecognizerOperationResult&text=FormRecognizerOperationResult\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.ai.formrecognizer.training.models.CustomFormModel?alt=com.azure.ai.formrecognizer.training.models.CustomFormModel&text=CustomFormModel\" data-throw-if-not-resolved=\"False\" />&gt;"
+- uid: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(java.lang.String,boolean,com.azure.ai.formrecognizer.training.models.TrainingOptions)"
+  fullName: "com.azure.ai.formrecognizer.training.FormTrainingAsyncClient.beginTraining(String trainingFilesUrl, boolean useTrainingLabels, TrainingOptions trainingOptions)"
+  name: "beginTraining(String trainingFilesUrl, boolean useTrainingLabels, TrainingOptions trainingOptions)"
+  nameWithType: "FormTrainingAsyncClient.beginTraining(String trainingFilesUrl, boolean useTrainingLabels, TrainingOptions trainingOptions)"
+  summary: "Create and train a custom model.\n\nModels are trained using documents that are of the following content type - 'application/pdf', 'image/jpeg', 'image/png', 'image/tiff'.Other type of content is ignored.\n\nSee [here][] for information on building your own training data set.\n\nThe service does not support cancellation of the long running operation and returns with an error message indicating absence of cancellation support.\n\n**Code sample**\n\n```java\nString trainingFilesUrl = \"{SAS-URL-of-your-container-in-blob-storage}\";\n TrainingFileFilter trainingFileFilter = new TrainingFileFilter().setSubfoldersIncluded(true).setPrefix(\"Invoice\");\n \n formTrainingAsyncClient.beginTraining(trainingFilesUrl, true,\n     new TrainingOptions()\n         .setTrainingFileFilter(trainingFileFilter)\n         .setPollInterval(Duration.ofSeconds(5)))\n     // if training polling operation completed, retrieve the final result.\n     .flatMap(AsyncPollResponse::getFinalResult)\n     .subscribe(customFormModel -> {\n         System.out.printf(\"Model Id: %s%n\", customFormModel.getModelId());\n         System.out.printf(\"Model Status: %s%n\", customFormModel.getModelStatus());\n         customFormModel.getSubmodels().forEach(customFormSubmodel ->\n             customFormSubmodel.getFields().forEach((key, customFormModelField) ->\n                 System.out.printf(\"Form Type: %s Field Text: %s Field Accuracy: %f%n\",\n                     key, customFormModelField.getName(), customFormModelField.getAccuracy())));\n     });\n```\n\n\n[here]: https://docs.microsoft.com/azure/cognitive-services/form-recognizer/build-training-data-set#upload-your-training-data"
+  parameters:
+  - description: "an externally accessible Azure storage blob container Uri (preferably a\n Shared Access Signature Uri)."
+    name: "trainingFilesUrl"
+    type: "<xref href=\"java.lang.String?alt=java.lang.String&text=String\" data-throw-if-not-resolved=\"False\" />"
+  - description: "boolean to specify the use of labeled files for training the model."
+    name: "useTrainingLabels"
+    type: "<xref href=\"boolean?alt=boolean&text=boolean\" data-throw-if-not-resolved=\"False\" />"
+  - description: "The additional configurable <xref uid=\"com.azure.ai.formrecognizer.training.models.TrainingOptions\" data-throw-if-not-resolved=\"false\">options</xref>\n that may be passed when training a model."
+    name: "trainingOptions"
+    type: "<xref href=\"com.azure.ai.formrecognizer.training.models.TrainingOptions?alt=com.azure.ai.formrecognizer.training.models.TrainingOptions&text=TrainingOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public PollerFlux<FormRecognizerOperationResult,CustomFormModel> beginTraining(String trainingFilesUrl, boolean useTrainingLabels, TrainingOptions trainingOptions)"
+  returns:
+    description: "A <xref uid=\"com.azure.core.util.polling.PollerFlux\" data-throw-if-not-resolved=\"false\">PollerFlux</xref> that polls the training model operation until it has completed, has failed, or has\n been cancelled. The completed operation returns the trained <xref uid=\"com.azure.ai.formrecognizer.training.models.CustomFormModel\" data-throw-if-not-resolved=\"false\">custom form model</xref>."
+    type: "<xref href=\"com.azure.core.util.polling.PollerFlux?alt=com.azure.core.util.polling.PollerFlux&text=PollerFlux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.ai.formrecognizer.models.FormRecognizerOperationResult?alt=com.azure.ai.formrecognizer.models.FormRecognizerOperationResult&text=FormRecognizerOperationResult\" data-throw-if-not-resolved=\"False\" />,<xref href=\"com.azure.ai.formrecognizer.training.models.CustomFormModel?alt=com.azure.ai.formrecognizer.training.models.CustomFormModel&text=CustomFormModel\" data-throw-if-not-resolved=\"False\" />&gt;"
+type: "method"
+metadata: {}
+package: "com.azure.ai.formrecognizer.training"
+artifact: com.azure:azure-ai-formrecognizer:3.0.2

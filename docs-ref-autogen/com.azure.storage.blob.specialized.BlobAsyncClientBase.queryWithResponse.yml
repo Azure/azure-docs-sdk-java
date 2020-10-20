@@ -1,0 +1,23 @@
+### YamlMime:JavaMember
+uid: "com.azure.storage.blob.specialized.BlobAsyncClientBase.queryWithResponse*"
+fullName: "com.azure.storage.blob.specialized.BlobAsyncClientBase.queryWithResponse"
+name: "queryWithResponse"
+nameWithType: "BlobAsyncClientBase.queryWithResponse"
+members:
+- uid: "com.azure.storage.blob.specialized.BlobAsyncClientBase.queryWithResponse(com.azure.storage.blob.options.BlobQueryOptions)"
+  fullName: "com.azure.storage.blob.specialized.BlobAsyncClientBase.queryWithResponse(BlobQueryOptions queryOptions)"
+  name: "queryWithResponse(BlobQueryOptions queryOptions)"
+  nameWithType: "BlobAsyncClientBase.queryWithResponse(BlobQueryOptions queryOptions)"
+  summary: "Queries the entire blob.\n\nFor more information, see the [Azure Docs][]\n\n**Code Samples**\n\n```java\nString expression = \"SELECT * from BlobStorage\";\n BlobQueryJsonSerialization input = new BlobQueryJsonSerialization()\n     .setRecordSeparator('\\n');\n BlobQueryDelimitedSerialization output = new BlobQueryDelimitedSerialization()\n     .setEscapeChar('\\0')\n     .setColumnSeparator(',')\n     .setRecordSeparator('\\n')\n     .setFieldQuote('\\'')\n     .setHeadersPresent(true);\n BlobRequestConditions requestConditions = new BlobRequestConditions().setLeaseId(leaseId);\n Consumer<BlobQueryError> errorConsumer = System.out::println;\n Consumer<BlobQueryProgress> progressConsumer = progress -> System.out.println(\"total blob bytes read: \"\n     + progress.getBytesScanned());\n BlobQueryOptions queryOptions = new BlobQueryOptions(expression)\n     .setInputSerialization(input)\n     .setOutputSerialization(output)\n     .setRequestConditions(requestConditions)\n     .setErrorConsumer(errorConsumer)\n     .setProgressConsumer(progressConsumer);\n \n client.queryWithResponse(queryOptions)\n     .subscribe(response -> {\n         ByteArrayOutputStream queryData = new ByteArrayOutputStream();\n         response.getValue().subscribe(piece -> {\n             try {\n                 queryData.write(piece.array());\n             } catch (IOException ex) {\n                 throw new UncheckedIOException(ex);\n             }\n         });\n     });\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/query-blob-contents"
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.blob.options.BlobQueryOptions\" data-throw-if-not-resolved=\"false\">The query options</xref>."
+    name: "queryOptions"
+    type: "<xref href=\"com.azure.storage.blob.options.BlobQueryOptions?alt=com.azure.storage.blob.options.BlobQueryOptions&text=BlobQueryOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<BlobQueryAsyncResponse> queryWithResponse(BlobQueryOptions queryOptions)"
+  returns:
+    description: "A reactive response containing the queried data."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.BlobQueryAsyncResponse?alt=com.azure.storage.blob.models.BlobQueryAsyncResponse&text=BlobQueryAsyncResponse\" data-throw-if-not-resolved=\"False\" />&gt;"
+type: "method"
+metadata: {}
+package: "com.azure.storage.blob.specialized"
+artifact: com.azure:azure-storage-blob:12.8.0
