@@ -1,6 +1,6 @@
 ---
-title: Azure Resource Manager client library for Java
-keywords: Azure, java, SDK, API, azure-resourcemanager, 
+title: Azure Resource Manager network client library for Java
+keywords: Azure, java, SDK, API, azure-resourcemanager-network, network
 author: maggiepint
 ms.author: magpint
 ms.date: 10/19/2020
@@ -8,13 +8,13 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: network
 ---
 
-# Azure Resource Manager client library for Java - Version 2.0.0-beta.5 
+# Azure Resource Manager network client library for Java - Version 2.0.0 
 
 
-Azure Resource Manager client library for Java
+Azure Resource Manager network client library for Java
 
 For documentation on how to use this package, please see [Azure Management Libraries for Java](https://aka.ms/azsdk/java/mgmt).
 
@@ -26,12 +26,12 @@ For documentation on how to use this package, please see [Azure Management Libra
 
 ### Adding the package to your product
 
-[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager;current})
+[//]: # ({x-version-update-start;com.azure.resourcemanager:azure-resourcemanager-network;current})
 ```xml
 <dependency>
     <groupId>com.azure.resourcemanager</groupId>
-    <artifactId>azure-resourcemanager</artifactId>
-    <version>2.0.0-beta.5</version>
+    <artifactId>azure-resourcemanager-network</artifactId>
+    <version>2.0.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
