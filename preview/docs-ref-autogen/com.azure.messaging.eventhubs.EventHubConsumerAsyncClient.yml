@@ -1,40 +1,566 @@
-### YamlMime:JavaType
-uid: "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient"
-fullName: "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient"
-name: "EventHubConsumerAsyncClient"
-nameWithType: "EventHubConsumerAsyncClient"
-summary: "An **asynchronous** consumer responsible for reading <xref uid=\"com.azure.messaging.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> from either a specific Event Hub partition or all partitions in the context of a specific consumer group.\n\n**Creating an <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref>**\n\n```java\n// The required parameters are `consumerGroup` and a way to authenticate with Event Hubs using credentials.\n EventHubConsumerAsyncClient consumer = new EventHubClientBuilder()\n     .connectionString(\"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};\"\n         + \"SharedAccessKey={key};EntityPath={eh-name}\")\n     .consumerGroup(\"consumer-group-name\")\n     .buildAsyncConsumerClient();\n```\n\n**Consuming events a single partition from Event Hub**\n\n```java\n// Obtain partitionId from EventHubConsumerAsyncClient.getPartitionIds()\n String partitionId = \"0\";\n EventPosition startingPosition = EventPosition.latest();\n \n // Keep a reference to `subscription`. When the program is finished receiving events, call\n // subscription.dispose(). This will stop fetching events from the Event Hub.\n Disposable subscription = consumer.receiveFromPartition(partitionId, startingPosition)\n     .subscribe(partitionEvent -> {\n         PartitionContext partitionContext = partitionEvent.getPartitionContext();\n         EventData event = partitionEvent.getData();\n \n         System.out.printf(\"Received event from partition '%s'%n\", partitionContext.getPartitionId());\n         System.out.printf(\"Contents of event as string: '%s'%n\", event.getBodyAsString());\n     }, error -> System.err.print(error.toString()));\n```\n\n**Viewing latest partition information**\n\nLatest partition information as events are received can by setting <xref uid=\"com.azure.messaging.eventhubs.models.ReceiveOptions.setTrackLastEnqueuedEventProperties(boolean)\" data-throw-if-not-resolved=\"false\">setTrackLastEnqueuedEventProperties</xref> to `true`. As events come in, explore the <xref uid=\"com.azure.messaging.eventhubs.models.PartitionEvent\" data-throw-if-not-resolved=\"false\">PartitionEvent</xref> object.\n\n```java\n// Set `setTrackLastEnqueuedEventProperties` to true to get the last enqueued information from the partition for\n // each event that is received.\n ReceiveOptions receiveOptions = new ReceiveOptions()\n     .setTrackLastEnqueuedEventProperties(true);\n \n // Receives events from partition \"0\" as they come in.\n consumer.receiveFromPartition(\"0\", EventPosition.earliest(), receiveOptions)\n     .subscribe(partitionEvent -> {\n         LastEnqueuedEventProperties properties = partitionEvent.getLastEnqueuedEventProperties();\n         System.out.printf(\"Information received at %s. Last enqueued sequence number: %s%n\",\n             properties.getRetrievalTime(),\n             properties.getSequenceNumber());\n     });\n```\n\n**Rate limiting consumption of events from Event Hub**\n\nFor event consumers that need to limit the number of events they receive at a given time, they can use <xref uid=\"\" data-throw-if-not-resolved=\"false\">BaseSubscriber#request(long)</xref>.\n\n```java\nconsumer.receiveFromPartition(partitionId, EventPosition.latest()).subscribe(new BaseSubscriber<PartitionEvent>() {\n     private static final int NUMBER_OF_EVENTS = 5;\n     private final AtomicInteger currentNumberOfEvents = new AtomicInteger();\n \n     {@literal @}Override\n     protected void hookOnSubscribe(Subscription subscription) {\n         // Tell the Publisher we only want 5 events at a time.\n         request(NUMBER_OF_EVENTS);\n     }\n \n     {@literal @}Override\n     protected void hookOnNext(PartitionEvent value) {\n         // Process the EventData\n \n         // If the number of events we have currently received is a multiple of 5, that means we have reached the\n         // last event the Publisher will provide to us. Invoking request(long) here, tells the Publisher that\n         // the subscriber is ready to get more events from upstream.\n         if (currentNumberOfEvents.incrementAndGet() % 5 == 0) {\n             request(NUMBER_OF_EVENTS);\n         }\n     }\n });\n```\n\n**Receiving from all partitions**\n\n```java\n// Receives events from all partitions from the beginning of each partition.\n consumer.receive(true).subscribe(partitionEvent -> {\n     PartitionContext context = partitionEvent.getPartitionContext();\n     EventData event = partitionEvent.getData();\n     System.out.printf(\"Event %s is from partition %s%n.\", event.getSequenceNumber(), context.getPartitionId());\n });\n```"
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-syntax: "public class EventHubConsumerAsyncClient implements Closeable"
-methods:
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties(java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive()"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean)"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean,com.azure.messaging.eventhubs.models.ReceiveOptions)"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition)"
-- "com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition,com.azure.messaging.eventhubs.models.ReceiveOptions)"
-type: "class"
-implements:
-- "<xref href=\"java.io.Closeable?alt=java.io.Closeable&text=Closeable\" data-throw-if-not-resolved=\"False\" />"
-metadata: {}
-package: "com.azure.messaging.eventhubs"
-artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  id: EventHubConsumerAsyncClient
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs
+  children:
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties(java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive()
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean)
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition)
+  - com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  langs:
+  - java
+  name: EventHubConsumerAsyncClient
+  nameWithType: EventHubConsumerAsyncClient
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  type: Class
+  package: com.azure.messaging.eventhubs
+  summary: "An **asynchronous** consumer responsible for reading <xref uid=\"com.azure.messaging.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> from either a specific Event Hub partition or all partitions in the context of a specific consumer group.\n\n**Creating an <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref>**\n\n```java\n// The required parameters are `consumerGroup` and a way to authenticate with Event Hubs using credentials.\n EventHubConsumerAsyncClient consumer = new EventHubClientBuilder()\n     .connectionString(\"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};\"\n         + \"SharedAccessKey={key};EntityPath={eh-name}\")\n     .consumerGroup(\"consumer-group-name\")\n     .buildAsyncConsumerClient();\n```\n\n**Consuming events a single partition from Event Hub**\n\n```java\n// Obtain partitionId from EventHubConsumerAsyncClient.getPartitionIds()\n String partitionId = \"0\";\n EventPosition startingPosition = EventPosition.latest();\n \n // Keep a reference to `subscription`. When the program is finished receiving events, call\n // subscription.dispose(). This will stop fetching events from the Event Hub.\n Disposable subscription = consumer.receiveFromPartition(partitionId, startingPosition)\n     .subscribe(partitionEvent -> {\n         PartitionContext partitionContext = partitionEvent.getPartitionContext();\n         EventData event = partitionEvent.getData();\n \n         System.out.printf(\"Received event from partition '%s'%n\", partitionContext.getPartitionId());\n         System.out.printf(\"Contents of event as string: '%s'%n\", event.getBodyAsString());\n     }, error -> System.err.print(error.toString()));\n```\n\n**Viewing latest partition information**\n\nLatest partition information as events are received can by setting <xref uid=\"com.azure.messaging.eventhubs.models.ReceiveOptions.setTrackLastEnqueuedEventProperties(boolean)\" data-throw-if-not-resolved=\"false\">setTrackLastEnqueuedEventProperties</xref> to `true`. As events come in, explore the <xref uid=\"com.azure.messaging.eventhubs.models.PartitionEvent\" data-throw-if-not-resolved=\"false\">PartitionEvent</xref> object.\n\n```java\n// Set `setTrackLastEnqueuedEventProperties` to true to get the last enqueued information from the partition for\n // each event that is received.\n ReceiveOptions receiveOptions = new ReceiveOptions()\n     .setTrackLastEnqueuedEventProperties(true);\n \n // Receives events from partition \"0\" as they come in.\n consumer.receiveFromPartition(\"0\", EventPosition.earliest(), receiveOptions)\n     .subscribe(partitionEvent -> {\n         LastEnqueuedEventProperties properties = partitionEvent.getLastEnqueuedEventProperties();\n         System.out.printf(\"Information received at %s. Last enqueued sequence number: %s%n\",\n             properties.getRetrievalTime(),\n             properties.getSequenceNumber());\n     });\n```\n\n**Rate limiting consumption of events from Event Hub**\n\nFor event consumers that need to limit the number of events they receive at a given time, they can use <xref uid=\"\" data-throw-if-not-resolved=\"false\">BaseSubscriber#request(long)</xref>.\n\n```java\nconsumer.receiveFromPartition(partitionId, EventPosition.latest()).subscribe(new BaseSubscriber<PartitionEvent>() {\n     private static final int NUMBER_OF_EVENTS = 5;\n     private final AtomicInteger currentNumberOfEvents = new AtomicInteger();\n \n     {@literal @}Override\n     protected void hookOnSubscribe(Subscription subscription) {\n         // Tell the Publisher we only want 5 events at a time.\n         request(NUMBER_OF_EVENTS);\n     }\n \n     {@literal @}Override\n     protected void hookOnNext(PartitionEvent value) {\n         // Process the EventData\n \n         // If the number of events we have currently received is a multiple of 5, that means we have reached the\n         // last event the Publisher will provide to us. Invoking request(long) here, tells the Publisher that\n         // the subscriber is ready to get more events from upstream.\n         if (currentNumberOfEvents.incrementAndGet() % 5 == 0) {\n             request(NUMBER_OF_EVENTS);\n         }\n     }\n });\n```\n\n**Receiving from all partitions**\n\n```java\n// Receives events from all partitions from the beginning of each partition.\n consumer.receive(true).subscribe(partitionEvent -> {\n     PartitionContext context = partitionEvent.getPartitionContext();\n     EventData event = partitionEvent.getData();\n     System.out.printf(\"Event %s is from partition %s%n.\", event.getSequenceNumber(), context.getPartitionId());\n });\n```"
+  syntax:
+    content: public class EventHubConsumerAsyncClient implements Closeable
+  inheritance:
+  - java.lang.Object
+  implements:
+  - java.io.Closeable
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.EventHubConsumerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,int,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable)
+  id: EventHubConsumerAsyncClient(java.lang.String,java.lang.String,com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor,com.azure.core.amqp.implementation.MessageSerializer,com.azure.core.util.serializer.ObjectSerializer,java.lang.String,int,reactor.core.scheduler.Scheduler,boolean,java.lang.Runnable)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: EventHubConsumerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, MessageSerializer messageSerializer, ObjectSerializer serializer, String consumerGroup, int prefetchCount, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClosed)
+  nameWithType: EventHubConsumerAsyncClient.EventHubConsumerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, MessageSerializer messageSerializer, ObjectSerializer serializer, String consumerGroup, int prefetchCount, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClosed)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.EventHubConsumerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, MessageSerializer messageSerializer, ObjectSerializer serializer, String consumerGroup, int prefetchCount, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClosed)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.EventHubConsumerAsyncClient*
+  type: Constructor
+  package: com.azure.messaging.eventhubs
+  syntax:
+    content: " EventHubConsumerAsyncClient(String fullyQualifiedNamespace, String eventHubName, EventHubConnectionProcessor connectionProcessor, MessageSerializer messageSerializer, ObjectSerializer serializer, String consumerGroup, int prefetchCount, Scheduler scheduler, boolean isSharedConnection, Runnable onClientClosed)"
+    parameters:
+    - id: fullyQualifiedNamespace
+      type: java.lang.String
+    - id: eventHubName
+      type: java.lang.String
+    - id: connectionProcessor
+      type: com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor
+    - id: messageSerializer
+      type: com.azure.core.amqp.implementation.MessageSerializer
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+    - id: consumerGroup
+      type: java.lang.String
+    - id: prefetchCount
+      type: int
+    - id: scheduler
+      type: reactor.core.scheduler.Scheduler
+    - id: isSharedConnection
+      type: boolean
+    - id: onClientClosed
+      type: java.lang.Runnable
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close()
+  id: close()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: close()
+  nameWithType: EventHubConsumerAsyncClient.close()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Disposes of the consumer by closing the underlying connection to the service.
+  syntax:
+    content: public void close()
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup()
+  id: getConsumerGroup()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getConsumerGroup()
+  nameWithType: EventHubConsumerAsyncClient.getConsumerGroup()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Gets the consumer group this consumer is reading events as a part of.
+  syntax:
+    content: public String getConsumerGroup()
+    return:
+      type: java.lang.String
+      description: The consumer group this consumer is reading events as a part of.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName()
+  id: getEventHubName()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getEventHubName()
+  nameWithType: EventHubConsumerAsyncClient.getEventHubName()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Gets the Event Hub name this client interacts with.
+  syntax:
+    content: public String getEventHubName()
+    return:
+      type: java.lang.String
+      description: The Event Hub name this client interacts with.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties()
+  id: getEventHubProperties()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getEventHubProperties()
+  nameWithType: EventHubConsumerAsyncClient.getEventHubProperties()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves information about an Event Hub, including the number of partitions present and their identifiers.
+  syntax:
+    content: public Mono<EventHubProperties> getEventHubProperties()
+    return:
+      type: reactor.core.publisher.Mono<com.azure.messaging.eventhubs.EventHubProperties>
+      description: The set of information for the Event Hub that this client is associated with.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace()
+  id: getFullyQualifiedNamespace()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getFullyQualifiedNamespace()
+  nameWithType: EventHubConsumerAsyncClient.getFullyQualifiedNamespace()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Gets the fully qualified Event Hubs namespace that the connection is associated with. This is likely similar to `{yournamespace}.servicebus.windows.net`.
+  syntax:
+    content: public String getFullyQualifiedNamespace()
+    return:
+      type: java.lang.String
+      description: The fully qualified Event Hubs namespace that the connection is associated with
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds()
+  id: getPartitionIds()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getPartitionIds()
+  nameWithType: EventHubConsumerAsyncClient.getPartitionIds()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves the identifiers for the partitions of an Event Hub.
+  syntax:
+    content: public Flux<String> getPartitionIds()
+    return:
+      type: reactor.core.publisher.Flux<java.lang.String>
+      description: A Flux of identifiers for the partitions of an Event Hub.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties(java.lang.String)
+  id: getPartitionProperties(java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: getPartitionProperties(String partitionId)
+  nameWithType: EventHubConsumerAsyncClient.getPartitionProperties(String partitionId)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties(String partitionId)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves information about a specific partition for an Event Hub, including elements that describe the available events in the partition event stream.
+  syntax:
+    content: public Mono<PartitionProperties> getPartitionProperties(String partitionId)
+    parameters:
+    - id: partitionId
+      type: java.lang.String
+      description: The unique identifier of a partition associated with the Event Hub.
+    return:
+      type: reactor.core.publisher.Mono<com.azure.messaging.eventhubs.PartitionProperties>
+      description: The set of information for the requested partition under the Event Hub this client is associated with.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive()
+  id: receive()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: receive()
+  nameWithType: EventHubConsumerAsyncClient.receive()
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive()
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Consumes events from all partitions starting from the beginning of each partition.
+
+
+    This method is **not** recommended for production use; the <xref uid="com.azure.messaging.eventhubs.EventProcessorClient" data-throw-if-not-resolved="false">EventProcessorClient</xref> should be used for reading events from all partitions in a production scenario, as it offers a much more robust experience with higher throughput. It is important to note that this method does not guarantee fairness amongst the partitions. Depending on service communication, there may be a clustering of events per partition and/or there may be a noticeable bias for a given partition or subset of partitions.
+  syntax:
+    content: public Flux<PartitionEvent> receive()
+    return:
+      type: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+      description: A stream of events for every partition in the Event Hub starting from the beginning of each partition.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean)
+  id: receive(boolean)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: receive(boolean startReadingAtEarliestEvent)
+  nameWithType: EventHubConsumerAsyncClient.receive(boolean startReadingAtEarliestEvent)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean startReadingAtEarliestEvent)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Consumes events from all partitions.
+
+
+    This method is **not** recommended for production use; the <xref uid="com.azure.messaging.eventhubs.EventProcessorClient" data-throw-if-not-resolved="false">EventProcessorClient</xref> should be used for reading events from all partitions in a production scenario, as it offers a much more robust experience with higher throughput. It is important to note that this method does not guarantee fairness amongst the partitions. Depending on service communication, there may be a clustering of events per partition and/or there may be a noticeable bias for a given partition or subset of partitions.
+  syntax:
+    content: public Flux<PartitionEvent> receive(boolean startReadingAtEarliestEvent)
+    parameters:
+    - id: startReadingAtEarliestEvent
+      type: boolean
+      description: >-
+        <code>true</code> to begin reading at the first events available in each
+             partition; otherwise, reading will begin at the end of each partition seeing only new events as they are
+             published.
+    return:
+      type: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+      description: A stream of events for every partition in the Event Hub.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  id: receive(boolean,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: receive(boolean startReadingAtEarliestEvent, ReceiveOptions receiveOptions)
+  nameWithType: EventHubConsumerAsyncClient.receive(boolean startReadingAtEarliestEvent, ReceiveOptions receiveOptions)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive(boolean startReadingAtEarliestEvent, ReceiveOptions receiveOptions)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Consumes events from all partitions configured with a set of `receiveOptions`.
+
+
+    This method is **not** recommended for production use; the <xref uid="com.azure.messaging.eventhubs.EventProcessorClient" data-throw-if-not-resolved="false">EventProcessorClient</xref> should be used for reading events from all partitions in a production scenario, as it offers a much more robust experience with higher throughput. It is important to note that this method does not guarantee fairness amongst the partitions. Depending on service communication, there may be a clustering of events per partition and/or there may be a noticeable bias for a given partition or subset of partitions.
+
+     *  If receive is invoked where <xref uid="com.azure.messaging.eventhubs.models.ReceiveOptions.getOwnerLevel()" data-throw-if-not-resolved="false">ReceiveOptions#getOwnerLevel()</xref> has a value, then Event Hubs service will guarantee only one active consumer exists per partitionId and consumer group combination. This receive operation is sometimes referred to as an "Epoch Consumer".
+     *  Multiple consumers per partitionId and consumer group combination can be created by not setting <xref uid="com.azure.messaging.eventhubs.models.ReceiveOptions.getOwnerLevel()" data-throw-if-not-resolved="false">ReceiveOptions#getOwnerLevel()</xref> when invoking receive operations. This non-exclusive consumer is sometimes referred to as a "Non-Epoch Consumer."
+  syntax:
+    content: public Flux<PartitionEvent> receive(boolean startReadingAtEarliestEvent, ReceiveOptions receiveOptions)
+    parameters:
+    - id: startReadingAtEarliestEvent
+      type: boolean
+      description: >-
+        <code>true</code> to begin reading at the first events available in each
+             partition; otherwise, reading will begin at the end of each partition seeing only new events as they are
+             published.
+    - id: receiveOptions
+      type: com.azure.messaging.eventhubs.models.ReceiveOptions
+      description: Options when receiving events from each Event Hub partition.
+    return:
+      type: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+      description: A stream of events for every partition in the Event Hub.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition)
+  id: receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: receiveFromPartition(String partitionId, EventPosition startingPosition)
+  nameWithType: EventHubConsumerAsyncClient.receiveFromPartition(String partitionId, EventPosition startingPosition)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(String partitionId, EventPosition startingPosition)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Consumes events from a single partition starting at `startingPosition`.
+  syntax:
+    content: public Flux<PartitionEvent> receiveFromPartition(String partitionId, EventPosition startingPosition)
+    parameters:
+    - id: partitionId
+      type: java.lang.String
+      description: Identifier of the partition to read events from.
+    - id: startingPosition
+      type: com.azure.messaging.eventhubs.models.EventPosition
+      description: Position within the Event Hub partition to begin consuming events.
+    return:
+      type: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+      description: A stream of events for this partition starting from <code>startingPosition</code>.
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  id: receiveFromPartition(java.lang.String,com.azure.messaging.eventhubs.models.EventPosition,com.azure.messaging.eventhubs.models.ReceiveOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  langs:
+  - java
+  name: receiveFromPartition(String partitionId, EventPosition startingPosition, ReceiveOptions receiveOptions)
+  nameWithType: EventHubConsumerAsyncClient.receiveFromPartition(String partitionId, EventPosition startingPosition, ReceiveOptions receiveOptions)
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition(String partitionId, EventPosition startingPosition, ReceiveOptions receiveOptions)
+  overload: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Consumes events from a single partition starting at `startingPosition` with a set of <xref uid="com.azure.messaging.eventhubs.models.ReceiveOptions" data-throw-if-not-resolved="false">receive options</xref>.
+
+     *  If receive is invoked where <xref uid="com.azure.messaging.eventhubs.models.ReceiveOptions.getOwnerLevel()" data-throw-if-not-resolved="false">ReceiveOptions#getOwnerLevel()</xref> has a value, then Event Hubs service will guarantee only one active consumer exists per partitionId and consumer group combination. This receive operation is sometimes referred to as an "Epoch Consumer".
+     *  Multiple consumers per partitionId and consumer group combination can be created by not setting <xref uid="com.azure.messaging.eventhubs.models.ReceiveOptions.getOwnerLevel()" data-throw-if-not-resolved="false">ReceiveOptions#getOwnerLevel()</xref> when invoking receive operations. This non-exclusive consumer is sometimes referred to as a "Non-Epoch Consumer."
+  syntax:
+    content: public Flux<PartitionEvent> receiveFromPartition(String partitionId, EventPosition startingPosition, ReceiveOptions receiveOptions)
+    parameters:
+    - id: partitionId
+      type: java.lang.String
+      description: Identifier of the partition to read events from.
+    - id: startingPosition
+      type: com.azure.messaging.eventhubs.models.EventPosition
+      description: Position within the Event Hub partition to begin consuming events.
+    - id: receiveOptions
+      type: com.azure.messaging.eventhubs.models.ReceiveOptions
+      description: Options when receiving events from the partition.
+    return:
+      type: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+      description: >-
+        A stream of events for this partition. If a stream for the events was opened before, the same position
+             within that partition is returned. Otherwise, events are read starting from <code>startingPosition</code>.
+references:
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor
+  name: EventHubConnectionProcessor
+  nameWithType: EventHubConnectionProcessor
+  fullName: com.azure.messaging.eventhubs.implementation.EventHubConnectionProcessor
+- uid: com.azure.core.amqp.implementation.MessageSerializer
+  spec.java:
+  - uid: com.azure.core.amqp.implementation.MessageSerializer
+    name: MessageSerializer
+    fullName: com.azure.core.amqp.implementation.MessageSerializer
+- uid: com.azure.core.util.serializer.ObjectSerializer
+  spec.java:
+  - uid: com.azure.core.util.serializer.ObjectSerializer
+    name: ObjectSerializer
+    fullName: com.azure.core.util.serializer.ObjectSerializer
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: reactor.core.scheduler.Scheduler
+  spec.java:
+  - uid: reactor.core.scheduler.Scheduler
+    name: Scheduler
+    fullName: reactor.core.scheduler.Scheduler
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: java.lang.Runnable
+  spec.java:
+  - uid: java.lang.Runnable
+    name: Runnable
+    fullName: java.lang.Runnable
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.EventHubConsumerAsyncClient*
+  name: EventHubConsumerAsyncClient
+  nameWithType: EventHubConsumerAsyncClient.EventHubConsumerAsyncClient
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.EventHubConsumerAsyncClient
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace*
+  name: getFullyQualifiedNamespace
+  nameWithType: EventHubConsumerAsyncClient.getFullyQualifiedNamespace
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getFullyQualifiedNamespace
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName*
+  name: getEventHubName
+  nameWithType: EventHubConsumerAsyncClient.getEventHubName
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubName
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup*
+  name: getConsumerGroup
+  nameWithType: EventHubConsumerAsyncClient.getConsumerGroup
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getConsumerGroup
+  package: com.azure.messaging.eventhubs
+- uid: reactor.core.publisher.Mono<com.azure.messaging.eventhubs.EventHubProperties>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.eventhubs.EventHubProperties
+    name: EventHubProperties
+    fullName: com.azure.messaging.eventhubs.EventHubProperties
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties*
+  name: getEventHubProperties
+  nameWithType: EventHubConsumerAsyncClient.getEventHubProperties
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getEventHubProperties
+  package: com.azure.messaging.eventhubs
+- uid: reactor.core.publisher.Flux<java.lang.String>
+  spec.java:
+  - uid: reactor.core.publisher.Flux
+    name: Flux
+    fullName: reactor.core.publisher.Flux
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds*
+  name: getPartitionIds
+  nameWithType: EventHubConsumerAsyncClient.getPartitionIds
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionIds
+  package: com.azure.messaging.eventhubs
+- uid: reactor.core.publisher.Mono<com.azure.messaging.eventhubs.PartitionProperties>
+  spec.java:
+  - uid: reactor.core.publisher.Mono
+    name: Mono
+    fullName: reactor.core.publisher.Mono
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.eventhubs.PartitionProperties
+    name: PartitionProperties
+    fullName: com.azure.messaging.eventhubs.PartitionProperties
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties*
+  name: getPartitionProperties
+  nameWithType: EventHubConsumerAsyncClient.getPartitionProperties
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.getPartitionProperties
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.models.EventPosition
+  name: EventPosition
+  nameWithType: EventPosition
+  fullName: com.azure.messaging.eventhubs.models.EventPosition
+- uid: reactor.core.publisher.Flux<com.azure.messaging.eventhubs.models.PartitionEvent>
+  spec.java:
+  - uid: reactor.core.publisher.Flux
+    name: Flux
+    fullName: reactor.core.publisher.Flux
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.eventhubs.models.PartitionEvent
+    name: PartitionEvent
+    fullName: com.azure.messaging.eventhubs.models.PartitionEvent
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition*
+  name: receiveFromPartition
+  nameWithType: EventHubConsumerAsyncClient.receiveFromPartition
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receiveFromPartition
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.models.ReceiveOptions
+  name: ReceiveOptions
+  nameWithType: ReceiveOptions
+  fullName: com.azure.messaging.eventhubs.models.ReceiveOptions
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive*
+  name: receive
+  nameWithType: EventHubConsumerAsyncClient.receive
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.receive
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close*
+  name: close
+  nameWithType: EventHubConsumerAsyncClient.close
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient.close
+  package: com.azure.messaging.eventhubs
+- uid: java.io.Closeable
+  name: Closeable
+  nameWithType: Closeable
+  fullName: java.io.Closeable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: reactor.core.publisher.Mono
+  name: Mono
+  nameWithType: Mono
+  fullName: reactor.core.publisher.Mono
+- uid: com.azure.messaging.eventhubs.EventHubProperties
+  name: EventHubProperties
+  nameWithType: EventHubProperties
+  fullName: com.azure.messaging.eventhubs.EventHubProperties
+- uid: reactor.core.publisher.Flux
+  name: Flux
+  nameWithType: Flux
+  fullName: reactor.core.publisher.Flux
+- uid: com.azure.messaging.eventhubs.PartitionProperties
+  name: PartitionProperties
+  nameWithType: PartitionProperties
+  fullName: com.azure.messaging.eventhubs.PartitionProperties
+- uid: com.azure.messaging.eventhubs.models.PartitionEvent
+  name: PartitionEvent
+  nameWithType: PartitionEvent
+  fullName: com.azure.messaging.eventhubs.models.PartitionEvent

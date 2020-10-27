@@ -1,43 +1,608 @@
-### YamlMime:JavaType
-uid: "com.azure.messaging.eventhubs.EventHubProducerClient"
-fullName: "com.azure.messaging.eventhubs.EventHubProducerClient"
-name: "EventHubProducerClient"
-nameWithType: "EventHubProducerClient"
-summary: "A **synchronous** producer responsible for transmitting <xref uid=\"com.azure.messaging.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> to a specific Event Hub, grouped together in batches. Depending on the <xref uid=\"com.azure.messaging.eventhubs.models.CreateBatchOptions\" data-throw-if-not-resolved=\"false\">options</xref> specified when creating an <xref uid=\"com.azure.messaging.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>, the events may be automatically routed to an available partition or specific to a partition.\n\nAllowing automatic routing of partitions is recommended when:\n\n *  The sending of events needs to be highly available.\n *  The event data should be evenly distributed among all available partitions.\n\nIf no partition id is specified, the following rules are used for automatically selecting one:\n\n1.  Distribute the events equally amongst all available partitions using a round-robin approach.\n2.  If a partition becomes unavailable, the Event Hubs service will automatically detect it and forward the message to another available partition.\n\n**Create a producer and publish events to any partition**\n\n```java\n// The required parameter is a way to authenticate with Event Hubs using credentials.\n // The connectionString provides a way to authenticate with Event Hub.\n EventHubProducerClient producer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\",\n         \"event-hub-name\")\n     .buildProducerClient();\n List<EventData> events = Arrays.asList(new EventData(\"test-event-1\"), new EventData(\"test-event-2\"));\n \n // Creating a batch without options set, will allow for automatic routing of events to any partition.\n EventDataBatch batch = producer.createBatch();\n for (EventData event : events) {\n     if (batch.tryAdd(event)) {\n         continue;\n     }\n \n     producer.send(batch);\n     batch = producer.createBatch();\n     if (!batch.tryAdd(event)) {\n         throw new IllegalArgumentException(\"Event is too large for an empty batch.\");\n     }\n }\n```\n\n**Publish events to partition \"foo\"**\n\n```java\n// Creating a batch with partitionId set will route all events in that batch to partition `foo`.\n CreateBatchOptions options = new CreateBatchOptions().setPartitionId(\"foo\");\n \n EventDataBatch batch = producer.createBatch(options);\n batch.tryAdd(new EventData(\"data-to-partition-foo\"));\n producer.send(batch);\n```\n\n**Publish events to the same partition, grouped together using partition key**\n\n```java\nList<EventData> events = Arrays.asList(new EventData(\"sourdough\"), new EventData(\"rye\"),\n     new EventData(\"wheat\"));\n \n // Creating a batch with partitionKey set will tell the service to hash the partitionKey and decide which\n // partition to send the events to. Events with the same partitionKey are always routed to the same partition.\n CreateBatchOptions options = new CreateBatchOptions().setPartitionKey(\"bread\");\n EventDataBatch batch = producer.createBatch(options);\n \n events.forEach(event -> batch.tryAdd(event));\n producer.send(batch);\n```\n\n**Publish events using a size-limited <xref uid=\"com.azure.messaging.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>**\n\n```java\nfinal List<EventData> telemetryEvents = Arrays.asList(firstEvent, secondEvent, thirdEvent);\n \n // Setting `setMaximumSizeInBytes` when creating a batch, limits the size of that batch.\n // In this case, all the batches created with these options are limited to 256 bytes.\n final CreateBatchOptions options = new CreateBatchOptions()\n     .setMaximumSizeInBytes(256);\n \n EventDataBatch currentBatch = producer.createBatch(options);\n \n // For each telemetry event, we try to add it to the current batch.\n // When the batch is full, send it then create another batch to add more events to.\n for (EventData event : telemetryEvents) {\n     if (!currentBatch.tryAdd(event)) {\n         producer.send(currentBatch);\n         currentBatch = producer.createBatch(options);\n \n         // Add the event we couldn't before.\n         if (!currentBatch.tryAdd(event)) {\n             throw new IllegalArgumentException(\"Event is too large for an empty batch.\");\n         }\n     }\n }\n```"
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-syntax: "public class EventHubProducerClient implements Closeable"
-methods:
-- "com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.<T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.close()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.createBatch()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds()"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties(java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties(java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.send(com.azure.messaging.eventhubs.EventDataBatch)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)"
-- "com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)"
-type: "class"
-implements:
-- "<xref href=\"java.io.Closeable?alt=java.io.Closeable&text=Closeable\" data-throw-if-not-resolved=\"False\" />"
-metadata: {}
-package: "com.azure.messaging.eventhubs"
-artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient
+  id: EventHubProducerClient
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs
+  children:
+  - com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.<T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.close()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.createBatch()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds()
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties(java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties(java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.send(com.azure.messaging.eventhubs.EventDataBatch)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)
+  - com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)
+  langs:
+  - java
+  name: EventHubProducerClient
+  nameWithType: EventHubProducerClient
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient
+  type: Class
+  package: com.azure.messaging.eventhubs
+  summary: "A **synchronous** producer responsible for transmitting <xref uid=\"com.azure.messaging.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> to a specific Event Hub, grouped together in batches. Depending on the <xref uid=\"com.azure.messaging.eventhubs.models.CreateBatchOptions\" data-throw-if-not-resolved=\"false\">options</xref> specified when creating an <xref uid=\"com.azure.messaging.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>, the events may be automatically routed to an available partition or specific to a partition.\n\nAllowing automatic routing of partitions is recommended when:\n\n *  The sending of events needs to be highly available.\n *  The event data should be evenly distributed among all available partitions.\n\nIf no partition id is specified, the following rules are used for automatically selecting one:\n\n1.  Distribute the events equally amongst all available partitions using a round-robin approach.\n2.  If a partition becomes unavailable, the Event Hubs service will automatically detect it and forward the message to another available partition.\n\n**Create a producer and publish events to any partition**\n\n```java\n// The required parameter is a way to authenticate with Event Hubs using credentials.\n // The connectionString provides a way to authenticate with Event Hub.\n EventHubProducerClient producer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\",\n         \"event-hub-name\")\n     .buildProducerClient();\n List<EventData> events = Arrays.asList(new EventData(\"test-event-1\"), new EventData(\"test-event-2\"));\n \n // Creating a batch without options set, will allow for automatic routing of events to any partition.\n EventDataBatch batch = producer.createBatch();\n for (EventData event : events) {\n     if (batch.tryAdd(event)) {\n         continue;\n     }\n \n     producer.send(batch);\n     batch = producer.createBatch();\n     if (!batch.tryAdd(event)) {\n         throw new IllegalArgumentException(\"Event is too large for an empty batch.\");\n     }\n }\n```\n\n**Publish events to partition \"foo\"**\n\n```java\n// Creating a batch with partitionId set will route all events in that batch to partition `foo`.\n CreateBatchOptions options = new CreateBatchOptions().setPartitionId(\"foo\");\n \n EventDataBatch batch = producer.createBatch(options);\n batch.tryAdd(new EventData(\"data-to-partition-foo\"));\n producer.send(batch);\n```\n\n**Publish events to the same partition, grouped together using partition key**\n\n```java\nList<EventData> events = Arrays.asList(new EventData(\"sourdough\"), new EventData(\"rye\"),\n     new EventData(\"wheat\"));\n \n // Creating a batch with partitionKey set will tell the service to hash the partitionKey and decide which\n // partition to send the events to. Events with the same partitionKey are always routed to the same partition.\n CreateBatchOptions options = new CreateBatchOptions().setPartitionKey(\"bread\");\n EventDataBatch batch = producer.createBatch(options);\n \n events.forEach(event -> batch.tryAdd(event));\n producer.send(batch);\n```\n\n**Publish events using a size-limited <xref uid=\"com.azure.messaging.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\">EventDataBatch</xref>**\n\n```java\nfinal List<EventData> telemetryEvents = Arrays.asList(firstEvent, secondEvent, thirdEvent);\n \n // Setting `setMaximumSizeInBytes` when creating a batch, limits the size of that batch.\n // In this case, all the batches created with these options are limited to 256 bytes.\n final CreateBatchOptions options = new CreateBatchOptions()\n     .setMaximumSizeInBytes(256);\n \n EventDataBatch currentBatch = producer.createBatch(options);\n \n // For each telemetry event, we try to add it to the current batch.\n // When the batch is full, send it then create another batch to add more events to.\n for (EventData event : telemetryEvents) {\n     if (!currentBatch.tryAdd(event)) {\n         producer.send(currentBatch);\n         currentBatch = producer.createBatch(options);\n \n         // Add the event we couldn't before.\n         if (!currentBatch.tryAdd(event)) {\n             throw new IllegalArgumentException(\"Event is too large for an empty batch.\");\n         }\n     }\n }\n```"
+  syntax:
+    content: public class EventHubProducerClient implements Closeable
+  inheritance:
+  - java.lang.Object
+  implements:
+  - java.io.Closeable
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>)
+  id: <T>createBatch(java.lang.Class<T>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: <T>createBatch(Class<T> objectType)
+  nameWithType: EventHubProducerClient.<T>createBatch(Class<T> objectType)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(Class<T> objectType)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates an <xref uid="com.azure.messaging.eventhubs.ObjectBatch" data-throw-if-not-resolved="false">ObjectBatch</xref> that can fit as many events as the transport allows.
+  syntax:
+    content: public ObjectBatch<T> <T>createBatch(Class<T> objectType)
+    parameters:
+    - id: objectType
+      type: java.lang.Class<T>
+      description: The class of the object type.
+    return:
+      type: com.azure.messaging.eventhubs.ObjectBatch<T>
+      description: The object batch.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  id: <T>createBatch(java.lang.Class<T>,com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: <T>createBatch(Class<T> objectType, CreateBatchOptions options)
+  nameWithType: EventHubProducerClient.<T>createBatch(Class<T> objectType, CreateBatchOptions options)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.<T>createBatch(Class<T> objectType, CreateBatchOptions options)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates an <xref uid="com.azure.messaging.eventhubs.ObjectBatch" data-throw-if-not-resolved="false">ObjectBatch</xref> that can fit as many events as the transport allows.
+  syntax:
+    content: public ObjectBatch<T> <T>createBatch(Class<T> objectType, CreateBatchOptions options)
+    parameters:
+    - id: objectType
+      type: java.lang.Class<T>
+      description: The class of the object type.
+    - id: options
+      type: com.azure.messaging.eventhubs.models.CreateBatchOptions
+      description: A set of options used to configure the <xref uid="com.azure.messaging.eventhubs.ObjectBatch" data-throw-if-not-resolved="false">ObjectBatch</xref>.
+    return:
+      type: com.azure.messaging.eventhubs.ObjectBatch<T>
+      description: The object batch.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.<T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
+  id: <T>send(com.azure.messaging.eventhubs.ObjectBatch<T>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: <T>send(ObjectBatch<T> objectBatch)
+  nameWithType: EventHubProducerClient.<T>send(ObjectBatch<T> objectBatch)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.<T>send(ObjectBatch<T> objectBatch)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.send*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sends the object batch to the associated Event Hub.
+  syntax:
+    content: public void <T>send(ObjectBatch<T> objectBatch)
+    parameters:
+    - id: objectBatch
+      type: com.azure.messaging.eventhubs.ObjectBatch<T>
+      description: The batch to send to the service.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.EventHubProducerClient(com.azure.messaging.eventhubs.EventHubProducerAsyncClient,java.time.Duration)
+  id: EventHubProducerClient(com.azure.messaging.eventhubs.EventHubProducerAsyncClient,java.time.Duration)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: EventHubProducerClient(EventHubProducerAsyncClient producer, Duration tryTimeout)
+  nameWithType: EventHubProducerClient.EventHubProducerClient(EventHubProducerAsyncClient producer, Duration tryTimeout)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.EventHubProducerClient(EventHubProducerAsyncClient producer, Duration tryTimeout)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.EventHubProducerClient*
+  type: Constructor
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new instance of <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> that sends messages to an Azure Event Hub.
+  syntax:
+    content: " EventHubProducerClient(EventHubProducerAsyncClient producer, Duration tryTimeout)"
+    parameters:
+    - id: producer
+      type: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+    - id: tryTimeout
+      type: java.time.Duration
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.close()
+  id: close()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: close()
+  nameWithType: EventHubProducerClient.close()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.close()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.close*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  syntax:
+    content: public void close()
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch()
+  id: createBatch()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: createBatch()
+  nameWithType: EventHubProducerClient.createBatch()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates an <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> that can fit as many events as the transport allows.
+  syntax:
+    content: public EventDataBatch createBatch()
+    return:
+      type: com.azure.messaging.eventhubs.EventDataBatch
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> that can fit as many events as the transport allows.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  id: createBatch(com.azure.messaging.eventhubs.models.CreateBatchOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: createBatch(CreateBatchOptions options)
+  nameWithType: EventHubProducerClient.createBatch(CreateBatchOptions options)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch(CreateBatchOptions options)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates an <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> configured with the options specified.
+  syntax:
+    content: public EventDataBatch createBatch(CreateBatchOptions options)
+    parameters:
+    - id: options
+      type: com.azure.messaging.eventhubs.models.CreateBatchOptions
+      description: A set of options used to configure the <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref>.
+    return:
+      type: com.azure.messaging.eventhubs.EventDataBatch
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventDataBatch" data-throw-if-not-resolved="false">EventDataBatch</xref> that can fit as many events as the transport allows.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName()
+  id: getEventHubName()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getEventHubName()
+  nameWithType: EventHubProducerClient.getEventHubName()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Gets the Event Hub name this client interacts with.
+  syntax:
+    content: public String getEventHubName()
+    return:
+      type: java.lang.String
+      description: The Event Hub name this client interacts with.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties()
+  id: getEventHubProperties()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getEventHubProperties()
+  nameWithType: EventHubProducerClient.getEventHubProperties()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves information about an Event Hub, including the number of partitions present and their identifiers.
+  syntax:
+    content: public EventHubProperties getEventHubProperties()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubProperties
+      description: The set of information for the Event Hub that this client is associated with.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace()
+  id: getFullyQualifiedNamespace()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getFullyQualifiedNamespace()
+  nameWithType: EventHubProducerClient.getFullyQualifiedNamespace()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Gets the fully qualified Event Hubs namespace that the connection is associated with. This is likely similar to `{yournamespace}.servicebus.windows.net`.
+  syntax:
+    content: public String getFullyQualifiedNamespace()
+    return:
+      type: java.lang.String
+      description: The fully qualified Event Hubs namespace that the connection is associated with.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds()
+  id: getPartitionIds()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getPartitionIds()
+  nameWithType: EventHubProducerClient.getPartitionIds()
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds()
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves the identifiers for the partitions of an Event Hub.
+  syntax:
+    content: public IterableStream<String> getPartitionIds()
+    return:
+      type: com.azure.core.util.IterableStream<java.lang.String>
+      description: A Flux of identifiers for the partitions of an Event Hub.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties(java.lang.String)
+  id: getPartitionProperties(java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getPartitionProperties(String partitionId)
+  nameWithType: EventHubProducerClient.getPartitionProperties(String partitionId)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties(String partitionId)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Retrieves information about a specific partition for an Event Hub, including elements that describe the available events in the partition event stream.
+  syntax:
+    content: public PartitionProperties getPartitionProperties(String partitionId)
+    parameters:
+    - id: partitionId
+      type: java.lang.String
+      description: The unique identifier of a partition associated with the Event Hub.
+    return:
+      type: com.azure.messaging.eventhubs.PartitionProperties
+      description: The set of information for the requested partition under the Event Hub this client is associated with.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties(java.lang.String)
+  id: getPartitionPublishingProperties(java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: getPartitionPublishingProperties(String partitionId)
+  nameWithType: EventHubProducerClient.getPartitionPublishingProperties(String partitionId)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties(String partitionId)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Get the idempotent producer's publishing state of a partition.
+  syntax:
+    content: public PartitionPublishingProperties getPartitionPublishingProperties(String partitionId)
+    parameters:
+    - id: partitionId
+      type: java.lang.String
+      description: The partition id of the publishing state
+    return:
+      type: com.azure.messaging.eventhubs.PartitionPublishingProperties
+      description: >-
+        A mono that has the <xref uid="com.azure.messaging.eventhubs.PartitionPublishingProperties" data-throw-if-not-resolved="false">PartitionPublishingProperties</xref>.
+         <code>null</code> if the partition doesn't have any state yet.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.send(com.azure.messaging.eventhubs.EventDataBatch)
+  id: send(com.azure.messaging.eventhubs.EventDataBatch)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: send(EventDataBatch batch)
+  nameWithType: EventHubProducerClient.send(EventDataBatch batch)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.send(EventDataBatch batch)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.send*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sends the batch to the associated Event Hub.
+  syntax:
+    content: public void send(EventDataBatch batch)
+    parameters:
+    - id: batch
+      type: com.azure.messaging.eventhubs.EventDataBatch
+      description: The batch to send to the service.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)
+  id: send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: send(Iterable<EventData> events)
+  nameWithType: EventHubProducerClient.send(Iterable<EventData> events)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.send(Iterable<EventData> events)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.send*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Sends a set of events to the associated Event Hub using a batched approach. If the size of events exceed the maximum size of a single batch, an exception will be triggered and the send will fail. By default, the message size is the max amount allowed on the link.
+
+
+    ```java
+
+    List<EventData> events = Arrays.asList(new EventData("maple"), new EventData("aspen"),
+         new EventData("oak"));
+     producer.send(events);
+    ```
+
+
+    For more information regarding the maximum event size allowed, see [Azure Event Hubs Quotas and Limits][].
+
+
+
+    [Azure Event Hubs Quotas and Limits]: https://docs.microsoft.com/azure/event-hubs/event-hubs-quotas
+  syntax:
+    content: public void send(Iterable<EventData> events)
+    parameters:
+    - id: events
+      type: java.lang.Iterable<com.azure.messaging.eventhubs.EventData>
+      description: Events to send to the service.
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)
+  id: send(java.lang.Iterable<com.azure.messaging.eventhubs.EventData>,com.azure.messaging.eventhubs.models.SendOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubProducerClient
+  langs:
+  - java
+  name: send(Iterable<EventData> events, SendOptions options)
+  nameWithType: EventHubProducerClient.send(Iterable<EventData> events, SendOptions options)
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.send(Iterable<EventData> events, SendOptions options)
+  overload: com.azure.messaging.eventhubs.EventHubProducerClient.send*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Sends a set of events to the associated Event Hub using a batched approach. If the size of events exceed the maximum size of a single batch, an exception will be triggered and the send will fail. By default, the message size is the max amount allowed on the link.
+
+
+    ```java
+
+    List<EventData> events = Arrays.asList(new EventData("Melbourne"), new EventData("London"),
+         new EventData("New York"));
+     SendOptions sendOptions = new SendOptions().setPartitionKey("cities");
+     producer.send(events, sendOptions);
+    ```
+
+
+    For more information regarding the maximum event size allowed, see [Azure Event Hubs Quotas and Limits][].
+
+
+
+    [Azure Event Hubs Quotas and Limits]: https://docs.microsoft.com/azure/event-hubs/event-hubs-quotas
+  syntax:
+    content: public void send(Iterable<EventData> events, SendOptions options)
+    parameters:
+    - id: events
+      type: java.lang.Iterable<com.azure.messaging.eventhubs.EventData>
+      description: Events to send to the service.
+    - id: options
+      type: com.azure.messaging.eventhubs.models.SendOptions
+      description: The set of options to consider when sending this batch.
+references:
+- uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+  name: EventHubProducerAsyncClient
+  nameWithType: EventHubProducerAsyncClient
+  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.EventHubProducerClient*
+  name: EventHubProducerClient
+  nameWithType: EventHubProducerClient.EventHubProducerClient
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.EventHubProducerClient
+  package: com.azure.messaging.eventhubs
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName*
+  name: getEventHubName
+  nameWithType: EventHubProducerClient.getEventHubName
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubName
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace*
+  name: getFullyQualifiedNamespace
+  nameWithType: EventHubProducerClient.getFullyQualifiedNamespace
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getFullyQualifiedNamespace
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubProperties
+  name: EventHubProperties
+  nameWithType: EventHubProperties
+  fullName: com.azure.messaging.eventhubs.EventHubProperties
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties*
+  name: getEventHubProperties
+  nameWithType: EventHubProducerClient.getEventHubProperties
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getEventHubProperties
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.util.IterableStream<java.lang.String>
+  spec.java:
+  - uid: com.azure.core.util.IterableStream
+    name: IterableStream
+    fullName: com.azure.core.util.IterableStream
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds*
+  name: getPartitionIds
+  nameWithType: EventHubProducerClient.getPartitionIds
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionIds
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.PartitionProperties
+  name: PartitionProperties
+  nameWithType: PartitionProperties
+  fullName: com.azure.messaging.eventhubs.PartitionProperties
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties*
+  name: getPartitionProperties
+  nameWithType: EventHubProducerClient.getPartitionProperties
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionProperties
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.PartitionPublishingProperties
+  name: PartitionPublishingProperties
+  nameWithType: PartitionPublishingProperties
+  fullName: com.azure.messaging.eventhubs.PartitionPublishingProperties
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties*
+  name: getPartitionPublishingProperties
+  nameWithType: EventHubProducerClient.getPartitionPublishingProperties
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.getPartitionPublishingProperties
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventDataBatch
+  name: EventDataBatch
+  nameWithType: EventDataBatch
+  fullName: com.azure.messaging.eventhubs.EventDataBatch
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch*
+  name: createBatch
+  nameWithType: EventHubProducerClient.createBatch
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.createBatch
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.models.CreateBatchOptions
+  name: CreateBatchOptions
+  nameWithType: CreateBatchOptions
+  fullName: com.azure.messaging.eventhubs.models.CreateBatchOptions
+- uid: java.lang.Class<T>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.ObjectBatch<T>
+  spec.java:
+  - uid: com.azure.messaging.eventhubs.ObjectBatch
+    name: ObjectBatch
+    fullName: com.azure.messaging.eventhubs.ObjectBatch
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: java.lang.Iterable<com.azure.messaging.eventhubs.EventData>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: com.azure.messaging.eventhubs.EventData
+    name: EventData
+    fullName: com.azure.messaging.eventhubs.EventData
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.send*
+  name: send
+  nameWithType: EventHubProducerClient.send
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.send
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.models.SendOptions
+  name: SendOptions
+  nameWithType: SendOptions
+  fullName: com.azure.messaging.eventhubs.models.SendOptions
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient.close*
+  name: close
+  nameWithType: EventHubProducerClient.close
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient.close
+  package: com.azure.messaging.eventhubs
+- uid: java.io.Closeable
+  name: Closeable
+  nameWithType: Closeable
+  fullName: java.io.Closeable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: com.azure.core.util.IterableStream
+  name: IterableStream
+  nameWithType: IterableStream
+  fullName: com.azure.core.util.IterableStream
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class
+- uid: com.azure.messaging.eventhubs.ObjectBatch
+  name: ObjectBatch
+  nameWithType: ObjectBatch
+  fullName: com.azure.messaging.eventhubs.ObjectBatch
+- uid: java.lang.Iterable
+  name: Iterable
+  nameWithType: Iterable
+  fullName: java.lang.Iterable
+- uid: com.azure.messaging.eventhubs.EventData
+  name: EventData
+  nameWithType: EventData
+  fullName: com.azure.messaging.eventhubs.EventData

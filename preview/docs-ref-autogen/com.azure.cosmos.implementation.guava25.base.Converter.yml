@@ -1,43 +1,680 @@
-### YamlMime:JavaType
-uid: "com.azure.cosmos.implementation.guava25.base.Converter"
-fullName: "com.azure.cosmos.implementation.guava25.base.Converter<A,B>"
-name: "Converter<A,B>"
-nameWithType: "Converter<A,B>"
-summary: "A function from `A` to `B` with an associated *reverse* function from `B` to `A`; used for converting back and forth between *different representations of the same information*.\n\n### Invertibility ###\n\nThe reverse operation **may** be a strict *inverse* (meaning that `converter.reverse().convert(converter.convert(a)).equals(a)` is always true). However, it is very common (perhaps *more* common) for round-trip conversion to be *lossy*. Consider an example round-trip using <xref uid=\"com.azure.cosmos.implementation.guava25.primitives.Doubles.stringConverter\" data-throw-if-not-resolved=\"false\">com.azure.cosmos.implementation.guava25.primitives.Doubles#stringConverter</xref>:\n\n1.  `stringConverter().convert(\"1.00\")` returns the `Double` value `1.0`\n2.  `stringConverter().reverse().convert(1.0)` returns the string `\"1.0\"` \\-- *not* the same string (`\"1.00\"`) we started with\n\nNote that it should still be the case that the round-tripped and original objects are *similar*.\n\n### Nullability ###\n\nA converter always converts `null` to `null` and non-null references to non-null references. It would not make sense to consider `null` and a non-null reference to be \"different representations of the same information\", since one is distinguishable from *missing* information and the other is not. The <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.convert\" data-throw-if-not-resolved=\"false\">#convert</xref> method handles this null behavior for all converters; implementations of <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doForward\" data-throw-if-not-resolved=\"false\">#doForward</xref> and <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doBackward\" data-throw-if-not-resolved=\"false\">#doBackward</xref> are guaranteed to never be passed `null`, and must never return `null`.\n\n### Common ways to use ###\n\nGetting a converter:\n\n *  Use a provided converter implementation, such as <xref uid=\"com.azure.cosmos.implementation.guava25.base.Enums.stringConverter\" data-throw-if-not-resolved=\"false\">Enums#stringConverter</xref>, <xref uid=\"com.azure.cosmos.implementation.guava25.primitives.Ints.stringConverter\" data-throw-if-not-resolved=\"false\">Ints.stringConverter</xref> or the <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.reverse\" data-throw-if-not-resolved=\"false\">reverse</xref> views of these.\n *  Convert between specific preset values using <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Maps.asConverter\" data-throw-if-not-resolved=\"false\">Maps.asConverter</xref>. For example, use this to create a \"fake\" converter for a unit test. It is unnecessary (and confusing) to *mock* the `Converter` type using a mocking framework.\n *  Extend this class and implement its <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doForward\" data-throw-if-not-resolved=\"false\">#doForward</xref> and <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doBackward\" data-throw-if-not-resolved=\"false\">#doBackward</xref> methods.\n *  **Java 8 users:** you may prefer to pass two lambda expressions or method references to the <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.from\" data-throw-if-not-resolved=\"false\">from</xref> factory method.\n\nUsing a converter:\n\n *  Convert one instance in the \"forward\" direction using `converter.convert(a)`.\n *  Convert multiple instances \"forward\" using `converter.convertAll(as)`.\n *  Convert in the \"backward\" direction using `converter.reverse().convert(b)` or `converter.reverse().convertAll(bs)`.\n *  Use `converter` or `converter.reverse()` anywhere a <xref uid=\"java.util.function.Function\" data-throw-if-not-resolved=\"false\">java.util.function.Function</xref> is accepted (for example <xref uid=\"java.util.stream.Stream.map\" data-throw-if-not-resolved=\"false\">Stream.map</xref>).\n *  **Do not** call <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doForward\" data-throw-if-not-resolved=\"false\">#doForward</xref> or <xref uid=\"com.azure.cosmos.implementation.guava25.base.Converter.doBackward\" data-throw-if-not-resolved=\"false\">#doBackward</xref> directly; these exist only to be overridden.\n\n### Example ###\n\n```java\nreturn new Converter<Integer, String>() {\n     protected String doForward(Integer i) {\n       return Integer.toHexString(i);\n     }\n\n     protected Integer doBackward(String s) {\n       return parseUnsignedInt(s, 16);\n     }\n   };\n```\n\nAn alternative using Java 8:\n\n```java\nreturn Converter.from(\n     Integer::toHexString,\n     s -> parseUnsignedInt(s, 16));\n```"
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-syntax: "public abstract class Converter<A,B> implements Function<A,B>"
-constructors:
-- "com.azure.cosmos.implementation.guava25.base.Converter.Converter()"
-methods:
-- "com.azure.cosmos.implementation.guava25.base.Converter.<A,B>from(com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>,com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.<C>andThen(com.azure.cosmos.implementation.guava25.base.Converter<B,C>)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.<T>identity()"
-- "com.azure.cosmos.implementation.guava25.base.Converter.apply(A)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.convert(A)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.convertAll(java.lang.Iterable<? extends A>)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.doBackward(B)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.doForward(A)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.equals(java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Converter.reverse()"
-type: "class"
-typeParameters:
-- name: "A"
-- name: "B"
-implements:
-- "<xref href=\"com.azure.cosmos.implementation.guava25.base.Function?alt=com.azure.cosmos.implementation.guava25.base.Function&text=Function\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"A?alt=A&text=A\" data-throw-if-not-resolved=\"False\" />,<xref href=\"B?alt=B&text=B\" data-throw-if-not-resolved=\"False\" />&gt;"
-metadata: {}
-package: "com.azure.cosmos.implementation.guava25.base"
-artifact: com.azure:azure-cosmos:4.4.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.base.Converter
+  id: Converter
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base
+  children:
+  - com.azure.cosmos.implementation.guava25.base.Converter.<A,B>from(com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>,com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>)
+  - com.azure.cosmos.implementation.guava25.base.Converter.<C>andThen(com.azure.cosmos.implementation.guava25.base.Converter<B,C>)
+  - com.azure.cosmos.implementation.guava25.base.Converter.<T>identity()
+  - com.azure.cosmos.implementation.guava25.base.Converter.Converter()
+  - com.azure.cosmos.implementation.guava25.base.Converter.apply(A)
+  - com.azure.cosmos.implementation.guava25.base.Converter.convert(A)
+  - com.azure.cosmos.implementation.guava25.base.Converter.convertAll(java.lang.Iterable<? extends A>)
+  - com.azure.cosmos.implementation.guava25.base.Converter.doBackward(B)
+  - com.azure.cosmos.implementation.guava25.base.Converter.doForward(A)
+  - com.azure.cosmos.implementation.guava25.base.Converter.equals(java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Converter.reverse()
+  langs:
+  - java
+  name: Converter<A,B>
+  nameWithType: Converter<A,B>
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    A function from `A` to `B` with an associated *reverse* function from `B` to `A`; used for converting back and forth between *different representations of the same information*.
+
+
+    ### Invertibility ###
+
+
+    The reverse operation **may** be a strict *inverse* (meaning that `converter.reverse().convert(converter.convert(a)).equals(a)` is always true). However, it is very common (perhaps *more* common) for round-trip conversion to be *lossy*. Consider an example round-trip using <xref uid="com.azure.cosmos.implementation.guava25.primitives.Doubles.stringConverter" data-throw-if-not-resolved="false">com.azure.cosmos.implementation.guava25.primitives.Doubles#stringConverter</xref>:
+
+
+    1.  `stringConverter().convert("1.00")` returns the `Double` value `1.0`
+
+    2.  `stringConverter().reverse().convert(1.0)` returns the string `"1.0"` \-- *not* the same string (`"1.00"`) we started with
+
+
+    Note that it should still be the case that the round-tripped and original objects are *similar*.
+
+
+    ### Nullability ###
+
+
+    A converter always converts `null` to `null` and non-null references to non-null references. It would not make sense to consider `null` and a non-null reference to be "different representations of the same information", since one is distinguishable from *missing* information and the other is not. The <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.convert" data-throw-if-not-resolved="false">#convert</xref> method handles this null behavior for all converters; implementations of <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doForward" data-throw-if-not-resolved="false">#doForward</xref> and <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doBackward" data-throw-if-not-resolved="false">#doBackward</xref> are guaranteed to never be passed `null`, and must never return `null`.
+
+
+    ### Common ways to use ###
+
+
+    Getting a converter:
+
+     *  Use a provided converter implementation, such as <xref uid="com.azure.cosmos.implementation.guava25.base.Enums.stringConverter" data-throw-if-not-resolved="false">Enums#stringConverter</xref>, <xref uid="com.azure.cosmos.implementation.guava25.primitives.Ints.stringConverter" data-throw-if-not-resolved="false">Ints.stringConverter</xref> or the <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.reverse" data-throw-if-not-resolved="false">reverse</xref> views of these.
+     *  Convert between specific preset values using <xref uid="com.azure.cosmos.implementation.guava25.collect.Maps.asConverter" data-throw-if-not-resolved="false">Maps.asConverter</xref>. For example, use this to create a "fake" converter for a unit test. It is unnecessary (and confusing) to *mock* the `Converter` type using a mocking framework.
+     *  Extend this class and implement its <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doForward" data-throw-if-not-resolved="false">#doForward</xref> and <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doBackward" data-throw-if-not-resolved="false">#doBackward</xref> methods.
+     *  **Java 8 users:** you may prefer to pass two lambda expressions or method references to the <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.from" data-throw-if-not-resolved="false">from</xref> factory method.
+
+    Using a converter:
+
+     *  Convert one instance in the "forward" direction using `converter.convert(a)`.
+     *  Convert multiple instances "forward" using `converter.convertAll(as)`.
+     *  Convert in the "backward" direction using `converter.reverse().convert(b)` or `converter.reverse().convertAll(bs)`.
+     *  Use `converter` or `converter.reverse()` anywhere a <xref uid="java.util.function.Function" data-throw-if-not-resolved="false">java.util.function.Function</xref> is accepted (for example <xref uid="java.util.stream.Stream.map" data-throw-if-not-resolved="false">Stream.map</xref>).
+     *  **Do not** call <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doForward" data-throw-if-not-resolved="false">#doForward</xref> or <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doBackward" data-throw-if-not-resolved="false">#doBackward</xref> directly; these exist only to be overridden.
+
+    ### Example ###
+
+
+    ```java
+
+    return new Converter<Integer, String>() {
+         protected String doForward(Integer i) {
+           return Integer.toHexString(i);
+         }
+
+         protected Integer doBackward(String s) {
+           return parseUnsignedInt(s, 16);
+         }
+       };
+    ```
+
+
+    An alternative using Java 8:
+
+
+    ```java
+
+    return Converter.from(
+         Integer::toHexString,
+         s -> parseUnsignedInt(s, 16));
+    ```
+  syntax:
+    content: public abstract class Converter<A,B> implements Function<A,B>
+    typeParameters:
+    - id: A
+    - id: B
+  inheritance:
+  - java.lang.Object
+  implements:
+  - com.azure.cosmos.implementation.guava25.base.Function<A,B>
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.<A,B>from(com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>,com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>)
+  id: <A,B>from(com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>,com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: <A,B>from(Function<? super A,? extends B> forwardFunction, Function<? super B,? extends A> backwardFunction)
+  nameWithType: Converter<A,B>.<A,B>from(Function<? super A,? extends B> forwardFunction, Function<? super B,? extends A> backwardFunction)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<A,B>from(Function<? super A,? extends B> forwardFunction, Function<? super B,? extends A> backwardFunction)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.from*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns a converter based on separate forward and backward functions. This is useful if the function instances already exist, or so that you can supply lambda expressions. If those circumstances don't apply, you probably don't need to use this; subclass `Converter` and implement its <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doForward" data-throw-if-not-resolved="false">#doForward</xref> and <xref uid="com.azure.cosmos.implementation.guava25.base.Converter.doBackward" data-throw-if-not-resolved="false">#doBackward</xref> methods directly.
+
+
+    These functions will never be passed `null` and must not under any circumstances return `null`. If a value cannot be converted, the function should throw an unchecked exception (typically, but not necessarily, <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref>).
+
+
+    The returned converter is serializable if both provided functions are.
+  syntax:
+    content: public static Converter<A,B> <A,B>from(Function<? super A,? extends B> forwardFunction, Function<? super B,? extends A> backwardFunction)
+    parameters:
+    - id: forwardFunction
+      type: com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>
+    - id: backwardFunction
+      type: com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Converter<A,B>
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.<C>andThen(com.azure.cosmos.implementation.guava25.base.Converter<B,C>)
+  id: <C>andThen(com.azure.cosmos.implementation.guava25.base.Converter<B,C>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: <C>andThen(Converter<B,C> secondConverter)
+  nameWithType: Converter<A,B>.<C>andThen(Converter<B,C> secondConverter)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<C>andThen(Converter<B,C> secondConverter)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.andThen*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns a converter whose `convert` method applies `secondConverter` to the result of this converter. Its `reverse` method applies the converters in reverse order.
+
+
+    The returned converter is serializable if `this` converter and `secondConverter` are.
+  syntax:
+    content: public final Converter<A,C> <C>andThen(Converter<B,C> secondConverter)
+    parameters:
+    - id: secondConverter
+      type: com.azure.cosmos.implementation.guava25.base.Converter<B,C>
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Converter<A,C>
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.<T>identity()
+  id: <T>identity()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: <T>identity()
+  nameWithType: Converter<A,B>.<T>identity()
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<T>identity()
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.identity*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a serializable converter that always converts or reverses an object to itself.
+  syntax:
+    content: public static Converter<T,T> <T>identity()
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Converter<T,T>
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.Converter()
+  id: Converter()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: Converter()
+  nameWithType: Converter<A,B>.Converter()
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.Converter()
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.Converter*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Constructor for use by subclasses.
+  syntax:
+    content: protected Converter()
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.Converter(boolean)
+  id: Converter(boolean)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: Converter(boolean handleNullAutomatically)
+  nameWithType: Converter<A,B>.Converter(boolean handleNullAutomatically)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.Converter(boolean handleNullAutomatically)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.Converter*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Constructor used only by `LegacyConverter` to suspend automatic null-handling.
+  syntax:
+    content: " Converter(boolean handleNullAutomatically)"
+    parameters:
+    - id: handleNullAutomatically
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.apply(A)
+  id: apply(A)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: apply(A a)
+  nameWithType: Converter<A,B>.apply(A a)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.apply(A a)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.apply*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  syntax:
+    content: public final B apply(A a)
+    parameters:
+    - id: a
+      type: A
+    return:
+      type: B
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.convert(A)
+  id: convert(A)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: convert(A a)
+  nameWithType: Converter<A,B>.convert(A a)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.convert(A a)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.convert*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a representation of `a` as an instance of type `B`.
+  syntax:
+    content: public final B convert(A a)
+    parameters:
+    - id: a
+      type: A
+    return:
+      type: B
+      description: the converted value; is null <i>if and only if</i> <code>a</code> is null
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.convertAll(java.lang.Iterable<? extends A>)
+  id: convertAll(java.lang.Iterable<? extends A>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: convertAll(Iterable<? extends A> fromIterable)
+  nameWithType: Converter<A,B>.convertAll(Iterable<? extends A> fromIterable)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.convertAll(Iterable<? extends A> fromIterable)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.convertAll*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns an iterable that applies `convert` to each element of `fromIterable`. The conversion is done lazily.
+
+
+    The returned iterable's iterator supports `remove()` if the input iterator does. After a successful `remove()` call, `fromIterable` no longer contains the corresponding element.
+  syntax:
+    content: public Iterable<B> convertAll(Iterable<? extends A> fromIterable)
+    parameters:
+    - id: fromIterable
+      type: java.lang.Iterable<? extends A>
+    return:
+      type: java.lang.Iterable<B>
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.doBackward(B)
+  id: doBackward(B)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: doBackward(B b)
+  nameWithType: Converter<A,B>.doBackward(B b)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.doBackward(B b)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.doBackward*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a representation of `b` as an instance of type `A`. If `b` cannot be converted, an unchecked exception (such as <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref>) should be thrown.
+  syntax:
+    content: protected abstract A doBackward(B b)
+    parameters:
+    - id: b
+      type: B
+      description: the instance to convert; will never be null
+    return:
+      type: A
+      description: the converted instance; <b>must not</b> be null
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.doForward(A)
+  id: doForward(A)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: doForward(A a)
+  nameWithType: Converter<A,B>.doForward(A a)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.doForward(A a)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.doForward*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Returns a representation of `a` as an instance of type `B`. If `a` cannot be converted, an unchecked exception (such as <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref>) should be thrown.
+  syntax:
+    content: protected abstract B doForward(A a)
+    parameters:
+    - id: a
+      type: A
+      description: the instance to convert; will never be null
+    return:
+      type: B
+      description: the converted instance; <b>must not</b> be null
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.equals(java.lang.Object)
+  id: equals(java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: equals(Object object)
+  nameWithType: Converter<A,B>.equals(Object object)
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.equals(Object object)
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.equals*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Indicates whether another object is equal to this converter.
+
+
+    Most implementations will have no reason to override the behavior of <xref uid="java.lang.Object.equals" data-throw-if-not-resolved="false">Object#equals</xref>. However, an implementation may also choose to return `true` whenever `object` is a <xref uid="com.azure.cosmos.implementation.guava25.base.Converter" data-throw-if-not-resolved="false">Converter</xref> that it considers *interchangeable* with this one. "Interchangeable" *typically* means that `Objects.equal(this.convert(a), that.convert(a))` is true for all `a` of type `A` (and similarly for `reverse`). Note that a `false` result from this method does not imply that the converters are known *not* to be interchangeable.
+  syntax:
+    content: public boolean equals(Object object)
+    parameters:
+    - id: object
+      type: java.lang.Object
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.reverse()
+  id: reverse()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Converter
+  langs:
+  - java
+  name: reverse()
+  nameWithType: Converter<A,B>.reverse()
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.reverse()
+  overload: com.azure.cosmos.implementation.guava25.base.Converter.reverse*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Returns the reversed view of this converter, which converts `this.convert(a)` back to a value roughly equivalent to `a`.
+
+
+    The returned converter is serializable if `this` converter is.
+
+
+    **Note:** you should not override this method. It is non-final for legacy reasons.
+  syntax:
+    content: public Converter<B,A> reverse()
+    return:
+      type: com.azure.cosmos.implementation.guava25.base.Converter<B,A>
+references:
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.Converter*
+  name: Converter
+  nameWithType: Converter<A,B>.Converter
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.Converter
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: A
+  spec.java:
+  - uid: A
+    name: A
+    fullName: A
+- uid: B
+  spec.java:
+  - uid: B
+    name: B
+    fullName: B
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.doForward*
+  name: doForward
+  nameWithType: Converter<A,B>.doForward
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.doForward
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.doBackward*
+  name: doBackward
+  nameWithType: Converter<A,B>.doBackward
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.doBackward
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.convert*
+  name: convert
+  nameWithType: Converter<A,B>.convert
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.convert
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Iterable<? extends A>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: '? extends A'
+    name: '? extends A'
+    fullName: '? extends A'
+  - name: '>'
+    fullName: '>'
+- uid: java.lang.Iterable<B>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: B
+    name: B
+    fullName: B
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.convertAll*
+  name: convertAll
+  nameWithType: Converter<A,B>.convertAll
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.convertAll
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter<B,A>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Converter
+    name: Converter
+    fullName: com.azure.cosmos.implementation.guava25.base.Converter
+  - name: <
+    fullName: <
+  - uid: B
+    name: B
+    fullName: B
+  - name: ','
+    fullName: ','
+  - uid: A
+    name: A
+    fullName: A
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.reverse*
+  name: reverse
+  nameWithType: Converter<A,B>.reverse
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.reverse
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter<B,C>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Converter
+    name: Converter
+    fullName: com.azure.cosmos.implementation.guava25.base.Converter
+  - name: <
+    fullName: <
+  - uid: B
+    name: B
+    fullName: B
+  - name: ','
+    fullName: ','
+  - uid: C
+    name: C
+    fullName: C
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter<A,C>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Converter
+    name: Converter
+    fullName: com.azure.cosmos.implementation.guava25.base.Converter
+  - name: <
+    fullName: <
+  - uid: A
+    name: A
+    fullName: A
+  - name: ','
+    fullName: ','
+  - uid: C
+    name: C
+    fullName: C
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.andThen*
+  name: <C>andThen
+  nameWithType: Converter<A,B>.<C>andThen
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<C>andThen
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.apply*
+  name: apply
+  nameWithType: Converter<A,B>.apply
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.apply
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.equals*
+  name: equals
+  nameWithType: Converter<A,B>.equals
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.equals
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Function<? super A,? extends B>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Function
+    name: Function
+    fullName: com.azure.cosmos.implementation.guava25.base.Function
+  - name: <
+    fullName: <
+  - uid: '? super A'
+    name: '? super A'
+    fullName: '? super A'
+  - name: ','
+    fullName: ','
+  - uid: '? extends B'
+    name: '? extends B'
+    fullName: '? extends B'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Function<? super B,? extends A>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Function
+    name: Function
+    fullName: com.azure.cosmos.implementation.guava25.base.Function
+  - name: <
+    fullName: <
+  - uid: '? super B'
+    name: '? super B'
+    fullName: '? super B'
+  - name: ','
+    fullName: ','
+  - uid: '? extends A'
+    name: '? extends A'
+    fullName: '? extends A'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter<A,B>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Converter
+    name: Converter
+    fullName: com.azure.cosmos.implementation.guava25.base.Converter
+  - name: <
+    fullName: <
+  - uid: A
+    name: A
+    fullName: A
+  - name: ','
+    fullName: ','
+  - uid: B
+    name: B
+    fullName: B
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.from*
+  name: <A,B>from
+  nameWithType: Converter<A,B>.<A,B>from
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<A,B>from
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Converter<T,T>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.base.Converter
+    name: Converter
+    fullName: com.azure.cosmos.implementation.guava25.base.Converter
+  - name: <
+    fullName: <
+  - uid: T
+    name: T
+    fullName: T
+  - name: ','
+    fullName: ','
+  - uid: T
+    name: T
+    fullName: T
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.base.Converter.identity*
+  name: <T>identity
+  nameWithType: Converter<A,B>.<T>identity
+  fullName: com.azure.cosmos.implementation.guava25.base.Converter<A,B>.<T>identity
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Function<A,B>
+  name: Function<A,B>
+  nameWithType: Function<A,B>
+  fullName: com.azure.cosmos.implementation.guava25.base.Function<A,B>
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: '? extends A'
+  name: '? extends A'
+  nameWithType: '? extends A'
+  fullName: '? extends A'
+- uid: java.lang.Iterable
+  name: Iterable
+  nameWithType: Iterable
+  fullName: java.lang.Iterable
+- uid: B,A
+  name: B,A
+  nameWithType: B,A
+  fullName: B,A
+- uid: B,C
+  name: B,C
+  nameWithType: B,C
+  fullName: B,C
+- uid: A,C
+  name: A,C
+  nameWithType: A,C
+  fullName: A,C
+- uid: '? super A,? extends B'
+  name: '? super A,? extends B'
+  nameWithType: '? super A,? extends B'
+  fullName: '? super A,? extends B'
+- uid: com.azure.cosmos.implementation.guava25.base.Function
+  name: Function
+  nameWithType: Function
+  fullName: com.azure.cosmos.implementation.guava25.base.Function
+- uid: '? super B,? extends A'
+  name: '? super B,? extends A'
+  nameWithType: '? super B,? extends A'
+  fullName: '? super B,? extends A'
+- uid: A,B
+  name: A,B
+  nameWithType: A,B
+  fullName: A,B
+- uid: T,T
+  name: T,T
+  nameWithType: T,T
+  fullName: T,T

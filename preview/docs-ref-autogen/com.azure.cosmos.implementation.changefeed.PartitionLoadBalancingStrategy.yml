@@ -1,13 +1,124 @@
-### YamlMime:JavaType
-uid: "com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy"
-fullName: "com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy"
-name: "PartitionLoadBalancingStrategy"
-nameWithType: "PartitionLoadBalancingStrategy"
-summary: "A strategy defines which leases should be taken by the current host in a certain moment.\n\nIt can set new <xref uid=\"com.azure.cosmos.implementation.changefeed.Lease\" data-throw-if-not-resolved=\"false\">Lease</xref> properties() for all returned leases if needed, including currently owned leases. Example\n\n```java\npublic class CustomStrategy : PartitionLoadBalancingStrategy\n  {\n      private STRING hostName;\n      private STRING hostVersion;\n      private Duration leaseExpirationInterval;\n\n      private final STRING VersionPropertyKey = \"version\";\n\n      public List selectLeasesToTake(List allLeases)\n      {\n          var takenLeases = this.findLeasesToTake(allLeases);\n          foreach (var lease in takenLeases)\n          {\n              lease.Properties[VersionPropertyKey] = this.hostVersion;\n          }\n\n          return takenLeases;\n      }\n\n      private List findLeasesToTake(List allLeases)\n      {\n          List takenLeases = new List();\n          foreach (var lease in allLeases)\n          {\n              if (string.IsNullOrWhiteSpace(lease.Owner) || this.IsExpired(lease))\n              {\n                  takenLeases.Add(lease);\n              }\n\n              if (lease.Owner != this.hostName)\n              {\n                  var ownerVersion = lease.Properties[VersionPropertyKey];\n                  if (ownerVersion < this.hostVersion)\n                  {\n                      takenLeases.Add(lease);\n                  }\n\n                  // more logic for leases owned by other hosts\n              }\n          }\n\n          return takenLeases;\n      }\n\n      private boolean isExpired(Lease lease)\n      {\n          return lease.Timestamp.ToUniversalTime() + this.leaseExpirationInterval < DateTime.UtcNow;\n      }\n  } *\n```"
-syntax: "public interface PartitionLoadBalancingStrategy"
-methods:
-- "com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake(java.util.List<com.azure.cosmos.implementation.changefeed.Lease>)"
-type: "interface"
-metadata: {}
-package: "com.azure.cosmos.implementation.changefeed"
-artifact: com.azure:azure-cosmos:4.4.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy
+  id: PartitionLoadBalancingStrategy
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.changefeed
+  children:
+  - com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake(java.util.List<com.azure.cosmos.implementation.changefeed.Lease>)
+  langs:
+  - java
+  name: PartitionLoadBalancingStrategy
+  nameWithType: PartitionLoadBalancingStrategy
+  fullName: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy
+  type: Interface
+  package: com.azure.cosmos.implementation.changefeed
+  summary: >-
+    A strategy defines which leases should be taken by the current host in a certain moment.
+
+
+    It can set new <xref uid="com.azure.cosmos.implementation.changefeed.Lease" data-throw-if-not-resolved="false">Lease</xref> properties() for all returned leases if needed, including currently owned leases. Example
+
+
+    ```java
+
+    public class CustomStrategy : PartitionLoadBalancingStrategy
+      {
+          private STRING hostName;
+          private STRING hostVersion;
+          private Duration leaseExpirationInterval;
+
+          private final STRING VersionPropertyKey = "version";
+
+          public List selectLeasesToTake(List allLeases)
+          {
+              var takenLeases = this.findLeasesToTake(allLeases);
+              foreach (var lease in takenLeases)
+              {
+                  lease.Properties[VersionPropertyKey] = this.hostVersion;
+              }
+
+              return takenLeases;
+          }
+
+          private List findLeasesToTake(List allLeases)
+          {
+              List takenLeases = new List();
+              foreach (var lease in allLeases)
+              {
+                  if (string.IsNullOrWhiteSpace(lease.Owner) || this.IsExpired(lease))
+                  {
+                      takenLeases.Add(lease);
+                  }
+
+                  if (lease.Owner != this.hostName)
+                  {
+                      var ownerVersion = lease.Properties[VersionPropertyKey];
+                      if (ownerVersion < this.hostVersion)
+                      {
+                          takenLeases.Add(lease);
+                      }
+
+                      // more logic for leases owned by other hosts
+                  }
+              }
+
+              return takenLeases;
+          }
+
+          private boolean isExpired(Lease lease)
+          {
+              return lease.Timestamp.ToUniversalTime() + this.leaseExpirationInterval < DateTime.UtcNow;
+          }
+      } *
+    ```
+  syntax:
+    content: public interface PartitionLoadBalancingStrategy
+- uid: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake(java.util.List<com.azure.cosmos.implementation.changefeed.Lease>)
+  id: selectLeasesToTake(java.util.List<com.azure.cosmos.implementation.changefeed.Lease>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy
+  langs:
+  - java
+  name: selectLeasesToTake(List<Lease> allLeases)
+  nameWithType: PartitionLoadBalancingStrategy.selectLeasesToTake(List<Lease> allLeases)
+  fullName: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake(List<Lease> allLeases)
+  overload: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake*
+  type: Method
+  package: com.azure.cosmos.implementation.changefeed
+  summary: Select leases that should be taken for processing. This method will be called periodically with <xref uid="com.azure.cosmos.models.ChangeFeedProcessorOptions" data-throw-if-not-resolved="false">ChangeFeedProcessorOptions</xref> leaseAcquireInterval().
+  syntax:
+    content: public abstract List<Lease> selectLeasesToTake(List<Lease> allLeases)
+    parameters:
+    - id: allLeases
+      type: java.util.List<com.azure.cosmos.implementation.changefeed.Lease>
+      description: ALL leases.
+    return:
+      type: java.util.List<com.azure.cosmos.implementation.changefeed.Lease>
+      description: Leases that should be taken for processing by this host.
+references:
+- uid: java.util.List<com.azure.cosmos.implementation.changefeed.Lease>
+  spec.java:
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: com.azure.cosmos.implementation.changefeed.Lease
+    name: Lease
+    fullName: com.azure.cosmos.implementation.changefeed.Lease
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake*
+  name: selectLeasesToTake
+  nameWithType: PartitionLoadBalancingStrategy.selectLeasesToTake
+  fullName: com.azure.cosmos.implementation.changefeed.PartitionLoadBalancingStrategy.selectLeasesToTake
+  package: com.azure.cosmos.implementation.changefeed
+- uid: java.util.List
+  name: List
+  nameWithType: List
+  fullName: java.util.List
+- uid: com.azure.cosmos.implementation.changefeed.Lease
+  name: Lease
+  nameWithType: Lease
+  fullName: com.azure.cosmos.implementation.changefeed.Lease

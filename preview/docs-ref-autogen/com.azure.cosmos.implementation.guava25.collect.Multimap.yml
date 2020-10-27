@@ -1,36 +1,928 @@
-### YamlMime:JavaType
-uid: "com.azure.cosmos.implementation.guava25.collect.Multimap"
-fullName: "com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>"
-name: "Multimap<K,V>"
-nameWithType: "Multimap<K,V>"
-summary: "A collection that maps keys to values, similar to <xref uid=\"java.util.Map\" data-throw-if-not-resolved=\"false\">Map</xref>, but in which each key may be associated with *multiple* values. You can visualize the contents of a multimap either as a map from keys to *nonempty* collections of values:\n\n *  a \\\\u2192 1, 2\n *  b \\\\u2192 3\n\n... or as a single \"flattened\" collection of key-value pairs:\n\n *  a \\\\u2192 1\n *  a \\\\u2192 2\n *  b \\\\u2192 3\n\n**Important:** although the first interpretation resembles how most multimaps are *implemented*, the design of the `Multimap` API is based on the *second* form. So, using the multimap shown above as an example, the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.size\" data-throw-if-not-resolved=\"false\">#size</xref> is `3`, not `2`, and the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.values\" data-throw-if-not-resolved=\"false\">#values</xref> collection is `[1, 2, 3]`, not `[[1, 2], [3]]`. For those times when the first style is more useful, use the multimap's <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.asMap\" data-throw-if-not-resolved=\"false\">#asMap</xref> view (or create a `Map>` in the first place).\n\n### Example ###\n\nThe following code:\n\n```java\nListMultimap multimap = ArrayListMultimap.create();\n for (President pres : US_PRESIDENTS_IN_ORDER) {\n   multimap.put(pres.firstName(), pres.lastName());\n }\n for (String firstName : multimap.keySet()) {\n   List lastNames = multimap.get(firstName);\n   out.println(firstName + \": \" + lastNames);\n }\n```\n\n... produces output such as:\n\n```java\nZachary: [Taylor]\n John: [Adams, Adams, Tyler, Kennedy]  // Remember, Quincy!\n George: [Washington, Bush, Bush]\n Grover: [Cleveland, Cleveland]        // Two, non-consecutive terms, rep'ing NJ!\n ...\n```\n\n### Views ###\n\nMuch of the power of the multimap API comes from the *view collections* it provides. These always reflect the latest state of the multimap itself. When they support modification, the changes are *write-through* (they automatically update the backing multimap). These view collections are:\n\n *  <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.asMap\" data-throw-if-not-resolved=\"false\">#asMap</xref>, mentioned above\n *  <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.keys\" data-throw-if-not-resolved=\"false\">#keys</xref>, <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.keySet\" data-throw-if-not-resolved=\"false\">#keySet</xref>, <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.values\" data-throw-if-not-resolved=\"false\">#values</xref>, <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.entries\" data-throw-if-not-resolved=\"false\">#entries</xref>, which are similar to the corresponding view collections of <xref uid=\"java.util.Map\" data-throw-if-not-resolved=\"false\">Map</xref>\n *  and, notably, even the collection returned by <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.get\" data-throw-if-not-resolved=\"false\">get(key)</xref> is an active view of the values corresponding to `key`\n\nThe collections returned by the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues\" data-throw-if-not-resolved=\"false\">replaceValues</xref> and <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll\" data-throw-if-not-resolved=\"false\">removeAll</xref> methods, which contain values that have just been removed from the multimap, are naturally *not* views.\n\n### Subinterfaces ###\n\nInstead of using the `Multimap` interface directly, prefer the subinterfaces <xref uid=\"com.azure.cosmos.implementation.guava25.collect.ListMultimap\" data-throw-if-not-resolved=\"false\">ListMultimap</xref> and <xref uid=\"com.azure.cosmos.implementation.guava25.collect.SetMultimap\" data-throw-if-not-resolved=\"false\">SetMultimap</xref>. These take their names from the fact that the collections they return from `get` behave like (and, of course, implement) <xref uid=\"java.util.List\" data-throw-if-not-resolved=\"false\">List</xref> and <xref uid=\"java.util.Set\" data-throw-if-not-resolved=\"false\">Set</xref>, respectively.\n\nFor example, the \"presidents\" code snippet above used a `ListMultimap`; if it had used a `SetMultimap` instead, two presidents would have vanished, and last names might or might not appear in chronological order.\n\n**Warning:** instances of type `Multimap` may not implement <xref uid=\"java.lang.Object.equals\" data-throw-if-not-resolved=\"false\">Object#equals</xref> in the way you expect. Multimaps containing the same key-value pairs, even in the same order, may or may not be equal and may or may not have the same `hashCode`. The recommended subinterfaces provide much stronger guarantees.\n\n### Comparison to a map of collections ###\n\nMultimaps are commonly used in places where a `Map>` would otherwise have appeared. The differences include:\n\n *  There is no need to populate an empty collection before adding an entry with <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.put\" data-throw-if-not-resolved=\"false\">put</xref>.\n *  `get` never returns `null`, only an empty collection.\n *  A key is contained in the multimap if and only if it maps to at least one value. Any operation that causes a key to have zero associated values has the effect of *removing* that key from the multimap.\n *  The total entry count is available as <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimap.size\" data-throw-if-not-resolved=\"false\">#size</xref>.\n *  Many complex operations become easier; for example, `Collections.min(multimap.values())` finds the smallest value across all keys.\n\n### Implementations ###\n\nAs always, prefer the immutable implementations, <xref uid=\"com.azure.cosmos.implementation.guava25.collect.ImmutableListMultimap\" data-throw-if-not-resolved=\"false\">ImmutableListMultimap</xref> and <xref uid=\"com.azure.cosmos.implementation.guava25.collect.ImmutableSetMultimap\" data-throw-if-not-resolved=\"false\">ImmutableSetMultimap</xref>. General-purpose mutable implementations are listed above under \"All Known Implementing Classes\". You can also create a *custom* multimap, backed by any `Map` and <xref uid=\"java.util.Collection\" data-throw-if-not-resolved=\"false\">Collection</xref> types, using the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimaps.newMultimap\" data-throw-if-not-resolved=\"false\">Multimaps.newMultimap</xref> family of methods. Finally, another popular way to obtain a multimap is using <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimaps.index\" data-throw-if-not-resolved=\"false\">Multimaps.index</xref>. See the <xref uid=\"com.azure.cosmos.implementation.guava25.collect.Multimaps\" data-throw-if-not-resolved=\"false\">Multimaps</xref> class for these and other static utilities related to multimaps.\n\n### Other Notes ###\n\nAs with `Map`, the behavior of a `Multimap` is not specified if key objects already present in the multimap change in a manner that affects `equals` comparisons. Use caution if mutable objects are used as keys in a `Multimap`.\n\nAll methods that modify the multimap are optional. The view collections returned by the multimap may or may not be modifiable. Any modification method that is not supported will throw <xref uid=\"java.lang.UnsupportedOperationException\" data-throw-if-not-resolved=\"false\">UnsupportedOperationException</xref>.\n\nSee the Guava User Guide article on [ `Multimap`][_Multimap].\n\n\n[_Multimap]: https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap"
-syntax: "public interface Multimap<K,V>"
-methods:
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.asMap()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.clear()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.containsEntry(java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.containsKey(java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.containsValue(java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.entries()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.equals(java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.forEach(java.util.function.BiConsumer<? super K,? super V>)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.get(K)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.hashCode()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.keySet()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.keys()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.put(K,V)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(K,java.lang.Iterable<? extends V>)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.remove(java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll(java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues(K,java.lang.Iterable<? extends V>)"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.size()"
-- "com.azure.cosmos.implementation.guava25.collect.Multimap.values()"
-type: "interface"
-typeParameters:
-- name: "K"
-- name: "V"
-metadata: {}
-package: "com.azure.cosmos.implementation.guava25.collect"
-artifact: com.azure:azure-cosmos:4.4.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap
+  id: Multimap
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect
+  children:
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.asMap()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.clear()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.containsEntry(java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.containsKey(java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.containsValue(java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.entries()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.equals(java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.forEach(java.util.function.BiConsumer<? super K,? super V>)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.get(K)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.hashCode()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.keySet()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.keys()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.put(K,V)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(K,java.lang.Iterable<? extends V>)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.remove(java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll(java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues(K,java.lang.Iterable<? extends V>)
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.size()
+  - com.azure.cosmos.implementation.guava25.collect.Multimap.values()
+  langs:
+  - java
+  name: Multimap<K,V>
+  nameWithType: Multimap<K,V>
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>
+  type: Interface
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    A collection that maps keys to values, similar to <xref uid="java.util.Map" data-throw-if-not-resolved="false">Map</xref>, but in which each key may be associated with *multiple* values. You can visualize the contents of a multimap either as a map from keys to *nonempty* collections of values:
+
+     *  a \\u2192 1, 2
+     *  b \\u2192 3
+
+    ... or as a single "flattened" collection of key-value pairs:
+
+     *  a \\u2192 1
+     *  a \\u2192 2
+     *  b \\u2192 3
+
+    **Important:** although the first interpretation resembles how most multimaps are *implemented*, the design of the `Multimap` API is based on the *second* form. So, using the multimap shown above as an example, the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.size" data-throw-if-not-resolved="false">#size</xref> is `3`, not `2`, and the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.values" data-throw-if-not-resolved="false">#values</xref> collection is `[1, 2, 3]`, not `[[1, 2], [3]]`. For those times when the first style is more useful, use the multimap's <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">#asMap</xref> view (or create a `Map>` in the first place).
+
+
+    ### Example ###
+
+
+    The following code:
+
+
+    ```java
+
+    ListMultimap multimap = ArrayListMultimap.create();
+     for (President pres : US_PRESIDENTS_IN_ORDER) {
+       multimap.put(pres.firstName(), pres.lastName());
+     }
+     for (String firstName : multimap.keySet()) {
+       List lastNames = multimap.get(firstName);
+       out.println(firstName + ": " + lastNames);
+     }
+    ```
+
+
+    ... produces output such as:
+
+
+    ```java
+
+    Zachary: [Taylor]
+     John: [Adams, Adams, Tyler, Kennedy]  // Remember, Quincy!
+     George: [Washington, Bush, Bush]
+     Grover: [Cleveland, Cleveland]        // Two, non-consecutive terms, rep'ing NJ!
+     ...
+    ```
+
+
+    ### Views ###
+
+
+    Much of the power of the multimap API comes from the *view collections* it provides. These always reflect the latest state of the multimap itself. When they support modification, the changes are *write-through* (they automatically update the backing multimap). These view collections are:
+
+     *  <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">#asMap</xref>, mentioned above
+     *  <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.keys" data-throw-if-not-resolved="false">#keys</xref>, <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.keySet" data-throw-if-not-resolved="false">#keySet</xref>, <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.values" data-throw-if-not-resolved="false">#values</xref>, <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.entries" data-throw-if-not-resolved="false">#entries</xref>, which are similar to the corresponding view collections of <xref uid="java.util.Map" data-throw-if-not-resolved="false">Map</xref>
+     *  and, notably, even the collection returned by <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.get" data-throw-if-not-resolved="false">get(key)</xref> is an active view of the values corresponding to `key`
+
+    The collections returned by the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues" data-throw-if-not-resolved="false">replaceValues</xref> and <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll" data-throw-if-not-resolved="false">removeAll</xref> methods, which contain values that have just been removed from the multimap, are naturally *not* views.
+
+
+    ### Subinterfaces ###
+
+
+    Instead of using the `Multimap` interface directly, prefer the subinterfaces <xref uid="com.azure.cosmos.implementation.guava25.collect.ListMultimap" data-throw-if-not-resolved="false">ListMultimap</xref> and <xref uid="com.azure.cosmos.implementation.guava25.collect.SetMultimap" data-throw-if-not-resolved="false">SetMultimap</xref>. These take their names from the fact that the collections they return from `get` behave like (and, of course, implement) <xref uid="java.util.List" data-throw-if-not-resolved="false">List</xref> and <xref uid="java.util.Set" data-throw-if-not-resolved="false">Set</xref>, respectively.
+
+
+    For example, the "presidents" code snippet above used a `ListMultimap`; if it had used a `SetMultimap` instead, two presidents would have vanished, and last names might or might not appear in chronological order.
+
+
+    **Warning:** instances of type `Multimap` may not implement <xref uid="java.lang.Object.equals" data-throw-if-not-resolved="false">Object#equals</xref> in the way you expect. Multimaps containing the same key-value pairs, even in the same order, may or may not be equal and may or may not have the same `hashCode`. The recommended subinterfaces provide much stronger guarantees.
+
+
+    ### Comparison to a map of collections ###
+
+
+    Multimaps are commonly used in places where a `Map>` would otherwise have appeared. The differences include:
+
+     *  There is no need to populate an empty collection before adding an entry with <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.put" data-throw-if-not-resolved="false">put</xref>.
+     *  `get` never returns `null`, only an empty collection.
+     *  A key is contained in the multimap if and only if it maps to at least one value. Any operation that causes a key to have zero associated values has the effect of *removing* that key from the multimap.
+     *  The total entry count is available as <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.size" data-throw-if-not-resolved="false">#size</xref>.
+     *  Many complex operations become easier; for example, `Collections.min(multimap.values())` finds the smallest value across all keys.
+
+    ### Implementations ###
+
+
+    As always, prefer the immutable implementations, <xref uid="com.azure.cosmos.implementation.guava25.collect.ImmutableListMultimap" data-throw-if-not-resolved="false">ImmutableListMultimap</xref> and <xref uid="com.azure.cosmos.implementation.guava25.collect.ImmutableSetMultimap" data-throw-if-not-resolved="false">ImmutableSetMultimap</xref>. General-purpose mutable implementations are listed above under "All Known Implementing Classes". You can also create a *custom* multimap, backed by any `Map` and <xref uid="java.util.Collection" data-throw-if-not-resolved="false">Collection</xref> types, using the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimaps.newMultimap" data-throw-if-not-resolved="false">Multimaps.newMultimap</xref> family of methods. Finally, another popular way to obtain a multimap is using <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimaps.index" data-throw-if-not-resolved="false">Multimaps.index</xref>. See the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimaps" data-throw-if-not-resolved="false">Multimaps</xref> class for these and other static utilities related to multimaps.
+
+
+    ### Other Notes ###
+
+
+    As with `Map`, the behavior of a `Multimap` is not specified if key objects already present in the multimap change in a manner that affects `equals` comparisons. Use caution if mutable objects are used as keys in a `Multimap`.
+
+
+    All methods that modify the multimap are optional. The view collections returned by the multimap may or may not be modifiable. Any modification method that is not supported will throw <xref uid="java.lang.UnsupportedOperationException" data-throw-if-not-resolved="false">UnsupportedOperationException</xref>.
+
+
+    See the Guava User Guide article on [ `Multimap`][_Multimap].
+
+
+
+    [_Multimap]: https://github.com/google/guava/wiki/NewCollectionTypesExplained#multimap
+  syntax:
+    content: public interface Multimap<K,V>
+    typeParameters:
+    - id: K
+    - id: V
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.asMap()
+  id: asMap()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: asMap()
+  nameWithType: Multimap<K,V>.asMap()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.asMap()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.asMap*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view of this multimap as a `Map` from each distinct key to the nonempty collection of that key's associated values. Note that `this.asMap().get(k)` is equivalent to `this.get(k)` only when `k` is a key contained in the multimap; otherwise it returns `null` as opposed to an empty collection.
+
+
+    Changes to the returned map or the collections that serve as its values will update the underlying multimap, and vice versa. The map does not support `put` or `putAll`, nor do its entries support <xref uid="java.util.Map.Entry.setValue" data-throw-if-not-resolved="false">setValue</xref>.
+  syntax:
+    content: public abstract Map<K,Collection<V>> asMap()
+    return:
+      type: java.util.Map<K,java.util.Collection<V>>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.clear()
+  id: clear()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: clear()
+  nameWithType: Multimap<K,V>.clear()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.clear()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.clear*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Removes all key-value pairs from the multimap, leaving it <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty" data-throw-if-not-resolved="false">empty</xref>.
+  syntax:
+    content: public abstract void clear()
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsEntry(java.lang.Object,java.lang.Object)
+  id: containsEntry(java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: containsEntry(Object key, Object value)
+  nameWithType: Multimap<K,V>.containsEntry(Object key, Object value)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsEntry(Object key, Object value)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.containsEntry*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Returns `true` if this multimap contains at least one key-value pair with the key `key` and the value `value`.
+  syntax:
+    content: public abstract boolean containsEntry(Object key, Object value)
+    parameters:
+    - id: key
+      type: java.lang.Object
+    - id: value
+      type: java.lang.Object
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsKey(java.lang.Object)
+  id: containsKey(java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: containsKey(Object key)
+  nameWithType: Multimap<K,V>.containsKey(Object key)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsKey(Object key)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.containsKey*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Returns `true` if this multimap contains at least one key-value pair with the key `key`.
+  syntax:
+    content: public abstract boolean containsKey(Object key)
+    parameters:
+    - id: key
+      type: java.lang.Object
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsValue(java.lang.Object)
+  id: containsValue(java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: containsValue(Object value)
+  nameWithType: Multimap<K,V>.containsValue(Object value)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsValue(Object value)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.containsValue*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Returns `true` if this multimap contains at least one key-value pair with the value `value`.
+  syntax:
+    content: public abstract boolean containsValue(Object value)
+    parameters:
+    - id: value
+      type: java.lang.Object
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.entries()
+  id: entries()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: entries()
+  nameWithType: Multimap<K,V>.entries()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.entries()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.entries*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view collection of all key-value pairs contained in this multimap, as <xref uid="java.util.Map.Entry" data-throw-if-not-resolved="false">Entry</xref> instances.
+
+
+    Changes to the returned collection or the entries it contains will update the underlying multimap, and vice versa. However, *adding* to the returned collection is not possible.
+  syntax:
+    content: public abstract Collection<Map.Entry<K,V>> entries()
+    return:
+      type: java.util.Collection<java.util.Map.Entry<K,V>>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.equals(java.lang.Object)
+  id: equals(java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: equals(Object obj)
+  nameWithType: Multimap<K,V>.equals(Object obj)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.equals(Object obj)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.equals*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Compares the specified object with this multimap for equality. Two multimaps are equal when their map views, as returned by <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">#asMap</xref>, are also equal.
+
+
+    In general, two multimaps with identical key-value mappings may or may not be equal, depending on the implementation. For example, two <xref uid="com.azure.cosmos.implementation.guava25.collect.SetMultimap" data-throw-if-not-resolved="false">SetMultimap</xref> instances with the same key-value mappings are equal, but equality of two <xref uid="com.azure.cosmos.implementation.guava25.collect.ListMultimap" data-throw-if-not-resolved="false">ListMultimap</xref> instances depends on the ordering of the values for each key.
+
+
+    A non-empty <xref uid="com.azure.cosmos.implementation.guava25.collect.SetMultimap" data-throw-if-not-resolved="false">SetMultimap</xref> cannot be equal to a non-empty <xref uid="com.azure.cosmos.implementation.guava25.collect.ListMultimap" data-throw-if-not-resolved="false">ListMultimap</xref>, since their <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">#asMap</xref> views contain unequal collections as values. However, any two empty multimaps are equal, because they both have empty <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">#asMap</xref> views.
+  syntax:
+    content: public abstract boolean equals(Object obj)
+    parameters:
+    - id: obj
+      type: java.lang.Object
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.forEach(java.util.function.BiConsumer<? super K,? super V>)
+  id: forEach(java.util.function.BiConsumer<? super K,? super V>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: forEach(BiConsumer<? super K,? super V> action)
+  nameWithType: Multimap<K,V>.forEach(BiConsumer<? super K,? super V> action)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.forEach(BiConsumer<? super K,? super V> action)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.forEach*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Performs the given action for all key-value pairs contained in this multimap. If an ordering is specified by the `Multimap` implementation, actions will be performed in the order of iteration of <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.entries()" data-throw-if-not-resolved="false">#entries()</xref>. Exceptions thrown by the action are relayed to the caller.
+
+
+    To loop over all keys and their associated value collections, write `Multimaps.asMap(multimap).forEach((key, valueCollection) -> action())`.
+  syntax:
+    content: public default void forEach(BiConsumer<? super K,? super V> action)
+    parameters:
+    - id: action
+      type: java.util.function.BiConsumer<? super K,? super V>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.get(K)
+  id: get(K)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: get(K key)
+  nameWithType: Multimap<K,V>.get(K key)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.get(K key)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.get*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view collection of the values associated with `key` in this multimap, if any. Note that when `containsKey(key)` is false, this returns an empty collection, not `null`.
+
+
+    Changes to the returned collection will update the underlying multimap, and vice versa.
+  syntax:
+    content: public abstract Collection<V> get(K key)
+    parameters:
+    - id: key
+      type: K
+    return:
+      type: java.util.Collection<V>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.hashCode()
+  id: hashCode()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: hashCode()
+  nameWithType: Multimap<K,V>.hashCode()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.hashCode()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.hashCode*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns the hash code for this multimap.
+
+
+    The hash code of a multimap is defined as the hash code of the map view, as returned by <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap" data-throw-if-not-resolved="false">Multimap#asMap</xref>.
+
+
+    In general, two multimaps with identical key-value mappings may or may not have the same hash codes, depending on the implementation. For example, two <xref uid="com.azure.cosmos.implementation.guava25.collect.SetMultimap" data-throw-if-not-resolved="false">SetMultimap</xref> instances with the same key-value mappings will have the same `hashCode`, but the `hashCode` of <xref uid="com.azure.cosmos.implementation.guava25.collect.ListMultimap" data-throw-if-not-resolved="false">ListMultimap</xref> instances depends on the ordering of the values for each key.
+  syntax:
+    content: public abstract int hashCode()
+    return:
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty()
+  id: isEmpty()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: isEmpty()
+  nameWithType: Multimap<K,V>.isEmpty()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.isEmpty()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Returns `true` if this multimap contains no key-value pairs. Equivalent to `size() == 0`, but can in some cases be more efficient.
+  syntax:
+    content: public abstract boolean isEmpty()
+    return:
+      type: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.keySet()
+  id: keySet()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: keySet()
+  nameWithType: Multimap<K,V>.keySet()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.keySet()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.keySet*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view collection of all *distinct* keys contained in this multimap. Note that the key set contains a key if and only if this multimap maps that key to at least one value.
+
+
+    Changes to the returned set will update the underlying multimap, and vice versa. However, *adding* to the returned set is not possible.
+  syntax:
+    content: public abstract Set<K> keySet()
+    return:
+      type: java.util.Set<K>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.keys()
+  id: keys()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: keys()
+  nameWithType: Multimap<K,V>.keys()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.keys()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.keys*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view collection containing the key from each key-value pair in this multimap, *without* collapsing duplicates. This collection has the same size as this multimap, and `keys().count(k) == get(k).size()` for all `k`.
+
+
+    Changes to the returned multiset will update the underlying multimap, and vice versa. However, *adding* to the returned collection is not possible.
+  syntax:
+    content: public abstract Multiset<K> keys()
+    return:
+      type: com.azure.cosmos.implementation.guava25.collect.Multiset<K>
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.put(K,V)
+  id: put(K,V)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: put(K key, V value)
+  nameWithType: Multimap<K,V>.put(K key, V value)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.put(K key, V value)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.put*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Stores a key-value pair in this multimap.
+
+
+    Some multimap implementations allow duplicate key-value pairs, in which case `put` always adds a new key-value pair and increases the multimap size by 1. Other implementations prohibit duplicates, and storing a key-value pair that's already in the multimap has no effect.
+  syntax:
+    content: public abstract boolean put(K key, V value)
+    parameters:
+    - id: key
+      type: K
+    - id: value
+      type: V
+    return:
+      type: boolean
+      description: >-
+        <code>true</code> if the method increased the size of the multimap, or <code>false</code> if the
+             multimap already contained the key-value pair and doesn't allow duplicates
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(K,java.lang.Iterable<? extends V>)
+  id: putAll(K,java.lang.Iterable<? extends V>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: putAll(K key, Iterable<? extends V> values)
+  nameWithType: Multimap<K,V>.putAll(K key, Iterable<? extends V> values)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.putAll(K key, Iterable<? extends V> values)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.putAll*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Stores a key-value pair in this multimap for each of `values`, all using the same key, `key`. Equivalent to (but expected to be more efficient than):
+
+
+    ```java
+
+    for (V value : values) {
+       put(key, value);
+     }
+    ```
+
+
+    In particular, this is a no-op if `values` is empty.
+  syntax:
+    content: public abstract boolean putAll(K key, Iterable<? extends V> values)
+    parameters:
+    - id: key
+      type: K
+    - id: values
+      type: java.lang.Iterable<? extends V>
+    return:
+      type: boolean
+      description: <code>true</code> if the multimap changed
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.putAll(com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>)
+  id: putAll(com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: putAll(Multimap<? extends K,? extends V> multimap)
+  nameWithType: Multimap<K,V>.putAll(Multimap<? extends K,? extends V> multimap)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.putAll(Multimap<? extends K,? extends V> multimap)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.putAll*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Stores all key-value pairs of `multimap` in this multimap, in the order returned by `multimap.entries()`.
+  syntax:
+    content: public abstract boolean putAll(Multimap<? extends K,? extends V> multimap)
+    parameters:
+    - id: multimap
+      type: com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>
+    return:
+      type: boolean
+      description: <code>true</code> if the multimap changed
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.remove(java.lang.Object,java.lang.Object)
+  id: remove(java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: remove(Object key, Object value)
+  nameWithType: Multimap<K,V>.remove(Object key, Object value)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.remove(Object key, Object value)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.remove*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: Removes a single key-value pair with the key `key` and the value `value` from this multimap, if such exists. If multiple key-value pairs in the multimap fit this description, which one is removed is unspecified.
+  syntax:
+    content: public abstract boolean remove(Object key, Object value)
+    parameters:
+    - id: key
+      type: java.lang.Object
+    - id: value
+      type: java.lang.Object
+    return:
+      type: boolean
+      description: <code>true</code> if the multimap changed
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll(java.lang.Object)
+  id: removeAll(java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: removeAll(Object key)
+  nameWithType: Multimap<K,V>.removeAll(Object key)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.removeAll(Object key)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Removes all values associated with the key `key`.
+
+
+    Once this method returns, `key` will not be mapped to any values, so it will not appear in <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.keySet()" data-throw-if-not-resolved="false">#keySet()</xref>, <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.asMap()" data-throw-if-not-resolved="false">#asMap()</xref>, or any other views.
+  syntax:
+    content: public abstract Collection<V> removeAll(Object key)
+    parameters:
+    - id: key
+      type: java.lang.Object
+    return:
+      type: java.util.Collection<V>
+      description: >-
+        the values that were removed (possibly empty). The returned collection <i>may</i> be
+             modifiable, but updating it will have no effect on the multimap.
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues(K,java.lang.Iterable<? extends V>)
+  id: replaceValues(K,java.lang.Iterable<? extends V>)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: replaceValues(K key, Iterable<? extends V> values)
+  nameWithType: Multimap<K,V>.replaceValues(K key, Iterable<? extends V> values)
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.replaceValues(K key, Iterable<? extends V> values)
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Stores a collection of values with the same key, replacing any existing values for that key.
+
+
+    If `values` is empty, this is equivalent to <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll(java.lang.Object)" data-throw-if-not-resolved="false">removeAll(key)</xref>.
+  syntax:
+    content: public abstract Collection<V> replaceValues(K key, Iterable<? extends V> values)
+    parameters:
+    - id: key
+      type: K
+    - id: values
+      type: java.lang.Iterable<? extends V>
+    return:
+      type: java.util.Collection<V>
+      description: >-
+        the collection of replaced values, or an empty collection if no values were previously
+             associated with the key. The collection <i>may</i> be modifiable, but updating it will have
+             no effect on the multimap.
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.size()
+  id: size()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: size()
+  nameWithType: Multimap<K,V>.size()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.size()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.size*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns the number of key-value pairs in this multimap.
+
+
+    **Note:** this method does not return the number of *distinct keys* in the multimap, which is given by `keySet().size()` or `asMap().size()`. See the opening section of the <xref uid="com.azure.cosmos.implementation.guava25.collect.Multimap" data-throw-if-not-resolved="false">Multimap</xref> class documentation for clarification.
+  syntax:
+    content: public abstract int size()
+    return:
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.values()
+  id: values()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.collect.Multimap
+  langs:
+  - java
+  name: values()
+  nameWithType: Multimap<K,V>.values()
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.values()
+  overload: com.azure.cosmos.implementation.guava25.collect.Multimap.values*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.collect
+  summary: >-
+    Returns a view collection containing the *value* from each key-value pair contained in this multimap, without collapsing duplicates (so `values().size() == size()`).
+
+
+    Changes to the returned collection will update the underlying multimap, and vice versa. However, *adding* to the returned collection is not possible.
+  syntax:
+    content: public abstract Collection<V> values()
+    return:
+      type: java.util.Collection<V>
+references:
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.size*
+  name: size
+  nameWithType: Multimap<K,V>.size
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.size
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.isEmpty*
+  name: isEmpty
+  nameWithType: Multimap<K,V>.isEmpty
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.isEmpty
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsKey*
+  name: containsKey
+  nameWithType: Multimap<K,V>.containsKey
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsKey
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsValue*
+  name: containsValue
+  nameWithType: Multimap<K,V>.containsValue
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsValue
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.containsEntry*
+  name: containsEntry
+  nameWithType: Multimap<K,V>.containsEntry
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.containsEntry
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: K
+  spec.java:
+  - uid: K
+    name: K
+    fullName: K
+- uid: V
+  spec.java:
+  - uid: V
+    name: V
+    fullName: V
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.put*
+  name: put
+  nameWithType: Multimap<K,V>.put
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.put
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.remove*
+  name: remove
+  nameWithType: Multimap<K,V>.remove
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.remove
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.lang.Iterable<? extends V>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: '? extends V'
+    name: '? extends V'
+    fullName: '? extends V'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.putAll*
+  name: putAll
+  nameWithType: Multimap<K,V>.putAll
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.putAll
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap<? extends K,? extends V>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.collect.Multimap
+    name: Multimap
+    fullName: com.azure.cosmos.implementation.guava25.collect.Multimap
+  - name: <
+    fullName: <
+  - uid: '? extends K'
+    name: '? extends K'
+    fullName: '? extends K'
+  - name: ','
+    fullName: ','
+  - uid: '? extends V'
+    name: '? extends V'
+    fullName: '? extends V'
+  - name: '>'
+    fullName: '>'
+- uid: java.util.Collection<V>
+  spec.java:
+  - uid: java.util.Collection
+    name: Collection
+    fullName: java.util.Collection
+  - name: <
+    fullName: <
+  - uid: V
+    name: V
+    fullName: V
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.replaceValues*
+  name: replaceValues
+  nameWithType: Multimap<K,V>.replaceValues
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.replaceValues
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.removeAll*
+  name: removeAll
+  nameWithType: Multimap<K,V>.removeAll
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.removeAll
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.clear*
+  name: clear
+  nameWithType: Multimap<K,V>.clear
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.clear
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.get*
+  name: get
+  nameWithType: Multimap<K,V>.get
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.get
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.util.Set<K>
+  spec.java:
+  - uid: java.util.Set
+    name: Set
+    fullName: java.util.Set
+  - name: <
+    fullName: <
+  - uid: K
+    name: K
+    fullName: K
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.keySet*
+  name: keySet
+  nameWithType: Multimap<K,V>.keySet
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.keySet
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multiset<K>
+  spec.java:
+  - uid: com.azure.cosmos.implementation.guava25.collect.Multiset
+    name: Multiset
+    fullName: com.azure.cosmos.implementation.guava25.collect.Multiset
+  - name: <
+    fullName: <
+  - uid: K
+    name: K
+    fullName: K
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.keys*
+  name: keys
+  nameWithType: Multimap<K,V>.keys
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.keys
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.values*
+  name: values
+  nameWithType: Multimap<K,V>.values
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.values
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.util.Collection<java.util.Map.Entry<K,V>>
+  spec.java:
+  - uid: java.util.Collection
+    name: Collection
+    fullName: java.util.Collection
+  - name: <
+    fullName: <
+  - uid: java.util.Map.Entry
+    name: Entry
+    fullName: java.util.Map.Entry
+  - name: <
+    fullName: <
+  - uid: K
+    name: K
+    fullName: K
+  - name: ','
+    fullName: ','
+  - uid: V
+    name: V
+    fullName: V
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.entries*
+  name: entries
+  nameWithType: Multimap<K,V>.entries
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.entries
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.util.function.BiConsumer<? super K,? super V>
+  spec.java:
+  - uid: java.util.function.BiConsumer
+    name: BiConsumer
+    fullName: java.util.function.BiConsumer
+  - name: <
+    fullName: <
+  - uid: '? super K'
+    name: '? super K'
+    fullName: '? super K'
+  - name: ','
+    fullName: ','
+  - uid: '? super V'
+    name: '? super V'
+    fullName: '? super V'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.forEach*
+  name: forEach
+  nameWithType: Multimap<K,V>.forEach
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.forEach
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: java.util.Map<K,java.util.Collection<V>>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: K
+    name: K
+    fullName: K
+  - name: ','
+    fullName: ','
+  - uid: java.util.Collection
+    name: Collection
+    fullName: java.util.Collection
+  - name: <
+    fullName: <
+  - uid: V
+    name: V
+    fullName: V
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.asMap*
+  name: asMap
+  nameWithType: Multimap<K,V>.asMap
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.asMap
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.equals*
+  name: equals
+  nameWithType: Multimap<K,V>.equals
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.equals
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: com.azure.cosmos.implementation.guava25.collect.Multimap.hashCode*
+  name: hashCode
+  nameWithType: Multimap<K,V>.hashCode
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multimap<K,V>.hashCode
+  package: com.azure.cosmos.implementation.guava25.collect
+- uid: '? extends V'
+  name: '? extends V'
+  nameWithType: '? extends V'
+  fullName: '? extends V'
+- uid: java.lang.Iterable
+  name: Iterable
+  nameWithType: Iterable
+  fullName: java.lang.Iterable
+- uid: '? extends K,? extends V'
+  name: '? extends K,? extends V'
+  nameWithType: '? extends K,? extends V'
+  fullName: '? extends K,? extends V'
+- uid: java.util.Collection
+  name: Collection
+  nameWithType: Collection
+  fullName: java.util.Collection
+- uid: java.util.Set
+  name: Set
+  nameWithType: Set
+  fullName: java.util.Set
+- uid: com.azure.cosmos.implementation.guava25.collect.Multiset
+  name: Multiset
+  nameWithType: Multiset
+  fullName: com.azure.cosmos.implementation.guava25.collect.Multiset
+- uid: K,V
+  name: K,V
+  nameWithType: K,V
+  fullName: K,V
+- uid: java.util.Map.Entry
+  name: Map.Entry
+  nameWithType: Map.Entry
+  fullName: java.util.Map.Entry
+- uid: '? super K,? super V'
+  name: '? super K,? super V'
+  nameWithType: '? super K,? super V'
+  fullName: '? super K,? super V'
+- uid: java.util.function.BiConsumer
+  name: BiConsumer
+  nameWithType: BiConsumer
+  fullName: java.util.function.BiConsumer
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
+- uid: K,java.util.Collection
+  name: K,Collection
+  nameWithType: K,Collection
+  fullName: K,java.util.Collection

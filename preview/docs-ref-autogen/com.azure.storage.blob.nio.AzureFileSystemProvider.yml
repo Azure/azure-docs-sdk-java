@@ -1,84 +1,1461 @@
-### YamlMime:JavaType
-uid: "com.azure.storage.blob.nio.AzureFileSystemProvider"
-fullName: "com.azure.storage.blob.nio.AzureFileSystemProvider"
-name: "AzureFileSystemProvider"
-nameWithType: "AzureFileSystemProvider"
-summary: "The `AzureFileSystemProvider` is Azure Storage's implementation of the nio interface on top of Azure Blob Storage.\n\nParticular care should be taken when working with a remote storage service. This implementation makes no guarantees on behavior or state should other processes operate on the same data concurrently; file systems from this provider will assume they have exclusive access to their data and will behave without regard for potential of interfering applications. Moreover, remote file stores introduce higher latencies. Therefore, additional consideration should be given to managing concurrency: race conditions are more likely to manifest and network failures occur more frequently than disk failures. These and other such distributed application scenarios must be considered when working with this file system. While the `AzureFileSystem` will ensure it takes appropriate steps towards robustness and reliability, the application developer must design around these failure scenarios and have fallback and retry options available.\n\nThe Azure Blob Storage service backing these APIs is not a true FileSystem, nor is it the goal of this implementation to force Azure Blob Storage to act like a full-fledged file system. Some APIs and scenarios will remain unsupported indefinitely until they may be sensibly implemented. Other APIs may experience lower performance than is expected because of the number of network requests needed to ensure correctness. The javadocs for each type and method should also be read carefully to understand what guarantees are made and how they may differ from the contract defined by <xref uid=\"java.nio.file.spi.FileSystemProvider\" data-throw-if-not-resolved=\"false\">FileSystemProvider</xref>.\n\nThe scheme for this provider is `\"azb\"`, and the format of the URI to identify an `AzureFileSystem` is `\"azb://?account=\"`. The name of the Storage account is used to uniquely identify the file system.\n\nAn <xref uid=\"com.azure.storage.blob.nio.AzureFileSystem\" data-throw-if-not-resolved=\"false\">AzureFileSystem</xref> is backed by an account. An <xref uid=\"com.azure.storage.blob.nio.AzureFileStore\" data-throw-if-not-resolved=\"false\">AzureFileStore</xref> is backed by a container. Any number of containers may be specified as file stores upon creation of the file system. When a file system is created, it will try to retrieve the properties of each container to ensure connection to the account. If any of the containers does not exist, it will be created. Failure to access or create containers as necessary will result in an exception and failure to create the file system. Any data existing in the containers will be preserved and accessible via the file system, though customers should be aware that it must be in a format understandable by the types in this package or behavior will be undefined.\n\n<xref uid=\"com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(java.net.URI,java.util.Map&lt;java.lang.String,?&gt;)\" data-throw-if-not-resolved=\"false\">#newFileSystem(URI, Map)</xref> will check for the following keys in the configuration map and expect the named types. Any entries not listed here will be ignored. Note that <xref uid=\"com.azure.storage.blob.nio.AzureFileSystem\" data-throw-if-not-resolved=\"false\">AzureFileSystem</xref> has public constants defined for each of the keys for convenience.\n\n *  `AzureStorageAccountKey:`<xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">String</xref>\n *  `AzureStorageSasToken:`<xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">String</xref>\n *  `AzureStorageHttpLogDetailLevel:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">com.azure.core.http.policy.HttpLogDetailLevel</xref>\n *  `AzureStorageMaxTries:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Integer</xref>\n *  `AzureStorageTryTimeout:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Integer</xref>\n *  `AzureStorageRetryDelayInMs:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Long</xref>\n *  `AzureStorageMaxRetryDelayInMs:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Long</xref>\n *  `AzureStorageRetryPolicyType:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">com.azure.storage.common.policy.RetryPolicyType</xref>\n *  `AzureStorageSecondaryHost:`<xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">String</xref>\n *  `AzureStorageSecondaryHost:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Integer</xref>\n *  `AzureStorageBlockSize:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Long</xref>\n *  `AzureStoragePutBlobThreshold:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Long</xref>\n *  `AzureStorageMaxConcurrencyPerRequest:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Integer</xref>\n *  `AzureStorageDownloadResumeRetries:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Integer</xref>\n *  `AzureStorageUseHttps:`<xref uid=\"\" data-throw-if-not-resolved=\"false\">Boolean</xref>\n *  `AzureStorageFileStores:`<xref uid=\"java.lang.String\" data-throw-if-not-resolved=\"false\">String</xref>\n\nEither an account key or a sas token must be specified. If both are provided, the account key will be preferred. If a sas token is specified, the customer must take care that it has appropriate permissions to perform the actions demanded of the file system in a given workflow, including the initial connection check specified above. Furthermore, it must have an expiry time that lasts at least until the file system is closed as there is no token refresh offered at this time. The same token will be applied to all containers.\n\nAn iterable of file stores must also be provided; each entry should simply be the name of a container. The first container listed will be considered the default file store and the root directory of which will be the file system's default directory. All other values listed are used to configure the underlying <xref uid=\"\" data-throw-if-not-resolved=\"false\">com.azure.storage.blob.BlobServiceClient</xref>. Please refer to that type for more information on these values."
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-- "<xref href=\"java.nio.file.spi.FileSystemProvider\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-- "java.nio.file.spi.FileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)"
-- "java.nio.file.spi.FileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)"
-- "java.nio.file.spi.FileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)"
-- "java.nio.file.spi.FileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)"
-- "java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)"
-- "java.nio.file.spi.FileSystemProvider.createLink(java.nio.file.Path,java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)"
-- "java.nio.file.spi.FileSystemProvider.delete(java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.deleteIfExists(java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.getFileStore(java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.getFileSystem(java.net.URI)"
-- "java.nio.file.spi.FileSystemProvider.getPath(java.net.URI)"
-- "java.nio.file.spi.FileSystemProvider.getScheme()"
-- "java.nio.file.spi.FileSystemProvider.installedProviders()"
-- "java.nio.file.spi.FileSystemProvider.isHidden(java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)"
-- "java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute<?>...)"
-- "java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)"
-- "java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)"
-- "java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)"
-- "java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)"
-- "java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map<java.lang.String,?>)"
-- "java.nio.file.spi.FileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)"
-- "java.nio.file.spi.FileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)"
-- "java.nio.file.spi.FileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)"
-- "java.nio.file.spi.FileSystemProvider.readSymbolicLink(java.nio.file.Path)"
-- "java.nio.file.spi.FileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)"
-syntax: "public final class AzureFileSystemProvider extends FileSystemProvider"
-constructors:
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider()"
-fields:
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CACHE_CONTROL"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_DISPOSITION"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_ENCODING"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_LANGUAGE"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_MD5"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_TYPE"
-methods:
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.delete(java.nio.file.Path)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore(java.nio.file.Path)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem(java.net.URI)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.getPath(java.net.URI)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme()"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden(java.nio.file.Path)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)"
-- "com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)"
-type: "class"
-metadata: {}
-package: "com.azure.storage.blob.nio"
-artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider
+  id: AzureFileSystemProvider
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio
+  children:
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider()
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CACHE_CONTROL
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_DISPOSITION
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_ENCODING
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_LANGUAGE
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_MD5
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_TYPE
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.delete(java.nio.file.Path)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore(java.nio.file.Path)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem(java.net.URI)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.getPath(java.net.URI)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme()
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden(java.nio.file.Path)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+  - com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+  langs:
+  - java
+  name: AzureFileSystemProvider
+  nameWithType: AzureFileSystemProvider
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider
+  type: Class
+  package: com.azure.storage.blob.nio
+  summary: >-
+    The `AzureFileSystemProvider` is Azure Storage's implementation of the nio interface on top of Azure Blob Storage.
+
+
+    Particular care should be taken when working with a remote storage service. This implementation makes no guarantees on behavior or state should other processes operate on the same data concurrently; file systems from this provider will assume they have exclusive access to their data and will behave without regard for potential of interfering applications. Moreover, remote file stores introduce higher latencies. Therefore, additional consideration should be given to managing concurrency: race conditions are more likely to manifest and network failures occur more frequently than disk failures. These and other such distributed application scenarios must be considered when working with this file system. While the `AzureFileSystem` will ensure it takes appropriate steps towards robustness and reliability, the application developer must design around these failure scenarios and have fallback and retry options available.
+
+
+    The Azure Blob Storage service backing these APIs is not a true FileSystem, nor is it the goal of this implementation to force Azure Blob Storage to act like a full-fledged file system. Some APIs and scenarios will remain unsupported indefinitely until they may be sensibly implemented. Other APIs may experience lower performance than is expected because of the number of network requests needed to ensure correctness. The javadocs for each type and method should also be read carefully to understand what guarantees are made and how they may differ from the contract defined by <xref uid="java.nio.file.spi.FileSystemProvider" data-throw-if-not-resolved="false">FileSystemProvider</xref>.
+
+
+    The scheme for this provider is `"azb"`, and the format of the URI to identify an `AzureFileSystem` is `"azb://?account="`. The name of the Storage account is used to uniquely identify the file system.
+
+
+    An <xref uid="com.azure.storage.blob.nio.AzureFileSystem" data-throw-if-not-resolved="false">AzureFileSystem</xref> is backed by an account. An <xref uid="com.azure.storage.blob.nio.AzureFileStore" data-throw-if-not-resolved="false">AzureFileStore</xref> is backed by a container. Any number of containers may be specified as file stores upon creation of the file system. When a file system is created, it will try to retrieve the properties of each container to ensure connection to the account. If any of the containers does not exist, it will be created. Failure to access or create containers as necessary will result in an exception and failure to create the file system. Any data existing in the containers will be preserved and accessible via the file system, though customers should be aware that it must be in a format understandable by the types in this package or behavior will be undefined.
+
+
+    <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(java.net.URI,java.util.Map&lt;java.lang.String,?&gt;)" data-throw-if-not-resolved="false">#newFileSystem(URI, Map)</xref> will check for the following keys in the configuration map and expect the named types. Any entries not listed here will be ignored. Note that <xref uid="com.azure.storage.blob.nio.AzureFileSystem" data-throw-if-not-resolved="false">AzureFileSystem</xref> has public constants defined for each of the keys for convenience.
+
+     *  `AzureStorageAccountKey:`<xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref>
+     *  `AzureStorageSasToken:`<xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref>
+     *  `AzureStorageHttpLogDetailLevel:`<xref uid="" data-throw-if-not-resolved="false">com.azure.core.http.policy.HttpLogDetailLevel</xref>
+     *  `AzureStorageMaxTries:`<xref uid="" data-throw-if-not-resolved="false">Integer</xref>
+     *  `AzureStorageTryTimeout:`<xref uid="" data-throw-if-not-resolved="false">Integer</xref>
+     *  `AzureStorageRetryDelayInMs:`<xref uid="" data-throw-if-not-resolved="false">Long</xref>
+     *  `AzureStorageMaxRetryDelayInMs:`<xref uid="" data-throw-if-not-resolved="false">Long</xref>
+     *  `AzureStorageRetryPolicyType:`<xref uid="" data-throw-if-not-resolved="false">com.azure.storage.common.policy.RetryPolicyType</xref>
+     *  `AzureStorageSecondaryHost:`<xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref>
+     *  `AzureStorageSecondaryHost:`<xref uid="" data-throw-if-not-resolved="false">Integer</xref>
+     *  `AzureStorageBlockSize:`<xref uid="" data-throw-if-not-resolved="false">Long</xref>
+     *  `AzureStoragePutBlobThreshold:`<xref uid="" data-throw-if-not-resolved="false">Long</xref>
+     *  `AzureStorageMaxConcurrencyPerRequest:`<xref uid="" data-throw-if-not-resolved="false">Integer</xref>
+     *  `AzureStorageDownloadResumeRetries:`<xref uid="" data-throw-if-not-resolved="false">Integer</xref>
+     *  `AzureStorageUseHttps:`<xref uid="" data-throw-if-not-resolved="false">Boolean</xref>
+     *  `AzureStorageFileStores:`<xref uid="java.lang.String" data-throw-if-not-resolved="false">String</xref>
+
+    Either an account key or a sas token must be specified. If both are provided, the account key will be preferred. If a sas token is specified, the customer must take care that it has appropriate permissions to perform the actions demanded of the file system in a given workflow, including the initial connection check specified above. Furthermore, it must have an expiry time that lasts at least until the file system is closed as there is no token refresh offered at this time. The same token will be applied to all containers.
+
+
+    An iterable of file stores must also be provided; each entry should simply be the name of a container. The first container listed will be considered the default file store and the root directory of which will be the file system's default directory. All other values listed are used to configure the underlying <xref uid="" data-throw-if-not-resolved="false">com.azure.storage.blob.BlobServiceClient</xref>. Please refer to that type for more information on these values.
+  syntax:
+    content: public final class AzureFileSystemProvider extends FileSystemProvider
+  inheritance:
+  - java.lang.Object
+  - java.nio.file.spi.FileSystemProvider
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+  - java.nio.file.spi.FileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+  - java.nio.file.spi.FileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+  - java.nio.file.spi.FileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+  - java.nio.file.spi.FileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  - java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  - java.nio.file.spi.FileSystemProvider.createLink(java.nio.file.Path,java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  - java.nio.file.spi.FileSystemProvider.delete(java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.deleteIfExists(java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.getFileStore(java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.getFileSystem(java.net.URI)
+  - java.nio.file.spi.FileSystemProvider.getPath(java.net.URI)
+  - java.nio.file.spi.FileSystemProvider.getScheme()
+  - java.nio.file.spi.FileSystemProvider.installedProviders()
+  - java.nio.file.spi.FileSystemProvider.isHidden(java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  - java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute<?>...)
+  - java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  - java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+  - java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  - java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+  - java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map<java.lang.String,?>)
+  - java.nio.file.spi.FileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  - java.nio.file.spi.FileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  - java.nio.file.spi.FileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+  - java.nio.file.spi.FileSystemProvider.readSymbolicLink(java.nio.file.Path)
+  - java.nio.file.spi.FileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+  id: <A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: <A>readAttributes(Path path, Class<A> type, LinkOption[] linkOptions)
+  nameWithType: AzureFileSystemProvider.<A>readAttributes(Path path, Class<A> type, LinkOption[] linkOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.<A>readAttributes(Path path, Class<A> type, LinkOption[] linkOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Reads a file's attributes as a bulk operation.
+
+
+    See <xref uid="com.azure.storage.blob.nio.AzureBasicFileAttributes" data-throw-if-not-resolved="false">AzureBasicFileAttributes</xref> and <xref uid="com.azure.storage.blob.nio.AzureBlobFileAttributes" data-throw-if-not-resolved="false">AzureBlobFileAttributes</xref> for more information.
+
+
+    Reading attributes on a virtual directory is not supported and will throw an <xref uid="java.io.IOException" data-throw-if-not-resolved="false">IOException</xref>. See <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute&lt;?&gt;...)" data-throw-if-not-resolved="false">#createDirectory(Path, FileAttribute[])</xref> for more information on virtual directories.
+  syntax:
+    content: public A <A>readAttributes(Path path, Class<A> type, LinkOption[] linkOptions)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file
+    - id: type
+      type: java.lang.Class<A>
+      description: the Class of the file attributes required to read
+    - id: linkOptions
+      type: java.nio.file.LinkOption[]
+      description: ignored
+    return:
+      type: A
+      description: the file attributes
+  exceptions:
+  - type: java.io.IOException
+    description: if an attributes of the given type are not supported
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+  id: <V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: <V>getFileAttributeView(Path path, Class<V> type, LinkOption[] linkOptions)
+  nameWithType: AzureFileSystemProvider.<V>getFileAttributeView(Path path, Class<V> type, LinkOption[] linkOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.<V>getFileAttributeView(Path path, Class<V> type, LinkOption[] linkOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileAttributeView*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Returns a file attribute view of a given type.
+
+
+    See <xref uid="com.azure.storage.blob.nio.AzureBasicFileAttributeView" data-throw-if-not-resolved="false">AzureBasicFileAttributeView</xref> and <xref uid="com.azure.storage.blob.nio.AzureBlobFileAttributeView" data-throw-if-not-resolved="false">AzureBlobFileAttributeView</xref> for more information.
+
+
+    Reading or setting attributes on a virtual directory is not supported and will throw an <xref uid="java.io.IOException" data-throw-if-not-resolved="false">IOException</xref>. See <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute&lt;?&gt;...)" data-throw-if-not-resolved="false">#createDirectory(Path, FileAttribute[])</xref> for more information on virtual directories.
+  syntax:
+    content: public V <V>getFileAttributeView(Path path, Class<V> type, LinkOption[] linkOptions)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file
+    - id: type
+      type: java.lang.Class<V>
+      description: the Class object corresponding to the file attribute view
+    - id: linkOptions
+      type: java.nio.file.LinkOption[]
+      description: ignored
+    return:
+      type: V
+      description: a file attribute view of the specified type, or null if the attribute view type is not available
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider()
+  id: AzureFileSystemProvider()
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: AzureFileSystemProvider()
+  nameWithType: AzureFileSystemProvider.AzureFileSystemProvider()
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider()
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider*
+  type: Constructor
+  package: com.azure.storage.blob.nio
+  summary: Creates an AzureFileSystemProvider.
+  syntax:
+    content: public AzureFileSystemProvider()
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CACHE_CONTROL
+  id: CACHE_CONTROL
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CACHE_CONTROL
+  nameWithType: AzureFileSystemProvider.CACHE_CONTROL
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CACHE_CONTROL
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CACHE_CONTROL
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_DISPOSITION
+  id: CONTENT_DISPOSITION
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CONTENT_DISPOSITION
+  nameWithType: AzureFileSystemProvider.CONTENT_DISPOSITION
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_DISPOSITION
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CONTENT_DISPOSITION
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_ENCODING
+  id: CONTENT_ENCODING
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CONTENT_ENCODING
+  nameWithType: AzureFileSystemProvider.CONTENT_ENCODING
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_ENCODING
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CONTENT_ENCODING
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_LANGUAGE
+  id: CONTENT_LANGUAGE
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CONTENT_LANGUAGE
+  nameWithType: AzureFileSystemProvider.CONTENT_LANGUAGE
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_LANGUAGE
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CONTENT_LANGUAGE
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_MD5
+  id: CONTENT_MD5
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CONTENT_MD5
+  nameWithType: AzureFileSystemProvider.CONTENT_MD5
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_MD5
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CONTENT_MD5
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_TYPE
+  id: CONTENT_TYPE
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: CONTENT_TYPE
+  nameWithType: AzureFileSystemProvider.CONTENT_TYPE
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.CONTENT_TYPE
+  type: Field
+  package: com.azure.storage.blob.nio
+  summary: A helper for setting the HTTP properties when creating a directory.
+  syntax:
+    content: public static final String CONTENT_TYPE
+    return:
+      type: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+  id: checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: checkAccess(Path path, AccessMode[] accessModes)
+  nameWithType: AzureFileSystemProvider.checkAccess(Path path, AccessMode[] accessModes)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess(Path path, AccessMode[] accessModes)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Unsupported.
+  syntax:
+    content: public void checkAccess(Path path, AccessMode[] accessModes)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: path
+    - id: accessModes
+      type: java.nio.file.AccessMode[]
+      description: accessMode
+  exceptions:
+  - type: java.io.IOException
+    description: Operation is not supported.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  id: copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: copy(Path source, Path destination, CopyOption[] copyOptions)
+  nameWithType: AzureFileSystemProvider.copy(Path source, Path destination, CopyOption[] copyOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.copy(Path source, Path destination, CopyOption[] copyOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.copy*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Copies the resource at the source location to the destination.
+
+
+    This method is not atomic with respect to other file system operations. More specifically, the checks necessary to validate the inputs and state of the file system are not atomic with the actual copying of data. If the copy is triggered, the copy itself is atomic and only a complete copy will ever be left at the destination.
+
+
+    In addition to those in the docs for <xref uid="java.nio.file.spi.FileSystemProvider.copy*" data-throw-if-not-resolved="false">FileSystemProvider#copy(Path, Path, CopyOption...)</xref>, this method has the following requirements for successful completion. <xref uid="" data-throw-if-not-resolved="false">StandardCopyOption#COPY_ATTRIBUTES</xref> must be passed as it is impossible not to copy blob properties; if this option is not passed, an <xref uid="" data-throw-if-not-resolved="false">UnsupportedOperationException</xref> will be thrown. Neither the source nor the destination can be a root directory; if either is a root directory, an <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref> will be thrown. The parent directory of the destination must at least weakly exist; if it does not, an <xref uid="java.io.IOException" data-throw-if-not-resolved="false">IOException</xref> will be thrown. The only supported option other than <xref uid="" data-throw-if-not-resolved="false">StandardCopyOption#COPY_ATTRIBUTES</xref> is <xref uid="" data-throw-if-not-resolved="false">StandardCopyOption#REPLACE_EXISTING</xref>; the presence of any other option will result in an <xref uid="" data-throw-if-not-resolved="false">UnsupportedOperationException</xref>.
+
+
+    This method supports both virtual and concrete directories as both the source and destination. Unlike when creating a directory, the existence of a virtual directory at the destination will cause this operation to fail. This is in order to prevent the possibility of overwriting a non-empty virtual directory with a file. Still, as mentioned above, this check is not atomic with the creation of the resultant directory.
+  syntax:
+    content: public void copy(Path source, Path destination, CopyOption[] copyOptions)
+    parameters:
+    - id: source
+      type: java.nio.file.Path
+      description: the path to the file to copy
+    - id: destination
+      type: java.nio.file.Path
+      description: the path to the target file
+    - id: copyOptions
+      type: java.nio.file.CopyOption[]
+      description: specifying how the copy should be done
+  exceptions:
+  - type: java.io.IOException
+    description: if the array contains a copy option that is not supported
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  id: createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: createDirectory(Path path, FileAttribute<?>[] fileAttributes)
+  nameWithType: AzureFileSystemProvider.createDirectory(Path path, FileAttribute<?>[] fileAttributes)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(Path path, FileAttribute<?>[] fileAttributes)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Creates a new directory at the specified path.
+
+
+    The existence of a directory in the `AzureFileSystem` is defined on two levels. *Weak existence* is defined by the presence of a non-zero number of blobs prefixed with the directory's path. This concept is also known as a *virtual directory* and enables the file system to work with containers that were pre-loaded with data by another source but need to be accessed by this file system. *Strong existence* is defined as the presence of an actual storage resource at the given path, which in the case of directories, is a zero-length blob whose name is the directory path with a particular metadata field indicating the blob's status as a directory. This is also known as a *concrete directory*. Directories created by this file system will strongly exist. Operations targeting directories themselves as the object (e.g. setting properties) will target marker blobs underlying concrete directories. Other operations (e.g. listing) will operate on the blob-name prefix.
+
+
+    This method fulfills the nio contract of: "The check for the existence of the file and the creation of the directory if it does not exist are a single operation that is atomic with respect to all other filesystem activities that might affect the directory." More specifically, this method will atomically check for *strong existence* of another file or directory at the given path and fail if one is present. On the other hand, we only check for *weak existence* of the parent to determine if the given path is valid. Additionally, the action of checking whether the parent exists, is *not* atomic with the creation of the directory. Note that while it is possible that the parent may be deleted between when the parent is determined to exist and the creation of the child, the creation of the child will always ensure the existence of a virtual parent, so the child will never be left floating and unreachable. The different checks on parent and child is due to limitations in the Storage service API.
+
+
+    There may be some unintuitive behavior when working with directories in this file system, particularly virtual directories (usually those not created by this file system). A virtual directory will disappear as soon as all its children have been deleted. Furthermore, if a directory with the given path weakly exists at the time of calling this method, this method will still return success and create a concrete directory at the target location. In other words, it is possible to "double create" a directory if it first weakly exists and then is strongly created. This is both because it is impossible to atomically check if a virtual directory exists while creating a concrete directory and because such behavior will have minimal side effects--no files will be overwritten and the directory will still be available for writing as intended, though it may not be empty. This is not a complete list of such unintuitive behavior.
+
+
+    This method will attempt to extract standard HTTP content headers from the list of file attributes to set them as blob headers. All other attributes will be set as blob metadata. The value of every attribute will be converted to a `String` with the exception of the Content-MD5 attribute which expects a `byte[]`. When extracting the content headers, the following strings will be used for comparison (constants for these values can be found on this type):
+
+     *  `Content-Type`
+     *  `Content-Disposition`
+     *  `Content-Language`
+     *  `Content-Encoding`
+     *  `Content-MD5`
+     *  `Cache-Control`
+
+    Note that these properties also have a particular semantic in that if one is specified, all are updated. In other words, if any of the above is set, all those that are not set will be cleared. See the [Azure Docs][] for more information.
+
+
+
+    [Azure Docs]: https://docs.microsoft.com/en-us/rest/api/storageservices/set-blob-properties
+  syntax:
+    content: public void createDirectory(Path path, FileAttribute<?>[] fileAttributes)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the directory to create
+    - id: fileAttributes
+      type: java.nio.file.attribute.FileAttribute<?>[]
+      description: an optional list of file attributes to set atomically when creating the directory
+  exceptions:
+  - type: java.io.IOException
+    description: If the path type is not an instance of <xref uid="AzurePath" data-throw-if-not-resolved="false">AzurePath</xref>.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.delete(java.nio.file.Path)
+  id: delete(java.nio.file.Path)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: delete(Path path)
+  nameWithType: AzureFileSystemProvider.delete(Path path)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.delete(Path path)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.delete*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Deletes the specified resource.
+
+
+    This method is not atomic with respect to other file system operations. It is possible to delete a file in use by another process, and doing so will not immediately invalidate any channels open to that file--they will simply start to fail. Root directories cannot be deleted even when empty.
+  syntax:
+    content: public void delete(Path path)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file to delete
+  exceptions:
+  - type: java.io.IOException
+    description: If the path type is not an instance of <xref uid="AzurePath" data-throw-if-not-resolved="false">AzurePath</xref>.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore(java.nio.file.Path)
+  id: getFileStore(java.nio.file.Path)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: getFileStore(Path path)
+  nameWithType: AzureFileSystemProvider.getFileStore(Path path)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore(Path path)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Unsupported.
+  syntax:
+    content: public FileStore getFileStore(Path path)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: path
+    return:
+      type: java.nio.file.FileStore
+      description: the file store where the file is stored.
+  exceptions:
+  - type: java.io.IOException
+    description: Operation is not supported.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem(java.net.URI)
+  id: getFileSystem(java.net.URI)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: getFileSystem(URI uri)
+  nameWithType: AzureFileSystemProvider.getFileSystem(URI uri)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem(URI uri)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Returns an existing FileSystem created by this provider.
+
+
+    The format of a `URI` identifying an file system is `"azb://?account=<accountName>"`.
+
+
+    Trying to retrieve a closed file system will throw a <xref uid="" data-throw-if-not-resolved="false">FileSystemNotFoundException</xref>. Once closed, a file system with the same identifier may be reopened.
+  syntax:
+    content: public FileSystem getFileSystem(URI uri)
+    parameters:
+    - id: uri
+      type: java.net.URI
+      description: URI reference
+    return:
+      type: java.nio.file.FileSystem
+      description: the file system
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getPath(java.net.URI)
+  id: getPath(java.net.URI)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: getPath(URI uri)
+  nameWithType: AzureFileSystemProvider.getPath(URI uri)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getPath(URI uri)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.getPath*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Return a Path object by converting the given URI. The resulting Path is associated with a FileSystem that already exists.
+  syntax:
+    content: public Path getPath(URI uri)
+    parameters:
+    - id: uri
+      type: java.net.URI
+      description: The URI to convert
+    return:
+      type: java.nio.file.Path
+      description: The path identified by the URI.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme()
+  id: getScheme()
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: getScheme()
+  nameWithType: AzureFileSystemProvider.getScheme()
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme()
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: 'Returns the URI scheme that identifies this provider: `"azb".`'
+  syntax:
+    content: public String getScheme()
+    return:
+      type: java.lang.String
+      description: <code>"azb"</code>
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden(java.nio.file.Path)
+  id: isHidden(java.nio.file.Path)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: isHidden(Path path)
+  nameWithType: AzureFileSystemProvider.isHidden(Path path)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden(Path path)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Always returns false as hidden files are not supported.
+  syntax:
+    content: public boolean isHidden(Path path)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path
+    return:
+      type: boolean
+      description: "false"
+  exceptions:
+  - type: java.io.IOException
+    description: If an I/O error occurs.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)
+  id: isSameFile(java.nio.file.Path,java.nio.file.Path)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: isSameFile(Path path, Path path1)
+  nameWithType: AzureFileSystemProvider.isSameFile(Path path, Path path1)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile(Path path, Path path1)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Unsupported.
+  syntax:
+    content: public boolean isSameFile(Path path, Path path1)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: path
+    - id: path1
+      type: java.nio.file.Path
+      description: path
+    return:
+      type: boolean
+  exceptions:
+  - type: java.io.IOException
+    description: Operation is not supported.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  id: move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: move(Path path, Path path1, CopyOption[] copyOptions)
+  nameWithType: AzureFileSystemProvider.move(Path path, Path path1, CopyOption[] copyOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.move(Path path, Path path1, CopyOption[] copyOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.move*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Unsupported.
+  syntax:
+    content: public void move(Path path, Path path1, CopyOption[] copyOptions)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: path
+    - id: path1
+      type: java.nio.file.Path
+      description: path
+    - id: copyOptions
+      type: java.nio.file.CopyOption[]
+      description: options
+  exceptions:
+  - type: java.io.IOException
+    description: Operation is not supported.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  id: newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: newByteChannel(Path path, Set<? extends OpenOption> set, FileAttribute<?>[] fileAttributes)
+  nameWithType: AzureFileSystemProvider.newByteChannel(Path path, Set<? extends OpenOption> set, FileAttribute<?>[] fileAttributes)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel(Path path, Set<? extends OpenOption> set, FileAttribute<?>[] fileAttributes)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: Unsupported. Use <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream*" data-throw-if-not-resolved="false">#newInputStream(Path, OpenOption...)</xref> or <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream*" data-throw-if-not-resolved="false">#newOutputStream(Path, OpenOption...)</xref> instead.
+  syntax:
+    content: public SeekableByteChannel newByteChannel(Path path, Set<? extends OpenOption> set, FileAttribute<?>[] fileAttributes)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the Path
+    - id: set
+      type: java.util.Set<? extends java.nio.file.OpenOption>
+      description: open options
+    - id: fileAttributes
+      type: java.nio.file.attribute.FileAttribute<?>[]
+      description: attributes
+    return:
+      type: java.nio.channels.SeekableByteChannel
+      description: a new seekable byte channel
+  exceptions:
+  - type: java.io.IOException
+    description: Operation is not supported.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+  id: newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: newDirectoryStream(Path path, DirectoryStream.Filter<? super Path> filter)
+  nameWithType: AzureFileSystemProvider.newDirectoryStream(Path path, DirectoryStream.Filter<? super Path> filter)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream(Path path, DirectoryStream.Filter<? super Path> filter)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Returns an <xref uid="com.azure.storage.blob.nio.AzureDirectoryStream" data-throw-if-not-resolved="false">AzureDirectoryStream</xref> for iterating over the contents of a directory. The elements returned by the directory stream's iterator are of type Path, each one representing an entry in the directory. The Path objects are obtained as if by resolving the name of the directory entry against dir. The entries returned by the iterator are filtered by the given filter.
+
+
+    When not using the try-with-resources construct, then directory stream's close method should be invoked after iteration is completed so as to free any resources held for the open directory.
+
+
+    Where the filter terminates due to an uncaught error or runtime exception then it is propagated to the hasNext or next method. Where an IOException is thrown, it results in the hasNext or next method throwing a DirectoryIteratorException with the IOException as the cause.
+  syntax:
+    content: public DirectoryStream<Path> newDirectoryStream(Path path, DirectoryStream.Filter<? super Path> filter)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the directory
+    - id: filter
+      type: java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>
+      description: the directory stream filter
+    return:
+      type: java.nio.file.DirectoryStream<java.nio.file.Path>
+      description: a new and open <code>DirectoryStream</code> object
+  exceptions:
+  - type: java.io.IOException
+    description: If the path type is not an instance of <xref uid="AzurePath" data-throw-if-not-resolved="false">AzurePath</xref>.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+  id: newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: newFileSystem(URI uri, Map<String,?> config)
+  nameWithType: AzureFileSystemProvider.newFileSystem(URI uri, Map<String,?> config)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem(URI uri, Map<String,?> config)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Constructs a new FileSystem object identified by a URI.
+
+
+    The format of a `URI` identifying a file system is `"azb://?account="`.
+
+
+    Once closed, a file system with the same identifier may be reopened.
+  syntax:
+    content: public FileSystem newFileSystem(URI uri, Map<String,?> config)
+    parameters:
+    - id: uri
+      type: java.net.URI
+      description: URI reference
+    - id: config
+      type: java.util.Map<java.lang.String,?>
+      description: A map of provider specific properties to configure the file system
+    return:
+      type: java.nio.file.FileSystem
+      description: a new file system.
+  exceptions:
+  - type: java.io.IOException
+    description: >-
+      If the pre-conditions for the uri parameter aren't met, or the env parameter
+       does not contain properties required by the provider, or a property value is invalid.
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  id: newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: newInputStream(Path path, OpenOption[] options)
+  nameWithType: AzureFileSystemProvider.newInputStream(Path path, OpenOption[] options)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream(Path path, OpenOption[] options)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Opens an <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> to the given path.
+
+
+    The stream will not attempt to read or buffer the entire file. However, when fetching data, it will always request the same size chunk of several MB to prevent network thrashing on small reads. Mark and reset are supported.
+
+
+    Only <xref uid="" data-throw-if-not-resolved="false">StandardOpenOption#READ</xref> is supported. Any other option will throw.
+  syntax:
+    content: public InputStream newInputStream(Path path, OpenOption[] options)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file to open
+    - id: options
+      type: java.nio.file.OpenOption[]
+      description: options specifying how the file is opened
+    return:
+      type: java.io.InputStream
+      description: a new input stream
+  exceptions:
+  - type: java.io.IOException
+    description: if an invalid combination of options is specified
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  id: newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: newOutputStream(Path path, OpenOption[] options)
+  nameWithType: AzureFileSystemProvider.newOutputStream(Path path, OpenOption[] options)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream(Path path, OpenOption[] options)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Opens an <xref uid="java.io.OutputStream" data-throw-if-not-resolved="false">OutputStream</xref> to the given path. The resulting file will be stored as a block blob.
+
+
+    The only supported options are <xref uid="" data-throw-if-not-resolved="false">StandardOpenOption#CREATE</xref>, <xref uid="" data-throw-if-not-resolved="false">StandardOpenOption#CREATE_NEW</xref>, <xref uid="" data-throw-if-not-resolved="false">StandardOpenOption#WRITE</xref>, <xref uid="" data-throw-if-not-resolved="false">StandardOpenOption#TRUNCATE_EXISTING</xref>. Any other options will throw an <xref uid="" data-throw-if-not-resolved="false">UnsupportedOperationException</xref>. `WRITE` and `TRUNCATE_EXISTING` must be specified or an <xref uid="" data-throw-if-not-resolved="false">IllegalArgumentException</xref> will be thrown. Hence, files cannot be updated, only overwritten completely.
+
+
+    This stream will not attempt to buffer the entire file, however some buffering will be done for potential optimizations and to avoid network thrashing. Specifically, up to <xref uid="com.azure.storage.blob.nio.AzureFileSystem.AZURE_STORAGE_PUT_BLOB_THRESHOLD" data-throw-if-not-resolved="false">AzureFileSystem#AZURE_STORAGE_PUT_BLOB_THRESHOLD</xref> bytes will be buffered initially. If that threshold is exceeded, the data will be broken into chunks and sent in blocks, and writes will be buffered into sizes of <xref uid="com.azure.storage.blob.nio.AzureFileSystem.AZURE_STORAGE_UPLOAD_BLOCK_SIZE" data-throw-if-not-resolved="false">AzureFileSystem#AZURE_STORAGE_UPLOAD_BLOCK_SIZE</xref>. The maximum number of buffers of this size to be allocated is defined by <xref uid="com.azure.storage.blob.nio.AzureFileSystem.AZURE_STORAGE_MAX_CONCURRENCY_PER_REQUEST" data-throw-if-not-resolved="false">AzureFileSystem#AZURE_STORAGE_MAX_CONCURRENCY_PER_REQUEST</xref>, which also configures the level of parallelism with which we may write and thus may affect write speeds as well.
+
+
+    The data is only committed when the steam is closed. Hence data cannot be read from the destination until the stream is closed. When the close method returns, it is guaranteed that, barring any errors, the data is finalized and available for reading.
+
+
+    Writing happens asynchronously. Bytes passed for writing are stored until either the threshold or block size are met at which time they are sent to the service. When the write method returns, there is no guarantee about which phase of this process the data is in other than it has been accepted and will be written. Again, closing will guarantee that the data is written and available.
+
+
+    Flush is a no-op as regards data transfers, but it can be used to check the state of the stream for errors. This can be a useful tool because writing happens asynchronously, and therefore an error from a previous write may not otherwise be thrown unless the stream is flushed, closed, or written to again.
+  syntax:
+    content: public OutputStream newOutputStream(Path path, OpenOption[] options)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file to open or create
+    - id: options
+      type: java.nio.file.OpenOption[]
+      description: options specifying how the file is opened
+    return:
+      type: java.io.OutputStream
+      description: a new output stream
+  exceptions:
+  - type: java.io.IOException
+    description: if an invalid combination of options is specified
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+  id: readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: readAttributes(Path path, String attributes, LinkOption[] linkOptions)
+  nameWithType: AzureFileSystemProvider.readAttributes(Path path, String attributes, LinkOption[] linkOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes(Path path, String attributes, LinkOption[] linkOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Reads a set of file attributes as a bulk operation.
+
+
+    See <xref uid="com.azure.storage.blob.nio.AzureBasicFileAttributes" data-throw-if-not-resolved="false">AzureBasicFileAttributes</xref> and <xref uid="com.azure.storage.blob.nio.AzureBlobFileAttributes" data-throw-if-not-resolved="false">AzureBlobFileAttributes</xref> for more information.
+
+
+    Reading attributes on a virtual directory is not supported and will throw an <xref uid="java.io.IOException" data-throw-if-not-resolved="false">IOException</xref>. See <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute&lt;?&gt;...)" data-throw-if-not-resolved="false">#createDirectory(Path, FileAttribute[])</xref> for more information on virtual directories.
+  syntax:
+    content: public Map<String,Object> readAttributes(Path path, String attributes, LinkOption[] linkOptions)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file
+    - id: attributes
+      type: java.lang.String
+      description: the attributes to read
+    - id: linkOptions
+      type: java.nio.file.LinkOption[]
+      description: ignored
+    return:
+      type: java.util.Map<java.lang.String,java.lang.Object>
+      description: >-
+        a map of the attributes returned; may be empty. The map's keys are the attribute names, its values are
+         the attribute values
+  exceptions:
+  - type: java.io.IOException
+    description: if an attributes of the given type are not supported
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+  id: setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+  artifact: com.azure:azure-storage-blob-nio:12.0.0-beta.2
+  parent: com.azure.storage.blob.nio.AzureFileSystemProvider
+  langs:
+  - java
+  name: setAttribute(Path path, String attributes, Object value, LinkOption[] linkOptions)
+  nameWithType: AzureFileSystemProvider.setAttribute(Path path, String attributes, Object value, LinkOption[] linkOptions)
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute(Path path, String attributes, Object value, LinkOption[] linkOptions)
+  overload: com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute*
+  type: Method
+  package: com.azure.storage.blob.nio
+  summary: >-
+    Sets the value of a file attribute.
+
+
+    See <xref uid="com.azure.storage.blob.nio.AzureBlobFileAttributeView" data-throw-if-not-resolved="false">AzureBlobFileAttributeView</xref> for more information.
+
+
+    Setting attributes on a virtual directory is not supported and will throw an <xref uid="java.io.IOException" data-throw-if-not-resolved="false">IOException</xref>. See <xref uid="com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute&lt;?&gt;...)" data-throw-if-not-resolved="false">#createDirectory(Path, FileAttribute[])</xref> for more information on virtual directories.
+  syntax:
+    content: public void setAttribute(Path path, String attributes, Object value, LinkOption[] linkOptions)
+    parameters:
+    - id: path
+      type: java.nio.file.Path
+      description: the path to the file
+    - id: attributes
+      type: java.lang.String
+      description: the attribute to set
+    - id: value
+      type: java.lang.Object
+      description: the attribute value
+    - id: linkOptions
+      type: java.nio.file.LinkOption[]
+      description: ignored
+  exceptions:
+  - type: java.io.IOException
+    description: if an attribute view is not available
+references:
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider*
+  name: AzureFileSystemProvider
+  nameWithType: AzureFileSystemProvider.AzureFileSystemProvider
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.AzureFileSystemProvider
+  package: com.azure.storage.blob.nio
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme*
+  name: getScheme
+  nameWithType: AzureFileSystemProvider.getScheme
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getScheme
+  package: com.azure.storage.blob.nio
+- uid: java.io.IOException
+  spec.java:
+  - uid: java.io.IOException
+    name: IOException
+    fullName: java.io.IOException
+- uid: java.net.URI
+  spec.java:
+  - uid: java.net.URI
+    name: URI
+    fullName: java.net.URI
+- uid: java.util.Map<java.lang.String,?>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: '?'
+    name: '?'
+    fullName: '?'
+  - name: '>'
+    fullName: '>'
+- uid: java.nio.file.FileSystem
+  spec.java:
+  - uid: java.nio.file.FileSystem
+    name: FileSystem
+    fullName: java.nio.file.FileSystem
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem*
+  name: newFileSystem
+  nameWithType: AzureFileSystemProvider.newFileSystem
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newFileSystem
+  package: com.azure.storage.blob.nio
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem*
+  name: getFileSystem
+  nameWithType: AzureFileSystemProvider.getFileSystem
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileSystem
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.Path
+  spec.java:
+  - uid: java.nio.file.Path
+    name: Path
+    fullName: java.nio.file.Path
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getPath*
+  name: getPath
+  nameWithType: AzureFileSystemProvider.getPath
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getPath
+  package: com.azure.storage.blob.nio
+- uid: java.util.Set<? extends java.nio.file.OpenOption>
+  spec.java:
+  - uid: java.util.Set
+    name: Set
+    fullName: java.util.Set
+  - name: <
+    fullName: <
+  - uid: '? extends java.nio.file.OpenOption'
+    name: OpenOption
+    fullName: '? extends java.nio.file.OpenOption'
+  - name: '>'
+    fullName: '>'
+- uid: java.nio.file.attribute.FileAttribute<?>[]
+  spec.java:
+  - uid: java.nio.file.attribute.FileAttribute
+    name: FileAttribute
+    fullName: java.nio.file.attribute.FileAttribute
+  - name: <
+    fullName: <
+  - uid: '?'
+    name: '?'
+    fullName: '?'
+  - name: '>'
+    fullName: '>'
+  - name: '[]'
+    fullName: '[]'
+- uid: java.nio.channels.SeekableByteChannel
+  spec.java:
+  - uid: java.nio.channels.SeekableByteChannel
+    name: SeekableByteChannel
+    fullName: java.nio.channels.SeekableByteChannel
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel*
+  name: newByteChannel
+  nameWithType: AzureFileSystemProvider.newByteChannel
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newByteChannel
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.OpenOption[]
+  spec.java:
+  - uid: java.nio.file.OpenOption
+    name: OpenOption
+    fullName: java.nio.file.OpenOption
+  - name: '[]'
+    fullName: '[]'
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream*
+  name: newInputStream
+  nameWithType: AzureFileSystemProvider.newInputStream
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newInputStream
+  package: com.azure.storage.blob.nio
+- uid: java.io.OutputStream
+  spec.java:
+  - uid: java.io.OutputStream
+    name: OutputStream
+    fullName: java.io.OutputStream
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream*
+  name: newOutputStream
+  nameWithType: AzureFileSystemProvider.newOutputStream
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newOutputStream
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>
+  spec.java:
+  - uid: java.nio.file.DirectoryStream.Filter
+    name: Filter
+    fullName: java.nio.file.DirectoryStream.Filter
+  - name: <
+    fullName: <
+  - uid: '? super java.nio.file.Path'
+    name: Path
+    fullName: '? super java.nio.file.Path'
+  - name: '>'
+    fullName: '>'
+- uid: java.nio.file.DirectoryStream<java.nio.file.Path>
+  spec.java:
+  - uid: java.nio.file.DirectoryStream
+    name: DirectoryStream
+    fullName: java.nio.file.DirectoryStream
+  - name: <
+    fullName: <
+  - uid: java.nio.file.Path
+    name: Path
+    fullName: java.nio.file.Path
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream*
+  name: newDirectoryStream
+  nameWithType: AzureFileSystemProvider.newDirectoryStream
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.newDirectoryStream
+  package: com.azure.storage.blob.nio
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory*
+  name: createDirectory
+  nameWithType: AzureFileSystemProvider.createDirectory
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.createDirectory
+  package: com.azure.storage.blob.nio
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.delete*
+  name: delete
+  nameWithType: AzureFileSystemProvider.delete
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.delete
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.CopyOption[]
+  spec.java:
+  - uid: java.nio.file.CopyOption
+    name: CopyOption
+    fullName: java.nio.file.CopyOption
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.copy*
+  name: copy
+  nameWithType: AzureFileSystemProvider.copy
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.copy
+  package: com.azure.storage.blob.nio
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.move*
+  name: move
+  nameWithType: AzureFileSystemProvider.move
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.move
+  package: com.azure.storage.blob.nio
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile*
+  name: isSameFile
+  nameWithType: AzureFileSystemProvider.isSameFile
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.isSameFile
+  package: com.azure.storage.blob.nio
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden*
+  name: isHidden
+  nameWithType: AzureFileSystemProvider.isHidden
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.isHidden
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.FileStore
+  spec.java:
+  - uid: java.nio.file.FileStore
+    name: FileStore
+    fullName: java.nio.file.FileStore
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore*
+  name: getFileStore
+  nameWithType: AzureFileSystemProvider.getFileStore
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileStore
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.AccessMode[]
+  spec.java:
+  - uid: java.nio.file.AccessMode
+    name: AccessMode
+    fullName: java.nio.file.AccessMode
+  - name: '[]'
+    fullName: '[]'
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess*
+  name: checkAccess
+  nameWithType: AzureFileSystemProvider.checkAccess
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.checkAccess
+  package: com.azure.storage.blob.nio
+- uid: java.lang.Class<V>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: V
+    name: V
+    fullName: V
+  - name: '>'
+    fullName: '>'
+- uid: java.nio.file.LinkOption[]
+  spec.java:
+  - uid: java.nio.file.LinkOption
+    name: LinkOption
+    fullName: java.nio.file.LinkOption
+  - name: '[]'
+    fullName: '[]'
+- uid: V
+  spec.java:
+  - uid: V
+    name: V
+    fullName: V
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.getFileAttributeView*
+  name: <V>getFileAttributeView
+  nameWithType: AzureFileSystemProvider.<V>getFileAttributeView
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.<V>getFileAttributeView
+  package: com.azure.storage.blob.nio
+- uid: java.lang.Class<A>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: A
+    name: A
+    fullName: A
+  - name: '>'
+    fullName: '>'
+- uid: A
+  spec.java:
+  - uid: A
+    name: A
+    fullName: A
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.readAttributes*
+  name: <A>readAttributes
+  nameWithType: AzureFileSystemProvider.<A>readAttributes
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.<A>readAttributes
+  package: com.azure.storage.blob.nio
+- uid: java.util.Map<java.lang.String,java.lang.Object>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '>'
+    fullName: '>'
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute*
+  name: setAttribute
+  nameWithType: AzureFileSystemProvider.setAttribute
+  fullName: com.azure.storage.blob.nio.AzureFileSystemProvider.setAttribute
+  package: com.azure.storage.blob.nio
+- uid: java.nio.file.spi.FileSystemProvider
+  name: FileSystemProvider
+  nameWithType: FileSystemProvider
+  fullName: java.nio.file.spi.FileSystemProvider
+- uid: java.nio.file.spi.FileSystemProvider.isHidden(java.nio.file.Path)
+  name: FileSystemProvider.isHidden(Path)
+  nameWithType: FileSystemProvider.isHidden(Path)
+  fullName: java.nio.file.spi.FileSystemProvider.isHidden(java.nio.file.Path)
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.nio.file.spi.FileSystemProvider.getFileSystem(java.net.URI)
+  name: FileSystemProvider.getFileSystem(URI)
+  nameWithType: FileSystemProvider.getFileSystem(URI)
+  fullName: java.nio.file.spi.FileSystemProvider.getFileSystem(java.net.URI)
+- uid: java.nio.file.spi.FileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+  name: FileSystemProvider.<A>readAttributes(Path,Class<A>,LinkOption)
+  nameWithType: FileSystemProvider.<A>readAttributes(Path,Class<A>,LinkOption)
+  fullName: java.nio.file.spi.FileSystemProvider.<A>readAttributes(java.nio.file.Path,java.lang.Class<A>,java.nio.file.LinkOption...)
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.nio.file.spi.FileSystemProvider.getScheme()
+  name: FileSystemProvider.getScheme()
+  nameWithType: FileSystemProvider.getScheme()
+  fullName: java.nio.file.spi.FileSystemProvider.getScheme()
+- uid: java.nio.file.spi.FileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+  name: FileSystemProvider.<V>getFileAttributeView(Path,Class<V>,LinkOption)
+  nameWithType: FileSystemProvider.<V>getFileAttributeView(Path,Class<V>,LinkOption)
+  fullName: java.nio.file.spi.FileSystemProvider.<V>getFileAttributeView(java.nio.file.Path,java.lang.Class<V>,java.nio.file.LinkOption...)
+- uid: java.nio.file.spi.FileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+  name: FileSystemProvider.readAttributes(Path,String,LinkOption)
+  nameWithType: FileSystemProvider.readAttributes(Path,String,LinkOption)
+  fullName: java.nio.file.spi.FileSystemProvider.readAttributes(java.nio.file.Path,java.lang.String,java.nio.file.LinkOption...)
+- uid: java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+  name: FileSystemProvider.newDirectoryStream(Path,DirectoryStream.Filter<? super Path>)
+  nameWithType: FileSystemProvider.newDirectoryStream(Path,DirectoryStream.Filter<? super Path>)
+  fullName: java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter<? super java.nio.file.Path>)
+- uid: java.nio.file.spi.FileSystemProvider.getFileStore(java.nio.file.Path)
+  name: FileSystemProvider.getFileStore(Path)
+  nameWithType: FileSystemProvider.getFileStore(Path)
+  fullName: java.nio.file.spi.FileSystemProvider.getFileStore(java.nio.file.Path)
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.nio.file.spi.FileSystemProvider.readSymbolicLink(java.nio.file.Path)
+  name: FileSystemProvider.readSymbolicLink(Path)
+  nameWithType: FileSystemProvider.readSymbolicLink(Path)
+  fullName: java.nio.file.spi.FileSystemProvider.readSymbolicLink(java.nio.file.Path)
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  name: FileSystemProvider.createSymbolicLink(Path,Path,FileAttribute<?>...)
+  nameWithType: FileSystemProvider.createSymbolicLink(Path,Path,FileAttribute<?>...)
+  fullName: java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+- uid: java.nio.file.spi.FileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  name: FileSystemProvider.newOutputStream(Path,OpenOption)
+  nameWithType: FileSystemProvider.newOutputStream(Path,OpenOption)
+  fullName: java.nio.file.spi.FileSystemProvider.newOutputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+- uid: java.nio.file.spi.FileSystemProvider.createLink(java.nio.file.Path,java.nio.file.Path)
+  name: FileSystemProvider.createLink(Path,Path)
+  nameWithType: FileSystemProvider.createLink(Path,Path)
+  fullName: java.nio.file.spi.FileSystemProvider.createLink(java.nio.file.Path,java.nio.file.Path)
+- uid: java.nio.file.spi.FileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+  name: FileSystemProvider.setAttribute(Path,String,Object,LinkOption)
+  nameWithType: FileSystemProvider.setAttribute(Path,String,Object,LinkOption)
+  fullName: java.nio.file.spi.FileSystemProvider.setAttribute(java.nio.file.Path,java.lang.String,java.lang.Object,java.nio.file.LinkOption...)
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.nio.file.spi.FileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)
+  name: FileSystemProvider.isSameFile(Path,Path)
+  nameWithType: FileSystemProvider.isSameFile(Path,Path)
+  fullName: java.nio.file.spi.FileSystemProvider.isSameFile(java.nio.file.Path,java.nio.file.Path)
+- uid: java.nio.file.spi.FileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  name: FileSystemProvider.move(Path,Path,CopyOption)
+  nameWithType: FileSystemProvider.move(Path,Path,CopyOption)
+  fullName: java.nio.file.spi.FileSystemProvider.move(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  name: FileSystemProvider.newFileChannel(Path,Set<? extends OpenOption>,FileAttribute<?>...)
+  nameWithType: FileSystemProvider.newFileChannel(Path,Set<? extends OpenOption>,FileAttribute<?>...)
+  fullName: java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.nio.file.spi.FileSystemProvider.getPath(java.net.URI)
+  name: FileSystemProvider.getPath(URI)
+  nameWithType: FileSystemProvider.getPath(URI)
+  fullName: java.nio.file.spi.FileSystemProvider.getPath(java.net.URI)
+- uid: java.nio.file.spi.FileSystemProvider.delete(java.nio.file.Path)
+  name: FileSystemProvider.delete(Path)
+  nameWithType: FileSystemProvider.delete(Path)
+  fullName: java.nio.file.spi.FileSystemProvider.delete(java.nio.file.Path)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: java.nio.file.spi.FileSystemProvider.deleteIfExists(java.nio.file.Path)
+  name: FileSystemProvider.deleteIfExists(Path)
+  nameWithType: FileSystemProvider.deleteIfExists(Path)
+  fullName: java.nio.file.spi.FileSystemProvider.deleteIfExists(java.nio.file.Path)
+- uid: java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+  name: FileSystemProvider.newByteChannel(Path,Set<? extends OpenOption>,FileAttribute<?>...)
+  nameWithType: FileSystemProvider.newByteChannel(Path,Set<? extends OpenOption>,FileAttribute<?>...)
+  fullName: java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute<?>...)
+- uid: java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map<java.lang.String,?>)
+  name: FileSystemProvider.newFileSystem(Path,Map<String,?>)
+  nameWithType: FileSystemProvider.newFileSystem(Path,Map<String,?>)
+  fullName: java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map<java.lang.String,?>)
+- uid: java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute<?>...)
+  name: FileSystemProvider.newAsynchronousFileChannel(Path,Set<? extends OpenOption>,ExecutorService,FileAttribute<?>...)
+  nameWithType: FileSystemProvider.newAsynchronousFileChannel(Path,Set<? extends OpenOption>,ExecutorService,FileAttribute<?>...)
+  fullName: java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set<? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute<?>...)
+- uid: java.nio.file.spi.FileSystemProvider.installedProviders()
+  name: FileSystemProvider.installedProviders()
+  nameWithType: FileSystemProvider.installedProviders()
+  fullName: java.nio.file.spi.FileSystemProvider.installedProviders()
+- uid: java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+  name: FileSystemProvider.newFileSystem(URI,Map<String,?>)
+  nameWithType: FileSystemProvider.newFileSystem(URI,Map<String,?>)
+  fullName: java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map<java.lang.String,?>)
+- uid: java.nio.file.spi.FileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+  name: FileSystemProvider.copy(Path,Path,CopyOption)
+  nameWithType: FileSystemProvider.copy(Path,Path,CopyOption)
+  fullName: java.nio.file.spi.FileSystemProvider.copy(java.nio.file.Path,java.nio.file.Path,java.nio.file.CopyOption...)
+- uid: java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+  name: FileSystemProvider.createDirectory(Path,FileAttribute<?>...)
+  nameWithType: FileSystemProvider.createDirectory(Path,FileAttribute<?>...)
+  fullName: java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute<?>...)
+- uid: java.nio.file.spi.FileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+  name: FileSystemProvider.newInputStream(Path,OpenOption)
+  nameWithType: FileSystemProvider.newInputStream(Path,OpenOption)
+  fullName: java.nio.file.spi.FileSystemProvider.newInputStream(java.nio.file.Path,java.nio.file.OpenOption...)
+- uid: java.nio.file.spi.FileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+  name: FileSystemProvider.checkAccess(Path,AccessMode)
+  nameWithType: FileSystemProvider.checkAccess(Path,AccessMode)
+  fullName: java.nio.file.spi.FileSystemProvider.checkAccess(java.nio.file.Path,java.nio.file.AccessMode...)
+- uid: java.lang.String,?
+  name: String,?
+  nameWithType: String,?
+  fullName: java.lang.String,?
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
+- uid: '? extends java.nio.file.OpenOption'
+  name: '? extends OpenOption'
+  nameWithType: '? extends OpenOption'
+  fullName: '? extends java.nio.file.OpenOption'
+- uid: java.util.Set
+  name: Set
+  nameWithType: Set
+  fullName: java.util.Set
+- uid: java.nio.file.attribute.FileAttribute
+  name: FileAttribute
+  nameWithType: FileAttribute
+  fullName: java.nio.file.attribute.FileAttribute
+- uid: ?>[]
+  name: ?>[]
+  nameWithType: ?>[]
+  fullName: ?>[]
+- uid: '? super java.nio.file.Path'
+  name: '? super Path'
+  nameWithType: '? super Path'
+  fullName: '? super java.nio.file.Path'
+- uid: java.nio.file.DirectoryStream.Filter
+  name: DirectoryStream.Filter
+  nameWithType: DirectoryStream.Filter
+  fullName: java.nio.file.DirectoryStream.Filter
+- uid: java.nio.file.DirectoryStream
+  name: DirectoryStream
+  nameWithType: DirectoryStream
+  fullName: java.nio.file.DirectoryStream
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class
+- uid: java.lang.String,java.lang.Object
+  name: String,Object
+  nameWithType: String,Object
+  fullName: java.lang.String,java.lang.Object
+- uid: A>readAttributes(java.nio.file.Path,java.lang.Class
+  name: A>readAttributes(Path,Class
+  nameWithType: A>readAttributes(Path,Class
+  fullName: A>readAttributes(java.nio.file.Path,java.lang.Class
+- uid: java.nio.file.spi.FileSystemProvider.
+  name: FileSystemProvider.
+  nameWithType: FileSystemProvider.
+  fullName: java.nio.file.spi.FileSystemProvider.
+- uid: A>,java.nio.file.LinkOption...)
+  name: A>,LinkOption)
+  nameWithType: A>,LinkOption)
+  fullName: A>,java.nio.file.LinkOption...)
+- uid: V>getFileAttributeView(java.nio.file.Path,java.lang.Class
+  name: V>getFileAttributeView(Path,Class
+  nameWithType: V>getFileAttributeView(Path,Class
+  fullName: V>getFileAttributeView(java.nio.file.Path,java.lang.Class
+- uid: V>,java.nio.file.LinkOption...)
+  name: V>,LinkOption)
+  nameWithType: V>,LinkOption)
+  fullName: V>,java.nio.file.LinkOption...)
+- uid: '? super java.nio.file.Path>)'
+  name: '? super Path>)'
+  nameWithType: '? super Path>)'
+  fullName: '? super java.nio.file.Path>)'
+- uid: java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter
+  name: FileSystemProvider.newDirectoryStream(Path,DirectoryStream.Filter
+  nameWithType: FileSystemProvider.newDirectoryStream(Path,DirectoryStream.Filter
+  fullName: java.nio.file.spi.FileSystemProvider.newDirectoryStream(java.nio.file.Path,java.nio.file.DirectoryStream.Filter
+- uid: java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute
+  name: FileSystemProvider.createSymbolicLink(Path,Path,FileAttribute
+  nameWithType: FileSystemProvider.createSymbolicLink(Path,Path,FileAttribute
+  fullName: java.nio.file.spi.FileSystemProvider.createSymbolicLink(java.nio.file.Path,java.nio.file.Path,java.nio.file.attribute.FileAttribute
+- uid: ?>...)
+  name: ?>...)
+  nameWithType: ?>...)
+  fullName: ?>...)
+- uid: java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set
+  name: FileSystemProvider.newFileChannel(Path,Set
+  nameWithType: FileSystemProvider.newFileChannel(Path,Set
+  fullName: java.nio.file.spi.FileSystemProvider.newFileChannel(java.nio.file.Path,java.util.Set
+- uid: '? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute'
+  name: '? extends OpenOption>,FileAttribute'
+  nameWithType: '? extends OpenOption>,FileAttribute'
+  fullName: '? extends java.nio.file.OpenOption>,java.nio.file.attribute.FileAttribute'
+- uid: java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set
+  name: FileSystemProvider.newByteChannel(Path,Set
+  nameWithType: FileSystemProvider.newByteChannel(Path,Set
+  fullName: java.nio.file.spi.FileSystemProvider.newByteChannel(java.nio.file.Path,java.util.Set
+- uid: java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map
+  name: FileSystemProvider.newFileSystem(Path,Map
+  nameWithType: FileSystemProvider.newFileSystem(Path,Map
+  fullName: java.nio.file.spi.FileSystemProvider.newFileSystem(java.nio.file.Path,java.util.Map
+- uid: java.lang.String,?>)
+  name: String,?>)
+  nameWithType: String,?>)
+  fullName: java.lang.String,?>)
+- uid: java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set
+  name: FileSystemProvider.newAsynchronousFileChannel(Path,Set
+  nameWithType: FileSystemProvider.newAsynchronousFileChannel(Path,Set
+  fullName: java.nio.file.spi.FileSystemProvider.newAsynchronousFileChannel(java.nio.file.Path,java.util.Set
+- uid: '? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute'
+  name: '? extends OpenOption>,ExecutorService,FileAttribute'
+  nameWithType: '? extends OpenOption>,ExecutorService,FileAttribute'
+  fullName: '? extends java.nio.file.OpenOption>,java.util.concurrent.ExecutorService,java.nio.file.attribute.FileAttribute'
+- uid: java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map
+  name: FileSystemProvider.newFileSystem(URI,Map
+  nameWithType: FileSystemProvider.newFileSystem(URI,Map
+  fullName: java.nio.file.spi.FileSystemProvider.newFileSystem(java.net.URI,java.util.Map
+- uid: java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute
+  name: FileSystemProvider.createDirectory(Path,FileAttribute
+  nameWithType: FileSystemProvider.createDirectory(Path,FileAttribute
+  fullName: java.nio.file.spi.FileSystemProvider.createDirectory(java.nio.file.Path,java.nio.file.attribute.FileAttribute

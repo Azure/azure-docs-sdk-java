@@ -1,23 +1,388 @@
-### YamlMime:JavaType
-uid: "com.microsoft.azure.eventhubs.EventData"
-fullName: "com.microsoft.azure.eventhubs.EventData"
-name: "EventData"
-nameWithType: "EventData"
-summary: "The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>.\n\nSerializing a received <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported.\n\nHere's how AMQP message sections map to <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>. Here's the reference used for AMQP 1.0 specification: http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf\n\n```java\ni.   #getProperties() - AMQPMessage.ApplicationProperties section\n ii.  #getBytes() - if AMQPMessage.Body has Data section\n iii. #getObject() - if AMQPMessage.Body has AMQPValue or AMQPSequence sections\n```\n\nWhile using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\">EventData</xref>."
-syntax: "public interface EventData extends Serializable, Comparable<EventData>"
-methods:
-- "com.microsoft.azure.eventhubs.EventData.create(byte[])"
-- "com.microsoft.azure.eventhubs.EventData.create(byte[],int,int)"
-- "com.microsoft.azure.eventhubs.EventData.create(java.nio.ByteBuffer)"
-- "com.microsoft.azure.eventhubs.EventData.getBytes()"
-- "com.microsoft.azure.eventhubs.EventData.getObject()"
-- "com.microsoft.azure.eventhubs.EventData.getProperties()"
-- "com.microsoft.azure.eventhubs.EventData.getSystemProperties()"
-- "com.microsoft.azure.eventhubs.EventData.setSystemProperties(com.microsoft.azure.eventhubs.EventData.SystemProperties)"
-type: "interface"
-implements:
-- "<xref href=\"java.io.Serializable?alt=java.io.Serializable&text=Serializable\" data-throw-if-not-resolved=\"False\" />"
-- "<xref href=\"java.lang.Comparable?alt=java.lang.Comparable&text=Comparable\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.microsoft.azure.eventhubs.EventData?alt=com.microsoft.azure.eventhubs.EventData&text=EventData\" data-throw-if-not-resolved=\"False\" />&gt;"
-metadata: {}
-package: "com.microsoft.azure.eventhubs"
-artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.eventhubs.EventData
+  id: EventData
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs
+  children:
+  - com.microsoft.azure.eventhubs.EventData.SystemProperties
+  - com.microsoft.azure.eventhubs.EventData.create(byte[])
+  - com.microsoft.azure.eventhubs.EventData.create(byte[],int,int)
+  - com.microsoft.azure.eventhubs.EventData.create(java.nio.ByteBuffer)
+  - com.microsoft.azure.eventhubs.EventData.getBytes()
+  - com.microsoft.azure.eventhubs.EventData.getObject()
+  - com.microsoft.azure.eventhubs.EventData.getProperties()
+  - com.microsoft.azure.eventhubs.EventData.getSystemProperties()
+  - com.microsoft.azure.eventhubs.EventData.setSystemProperties(com.microsoft.azure.eventhubs.EventData.SystemProperties)
+  langs:
+  - java
+  name: EventData
+  nameWithType: EventData
+  fullName: com.microsoft.azure.eventhubs.EventData
+  type: Interface
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref>.
+
+
+    Serializing a received <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported.
+
+
+    Here's how AMQP message sections map to <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref>. Here's the reference used for AMQP 1.0 specification: http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf
+
+
+    ```java
+
+    i.   #getProperties() - AMQPMessage.ApplicationProperties section
+     ii.  #getBytes() - if AMQPMessage.Body has Data section
+     iii. #getObject() - if AMQPMessage.Body has AMQPValue or AMQPSequence sections
+    ```
+
+
+    While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref>.
+  syntax:
+    content: public interface EventData extends Serializable, Comparable<EventData>
+  implements:
+  - java.io.Serializable
+  - java.lang.Comparable<com.microsoft.azure.eventhubs.EventData>
+- uid: com.microsoft.azure.eventhubs.EventData.create(byte[])
+  id: create(byte[])
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: create(byte[] data)
+  nameWithType: EventData.create(byte[] data)
+  fullName: com.microsoft.azure.eventhubs.EventData.create(byte[] data)
+  overload: com.microsoft.azure.eventhubs.EventData.create*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    Construct EventData to Send to EventHubs. Typical pattern to create a Sending EventData is:
+
+
+    ```java
+
+    i.   Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
+     ii.  If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the #getProperties() for the Consumer.
+    ```
+
+
+    Sample Code:
+
+
+    ```java
+
+    EventData eventData = EventData.create(telemetryEventBytes);
+     eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
+     partitionSender.Send(eventData);
+    ```
+  syntax:
+    content: public static EventData create(byte[] data)
+    parameters:
+    - id: data
+      type: byte[]
+      description: the actual payload of data in bytes to be Sent to EventHubs.
+    return:
+      type: com.microsoft.azure.eventhubs.EventData
+      description: EventData the created <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> to send to EventHubs.
+- uid: com.microsoft.azure.eventhubs.EventData.create(byte[],int,int)
+  id: create(byte[],int,int)
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: create(byte[] data, int offset, int length)
+  nameWithType: EventData.create(byte[] data, int offset, int length)
+  fullName: com.microsoft.azure.eventhubs.EventData.create(byte[] data, int offset, int length)
+  overload: com.microsoft.azure.eventhubs.EventData.create*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    Construct EventData to Send to EventHubs. Typical pattern to create a Sending EventData is:
+
+
+    ```java
+
+    i.   Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
+     ii.  If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the #getProperties() for the Consumer.
+    ```
+
+
+    Illustration:
+
+
+    ```java
+
+    EventData eventData = EventData.create(telemetryEventBytes, offset, length);
+      eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
+      partitionSender.Send(eventData);
+    ```
+  syntax:
+    content: public static EventData create(byte[] data, int offset, int length)
+    parameters:
+    - id: data
+      type: byte[]
+      description: the byte[] where the payload of the Event to be sent to EventHubs is present
+    - id: offset
+      type: int
+      description: Offset in the byte[] to read from ; inclusive index
+    - id: length
+      type: int
+      description: length of the byte[] to be read, starting from offset
+    return:
+      type: com.microsoft.azure.eventhubs.EventData
+      description: EventData the created <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> to send to EventHubs.
+- uid: com.microsoft.azure.eventhubs.EventData.create(java.nio.ByteBuffer)
+  id: create(java.nio.ByteBuffer)
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: create(ByteBuffer buffer)
+  nameWithType: EventData.create(ByteBuffer buffer)
+  fullName: com.microsoft.azure.eventhubs.EventData.create(ByteBuffer buffer)
+  overload: com.microsoft.azure.eventhubs.EventData.create*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    Construct EventData to Send to EventHubs. Typical pattern to create a Sending EventData is:
+
+
+    ```java
+
+    i.   Serialize the sending ApplicationEvent to be sent to EventHubs into bytes.
+     ii.  If complex serialization logic is involved (for example: multiple types of data) - add a Hint using the #getProperties() for the Consumer.
+    ```
+
+
+    Illustration:
+
+
+    ```java
+
+    EventData eventData = EventData.create(telemetryEventByteBuffer);
+      eventData.getProperties().put("eventType", "com.microsoft.azure.monitoring.EtlEvent");
+      partitionSender.Send(eventData);
+    ```
+  syntax:
+    content: public static EventData create(ByteBuffer buffer)
+    parameters:
+    - id: buffer
+      type: java.nio.ByteBuffer
+      description: ByteBuffer which references the payload of the Event to be sent to EventHubs
+    return:
+      type: com.microsoft.azure.eventhubs.EventData
+      description: EventData the created <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> to send to EventHubs.
+- uid: com.microsoft.azure.eventhubs.EventData.getBytes()
+  id: getBytes()
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: getBytes()
+  nameWithType: EventData.getBytes()
+  fullName: com.microsoft.azure.eventhubs.EventData.getBytes()
+  overload: com.microsoft.azure.eventhubs.EventData.getBytes*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: Get Actual Payload/Data wrapped by EventData.
+  syntax:
+    content: public abstract byte[] getBytes()
+    return:
+      type: byte[]
+      description: >-
+        byte[] of the actual data
+         <p>null if the body of the message has other inter-operable AMQP messages, whose body does not represent byte[].
+         In that case use <xref uid="com.microsoft.azure.eventhubs.EventData.getObject()" data-throw-if-not-resolved="false">#getObject()</xref>.
+- uid: com.microsoft.azure.eventhubs.EventData.getObject()
+  id: getObject()
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: getObject()
+  nameWithType: EventData.getObject()
+  fullName: com.microsoft.azure.eventhubs.EventData.getObject()
+  overload: com.microsoft.azure.eventhubs.EventData.getObject*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    Use this method only if, the sender could be sending messages using third-party AMQP libraries.
+
+
+    If all the senders of EventHub use client libraries released and maintained by Microsoft Azure EventHubs, use <xref uid="com.microsoft.azure.eventhubs.EventData.getBytes()" data-throw-if-not-resolved="false">#getBytes()</xref> method.
+
+
+    Get the value of AMQP messages' Body section on the received <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref>.
+
+
+    If the AMQP message Body is always guaranteed to have Data section, use <xref uid="com.microsoft.azure.eventhubs.EventData.getBytes()" data-throw-if-not-resolved="false">#getBytes()</xref> method.
+  syntax:
+    content: public abstract Object getObject()
+    return:
+      type: java.lang.Object
+      description: >-
+        returns the Object which could represent either Data or AmqpValue or AmqpSequence.
+         <p><xref uid="" data-throw-if-not-resolved="false">Binary</xref> if the Body is Data section
+         <p><xref uid="" data-throw-if-not-resolved="false">java.util.List</xref> if the Body is AmqpSequence
+         <p>package org.apache.qpid.proton.amqp contains various AMQP types that could be returned.
+- uid: com.microsoft.azure.eventhubs.EventData.getProperties()
+  id: getProperties()
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: getProperties()
+  nameWithType: EventData.getProperties()
+  fullName: com.microsoft.azure.eventhubs.EventData.getProperties()
+  overload: com.microsoft.azure.eventhubs.EventData.getProperties*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: Application property bag
+  syntax:
+    content: public abstract Map<String,Object> getProperties()
+    return:
+      type: java.util.Map<java.lang.String,java.lang.Object>
+      description: returns Application properties
+- uid: com.microsoft.azure.eventhubs.EventData.getSystemProperties()
+  id: getSystemProperties()
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: getSystemProperties()
+  nameWithType: EventData.getSystemProperties()
+  fullName: com.microsoft.azure.eventhubs.EventData.getSystemProperties()
+  overload: com.microsoft.azure.eventhubs.EventData.getSystemProperties*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  summary: >-
+    SystemProperties that are populated by EventHubService.
+
+
+    As these are populated by Service, they are only present on a Received EventData.
+
+
+    Usage:
+
+
+    `final String offset = eventData.getSystemProperties().getOffset();`
+  syntax:
+    content: public abstract EventData.SystemProperties getSystemProperties()
+    return:
+      type: com.microsoft.azure.eventhubs.EventData.SystemProperties
+      description: >-
+        an encapsulation of all SystemProperties appended by EventHubs service into EventData.
+         <code>null</code> if the <xref uid="com.microsoft.azure.eventhubs.EventData" data-throw-if-not-resolved="false">EventData</xref> is not received and is created by the public constructors.
+- uid: com.microsoft.azure.eventhubs.EventData.setSystemProperties(com.microsoft.azure.eventhubs.EventData.SystemProperties)
+  id: setSystemProperties(com.microsoft.azure.eventhubs.EventData.SystemProperties)
+  artifact: com.microsoft.azure:azure-eventhubs:3.2.1
+  parent: com.microsoft.azure.eventhubs.EventData
+  langs:
+  - java
+  name: setSystemProperties(EventData.SystemProperties props)
+  nameWithType: EventData.setSystemProperties(EventData.SystemProperties props)
+  fullName: com.microsoft.azure.eventhubs.EventData.setSystemProperties(EventData.SystemProperties props)
+  overload: com.microsoft.azure.eventhubs.EventData.setSystemProperties*
+  type: Method
+  package: com.microsoft.azure.eventhubs
+  syntax:
+    content: public abstract void setSystemProperties(EventData.SystemProperties props)
+    parameters:
+    - id: props
+      type: com.microsoft.azure.eventhubs.EventData.SystemProperties
+references:
+- uid: byte[]
+  spec.java:
+  - uid: byte
+    name: byte
+    fullName: byte
+  - name: '[]'
+    fullName: '[]'
+- uid: com.microsoft.azure.eventhubs.EventData.create*
+  name: create
+  nameWithType: EventData.create
+  fullName: com.microsoft.azure.eventhubs.EventData.create
+  package: com.microsoft.azure.eventhubs
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: java.nio.ByteBuffer
+  spec.java:
+  - uid: java.nio.ByteBuffer
+    name: ByteBuffer
+    fullName: java.nio.ByteBuffer
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: com.microsoft.azure.eventhubs.EventData.getObject*
+  name: getObject
+  nameWithType: EventData.getObject
+  fullName: com.microsoft.azure.eventhubs.EventData.getObject
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs.EventData.getBytes*
+  name: getBytes
+  nameWithType: EventData.getBytes
+  fullName: com.microsoft.azure.eventhubs.EventData.getBytes
+  package: com.microsoft.azure.eventhubs
+- uid: java.util.Map<java.lang.String,java.lang.Object>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '>'
+    fullName: '>'
+- uid: com.microsoft.azure.eventhubs.EventData.getProperties*
+  name: getProperties
+  nameWithType: EventData.getProperties
+  fullName: com.microsoft.azure.eventhubs.EventData.getProperties
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs.EventData.SystemProperties
+  name: EventData.SystemProperties
+  nameWithType: EventData.SystemProperties
+  fullName: com.microsoft.azure.eventhubs.EventData.SystemProperties
+- uid: com.microsoft.azure.eventhubs.EventData.getSystemProperties*
+  name: getSystemProperties
+  nameWithType: EventData.getSystemProperties
+  fullName: com.microsoft.azure.eventhubs.EventData.getSystemProperties
+  package: com.microsoft.azure.eventhubs
+- uid: com.microsoft.azure.eventhubs.EventData.setSystemProperties*
+  name: setSystemProperties
+  nameWithType: EventData.setSystemProperties
+  fullName: com.microsoft.azure.eventhubs.EventData.setSystemProperties
+  package: com.microsoft.azure.eventhubs
+- uid: java.lang.Comparable<com.microsoft.azure.eventhubs.EventData>
+  name: Comparable<EventData>
+  nameWithType: Comparable<EventData>
+  fullName: java.lang.Comparable<com.microsoft.azure.eventhubs.EventData>
+- uid: java.io.Serializable
+  name: Serializable
+  nameWithType: Serializable
+  fullName: java.io.Serializable
+- uid: java.lang.String,java.lang.Object
+  name: String,Object
+  nameWithType: String,Object
+  fullName: java.lang.String,java.lang.Object
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
+- uid: java.lang.Comparable
+  name: Comparable
+  nameWithType: Comparable
+  fullName: java.lang.Comparable

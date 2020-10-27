@@ -1,47 +1,671 @@
-### YamlMime:JavaType
-uid: "com.azure.messaging.eventhubs.EventHubClientBuilder"
-fullName: "com.azure.messaging.eventhubs.EventHubClientBuilder"
-name: "EventHubClientBuilder"
-nameWithType: "EventHubClientBuilder"
-summary: "This class provides a fluent builder API to aid the instantiation of <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubProducerAsyncClient</xref>, <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerClient\" data-throw-if-not-resolved=\"false\">EventHubProducerClient</xref>, <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref>, and <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref>. Calling any of the `.build*Client()` methods will create an instance of the respective client.\n\n**Credentials are required** to perform operations against Azure Event Hubs. They can be set by using one of the following methods:\n\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String)\" data-throw-if-not-resolved=\"false\">connectionString(String)</xref> with a connection string to a specific Event Hub.\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\">connectionString(String, String)</xref> with an Event Hub *namespace* connection string and the Event Hub name.\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)\" data-throw-if-not-resolved=\"false\">credential(String, String, TokenCredential)</xref> with the fully qualified namespace, Event Hub name, and a set of credentials authorized to use the Event Hub.\n\nIn addition, **consumer group** is required when creating <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref> or <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref>.\n\n**Creating an asynchronous <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubProducerAsyncClient</xref> using Event Hubs namespace connection string** \n\nIn the sample, the namespace connection string is used to create an asynchronous Event Hub producer. Notice that `\"EntityPath\"` **is not** a component in the connection string.\n\n```java\n// The required parameter is a way to authenticate with Event Hubs using credentials.\n // The connectionString provides a way to authenticate with Event Hub.\n EventHubProducerAsyncClient producer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\",\n         \"event-hub-name\")\n     .buildAsyncProducerClient();\n```\n\n**Creating a synchronous <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref> using an Event Hub instance connection string** \n\nIn the sample, the namespace connection string is used to create a synchronous Event Hub consumer. Notice that `\"EntityPath\"` **is** in the connection string.\n\n```java\n// The required parameters are `consumerGroup`, and a way to authenticate with Event Hubs using credentials.\n EventHubConsumerClient consumer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={eh-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key};Entity-Path={hub-name}\")\n     .consumerGroup(\"$DEFAULT\")\n     .buildConsumerClient();\n```\n\n**Creating producers and consumers that share the same connection**\n\nBy default, a dedicated connection is created for each producer and consumer created from the builder. If users wish to use the same underlying connection, they can toggle <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()\" data-throw-if-not-resolved=\"false\">shareConnection()</xref>.\n\n```java\n// Toggling `shareConnection` instructs the builder to use the same underlying connection\n // for each consumer or producer created using the same builder instance.\n EventHubClientBuilder builder = new EventHubClientBuilder()\n     .connectionString(\"event-hubs-instance-connection-string\")\n     .shareConnection();\n \n // Both the producer and consumer created share the same underlying connection.\n EventHubProducerAsyncClient producer = builder.buildAsyncProducerClient();\n EventHubConsumerAsyncClient consumer = builder\n     .consumerGroup(\"my-consumer-group\")\n     .buildAsyncConsumerClient();\n```"
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-syntax: "public class EventHubClientBuilder"
-constructors:
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder()"
-fields:
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME"
-methods:
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.configuration(com.azure.core.util.Configuration)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String,java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup(java.lang.String)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates(java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount(int)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions(com.azure.core.amqp.ProxyOptions)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.retry(com.azure.core.amqp.AmqpRetryOptions)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.serializer(com.azure.core.util.serializer.ObjectSerializer)"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()"
-- "com.azure.messaging.eventhubs.EventHubClientBuilder.transportType(com.azure.core.amqp.AmqpTransportType)"
-type: "class"
-metadata: {}
-package: "com.azure.messaging.eventhubs"
-artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder
+  id: EventHubClientBuilder
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs
+  children:
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.configuration(com.azure.core.util.Configuration)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String,java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup(java.lang.String)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates(java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount(int)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions(com.azure.core.amqp.ProxyOptions)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.retry(com.azure.core.amqp.AmqpRetryOptions)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.serializer(com.azure.core.util.serializer.ObjectSerializer)
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()
+  - com.azure.messaging.eventhubs.EventHubClientBuilder.transportType(com.azure.core.amqp.AmqpTransportType)
+  langs:
+  - java
+  name: EventHubClientBuilder
+  nameWithType: EventHubClientBuilder
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder
+  type: Class
+  package: com.azure.messaging.eventhubs
+  summary: "This class provides a fluent builder API to aid the instantiation of <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubProducerAsyncClient</xref>, <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerClient\" data-throw-if-not-resolved=\"false\">EventHubProducerClient</xref>, <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref>, and <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref>. Calling any of the `.build*Client()` methods will create an instance of the respective client.\n\n**Credentials are required** to perform operations against Azure Event Hubs. They can be set by using one of the following methods:\n\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String)\" data-throw-if-not-resolved=\"false\">connectionString(String)</xref> with a connection string to a specific Event Hub.\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String,java.lang.String)\" data-throw-if-not-resolved=\"false\">connectionString(String, String)</xref> with an Event Hub *namespace* connection string and the Event Hub name.\n *  <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)\" data-throw-if-not-resolved=\"false\">credential(String, String, TokenCredential)</xref> with the fully qualified namespace, Event Hub name, and a set of credentials authorized to use the Event Hub.\n\nIn addition, **consumer group** is required when creating <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerAsyncClient</xref> or <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref>.\n\n**Creating an asynchronous <xref uid=\"com.azure.messaging.eventhubs.EventHubProducerAsyncClient\" data-throw-if-not-resolved=\"false\">EventHubProducerAsyncClient</xref> using Event Hubs namespace connection string** \n\nIn the sample, the namespace connection string is used to create an asynchronous Event Hub producer. Notice that `\"EntityPath\"` **is not** a component in the connection string.\n\n```java\n// The required parameter is a way to authenticate with Event Hubs using credentials.\n // The connectionString provides a way to authenticate with Event Hub.\n EventHubProducerAsyncClient producer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\",\n         \"event-hub-name\")\n     .buildAsyncProducerClient();\n```\n\n**Creating a synchronous <xref uid=\"com.azure.messaging.eventhubs.EventHubConsumerClient\" data-throw-if-not-resolved=\"false\">EventHubConsumerClient</xref> using an Event Hub instance connection string** \n\nIn the sample, the namespace connection string is used to create a synchronous Event Hub consumer. Notice that `\"EntityPath\"` **is** in the connection string.\n\n```java\n// The required parameters are `consumerGroup`, and a way to authenticate with Event Hubs using credentials.\n EventHubConsumerClient consumer = new EventHubClientBuilder()\n     .connectionString(\n         \"Endpoint={eh-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key};Entity-Path={hub-name}\")\n     .consumerGroup(\"$DEFAULT\")\n     .buildConsumerClient();\n```\n\n**Creating producers and consumers that share the same connection**\n\nBy default, a dedicated connection is created for each producer and consumer created from the builder. If users wish to use the same underlying connection, they can toggle <xref uid=\"com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()\" data-throw-if-not-resolved=\"false\">shareConnection()</xref>.\n\n```java\n// Toggling `shareConnection` instructs the builder to use the same underlying connection\n // for each consumer or producer created using the same builder instance.\n EventHubClientBuilder builder = new EventHubClientBuilder()\n     .connectionString(\"event-hubs-instance-connection-string\")\n     .shareConnection();\n \n // Both the producer and consumer created share the same underlying connection.\n EventHubProducerAsyncClient producer = builder.buildAsyncProducerClient();\n EventHubConsumerAsyncClient consumer = builder\n     .consumerGroup(\"my-consumer-group\")\n     .buildAsyncConsumerClient();\n```"
+  syntax:
+    content: public class EventHubClientBuilder
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME
+  id: DEFAULT_CONSUMER_GROUP_NAME
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: DEFAULT_CONSUMER_GROUP_NAME
+  nameWithType: EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME
+  type: Field
+  package: com.azure.messaging.eventhubs
+  summary: The name of the default consumer group in the Event Hubs service.
+  syntax:
+    content: public static final String DEFAULT_CONSUMER_GROUP_NAME
+    return:
+      type: java.lang.String
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder()
+  id: EventHubClientBuilder()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: EventHubClientBuilder()
+  nameWithType: EventHubClientBuilder.EventHubClientBuilder()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder*
+  type: Constructor
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new instance with the default transport <xref uid="com.azure.core.amqp.AmqpTransportType.AMQP" data-throw-if-not-resolved="false">AmqpTransportType#AMQP</xref> and a non-shared connection. A non-shared connection means that a dedicated AMQP connection is created for every Event Hub consumer or producer created using the builder.
+  syntax:
+    content: public EventHubClientBuilder()
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient()
+  id: buildAsyncConsumerClient()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: buildAsyncConsumerClient()
+  nameWithType: EventHubClientBuilder.buildAsyncConsumerClient()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new <xref uid="com.azure.messaging.eventhubs.EventHubConsumerAsyncClient" data-throw-if-not-resolved="false">EventHubConsumerAsyncClient</xref> based on the options set on this builder. Every time `buildAsyncConsumer()` is invoked, a new instance of <xref uid="com.azure.messaging.eventhubs.EventHubConsumerAsyncClient" data-throw-if-not-resolved="false">EventHubConsumerAsyncClient</xref> is created.
+  syntax:
+    content: public EventHubConsumerAsyncClient buildAsyncConsumerClient()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventHubConsumerAsyncClient" data-throw-if-not-resolved="false">EventHubConsumerAsyncClient</xref> with the configured options.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient()
+  id: buildAsyncProducerClient()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: buildAsyncProducerClient()
+  nameWithType: EventHubClientBuilder.buildAsyncProducerClient()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> based on options set on this builder. Every time `buildAsyncProducer()` is invoked, a new instance of <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> is created.
+  syntax:
+    content: public EventHubProducerAsyncClient buildAsyncProducerClient()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> instance with all the configured options.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient()
+  id: buildConsumerClient()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: buildConsumerClient()
+  nameWithType: EventHubClientBuilder.buildConsumerClient()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new <xref uid="com.azure.messaging.eventhubs.EventHubConsumerClient" data-throw-if-not-resolved="false">EventHubConsumerClient</xref> based on the options set on this builder. Every time `buildConsumer()` is invoked, a new instance of <xref uid="com.azure.messaging.eventhubs.EventHubConsumerClient" data-throw-if-not-resolved="false">EventHubConsumerClient</xref> is created.
+  syntax:
+    content: public EventHubConsumerClient buildConsumerClient()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubConsumerClient
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventHubConsumerClient" data-throw-if-not-resolved="false">EventHubConsumerClient</xref> with the configured options.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient()
+  id: buildProducerClient()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: buildProducerClient()
+  nameWithType: EventHubClientBuilder.buildProducerClient()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Creates a new <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> based on options set on this builder. Every time `buildAsyncProducer()` is invoked, a new instance of <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> is created.
+  syntax:
+    content: public EventHubProducerClient buildProducerClient()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubProducerClient
+      description: A new <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> instance with all the configured options.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.configuration(com.azure.core.util.Configuration)
+  id: configuration(com.azure.core.util.Configuration)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: configuration(Configuration configuration)
+  nameWithType: EventHubClientBuilder.configuration(Configuration configuration)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.configuration(Configuration configuration)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.configuration*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the configuration store that is used during construction of the service client. If not specified, the default configuration store is used to configure the <xref uid="" data-throw-if-not-resolved="false">EventHubAsyncClient</xref>. Use <xref uid="com.azure.core.util.Configuration.NONE" data-throw-if-not-resolved="false">Configuration#NONE</xref> to bypass using configuration settings during construction.
+  syntax:
+    content: public EventHubClientBuilder configuration(Configuration configuration)
+    parameters:
+    - id: configuration
+      type: com.azure.core.util.Configuration
+      description: The configuration store used to configure the <xref uid="" data-throw-if-not-resolved="false">EventHubAsyncClient</xref>.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String)
+  id: connectionString(java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: connectionString(String connectionString)
+  nameWithType: EventHubClientBuilder.connectionString(String connectionString)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(String connectionString)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: >-
+    Sets the credential information given a connection string to the Event Hub instance.
+
+
+    If the connection string is copied from the Event Hubs namespace, it will likely not contain the name to the desired Event Hub, which is needed. In this case, the name can be added manually by adding "EntityPath=EVENT\_HUB\_NAME" to the end of the connection string. For example, "EntityPath=telemetry-hub".
+
+
+    If you have defined a shared access policy directly on the Event Hub itself, then copying the connection string from that Event Hub will result in a connection string that contains the name.
+  syntax:
+    content: public EventHubClientBuilder connectionString(String connectionString)
+    parameters:
+    - id: connectionString
+      type: java.lang.String
+      description: >-
+        The connection string to use for connecting to the Event Hub instance. It is expected
+             that the Event Hub name and the shared access key properties are contained in this connection string.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(java.lang.String,java.lang.String)
+  id: connectionString(java.lang.String,java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: connectionString(String connectionString, String eventHubName)
+  nameWithType: EventHubClientBuilder.connectionString(String connectionString, String eventHubName)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString(String connectionString, String eventHubName)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the credential information given a connection string to the Event Hubs namespace and name to a specific Event Hub instance.
+  syntax:
+    content: public EventHubClientBuilder connectionString(String connectionString, String eventHubName)
+    parameters:
+    - id: connectionString
+      type: java.lang.String
+      description: >-
+        The connection string to use for connecting to the Event Hubs namespace; it is
+             expected that the shared access key properties are contained in this connection string, but not the Event Hub
+             name.
+    - id: eventHubName
+      type: java.lang.String
+      description: The name of the Event Hub to connect the client to.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup(java.lang.String)
+  id: consumerGroup(java.lang.String)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: consumerGroup(String consumerGroup)
+  nameWithType: EventHubClientBuilder.consumerGroup(String consumerGroup)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup(String consumerGroup)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the name of the consumer group this consumer is associated with. Events are read in the context of this group. The name of the consumer group that is created by default is <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME" data-throw-if-not-resolved="false">&quot;$Default&quot;</xref>.
+  syntax:
+    content: public EventHubClientBuilder consumerGroup(String consumerGroup)
+    parameters:
+    - id: consumerGroup
+      type: java.lang.String
+      description: >-
+        The name of the consumer group this consumer is associated with. Events are read in the
+             context of this group. The name of the consumer group that is created by default is <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder.DEFAULT_CONSUMER_GROUP_NAME" data-throw-if-not-resolved="false">"$Default"</xref>.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)
+  id: credential(java.lang.String,java.lang.String,com.azure.core.credential.TokenCredential)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: credential(String fullyQualifiedNamespace, String eventHubName, TokenCredential credential)
+  nameWithType: EventHubClientBuilder.credential(String fullyQualifiedNamespace, String eventHubName, TokenCredential credential)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.credential(String fullyQualifiedNamespace, String eventHubName, TokenCredential credential)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.credential*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the credential information for which Event Hub instance to connect to, and how to authorize against it.
+  syntax:
+    content: public EventHubClientBuilder credential(String fullyQualifiedNamespace, String eventHubName, TokenCredential credential)
+    parameters:
+    - id: fullyQualifiedNamespace
+      type: java.lang.String
+      description: >-
+        The fully qualified name for the Event Hubs namespace. This is likely to be
+             similar to <strong>"{your-namespace}.servicebus.windows.net"</strong>.
+    - id: eventHubName
+      type: java.lang.String
+      description: The name of the Event Hub to connect the client to.
+    - id: credential
+      type: com.azure.core.credential.TokenCredential
+      description: >-
+        The token credential to use for authorization. Access controls may be specified by the
+             Event Hubs namespace or the requested Event Hub, depending on Azure configuration.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing()
+  id: enableIdempotentPartitionPublishing()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: enableIdempotentPartitionPublishing()
+  nameWithType: EventHubClientBuilder.enableIdempotentPartitionPublishing()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Enables idempotent publishing when an <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> or <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> is built. If enabled, the producer will only be able to publish directly to partitions; it will not be able to publish to the Event Hubs gateway for automatic partition routing nor using a partition key.
+  syntax:
+    content: public EventHubClientBuilder enableIdempotentPartitionPublishing()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates(java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>)
+  id: initialPartitionPublishingStates(java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: initialPartitionPublishingStates(Map<String,PartitionPublishingProperties> states)
+  nameWithType: EventHubClientBuilder.initialPartitionPublishingStates(Map<String,PartitionPublishingProperties> states)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates(Map<String,PartitionPublishingProperties> states)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the idempotent publishing options to <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> or <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> when you build them. The set of options that can be specified to influence publishing behavior specific to the configured Event Hub partition. These options are not necessary in the majority of scenarios and are intended for use with specialized scenarios, such as when recovering the state used for idempotent publishing. It is highly recommended that these options only be specified if there is a proven need to do so; Incorrectly configuring these values may result in the built <xref uid="com.azure.messaging.eventhubs.EventHubProducerAsyncClient" data-throw-if-not-resolved="false">EventHubProducerAsyncClient</xref> or <xref uid="com.azure.messaging.eventhubs.EventHubProducerClient" data-throw-if-not-resolved="false">EventHubProducerClient</xref> instance unable to publish to the Event Hubs. These options are ignored when publishing to the Event Hubs gateway for automatic routing or when using a partition key.
+  syntax:
+    content: public EventHubClientBuilder initialPartitionPublishingStates(Map<String,PartitionPublishingProperties> states)
+    parameters:
+    - id: states
+      type: java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>
+      description: >-
+        A <xref uid="java.util.Map" data-throw-if-not-resolved="false">Map</xref> of <xref uid="com.azure.messaging.eventhubs.PartitionPublishingProperties" data-throw-if-not-resolved="false">PartitionPublishingProperties</xref> for each partition. The keys of the map
+         are the partition ids.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount(int)
+  id: prefetchCount(int)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: prefetchCount(int prefetchCount)
+  nameWithType: EventHubClientBuilder.prefetchCount(int prefetchCount)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount(int prefetchCount)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the count used by the receiver to control the number of events the Event Hub consumer will actively receive and queue locally without regard to whether a receive operation is currently active.
+  syntax:
+    content: public EventHubClientBuilder prefetchCount(int prefetchCount)
+    parameters:
+    - id: prefetchCount
+      type: int
+      description: The amount of events to queue locally.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions(com.azure.core.amqp.ProxyOptions)
+  id: proxyOptions(com.azure.core.amqp.ProxyOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: proxyOptions(ProxyOptions proxyOptions)
+  nameWithType: EventHubClientBuilder.proxyOptions(ProxyOptions proxyOptions)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions(ProxyOptions proxyOptions)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the proxy configuration to use for <xref uid="" data-throw-if-not-resolved="false">EventHubAsyncClient</xref>. When a proxy is configured, <xref uid="com.azure.core.amqp.AmqpTransportType.AMQP_WEB_SOCKETS" data-throw-if-not-resolved="false">AmqpTransportType#AMQP_WEB_SOCKETS</xref> must be used for the transport type.
+  syntax:
+    content: public EventHubClientBuilder proxyOptions(ProxyOptions proxyOptions)
+    parameters:
+    - id: proxyOptions
+      type: com.azure.core.amqp.ProxyOptions
+      description: The proxy configuration to use.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.retry(com.azure.core.amqp.AmqpRetryOptions)
+  id: retry(com.azure.core.amqp.AmqpRetryOptions)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: retry(AmqpRetryOptions retryOptions)
+  nameWithType: EventHubClientBuilder.retry(AmqpRetryOptions retryOptions)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.retry(AmqpRetryOptions retryOptions)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.retry*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the retry policy for <xref uid="" data-throw-if-not-resolved="false">EventHubAsyncClient</xref>. If not specified, the default retry options are used.
+  syntax:
+    content: public EventHubClientBuilder retry(AmqpRetryOptions retryOptions)
+    parameters:
+    - id: retryOptions
+      type: com.azure.core.amqp.AmqpRetryOptions
+      description: The retry policy to use.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.serializer(com.azure.core.util.serializer.ObjectSerializer)
+  id: serializer(com.azure.core.util.serializer.ObjectSerializer)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: serializer(ObjectSerializer serializer)
+  nameWithType: EventHubClientBuilder.serializer(ObjectSerializer serializer)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.serializer(ObjectSerializer serializer)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.serializer*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Set ObjectSerializer implementation to be used for creating ObjectBatch.
+  syntax:
+    content: public EventHubClientBuilder serializer(ObjectSerializer serializer)
+    parameters:
+    - id: serializer
+      type: com.azure.core.util.serializer.ObjectSerializer
+      description: ObjectSerializer implementation
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: updated builder instance
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()
+  id: shareConnection()
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: shareConnection()
+  nameWithType: EventHubClientBuilder.shareConnection()
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection()
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Toggles the builder to use the same connection for producers or consumers that are built from this instance. By default, a new connection is constructed and used created for each Event Hub consumer or producer created.
+  syntax:
+    content: public EventHubClientBuilder shareConnection()
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.transportType(com.azure.core.amqp.AmqpTransportType)
+  id: transportType(com.azure.core.amqp.AmqpTransportType)
+  artifact: com.azure:azure-messaging-eventhubs:5.3.0-beta.1
+  parent: com.azure.messaging.eventhubs.EventHubClientBuilder
+  langs:
+  - java
+  name: transportType(AmqpTransportType transport)
+  nameWithType: EventHubClientBuilder.transportType(AmqpTransportType transport)
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.transportType(AmqpTransportType transport)
+  overload: com.azure.messaging.eventhubs.EventHubClientBuilder.transportType*
+  type: Method
+  package: com.azure.messaging.eventhubs
+  summary: Sets the transport type by which all the communication with Azure Event Hubs occurs. Default value is <xref uid="com.azure.core.amqp.AmqpTransportType.AMQP" data-throw-if-not-resolved="false">AmqpTransportType#AMQP</xref>.
+  syntax:
+    content: public EventHubClientBuilder transportType(AmqpTransportType transport)
+    parameters:
+    - id: transport
+      type: com.azure.core.amqp.AmqpTransportType
+      description: The transport type to use.
+    return:
+      type: com.azure.messaging.eventhubs.EventHubClientBuilder
+      description: The updated <xref uid="com.azure.messaging.eventhubs.EventHubClientBuilder" data-throw-if-not-resolved="false">EventHubClientBuilder</xref> object.
+references:
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder*
+  name: EventHubClientBuilder
+  nameWithType: EventHubClientBuilder.EventHubClientBuilder
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.EventHubClientBuilder
+  package: com.azure.messaging.eventhubs
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString*
+  name: connectionString
+  nameWithType: EventHubClientBuilder.connectionString
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.connectionString
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.util.Configuration
+  spec.java:
+  - uid: com.azure.core.util.Configuration
+    name: Configuration
+    fullName: com.azure.core.util.Configuration
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.configuration*
+  name: configuration
+  nameWithType: EventHubClientBuilder.configuration
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.configuration
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection*
+  name: shareConnection
+  nameWithType: EventHubClientBuilder.shareConnection
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.shareConnection
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.credential.TokenCredential
+  spec.java:
+  - uid: com.azure.core.credential.TokenCredential
+    name: TokenCredential
+    fullName: com.azure.core.credential.TokenCredential
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.credential*
+  name: credential
+  nameWithType: EventHubClientBuilder.credential
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.credential
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.amqp.ProxyOptions
+  spec.java:
+  - uid: com.azure.core.amqp.ProxyOptions
+    name: ProxyOptions
+    fullName: com.azure.core.amqp.ProxyOptions
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions*
+  name: proxyOptions
+  nameWithType: EventHubClientBuilder.proxyOptions
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.proxyOptions
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.amqp.AmqpTransportType
+  spec.java:
+  - uid: com.azure.core.amqp.AmqpTransportType
+    name: AmqpTransportType
+    fullName: com.azure.core.amqp.AmqpTransportType
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.transportType*
+  name: transportType
+  nameWithType: EventHubClientBuilder.transportType
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.transportType
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.amqp.AmqpRetryOptions
+  spec.java:
+  - uid: com.azure.core.amqp.AmqpRetryOptions
+    name: AmqpRetryOptions
+    fullName: com.azure.core.amqp.AmqpRetryOptions
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.retry*
+  name: retry
+  nameWithType: EventHubClientBuilder.retry
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.retry
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup*
+  name: consumerGroup
+  nameWithType: EventHubClientBuilder.consumerGroup
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.consumerGroup
+  package: com.azure.messaging.eventhubs
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount*
+  name: prefetchCount
+  nameWithType: EventHubClientBuilder.prefetchCount
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.prefetchCount
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing*
+  name: enableIdempotentPartitionPublishing
+  nameWithType: EventHubClientBuilder.enableIdempotentPartitionPublishing
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.enableIdempotentPartitionPublishing
+  package: com.azure.messaging.eventhubs
+- uid: java.util.Map<java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties>
+  spec.java:
+  - uid: java.util.Map
+    name: Map
+    fullName: java.util.Map
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: ','
+    fullName: ','
+  - uid: com.azure.messaging.eventhubs.PartitionPublishingProperties
+    name: PartitionPublishingProperties
+    fullName: com.azure.messaging.eventhubs.PartitionPublishingProperties
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates*
+  name: initialPartitionPublishingStates
+  nameWithType: EventHubClientBuilder.initialPartitionPublishingStates
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.initialPartitionPublishingStates
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.core.util.serializer.ObjectSerializer
+  spec.java:
+  - uid: com.azure.core.util.serializer.ObjectSerializer
+    name: ObjectSerializer
+    fullName: com.azure.core.util.serializer.ObjectSerializer
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.serializer*
+  name: serializer
+  nameWithType: EventHubClientBuilder.serializer
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.serializer
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+  name: EventHubConsumerAsyncClient
+  nameWithType: EventHubConsumerAsyncClient
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerAsyncClient
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient*
+  name: buildAsyncConsumerClient
+  nameWithType: EventHubClientBuilder.buildAsyncConsumerClient
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncConsumerClient
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubConsumerClient
+  name: EventHubConsumerClient
+  nameWithType: EventHubConsumerClient
+  fullName: com.azure.messaging.eventhubs.EventHubConsumerClient
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient*
+  name: buildConsumerClient
+  nameWithType: EventHubClientBuilder.buildConsumerClient
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildConsumerClient
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+  name: EventHubProducerAsyncClient
+  nameWithType: EventHubProducerAsyncClient
+  fullName: com.azure.messaging.eventhubs.EventHubProducerAsyncClient
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient*
+  name: buildAsyncProducerClient
+  nameWithType: EventHubClientBuilder.buildAsyncProducerClient
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildAsyncProducerClient
+  package: com.azure.messaging.eventhubs
+- uid: com.azure.messaging.eventhubs.EventHubProducerClient
+  name: EventHubProducerClient
+  nameWithType: EventHubProducerClient
+  fullName: com.azure.messaging.eventhubs.EventHubProducerClient
+- uid: com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient*
+  name: buildProducerClient
+  nameWithType: EventHubClientBuilder.buildProducerClient
+  fullName: com.azure.messaging.eventhubs.EventHubClientBuilder.buildProducerClient
+  package: com.azure.messaging.eventhubs
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: java.util.Map
+  name: Map
+  nameWithType: Map
+  fullName: java.util.Map
+- uid: java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties
+  name: String,PartitionPublishingProperties
+  nameWithType: String,PartitionPublishingProperties
+  fullName: java.lang.String,com.azure.messaging.eventhubs.PartitionPublishingProperties

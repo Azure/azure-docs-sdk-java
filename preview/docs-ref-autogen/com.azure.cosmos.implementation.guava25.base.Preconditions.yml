@@ -1,106 +1,2590 @@
-### YamlMime:JavaType
-uid: "com.azure.cosmos.implementation.guava25.base.Preconditions"
-fullName: "com.azure.cosmos.implementation.guava25.base.Preconditions"
-name: "Preconditions"
-nameWithType: "Preconditions"
-summary: "Static convenience methods that help a method or constructor check whether it was invoked correctly (that is, whether its *preconditions* were met).\n\nIf the precondition is not met, the `Preconditions` method throws an unchecked exception of a specified type, which helps the method in which the exception was thrown communicate that its caller has made a mistake. This allows constructs such as\n\n```java\npublic static double sqrt(double value) {\n   if (value < 0) {\n     throw new IllegalArgumentException(\"input is negative: \" + value);\n   }\n   // calculate square root\n }\n```\n\nto be replaced with the more compact\n\n```java\npublic static double sqrt(double value) {\n   checkArgument(value >= 0, \"input is negative: %s\", value);\n   // calculate square root\n }\n```\n\nso that a hypothetical bad caller of this method, such as:\n\n```java\nvoid exampleBadCaller() {\n     double d = sqrt(-1.0);\n }\n```\n\nwould be flagged as having called `sqrt()` with an illegal argument.\n\n### Performance ###\n\nAvoid passing message arguments that are expensive to compute; your code will always compute them, even though they usually won't be needed. If you have such arguments, use the conventional if/throw idiom instead.\n\nDepending on your message arguments, memory may be allocated for boxing and varargs array creation. However, the methods of this class have a large number of overloads that prevent such allocations in many common cases.\n\nThe message string is not formatted unless the exception will be thrown, so the cost of the string formatting itself should not be a concern.\n\nAs with any performance concerns, you should consider profiling your code (in a production environment if possible) before spending a lot of effort on tweaking a particular element.\n\n### Other types of preconditions ###\n\nNot every type of precondition failure is supported by these methods. Continue to throw standard JDK exceptions such as <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.NoSuchElementException</xref> or <xref uid=\"java.lang.UnsupportedOperationException\" data-throw-if-not-resolved=\"false\">UnsupportedOperationException</xref> in the situations they are intended for.\n\n### Non-preconditions ###\n\nIt is of course possible to use the methods of this class to check for invalid conditions which are *not the caller's fault*. Doing so is **not recommended** because it is misleading to future readers of the code and of stack traces. See [Conditional failures explained][] in the Guava User Guide for more advice. Notably, <xref uid=\"com.azure.cosmos.implementation.guava25.base.Verify\" data-throw-if-not-resolved=\"false\">Verify</xref> offers assertions similar to those in this class for non-precondition checks.\n\n### `java.util.Objects.requireNonNull()` ###\n\nProjects which use `com.google.common` should generally avoid the use of <xref uid=\"com.azure.cosmos.implementation.guava25.base.Objects.requireNonNull*\" data-throw-if-not-resolved=\"false\">java.util.Objects#requireNonNull(Object)</xref>. Instead, use whichever of <xref uid=\"com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*\" data-throw-if-not-resolved=\"false\">#checkNotNull(Object)</xref> or <xref uid=\"com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*\" data-throw-if-not-resolved=\"false\">Verify#verifyNotNull(Object)</xref> is appropriate to the situation. (The same goes for the message-accepting overloads.)\n\n### Only `%s` is supported ###\n\nIn `Preconditions` error message template strings, only the `\"%s\"` specifier is supported, not the full range of <xref uid=\"\" data-throw-if-not-resolved=\"false\">java.util.Formatter</xref> specifiers.\n\n### More information ###\n\nSee the Guava User Guide on [using `Preconditions`][using _Preconditions].\n\n\n[Conditional failures explained]: https://github.com/google/guava/wiki/ConditionalFailuresExplained\n[using _Preconditions]: https://github.com/google/guava/wiki/PreconditionsExplained"
-inheritances:
-- "<xref href=\"java.lang.Object\" data-throw-if-not-resolved=\"False\" />"
-inheritedMembers:
-- "java.lang.Object.clone()"
-- "java.lang.Object.equals(java.lang.Object)"
-- "java.lang.Object.finalize()"
-- "java.lang.Object.getClass()"
-- "java.lang.Object.hashCode()"
-- "java.lang.Object.notify()"
-- "java.lang.Object.notifyAll()"
-- "java.lang.Object.toString()"
-- "java.lang.Object.wait()"
-- "java.lang.Object.wait(long)"
-- "java.lang.Object.wait(long,int)"
-syntax: "public final class Preconditions"
-methods:
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object...)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object...)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int,java.lang.String)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int,java.lang.String)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes(int,int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object...)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,char)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,int)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,java.lang.Object)"
-- "com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,long)"
-type: "class"
-metadata: {}
-package: "com.azure.cosmos.implementation.guava25.base"
-artifact: com.azure:azure-cosmos:4.4.0-beta.1
+### YamlMime:ManagedReference
+items:
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions
+  id: Preconditions
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base
+  children:
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object...)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object...)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int,java.lang.String)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int,java.lang.String)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes(int,int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object...)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,char)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,int)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,java.lang.Object)
+  - com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,long)
+  langs:
+  - java
+  name: Preconditions
+  nameWithType: Preconditions
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions
+  type: Class
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Static convenience methods that help a method or constructor check whether it was invoked correctly (that is, whether its *preconditions* were met).
+
+
+    If the precondition is not met, the `Preconditions` method throws an unchecked exception of a specified type, which helps the method in which the exception was thrown communicate that its caller has made a mistake. This allows constructs such as
+
+
+    ```java
+
+    public static double sqrt(double value) {
+       if (value < 0) {
+         throw new IllegalArgumentException("input is negative: " + value);
+       }
+       // calculate square root
+     }
+    ```
+
+
+    to be replaced with the more compact
+
+
+    ```java
+
+    public static double sqrt(double value) {
+       checkArgument(value >= 0, "input is negative: %s", value);
+       // calculate square root
+     }
+    ```
+
+
+    so that a hypothetical bad caller of this method, such as:
+
+
+    ```java
+
+    void exampleBadCaller() {
+         double d = sqrt(-1.0);
+     }
+    ```
+
+
+    would be flagged as having called `sqrt()` with an illegal argument.
+
+
+    ### Performance ###
+
+
+    Avoid passing message arguments that are expensive to compute; your code will always compute them, even though they usually won't be needed. If you have such arguments, use the conventional if/throw idiom instead.
+
+
+    Depending on your message arguments, memory may be allocated for boxing and varargs array creation. However, the methods of this class have a large number of overloads that prevent such allocations in many common cases.
+
+
+    The message string is not formatted unless the exception will be thrown, so the cost of the string formatting itself should not be a concern.
+
+
+    As with any performance concerns, you should consider profiling your code (in a production environment if possible) before spending a lot of effort on tweaking a particular element.
+
+
+    ### Other types of preconditions ###
+
+
+    Not every type of precondition failure is supported by these methods. Continue to throw standard JDK exceptions such as <xref uid="" data-throw-if-not-resolved="false">java.util.NoSuchElementException</xref> or <xref uid="java.lang.UnsupportedOperationException" data-throw-if-not-resolved="false">UnsupportedOperationException</xref> in the situations they are intended for.
+
+
+    ### Non-preconditions ###
+
+
+    It is of course possible to use the methods of this class to check for invalid conditions which are *not the caller's fault*. Doing so is **not recommended** because it is misleading to future readers of the code and of stack traces. See [Conditional failures explained][] in the Guava User Guide for more advice. Notably, <xref uid="com.azure.cosmos.implementation.guava25.base.Verify" data-throw-if-not-resolved="false">Verify</xref> offers assertions similar to those in this class for non-precondition checks.
+
+
+    ### `java.util.Objects.requireNonNull()` ###
+
+
+    Projects which use `com.google.common` should generally avoid the use of <xref uid="com.azure.cosmos.implementation.guava25.base.Objects.requireNonNull*" data-throw-if-not-resolved="false">java.util.Objects#requireNonNull(Object)</xref>. Instead, use whichever of <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object)</xref> or <xref uid="com.azure.cosmos.implementation.guava25.base.Verify.verifyNotNull*" data-throw-if-not-resolved="false">Verify#verifyNotNull(Object)</xref> is appropriate to the situation. (The same goes for the message-accepting overloads.)
+
+
+    ### Only `%s` is supported ###
+
+
+    In `Preconditions` error message template strings, only the `"%s"` specifier is supported, not the full range of <xref uid="" data-throw-if-not-resolved="false">java.util.Formatter</xref> specifiers.
+
+
+    ### More information ###
+
+
+    See the Guava User Guide on [using `Preconditions`][using _Preconditions].
+
+
+
+    [Conditional failures explained]: https://github.com/google/guava/wiki/ConditionalFailuresExplained
+
+    [using _Preconditions]: https://github.com/google/guava/wiki/PreconditionsExplained
+  syntax:
+    content: public final class Preconditions
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T)
+  id: <T>checkNotNull(T)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T reference)
+  nameWithType: Preconditions.<T>checkNotNull(T reference)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T reference)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that an object reference passed as a parameter to the calling method is not null.
+  syntax:
+    content: public static T <T>checkNotNull(T reference)
+    parameters:
+    - id: reference
+      type: T
+      description: an object reference
+    return:
+      type: T
+      description: the non-null reference that was validated
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T reference, Object errorMessage)
+  nameWithType: Preconditions.<T>checkNotNull(T reference, Object errorMessage)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T reference, Object errorMessage)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that an object reference passed as a parameter to the calling method is not null.
+  syntax:
+    content: public static T <T>checkNotNull(T reference, Object errorMessage)
+    parameters:
+    - id: reference
+      type: T
+      description: an object reference
+    - id: errorMessage
+      type: java.lang.Object
+      description: >-
+        the exception message to use if the check fails; will be converted to a
+             string using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>
+    return:
+      type: T
+      description: the non-null reference that was validated
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char)
+  id: <T>checkNotNull(T,java.lang.String,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, char p1)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, char p1)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,char)
+  id: <T>checkNotNull(T,java.lang.String,char,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, char p1, char p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, char p1, char p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: char
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,int)
+  id: <T>checkNotNull(T,java.lang.String,char,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, char p1, int p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, char p1, int p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: int
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,char,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, char p1, Object p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, char p1, Object p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,char,long)
+  id: <T>checkNotNull(T,java.lang.String,char,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, char p1, long p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, char p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, char p1, long p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: long
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int)
+  id: <T>checkNotNull(T,java.lang.String,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, int p1)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, int p1)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,char)
+  id: <T>checkNotNull(T,java.lang.String,int,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, int p1, char p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, int p1, char p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: char
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,int)
+  id: <T>checkNotNull(T,java.lang.String,int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, int p1, int p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, int p1, int p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: int
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,int,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, int p1, Object p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, int p1, Object p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,int,long)
+  id: <T>checkNotNull(T,java.lang.String,int,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, int p1, long p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, int p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, int p1, long p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: long
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,char)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, char p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, char p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: char
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,int)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, int p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, int p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: int
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+    - id: p4
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object,long)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, long p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, Object p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, Object p1, long p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: long
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,java.lang.Object...)
+  id: <T>checkNotNull(T,java.lang.String,java.lang.Object...)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  nameWithType: Preconditions.<T>checkNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that an object reference passed as a parameter to the calling method is not null.
+  syntax:
+    content: public static T <T>checkNotNull(T reference, String errorMessageTemplate, Object[] errorMessageArgs)
+    parameters:
+    - id: reference
+      type: T
+      description: an object reference
+    - id: errorMessageTemplate
+      type: java.lang.String
+      description: >-
+        a template for the exception message should the check fail. The
+             message is formed by replacing each <code>%s</code> placeholder in the template with an
+             argument. These are matched by position - the first <code>%s</code> gets <code>
+             errorMessageArgs[0]</code>, etc. Unmatched arguments will be appended to the formatted message in
+             square braces. Unmatched placeholders will be left as-is.
+    - id: errorMessageArgs
+      type: java.lang.Object[]
+      description: >-
+        the arguments to be substituted into the message template. Arguments
+             are converted to strings using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>.
+    return:
+      type: T
+      description: the non-null reference that was validated
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long)
+  id: <T>checkNotNull(T,java.lang.String,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, long p1)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, long p1)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,char)
+  id: <T>checkNotNull(T,java.lang.String,long,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, long p1, char p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, long p1, char p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: char
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,int)
+  id: <T>checkNotNull(T,java.lang.String,long,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, long p1, int p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, long p1, int p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: int
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,java.lang.Object)
+  id: <T>checkNotNull(T,java.lang.String,long,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, long p1, Object p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, long p1, Object p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: java.lang.Object
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T,java.lang.String,long,long)
+  id: <T>checkNotNull(T,java.lang.String,long,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: <T>checkNotNull(T obj, String errorMessageTemplate, long p1, long p2)
+  nameWithType: Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull(T obj, String errorMessageTemplate, long p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures that an object reference passed as a parameter to the calling method is not null.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*" data-throw-if-not-resolved="false">#checkNotNull(Object, String, Object...)</xref> for details.
+  syntax:
+    content: public static T <T>checkNotNull(T obj, String errorMessageTemplate, long p1, long p2)
+    parameters:
+    - id: obj
+      type: T
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: long
+    return:
+      type: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.Preconditions()
+  id: Preconditions()
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: Preconditions()
+  nameWithType: Preconditions.Preconditions()
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.Preconditions()
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.Preconditions*
+  type: Constructor
+  package: com.azure.cosmos.implementation.guava25.base
+  syntax:
+    content: private Preconditions()
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean)
+  id: checkArgument(boolean)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean expression)
+  nameWithType: Preconditions.checkArgument(boolean expression)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean expression)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving one or more parameters to the calling method.
+  syntax:
+    content: public static void checkArgument(boolean expression)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.Object)
+  id: checkArgument(boolean,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean expression, Object errorMessage)
+  nameWithType: Preconditions.checkArgument(boolean expression, Object errorMessage)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean expression, Object errorMessage)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving one or more parameters to the calling method.
+  syntax:
+    content: public static void checkArgument(boolean expression, Object errorMessage)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+    - id: errorMessage
+      type: java.lang.Object
+      description: >-
+        the exception message to use if the check fails; will be converted to a
+             string using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char)
+  id: checkArgument(boolean,java.lang.String,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, char p1)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, char p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,char)
+  id: checkArgument(boolean,java.lang.String,char,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, char p1, char p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, char p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,int)
+  id: checkArgument(boolean,java.lang.String,char,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, char p1, int p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, char p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,char,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, char p1, Object p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, char p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,char,long)
+  id: checkArgument(boolean,java.lang.String,char,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, char p1, long p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, char p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, char p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int)
+  id: checkArgument(boolean,java.lang.String,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, int p1)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, int p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,char)
+  id: checkArgument(boolean,java.lang.String,int,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, int p1, char p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, int p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,int)
+  id: checkArgument(boolean,java.lang.String,int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, int p1, int p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, int p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,int,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, int p1, Object p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, int p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,int,long)
+  id: checkArgument(boolean,java.lang.String,int,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, int p1, long p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, int p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, int p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,char)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, char p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,int)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, int p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+    - id: p4
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object,long)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, Object p1, long p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, Object p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, Object p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,java.lang.Object...)
+  id: checkArgument(boolean,java.lang.String,java.lang.Object...)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  nameWithType: Preconditions.checkArgument(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving one or more parameters to the calling method.
+  syntax:
+    content: public static void checkArgument(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+    - id: errorMessageTemplate
+      type: java.lang.String
+      description: >-
+        a template for the exception message should the check fail. The
+             message is formed by replacing each <code>%s</code> placeholder in the template with an
+             argument. These are matched by position - the first <code>%s</code> gets <code>
+             errorMessageArgs[0]</code>, etc. Unmatched arguments will be appended to the formatted message in
+             square braces. Unmatched placeholders will be left as-is.
+    - id: errorMessageArgs
+      type: java.lang.Object[]
+      description: >-
+        the arguments to be substituted into the message template. Arguments
+             are converted to strings using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>.
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long)
+  id: checkArgument(boolean,java.lang.String,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, long p1)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, long p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,char)
+  id: checkArgument(boolean,java.lang.String,long,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, long p1, char p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, long p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,int)
+  id: checkArgument(boolean,java.lang.String,long,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, long p1, int p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, long p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,java.lang.Object)
+  id: checkArgument(boolean,java.lang.String,long,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, long p1, Object p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, long p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean,java.lang.String,long,long)
+  id: checkArgument(boolean,java.lang.String,long,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkArgument(boolean b, String errorMessageTemplate, long p1, long p2)
+  nameWithType: Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument(boolean b, String errorMessageTemplate, long p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving one or more parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*" data-throw-if-not-resolved="false">#checkArgument(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkArgument(boolean b, String errorMessageTemplate, long p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int)
+  id: checkElementIndex(int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkElementIndex(int index, int size)
+  nameWithType: Preconditions.checkElementIndex(int index, int size)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int index, int size)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `index` specifies a valid *element* in an array, list or string of size `size`. An element index may range from zero, inclusive, to `size`, exclusive.
+  syntax:
+    content: public static int checkElementIndex(int index, int size)
+    parameters:
+    - id: index
+      type: int
+      description: a user-supplied index identifying an element of an array, list or string
+    - id: size
+      type: int
+      description: the size of that array, list or string
+    return:
+      type: int
+      description: the value of <code>index</code>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int,int,java.lang.String)
+  id: checkElementIndex(int,int,java.lang.String)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkElementIndex(int index, int size, String desc)
+  nameWithType: Preconditions.checkElementIndex(int index, int size, String desc)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex(int index, int size, String desc)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `index` specifies a valid *element* in an array, list or string of size `size`. An element index may range from zero, inclusive, to `size`, exclusive.
+  syntax:
+    content: public static int checkElementIndex(int index, int size, String desc)
+    parameters:
+    - id: index
+      type: int
+      description: a user-supplied index identifying an element of an array, list or string
+    - id: size
+      type: int
+      description: the size of that array, list or string
+    - id: desc
+      type: java.lang.String
+      description: the text to use to describe this index in an error message
+    return:
+      type: int
+      description: the value of <code>index</code>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int)
+  id: checkPositionIndex(int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkPositionIndex(int index, int size)
+  nameWithType: Preconditions.checkPositionIndex(int index, int size)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int index, int size)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `index` specifies a valid *position* in an array, list or string of size `size`. A position index may range from zero to `size`, inclusive.
+  syntax:
+    content: public static int checkPositionIndex(int index, int size)
+    parameters:
+    - id: index
+      type: int
+      description: a user-supplied index identifying a position in an array, list or string
+    - id: size
+      type: int
+      description: the size of that array, list or string
+    return:
+      type: int
+      description: the value of <code>index</code>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int,int,java.lang.String)
+  id: checkPositionIndex(int,int,java.lang.String)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkPositionIndex(int index, int size, String desc)
+  nameWithType: Preconditions.checkPositionIndex(int index, int size, String desc)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex(int index, int size, String desc)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `index` specifies a valid *position* in an array, list or string of size `size`. A position index may range from zero to `size`, inclusive.
+  syntax:
+    content: public static int checkPositionIndex(int index, int size, String desc)
+    parameters:
+    - id: index
+      type: int
+      description: a user-supplied index identifying a position in an array, list or string
+    - id: size
+      type: int
+      description: the size of that array, list or string
+    - id: desc
+      type: java.lang.String
+      description: the text to use to describe this index in an error message
+    return:
+      type: int
+      description: the value of <code>index</code>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes(int,int,int)
+  id: checkPositionIndexes(int,int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkPositionIndexes(int start, int end, int size)
+  nameWithType: Preconditions.checkPositionIndexes(int start, int end, int size)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes(int start, int end, int size)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures that `start` and `end` specify a valid *positions* in an array, list or string of size `size`, and are in order. A position index may range from zero to `size`, inclusive.
+  syntax:
+    content: public static void checkPositionIndexes(int start, int end, int size)
+    parameters:
+    - id: start
+      type: int
+      description: a user-supplied index identifying a starting position in an array, list or string
+    - id: end
+      type: int
+      description: a user-supplied index identifying a ending position in an array, list or string
+    - id: size
+      type: int
+      description: the size of that array, list or string
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean)
+  id: checkState(boolean)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean expression)
+  nameWithType: Preconditions.checkState(boolean expression)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean expression)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+  syntax:
+    content: public static void checkState(boolean expression)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.Object)
+  id: checkState(boolean,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean expression, Object errorMessage)
+  nameWithType: Preconditions.checkState(boolean expression, Object errorMessage)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean expression, Object errorMessage)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+  syntax:
+    content: public static void checkState(boolean expression, Object errorMessage)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+    - id: errorMessage
+      type: java.lang.Object
+      description: >-
+        the exception message to use if the check fails; will be converted to a
+             string using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char)
+  id: checkState(boolean,java.lang.String,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, char p1)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, char p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, char p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, char p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,char)
+  id: checkState(boolean,java.lang.String,char,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, char p1, char p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, char p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,int)
+  id: checkState(boolean,java.lang.String,char,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, char p1, int p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, char p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,java.lang.Object)
+  id: checkState(boolean,java.lang.String,char,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, char p1, Object p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, char p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,char,long)
+  id: checkState(boolean,java.lang.String,char,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, char p1, long p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, char p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, char p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: char
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int)
+  id: checkState(boolean,java.lang.String,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, int p1)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, int p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, int p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, int p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,char)
+  id: checkState(boolean,java.lang.String,int,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, int p1, char p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, int p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,int)
+  id: checkState(boolean,java.lang.String,int,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, int p1, int p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, int p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,java.lang.Object)
+  id: checkState(boolean,java.lang.String,int,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, int p1, Object p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, int p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,int,long)
+  id: checkState(boolean,java.lang.String,int,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, int p1, long p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, int p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, int p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: int
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object)
+  id: checkState(boolean,java.lang.String,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,char)
+  id: checkState(boolean,java.lang.String,java.lang.Object,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, char p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,int)
+  id: checkState(boolean,java.lang.String,java.lang.Object,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, int p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  id: checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  id: checkState(boolean,java.lang.String,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, Object p2, Object p3, Object p4)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: java.lang.Object
+    - id: p3
+      type: java.lang.Object
+    - id: p4
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object,long)
+  id: checkState(boolean,java.lang.String,java.lang.Object,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, Object p1, long p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, Object p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, Object p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: java.lang.Object
+    - id: p2
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,java.lang.Object...)
+  id: checkState(boolean,java.lang.String,java.lang.Object...)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  nameWithType: Preconditions.checkState(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+  syntax:
+    content: public static void checkState(boolean expression, String errorMessageTemplate, Object[] errorMessageArgs)
+    parameters:
+    - id: expression
+      type: boolean
+      description: a boolean expression
+    - id: errorMessageTemplate
+      type: java.lang.String
+      description: >-
+        a template for the exception message should the check fail. The
+             message is formed by replacing each <code>%s</code> placeholder in the template with an
+             argument. These are matched by position - the first <code>%s</code> gets <code>
+             errorMessageArgs[0]</code>, etc. Unmatched arguments will be appended to the formatted message in
+             square braces. Unmatched placeholders will be left as-is.
+    - id: errorMessageArgs
+      type: java.lang.Object[]
+      description: >-
+        the arguments to be substituted into the message template. Arguments
+             are converted to strings using <xref uid="java.lang.String.valueOf*" data-throw-if-not-resolved="false">String#valueOf(Object)</xref>.
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long)
+  id: checkState(boolean,java.lang.String,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, long p1)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, long p1)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, long p1)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, long p1)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,char)
+  id: checkState(boolean,java.lang.String,long,char)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, long p1, char p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, char p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, char p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, long p1, char p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: char
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,int)
+  id: checkState(boolean,java.lang.String,long,int)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, long p1, int p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, int p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, int p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, long p1, int p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: int
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,java.lang.Object)
+  id: checkState(boolean,java.lang.String,long,java.lang.Object)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, long p1, Object p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, Object p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, Object p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, long p1, Object p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: java.lang.Object
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean,java.lang.String,long,long)
+  id: checkState(boolean,java.lang.String,long,long)
+  artifact: com.azure:azure-cosmos:4.4.0-beta.1
+  parent: com.azure.cosmos.implementation.guava25.base.Preconditions
+  langs:
+  - java
+  name: checkState(boolean b, String errorMessageTemplate, long p1, long p2)
+  nameWithType: Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, long p2)
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState(boolean b, String errorMessageTemplate, long p1, long p2)
+  overload: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  type: Method
+  package: com.azure.cosmos.implementation.guava25.base
+  summary: >-
+    Ensures the truth of an expression involving the state of the calling instance, but not involving any parameters to the calling method.
+
+
+    See <xref uid="com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*" data-throw-if-not-resolved="false">#checkState(boolean, String, Object...)</xref> for details.
+  syntax:
+    content: public static void checkState(boolean b, String errorMessageTemplate, long p1, long p2)
+    parameters:
+    - id: b
+      type: boolean
+    - id: errorMessageTemplate
+      type: java.lang.String
+    - id: p1
+      type: long
+    - id: p2
+      type: long
+references:
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.Preconditions*
+  name: Preconditions
+  nameWithType: Preconditions.Preconditions
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.Preconditions
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument*
+  name: checkArgument
+  nameWithType: Preconditions.checkArgument
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkArgument
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: java.lang.Object[]
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+  - name: '[]'
+    fullName: '[]'
+- uid: char
+  spec.java:
+  - uid: char
+    name: char
+    fullName: char
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: long
+  spec.java:
+  - uid: long
+    name: long
+    fullName: long
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState*
+  name: checkState
+  nameWithType: Preconditions.checkState
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkState
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: T
+  spec.java:
+  - uid: T
+    name: T
+    fullName: T
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkNotNull*
+  name: <T>checkNotNull
+  nameWithType: Preconditions.<T>checkNotNull
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.<T>checkNotNull
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex*
+  name: checkElementIndex
+  nameWithType: Preconditions.checkElementIndex
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkElementIndex
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex*
+  name: checkPositionIndex
+  nameWithType: Preconditions.checkPositionIndex
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndex
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes*
+  name: checkPositionIndexes
+  nameWithType: Preconditions.checkPositionIndexes
+  fullName: com.azure.cosmos.implementation.guava25.base.Preconditions.checkPositionIndexes
+  package: com.azure.cosmos.implementation.guava25.base
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
