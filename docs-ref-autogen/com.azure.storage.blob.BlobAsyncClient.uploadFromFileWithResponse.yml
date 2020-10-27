@@ -1,0 +1,23 @@
+### YamlMime:JavaMember
+uid: "com.azure.storage.blob.BlobAsyncClient.uploadFromFileWithResponse*"
+fullName: "com.azure.storage.blob.BlobAsyncClient.uploadFromFileWithResponse"
+name: "uploadFromFileWithResponse"
+nameWithType: "BlobAsyncClient.uploadFromFileWithResponse"
+members:
+- uid: "com.azure.storage.blob.BlobAsyncClient.uploadFromFileWithResponse(com.azure.storage.blob.options.BlobUploadFromFileOptions)"
+  fullName: "com.azure.storage.blob.BlobAsyncClient.uploadFromFileWithResponse(BlobUploadFromFileOptions options)"
+  name: "uploadFromFileWithResponse(BlobUploadFromFileOptions options)"
+  nameWithType: "BlobAsyncClient.uploadFromFileWithResponse(BlobUploadFromFileOptions options)"
+  summary: "Creates a new block blob, or updates the content of an existing block blob, with the content of the specified file.\n\nTo avoid overwriting, pass \"\\*\" to <xref uid=\"com.azure.storage.blob.models.BlobRequestConditions.setIfNoneMatch(java.lang.String)\" data-throw-if-not-resolved=\"false\">BlobRequestConditions#setIfNoneMatch(String)</xref>.\n\n**Code Samples**\n\n```java\nBlobHttpHeaders headers = new BlobHttpHeaders()\n     .setContentMd5(\"data\".getBytes(StandardCharsets.UTF_8))\n     .setContentLanguage(\"en-US\")\n     .setContentType(\"binary\");\n \n Map<String, String> metadata = Collections.singletonMap(\"metadata\", \"value\");\n Map<String, String> tags = Collections.singletonMap(\"tag\", \"value\");\n BlobRequestConditions requestConditions = new BlobRequestConditions()\n     .setLeaseId(leaseId)\n     .setIfUnmodifiedSince(OffsetDateTime.now().minusDays(3));\n \n client.uploadFromFileWithResponse(new BlobUploadFromFileOptions(filePath)\n     .setParallelTransferOptions(\n         new ParallelTransferOptions().setBlockSizeLong(BlobAsyncClient.BLOB_MAX_UPLOAD_BLOCK_SIZE))\n     .setHeaders(headers).setMetadata(metadata).setTags(tags).setTier(AccessTier.HOT)\n     .setRequestConditions(requestConditions))\n     .doOnError(throwable -> System.err.printf(\"Failed to upload from file %s%n\", throwable.getMessage()))\n     .subscribe(completion -> System.out.println(\"Upload from file succeeded\"));\n```"
+  parameters:
+  - description: "<xref uid=\"com.azure.storage.blob.options.BlobUploadFromFileOptions\" data-throw-if-not-resolved=\"false\">BlobUploadFromFileOptions</xref>"
+    name: "options"
+    type: "<xref href=\"com.azure.storage.blob.options.BlobUploadFromFileOptions?alt=com.azure.storage.blob.options.BlobUploadFromFileOptions&text=BlobUploadFromFileOptions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<BlockBlobItem>> uploadFromFileWithResponse(BlobUploadFromFileOptions options)"
+  returns:
+    description: "A reactive response containing the information of the uploaded block blob."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.BlockBlobItem?alt=com.azure.storage.blob.models.BlockBlobItem&text=BlockBlobItem\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+type: "method"
+metadata: {}
+package: "com.azure.storage.blob"
+artifact: com.azure:azure-storage-blob:12.8.0

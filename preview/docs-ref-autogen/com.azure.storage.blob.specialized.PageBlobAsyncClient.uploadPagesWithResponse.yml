@@ -1,0 +1,32 @@
+### YamlMime:JavaMember
+uid: "com.azure.storage.blob.specialized.PageBlobAsyncClient.uploadPagesWithResponse*"
+fullName: "com.azure.storage.blob.specialized.PageBlobAsyncClient.uploadPagesWithResponse"
+name: "uploadPagesWithResponse"
+nameWithType: "PageBlobAsyncClient.uploadPagesWithResponse"
+members:
+- uid: "com.azure.storage.blob.specialized.PageBlobAsyncClient.uploadPagesWithResponse(com.azure.storage.blob.models.PageRange,reactor.core.publisher.Flux<java.nio.ByteBuffer>,byte[],com.azure.storage.blob.models.PageBlobRequestConditions)"
+  fullName: "com.azure.storage.blob.specialized.PageBlobAsyncClient.uploadPagesWithResponse(PageRange pageRange, Flux<ByteBuffer> body, byte[] contentMd5, PageBlobRequestConditions pageBlobRequestConditions)"
+  name: "uploadPagesWithResponse(PageRange pageRange, Flux<ByteBuffer> body, byte[] contentMd5, PageBlobRequestConditions pageBlobRequestConditions)"
+  nameWithType: "PageBlobAsyncClient.uploadPagesWithResponse(PageRange pageRange, Flux<ByteBuffer> body, byte[] contentMd5, PageBlobRequestConditions pageBlobRequestConditions)"
+  summary: "Writes one or more pages to the page blob. The write size must be a multiple of 512. For more information, see the [Azure Docs][].\n\nNote that the data passed must be replayable if retries are enabled (the default). In other words, the `Flux` must produce the same data each time it is subscribed to.\n\n**Code Samples**\n\n```java\nPageRange pageRange = new PageRange()\n     .setStart(0)\n     .setEnd(511);\n \n byte[] md5 = MessageDigest.getInstance(\"MD5\").digest(\"data\".getBytes(StandardCharsets.UTF_8));\n PageBlobRequestConditions pageBlobRequestConditions = new PageBlobRequestConditions().setLeaseId(leaseId);\n \n client.uploadPagesWithResponse(pageRange, body, md5, pageBlobRequestConditions)\n     .subscribe(response -> System.out.printf(\n         \"Uploaded page blob with sequence number %s%n\", response.getValue().getBlobSequenceNumber()));\n```\n\n\n[Azure Docs]: https://docs.microsoft.com/rest/api/storageservices/put-page"
+  parameters:
+  - description: "A <xref uid=\"com.azure.storage.blob.models.PageRange\" data-throw-if-not-resolved=\"false\">PageRange</xref> object. Given that pages must be aligned with 512-byte boundaries, the start\n offset must be a modulus of 512 and the end offset must be a modulus of 512 - 1. Examples of valid byte ranges\n are 0-511, 512-1023, etc."
+    name: "pageRange"
+    type: "<xref href=\"com.azure.storage.blob.models.PageRange?alt=com.azure.storage.blob.models.PageRange&text=PageRange\" data-throw-if-not-resolved=\"False\" />"
+  - description: "The data to upload. Note that this <code>Flux</code> must be replayable if retries are enabled (the\n default). In other words, the Flowable must produce the same data each time it is subscribed to."
+    name: "body"
+    type: "<xref href=\"reactor.core.publisher.Flux?alt=reactor.core.publisher.Flux&text=Flux\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"java.nio.ByteBuffer?alt=java.nio.ByteBuffer&text=ByteBuffer\" data-throw-if-not-resolved=\"False\" />&gt;"
+  - description: "An MD5 hash of the page content. This hash is used to verify the integrity of the page during\n transport. When this header is specified, the storage service compares the hash of the content that has arrived\n with this header value. Note that this MD5 hash is not stored with the blob. If the two hashes do not match, the\n operation will fail."
+    name: "contentMd5"
+    type: "<xref href=\"byte?alt=byte&text=byte\" data-throw-if-not-resolved=\"False\" />[]"
+  - description: "<xref uid=\"com.azure.storage.blob.models.PageBlobRequestConditions\" data-throw-if-not-resolved=\"false\">PageBlobRequestConditions</xref>"
+    name: "pageBlobRequestConditions"
+    type: "<xref href=\"com.azure.storage.blob.models.PageBlobRequestConditions?alt=com.azure.storage.blob.models.PageBlobRequestConditions&text=PageBlobRequestConditions\" data-throw-if-not-resolved=\"False\" />"
+  syntax: "public Mono<Response<PageBlobItem>> uploadPagesWithResponse(PageRange pageRange, Flux<ByteBuffer> body, byte[] contentMd5, PageBlobRequestConditions pageBlobRequestConditions)"
+  returns:
+    description: "A reactive response containing the information of the uploaded pages."
+    type: "<xref href=\"reactor.core.publisher.Mono?alt=reactor.core.publisher.Mono&text=Mono\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.core.http.rest.Response?alt=com.azure.core.http.rest.Response&text=Response\" data-throw-if-not-resolved=\"False\" />&lt;<xref href=\"com.azure.storage.blob.models.PageBlobItem?alt=com.azure.storage.blob.models.PageBlobItem&text=PageBlobItem\" data-throw-if-not-resolved=\"False\" />&gt;&gt;"
+type: "method"
+metadata: {}
+package: "com.azure.storage.blob.specialized"
+artifact: com.azure:azure-storage-blob:12.9.0-beta.1
