@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmoscosmosdb
+ms.service: cosmos-db
 ---
 
 # Azure CosmosDB Client Library for Java - Version 4.8.0 
