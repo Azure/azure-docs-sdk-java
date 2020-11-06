@@ -1,0 +1,325 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.eventhubs
+  id: eventhubs
+  children:
+  - com.microsoft.azure.eventhubs.AuthorizationFailedException
+  - com.microsoft.azure.eventhubs.BatchOptions
+  - com.microsoft.azure.eventhubs.CommunicationException
+  - com.microsoft.azure.eventhubs.ConnectionStringBuilder
+  - com.microsoft.azure.eventhubs.ErrorContext
+  - com.microsoft.azure.eventhubs.EventData
+  - com.microsoft.azure.eventhubs.EventData.SystemProperties
+  - com.microsoft.azure.eventhubs.EventDataBatch
+  - com.microsoft.azure.eventhubs.EventHubClient
+  - com.microsoft.azure.eventhubs.EventHubException
+  - com.microsoft.azure.eventhubs.EventHubRuntimeInformation
+  - com.microsoft.azure.eventhubs.EventPosition
+  - com.microsoft.azure.eventhubs.IllegalConnectionStringFormatException
+  - com.microsoft.azure.eventhubs.IllegalEntityException
+  - com.microsoft.azure.eventhubs.OperationCancelledException
+  - com.microsoft.azure.eventhubs.PartitionReceiveHandler
+  - com.microsoft.azure.eventhubs.PartitionReceiver
+  - com.microsoft.azure.eventhubs.PartitionRuntimeInformation
+  - com.microsoft.azure.eventhubs.PartitionSender
+  - com.microsoft.azure.eventhubs.PayloadSizeExceededException
+  - com.microsoft.azure.eventhubs.QuotaExceededException
+  - com.microsoft.azure.eventhubs.ReceiverDisconnectedException
+  - com.microsoft.azure.eventhubs.ReceiverOptions
+  - com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
+  - com.microsoft.azure.eventhubs.RetryPolicy
+  - com.microsoft.azure.eventhubs.ServerBusyException
+  - com.microsoft.azure.eventhubs.TimeoutException
+  - com.microsoft.azure.eventhubs.TransportType
+  href: com.microsoft.azure.eventhubs.yml
+  langs:
+  - java
+  name: com.microsoft.azure.eventhubs
+  nameWithType: com.microsoft.azure.eventhubs
+  fullName: com.microsoft.azure.eventhubs
+  type: Namespace
+  source:
+    remote:
+      path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/AuthorizationFailedException.java
+      branch: master
+      repo: https://github.com/Azure/azure-event-hubs-java
+    path: azure-eventhubs/src/main/java/com/microsoft/azure/eventhubs/AuthorizationFailedException.java
+    startLine: 4
+  syntax:
+    content: package com.microsoft.azure.eventhubs
+references:
+- uid: com.microsoft.azure.eventhubs.AuthorizationFailedException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.AuthorizationFailedException.yml
+  name: AuthorizationFailedException
+  nameWithType: AuthorizationFailedException
+  fullName: com.microsoft.azure.eventhubs.AuthorizationFailedException
+  type: Class
+  summary: "<p>Authorization failed exception is thrown when error is encountered during authorizing user's permission to run the intended operations. When encountered this exception user should check whether the token/key provided in the connection string (e.g. one passed to <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.create(final String,final ScheduledExecutorService)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient#create(String, ScheduledExecutorService)\"></xref>) is valid, and has correct execution right for the intended operations (e.g. Receive call will need Listen claim associated with the key/token).</p>\r\n<p></p>"
+  syntax:
+    content: public class AuthorizationFailedException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.BatchOptions
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.BatchOptions.yml
+  name: BatchOptions
+  nameWithType: BatchOptions
+  fullName: com.microsoft.azure.eventhubs.BatchOptions
+  type: Class
+  summary: "<p>BatchOptions is used to create <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventDataBatch\"></xref>es. </p>\r\n<p>If you're creating <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventDataBatch\"></xref>es with <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient\"></xref>, then you can set a partitionKey and maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings:<ul><li><p>partitionKey is null</p></li><li><p>maxMessageSize is the maximum allowed size </p></li></ul></p>\r\n<p>If you're creating <xref uid=\"com.microsoft.azure.eventhubs.EventDataBatch\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventDataBatch\"></xref>es with <xref uid=\"com.microsoft.azure.eventhubs.PartitionSender\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionSender\"></xref>, then you can only set a maxMessageSize using the .with() method. Alternatively, if you'd like the default settings, simply construct BatchOptions with the void constructor. Default settings:<ul><li><p>maxMessageSize is the maximum allowed size</p></li><li><p>Note: if you set a partition key, an <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"IllegalArgumentException\"></xref> will be thrown. </p></li></ul></p>\r\n<p>To construct either type of batch, create a <xref uid=\"com.microsoft.azure.eventhubs.BatchOptions\" data-throw-if-not-resolved=\"false\" data-raw-source=\"BatchOptions\"></xref> object and pass it into the appropriate createBatch method. If using <xref uid=\"com.microsoft.azure.eventhubs.PartitionSender\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionSender\"></xref>, then use (<xref uid=\"com.microsoft.azure.eventhubs.PartitionSender.createBatch(BatchOptions)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionSender#createBatch(BatchOptions)\"></xref>. If using <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient\"></xref>, then use <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createBatch(BatchOptions)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient#createBatch(BatchOptions)\"></xref>. <pre><code>// Note: For all examples, 'client' is an instance of EventHubClient. The usage is the same for PartitionSender,\r\n    however, you can NOT set a partition key when using PartitionSender\r\n    \r\n    // Create EventDataBatch with defaults\r\n    EventDataBatch edb1 = client.createBatch();\r\n    \r\n    // Create EventDataBatch with custom partitionKey\r\n    BatchOptions options = new BatchOptions().with( options -&gt; options.partitionKey = \"foo\");\r\n    EventDataBatch edb2 = client.createBatch(options);\r\n    \r\n    // Create EventDataBatch with custom partitionKey and maxMessageSize\r\n    BatchOptions options = new BatchOptions().with ( options -&gt; {\r\n        options.partitionKey = \"foo\";\r\n        options.maxMessageSize = 100 * 1024;\r\n    };\r\n    EventDataBatch edb3 = client.createBatch(options);\r\n    </code></pre></p>"
+  syntax:
+    content: public class BatchOptions
+- uid: com.microsoft.azure.eventhubs.CommunicationException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.CommunicationException.yml
+  name: CommunicationException
+  nameWithType: CommunicationException
+  fullName: com.microsoft.azure.eventhubs.CommunicationException
+  type: Class
+  summary: "<p>This exception is thrown when there is a client side connectivity issue. When receiving this exception user should check client connectivity settings to the service: <ul><li><p>Check for correct hostname and port number used in endpoint. </p></li><li><p>Check for any possible proxy settings that can block amqp ports </p></li><li><p>Check for any firewall settings that can block amqp ports </p></li><li><p>Check for any general network connectivity issues, as well as network latency. </p></li></ul></p>\r\n<p></p>"
+  syntax:
+    content: public class CommunicationException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.ConnectionStringBuilder
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ConnectionStringBuilder.yml
+  name: ConnectionStringBuilder
+  nameWithType: ConnectionStringBuilder
+  fullName: com.microsoft.azure.eventhubs.ConnectionStringBuilder
+  type: Class
+  summary: "<p>\r\n  <xref uid=\"com.microsoft.azure.eventhubs.ConnectionStringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ConnectionStringBuilder\"></xref> can be used to construct a connection string which can establish communication with Event Hub instances. In addition to constructing a connection string, the <xref uid=\"com.microsoft.azure.eventhubs.ConnectionStringBuilder\" data-throw-if-not-resolved=\"false\" data-raw-source=\"ConnectionStringBuilder\"></xref> can be used to modify an existing connection string. </p>\r\n<p>Sample Code: <pre><code>// Construct a new connection string\r\n       ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder()\r\n           .setNamespaceName(\"EventHubsNamespaceName\")\r\n           .setEventHubName(\"EventHubsEntityName\")\r\n           .setSasKeyName(\"SharedAccessSignatureKeyName\")\r\n           .setSasKey(\"SharedAccessSignatureKey\")\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    \r\n    // Modify an existing connection string\r\n    ConnectionStringBuilder connectionStringBuilder = new ConnectionStringBuilder(existingConnectionString)\r\n        .setEventHubName(\"SomeOtherEventHubsName\")\r\n        .setOperationTimeout(Duration.ofSeconds(30)\r\n    \r\n    string connString = connectionStringBuilder.build();\r\n    </code></pre></p>\r\n<p>A connection string is basically a string consisting of key-value pairs separated by \";\". The basic format is {{ &lt;}key{&gt;}={ &lt;}value{&gt;}[;{ &lt;}key{&gt;}={ &lt;}value{&gt;}]} where supported key name are as follow: <ul><li><p>Endpoint - the URL that contains the EventHubs namespace </p></li><li><p>EntityPath - the EventHub name which you are connecting to </p></li><li><p>SharedAccessKeyName - the key name to the corresponding shared access policy rule for the namespace, or entity. </p></li><li><p>SharedAccessKey - the key for the corresponding shared access policy rule of the namespace or entity. </p></li></ul></p>"
+  syntax:
+    content: public class ConnectionStringBuilder
+- uid: com.microsoft.azure.eventhubs.ErrorContext
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ErrorContext.yml
+  name: ErrorContext
+  nameWithType: ErrorContext
+  fullName: com.microsoft.azure.eventhubs.ErrorContext
+  type: Class
+  syntax:
+    content: public class ErrorContext
+- uid: com.microsoft.azure.eventhubs.EventData
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventData.yml
+  name: EventData
+  nameWithType: EventData
+  fullName: com.microsoft.azure.eventhubs.EventData
+  type: Interface
+  summary: "<p>The data structure encapsulating the Event being sent-to and received-from EventHubs. Each EventHubs partition can be visualized as a Stream of <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref>. </p>\r\n<p>Serializing a received <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref> with AMQP sections other than ApplicationProperties (with primitive java types) and Data section is not supported. </p>\r\n<p>Here's how AMQP message sections map to <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref>. Here's the reference used for AMQP 1.0 specification: <a href=\"http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf\">http://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-complete-v1.0-os.pdf</a><pre>\r\ni.   <xref uid=\"com.microsoft.azure.eventhubs.EventData.getProperties()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"getProperties()\"></xref> - AMQPMessage.ApplicationProperties section\r\nii.  <xref uid=\"com.microsoft.azure.eventhubs.EventData.getBytes()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"getBytes()\"></xref> - if AMQPMessage.Body has Data section\r\niii. <xref uid=\"com.microsoft.azure.eventhubs.EventData.getObject()\" data-throw-if-not-resolved=\"false\" data-raw-source=\"getObject()\"></xref> - if AMQPMessage.Body has AMQPValue or AMQPSequence sections\r\n</pre> While using client libraries released by Microsoft Azure EventHubs, sections (i) and (ii) alone are sufficient. Section (iii) is used for advanced scenarios, where the sending application uses third-party AMQP library to send the message to EventHubs and the receiving application uses this client library to receive <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref>. </p>"
+  syntax:
+    content: public interface EventData
+- uid: com.microsoft.azure.eventhubs.EventDataBatch
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventDataBatch.yml
+  name: EventDataBatch
+  nameWithType: EventDataBatch
+  fullName: com.microsoft.azure.eventhubs.EventDataBatch
+  type: Interface
+  summary: "<p>Helper for creating a batch/collection of EventData objects to be used while Sending to EventHubs </p>"
+  syntax:
+    content: public interface EventDataBatch
+- uid: com.microsoft.azure.eventhubs.EventHubClient
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventHubClient.yml
+  name: EventHubClient
+  nameWithType: EventHubClient
+  fullName: com.microsoft.azure.eventhubs.EventHubClient
+  type: Interface
+  summary: "<p>Anchor class - all EventHub client operations STARTS here.</p>\r\n<p></p>"
+  syntax:
+    content: public interface EventHubClient
+- uid: com.microsoft.azure.eventhubs.EventHubException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventHubException.yml
+  name: EventHubException
+  nameWithType: EventHubException
+  fullName: com.microsoft.azure.eventhubs.EventHubException
+  type: Class
+  summary: "<p>This is the base exception that service bus will produce for all error cases. </p>"
+  syntax:
+    content: public class EventHubException
+- uid: com.microsoft.azure.eventhubs.EventHubRuntimeInformation
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventHubRuntimeInformation.yml
+  name: EventHubRuntimeInformation
+  nameWithType: EventHubRuntimeInformation
+  fullName: com.microsoft.azure.eventhubs.EventHubRuntimeInformation
+  type: Class
+  summary: "<p>Holds information about Event Hubs which can come handy while performing data-plane operations like <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createPartitionSender(final String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient#createPartitionSender(String)\"></xref> and <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.createReceiver(final String,final String,final EventPosition)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient#createReceiver(String, String, EventPosition)\"></xref></p>"
+  syntax:
+    content: public class EventHubRuntimeInformation
+- uid: com.microsoft.azure.eventhubs.EventPosition
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventPosition.yml
+  name: EventPosition
+  nameWithType: EventPosition
+  fullName: com.microsoft.azure.eventhubs.EventPosition
+  type: Interface
+  summary: "<p>Defines a position of an <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref> in the event hub partition. The position can be an Offset, Sequence Number, or EnqueuedTime. </p>"
+  syntax:
+    content: public interface EventPosition
+- uid: com.microsoft.azure.eventhubs.IllegalConnectionStringFormatException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.IllegalConnectionStringFormatException.yml
+  name: IllegalConnectionStringFormatException
+  nameWithType: IllegalConnectionStringFormatException
+  fullName: com.microsoft.azure.eventhubs.IllegalConnectionStringFormatException
+  type: Class
+  summary: "<p>This exception is thrown when the connection string provided does not meet the requirement for connection. </p>"
+  syntax:
+    content: public class IllegalConnectionStringFormatException
+- uid: com.microsoft.azure.eventhubs.IllegalEntityException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.IllegalEntityException.yml
+  name: IllegalEntityException
+  nameWithType: IllegalEntityException
+  fullName: com.microsoft.azure.eventhubs.IllegalEntityException
+  type: Class
+  summary: "<p>This exception is thrown for the following reasons: <ul><li><p>When the entity user attempted to connect does not exist </p></li><li><p>The entity user wants to connect is disabled </p></li></ul></p>\r\n<p></p>"
+  syntax:
+    content: public class IllegalEntityException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.OperationCancelledException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.OperationCancelledException.yml
+  name: OperationCancelledException
+  nameWithType: OperationCancelledException
+  fullName: com.microsoft.azure.eventhubs.OperationCancelledException
+  type: Class
+  summary: "<p>This exception is thrown when the underlying AMQP layer encounter an abnormal link abort or disconnect of connection in an unexpected fashion. </p>"
+  syntax:
+    content: public class OperationCancelledException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.PartitionReceiveHandler
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PartitionReceiveHandler.yml
+  name: PartitionReceiveHandler
+  nameWithType: PartitionReceiveHandler
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiveHandler
+  type: Interface
+  summary: "<p>The handler to invoke after receiving <xref uid=\"com.microsoft.azure.eventhubs.EventData\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventData\"></xref>s from Microsoft Azure EventHubs. Use any implementation of this abstract class to specify user action when using PartitionReceiver's setReceiveHandler().</p>\r\n<p></p>"
+  syntax:
+    content: public interface PartitionReceiveHandler
+- uid: com.microsoft.azure.eventhubs.PartitionReceiver
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PartitionReceiver.yml
+  name: PartitionReceiver
+  nameWithType: PartitionReceiver
+  fullName: com.microsoft.azure.eventhubs.PartitionReceiver
+  type: Interface
+  summary: "<p>This is a logical representation of receiving from a EventHub partition. </p>\r\n<p>A <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionReceiver\"></xref> is tied to a ConsumerGroup + EventHub Partition combination. <ul><li><p>If an epoch based <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionReceiver\"></xref> (i.e., PartitionReceiver.getEpoch != 0) is created, EventHubs service will guarantee only 1 active receiver exists per ConsumerGroup + Partition combo. This is the recommended approach to create a <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionReceiver\"></xref>. </p></li><li><p>Multiple receivers per ConsumerGroup + Partition combo can be created using non-epoch receivers. </p></li></ul></p>\r\n<p></p>"
+  syntax:
+    content: public interface PartitionReceiver
+- uid: com.microsoft.azure.eventhubs.PartitionRuntimeInformation
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PartitionRuntimeInformation.yml
+  name: PartitionRuntimeInformation
+  nameWithType: PartitionRuntimeInformation
+  fullName: com.microsoft.azure.eventhubs.PartitionRuntimeInformation
+  type: Class
+  syntax:
+    content: public class PartitionRuntimeInformation
+- uid: com.microsoft.azure.eventhubs.PartitionSender
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PartitionSender.yml
+  name: PartitionSender
+  nameWithType: PartitionSender
+  fullName: com.microsoft.azure.eventhubs.PartitionSender
+  type: Interface
+  summary: "<p>This sender class is a logical representation of sending events to a specific EventHub partition. Do not use this class if you do not care about sending events to specific partitions. Instead, use <xref uid=\"com.microsoft.azure.eventhubs.EventHubClient.send(final EventData)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"EventHubClient#send\"></xref> method.</p>\r\n<p></p>"
+  syntax:
+    content: public interface PartitionSender
+- uid: com.microsoft.azure.eventhubs.PayloadSizeExceededException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.PayloadSizeExceededException.yml
+  name: PayloadSizeExceededException
+  nameWithType: PayloadSizeExceededException
+  fullName: com.microsoft.azure.eventhubs.PayloadSizeExceededException
+  type: Class
+  summary: "<p>this exception is thrown when user attempts to send a event data or brokered message that has exceeded the allowed payload size as defined by the service. Note that in a batch send scenario the limit can include possible batch overhead.</p>\r\n<p></p>"
+  syntax:
+    content: public class PayloadSizeExceededException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.QuotaExceededException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.QuotaExceededException.yml
+  name: QuotaExceededException
+  nameWithType: QuotaExceededException
+  fullName: com.microsoft.azure.eventhubs.QuotaExceededException
+  type: Class
+  syntax:
+    content: public class QuotaExceededException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.ReceiverDisconnectedException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ReceiverDisconnectedException.yml
+  name: ReceiverDisconnectedException
+  nameWithType: ReceiverDisconnectedException
+  fullName: com.microsoft.azure.eventhubs.ReceiverDisconnectedException
+  type: Class
+  summary: "<p>This exception is thrown when a EventHubReceiver is being disconnected because of one of the following reason: <ul><li><p>user attempts to connect a non-epoch receiver to a event hub partition, when there is an epoch receiver connected to the partition. </p></li><li><p>you are using an epoch receiver for a given partition but another epoch receiver with a higher epoch value connects to the same partition. </p></li></ul>\r\nUser should make sure either all code are using non-epoch receivers, or ensure that there is only one epoch receiver processing a given partition at any given point in time.</p>\r\n<p></p>"
+  syntax:
+    content: public class ReceiverDisconnectedException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.ReceiverOptions
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ReceiverOptions.yml
+  name: ReceiverOptions
+  nameWithType: ReceiverOptions
+  fullName: com.microsoft.azure.eventhubs.ReceiverOptions
+  type: Class
+  summary: "<p>Represents various optional behaviors which can be turned on or off during the creation of a <xref uid=\"com.microsoft.azure.eventhubs.PartitionReceiver\" data-throw-if-not-resolved=\"false\" data-raw-source=\"PartitionReceiver\"></xref>. </p>"
+  syntax:
+    content: public class ReceiverOptions
+- uid: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation.yml
+  name: ReceiverRuntimeInformation
+  nameWithType: ReceiverRuntimeInformation
+  fullName: com.microsoft.azure.eventhubs.ReceiverRuntimeInformation
+  type: Class
+  summary: "<p>Represents the temporal end of stream information of an EventHubs Partition. </p>"
+  syntax:
+    content: public class ReceiverRuntimeInformation
+- uid: com.microsoft.azure.eventhubs.RetryPolicy
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.RetryPolicy.yml
+  name: RetryPolicy
+  nameWithType: RetryPolicy
+  fullName: com.microsoft.azure.eventhubs.RetryPolicy
+  type: Class
+  syntax:
+    content: public class RetryPolicy
+- uid: com.microsoft.azure.eventhubs.ServerBusyException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.ServerBusyException.yml
+  name: ServerBusyException
+  nameWithType: ServerBusyException
+  fullName: com.microsoft.azure.eventhubs.ServerBusyException
+  type: Class
+  summary: "<p>Server busy exception is thrown when the current entity's activity has put excessive load onto the service. When encountered this exception user should wait at least 4 seconds before any retry/runtime operations for the said entity again.</p>\r\n<p></p>"
+  syntax:
+    content: public class ServerBusyException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.TimeoutException
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.TimeoutException.yml
+  name: TimeoutException
+  nameWithType: TimeoutException
+  fullName: com.microsoft.azure.eventhubs.TimeoutException
+  type: Class
+  summary: "<p>This exception is thrown when the operation has exceeded the predetermined time limit. User should check connectivity is healthy between client process and service.</p>\r\n<p></p>"
+  syntax:
+    content: public class TimeoutException extends EventHubException
+- uid: com.microsoft.azure.eventhubs.TransportType
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.TransportType.yml
+  name: TransportType
+  nameWithType: TransportType
+  fullName: com.microsoft.azure.eventhubs.TransportType
+  type: Enum
+  summary: "<p>All TransportType switches available for communicating to EventHubs service. </p>"
+  syntax:
+    content: public enum TransportType
+- uid: com.microsoft.azure.eventhubs.EventData.SystemProperties
+  parent: com.microsoft.azure.eventhubs
+  href: com.microsoft.azure.eventhubs.EventData.SystemProperties.yml
+  name: EventData.SystemProperties
+  nameWithType: EventData.SystemProperties
+  fullName: com.microsoft.azure.eventhubs.EventData.SystemProperties
+  type: Class
+  syntax:
+    content: public class SystemProperties

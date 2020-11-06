@@ -1,0 +1,343 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  id: TwinCollection
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  children:
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata()
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String)
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion()
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String,Object)
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll(Map<? extends String, ?>)
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement()
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection()
+  - com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection(Map<? extends String, Object>)
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: TwinCollection
+  nameWithType: TwinCollection
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  type: Class
+  source:
+    remote: &o0
+      path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+      branch: master
+      repo: https://github.com/Azure/azure-iot-sdk-java
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 96
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Representation of a single Twin collection for Provisioning.</p>\r\n<p>The TwinCollection is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A TwinCollection can contain up to 5 levels of sub TwinCollections. Once the TwinCollection is a extension of the<code>HashMap \r\n    </code> , both TwinCollection as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid TwinCollection with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above TwinCollection, <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"get(Object)\"></xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"getTwinMetadata(String)\"></xref> for <b>Color</b> will return the Object TwinMetadata that contain <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TwinMetadata#getLastUpdated()\"></xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TwinMetadata#getLastUpdatedVersion()\"></xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested TwinCollection, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: &o2
+    content: public class TwinCollection
+  inheritance:
+  - java.lang.Object
+  - java.util.HashMap<String, Object>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata()
+  id: getTwinMetadata()
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: getTwinMetadata()
+  nameWithType: TwinCollection.getTwinMetadata()
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata()
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 426
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Getter for the TwinCollection metadata</p>\r\n<p></p>"
+  syntax:
+    content: public TwinMetadata getTwinMetadata()
+    return:
+      type: dc8b9d1a
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false" data-raw-source="TwinMetadata"></xref> of the Whole TwinCollection. It can be<code>null 
+
+            </code> . </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String)
+  id: getTwinMetadata(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: getTwinMetadata(String key)
+  nameWithType: TwinCollection.getTwinMetadata(String key)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String key)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 438
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Getter for the entry metadata in the TwinCollection.</p>\r\n<p></p>"
+  syntax: &o3
+    content: public TwinMetadata getTwinMetadata(String key)
+    parameters:
+    - id: key
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> with the name of the entry to retrieve the metadata. </p>
+    return:
+      type: dc8b9d1a
+      description: >-
+        <p>the <xref uid="" data-throw-if-not-resolved="false" data-raw-source="TwinMetadata"></xref> ot the specific entry in the TwinCollection. It can be<code>null 
+
+            </code> . </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion()
+  id: getVersion()
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: getVersion()
+  nameWithType: TwinCollection.getVersion()
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion()
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 415
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Getter for the version.</p>\r\n<p></p>"
+  syntax:
+    content: public Integer getVersion()
+    return:
+      type: 08effaa0
+      description: >-
+        <p>The<code>Integer 
+
+            </code> with the version content. It can be<code>null 
+
+            </code> . </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String,Object)
+  id: put(String,Object)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: put(String key, Object value)
+  nameWithType: TwinCollection.put(String key, Object value)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String key, Object value)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 182
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Add a single new entry in the TwinCollection.</p>\r\n<p>Override<code>HashMap.put(String, Object) \r\n    </code> .</p>\r\n<p>This function will add a single pair key value to the TwinCollection. By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or up to 5 levels of sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p></p>"
+  syntax: &o1
+    content: public Object put(String key, Object value)
+    parameters:
+    - id: key
+      type: "26831127"
+      description: >-
+        <p>the<code>String 
+
+            </code> that represent the key of the new entry. It cannot be {code null} or empty. </p>
+    - id: value
+      type: "79317049"
+      description: >-
+        <p>the<code>Object 
+
+            </code> that represents the value of the new entry. It cannot be user defined type or array. </p>
+    return:
+      type: "79317049"
+      description: >-
+        <p>The<code>Object 
+
+            </code> that correspond to the last value of this key. It will be<code>null 
+
+            </code> if there is no previous value. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll(Map<? extends String, ?>)
+  id: putAll(Map<? extends String, ?>)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: putAll(Map<? extends String, ?> map)
+  nameWithType: TwinCollection.putAll(Map<? extends String, ?> map)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll(Map<? extends String, ?> map)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 152
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Add all information in the provided Map to the TwinCollection.</p>\r\n<p>Override<code>HashMap.putAll(Map) \r\n    </code> .</p>\r\n<p>This function will add all entries in the Map to the TwinCollection. If the provided key already exists, it will replace the value by the new one. This function will not delete or change the content of the other keys in the Map.</p>\r\n<p>As defined by the Twin, the value of a entry can be an inner Map. TwinCollection will accept up to 5 levels of inner Maps.</p>\r\n<p></p>"
+  syntax:
+    content: public void putAll(Map<? extends String, ?> map)
+    parameters:
+    - id: map
+      type: b3e9f05a
+      description: >-
+        <p>A<code>Map 
+
+            </code> of entries to add to the TwinCollection. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement()
+  id: toJsonElement()
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: toJsonElement()
+  nameWithType: TwinCollection.toJsonElement()
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement()
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 353
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Serializer</p>\r\n<p>Creates a<code>JsonElement \r\n    </code> , which the content represents the information in this class and its subclasses in a JSON format.</p>\r\n<p>This is useful if the caller will integrate this JSON with JSON from other classes to generate a consolidated JSON.</p>\r\n<p></p>"
+  syntax:
+    content: public JsonElement toJsonElement()
+    return:
+      type: 8585b2e7
+      description: >-
+        <p>The<code>JsonElement 
+
+            </code> with the content of this class. </p>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection()
+  id: TwinCollection()
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: TwinCollection()
+  nameWithType: TwinCollection.TwinCollection()
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection()
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection*
+  type: Constructor
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 113
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Constructor</p>\r\n<p>Creates an empty collection. Fill it with <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String,Object)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"put(String, Object)\"></xref> or <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"putAll(Map)\"></xref>. </p>"
+  syntax:
+    content: public TwinCollection()
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection(Map<? extends String, Object>)
+  id: TwinCollection(Map<? extends String, Object>)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  langs:
+  - java
+  name: TwinCollection(Map<? extends String, Object> map)
+  nameWithType: TwinCollection.TwinCollection(Map<? extends String, Object> map)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection(Map<? extends String, Object> map)
+  overload: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection*
+  type: Constructor
+  source:
+    remote: *o0
+    path: provisioning/provisioning-service-client/src/main/java/com/microsoft/azure/sdk/iot/provisioning/service/configs/TwinCollection.java
+    startLine: 127
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  summary: "<p>Constructor</p>\r\n<p>Creates a new Twin collection coping the provided Map. Once TwinCollection extends Map, this method can copy another TwinCollection.</p>\r\n<p></p>"
+  syntax:
+    content: public TwinCollection(Map<? extends String, Object> map)
+    parameters:
+    - id: map
+      type: 59e5fddd
+      description: >-
+        <p>the Map of<code>? extends String 
+
+            </code> and<code>Object 
+
+            </code> with the Twin collection </p>
+references:
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection*
+  name: TwinCollection
+  nameWithType: TwinCollection.TwinCollection
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.TwinCollection
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: 59e5fddd
+  spec.java:
+  - name: Map<? extends String, Object>
+    fullName: Map<? extends String, Object>
+- uid: b3e9f05a
+  spec.java:
+  - name: Map<? extends String, ?>
+    fullName: Map<? extends String, ?>
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll*
+  name: putAll
+  nameWithType: TwinCollection.putAll
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.putAll
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: "26831127"
+  spec.java:
+  - name: String
+    fullName: String
+- uid: "79317049"
+  spec.java:
+  - name: Object
+    fullName: Object
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put*
+  name: put
+  nameWithType: TwinCollection.put
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: 8585b2e7
+  spec.java:
+  - name: JsonElement
+    fullName: JsonElement
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement*
+  name: toJsonElement
+  nameWithType: TwinCollection.toJsonElement
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.toJsonElement
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: 08effaa0
+  spec.java:
+  - name: Integer
+    fullName: Integer
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion*
+  name: getVersion
+  nameWithType: TwinCollection.getVersion
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getVersion
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: dc8b9d1a
+  spec.java:
+  - name: TwinMetadata
+    fullName: TwinMetadata
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata*
+  name: getTwinMetadata
+  nameWithType: TwinCollection.getTwinMetadata
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata
+  package: com.microsoft.azure.sdk.iot.provisioning.service.configs
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String,Object)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  name: put(String key, Object value)
+  nameWithType: TwinCollection.put(String key, Object value)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.put(String key, Object value)
+  type: Method
+  summary: "<p>Add a single new entry in the TwinCollection.</p>\r\n<p>Override<code>HashMap.put(String, Object) \r\n    </code> .</p>\r\n<p>This function will add a single pair key value to the TwinCollection. By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or up to 5 levels of sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p></p>"
+  syntax: *o1
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  name: TwinCollection
+  nameWithType: TwinCollection
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  type: Class
+  summary: "<p>Representation of a single Twin collection for Provisioning.</p>\r\n<p>The TwinCollection is an extension of a<code>HashMap \r\n    </code> of<code>String \r\n    </code> and <code>Object \r\n    </code> that contain individual and general versioning mechanism.</p>\r\n<p>By the Twin definition, the<code>Object \r\n    </code> can contain types of<code>Boolean \r\n    </code> , <code>Number \r\n    </code> ,<code>String \r\n    </code> ,<code>Object \r\n    </code> , or a sub-TwinCollection, but it cannot be types defined by the user or arrays.</p>\r\n<p>A TwinCollection can contain up to 5 levels of sub TwinCollections. Once the TwinCollection is a extension of the<code>HashMap \r\n    </code> , both TwinCollection as well as its sub-TwinCollections can be casted to Map of String and Object.</p>\r\n<p>The collection will be represented in the rest API as a JSON in the body. It can or cannot contain the metadata (identified by the <b>$</b> character at the beginning of the key.</p>\r\n<p>Because of the Twin metadata, the character <b>$</b> is not allowed in the entry key.</p>\r\n<p>For instance, the following JSON is a valid TwinCollection with its metadata. <pre><code>{\r\n        \"Color\":\"White\",\r\n        \"MaxSpeed\":{\r\n            \"Value\":500,\r\n            \"NewValue\":300\r\n        },\r\n        \"$metadata\":{\r\n            \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n            \"$lastUpdatedVersion\":4,\r\n            \"Color\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n            },\r\n            \"MaxSpeed\":{\r\n                \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                \"$lastUpdatedVersion\":4,\r\n                \"Value\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                },\r\n                \"NewValue\":{\r\n                    \"$lastUpdated\":\"2017-09-21T02:07:44.238Z\",\r\n                    \"$lastUpdatedVersion\":4\r\n                }\r\n            }\r\n        },\r\n        \"$version\":4\r\n    }\r\n    </code></pre></p>\r\n<p>This class exposes the Twin collection with or without metadata as a Map here user can gat both the value and the metadata. For instance, in the above TwinCollection, <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"get(Object)\"></xref> for <b>Color</b> will return <b>White</b> and the <xref uid=\"com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String)\" data-throw-if-not-resolved=\"false\" data-raw-source=\"getTwinMetadata(String)\"></xref> for <b>Color</b> will return the Object TwinMetadata that contain <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TwinMetadata#getLastUpdated()\"></xref> that will returns the<code>Date \r\n    </code><b>2017-09-21T02:07:44.238Z</b> and <xref uid=\"\" data-throw-if-not-resolved=\"false\" data-raw-source=\"TwinMetadata#getLastUpdatedVersion()\"></xref> that will returns the<code>Integer \r\n    </code><b>4</b>.</p>\r\n<p>For the nested TwinCollection, you can do the same, for instance, the following code will return the value and metadata of the <b>NewValue</b> nested in <b>MaxSpeed</b>: <pre><code>// Get the value of the MaxSpeed, which is a inner TwinCollection.\r\n    TwinCollection innerMaxSpeed = (TwinCollection) twinCollection.get(\"MaxSpeed\");\r\n    \r\n    // From the inner TwinCollection, get the value of the NewValue.\r\n    Long maxSpeedNewValue = innerMaxSpeed.get(\"NewValue\");\r\n    \r\n    // As in the root TwinCollection, the inner TwinCollection contain its own metadata.\r\n    // So, get the metadata information for the inner NewValue.\r\n    TwinMetadata maxSpeedNewValueMetadata = innerMaxSpeed.getTwinMetadata(\"NewValue\");\r\n    Date newValueLastUpdated = maxSpeedNewValueMetadata.getLastUpdated(); //Shall contain `2017-09-21T02:07:44.238Z`\r\n    Integer newValueLastUpdatedVersion = maxSpeedNewValueMetadata.getLastUpdatedVersion(); //Shall contain `4`\r\n    </code></pre></p>\r\n<p></p>"
+  syntax: *o2
+- uid: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection
+  href: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.yml
+  name: getTwinMetadata(String key)
+  nameWithType: TwinCollection.getTwinMetadata(String key)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.service.configs.TwinCollection.getTwinMetadata(String key)
+  type: Method
+  summary: "<p>Getter for the entry metadata in the TwinCollection.</p>\r\n<p></p>"
+  syntax: *o3
