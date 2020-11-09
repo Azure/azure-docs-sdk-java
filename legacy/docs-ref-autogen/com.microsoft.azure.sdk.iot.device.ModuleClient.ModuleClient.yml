@@ -24,6 +24,31 @@ members:
   summary: "<p>Constructor for a ModuleClient instance. \r\nor</p>\r\n<p>HostName=xxxx;DeviceId=xxxx;SharedAccessKey= xxxx;moduleId=xxxx;HostNameGateway=xxxx </p>"
   syntax: public ModuleClient(String connectionString, IotHubClientProtocol protocol)
   uid: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol)
+- fullName: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String connectionString, IotHubClientProtocol protocol, ClientOptions clientOptions)
+  name: ModuleClient(String connectionString, IotHubClientProtocol protocol, ClientOptions clientOptions)
+  nameWithType: ModuleClient.ModuleClient(String connectionString, IotHubClientProtocol protocol, ClientOptions clientOptions)
+  parameters:
+  - description: <p>The connection string for the edge module to connect to. Must be in format HostName=xxxx;deviceId=xxxx;SharedAccessKey= xxxx;moduleId=xxxx;</p>
+    name: connectionString
+    type: <xref href="String?alt=String&text=String" data-throw-if-not-resolved="False"/>
+  - description: <p>The protocol to use when communicating with the module </p>
+    name: protocol
+    type: <xref href="com.microsoft.azure.sdk.iot.device.IotHubClientProtocol?alt=com.microsoft.azure.sdk.iot.device.IotHubClientProtocol&text=IotHubClientProtocol" data-throw-if-not-resolved="False"/>
+  - description: <p>The options that allow configuration of the module client instance during initialization </p>
+    name: clientOptions
+    type: <xref href="com.microsoft.azure.sdk.iot.device.ClientOptions?alt=com.microsoft.azure.sdk.iot.device.ClientOptions&text=ClientOptions" data-throw-if-not-resolved="False"/>
+  exceptions:
+  - type: <xref href="ModuleClientException?alt=ModuleClientException&text=ModuleClientException" data-throw-if-not-resolved="False"/>
+    description: <p>if an exception is encountered when parsing the connection string </p>
+  - type: <xref href="UnsupportedOperationException?alt=UnsupportedOperationException&text=UnsupportedOperationException" data-throw-if-not-resolved="False"/>
+    description: <p>if using any protocol besides MQTT, if the connection string is missing the "moduleId" field, or if the connection string uses x509 </p>
+  - type: <xref href="IllegalArgumentException?alt=IllegalArgumentException&text=IllegalArgumentException" data-throw-if-not-resolved="False"/>
+    description: <p>if the provided connection string is null or empty, or if the provided protocol is null </p>
+  - type: <xref href="URISyntaxException?alt=URISyntaxException&text=URISyntaxException" data-throw-if-not-resolved="False"/>
+    description: <p>if the connection string cannot be parsed for a valid hostname </p>
+  summary: "<p>Constructor for a ModuleClient instance. \r\nor</p>\r\n<p>HostName=xxxx;DeviceId=xxxx;SharedAccessKey= xxxx;moduleId=xxxx;HostNameGateway=xxxx </p>"
+  syntax: public ModuleClient(String connectionString, IotHubClientProtocol protocol, ClientOptions clientOptions)
+  uid: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol,ClientOptions)
 - fullName: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String connectionString, IotHubClientProtocol protocol, SSLContext sslContext)
   name: ModuleClient(String connectionString, IotHubClientProtocol protocol, SSLContext sslContext)
   nameWithType: ModuleClient.ModuleClient(String connectionString, IotHubClientProtocol protocol, SSLContext sslContext)
@@ -43,7 +68,21 @@ members:
   summary: >-
     <p>Create a module client instance that uses the provided SSLContext for SSL negotiation.</p>
 
-    <p></p>
+    <p>
+
+      <xrefsect id="deprecated_1_deprecated000069">
+
+        <xreftitle>Deprecated</xreftitle>
+
+        <xrefdescription>
+
+          <p>For x509 authentication, use <xref uid="com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol,ClientOptions)" data-throw-if-not-resolved="false" data-raw-source="ModuleClient(String, IotHubClientProtocol, ClientOptions)"></xref> and provide an SSLContext instance in the <xref uid="com.microsoft.azure.sdk.iot.device.ClientOptions" data-throw-if-not-resolved="false" data-raw-source="ClientOptions"></xref> instance. For a sample on how to build this SSLContext, see <a href="https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-samples/send-event-x509/src/main/java/samples/com/microsoft/azure/sdk/iot/SendEventX509.java">this code</a> which references a helper class for building SSLContext objects for x509 authentication as well as for SAS based authentication. When not using this deprecated constructor, you can safely exclude the Bouncycastle dependencies that this library declares. See <a href="https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-samples/send-event-x509/pom.xml">this pom.xml</a> for an example of how to do this. </p>
+
+        </xrefdescription>
+
+      </xrefsect>
+
+    </p>
   syntax: public ModuleClient(String connectionString, IotHubClientProtocol protocol, SSLContext sslContext)
   uid: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol,SSLContext)
 - fullName: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String connectionString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
@@ -73,6 +112,8 @@ members:
     description: <p>If the connString cannot be parsed </p>
   - type: <xref href="ModuleClientException?alt=ModuleClientException&text=ModuleClientException" data-throw-if-not-resolved="False"/>
     description: <p>if any other exception occurs while building the module client </p>
+  - type: <xref href="URISyntaxException?alt=URISyntaxException&text=URISyntaxException" data-throw-if-not-resolved="False"/>
+    description: <p>if the hostname in the connection string is not a valid URI </p>
   summary: >-
     <p>Create a module client instance that uses x509 authentication.</p>
 
@@ -84,7 +125,7 @@ members:
 
     or</p>
 
-    <p>HostName=xxxx;DeviceId=xxxx;SharedAccessKey= xxxx;moduleId=xxxx;HostNameGateway=xxxx </p>
+    <p>HostName=xxxx;DeviceId=xxxx;SharedAccessKey= xxxx;moduleId=xxxx;HostNameGateway=xxxx <xrefsect id="deprecated_1_deprecated000068"><xreftitle>Deprecated</xreftitle><xrefdescription><p>For x509 authentication, use <xref uid="com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol,ClientOptions)" data-throw-if-not-resolved="false" data-raw-source="ModuleClient(String, IotHubClientProtocol, ClientOptions)"></xref> and provide an SSLContext instance in the <xref uid="com.microsoft.azure.sdk.iot.device.ClientOptions" data-throw-if-not-resolved="false" data-raw-source="ClientOptions"></xref> instance. For a sample on how to build this SSLContext, see <a href="https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-samples/send-event-x509/src/main/java/samples/com/microsoft/azure/sdk/iot/SendEventX509.java">this code</a> which references a helper class for building SSLContext objects for x509 authentication as well as for SAS based authentication. When not using this deprecated constructor, you can safely exclude the Bouncycastle dependencies that this library declares. See <a href="https://github.com/Azure/azure-iot-sdk-java/blob/master/device/iot-device-samples/send-event-x509/pom.xml">this pom.xml</a> for an example of how to do this. </p></xrefdescription></xrefsect></p>
   syntax: public ModuleClient(String connectionString, IotHubClientProtocol protocol, String publicKeyCertificate, boolean isCertificatePath, String privateKey, boolean isPrivateKeyPath)
   uid: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient(String,IotHubClientProtocol,String,boolean,String,boolean)
 uid: com.microsoft.azure.sdk.iot.device.ModuleClient.ModuleClient*
