@@ -1,17 +1,17 @@
 ---
 title: Azure Storage Queue client library for Java
-keywords: Azure, java, SDK, API, azure-storage-queue, storage
+keywords: Azure, java, SDK, API, azure-storage-queue, storagestorage
 author: maggiepint
 ms.author: magpint
-ms.date: 08/14/2020
+ms.date: 11/11/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storage
+ms.service: storagestorage
 ---
 
-# Azure Storage Queue client library for Java - Version 12.6.0 
+# Azure Storage Queue client library for Java - Version 12.7.0 
 
 Azure Queue storage is a service for storing large numbers of messages that can be accessed from anywhere in the world via authenticated calls using HTTP or HTTPS.
 A single queue message can be up to 64 KB in size, and a queue can contain millions of messages, up to the total capacity limit of a storage account.
@@ -34,7 +34,7 @@ A single queue message can be up to 64 KB in size, and a queue can contain milli
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-storage-queue</artifactId>
-  <version>12.6.0</version>
+  <version>12.7.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -478,7 +478,7 @@ This project has adopted the [Microsoft Open Source Code of Conduct](https://ope
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -487,18 +487,18 @@ If you would like to become an active contributor to this project please follow 
 5. Create new Pull Request
 
 <!-- LINKS -->
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0/sdk/storage/azure-storage-queue/src
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0/sdk/storage/azure-storage-queue/src/samples/README.md
 [api_documentation]: https://docs.microsoft.com/rest/api/storageservices/queue-service-rest-api
 [storage_docs]: https://docs.microsoft.com/azure/storage/queues/storage-queues-introduction
-[jdk]: https://docs.microsoft.com/en-us/java/azure/jdk/?view=azure-java-stable
+[jdk]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 [maven]: https://maven.apache.org/
 [azure_subscription]: https://azure.microsoft.com/free/
 [storage_account]: https://docs.microsoft.com/azure/storage/common/storage-quickstart-create-account?tabs=azure-portal
 [azure_cli]: https://docs.microsoft.com/cli/azure
 [sas_token]: https://docs.microsoft.com/azure/storage/common/storage-dotnet-shared-access-signature-part-1
 [storage_rest]: https://docs.microsoft.com/rest/api/storageservices/queue-service-error-codes
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/storage/azure-storage-queue/src/samples
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-storage-queue_12.7.0/sdk/storage/azure-storage-queue/src/samples
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-queue%2FREADME.png)
