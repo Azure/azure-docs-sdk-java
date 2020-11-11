@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Blob client library for Java
-keywords: Azure, java, SDK, API, azure-storage-blob, storagestorage
+keywords: Azure, java, SDK, API, azure-storage-blob, storage
 author: maggiepint
 ms.author: magpint
 ms.date: 11/11/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: storagestorage
+ms.service: storage
 ---
 
 # Azure Storage Blob client library for Java - Version 12.9.0 
@@ -411,4 +411,3 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [performance_tuning]: https://github.com/Azure/azure-sdk-for-java/wiki/Performance-Tuning
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fstorage%2Fazure-storage-blob%2FREADME.png)
-
