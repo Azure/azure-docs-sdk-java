@@ -3,7 +3,7 @@ title: Azure Core Jackson JSON Serializer plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-serializer-json-jackson, core
 author: maggiepint
 ms.author: magpint
-ms.date: 10/02/2020
+ms.date: 10/30/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Jackson JSON Serializer plugin library for Java - Version 1.0.2 
+# Azure Core Jackson JSON Serializer plugin library for Java - Version 1.1.0 
 
 
 Azure Core Jackson JSON Serializer is a plugin for the `azure-core` `JsonSerializer` API.
@@ -29,7 +29,7 @@ Azure Core Jackson JSON Serializer is a plugin for the `azure-core` `JsonSeriali
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-serializer-json-jackson</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -45,7 +45,7 @@ Get started with Azure libraries that are [built using Azure Core](https://azure
 ## Troubleshooting
 
 If you encounter any bugs, please file issues via [GitHub Issues](https://github.com/Azure/azure-sdk-for-java/issues/new/choose)
-or checkout [StackOverflow for Azure Java SDK](http://stackoverflow.com/questions/tagged/azure-java-sdk).
+or checkout [StackOverflow for Azure Java SDK](https://stackoverflow.com/questions/tagged/azure-java-sdk).
 
 ### Enabling Logging
 
@@ -56,7 +56,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 ## Contributing
 
 If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft
-Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
