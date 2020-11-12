@@ -2,16 +2,16 @@
 items:
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   id: ServiceBusSessionReceiverClientBuilder
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus
   children:
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildAsyncClient()
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildClient()
-  - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions(int)
+  - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete()
+  - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration(java.time.Duration)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.prefetchCount(int)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.queueName(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.receiveMode(com.azure.messaging.servicebus.models.ReceiveMode)
-  - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.subscriptionName(java.lang.String)
   - com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.topicName(java.lang.String)
   langs:
@@ -40,7 +40,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.ServiceBusSessionReceiverClientBuilder()
   id: ServiceBusSessionReceiverClientBuilder()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -54,7 +54,7 @@ items:
     content: private ServiceBusSessionReceiverClientBuilder()
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildAsyncClient()
   id: buildAsyncClient()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -66,13 +66,13 @@ items:
   package: com.azure.messaging.servicebus
   summary: Creates an **asynchronous**, **session-aware** Service Bus receiver responsible for reading <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">messages</xref> from a specific queue or topic.
   syntax:
-    content: public ServiceBusReceiverAsyncClient buildAsyncClient()
+    content: public ServiceBusSessionReceiverAsyncClient buildAsyncClient()
     return:
-      type: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
-      description: An new <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusReceiverAsyncClient</xref> that receives messages from a queue or topic.
+      type: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+      description: An new <xref uid="com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient" data-throw-if-not-resolved="false">ServiceBusSessionReceiverAsyncClient</xref> that receives messages from a queue or topic.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildClient()
   id: buildClient()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -84,35 +84,55 @@ items:
   package: com.azure.messaging.servicebus
   summary: Creates a **synchronous**, **session-aware** Service Bus receiver responsible for reading <xref uid="com.azure.messaging.servicebus.ServiceBusMessage" data-throw-if-not-resolved="false">messages</xref> from a specific queue or topic.
   syntax:
-    content: public ServiceBusReceiverClient buildClient()
+    content: public ServiceBusSessionReceiverClient buildClient()
     return:
-      type: com.azure.messaging.servicebus.ServiceBusReceiverClient
+      type: com.azure.messaging.servicebus.ServiceBusSessionReceiverClient
       description: An new <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverClient" data-throw-if-not-resolved="false">ServiceBusReceiverClient</xref> that receives messages from a queue or topic.
-- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions(int)
-  id: maxConcurrentSessions(int)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete()
+  id: disableAutoComplete()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
-  name: maxConcurrentSessions(int maxConcurrentSessions)
-  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions(int maxConcurrentSessions)
-  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions(int maxConcurrentSessions)
-  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions*
+  name: disableAutoComplete()
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete()
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete()
+  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete*
   type: Method
   package: com.azure.messaging.servicebus
-  summary: Enables session processing roll-over by processing at most `maxConcurrentSessions`.
+  summary: Disables auto-complete and auto-abandon of received messages. By default, a successfully processed message is <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.complete(com.azure.messaging.servicebus.ServiceBusReceivedMessage)" data-throw-if-not-resolved="false">completed</xref>. If an error happens when the message is processed, it is <xref uid="com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient.abandon(com.azure.messaging.servicebus.ServiceBusReceivedMessage)" data-throw-if-not-resolved="false">abandoned</xref>.
   syntax:
-    content: public ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder maxConcurrentSessions(int maxConcurrentSessions)
-    parameters:
-    - id: maxConcurrentSessions
-      type: int
-      description: Maximum number of concurrent sessions to process at any given time.
+    content: public ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder disableAutoComplete()
     return:
       type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
       description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration(java.time.Duration)
+  id: maxAutoLockRenewDuration(java.time.Duration)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
+  parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+  langs:
+  - java
+  name: maxAutoLockRenewDuration(Duration maxAutoLockRenewDuration)
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration(Duration maxAutoLockRenewDuration)
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration(Duration maxAutoLockRenewDuration)
+  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sets the amount of time to continue auto-renewing the session lock. Setting <xref uid="java.time.Duration.ZERO" data-throw-if-not-resolved="false">Duration#ZERO</xref> or `null` disables auto-renewal. For <xref uid="com.azure.messaging.servicebus.models.ReceiveMode.RECEIVE_AND_DELETE" data-throw-if-not-resolved="false">RECEIVE_AND_DELETE</xref> mode, auto-renewal is disabled.
+  syntax:
+    content: public ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder maxAutoLockRenewDuration(Duration maxAutoLockRenewDuration)
+    parameters:
+    - id: maxAutoLockRenewDuration
+      type: java.time.Duration
+      description: >-
+        the amount of time to continue auto-renewing the session lock.
+         <xref uid="java.time.Duration.ZERO" data-throw-if-not-resolved="false">Duration#ZERO</xref> or <code>null</code> indicates that auto-renewal is disabled.
+    return:
+      type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
+      description: The updated <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.prefetchCount(int)
   id: prefetchCount(int)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -134,7 +154,7 @@ items:
       description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.queueName(java.lang.String)
   id: queueName(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -156,7 +176,7 @@ items:
       description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.receiveMode(com.azure.messaging.servicebus.models.ReceiveMode)
   id: receiveMode(com.azure.messaging.servicebus.models.ReceiveMode)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -176,31 +196,9 @@ items:
     return:
       type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
       description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
-- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId(java.lang.String)
-  id: sessionId(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
-  parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
-  langs:
-  - java
-  name: sessionId(String sessionId)
-  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId(String sessionId)
-  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId(String sessionId)
-  overload: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId*
-  type: Method
-  package: com.azure.messaging.servicebus
-  summary: Sets the session id.
-  syntax:
-    content: public ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder sessionId(String sessionId)
-    parameters:
-    - id: sessionId
-      type: java.lang.String
-      description: session id.
-    return:
-      type: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
-      description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.subscriptionName(java.lang.String)
   id: subscriptionName(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -222,7 +220,7 @@ items:
       description: The modified <xref uid="" data-throw-if-not-resolved="false">ServiceBusSessionReceiverClientBuilder</xref> object.
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.topicName(java.lang.String)
   id: topicName(java.lang.String)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder
   langs:
   - java
@@ -248,16 +246,26 @@ references:
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.ServiceBusSessionReceiverClientBuilder
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.ServiceBusSessionReceiverClientBuilder
   package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete*
+  name: disableAutoComplete
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.disableAutoComplete
+  package: com.azure.messaging.servicebus
+- uid: java.time.Duration
+  spec.java:
+  - uid: java.time.Duration
+    name: Duration
+    fullName: java.time.Duration
+- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration*
+  name: maxAutoLockRenewDuration
+  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration
+  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxAutoLockRenewDuration
+  package: com.azure.messaging.servicebus
 - uid: int
   spec.java:
   - uid: int
     name: int
     fullName: int
-- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions*
-  name: maxConcurrentSessions
-  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions
-  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.maxConcurrentSessions
-  package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.prefetchCount*
   name: prefetchCount
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.prefetchCount
@@ -282,11 +290,6 @@ references:
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.receiveMode
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.receiveMode
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId*
-  name: sessionId
-  nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId
-  fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.sessionId
-  package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.subscriptionName*
   name: subscriptionName
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.subscriptionName
@@ -297,19 +300,19 @@ references:
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.topicName
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.topicName
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
-  name: ServiceBusReceiverAsyncClient
-  nameWithType: ServiceBusReceiverAsyncClient
-  fullName: com.azure.messaging.servicebus.ServiceBusReceiverAsyncClient
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
+  name: ServiceBusSessionReceiverAsyncClient
+  nameWithType: ServiceBusSessionReceiverAsyncClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverAsyncClient
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildAsyncClient*
   name: buildAsyncClient
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildAsyncClient
   fullName: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildAsyncClient
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.ServiceBusReceiverClient
-  name: ServiceBusReceiverClient
-  nameWithType: ServiceBusReceiverClient
-  fullName: com.azure.messaging.servicebus.ServiceBusReceiverClient
+- uid: com.azure.messaging.servicebus.ServiceBusSessionReceiverClient
+  name: ServiceBusSessionReceiverClient
+  nameWithType: ServiceBusSessionReceiverClient
+  fullName: com.azure.messaging.servicebus.ServiceBusSessionReceiverClient
 - uid: com.azure.messaging.servicebus.ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildClient*
   name: buildClient
   nameWithType: ServiceBusClientBuilder.ServiceBusSessionReceiverClientBuilder.buildClient

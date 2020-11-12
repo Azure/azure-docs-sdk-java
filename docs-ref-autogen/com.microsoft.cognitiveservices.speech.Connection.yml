@@ -9,6 +9,7 @@ items:
   - com.microsoft.cognitiveservices.speech.Connection.connected
   - com.microsoft.cognitiveservices.speech.Connection.disconnected
   - com.microsoft.cognitiveservices.speech.Connection.fromConversationTranslator(ConversationTranslator)
+  - com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector(DialogServiceConnector)
   - com.microsoft.cognitiveservices.speech.Connection.fromRecognizer(Recognizer)
   - com.microsoft.cognitiveservices.speech.Connection.openConnection(boolean)
   - com.microsoft.cognitiveservices.speech.Connection.sendMessageAsync(String,String)
@@ -26,7 +27,7 @@ items:
       branch: javadocs201809
       repo: https://msasg.visualstudio.com/DefaultCollection/Skyman/_git/Carbon
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 35
+    startLine: 36
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Connection is a proxy class for managing connection to the speech service of the specified Recognizer. By default, a Recognizer autonomously manages connection to service when needed. The Connection class provides additional methods for users to explicitly open or close a connection and to subscribe to connection status changes. The use of Connection is optional. It is intended for scenarios where fine tuning of application behavior based on connection status is needed. Users can optionally call openConnection() to manually initiate a service connection before starting recognition on the Recognizer associated with this Connection. After starting a recognition, calling openConnection() or closeConnection() might fail. This will not impact the Recognizer or the ongoing recognition. Connection might drop for various reasons, the Recognizer will always try to reinstitute the connection as required to guarantee ongoing operations. In all these cases Connected/Disconnected events will indicate the change of the connection status. Note: close() must be called in order to relinquish underlying resources held by the object. Added in version 1.2.0. </p>"
   syntax: &o1
@@ -48,7 +49,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 161
+    startLine: 175
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Dispose of associated resources. close() must be called to relinquish underlying resources correctly. </p>"
   syntax:
@@ -67,7 +68,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 87
+    startLine: 101
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Closes the connection the service. Users can optionally call closeConnection() to manually shutdown the connection of the associated Recognizer. The call might fail, depending on the process state of the Recognizer. But the failure does not affect the state of the associated Recognizer. </p>"
   syntax:
@@ -85,7 +86,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 147
+    startLine: 161
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>The Connected event to indicate that the recognizer is connected to service. In order to receive the connected event after subscribing to it, the Connection object itself needs to be alive. If the Connection object owning this event is out of its life time, all subscribed events won't be delivered. </p>"
   syntax:
@@ -105,7 +106,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 154
+    startLine: 168
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>The Diconnected event to indicate that the recognizer is disconnected from service. In order to receive the disconnected event after subscribing to it, the Connection object itself needs to be alive. If the Connection object owning this event is out of its life time, all subscribed events won't be delivered. </p>"
   syntax:
@@ -126,7 +127,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 48
+    startLine: 61
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Gets the Connection instance from the conversation translator. </p>"
   syntax:
@@ -138,6 +139,32 @@ items:
     return:
       type: com.microsoft.cognitiveservices.speech.Connection
       description: <p>The Connection instance of the recognizer. </p>
+- uid: com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector(DialogServiceConnector)
+  id: fromDialogServiceConnector(DialogServiceConnector)
+  parent: com.microsoft.cognitiveservices.speech.Connection
+  href: com.microsoft.cognitiveservices.speech.Connection.yml
+  langs:
+  - java
+  name: fromDialogServiceConnector(DialogServiceConnector dialogServiceConnector)
+  nameWithType: Connection.fromDialogServiceConnector(DialogServiceConnector dialogServiceConnector)
+  fullName: com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector(DialogServiceConnector dialogServiceConnector)
+  overload: com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector*
+  type: Method
+  source:
+    remote: *o0
+    path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
+    startLine: 74
+  package: com.microsoft.cognitiveservices.speech
+  summary: "<p>Gets the Connection instance from the dialog service connector. </p>"
+  syntax:
+    content: public static Connection fromDialogServiceConnector(DialogServiceConnector dialogServiceConnector)
+    parameters:
+    - id: dialogServiceConnector
+      type: com.microsoft.cognitiveservices.speech.dialog.DialogServiceConnector
+      description: <p>The dialog service connector associated with the connection, used for observing and managing connection state with the speech service. </p>
+    return:
+      type: com.microsoft.cognitiveservices.speech.Connection
+      description: <p>The Connection instance of the dialog service connector. </p>
 - uid: com.microsoft.cognitiveservices.speech.Connection.fromRecognizer(Recognizer)
   id: fromRecognizer(Recognizer)
   parent: com.microsoft.cognitiveservices.speech.Connection
@@ -152,7 +179,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 60
+    startLine: 49
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Gets the Connection instance from the specified recognizer. </p>"
   syntax:
@@ -178,7 +205,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 76
+    startLine: 90
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Starts to set up connection to the service. Users can optionally call openConnection() to manually set up a connection in advance before starting recognition on the Recognizer associated with this Connection. After starting recognition, calling OpenConnection() might fail, depending on the process state of the Recognizer. But the failure does not affect the state of the associated Recognizer. Note: On return, the connection might not be ready yet. Please subscribe to the Connected event to be notfied when the connection is established. </p>"
   syntax:
@@ -201,7 +228,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 99
+    startLine: 113
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Sends a message to service. Added in version 1.7.0 </p>"
   syntax:
@@ -230,7 +257,7 @@ items:
   source:
     remote: *o0
     path: source/bindings/java/com/microsoft/cognitiveservices/speech/Connection.java
-    startLine: 120
+    startLine: 134
   package: com.microsoft.cognitiveservices.speech
   summary: "<p>Appends a parameter in a message to service. Added in version 1.7.0 </p>"
   syntax:
@@ -262,15 +289,20 @@ references:
     href: com.microsoft.cognitiveservices.speech.ConnectionEventArgs.yml
   - name: '>'
     fullName: '>'
+- uid: com.microsoft.cognitiveservices.speech.Connection.fromRecognizer*
+  name: fromRecognizer
+  nameWithType: Connection.fromRecognizer
+  fullName: com.microsoft.cognitiveservices.speech.Connection.fromRecognizer
+  package: com.microsoft.cognitiveservices.speech
 - uid: com.microsoft.cognitiveservices.speech.Connection.fromConversationTranslator*
   name: fromConversationTranslator
   nameWithType: Connection.fromConversationTranslator
   fullName: com.microsoft.cognitiveservices.speech.Connection.fromConversationTranslator
   package: com.microsoft.cognitiveservices.speech
-- uid: com.microsoft.cognitiveservices.speech.Connection.fromRecognizer*
-  name: fromRecognizer
-  nameWithType: Connection.fromRecognizer
-  fullName: com.microsoft.cognitiveservices.speech.Connection.fromRecognizer
+- uid: com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector*
+  name: fromDialogServiceConnector
+  nameWithType: Connection.fromDialogServiceConnector
+  fullName: com.microsoft.cognitiveservices.speech.Connection.fromDialogServiceConnector
   package: com.microsoft.cognitiveservices.speech
 - uid: 4fc6e284
   spec.java:
@@ -341,16 +373,6 @@ references:
   type: Class
   summary: "<p>Connection is a proxy class for managing connection to the speech service of the specified Recognizer. By default, a Recognizer autonomously manages connection to service when needed. The Connection class provides additional methods for users to explicitly open or close a connection and to subscribe to connection status changes. The use of Connection is optional. It is intended for scenarios where fine tuning of application behavior based on connection status is needed. Users can optionally call openConnection() to manually initiate a service connection before starting recognition on the Recognizer associated with this Connection. After starting a recognition, calling openConnection() or closeConnection() might fail. This will not impact the Recognizer or the ongoing recognition. Connection might drop for various reasons, the Recognizer will always try to reinstitute the connection as required to guarantee ongoing operations. In all these cases Connected/Disconnected events will indicate the change of the connection status. Note: close() must be called in order to relinquish underlying resources held by the object. Added in version 1.2.0. </p>"
   syntax: *o1
-- uid: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator
-  parent: com.microsoft.cognitiveservices.speech.transcription
-  href: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator.yml
-  name: ConversationTranslator
-  nameWithType: ConversationTranslator
-  fullName: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator
-  type: Class
-  summary: "<p>A conversation translator that enables a connected experience where participants can use their own devices to see everyone else's recognitions and IMs in their own languages. Participants can also speak and send IMs to others. Added in version 1.12.0 </p>"
-  syntax:
-    content: public class ConversationTranslator
 - uid: com.microsoft.cognitiveservices.speech.Recognizer
   parent: com.microsoft.cognitiveservices.speech
   href: com.microsoft.cognitiveservices.speech.Recognizer.yml
@@ -361,3 +383,23 @@ references:
   summary: "<p>Defines the base class Recognizer which mainly contains common event handlers. </p>"
   syntax:
     content: public class Recognizer
+- uid: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator
+  parent: com.microsoft.cognitiveservices.speech.transcription
+  href: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator.yml
+  name: ConversationTranslator
+  nameWithType: ConversationTranslator
+  fullName: com.microsoft.cognitiveservices.speech.transcription.ConversationTranslator
+  type: Class
+  summary: "<p>A conversation translator that enables a connected experience where participants can use their own devices to see everyone else's recognitions and IMs in their own languages. Participants can also speak and send IMs to others. Added in version 1.12.0 </p>"
+  syntax:
+    content: public class ConversationTranslator
+- uid: com.microsoft.cognitiveservices.speech.dialog.DialogServiceConnector
+  parent: com.microsoft.cognitiveservices.speech.dialog
+  href: com.microsoft.cognitiveservices.speech.dialog.DialogServiceConnector.yml
+  name: DialogServiceConnector
+  nameWithType: DialogServiceConnector
+  fullName: com.microsoft.cognitiveservices.speech.dialog.DialogServiceConnector
+  type: Class
+  summary: "<p>Class that defines a DialogServiceConnector. Note: close() must be called in order to relinquish underlying resources held by the object. </p>"
+  syntax:
+    content: public class DialogServiceConnector
