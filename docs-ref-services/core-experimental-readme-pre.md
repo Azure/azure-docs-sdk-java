@@ -3,7 +3,7 @@ title: Azure Core Experimental shared library for Java
 keywords: Azure, java, SDK, API, azure-core-experimental, core
 author: maggiepint
 ms.author: magpint
-ms.date: 10/09/2020
+ms.date: 10/30/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core Experimental shared library for Java - Version 1.0.0-beta.7 
+# Azure Core Experimental shared library for Java - Version 1.0.0-beta.8 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -31,7 +31,7 @@ Azure Core Experimental contains types that are being evaluated and might eventu
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-experimental</artifactId>
-    <version>1.0.0-beta.7</version>
+    <version>1.0.0-beta.8</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -56,7 +56,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 ## Contributing
 
 If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft
-Azure Projects Contribution Guidelines](http://azure.github.io/guidelines.html).
+Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
