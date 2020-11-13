@@ -2,20 +2,23 @@
 items:
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient
   id: ServiceBusSenderClient
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus
   children:
   - com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessage(long)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages(java.lang.Iterable<java.lang.Long>)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.close()
   - com.azure.messaging.servicebus.ServiceBusSenderClient.commitTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  - com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
-  - com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch()
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch(com.azure.messaging.servicebus.models.CreateMessageBatchOptions)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.createTransaction()
   - com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()
   - com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()
   - com.azure.messaging.servicebus.ServiceBusSenderClient.rollbackTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime)
+  - com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessage(com.azure.messaging.servicebus.ServiceBusMessage)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessage(com.azure.messaging.servicebus.ServiceBusMessage,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   - com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessages(com.azure.messaging.servicebus.ServiceBusMessageBatch)
@@ -29,7 +32,7 @@ items:
   fullName: com.azure.messaging.servicebus.ServiceBusSenderClient
   type: Class
   package: com.azure.messaging.servicebus
-  summary: "A **synchronous** sender responsible for sending <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessage\" data-throw-if-not-resolved=\"false\">ServiceBusMessage</xref> to specific queue or topic on Azure Service Bus.\n\n**Create an instance of sender**\n\n```java\n// The required parameter is a way to authenticate with Service Bus using credentials.\n // The connectionString provides a way to authenticate with Service Bus.\n ServiceBusSenderClient sender = new ServiceBusClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\")\n     .sender()\n     .queueName(\"queue-name\")\n     .buildClient();\n```\n\n**Send messages to a Service Bus resource**\n\n```java\nList<ServiceBusMessage> messages = Arrays.asList(new ServiceBusMessage(\"test-1\".getBytes(UTF_8)),\n     new ServiceBusMessage(\"test-2\".getBytes(UTF_8)));\n \n final CreateBatchOptions options = new CreateBatchOptions().setMaximumSizeInBytes(10 * 1024);\n // Creating a batch without options set.\n ServiceBusMessageBatch batch = sender.createBatch(options);\n for (ServiceBusMessage message : messages) {\n     if (batch.tryAdd(message)) {\n         continue;\n     }\n \n     sender.sendMessages(batch);\n }\n```\n\n**Send messages using a size-limited <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref>**\n\n```java\nfinal List<ServiceBusMessage> telemetryMessages = Arrays.asList(firstMessage, secondMessage, thirdMessage);\n \n // Setting `setMaximumSizeInBytes` when creating a batch, limits the size of that batch.\n // In this case, all the batches created with these options are limited to 256 bytes.\n final CreateBatchOptions options = new CreateBatchOptions()\n     .setMaximumSizeInBytes(256);\n \n ServiceBusMessageBatch currentBatch = sender.createBatch(options);\n \n // For each telemetry message, we try to add it to the current batch.\n // When the batch is full, send it then create another batch to add more mesages to.\n for (ServiceBusMessage message : telemetryMessages) {\n     if (!currentBatch.tryAdd(message)) {\n         sender.sendMessages(currentBatch);\n         currentBatch = sender.createBatch(options);\n \n         // Add the message we couldn't before.\n         if (!currentBatch.tryAdd(message)) {\n             throw new IllegalArgumentException(\"Message is too large for an empty batch.\");\n         }\n     }\n }\n```"
+  summary: "A **synchronous** sender responsible for sending <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessage\" data-throw-if-not-resolved=\"false\">ServiceBusMessage</xref> to specific queue or topic on Azure Service Bus.\n\n**Create an instance of sender**\n\n```java\n// The required parameter is a way to authenticate with Service Bus using credentials.\n // The connectionString provides a way to authenticate with Service Bus.\n ServiceBusSenderClient sender = new ServiceBusClientBuilder()\n     .connectionString(\n         \"Endpoint={fully-qualified-namespace};SharedAccessKeyName={policy-name};SharedAccessKey={key}\")\n     .sender()\n     .queueName(\"queue-name\")\n     .buildClient();\n```\n\n**Send messages to a Service Bus resource**\n\n```java\nList<ServiceBusMessage> messages = Arrays.asList(new ServiceBusMessage(BinaryData.fromBytes(\"test-1\".getBytes(UTF_8))),\n     new ServiceBusMessage(BinaryData.fromBytes(\"test-2\".getBytes(UTF_8))));\n \n final CreateMessageBatchOptions options = new CreateMessageBatchOptions().setMaximumSizeInBytes(10 * 1024);\n // Creating a batch without options set.\n ServiceBusMessageBatch batch = sender.createMessageBatch(options);\n for (ServiceBusMessage message : messages) {\n     if (batch.tryAddMessage(message)) {\n         continue;\n     }\n \n     sender.sendMessages(batch);\n }\n```\n\n**Send messages using a size-limited <xref uid=\"com.azure.messaging.servicebus.ServiceBusMessageBatch\" data-throw-if-not-resolved=\"false\">ServiceBusMessageBatch</xref>**\n\n```java\nfinal List<ServiceBusMessage> telemetryMessages = Arrays.asList(firstMessage, secondMessage, thirdMessage);\n \n // Setting `setMaximumSizeInBytes` when creating a batch, limits the size of that batch.\n // In this case, all the batches created with these options are limited to 256 bytes.\n final CreateMessageBatchOptions options = new CreateMessageBatchOptions()\n     .setMaximumSizeInBytes(256);\n \n ServiceBusMessageBatch currentBatch = sender.createMessageBatch(options);\n \n // For each telemetry message, we try to add it to the current batch.\n // When the batch is full, send it then create another batch to add more mesages to.\n for (ServiceBusMessage message : telemetryMessages) {\n     if (!currentBatch.tryAddMessage(message)) {\n         sender.sendMessages(currentBatch);\n         currentBatch = sender.createMessageBatch(options);\n \n         // Add the message we couldn't before.\n         if (!currentBatch.tryAddMessage(message)) {\n             throw new IllegalArgumentException(\"Message is too large for an empty batch.\");\n         }\n     }\n }\n```"
   syntax:
     content: public class ServiceBusSenderClient implements AutoCloseable
   inheritance:
@@ -50,7 +53,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)
   id: ServiceBusSenderClient(com.azure.messaging.servicebus.ServiceBusSenderAsyncClient,java.time.Duration)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -70,7 +73,7 @@ items:
       type: java.time.Duration
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessage(long)
   id: cancelScheduledMessage(long)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -87,9 +90,28 @@ items:
     - id: sequenceNumber
       type: long
       description: of the scheduled message to cancel.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages(java.lang.Iterable<java.lang.Long>)
+  id: cancelScheduledMessages(java.lang.Iterable<java.lang.Long>)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
+  langs:
+  - java
+  name: cancelScheduledMessages(Iterable<Long> sequenceNumbers)
+  nameWithType: ServiceBusSenderClient.cancelScheduledMessages(Iterable<Long> sequenceNumbers)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages(Iterable<Long> sequenceNumbers)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Cancels the enqueuing of already scheduled messages, if they were not already enqueued.
+  syntax:
+    content: public void cancelScheduledMessages(Iterable<Long> sequenceNumbers)
+    parameters:
+    - id: sequenceNumbers
+      type: java.lang.Iterable<java.lang.Long>
+      description: of the scheduled message to cancel.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.close()
   id: close()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -103,7 +125,7 @@ items:
     content: public void close()
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.commitTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: commitTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -120,49 +142,49 @@ items:
     - id: transactionContext
       type: com.azure.messaging.servicebus.ServiceBusTransactionContext
       description: to be committed.
-- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
-  id: createBatch()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch()
+  id: createMessageBatch()
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
-  name: createBatch()
-  nameWithType: ServiceBusSenderClient.createBatch()
-  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch()
-  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
+  name: createMessageBatch()
+  nameWithType: ServiceBusSenderClient.createMessageBatch()
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch()
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch*
   type: Method
   package: com.azure.messaging.servicebus
   summary: Creates a <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows.
   syntax:
-    content: public ServiceBusMessageBatch createBatch()
+    content: public ServiceBusMessageBatch createMessageBatch()
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessageBatch
       description: A <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> that can fit as many messages as the transport allows.
-- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
-  id: createBatch(com.azure.messaging.servicebus.models.CreateBatchOptions)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch(com.azure.messaging.servicebus.models.CreateMessageBatchOptions)
+  id: createMessageBatch(com.azure.messaging.servicebus.models.CreateMessageBatchOptions)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
-  name: createBatch(CreateBatchOptions options)
-  nameWithType: ServiceBusSenderClient.createBatch(CreateBatchOptions options)
-  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch(CreateBatchOptions options)
-  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
+  name: createMessageBatch(CreateMessageBatchOptions options)
+  nameWithType: ServiceBusSenderClient.createMessageBatch(CreateMessageBatchOptions options)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch(CreateMessageBatchOptions options)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch*
   type: Method
   package: com.azure.messaging.servicebus
   summary: Creates an <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> configured with the options specified.
   syntax:
-    content: public ServiceBusMessageBatch createBatch(CreateBatchOptions options)
+    content: public ServiceBusMessageBatch createMessageBatch(CreateMessageBatchOptions options)
     parameters:
     - id: options
-      type: com.azure.messaging.servicebus.models.CreateBatchOptions
+      type: com.azure.messaging.servicebus.models.CreateMessageBatchOptions
       description: A set of options used to configure the <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref>.
     return:
       type: com.azure.messaging.servicebus.ServiceBusMessageBatch
       description: A new <xref uid="com.azure.messaging.servicebus.ServiceBusMessageBatch" data-throw-if-not-resolved="false">ServiceBusMessageBatch</xref> configured with the given options.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createTransaction()
   id: createTransaction()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -180,7 +202,7 @@ items:
       description: a new <xref uid="com.azure.messaging.servicebus.ServiceBusTransactionContext" data-throw-if-not-resolved="false">ServiceBusTransactionContext</xref>.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getEntityPath()
   id: getEntityPath()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -198,7 +220,7 @@ items:
       description: The name of the Service Bus resource.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.getFullyQualifiedNamespace()
   id: getFullyQualifiedNamespace()
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -216,7 +238,7 @@ items:
       description: The fully qualified namespace.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.rollbackTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: rollbackTransaction(com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -235,7 +257,7 @@ items:
       description: to be rollbacked.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime)
   id: scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -260,7 +282,7 @@ items:
       description: The sequence number of the scheduled message which can be used to cancel the scheduling of the message.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: scheduleMessage(com.azure.messaging.servicebus.ServiceBusMessage,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -286,9 +308,62 @@ items:
     return:
       type: java.lang.Long
       description: The sequence number of the scheduled message which can be used to cancel the scheduling of the message.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime)
+  id: scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
+  langs:
+  - java
+  name: scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime)
+  nameWithType: ServiceBusSenderClient.scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sends a batch of scheduled messages to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time.
+  syntax:
+    content: public Iterable<Long> scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime)
+    parameters:
+    - id: messages
+      type: java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>
+      description: Message to be sent to the Service Bus Queue or Topic.
+    - id: scheduledEnqueueTime
+      type: java.time.OffsetDateTime
+      description: Instant at which the message should appear in the Service Bus queue or topic.
+    return:
+      type: java.lang.Iterable<java.lang.Long>
+      description: The sequence number of the scheduled message which can be used to cancel the scheduling of the message.
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
+  id: scheduleMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,java.time.OffsetDateTime,com.azure.messaging.servicebus.ServiceBusTransactionContext)
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
+  parent: com.azure.messaging.servicebus.ServiceBusSenderClient
+  langs:
+  - java
+  name: scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime, ServiceBusTransactionContext transactionContext)
+  nameWithType: ServiceBusSenderClient.scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime, ServiceBusTransactionContext transactionContext)
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime, ServiceBusTransactionContext transactionContext)
+  overload: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages*
+  type: Method
+  package: com.azure.messaging.servicebus
+  summary: Sends a batch of scheduled messages to the Azure Service Bus entity this sender is connected to. A scheduled message is enqueued and made available to receivers only at the scheduled enqueue time.
+  syntax:
+    content: public Iterable<Long> scheduleMessages(Iterable<ServiceBusMessage> messages, OffsetDateTime scheduledEnqueueTime, ServiceBusTransactionContext transactionContext)
+    parameters:
+    - id: messages
+      type: java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>
+      description: Messages to be sent to the Service Bus Queue or Topic.
+    - id: scheduledEnqueueTime
+      type: java.time.OffsetDateTime
+      description: Instant at which the message should appear in the Service Bus queue or topic.
+    - id: transactionContext
+      type: com.azure.messaging.servicebus.ServiceBusTransactionContext
+      description: to be set on message before sending to Service Bus.
+    return:
+      type: java.lang.Iterable<java.lang.Long>
+      description: The sequence number of the scheduled message which can be used to cancel the scheduling of the message.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessage(com.azure.messaging.servicebus.ServiceBusMessage)
   id: sendMessage(com.azure.messaging.servicebus.ServiceBusMessage)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -307,7 +382,7 @@ items:
       description: Message to be sent to Service Bus queue or topic.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessage(com.azure.messaging.servicebus.ServiceBusMessage,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: sendMessage(com.azure.messaging.servicebus.ServiceBusMessage,com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -329,7 +404,7 @@ items:
       description: to be set on message before sending to Service Bus.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessages(com.azure.messaging.servicebus.ServiceBusMessageBatch)
   id: sendMessages(com.azure.messaging.servicebus.ServiceBusMessageBatch)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -348,7 +423,7 @@ items:
       description: of messages which allows client to send maximum allowed size for a batch of messages.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessages(com.azure.messaging.servicebus.ServiceBusMessageBatch,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: sendMessages(com.azure.messaging.servicebus.ServiceBusMessageBatch,com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -370,7 +445,7 @@ items:
       description: to be set on message before sending to Service Bus.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>)
   id: sendMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -389,7 +464,7 @@ items:
       description: Messages to be sent to Service Bus queue or topic.
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.sendMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,com.azure.messaging.servicebus.ServiceBusTransactionContext)
   id: sendMessages(java.lang.Iterable<com.azure.messaging.servicebus.ServiceBusMessage>,com.azure.messaging.servicebus.ServiceBusTransactionContext)
-  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.6
+  artifact: com.azure:azure-messaging-servicebus:7.0.0-beta.7
   parent: com.azure.messaging.servicebus.ServiceBusSenderClient
   langs:
   - java
@@ -434,19 +509,36 @@ references:
   nameWithType: ServiceBusSenderClient.cancelScheduledMessage
   fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessage
   package: com.azure.messaging.servicebus
+- uid: java.lang.Iterable<java.lang.Long>
+  spec.java:
+  - uid: java.lang.Iterable
+    name: Iterable
+    fullName: java.lang.Iterable
+  - name: <
+    fullName: <
+  - uid: java.lang.Long
+    name: Long
+    fullName: java.lang.Long
+  - name: '>'
+    fullName: '>'
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages*
+  name: cancelScheduledMessages
+  nameWithType: ServiceBusSenderClient.cancelScheduledMessages
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.cancelScheduledMessages
+  package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusMessageBatch
   name: ServiceBusMessageBatch
   nameWithType: ServiceBusMessageBatch
   fullName: com.azure.messaging.servicebus.ServiceBusMessageBatch
-- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch*
-  name: createBatch
-  nameWithType: ServiceBusSenderClient.createBatch
-  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createBatch
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch*
+  name: createMessageBatch
+  nameWithType: ServiceBusSenderClient.createMessageBatch
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.createMessageBatch
   package: com.azure.messaging.servicebus
-- uid: com.azure.messaging.servicebus.models.CreateBatchOptions
-  name: CreateBatchOptions
-  nameWithType: CreateBatchOptions
-  fullName: com.azure.messaging.servicebus.models.CreateBatchOptions
+- uid: com.azure.messaging.servicebus.models.CreateMessageBatchOptions
+  name: CreateMessageBatchOptions
+  nameWithType: CreateMessageBatchOptions
+  fullName: com.azure.messaging.servicebus.models.CreateMessageBatchOptions
 - uid: java.lang.String
   spec.java:
   - uid: java.lang.String
@@ -506,6 +598,11 @@ references:
   name: scheduleMessage
   nameWithType: ServiceBusSenderClient.scheduleMessage
   fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessage
+  package: com.azure.messaging.servicebus
+- uid: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages*
+  name: scheduleMessages
+  nameWithType: ServiceBusSenderClient.scheduleMessages
+  fullName: com.azure.messaging.servicebus.ServiceBusSenderClient.scheduleMessages
   package: com.azure.messaging.servicebus
 - uid: com.azure.messaging.servicebus.ServiceBusSenderClient.close*
   name: close
