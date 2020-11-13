@@ -3,7 +3,7 @@ title: Azure Cognitive Search client library for Java
 keywords: Azure, java, SDK, API, azure-search-documents, search
 author: maggiepint
 ms.author: magpint
-ms.date: 10/03/2020
+ms.date: 11/10/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: search
 ---
 
-# Azure Cognitive Search client library for Java - Version 11.1.1 
+# Azure Cognitive Search client library for Java - Version 11.1.2 
 
 
 This is the Java client library for [Azure Cognitive Search](https://docs.microsoft.com/azure/search/).
@@ -52,7 +52,7 @@ Use the Azure Cognitive Search client library to:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-search-documents</artifactId>
-    <version>11.1.1</version>
+    <version>11.1.2</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -336,7 +336,7 @@ SearchPagedIterable searchResultsIterable = searchClient.search("luxury", option
 
 ### Creating an index
 
-You can use the [`SearchIndexClient`](#Create-a-SearchIndexClient) to create a search index. Indexes can also define
+You can use the [`SearchIndexClient`](#create-a-searchindexclient) to create a search index. Indexes can also define
 suggesters, lexical analyzers, and more.
 
 There are multiple ways of preparing search fields for a search index. For basic needs, we provide a static helper method
@@ -439,7 +439,7 @@ to `false` to get a successful response with an `IndexDocumentsResult` for inspe
 ### Async APIs
 
 The examples so far have been using synchronous APIs, but we provide full support for async APIs as well. You'll need
-to use [SearchAsyncClient](#Create-a-SearchClient).
+to use [SearchAsyncClient](#create-a-searchclient).
 
 <!-- embedme ./src/samples/java/com/azure/search/documents/ReadmeSamples.java#L201-L205 -->
 ```java
@@ -517,20 +517,20 @@ This project has adopted the [Microsoft Open Source Code of Conduct][coc]. For m
 [azure_subscription]: https://azure.microsoft.com/free
 [maven]: https://maven.apache.org/
 [package]: https://search.maven.org/artifact/com.azure/azure-search-documents
-[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.1/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents
-[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.1/sdk/search/azure-search-documents/src/samples/README.md
-[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.1/sdk/search/azure-search-documents/src
+[samples]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.2/sdk/search/azure-search-documents/src/samples/java/com/azure/search/documents
+[samples_readme]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/search/azure-search-documents/src/samples/README.md
+[source_code]: https://github.com/Azure/azure-sdk-for-java/tree/azure-search-documents_11.1.2/sdk/search/azure-search-documents/src
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK
 [cla]: https://cla.microsoft.com
 [coc]: https://opensource.microsoft.com/codeofconduct/
 [coc_faq]: https://opensource.microsoft.com/codeofconduct/faq/
 [coc_contact]: mailto:opencode@microsoft.com
-[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.1/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
+[add_headers_from_context_policy]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/http/policy/AddHeadersFromContextPolicy.java
 [rest_api]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 [create_search_service_docs]: https://docs.microsoft.com/azure/search/search-create-service-portal
 [create_search_service_ps]: https://docs.microsoft.com/azure/search/search-manage-powershell#create-or-delete-a-service
 [create_search_service_cli]: https://docs.microsoft.com/cli/azure/search/service?view=azure-cli-latest#az-search-service-create
-[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.1/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
+[HttpResponseException]: https://github.com/Azure/azure-sdk-for-java/blob/azure-search-documents_11.1.2/sdk/core/azure-core/src/main/java/com/azure/core/exception/HttpResponseException.java
 [status_codes]: https://docs.microsoft.com/rest/api/searchservice/http-status-codes
 
 ![Impressions](https://azure-sdk-impressions.azurewebsites.net/api/impressions/azure-sdk-for-java%2Fsdk%2Fsearch%2Fazure-search-documents%2FREADME.png)
