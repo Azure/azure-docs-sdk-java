@@ -11,6 +11,7 @@ ms.devlang: java
 ms.service: eventhubs
 ---
 
+
 # Azure Event Hubs Checkpoint Store client library for Java - Version 1.3.1 
  using Storage Blobs
 
@@ -160,6 +161,7 @@ Get started by exploring the samples [here][samples_readme].
 ## Contributing
 
 If you would like to become an active contributor to this project please refer to our [Contribution
+
 Guidelines](https://github.com/Azure/azure-sdk-for-java/blob/azure-messaging-eventhubs-checkpointstore-blob_1.3.1/sdk/eventhubs/azure-messaging-eventhubs-checkpointstore-blob/CONTRIBUTING.md) for more information.
 
 <!-- Links -->
