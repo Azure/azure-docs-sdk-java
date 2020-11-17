@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: cosmos-db
+ms.service: cosmosdb
 ---
 
 # Azure Cosmos DB Spring Boot Starter client library for Java - Version 2.3.5 
