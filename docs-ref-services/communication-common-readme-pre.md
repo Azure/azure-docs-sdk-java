@@ -1,17 +1,17 @@
 ---
 title: Azure Communication Service Common client library for Java
-keywords: Azure, java, SDK, API, azure-communication-common, communicationcommunication
+keywords: Azure, java, SDK, API, azure-communication-common, communication
 author: maggiepint
 ms.author: magpint
-ms.date: 10/05/2020
+ms.date: 11/17/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: communicationcommunication
+ms.service: communication
 ---
 
-# Azure Communication Service Common client library for Java - Version 1.0.0-beta.2 
+# Azure Communication Service Common client library for Java - Version 1.0.0-beta.3 
 
 
 Azure Communication Common contains data structures commonly used for communicating with Azure Communication Services. 
@@ -33,7 +33,7 @@ It is intended to provide cross cutting concerns, e.g. authentication.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-communication-common</artifactId>
-    <version>1.0.0-beta.2</version>
+    <version>1.0.0-beta.3</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
