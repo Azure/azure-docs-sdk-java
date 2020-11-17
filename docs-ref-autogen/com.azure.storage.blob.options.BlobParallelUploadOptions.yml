@@ -2,7 +2,7 @@
 items:
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions
   id: BlobParallelUploadOptions
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options
   children:
   - com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(java.io.InputStream,long)
@@ -17,6 +17,8 @@ items:
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getTags()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getTier()
   - com.azure.storage.blob.options.BlobParallelUploadOptions.getTimeout()
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5()
+  - com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5(boolean)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setMetadata(java.util.Map<java.lang.String,java.lang.String>)
   - com.azure.storage.blob.options.BlobParallelUploadOptions.setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
@@ -50,7 +52,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(java.io.InputStream,long)
   id: BlobParallelUploadOptions(java.io.InputStream,long)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -67,8 +69,10 @@ items:
     - id: dataStream
       type: java.io.InputStream
       description: >-
-        The data to write to the blob. Unlike other upload methods, this method does not require that
-         the <code>InputStream</code> be markable.
+        The data to write to the blob. The data must be markable. This is in order to support retries.
+         If the data is not markable, consider opening a <xref uid="com.azure.storage.blob.specialized.BlobOutputStream" data-throw-if-not-resolved="false">com.azure.storage.blob.specialized.BlobOutputStream</xref> and
+         writing to the returned stream. Alternatively, consider wrapping your data source in a
+         <xref uid="" data-throw-if-not-resolved="false">java.io.BufferedInputStream</xref> to add mark support.
     - id: length
       type: long
       description: >-
@@ -76,7 +80,7 @@ items:
          data provided in the <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref>.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.BlobParallelUploadOptions(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
   id: BlobParallelUploadOptions(reactor.core.publisher.Flux<java.nio.ByteBuffer>)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -98,7 +102,7 @@ items:
          expected to produce the same values across subscriptions.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataFlux()
   id: getDataFlux()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -116,7 +120,7 @@ items:
       description: The data to write to the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getDataStream()
   id: getDataStream()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -134,7 +138,7 @@ items:
       description: The data to write to the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getHeaders()
   id: getHeaders()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -152,7 +156,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.BlobHttpHeaders" data-throw-if-not-resolved="false">BlobHttpHeaders</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getLength()
   id: getLength()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -172,7 +176,7 @@ items:
          data provided in the <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref>.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getMetadata()
   id: getMetadata()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -190,7 +194,7 @@ items:
       description: The metadata to associate with the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getParallelTransferOptions()
   id: getParallelTransferOptions()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -208,7 +212,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.ParallelTransferOptions" data-throw-if-not-resolved="false">ParallelTransferOptions</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getRequestConditions()
   id: getRequestConditions()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -226,7 +230,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.BlobRequestConditions" data-throw-if-not-resolved="false">BlobRequestConditions</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTags()
   id: getTags()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -244,7 +248,7 @@ items:
       description: The tags to associate with the blob.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTier()
   id: getTier()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -262,7 +266,7 @@ items:
       description: <xref uid="com.azure.storage.blob.models.AccessTier" data-throw-if-not-resolved="false">AccessTier</xref>
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.getTimeout()
   id: getTimeout()
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -278,9 +282,50 @@ items:
     return:
       type: java.time.Duration
       description: An optional timeout value beyond which a <xref uid="" data-throw-if-not-resolved="false">RuntimeException</xref> will be raised.
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5()
+  id: isComputeMd5()
+  artifact: com.azure:azure-storage-blob:12.9.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: isComputeMd5()
+  nameWithType: BlobParallelUploadOptions.isComputeMd5()
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5()
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5*
+  type: Method
+  package: com.azure.storage.blob.options
+  syntax:
+    content: public boolean isComputeMd5()
+    return:
+      type: boolean
+      description: Whether or not the library should calculate the md5 and send it for the service to verify.
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5(boolean)
+  id: setComputeMd5(boolean)
+  artifact: com.azure:azure-storage-blob:12.9.0
+  parent: com.azure.storage.blob.options.BlobParallelUploadOptions
+  langs:
+  - java
+  name: setComputeMd5(boolean computeMd5)
+  nameWithType: BlobParallelUploadOptions.setComputeMd5(boolean computeMd5)
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5(boolean computeMd5)
+  overload: com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5*
+  type: Method
+  package: com.azure.storage.blob.options
+  summary: Sets the computeMd5 property.
+  syntax:
+    content: public BlobParallelUploadOptions setComputeMd5(boolean computeMd5)
+    parameters:
+    - id: computeMd5
+      type: boolean
+      description: >-
+        Whether or not the library should calculate the md5 and send it for the service to
+         verify.
+    return:
+      type: com.azure.storage.blob.options.BlobParallelUploadOptions
+      description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
   id: setHeaders(com.azure.storage.blob.models.BlobHttpHeaders)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -302,7 +347,7 @@ items:
       description: The updated options
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setMetadata(java.util.Map<java.lang.String,java.lang.String>)
   id: setMetadata(java.util.Map<java.lang.String,java.lang.String>)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -324,7 +369,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
   id: setParallelTransferOptions(com.azure.storage.blob.models.ParallelTransferOptions)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -346,7 +391,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setRequestConditions(com.azure.storage.blob.models.BlobRequestConditions)
   id: setRequestConditions(com.azure.storage.blob.models.BlobRequestConditions)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -368,7 +413,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTags(java.util.Map<java.lang.String,java.lang.String>)
   id: setTags(java.util.Map<java.lang.String,java.lang.String>)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -390,7 +435,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTier(com.azure.storage.blob.models.AccessTier)
   id: setTier(com.azure.storage.blob.models.AccessTier)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -412,7 +457,7 @@ items:
       description: The updated options.
 - uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setTimeout(java.time.Duration)
   id: setTimeout(java.time.Duration)
-  artifact: com.azure:azure-storage-blob:12.8.0
+  artifact: com.azure:azure-storage-blob:12.9.0
   parent: com.azure.storage.blob.options.BlobParallelUploadOptions
   langs:
   - java
@@ -567,6 +612,21 @@ references:
   name: setRequestConditions
   nameWithType: BlobParallelUploadOptions.setRequestConditions
   fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setRequestConditions
+  package: com.azure.storage.blob.options
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5*
+  name: isComputeMd5
+  nameWithType: BlobParallelUploadOptions.isComputeMd5
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.isComputeMd5
+  package: com.azure.storage.blob.options
+- uid: com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5*
+  name: setComputeMd5
+  nameWithType: BlobParallelUploadOptions.setComputeMd5
+  fullName: com.azure.storage.blob.options.BlobParallelUploadOptions.setComputeMd5
   package: com.azure.storage.blob.options
 - uid: java.time.Duration
   spec.java:

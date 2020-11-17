@@ -2,13 +2,16 @@
 items:
 - uid: com.azure.ai.metricsadvisor.models
   id: models
-  artifact: com.azure:azure-ai-metricsadvisor:1.0.0-beta.1
+  artifact: com.azure:azure-ai-metricsadvisor:1.0.0-beta.2
   children:
-  - com.azure.ai.metricsadvisor.models.Alert
-  - com.azure.ai.metricsadvisor.models.Anomaly
+  - com.azure.ai.metricsadvisor.models.AlertQueryTimeMode
+  - com.azure.ai.metricsadvisor.models.AnomalyAlert
   - com.azure.ai.metricsadvisor.models.AnomalyAlertConfiguration
   - com.azure.ai.metricsadvisor.models.AnomalyDetectionConfiguration
   - com.azure.ai.metricsadvisor.models.AnomalyDetectorDirection
+  - com.azure.ai.metricsadvisor.models.AnomalyIncident
+  - com.azure.ai.metricsadvisor.models.AnomalyIncidentStatus
+  - com.azure.ai.metricsadvisor.models.AnomalySeverity
   - com.azure.ai.metricsadvisor.models.AnomalyStatus
   - com.azure.ai.metricsadvisor.models.AnomalyValue
   - com.azure.ai.metricsadvisor.models.AzureAppInsightsDataFeedSource
@@ -23,12 +26,15 @@ items:
   - com.azure.ai.metricsadvisor.models.DataFeed
   - com.azure.ai.metricsadvisor.models.DataFeedAccessMode
   - com.azure.ai.metricsadvisor.models.DataFeedAutoRollUpMethod
+  - com.azure.ai.metricsadvisor.models.DataFeedDimension
   - com.azure.ai.metricsadvisor.models.DataFeedGranularity
   - com.azure.ai.metricsadvisor.models.DataFeedGranularityType
   - com.azure.ai.metricsadvisor.models.DataFeedIngestionProgress
   - com.azure.ai.metricsadvisor.models.DataFeedIngestionSettings
   - com.azure.ai.metricsadvisor.models.DataFeedIngestionStatus
+  - com.azure.ai.metricsadvisor.models.DataFeedMetric
   - com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillSettings
+  - com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillType
   - com.azure.ai.metricsadvisor.models.DataFeedOptions
   - com.azure.ai.metricsadvisor.models.DataFeedRollupSettings
   - com.azure.ai.metricsadvisor.models.DataFeedRollupType
@@ -36,23 +42,19 @@ items:
   - com.azure.ai.metricsadvisor.models.DataFeedSource
   - com.azure.ai.metricsadvisor.models.DataFeedSourceType
   - com.azure.ai.metricsadvisor.models.DataFeedStatus
-  - com.azure.ai.metricsadvisor.models.DataSourceMissingDataPointFillType
+  - com.azure.ai.metricsadvisor.models.DataPointAnomaly
   - com.azure.ai.metricsadvisor.models.DetectionConditionsOperator
-  - com.azure.ai.metricsadvisor.models.Dimension
   - com.azure.ai.metricsadvisor.models.DimensionKey
   - com.azure.ai.metricsadvisor.models.ElasticsearchDataFeedSource
-  - com.azure.ai.metricsadvisor.models.EmailHook
+  - com.azure.ai.metricsadvisor.models.EmailNotificationHook
   - com.azure.ai.metricsadvisor.models.EnrichmentStatus
   - com.azure.ai.metricsadvisor.models.ErrorCode
   - com.azure.ai.metricsadvisor.models.ErrorCodeException
   - com.azure.ai.metricsadvisor.models.FeedbackQueryTimeMode
   - com.azure.ai.metricsadvisor.models.FeedbackType
   - com.azure.ai.metricsadvisor.models.HardThresholdCondition
-  - com.azure.ai.metricsadvisor.models.Hook
   - com.azure.ai.metricsadvisor.models.HttpRequestDataFeedSource
-  - com.azure.ai.metricsadvisor.models.Incident
   - com.azure.ai.metricsadvisor.models.IncidentRootCause
-  - com.azure.ai.metricsadvisor.models.IncidentStatus
   - com.azure.ai.metricsadvisor.models.InfluxDBDataFeedSource
   - com.azure.ai.metricsadvisor.models.IngestionStatusType
   - com.azure.ai.metricsadvisor.models.ListAlertOptions
@@ -62,6 +64,7 @@ items:
   - com.azure.ai.metricsadvisor.models.ListDataFeedFilter
   - com.azure.ai.metricsadvisor.models.ListDataFeedIngestionOptions
   - com.azure.ai.metricsadvisor.models.ListDataFeedOptions
+  - com.azure.ai.metricsadvisor.models.ListDimensionValuesWithAnomaliesOptions
   - com.azure.ai.metricsadvisor.models.ListHookOptions
   - com.azure.ai.metricsadvisor.models.ListIncidentsAlertedOptions
   - com.azure.ai.metricsadvisor.models.ListIncidentsDetectedOptions
@@ -69,10 +72,7 @@ items:
   - com.azure.ai.metricsadvisor.models.ListMetricEnrichmentStatusOptions
   - com.azure.ai.metricsadvisor.models.ListMetricFeedbackFilter
   - com.azure.ai.metricsadvisor.models.ListMetricFeedbackOptions
-  - com.azure.ai.metricsadvisor.models.ListMetricSeriesDataOptions
   - com.azure.ai.metricsadvisor.models.ListMetricSeriesDefinitionOptions
-  - com.azure.ai.metricsadvisor.models.ListValuesOfDimensionWithAnomaliesOptions
-  - com.azure.ai.metricsadvisor.models.Metric
   - com.azure.ai.metricsadvisor.models.MetricAnomalyAlertConditions
   - com.azure.ai.metricsadvisor.models.MetricAnomalyAlertConfiguration
   - com.azure.ai.metricsadvisor.models.MetricAnomalyAlertConfigurationsOperator
@@ -95,18 +95,17 @@ items:
   - com.azure.ai.metricsadvisor.models.MetricsAdvisorServiceVersion
   - com.azure.ai.metricsadvisor.models.MongoDBDataFeedSource
   - com.azure.ai.metricsadvisor.models.MySqlDataFeedSource
+  - com.azure.ai.metricsadvisor.models.NotificationHook
   - com.azure.ai.metricsadvisor.models.PeriodType
   - com.azure.ai.metricsadvisor.models.PostgreSqlDataFeedSource
   - com.azure.ai.metricsadvisor.models.SQLServerDataFeedSource
-  - com.azure.ai.metricsadvisor.models.Severity
   - com.azure.ai.metricsadvisor.models.SeverityCondition
   - com.azure.ai.metricsadvisor.models.SingleBoundaryDirection
   - com.azure.ai.metricsadvisor.models.SmartDetectionCondition
   - com.azure.ai.metricsadvisor.models.SnoozeScope
   - com.azure.ai.metricsadvisor.models.SuppressCondition
-  - com.azure.ai.metricsadvisor.models.TimeMode
   - com.azure.ai.metricsadvisor.models.TopNGroupScope
-  - com.azure.ai.metricsadvisor.models.WebHook
+  - com.azure.ai.metricsadvisor.models.WebNotificationHook
   langs:
   - java
   name: com.azure.ai.metricsadvisor.models
@@ -120,14 +119,14 @@ items:
   syntax:
     content: package com.azure.ai.metricsadvisor.models
 references:
-- uid: com.azure.ai.metricsadvisor.models.Alert
-  name: Alert
-  nameWithType: Alert
-  fullName: com.azure.ai.metricsadvisor.models.Alert
-- uid: com.azure.ai.metricsadvisor.models.Anomaly
-  name: Anomaly
-  nameWithType: Anomaly
-  fullName: com.azure.ai.metricsadvisor.models.Anomaly
+- uid: com.azure.ai.metricsadvisor.models.AlertQueryTimeMode
+  name: AlertQueryTimeMode
+  nameWithType: AlertQueryTimeMode
+  fullName: com.azure.ai.metricsadvisor.models.AlertQueryTimeMode
+- uid: com.azure.ai.metricsadvisor.models.AnomalyAlert
+  name: AnomalyAlert
+  nameWithType: AnomalyAlert
+  fullName: com.azure.ai.metricsadvisor.models.AnomalyAlert
 - uid: com.azure.ai.metricsadvisor.models.AnomalyAlertConfiguration
   name: AnomalyAlertConfiguration
   nameWithType: AnomalyAlertConfiguration
@@ -140,6 +139,18 @@ references:
   name: AnomalyDetectorDirection
   nameWithType: AnomalyDetectorDirection
   fullName: com.azure.ai.metricsadvisor.models.AnomalyDetectorDirection
+- uid: com.azure.ai.metricsadvisor.models.AnomalyIncident
+  name: AnomalyIncident
+  nameWithType: AnomalyIncident
+  fullName: com.azure.ai.metricsadvisor.models.AnomalyIncident
+- uid: com.azure.ai.metricsadvisor.models.AnomalyIncidentStatus
+  name: AnomalyIncidentStatus
+  nameWithType: AnomalyIncidentStatus
+  fullName: com.azure.ai.metricsadvisor.models.AnomalyIncidentStatus
+- uid: com.azure.ai.metricsadvisor.models.AnomalySeverity
+  name: AnomalySeverity
+  nameWithType: AnomalySeverity
+  fullName: com.azure.ai.metricsadvisor.models.AnomalySeverity
 - uid: com.azure.ai.metricsadvisor.models.AnomalyStatus
   name: AnomalyStatus
   nameWithType: AnomalyStatus
@@ -196,6 +207,10 @@ references:
   name: DataFeedAutoRollUpMethod
   nameWithType: DataFeedAutoRollUpMethod
   fullName: com.azure.ai.metricsadvisor.models.DataFeedAutoRollUpMethod
+- uid: com.azure.ai.metricsadvisor.models.DataFeedDimension
+  name: DataFeedDimension
+  nameWithType: DataFeedDimension
+  fullName: com.azure.ai.metricsadvisor.models.DataFeedDimension
 - uid: com.azure.ai.metricsadvisor.models.DataFeedGranularity
   name: DataFeedGranularity
   nameWithType: DataFeedGranularity
@@ -216,10 +231,18 @@ references:
   name: DataFeedIngestionStatus
   nameWithType: DataFeedIngestionStatus
   fullName: com.azure.ai.metricsadvisor.models.DataFeedIngestionStatus
+- uid: com.azure.ai.metricsadvisor.models.DataFeedMetric
+  name: DataFeedMetric
+  nameWithType: DataFeedMetric
+  fullName: com.azure.ai.metricsadvisor.models.DataFeedMetric
 - uid: com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillSettings
   name: DataFeedMissingDataPointFillSettings
   nameWithType: DataFeedMissingDataPointFillSettings
   fullName: com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillSettings
+- uid: com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillType
+  name: DataFeedMissingDataPointFillType
+  nameWithType: DataFeedMissingDataPointFillType
+  fullName: com.azure.ai.metricsadvisor.models.DataFeedMissingDataPointFillType
 - uid: com.azure.ai.metricsadvisor.models.DataFeedOptions
   name: DataFeedOptions
   nameWithType: DataFeedOptions
@@ -248,18 +271,14 @@ references:
   name: DataFeedStatus
   nameWithType: DataFeedStatus
   fullName: com.azure.ai.metricsadvisor.models.DataFeedStatus
-- uid: com.azure.ai.metricsadvisor.models.DataSourceMissingDataPointFillType
-  name: DataSourceMissingDataPointFillType
-  nameWithType: DataSourceMissingDataPointFillType
-  fullName: com.azure.ai.metricsadvisor.models.DataSourceMissingDataPointFillType
+- uid: com.azure.ai.metricsadvisor.models.DataPointAnomaly
+  name: DataPointAnomaly
+  nameWithType: DataPointAnomaly
+  fullName: com.azure.ai.metricsadvisor.models.DataPointAnomaly
 - uid: com.azure.ai.metricsadvisor.models.DetectionConditionsOperator
   name: DetectionConditionsOperator
   nameWithType: DetectionConditionsOperator
   fullName: com.azure.ai.metricsadvisor.models.DetectionConditionsOperator
-- uid: com.azure.ai.metricsadvisor.models.Dimension
-  name: Dimension
-  nameWithType: Dimension
-  fullName: com.azure.ai.metricsadvisor.models.Dimension
 - uid: com.azure.ai.metricsadvisor.models.DimensionKey
   name: DimensionKey
   nameWithType: DimensionKey
@@ -268,10 +287,10 @@ references:
   name: ElasticsearchDataFeedSource
   nameWithType: ElasticsearchDataFeedSource
   fullName: com.azure.ai.metricsadvisor.models.ElasticsearchDataFeedSource
-- uid: com.azure.ai.metricsadvisor.models.EmailHook
-  name: EmailHook
-  nameWithType: EmailHook
-  fullName: com.azure.ai.metricsadvisor.models.EmailHook
+- uid: com.azure.ai.metricsadvisor.models.EmailNotificationHook
+  name: EmailNotificationHook
+  nameWithType: EmailNotificationHook
+  fullName: com.azure.ai.metricsadvisor.models.EmailNotificationHook
 - uid: com.azure.ai.metricsadvisor.models.EnrichmentStatus
   name: EnrichmentStatus
   nameWithType: EnrichmentStatus
@@ -296,26 +315,14 @@ references:
   name: HardThresholdCondition
   nameWithType: HardThresholdCondition
   fullName: com.azure.ai.metricsadvisor.models.HardThresholdCondition
-- uid: com.azure.ai.metricsadvisor.models.Hook
-  name: Hook
-  nameWithType: Hook
-  fullName: com.azure.ai.metricsadvisor.models.Hook
 - uid: com.azure.ai.metricsadvisor.models.HttpRequestDataFeedSource
   name: HttpRequestDataFeedSource
   nameWithType: HttpRequestDataFeedSource
   fullName: com.azure.ai.metricsadvisor.models.HttpRequestDataFeedSource
-- uid: com.azure.ai.metricsadvisor.models.Incident
-  name: Incident
-  nameWithType: Incident
-  fullName: com.azure.ai.metricsadvisor.models.Incident
 - uid: com.azure.ai.metricsadvisor.models.IncidentRootCause
   name: IncidentRootCause
   nameWithType: IncidentRootCause
   fullName: com.azure.ai.metricsadvisor.models.IncidentRootCause
-- uid: com.azure.ai.metricsadvisor.models.IncidentStatus
-  name: IncidentStatus
-  nameWithType: IncidentStatus
-  fullName: com.azure.ai.metricsadvisor.models.IncidentStatus
 - uid: com.azure.ai.metricsadvisor.models.InfluxDBDataFeedSource
   name: InfluxDBDataFeedSource
   nameWithType: InfluxDBDataFeedSource
@@ -352,6 +359,10 @@ references:
   name: ListDataFeedOptions
   nameWithType: ListDataFeedOptions
   fullName: com.azure.ai.metricsadvisor.models.ListDataFeedOptions
+- uid: com.azure.ai.metricsadvisor.models.ListDimensionValuesWithAnomaliesOptions
+  name: ListDimensionValuesWithAnomaliesOptions
+  nameWithType: ListDimensionValuesWithAnomaliesOptions
+  fullName: com.azure.ai.metricsadvisor.models.ListDimensionValuesWithAnomaliesOptions
 - uid: com.azure.ai.metricsadvisor.models.ListHookOptions
   name: ListHookOptions
   nameWithType: ListHookOptions
@@ -380,22 +391,10 @@ references:
   name: ListMetricFeedbackOptions
   nameWithType: ListMetricFeedbackOptions
   fullName: com.azure.ai.metricsadvisor.models.ListMetricFeedbackOptions
-- uid: com.azure.ai.metricsadvisor.models.ListMetricSeriesDataOptions
-  name: ListMetricSeriesDataOptions
-  nameWithType: ListMetricSeriesDataOptions
-  fullName: com.azure.ai.metricsadvisor.models.ListMetricSeriesDataOptions
 - uid: com.azure.ai.metricsadvisor.models.ListMetricSeriesDefinitionOptions
   name: ListMetricSeriesDefinitionOptions
   nameWithType: ListMetricSeriesDefinitionOptions
   fullName: com.azure.ai.metricsadvisor.models.ListMetricSeriesDefinitionOptions
-- uid: com.azure.ai.metricsadvisor.models.ListValuesOfDimensionWithAnomaliesOptions
-  name: ListValuesOfDimensionWithAnomaliesOptions
-  nameWithType: ListValuesOfDimensionWithAnomaliesOptions
-  fullName: com.azure.ai.metricsadvisor.models.ListValuesOfDimensionWithAnomaliesOptions
-- uid: com.azure.ai.metricsadvisor.models.Metric
-  name: Metric
-  nameWithType: Metric
-  fullName: com.azure.ai.metricsadvisor.models.Metric
 - uid: com.azure.ai.metricsadvisor.models.MetricAnomalyAlertConditions
   name: MetricAnomalyAlertConditions
   nameWithType: MetricAnomalyAlertConditions
@@ -484,6 +483,10 @@ references:
   name: MySqlDataFeedSource
   nameWithType: MySqlDataFeedSource
   fullName: com.azure.ai.metricsadvisor.models.MySqlDataFeedSource
+- uid: com.azure.ai.metricsadvisor.models.NotificationHook
+  name: NotificationHook
+  nameWithType: NotificationHook
+  fullName: com.azure.ai.metricsadvisor.models.NotificationHook
 - uid: com.azure.ai.metricsadvisor.models.PeriodType
   name: PeriodType
   nameWithType: PeriodType
@@ -496,10 +499,6 @@ references:
   name: SQLServerDataFeedSource
   nameWithType: SQLServerDataFeedSource
   fullName: com.azure.ai.metricsadvisor.models.SQLServerDataFeedSource
-- uid: com.azure.ai.metricsadvisor.models.Severity
-  name: Severity
-  nameWithType: Severity
-  fullName: com.azure.ai.metricsadvisor.models.Severity
 - uid: com.azure.ai.metricsadvisor.models.SeverityCondition
   name: SeverityCondition
   nameWithType: SeverityCondition
@@ -520,15 +519,11 @@ references:
   name: SuppressCondition
   nameWithType: SuppressCondition
   fullName: com.azure.ai.metricsadvisor.models.SuppressCondition
-- uid: com.azure.ai.metricsadvisor.models.TimeMode
-  name: TimeMode
-  nameWithType: TimeMode
-  fullName: com.azure.ai.metricsadvisor.models.TimeMode
 - uid: com.azure.ai.metricsadvisor.models.TopNGroupScope
   name: TopNGroupScope
   nameWithType: TopNGroupScope
   fullName: com.azure.ai.metricsadvisor.models.TopNGroupScope
-- uid: com.azure.ai.metricsadvisor.models.WebHook
-  name: WebHook
-  nameWithType: WebHook
-  fullName: com.azure.ai.metricsadvisor.models.WebHook
+- uid: com.azure.ai.metricsadvisor.models.WebNotificationHook
+  name: WebNotificationHook
+  nameWithType: WebNotificationHook
+  fullName: com.azure.ai.metricsadvisor.models.WebNotificationHook

@@ -2,24 +2,32 @@
 items:
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   id: SearchIndexingBufferedSenderOptions
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents
   children:
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.SearchIndexingBufferedSenderOptions()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlushWindow()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getDocumentKeyRetriever()
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getInitialBatchActionCount()
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetries()
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetryDelay()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionAdded()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionError()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionSent()
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionSucceeded()
-  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(java.lang.Boolean)
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay()
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(boolean)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlushWindow(java.time.Duration)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setDocumentKeyRetriever(java.util.function.Function<T,java.lang.String>)
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetries(int)
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetryDelay(java.time.Duration)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionAdded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionError(java.util.function.BiConsumer<com.azure.search.documents.models.IndexAction<T>,java.lang.Throwable>)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSent(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
   - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSucceeded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
+  - com.azure.search.documents.SearchIndexingBufferedSenderOptions.setRetryDelay(java.time.Duration)
   langs:
   - java
   name: SearchIndexingBufferedSenderOptions<T>
@@ -48,7 +56,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.SearchIndexingBufferedSenderOptions()
   id: SearchIndexingBufferedSenderOptions()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -62,7 +70,7 @@ items:
     content: public SearchIndexingBufferedSenderOptions()
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush()
   id: getAutoFlush()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -80,7 +88,7 @@ items:
       description: Flag indicating if the buffered sender will automatically flush.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlushWindow()
   id: getAutoFlushWindow()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -94,13 +102,13 @@ items:
     Gets the <xref uid="java.time.Duration" data-throw-if-not-resolved="false">Duration</xref> that the buffered sender will wait between sending documents to be indexed.
 
 
-    The buffered sender will reset the duration when documents are sent for indexing, either by reaching <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setBatchSize*" data-throw-if-not-resolved="false">#setBatchSize(Integer)</xref> or by a manual trigger.
+    The buffered sender will reset the duration when documents are sent for indexing, either by reaching <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)" data-throw-if-not-resolved="false">#setInitialBatchActionCount(int)</xref> or by a manual trigger.
 
 
-    If the duration is less than or equal to zero the buffered sender will only flush when <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getBatchSize*" data-throw-if-not-resolved="false">#getBatchSize()</xref> is triggered.
+    If the duration is less than or equal to zero the buffered sender will only flush when <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getInitialBatchActionCount()" data-throw-if-not-resolved="false">#getInitialBatchActionCount()</xref> is triggered.
 
 
-    This configuration is only taken into account if <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush()" data-throw-if-not-resolved="false">#getAutoFlush()</xref> is true or null.
+    This configuration is only taken into account if <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush()" data-throw-if-not-resolved="false">#getAutoFlush()</xref> is true.
   syntax:
     content: public Duration getAutoFlushWindow()
     return:
@@ -110,7 +118,7 @@ items:
          flushed.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getDocumentKeyRetriever()
   id: getDocumentKeyRetriever()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -126,9 +134,67 @@ items:
     return:
       type: java.util.function.Function<T,java.lang.String>
       description: The function that retrieves the key value from a document.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getInitialBatchActionCount()
+  id: getInitialBatchActionCount()
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: getInitialBatchActionCount()
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getInitialBatchActionCount()
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getInitialBatchActionCount()
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getInitialBatchActionCount*
+  type: Method
+  package: com.azure.search.documents
+  summary: >-
+    Gets the number of documents required in a batch for it to be flushed.
+
+
+    This configuration is only taken into account if <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush()" data-throw-if-not-resolved="false">#getAutoFlush()</xref> is true.
+  syntax:
+    content: public int getInitialBatchActionCount()
+    return:
+      type: int
+      description: The number of documents required before a flush is triggered.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetries()
+  id: getMaxRetries()
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: getMaxRetries()
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getMaxRetries()
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getMaxRetries()
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetries*
+  type: Method
+  package: com.azure.search.documents
+  summary: Gets the number of times a document will retry indexing before it is considered failed.
+  syntax:
+    content: public int getMaxRetries()
+    return:
+      type: int
+      description: The number of times a document will attempt indexing.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetryDelay()
+  id: getMaxRetryDelay()
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: getMaxRetryDelay()
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getMaxRetryDelay()
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getMaxRetryDelay()
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetryDelay*
+  type: Method
+  package: com.azure.search.documents
+  summary: Gets the maximum duration that requests will delay when the service is throttling.
+  syntax:
+    content: public Duration getMaxRetryDelay()
+    return:
+      type: java.time.Duration
+      description: The maximum duration requests will delay when the service is throttling.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionAdded()
   id: getOnActionAdded()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -146,7 +212,7 @@ items:
       description: The <xref uid="java.util.function.Consumer" data-throw-if-not-resolved="false">Consumer</xref> called when a document is added to a batch.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionError()
   id: getOnActionError()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -164,7 +230,7 @@ items:
       description: The <xref uid="java.util.function.BiConsumer" data-throw-if-not-resolved="false">BiConsumer</xref> called when a document has failed to index.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionSent()
   id: getOnActionSent()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -182,7 +248,7 @@ items:
       description: The <xref uid="java.util.function.Consumer" data-throw-if-not-resolved="false">Consumer</xref> called when a document is sent in a batch.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getOnActionSucceeded()
   id: getOnActionSucceeded()
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -198,35 +264,49 @@ items:
     return:
       type: java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>
       description: The <xref uid="java.util.function.Consumer" data-throw-if-not-resolved="false">Consumer</xref> called when a document is successfully indexed.
-- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(java.lang.Boolean)
-  id: setAutoFlush(java.lang.Boolean)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay()
+  id: getRetryDelay()
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
-  name: setAutoFlush(Boolean autoFlush)
-  nameWithType: SearchIndexingBufferedSenderOptions<T>.setAutoFlush(Boolean autoFlush)
-  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setAutoFlush(Boolean autoFlush)
+  name: getRetryDelay()
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getRetryDelay()
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getRetryDelay()
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay*
+  type: Method
+  package: com.azure.search.documents
+  summary: Gets the initial duration that requests will be delayed when the service is throttling.
+  syntax:
+    content: public Duration getRetryDelay()
+    return:
+      type: java.time.Duration
+      description: The initial duration requests will delay when the service is throttling.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(boolean)
+  id: setAutoFlush(boolean)
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: setAutoFlush(boolean autoFlush)
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setAutoFlush(boolean autoFlush)
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setAutoFlush(boolean autoFlush)
   overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush*
   type: Method
   package: com.azure.search.documents
-  summary: >-
-    Flag determining whether a buffered sender will automatically flush its document batch based on the configurations of <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlushWindow(java.time.Duration)" data-throw-if-not-resolved="false">#setAutoFlushWindow(Duration)</xref> and <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setBatchSize*" data-throw-if-not-resolved="false">#setBatchSize(Integer)</xref>.
-
-
-    If `autoFlush` is null the buffered sender will be set to automatically flush.
+  summary: Sets the flag determining whether a buffered sender will automatically flush its document batch based on the configurations of <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlushWindow(java.time.Duration)" data-throw-if-not-resolved="false">#setAutoFlushWindow(Duration)</xref> and <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)" data-throw-if-not-resolved="false">#setInitialBatchActionCount(int)</xref>.
   syntax:
-    content: public SearchIndexingBufferedSenderOptions<T> setAutoFlush(Boolean autoFlush)
+    content: public SearchIndexingBufferedSenderOptions<T> setAutoFlush(boolean autoFlush)
     parameters:
     - id: autoFlush
-      type: java.lang.Boolean
+      type: boolean
       description: Flag determining whether a buffered sender will automatically flush.
     return:
       type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
       description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlushWindow(java.time.Duration)
   id: setAutoFlushWindow(java.time.Duration)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -237,13 +317,13 @@ items:
   type: Method
   package: com.azure.search.documents
   summary: >-
-    Duration between a buffered sender sending documents to be indexed.
+    Sets the duration between a buffered sender sending documents to be indexed.
 
 
-    The buffered sender will reset the duration when documents are sent for indexing, either by reaching <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setBatchSize*" data-throw-if-not-resolved="false">#setBatchSize(Integer)</xref> or by a manual trigger.
+    The buffered sender will reset the duration when documents are sent for indexing, either by reaching <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)" data-throw-if-not-resolved="false">#setInitialBatchActionCount(int)</xref> or by a manual trigger.
 
 
-    If `flushWindow` is negative or zero and <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(java.lang.Boolean)" data-throw-if-not-resolved="false">#setAutoFlush(Boolean)</xref> is enabled the buffered sender will only flush when <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setBatchSize*" data-throw-if-not-resolved="false">#setBatchSize(Integer)</xref> is met. If `flushWindow` is null a default value of 60 seconds is used.
+    If `flushWindow` is negative or zero and <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setAutoFlush(boolean)" data-throw-if-not-resolved="false">#setAutoFlush(boolean)</xref> is enabled the buffered sender will only flush when <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)" data-throw-if-not-resolved="false">#setInitialBatchActionCount(int)</xref> is met.
   syntax:
     content: public SearchIndexingBufferedSenderOptions<T> setAutoFlushWindow(Duration autoFlushWindow)
     parameters:
@@ -255,7 +335,7 @@ items:
       description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setDocumentKeyRetriever(java.util.function.Function<T,java.lang.String>)
   id: setDocumentKeyRetriever(java.util.function.Function<T,java.lang.String>)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -266,7 +346,7 @@ items:
   type: Method
   package: com.azure.search.documents
   summary: >-
-    Function that retrieves the key value from a document.
+    Sets the function that retrieves the key value from a document.
 
 
     This function must be sent for a buffered sender to be properly constructed. It is used to correlate response values to the originating document.
@@ -279,9 +359,93 @@ items:
     return:
       type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
       description: The updated SearchIndexingBufferedSenderOptions object.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount(int)
+  id: setInitialBatchActionCount(int)
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: setInitialBatchActionCount(int initialBatchActionCount)
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setInitialBatchActionCount(int initialBatchActionCount)
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setInitialBatchActionCount(int initialBatchActionCount)
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount*
+  type: Method
+  package: com.azure.search.documents
+  summary: >-
+    Sets the number of documents before a buffered sender will send the batch to be indexed.
+
+
+    This will only trigger a batch to be sent automatically if <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.autoFlushWindow" data-throw-if-not-resolved="false">#autoFlushWindow</xref> is configured. Default value is `512`.
+  syntax:
+    content: public SearchIndexingBufferedSenderOptions<T> setInitialBatchActionCount(int initialBatchActionCount)
+    parameters:
+    - id: initialBatchActionCount
+      type: int
+      description: The number of documents in a batch that will trigger it to be indexed.
+    return:
+      type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
+      description: The updated SearchIndexingBufferedSenderOptions object.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetries(int)
+  id: setMaxRetries(int)
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: setMaxRetries(int maxRetries)
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setMaxRetries(int maxRetries)
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setMaxRetries(int maxRetries)
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetries*
+  type: Method
+  package: com.azure.search.documents
+  summary: >-
+    Sets the number of times a document will retry indexing before it is considered failed.
+
+
+    Documents are only retried on retryable status codes.
+
+
+    Default value is `3`.
+  syntax:
+    content: public SearchIndexingBufferedSenderOptions<T> setMaxRetries(int maxRetries)
+    parameters:
+    - id: maxRetries
+      type: int
+      description: The number of times a document will retry indexing before it is considered failed.
+    return:
+      type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
+      description: The updated SearchIndexingBufferedSenderOptions object.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetryDelay(java.time.Duration)
+  id: setMaxRetryDelay(java.time.Duration)
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: setMaxRetryDelay(Duration maxRetryDelay)
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setMaxRetryDelay(Duration maxRetryDelay)
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setMaxRetryDelay(Duration maxRetryDelay)
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetryDelay*
+  type: Method
+  package: com.azure.search.documents
+  summary: >-
+    Sets the maximum duration that requests will be delayed when the service is throttling.
+
+
+    If `maxRetryDelay` is less than <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay()" data-throw-if-not-resolved="false">#getRetryDelay()</xref> then <xref uid="com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay()" data-throw-if-not-resolved="false">#getRetryDelay()</xref> will be used as the maximum delay.
+
+
+    Default value is `Duration.ofMinutes(1)`.
+  syntax:
+    content: public SearchIndexingBufferedSenderOptions<T> setMaxRetryDelay(Duration maxRetryDelay)
+    parameters:
+    - id: maxRetryDelay
+      type: java.time.Duration
+      description: The maximum duration requests will delay when the service is throttling.
+    return:
+      type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
+      description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionAdded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
   id: setOnActionAdded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -305,7 +469,7 @@ items:
       description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionError(java.util.function.BiConsumer<com.azure.search.documents.models.IndexAction<T>,java.lang.Throwable>)
   id: setOnActionError(java.util.function.BiConsumer<com.azure.search.documents.models.IndexAction<T>,java.lang.Throwable>)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -315,7 +479,7 @@ items:
   overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionError*
   type: Method
   package: com.azure.search.documents
-  summary: Callback hook for when a document indexing action has failed to index and isn't retryable.
+  summary: Sets the callback hook for when a document indexing action has failed to index and isn't retryable.
   syntax:
     content: public SearchIndexingBufferedSenderOptions<T> setOnActionError(BiConsumer<IndexAction<T>,Throwable> onActionErrorBiConsumer)
     parameters:
@@ -329,7 +493,7 @@ items:
       description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSent(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
   id: setOnActionSent(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -339,19 +503,21 @@ items:
   overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSent*
   type: Method
   package: com.azure.search.documents
-  summary: Callback hook for when a document indexing has been sent in a batching request.
+  summary: Sets the callback hook for when a document indexing has been sent in a batching request.
   syntax:
     content: public SearchIndexingBufferedSenderOptions<T> setOnActionSent(Consumer<IndexAction<T>> onActionSentConsumer)
     parameters:
     - id: onActionSentConsumer
       type: java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>
-      description: The <xref uid="java.util.function.Consumer" data-throw-if-not-resolved="false">Consumer</xref> that is called when a document has been sent in a batch request.
+      description: >-
+        The <xref uid="java.util.function.Consumer" data-throw-if-not-resolved="false">Consumer</xref> that is called when a document has been sent in a batch
+         request.
     return:
       type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
       description: The updated SearchIndexingBufferedSenderOptions object.
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSucceeded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
   id: setOnActionSucceeded(java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>)
-  artifact: com.azure:azure-search-documents:11.2.0-beta.2
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
   parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
   langs:
   - java
@@ -361,7 +527,7 @@ items:
   overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setOnActionSucceeded*
   type: Method
   package: com.azure.search.documents
-  summary: Callback hook for when a document indexing action has successfully completed indexing.
+  summary: Sets the callback hook for when a document indexing action has successfully completed indexing.
   syntax:
     content: public SearchIndexingBufferedSenderOptions<T> setOnActionSucceeded(Consumer<IndexAction<T>> onActionSucceededConsumer)
     parameters:
@@ -373,17 +539,43 @@ items:
     return:
       type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
       description: The updated SearchIndexingBufferedSenderOptions object.
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setRetryDelay(java.time.Duration)
+  id: setRetryDelay(java.time.Duration)
+  artifact: com.azure:azure-search-documents:11.2.0-beta.3
+  parent: com.azure.search.documents.SearchIndexingBufferedSenderOptions
+  langs:
+  - java
+  name: setRetryDelay(Duration retryDelay)
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setRetryDelay(Duration retryDelay)
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setRetryDelay(Duration retryDelay)
+  overload: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setRetryDelay*
+  type: Method
+  package: com.azure.search.documents
+  summary: >-
+    Sets the initial duration that requests will be delayed when the service is throttling.
+
+
+    Default value is `Duration.ofMillis(800)`.
+  syntax:
+    content: public SearchIndexingBufferedSenderOptions<T> setRetryDelay(Duration retryDelay)
+    parameters:
+    - id: retryDelay
+      type: java.time.Duration
+      description: The initial duration requests will delay when the service is throttling.
+    return:
+      type: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
+      description: The updated SearchIndexingBufferedSenderOptions object.
 references:
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.SearchIndexingBufferedSenderOptions*
   name: SearchIndexingBufferedSenderOptions
   nameWithType: SearchIndexingBufferedSenderOptions<T>.SearchIndexingBufferedSenderOptions
   fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.SearchIndexingBufferedSenderOptions
   package: com.azure.search.documents
-- uid: java.lang.Boolean
+- uid: boolean
   spec.java:
-  - uid: java.lang.Boolean
-    name: Boolean
-    fullName: java.lang.Boolean
+  - uid: boolean
+    name: boolean
+    fullName: boolean
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>
   spec.java:
   - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions
@@ -401,11 +593,6 @@ references:
   nameWithType: SearchIndexingBufferedSenderOptions<T>.setAutoFlush
   fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setAutoFlush
   package: com.azure.search.documents
-- uid: boolean
-  spec.java:
-  - uid: boolean
-    name: boolean
-    fullName: boolean
 - uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getAutoFlush*
   name: getAutoFlush
   nameWithType: SearchIndexingBufferedSenderOptions<T>.getAutoFlush
@@ -425,6 +612,51 @@ references:
   name: getAutoFlushWindow
   nameWithType: SearchIndexingBufferedSenderOptions<T>.getAutoFlushWindow
   fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getAutoFlushWindow
+  package: com.azure.search.documents
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setInitialBatchActionCount*
+  name: setInitialBatchActionCount
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setInitialBatchActionCount
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setInitialBatchActionCount
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getInitialBatchActionCount*
+  name: getInitialBatchActionCount
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getInitialBatchActionCount
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getInitialBatchActionCount
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetries*
+  name: setMaxRetries
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setMaxRetries
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setMaxRetries
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetries*
+  name: getMaxRetries
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getMaxRetries
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getMaxRetries
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setRetryDelay*
+  name: setRetryDelay
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setRetryDelay
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setRetryDelay
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getRetryDelay*
+  name: getRetryDelay
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getRetryDelay
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getRetryDelay
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.setMaxRetryDelay*
+  name: setMaxRetryDelay
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.setMaxRetryDelay
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.setMaxRetryDelay
+  package: com.azure.search.documents
+- uid: com.azure.search.documents.SearchIndexingBufferedSenderOptions.getMaxRetryDelay*
+  name: getMaxRetryDelay
+  nameWithType: SearchIndexingBufferedSenderOptions<T>.getMaxRetryDelay
+  fullName: com.azure.search.documents.SearchIndexingBufferedSenderOptions<T>.getMaxRetryDelay
   package: com.azure.search.documents
 - uid: java.util.function.Consumer<com.azure.search.documents.models.IndexAction<T>>
   spec.java:
