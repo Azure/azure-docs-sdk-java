@@ -2,16 +2,16 @@
 items:
 - uid: com.azure.core.amqp.implementation.TracerProvider
   id: TracerProvider
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation
   children:
   - com.azure.core.amqp.implementation.TracerProvider.TracerProvider(java.lang.Iterable<com.azure.core.util.tracing.Tracer>)
   - com.azure.core.amqp.implementation.TracerProvider.addSpanLinks(com.azure.core.util.Context)
   - com.azure.core.amqp.implementation.TracerProvider.endSpan(com.azure.core.util.Context,reactor.core.publisher.Signal<java.lang.Void>)
   - com.azure.core.amqp.implementation.TracerProvider.extractContext(java.lang.String,com.azure.core.util.Context)
-  - com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(com.azure.core.util.Context)
+  - com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(java.lang.String,com.azure.core.util.Context)
   - com.azure.core.amqp.implementation.TracerProvider.isEnabled()
-  - com.azure.core.amqp.implementation.TracerProvider.startSpan(com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
+  - com.azure.core.amqp.implementation.TracerProvider.startSpan(java.lang.String,com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
   langs:
   - java
   name: TracerProvider
@@ -37,7 +37,7 @@ items:
   - java.lang.Object.wait(long,int)
 - uid: com.azure.core.amqp.implementation.TracerProvider.TracerProvider(java.lang.Iterable<com.azure.core.util.tracing.Tracer>)
   id: TracerProvider(java.lang.Iterable<com.azure.core.util.tracing.Tracer>)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
@@ -54,7 +54,7 @@ items:
       type: java.lang.Iterable<com.azure.core.util.tracing.Tracer>
 - uid: com.azure.core.amqp.implementation.TracerProvider.addSpanLinks(com.azure.core.util.Context)
   id: addSpanLinks(com.azure.core.util.Context)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
@@ -73,7 +73,7 @@ items:
       description: Additional metadata that is passed through the call stack.
 - uid: com.azure.core.amqp.implementation.TracerProvider.endSpan(com.azure.core.util.Context,reactor.core.publisher.Signal<java.lang.Void>)
   id: endSpan(com.azure.core.util.Context,reactor.core.publisher.Signal<java.lang.Void>)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
@@ -95,7 +95,7 @@ items:
       description: The signal indicates the status and contains the metadata we need to end the tracing span.
 - uid: com.azure.core.amqp.implementation.TracerProvider.extractContext(java.lang.String,com.azure.core.util.Context)
   id: extractContext(java.lang.String,com.azure.core.util.Context)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
@@ -116,22 +116,25 @@ items:
       type: com.azure.core.util.Context
     return:
       type: com.azure.core.util.Context
-- uid: com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(com.azure.core.util.Context)
-  id: getSharedSpanBuilder(com.azure.core.util.Context)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+- uid: com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(java.lang.String,com.azure.core.util.Context)
+  id: getSharedSpanBuilder(java.lang.String,com.azure.core.util.Context)
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
-  name: getSharedSpanBuilder(Context context)
-  nameWithType: TracerProvider.getSharedSpanBuilder(Context context)
-  fullName: com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(Context context)
+  name: getSharedSpanBuilder(String serviceBaseName, Context context)
+  nameWithType: TracerProvider.getSharedSpanBuilder(String serviceBaseName, Context context)
+  fullName: com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder(String serviceBaseName, Context context)
   overload: com.azure.core.amqp.implementation.TracerProvider.getSharedSpanBuilder*
   type: Method
   package: com.azure.core.amqp.implementation
   summary: For a plugged tracer implementation a new context containing the span builder is returned.
   syntax:
-    content: public Context getSharedSpanBuilder(Context context)
+    content: public Context getSharedSpanBuilder(String serviceBaseName, Context context)
     parameters:
+    - id: serviceBaseName
+      type: java.lang.String
+      description: the service name to be appended to the span name.
     - id: context
       type: com.azure.core.util.Context
       description: Additional metadata containing the span name for creating the span builder.
@@ -139,7 +142,7 @@ items:
       type: com.azure.core.util.Context
 - uid: com.azure.core.amqp.implementation.TracerProvider.isEnabled()
   id: isEnabled()
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
@@ -153,22 +156,25 @@ items:
     content: public boolean isEnabled()
     return:
       type: boolean
-- uid: com.azure.core.amqp.implementation.TracerProvider.startSpan(com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
-  id: startSpan(com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
-  artifact: com.azure:azure-core-amqp:1.6.0-beta.1
+- uid: com.azure.core.amqp.implementation.TracerProvider.startSpan(java.lang.String,com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
+  id: startSpan(java.lang.String,com.azure.core.util.Context,com.azure.core.util.tracing.ProcessKind)
+  artifact: com.azure:azure-core-amqp:1.7.0-beta.2
   parent: com.azure.core.amqp.implementation.TracerProvider
   langs:
   - java
-  name: startSpan(Context context, ProcessKind processKind)
-  nameWithType: TracerProvider.startSpan(Context context, ProcessKind processKind)
-  fullName: com.azure.core.amqp.implementation.TracerProvider.startSpan(Context context, ProcessKind processKind)
+  name: startSpan(String serviceBaseName, Context context, ProcessKind processKind)
+  nameWithType: TracerProvider.startSpan(String serviceBaseName, Context context, ProcessKind processKind)
+  fullName: com.azure.core.amqp.implementation.TracerProvider.startSpan(String serviceBaseName, Context context, ProcessKind processKind)
   overload: com.azure.core.amqp.implementation.TracerProvider.startSpan*
   type: Method
   package: com.azure.core.amqp.implementation
   summary: For a plugged tracer implementation a new tracing span is created. The `context` will be checked for containing information about a parent span. If a parent span is found the new span will be added as a child, otherwise the span will be created and added to the context and any downstream start calls will use the created span as the parent.
   syntax:
-    content: public Context startSpan(Context context, ProcessKind processKind)
+    content: public Context startSpan(String serviceBaseName, Context context, ProcessKind processKind)
     parameters:
+    - id: serviceBaseName
+      type: java.lang.String
+      description: the service name to be appended to the span name.
     - id: context
       type: com.azure.core.util.Context
       description: Additional metadata that is passed through the call stack.
@@ -206,6 +212,11 @@ references:
   nameWithType: TracerProvider.isEnabled
   fullName: com.azure.core.amqp.implementation.TracerProvider.isEnabled
   package: com.azure.core.amqp.implementation
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
 - uid: com.azure.core.util.Context
   spec.java:
   - uid: com.azure.core.util.Context
@@ -243,11 +254,6 @@ references:
   nameWithType: TracerProvider.addSpanLinks
   fullName: com.azure.core.amqp.implementation.TracerProvider.addSpanLinks
   package: com.azure.core.amqp.implementation
-- uid: java.lang.String
-  spec.java:
-  - uid: java.lang.String
-    name: String
-    fullName: java.lang.String
 - uid: com.azure.core.amqp.implementation.TracerProvider.extractContext*
   name: extractContext
   nameWithType: TracerProvider.extractContext
