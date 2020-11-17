@@ -2,20 +2,25 @@
 items:
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   id: ShareLeaseAsyncClient
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized
   children:
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLease()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse()
+  - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse(com.azure.storage.file.share.options.ShareAcquireLeaseOptions)
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLease()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse()
+  - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse(com.azure.storage.file.share.options.ShareBreakLeaseOptions)
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLease(java.lang.String)
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLeaseWithResponse(java.lang.String)
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getAccountName()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getFileUrl()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getLeaseId()
+  - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.releaseLease()
   - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.releaseLeaseWithResponse()
+  - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease()
+  - com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse()
   langs:
   - java
   name: ShareLeaseAsyncClient
@@ -62,20 +67,20 @@ items:
   - java.lang.Object.wait()
   - java.lang.Object.wait(long)
   - java.lang.Object.wait(long,int)
-- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient(com.azure.core.http.HttpPipeline,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-  id: ShareLeaseAsyncClient(com.azure.core.http.HttpPipeline,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
-  artifact: com.azure:azure-storage-file-share:12.6.0
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient(com.azure.core.http.HttpPipeline,java.lang.String,java.lang.String,boolean,java.lang.String,java.lang.String)
+  id: ShareLeaseAsyncClient(com.azure.core.http.HttpPipeline,java.lang.String,java.lang.String,boolean,java.lang.String,java.lang.String)
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
-  name: ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, String accountName, String serviceVersion)
-  nameWithType: ShareLeaseAsyncClient.ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, String accountName, String serviceVersion)
-  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, String accountName, String serviceVersion)
+  name: ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, boolean isShareFile, String accountName, String serviceVersion)
+  nameWithType: ShareLeaseAsyncClient.ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, boolean isShareFile, String accountName, String serviceVersion)
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, boolean isShareFile, String accountName, String serviceVersion)
   overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient*
   type: Constructor
   package: com.azure.storage.file.share.specialized
   syntax:
-    content: " ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, String accountName, String serviceVersion)"
+    content: " ShareLeaseAsyncClient(HttpPipeline pipeline, String url, String leaseId, boolean isShareFile, String accountName, String serviceVersion)"
     parameters:
     - id: pipeline
       type: com.azure.core.http.HttpPipeline
@@ -83,13 +88,15 @@ items:
       type: java.lang.String
     - id: leaseId
       type: java.lang.String
+    - id: isShareFile
+      type: boolean
     - id: accountName
       type: java.lang.String
     - id: serviceVersion
       type: java.lang.String
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLease()
   id: acquireLease()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -100,7 +107,7 @@ items:
   type: Method
   package: com.azure.storage.file.share.specialized
   summary: >-
-    Acquires a lease for write and delete operations. All leases are infinite.
+    Acquires an infinite lease for write and delete operations.
 
 
     **Code Samples**
@@ -118,7 +125,7 @@ items:
       description: A reactive response containing the lease ID.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse()
   id: acquireLeaseWithResponse()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -129,7 +136,7 @@ items:
   type: Method
   package: com.azure.storage.file.share.specialized
   summary: >-
-    Acquires a lease for write and delete operations. All leases are infinite.
+    Acquires an infinite lease for write and delete operations.
 
 
     **Code Samples**
@@ -145,9 +152,42 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.String>>
       description: A reactive response containing the lease ID.
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse(com.azure.storage.file.share.options.ShareAcquireLeaseOptions)
+  id: acquireLeaseWithResponse(com.azure.storage.file.share.options.ShareAcquireLeaseOptions)
+  artifact: com.azure:azure-storage-file-share:12.7.0
+  parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
+  langs:
+  - java
+  name: acquireLeaseWithResponse(ShareAcquireLeaseOptions options)
+  nameWithType: ShareLeaseAsyncClient.acquireLeaseWithResponse(ShareAcquireLeaseOptions options)
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse(ShareAcquireLeaseOptions options)
+  overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: >-
+    Acquires a lease for write and delete operations. Note: Share files only support infinite lease.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    client.acquireLeaseWithResponse(new ShareAcquireLeaseOptions().setDuration(10)).subscribe(response ->
+         System.out.printf("Lease ID is %s%n", response.getValue()));
+    ```
+  syntax:
+    content: public Mono<Response<String>> acquireLeaseWithResponse(ShareAcquireLeaseOptions options)
+    parameters:
+    - id: options
+      type: com.azure.storage.file.share.options.ShareAcquireLeaseOptions
+      description: <xref uid="com.azure.storage.file.share.options.ShareAcquireLeaseOptions" data-throw-if-not-resolved="false">ShareAcquireLeaseOptions</xref>
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.String>>
+      description: A reactive response containing the lease ID.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLease()
   id: breakLease()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -176,7 +216,7 @@ items:
       description: A reactive response signalling completion.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse()
   id: breakLeaseWithResponse()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -187,7 +227,13 @@ items:
   type: Method
   package: com.azure.storage.file.share.specialized
   summary: >-
-    Breaks the previously acquired lease, if it exists. Leases will break immediately.
+    Breaks the previously acquired lease, if it exists.
+
+
+    For files, leases will break immediately.
+
+
+    For shares, leases will break after the specified duration.
 
 
     **Code Samples**
@@ -203,9 +249,48 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
       description: A reactive response signalling completion.
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse(com.azure.storage.file.share.options.ShareBreakLeaseOptions)
+  id: breakLeaseWithResponse(com.azure.storage.file.share.options.ShareBreakLeaseOptions)
+  artifact: com.azure:azure-storage-file-share:12.7.0
+  parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
+  langs:
+  - java
+  name: breakLeaseWithResponse(ShareBreakLeaseOptions options)
+  nameWithType: ShareLeaseAsyncClient.breakLeaseWithResponse(ShareBreakLeaseOptions options)
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse(ShareBreakLeaseOptions options)
+  overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: >-
+    Breaks the previously acquired lease, if it exists.
+
+
+    For files, leases will break immediately.
+
+
+    For shares, leases will break after the specified duration.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    client.breakLeaseWithResponse(new ShareBreakLeaseOptions().setBreakPeriod(Duration.ofSeconds(25)))
+         .subscribe(response -> System.out.println("The lease has been successfully broken"));
+    ```
+  syntax:
+    content: public Mono<Response<Void>> breakLeaseWithResponse(ShareBreakLeaseOptions options)
+    parameters:
+    - id: options
+      type: com.azure.storage.file.share.options.ShareBreakLeaseOptions
+      description: <xref uid="com.azure.storage.file.share.options.ShareBreakLeaseOptions" data-throw-if-not-resolved="false">ShareBreakLeaseOptions</xref>
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
+      description: A reactive response signalling completion.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLease(java.lang.String)
   id: changeLease(java.lang.String)
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -238,7 +323,7 @@ items:
       description: A reactive response containing the new lease ID.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLeaseWithResponse(java.lang.String)
   id: changeLeaseWithResponse(java.lang.String)
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -271,7 +356,7 @@ items:
       description: A reactive response containing the new lease ID.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getAccountName()
   id: getAccountName()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -289,7 +374,7 @@ items:
       description: account name associated with this storage resource.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getFileUrl()
   id: getFileUrl()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -299,7 +384,6 @@ items:
   overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getFileUrl*
   type: Method
   package: com.azure.storage.file.share.specialized
-  summary: Gets the <xref uid="" data-throw-if-not-resolved="false">URL</xref> of the lease client.
   syntax:
     content: public String getFileUrl()
     return:
@@ -307,7 +391,7 @@ items:
       description: URL of the lease client.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getLeaseId()
   id: getLeaseId()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -323,9 +407,31 @@ items:
     return:
       type: java.lang.String
       description: the lease ID.
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl()
+  id: getResourceUrl()
+  artifact: com.azure:azure-storage-file-share:12.7.0
+  parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
+  langs:
+  - java
+  name: getResourceUrl()
+  nameWithType: ShareLeaseAsyncClient.getResourceUrl()
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl()
+  overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: >-
+    Gets the <xref uid="" data-throw-if-not-resolved="false">URL</xref> of the lease client.
+
+
+    The lease will either be a share or share file URL depending on which the lease client is associated.
+  syntax:
+    content: public String getResourceUrl()
+    return:
+      type: java.lang.String
+      description: URL of the lease client.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.releaseLease()
   id: releaseLease()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -354,7 +460,7 @@ items:
       description: A reactive response signalling completion.
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.releaseLeaseWithResponse()
   id: releaseLeaseWithResponse()
-  artifact: com.azure:azure-storage-file-share:12.6.0
+  artifact: com.azure:azure-storage-file-share:12.7.0
   parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
   langs:
   - java
@@ -381,6 +487,64 @@ items:
     return:
       type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.Void>>
       description: A reactive response signalling completion.
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease()
+  id: renewLease()
+  artifact: com.azure:azure-storage-file-share:12.7.0
+  parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
+  langs:
+  - java
+  name: renewLease()
+  nameWithType: ShareLeaseAsyncClient.renewLease()
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease()
+  overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: >-
+    Renews the previously acquired lease on a share.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    client.renewLease().subscribe(response -> System.out.printf("Renewed lease ID is %s%n", response));
+
+    ```
+  syntax:
+    content: public Mono<String> renewLease()
+    return:
+      type: reactor.core.publisher.Mono<java.lang.String>
+      description: A reactive response containing the renewed lease ID.
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse()
+  id: renewLeaseWithResponse()
+  artifact: com.azure:azure-storage-file-share:12.7.0
+  parent: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient
+  langs:
+  - java
+  name: renewLeaseWithResponse()
+  nameWithType: ShareLeaseAsyncClient.renewLeaseWithResponse()
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse()
+  overload: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse*
+  type: Method
+  package: com.azure.storage.file.share.specialized
+  summary: >-
+    Renews the previously acquired lease on a share.
+
+
+    **Code Samples**
+
+
+    ```java
+
+    client.renewLeaseWithResponse().subscribe(response ->
+         System.out.printf("Renewed lease ID is %s%n", response.getValue()));
+    ```
+  syntax:
+    content: public Mono<Response<String>> renewLeaseWithResponse()
+    return:
+      type: reactor.core.publisher.Mono<com.azure.core.http.rest.Response<java.lang.String>>
+      description: A reactive response containing the renewed lease ID.
 references:
 - uid: com.azure.core.http.HttpPipeline
   spec.java:
@@ -392,6 +556,11 @@ references:
   - uid: java.lang.String
     name: String
     fullName: java.lang.String
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.ShareLeaseAsyncClient*
   name: ShareLeaseAsyncClient
   nameWithType: ShareLeaseAsyncClient.ShareLeaseAsyncClient
@@ -401,6 +570,11 @@ references:
   name: getFileUrl
   nameWithType: ShareLeaseAsyncClient.getFileUrl
   fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getFileUrl
+  package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl*
+  name: getResourceUrl
+  nameWithType: ShareLeaseAsyncClient.getResourceUrl
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getResourceUrl
   package: com.azure.storage.file.share.specialized
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getLeaseId*
   name: getLeaseId
@@ -448,6 +622,10 @@ references:
   nameWithType: ShareLeaseAsyncClient.acquireLeaseWithResponse
   fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.acquireLeaseWithResponse
   package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.options.ShareAcquireLeaseOptions
+  name: ShareAcquireLeaseOptions
+  nameWithType: ShareAcquireLeaseOptions
+  fullName: com.azure.storage.file.share.options.ShareAcquireLeaseOptions
 - uid: reactor.core.publisher.Mono<java.lang.Void>
   spec.java:
   - uid: reactor.core.publisher.Mono
@@ -499,6 +677,10 @@ references:
   nameWithType: ShareLeaseAsyncClient.breakLeaseWithResponse
   fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.breakLeaseWithResponse
   package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.options.ShareBreakLeaseOptions
+  name: ShareBreakLeaseOptions
+  nameWithType: ShareBreakLeaseOptions
+  fullName: com.azure.storage.file.share.options.ShareBreakLeaseOptions
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLease*
   name: changeLease
   nameWithType: ShareLeaseAsyncClient.changeLease
@@ -508,6 +690,16 @@ references:
   name: changeLeaseWithResponse
   nameWithType: ShareLeaseAsyncClient.changeLeaseWithResponse
   fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.changeLeaseWithResponse
+  package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease*
+  name: renewLease
+  nameWithType: ShareLeaseAsyncClient.renewLease
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLease
+  package: com.azure.storage.file.share.specialized
+- uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse*
+  name: renewLeaseWithResponse
+  nameWithType: ShareLeaseAsyncClient.renewLeaseWithResponse
+  fullName: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.renewLeaseWithResponse
   package: com.azure.storage.file.share.specialized
 - uid: com.azure.storage.file.share.specialized.ShareLeaseAsyncClient.getAccountName*
   name: getAccountName
