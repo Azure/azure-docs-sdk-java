@@ -4,6 +4,7 @@ items:
   id: SecurityProviderSymmetricKey
   parent: com.microsoft.azure.sdk.iot.provisioning.security
   children:
+  - com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey(byte [],String)
   - com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.getRegistrationId()
   - com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.getSSLContext()
   - com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.getSymmetricKey()
@@ -23,13 +24,47 @@ items:
       branch: master
       repo: https://github.com/Azure/azure-iot-sdk-java
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 19
+    startLine: 21
   package: com.microsoft.azure.sdk.iot.provisioning.security
   syntax:
     content: public class SecurityProviderSymmetricKey extends SecurityProvider
   inheritance:
   - java.lang.Object
   - com.microsoft.azure.sdk.iot.provisioning.security.SecurityProvider
+- uid: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey(byte [],String)
+  id: ComputeDerivedSymmetricKey(byte [],String)
+  parent: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey
+  href: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.yml
+  langs:
+  - java
+  name: ComputeDerivedSymmetricKey(byte[] enrollmentGroupSymmetricKey, String deviceId)
+  nameWithType: SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey(byte[] enrollmentGroupSymmetricKey, String deviceId)
+  fullName: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey(byte[] enrollmentGroupSymmetricKey, String deviceId)
+  overload: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey*
+  type: Method
+  source:
+    remote: *o0
+    path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
+    startLine: 175
+  package: com.microsoft.azure.sdk.iot.provisioning.security
+  summary: "<p>Compute the derived symmetric key for authenticating your device based on it's group enrollment's symmetric key and from the device's registrationId. This step is only necessary for devices in group enrollments. Devices that are registered via an individual enrollment can use the individual enrollment's symmetric key directly. </p>"
+  syntax:
+    content: public static byte [] ComputeDerivedSymmetricKey(byte[] enrollmentGroupSymmetricKey, String deviceId)
+    parameters:
+    - id: enrollmentGroupSymmetricKey
+      type: ccd9418d
+      description: <p>The primary or secondary key of the group enrollment for which a device is computing it's derived symmetric key. Must be a UTF-8 byte array. </p>
+    - id: deviceId
+      type: "26831127"
+      description: <p>The Id of the particular device to compute the derived key for. The user is expected to decide what the deviceId should be prior to attempting to provision the device. </p>
+    return:
+      type: ccd9418d
+      description: <p>The derived key, in base64 encoded bytes. </p>
+  exceptions:
+  - type: e333ca4f
+    description: <p>If any exception occurs while initializing the HMAC with the provided key </p>
+  - type: 456eb9d1
+    description: <p>If your device does not support HMAC_SHA256 </p>
 - uid: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.getRegistrationId()
   id: getRegistrationId()
   parent: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey
@@ -44,7 +79,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 86
+    startLine: 91
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Unique id required for registration</p>\r\n<p></p>"
   syntax:
@@ -69,7 +104,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 103
+    startLine: 108
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Retrieves the SSL context loaded with trusted certs. In case of X509 SSL context shall be loaded with complete chain all the way till the leaf along with its private key.</p>\r\n<p></p>"
   syntax:
@@ -94,7 +129,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 74
+    startLine: 79
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Getter for Symmetric key </p>"
   syntax:
@@ -116,7 +151,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 139
+    startLine: 144
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Signs data using the provided base 64 decoded key using HMAC SHA 256 </p>"
   syntax:
@@ -148,7 +183,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 31
+    startLine: 36
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Constructor for Symmetric key security provider </p>"
   syntax:
@@ -156,7 +191,7 @@ items:
     parameters:
     - id: symmetricKey
       type: ccd9418d
-      description: <p>Symmetric key to be used </p>
+      description: <p>Symmetric key to be used. For authenticating devices that are under an individual enrollment, this symmetric key is the same symmetric key that the enrollment has. For authenticating devices that are under a group enrollment, this symmetric key is derived from the enrollment group's symmetric key </p>
     - id: registrationId
       type: "26831127"
       description: <p>Registration ID to be used </p>
@@ -174,7 +209,7 @@ items:
   source:
     remote: *o0
     path: provisioning/security/security-provider/src/main/java/com/microsoft/azure/sdk/iot/provisioning/security/SecurityProviderSymmetricKey.java
-    startLine: 53
+    startLine: 58
   package: com.microsoft.azure.sdk.iot.provisioning.security
   summary: "<p>Constructor for Symmetric key security provider that takes both keys </p>"
   syntax:
@@ -230,6 +265,19 @@ references:
   name: HMACSignData
   nameWithType: SecurityProviderSymmetricKey.HMACSignData
   fullName: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.HMACSignData
+  package: com.microsoft.azure.sdk.iot.provisioning.security
+- uid: e333ca4f
+  spec.java:
+  - name: InvalidKeyException
+    fullName: InvalidKeyException
+- uid: 456eb9d1
+  spec.java:
+  - name: NoSuchAlgorithmException
+    fullName: NoSuchAlgorithmException
+- uid: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey*
+  name: ComputeDerivedSymmetricKey
+  nameWithType: SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey
+  fullName: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProviderSymmetricKey.ComputeDerivedSymmetricKey
   package: com.microsoft.azure.sdk.iot.provisioning.security
 - uid: com.microsoft.azure.sdk.iot.provisioning.security.SecurityProvider
   parent: com.microsoft.azure.sdk.iot.provisioning.security
