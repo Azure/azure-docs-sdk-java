@@ -1,0 +1,206 @@
+### YamlMime:ManagedReference
+items:
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  id: HttpClientConnectionManager
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.io
+  children:
+  - org.apache.hc.client5.http.io.HttpClientConnectionManager.connect(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.util.TimeValue,org.apache.hc.core5.http.protocol.HttpContext)
+  - org.apache.hc.client5.http.io.HttpClientConnectionManager.lease(java.lang.String,org.apache.hc.client5.http.HttpRoute,org.apache.hc.core5.util.Timeout,java.lang.Object)
+  - org.apache.hc.client5.http.io.HttpClientConnectionManager.release(org.apache.hc.client5.http.io.ConnectionEndpoint,java.lang.Object,org.apache.hc.core5.util.TimeValue)
+  - org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.http.protocol.HttpContext)
+  langs:
+  - java
+  name: HttpClientConnectionManager
+  nameWithType: HttpClientConnectionManager
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  type: Interface
+  package: org.apache.hc.client5.http.io
+  summary: >-
+    Represents a manager of persistent client connections.
+
+
+    The purpose of an HTTP connection manager is to serve as a factory for new HTTP connections, manage persistent connections and synchronize access to persistent connections making sure that only one thread of execution can have access to a connection at a time.
+
+
+    Implementations of this interface must be thread-safe. Access to shared data must be synchronized as methods of this interface may be executed from multiple threads.
+  syntax:
+    content: public interface HttpClientConnectionManager extends ModalCloseable
+  implements:
+  - org.apache.hc.core5.io.ModalCloseable
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.connect(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.util.TimeValue,org.apache.hc.core5.http.protocol.HttpContext)
+  id: connect(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.util.TimeValue,org.apache.hc.core5.http.protocol.HttpContext)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  langs:
+  - java
+  name: connect(ConnectionEndpoint endpoint, TimeValue connectTimeout, HttpContext context)
+  nameWithType: HttpClientConnectionManager.connect(ConnectionEndpoint endpoint, TimeValue connectTimeout, HttpContext context)
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.connect(ConnectionEndpoint endpoint, TimeValue connectTimeout, HttpContext context)
+  overload: org.apache.hc.client5.http.io.HttpClientConnectionManager.connect*
+  type: Method
+  package: org.apache.hc.client5.http.io
+  summary: Connects the endpoint to the initial hop (connection target in case of a direct route or to the first proxy hop in case of a route via a proxy or multiple proxies).
+  syntax:
+    content: public abstract void connect(ConnectionEndpoint endpoint, TimeValue connectTimeout, HttpContext context)
+    parameters:
+    - id: endpoint
+      type: org.apache.hc.client5.http.io.ConnectionEndpoint
+      description: the managed endpoint.
+    - id: connectTimeout
+      type: org.apache.hc.core5.util.TimeValue
+      description: connect timeout.
+    - id: context
+      type: org.apache.hc.core5.http.protocol.HttpContext
+      description: the actual HTTP context.
+  exceptions:
+  - type: java.io.IOException
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.lease(java.lang.String,org.apache.hc.client5.http.HttpRoute,org.apache.hc.core5.util.Timeout,java.lang.Object)
+  id: lease(java.lang.String,org.apache.hc.client5.http.HttpRoute,org.apache.hc.core5.util.Timeout,java.lang.Object)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  langs:
+  - java
+  name: lease(String id, HttpRoute route, Timeout requestTimeout, Object state)
+  nameWithType: HttpClientConnectionManager.lease(String id, HttpRoute route, Timeout requestTimeout, Object state)
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.lease(String id, HttpRoute route, Timeout requestTimeout, Object state)
+  overload: org.apache.hc.client5.http.io.HttpClientConnectionManager.lease*
+  type: Method
+  package: org.apache.hc.client5.http.io
+  summary: >-
+    Returns a <xref uid="org.apache.hc.client5.http.io.LeaseRequest" data-throw-if-not-resolved="false">LeaseRequest</xref> object which can be used to obtain a <xref uid="org.apache.hc.client5.http.io.ConnectionEndpoint" data-throw-if-not-resolved="false">ConnectionEndpoint</xref> to cancel the request by calling <xref uid="org.apache.hc.client5.http.io.LeaseRequest.cancel*" data-throw-if-not-resolved="false">LeaseRequest#cancel()</xref>.
+
+
+    Please note that newly allocated endpoints can be leased <xref uid="org.apache.hc.client5.http.io.ConnectionEndpoint.isConnected()" data-throw-if-not-resolved="false">disconnected</xref>. The consumer of the endpoint is responsible for fully establishing the route to the endpoint target by calling <xref uid="org.apache.hc.client5.http.io.HttpClientConnectionManager.connect(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.util.TimeValue,org.apache.hc.core5.http.protocol.HttpContext)" data-throw-if-not-resolved="false">#connect(ConnectionEndpoint, TimeValue, HttpContext)</xref> in order to connect directly to the target or to the first proxy hop, and optionally calling <xref uid="org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.http.protocol.HttpContext)" data-throw-if-not-resolved="false">#upgrade(ConnectionEndpoint, HttpContext)</xref> method to upgrade the underlying transport to Transport Layer Security after having executed a `CONNECT` method to all intermediate proxy hops.
+  syntax:
+    content: public abstract LeaseRequest lease(String id, HttpRoute route, Timeout requestTimeout, Object state)
+    parameters:
+    - id: id
+      type: java.lang.String
+      description: unique operation ID or <code>null</code>.
+    - id: route
+      type: org.apache.hc.client5.http.HttpRoute
+      description: HTTP route of the requested connection.
+    - id: requestTimeout
+      type: org.apache.hc.core5.util.Timeout
+      description: lease request timeout.
+    - id: state
+      type: java.lang.Object
+      description: >-
+        expected state of the connection or <code>null</code>
+                      if the connection is not expected to carry any state.
+    return:
+      type: org.apache.hc.client5.http.io.LeaseRequest
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.release(org.apache.hc.client5.http.io.ConnectionEndpoint,java.lang.Object,org.apache.hc.core5.util.TimeValue)
+  id: release(org.apache.hc.client5.http.io.ConnectionEndpoint,java.lang.Object,org.apache.hc.core5.util.TimeValue)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  langs:
+  - java
+  name: release(ConnectionEndpoint endpoint, Object newState, TimeValue validDuration)
+  nameWithType: HttpClientConnectionManager.release(ConnectionEndpoint endpoint, Object newState, TimeValue validDuration)
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.release(ConnectionEndpoint endpoint, Object newState, TimeValue validDuration)
+  overload: org.apache.hc.client5.http.io.HttpClientConnectionManager.release*
+  type: Method
+  package: org.apache.hc.client5.http.io
+  summary: Releases the endpoint back to the manager making it potentially re-usable by other consumers. Optionally, the maximum period of how long the manager should keep the connection alive can be defined using `validDuration` and `timeUnit` parameters.
+  syntax:
+    content: public abstract void release(ConnectionEndpoint endpoint, Object newState, TimeValue validDuration)
+    parameters:
+    - id: endpoint
+      type: org.apache.hc.client5.http.io.ConnectionEndpoint
+      description: the managed endpoint.
+    - id: newState
+      type: java.lang.Object
+      description: the new connection state of <code>null</code> if state-less.
+    - id: validDuration
+      type: org.apache.hc.core5.util.TimeValue
+      description: the duration of time this connection is valid for reuse.
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.http.protocol.HttpContext)
+  id: upgrade(org.apache.hc.client5.http.io.ConnectionEndpoint,org.apache.hc.core5.http.protocol.HttpContext)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.io.HttpClientConnectionManager
+  langs:
+  - java
+  name: upgrade(ConnectionEndpoint endpoint, HttpContext context)
+  nameWithType: HttpClientConnectionManager.upgrade(ConnectionEndpoint endpoint, HttpContext context)
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade(ConnectionEndpoint endpoint, HttpContext context)
+  overload: org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade*
+  type: Method
+  package: org.apache.hc.client5.http.io
+  summary: Upgrades transport security of the given endpoint by using the TLS security protocol.
+  syntax:
+    content: public abstract void upgrade(ConnectionEndpoint endpoint, HttpContext context)
+    parameters:
+    - id: endpoint
+      type: org.apache.hc.client5.http.io.ConnectionEndpoint
+      description: the managed endpoint.
+    - id: context
+      type: org.apache.hc.core5.http.protocol.HttpContext
+      description: the actual HTTP context.
+  exceptions:
+  - type: java.io.IOException
+references:
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: org.apache.hc.client5.http.HttpRoute
+  name: HttpRoute
+  nameWithType: HttpRoute
+  fullName: org.apache.hc.client5.http.HttpRoute
+- uid: org.apache.hc.core5.util.Timeout
+  name: Timeout
+  nameWithType: Timeout
+  fullName: org.apache.hc.core5.util.Timeout
+- uid: java.lang.Object
+  spec.java:
+  - uid: java.lang.Object
+    name: Object
+    fullName: java.lang.Object
+- uid: org.apache.hc.client5.http.io.LeaseRequest
+  name: LeaseRequest
+  nameWithType: LeaseRequest
+  fullName: org.apache.hc.client5.http.io.LeaseRequest
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.lease*
+  name: lease
+  nameWithType: HttpClientConnectionManager.lease
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.lease
+  package: org.apache.hc.client5.http.io
+- uid: org.apache.hc.client5.http.io.ConnectionEndpoint
+  name: ConnectionEndpoint
+  nameWithType: ConnectionEndpoint
+  fullName: org.apache.hc.client5.http.io.ConnectionEndpoint
+- uid: org.apache.hc.core5.util.TimeValue
+  name: TimeValue
+  nameWithType: TimeValue
+  fullName: org.apache.hc.core5.util.TimeValue
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.release*
+  name: release
+  nameWithType: HttpClientConnectionManager.release
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.release
+  package: org.apache.hc.client5.http.io
+- uid: java.io.IOException
+  spec.java:
+  - uid: java.io.IOException
+    name: IOException
+    fullName: java.io.IOException
+- uid: org.apache.hc.core5.http.protocol.HttpContext
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: org.apache.hc.core5.http.protocol.HttpContext
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.connect*
+  name: connect
+  nameWithType: HttpClientConnectionManager.connect
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.connect
+  package: org.apache.hc.client5.http.io
+- uid: org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade*
+  name: upgrade
+  nameWithType: HttpClientConnectionManager.upgrade
+  fullName: org.apache.hc.client5.http.io.HttpClientConnectionManager.upgrade
+  package: org.apache.hc.client5.http.io
+- uid: org.apache.hc.core5.io.ModalCloseable
+  name: ModalCloseable
+  nameWithType: ModalCloseable
+  fullName: org.apache.hc.core5.io.ModalCloseable

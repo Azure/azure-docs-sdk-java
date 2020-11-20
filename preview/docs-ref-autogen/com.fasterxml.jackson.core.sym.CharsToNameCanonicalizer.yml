@@ -1,0 +1,557 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  id: CharsToNameCanonicalizer
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym
+  children:
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.HASH_MULT
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex(int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(char[],int,int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(java.lang.String)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot(int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol(char[],int,int,int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild(int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions(int)
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size()
+  - com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency()
+  langs:
+  - java
+  name: CharsToNameCanonicalizer
+  nameWithType: CharsToNameCanonicalizer
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  type: Class
+  package: com.fasterxml.jackson.core.sym
+  summary: >-
+    This class is a kind of specialized type-safe Map, from char array to String value. Specialization means that in addition to type-safety and specific access patterns (key char array, Value optionally interned String; values added on access if necessary), and that instances are meant to be used concurrently, but by using well-defined mechanisms to obtain such concurrently usable instances. Main use for the class is to store symbol table information for things like compilers and parsers; especially when number of symbols (keywords) is limited.
+
+
+    For optimal performance, usage pattern should be one where matches should be very common (especially after "warm-up"), and as with most hash-based maps/sets, that hash codes are uniformly distributed. Also, collisions are slightly more expensive than with HashMap or HashSet, since hash codes are not used in resolving collisions; that is, equals() comparison is done with all symbols in same bucket index.
+
+    Finally, rehashing is also more expensive, as hash codes are not stored; rehashing requires all entries' hash codes to be recalculated. Reason for not storing hash codes is reduced memory usage, hoping for better memory locality.
+
+
+    Usual usage pattern is to create a single "master" instance, and either use that instance in sequential fashion, or to create derived "child" instances, which after use, are asked to return possible symbol additions to master instance. In either case benefit is that symbol table gets initialized so that further uses are more efficient, as eventually all symbols needed will already be in symbol table. At that point no more Symbol String allocations are needed, nor changes to symbol table itself.
+
+
+    Note that while individual SymbolTable instances are NOT thread-safe (much like generic collection classes), concurrently used "child" instances can be freely used without synchronization. However, using master table concurrently with child instances can only be done if access to master instance is read-only (i.e. no modifications done).
+  syntax:
+    content: public final class CharsToNameCanonicalizer
+  inheritance:
+  - java.lang.Object
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer(com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer,int,int,com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo)
+  id: CharsToNameCanonicalizer(com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer,int,int,com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: CharsToNameCanonicalizer(CharsToNameCanonicalizer parent, int flags, int seed, CharsToNameCanonicalizer.TableInfo parentState)
+  nameWithType: CharsToNameCanonicalizer.CharsToNameCanonicalizer(CharsToNameCanonicalizer parent, int flags, int seed, CharsToNameCanonicalizer.TableInfo parentState)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer(CharsToNameCanonicalizer parent, int flags, int seed, CharsToNameCanonicalizer.TableInfo parentState)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer*
+  type: Constructor
+  package: com.fasterxml.jackson.core.sym
+  summary: Internal constructor used when creating child instances.
+  syntax:
+    content: private CharsToNameCanonicalizer(CharsToNameCanonicalizer parent, int flags, int seed, CharsToNameCanonicalizer.TableInfo parentState)
+    parameters:
+    - id: parent
+      type: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+    - id: flags
+      type: int
+    - id: seed
+      type: int
+    - id: parentState
+      type: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer(int)
+  id: CharsToNameCanonicalizer(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: CharsToNameCanonicalizer(int seed)
+  nameWithType: CharsToNameCanonicalizer.CharsToNameCanonicalizer(int seed)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer(int seed)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer*
+  type: Constructor
+  package: com.fasterxml.jackson.core.sym
+  summary: Main method for constructing a root symbol table instance.
+  syntax:
+    content: private CharsToNameCanonicalizer(int seed)
+    parameters:
+    - id: seed
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.HASH_MULT
+  id: HASH_MULT
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: HASH_MULT
+  nameWithType: CharsToNameCanonicalizer.HASH_MULT
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.HASH_MULT
+  type: Field
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public static final int HASH_MULT
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex(int)
+  id: _hashToIndex(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: _hashToIndex(int rawHash)
+  nameWithType: CharsToNameCanonicalizer._hashToIndex(int rawHash)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex(int rawHash)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Helper method that takes in a "raw" hash value, shuffles it as necessary, and truncates to be used as the index.
+  syntax:
+    content: public int _hashToIndex(int rawHash)
+    parameters:
+    - id: rawHash
+      type: int
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount()
+  id: bucketCount()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: bucketCount()
+  nameWithType: CharsToNameCanonicalizer.bucketCount()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Method for checking number of primary hash buckets this symbol table uses.
+  syntax:
+    content: public int bucketCount()
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(char[],int,int)
+  id: calcHash(char[],int,int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: calcHash(char[] buffer, int start, int len)
+  nameWithType: CharsToNameCanonicalizer.calcHash(char[] buffer, int start, int len)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(char[] buffer, int start, int len)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Implementation of a hashing method for variable length Strings. Most of the time intention is that this calculation is done by caller during parsing, not here; however, sometimes it needs to be done for parsed "String" too.
+  syntax:
+    content: public int calcHash(char[] buffer, int start, int len)
+    parameters:
+    - id: buffer
+      type: char[]
+    - id: start
+      type: int
+    - id: len
+      type: int
+      description: >-
+        Length of String; has to be at least 1 (caller guarantees
+           this pre-condition)
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(java.lang.String)
+  id: calcHash(java.lang.String)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: calcHash(String key)
+  nameWithType: CharsToNameCanonicalizer.calcHash(String key)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash(String key)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public int calcHash(String key)
+    parameters:
+    - id: key
+      type: java.lang.String
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount()
+  id: collisionCount()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: collisionCount()
+  nameWithType: CharsToNameCanonicalizer.collisionCount()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Method mostly needed by unit tests; calculates number of entries that are in collision list. Value can be at most (<xref uid="com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size*" data-throw-if-not-resolved="false">#size</xref> \- 1), but should usually be much lower, ideally 0.
+  syntax:
+    content: public int collisionCount()
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot()
+  id: createRoot()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: createRoot()
+  nameWithType: CharsToNameCanonicalizer.createRoot()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Method called to create root canonicalizer for a <xref uid="com.fasterxml.jackson.core.JsonFactory" data-throw-if-not-resolved="false">com.fasterxml.jackson.core.JsonFactory</xref> instance. Root instance is never used directly; its main use is for storing and sharing underlying symbol arrays as needed.
+  syntax:
+    content: public static CharsToNameCanonicalizer createRoot()
+    return:
+      type: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot(int)
+  id: createRoot(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: createRoot(int seed)
+  nameWithType: CharsToNameCanonicalizer.createRoot(int seed)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot(int seed)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: protected static CharsToNameCanonicalizer createRoot(int seed)
+    parameters:
+    - id: seed
+      type: int
+    return:
+      type: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol(char[],int,int,int)
+  id: findSymbol(char[],int,int,int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: findSymbol(char[] buffer, int start, int len, int h)
+  nameWithType: CharsToNameCanonicalizer.findSymbol(char[] buffer, int start, int len, int h)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol(char[] buffer, int start, int len, int h)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public String findSymbol(char[] buffer, int start, int len, int h)
+    parameters:
+    - id: buffer
+      type: char[]
+    - id: start
+      type: int
+    - id: len
+      type: int
+    - id: h
+      type: int
+    return:
+      type: java.lang.String
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed()
+  id: hashSeed()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: hashSeed()
+  nameWithType: CharsToNameCanonicalizer.hashSeed()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public int hashSeed()
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild(int)
+  id: makeChild(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: makeChild(int flags)
+  nameWithType: CharsToNameCanonicalizer.makeChild(int flags)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild(int flags)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: "\"Factory\" method; will create a new child instance of this symbol table. It will be a copy-on-write instance, ie. it will only use read-only copy of parent's data, but when changes are needed, a copy will be created.\n\nNote: while this method is synchronized, it is generally not safe to both use makeChild/mergeChild, AND to use instance actively. Instead, a separate 'root' instance should be used on which only makeChild/mergeChild are called, but instance itself is not used as a symbol table."
+  syntax:
+    content: public CharsToNameCanonicalizer makeChild(int flags)
+    parameters:
+    - id: flags
+      type: int
+    return:
+      type: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength()
+  id: maxCollisionLength()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: maxCollisionLength()
+  nameWithType: CharsToNameCanonicalizer.maxCollisionLength()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Method mostly needed by unit tests; calculates length of the longest collision chain. This should typically be a low number, but may be up to <xref uid="com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size*" data-throw-if-not-resolved="false">#size</xref> \- 1 in the pathological case
+  syntax:
+    content: public int maxCollisionLength()
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty()
+  id: maybeDirty()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: maybeDirty()
+  nameWithType: CharsToNameCanonicalizer.maybeDirty()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public boolean maybeDirty()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release()
+  id: release()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: release()
+  nameWithType: CharsToNameCanonicalizer.release()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Method called by the using code to indicate it is done with this instance. This lets instance merge accumulated changes into parent (if need be), safely and efficiently, and without calling code having to know about parent information.
+  syntax:
+    content: public void release()
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions(int)
+  id: reportTooManyCollisions(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: reportTooManyCollisions(int maxLen)
+  nameWithType: CharsToNameCanonicalizer.reportTooManyCollisions(int maxLen)
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions(int maxLen)
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: protected void reportTooManyCollisions(int maxLen)
+    parameters:
+    - id: maxLen
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size()
+  id: size()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: size()
+  nameWithType: CharsToNameCanonicalizer.size()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  syntax:
+    content: public int size()
+    return:
+      type: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency()
+  id: verifyInternalConsistency()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer
+  langs:
+  - java
+  name: verifyInternalConsistency()
+  nameWithType: CharsToNameCanonicalizer.verifyInternalConsistency()
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency()
+  overload: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency*
+  type: Method
+  package: com.fasterxml.jackson.core.sym
+  summary: Diagnostics method that will verify that internal data structures are consistent; not meant as user-facing method but only for test suites and possible troubleshooting.
+  syntax:
+    content: protected void verifyInternalConsistency()
+references:
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer*
+  name: CharsToNameCanonicalizer
+  nameWithType: CharsToNameCanonicalizer.CharsToNameCanonicalizer
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.CharsToNameCanonicalizer
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo
+  spec.java:
+  - uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo
+    name: TableInfo
+    fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.TableInfo
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot*
+  name: createRoot
+  nameWithType: CharsToNameCanonicalizer.createRoot
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.createRoot
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild*
+  name: makeChild
+  nameWithType: CharsToNameCanonicalizer.makeChild
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.makeChild
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release*
+  name: release
+  nameWithType: CharsToNameCanonicalizer.release
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.release
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size*
+  name: size
+  nameWithType: CharsToNameCanonicalizer.size
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.size
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount*
+  name: bucketCount
+  nameWithType: CharsToNameCanonicalizer.bucketCount
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.bucketCount
+  package: com.fasterxml.jackson.core.sym
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty*
+  name: maybeDirty
+  nameWithType: CharsToNameCanonicalizer.maybeDirty
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maybeDirty
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed*
+  name: hashSeed
+  nameWithType: CharsToNameCanonicalizer.hashSeed
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.hashSeed
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount*
+  name: collisionCount
+  nameWithType: CharsToNameCanonicalizer.collisionCount
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.collisionCount
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength*
+  name: maxCollisionLength
+  nameWithType: CharsToNameCanonicalizer.maxCollisionLength
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.maxCollisionLength
+  package: com.fasterxml.jackson.core.sym
+- uid: char[]
+  spec.java:
+  - uid: char
+    name: char
+    fullName: char
+  - name: '[]'
+    fullName: '[]'
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol*
+  name: findSymbol
+  nameWithType: CharsToNameCanonicalizer.findSymbol
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.findSymbol
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex*
+  name: _hashToIndex
+  nameWithType: CharsToNameCanonicalizer._hashToIndex
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer._hashToIndex
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash*
+  name: calcHash
+  nameWithType: CharsToNameCanonicalizer.calcHash
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.calcHash
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions*
+  name: reportTooManyCollisions
+  nameWithType: CharsToNameCanonicalizer.reportTooManyCollisions
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.reportTooManyCollisions
+  package: com.fasterxml.jackson.core.sym
+- uid: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency*
+  name: verifyInternalConsistency
+  nameWithType: CharsToNameCanonicalizer.verifyInternalConsistency
+  fullName: com.fasterxml.jackson.core.sym.CharsToNameCanonicalizer.verifyInternalConsistency
+  package: com.fasterxml.jackson.core.sym
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()

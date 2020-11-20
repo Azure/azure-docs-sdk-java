@@ -1,0 +1,75 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.fasterxml.jackson.annotation.JsonMerge
+  id: JsonMerge
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation
+  children:
+  - com.fasterxml.jackson.annotation.JsonMerge.value()
+  langs:
+  - java
+  name: JsonMerge
+  nameWithType: JsonMerge
+  fullName: com.fasterxml.jackson.annotation.JsonMerge
+  type: Interface
+  package: com.fasterxml.jackson.annotation
+  summary: >-
+    Annotation to specify whether annotated property value should use "merging" approach: merging meaning that the current value is first accessed (with a getter or field) and then modified with incoming data. If merging is not used assignment happens without considering current state.
+
+
+    Merging is only option if there is a way to introspect current state: if there is accessor (getter, field) to use. Merging can not be enabled if no accessor exists or if assignment occurs using a Creator setter (constructor or factory method), since there is no instance with state to introspect. Merging also only has actual effect for structured types where there is an obvious way to update a state (for example, POJOs have default values for properties, and <xref uid="java.util.Collection" data-throw-if-not-resolved="false">java.util.Collection</xref>s and <xref uid="java.util.Map" data-throw-if-not-resolved="false">java.util.Map</xref>s may have existing elements; whereas scalar types do not such state: an `int` has a value, but no obvious and non-ambiguous way to merge state.
+
+
+    Merging is applied by using a deserialization method that accepts existing state as an argument: it is then up to `JsonDeserializer` implementation to use that base state in a way that makes sense without further configuration. For structured types this is usually obvious; and for scalar types not -- if no obvious method exists, merging is not allowed; deserializer may choose to either quietly ignore it, or throw an exception. Specifically, for structured types:
+
+     *  For POJOs merging is done recursively, property by property.
+     *  For <xref uid="java.util.Map" data-throw-if-not-resolved="false">java.util.Map</xref>s merging is done recursively, entry by entry .
+     *  For <xref uid="java.util.Collection" data-throw-if-not-resolved="false">java.util.Collection</xref> and Arrays, merging is done by appending incoming data into contents of existing Collection/array (and in case of Arrays, creating a new Array instance). NOTE! This is different from [JSON Merge Patch][].
+     *  For Scalar values, incoming value replaces existing value, that is, no merging occurs.
+
+    Note that use of merging usually adds some processing overhead since it adds an extra step of accessing the current state before assignment.
+
+
+    Note also that "root values" (values directly deserialized and not reached via POJO properties) can not use this annotation; instead, `ObjectMapper` and `Object` have "updating reader" operations.
+
+
+    Default value is <xref uid="com.fasterxml.jackson.annotation.OptBoolean.TRUE" data-throw-if-not-resolved="false">OptBoolean#TRUE</xref>, that is, merging **is enabled**.
+
+
+
+    [JSON Merge Patch]: https://tools.ietf.org/html/rfc7396
+  syntax:
+    content: public interface JsonMerge implements Annotation
+  implements:
+  - java.lang.annotation.Annotation
+- uid: com.fasterxml.jackson.annotation.JsonMerge.value()
+  id: value()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation.JsonMerge
+  langs:
+  - java
+  name: value()
+  nameWithType: JsonMerge.value()
+  fullName: com.fasterxml.jackson.annotation.JsonMerge.value()
+  overload: com.fasterxml.jackson.annotation.JsonMerge.value*
+  type: Method
+  package: com.fasterxml.jackson.annotation
+  summary: Whether merging should or should not be enabled for the annotated property.
+  syntax:
+    content: public abstract OptBoolean value()
+    return:
+      type: com.fasterxml.jackson.annotation.OptBoolean
+references:
+- uid: com.fasterxml.jackson.annotation.OptBoolean
+  name: OptBoolean
+  nameWithType: OptBoolean
+  fullName: com.fasterxml.jackson.annotation.OptBoolean
+- uid: com.fasterxml.jackson.annotation.JsonMerge.value*
+  name: value
+  nameWithType: JsonMerge.value
+  fullName: com.fasterxml.jackson.annotation.JsonMerge.value
+  package: com.fasterxml.jackson.annotation
+- uid: java.lang.annotation.Annotation
+  name: Annotation
+  nameWithType: Annotation
+  fullName: java.lang.annotation.Annotation

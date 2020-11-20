@@ -1,0 +1,233 @@
+### YamlMime:ManagedReference
+items:
+- uid: org.apache.hc.core5.http.HttpEntity
+  id: HttpEntity
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http
+  children:
+  - org.apache.hc.core5.http.HttpEntity.getContent()
+  - org.apache.hc.core5.http.HttpEntity.getTrailers()
+  - org.apache.hc.core5.http.HttpEntity.isRepeatable()
+  - org.apache.hc.core5.http.HttpEntity.isStreaming()
+  - org.apache.hc.core5.http.HttpEntity.writeTo(java.io.OutputStream)
+  langs:
+  - java
+  name: HttpEntity
+  nameWithType: HttpEntity
+  fullName: org.apache.hc.core5.http.HttpEntity
+  type: Interface
+  package: org.apache.hc.core5.http
+  summary: >-
+    An entity that can be sent or received with an HTTP message.
+
+
+    There are three distinct types of entities in HttpCore, depending on where their <xref uid="org.apache.hc.core5.http.HttpEntity.getContent*" data-throw-if-not-resolved="false">content</xref> originates:
+
+     *  **streamed**: The content is received from a stream, or generated on the fly. In particular, this category includes entities being received from a <xref uid="org.apache.hc.core5.http.HttpConnection" data-throw-if-not-resolved="false">connection</xref>. <xref uid="org.apache.hc.core5.http.HttpEntity.isStreaming*" data-throw-if-not-resolved="false">Streamed</xref> entities are generally not <xref uid="org.apache.hc.core5.http.HttpEntity.isRepeatable*" data-throw-if-not-resolved="false">repeatable</xref>.
+     *  **self-contained**: The content is in memory or obtained by means that are independent from a connection or other entity. Self-contained entities are generally <xref uid="org.apache.hc.core5.http.HttpEntity.isRepeatable*" data-throw-if-not-resolved="false">repeatable</xref>.
+     *  **wrapping**: The content is obtained from another entity.
+
+    This distinction is important for connection management with incoming entities. For entities that are created by an application and only sent using the HTTP components framework, the difference between streamed and self-contained is of little importance. In that case, it is suggested to consider non-repeatable entities as streamed, and those that are repeatable (without a huge effort) as self-contained.
+  syntax:
+    content: public interface HttpEntity extends EntityDetails, Closeable
+  implements:
+  - org.apache.hc.core5.http.EntityDetails
+  - java.io.Closeable
+- uid: org.apache.hc.core5.http.HttpEntity.getContent()
+  id: getContent()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http.HttpEntity
+  langs:
+  - java
+  name: getContent()
+  nameWithType: HttpEntity.getContent()
+  fullName: org.apache.hc.core5.http.HttpEntity.getContent()
+  overload: org.apache.hc.core5.http.HttpEntity.getContent*
+  type: Method
+  package: org.apache.hc.core5.http
+  summary: >-
+    Returns a content stream of the entity. <xref uid="org.apache.hc.core5.http.HttpEntity.isRepeatable*" data-throw-if-not-resolved="false">Repeatable</xref> entities are expected to create a new instance of <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> for each invocation of this method and therefore can be consumed multiple times. Entities that are not <xref uid="org.apache.hc.core5.http.HttpEntity.isRepeatable*" data-throw-if-not-resolved="false">repeatable</xref> are expected to return the same <xref uid="java.io.InputStream" data-throw-if-not-resolved="false">InputStream</xref> instance and therefore may not be consumed more than once.
+
+
+    IMPORTANT: Please note all entity implementations must ensure that all allocated resources are properly deallocated after the <xref uid="java.io.InputStream.close()" data-throw-if-not-resolved="false">InputStream#close()</xref> method is invoked.
+  syntax:
+    content: public abstract InputStream getContent()
+    return:
+      type: java.io.InputStream
+      description: content stream of the entity.
+  exceptions:
+  - type: java.io.IOException
+    description: if the stream could not be created
+  - type: java.lang.UnsupportedOperationException
+    description: if the stream could not be created
+- uid: org.apache.hc.core5.http.HttpEntity.getTrailers()
+  id: getTrailers()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http.HttpEntity
+  langs:
+  - java
+  name: getTrailers()
+  nameWithType: HttpEntity.getTrailers()
+  fullName: org.apache.hc.core5.http.HttpEntity.getTrailers()
+  overload: org.apache.hc.core5.http.HttpEntity.getTrailers*
+  type: Method
+  package: org.apache.hc.core5.http
+  summary: Returns supplier of message trailers - headers sent after message body. May return `null` if trailers are not available.
+  syntax:
+    content: public abstract Supplier<List<? extends Header>> getTrailers()
+    return:
+      type: org.apache.hc.core5.function.Supplier<java.util.List<? extends org.apache.hc.core5.http.Header>>
+- uid: org.apache.hc.core5.http.HttpEntity.isRepeatable()
+  id: isRepeatable()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http.HttpEntity
+  langs:
+  - java
+  name: isRepeatable()
+  nameWithType: HttpEntity.isRepeatable()
+  fullName: org.apache.hc.core5.http.HttpEntity.isRepeatable()
+  overload: org.apache.hc.core5.http.HttpEntity.isRepeatable*
+  type: Method
+  package: org.apache.hc.core5.http
+  summary: Tells if the entity is capable of producing its data more than once. A repeatable entity's getContent() and writeTo(OutputStream) methods can be called more than once whereas a non-repeatable entity's can not.
+  syntax:
+    content: public abstract boolean isRepeatable()
+    return:
+      type: boolean
+      description: true if the entity is repeatable, false otherwise.
+- uid: org.apache.hc.core5.http.HttpEntity.isStreaming()
+  id: isStreaming()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http.HttpEntity
+  langs:
+  - java
+  name: isStreaming()
+  nameWithType: HttpEntity.isStreaming()
+  fullName: org.apache.hc.core5.http.HttpEntity.isStreaming()
+  overload: org.apache.hc.core5.http.HttpEntity.isStreaming*
+  type: Method
+  package: org.apache.hc.core5.http
+  summary: Tells whether this entity depends on an underlying stream. Streamed entities that read data directly from the socket should return `true`. Self-contained entities should return `false`. Wrapping entities should delegate this call to the wrapped entity.
+  syntax:
+    content: public abstract boolean isStreaming()
+    return:
+      type: boolean
+      description: >-
+        <code>true</code> if the entity content is streamed,
+                  <code>false</code> otherwise
+- uid: org.apache.hc.core5.http.HttpEntity.writeTo(java.io.OutputStream)
+  id: writeTo(java.io.OutputStream)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.core5.http.HttpEntity
+  langs:
+  - java
+  name: writeTo(OutputStream outStream)
+  nameWithType: HttpEntity.writeTo(OutputStream outStream)
+  fullName: org.apache.hc.core5.http.HttpEntity.writeTo(OutputStream outStream)
+  overload: org.apache.hc.core5.http.HttpEntity.writeTo*
+  type: Method
+  package: org.apache.hc.core5.http
+  summary: >-
+    Writes the entity content out to the output stream.
+
+
+    IMPORTANT: Please note all entity implementations must ensure that all allocated resources are properly deallocated when this method returns.
+  syntax:
+    content: public abstract void writeTo(OutputStream outStream)
+    parameters:
+    - id: outStream
+      type: java.io.OutputStream
+      description: the output stream to write entity content to
+  exceptions:
+  - type: java.io.IOException
+    description: if an I/O error occurs
+references:
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: org.apache.hc.core5.http.HttpEntity.isRepeatable*
+  name: isRepeatable
+  nameWithType: HttpEntity.isRepeatable
+  fullName: org.apache.hc.core5.http.HttpEntity.isRepeatable
+  package: org.apache.hc.core5.http
+- uid: java.io.IOException
+  spec.java:
+  - uid: java.io.IOException
+    name: IOException
+    fullName: java.io.IOException
+- uid: java.lang.UnsupportedOperationException
+  spec.java:
+  - uid: java.lang.UnsupportedOperationException
+    name: UnsupportedOperationException
+    fullName: java.lang.UnsupportedOperationException
+- uid: java.io.InputStream
+  spec.java:
+  - uid: java.io.InputStream
+    name: InputStream
+    fullName: java.io.InputStream
+- uid: org.apache.hc.core5.http.HttpEntity.getContent*
+  name: getContent
+  nameWithType: HttpEntity.getContent
+  fullName: org.apache.hc.core5.http.HttpEntity.getContent
+  package: org.apache.hc.core5.http
+- uid: java.io.OutputStream
+  spec.java:
+  - uid: java.io.OutputStream
+    name: OutputStream
+    fullName: java.io.OutputStream
+- uid: org.apache.hc.core5.http.HttpEntity.writeTo*
+  name: writeTo
+  nameWithType: HttpEntity.writeTo
+  fullName: org.apache.hc.core5.http.HttpEntity.writeTo
+  package: org.apache.hc.core5.http
+- uid: org.apache.hc.core5.http.HttpEntity.isStreaming*
+  name: isStreaming
+  nameWithType: HttpEntity.isStreaming
+  fullName: org.apache.hc.core5.http.HttpEntity.isStreaming
+  package: org.apache.hc.core5.http
+- uid: org.apache.hc.core5.function.Supplier<java.util.List<? extends org.apache.hc.core5.http.Header>>
+  spec.java:
+  - uid: org.apache.hc.core5.function.Supplier
+    name: Supplier
+    fullName: org.apache.hc.core5.function.Supplier
+  - name: <
+    fullName: <
+  - uid: java.util.List
+    name: List
+    fullName: java.util.List
+  - name: <
+    fullName: <
+  - uid: '? extends org.apache.hc.core5.http.Header'
+    name: Header
+    fullName: '? extends org.apache.hc.core5.http.Header'
+  - name: '>'
+    fullName: '>'
+  - name: '>'
+    fullName: '>'
+- uid: org.apache.hc.core5.http.HttpEntity.getTrailers*
+  name: getTrailers
+  nameWithType: HttpEntity.getTrailers
+  fullName: org.apache.hc.core5.http.HttpEntity.getTrailers
+  package: org.apache.hc.core5.http
+- uid: java.io.Closeable
+  name: Closeable
+  nameWithType: Closeable
+  fullName: java.io.Closeable
+- uid: org.apache.hc.core5.http.EntityDetails
+  name: EntityDetails
+  nameWithType: EntityDetails
+  fullName: org.apache.hc.core5.http.EntityDetails
+- uid: '? extends org.apache.hc.core5.http.Header'
+  name: '? extends Header'
+  nameWithType: '? extends Header'
+  fullName: '? extends org.apache.hc.core5.http.Header'
+- uid: java.util.List
+  name: List
+  nameWithType: List
+  fullName: java.util.List
+- uid: org.apache.hc.core5.function.Supplier
+  name: Supplier
+  nameWithType: Supplier
+  fullName: org.apache.hc.core5.function.Supplier

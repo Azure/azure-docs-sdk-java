@@ -1,0 +1,169 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.fasterxml.jackson.annotation.JsonInclude
+  id: JsonInclude
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation
+  children:
+  - com.fasterxml.jackson.annotation.JsonInclude.Include
+  - com.fasterxml.jackson.annotation.JsonInclude.Value
+  - com.fasterxml.jackson.annotation.JsonInclude.content()
+  - com.fasterxml.jackson.annotation.JsonInclude.contentFilter()
+  - com.fasterxml.jackson.annotation.JsonInclude.value()
+  - com.fasterxml.jackson.annotation.JsonInclude.valueFilter()
+  langs:
+  - java
+  name: JsonInclude
+  nameWithType: JsonInclude
+  fullName: com.fasterxml.jackson.annotation.JsonInclude
+  type: Interface
+  package: com.fasterxml.jackson.annotation
+  summary: >-
+    Annotation used to indicate when value of the annotated property (when used for a field, method or constructor parameter), or all properties of the annotated class, is to be serialized. Without annotation property values are always included, but by using this annotation one can specify simple exclusion rules to reduce amount of properties to write out.
+
+
+    Note that the main inclusion criteria (one annotated with <xref uid="com.fasterxml.jackson.annotation.JsonInclude.value*" data-throw-if-not-resolved="false">#value</xref>) is checked on **Java object level**, for the annotated type, and **NOT** on JSON output -- so even with <xref uid="" data-throw-if-not-resolved="false">Include#NON_NULL</xref> it is possible that JSON null values are output, if object reference in question is not \`null\`. An example is <xref uid="java.util.concurrent.atomic.AtomicReference" data-throw-if-not-resolved="false">java.util.concurrent.atomic.AtomicReference</xref> instance constructed to reference `null` value: such a value would be serialized as JSON null, and not filtered out.
+
+
+    To base inclusion on value of contained value(s), you will typically also need to specify <xref uid="com.fasterxml.jackson.annotation.JsonInclude.content()" data-throw-if-not-resolved="false">#content()</xref> annotation; for example, specifying only <xref uid="com.fasterxml.jackson.annotation.JsonInclude.value*" data-throw-if-not-resolved="false">#value</xref> as <xref uid="" data-throw-if-not-resolved="false">Include#NON_EMPTY</xref> for a \{link java.util.Map\} would exclude `Map`s with no values, but would include `Map`s with \`null\` values. To exclude Map with only \`null\` value, you would use both annotations like so:
+
+
+    ```java
+
+    public class Bean {
+       @JsonInclude(value=Include.NON_EMPTY, content=Include.NON_NULL)
+       public Map<String,String> entries;
+    }
+
+    ```
+
+
+    Similarly you could Maps that only contain "empty" elements, or "non-default" values (see <xref uid="" data-throw-if-not-resolved="false">Include#NON_EMPTY</xref> and <xref uid="" data-throw-if-not-resolved="false">Include#NON_DEFAULT</xref> for more details).
+
+
+    In addition to \`Map\`s, \`content\` concept is also supported for referential types (like <xref uid="java.util.concurrent.atomic.AtomicReference" data-throw-if-not-resolved="false">java.util.concurrent.atomic.AtomicReference</xref>). Note that \`content\` is NOT currently (as of Jackson 2.9) supported for arrays or <xref uid="java.util.Collection" data-throw-if-not-resolved="false">java.util.Collection</xref>s, but supported may be added in future versions.
+  syntax:
+    content: public interface JsonInclude implements Annotation
+  implements:
+  - java.lang.annotation.Annotation
+- uid: com.fasterxml.jackson.annotation.JsonInclude.content()
+  id: content()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation.JsonInclude
+  langs:
+  - java
+  name: content()
+  nameWithType: JsonInclude.content()
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.content()
+  overload: com.fasterxml.jackson.annotation.JsonInclude.content*
+  type: Method
+  package: com.fasterxml.jackson.annotation
+  summary: Inclusion rule to use for entries ("content") of annotated <xref uid="java.util.Map" data-throw-if-not-resolved="false">java.util.Map</xref>s and referential types (like <xref uid="java.util.concurrent.atomic.AtomicReference" data-throw-if-not-resolved="false">java.util.concurrent.atomic.AtomicReference</xref>); defaults to <xref uid="" data-throw-if-not-resolved="false">Include#ALWAYS</xref>.
+  syntax:
+    content: public abstract JsonInclude.Include content()
+    return:
+      type: com.fasterxml.jackson.annotation.JsonInclude.Include
+- uid: com.fasterxml.jackson.annotation.JsonInclude.contentFilter()
+  id: contentFilter()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation.JsonInclude
+  langs:
+  - java
+  name: contentFilter()
+  nameWithType: JsonInclude.contentFilter()
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.contentFilter()
+  overload: com.fasterxml.jackson.annotation.JsonInclude.contentFilter*
+  type: Method
+  package: com.fasterxml.jackson.annotation
+  summary: 'Specifies type of "Filter Object" to use in case <xref uid="com.fasterxml.jackson.annotation.JsonInclude.content*" data-throw-if-not-resolved="false">#content</xref> is <xref uid="com.fasterxml.jackson.annotation.JsonInclude.Include.CUSTOM" data-throw-if-not-resolved="false">JsonInclude.Include#CUSTOM</xref>: if so, an instance is created by calling `HandlerInstantiator` (of `ObjectMapper`), which by default simply calls zero-argument constructor of the Filter Class.'
+  syntax:
+    content: public abstract Class<?> contentFilter()
+    return:
+      type: java.lang.Class<?>
+- uid: com.fasterxml.jackson.annotation.JsonInclude.value()
+  id: value()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation.JsonInclude
+  langs:
+  - java
+  name: value()
+  nameWithType: JsonInclude.value()
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.value()
+  overload: com.fasterxml.jackson.annotation.JsonInclude.value*
+  type: Method
+  package: com.fasterxml.jackson.annotation
+  summary: Inclusion rule to use for instances (values) of types (Classes) or properties annotated; defaults to <xref uid="" data-throw-if-not-resolved="false">Include#ALWAYS</xref>.
+  syntax:
+    content: public abstract JsonInclude.Include value()
+    return:
+      type: com.fasterxml.jackson.annotation.JsonInclude.Include
+- uid: com.fasterxml.jackson.annotation.JsonInclude.valueFilter()
+  id: valueFilter()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.annotation.JsonInclude
+  langs:
+  - java
+  name: valueFilter()
+  nameWithType: JsonInclude.valueFilter()
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.valueFilter()
+  overload: com.fasterxml.jackson.annotation.JsonInclude.valueFilter*
+  type: Method
+  package: com.fasterxml.jackson.annotation
+  summary: 'Specifies type of "Filter Object" to use in case <xref uid="com.fasterxml.jackson.annotation.JsonInclude.value*" data-throw-if-not-resolved="false">#value</xref> is <xref uid="com.fasterxml.jackson.annotation.JsonInclude.Include.CUSTOM" data-throw-if-not-resolved="false">JsonInclude.Include#CUSTOM</xref>: if so, an instance is created by calling `HandlerInstantiator` (of `ObjectMapper`), which by default simply calls zero-argument constructor of the Filter Class.'
+  syntax:
+    content: public abstract Class<?> valueFilter()
+    return:
+      type: java.lang.Class<?>
+references:
+- uid: com.fasterxml.jackson.annotation.JsonInclude.Include
+  name: JsonInclude.Include
+  nameWithType: JsonInclude.Include
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.Include
+- uid: com.fasterxml.jackson.annotation.JsonInclude.value*
+  name: value
+  nameWithType: JsonInclude.value
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.value
+  package: com.fasterxml.jackson.annotation
+- uid: com.fasterxml.jackson.annotation.JsonInclude.content*
+  name: content
+  nameWithType: JsonInclude.content
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.content
+  package: com.fasterxml.jackson.annotation
+- uid: java.lang.Class<?>
+  spec.java:
+  - uid: java.lang.Class
+    name: Class
+    fullName: java.lang.Class
+  - name: <
+    fullName: <
+  - uid: '?'
+    name: '?'
+    fullName: '?'
+  - name: '>'
+    fullName: '>'
+- uid: com.fasterxml.jackson.annotation.JsonInclude.valueFilter*
+  name: valueFilter
+  nameWithType: JsonInclude.valueFilter
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.valueFilter
+  package: com.fasterxml.jackson.annotation
+- uid: com.fasterxml.jackson.annotation.JsonInclude.contentFilter*
+  name: contentFilter
+  nameWithType: JsonInclude.contentFilter
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.contentFilter
+  package: com.fasterxml.jackson.annotation
+- uid: java.lang.annotation.Annotation
+  name: Annotation
+  nameWithType: Annotation
+  fullName: java.lang.annotation.Annotation
+- uid: com.fasterxml.jackson.annotation.JsonInclude.Value
+  name: JsonInclude.Value
+  nameWithType: JsonInclude.Value
+  fullName: com.fasterxml.jackson.annotation.JsonInclude.Value
+- uid: java.lang.Class
+  name: Class
+  nameWithType: Class
+  fullName: java.lang.Class
+- uid: '?'
+  name: '?'
+  nameWithType: '?'
+  fullName: '?'
