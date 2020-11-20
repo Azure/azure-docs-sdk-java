@@ -1,0 +1,294 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  id: PolymorphicTypeValidator
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.databind.jsontype
+  children:
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Base
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator()
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType)
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,java.lang.String)
+  - com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.JavaType)
+  langs:
+  - java
+  name: PolymorphicTypeValidator
+  nameWithType: PolymorphicTypeValidator
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  type: Class
+  package: com.fasterxml.jackson.databind.jsontype
+  summary: >-
+    Interface for classes that handle validation of class-name - based subtypes used with Polymorphic Deserialization: both via "default typing" and explicit `@JsonTypeInfo` when using Java Class name as Type Identifier. The main purpose, initially, is to allow pluggable allow lists to avoid security problems that occur with unlimited class names (See [ this article][this article] for full explanation).
+
+
+    Calls to methods are done as follows:
+
+
+    1.  When a deserializer is needed for a polymorphic property (including root values) -- either for explicitly annotated polymorphic type, or "default typing" -- <xref uid="com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType*" data-throw-if-not-resolved="false">#validateBaseType</xref> is called to see if validity can be determined for all possible types: if <xref uid="" data-throw-if-not-resolved="false">Validity#ALLOWED</xref> is returned no futher checks are made for any subtypes; of <xref uid="" data-throw-if-not-resolved="false">Validity#DENIED</xref> is returned, an exception will be thrown to indicate invalid polymorphic property
+
+    2.  If neither deny nor allowed was returned for property with specific base type, first time specific Type Id (Class Name) is encountered, method <xref uid="com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName*" data-throw-if-not-resolved="false">#validateSubClassName</xref> is called with resolved class name: it may indicate allowed/denied, resulting in either allowed use or denial with exception
+
+    3.  If no denial/allowance indicated, class name is resolved to actual <xref uid="java.lang.Class" data-throw-if-not-resolved="false">Class</xref>, and <xref uid="com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType(com.fasterxml.jackson.databind.cfg.MapperConfig&lt;?&gt;,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.JavaType)" data-throw-if-not-resolved="false">#validateSubType(MapperConfig, JavaType, JavaType)</xref> is called: if <xref uid="" data-throw-if-not-resolved="false">Validity#ALLOWED</xref> is returned, usage is accepted; otherwise (denied or indeterminate) usage is not allowed and exception is thrown
+
+
+    Notes on implementations: implementations must be thread-safe and shareable (usually meaning they are stateless). Determinations for validity are usually effectively cached on per-property basis (by virtue of subtype deserializers being cached by polymorphic deserializers) so caching at validator level is usually not needed. If caching is used, however, it must be done in thread-safe manner as validators are shared within <xref uid="com.fasterxml.jackson.databind.ObjectMapper" data-throw-if-not-resolved="false">ObjectMapper</xref> as well as possible across mappers (in case of default/standard validator).
+
+
+    Also note that it is strongly recommended that all implementations are based on provided abstract base class, <xref uid="com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Base" data-throw-if-not-resolved="false">PolymorphicTypeValidator.Base</xref> which contains helper methods and default implementations for returning <xref uid="" data-throw-if-not-resolved="false">Validity#INDETERMINATE</xref> for validation methods (to allow only overriding relevant methods implementation cares about)
+
+
+
+    [this article]: https://medium.com/@cowtowncoder/on-jackson-cves-dont-panic-here-is-what-you-need-to-know-54cd0d6e8062
+  syntax:
+    content: public abstract class PolymorphicTypeValidator implements Serializable
+  inheritance:
+  - java.lang.Object
+  implements:
+  - java.io.Serializable
+  inheritedMembers:
+  - java.lang.Object.clone()
+  - java.lang.Object.equals(java.lang.Object)
+  - java.lang.Object.finalize()
+  - java.lang.Object.getClass()
+  - java.lang.Object.hashCode()
+  - java.lang.Object.notify()
+  - java.lang.Object.notifyAll()
+  - java.lang.Object.toString()
+  - java.lang.Object.wait()
+  - java.lang.Object.wait(long)
+  - java.lang.Object.wait(long,int)
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator()
+  id: PolymorphicTypeValidator()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  langs:
+  - java
+  name: PolymorphicTypeValidator()
+  nameWithType: PolymorphicTypeValidator.PolymorphicTypeValidator()
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator()
+  overload: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator*
+  type: Constructor
+  package: com.fasterxml.jackson.databind.jsontype
+  syntax:
+    content: public PolymorphicTypeValidator()
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType)
+  id: validateBaseType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  langs:
+  - java
+  name: validateBaseType(MapperConfig<?> config, JavaType baseType)
+  nameWithType: PolymorphicTypeValidator.validateBaseType(MapperConfig<?> config, JavaType baseType)
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType(MapperConfig<?> config, JavaType baseType)
+  overload: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType*
+  type: Method
+  package: com.fasterxml.jackson.databind.jsontype
+  summary: Method called when a property with polymorphic value is encountered, and a `TypeResolverBuilder` is needed. Intent is to allow early determination of cases where subtyping is completely denied (for example for security reasons), or, conversely, allowed for allow subtypes (when base type guarantees that all subtypes are known to be safe). Check can be thought of as both optimization (for latter case) and eager-fail (for former case) to give better feedback.
+  syntax:
+    content: public abstract PolymorphicTypeValidator.Validity validateBaseType(MapperConfig<?> config, JavaType baseType)
+    parameters:
+    - id: config
+      type: com.fasterxml.jackson.databind.cfg.MapperConfig<?>
+      description: 'Configuration for resolution: typically will be <code>DeserializationConfig</code>'
+    - id: baseType
+      type: com.fasterxml.jackson.databind.JavaType
+      description: >-
+        Nominal base type used for polymorphic handling: subtypes MUST be instances
+           of this type and assignment compatibility is verified by Jackson core
+    return:
+      type: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+      description: >-
+        Determination of general validity of all subtypes of given base type; if
+            <xref uid="" data-throw-if-not-resolved="false">Validity#ALLOWED</xref> returned, all subtypes will automatically be accepted without
+            further checks; is <xref uid="" data-throw-if-not-resolved="false">Validity#DENIED</xref> returned no subtyping allowed at all
+            (caller will usually throw an exception); otherwise (return <xref uid="" data-throw-if-not-resolved="false">Validity#INDETERMINATE</xref>)
+            per sub-type validation calls are made for each new subclass encountered.
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,java.lang.String)
+  id: validateSubClassName(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,java.lang.String)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  langs:
+  - java
+  name: validateSubClassName(MapperConfig<?> config, JavaType baseType, String subClassName)
+  nameWithType: PolymorphicTypeValidator.validateSubClassName(MapperConfig<?> config, JavaType baseType, String subClassName)
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName(MapperConfig<?> config, JavaType baseType, String subClassName)
+  overload: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName*
+  type: Method
+  package: com.fasterxml.jackson.databind.jsontype
+  summary: >-
+    Method called after intended class name for subtype has been read (and in case of minimal class name, expanded to fully-qualified class name) but before attempt is made to look up actual <xref uid="java.lang.Class" data-throw-if-not-resolved="false">java.lang.Class</xref> or <xref uid="com.fasterxml.jackson.databind.JavaType" data-throw-if-not-resolved="false">JavaType</xref>. Validator may be able to determine validity of eventual type (and return <xref uid="" data-throw-if-not-resolved="false">Validity#ALLOWED</xref> or <xref uid="" data-throw-if-not-resolved="false">Validity#DENIED</xref>) or, if not able to, can defer validation to actual resolved type by returning <xref uid="" data-throw-if-not-resolved="false">Validity#INDETERMINATE</xref>.
+
+
+    Validator may also choose to indicate denial by throwing a <xref uid="com.fasterxml.jackson.databind.JsonMappingException" data-throw-if-not-resolved="false">JsonMappingException</xref> (such as <xref uid="com.fasterxml.jackson.databind.exc.InvalidTypeIdException" data-throw-if-not-resolved="false">com.fasterxml.jackson.databind.exc.InvalidTypeIdException</xref>)
+  syntax:
+    content: public abstract PolymorphicTypeValidator.Validity validateSubClassName(MapperConfig<?> config, JavaType baseType, String subClassName)
+    parameters:
+    - id: config
+      type: com.fasterxml.jackson.databind.cfg.MapperConfig<?>
+      description: 'Configuration for resolution: typically will be <code>DeserializationConfig</code>'
+    - id: baseType
+      type: com.fasterxml.jackson.databind.JavaType
+      description: >-
+        Nominal base type used for polymorphic handling: subtypes MUST be instances
+           of this type and assignment compatibility is verified by Jackson core
+    - id: subClassName
+      type: java.lang.String
+      description: >-
+        Name of class that will be resolved to <xref uid="java.lang.Class" data-throw-if-not-resolved="false">java.lang.Class</xref> if
+           (and only if) validity check is not denied.
+    return:
+      type: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+      description: >-
+        Determination of validity of given class name, as a subtype of given base type:
+           should NOT return <code>null</code>
+  exceptions:
+  - type: com.fasterxml.jackson.databind.JsonMappingException
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.JavaType)
+  id: validateSubType(com.fasterxml.jackson.databind.cfg.MapperConfig<?>,com.fasterxml.jackson.databind.JavaType,com.fasterxml.jackson.databind.JavaType)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator
+  langs:
+  - java
+  name: validateSubType(MapperConfig<?> config, JavaType baseType, JavaType subType)
+  nameWithType: PolymorphicTypeValidator.validateSubType(MapperConfig<?> config, JavaType baseType, JavaType subType)
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType(MapperConfig<?> config, JavaType baseType, JavaType subType)
+  overload: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType*
+  type: Method
+  package: com.fasterxml.jackson.databind.jsontype
+  summary: >-
+    Method called after class name has been resolved to actual type, in cases where previous call to <xref uid="com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName*" data-throw-if-not-resolved="false">#validateSubClassName</xref> returned <xref uid="" data-throw-if-not-resolved="false">Validity#INDETERMINATE</xref>. Validator should be able to determine validity and return appropriate <xref uid="" data-throw-if-not-resolved="false">Validity</xref> value, although it may also
+
+
+    Validator may also choose to indicate denial by throwing a <xref uid="com.fasterxml.jackson.databind.JsonMappingException" data-throw-if-not-resolved="false">JsonMappingException</xref> (such as <xref uid="com.fasterxml.jackson.databind.exc.InvalidTypeIdException" data-throw-if-not-resolved="false">com.fasterxml.jackson.databind.exc.InvalidTypeIdException</xref>)
+  syntax:
+    content: public abstract PolymorphicTypeValidator.Validity validateSubType(MapperConfig<?> config, JavaType baseType, JavaType subType)
+    parameters:
+    - id: config
+      type: com.fasterxml.jackson.databind.cfg.MapperConfig<?>
+      description: 'Configuration for resolution: typically will be <code>DeserializationConfig</code>'
+    - id: baseType
+      type: com.fasterxml.jackson.databind.JavaType
+      description: >-
+        Nominal base type used for polymorphic handling: subtypes MUST be instances
+           of this type and assignment compatibility has been verified by Jackson core
+    - id: subType
+      type: com.fasterxml.jackson.databind.JavaType
+      description: Resolved subtype to validate
+    return:
+      type: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+      description: >-
+        Determination of validity of given class name, as a subtype of given base type:
+           should NOT return <code>null</code>
+  exceptions:
+  - type: com.fasterxml.jackson.databind.JsonMappingException
+references:
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator*
+  name: PolymorphicTypeValidator
+  nameWithType: PolymorphicTypeValidator.PolymorphicTypeValidator
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.PolymorphicTypeValidator
+  package: com.fasterxml.jackson.databind.jsontype
+- uid: com.fasterxml.jackson.databind.cfg.MapperConfig<?>
+  spec.java:
+  - uid: com.fasterxml.jackson.databind.cfg.MapperConfig
+    name: MapperConfig
+    fullName: com.fasterxml.jackson.databind.cfg.MapperConfig
+  - name: <
+    fullName: <
+  - uid: '?'
+    name: '?'
+    fullName: '?'
+  - name: '>'
+    fullName: '>'
+- uid: com.fasterxml.jackson.databind.JavaType
+  name: JavaType
+  nameWithType: JavaType
+  fullName: com.fasterxml.jackson.databind.JavaType
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+  name: PolymorphicTypeValidator.Validity
+  nameWithType: PolymorphicTypeValidator.Validity
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Validity
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType*
+  name: validateBaseType
+  nameWithType: PolymorphicTypeValidator.validateBaseType
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateBaseType
+  package: com.fasterxml.jackson.databind.jsontype
+- uid: com.fasterxml.jackson.databind.JsonMappingException
+  name: JsonMappingException
+  nameWithType: JsonMappingException
+  fullName: com.fasterxml.jackson.databind.JsonMappingException
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName*
+  name: validateSubClassName
+  nameWithType: PolymorphicTypeValidator.validateSubClassName
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubClassName
+  package: com.fasterxml.jackson.databind.jsontype
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType*
+  name: validateSubType
+  nameWithType: PolymorphicTypeValidator.validateSubType
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.validateSubType
+  package: com.fasterxml.jackson.databind.jsontype
+- uid: java.io.Serializable
+  name: Serializable
+  nameWithType: Serializable
+  fullName: java.io.Serializable
+- uid: java.lang.Object.notify()
+  name: Object.notify()
+  nameWithType: Object.notify()
+  fullName: java.lang.Object.notify()
+- uid: java.lang.Object.wait()
+  name: Object.wait()
+  nameWithType: Object.wait()
+  fullName: java.lang.Object.wait()
+- uid: java.lang.Object.finalize()
+  name: Object.finalize()
+  nameWithType: Object.finalize()
+  fullName: java.lang.Object.finalize()
+- uid: java.lang.Object.clone()
+  name: Object.clone()
+  nameWithType: Object.clone()
+  fullName: java.lang.Object.clone()
+- uid: java.lang.Object.notifyAll()
+  name: Object.notifyAll()
+  nameWithType: Object.notifyAll()
+  fullName: java.lang.Object.notifyAll()
+- uid: java.lang.Object.equals(java.lang.Object)
+  name: Object.equals(Object)
+  nameWithType: Object.equals(Object)
+  fullName: java.lang.Object.equals(java.lang.Object)
+- uid: java.lang.Object.getClass()
+  name: Object.getClass()
+  nameWithType: Object.getClass()
+  fullName: java.lang.Object.getClass()
+- uid: java.lang.Object.wait(long)
+  name: Object.wait(long)
+  nameWithType: Object.wait(long)
+  fullName: java.lang.Object.wait(long)
+- uid: java.lang.Object.hashCode()
+  name: Object.hashCode()
+  nameWithType: Object.hashCode()
+  fullName: java.lang.Object.hashCode()
+- uid: java.lang.Object.wait(long,int)
+  name: Object.wait(long,int)
+  nameWithType: Object.wait(long,int)
+  fullName: java.lang.Object.wait(long,int)
+- uid: java.lang.Object.toString()
+  name: Object.toString()
+  nameWithType: Object.toString()
+  fullName: java.lang.Object.toString()
+- uid: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Base
+  name: PolymorphicTypeValidator.Base
+  nameWithType: PolymorphicTypeValidator.Base
+  fullName: com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator.Base
+- uid: com.fasterxml.jackson.databind.cfg.MapperConfig
+  name: MapperConfig
+  nameWithType: MapperConfig
+  fullName: com.fasterxml.jackson.databind.cfg.MapperConfig
+- uid: '?'
+  name: '?'
+  nameWithType: '?'
+  fullName: '?'

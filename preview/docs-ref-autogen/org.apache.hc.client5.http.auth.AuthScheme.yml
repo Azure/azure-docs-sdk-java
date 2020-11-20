@@ -1,0 +1,323 @@
+### YamlMime:ManagedReference
+items:
+- uid: org.apache.hc.client5.http.auth.AuthScheme
+  id: AuthScheme
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth
+  children:
+  - org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse(org.apache.hc.core5.http.HttpHost,org.apache.hc.core5.http.HttpRequest,org.apache.hc.core5.http.protocol.HttpContext)
+  - org.apache.hc.client5.http.auth.AuthScheme.getName()
+  - org.apache.hc.client5.http.auth.AuthScheme.getPrincipal()
+  - org.apache.hc.client5.http.auth.AuthScheme.getRealm()
+  - org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete()
+  - org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased()
+  - org.apache.hc.client5.http.auth.AuthScheme.isResponseReady(org.apache.hc.core5.http.HttpHost,org.apache.hc.client5.http.auth.CredentialsProvider,org.apache.hc.core5.http.protocol.HttpContext)
+  - org.apache.hc.client5.http.auth.AuthScheme.processChallenge(org.apache.hc.client5.http.auth.AuthChallenge,org.apache.hc.core5.http.protocol.HttpContext)
+  langs:
+  - java
+  name: AuthScheme
+  nameWithType: AuthScheme
+  fullName: org.apache.hc.client5.http.auth.AuthScheme
+  type: Interface
+  package: org.apache.hc.client5.http.auth
+  summary: >-
+    This interface represents an abstract challenge-response oriented authentication scheme.
+
+
+    Authentication schemes can be either request or connection based. The former are expected to provide an authorization response with each request message while the latter is executed only once and applies to the underlying connection for its entire life span. Care must be taken when re-using connections authorized through a connection based authentication scheme and they may carry a particular security context and be authorized for a particular user identity. It is important that such schemes always provide the user identity they represent through the <xref uid="org.apache.hc.client5.http.auth.AuthScheme.getPrincipal()" data-throw-if-not-resolved="false">#getPrincipal()</xref> method.
+
+
+    Authentication scheme are expected to transition through a series of standard phases or states.
+
+
+    Authentication scheme starts off its life cycle with no context and no specific state.
+
+
+    The <xref uid="org.apache.hc.client5.http.auth.AuthScheme.processChallenge(org.apache.hc.client5.http.auth.AuthChallenge,org.apache.hc.core5.http.protocol.HttpContext)" data-throw-if-not-resolved="false">#processChallenge(AuthChallenge, HttpContext)</xref> method is called to process an authentication challenge received either from the target server or a proxy. The authentication scheme transitions to CHALLENGED state and is expected to validate the token passed to it as a parameter and initialize its internal state based on challenge details. Standard authentication schemes are expected to provide a realm attribute in the challenge. <xref uid="org.apache.hc.client5.http.auth.AuthScheme.getRealm()" data-throw-if-not-resolved="false">#getRealm()</xref> can be called to obtain an identifier of the realm that requires authorization.
+
+
+    Once the challenge has been fully processed the <xref uid="#isResponseReady(HttpHost,
+     CredentialsProvider, HttpContext)" data-throw-if-not-resolved="false">#isResponseReady(HttpHost,
+     CredentialsProvider, HttpContext)</xref> method to determine whether the scheme is capable of generating a authorization response based on its current state and it holds user credentials required to do so. If this method returns `false` the authentication is considered to be in FAILED state and no authorization response. Otherwise the scheme is considered to be in RESPONSE\_READY state.
+
+    Once the scheme is ready to respond to the challenge the <xref uid="#generateAuthResponse(
+     HttpHost, HttpRequest, HttpContext)" data-throw-if-not-resolved="false">#generateAuthResponse(
+     HttpHost, HttpRequest, HttpContext)</xref> method to generate a response token, which will be sent to the opposite endpoint in the subsequent request message.
+
+    Certain non-standard schemes may involve multiple challenge / response exchanges to fully establish a shared context and complete the authentication process. Authentication schemes are required to return `true` <xref uid="org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete()" data-throw-if-not-resolved="false">#isChallengeComplete()</xref> once the handshake is considered complete.
+
+
+    The authentication scheme is considered successfully completed and in SUCCESS state if the opposite endpoint accepts the request message containing the authorization response and responds with a message indicating no authentication failure . If the opposite endpoint sends status code 401 or 407 in response to a request message containing the terminal authorization response, the scheme is considered unsuccessful and in FAILED state.
+  syntax:
+    content: public interface AuthScheme
+- uid: org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse(org.apache.hc.core5.http.HttpHost,org.apache.hc.core5.http.HttpRequest,org.apache.hc.core5.http.protocol.HttpContext)
+  id: generateAuthResponse(org.apache.hc.core5.http.HttpHost,org.apache.hc.core5.http.HttpRequest,org.apache.hc.core5.http.protocol.HttpContext)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: generateAuthResponse(HttpHost host, HttpRequest request, HttpContext context)
+  nameWithType: AuthScheme.generateAuthResponse(HttpHost host, HttpRequest request, HttpContext context)
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse(HttpHost host, HttpRequest request, HttpContext context)
+  overload: org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Generates an authorization response based on the current state. Some authentication schemes may need to load user credentials required to generate an authorization response from a <xref uid="org.apache.hc.client5.http.auth.CredentialsProvider" data-throw-if-not-resolved="false">CredentialsProvider</xref> prior to this method call.
+  syntax:
+    content: public abstract String generateAuthResponse(HttpHost host, HttpRequest request, HttpContext context)
+    parameters:
+    - id: host
+      type: org.apache.hc.core5.http.HttpHost
+    - id: request
+      type: org.apache.hc.core5.http.HttpRequest
+      description: The request being authenticated
+    - id: context
+      type: org.apache.hc.core5.http.protocol.HttpContext
+      description: HTTP context
+    return:
+      type: java.lang.String
+      description: authorization header
+  exceptions:
+  - type: org.apache.hc.client5.http.auth.AuthenticationException
+    description: >-
+      if authorization string cannot
+         be generated due to an authentication failure
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getName()
+  id: getName()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: getName()
+  nameWithType: AuthScheme.getName()
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getName()
+  overload: org.apache.hc.client5.http.auth.AuthScheme.getName*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Returns textual designation of the given authentication scheme.
+  syntax:
+    content: public abstract String getName()
+    return:
+      type: java.lang.String
+      description: the name of the given authentication scheme
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getPrincipal()
+  id: getPrincipal()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: getPrincipal()
+  nameWithType: AuthScheme.getPrincipal()
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getPrincipal()
+  overload: org.apache.hc.client5.http.auth.AuthScheme.getPrincipal*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Returns <xref uid="java.security.Principal" data-throw-if-not-resolved="false">Principal</xref> whose credentials are used to generate an authentication response. Connection based schemes are required to return a user <xref uid="java.security.Principal" data-throw-if-not-resolved="false">Principal</xref> if authorization applies to for the entire life span of connection.
+  syntax:
+    content: public abstract Principal getPrincipal()
+    return:
+      type: java.security.Principal
+      description: user principal
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getRealm()
+  id: getRealm()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: getRealm()
+  nameWithType: AuthScheme.getRealm()
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getRealm()
+  overload: org.apache.hc.client5.http.auth.AuthScheme.getRealm*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Returns authentication realm. If the concept of an authentication realm is not applicable to the given authentication scheme, returns `null`.
+  syntax:
+    content: public abstract String getRealm()
+    return:
+      type: java.lang.String
+      description: the authentication realm
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete()
+  id: isChallengeComplete()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: isChallengeComplete()
+  nameWithType: AuthScheme.isChallengeComplete()
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete()
+  overload: org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Authentication process may involve a series of challenge-response exchanges. This method tests if the authorization process has been fully completed (either successfully or unsuccessfully), that is, all the required authorization challenges have been processed in their entirety.
+  syntax:
+    content: public abstract boolean isChallengeComplete()
+    return:
+      type: boolean
+      description: >-
+        <code>true</code> if the authentication process has been completed,
+         <code>false</code> otherwise.
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased()
+  id: isConnectionBased()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: isConnectionBased()
+  nameWithType: AuthScheme.isConnectionBased()
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased()
+  overload: org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Determines if the authentication scheme is expected to provide an authorization response on a per connection basis instead of the standard per request basis
+  syntax:
+    content: public abstract boolean isConnectionBased()
+    return:
+      type: boolean
+      description: >-
+        <code>true</code> if the scheme is connection based, <code>false</code>
+         if the scheme is request based.
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isResponseReady(org.apache.hc.core5.http.HttpHost,org.apache.hc.client5.http.auth.CredentialsProvider,org.apache.hc.core5.http.protocol.HttpContext)
+  id: isResponseReady(org.apache.hc.core5.http.HttpHost,org.apache.hc.client5.http.auth.CredentialsProvider,org.apache.hc.core5.http.protocol.HttpContext)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: isResponseReady(HttpHost host, CredentialsProvider credentialsProvider, HttpContext context)
+  nameWithType: AuthScheme.isResponseReady(HttpHost host, CredentialsProvider credentialsProvider, HttpContext context)
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isResponseReady(HttpHost host, CredentialsProvider credentialsProvider, HttpContext context)
+  overload: org.apache.hc.client5.http.auth.AuthScheme.isResponseReady*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Determines whether or not an authorization response can be generated based on the actual authentication state. Generally the outcome of this method will depend upon availability of user credentials necessary to produce an authorization response.
+  syntax:
+    content: public abstract boolean isResponseReady(HttpHost host, CredentialsProvider credentialsProvider, HttpContext context)
+    parameters:
+    - id: host
+      type: org.apache.hc.core5.http.HttpHost
+    - id: credentialsProvider
+      type: org.apache.hc.client5.http.auth.CredentialsProvider
+      description: The credentials to be used for authentication
+    - id: context
+      type: org.apache.hc.core5.http.protocol.HttpContext
+      description: HTTP context
+    return:
+      type: boolean
+      description: >-
+        <code>true</code> if an authorization response can be generated and
+         the authentication handshake can proceed, <code>false</code> otherwise.
+  exceptions:
+  - type: org.apache.hc.client5.http.auth.AuthenticationException
+    description: >-
+      if authorization string cannot
+         be generated due to an authentication failure
+- uid: org.apache.hc.client5.http.auth.AuthScheme.processChallenge(org.apache.hc.client5.http.auth.AuthChallenge,org.apache.hc.core5.http.protocol.HttpContext)
+  id: processChallenge(org.apache.hc.client5.http.auth.AuthChallenge,org.apache.hc.core5.http.protocol.HttpContext)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: org.apache.hc.client5.http.auth.AuthScheme
+  langs:
+  - java
+  name: processChallenge(AuthChallenge authChallenge, HttpContext context)
+  nameWithType: AuthScheme.processChallenge(AuthChallenge authChallenge, HttpContext context)
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.processChallenge(AuthChallenge authChallenge, HttpContext context)
+  overload: org.apache.hc.client5.http.auth.AuthScheme.processChallenge*
+  type: Method
+  package: org.apache.hc.client5.http.auth
+  summary: Processes the given auth challenge. Some authentication schemes may involve multiple challenge-response exchanges. Such schemes must be able to maintain internal state when dealing with sequential challenges
+  syntax:
+    content: public abstract void processChallenge(AuthChallenge authChallenge, HttpContext context)
+    parameters:
+    - id: authChallenge
+      type: org.apache.hc.client5.http.auth.AuthChallenge
+      description: the auth challenge
+    - id: context
+      type: org.apache.hc.core5.http.protocol.HttpContext
+      description: HTTP context
+  exceptions:
+  - type: org.apache.hc.client5.http.auth.MalformedChallengeException
+    description: >-
+      in case the auth challenge is incomplete,
+       malformed or otherwise invalid.
+references:
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getName*
+  name: getName
+  nameWithType: AuthScheme.getName
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getName
+  package: org.apache.hc.client5.http.auth
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased*
+  name: isConnectionBased
+  nameWithType: AuthScheme.isConnectionBased
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isConnectionBased
+  package: org.apache.hc.client5.http.auth
+- uid: org.apache.hc.client5.http.auth.MalformedChallengeException
+  name: MalformedChallengeException
+  nameWithType: MalformedChallengeException
+  fullName: org.apache.hc.client5.http.auth.MalformedChallengeException
+- uid: org.apache.hc.client5.http.auth.AuthChallenge
+  name: AuthChallenge
+  nameWithType: AuthChallenge
+  fullName: org.apache.hc.client5.http.auth.AuthChallenge
+- uid: org.apache.hc.core5.http.protocol.HttpContext
+  name: HttpContext
+  nameWithType: HttpContext
+  fullName: org.apache.hc.core5.http.protocol.HttpContext
+- uid: org.apache.hc.client5.http.auth.AuthScheme.processChallenge*
+  name: processChallenge
+  nameWithType: AuthScheme.processChallenge
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.processChallenge
+  package: org.apache.hc.client5.http.auth
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete*
+  name: isChallengeComplete
+  nameWithType: AuthScheme.isChallengeComplete
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isChallengeComplete
+  package: org.apache.hc.client5.http.auth
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getRealm*
+  name: getRealm
+  nameWithType: AuthScheme.getRealm
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getRealm
+  package: org.apache.hc.client5.http.auth
+- uid: org.apache.hc.client5.http.auth.AuthenticationException
+  name: AuthenticationException
+  nameWithType: AuthenticationException
+  fullName: org.apache.hc.client5.http.auth.AuthenticationException
+- uid: org.apache.hc.core5.http.HttpHost
+  name: HttpHost
+  nameWithType: HttpHost
+  fullName: org.apache.hc.core5.http.HttpHost
+- uid: org.apache.hc.client5.http.auth.CredentialsProvider
+  name: CredentialsProvider
+  nameWithType: CredentialsProvider
+  fullName: org.apache.hc.client5.http.auth.CredentialsProvider
+- uid: org.apache.hc.client5.http.auth.AuthScheme.isResponseReady*
+  name: isResponseReady
+  nameWithType: AuthScheme.isResponseReady
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.isResponseReady
+  package: org.apache.hc.client5.http.auth
+- uid: java.security.Principal
+  spec.java:
+  - uid: java.security.Principal
+    name: Principal
+    fullName: java.security.Principal
+- uid: org.apache.hc.client5.http.auth.AuthScheme.getPrincipal*
+  name: getPrincipal
+  nameWithType: AuthScheme.getPrincipal
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.getPrincipal
+  package: org.apache.hc.client5.http.auth
+- uid: org.apache.hc.core5.http.HttpRequest
+  name: HttpRequest
+  nameWithType: HttpRequest
+  fullName: org.apache.hc.core5.http.HttpRequest
+- uid: org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse*
+  name: generateAuthResponse
+  nameWithType: AuthScheme.generateAuthResponse
+  fullName: org.apache.hc.client5.http.auth.AuthScheme.generateAuthResponse
+  package: org.apache.hc.client5.http.auth
