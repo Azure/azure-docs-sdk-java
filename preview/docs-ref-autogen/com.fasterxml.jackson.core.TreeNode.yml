@@ -1,0 +1,552 @@
+### YamlMime:ManagedReference
+items:
+- uid: com.fasterxml.jackson.core.TreeNode
+  id: TreeNode
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core
+  children:
+  - com.fasterxml.jackson.core.TreeNode.asToken()
+  - com.fasterxml.jackson.core.TreeNode.at(com.fasterxml.jackson.core.JsonPointer)
+  - com.fasterxml.jackson.core.TreeNode.at(java.lang.String)
+  - com.fasterxml.jackson.core.TreeNode.fieldNames()
+  - com.fasterxml.jackson.core.TreeNode.get(int)
+  - com.fasterxml.jackson.core.TreeNode.get(java.lang.String)
+  - com.fasterxml.jackson.core.TreeNode.isArray()
+  - com.fasterxml.jackson.core.TreeNode.isContainerNode()
+  - com.fasterxml.jackson.core.TreeNode.isMissingNode()
+  - com.fasterxml.jackson.core.TreeNode.isObject()
+  - com.fasterxml.jackson.core.TreeNode.isValueNode()
+  - com.fasterxml.jackson.core.TreeNode.numberType()
+  - com.fasterxml.jackson.core.TreeNode.path(int)
+  - com.fasterxml.jackson.core.TreeNode.path(java.lang.String)
+  - com.fasterxml.jackson.core.TreeNode.size()
+  - com.fasterxml.jackson.core.TreeNode.traverse()
+  - com.fasterxml.jackson.core.TreeNode.traverse(com.fasterxml.jackson.core.ObjectCodec)
+  langs:
+  - java
+  name: TreeNode
+  nameWithType: TreeNode
+  fullName: com.fasterxml.jackson.core.TreeNode
+  type: Interface
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Marker interface used to denote JSON Tree nodes, as far as the core package knows them (which is very little): mostly needed to allow <xref uid="com.fasterxml.jackson.core.ObjectCodec" data-throw-if-not-resolved="false">ObjectCodec</xref> to have some level of interoperability. Most functionality is within `JsonNode` base class in `mapper` package.
+
+
+    Note that in Jackson 1.x `JsonNode` itself was part of core package: Jackson 2.x refactored this since conceptually Tree Model is part of mapper package, and so part visible to `core` package should be minimized.
+
+
+    NOTE: starting with Jackson 2.2, there is more functionality available via this class, and the intent is that this should form actual base for multiple alternative tree representations; for example, immutable trees could use different implementation than mutable trees. It should also be possible to move actual Tree Model implementation out of databind package eventually (Jackson 3?).
+  syntax:
+    content: public interface TreeNode
+- uid: com.fasterxml.jackson.core.TreeNode.asToken()
+  id: asToken()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: asToken()
+  nameWithType: TreeNode.asToken()
+  fullName: com.fasterxml.jackson.core.TreeNode.asToken()
+  overload: com.fasterxml.jackson.core.TreeNode.asToken*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method that can be used for efficient type detection when using stream abstraction for traversing nodes. Will return the first <xref uid="com.fasterxml.jackson.core.JsonToken" data-throw-if-not-resolved="false">JsonToken</xref> that equivalent stream event would produce (for most nodes there is just one token but for structured/container types multiple)
+  syntax:
+    content: public abstract JsonToken asToken()
+    return:
+      type: com.fasterxml.jackson.core.JsonToken
+- uid: com.fasterxml.jackson.core.TreeNode.at(com.fasterxml.jackson.core.JsonPointer)
+  id: at(com.fasterxml.jackson.core.JsonPointer)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: at(JsonPointer ptr)
+  nameWithType: TreeNode.at(JsonPointer ptr)
+  fullName: com.fasterxml.jackson.core.TreeNode.at(JsonPointer ptr)
+  overload: com.fasterxml.jackson.core.TreeNode.at*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method for locating node specified by given JSON pointer instances. Method will never return null; if no matching node exists, will return a node for which <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode()" data-throw-if-not-resolved="false">TreeNode#isMissingNode()</xref> returns true.
+  syntax:
+    content: public abstract TreeNode at(JsonPointer ptr)
+    parameters:
+    - id: ptr
+      type: com.fasterxml.jackson.core.JsonPointer
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that matches given JSON Pointer: if no match exists,
+           will return a node for which <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode()" data-throw-if-not-resolved="false">TreeNode#isMissingNode()</xref> returns true.
+- uid: com.fasterxml.jackson.core.TreeNode.at(java.lang.String)
+  id: at(java.lang.String)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: at(String jsonPointerExpression)
+  nameWithType: TreeNode.at(String jsonPointerExpression)
+  fullName: com.fasterxml.jackson.core.TreeNode.at(String jsonPointerExpression)
+  overload: com.fasterxml.jackson.core.TreeNode.at*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Convenience method that is functionally equivalent to:
+
+
+    ```java
+
+    return at(JsonPointer.valueOf(jsonPointerExpression));
+
+    ```
+
+
+    Note that if the same expression is used often, it is preferable to construct <xref uid="com.fasterxml.jackson.core.JsonPointer" data-throw-if-not-resolved="false">JsonPointer</xref> instance once and reuse it: this method will not perform any caching of compiled expressions.
+  syntax:
+    content: public abstract TreeNode at(String jsonPointerExpression)
+    parameters:
+    - id: jsonPointerExpression
+      type: java.lang.String
+      description: >-
+        Expression to compile as a <xref uid="com.fasterxml.jackson.core.JsonPointer" data-throw-if-not-resolved="false">JsonPointer</xref>
+           instance
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that matches given JSON Pointer: if no match exists,
+           will return a node for which <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode()" data-throw-if-not-resolved="false">TreeNode#isMissingNode()</xref> returns true.
+  exceptions:
+  - type: java.lang.IllegalArgumentException
+- uid: com.fasterxml.jackson.core.TreeNode.fieldNames()
+  id: fieldNames()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: fieldNames()
+  nameWithType: TreeNode.fieldNames()
+  fullName: com.fasterxml.jackson.core.TreeNode.fieldNames()
+  overload: com.fasterxml.jackson.core.TreeNode.fieldNames*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method for accessing names of all fields for this node, iff this node is an Object node. Number of field names accessible will be <xref uid="com.fasterxml.jackson.core.TreeNode.size*" data-throw-if-not-resolved="false">#size</xref>.
+  syntax:
+    content: public abstract Iterator<String> fieldNames()
+    return:
+      type: java.util.Iterator<java.lang.String>
+- uid: com.fasterxml.jackson.core.TreeNode.get(int)
+  id: get(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: get(int index)
+  nameWithType: TreeNode.get(int index)
+  fullName: com.fasterxml.jackson.core.TreeNode.get(int index)
+  overload: com.fasterxml.jackson.core.TreeNode.get*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method for accessing value of the specified element of an array node. For other nodes, null is returned.
+
+
+    For array nodes, index specifies exact location within array and allows for efficient iteration over child elements (underlying storage is guaranteed to be efficiently indexable, i.e. has random-access to elements). If index is less than 0, or equal-or-greater than `node.size()`, null is returned; no exception is thrown for any index.
+  syntax:
+    content: public abstract TreeNode get(int index)
+    parameters:
+    - id: index
+      type: int
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that represent value of the specified element,
+           if this node is an array and has specified element.
+           Null otherwise.
+- uid: com.fasterxml.jackson.core.TreeNode.get(java.lang.String)
+  id: get(java.lang.String)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: get(String fieldName)
+  nameWithType: TreeNode.get(String fieldName)
+  fullName: com.fasterxml.jackson.core.TreeNode.get(String fieldName)
+  overload: com.fasterxml.jackson.core.TreeNode.get*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method for accessing value of the specified field of an object node. If this node is not an object (or it does not have a value for specified field name), or if there is no field with such name, null is returned.
+
+
+    NOTE: handling of explicit null values may vary between implementations; some trees may retain explicit nulls, others not.
+  syntax:
+    content: public abstract TreeNode get(String fieldName)
+    parameters:
+    - id: fieldName
+      type: java.lang.String
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that represent value of the specified field,
+           if this node is an object and has value for the specified
+           field. Null otherwise.
+- uid: com.fasterxml.jackson.core.TreeNode.isArray()
+  id: isArray()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: isArray()
+  nameWithType: TreeNode.isArray()
+  fullName: com.fasterxml.jackson.core.TreeNode.isArray()
+  overload: com.fasterxml.jackson.core.TreeNode.isArray*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method that returns true if this node is an Array node, false otherwise. Note that if true is returned, <xref uid="com.fasterxml.jackson.core.TreeNode.isContainerNode*" data-throw-if-not-resolved="false">#isContainerNode</xref> must also return true.
+  syntax:
+    content: public abstract boolean isArray()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.isContainerNode()
+  id: isContainerNode()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: isContainerNode()
+  nameWithType: TreeNode.isContainerNode()
+  fullName: com.fasterxml.jackson.core.TreeNode.isContainerNode()
+  overload: com.fasterxml.jackson.core.TreeNode.isContainerNode*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method that returns true for container nodes: Arrays and Objects.
+
+
+    Note: one and only one of methods <xref uid="com.fasterxml.jackson.core.TreeNode.isValueNode*" data-throw-if-not-resolved="false">#isValueNode</xref>, <xref uid="com.fasterxml.jackson.core.TreeNode.isContainerNode*" data-throw-if-not-resolved="false">#isContainerNode</xref> and <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode*" data-throw-if-not-resolved="false">#isMissingNode</xref> ever returns true for any given node.
+  syntax:
+    content: public abstract boolean isContainerNode()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.isMissingNode()
+  id: isMissingNode()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: isMissingNode()
+  nameWithType: TreeNode.isMissingNode()
+  fullName: com.fasterxml.jackson.core.TreeNode.isMissingNode()
+  overload: com.fasterxml.jackson.core.TreeNode.isMissingNode*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method that returns true for "virtual" nodes which represent missing entries constructed by path accessor methods when there is no actual node matching given criteria.
+
+
+    Note: one and only one of methods <xref uid="com.fasterxml.jackson.core.TreeNode.isValueNode*" data-throw-if-not-resolved="false">#isValueNode</xref>, <xref uid="com.fasterxml.jackson.core.TreeNode.isContainerNode*" data-throw-if-not-resolved="false">#isContainerNode</xref> and <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode*" data-throw-if-not-resolved="false">#isMissingNode</xref> ever returns true for any given node.
+  syntax:
+    content: public abstract boolean isMissingNode()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.isObject()
+  id: isObject()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: isObject()
+  nameWithType: TreeNode.isObject()
+  fullName: com.fasterxml.jackson.core.TreeNode.isObject()
+  overload: com.fasterxml.jackson.core.TreeNode.isObject*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method that returns true if this node is an Object node, false otherwise. Note that if true is returned, <xref uid="com.fasterxml.jackson.core.TreeNode.isContainerNode*" data-throw-if-not-resolved="false">#isContainerNode</xref> must also return true.
+  syntax:
+    content: public abstract boolean isObject()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.isValueNode()
+  id: isValueNode()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: isValueNode()
+  nameWithType: TreeNode.isValueNode()
+  fullName: com.fasterxml.jackson.core.TreeNode.isValueNode()
+  overload: com.fasterxml.jackson.core.TreeNode.isValueNode*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method that returns true for all value nodes: ones that are not containers, and that do not represent "missing" nodes in the path. Such value nodes represent String, Number, Boolean and null values from JSON.
+
+
+    Note: one and only one of methods <xref uid="com.fasterxml.jackson.core.TreeNode.isValueNode*" data-throw-if-not-resolved="false">#isValueNode</xref>, <xref uid="com.fasterxml.jackson.core.TreeNode.isContainerNode*" data-throw-if-not-resolved="false">#isContainerNode</xref> and <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode*" data-throw-if-not-resolved="false">#isMissingNode</xref> ever returns true for any given node.
+  syntax:
+    content: public abstract boolean isValueNode()
+    return:
+      type: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.numberType()
+  id: numberType()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: numberType()
+  nameWithType: TreeNode.numberType()
+  fullName: com.fasterxml.jackson.core.TreeNode.numberType()
+  overload: com.fasterxml.jackson.core.TreeNode.numberType*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: If this node is a numeric type (as per <xref uid="com.fasterxml.jackson.core.JsonToken.isNumeric*" data-throw-if-not-resolved="false">JsonToken#isNumeric</xref>), returns native type that node uses to store the numeric value; otherwise returns null.
+  syntax:
+    content: public abstract JsonParser.NumberType numberType()
+    return:
+      type: com.fasterxml.jackson.core.JsonParser.NumberType
+      description: >-
+        Type of number contained, if any; or null if node does not
+          contain numeric value.
+- uid: com.fasterxml.jackson.core.TreeNode.path(int)
+  id: path(int)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: path(int index)
+  nameWithType: TreeNode.path(int index)
+  fullName: com.fasterxml.jackson.core.TreeNode.path(int index)
+  overload: com.fasterxml.jackson.core.TreeNode.path*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method for accessing value of the specified element of an array node. For other nodes, a "missing node" (virtual node for which <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode*" data-throw-if-not-resolved="false">#isMissingNode</xref> returns true) is returned.
+
+
+    For array nodes, index specifies exact location within array and allows for efficient iteration over child elements (underlying storage is guaranteed to be efficiently indexable, i.e. has random-access to elements). If index is less than 0, or equal-or-greater than `node.size()`, "missing node" is returned; no exception is thrown for any index.
+  syntax:
+    content: public abstract TreeNode path(int index)
+    parameters:
+    - id: index
+      type: int
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that represent value of the specified element,
+           if this node is an array and has specified element;
+           otherwise "missing node" is returned.
+- uid: com.fasterxml.jackson.core.TreeNode.path(java.lang.String)
+  id: path(java.lang.String)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: path(String fieldName)
+  nameWithType: TreeNode.path(String fieldName)
+  fullName: com.fasterxml.jackson.core.TreeNode.path(String fieldName)
+  overload: com.fasterxml.jackson.core.TreeNode.path*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: Method for accessing value of the specified field of an object node. For other nodes, a "missing node" (virtual node for which <xref uid="com.fasterxml.jackson.core.TreeNode.isMissingNode*" data-throw-if-not-resolved="false">#isMissingNode</xref> returns true) is returned.
+  syntax:
+    content: public abstract TreeNode path(String fieldName)
+    parameters:
+    - id: fieldName
+      type: java.lang.String
+    return:
+      type: com.fasterxml.jackson.core.TreeNode
+      description: >-
+        Node that represent value of the specified field,
+           if this node is an object and has value for the specified field;
+           otherwise "missing node" is returned.
+- uid: com.fasterxml.jackson.core.TreeNode.size()
+  id: size()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: size()
+  nameWithType: TreeNode.size()
+  fullName: com.fasterxml.jackson.core.TreeNode.size()
+  overload: com.fasterxml.jackson.core.TreeNode.size*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: 'Method that returns number of child nodes this node contains: for Array nodes, number of child elements, for Object nodes, number of fields, and for all other nodes 0.'
+  syntax:
+    content: public abstract int size()
+    return:
+      type: int
+      description: >-
+        For non-container nodes returns 0; for arrays number of
+           contained elements, and for objects number of fields.
+- uid: com.fasterxml.jackson.core.TreeNode.traverse()
+  id: traverse()
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: traverse()
+  nameWithType: TreeNode.traverse()
+  fullName: com.fasterxml.jackson.core.TreeNode.traverse()
+  overload: com.fasterxml.jackson.core.TreeNode.traverse*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Method for constructing a <xref uid="com.fasterxml.jackson.core.JsonParser" data-throw-if-not-resolved="false">JsonParser</xref> instance for iterating over contents of the tree that this node is root of. Functionally equivalent to first serializing tree using <xref uid="com.fasterxml.jackson.core.ObjectCodec" data-throw-if-not-resolved="false">ObjectCodec</xref> and then re-parsing but more efficient.
+
+
+    NOTE: constructed parser instance will NOT initially point to a token, so before passing it to deserializers, it is typically necessary to advance it to the first available token by calling <xref uid="com.fasterxml.jackson.core.JsonParser.nextToken()" data-throw-if-not-resolved="false">JsonParser#nextToken()</xref>.
+
+
+    Also note that calling this method will **NOT** pass <xref uid="com.fasterxml.jackson.core.ObjectCodec" data-throw-if-not-resolved="false">ObjectCodec</xref> reference, so data-binding callback methods like <xref uid="com.fasterxml.jackson.core.JsonParser.&lt;T&gt;readValueAs(java.lang.Class&lt;T&gt;)" data-throw-if-not-resolved="false">JsonParser#readValueAs(Class)</xref> will not work with calling <xref uid="com.fasterxml.jackson.core.JsonParser.setCodec*" data-throw-if-not-resolved="false">JsonParser#setCodec</xref>). It is often better to call <xref uid="com.fasterxml.jackson.core.TreeNode.traverse(com.fasterxml.jackson.core.ObjectCodec)" data-throw-if-not-resolved="false">#traverse(ObjectCodec)</xref> to pass the codec explicitly.
+  syntax:
+    content: public abstract JsonParser traverse()
+    return:
+      type: com.fasterxml.jackson.core.JsonParser
+- uid: com.fasterxml.jackson.core.TreeNode.traverse(com.fasterxml.jackson.core.ObjectCodec)
+  id: traverse(com.fasterxml.jackson.core.ObjectCodec)
+  artifact: com.azure:azure-security-keyvault-jca:1.0.0-beta.2
+  parent: com.fasterxml.jackson.core.TreeNode
+  langs:
+  - java
+  name: traverse(ObjectCodec codec)
+  nameWithType: TreeNode.traverse(ObjectCodec codec)
+  fullName: com.fasterxml.jackson.core.TreeNode.traverse(ObjectCodec codec)
+  overload: com.fasterxml.jackson.core.TreeNode.traverse*
+  type: Method
+  package: com.fasterxml.jackson.core
+  summary: >-
+    Same as <xref uid="com.fasterxml.jackson.core.TreeNode.traverse()" data-throw-if-not-resolved="false">#traverse()</xref>, but additionally passes <xref uid="com.fasterxml.jackson.core.ObjectCodec" data-throw-if-not-resolved="false">com.fasterxml.jackson.core.ObjectCodec</xref> to use if <xref uid="com.fasterxml.jackson.core.JsonParser.&lt;T&gt;readValueAs(java.lang.Class&lt;T&gt;)" data-throw-if-not-resolved="false">JsonParser#readValueAs(Class)</xref> is used (otherwise caller must call <xref uid="com.fasterxml.jackson.core.JsonParser.setCodec*" data-throw-if-not-resolved="false">JsonParser#setCodec</xref> on response explicitly).
+
+
+    NOTE: constructed parser instance will NOT initially point to a token, so before passing it to deserializers, it is typically necessary to advance it to the first available token by calling <xref uid="com.fasterxml.jackson.core.JsonParser.nextToken()" data-throw-if-not-resolved="false">JsonParser#nextToken()</xref>.
+  syntax:
+    content: public abstract JsonParser traverse(ObjectCodec codec)
+    parameters:
+    - id: codec
+      type: com.fasterxml.jackson.core.ObjectCodec
+    return:
+      type: com.fasterxml.jackson.core.JsonParser
+references:
+- uid: com.fasterxml.jackson.core.JsonToken
+  name: JsonToken
+  nameWithType: JsonToken
+  fullName: com.fasterxml.jackson.core.JsonToken
+- uid: com.fasterxml.jackson.core.TreeNode.asToken*
+  name: asToken
+  nameWithType: TreeNode.asToken
+  fullName: com.fasterxml.jackson.core.TreeNode.asToken
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.JsonParser.NumberType
+  name: JsonParser.NumberType
+  nameWithType: JsonParser.NumberType
+  fullName: com.fasterxml.jackson.core.JsonParser.NumberType
+- uid: com.fasterxml.jackson.core.TreeNode.numberType*
+  name: numberType
+  nameWithType: TreeNode.numberType
+  fullName: com.fasterxml.jackson.core.TreeNode.numberType
+  package: com.fasterxml.jackson.core
+- uid: int
+  spec.java:
+  - uid: int
+    name: int
+    fullName: int
+- uid: com.fasterxml.jackson.core.TreeNode.size*
+  name: size
+  nameWithType: TreeNode.size
+  fullName: com.fasterxml.jackson.core.TreeNode.size
+  package: com.fasterxml.jackson.core
+- uid: boolean
+  spec.java:
+  - uid: boolean
+    name: boolean
+    fullName: boolean
+- uid: com.fasterxml.jackson.core.TreeNode.isValueNode*
+  name: isValueNode
+  nameWithType: TreeNode.isValueNode
+  fullName: com.fasterxml.jackson.core.TreeNode.isValueNode
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.TreeNode.isContainerNode*
+  name: isContainerNode
+  nameWithType: TreeNode.isContainerNode
+  fullName: com.fasterxml.jackson.core.TreeNode.isContainerNode
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.TreeNode.isMissingNode*
+  name: isMissingNode
+  nameWithType: TreeNode.isMissingNode
+  fullName: com.fasterxml.jackson.core.TreeNode.isMissingNode
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.TreeNode.isArray*
+  name: isArray
+  nameWithType: TreeNode.isArray
+  fullName: com.fasterxml.jackson.core.TreeNode.isArray
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.TreeNode.isObject*
+  name: isObject
+  nameWithType: TreeNode.isObject
+  fullName: com.fasterxml.jackson.core.TreeNode.isObject
+  package: com.fasterxml.jackson.core
+- uid: java.lang.String
+  spec.java:
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+- uid: com.fasterxml.jackson.core.TreeNode.get*
+  name: get
+  nameWithType: TreeNode.get
+  fullName: com.fasterxml.jackson.core.TreeNode.get
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.TreeNode.path*
+  name: path
+  nameWithType: TreeNode.path
+  fullName: com.fasterxml.jackson.core.TreeNode.path
+  package: com.fasterxml.jackson.core
+- uid: java.util.Iterator<java.lang.String>
+  spec.java:
+  - uid: java.util.Iterator
+    name: Iterator
+    fullName: java.util.Iterator
+  - name: <
+    fullName: <
+  - uid: java.lang.String
+    name: String
+    fullName: java.lang.String
+  - name: '>'
+    fullName: '>'
+- uid: com.fasterxml.jackson.core.TreeNode.fieldNames*
+  name: fieldNames
+  nameWithType: TreeNode.fieldNames
+  fullName: com.fasterxml.jackson.core.TreeNode.fieldNames
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.JsonPointer
+  name: JsonPointer
+  nameWithType: JsonPointer
+  fullName: com.fasterxml.jackson.core.JsonPointer
+- uid: com.fasterxml.jackson.core.TreeNode.at*
+  name: at
+  nameWithType: TreeNode.at
+  fullName: com.fasterxml.jackson.core.TreeNode.at
+  package: com.fasterxml.jackson.core
+- uid: java.lang.IllegalArgumentException
+  spec.java:
+  - uid: java.lang.IllegalArgumentException
+    name: IllegalArgumentException
+    fullName: java.lang.IllegalArgumentException
+- uid: com.fasterxml.jackson.core.JsonParser
+  name: JsonParser
+  nameWithType: JsonParser
+  fullName: com.fasterxml.jackson.core.JsonParser
+- uid: com.fasterxml.jackson.core.TreeNode.traverse*
+  name: traverse
+  nameWithType: TreeNode.traverse
+  fullName: com.fasterxml.jackson.core.TreeNode.traverse
+  package: com.fasterxml.jackson.core
+- uid: com.fasterxml.jackson.core.ObjectCodec
+  name: ObjectCodec
+  nameWithType: ObjectCodec
+  fullName: com.fasterxml.jackson.core.ObjectCodec
+- uid: java.util.Iterator
+  name: Iterator
+  nameWithType: Iterator
+  fullName: java.util.Iterator
