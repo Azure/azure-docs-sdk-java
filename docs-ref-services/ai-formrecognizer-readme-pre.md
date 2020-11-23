@@ -1,6 +1,6 @@
 ---
 title: Azure Form Recognizer client library for Java
-keywords: Azure, , SDK, API, azure-ai-formrecognizer, formrecognizer
+keywords: Azure, java, SDK, API, azure-ai-formrecognizer, formrecognizer
 author: maggiepint
 ms.author: magpint
 ms.date: 11/23/2020
