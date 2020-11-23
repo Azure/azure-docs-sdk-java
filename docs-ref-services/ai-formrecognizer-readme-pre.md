@@ -7,7 +7,7 @@ ms.date: 11/23/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
-ms.devlang: 
+ms.devlang: java
 ms.service: formrecognizer
 ---
 
