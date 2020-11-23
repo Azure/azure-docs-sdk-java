@@ -1,9 +1,9 @@
 ---
-title: 
+title: Azure Spring Boot client library for Java
 keywords: Azure, java, SDK, API, azure-spring-boot, springboot
 author: maggiepint
 ms.author: magpint
-ms.date: 10/20/2020
+ms.date: 11/19/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: springboot
 ---
 
-# Azure Spring Boot client library for Java - Version 2.3.6-beta.1 
+# Azure Spring Boot client library for Java - Version 3.0.0-beta.1 
 
 This repo is for Spring Boot Starters of Azure services. It helps Spring Boot developers to adopt Azure services.
 
@@ -20,9 +20,9 @@ This repo is for Spring Boot Starters of Azure services. It helps Spring Boot de
 ## Getting started
 
 ### Prerequisites
-- Java Development Kit (JDK) with version 8 or above
+- [Java Development Kit (JDK)][jdk_link] with version 8 or above
 - [Azure Subscription][azure_subscription]
-- [Maven](http://maven.apache.org/) 3.0 and above
+- [Maven](https://maven.apache.org/) 3.0 and above
 
 ### Include the Package
 To start a new project using Azure, go on [start.spring.io](https://start.spring.io) and select "Azure
@@ -40,14 +40,14 @@ dependency to your project and the Spring Boot auto-configuration will kick-in:
 
 Note that there is no need to add a `version` as those are managed already by the project.
 
-Alternatively you may want to use the [starters](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_2.3.6-beta.1/sdk/spring/azure-spring-boot-starter)
+Alternatively you may want to use the [starters](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter)
 
-[//]: # ({x-version-update-start;com.microsoft.azure:azure-keyvault-secrets-spring-boot-starter;current})
+[//]: # ({x-version-update-start;com.azure.spring:azure-spring-boot-starter-keyvault-secrets;current})
 ```xml
 <dependency>
-    <groupId>com.microsoft.azure</groupId>
-    <artifactId>azure-keyvault-secrets-spring-boot-starter</artifactId>
-    <version>2.3.6-beta.1</version>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
+    <version>3.0.0-beta.1</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -55,32 +55,32 @@ Alternatively you may want to use the [starters](https://github.com/Azure/azure-
 ## Key concepts
 This project provides auto-configuration for the following Azure services:
 
-- [Azure Active Directory](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-active-directory)
-- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-active-directory-b2c)
-- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-cosmosdb)
-- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-data-gremlin)
-- [Key Vault Secrets](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-keyvault-secrets)
-- [Metrics Service](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-metrics)
-- [JMS Service Bus](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-starter-servicebus-jms)
+- [Azure Active Directory](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-active-directory)
+- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-active-directory-b2c)
+- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-cosmos)
+- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-data-gremlin)
+- [Key Vault Secrets](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-keyvault-secrets)
+- [Metrics Service](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-metrics)
+- [JMS Service Bus](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-starter-servicebus-jms)
 
 This module also provides the ability to automatically inject credentials from Cloud Foundry into your
 applications consuming Azure services. It does this by reading the `VCAP_SERVICES` environment
 variable and setting the appropriate properties used by auto-configuration code.
 
-For details, please see sample code in the [azure-spring-boot-sample-cloud-foundry](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-cloud-foundry-service-sample) 
+For details, please see sample code in the [azure-spring-boot-sample-cloud-foundry](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-cloud-foundry-service-sample) 
 
 ## Examples
 The following section provides sample projects illustrating how to use the Azure Spring Boot starters.
 ### More sample code
-- [Azure Active Directory for Frontend](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory)
-- [Azure Active Directory for Backend](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend)
-- [Azure Active Directory for Backend with Microsoft Graph API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend-v2)
-- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
-- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmosdb)
-- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-data-gremlin)
-- [Key Vault](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-secrets)
-- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
-- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
+- [Azure Active Directory for Frontend](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-resource-server)
+- [Azure Active Directory for Backend](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend)
+- [Azure Active Directory for Backend with Microsoft Graph API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend-v2)
+- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
+- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos)
+- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-data-gremlin)
+- [Key Vault](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-secrets)
+- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
+- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
 
 ## Troubleshooting
 ### Enable client logging
@@ -103,20 +103,20 @@ For more information about setting logging in spring, please refer to the [offic
 ## Next steps
 The following section provides sample projects illustrating how to use the Azure Spring Boot starters.
 ### More sample code
-- [Azure Active Directory for Frontend](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory)
-- [Azure Active Directory for Backend](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend)
-- [Azure Active Directory for Backend with Microsoft Graph API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend-v2)
-- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
-- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmosdb)
-- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-data-gremlin)
-- [Key Vault](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-secrets)
-- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
-- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
+- [Azure Active Directory for Frontend](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-resource-server)
+- [Azure Active Directory for Backend](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend)
+- [Azure Active Directory for Backend with Microsoft Graph API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-backend-v2)
+- [Azure Active Directory B2C](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc)
+- [Cosmos DB SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-cosmos)
+- [Gremlin SQL API](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-data-gremlin)
+- [Key Vault](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-keyvault-secrets)
+- [JMS Service Bus Queue](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue)
+- [JMS Service Bus Topic](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-topic)
 
 ## Contributing
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit https://cla.microsoft.com.
 
-Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/tree/8c22042a4017d1ca85effa990c4ecb18153bfa17/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
+Please follow [instructions here](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.0.0-beta.1/sdk/spring/CONTRIBUTING.md) to build from source or contribute.
 
 If you encounter any bug, please file an issue [here](https://github.com/Azure/azure-sdk-for-java/issues).
 
@@ -125,11 +125,12 @@ To suggest a new feature or changes that could be made, file an issue the same w
 You can participate community driven [![Gitter](https://badges.gitter.im/Microsoft/spring-on-azure.svg)](https://gitter.im/Microsoft/spring-on-azure)
 
 <!-- LINKS -->
-[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_2.3.6-beta.1/sdk/spring/azure-spring-boot/src
+[src]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot/src
 [docs]: https://docs.microsoft.com/azure/developer/java/spring-framework/spring-boot-starters-for-azure
 [refdocs]: https://azure.github.io/azure-sdk-for-java/spring.html#azure-spring-boot
 [package]: https://mvnrepository.com/artifact/com.microsoft.azure/azure-spring-boot
-[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_2.3.6-beta.1/sdk/spring/azure-spring-boot-samples
+[sample]: https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-boot_3.0.0-beta.1/sdk/spring/azure-spring-boot-samples
 [logging]: https://github.com/Azure/azure-sdk-for-java/wiki/Logging-with-Azure-SDK#use-logback-logging-framework-in-a-spring-boot-application
 [azure_subscription]: https://azure.microsoft.com/free
+[jdk_link]: https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable
 
