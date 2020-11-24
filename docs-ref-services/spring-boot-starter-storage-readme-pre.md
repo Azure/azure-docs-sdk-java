@@ -1,6 +1,6 @@
 ---
 title: Azure Spring Boot Starter Storage client library for Java
-keywords: Azure, java, SDK, API, azure-spring-boot-starter-storage, 
+keywords: Azure, java, SDK, API, azure-spring-boot-starter-storage, springboot
 author: maggiepint
 ms.author: magpint
 ms.date: 11/19/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: springboot
 ---
 
 # Azure Spring Boot Starter Storage client library for Java - Version 3.0.0-beta.1 

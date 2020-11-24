@@ -1,13 +1,13 @@
 ---
 title: Azure Key Vault Key client library for Java
-keywords: Azure, , SDK, API, azure-security-keyvault-keys, keyvault
+keywords: Azure, java, SDK, API, azure-security-keyvault-keys, keyvault
 author: maggiepint
 ms.author: magpint
 ms.date: 11/20/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
-ms.devlang: 
+ms.devlang: java
 ms.service: keyvault
 ---
 

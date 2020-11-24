@@ -1,6 +1,6 @@
 ---
 title: Azure AD B2C Spring Boot Starter client library for Java
-keywords: Azure, java, SDK, API, azure-spring-boot-starter-active-directory-b2c, 
+keywords: Azure, java, SDK, API, azure-spring-boot-starter-active-directory-b2c, springboot
 author: maggiepint
 ms.author: magpint
 ms.date: 11/19/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: springboot
 ---
 
 # Azure AD B2C Spring Boot Starter client library for Java - Version 3.0.0-beta.1 

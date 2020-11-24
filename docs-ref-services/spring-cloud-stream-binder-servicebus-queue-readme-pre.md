@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Queue Spring Cloud Stream Binder client library for Java
-keywords: Azure, java, SDK, API, azure-spring-cloud-stream-binder-servicebus-queue, 
+keywords: Azure, java, SDK, API, azure-spring-cloud-stream-binder-servicebus-queue, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 11/20/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: springcloud
 ---
 
 # Azure Service Bus Queue Spring Cloud Stream Binder client library for Java - Version 2.0.0-beta.1 

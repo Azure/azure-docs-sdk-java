@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Spring Cloud starter client library for Java
-keywords: Azure, java, SDK, API, azure-spring-cloud-starter-servicebus, 
+keywords: Azure, java, SDK, API, azure-spring-cloud-starter-servicebus, springcloud
 author: maggiepint
 ms.author: magpint
 ms.date: 11/19/2020
@@ -8,7 +8,7 @@ ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: 
+ms.service: springcloud
 ---
 
 # Azure Service Bus Spring Cloud starter client library for Java - Version 2.0.0-beta.1 
