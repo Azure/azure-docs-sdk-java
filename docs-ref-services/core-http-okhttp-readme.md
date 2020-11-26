@@ -3,7 +3,7 @@ title: Azure Core OkHttp HTTP plugin library for Java
 keywords: Azure, java, SDK, API, azure-core-http-okhttp, core
 author: maggiepint
 ms.author: magpint
-ms.date: 10/30/2020
+ms.date: 11/26/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
@@ -11,7 +11,7 @@ ms.devlang: java
 ms.service: core
 ---
 
-# Azure Core OkHttp HTTP plugin library for Java - Version 1.3.3 
+# Azure Core OkHttp HTTP plugin library for Java - Version 1.4.0 
 
 
 Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
@@ -29,7 +29,7 @@ Azure Core OkHttp HTTP client is a plugin for the `azure-core` HTTP client API.
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-core-http-okhttp</artifactId>
-    <version>1.3.3</version>
+    <version>1.4.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -80,8 +80,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-If you would like to become an active contributor to this project please follow the instructions provided in [Microsoft
-Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core-http-okhttp_1.4.0/CONTRIBUTING.md).
 
 1. Fork it
 1. Create your feature branch (`git checkout -b my-new-feature`)
