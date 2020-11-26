@@ -1,17 +1,17 @@
 ---
 title: Azure Core shared library for Java
-keywords: Azure, java, SDK, API, azure-core, core
+keywords: Azure, java, SDK, API, azure-core, corecore
 author: maggiepint
 ms.author: magpint
-ms.date: 10/30/2020
+ms.date: 11/26/2020
 ms.topic: article
 ms.prod: azure
 ms.technology: azure
 ms.devlang: java
-ms.service: core
+ms.service: corecore
 ---
 
-# Azure Core shared library for Java - Version 1.10.0 
+# Azure Core shared library for Java - Version 1.11.0 
 
 
 [![Build Documentation](https://img.shields.io/badge/documentation-published-blue.svg)](https://azure.github.io/azure-sdk-for-java)
@@ -41,7 +41,7 @@ tool when you depend on client libraries using it.
 <dependency>
   <groupId>com.azure</groupId>
   <artifactId>azure-core</artifactId>
-  <version>1.10.0</version>
+  <version>1.11.0</version>
 </dependency>
 ```
 [//]: # ({x-version-update-end})
@@ -104,8 +104,7 @@ locate the root issue. View the [logging][logging] wiki for guidance about enabl
 
 ## Contributing
 
-If you would like to become an active contributor to this project please follow the instructions provided in
-[Microsoft Azure Projects Contribution Guidelines](https://azure.github.io/guidelines.html).
+For details on contributing to this repository, see the [contributing guide](https://github.com/Azure/azure-sdk-for-java/blob/azure-core_1.11.0/CONTRIBUTING.md).
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
